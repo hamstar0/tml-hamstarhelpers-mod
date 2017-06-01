@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE4080CF-D5F1-4D42-895B-75069E40B2FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HamstarHelpers</RootNamespace>
+    <AssemblyName>HamstarHelpers</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Libraries.JSON.NET.Newtonsoft.Json">
+      <HintPath>..\..\Reference\Libraries.JSON.NET.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\Program Files\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Microsoft.Xna.Framework.Game" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HamstarHelpersPlayer.cs" />
+    <Compile Include="MiscHelpers\DebugHelpers.cs" />
+    <Compile Include="DustHelpers\DustHelpers.cs" />
+    <Compile Include="HamstarHelpersMod.cs" />
+    <Compile Include="ItemHelpers\ItemFinderHelpers.cs" />
+    <Compile Include="ItemHelpers\ItemHelpers.cs" />
+    <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
+    <Compile Include="ConfigHelpers\JsonConfig.cs" />
+    <Compile Include="MiscHelpers\DotNetHelpers.cs" />
+    <Compile Include="MiscHelpers\MiscHelpers.cs" />
+    <Compile Include="NPCHelpers\NPCFinderHelpers.cs" />
+    <Compile Include="NPCHelpers\NPCHelpers.cs" />
+    <Compile Include="PlayerHelpers\PlayerHeadHelpers.cs" />
+    <Compile Include="PlayerHelpers\PlayerHelpers.cs" />
+    <Compile Include="PlayerHelpers\PlayerItemHelpers.cs" />
+    <Compile Include="PlayerHelpers\PlayerNPCHelpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TileHelpers\TileHelpers.cs" />
+    <Compile Include="DisplayHelpers\PlayerMessage.cs" />
+    <Compile Include="DisplayHelpers\SimpleMessage.cs" />
+    <Compile Include="DisplayHelpers\UIPlayerHudHelpers.cs" />
+    <Compile Include="DisplayHelpers\UIMapHelpers.cs" />
+    <Compile Include="UIHelpers\UIHelpers.cs" />
+    <Compile Include="UI\UICheckbox.cs" />
+    <Compile Include="WorldHelpers\WorldHelpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="build.txt" />
+    <Content Include="description.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
