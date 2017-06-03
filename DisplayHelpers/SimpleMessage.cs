@@ -31,8 +31,9 @@ namespace HamstarHelpers.DisplayHelpers {
 			}
 		}
 
+
 		private static Vector2 DrawMessageText( SpriteBatch sb, string msg, float scale, Vector2 pos ) {
-			Vector2 size = Main.fontItemStack.MeasureString( SimpleMessage.Message );
+			Vector2 size = Main.fontItemStack.MeasureString( msg );
 			size.X *= scale;
 			size.Y *= scale;
 

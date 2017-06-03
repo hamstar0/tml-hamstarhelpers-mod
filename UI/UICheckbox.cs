@@ -38,10 +38,11 @@ namespace HamstarHelpers.UI {
 
 
 
-		public UICheckbox( Mod mod, string text, string tooltip, bool clickable = true, float textScale = 1, bool large = false ) : base( text, textScale, large ) {
+		public UICheckbox( string text, string tooltip, bool clickable = true, float textScale = 1, bool large = false ) : base( text, textScale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
-				UICheckbox.CheckboxTexture = mod.GetTexture( "Utils/UI/checkBox" );
-				UICheckbox.CheckmarkTexture = mod.GetTexture( "Utils/UI/checkMark" );
+				var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
+				UICheckbox.CheckboxTexture = mymod.GetTexture( "UI/checkBox" );
+				UICheckbox.CheckmarkTexture = mymod.GetTexture( "UI/checkMark" );
 			}
 
 			this.Tooltip = tooltip;
