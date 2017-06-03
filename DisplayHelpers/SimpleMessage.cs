@@ -10,11 +10,13 @@ namespace HamstarHelpers.DisplayHelpers {
 		public static string SubMessage = "";
 
 
+
 		public static void PostMessage( string msg, string submsg, int duration ) {
 			SimpleMessage.MessageDuration = duration;
 			SimpleMessage.Message = msg;
 			SimpleMessage.SubMessage = submsg;
 		}
+
 
 		public static void UpdateMessage() { // Called from an Update function
 			if( SimpleMessage.MessageDuration <= 0 ) { return; }
@@ -22,6 +24,8 @@ namespace HamstarHelpers.DisplayHelpers {
 		}
 
 		public static void DrawMessage( SpriteBatch sb ) { // Called from a Draw function
+			if( SimpleMessage.MessageDuration == 0 ) { return; }
+
 			var pos = new Vector2( Main.screenWidth / 2f, Main.screenHeight / 2f );
 			var size = SimpleMessage.DrawMessageText( sb, SimpleMessage.Message, 2f, pos );
 
