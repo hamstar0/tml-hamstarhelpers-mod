@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
-namespace HamstarHelpers.UIHelpers {
+namespace HamstarHelpers.DisplayHelpers {
 	class PlayerLabelText {
 		public string Text;
 		public Color Color;

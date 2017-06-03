@@ -4,8 +4,8 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.UIHelpers {
-	public static class UIPlayerHudHelpers {
+namespace HamstarHelpers.DisplayHelpers {
+	public static class PlayerHudHelpers {
 		public static Color GetHealthBarColor( int hp, int max_hp, float alpha ) {
 			if( hp <= 0 ) { return Color.Black; }
 

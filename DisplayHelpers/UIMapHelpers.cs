@@ -2,8 +2,8 @@
 using Terraria;
 
 
-namespace HamstarHelpers.UIHelpers {
-	public class UIMapHelpers {
+namespace HamstarHelpers.DisplayHelpers {
+	public class MapHelpers {
 		public static Vector2 GetFullMapPosition( Rectangle origin ) {    //Main.mapFullscreen
 			float map_x = 200f;
 			float map_y = 300f;

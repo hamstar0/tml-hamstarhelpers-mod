@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.UIHelpers {
+namespace HamstarHelpers.DisplayHelpers {
 	public static class SimpleMessage {
 		public static int MessageDuration = 0;
 		public static string Message = "";
