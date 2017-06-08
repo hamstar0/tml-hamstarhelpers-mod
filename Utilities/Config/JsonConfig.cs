@@ -3,7 +3,7 @@ using Terraria;
 using Newtonsoft.Json;
 
 
-namespace HamstarHelpers.ConfigHelpers {
+namespace HamstarHelpers.Utilities.Config {
 	public class JsonConfig<T> {
 		public string FileName { get; private set; }
 		public string PathName { get; private set; }

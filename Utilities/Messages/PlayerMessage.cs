@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
-namespace HamstarHelpers.DisplayHelpers {
-	class PlayerLabelText {
+
+namespace HamstarHelpers.Utilities.Messages {
+	public class PlayerLabelText {
 		public string Text;
 		public Color Color;
 		public int StartDuration;

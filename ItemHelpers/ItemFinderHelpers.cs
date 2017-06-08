@@ -42,7 +42,7 @@ namespace HamstarHelpers.ItemHelpers {
 				return ItemFinderHelpers.SellItems[sell_value];
 			}
 
-			for( int i = 0; i < Main.itemName.Length; i++ ) {
+			for( int i = 0; i < Main.itemTexture.Length; i++ ) {
 				if( !include_coins && i == 71 ) { i = 75; }
 
 				Item item = new Item();

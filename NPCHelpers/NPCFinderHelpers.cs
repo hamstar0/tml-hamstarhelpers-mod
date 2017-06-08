@@ -6,7 +6,7 @@ namespace HamstarHelpers.NPCHelpers {
 	public static class NPCFinderHelpers {
 		public static int FindNpcTypeByUniqueId( string uid ) {
 			NPC npc = new NPC();
-			for( int i = Main.npcName.Length - 1; i >= 0; i-- ) {
+			for( int i = Main.npcTexture.Length - 1; i >= 0; i-- ) {
 				npc.SetDefaults( i );
 				if( NPCHelpers.GetUniqueId( npc ) == uid ) {
 					return i;

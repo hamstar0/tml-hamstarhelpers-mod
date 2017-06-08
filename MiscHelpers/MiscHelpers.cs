@@ -1,14 +1,14 @@
 ﻿using Terraria;
-
+using Terraria.Localization;
 
 namespace HamstarHelpers.MiscHelpers {
 	public static class MiscHelpers {
 		public static string RenderMoney( int money ) {
 			string render = "";
-			string label_copper = Lang.inter[18];
-			string label_silver = Lang.inter[17];
-			string label_gold = Lang.inter[16];
-			string label_plat = Lang.inter[15];
+			string label_copper = Language.GetTextValue( "CopperCoin" );	//Lang.inter[18];
+			string label_silver = Language.GetTextValue( "SilverCoin" );    //Lang.inter[17];
+			string label_gold = Language.GetTextValue( "GoldCoin" );  //Lang.inter[16];
+			string label_plat = Language.GetTextValue( "PlatinumCoin" );  //Lang.inter[15];
 
 			int plat = 0;
 			int gold = 0;

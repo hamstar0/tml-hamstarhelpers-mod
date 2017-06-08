@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.DisplayHelpers {
+namespace HamstarHelpers.Utilities.Messages {
 	public static class SimpleMessage {
 		public static int MessageDuration = 0;
 		public static string Message = "";
@@ -30,7 +31,8 @@ namespace HamstarHelpers.DisplayHelpers {
 			var size = SimpleMessage.DrawMessageText( sb, SimpleMessage.Message, 2f, pos );
 
 			if( SimpleMessage.SubMessage != "" ) {
-				var subpos = new Vector2( Main.screenWidth / 2f, (Main.screenHeight / 2f) + size.Y );
+				var subpos = pos;
+				subpos.Y += size.Y * 2;
 				SimpleMessage.DrawMessageText( sb, SimpleMessage.SubMessage, 1f, subpos );
 			}
 		}
@@ -44,7 +46,7 @@ namespace HamstarHelpers.DisplayHelpers {
 			pos.X -= size.X / 2f;
 			pos.Y -= size.Y * 2f;
 
-			sb.DrawString( Main.fontItemStack, msg, pos, Color.White, 0f, new Vector2(), scale, SpriteEffects.None, 1f );
+			sb.DrawString( Main.fontItemStack, msg, pos, Color.White, 0f, new Vector2(0,0), scale, SpriteEffects.None, 1f );
 
 			return size;
 		}

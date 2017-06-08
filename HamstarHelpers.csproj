@@ -47,8 +47,12 @@
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
+    <Reference Include="Terraria.Libraries.ReLogic.ReLogic">
+      <HintPath>..\..\Reference\Terraria.Libraries.ReLogic.ReLogic.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HudHelpers\HealthBarHelpers.cs" />
     <Compile Include="HamstarHelpersPlayer.cs" />
     <Compile Include="MiscHelpers\DebugHelpers.cs" />
     <Compile Include="DustHelpers\DustHelpers.cs" />
@@ -56,7 +60,7 @@
     <Compile Include="ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="ItemHelpers\ItemHelpers.cs" />
     <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
-    <Compile Include="ConfigHelpers\JsonConfig.cs" />
+    <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="MiscHelpers\DotNetHelpers.cs" />
     <Compile Include="MiscHelpers\MiscHelpers.cs" />
     <Compile Include="NPCHelpers\NPCFinderHelpers.cs" />
@@ -67,19 +71,19 @@
     <Compile Include="PlayerHelpers\PlayerNPCHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileHelpers\TileHelpers.cs" />
-    <Compile Include="DisplayHelpers\PlayerMessage.cs" />
-    <Compile Include="DisplayHelpers\SimpleMessage.cs" />
-    <Compile Include="DisplayHelpers\UIPlayerHudHelpers.cs" />
-    <Compile Include="DisplayHelpers\UIMapHelpers.cs" />
+    <Compile Include="Utilities\Messages\PlayerMessage.cs" />
+    <Compile Include="Utilities\Messages\SimpleMessage.cs" />
+    <Compile Include="HudHelpers\HudHelpers.cs" />
+    <Compile Include="HudHelpers\MapHelpers.cs" />
     <Compile Include="UIHelpers\UIHelpers.cs" />
-    <Compile Include="UI\UICheckbox.cs" />
+    <Compile Include="Utilities\UI\UICheckbox.cs" />
     <Compile Include="WorldHelpers\WorldHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build.txt" />
     <Content Include="description.txt" />
-    <Content Include="UI\checkBox.png" />
-    <Content Include="UI\checkMark.png" />
+    <Content Include="Utilities\UI\checkBox.png" />
+    <Content Include="Utilities\UI\checkMark.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

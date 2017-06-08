@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.UI {
+namespace HamstarHelpers.Utilities.UI {
 	public class UICheckbox : UIText {  // Blatantly lifted from Jopo's mod
 		public static Texture2D CheckboxTexture { get; private set; }
 		public static Texture2D CheckmarkTexture { get; private set; }
@@ -41,8 +41,8 @@ namespace HamstarHelpers.UI {
 		public UICheckbox( string text, string tooltip, bool clickable = true, float textScale = 1, bool large = false ) : base( text, textScale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
 				var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
-				UICheckbox.CheckboxTexture = mymod.GetTexture( "UI/checkBox" );
-				UICheckbox.CheckmarkTexture = mymod.GetTexture( "UI/checkMark" );
+				UICheckbox.CheckboxTexture = mymod.GetTexture( "Utilities/UI/checkBox" );
+				UICheckbox.CheckmarkTexture = mymod.GetTexture( "Utilities/UI/checkMark" );
 			}
 
 			this.Tooltip = tooltip;
@@ -71,7 +71,7 @@ namespace HamstarHelpers.UI {
 			base.DrawSelf( sb );
 
 			if( this.IsMouseHovering && this.Tooltip.Length > 0 ) {
-				Main.toolTip = new Item();
+				Main.HoverItem = new Item();
 				Main.hoverItemName = this.Tooltip;
 			}
 		}

@@ -36,7 +36,7 @@ namespace HamstarHelpers.PlayerHelpers {
 			if( Main.netMode <= 1 ) {
 				player.Teleport( pos, style );
 			} else {
-				NetMessage.SendData( 65, -1, -1, "", 0, (float)player.whoAmI, pos.X, pos.Y, style, 0, 0 );
+				NetMessage.SendData( 65, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, style, 0, 0 );
 			}
 		}
 
@@ -53,6 +53,14 @@ namespace HamstarHelpers.PlayerHelpers {
 			}
 
 			return pos;
+		}
+
+
+		public static bool HasUsedNurse( Player player ) {
+			return Main.npcChatText == Lang.dialog( 227, false ) ||
+					Main.npcChatText == Lang.dialog( 228, false ) ||
+					Main.npcChatText == Lang.dialog( 229, false ) ||
+					Main.npcChatText == Lang.dialog( 230, false );
 		}
 
 
@@ -184,19 +192,6 @@ namespace HamstarHelpers.PlayerHelpers {
 					(player.wet && player.accFlipper && (!player.mount.Active || !player.mount.Cart)))
 				&& (player.releaseJump ||
 					(player.autoJump && (player.velocity.Y == 0f || player.sliding)));
-		}
-
-
-		public static void GetTopHeartPosition( Player player, ref int x, ref int y ) {
-			x = Main.screenWidth - 66;
-			y = 60;
-
-			if( player.statLifeMax2 < 400 && (player.statLifeMax2 / 20) % 10 != 0 ) {
-				x -= (10 - ((player.statLifeMax2 / 20) % 10)) * 26;
-			}
-			if( player.statLifeMax2 / 20 <= 10 ) {
-				y -= 32;
-			}
 		}
 	}
 }

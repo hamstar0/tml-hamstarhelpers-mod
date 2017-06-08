@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.NPCHelpers {
 	public static class NPCHelpers {
 		public static string GetUniqueId( NPC npc ) {
-			if( npc.modNPC != null ) {
-				return npc.modNPC.mod.Name + " " + Main.npcName[npc.type];
-			}
+			string id = npc.TypeName;
+
+			if( npc.HasGivenName ) { id = npc.GivenName + " " + id; }
+			if( npc.modNPC != null ) { id = npc.modNPC.mod.Name + " " + id; }
+			
+			if( id != "" ) { return id; }
 			return ""+npc.type;
 		}
 
@@ -22,24 +26,25 @@ namespace HamstarHelpers.NPCHelpers {
 			npc.life = 0;
 			npc.checkDead();
 			npc.active = false;
-			NetMessage.SendData( 28, -1, -1, "", npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
+			NetMessage.SendData( 28, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
 		}
 
 		public static void Leave( NPC npc, bool announce=true ) {
 			int whoami = npc.whoAmI;
 			if( announce ) {
-				string str = Main.npc[whoami].name + " the " + Main.npc[whoami].name;
+				string str = Main.npc[whoami].GivenName + " the " + Main.npc[whoami].TypeName;
 				
 				if( Main.netMode == 0 ) {
 					Main.NewText( str + " " + Lang.misc[35], 50, 125, 255, false );
 				} else if( Main.netMode == 2 ) {
-					NetMessage.SendData( 25, -1, -1, str + " " + Lang.misc[35], 255, 50f, 125f, 255f, 0, 0, 0 );
+					string msg = str + " " + Lang.misc[35];
+					NetMessage.SendData( 25, -1, -1, NetworkText.FromLiteral(msg), 255, 50f, 125f, 255f, 0, 0, 0 );
 				}
 			}
 			Main.npc[whoami].active = false;
 			Main.npc[whoami].netSkip = -1;
 			Main.npc[whoami].life = 0;
-			NetMessage.SendData( 23, -1, -1, "", whoami, 0f, 0f, 0f, 0, 0, 0 );
+			NetMessage.SendData( 23, -1, -1, null, whoami, 0f, 0f, 0f, 0, 0, 0 );
 		}
 
 

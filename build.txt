@@ -1,5 +1,6 @@
 author = hamstar
-version = 1.0.1.3
+version = 1.0.2
 displayName = Hamstar's Helpers
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 includePDB = true
+homepage = https://github.com/hamstar0/tml-hamstarhelpers-mod

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
+
 namespace HamstarHelpers.TileHelpers {
 	public static class TileHelpers {
 		public static float GaugeBrightnessWithin( int x, int y, int width, int height ) {

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.DisplayHelpers;
-using HamstarHelpers.MiscHelpers;
+﻿using HamstarHelpers.MiscHelpers;
+using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 

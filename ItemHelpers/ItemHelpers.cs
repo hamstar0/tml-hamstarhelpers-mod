@@ -6,7 +6,7 @@ namespace HamstarHelpers.ItemHelpers {
 	public static class ItemHelpers {
 		public static string GetUniqueId( Item item ) {
 			if( item.modItem != null ) {
-				return item.modItem.mod.Name + " " + Main.itemName[item.type];
+				return item.modItem.mod.Name + " " + item.Name;
 			}
 			return ""+ item.netID;
 		}
@@ -15,7 +15,7 @@ namespace HamstarHelpers.ItemHelpers {
 		public static int CreateItem( Vector2 pos, int type, int stack, int width, int height, int prefix = 0 ) {
 			int number = Item.NewItem( (int)pos.X, (int)pos.Y, width, height, type, stack, false, prefix, true, false );
 			if( Main.netMode == 1 ) {
-				NetMessage.SendData( 21, -1, -1, "", number, 1f, 0f, 0f, 0, 0, 0 );
+				NetMessage.SendData( 21, -1, -1, null, number, 1f, 0f, 0f, 0, 0, 0 );
 			}
 			return number;
 		}
@@ -23,7 +23,7 @@ namespace HamstarHelpers.ItemHelpers {
 		public static void DestroyItem( Item item ) {
 			item.active = false;
 			item.type = 0;
-			item.name = "";
+			//item.name = "";
 			item.stack = 0;
 		}
 
@@ -32,7 +32,7 @@ namespace HamstarHelpers.ItemHelpers {
 			ItemHelpers.DestroyItem( item );
 
 			if( Main.netMode == 2 ) {
-				NetMessage.SendData( 21, -1, -1, "", i );
+				NetMessage.SendData( 21, -1, -1, null, i );
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 
 			if( Main.netMode != 0 && item.owner == Main.myPlayer && item.whoAmI > 0 ) {
-				NetMessage.SendData( 21, -1, -1, "", item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
+				NetMessage.SendData( 21, -1, -1, null, item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
 			}
 		}
 
