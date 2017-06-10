@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
@@ -26,31 +27,42 @@ namespace HamstarHelpers.TileHelpers {
 			if( tile == null || !tile.active() ) { return false; }
 
 			if( Main.tileSolid[(int)tile.type] ) {  // Solid
-				if( !Main.tileSolidTop[(int)tile.type] || is_platform_solid ) {  // Non-platform
-					if( !tile.inActive() || is_actuated_solid ) {  // Actuator not active
-						return true;
-					}
-				}
+				bool is_top_solid = Main.tileSolidTop[(int)tile.type];
+				bool is_passable = tile.inActive();
+
+				if( !is_platform_solid && is_top_solid ) { return false; }
+				if( !is_actuated_solid && is_passable ) { return false; }
+				return true;
 			}
 			return false;
 		}
 
 		public static bool IsDungeon( Tile tile ) {
-			if( tile == null || !tile.active() ) { return false; }
+			if( tile == null ) { return false; }
 
 			// Lihzahrd Brick Wall
-			if( tile.wall == 87 ) {
+			//if( tile.wall == 87 ) {
+			if( tile.wall == (ushort)WallID.LihzahrdBrickUnsafe /*|| tile.wall == (ushort)WallID.LihzahrdBrick*/ ) {
 				return true;
 			}
 			// Dungeon Walls
-			if( (tile.wall >= 7 && tile.wall <= 9) || (tile.wall >= 94 && tile.wall <= 99) ) {
+			//if( (tile.wall >= 7 && tile.wall <= 9) || (tile.wall >= 94 && tile.wall <= 99) ) {
+			if( tile.wall == (ushort)WallID.BlueDungeonSlabUnsafe ||
+				tile.wall == (ushort)WallID.GreenDungeonSlabUnsafe ||
+				tile.wall == (ushort)WallID.PinkDungeonSlabUnsafe ||
+				tile.wall == (ushort)WallID.BlueDungeonTileUnsafe ||
+				tile.wall == (ushort)WallID.GreenDungeonTileUnsafe ||
+				tile.wall == (ushort)WallID.PinkDungeonTileUnsafe ||
+				tile.wall == (ushort)WallID.BlueDungeonUnsafe ||
+				tile.wall == (ushort)WallID.GreenDungeonUnsafe ||
+				tile.wall == (ushort)WallID.PinkDungeonUnsafe ) {
 				return true;
 			}
 			return false;
 		}
 
 		public static bool IsWire( Tile tile ) {
-			if( tile == null || !tile.active() ) { return false; }
+			if( tile == null /*|| !tile.active()*/ ) { return false; }
 			return tile.wire() || tile.wire2() || tile.wire3() || tile.wire4();
 		}
 
@@ -58,6 +70,7 @@ namespace HamstarHelpers.TileHelpers {
 		public static bool FindNearbyRandomAirTile( int world_x, int world_y, int radius, out int to_x, out int to_y ) {
 			Tile tile = null;
 			int wtf = 0;
+			bool is_blocked = false;
 
 			do {
 				do { to_x = Main.rand.Next( -radius, radius ) + world_x; }
@@ -65,21 +78,27 @@ namespace HamstarHelpers.TileHelpers {
 				do { to_y = Main.rand.Next( -radius, radius ) + world_y; }
 				while( to_y < 0 || to_y >= Main.mapMaxY );
 
-				tile = Main.tile[to_x, to_y];
+				//tile = Main.tile[to_x, to_y];
+				tile = Framing.GetTileSafely( to_x, to_y );
 				if( wtf++ > 100 ) {
 					return false;
 				}
-			} while( (TileHelpers.IsSolid(tile, false, false) || TileHelpers.IsDungeon(tile) || TileHelpers.IsWire(tile) || tile.lava())
-				&& ((tile != null && tile.type != 0) || Lighting.Brightness(to_x, to_x) == 0) );
+
+				is_blocked = TileHelpers.IsSolid( tile, false, false ) ||
+					TileHelpers.IsDungeon( tile ) ||
+					TileHelpers.IsWire( tile ) ||
+					tile.lava();
+			} while( is_blocked && ((tile != null && tile.type != 0) || Lighting.Brightness(to_x, to_x) == 0) );
 
 			return true;
 		}
 
 
-		public static bool IsNotBombable( int i, int j ) {
-			Tile tile = Main.tile[i, j];
+		public static bool IsNotBombable( int world_x, int world_y ) {
+			//Tile tile = Main.tile[i, j];
+			Tile tile = Framing.GetTileSafely( world_x, world_y );
 
-			return !TileLoader.CanExplode( i, j ) ||
+			return !TileLoader.CanExplode( world_x, world_y ) ||
 				Main.tileDungeon[(int)tile.type] ||
 				tile.type == 88 ||  // Dresser
 				tile.type == 21 ||  // Chest
