@@ -71,12 +71,17 @@ namespace HamstarHelpers.TileHelpers {
 			Tile tile = null;
 			int wtf = 0;
 			bool is_blocked = false;
+			to_x = 0;
+			to_y = 0;
+
+			if( world_x + radius <= 0 || world_x - radius >= Main.mapMaxX ) { return false; }
+			if( world_y + radius <= 0 || world_y - radius >= Main.mapMaxY ) { return false; }
 
 			do {
 				do { to_x = Main.rand.Next( -radius, radius ) + world_x; }
-				while( to_x < 0 || to_x >= Main.mapMaxX );
+				while( to_x <= 0 || to_x >= Main.mapMaxX );
 				do { to_y = Main.rand.Next( -radius, radius ) + world_y; }
-				while( to_y < 0 || to_y >= Main.mapMaxY );
+				while( to_y <= 0 || to_y >= Main.mapMaxY );
 
 				//tile = Main.tile[to_x, to_y];
 				tile = Framing.GetTileSafely( to_x, to_y );
@@ -84,7 +89,7 @@ namespace HamstarHelpers.TileHelpers {
 					return false;
 				}
 
-				is_blocked = TileHelpers.IsSolid( tile, false, false ) ||
+				is_blocked = TileHelpers.IsSolid( tile, true, true ) ||
 					TileHelpers.IsDungeon( tile ) ||
 					TileHelpers.IsWire( tile ) ||
 					tile.lava();

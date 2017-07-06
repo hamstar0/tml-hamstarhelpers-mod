@@ -12,5 +12,22 @@ namespace HamstarHelpers.UIHelpers {
 			sb.Draw( Main.magicPixel, new Rectangle( (int)position.X - border_width, (int)position.Y, (int)border_width, (int)size.Y ), border_color );
 			sb.Draw( Main.magicPixel, new Rectangle( (int)position.X + (int)size.X, (int)position.Y, (int)border_width, (int)size.Y ), border_color );
 		}	// Blatantly lifted from Jopo's mod
+
+
+		public static Rectangle GetWorldFrameOfScreen() {
+			int screen_wid = (int)((float)Main.screenWidth / Main.GameZoomTarget);
+			int screen_hei = (int)((float)Main.screenHeight / Main.GameZoomTarget);
+			int screen_x = (int)Main.screenPosition.X + ((Main.screenWidth - screen_wid) / 2);
+			int screen_y = (int)Main.screenPosition.Y + ((Main.screenHeight - screen_hei) / 2);
+
+			return new Rectangle( screen_x, screen_y, screen_wid, screen_hei );
+		}
+
+		public static Vector2 ConvertToScreenPosition( Vector2 world_pos ) {
+			var frame = UIHelpers.GetWorldFrameOfScreen();
+			var screen_pos = new Vector2( frame.X, frame.Y );
+
+			return (world_pos - screen_pos) * Main.GameZoomTarget;
+		}
 	}
 }
