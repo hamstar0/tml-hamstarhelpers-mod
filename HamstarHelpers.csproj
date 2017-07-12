@@ -82,8 +82,8 @@
   <ItemGroup>
     <Content Include="build.txt" />
     <Content Include="description.txt" />
-    <Content Include="Utilities\UI\checkBox.png" />
-    <Content Include="Utilities\UI\checkMark.png" />
+    <Content Include="Utilities\UI\check_box.png" />
+    <Content Include="Utilities\UI\check_mark.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,8 +20,8 @@ namespace HamstarHelpers.Utilities.UI {
 
 		public event Action OnSelectedChanged = null;
 		public float Order = 0f;
-		public bool Clickable = true;
-		public string Tooltip = "";
+		public bool IsClickable = true;
+		public string Title = "";
 
 		private bool _selected = false;
 		public bool Selected {
@@ -38,22 +38,22 @@ namespace HamstarHelpers.Utilities.UI {
 
 
 
-		public UICheckbox( string text, string tooltip, bool clickable = true, float textScale = 1, bool large = false ) : base( text, textScale, large ) {
+		public UICheckbox( string label, string title, bool is_clickable = true, float text_scale = 1, bool large = false ) : base( label, text_scale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
 				var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
-				UICheckbox.CheckboxTexture = mymod.GetTexture( "Utilities/UI/checkBox" );
-				UICheckbox.CheckmarkTexture = mymod.GetTexture( "Utilities/UI/checkMark" );
+				UICheckbox.CheckboxTexture = mymod.GetTexture( "Utilities/UI/check_box" );
+				UICheckbox.CheckmarkTexture = mymod.GetTexture( "Utilities/UI/check_mark" );
 			}
 
-			this.Tooltip = tooltip;
-			this.Clickable = clickable;
+			this.Title = title;
+			this.IsClickable = is_clickable;
 
-			this.SetText( "   " + text );
+			this.SetText( "   " + label );
 			this.Recalculate();
 		}
 
 		public override void Click( UIMouseEvent evt ) {
-			if( this.Clickable ) {
+			if( this.IsClickable ) {
 				this.Selected = !this.Selected;
 			}
 			this.Recalculate();
@@ -70,15 +70,19 @@ namespace HamstarHelpers.Utilities.UI {
 
 			base.DrawSelf( sb );
 
-			if( this.IsMouseHovering && this.Tooltip.Length > 0 ) {
+			if( this.IsMouseHovering && this.Title.Length > 0 ) {
 				Main.HoverItem = new Item();
-				Main.hoverItemName = this.Tooltip;
+				Main.hoverItemName = this.Title;
 			}
 		}
 
 		public override int CompareTo( object obj ) {
-			UICheckbox other = obj as UICheckbox;
-			return this.Order.CompareTo( other.Order );
+			try {
+				UICheckbox other = obj as UICheckbox;
+				return this.Order.CompareTo( other.Order );
+			} catch( Exception e ) {
+				return 0;
+			}
 		}
 	}
 }
