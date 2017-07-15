@@ -13,7 +13,7 @@ namespace HamstarHelpers {
 				AutoloadSounds = true
 			};
 		}
-		
+
 		public override void PostDrawInterface( SpriteBatch sb ) {
 			PlayerMessage.DrawPlayerLabels( sb );
 			SimpleMessage.DrawMessage( sb );

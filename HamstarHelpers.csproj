@@ -60,6 +60,7 @@
     <Compile Include="ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="ItemHelpers\ItemHelpers.cs" />
     <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
+    <Compile Include="TileHelpers\TileIdentityHelpers.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="MiscHelpers\DotNetHelpers.cs" />
     <Compile Include="MiscHelpers\MiscHelpers.cs" />
