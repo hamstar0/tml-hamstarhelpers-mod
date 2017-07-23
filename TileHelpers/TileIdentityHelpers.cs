@@ -2930,6 +2930,14 @@ namespace HamstarHelpers.TileHelpers {
 		}
 
 
+		public static string GetTileName( int type ) {
+			if( !TileIdentityHelpers.Data.ContainsKey(type) || !TileIdentityHelpers.Data[type].ContainsKey(-1) ) {
+				return "";
+			}
+			return TileIdentityHelpers.Data[type][-1];
+		}
+
+
 		public static bool IsObject( int type ) {
 			return Main.tileFrameImportant[type]
 				|| Main.tileContainer[type]
