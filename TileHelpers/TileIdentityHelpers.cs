@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace HamstarHelpers.TileHelpers {
@@ -2926,6 +2927,15 @@ namespace HamstarHelpers.TileHelpers {
 			} catch( Exception e ) {
 				ErrorLogger.Log( e.ToString() );
 			}
+		}
+
+
+		public static bool IsObject( int type ) {
+			return Main.tileFrameImportant[type]
+				|| Main.tileContainer[type]
+				|| Main.tileSign[type]
+				|| Main.tileAlch[type]
+				|| Main.tileTable[type]; //tileFlame
 		}
 	}
 }

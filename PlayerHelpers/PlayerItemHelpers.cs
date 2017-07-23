@@ -1,4 +1,6 @@
 ﻿using HamstarHelpers.ItemHelpers;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -135,11 +137,29 @@ namespace HamstarHelpers.PlayerHelpers {
 
 		public static long CountMoney( Player player ) {
 			bool _;
-			long inv_count = Terraria.Utils.CoinsCount( out _, player.inventory, new int[] { 58, 57, 56, 55, 54 } );
-			long bank_count = Terraria.Utils.CoinsCount( out _, player.bank.item, new int[0] );
-			long bank2_count = Terraria.Utils.CoinsCount( out _, player.bank2.item, new int[0] );
-			long bank3_count = Terraria.Utils.CoinsCount( out _, player.bank3.item, new int[0] );
-			return Terraria.Utils.CoinsCombineStacks( out _, new long[] { inv_count, bank_count, bank2_count, bank3_count } );
+			long inv_count = Utils.CoinsCount( out _, player.inventory, new int[] { 58, 57, 56, 55, 54 } );
+			long bank_count = Utils.CoinsCount( out _, player.bank.item, new int[0] );
+			long bank2_count = Utils.CoinsCount( out _, player.bank2.item, new int[0] );
+			long bank3_count = Utils.CoinsCount( out _, player.bank3.item, new int[0] );
+			return Utils.CoinsCombineStacks( out _, new long[] { inv_count, bank_count, bank2_count, bank3_count } );
+		}
+		
+
+		public static Vector2 TipOfHeldItem( Player player ) {
+			Item item = player.HeldItem;
+			if( item == null || item.IsAir ) { return Vector2.Zero; }
+			Vector2 pos = player.RotatedRelativePoint( player.MountedCenter, true );
+
+			int wid = Main.itemTexture[item.type].Width;
+			int length = wid;
+			if( item.useStyle != 5 ) {
+				int hei = Main.itemTexture[item.type].Height;
+				length = (int)Math.Sqrt( wid * wid + hei * hei );
+			}
+
+			float reach = ((float)length + 6f) * (float)player.direction;
+
+			return pos + (player.itemRotation.ToRotationVector2() * reach);
 		}
 	}
 }
