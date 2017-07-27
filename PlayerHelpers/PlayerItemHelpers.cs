@@ -78,32 +78,90 @@ namespace HamstarHelpers.PlayerHelpers {
 		}
 
 
+		public static void DropInventoryItem( Player player, int slot ) {
+			if( slot == 58 && player.whoAmI == Main.myPlayer ) {
+				Main.mouseItem = new Item();
+			}
+
+			Item item = player.inventory[ slot ];
+
+			if( item != null && !item.IsAir ) {
+				int idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
+
+				item.position = Main.item[idx].position;
+				Main.item[idx] = item;
+
+				if( Main.netMode == 1 ) {   // Client
+					NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
+				}
+
+				player.inventory[slot] = new Item();
+			}
+		}
+
+
+		public static void DropEquippedItem( Player player, int slot ) {
+			Item item = player.armor[slot];
+
+			if( item != null && !item.IsAir ) {
+				int idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
+
+				item.position = Main.item[idx].position;
+				Main.item[idx] = item;
+
+				if( Main.netMode == 1 ) {   // Client
+					NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
+				}
+
+				player.armor[slot] = new Item();
+			}
+		}
+
+
 		public static bool UnhandItem( Player player ) {
+			bool is_unhanded = false;
+
+			// Drop mouse item always
+			if( player.selectedItem == 58 ) {
+				PlayerItemHelpers.DropInventoryItem( player, 58 );
+				is_unhanded = true;
+			}
 			// Preferably select a blank slot
-			for( int i = 0; i < player.inventory.Length; i++ ) {
-				if( player.inventory[i] == null || player.inventory[i].IsAir ) {
-					player.selectedItem = i;
-					return true;
+			if( !is_unhanded ) {
+				for( int i = 0; i < player.inventory.Length; i++ ) {
+					if( player.inventory[i] == null || player.inventory[i].IsAir ) {
+						player.selectedItem = i;
+						is_unhanded = true;
+						break;
+					}
 				}
 			}
 			// Otherwise select a non-usable item
-			for( int i = 0; i < player.inventory.Length; i++ ) {
-				Item item = player.inventory[i];
-				if( item != null && item.holdStyle == 0 && item.createTile == -1 && !item.potion && item.useStyle == 0 ) {
-					player.selectedItem = i;
-					return true;
+			if( !is_unhanded ) {
+				for( int i = 0; i < player.inventory.Length; i++ ) {
+					Item item = player.inventory[i];
+					if( item != null && item.holdStyle == 0 && item.createTile == -1 && !item.potion && item.useStyle == 0 ) {
+						player.selectedItem = i;
+						is_unhanded = true;
+						break;
+					}
 				}
 			}
 			// Otherwise select a non-held item
-			for( int i = 0; i < player.inventory.Length; i++ ) {
-				Item item = player.inventory[i];
-				if( item != null && item.holdStyle == 0 ) {
-					player.selectedItem = i;
-					return true;
+			if( !is_unhanded ) {
+				for( int i = 12; i < player.inventory.Length; i++ ) {
+					Item item = player.inventory[i];
+					if( item != null && item.holdStyle == 0 ) {
+						player.selectedItem = i;
+						is_unhanded = true;
+						break;
+					}
 				}
 			}
-			// Give up?
-			return false;
+			
+			player.noItems = true;
+
+			return is_unhanded;
 		}
 
 

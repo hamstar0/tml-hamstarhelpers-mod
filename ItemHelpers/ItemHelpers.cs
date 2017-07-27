@@ -13,11 +13,11 @@ namespace HamstarHelpers.ItemHelpers {
 
 		
 		public static int CreateItem( Vector2 pos, int type, int stack, int width, int height, int prefix = 0 ) {
-			int number = Item.NewItem( (int)pos.X, (int)pos.Y, width, height, type, stack, false, prefix, true, false );
-			if( Main.netMode == 1 ) {
-				NetMessage.SendData( 21, -1, -1, null, number, 1f, 0f, 0f, 0, 0, 0 );
+			int idx = Item.NewItem( (int)pos.X, (int)pos.Y, width, height, type, stack, false, prefix, true, false );
+			if( Main.netMode == 1 ) {	// Client
+				NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
 			}
-			return number;
+			return idx;
 		}
 
 		public static void DestroyItem( Item item ) {
@@ -27,12 +27,12 @@ namespace HamstarHelpers.ItemHelpers {
 			item.stack = 0;
 		}
 
-		public static void DestroyWorldItem( int i ) {
-			Item item = Main.item[i];
+		public static void DestroyWorldItem( int idx ) {
+			Item item = Main.item[idx];
 			ItemHelpers.DestroyItem( item );
 
-			if( Main.netMode == 2 ) {
-				NetMessage.SendData( 21, -1, -1, null, i );
+			if( Main.netMode == 2 ) {	// Server
+				NetMessage.SendData( 21, -1, -1, null, idx );
 			}
 		}
 
