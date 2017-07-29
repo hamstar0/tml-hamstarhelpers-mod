@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	public class HamstarHelpersPlayer : ModPlayer {
+	class HamstarHelpersPlayer : ModPlayer {
 		public override void PreUpdate() {
-			if( this.player.whoAmI == Main.myPlayer ) {
+			if( this.player.whoAmI == Main.myPlayer ) {	// Current player
 				PlayerMessage.UpdatePlayerLabels();
 				SimpleMessage.UpdateMessage();
 			}

@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HamstarHelpersNpc.cs" />
     <Compile Include="HudHelpers\HealthBarHelpers.cs" />
     <Compile Include="HamstarHelpersPlayer.cs" />
     <Compile Include="MiscHelpers\DebugHelpers.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="ItemHelpers\ItemHelpers.cs" />
     <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
+    <Compile Include="NPCHelpers\NPCSpawnInfoHelpers.cs" />
     <Compile Include="TileHelpers\TileIdentityHelpers.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="MiscHelpers\DotNetHelpers.cs" />
