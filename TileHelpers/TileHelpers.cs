@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -135,6 +136,24 @@ namespace HamstarHelpers.TileHelpers {
 				world_pos = pos;
 			}
 			return world_pos;
+		}
+
+
+		public static bool HasNearbySolid( int tile_x, int tile_y, int proximity_in_tiles ) {
+			int min_x = Math.Max( tile_x - proximity_in_tiles, 0 );
+			int max_x = Math.Min( tile_x + proximity_in_tiles, Main.maxTilesX - 1 );
+			int min_y = Math.Max( tile_y - proximity_in_tiles, 0 );
+			int max_y = Math.Min( tile_y + proximity_in_tiles, Main.maxTilesY - 1 );
+
+			for( int i = min_x; i < max_x; i++ ) {
+				for( int j = min_y; j < max_y; j++ ) {
+					if( TileHelpers.IsSolid(Main.tile[i, j]) ) {
+						return true;
+					}
+				}
+			}
+
+			return false;
 		}
 	}
 }
