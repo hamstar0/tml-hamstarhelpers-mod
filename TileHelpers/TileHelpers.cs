@@ -132,12 +132,15 @@ namespace HamstarHelpers.TileHelpers {
 		public static Vector2 DropToGround( Vector2 world_pos ) {
 			int x = (int)world_pos.X / 16;
 			int y = (int)world_pos.Y / 16;
+			Tile tile = null;
 
 			do {
 				y++;
-			} while( (y * 16) >= (Main.maxTilesY - 220) || !TileHelpers.IsSolid( Main.tile[x, y] ) );
+				tile = Main.tile[x, y];
+			} while( (y * 16) <= (Main.maxTilesY - 220) && !TileHelpers.IsSolid( tile ) );
+			y--;
 
-			return new Vector2( world_pos.X, y-1 );
+			return new Vector2( x * 16, y * 16 );
 		}
 
 
