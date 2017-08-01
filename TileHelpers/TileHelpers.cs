@@ -125,7 +125,7 @@ namespace HamstarHelpers.TileHelpers {
 
 
 		public static bool IsWithinMap( int tile_x, int tile_y ) {
-			return tile_x > 380 && tile_x < Main.maxTilesX - 380 && tile_y > 220 && tile_y < Main.maxTilesY - 220;
+			return (tile_x > 41 && tile_x < Main.maxTilesX - 42) && (tile_y > 41 && tile_y < Main.maxTilesY - 42);
 		}
 
 
