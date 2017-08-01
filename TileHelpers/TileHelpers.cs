@@ -131,13 +131,13 @@ namespace HamstarHelpers.TileHelpers {
 
 		public static Vector2 DropToGround( Vector2 world_pos ) {
 			int x = (int)world_pos.X / 16;
+			int y = (int)world_pos.Y / 16;
 
-			for( Vector2 pos = world_pos;
-			TileHelpers.IsWithinMap(pos) && !TileHelpers.IsSolid( Main.tile[x, (int)pos.Y/16] );
-			pos.Y += 16 ) {
-				world_pos = pos;
-			}
-			return world_pos;
+			do {
+				y++;
+			} while( (y * 16) >= (Main.maxTilesY - 220) || !TileHelpers.IsSolid( Main.tile[x, y] ) );
+
+			return new Vector2( world_pos.X, y-1 );
 		}
 
 
