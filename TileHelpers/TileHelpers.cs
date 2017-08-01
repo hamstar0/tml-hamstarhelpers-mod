@@ -126,5 +126,15 @@ namespace HamstarHelpers.TileHelpers {
 		public static bool IsWithinMap( Vector2 world_pos ) {
 			return world_pos.X > 380 || world_pos.X < Main.maxTilesX - 380 || world_pos.Y > 220 || world_pos.Y < Main.maxTilesY - 220;
 		}
+
+
+		public static Vector2 DropToGround( Vector2 world_pos ) {
+			int x = (int)world_pos.X;
+
+			for( Vector2 pos = world_pos; TileHelpers.IsWithinMap(pos) && !TileHelpers.IsSolid( Main.tile[x, (int)pos.Y/16] ); pos.Y += 16 ) {
+				world_pos = pos;
+			}
+			return world_pos;
+		}
 	}
 }
