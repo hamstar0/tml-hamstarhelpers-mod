@@ -125,14 +125,16 @@ namespace HamstarHelpers.TileHelpers {
 
 
 		public static bool IsWithinMap( Vector2 world_pos ) {
-			return world_pos.X > 380 || world_pos.X < Main.maxTilesX - 380 || world_pos.Y > 220 || world_pos.Y < Main.maxTilesY - 220;
+			return world_pos.X > 380 && world_pos.X < Main.maxTilesX - 380 && world_pos.Y > 220 && world_pos.Y < Main.maxTilesY - 220;
 		}
 
 
 		public static Vector2 DropToGround( Vector2 world_pos ) {
-			int x = (int)world_pos.X;
+			int x = (int)world_pos.X / 16;
 
-			for( Vector2 pos = world_pos; TileHelpers.IsWithinMap(pos) && !TileHelpers.IsSolid( Main.tile[x, (int)pos.Y/16] ); pos.Y += 16 ) {
+			for( Vector2 pos = world_pos;
+			TileHelpers.IsWithinMap(pos) && !TileHelpers.IsSolid( Main.tile[x, (int)pos.Y/16] );
+			pos.Y += 16 ) {
 				world_pos = pos;
 			}
 			return world_pos;
@@ -145,8 +147,8 @@ namespace HamstarHelpers.TileHelpers {
 			int min_y = Math.Max( tile_y - proximity_in_tiles, 0 );
 			int max_y = Math.Min( tile_y + proximity_in_tiles, Main.maxTilesY - 1 );
 
-			for( int i = min_x; i < max_x; i++ ) {
-				for( int j = min_y; j < max_y; j++ ) {
+			for( int i = min_x; i <= max_x; i++ ) {
+				for( int j = min_y; j <= max_y; j++ ) {
 					if( TileHelpers.IsSolid(Main.tile[i, j]) ) {
 						return true;
 					}
