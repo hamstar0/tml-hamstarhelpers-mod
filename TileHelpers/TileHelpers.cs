@@ -124,8 +124,8 @@ namespace HamstarHelpers.TileHelpers {
 		}
 
 
-		public static bool IsWithinMap( Vector2 world_pos ) {
-			return world_pos.X > 380 && world_pos.X < Main.maxTilesX - 380 && world_pos.Y > 220 && world_pos.Y < Main.maxTilesY - 220;
+		public static bool IsWithinMap( int tile_x, int tile_y ) {
+			return tile_x > 380 && tile_x < Main.maxTilesX - 380 && tile_y > 220 && tile_y < Main.maxTilesY - 220;
 		}
 
 
