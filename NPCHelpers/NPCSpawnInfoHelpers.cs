@@ -4,7 +4,7 @@ using Terraria;
 
 namespace HamstarHelpers.NPCHelpers {
 	public static class NPCSpawnInfoHelpers {
-		internal static bool IsGaugingSpawnRates = false;
+		internal static bool IsSimulatingSpawns = false;
 		internal static IDictionary<int, float> SpawnRates = new Dictionary<int, float>();
 		
 		internal static void AddSpawn( int npc_type ) {
@@ -27,9 +27,9 @@ namespace HamstarHelpers.NPCHelpers {
 				}
 			}
 
-			NPCSpawnInfoHelpers.IsGaugingSpawnRates = true;
+			NPCSpawnInfoHelpers.IsSimulatingSpawns = true;
 			for( int i=0; i<sample; i++ ) { NPC.SpawnNPC(); }
-			NPCSpawnInfoHelpers.IsGaugingSpawnRates = false;
+			NPCSpawnInfoHelpers.IsSimulatingSpawns = false;
 
 			for( int i = 0; i < Main.npc.Length; i++ ) {
 				if( Main.npc[i] != null && Main.npc[i].active ) {

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -119,6 +120,11 @@ namespace HamstarHelpers.TileHelpers {
 				tile.type == 211 || // Chlorophyte Ore
 				tile.type == 404 || // Desert Fossil
 				(!Main.hardMode && tile.type == 58);    // Hellstone Ore
+		}
+
+
+		public static bool IsWithinMap( Vector2 world_pos ) {
+			return world_pos.X > 380 || world_pos.X < Main.maxTilesX - 380 || world_pos.Y > 220 || world_pos.Y < Main.maxTilesY - 220;
 		}
 	}
 }

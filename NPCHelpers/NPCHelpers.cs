@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -105,23 +106,73 @@ namespace HamstarHelpers.NPCHelpers {
 
 		public static ISet<int> GetFemaleTownNpcTypes() {
 			return new HashSet<int>( new int[] {
-				18,    // Nurse
-				208,   // Party Girl
-				353,   // Hair Stylist
-				20,    // Dryad
-				124,   // Mechanic
-				178   // Steampunker
+				NPCID.Nurse,
+				NPCID.PartyGirl,
+				NPCID.Stylist,
+				NPCID.Dryad,
+				NPCID.Mechanic,
+				NPCID.Steampunker
 			} );
 		}
 
 		public static ISet<int> GetNonGenderedTownNpcTypes() {
 			return new HashSet<int>( new int[] {
-				228,   // Witch Doctor
-				441,   // Tax Collector
-				160,   // Truffle
-				209,   // Cyborg
-				453	// Skeleton Merchant
+				NPCID.WitchDoctor,	// Indeterminable
+				//NPCID.TaxCollector,   // lol!
+				NPCID.Truffle,
+				//NPCID.Cyborg,	// Cyborgs still have fleshy bits
+				//NPCID.SkeletonMerchant	// Dialog suggests male in past life
 			} );
+		}
+
+
+		public static int ForceSpawn( Player player, int npc_type ) {
+			IDictionary<int, Player> players = new Dictionary<int, Player>();
+			ISet<int> npc_whos = new HashSet<int>();
+			int npc_who = -1;
+
+			for( int i=0; i< Main.player.Length; i++ ) {
+				if( Main.player[i] != null && Main.player[i].active && player.whoAmI != i ) {
+					players[i] = Main.player[i];
+					Main.player[i] = new Player();
+				}
+			}
+
+			for( int i = 0; i < Main.npc.Length; i++ ) {
+				if( Main.npc[i] != null && Main.npc[i].active ) {
+					npc_whos.Add( i );
+				}
+			}
+
+			NPCSpawnInfoHelpers.IsSimulatingSpawns = true;
+			for( int i = 0; i < 100; i++ ) {
+				NPC.SpawnNPC();
+
+				for( int j = 0; j < Main.npc.Length; j++ ) {
+					if( Main.npc[j] == null || !Main.npc[j].active ) { continue; }
+
+					if( !npc_whos.Contains( j ) ) {
+						if( Main.npc[j].type == npc_type ) {
+							npc_who = j;
+							break;
+						}
+
+						Main.npc[j].active = false;
+						Main.npc[j] = new NPC();
+					}
+				}
+
+				if( npc_who != -1 ) {
+					break;
+				}
+			}
+			NPCSpawnInfoHelpers.IsSimulatingSpawns = false;
+			
+			foreach( var kv in players ) {
+				Main.player[kv.Key] = kv.Value;
+			}
+
+			return npc_who;
 		}
 	}
 }
