@@ -135,7 +135,7 @@ namespace HamstarHelpers.TileHelpers {
 
 			do {
 				y++;
-			} while( (y * 16) <= (Main.maxTilesY - 42) && !TileHelpers.IsSolid( Framing.GetTileSafely(x, y) ) );
+			} while( y <= (Main.maxTilesY - 42) && !TileHelpers.IsSolid( Framing.GetTileSafely(x, y) ) );
 			y--;
 
 			return new Vector2( world_pos.X, y * 16 );
