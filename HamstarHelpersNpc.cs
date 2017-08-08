@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers {
 	class HamstarHelpersNpc : GlobalNPC {
-		public override void SetDefaults( NPC npc ) {
+		/*public override void SetDefaults( NPC npc ) {
 			if( Main.netMode == 0 ) {   // Single
 				if( NPCSpawnInfoHelpers.IsSimulatingSpawns ) {
 					if( Main.npc[npc.whoAmI] != null && Main.npc[npc.whoAmI].active ) {
@@ -20,6 +20,6 @@ namespace HamstarHelpers {
 				spawn_rate = 1;
 				max_spawns = 100;
 			}
-		}
+		}*/
 	}
 }

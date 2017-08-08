@@ -126,53 +126,55 @@ namespace HamstarHelpers.NPCHelpers {
 		}
 
 
-		public static int ForceSpawn( Player player, int npc_type ) {
-			IDictionary<int, Player> players = new Dictionary<int, Player>();
-			ISet<int> npc_whos = new HashSet<int>();
+
+		/*#region Forced spawns
+		private static int ClearBadForcedSpawns( Player player, ISet<int> orig_npc_whos, int find_of_npc_type, float orig_active_npcs ) {
 			int npc_who = -1;
 
-			for( int i=0; i< Main.player.Length; i++ ) {
-				if( Main.player[i] != null && Main.player[i].active && player.whoAmI != i ) {
-					players[i] = Main.player[i];
-					Main.player[i] = new Player();
-				}
-			}
-
 			for( int i = 0; i < Main.npc.Length; i++ ) {
-				if( Main.npc[i] != null && Main.npc[i].active ) {
-					npc_whos.Add( i );
+				NPC npc = Main.npc[i];
+				if( npc == null || !npc.active || orig_npc_whos.Contains( i ) ) { continue; }
+
+				// Found THE spawn
+				if( npc_who == -1 && npc.type == find_of_npc_type ) {
+					npc_who = i;
+				} else {
+					// Otherwise get rid of it
+					npc.active = false;
+					Main.npc[i] = new NPC();
 				}
 			}
+			player.activeNPCs = orig_active_npcs + (npc_who == -1 ? 0 : 1);
+
+			return npc_who;
+		}
+		
+		public static int ForceSpawnForPlayer( Player player, int find_of_npc_type, int determination ) {
+			var other_players = NPCSpawnInfoHelpers.IsolatePlayer( player );
+			var npc_whos_snapshot = NPCSpawnInfoHelpers.GetNpcSnapshot();
+			float orig_active_npcs = player.activeNPCs;
+			int npc_who = -1;
 
 			NPCSpawnInfoHelpers.IsSimulatingSpawns = true;
-			for( int i = 0; i < 100; i++ ) {
+			// Test spawns
+			for( int i = 1; i <= determination; i++ ) {
 				NPC.SpawnNPC();
 
-				for( int j = 0; j < Main.npc.Length; j++ ) {
-					if( Main.npc[j] == null || !Main.npc[j].active ) { continue; }
-
-					if( !npc_whos.Contains( j ) ) {
-						if( Main.npc[j].type == npc_type ) {
-							npc_who = j;
-							break;
-						}
-
-						Main.npc[j].active = false;
-						Main.npc[j] = new NPC();
-					}
-				}
-
-				if( npc_who != -1 ) {
-					break;
+				if( (i % 25) == 0 ) {
+					// Force remove spawned npcs that aren't the given type
+					npc_who = NPCHelpers.ClearBadForcedSpawns( player, npc_whos_snapshot, find_of_npc_type, orig_active_npcs );
+					if( npc_who != -1 ) { break; }
 				}
 			}
 			NPCSpawnInfoHelpers.IsSimulatingSpawns = false;
-			
-			foreach( var kv in players ) {
+
+			// Restore players
+			foreach( var kv in other_players ) {
 				Main.player[kv.Key] = kv.Value;
 			}
 
 			return npc_who;
 		}
+		#endregion*/
 	}
 }
