@@ -1,5 +1,7 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria.Localization;
+
 
 namespace HamstarHelpers.MiscHelpers {
 	public static class MiscHelpers {
@@ -42,6 +44,43 @@ namespace HamstarHelpers.MiscHelpers {
 			if( copper > 0 ) { render += copper + " " + label_copper; }
 
 			return render;
+		}
+	}
+
+
+	[System.Obsolete( "use DotNetHelpers.DotNetHelpers", true )]
+	public static class DotNetHelpers {
+		public static string DictToString( IDictionary<object, object> dict ) {
+			return HamstarHelpers.DotNetHelpers.DotNetHelpers.DictToString( dict );
+		}
+	}
+
+
+	[System.Obsolete( "use DebugHelpers.DebugHelpers", true )]
+	public static class DebugHelpers {
+		public static bool Once {
+			get { return HamstarHelpers.DebugHelpers.DebugHelpers.Once; }
+			set { HamstarHelpers.DebugHelpers.DebugHelpers.Once = value; }
+		}
+		public static int OnceInAWhile {
+			get { return HamstarHelpers.DebugHelpers.DebugHelpers.OnceInAWhile; }
+			set { HamstarHelpers.DebugHelpers.DebugHelpers.OnceInAWhile = value; }
+		}
+		public static IDictionary<string, string> Display {
+			get { return HamstarHelpers.DebugHelpers.DebugHelpers.Display; }
+			set { HamstarHelpers.DebugHelpers.DebugHelpers.Display = value; }
+		}
+		public static void MsgOnce( string msg ) {
+			HamstarHelpers.DebugHelpers.DebugHelpers.MsgOnce( msg );
+		}
+		public static void MsgOnceInAWhile( string msg ) {
+			HamstarHelpers.DebugHelpers.DebugHelpers.MsgOnceInAWhile( msg );
+		}
+		public static void PrintToBatch( SpriteBatch sb ) {
+			HamstarHelpers.DebugHelpers.DebugHelpers.PrintToBatch( sb );
+		}
+		public static void Log( string msg ) {
+			HamstarHelpers.DebugHelpers.DebugHelpers.Log( msg );
 		}
 	}
 }

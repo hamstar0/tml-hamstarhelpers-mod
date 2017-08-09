@@ -3,8 +3,9 @@
 
 namespace HamstarHelpers.NPCHelpers {
 	public static class NPCBannerHelpers {
-		internal static IDictionary<int, int> NpcTypesToBannerItemTypes;
-		internal static IDictionary<int, ISet<int>> BannerItemTypesToNpcTypes;
+		private static IDictionary<int, int> NpcTypesToBannerItemTypes;
+		private static ISet<int> BannerItemTypes;
+		private static IDictionary<int, ISet<int>> BannerItemTypesToNpcTypes;
 
 		internal static void InitializeBanners( IDictionary<int, int> npcs_to_banners ) {
 			NPCBannerHelpers.NpcTypesToBannerItemTypes = npcs_to_banners;
@@ -16,11 +17,14 @@ namespace HamstarHelpers.NPCHelpers {
 				}
 				NPCBannerHelpers.BannerItemTypesToNpcTypes[kv.Value].Add( kv.Key );
 			}
+
+			NPCBannerHelpers.BannerItemTypes = new HashSet<int>( NPCBannerHelpers.BannerItemTypesToNpcTypes.Keys );
 		}
 
 
-		public static IEnumerable<int> GetBannerItemTypes() {
-			return NPCBannerHelpers.BannerItemTypesToNpcTypes.Keys;
+
+		public static ISet<int> GetBannerItemTypes() {
+			return new HashSet<int>( NPCBannerHelpers.BannerItemTypes );
 		}
 
 		public static int GetBannerItemTypeOfNpcType( int npc_type ) {

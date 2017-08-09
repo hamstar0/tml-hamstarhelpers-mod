@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.ItemHelpers;
-using HamstarHelpers.MiscHelpers;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,9 +23,9 @@ namespace HamstarHelpers {
 			PlayerMessage.DrawPlayerLabels( sb );
 			SimpleMessage.DrawMessage( sb );
 
-			DebugHelpers.PrintToBatch( sb );
-			DebugHelpers.Once = false;
-			DebugHelpers.OnceInAWhile--;
+			DebugHelpers.DebugHelpers.PrintToBatch( sb );
+			DebugHelpers.DebugHelpers.Once = false;
+			DebugHelpers.DebugHelpers.OnceInAWhile--;
 		}
 
 		/*public override bool HijackSendData( int who_am_i, int msg_type, int remote_client, int ignore_client, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7 ) {

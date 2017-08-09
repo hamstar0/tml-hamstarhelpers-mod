@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.MiscHelpers {
+namespace HamstarHelpers.DebugHelpers {
 	public static class DebugHelpers {
 		public static bool Once;
 		public static int OnceInAWhile;

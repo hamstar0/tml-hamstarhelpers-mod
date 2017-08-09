@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.NPCHelpers {
@@ -30,6 +27,10 @@ namespace HamstarHelpers.NPCHelpers {
 			NetMessage.SendData( 28, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
 		}
 
+
+
+		////////////////
+		
 		[System.Obsolete( "use NPCTownHelpers.Leave", true )]
 		public static void Leave( NPC npc, bool announce=true ) {
 			NPCTownHelpers.Leave( npc, announce );
