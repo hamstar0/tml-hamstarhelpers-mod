@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.PlayerHelpers;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 
@@ -51,19 +52,6 @@ namespace HamstarHelpers.ItemHelpers {
 		}
 
 
-		public static Item GetGrappleItem( Player player ) {
-			if( ItemIdentityHelpers.IsGrapple( player.miscEquips[4] ) ) {
-				return player.miscEquips[4];
-			}
-			for( int i = 0; i < 58; i++ ) {
-				if( Main.projHook[player.inventory[i].shoot] ) {
-					return player.inventory[i];
-				}
-			}
-			return null;
-		}
-
-
 		public static int CalculateStandardUseTime( Item item ) {
 			int use_time;
 
@@ -84,6 +72,12 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 
 			return use_time;
+		}
+
+
+		[System.Obsolete( "use PlayerItemHelpers.GetGrappleItem", true )]
+		public static Item GetGrappleItem( Player player ) {
+			return PlayerItemHelpers.GetGrappleItem( player );
 		}
 	}
 }

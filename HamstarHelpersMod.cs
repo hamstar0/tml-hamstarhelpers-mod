@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.MiscHelpers;
+﻿using HamstarHelpers.ItemHelpers;
+using HamstarHelpers.MiscHelpers;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 
@@ -53,62 +53,28 @@ namespace HamstarHelpers {
 
 
 		public override void AddRecipeGroups() {
-			ISet<int> banners = new HashSet<int>();
-			ISet<int> musicboxes = new HashSet<int>();
+			IDictionary<int, int> banners = new Dictionary<int, int>();
 
 			for( int npc_type = 0; npc_type < Main.npcTexture.Length; npc_type++ ) {
 				int banner = Item.NPCtoBanner( npc_type );
 				if( banner == 0 ) { continue; }
 
-				banners.Add( Item.BannerToItem( banner ) );
+				banners[npc_type] = Item.BannerToItem( banner );
 			}
 
-			musicboxes.Add( ItemID.MusicBoxAltOverworldDay );
-			musicboxes.Add( ItemID.MusicBoxAltUnderground );
-			musicboxes.Add( ItemID.MusicBoxBoss1 );
-			musicboxes.Add( ItemID.MusicBoxBoss2 );
-			musicboxes.Add( ItemID.MusicBoxBoss3 );
-			musicboxes.Add( ItemID.MusicBoxBoss4 );
-			musicboxes.Add( ItemID.MusicBoxBoss5 );
-			musicboxes.Add( ItemID.MusicBoxCorruption );
-			musicboxes.Add( ItemID.MusicBoxCrimson );
-			musicboxes.Add( ItemID.MusicBoxDD2 );
-			musicboxes.Add( ItemID.MusicBoxDesert );
-			musicboxes.Add( ItemID.MusicBoxDungeon );
-			musicboxes.Add( ItemID.MusicBoxEclipse );
-			musicboxes.Add( ItemID.MusicBoxEerie );
-			musicboxes.Add( ItemID.MusicBoxFrostMoon );
-			musicboxes.Add( ItemID.MusicBoxGoblins );
-			musicboxes.Add( ItemID.MusicBoxHell );
-			musicboxes.Add( ItemID.MusicBoxIce );
-			musicboxes.Add( ItemID.MusicBoxJungle );
-			musicboxes.Add( ItemID.MusicBoxLunarBoss );
-			musicboxes.Add( ItemID.MusicBoxMartians );
-			musicboxes.Add( ItemID.MusicBoxMushrooms );
-			musicboxes.Add( ItemID.MusicBoxNight );
-			musicboxes.Add( ItemID.MusicBoxOcean );
-			musicboxes.Add( ItemID.MusicBoxOverworldDay );
-			musicboxes.Add( ItemID.MusicBoxPirates );
-			musicboxes.Add( ItemID.MusicBoxPlantera );
-			musicboxes.Add( ItemID.MusicBoxPumpkinMoon );
-			musicboxes.Add( ItemID.MusicBoxRain );
-			musicboxes.Add( ItemID.MusicBoxSandstorm );
-			musicboxes.Add( ItemID.MusicBoxSnow );
-			musicboxes.Add( ItemID.MusicBoxSpace );
-			musicboxes.Add( ItemID.MusicBoxTemple );
-			musicboxes.Add( ItemID.MusicBoxTheHallow );
-			musicboxes.Add( ItemID.MusicBoxTitle );
-			musicboxes.Add( ItemID.MusicBoxTowers );
-			musicboxes.Add( ItemID.MusicBoxUnderground );
-			musicboxes.Add( ItemID.MusicBoxUndergroundCorruption );
-			musicboxes.Add( ItemID.MusicBoxUndergroundCrimson );
-			musicboxes.Add( ItemID.MusicBoxUndergroundHallow );
+			// Initialize banners
+			NPCBannerHelpers.InitializeBanners( banners );
 
-			RecipeGroup banner_group = new RecipeGroup( () => Lang.misc[37] + " Mob Banner", banners.ToArray() );
-			RecipeGroup musicbox_group = new RecipeGroup( () => Lang.misc[37] + " Recorded Music Box", musicboxes.ToArray() );
+			string any = Lang.misc[37].ToString();
+			RecipeGroup evil_boss_drops_grp = new RecipeGroup( () => any+" Evil Biome Boss Chunk", new int[] { ItemID.ShadowScale, ItemID.TissueSample } );
+			RecipeGroup mirror_grp = new RecipeGroup( () => any+" Mirrors", new int[] { ItemID.MagicMirror, ItemID.IceMirror } );
+			RecipeGroup banner_grp = new RecipeGroup( () => any+" Mob Banner", NPCBannerHelpers.GetBannerItemTypes().ToArray() );
+			RecipeGroup musicbox_grp = new RecipeGroup( () => any+" Recorded Music Box", ItemMusicBoxHelpers.GetMusicBoxes().ToArray() );
 
-			RecipeGroup.RegisterGroup( "HamstarsHelpers:Banners", banner_group );
-			RecipeGroup.RegisterGroup( "HamstarsHelpers:RecordedMusicBoxes", musicbox_group );
+			RecipeGroup.RegisterGroup( "HamstarHelpers:EvilBiomeBossDrops", evil_boss_drops_grp );
+			RecipeGroup.RegisterGroup( "HamstarHelpers:MagicMirrors", mirror_grp );
+			RecipeGroup.RegisterGroup( "HamstarHelpers:NpcBanners", banner_grp );
+			RecipeGroup.RegisterGroup( "HamstarHelpers:RecordedMusicBoxes", musicbox_grp );
 		}
 	}
 }

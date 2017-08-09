@@ -219,5 +219,18 @@ namespace HamstarHelpers.PlayerHelpers {
 
 			return pos + (player.itemRotation.ToRotationVector2() * reach);
 		}
+
+
+		public static Item GetGrappleItem( Player player ) {
+			if( ItemIdentityHelpers.IsGrapple( player.miscEquips[4] ) ) {
+				return player.miscEquips[4];
+			}
+			for( int i = 0; i < 58; i++ ) {
+				if( Main.projHook[player.inventory[i].shoot] ) {
+					return player.inventory[i];
+				}
+			}
+			return null;
+		}
 	}
 }
