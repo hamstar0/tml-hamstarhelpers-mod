@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.DotNetHelpers.DataStructures;
+using System.Collections.Generic;
 
 
 namespace HamstarHelpers.NPCHelpers {
@@ -24,7 +25,7 @@ namespace HamstarHelpers.NPCHelpers {
 
 
 		public static ISet<int> GetBannerItemTypes() {
-			return new HashSet<int>( NPCBannerHelpers.BannerItemTypes );
+			return new ReadOnlySet<int>( NPCBannerHelpers.BannerItemTypes );
 		}
 
 		public static int GetBannerItemTypeOfNpcType( int npc_type ) {
@@ -34,7 +35,7 @@ namespace HamstarHelpers.NPCHelpers {
 
 		public static ISet<int> GetNpcTypesOfBannerItemType( int item_type ) {
 			if( !NPCBannerHelpers.BannerItemTypesToNpcTypes.ContainsKey( item_type ) ) { return new HashSet<int>(); }
-			return NPCBannerHelpers.BannerItemTypesToNpcTypes[ item_type ];
+			return new ReadOnlySet<int>( NPCBannerHelpers.BannerItemTypesToNpcTypes[ item_type ] );
 		}
 	}
 }

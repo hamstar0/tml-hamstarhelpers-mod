@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.DotNetHelpers.DataStructures;
+using System.Collections.Generic;
 using Terraria;
 
 
@@ -39,7 +40,7 @@ namespace HamstarHelpers.ItemHelpers {
 			if( !ItemFinderHelpers.SellItems.Keys.Contains( sell_value ) ) {
 				ItemFinderHelpers.SellItems[sell_value] = new HashSet<int>();
 			} else {
-				return ItemFinderHelpers.SellItems[sell_value];
+				return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sell_value] );
 			}
 
 			for( int i = 0; i < Main.itemTexture.Length; i++ ) {
@@ -54,7 +55,7 @@ namespace HamstarHelpers.ItemHelpers {
 				}
 			}
 
-			return ItemFinderHelpers.SellItems[sell_value];
+			return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sell_value] );
 		}
 
 

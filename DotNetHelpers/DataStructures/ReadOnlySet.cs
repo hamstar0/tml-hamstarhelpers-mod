@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -9,29 +10,28 @@ namespace HamstarHelpers.DotNetHelpers.DataStructures {
 
 		public ReadOnlySet( ISet<T> myset ) {
 			this.MySet = myset;
-			new HashSet<T>();
 		}
 
 		public int Count { get { return this.MySet.Count; } }
 
 		public bool IsReadOnly { get { return true; } }
 
-		void ICollection<T>.Add( T item ) { return; }
+		void ICollection<T>.Add( T item ) { throw new NotImplementedException(); }
 
-		public void Clear() { }
+		public void Clear() { throw new NotImplementedException(); }
 
 		public bool Contains( T item ) { return this.MySet.Contains( item ); }
 
 		public void CopyTo( T[] array, int array_idx ) { this.MySet.CopyTo( array, array_idx ); }
 
-		public bool Remove( T item ) { return false; }
+		public bool Remove( T item ) { throw new NotImplementedException(); }
 
 
-		public bool Add( T item ) { return false; }
+		public bool Add( T item ) { throw new NotImplementedException(); }
 
-		public void ExceptWith( IEnumerable<T> other ) { }
+		public void ExceptWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
-		public void IntersectWith( IEnumerable<T> other ) { }
+		public void IntersectWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
 		public bool IsProperSubsetOf( IEnumerable<T> other ) { return this.MySet.IsProperSubsetOf( other ); }
 
@@ -45,16 +45,12 @@ namespace HamstarHelpers.DotNetHelpers.DataStructures {
 
 		public bool SetEquals( IEnumerable<T> other ) { return this.MySet.SetEquals( other ); }
 
-		public void SymmetricExceptWith( IEnumerable<T> other ) { }
+		public void SymmetricExceptWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
-		public void UnionWith( IEnumerable<T> other ) { }
-		
-		IEnumerator<T> IEnumerable<T>.GetEnumerator() {
-			return this.MySet.GetEnumerator();
-		}
+		public void UnionWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
-		public IEnumerator GetEnumerator() {
-			return this.MySet.GetEnumerator();
-		}
+		IEnumerator<T> IEnumerable<T>.GetEnumerator() { return this.MySet.GetEnumerator(); }
+
+		public IEnumerator GetEnumerator() { return this.MySet.GetEnumerator(); }
 	}
 }
