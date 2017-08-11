@@ -24,7 +24,7 @@ namespace HamstarHelpers.NPCHelpers {
 
 
 
-		public static ISet<int> GetBannerItemTypes() {
+		public static ReadOnlySet<int> GetBannerItemTypes() {
 			return new ReadOnlySet<int>( NPCBannerHelpers.BannerItemTypes );
 		}
 
@@ -33,8 +33,8 @@ namespace HamstarHelpers.NPCHelpers {
 			return NPCBannerHelpers.NpcTypesToBannerItemTypes[ npc_type ];
 		}
 
-		public static ISet<int> GetNpcTypesOfBannerItemType( int item_type ) {
-			if( !NPCBannerHelpers.BannerItemTypesToNpcTypes.ContainsKey( item_type ) ) { return new HashSet<int>(); }
+		public static ReadOnlySet<int> GetNpcTypesOfBannerItemType( int item_type ) {
+			if( !NPCBannerHelpers.BannerItemTypesToNpcTypes.ContainsKey( item_type ) ) { return new ReadOnlySet<int>( new HashSet<int>() ); }
 			return new ReadOnlySet<int>( NPCBannerHelpers.BannerItemTypesToNpcTypes[ item_type ] );
 		}
 	}

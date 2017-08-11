@@ -36,7 +36,7 @@ namespace HamstarHelpers.ItemHelpers {
 
 		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 
-		public static ISet<int> FindItemsByValue( long sell_value, bool include_coins = false ) {
+		public static ReadOnlySet<int> FindItemsByValue( long sell_value, bool include_coins = false ) {
 			if( !ItemFinderHelpers.SellItems.Keys.Contains( sell_value ) ) {
 				ItemFinderHelpers.SellItems[sell_value] = new HashSet<int>();
 			} else {
