@@ -52,21 +52,21 @@ namespace HamstarHelpers {
 
 
 		public override void AddRecipeGroups() {
-			IDictionary<int, int> banners = new Dictionary<int, int>();
+			IDictionary<int, int> npcs_to_banners = new Dictionary<int, int>();
 
 			for( int npc_type = 0; npc_type < Main.npcTexture.Length; npc_type++ ) {
-				int banner = Item.NPCtoBanner( npc_type );
-				if( banner == 0 ) { continue; }
+				int banner_type = Item.NPCtoBanner( npc_type );
+				if( banner_type == 0 ) { continue; }
 
-				banners[npc_type] = Item.BannerToItem( banner );
+				npcs_to_banners[npc_type] = Item.BannerToItem( banner_type );
 			}
 
 			// Initialize banners
-			NPCBannerHelpers.InitializeBanners( banners );
+			NPCBannerHelpers.InitializeBanners( npcs_to_banners );
 
 			string any = Lang.misc[37].ToString();
 			RecipeGroup evil_boss_drops_grp = new RecipeGroup( () => any+" Evil Biome Boss Chunk", new int[] { ItemID.ShadowScale, ItemID.TissueSample } );
-			RecipeGroup mirror_grp = new RecipeGroup( () => any+" Mirrors", new int[] { ItemID.MagicMirror, ItemID.IceMirror } );
+			RecipeGroup mirror_grp = new RecipeGroup( () => any+" Magic Mirrors", new int[] { ItemID.MagicMirror, ItemID.IceMirror } );
 			RecipeGroup banner_grp = new RecipeGroup( () => any+" Mob Banner", NPCBannerHelpers.GetBannerItemTypes().ToArray() );
 			RecipeGroup musicbox_grp = new RecipeGroup( () => any+" Recorded Music Box", ItemMusicBoxHelpers.GetMusicBoxes().ToArray() );
 
