@@ -52,17 +52,17 @@ namespace HamstarHelpers {
 
 
 		public override void AddRecipeGroups() {
-			IDictionary<int, int> npcs_to_banners = new Dictionary<int, int>();
+			IDictionary<int, int> npc_types_to_banner_item_types = new Dictionary<int, int>();
 
 			for( int npc_type = 0; npc_type < Main.npcTexture.Length; npc_type++ ) {
 				int banner_type = Item.NPCtoBanner( npc_type );
 				if( banner_type == 0 ) { continue; }
 
-				npcs_to_banners[npc_type] = Item.BannerToItem( banner_type );
+				npc_types_to_banner_item_types[npc_type] = Item.BannerToItem( banner_type );
 			}
 
 			// Initialize banners
-			NPCBannerHelpers.InitializeBanners( npcs_to_banners );
+			NPCBannerHelpers.InitializeBanners( npc_types_to_banner_item_types );
 
 			string any = Lang.misc[37].ToString();
 			RecipeGroup evil_boss_drops_grp = new RecipeGroup( () => any+" Evil Biome Boss Chunk", new int[] { ItemID.ShadowScale, ItemID.TissueSample } );

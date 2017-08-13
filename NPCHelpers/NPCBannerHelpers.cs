@@ -8,11 +8,12 @@ namespace HamstarHelpers.NPCHelpers {
 		private static ISet<int> BannerItemTypes;
 		private static IDictionary<int, ISet<int>> BannerItemTypesToNpcTypes;
 
-		internal static void InitializeBanners( IDictionary<int, int> npcs_to_banners ) {
-			NPCBannerHelpers.NpcTypesToBannerItemTypes = npcs_to_banners;
+
+		internal static void InitializeBanners( IDictionary<int, int> npc_types_to_banner_item_types ) {
+			NPCBannerHelpers.NpcTypesToBannerItemTypes = npc_types_to_banner_item_types;
 			NPCBannerHelpers.BannerItemTypesToNpcTypes = new Dictionary<int, ISet<int>>();
 
-			foreach( var kv in npcs_to_banners ) {
+			foreach( var kv in npc_types_to_banner_item_types ) {
 				if( !NPCBannerHelpers.BannerItemTypesToNpcTypes.ContainsKey(kv.Value) ) {
 					NPCBannerHelpers.BannerItemTypesToNpcTypes[kv.Value] = new HashSet<int>();
 				}
