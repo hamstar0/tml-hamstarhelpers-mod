@@ -36,13 +36,13 @@ namespace HamstarHelpers.PlayerHelpers {
 			return possible_purchases;
 		}
 
-
+		
 		public static Item FindFirstOfItemFor( Player player, ISet<int> item_types ) {
-			int found = ItemFinderHelpers.FindFirstOfItemInCollection( player.inventory, item_types );
+			int found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, item_types );
 			if( found != -1 ) {
 				return player.inventory[found];
 			} else {
-				found = ItemFinderHelpers.FindFirstOfItemInCollection( player.armor, item_types );
+				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.armor, item_types );
 				if( found != -1 ) {
 					return player.armor[found];
 				}
@@ -210,12 +210,17 @@ namespace HamstarHelpers.PlayerHelpers {
 
 			int wid = Main.itemTexture[item.type].Width;
 			int length = wid;
+			
 			if( item.useStyle != 5 ) {
 				int hei = Main.itemTexture[item.type].Height;
 				length = (int)Math.Sqrt( wid * wid + hei * hei );
 			}
 
 			float reach = ((float)length + 6f) * (float)player.direction;
+
+			if( item.useStyle == 4 ) {
+				return pos + new Vector2( reach/4f, -28f );
+			}
 
 			return pos + (player.itemRotation.ToRotationVector2() * reach);
 		}

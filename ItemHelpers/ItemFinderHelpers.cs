@@ -5,7 +5,12 @@ using Terraria;
 
 namespace HamstarHelpers.ItemHelpers {
 	public static class ItemFinderHelpers {
+		[System.Obsolete( "use ItemFinderHelpers.FindIndexOfFirstOfItemInCollection", true )]
 		public static int FindFirstOfItemInCollection( Item[] collection, ISet<int> item_types ) {
+			return FindIndexOfFirstOfItemInCollection( collection, item_types );
+		}
+
+		public static int FindIndexOfFirstOfItemInCollection( Item[] collection, ISet<int> item_types ) {
 			for( int i = 0; i < collection.Length; i++ ) {
 				Item item = collection[i];
 				if( item == null || item.IsAir ) { continue; }
@@ -13,6 +18,7 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 			return -1;
 		}
+
 
 
 		public static SortedSet<int> FindIndexOfEachItemInCollection( Item[] collection, ISet<int> item_types ) {
