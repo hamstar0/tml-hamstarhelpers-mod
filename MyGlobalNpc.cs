@@ -1,10 +1,8 @@
-﻿using HamstarHelpers.NPCHelpers;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	class HamstarHelpersNpc : GlobalNPC {
+	class MyGlobalNpc : GlobalNPC {
 		/*public override void SetDefaults( NPC npc ) {
 			if( Main.netMode == 0 ) {   // Single
 				if( NPCSpawnInfoHelpers.IsSimulatingSpawns ) {

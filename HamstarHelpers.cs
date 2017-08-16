@@ -1,8 +1,11 @@
 ﻿using HamstarHelpers.ItemHelpers;
+using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
@@ -10,8 +13,8 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	public class HamstarHelpersMod : Mod {
-		public HamstarHelpersMod() {
+	public class HamstarHelpers : Mod {
+		public HamstarHelpers() {
 			this.Properties = new ModProperties() {
 				Autoload = true,
 				AutoloadGores = true,
@@ -20,14 +23,33 @@ namespace HamstarHelpers {
 		}
 
 		public override void PostDrawInterface( SpriteBatch sb ) {
+			var modworld = this.GetModWorld<MyModWorld>();
+
 			PlayerMessage.DrawPlayerLabels( sb );
 			SimpleMessage.DrawMessage( sb );
 
 			DebugHelpers.DebugHelpers.PrintToBatch( sb );
 			DebugHelpers.DebugHelpers.Once = false;
 			DebugHelpers.DebugHelpers.OnceInAWhile--;
+
+			if( modworld.Logic != null ) {
+				modworld.Logic.ReadyClient = true;  // Ugh!
+			}
 		}
 
+		////////////////
+
+		public override void HandlePacket( BinaryReader reader, int player_who ) {
+			try {
+				if( Main.netMode == 1 ) {
+					ClientNetProtocol.RoutePacket( this, reader );
+				} else if( Main.netMode == 2 ) {
+					ServerNetProtocol.RoutePacket( this, reader, player_who );
+				}
+			} catch( Exception e ) {
+				DebugHelpers.DebugHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
+			}
+		}
 		/*public override bool HijackSendData( int who_am_i, int msg_type, int remote_client, int ignore_client, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7 ) {
 			var modplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 			if( !modplayer.HasEnteredWorld ) {
@@ -50,6 +72,7 @@ namespace HamstarHelpers {
 			return false;
 		}*/
 
+		////////////////
 
 		public override void AddRecipeGroups() {
 			IDictionary<int, int> npc_types_to_banner_item_types = new Dictionary<int, int>();
@@ -58,7 +81,7 @@ namespace HamstarHelpers {
 				int banner_type = Item.NPCtoBanner( npc_type );
 				if( banner_type == 0 ) { continue; }
 
-				npc_types_to_banner_item_types[npc_type] = Item.BannerToItem( banner_type );
+				npc_types_to_banner_item_types[ npc_type ] = Item.BannerToItem( banner_type );
 			}
 
 			// Initialize banners

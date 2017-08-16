@@ -51,7 +51,7 @@ namespace HamstarHelpers.MiscHelpers {
 	[System.Obsolete( "use DotNetHelpers.DotNetHelpers", true )]
 	public static class DotNetHelpers {
 		public static string DictToString( IDictionary<object, object> dict ) {
-			return HamstarHelpers.DotNetHelpers.DotNetHelpers.DictToString( dict );
+			return global::HamstarHelpers.DotNetHelpers.DotNetHelpers.DictToString( dict );
 		}
 	}
 
@@ -59,28 +59,28 @@ namespace HamstarHelpers.MiscHelpers {
 	[System.Obsolete( "use DebugHelpers.DebugHelpers", true )]
 	public static class DebugHelpers {
 		public static bool Once {
-			get { return HamstarHelpers.DebugHelpers.DebugHelpers.Once; }
-			set { HamstarHelpers.DebugHelpers.DebugHelpers.Once = value; }
+			get { return global::HamstarHelpers.DebugHelpers.DebugHelpers.Once; }
+			set { global::HamstarHelpers.DebugHelpers.DebugHelpers.Once = value; }
 		}
 		public static int OnceInAWhile {
-			get { return HamstarHelpers.DebugHelpers.DebugHelpers.OnceInAWhile; }
-			set { HamstarHelpers.DebugHelpers.DebugHelpers.OnceInAWhile = value; }
+			get { return global::HamstarHelpers.DebugHelpers.DebugHelpers.OnceInAWhile; }
+			set { global::HamstarHelpers.DebugHelpers.DebugHelpers.OnceInAWhile = value; }
 		}
 		public static IDictionary<string, string> Display {
-			get { return HamstarHelpers.DebugHelpers.DebugHelpers.Display; }
-			set { HamstarHelpers.DebugHelpers.DebugHelpers.Display = value; }
+			get { return global::HamstarHelpers.DebugHelpers.DebugHelpers.Display; }
+			set { global::HamstarHelpers.DebugHelpers.DebugHelpers.Display = value; }
 		}
 		public static void MsgOnce( string msg ) {
-			HamstarHelpers.DebugHelpers.DebugHelpers.MsgOnce( msg );
+			global::HamstarHelpers.DebugHelpers.DebugHelpers.MsgOnce( msg );
 		}
 		public static void MsgOnceInAWhile( string msg ) {
-			HamstarHelpers.DebugHelpers.DebugHelpers.MsgOnceInAWhile( msg );
+			global::HamstarHelpers.DebugHelpers.DebugHelpers.MsgOnceInAWhile( msg );
 		}
 		public static void PrintToBatch( SpriteBatch sb ) {
-			HamstarHelpers.DebugHelpers.DebugHelpers.PrintToBatch( sb );
+			global::HamstarHelpers.DebugHelpers.DebugHelpers.PrintToBatch( sb );
 		}
 		public static void Log( string msg ) {
-			HamstarHelpers.DebugHelpers.DebugHelpers.Log( msg );
+			global::HamstarHelpers.DebugHelpers.DebugHelpers.Log( msg );
 		}
 	}
 }

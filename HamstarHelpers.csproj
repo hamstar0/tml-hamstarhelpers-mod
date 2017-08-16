@@ -53,16 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DotNetHelpers\DataStructures\ReadOnlySet.cs" />
-    <Compile Include="HamstarHelpersNpc.cs" />
+    <Compile Include="MyLogic.cs" />
+    <Compile Include="MyModWorld.cs" />
+    <Compile Include="MyGlobalNpc.cs" />
     <Compile Include="HudHelpers\HudHealthBarHelpers.cs" />
-    <Compile Include="HamstarHelpersPlayer.cs" />
+    <Compile Include="MyModPlayer.cs" />
     <Compile Include="ItemHelpers\ItemMusicBoxHelpers.cs" />
     <Compile Include="DebugHelpers\DebugHelpers.cs" />
     <Compile Include="DustHelpers\DustHelpers.cs" />
-    <Compile Include="HamstarHelpersMod.cs" />
+    <Compile Include="HamstarHelpers.cs" />
     <Compile Include="ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="ItemHelpers\ItemHelpers.cs" />
     <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
+    <Compile Include="NetProtocol\ClientNetProtocol.cs" />
+    <Compile Include="NetProtocol\ServerNetProtocol.cs" />
     <Compile Include="NPCHelpers\NPCBannerHelpers.cs" />
     <Compile Include="NPCHelpers\NPCSpawnInfoHelpers.cs" />
     <Compile Include="NPCHelpers\NPCTownHelpers.cs" />

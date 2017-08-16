@@ -94,6 +94,12 @@ namespace HamstarHelpers.PlayerHelpers {
 		}
 
 
+		public static bool IsAboveWorldSurface( Player player ) {
+			var modplayer = player.GetModPlayer<MyModPlayer>();
+			return modplayer.IsAboveSurface;
+		}
+
+
 		[System.Obsolete( "use PlayerNPCHelpers.HasUsedNurse", true )]
 		public static bool HasUsedNurse( Player player ) {
 			return PlayerNPCHelpers.HasUsedNurse( player );

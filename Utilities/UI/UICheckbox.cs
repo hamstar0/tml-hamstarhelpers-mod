@@ -40,7 +40,7 @@ namespace HamstarHelpers.Utilities.UI {
 
 		public UICheckbox( string label, string title, bool is_clickable = true, float text_scale = 1, bool large = false ) : base( label, text_scale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
-				var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
+				var mymod = (HamstarHelpers)ModLoader.GetMod( "HamstarHelpers" );
 				UICheckbox.CheckboxTexture = mymod.GetTexture( "Utilities/UI/check_box" );
 				UICheckbox.CheckmarkTexture = mymod.GetTexture( "Utilities/UI/check_mark" );
 			}
