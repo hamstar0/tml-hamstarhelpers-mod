@@ -1,9 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.ItemHelpers;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerHelpers {
+		public const int InventorySize = 58;
+		public const int InventoryHotbarSize = 10;
+		public const int InventoryMainSize = 40;
+
+
+		////////////////
+
 		public static void Evac( Player player ) {
 			player.grappling[0] = -1;
 			player.grapCount = 0;
@@ -94,9 +102,48 @@ namespace HamstarHelpers.PlayerHelpers {
 		}
 
 
+		public static float LooselyAssessPower( Player player ) {
+			float item_count = 0;
+			float tally = 0;
+
+			for( int i=0; i<PlayerHelpers.InventoryHotbarSize; i++ ) {
+				Item item = player.inventory[i];
+				if( item == null || item.IsAir || !ItemIdentityHelpers.IsGameplayRelevant(item) ) { continue; }
+
+				tally += ItemIdentityHelpers.LooselyAppraise( item );
+				item_count += 1;
+			}
+
+			for( int i=0; i<player.armor.Length; i++ ) {
+				Item item = player.inventory[i];
+				if( item == null || item.IsAir || !ItemIdentityHelpers.IsGameplayRelevant( item ) ) { continue; }
+
+				tally += ItemIdentityHelpers.LooselyAppraise( item );
+				item_count += 1;
+			}
+
+			for( int i = 0; i < player.miscEquips.Length; i++ ) {
+				Item item = player.miscEquips[i];
+				if( item == null || item.IsAir || !ItemIdentityHelpers.IsGameplayRelevant( item ) ) { continue; }
+
+				tally += ItemIdentityHelpers.LooselyAppraise( item );
+				item_count += 1;
+			}
+
+			float tech_factor = tally / (item_count * ItemIdentityHelpers.HighestVanillaRarity);
+			float defense_factor = 1f + ((float)player.statDefense * 0.01f);
+			float vitality = (float)player.statLifeMax / 20f;
+			float vitality_factor = (vitality / (4f * ItemIdentityHelpers.HighestVanillaRarity)) * defense_factor;
+
+			return (tech_factor + vitality_factor) / 2f;
+		}
+
+
+		////////////////
+
+		[System.Obsolete( "use PlayerWorldHelpers.IsAboveWorldSurface", true )]
 		public static bool IsAboveWorldSurface( Player player ) {
-			var modplayer = player.GetModPlayer<MyModPlayer>();
-			return modplayer.IsAboveSurface;
+			return PlayerWorldHelpers.IsAboveWorldSurface( player );
 		}
 
 

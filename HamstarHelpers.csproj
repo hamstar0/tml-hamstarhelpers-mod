@@ -67,10 +67,13 @@
     <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
     <Compile Include="NetProtocol\ClientNetProtocol.cs" />
     <Compile Include="NetProtocol\ServerNetProtocol.cs" />
+    <Compile Include="NPCHelpers\NPCAIHelpers.cs" />
     <Compile Include="NPCHelpers\NPCBannerHelpers.cs" />
+    <Compile Include="NPCHelpers\NPCIdentityHelpers.cs" />
     <Compile Include="NPCHelpers\NPCSpawnInfoHelpers.cs" />
     <Compile Include="NPCHelpers\NPCTownHelpers.cs" />
     <Compile Include="PlayerHelpers\PlayerMovementHelpers.cs" />
+    <Compile Include="PlayerHelpers\PlayerWorldHelpers.cs" />
     <Compile Include="TileHelpers\TileFinderHelpers.cs" />
     <Compile Include="TileHelpers\TileIdentityHelpers.cs" />
     <Compile Include="TileHelpers\TileWallHelpers.cs" />
@@ -80,7 +83,7 @@
     <Compile Include="MiscHelpers\MiscHelpers.cs" />
     <Compile Include="NPCHelpers\NPCFinderHelpers.cs" />
     <Compile Include="NPCHelpers\NPCHelpers.cs" />
-    <Compile Include="PlayerHelpers\PlayerHeadHelpers.cs" />
+    <Compile Include="PlayerHelpers\PlayerHeadDisplayHelpers.cs" />
     <Compile Include="PlayerHelpers\PlayerHelpers.cs" />
     <Compile Include="PlayerHelpers\PlayerItemHelpers.cs" />
     <Compile Include="PlayerHelpers\PlayerNPCHelpers.cs" />

@@ -1,9 +1,17 @@
 ﻿using System.Collections.Generic;
 using Terraria;
-
+using Terraria.ID;
 
 namespace HamstarHelpers.ItemHelpers {
 	public static class ItemIdentityHelpers {
+		public const int HighestVanillaRarity = 11;
+		public const int JunkRarity = -1;
+		public const int QuestItemRarity = -11;
+
+
+
+		////////////////
+
 		private static IDictionary<int, int> ProjPene = new Dictionary<int, int>();
 
 		public static bool IsPenetrator( Item item ) {
@@ -64,6 +72,30 @@ namespace HamstarHelpers.ItemHelpers {
 				return proj.aiStyle == 99;
 			}
 			return false;
+		}
+
+		
+		public static bool IsGameplayRelevant( Item item, bool toys_relevant=false, bool junk_relevant=false ) {
+			if( !toys_relevant ) {
+				switch( item.type ) {
+				case ItemID.WaterGun:
+				case ItemID.SlimeGun:
+				case ItemID.BeachBall:
+					return false;
+				}
+			}
+			if( junk_relevant && item.rare < 0 ) { return false; }
+			return !item.vanity && item.dye <= 0 && item.hairDye <= 0 && item.paint > 0 && !Main.vanityPet[ item.buffType ];
+		}
+
+
+		public static float LooselyAppraise( Item item ) {
+			float appraisal = item.rare;
+			if( item.value > 0 ) {
+				float value = (float)item.value / 8000f;
+				appraisal = ((appraisal * 4f) + value) / 5f;
+			}
+			return appraisal;
 		}
 	}
 }

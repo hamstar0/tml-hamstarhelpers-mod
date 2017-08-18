@@ -8,8 +8,6 @@ namespace HamstarHelpers {
 	class MyModPlayer : ModPlayer {
 		public bool HasEnteredWorld { get; private set; }
 
-		public bool IsAboveSurface { get; private set; }
-
 
 		////////////////
 
@@ -17,13 +15,11 @@ namespace HamstarHelpers {
 
 		public override void Initialize() {
 			this.HasEnteredWorld = false;
-			this.IsAboveSurface = false;
 		}
 
 		public override void clientClone( ModPlayer client_clone ) {
 			var clone = (MyModPlayer)client_clone;
 			clone.HasEnteredWorld = this.HasEnteredWorld;
-			clone.IsAboveSurface = this.IsAboveSurface;
 		}
 
 
@@ -54,12 +50,6 @@ namespace HamstarHelpers {
 			if( this.player.whoAmI == Main.myPlayer ) {	// Current player
 				PlayerMessage.UpdatePlayerLabels();
 				SimpleMessage.UpdateMessage();
-			}
-			
-			if( this.player.position.Y < Main.worldSurface * 16.0 ) {
-				this.IsAboveSurface = true;
-			} else {
-				this.IsAboveSurface = false;
 			}
 
 			var modworld = this.mod.GetModWorld<MyModWorld>();

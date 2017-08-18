@@ -4,17 +4,6 @@ using Terraria;
 
 namespace HamstarHelpers.NPCHelpers {
 	public static class NPCHelpers {
-		public static string GetUniqueId( NPC npc ) {
-			string id = npc.TypeName;
-
-			if( npc.HasGivenName ) { id = npc.GivenName + " " + id; }
-			if( npc.modNPC != null ) { id = npc.modNPC.mod.Name + " " + id; }
-			
-			if( id != "" ) { return id; }
-			return ""+npc.type;
-		}
-
-
 		public static bool IsNPCDead( NPC check_npc ) {
 			return check_npc.life <= 0 || !check_npc.active;
 		}
@@ -28,9 +17,14 @@ namespace HamstarHelpers.NPCHelpers {
 		}
 
 
-
 		////////////////
-		
+
+		[System.Obsolete( "use NPCIdentityHelpers.GetUniqueId", true )]
+		public static string GetUniqueId( NPC npc ) {
+			return NPCIdentityHelpers.GetUniqueId( npc );
+		}
+
+
 		[System.Obsolete( "use NPCTownHelpers.Leave", true )]
 		public static void Leave( NPC npc, bool announce=true ) {
 			NPCTownHelpers.Leave( npc, announce );

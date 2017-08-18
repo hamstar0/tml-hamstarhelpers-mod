@@ -8,7 +8,7 @@ namespace HamstarHelpers.NPCHelpers {
 			NPC npc = new NPC();
 			for( int i = Main.npcTexture.Length - 1; i >= 0; i-- ) {
 				npc.SetDefaults( i );
-				if( NPCHelpers.GetUniqueId( npc ) == uid ) {
+				if( NPCIdentityHelpers.GetUniqueId( npc ) == uid ) {
 					return i;
 				}
 			}

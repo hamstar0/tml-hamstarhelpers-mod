@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -16,6 +17,15 @@ namespace HamstarHelpers.WorldHelpers {
 			} else {
 				return Main.time / 32400d;
 			}
+		}
+
+		
+		public static bool IsAboveWorldSurface( Vector2 world_pos ) {
+			return world_pos.Y < (Main.worldSurface * 16);
+		}
+
+		public static bool IsWithinUnderworld( Vector2 world_pos ) {
+			return world_pos.Y > ((Main.maxTilesY - 200) * 16);
 		}
 
 

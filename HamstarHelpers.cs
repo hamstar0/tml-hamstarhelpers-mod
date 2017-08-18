@@ -22,6 +22,22 @@ namespace HamstarHelpers {
 			};
 		}
 
+		/*public override void Load() {
+			var dict = new SortedDictionary<float, NPC>();
+			for( int i = 0; i < Main.npcTexture.Length; i++ ) {
+				NPC npc = new NPC();
+				npc.SetDefaults( i );
+				dict[NPCIdentityHelpers.LooselyAssessThreat( npc )] = npc;
+			}
+			foreach( var kv in dict ) {
+				int digits = (int)Math.Ceiling( Math.Log10( kv.Value.type ) );
+				string gap = new string( ' ', 6 - digits );
+				ErrorLogger.Log( kv.Value.type + gap + " - " + kv.Key.ToString( "N2" ) + " = " + kv.Value.TypeName + "'s threat" );
+			}
+		}*/
+
+		////////////////
+
 		public override void PostDrawInterface( SpriteBatch sb ) {
 			var modworld = this.GetModWorld<MyModWorld>();
 
