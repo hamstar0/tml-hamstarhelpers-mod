@@ -33,7 +33,6 @@ namespace HamstarHelpers.NetProtocol {
 			ModPacket packet = mymod.GetPacket();
 
 			packet.Write( (byte)NetProtocolTypes.RequestModData );
-			packet.Write( (int)Main.myPlayer );
 
 			packet.Send();
 		}
