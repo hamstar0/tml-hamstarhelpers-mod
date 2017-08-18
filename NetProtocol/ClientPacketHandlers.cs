@@ -5,19 +5,14 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.NetProtocol {
-	public enum ClientNetProtocolTypes : byte {
-		ModData
-	}
-
-
-	static class ClientNetProtocol {
+	static class ClientPacketHandlers {
 		public static void RoutePacket( HamstarHelpers mymod, BinaryReader reader ) {
-			ClientNetProtocolTypes protocol = (ClientNetProtocolTypes)reader.ReadByte();
+			NetProtocolTypes protocol = (NetProtocolTypes)reader.ReadByte();
 
 			switch( protocol ) {
-			case ClientNetProtocolTypes.ModData:
+			case NetProtocolTypes.SendModData:
 				//if( is_debug ) { DebugHelpers.Log( "Packet ModData" ); }
-				ClientNetProtocol.ReceiveModDataOnClient( mymod, reader );
+				ClientPacketHandlers.ReceiveModDataOnClient( mymod, reader );
 				break;
 			default:
 				DebugHelpers.DebugHelpers.Log( "Invalid packet protocol: " + protocol );
@@ -37,7 +32,7 @@ namespace HamstarHelpers.NetProtocol {
 
 			ModPacket packet = mymod.GetPacket();
 
-			packet.Write( (byte)ServerNetProtocolTypes.RequestModData );
+			packet.Write( (byte)NetProtocolTypes.RequestModData );
 			packet.Write( (int)Main.myPlayer );
 
 			packet.Send();

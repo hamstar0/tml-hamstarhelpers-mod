@@ -65,8 +65,9 @@
     <Compile Include="ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="ItemHelpers\ItemHelpers.cs" />
     <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
-    <Compile Include="NetProtocol\ClientNetProtocol.cs" />
-    <Compile Include="NetProtocol\ServerNetProtocol.cs" />
+    <Compile Include="NetProtocol\ClientPacketHandlers.cs" />
+    <Compile Include="NetProtocol\NetProtocolDefs.cs" />
+    <Compile Include="NetProtocol\ServerPacketHandlers.cs" />
     <Compile Include="NPCHelpers\NPCAIHelpers.cs" />
     <Compile Include="NPCHelpers\NPCBannerHelpers.cs" />
     <Compile Include="NPCHelpers\NPCIdentityHelpers.cs" />

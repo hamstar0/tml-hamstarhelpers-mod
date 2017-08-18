@@ -29,7 +29,7 @@ namespace HamstarHelpers {
 				var modworld = mymod.GetModWorld<MyModWorld>();
 				
 				if( Main.netMode == 1 ) {   // Client
-					ClientNetProtocol.SendRequestModDataFromClient( mymod );
+					ClientPacketHandlers.SendRequestModDataFromClient( mymod );
 				} else if( Main.netMode == 0 ) {    // Single
 					this.PostEnterWorld();
 				}

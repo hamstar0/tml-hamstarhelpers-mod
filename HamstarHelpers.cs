@@ -58,9 +58,9 @@ namespace HamstarHelpers {
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
 			try {
 				if( Main.netMode == 1 ) {
-					ClientNetProtocol.RoutePacket( this, reader );
+					ClientPacketHandlers.RoutePacket( this, reader );
 				} else if( Main.netMode == 2 ) {
-					ServerNetProtocol.RoutePacket( this, reader, player_who );
+					ServerPacketHandlers.RoutePacket( this, reader, player_who );
 				}
 			} catch( Exception e ) {
 				DebugHelpers.DebugHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );

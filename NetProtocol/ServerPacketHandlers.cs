@@ -5,19 +5,14 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.NetProtocol {
-	public enum ServerNetProtocolTypes : byte {
-		RequestModData
-	}
-
-
-	static class ServerNetProtocol {
+	static class ServerPacketHandlers {
 		public static void RoutePacket( HamstarHelpers mymod, BinaryReader reader, int player_who ) {
-			ServerNetProtocolTypes protocol = (ServerNetProtocolTypes)reader.ReadByte();
+			NetProtocolTypes protocol = (NetProtocolTypes)reader.ReadByte();
 
 			switch( protocol ) {
-			case ServerNetProtocolTypes.RequestModData:
+			case NetProtocolTypes.RequestModData:
 				//if( is_debug ) { DebugHelpers.Log( "Packet RequestModData" ); }
-				ServerNetProtocol.ReceiveRequestModDataOnServer( mymod, reader, player_who );
+				ServerPacketHandlers.ReceiveRequestModDataOnServer( mymod, reader, player_who );
 				break;
 			default:
 				DebugHelpers.DebugHelpers.Log( "Invalid packet protocol: " + protocol );
@@ -40,7 +35,7 @@ namespace HamstarHelpers.NetProtocol {
 
 			ModPacket packet = mymod.GetPacket();
 
-			packet.Write( (byte)ClientNetProtocolTypes.ModData );
+			packet.Write( (byte)NetProtocolTypes.SendModData );
 			packet.Write( (int)modworld.Logic.HalfDaysElapsed );
 
 			packet.Send( (int)player.whoAmI );
@@ -55,7 +50,7 @@ namespace HamstarHelpers.NetProtocol {
 			// Server only
 			if( Main.netMode != 2 ) { return; }
 
-			ServerNetProtocol.SendModDataFromServer( mymod, Main.player[player_who] );
+			ServerPacketHandlers.SendModDataFromServer( mymod, Main.player[player_who] );
 		}
 	}
 }
