@@ -89,7 +89,7 @@ namespace HamstarHelpers {
 		}*/
 
 		////////////////
-
+		
 		public override void AddRecipeGroups() {
 			IDictionary<int, int> npc_types_to_banner_item_types = new Dictionary<int, int>();
 

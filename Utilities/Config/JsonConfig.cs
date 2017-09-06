@@ -65,14 +65,14 @@ namespace HamstarHelpers.Utilities.Config {
 
 			using( StreamReader r = new StreamReader( path ) ) {
 				string json = r.ReadToEnd();
-				this.Data = JsonConfig<T>.Deserialize( json );
+				this.DeserializeMe( json );
 			}
 			return true;
 		}
 
 		public void SaveFile() {
 			string path = this.GetFullPath();
-			string json = JsonConfig<T>.Serialize( this.Data );
+			string json = this.SerializeMe();
 			File.WriteAllText( path, json );
 		}
 

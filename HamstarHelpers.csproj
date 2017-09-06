@@ -52,6 +52,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ConfigSettingCommand.cs" />
+    <Compile Include="DotNetHelpers\XnaHelpers.cs" />
+    <Compile Include="EntityHelpers\EntityHelpers.cs" />
+    <Compile Include="TmlHelpers\AltNPCInfo.cs" />
     <Compile Include="DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="MyLogic.cs" />
     <Compile Include="MyModWorld.cs" />
@@ -79,6 +83,8 @@
     <Compile Include="TileHelpers\TileIdentityHelpers.cs" />
     <Compile Include="TileHelpers\TileWallHelpers.cs" />
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
+    <Compile Include="TmlHelpers\TmlHelpers.cs" />
+    <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="DotNetHelpers\DotNetHelpers.cs" />
     <Compile Include="MiscHelpers\MiscHelpers.cs" />
@@ -101,10 +107,14 @@
   <ItemGroup>
     <Content Include="build.txt" />
     <Content Include="description.txt" />
+    <Content Include="icon.png" />
     <Content Include="Utilities\UI\check_box.png" />
     <Content Include="Utilities\UI\check_mark.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="LICENSE" />
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

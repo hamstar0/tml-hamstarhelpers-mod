@@ -1,4 +1,4 @@
-﻿using System;
+﻿using HamstarHelpers.TmlHelpers;
 using Terraria;
 
 
@@ -48,17 +48,20 @@ namespace HamstarHelpers {
 				return;
 			}
 
+			this.UpdateDay();
+			AltNPCInfo.UpdateAll();
+		}
+
+		////////////////
+
+		private void UpdateDay() {
 			if( this.IsDay != Main.dayTime ) {
 				this.HalfDaysElapsed++;
 
 				if( !this.IsDay ) {
-					foreach( var kv in WorldHelpers.WorldHelpers.DayHooks ) {
-						kv.Value();
-					}
+					foreach( var kv in WorldHelpers.WorldHelpers.DayHooks ) { kv.Value(); }
 				} else {
-					foreach( var kv in WorldHelpers.WorldHelpers.NightHooks ) {
-						kv.Value();
-					}
+					foreach( var kv in WorldHelpers.WorldHelpers.NightHooks ) { kv.Value(); }
 				}
 			}
 			this.IsDay = Main.dayTime;

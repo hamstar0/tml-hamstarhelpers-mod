@@ -75,6 +75,8 @@ namespace HamstarHelpers.ItemHelpers {
 		}
 
 
+		////////////////
+
 		[System.Obsolete( "use PlayerItemHelpers.GetGrappleItem", true )]
 		public static Item GetGrappleItem( Player player ) {
 			return PlayerItemHelpers.GetGrappleItem( player );
