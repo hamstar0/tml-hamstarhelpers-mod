@@ -6,11 +6,11 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.TmlHelpers {
 	public class AltNPCInfo {
-		private static IDictionary<string, AltNPCInfo> NpcInfoCopies;
+		private static IDictionary<string, Type> NpcInfoTypes;
 		internal static IDictionary<int, IDictionary<string, AltNPCInfo>> NpcInfos;
 
 		static AltNPCInfo() {
-			AltNPCInfo.NpcInfoCopies = new Dictionary<string, AltNPCInfo>();
+			AltNPCInfo.NpcInfoTypes = new Dictionary<string, Type>();
 			AltNPCInfo.NpcInfos = new Dictionary<int, IDictionary<string, AltNPCInfo>>();
 			for( int who = 0; who < Main.npc.Length; who++ ) {
 				AltNPCInfo.NpcInfos[who] = new Dictionary<string, AltNPCInfo>();
@@ -18,53 +18,80 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 
+
 		////////////////
 
+		[System.Obsolete( "use AltNPCInfo.RegisterInfoType<T>()", true )]
 		public static void RegisterInfoType( Mod mod, AltNPCInfo info ) {
 			string modname = TmlHelpers.GetModUniqueName( mod );
-			AltNPCInfo.NpcInfoCopies[modname] = info;
+			//AltNPCInfo.NpcInfoModMappedTypes[modname] = info.GetType();
+			Type t = info.GetType();
+			AltNPCInfo.NpcInfoTypes[ modname ] = t;
+		}
+		
+		public static void RegisterInfoType<T>() where T : AltNPCInfo {
+			Type t = typeof( T );
+			AltNPCInfo.NpcInfoTypes[ t.ToString() ] = t;
 		}
 
+		////////////////
+
+		[System.Obsolete( "use AltNPCInfo.GetNpcInfo<T>( Mod mod, int npc_who )", true )]
 		public static AltNPCInfo GetNpcInfo( Mod mod, int npc_who ) {
 			if( !AltNPCInfo.NpcInfos.ContainsKey(npc_who) || AltNPCInfo.NpcInfos[npc_who].Count == 0 ) { return null; }
 
 			string modname = TmlHelpers.GetModUniqueName( mod );
 			if( !AltNPCInfo.NpcInfos[npc_who].ContainsKey(modname) ) { return null; }
 
-			return AltNPCInfo.NpcInfos[npc_who][modname];
+			return AltNPCInfo.NpcInfos[npc_who][modname];	// Dislike this merging convention
+		}
+
+		public static T GetNpcInfo<T>( int npc_who ) where T : AltNPCInfo {
+			if( !AltNPCInfo.NpcInfos.ContainsKey( npc_who ) ) { return null; }
+			if( AltNPCInfo.NpcInfos[npc_who].Count == 0 ) { return null; }
+
+			string t = typeof(T).ToString();
+			if( !AltNPCInfo.NpcInfos[npc_who].ContainsKey(t) ) { return null; }
+			return (T)AltNPCInfo.NpcInfos[npc_who][t];
 		}
 
 		////////////////
-
+		
 		internal static void UpdateAll() {
+			if( AltNPCInfo.NpcInfoTypes.Count == 0 ) { return; }
+
+			var map = AltNPCInfo.NpcInfos;
+
 			for( int who = 0; who < Main.npc.Length; who++ ) {
 				NPC npc = Main.npc[who];
+				bool is_empty = map[who].Count == 0;
+
 				if( npc == null || !npc.active ) {
-					if( AltNPCInfo.NpcInfos[who].Count > 0 ) { AltNPCInfo.NpcInfos[who].Clear(); }
+					if( !is_empty ) {
+						map[who].Clear();
+					}
 					continue;
 				}
 
-				bool is_empty = AltNPCInfo.NpcInfos[who].Count == 0;
-				
 				if( !is_empty ) {
-					foreach( string name in AltNPCInfo.NpcInfos[who].Keys ) {
-						if( AltNPCInfo.NpcInfos[who][name].NpcType != npc.type ) {
+					foreach( AltNPCInfo info in map[who].Values ) {
+						if( info.NpcType != npc.type ) {
 							is_empty = true;
 							break;
 						}
 					}
-					if( is_empty ) { AltNPCInfo.NpcInfos[who].Clear(); }
+					if( is_empty ) {
+						map[who].Clear();
+					}
 				}
 
 				if( is_empty ) {
-					foreach( var kv in AltNPCInfo.NpcInfoCopies ) {
-						AltNPCInfo base_info = kv.Value;
-						if( !base_info.CanInitialize( npc ) ) { continue; }
+					foreach( Type t in AltNPCInfo.NpcInfoTypes.Values ) {
+						var info = (AltNPCInfo)Activator.CreateInstance( t );
+						if( !info.CanInitialize( npc ) ) { continue; }
 
-						var info = (AltNPCInfo)Activator.CreateInstance( base_info.GetType() );
 						info.InnerInitialize( npc );
-						
-						AltNPCInfo.NpcInfos[who][kv.Key] = info;
+						map[ who ][ t.ToString() ] = info;
 					}
 				}
 			}

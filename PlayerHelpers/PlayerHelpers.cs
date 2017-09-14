@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.ItemHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
-
+using Terraria.ID;
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerHelpers {
@@ -136,6 +136,18 @@ namespace HamstarHelpers.PlayerHelpers {
 			float vitality_factor = (vitality / (4f * ItemIdentityHelpers.HighestVanillaRarity)) * defense_factor;
 
 			return (tech_factor + vitality_factor) / 2f;
+		}
+
+
+		public static bool IsIncapacitated( Player player, bool freedom_needed=false, bool arms_needed=false, bool sight_needed=false,
+				bool sanity_needed=false ) {
+			if( player == null || !player.active || player.dead || player.stoned || player.frozen || player.ghost ||
+				player.gross || player.webbed || player.mapFullScreen ) { return true; }
+			if( freedom_needed && (player.pulley || player.grappling[0] >= 0 || player.mount.Cart) ) { return true; }
+			if( arms_needed && player.noItems ) { return true; }
+			if( sight_needed && player.blackout ) { return true; }
+			if( sanity_needed && player.confused ) { return true; }
+			return false;
 		}
 
 
