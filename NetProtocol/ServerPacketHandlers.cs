@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.NetProtocol {
 	static class ServerPacketHandlers {
-		public static void RoutePacket( HamstarHelpers mymod, BinaryReader reader, int player_who ) {
+		public static void RoutePacket( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
 			NetProtocolTypes protocol = (NetProtocolTypes)reader.ReadByte();
 
 			switch( protocol ) {
@@ -26,7 +26,7 @@ namespace HamstarHelpers.NetProtocol {
 		// Server Senders
 		////////////////
 		
-		public static void SendModDataFromServer( HamstarHelpers mymod, Player player ) {
+		public static void SendModDataFromServer( HamstarHelpersMod mymod, Player player ) {
 			// Server only
 			if( Main.netMode != 2 ) { return; }
 
@@ -46,7 +46,7 @@ namespace HamstarHelpers.NetProtocol {
 		// Server Receivers
 		////////////////
 		
-		private static void ReceiveRequestModDataOnServer( HamstarHelpers mymod, BinaryReader reader, int player_who ) {
+		private static void ReceiveRequestModDataOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
 			// Server only
 			if( Main.netMode != 2 ) { return; }
 

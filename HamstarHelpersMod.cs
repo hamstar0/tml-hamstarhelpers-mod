@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.ItemHelpers;
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,8 +14,8 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	public class HamstarHelpers : Mod {
-		public HamstarHelpers() {
+	public class HamstarHelpersMod : Mod {
+		public HamstarHelpersMod() {
 			this.Properties = new ModProperties() {
 				Autoload = true,
 				AutoloadGores = true,
@@ -22,8 +23,10 @@ namespace HamstarHelpers {
 			};
 		}
 
-		/*public override void Load() {
-			var dict = new SortedDictionary<float, NPC>();
+		public override void Load() {
+			AltNPCInfo.DataInitialize();
+
+			/*var dict = new SortedDictionary<float, NPC>();
 			for( int i = 0; i < Main.npcTexture.Length; i++ ) {
 				NPC npc = new NPC();
 				npc.SetDefaults( i );
@@ -33,8 +36,8 @@ namespace HamstarHelpers {
 				int digits = (int)Math.Ceiling( Math.Log10( kv.Value.type ) );
 				string gap = new string( ' ', 6 - digits );
 				ErrorLogger.Log( kv.Value.type + gap + " - " + kv.Key.ToString( "N2" ) + " = " + kv.Value.TypeName + "'s threat" );
-			}
-		}*/
+			}*/
+		}
 
 		////////////////
 

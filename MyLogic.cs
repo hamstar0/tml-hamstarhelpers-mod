@@ -15,7 +15,7 @@ namespace HamstarHelpers {
 
 
 
-		public MyLogic( HamstarHelpers mymod ) { }
+		public MyLogic( HamstarHelpersMod mymod ) { }
 
 
 		public void LoadOnce( int half_days ) {

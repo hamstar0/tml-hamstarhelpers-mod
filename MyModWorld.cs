@@ -17,7 +17,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void Initialize() {
-			var mymod = (HamstarHelpers)this.mod;
+			var mymod = (HamstarHelpersMod)this.mod;
 
 			this.Logic = new MyLogic( mymod );
 
@@ -28,7 +28,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void Load( TagCompound tag ) {
-			var mymod = (HamstarHelpers)this.mod;
+			var mymod = (HamstarHelpersMod)this.mod;
 			int half_days = 0;
 
 			if( tag.ContainsKey( "world_id" ) ) {
@@ -71,7 +71,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreUpdate() {
-			var mymod = (HamstarHelpers)this.mod;
+			var mymod = (HamstarHelpersMod)this.mod;
 
 			if( Main.netMode == 2 ) { // Server only
 				if( this.HasCorrectID && this.Logic != null ) {

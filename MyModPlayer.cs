@@ -25,7 +25,7 @@ namespace HamstarHelpers {
 
 		public override void OnEnterWorld( Player player ) {
 			if( player.whoAmI == this.player.whoAmI ) {    // Current player
-				var mymod = (HamstarHelpers)this.mod;
+				var mymod = (HamstarHelpersMod)this.mod;
 				var modworld = mymod.GetModWorld<MyModWorld>();
 				
 				if( Main.netMode == 1 ) {   // Client
@@ -37,7 +37,7 @@ namespace HamstarHelpers {
 		}
 
 		public void PostEnterWorld() {
-			var mymod = (HamstarHelpers)this.mod;
+			var mymod = (HamstarHelpersMod)this.mod;
 			var modworld = mymod.GetModWorld<MyModWorld>();
 			
 			this.HasEnteredWorld = true;

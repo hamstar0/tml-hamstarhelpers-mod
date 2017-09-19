@@ -1,6 +1,6 @@
 ﻿using System;
 using Terraria;
-
+using Terraria.ID;
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerMovementHelpers {
@@ -56,19 +56,27 @@ namespace HamstarHelpers.PlayerHelpers {
 		}
 
 
+		public static bool IsOnFloor( Player player ) {
+			return player.velocity.Y == 0f || player.sliding;
+		}
+
+
+		public static bool IsJumpPrimed( Player player ) {
+			return player.jumpAgainCloud ||
+				player.jumpAgainSandstorm ||
+				player.jumpAgainBlizzard ||
+				player.jumpAgainFart ||
+				player.jumpAgainSail ||
+				player.jumpAgainUnicorn ||
+				PlayerMovementHelpers.IsOnFloor( player ) ||
+				(player.mount.Active && player.mount.Type == MountID.Slime && player.wetSlime > 0) ||
+				(player.wet && player.accFlipper && (!player.mount.Active || !player.mount.Cart));
+		}
+
+
 		public static bool CanPlayerJump( Player player ) {
-			return (player.sliding ||
-					player.velocity.Y == 0f ||
-					(player.mount.Active && player.mount.Type == 3 && player.wetSlime > 0) ||
-					player.jumpAgainCloud ||
-					player.jumpAgainSandstorm ||
-					player.jumpAgainBlizzard ||
-					player.jumpAgainFart ||
-					player.jumpAgainSail ||
-					player.jumpAgainUnicorn ||
-					(player.wet && player.accFlipper && (!player.mount.Active || !player.mount.Cart)))
-				&& (player.releaseJump ||
-					(player.autoJump && (player.velocity.Y == 0f || player.sliding)));
+			return PlayerMovementHelpers.IsJumpPrimed( player ) &&
+				( player.releaseJump || (player.autoJump && PlayerMovementHelpers.IsOnFloor(player)) );
 		}
 
 

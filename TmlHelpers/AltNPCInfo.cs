@@ -10,6 +10,10 @@ namespace HamstarHelpers.TmlHelpers {
 		internal static IDictionary<int, IDictionary<string, AltNPCInfo>> NpcInfos;
 
 		static AltNPCInfo() {
+			AltNPCInfo.DataInitialize();
+		}
+		
+		internal static void DataInitialize() {
 			AltNPCInfo.NpcInfoTypes = new Dictionary<string, Type>();
 			AltNPCInfo.NpcInfos = new Dictionary<int, IDictionary<string, AltNPCInfo>>();
 			for( int who = 0; who < Main.npc.Length; who++ ) {
@@ -47,12 +51,15 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 		public static T GetNpcInfo<T>( int npc_who ) where T : AltNPCInfo {
-			if( !AltNPCInfo.NpcInfos.ContainsKey( npc_who ) ) { return null; }
-			if( AltNPCInfo.NpcInfos[npc_who].Count == 0 ) { return null; }
+			T npc_info = null;
+			if( !AltNPCInfo.NpcInfos.ContainsKey( npc_who ) ) { return npc_info; }
+			if( AltNPCInfo.NpcInfos[npc_who].Count == 0 ) { return npc_info; }
 
 			string t = typeof(T).ToString();
-			if( !AltNPCInfo.NpcInfos[npc_who].ContainsKey(t) ) { return null; }
-			return (T)AltNPCInfo.NpcInfos[npc_who][t];
+			if( !AltNPCInfo.NpcInfos[npc_who].ContainsKey(t) ) { return npc_info; }
+
+			npc_info = (T)AltNPCInfo.NpcInfos[npc_who][t];
+			return npc_info;
 		}
 
 		////////////////

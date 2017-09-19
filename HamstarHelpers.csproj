@@ -65,7 +65,7 @@
     <Compile Include="ItemHelpers\ItemMusicBoxHelpers.cs" />
     <Compile Include="DebugHelpers\DebugHelpers.cs" />
     <Compile Include="DustHelpers\DustHelpers.cs" />
-    <Compile Include="HamstarHelpers.cs" />
+    <Compile Include="HamstarHelpersMod.cs" />
     <Compile Include="ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="ItemHelpers\ItemHelpers.cs" />
     <Compile Include="ItemHelpers\ItemIdentityHelpers.cs" />
