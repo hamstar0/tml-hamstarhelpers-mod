@@ -4,25 +4,11 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	class MyGlobalNpc : GlobalNPC {
+	/*class MyGlobalNpc : GlobalNPC {
 		public override bool PreAI( NPC npc ) {
-			int who = npc.whoAmI;
-			foreach( var info in AltNPCInfo.NpcInfos[who].Values ) {
-				if( !info.IsColliding ) {
-					if( npc.collideX || npc.collideY ) {
-						info.IsColliding = true;
-						info.OnTerrainCollide();
-					}
-				} else {
-					if( !npc.collideX && !npc.collideY ) {
-						info.IsColliding = false;
-					}
-				}
-			}
-			return base.PreAI( npc );
 		}
 
-		/*public override void AI( NPC npc ) {
+		public override void AI( NPC npc ) {
 			int who = npc.whoAmI;
 			foreach( var info in AltNPCInfo.NpcInfos[who].Values ) {
 				info.AI();
@@ -393,6 +379,6 @@ namespace HamstarHelpers {
 				spawn_rate = 1;
 				max_spawns = 100;
 			}
-		}*/
-	}
+		}
+	}*/
 }

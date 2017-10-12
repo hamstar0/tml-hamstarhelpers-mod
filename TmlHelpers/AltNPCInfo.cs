@@ -7,7 +7,10 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.TmlHelpers {
 	public class AltNPCInfo {
 		private static IDictionary<string, Type> NpcInfoTypes;
-		internal static IDictionary<int, IDictionary<string, AltNPCInfo>> NpcInfos;
+		private static IDictionary<int, IDictionary<string, AltNPCInfo>> NpcInfos;
+
+
+		////////////////
 
 		static AltNPCInfo() {
 			AltNPCInfo.DataInitialize();
@@ -62,8 +65,9 @@ namespace HamstarHelpers.TmlHelpers {
 			return npc_info;
 		}
 
+
 		////////////////
-		
+
 		internal static void UpdateAll() {
 			if( AltNPCInfo.NpcInfoTypes.Count == 0 ) { return; }
 
@@ -73,9 +77,9 @@ namespace HamstarHelpers.TmlHelpers {
 				NPC npc = Main.npc[who];
 				bool is_empty = map[who].Count == 0;
 
-				if( npc == null || !npc.active ) {
+				if( npc == null || !npc.active || npc.type == 0 ) {
 					if( !is_empty ) {
-						map[who].Clear();
+						AltNPCInfo.Clear( who );
 					}
 					continue;
 				}
@@ -88,20 +92,48 @@ namespace HamstarHelpers.TmlHelpers {
 						}
 					}
 					if( is_empty ) {
-						map[who].Clear();
+						AltNPCInfo.Clear( who );
 					}
 				}
 
 				if( is_empty ) {
-					foreach( Type t in AltNPCInfo.NpcInfoTypes.Values ) {
-						var info = (AltNPCInfo)Activator.CreateInstance( t );
-						if( !info.CanInitialize( npc ) ) { continue; }
+					AltNPCInfo.AddAll( npc );
+				}
 
-						info.InnerInitialize( npc );
-						map[ who ][ t.ToString() ] = info;
-					}
+				// Run updates
+				foreach( AltNPCInfo info in map[who].Values ) {
+					info.Update();
 				}
 			}
+		}
+
+		////////////////
+
+		private static void AddAll( NPC npc ) {
+			foreach( var kv in AltNPCInfo.NpcInfoTypes ) {
+				AltNPCInfo.Add( npc, kv.Key, kv.Value );
+			}
+		}
+
+		private static bool Add( NPC npc, string label, Type mytype ) {
+			var info = (AltNPCInfo)Activator.CreateInstance( mytype );
+			if( !info.CanInitialize( npc ) ) { return false; }
+
+			info.InnerInitialize( npc );
+
+			AltNPCInfo.NpcInfos[npc.whoAmI][label] = info;
+
+			return true;
+		}
+
+
+		private static void Clear( int who ) {
+			IDictionary<string, AltNPCInfo> infos = AltNPCInfo.NpcInfos[who];
+
+			foreach( AltNPCInfo info in infos.Values ) {
+				info.PostDeath();
+			}
+			infos.Clear();
 		}
 
 
@@ -113,7 +145,6 @@ namespace HamstarHelpers.TmlHelpers {
 
 		public NPC Npc { get { return this.NpcWho == -1 ? null : Main.npc[this.NpcWho]; } }
 
-		internal bool IsColliding = false;
 
 		////////////////
 
@@ -136,6 +167,11 @@ namespace HamstarHelpers.TmlHelpers {
 
 		public virtual void Initialize( NPC npc ) { }
 
+		[System.Obsolete( "Re-implement anew via. AltNPCInfo.Update()", true )]
 		public virtual void OnTerrainCollide() { }
+
+		public virtual void Update() { }
+
+		public virtual void PostDeath() { }
 	}
 }

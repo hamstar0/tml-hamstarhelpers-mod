@@ -55,6 +55,7 @@
     <Compile Include="Commands\ConfigSettingCommand.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
+    <Compile Include="ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="TmlHelpers\AltNPCInfo.cs" />
     <Compile Include="DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="MyLogic.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="TileHelpers\TileIdentityHelpers.cs" />
     <Compile Include="TileHelpers\TileWallHelpers.cs" />
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
+    <Compile Include="TmlHelpers\AltProjectileInfo.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
     <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
@@ -103,6 +105,8 @@
     <Compile Include="UIHelpers\UIHelpers.cs" />
     <Compile Include="Utilities\UI\UICheckbox.cs" />
     <Compile Include="WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="XnaHelpers\XnaColorHelpers.cs" />
+    <Compile Include="XnaHelpers\XnaHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build.txt" />

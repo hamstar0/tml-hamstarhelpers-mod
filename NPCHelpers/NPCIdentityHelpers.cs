@@ -24,7 +24,7 @@ namespace HamstarHelpers.NPCHelpers {
 		}
 
 
-		[System.Obsolete( "use NPCHelpers.GetUniqueId", true )]
+		[System.Obsolete( "use NPCHelpers.LooselyAssessThreat", true )]
 		public static float LooselyAssessThreat( NPC npc ) {
 			return NPCHelpers.LooselyAssessThreat( npc );
 		}

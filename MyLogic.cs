@@ -49,6 +49,7 @@ namespace HamstarHelpers {
 			}
 
 			this.UpdateDay();
+			AltProjectileInfo.UpdateAll();
 			AltNPCInfo.UpdateAll();
 		}
 

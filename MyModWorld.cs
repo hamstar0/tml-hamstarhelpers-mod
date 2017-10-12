@@ -8,7 +8,7 @@ using Terraria.ModLoader.IO;
 namespace HamstarHelpers {
 	class MyModWorld : ModWorld {
 		public string ID { get; private set; }
-		public bool HasCorrectID { get; private set; }  // Workaround for tml bug?
+		public bool HasCorrectID { get; internal set; }  // Workaround for tml bug?
 
 		public MyLogic Logic { get; private set; }
 
@@ -74,7 +74,7 @@ namespace HamstarHelpers {
 			var mymod = (HamstarHelpersMod)this.mod;
 
 			if( Main.netMode == 2 ) { // Server only
-				if( this.HasCorrectID && this.Logic != null ) {
+				if( this.Logic != null && mymod.HasSetupContent ) {
 					this.Logic.Update();
 				}
 			}

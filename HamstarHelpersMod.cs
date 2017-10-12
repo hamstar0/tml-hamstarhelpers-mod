@@ -14,8 +14,19 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	public class HamstarHelpersMod : Mod {
+	class HamstarHelpersMod : Mod {
+		public bool HasRecipesBeenAdded { get; private set; }
+		public bool HasSetupContent { get; private set; }
+		public bool HasCurrentPlayerEnteredWorld { get; internal set; }
+
+
+		////////////////
+
 		public HamstarHelpersMod() {
+			this.HasRecipesBeenAdded = false;
+			this.HasSetupContent = false;
+			this.HasCurrentPlayerEnteredWorld = false;
+
 			this.Properties = new ModProperties() {
 				Autoload = true,
 				AutoloadGores = true,
@@ -25,6 +36,7 @@ namespace HamstarHelpers {
 
 		public override void Load() {
 			AltNPCInfo.DataInitialize();
+			AltProjectileInfo.DataInitialize();
 
 			/*var dict = new SortedDictionary<float, NPC>();
 			for( int i = 0; i < Main.npcTexture.Length; i++ ) {
@@ -37,6 +49,23 @@ namespace HamstarHelpers {
 				string gap = new string( ' ', 6 - digits );
 				ErrorLogger.Log( kv.Value.type + gap + " - " + kv.Key.ToString( "N2" ) + " = " + kv.Value.TypeName + "'s threat" );
 			}*/
+		}
+
+		////////////////
+
+		public override void PostAddRecipes() {
+			this.HasRecipesBeenAdded = true;
+		}
+
+		public override void PostSetupContent() {
+			this.HasSetupContent = true;
+		}
+
+		public override void PreSaveAndQuit() {
+			var modworld = this.GetModWorld<MyModWorld>();
+
+			this.HasCurrentPlayerEnteredWorld = false;
+			modworld.HasCorrectID = false;
 		}
 
 		////////////////

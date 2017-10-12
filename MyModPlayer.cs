@@ -10,9 +10,7 @@ namespace HamstarHelpers {
 
 
 		////////////////
-
-		public MyModPlayer() : base() { }
-
+		
 		public override void Initialize() {
 			this.HasEnteredWorld = false;
 		}
@@ -33,6 +31,8 @@ namespace HamstarHelpers {
 				} else if( Main.netMode == 0 ) {    // Single
 					this.PostEnterWorld();
 				}
+
+				mymod.HasCurrentPlayerEnteredWorld = true;
 			}
 		}
 
@@ -52,7 +52,8 @@ namespace HamstarHelpers {
 				SimpleMessage.UpdateMessage();
 			}
 
-			var modworld = this.mod.GetModWorld<MyModWorld>();
+			var mymod = (HamstarHelpersMod)this.mod;
+			var modworld = mymod.GetModWorld<MyModWorld>();
 
 			if( Main.netMode != 2 ) {   // Not server
 				if( this.player.whoAmI == Main.myPlayer ) { // Current player only
