@@ -28,13 +28,13 @@ namespace HamstarHelpers.XnaHelpers {
 		}*/	// <- plz return brain to owner!
 
 		public static Color Add( Color c1, int amt, bool also_alpha ) {
-			byte cr = (byte)Math.Min( 255, c1.R + amt );
-			byte cg = (byte)Math.Min( 255, c1.G + amt );
-			byte cb = (byte)Math.Min( 255, c1.B + amt );
+			byte cr = (byte)Math.Min( 255, (int)c1.R + amt );
+			byte cg = (byte)Math.Min( 255, (int)c1.G + amt );
+			byte cb = (byte)Math.Min( 255, (int)c1.B + amt );
 			byte ca = c1.A;
 
 			if( also_alpha ) {
-				ca = (byte)Math.Min( 255, c1.A + amt );
+				ca = (byte)Math.Min( 255, (int)c1.A + amt );
 			}
 
 			return new Color( cr, cg, cb, ca );
@@ -44,13 +44,13 @@ namespace HamstarHelpers.XnaHelpers {
 		public static Color Add( Color c1, Color c2, bool also_alpha ) {
 			float scale = (float)c2.A / 255f;
 
-			byte cr = (byte)(c1.R + ((float)c2.R * scale));
-			byte cg = (byte)(c1.G + ((float)c2.G * scale));
-			byte cb = (byte)(c1.B + ((float)c2.B * scale));
+			byte cr = (byte)Math.Min( 255, (float)c1.R + ((float)c2.R * scale));
+			byte cg = (byte)Math.Min( 255, (float)c1.G + ((float)c2.G * scale));
+			byte cb = (byte)Math.Min( 255, (float)c1.B + ((float)c2.B * scale));
 			byte ca = c1.A;
 
 			if( also_alpha ) {
-				ca += (byte)( (float)(255 - c1.A) * scale );
+				ca += (byte)( (float)(255 - ca) * scale );
 			}
 
 			return new Color( cr, cg, cb, ca );
