@@ -9,5 +9,13 @@ namespace HamstarHelpers.EntityHelpers {
 			Vector2 force_vector = Vector2.Normalize( offset ) * force;
 			ent.velocity += force_vector;
 		}
+
+
+		public static bool SimpleLineOfSight( Vector2 position, Entity to ) {
+			var trace = new Utils.PerLinePoint( delegate ( int tile_x, int tile_y ) {
+				return !TileHelpers.TileHelpers.IsSolid( Framing.GetTileSafely( tile_x, tile_y ) );
+			} );
+			return Utils.PlotTileLine( position, to.position, 1, trace );
+		}
 	}
 }

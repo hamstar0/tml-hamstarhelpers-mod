@@ -4,7 +4,7 @@ using System;
 
 namespace HamstarHelpers.XnaHelpers {
 	public static class XnaColorHelpers {
-		public static Color Add( Color color, float amt, bool also_alpha ) {
+		/*public static Color Add( Color color, float amt, bool also_alpha ) {
 			float high = also_alpha ? ( color.R > color.G ?
 					(color.R > color.B ? (color.R > color.A ? color.R : color.A) : (color.B > color.A ? color.B : color.A)) :
 					(color.G > color.B ? (color.G > color.A ? color.G : color.A) : (color.B > color.A ? color.B : color.A)) )
@@ -25,6 +25,35 @@ namespace HamstarHelpers.XnaHelpers {
 			}
 
 			return color;
+		}*/	// <- plz return brain to owner!
+
+		public static Color Add( Color c1, int amt, bool also_alpha ) {
+			byte cr = (byte)Math.Min( 255, c1.R + amt );
+			byte cg = (byte)Math.Min( 255, c1.G + amt );
+			byte cb = (byte)Math.Min( 255, c1.B + amt );
+			byte ca = c1.A;
+
+			if( also_alpha ) {
+				ca = (byte)Math.Min( 255, c1.A + amt );
+			}
+
+			return new Color( cr, cg, cb, ca );
+		}
+
+
+		public static Color Add( Color c1, Color c2, bool also_alpha ) {
+			float scale = (float)c2.A / 255f;
+
+			byte cr = (byte)(c1.R + ((float)c2.R * scale));
+			byte cg = (byte)(c1.G + ((float)c2.G * scale));
+			byte cb = (byte)(c1.B + ((float)c2.B * scale));
+			byte ca = c1.A;
+
+			if( also_alpha ) {
+				ca += (byte)( (float)(255 - c1.A) * scale );
+			}
+
+			return new Color( cr, cg, cb, ca );
 		}
 
 		public static Color Mul( Color color, float amt ) {
