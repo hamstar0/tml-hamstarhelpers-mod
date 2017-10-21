@@ -129,17 +129,20 @@ namespace HamstarHelpers {
 				int banner_type = Item.NPCtoBanner( npc_type );
 				if( banner_type == 0 ) { continue; }
 
-				npc_types_to_banner_item_types[ npc_type ] = Item.BannerToItem( banner_type );
+				int banner_item_type = Item.BannerToItem( banner_type );
+				if( banner_item_type >= Main.itemTexture.Length || banner_item_type <= 0 ) { continue; }
+
+				npc_types_to_banner_item_types[npc_type] = banner_item_type;
 			}
 
 			// Initialize banners
 			NPCBannerHelpers.InitializeBanners( npc_types_to_banner_item_types );
 
 			string any = Lang.misc[37].ToString();
-			RecipeGroup evil_boss_drops_grp = new RecipeGroup( () => any+" Evil Biome Boss Chunk", new int[] { ItemID.ShadowScale, ItemID.TissueSample } );
-			RecipeGroup mirror_grp = new RecipeGroup( () => any+" Magic Mirrors", new int[] { ItemID.MagicMirror, ItemID.IceMirror } );
-			RecipeGroup banner_grp = new RecipeGroup( () => any+" Mob Banner", NPCBannerHelpers.GetBannerItemTypes().ToArray() );
-			RecipeGroup musicbox_grp = new RecipeGroup( () => any+" Recorded Music Box", ItemMusicBoxHelpers.GetMusicBoxes().ToArray() );
+			RecipeGroup evil_boss_drops_grp = new RecipeGroup( () => any + " Evil Biome Boss Chunk", new int[] { ItemID.ShadowScale, ItemID.TissueSample } );
+			RecipeGroup mirror_grp = new RecipeGroup( () => any + " Magic Mirrors", new int[] { ItemID.MagicMirror, ItemID.IceMirror } );
+			RecipeGroup banner_grp = new RecipeGroup( () => any + " Mob Banner", NPCBannerHelpers.GetBannerItemTypes().ToArray() );
+			RecipeGroup musicbox_grp = new RecipeGroup( () => any + " Recorded Music Box", ItemMusicBoxHelpers.GetMusicBoxes().ToArray() );
 
 			RecipeGroup.RegisterGroup( "HamstarHelpers:EvilBiomeBossDrops", evil_boss_drops_grp );
 			RecipeGroup.RegisterGroup( "HamstarHelpers:MagicMirrors", mirror_grp );
