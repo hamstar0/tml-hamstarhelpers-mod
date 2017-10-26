@@ -1,22 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Utilities.Config {
-	public class ConfigurationDataBase {
-		/*private static IDictionary<string, IDictionary<string, Type>> _Settings = new Dictionary<string, IDictionary<string, Type>>();
-		public static readonly IDictionary<string, IReadOnlyDictionary<string, Type>> Settings = new Dictionary<string, IReadOnlyDictionary<string, Type>>();
-
-
-		internal void RegisterSetting( Mod mod, string setting_name, Type setting_type ) {
-			if( !ConfigurationDataBase.Settings.ContainsKey( mod.Name ) ) {
-				ConfigurationDataBase._Settings[mod.Name] = new Dictionary<string, Type>();
-				ConfigurationDataBase.Settings[mod.Name] = new ReadOnlyDictionary<string, Type>( ConfigurationDataBase._Settings[mod.Name] );
-			}
-
-			ConfigurationDataBase._Settings[mod.Name][setting_name] = setting_type;
-		}*/
+	public interface ConfigurableMod {
+		JsonConfig<object> Config { get; }
 	}
+
+
+
+
+	static class _ConfigurableModManagerLoader {
+		public static void Load() {
+			ConfigurableModManager.LoadMods();
+		}
+		public static void Unload() {
+			ConfigurableModManager.StaticInit();
+		}
+	}
+	
+
+	public static class ConfigurableModManager {
+		public static IList<ConfigurableMod> Mods = new List<ConfigurableMod>();
+
+
+		////////////////
+
+		static ConfigurableModManager() {
+			ConfigurableModManager.StaticInit();
+		}
+
+		internal static void StaticInit() {
+			ConfigurableModManager.Mods = new List<ConfigurableMod>();
+		}
+
+		////////////////
+
+		internal static void LoadMods() {
+			ConfigurableModManager.StaticInit();
+
+			foreach( Mod mod in ModLoader.LoadedMods ) {
+				ConfigurableMod cmod = mod as ConfigurableMod;
+				if( cmod != null ) {
+					ConfigurableModManager.Mods.Add( cmod );
+				}
+			}
+		}
+	}
+
+
+
+	public class ConfigurationDataBase { }
 }

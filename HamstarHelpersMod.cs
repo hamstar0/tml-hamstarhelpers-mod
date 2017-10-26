@@ -2,6 +2,7 @@
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,13 +12,21 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using Terraria.UI;
 
 namespace HamstarHelpers {
 	class HamstarHelpersMod : Mod {
+		public static HamstarHelpersMod Instance { get; private set; }
+
+
+
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
 		public bool HasCurrentPlayerEnteredWorld { get; internal set; }
+
+		public ControlPanelUI ControlPanel = null;
+		private int LastSeenScreenWidth = -1;
+		private int LastSeenScreenHeight = -1;
 
 
 		////////////////
@@ -35,6 +44,9 @@ namespace HamstarHelpers {
 		}
 
 		public override void Load() {
+			HamstarHelpersMod.Instance = this;
+
+			this.ControlPanel = new ControlPanelUI();
 			AltNPCInfo.DataInitialize();
 			AltProjectileInfo.DataInitialize();
 
@@ -51,6 +63,12 @@ namespace HamstarHelpers {
 			}*/
 		}
 
+		public override void Unload() {
+			HamstarHelpersMod.Instance = null;
+
+			_ConfigurableModManagerLoader.Unload();
+		}
+
 		////////////////
 
 		public override void PostAddRecipes() {
@@ -58,8 +76,15 @@ namespace HamstarHelpers {
 		}
 
 		public override void PostSetupContent() {
+			_ConfigurableModManagerLoader.Load();
+			if( !Main.dedServ ) {
+				this.ControlPanel.PostSetupContent( (HamstarHelpersMod)this );
+			}
+
 			this.HasSetupContent = true;
 		}
+
+		////////////////
 
 		public override void PreSaveAndQuit() {
 			var modworld = this.GetModWorld<MyModWorld>();
@@ -67,6 +92,7 @@ namespace HamstarHelpers {
 			this.HasCurrentPlayerEnteredWorld = false;
 			modworld.HasCorrectID = false;
 		}
+
 
 		////////////////
 
@@ -148,6 +174,37 @@ namespace HamstarHelpers {
 			RecipeGroup.RegisterGroup( "HamstarHelpers:MagicMirrors", mirror_grp );
 			RecipeGroup.RegisterGroup( "HamstarHelpers:NpcBanners", banner_grp );
 			RecipeGroup.RegisterGroup( "HamstarHelpers:RecordedMusicBoxes", musicbox_grp );
+		}
+
+
+		////////////////
+
+		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
+			var modworld = this.GetModWorld<MyModWorld>();
+
+			if( modworld.Logic.IsReady() ) {
+				int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
+				if( idx != -1 ) {
+					GameInterfaceDrawMethod draw_method = delegate {
+						if( this.LastSeenScreenWidth != Main.screenWidth || this.LastSeenScreenHeight != Main.screenHeight ) {
+							this.LastSeenScreenWidth = Main.screenWidth;
+							this.LastSeenScreenHeight = Main.screenHeight;
+							this.ControlPanel.RecalculateBackend();
+						}
+
+						this.ControlPanel.CheckTogglerMouseInteraction();
+						this.ControlPanel.UpdateBackend( Main._drawInterfaceGameTime );
+
+						this.ControlPanel.Draw( Main.spriteBatch );
+						this.ControlPanel.DrawToggler( Main.spriteBatch );
+
+						return true;
+					};
+					var interface_layer = new LegacyGameInterfaceLayer( "HamstarHelpers: Control Panel Activator",
+						draw_method, InterfaceScaleType.UI );
+					layers.Insert( idx, interface_layer );
+				}
+			}
 		}
 	}
 }

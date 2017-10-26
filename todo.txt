@@ -1,0 +1,17 @@
+v1.1.5
+-	Implement config reloading command
+	-	Broadcast commands to players on change on server
+	-	Define whitelist of client-only commands
+	-	...
+-	Implement UI panel
+	-	...
+-	Define UI panel
+	-	@Layout
+		-	'Apply Config Changes' button
+		-	'Open Mod's Config' button
+		-	Mod list (with enable/disable buttons)
+		-	Issue submit form
+		-	Support link
+
+-	Add button for UI panel
+-	Create list manager of mods with configs

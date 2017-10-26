@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ConfigSettingCommand.cs" />
+    <Compile Include="ControlPanelUI.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
     <Compile Include="ProjectileHelpers\ProjectileHelpers.cs" />
@@ -110,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="build.txt" />
+    <Content Include="ControlPanelLabel.png" />
     <Content Include="description.txt" />
     <Content Include="icon.png" />
     <Content Include="Utilities\UI\check_box.png" />
