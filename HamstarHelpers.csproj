@@ -53,7 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ConfigSettingCommand.cs" />
-    <Compile Include="ControlPanelUI.cs" />
+    <Compile Include="ControlPanel\ControlPanelLogic.cs" />
+    <Compile Include="ControlPanel\ControlPanelUI.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
     <Compile Include="ProjectileHelpers\ProjectileHelpers.cs" />
@@ -86,7 +87,9 @@
     <Compile Include="TileHelpers\TileWallHelpers.cs" />
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
     <Compile Include="TmlHelpers\AltProjectileInfo.cs" />
+    <Compile Include="TmlHelpers\ExtendedModData.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
+    <Compile Include="Utilities\Config\ConfigurableMods.cs" />
     <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="DotNetHelpers\DotNetHelpers.cs" />
@@ -111,7 +114,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="build.txt" />
-    <Content Include="ControlPanelLabel.png" />
+    <Content Include="ControlPanel\ControlPanelLabel.png" />
+    <Content Include="ControlPanel\ControlPanelLabelLit.png" />
     <Content Include="description.txt" />
     <Content Include="icon.png" />
     <Content Include="Utilities\UI\check_box.png" />
@@ -120,6 +124,9 @@
   <ItemGroup>
     <None Include="LICENSE" />
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utilities\Mod\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

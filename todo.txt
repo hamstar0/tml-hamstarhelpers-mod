@@ -4,14 +4,28 @@ v1.1.5
 	-	Define whitelist of client-only commands
 	-	...
 -	Implement UI panel
-	-	...
+	-	Implement non-enabled mods in list
+	-	Implement 'Refresh Config Changes' button
+	-	Issue submit form
+	-	Mod list
+		-	'Open Mod's Config' button
+		-	Select to give context for issue submits
+		-	Display mod page
+		-	Display mod icon
+		-	Display mod info (name, author, version, side, etc.)
+		-	Get tml mod data
 -	Define UI panel
+	-	Support link
+	-	'Refresh Config Changes' button
+	-	Issue submit form
+
+	-	Mod list
+	-	Panel
 	-	@Layout
-		-	'Apply Config Changes' button
+		-	'Refresh Config Changes' button
 		-	'Open Mod's Config' button
 		-	Mod list (with enable/disable buttons)
 		-	Issue submit form
 		-	Support link
-
 -	Add button for UI panel
 -	Create list manager of mods with configs

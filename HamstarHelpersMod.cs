@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.ControlPanel;
+using HamstarHelpers.ItemHelpers;
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
@@ -14,8 +15,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
+
 namespace HamstarHelpers {
-	class HamstarHelpersMod : Mod {
+	class HamstarHelpersMod : Mod, ExtendedModData {
 		public static HamstarHelpersMod Instance { get; private set; }
 
 
@@ -27,6 +29,8 @@ namespace HamstarHelpers {
 		public ControlPanelUI ControlPanel = null;
 		private int LastSeenScreenWidth = -1;
 		private int LastSeenScreenHeight = -1;
+
+		public string GithubUrl { get { return "https://github.com/hamstar0/tml-hamstarhelpers-mod"; } }
 
 
 		////////////////
@@ -66,7 +70,7 @@ namespace HamstarHelpers {
 		public override void Unload() {
 			HamstarHelpersMod.Instance = null;
 
-			_ConfigurableModManagerLoader.Unload();
+			_ExtendedModManagerLoader.Unload();
 		}
 
 		////////////////
@@ -76,7 +80,8 @@ namespace HamstarHelpers {
 		}
 
 		public override void PostSetupContent() {
-			_ConfigurableModManagerLoader.Load();
+			_ExtendedModManagerLoader.Load();
+
 			if( !Main.dedServ ) {
 				this.ControlPanel.PostSetupContent( (HamstarHelpersMod)this );
 			}
