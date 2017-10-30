@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Utilities.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
@@ -8,7 +9,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.ControlPanel {
-	class ControlPanelUI : UIState {
+	partial class ControlPanelUI : UIState {
 		public static Vector2 TogglerPosition = new Vector2( 128, 0 );
 		public static float ContainerWidth = 600f;
 		public static float ContainerHeight = 400f;
@@ -16,43 +17,50 @@ namespace HamstarHelpers.ControlPanel {
 
 		public static Color MainBgColor = new Color( 160, 0, 32, 192 );
 		public static Color MainEdgeColor = new Color( 224, 224, 224, 192 );
-		public static Color ModListBgColor = new Color( 128, 0, 16, 128 );
-		public static Color ModListEdgeColor = new Color( 224, 224, 224, 128 );
+		public static Color ModListBgColor = new Color( 0, 0, 0, 128 );
+		public static Color ModListEdgeColor = new Color( 32, 32, 32, 32 );
 		public static Color ModListItemBgColor = new Color( 64, 0, 16, 128 );
 		public static Color ModListItemEdgeColor = new Color( 224, 224, 224, 128 );
+		public static Color IssueInputBgColor = new Color( 128, 0, 16, 128 );
+		public static Color IssueInputEdgeColor = new Color( 224, 224, 224, 128 );
 
 		public static Texture2D ControlPanelLabel;
 		public static Texture2D ControlPanelLabelLit;
+
+
+		public static void PostSetupContent( HamstarHelpersMod mymod ) {
+			ControlPanelUI.ControlPanelLabel = mymod.GetTexture( "ControlPanel/ControlPanelLabel" );
+			ControlPanelUI.ControlPanelLabelLit = mymod.GetTexture( "ControlPanel/ControlPanelLabelLit" );
+		}
 
 
 
 		////////////////
 
 		private UserInterface Backend;
-		public UIElement Container;
+		public UIElement OuterContainer;
+		public UIPanel InnerContainer;
 		public UIList ModList;
 
 		public bool IsOpen { get; private set; }
-		public bool IsTogglerLit { get; private set; }
 
 		private bool HasBeenSetup = false;
 		private bool HasClicked = false;
 
 
 
+		////////////////
+
 		public ControlPanelUI() {
 			this.Backend = new UserInterface();
 			this.IsOpen = false;
-			this.IsTogglerLit = false;
+			this.InitializeToggler();
 		}
 
-		public void PostSetupContent( HamstarHelpersMod mymod ) {
-			ControlPanelUI.ControlPanelLabel = mymod.GetTexture( "ControlPanel/ControlPanelLabel" );
-			ControlPanelUI.ControlPanelLabelLit = mymod.GetTexture( "ControlPanel/ControlPanelLabelLit" );
-
+		public void PostSetupComponents() {
 			this.Activate();
 			this.Backend.SetState( this );
-			this.Container.Deactivate();
+			this.OuterContainer.Deactivate();
 
 			this.HasBeenSetup = true;
 		}
@@ -60,81 +68,79 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public void RecalculateBackend() {
-			if( !this.HasBeenSetup ) { return; }
-			this.Backend.Recalculate();
-		}
-
-		public void UpdateBackend( GameTime game_time ) {
-			if( !this.HasBeenSetup ) { return; }
-			this.Backend.Update( game_time );
-		}
-
-		protected override void DrawSelf( SpriteBatch sb ) {
-			if( this.IsOpen && this.Container.ContainsPoint( Main.MouseScreen ) ) {
-				Main.LocalPlayer.mouseInterface = true;
-			}
-
-			if( this.IsTogglerLit ) {
-				Main.LocalPlayer.mouseInterface = true;
-			}
-		}
-
-		public override void Update( GameTime gameTime ) {
-			if( this.IsOpen ) {
-				if( Main.playerInventory ) {
-					this.Close();
-				}
-			}
-		}
-
-
-		////////////////
-
 		public override void OnInitialize() {
 			var mymod = HamstarHelpersMod.Instance;
-			
-			this.Container = new UIElement();
-			this.Container.Left.Set( -(ControlPanelUI.ContainerWidth / 2f), 0.5f );
-			this.Container.Top.Set( -ControlPanelUI.ContainerHeight * 2f, 0f );
-			this.Container.Width.Set( ControlPanelUI.ContainerWidth, 0f );
-			this.Container.Height.Set( ControlPanelUI.ContainerHeight, 0f );
-			this.Container.MaxWidth.Set( ControlPanelUI.ContainerWidth, 0f );
-			this.Container.MaxHeight.Set( ControlPanelUI.ContainerHeight, 0f );
-			this.Container.HAlign = 0.5f;
+			float top = 0;
+
+			this.OuterContainer = new UIElement();
+			this.OuterContainer.Left.Set( -(ControlPanelUI.ContainerWidth / 2f), 0.5f );
+			this.OuterContainer.Top.Set( -ControlPanelUI.ContainerHeight * 2f, 0f );
+			this.OuterContainer.Width.Set( ControlPanelUI.ContainerWidth, 0f );
+			this.OuterContainer.Height.Set( ControlPanelUI.ContainerHeight, 0f );
+			this.OuterContainer.MaxWidth.Set( ControlPanelUI.ContainerWidth, 0f );
+			this.OuterContainer.MaxHeight.Set( ControlPanelUI.ContainerHeight, 0f );
+			this.OuterContainer.HAlign = 0.5f;
 			//this.MainElement.BackgroundColor = ControlPanelUI.MainBgColor;
 			//this.MainElement.BorderColor = ControlPanelUI.MainEdgeColor;
-			this.Append( this.Container );
+			this.Append( this.OuterContainer );
 
-			var mod_list_panel = new UIPanel();
-			mod_list_panel.Width.Set( 0f, 1f );
-			mod_list_panel.Height.Set( ControlPanelUI.ModListHeight, 0f );
-			//mod_list_panel.BackgroundColor = ControlPanelUI.ModListBgColor;
-			//mod_list_panel.BorderColor = ControlPanelUI.ModListEdgeColor;
-			mod_list_panel.BackgroundColor = ControlPanelUI.MainBgColor;
-			mod_list_panel.BorderColor = ControlPanelUI.MainEdgeColor;
-			mod_list_panel.SetPadding( 8f );
-			//mod_list_panel.PaddingTop = 0.0f;
-			mod_list_panel.HAlign = 0f;
-			this.Container.Append( (UIElement)mod_list_panel );
+			this.InnerContainer = new UIPanel();
+			this.InnerContainer.Width.Set( 0f, 1f );
+			this.InnerContainer.Height.Set( 0f, 1f );
+			this.InnerContainer.BackgroundColor = ControlPanelUI.MainBgColor;
+			this.InnerContainer.BorderColor = ControlPanelUI.MainEdgeColor;
+			this.OuterContainer.Append( (UIElement)this.InnerContainer );
 
-			this.ModList = new UIList();
-			this.ModList.Width.Set( -25, 1f );
-			this.ModList.Height.Set( 0f, 1f );
-			this.ModList.HAlign = 0f;
-			this.ModList.ListPadding = 5f;
-			this.ModList.SetPadding( 0f );
-			mod_list_panel.Append( (UIElement)this.ModList );
+			var mod_list_panel = new UIPanel(); {
+				mod_list_panel.Width.Set( 0f, 1f );
+				mod_list_panel.Height.Set( ControlPanelUI.ModListHeight, 0f );
+				mod_list_panel.HAlign = 0f;
+				mod_list_panel.SetPadding( 0f );
+				//mod_list_panel.PaddingTop = 0.0f;
+				mod_list_panel.BackgroundColor = ControlPanelUI.ModListBgColor;
+				mod_list_panel.BorderColor = ControlPanelUI.ModListEdgeColor;
+				this.InnerContainer.Append( (UIElement)mod_list_panel );
 
-			this.InitializeModList();
+				this.ModList = new UIList(); {
+					this.ModList.Width.Set( -25, 1f );
+					this.ModList.Height.Set( 0f, 1f );
+					this.ModList.HAlign = 0f;
+					this.ModList.ListPadding = 5f;
+					this.ModList.SetPadding( 0f );
+					mod_list_panel.Append( (UIElement)this.ModList );
 
-			UIScrollbar scrollbar = new UIScrollbar();
-			scrollbar.SetView( 100f, 1000f );
-			scrollbar.Top.Set( 0f, 0f );
-			scrollbar.Height.Set( 0f, 1f );
-			scrollbar.HAlign = 1f;
-			mod_list_panel.Append( (UIElement)scrollbar );
-			this.ModList.SetScrollbar( scrollbar );
+					this.InitializeModList();
+
+					top += ControlPanelUI.ModListHeight + this.InnerContainer.PaddingTop;
+
+					UIScrollbar scrollbar = new UIScrollbar(); {
+						scrollbar.Top.Set( 0f, 0f );
+						scrollbar.Height.Set( 0f, 1f );
+						scrollbar.SetView( 100f, 1000f );
+						scrollbar.HAlign = 1f;
+						mod_list_panel.Append( (UIElement)scrollbar );
+						this.ModList.SetScrollbar( scrollbar );
+					}
+				}
+			}
+
+			UIText issue_label = new UIText( "Report issue for selected mod:" );
+			issue_label.Top.Set( top, 0f );
+			issue_label.Height.Set( 16f, 0f );
+			issue_label.SetPadding( 4f );
+			this.InnerContainer.Append( (UIElement)issue_label );
+
+			top += 24f;
+
+			UITextArea issue_text_box = new UITextArea();
+			issue_text_box.Top.Set( top, 0f );
+			issue_text_box.Width.Set( 0f, 1f );
+			issue_text_box.Height.Pixels = 16f;
+			issue_text_box.HAlign = 0f;
+			issue_text_box.SetPadding( 2f );
+			issue_text_box.BackgroundColor = ControlPanelUI.IssueInputBgColor;
+			issue_text_box.BorderColor = ControlPanelUI.IssueInputEdgeColor;
+			this.InnerContainer.Append( (UIElement)issue_text_box );
 
 			/*top += 2f;
 			var enable_button = new UITextPanel<string>( "Enable Nihilism for this world" );
@@ -155,85 +161,8 @@ namespace HamstarHelpers.ControlPanel {
 			};
 			this.MainPanel.Append( enable_button );*/
 
-			this.Container.Deactivate();
+			this.OuterContainer.Deactivate();
 		}
-
-
-		////////////////
-
-		public void Open() {
-			this.IsOpen = true;
-			this.Container.Top.Set( -(ControlPanelUI.ContainerHeight / 2f), 0.5f );
-			this.Container.Activate();
-			this.Recalculate();
-
-			Main.playerInventory = false;
-			Main.editChest = false;
-			Main.npcChatText = "";
-
-			Main.inFancyUI = true;
-			Main.InGameUI.SetState( this );
-		}
-
-		public void Close() {
-			this.IsOpen = false;
-			//this.Container.Top.Set( -ControlPanelUI.PanelHeight * 2f, 0f );
-			this.Container.Deactivate();
-			this.Recalculate();
-
-			Main.inFancyUI = false;
-			Main.InGameUI.SetState( (UIState)null );
-		}
-
-		////////////////
-
-		public bool IsTogglerShown() {
-			return Main.playerInventory;
-		}
-
-		public void DrawToggler( SpriteBatch sb ) {
-			if( !this.IsTogglerShown() ) { return; }
-
-			Texture2D tex;
-			Color color;
-
-			if( this.IsTogglerLit ) {
-				tex = ControlPanelUI.ControlPanelLabelLit;
-				color = new Color( 192, 192, 192, 192 );
-			} else {
-				tex = ControlPanelUI.ControlPanelLabel;
-				color = new Color( 160, 160, 160, 160 );
-			}
-			
-			sb.Draw( tex, ControlPanelUI.TogglerPosition, null, color );
-		}
-
-		public void CheckTogglerMouseInteraction() {
-			bool is_click = Main.mouseLeft && Main.mouseLeftRelease;
-			Vector2 pos = ControlPanelUI.TogglerPosition;
-			Vector2 size = ControlPanelUI.ControlPanelLabel.Size();
-
-			this.IsTogglerLit = false;
-
-			if( this.IsTogglerShown() ) {
-				if( Main.mouseX >= pos.X && Main.mouseX < (pos.X + size.X) ) {
-					if( Main.mouseY >= pos.Y && Main.mouseY < (pos.Y + size.Y) ) {
-						if( is_click && !this.HasClicked ) {
-							if( this.IsOpen ) {
-								this.Close();
-							} else {
-								this.Open();
-							}
-						}
-
-						this.IsTogglerLit = true;
-					}
-				}
-			}
-			
-			this.HasClicked = is_click;
-		}
-
 
 		////////////////
 
@@ -248,7 +177,7 @@ namespace HamstarHelpers.ControlPanel {
 			}
 
 			foreach( var mod in ModLoader.LoadedMods ) {
-				if( mods.Contains(mod) ) { continue; }
+				if( mods.Contains( mod ) ) { continue; }
 				this.ModList.Add( this.CreateModListItem( mod ) );
 			}
 		}
@@ -256,13 +185,13 @@ namespace HamstarHelpers.ControlPanel {
 
 		public UIPanel CreateModListItem( Mod mod ) {
 			UIPanel elem = new UIPanel();
-			
+
 			elem.Width.Set( 0f, 1f );
 			elem.Height.Set( 64, 0f );
 			elem.BackgroundColor = ControlPanelUI.ModListItemBgColor;
 			elem.BorderColor = ControlPanelUI.ModListItemEdgeColor;
 
-			elem.Append( new UIText(mod.DisplayName) );
+			elem.Append( new UIText( mod.DisplayName ) );
 
 			return elem;
 		}
@@ -271,9 +200,69 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		public override void Draw( SpriteBatch sb ) {
+			if( !this.IsOpen ) { return; }
+
+			base.Draw( sb );
+		}
+
+
+		////////////////
+
+		public void UpdateMe( GameTime game_time ) {
+			this.Backend.Update( game_time );
+
+			if( !this.HasBeenSetup ) { return; }
+
 			if( this.IsOpen ) {
-				base.Draw( sb );
+				if( Main.playerInventory || Main.npcChatText != "" ) {
+					this.Close();
+					return;
+				}
+
+				if( this.OuterContainer.ContainsPoint( new Vector2(Main.mouseX, Main.mouseY) ) ) {
+					Main.LocalPlayer.mouseInterface = true;
+				}
 			}
+
+			this.UpdateToggler();
+		}
+
+		////////////////
+
+		public void RecalculateBackend() {
+			if( !this.HasBeenSetup ) { return; }
+			this.Backend.Recalculate();
+		}
+		
+
+		////////////////
+
+		public bool CanOpen() {
+			return !this.IsOpen && !Main.blockInput && !Main.inFancyUI;
+		}
+
+		public void Open() {
+			this.IsOpen = true;
+			this.OuterContainer.Top.Set( -(ControlPanelUI.ContainerHeight / 2f), 0.5f );
+			this.OuterContainer.Activate();
+			this.Recalculate();
+
+			Main.playerInventory = false;
+			Main.editChest = false;
+			Main.npcChatText = "";
+			
+			Main.inFancyUI = true;
+			Main.InGameUI.SetState( (UIState)this );
+		}
+
+		public void Close() {
+			this.IsOpen = false;
+			//this.Container.Top.Set( -ControlPanelUI.PanelHeight * 2f, 0f );
+			this.OuterContainer.Deactivate();
+			this.Recalculate();
+			
+			Main.inFancyUI = false;
+			Main.InGameUI.SetState( (UIState)null );
 		}
 	}
 }

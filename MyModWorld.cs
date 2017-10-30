@@ -75,7 +75,7 @@ namespace HamstarHelpers {
 
 			if( Main.netMode == 2 ) { // Server only
 				if( this.Logic != null && mymod.HasSetupContent ) {
-					this.Logic.Update();
+					this.Logic.Update( mymod );
 				}
 			}
 		}

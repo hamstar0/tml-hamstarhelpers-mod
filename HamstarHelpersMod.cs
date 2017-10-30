@@ -83,7 +83,8 @@ namespace HamstarHelpers {
 			_ExtendedModManagerLoader.Load();
 
 			if( !Main.dedServ ) {
-				this.ControlPanel.PostSetupContent( (HamstarHelpersMod)this );
+				ControlPanelUI.PostSetupContent( (HamstarHelpersMod)this );
+				this.ControlPanel.PostSetupComponents();
 			}
 
 			this.HasSetupContent = true;
@@ -184,7 +185,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
+		/*public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
 			var modworld = this.GetModWorld<MyModWorld>();
 
 			if( modworld.Logic.IsReady() ) {
@@ -198,18 +199,19 @@ namespace HamstarHelpers {
 						}
 
 						this.ControlPanel.CheckTogglerMouseInteraction();
-						this.ControlPanel.UpdateBackend( Main._drawInterfaceGameTime );
 
 						this.ControlPanel.Draw( Main.spriteBatch );
 						this.ControlPanel.DrawToggler( Main.spriteBatch );
-
+						
 						return true;
 					};
-					var interface_layer = new LegacyGameInterfaceLayer( "HamstarHelpers: Control Panel Activator",
+
+					var interface_layer = new LegacyGameInterfaceLayer( "HamstarHelpers: Control Panel",
 						draw_method, InterfaceScaleType.UI );
+
 					layers.Insert( idx, interface_layer );
 				}
 			}
-		}
+		}*/
 	}
 }

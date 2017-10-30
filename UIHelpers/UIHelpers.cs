@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Terraria;
 
 
@@ -31,6 +32,11 @@ namespace HamstarHelpers.UIHelpers {
 			Rectangle screen_frame = UIHelpers.GetWorldFrameOfScreen();
 			Vector2 screen_mouse = UIHelpers.ConvertToScreenPosition( new Vector2( Main.mouseX, Main.mouseY ) + Main.screenPosition );
 			return screen_mouse + new Vector2( screen_frame.X, screen_frame.Y );
+		}
+
+		
+		public static bool JustPressedKey( Keys key ) {
+			return Main.inputText.IsKeyDown( key ) && !Main.oldInputText.IsKeyDown( key );
 		}
 	}
 }

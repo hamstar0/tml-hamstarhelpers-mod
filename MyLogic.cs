@@ -41,11 +41,15 @@ namespace HamstarHelpers {
 		}
 
 
-		public void Update() {
+		public void Update( HamstarHelpersMod mymod ) {
 			// Simply idle (and keep track of day) until ready
 			if( !this.IsReady() ) {
 				this.IsDay = Main.dayTime;
 				return;
+			}
+
+			if( Main.netMode != 2 ) {
+				mymod.ControlPanel.UpdateMe( Main._drawInterfaceGameTime );
 			}
 
 			this.UpdateDay();

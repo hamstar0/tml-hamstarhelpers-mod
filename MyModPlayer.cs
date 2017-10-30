@@ -58,7 +58,7 @@ namespace HamstarHelpers {
 			if( Main.netMode != 2 ) {   // Not server
 				if( this.player.whoAmI == Main.myPlayer ) { // Current player only
 					if( modworld.HasCorrectID && this.HasEnteredWorld ) {
-						modworld.Logic.Update();
+						modworld.Logic.Update( mymod );
 					}
 				}
 			} else {    // Server
