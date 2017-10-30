@@ -185,7 +185,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		/*public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
+		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
 			var modworld = this.GetModWorld<MyModWorld>();
 
 			if( modworld.Logic.IsReady() ) {
@@ -212,6 +212,6 @@ namespace HamstarHelpers {
 					layers.Insert( idx, interface_layer );
 				}
 			}
-		}*/
+		}
 	}
 }
