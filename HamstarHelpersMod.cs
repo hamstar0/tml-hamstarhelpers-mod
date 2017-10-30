@@ -181,8 +181,7 @@ namespace HamstarHelpers {
 			RecipeGroup.RegisterGroup( "HamstarHelpers:NpcBanners", banner_grp );
 			RecipeGroup.RegisterGroup( "HamstarHelpers:RecordedMusicBoxes", musicbox_grp );
 		}
-
-
+		
 		////////////////
 
 		/*public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
