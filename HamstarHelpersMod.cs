@@ -5,6 +5,7 @@ using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
+using HamstarHelpers.Utilities.UI;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -84,7 +85,6 @@ namespace HamstarHelpers {
 
 			if( !Main.dedServ ) {
 				ControlPanelUI.PostSetupContent( (HamstarHelpersMod)this );
-				this.ControlPanel.PostSetupComponents();
 			}
 
 			this.HasSetupContent = true;
@@ -197,8 +197,6 @@ namespace HamstarHelpers {
 							this.LastSeenScreenHeight = Main.screenHeight;
 							this.ControlPanel.RecalculateBackend();
 						}
-
-						this.ControlPanel.CheckTogglerMouseInteraction();
 
 						this.ControlPanel.Draw( Main.spriteBatch );
 						this.ControlPanel.DrawToggler( Main.spriteBatch );

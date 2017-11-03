@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
+
 namespace HamstarHelpers.TmlHelpers {
 	public interface ExtendedModData {
 		string GithubUrl { get; }

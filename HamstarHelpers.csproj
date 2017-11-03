@@ -55,6 +55,7 @@
     <Compile Include="Commands\ConfigSettingCommand.cs" />
     <Compile Include="ControlPanel\ControlPanelLogic.cs" />
     <Compile Include="ControlPanel\ControlPanelUI.cs" />
+    <Compile Include="ControlPanel\ControlPanelUI_Init.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Toggler.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="TileHelpers\TileWallHelpers.cs" />
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
     <Compile Include="TmlHelpers\AltProjectileInfo.cs" />
+    <Compile Include="TmlHelpers\BuildPropertiesInterface.cs" />
     <Compile Include="TmlHelpers\ExtendedModData.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
     <Compile Include="Utilities\Config\ConfigurableMods.cs" />
@@ -109,7 +111,9 @@
     <Compile Include="HudHelpers\HudMapHelpers.cs" />
     <Compile Include="UIHelpers\UIHelpers.cs" />
     <Compile Include="Utilities\UI\UICheckbox.cs" />
+    <Compile Include="Utilities\UI\UIModData.cs" />
     <Compile Include="Utilities\UI\UITextArea.cs" />
+    <Compile Include="Utilities\UI\UIWebUrl.cs" />
     <Compile Include="WorldHelpers\WorldHelpers.cs" />
     <Compile Include="XnaHelpers\XnaColorHelpers.cs" />
     <Compile Include="XnaHelpers\XnaHelpers.cs" />

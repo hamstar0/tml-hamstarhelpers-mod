@@ -9,6 +9,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Utilities.UI {
 	class UITextArea : UIPanel {
 		public string Text { get; private set; }
+		public string Hint { get; private set; }
 		public Vector2 TextSize { get; private set; }
 		public int CursorPos { get; private set; }
 		public int CursorAnimation { get; private set; }
@@ -17,8 +18,9 @@ namespace HamstarHelpers.Utilities.UI {
 
 		////////////////
 
-		public UITextArea() {
+		public UITextArea( string hint ) {
 			this.SetText( "" );
+			this.Hint = hint;
 			this.CursorPos = 0;
 			this.CursorAnimation = 0;
 			this.HasFocus = false;
@@ -35,11 +37,12 @@ namespace HamstarHelpers.Utilities.UI {
 			this.MinHeight.Set( this.TextSize.Y + this.PaddingTop + this.PaddingBottom, 0.0f );
 		}
 
+
 		////////////////
 
 		public override void Update( GameTime game_time ) {
 			if( this.HasFocus ) {
-				//Main.blockInput = true;
+				Main.blockInput = true;	// Force the point!
 
 				this.CursorAnimation++;
 
@@ -73,6 +76,7 @@ namespace HamstarHelpers.Utilities.UI {
 			base.Recalculate();
 		}
 
+
 		////////////////
 
 		public override void Click( UIMouseEvent evt ) {
@@ -88,7 +92,7 @@ namespace HamstarHelpers.Utilities.UI {
 
 			this.CursorAnimation = 0;
 
-			//Main.blockInput = true;
+			Main.blockInput = true;
 			Main.clrInput();
 		}
 
@@ -96,8 +100,9 @@ namespace HamstarHelpers.Utilities.UI {
 			if( !this.HasFocus ) { return; }
 			this.HasFocus = false;
 
-			//Main.blockInput = false;
+			Main.blockInput = false;
 		}
+		
 
 		////////////////
 
@@ -118,6 +123,10 @@ namespace HamstarHelpers.Utilities.UI {
 					pos.X += (float)offset.X + 2.0f;    //((inner_dim.Width - this.TextSize.X) * 0.5f)
 
 					Utils.DrawBorderString( sb, "|", pos, Color.White );
+				}
+			} else {
+				if( this.Text == "" ) {
+					Utils.DrawBorderString( sb, this.Hint, pos, Color.Gray );
 				}
 			}
 		}
