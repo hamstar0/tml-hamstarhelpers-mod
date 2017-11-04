@@ -13,8 +13,8 @@ v1.1.5
 	-	Mod list
 		-	'Open Mod's Config' button
 		-	Select to give context for issue submits
-		-	Display mod page + link
 
+		-	Display mod page + link
 		-	Display mod icon
 		-	Display mod info (name, author, version, etc.)
 		-	Get tml mod data

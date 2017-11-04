@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using System;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -18,7 +17,8 @@ namespace HamstarHelpers.Utilities.UI {
 		public string Homepage { get; private set; }
 
 		public UIImage IconElem { get; private set; }
-		public UIText TitleElem { get; private set; }
+		public UIElement TitleElem { get; private set; }
+		public UIElement AuthorElem { get; private set; }
 
 		public bool HasIconLoaded { get; private set; }
 
@@ -26,13 +26,15 @@ namespace HamstarHelpers.Utilities.UI {
 		////////////////
 
 		public UIModData( Mod mod ) {
+			TmodFile modfile = mod.File;
+
 			this.Mod = mod;
 			this.Author = null;
 			this.Homepage = null;
 			this.HasIconLoaded = false;
 
-			BuildPropertiesInterface props = this.Mod.File != null ?
-				BuildPropertiesInterface.GetBuildPropertiesForModFile( this.Mod.File ) :
+			BuildPropertiesInterface props = modfile != null ?
+				BuildPropertiesInterface.GetBuildPropertiesForModFile( modfile ) :
 				(BuildPropertiesInterface)null;
 			if( props != null ) {
 				this.Author = (string)props.GetField( "author" );
@@ -44,18 +46,24 @@ namespace HamstarHelpers.Utilities.UI {
 			this.Height.Set( 64, 0f );
 
 			string mod_title = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
-			//if( this.Author != null ) {
-			//	mod_title += " - " + this.Author;
-			//}
-		
-			this.TitleElem = new UIText( mod_title );
-			this.TitleElem.Left.Set( 96, 0f );
-			this.Append( (UIElement)this.TitleElem );
 			
-			TmodFile modfile = this.Mod.File;
+			if( this.Homepage != null ) {
+				this.TitleElem = new UIWebUrl( mod_title, this.Homepage );
+			} else {
+				this.TitleElem = new UIText( mod_title );
+			}
+			this.TitleElem.Left.Set( 72f, 0f );
+			this.Append( (UIElement)this.TitleElem );
+
+			if( this.Author != null ) {
+				this.AuthorElem = new UIText( "By: "+this.Author, 0.7f );
+				this.AuthorElem.Top.Set( 20f, 0f );
+				this.AuthorElem.Left.Set( 72f, 0f );
+				this.Append( (UIElement)this.AuthorElem );
+			}
 
 			if( modfile != null && modfile.HasFile( "icon.png" ) ) {
-				var stream = new MemoryStream( this.Mod.File.GetFile( "icon.png" ) );
+				var stream = new MemoryStream( modfile.GetFile( "icon.png" ) );
 				var icon_tex = Texture2D.FromStream( Main.graphics.GraphicsDevice, stream );
 
 				if( icon_tex.Width == 80 && icon_tex.Height == 80 ) {
@@ -67,15 +75,6 @@ namespace HamstarHelpers.Utilities.UI {
 					this.IconElem.ImageScale = 0.7f;
 					this.Append( this.IconElem );
 				}
-			}
-		}
-
-
-		public override void Draw( SpriteBatch sb ) {
-			base.Draw( sb );
-
-			if( this.TitleElem.IsMouseHovering && this.Author != null ) {
-				sb.DrawString( Main.fontMouseText, "By " + this.Author, new Vector2(Main.mouseX, Main.mouseY), Color.White );
 			}
 		}
 	}
