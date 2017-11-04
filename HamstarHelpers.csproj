@@ -131,9 +131,7 @@
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\Mod\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

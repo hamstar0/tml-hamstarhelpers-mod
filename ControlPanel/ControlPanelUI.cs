@@ -93,7 +93,7 @@ namespace HamstarHelpers.ControlPanel {
 					return;
 				}
 
-				if( this.OuterContainer.ContainsPoint( new Vector2(Main.mouseX, Main.mouseY) ) ) {
+				if( this.OuterContainer.IsMouseHovering ) {
 					Main.LocalPlayer.mouseInterface = true;
 				}
 			}
@@ -114,6 +114,18 @@ namespace HamstarHelpers.ControlPanel {
 			if( !this.IsOpen ) { return; }
 
 			base.Draw( sb );
+
+			this.DrawHoverElements( sb );
+		}
+
+		public void DrawHoverElements( SpriteBatch sb ) {
+			if( !this.ModListElem.IsMouseHovering ) { return; }
+
+			foreach( UIElement elem in this.ModListElem._items ) {
+				if( elem.IsMouseHovering ) {
+					((UIModData)elem).DrawHoverEffects( sb );
+				}
+			}
 		}
 
 

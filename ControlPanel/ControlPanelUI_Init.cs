@@ -15,15 +15,21 @@ namespace HamstarHelpers.ControlPanel {
 
 		public static Color MainBgColor = new Color( 160, 0, 32, 192 );
 		public static Color MainEdgeColor = new Color( 224, 224, 224, 192 );
+
 		public static Color ModListBgColor = new Color( 0, 0, 0, 128 );
 		public static Color ModListEdgeColor = new Color( 32, 32, 32, 32 );
+
 		public static Color ModListItemBgColor = new Color( 64, 0, 16, 128 );
+		public static Color ModListItemBgLitColor = new Color( 96, 32, 48, 128 );
 		public static Color ModListItemEdgeColor = new Color( 224, 224, 224, 128 );
+		public static Color ModListItemEdgeLitColor = new Color( 255, 255, 255, 128 );
+
 		public static Color IssueInputBgColor = new Color( 128, 0, 16, 128 );
 		public static Color IssueInputEdgeColor = new Color( 224, 224, 224, 128 );
+
 		public static Color ButtonBgColor = new Color( 160, 32, 48, 128 );
-		public static Color ButtonEdgeColor = new Color( 224, 224, 224, 128 );
 		public static Color ButtonBgLitColor = new Color( 128, 0, 16, 128 );
+		public static Color ButtonEdgeColor = new Color( 224, 224, 224, 128 );
 
 
 		public static Texture2D ControlPanelLabel { get; private set; }
@@ -141,7 +147,12 @@ Main.NewText( "Apply" );
 		////////////////
 
 		public UIModData CreateModListItem( Mod mod ) {
-			UIModData elem = new UIModData( mod );
+			UIModData elem = new UIModData( mod,
+				ControlPanelUI.ModListItemBgColor,
+				ControlPanelUI.ModListItemBgLitColor,
+				ControlPanelUI.ModListItemEdgeColor,
+				ControlPanelUI.ModListItemEdgeLitColor,
+				false );
 			elem.BackgroundColor = ControlPanelUI.ModListItemBgColor;
 			elem.BorderColor = ControlPanelUI.ModListItemEdgeColor;
 			return elem;

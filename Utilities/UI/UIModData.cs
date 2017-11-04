@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -20,15 +19,27 @@ namespace HamstarHelpers.Utilities.UI {
 		public UIElement TitleElem { get; private set; }
 		public UIElement AuthorElem { get; private set; }
 
+		public Color BgColor { get; private set; }
+		public Color BgLitColor { get; private set; }
+		public Color EdgeColor { get; private set; }
+		public Color EdgeLitColor { get; private set; }
+
 		public bool HasIconLoaded { get; private set; }
+		public bool WillDrawHoverElements { get; private set; }
 
 
 		////////////////
 
-		public UIModData( Mod mod ) {
+		public UIModData( Mod mod, Color bg_color, Color bg_lit_color, Color edge_color, Color edge_lit_color, bool will_draw_hover_elements=true ) {
 			TmodFile modfile = mod.File;
 
 			this.Mod = mod;
+			this.BgColor = bg_color;
+			this.BgLitColor = bg_lit_color;
+			this.EdgeColor = edge_color;
+			this.EdgeLitColor = edge_lit_color;
+			this.WillDrawHoverElements = will_draw_hover_elements;
+
 			this.Author = null;
 			this.Homepage = null;
 			this.HasIconLoaded = false;
@@ -48,7 +59,7 @@ namespace HamstarHelpers.Utilities.UI {
 			string mod_title = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
 			
 			if( this.Homepage != null ) {
-				this.TitleElem = new UIWebUrl( mod_title, this.Homepage );
+				this.TitleElem = new UIWebUrl( mod_title, this.Homepage, false );
 			} else {
 				this.TitleElem = new UIText( mod_title );
 			}
@@ -75,6 +86,38 @@ namespace HamstarHelpers.Utilities.UI {
 					this.IconElem.ImageScale = 0.7f;
 					this.Append( this.IconElem );
 				}
+			}
+		}
+
+
+		////////////////
+
+
+		public override void Update( GameTime gameTime ) {
+			base.Update( gameTime );
+
+			if( this.IsMouseHovering ) {
+				this.BackgroundColor = this.BgLitColor;
+				this.BorderColor = this.EdgeLitColor;
+			} else {
+				this.BackgroundColor = this.BgColor;
+				this.BorderColor = this.EdgeColor;
+			}
+		}
+
+		////////////////
+
+		public override void Draw( SpriteBatch sb ) {
+			base.Draw( sb );
+
+			if( this.IsMouseHovering ) {
+				this.DrawHoverEffects( sb );
+			}
+		}
+
+		public void DrawHoverEffects( SpriteBatch sb ) {
+			if( this.WillDrawHoverElements && this.Homepage != null ) {
+				((UIWebUrl)this.TitleElem).DrawHoverEffects( sb );
 			}
 		}
 	}
