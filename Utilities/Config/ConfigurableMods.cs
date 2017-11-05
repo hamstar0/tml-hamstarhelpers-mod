@@ -2,7 +2,7 @@
 
 
 namespace HamstarHelpers.Utilities.Config {
-	public interface ConfigurableMod : ExtendedModData {
+	public interface ConfigurableMod {
 		JsonConfig<ConfigurationDataBase> Config { get; }
 	}
 }

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Utilities.UI;
+﻿using HamstarHelpers.UIHelpers;
+using HamstarHelpers.Utilities.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -6,26 +7,24 @@ using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
-		public static Vector2 TogglerPosition = new Vector2( 128, 0 );
-
-
-
-		////////////////
-
 		public bool IsOpen { get; private set; }
-		public UserInterface Backend { get; private set; }
-		
-		public UIElement OuterContainer;
-		public UIPanel InnerContainer;
-		public UIList ModListElem;
+
+		private UITheme Theme = new UITheme();
+		private ControlPanelLogic Logic = new ControlPanelLogic();
+		private UserInterface Backend = null;
 
 		private IList<UIModData> ModDataList = new List<UIModData>();
+		private UIModData CurrentModListItem = null;
+
+		private UIElement OuterContainer = null;
+		private UIPanel InnerContainer = null;
+		private UIList ModListElem = null;
+
 		private bool HasClicked = false;
 		private bool ModListUpdateRequired = false;
 
@@ -35,7 +34,6 @@ namespace HamstarHelpers.ControlPanel {
 
 		public ControlPanelUI() {
 			this.IsOpen = false;
-			this.Backend = null;
 			this.InitializeToggler();
 		}
 
@@ -56,17 +54,7 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		private void LoadModList() {
-			ISet<Mod> mods = ControlPanelLogic.GetTopMods();
-
-			this.ModDataList.Add( this.CreateModListItem( HamstarHelpersMod.Instance ) );
-
-			foreach( var mod in mods ) {
-				if( mod == HamstarHelpersMod.Instance || mod.File == null ) { continue; }
-				this.ModDataList.Add( this.CreateModListItem( mod ) );
-			}
-
-			foreach( var mod in ModLoader.LoadedMods ) {
-				if( mods.Contains( mod ) || mod.File == null ) { continue; }
+			foreach( var mod in this.Logic.GetMods() ) {
 				this.ModDataList.Add( this.CreateModListItem( mod ) );
 			}
 
@@ -163,6 +151,20 @@ namespace HamstarHelpers.ControlPanel {
 			Main.InGameUI.SetState( (UIState)null );
 
 			this.Backend = null;
+		}
+
+
+		////////////////
+
+		public void SelectModFromList( UIModData list_item ) {
+			if( this.CurrentModListItem != null ) {
+				this.Theme.ApplyModListItem( this.CurrentModListItem );
+			}
+			this.Theme.ApplyModListItemSelected( list_item );
+
+			this.CurrentModListItem = list_item;
+
+			this.Logic.SetCurrentMod( list_item.Mod );
 		}
 	}
 }

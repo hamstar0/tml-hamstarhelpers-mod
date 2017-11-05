@@ -1,6 +1,8 @@
 ﻿using HamstarHelpers.TmlHelpers;
-using Microsoft.Xna.Framework;
+using HamstarHelpers.UIHelpers;
+using HamstarHelpers.Utilities.Config;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -10,19 +12,16 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Utilities.UI {
-	class UIModData : UIPanel {
+	public class UIModData : UIPanel {
 		public Mod Mod { get; private set; }
 		public string Author { get; private set; }
-		public string Homepage { get; private set; }
+		public string HomepageUrl { get; private set; }
+		public string GithubUrl { get; private set; }
 
 		public UIImage IconElem { get; private set; }
 		public UIElement TitleElem { get; private set; }
 		public UIElement AuthorElem { get; private set; }
-
-		public Color BgColor { get; private set; }
-		public Color BgLitColor { get; private set; }
-		public Color EdgeColor { get; private set; }
-		public Color EdgeLitColor { get; private set; }
+		public UITextPanel<string> ConfigButton { get; private set; }
 
 		public bool HasIconLoaded { get; private set; }
 		public bool WillDrawHoverElements { get; private set; }
@@ -30,18 +29,15 @@ namespace HamstarHelpers.Utilities.UI {
 
 		////////////////
 
-		public UIModData( Mod mod, Color bg_color, Color bg_lit_color, Color edge_color, Color edge_lit_color, bool will_draw_hover_elements=true ) {
+		public UIModData( UITheme theme, Mod mod, bool will_draw_hover_elements=true ) {
 			TmodFile modfile = mod.File;
 
 			this.Mod = mod;
-			this.BgColor = bg_color;
-			this.BgLitColor = bg_lit_color;
-			this.EdgeColor = edge_color;
-			this.EdgeLitColor = edge_lit_color;
 			this.WillDrawHoverElements = will_draw_hover_elements;
 
 			this.Author = null;
-			this.Homepage = null;
+			this.HomepageUrl = null;
+			this.GithubUrl = null;
 			this.HasIconLoaded = false;
 
 			BuildPropertiesInterface props = modfile != null ?
@@ -49,17 +45,17 @@ namespace HamstarHelpers.Utilities.UI {
 				(BuildPropertiesInterface)null;
 			if( props != null ) {
 				this.Author = (string)props.GetField( "author" );
-				this.Homepage = (string)props.GetField( "homepage" );
+				this.HomepageUrl = (string)props.GetField( "homepage" );
 			}
-
+			
 			this.SetPadding( 4f );
 			this.Width.Set( 0f, 1f );
 			this.Height.Set( 64, 0f );
 
 			string mod_title = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
 			
-			if( this.Homepage != null ) {
-				this.TitleElem = new UIWebUrl( mod_title, this.Homepage, false );
+			if( this.HomepageUrl != null ) {
+				this.TitleElem = new UIWebUrl( mod_title, this.HomepageUrl, false );
 			} else {
 				this.TitleElem = new UIText( mod_title );
 			}
@@ -87,23 +83,37 @@ namespace HamstarHelpers.Utilities.UI {
 					this.Append( this.IconElem );
 				}
 			}
-		}
 
+			if( mod is ExtendedModData ) {
+				var extmod = (ExtendedModData)mod;
 
-		////////////////
+				this.GithubUrl = extmod.GithubUrl;
+			}
 
+			if( mod is ConfigurableMod ) {
+				var configmod = (ConfigurableMod)mod;
+				var config_button = new UITextPanel<string>( "Open Config File" );
 
-		public override void Update( GameTime gameTime ) {
-			base.Update( gameTime );
+				config_button.HAlign = 1f;
+				config_button.VAlign = 1f;
+				this.Append( config_button );
+				this.ConfigButton = config_button;
 
-			if( this.IsMouseHovering ) {
-				this.BackgroundColor = this.BgLitColor;
-				this.BorderColor = this.EdgeLitColor;
-			} else {
-				this.BackgroundColor = this.BgColor;
-				this.BorderColor = this.EdgeColor;
+				theme.ApplyButton( config_button );
+
+				this.ConfigButton.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+					theme.ApplyButtonLit( config_button );
+				};
+				this.ConfigButton.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+					theme.ApplyButton( config_button );
+				};
+
+				this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+					Process.Start( configmod.Config.GetFullPath() );
+				};
 			}
 		}
+
 
 		////////////////
 
@@ -115,8 +125,9 @@ namespace HamstarHelpers.Utilities.UI {
 			}
 		}
 
+
 		public void DrawHoverEffects( SpriteBatch sb ) {
-			if( this.WillDrawHoverElements && this.Homepage != null ) {
+			if( this.WillDrawHoverElements && this.HomepageUrl != null ) {
 				((UIWebUrl)this.TitleElem).DrawHoverEffects( sb );
 			}
 		}

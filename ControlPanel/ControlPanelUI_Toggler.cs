@@ -6,6 +6,12 @@ using Terraria.UI;
 
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
+		private static Vector2 TogglerPosition = new Vector2( 128, 0 );
+
+
+
+		////////////////
+
 		public bool IsTogglerLit { get; private set; }
 
 		

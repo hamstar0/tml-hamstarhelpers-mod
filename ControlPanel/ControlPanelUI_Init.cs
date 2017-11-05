@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Utilities.UI;
-using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.UIHelpers;
+using HamstarHelpers.Utilities.UI;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -12,26 +12,7 @@ namespace HamstarHelpers.ControlPanel {
 		public static float ContainerWidth = 600f;
 		public static float ContainerHeight = 480f;
 		public static float ModListHeight = 300f;
-
-		public static Color MainBgColor = new Color( 160, 0, 32, 192 );
-		public static Color MainEdgeColor = new Color( 224, 224, 224, 192 );
-
-		public static Color ModListBgColor = new Color( 0, 0, 0, 128 );
-		public static Color ModListEdgeColor = new Color( 32, 32, 32, 32 );
-
-		public static Color ModListItemBgColor = new Color( 64, 0, 16, 128 );
-		public static Color ModListItemBgLitColor = new Color( 96, 32, 48, 128 );
-		public static Color ModListItemEdgeColor = new Color( 224, 224, 224, 128 );
-		public static Color ModListItemEdgeLitColor = new Color( 255, 255, 255, 128 );
-
-		public static Color IssueInputBgColor = new Color( 128, 0, 16, 128 );
-		public static Color IssueInputEdgeColor = new Color( 224, 224, 224, 128 );
-
-		public static Color ButtonBgColor = new Color( 160, 32, 48, 128 );
-		public static Color ButtonBgLitColor = new Color( 128, 0, 16, 128 );
-		public static Color ButtonEdgeColor = new Color( 224, 224, 224, 128 );
-
-
+		
 		public static Texture2D ControlPanelLabel { get; private set; }
 		public static Texture2D ControlPanelLabelLit { get; private set; }
 
@@ -68,9 +49,9 @@ namespace HamstarHelpers.ControlPanel {
 			this.InnerContainer = new UIPanel();
 			this.InnerContainer.Width.Set( 0f, 1f );
 			this.InnerContainer.Height.Set( 0f, 1f );
-			this.InnerContainer.BackgroundColor = ControlPanelUI.MainBgColor;
-			this.InnerContainer.BorderColor = ControlPanelUI.MainEdgeColor;
 			this.OuterContainer.Append( (UIElement)this.InnerContainer );
+
+			this.Theme.ApplyPanel( this.InnerContainer );
 
 			var mod_list_panel = new UIPanel();
 			{
@@ -79,8 +60,8 @@ namespace HamstarHelpers.ControlPanel {
 				mod_list_panel.HAlign = 0f;
 				mod_list_panel.SetPadding( 4f );
 				mod_list_panel.PaddingTop = 0.0f;
-				mod_list_panel.BackgroundColor = ControlPanelUI.ModListBgColor;
-				mod_list_panel.BorderColor = ControlPanelUI.ModListEdgeColor;
+				mod_list_panel.BackgroundColor = this.Theme.ModListBgColor;
+				mod_list_panel.BorderColor = this.Theme.ModListEdgeColor;
 				this.InnerContainer.Append( (UIElement)mod_list_panel );
 
 				this.ModListElem = new UIList();
@@ -112,27 +93,30 @@ namespace HamstarHelpers.ControlPanel {
 			issue_text_box.Height.Pixels = 56f;
 			issue_text_box.HAlign = 0f;
 			issue_text_box.SetPadding( 8f );
-			issue_text_box.BackgroundColor = ControlPanelUI.IssueInputBgColor;
-			issue_text_box.BorderColor = ControlPanelUI.IssueInputEdgeColor;
+			issue_text_box.BackgroundColor = this.Theme.IssueInputBgColor;
+			issue_text_box.BorderColor = this.Theme.IssueInputEdgeColor;
 			this.InnerContainer.Append( (UIElement)issue_text_box );
 
 			top += 64f;
 
-			var submit_button = this.CreateButton( "Submit", 0f, top, 128f, delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			var submit_button = UIFactoryHelpers.CreateButton( this.Theme, "Submit", 0f, top, 128f );
+			submit_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 Main.NewText( "Submit" );
-			} );
+			};
 			this.InnerContainer.Append( submit_button );
 
-			var cancel_button = this.CreateButton( "Cancel", 136f, top, 128f, delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			var cancel_button = UIFactoryHelpers.CreateButton( this.Theme, "Cancel", 136f, top, 128f );
+			submit_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 Main.NewText( "Cancel" );
-			} );
+			};
 			this.InnerContainer.Append( cancel_button );
 
 			top += 32f;
 
-			var apply_config_button = this.CreateButton( "Apply Config Changes", 0f, top, 264f, delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			var apply_config_button = UIFactoryHelpers.CreateButton( this.Theme, "Apply Config Changes", 0f, top, 264f );
+			submit_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 Main.NewText( "Apply" );
-			} );
+			};
 			this.InnerContainer.Append( apply_config_button );
 
 			top += 32f;
@@ -147,38 +131,35 @@ Main.NewText( "Apply" );
 		////////////////
 
 		public UIModData CreateModListItem( Mod mod ) {
-			UIModData elem = new UIModData( mod,
-				ControlPanelUI.ModListItemBgColor,
-				ControlPanelUI.ModListItemBgLitColor,
-				ControlPanelUI.ModListItemEdgeColor,
-				ControlPanelUI.ModListItemEdgeLitColor,
-				false );
-			elem.BackgroundColor = ControlPanelUI.ModListItemBgColor;
-			elem.BorderColor = ControlPanelUI.ModListItemEdgeColor;
+			ControlPanelUI self = this;
+			UITheme theme = this.Theme;
+			ControlPanelLogic logic = this.Logic;
+			var elem = new UIModData( theme, mod, false );
+
+			theme.ApplyModListItem( elem );
+
+			elem.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+				if( !(from_elem is UIModData) ) { return; }
+
+				if( logic.CurrentMod != null && elem.Mod.Name == logic.CurrentMod.Name ) { return; }
+
+				theme.ApplyModListItemLit( elem );
+			};
+			elem.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+				if( !(from_elem is UIModData) ) { return; }
+				if( logic.CurrentMod != null && elem.Mod.Name == logic.CurrentMod.Name ) { return; }
+
+				theme.ApplyModListItem( elem );
+			};
+
+			elem.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+				if( !(from_elem is UIModData) ) { return; }
+				if( logic.CurrentMod != null && elem.Mod.Name == logic.CurrentMod.Name ) { return; }
+
+				self.SelectModFromList( elem );
+			};
+
 			return elem;
-		}
-
-		public UITextPanel<string> CreateButton( string label, float left, float top, float width, MouseEvent click ) {
-			var button = new UITextPanel<string>( label );
-
-			button.Width.Set( width, 0f );
-			button.Left.Set( left, 0f );
-			button.Top.Set( top, 0f );
-
-			button.SetPadding( 5f );
-
-			button.BackgroundColor = ControlPanelUI.ButtonBgColor;
-			button.BorderColor = ControlPanelUI.ButtonEdgeColor;
-
-			button.OnClick += click;
-			button.OnMouseOver += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
-				button.BackgroundColor = ControlPanelUI.ButtonBgLitColor;
-			};
-			button.OnMouseOut += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
-				button.BackgroundColor = ControlPanelUI.ButtonBgColor;
-			};
-
-			return button;
 		}
 	}
 }

@@ -92,6 +92,8 @@
     <Compile Include="TmlHelpers\BuildPropertiesInterface.cs" />
     <Compile Include="TmlHelpers\ExtendedModData.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
+    <Compile Include="UIHelpers\UIFactoryHelpers.cs" />
+    <Compile Include="UIHelpers\UITheme.cs" />
     <Compile Include="Utilities\Config\ConfigurableMods.cs" />
     <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />

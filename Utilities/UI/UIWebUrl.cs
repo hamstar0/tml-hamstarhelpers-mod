@@ -11,7 +11,7 @@ namespace HamstarHelpers.Utilities.UI {
 	public class UIWebUrl : UIElement {
 		public static Color DefaultColor = new Color( 32, 32, 255 );
 		public static Color DefaultLitColor = new Color( 80, 80, 255 );
-		public static Color DefaultVisitColor = new Color( 128, 32, 255 );
+		public static Color DefaultVisitColor = new Color( 192, 0, 255 );
 
 
 
@@ -45,37 +45,32 @@ namespace HamstarHelpers.Utilities.UI {
 			this.Width.Set( dim.Width, 0f );
 			this.Height.Set( dim.Height, 0f );
 
-			this.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			UIText text_elem = this.TextElem;
+			UIText line_elem = this.LineElem;
+
+			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+				if( text_elem.TextColor != UIWebUrl.DefaultVisitColor ) {
+					text_elem.TextColor = UIWebUrl.DefaultLitColor;
+					text_elem.TextColor = UIWebUrl.DefaultLitColor;
+				}
+			};
+			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+				if( text_elem.TextColor != UIWebUrl.DefaultVisitColor ) {
+					text_elem.TextColor = UIWebUrl.DefaultColor;
+					text_elem.TextColor = UIWebUrl.DefaultColor;
+				}
+			};
+
+			this.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				try {
 					System.Diagnostics.Process.Start( this.Url );
 
-					this.TextElem.TextColor = UIWebUrl.DefaultVisitColor;
-					this.LineElem.TextColor = UIWebUrl.DefaultVisitColor;
+					text_elem.TextColor = UIWebUrl.DefaultVisitColor;
+					line_elem.TextColor = UIWebUrl.DefaultVisitColor;
 				} catch( Exception e ) {
 					Main.NewText( e.Message );
 				}
 			};
-		}
-
-
-		////////////////
-
-		public override void Update( GameTime gameTime ) {
-			base.Update( gameTime );
-
-			bool is_visited = this.TextElem.TextColor == UIWebUrl.DefaultVisitColor;
-
-			if( this.TextElem.IsMouseHovering ) {
-				if( !is_visited ) {
-					this.TextElem.TextColor = UIWebUrl.DefaultLitColor;
-					this.LineElem.TextColor = UIWebUrl.DefaultLitColor;
-				}
-			} else {
-				if( !is_visited ) {
-					this.TextElem.TextColor = UIWebUrl.DefaultColor;
-					this.LineElem.TextColor = UIWebUrl.DefaultColor;
-				}
-			}
 		}
 
 
