@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Utilities.UI;
+﻿using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 

@@ -114,6 +114,11 @@
     <Compile Include="HudHelpers\HudHelpers.cs" />
     <Compile Include="HudHelpers\HudMapHelpers.cs" />
     <Compile Include="UIHelpers\UIHelpers.cs" />
+    <Compile Include="UIHelpers\Elements\UICheckbox.cs" />
+    <Compile Include="UIHelpers\Elements\UIModData.cs" />
+    <Compile Include="UIHelpers\Elements\UITextArea.cs" />
+    <Compile Include="UIHelpers\Elements\UITextPanelButton.cs" />
+    <Compile Include="UIHelpers\Elements\UIWebUrl.cs" />
     <Compile Include="Utilities\UI\UICheckbox.cs" />
     <Compile Include="Utilities\UI\UIModData.cs" />
     <Compile Include="Utilities\UI\UITextArea.cs" />
@@ -129,8 +134,8 @@
     <Content Include="ControlPanel\ControlPanelLabelLit.png" />
     <Content Include="description.txt" />
     <Content Include="icon.png" />
-    <Content Include="Utilities\UI\check_box.png" />
-    <Content Include="Utilities\UI\check_mark.png" />
+    <Content Include="UIHelpers\Elements\check_box.png" />
+    <Content Include="UIHelpers\Elements\check_mark.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />

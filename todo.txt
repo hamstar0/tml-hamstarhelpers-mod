@@ -1,7 +1,10 @@
 v1.2.0
--	Finish implementing text area
-	-	Add multiline rendering and editing
+-	@Create mod hub thread
+-	@Create mod thread (update build.txt homepage)
+-	Update support link
+-	@Implement compatibility for v1.2.0 with other mods
 
+-	F&T
 -	Implement UI panel
 	-	Implement 'Apply Config Changes' button
 		-	Disable 'Apply Config Changes' button on clients

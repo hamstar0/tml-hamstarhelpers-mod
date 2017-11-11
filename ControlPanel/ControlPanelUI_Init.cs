@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.UIHelpers;
-using HamstarHelpers.Utilities.UI;
+﻿using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -92,12 +91,11 @@ namespace HamstarHelpers.ControlPanel {
 			this.IssueInput = new UITextArea( this.Theme, "Enter issue to report for mod" );
 			this.IssueInput.Top.Set( top, 0f );
 			this.IssueInput.Width.Set( 0f, 1f );
-			this.IssueInput.Height.Pixels = 56f;
+			this.IssueInput.Height.Pixels = 36f;
 			this.IssueInput.HAlign = 0f;
 			this.IssueInput.SetPadding( 8f );
 			this.IssueInput.Disable();
 			this.InnerContainer.Append( (UIElement)this.IssueInput );
-			this.Theme.ApplyInput( this.IssueInput );
 
 			top += 64f;
 
@@ -112,7 +110,7 @@ namespace HamstarHelpers.ControlPanel {
 			};
 			this.InnerContainer.Append( this.IssueSubmitButton );
 
-			if( Main.netMode == 1 ) {
+			if( Main.netMode != 1 ) {
 				var apply_config_button = new UITextPanelButton( this.Theme, "Apply Config Changes" );
 				apply_config_button.Top.Set( top, 0f );
 				apply_config_button.Left.Set( 0f, 0f );

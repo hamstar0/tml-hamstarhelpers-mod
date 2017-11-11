@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.UIHelpers;
-using HamstarHelpers.Utilities.UI;
+using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -102,7 +102,7 @@ namespace HamstarHelpers.ControlPanel {
 
 				if( this.ResetIssueInput ) {
 					this.ResetIssueInput = false;
-					this.IssueInput.SetText( "" );
+					this.IssueInput.SetText( "", true );
 
 					if( this.IsOpen ) {
 						this.Close();

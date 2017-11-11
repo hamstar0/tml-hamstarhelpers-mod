@@ -3,9 +3,7 @@ using HamstarHelpers.ItemHelpers;
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
-using HamstarHelpers.Utilities.UI;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -21,7 +19,11 @@ namespace HamstarHelpers {
 	class HamstarHelpersMod : Mod {
 		public static HamstarHelpersMod Instance { get; private set; }
 
+		public static string GithubUserName { get { return "hamstar0"; } }
+		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
+
+		////////////////
 
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
@@ -31,9 +33,6 @@ namespace HamstarHelpers {
 		private int LastSeenScreenWidth = -1;
 		private int LastSeenScreenHeight = -1;
 
-		public string GithubUserName { get { return "hamstar0"; } }
-		public string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
-		public string ConfigFileRelativePath { get { return null; } }
 
 
 		////////////////

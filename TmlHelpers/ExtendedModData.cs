@@ -51,18 +51,18 @@ namespace HamstarHelpers.TmlHelpers {
 		////////////////
 
 		private static bool DetectGithub( Mod mod ) {
-			FieldInfo git_user_field = mod.GetType().GetField( "GithubUserName" );
-			if( git_user_field == null ) { return false; }
-			FieldInfo git_proj_field = mod.GetType().GetField( "GithubProjectName" );
+			PropertyInfo git_user_prop = mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );
+			if( git_user_prop == null ) { return false; }
+			PropertyInfo git_proj_field = mod.GetType().GetProperty( "GithubProjectName", BindingFlags.Static | BindingFlags.Public );
 			if( git_proj_field == null ) { return false; }
 
 			return true;
 		}
 
 		public static bool DetectConfig( Mod mod ) {
-			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath" );
+			PropertyInfo config_path_field = mod.GetType().GetProperty( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
 			if( config_path_field == null ) { return false; }
-			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile" );
+			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile", BindingFlags.Static | BindingFlags.Public );
 			if( config_reload_method == null ) { return false; }
 
 			return true;
@@ -82,8 +82,8 @@ namespace HamstarHelpers.TmlHelpers {
 		public static string GetConfigRelativePath( Mod mod ) {
 			if( !ExtendedModManager.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
 
-			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath" );
-			return (string)config_path_field.GetValue( mod );
+			PropertyInfo config_path_field = mod.GetType().GetProperty( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
+			return (string)config_path_field.GetValue( null );
 		}
 
 		/*public static void SetConfigRelativePath( Mod mod, string path ) {
@@ -91,8 +91,8 @@ namespace HamstarHelpers.TmlHelpers {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
 
-			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath" );
-			config_path_field.SetValue( mod, path );
+			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
+			config_path_field.SetValue( null, path );
 		}*/
 
 		public static void ReloadConfigFromFile( Mod mod ) {
@@ -100,8 +100,8 @@ namespace HamstarHelpers.TmlHelpers {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
 
-			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile" );
-			config_reload_method.Invoke( mod, new object[] { } );
+			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile", BindingFlags.Static | BindingFlags.Public );
+			config_reload_method.Invoke( null, new object[] { } );
 		}
 
 		public static void ReloadAllConfigsFromFile() {
@@ -115,15 +115,15 @@ namespace HamstarHelpers.TmlHelpers {
 		public static string GetGithubUserName( Mod mod ) {
 			if( !ExtendedModManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			FieldInfo git_user_field = mod.GetType().GetField( "GithubUserName" );
-			return (string)git_user_field.GetValue( mod );
+			PropertyInfo git_user_prop = mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );
+			return (string)git_user_prop.GetValue( null );
 		}
 
 		public static string GetGithubProjectName( Mod mod ) {
 			if( !ExtendedModManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			FieldInfo git_proj_field = mod.GetType().GetField( "GithubProjectName" );
-			return (string)git_proj_field.GetValue( mod );
+			PropertyInfo git_proj_prop = mod.GetType().GetProperty( "GithubProjectName", BindingFlags.Static | BindingFlags.Public );
+			return (string)git_proj_prop.GetValue( null );
 		}
 	}
 }

@@ -38,6 +38,7 @@ namespace HamstarHelpers.ControlPanel {
 			var mod_set = new HashSet<string>();
 
 			mods.AddLast( HamstarHelpersMod.Instance );
+			mod_set.Add( HamstarHelpersMod.Instance.Name );
 
 			foreach( var kv in ExtendedModManager.ConfigMods ) {
 				if( kv.Key == HamstarHelpersMod.Instance.Name || kv.Value.File == null ) { continue; }
