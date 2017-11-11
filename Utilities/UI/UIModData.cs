@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.UIHelpers;
-using HamstarHelpers.Utilities.Config;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 using System.IO;
@@ -16,7 +15,6 @@ namespace HamstarHelpers.Utilities.UI {
 		public Mod Mod { get; private set; }
 		public string Author { get; private set; }
 		public string HomepageUrl { get; private set; }
-		public string GithubUrl { get; private set; }
 
 		public UIImage IconElem { get; private set; }
 		public UIElement TitleElem { get; private set; }
@@ -24,20 +22,19 @@ namespace HamstarHelpers.Utilities.UI {
 		public UITextPanel<string> ConfigButton { get; private set; }
 
 		public bool HasIconLoaded { get; private set; }
-		public bool WillDrawHoverElements { get; private set; }
+		public bool WillDrawOwnHoverElements { get; private set; }
 
 
 		////////////////
 
-		public UIModData( UITheme theme, Mod mod, bool will_draw_hover_elements=true ) {
+		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements=true ) {
 			TmodFile modfile = mod.File;
 
 			this.Mod = mod;
-			this.WillDrawHoverElements = will_draw_hover_elements;
+			this.WillDrawOwnHoverElements = will_draw_own_hover_elements;
 
 			this.Author = null;
 			this.HomepageUrl = null;
-			this.GithubUrl = null;
 			this.HasIconLoaded = false;
 
 			BuildPropertiesInterface props = modfile != null ?
@@ -85,32 +82,20 @@ namespace HamstarHelpers.Utilities.UI {
 			}
 
 			if( mod is ExtendedModData ) {
-				var extmod = (ExtendedModData)mod;
+				var ext_mod = (ExtendedModData)mod;
 
-				this.GithubUrl = extmod.GithubUrl;
-			}
+				if( ext_mod.ConfigFileRelativePath != null && ext_mod.ConfigFileRelativePath != "" ) {
+					var config_button = new UITextPanelButton( theme, "Open Config File" );
+					config_button.HAlign = 1f;
+					config_button.VAlign = 1f;
+					this.Append( config_button );
 
-			if( mod is ConfigurableMod ) {
-				var configmod = (ConfigurableMod)mod;
-				var config_button = new UITextPanel<string>( "Open Config File" );
-
-				config_button.HAlign = 1f;
-				config_button.VAlign = 1f;
-				this.Append( config_button );
-				this.ConfigButton = config_button;
-
-				theme.ApplyButton( config_button );
-
-				this.ConfigButton.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-					theme.ApplyButtonLit( config_button );
-				};
-				this.ConfigButton.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-					theme.ApplyButton( config_button );
-				};
-
-				this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-					Process.Start( configmod.Config.GetFullPath() );
-				};
+					this.ConfigButton = config_button;
+					
+					this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+						Process.Start( Main.SavePath + Path.DirectorySeparatorChar + ext_mod.ConfigFileRelativePath );
+					};
+				}
 			}
 		}
 
@@ -120,15 +105,21 @@ namespace HamstarHelpers.Utilities.UI {
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
-			if( this.IsMouseHovering ) {
+			if( this.IsMouseHovering && this.WillDrawOwnHoverElements ) {
 				this.DrawHoverEffects( sb );
 			}
 		}
 
 
 		public void DrawHoverEffects( SpriteBatch sb ) {
-			if( this.WillDrawHoverElements && this.HomepageUrl != null ) {
-				((UIWebUrl)this.TitleElem).DrawHoverEffects( sb );
+			if( this.TitleElem.IsMouseHovering ) {
+				if( this.TitleElem is UIWebUrl ) {
+					var title_url = (UIWebUrl)this.TitleElem;
+
+					if( !title_url.WillDrawOwnHoverUrl ) {
+						title_url.DrawHoverEffects( sb );
+					}
+				}
 			}
 		}
 	}

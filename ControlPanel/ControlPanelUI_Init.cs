@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.UIHelpers;
 using HamstarHelpers.Utilities.UI;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -10,7 +9,7 @@ using Terraria.UI;
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
 		public static float ContainerWidth = 600f;
-		public static float ContainerHeight = 480f;
+		public static float ContainerHeight = 460f;
 		public static float ModListHeight = 300f;
 		
 		public static Texture2D ControlPanelLabel { get; private set; }
@@ -29,6 +28,8 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		public override void OnInitialize() {
+			ControlPanelUI self = this;
+			ControlPanelLogic logic = this.Logic;
 			var mymod = HamstarHelpersMod.Instance;
 			float top = 0;
 
@@ -87,39 +88,40 @@ namespace HamstarHelpers.ControlPanel {
 				}
 			}
 
-			UITextArea issue_text_box = new UITextArea( "Enter issue to report for mod" );
-			issue_text_box.Top.Set( top, 0f );
-			issue_text_box.Width.Set( 0f, 1f );
-			issue_text_box.Height.Pixels = 56f;
-			issue_text_box.HAlign = 0f;
-			issue_text_box.SetPadding( 8f );
-			issue_text_box.BackgroundColor = this.Theme.IssueInputBgColor;
-			issue_text_box.BorderColor = this.Theme.IssueInputEdgeColor;
-			this.InnerContainer.Append( (UIElement)issue_text_box );
+			this.IssueInput = new UITextArea( this.Theme, "Enter issue to report for mod" );
+			this.IssueInput.Top.Set( top, 0f );
+			this.IssueInput.Width.Set( 0f, 1f );
+			this.IssueInput.Height.Pixels = 56f;
+			this.IssueInput.HAlign = 0f;
+			this.IssueInput.SetPadding( 8f );
+			this.IssueInput.Disable();
+			this.InnerContainer.Append( (UIElement)this.IssueInput );
+			this.Theme.ApplyInput( this.IssueInput );
 
 			top += 64f;
 
-			var submit_button = UIFactoryHelpers.CreateButton( this.Theme, "Submit", 0f, top, 128f );
-			submit_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
-Main.NewText( "Submit" );
+			this.IssueSubmitButton = new UITextPanelButton( this.Theme, "Submit" );
+			this.IssueSubmitButton.Top.Set( top, 0f );
+			this.IssueSubmitButton.Left.Set( 0f, 0f );
+			this.IssueSubmitButton.Width.Set( 128f, 0f );
+			this.IssueSubmitButton.Disable();
+			this.IssueSubmitButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				if( self.AwaitingReport || !self.IssueSubmitButton.IsEnabled ) { return; }
+				self.SubmitIssue();
 			};
-			this.InnerContainer.Append( submit_button );
+			this.InnerContainer.Append( this.IssueSubmitButton );
 
-			var cancel_button = UIFactoryHelpers.CreateButton( this.Theme, "Cancel", 136f, top, 128f );
-			submit_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
-Main.NewText( "Cancel" );
-			};
-			this.InnerContainer.Append( cancel_button );
-
-			top += 32f;
-
-			var apply_config_button = UIFactoryHelpers.CreateButton( this.Theme, "Apply Config Changes", 0f, top, 264f );
-			submit_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
-Main.NewText( "Apply" );
+			var apply_config_button = new UITextPanelButton( this.Theme, "Apply Config Changes" );
+			apply_config_button.Top.Set( top, 0f );
+			apply_config_button.Left.Set( 0f, 0f );
+			apply_config_button.Width.Set( 264f, 0f );
+			apply_config_button.HAlign = 1f;
+			apply_config_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				self.ApplyConfigChanges();
 			};
 			this.InnerContainer.Append( apply_config_button );
 
-			top += 32f;
+			top += 42f;
 
 			var support_url = new UIWebUrl( "Support my mods!", "" );
 			support_url.Top.Set( top, 0f );
@@ -132,29 +134,28 @@ Main.NewText( "Apply" );
 
 		public UIModData CreateModListItem( Mod mod ) {
 			ControlPanelUI self = this;
-			UITheme theme = this.Theme;
-			ControlPanelLogic logic = this.Logic;
-			var elem = new UIModData( theme, mod, false );
+			var elem = new UIModData( this.Theme, mod, false );
 
-			theme.ApplyModListItem( elem );
+			this.Theme.ApplyModListItem( elem );
 
 			elem.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				if( !(from_elem is UIModData) ) { return; }
 
-				if( logic.CurrentMod != null && elem.Mod.Name == logic.CurrentMod.Name ) { return; }
+				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
 
-				theme.ApplyModListItemLit( elem );
+				self.Theme.ApplyModListItemLit( elem );
 			};
 			elem.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				if( !(from_elem is UIModData) ) { return; }
-				if( logic.CurrentMod != null && elem.Mod.Name == logic.CurrentMod.Name ) { return; }
+				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
 
-				theme.ApplyModListItem( elem );
+				self.Theme.ApplyModListItem( elem );
 			};
 
 			elem.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				if( !(from_elem is UIModData) ) { return; }
-				if( logic.CurrentMod != null && elem.Mod.Name == logic.CurrentMod.Name ) { return; }
+				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
+				if( self.AwaitingReport ) { return; }
 
 				self.SelectModFromList( elem );
 			};

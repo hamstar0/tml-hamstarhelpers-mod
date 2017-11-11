@@ -35,6 +35,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\System-Web-Helpers.dll.1.0.0\lib\Net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -92,9 +96,7 @@
     <Compile Include="TmlHelpers\BuildPropertiesInterface.cs" />
     <Compile Include="TmlHelpers\ExtendedModData.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
-    <Compile Include="UIHelpers\UIFactoryHelpers.cs" />
     <Compile Include="UIHelpers\UITheme.cs" />
-    <Compile Include="Utilities\Config\ConfigurableMods.cs" />
     <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="DotNetHelpers\DotNetHelpers.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Utilities\UI\UICheckbox.cs" />
     <Compile Include="Utilities\UI\UIModData.cs" />
     <Compile Include="Utilities\UI\UITextArea.cs" />
+    <Compile Include="Utilities\UI\UITextPanelButton.cs" />
     <Compile Include="Utilities\UI\UIWebUrl.cs" />
     <Compile Include="WorldHelpers\WorldHelpers.cs" />
     <Compile Include="XnaHelpers\XnaColorHelpers.cs" />

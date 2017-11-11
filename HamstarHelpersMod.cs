@@ -31,7 +31,9 @@ namespace HamstarHelpers {
 		private int LastSeenScreenWidth = -1;
 		private int LastSeenScreenHeight = -1;
 
-		public string GithubUrl { get { return "https://github.com/hamstar0/tml-hamstarhelpers-mod"; } }
+		public string GithubUserName { get { return "hamstar0"; } }
+		public string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
+		public string ConfigFileRelativePath { get { return null; } }
 
 
 		////////////////

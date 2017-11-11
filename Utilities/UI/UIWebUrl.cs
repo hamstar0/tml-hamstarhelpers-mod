@@ -21,13 +21,13 @@ namespace HamstarHelpers.Utilities.UI {
 		public UIText LineElem { get; private set; }
 
 		public string Url { get; private set; }
-		public bool WillDrawHoverUrl { get; private set; }
+		public bool WillDrawOwnHoverUrl { get; private set; }
 
 
 		////////////////
 
 		public UIWebUrl( string label, string url, bool hover_url=true, float scale=0.85f, bool large=false ) : base() {
-			this.WillDrawHoverUrl = hover_url;
+			this.WillDrawOwnHoverUrl = hover_url;
 			this.Url = url;
 
 			this.TextElem = new UIText( label, scale, large );
@@ -79,13 +79,13 @@ namespace HamstarHelpers.Utilities.UI {
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
-			if( this.TextElem.IsMouseHovering ) {
+			if( this.TextElem.IsMouseHovering && this.WillDrawOwnHoverUrl ) {
 				this.DrawHoverEffects( sb );
 			}
 		}
 
 		public void DrawHoverEffects( SpriteBatch sb ) {
-			if( this.WillDrawHoverUrl ) {
+			if( !string.IsNullOrEmpty(this.Url) ) {
 				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
 			}
 		}

@@ -1,12 +1,15 @@
-﻿using HamstarHelpers.UIHelpers;
+﻿using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.UIHelpers;
 using HamstarHelpers.Utilities.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 
@@ -24,9 +27,14 @@ namespace HamstarHelpers.ControlPanel {
 		private UIElement OuterContainer = null;
 		private UIPanel InnerContainer = null;
 		private UIList ModListElem = null;
+		private UITextArea IssueInput = null;
+		private UITextPanelButton IssueSubmitButton = null;
 
 		private bool HasClicked = false;
 		private bool ModListUpdateRequired = false;
+		public bool AwaitingReport { get; private set; }
+
+		private bool ResetIssueInput = false;
 
 
 
@@ -34,6 +42,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		public ControlPanelUI() {
 			this.IsOpen = false;
+			this.AwaitingReport = false;
 			this.InitializeToggler();
 		}
 
@@ -83,6 +92,17 @@ namespace HamstarHelpers.ControlPanel {
 
 				if( this.OuterContainer.IsMouseHovering ) {
 					Main.LocalPlayer.mouseInterface = true;
+				}
+				
+				if( this.AwaitingReport || this.CurrentModListItem == null || !ExtendedModManager.HasGithub( this.CurrentModListItem.Mod ) ) {
+					this.DisableIssueInput();
+				} else {
+					this.EnableIssueInput();
+				}
+
+				if( this.ResetIssueInput ) {
+					this.ResetIssueInput = false;
+					this.IssueInput.SetText( "" );
 				}
 			}
 
@@ -156,15 +176,71 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public void SelectModFromList( UIModData list_item ) {
+		private void SelectModFromList( UIModData list_item ) {
+			Mod mod = list_item.Mod;
+
 			if( this.CurrentModListItem != null ) {
 				this.Theme.ApplyModListItem( this.CurrentModListItem );
 			}
 			this.Theme.ApplyModListItemSelected( list_item );
-
 			this.CurrentModListItem = list_item;
+			this.Logic.SetCurrentMod( mod );
+			
+			if( !ExtendedModManager.HasGithub(mod) ) {
+				this.DisableIssueInput();
+			} else {
+				this.EnableIssueInput();
+			}
+		}
+		
 
-			this.Logic.SetCurrentMod( list_item.Mod );
+		private void SubmitIssue() {
+			if( this.CurrentModListItem == null ) { return; }
+			if( !ExtendedModManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
+			
+			string issue = this.IssueInput.Text;
+			if( string.IsNullOrEmpty(issue) ) { return; }
+
+			this.AwaitingReport = true;
+			this.DisableIssueInput();
+
+			ControlPanelUI self = this;
+			var t = new Thread( new ThreadStart( delegate() {
+				try {
+					self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue );
+				} catch( Exception e ) {
+					ErrorLogger.Log( e.ToString() );
+				}
+				
+				self.AwaitingReport = false;
+				self.ResetIssueInput = true;
+			} ) );
+			t.Start();
+		}
+
+		private void ApplyConfigChanges() {
+			// TODO
+		}
+
+
+		////////////////
+
+		public void EnableIssueInput() {
+			if( !this.IssueInput.IsEnabled ) {
+				this.IssueInput.Enable();
+			}
+			if( !this.IssueSubmitButton.IsEnabled ) {
+				this.IssueSubmitButton.Enable();
+			}
+		}
+
+		public void DisableIssueInput() {
+			if( this.IssueInput.IsEnabled ) {
+				this.IssueInput.Disable();
+			}
+			if( this.IssueSubmitButton.IsEnabled ) {
+				this.IssueSubmitButton.Disable();
+			}
 		}
 	}
 }

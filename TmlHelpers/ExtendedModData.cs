@@ -4,8 +4,12 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.TmlHelpers {
 	public interface ExtendedModData {
-		string GithubUrl { get; }
+		string GithubUserName { get; }
+		string GithubProjectName { get; }
+
+		string ConfigFileRelativePath { get; }
 	}
+
 
 	
 	////////////////
@@ -32,6 +36,25 @@ namespace HamstarHelpers.TmlHelpers {
 
 		internal static void StaticInit() {
 			ExtendedModManager.ExtendedMods = new HashSet<Mod>();
+		}
+
+
+		////////////////
+
+		public static bool HasGithub( Mod mod ) {
+			if( !(mod is ExtendedModData) ) { return false; }
+			return ExtendedModManager.HasGithub( (ExtendedModData)mod );
+		}
+		public static bool HasGithub( ExtendedModData ext_mod ) {
+			return !string.IsNullOrEmpty( ext_mod.GithubUserName ) && !string.IsNullOrEmpty( ext_mod.GithubProjectName );
+		}
+
+		public static bool HasConfig( Mod mod ) {
+			if( !(mod is ExtendedModData) ) { return false; }
+			return ExtendedModManager.HasConfig( (ExtendedModData)mod );
+		}
+		public static bool HasConfig( ExtendedModData ext_mod ) {
+			return !string.IsNullOrEmpty( ext_mod.ConfigFileRelativePath );
 		}
 
 		////////////////
