@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.UIHelpers;
 using HamstarHelpers.Utilities.UI;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -111,15 +112,17 @@ namespace HamstarHelpers.ControlPanel {
 			};
 			this.InnerContainer.Append( this.IssueSubmitButton );
 
-			var apply_config_button = new UITextPanelButton( this.Theme, "Apply Config Changes" );
-			apply_config_button.Top.Set( top, 0f );
-			apply_config_button.Left.Set( 0f, 0f );
-			apply_config_button.Width.Set( 264f, 0f );
-			apply_config_button.HAlign = 1f;
-			apply_config_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
-				self.ApplyConfigChanges();
-			};
-			this.InnerContainer.Append( apply_config_button );
+			if( Main.netMode == 1 ) {
+				var apply_config_button = new UITextPanelButton( this.Theme, "Apply Config Changes" );
+				apply_config_button.Top.Set( top, 0f );
+				apply_config_button.Left.Set( 0f, 0f );
+				apply_config_button.Width.Set( 264f, 0f );
+				apply_config_button.HAlign = 1f;
+				apply_config_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+					self.ApplyConfigChanges();
+				};
+				this.InnerContainer.Append( apply_config_button );
+			}
 
 			top += 42f;
 

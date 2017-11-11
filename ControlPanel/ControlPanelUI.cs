@@ -103,6 +103,10 @@ namespace HamstarHelpers.ControlPanel {
 				if( this.ResetIssueInput ) {
 					this.ResetIssueInput = false;
 					this.IssueInput.SetText( "" );
+
+					if( this.IsOpen ) {
+						this.Close();
+					}
 				}
 			}
 
@@ -197,14 +201,14 @@ namespace HamstarHelpers.ControlPanel {
 		private void SubmitIssue() {
 			if( this.CurrentModListItem == null ) { return; }
 			if( !ExtendedModManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
-			
+
+			ControlPanelUI self = this;
 			string issue = this.IssueInput.Text;
 			if( string.IsNullOrEmpty(issue) ) { return; }
 
 			this.AwaitingReport = true;
 			this.DisableIssueInput();
 
-			ControlPanelUI self = this;
 			var t = new Thread( new ThreadStart( delegate() {
 				try {
 					self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue );
@@ -215,11 +219,12 @@ namespace HamstarHelpers.ControlPanel {
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
 			} ) );
+
 			t.Start();
 		}
 
 		private void ApplyConfigChanges() {
-			// TODO
+			this.Logic.ApplyConfigChanges();
 		}
 
 

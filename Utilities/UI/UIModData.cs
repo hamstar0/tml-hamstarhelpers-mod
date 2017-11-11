@@ -81,21 +81,18 @@ namespace HamstarHelpers.Utilities.UI {
 				}
 			}
 
-			if( mod is ExtendedModData ) {
-				var ext_mod = (ExtendedModData)mod;
+			if( ExtendedModManager.HasConfig(mod) ) {
+				var config_button = new UITextPanelButton( theme, "Open Config File" );
+				config_button.HAlign = 1f;
+				config_button.VAlign = 1f;
+				this.Append( config_button );
 
-				if( ext_mod.ConfigFileRelativePath != null && ext_mod.ConfigFileRelativePath != "" ) {
-					var config_button = new UITextPanelButton( theme, "Open Config File" );
-					config_button.HAlign = 1f;
-					config_button.VAlign = 1f;
-					this.Append( config_button );
-
-					this.ConfigButton = config_button;
+				this.ConfigButton = config_button;
 					
-					this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-						Process.Start( Main.SavePath + Path.DirectorySeparatorChar + ext_mod.ConfigFileRelativePath );
-					};
-				}
+				this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+					string path = ExtendedModManager.GetConfigRelativePath( mod );
+					Process.Start( Main.SavePath + Path.DirectorySeparatorChar + path );
+				};
 			}
 		}
 

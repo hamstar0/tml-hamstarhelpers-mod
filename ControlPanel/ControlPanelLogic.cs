@@ -1,11 +1,14 @@
 ﻿using HamstarHelpers.TmlHelpers;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using Terraria;
 using Terraria.ModLoader;
 
 
@@ -32,16 +35,18 @@ namespace HamstarHelpers.ControlPanel {
 
 		public IEnumerable<Mod> GetMods() {
 			var mods = new LinkedList<Mod>();
+			var mod_set = new HashSet<string>();
 
 			mods.AddLast( HamstarHelpersMod.Instance );
 
-			foreach( var mod in ExtendedModManager.ExtendedMods ) {
-				if( mod == HamstarHelpersMod.Instance || mod.File == null ) { continue; }
-				mods.AddLast( mod );
+			foreach( var kv in ExtendedModManager.ConfigMods ) {
+				if( kv.Key == HamstarHelpersMod.Instance.Name || kv.Value.File == null ) { continue; }
+				mods.AddLast( kv.Value );
+				mod_set.Add( kv.Value.Name );
 			}
 
 			foreach( var mod in ModLoader.LoadedMods ) {
-				if( mods.Contains( mod ) || mod.File == null ) { continue; }
+				if( mod_set.Contains( mod.Name ) || mod.File == null ) { continue; }
 				mods.AddLast( mod );
 			}
 
@@ -59,9 +64,8 @@ namespace HamstarHelpers.ControlPanel {
 		
 		public void ReportIssue( Mod mod, string issue ) {
 			if( !ExtendedModManager.HasGithub( mod ) ) {
-				throw new Exception( "Mod contains empty data for issue reports." );
+				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
-			var ext_mod = (ExtendedModData)mod;
 			IEnumerable<Mod> mods = this.GetMods();
 			
 			//string url = "http://localhost:12347/issue_submit/";
@@ -71,8 +75,8 @@ namespace HamstarHelpers.ControlPanel {
 				+ '\n'+" "+'\n' + issue;
 
 			var json = new ModIssueReport {
-				githubuser = ext_mod.GithubUserName,
-				githubproject = ext_mod.GithubProjectName,
+				githubuser = ExtendedModManager.GetGithubUserName( mod ),
+				githubproject = ExtendedModManager.GetGithubProjectName( mod ),
 				title = title,
 				body = body
 			};
@@ -96,10 +100,20 @@ namespace HamstarHelpers.ControlPanel {
 				Stream resp_data_stream = resp.GetResponseStream();
 				resp_data_stream.Read( resp_data, 0, resp_data.Length );
 				string resp_str = Encoding.UTF8.GetString( resp_data );
-ErrorLogger.Log( "response: "+resp_str );
+				object obj = JsonConvert.DeserializeObject( resp_str );
+
+				JObject resp_json = JObject.Parse( resp_str );
+				string msg = resp_json["Msg"].ToObject<string>();
+
+				Main.NewText( "Issue submit result: "+msg, Color.Yellow );
 			} catch( Exception e ) {
 				ErrorLogger.Log( "Issue submit error: " + e.ToString() );
 			}
+		}
+
+
+		public void ApplyConfigChanges() {
+			ExtendedModManager.ReloadAllConfigsFromFile();
 		}
 	}
 }

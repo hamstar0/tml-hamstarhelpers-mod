@@ -1,19 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.TmlHelpers {
-	public interface ExtendedModData {
-		string GithubUserName { get; }
-		string GithubProjectName { get; }
-
-		string ConfigFileRelativePath { get; }
-	}
-
-
-	
-	////////////////
-
 	static class _ExtendedModManagerLoader {
 		public static void Load() {
 			ExtendedModManager.LoadMods();
@@ -22,10 +13,11 @@ namespace HamstarHelpers.TmlHelpers {
 			ExtendedModManager.StaticInit();
 		}
 	}
-	
+
 
 	public static class ExtendedModManager {
-		public static ISet<Mod> ExtendedMods = new HashSet<Mod>();
+		internal static IDictionary<string, Mod> GithubMods;
+		internal static IDictionary<string, Mod> ConfigMods;
 
 
 		////////////////
@@ -35,27 +27,10 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 		internal static void StaticInit() {
-			ExtendedModManager.ExtendedMods = new HashSet<Mod>();
+			ExtendedModManager.GithubMods = new Dictionary<string, Mod>();
+			ExtendedModManager.ConfigMods = new Dictionary<string, Mod>();
 		}
 
-
-		////////////////
-
-		public static bool HasGithub( Mod mod ) {
-			if( !(mod is ExtendedModData) ) { return false; }
-			return ExtendedModManager.HasGithub( (ExtendedModData)mod );
-		}
-		public static bool HasGithub( ExtendedModData ext_mod ) {
-			return !string.IsNullOrEmpty( ext_mod.GithubUserName ) && !string.IsNullOrEmpty( ext_mod.GithubProjectName );
-		}
-
-		public static bool HasConfig( Mod mod ) {
-			if( !(mod is ExtendedModData) ) { return false; }
-			return ExtendedModManager.HasConfig( (ExtendedModData)mod );
-		}
-		public static bool HasConfig( ExtendedModData ext_mod ) {
-			return !string.IsNullOrEmpty( ext_mod.ConfigFileRelativePath );
-		}
 
 		////////////////
 
@@ -63,10 +38,92 @@ namespace HamstarHelpers.TmlHelpers {
 			ExtendedModManager.StaticInit();
 
 			foreach( Mod mod in ModLoader.LoadedMods ) {
-				if( mod is ExtendedModData ) {
-					ExtendedModManager.ExtendedMods.Add( mod );
+				if( ExtendedModManager.DetectGithub( mod ) ) {
+					ExtendedModManager.GithubMods[mod.Name] = mod;
+				}
+				if( ExtendedModManager.DetectConfig( mod ) ) {
+					ExtendedModManager.ConfigMods[mod.Name] = mod;
 				}
 			}
+		}
+
+
+		////////////////
+
+		private static bool DetectGithub( Mod mod ) {
+			FieldInfo git_user_field = mod.GetType().GetField( "GithubUserName" );
+			if( git_user_field == null ) { return false; }
+			FieldInfo git_proj_field = mod.GetType().GetField( "GithubProjectName" );
+			if( git_proj_field == null ) { return false; }
+
+			return true;
+		}
+
+		public static bool DetectConfig( Mod mod ) {
+			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath" );
+			if( config_path_field == null ) { return false; }
+			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile" );
+			if( config_reload_method == null ) { return false; }
+
+			return true;
+		}
+
+		////////////////
+
+		public static bool HasGithub( Mod mod ) {
+			return ExtendedModManager.GithubMods.ContainsKey( mod.Name );
+		}
+		public static bool HasConfig( Mod mod ) {
+			return ExtendedModManager.ConfigMods.ContainsKey( mod.Name );
+		}
+
+		////////////////
+
+		public static string GetConfigRelativePath( Mod mod ) {
+			if( !ExtendedModManager.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
+
+			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath" );
+			return (string)config_path_field.GetValue( mod );
+		}
+
+		/*public static void SetConfigRelativePath( Mod mod, string path ) {
+			if( !ExtendedModManager.ConfigMods.ContainsKey( mod.Name ) ) {
+				throw new Exception( "Not a recognized configurable mod." );
+			}
+
+			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath" );
+			config_path_field.SetValue( mod, path );
+		}*/
+
+		public static void ReloadConfigFromFile( Mod mod ) {
+			if( !ExtendedModManager.ConfigMods.ContainsKey( mod.Name ) ) {
+				throw new Exception( "Not a recognized configurable mod." );
+			}
+
+			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile" );
+			config_reload_method.Invoke( mod, new object[] { } );
+		}
+
+		public static void ReloadAllConfigsFromFile() {
+			foreach( var kv in ExtendedModManager.ConfigMods ) {
+				ExtendedModManager.ReloadConfigFromFile( kv.Value );
+			}
+		}
+
+		////////////////
+		
+		public static string GetGithubUserName( Mod mod ) {
+			if( !ExtendedModManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
+
+			FieldInfo git_user_field = mod.GetType().GetField( "GithubUserName" );
+			return (string)git_user_field.GetValue( mod );
+		}
+
+		public static string GetGithubProjectName( Mod mod ) {
+			if( !ExtendedModManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
+
+			FieldInfo git_proj_field = mod.GetType().GetField( "GithubProjectName" );
+			return (string)git_proj_field.GetValue( mod );
 		}
 	}
 }

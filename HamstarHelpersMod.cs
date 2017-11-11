@@ -18,7 +18,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers {
-	class HamstarHelpersMod : Mod, ExtendedModData {
+	class HamstarHelpersMod : Mod {
 		public static HamstarHelpersMod Instance { get; private set; }
 
 

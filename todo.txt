@@ -1,17 +1,13 @@
-v1.1.5
--	Add title to dialog
--	Implement config reloading command
-	-	Broadcast commands to players on change on server
-	-	Define whitelist of client-only commands
-	-	...
+v1.2.0
 -	Finish implementing text area
 	-	Add multiline rendering and editing
+
 -	Implement UI panel
 	-	Implement 'Apply Config Changes' button
 		-	Disable 'Apply Config Changes' button on clients
 		-	Apply changes on click
-
 	-	Issue submit form
+		-	Add submit response feedback
 		-	Use 3rd party application to forward issues to github
 			-	Add per-IP issue throttling
 			-	Add project release check anti-spam
