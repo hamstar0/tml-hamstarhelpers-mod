@@ -1,10 +1,25 @@
 ﻿using HamstarHelpers.PlayerHelpers;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.ItemHelpers {
 	public static class ItemHelpers {
+		public static IList<Item> GetActive() {
+			var list = new List<Item>();
+
+			for( int i = 0; i < Main.item.Length; i++ ) {
+				Item item = Main.item[i];
+				if( item != null && item.active && item.type != 0 ) {
+					list.Add( item );
+				}
+			}
+			return list;
+		}
+
+		////////////////
+
 		public static string GetUniqueId( Item item ) {
 			if( item.modItem != null ) {
 				return item.modItem.mod.Name + " " + item.Name;
@@ -12,7 +27,8 @@ namespace HamstarHelpers.ItemHelpers {
 			return ""+ item.netID;
 		}
 
-		
+		////////////////
+
 		public static int CreateItem( Vector2 pos, int type, int stack, int width, int height, int prefix = 0 ) {
 			int idx = Item.NewItem( (int)pos.X, (int)pos.Y, width, height, type, stack, false, prefix, true, false );
 			if( Main.netMode == 1 ) {	// Client
@@ -20,6 +36,8 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 			return idx;
 		}
+
+		////////////////
 
 		public static void DestroyItem( Item item ) {
 			item.active = false;
@@ -51,6 +69,7 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 		}
 
+		////////////////
 
 		public static int CalculateStandardUseTime( Item item ) {
 			int use_time;

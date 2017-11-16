@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.ItemHelpers;
+using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -63,7 +64,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 		
-		public void ReportIssue( Mod mod, string issue ) {
+		public void ReportIssue( Mod mod, string issue_title, string issue_body ) {
 			if( !ExtendedModManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
@@ -71,9 +72,17 @@ namespace HamstarHelpers.ControlPanel {
 			
 			//string url = "http://localhost:12347/issue_submit/";
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
-			string title = "Issue for " + mod.DisplayName + " " + mod.Version.ToString();
-			string body = "Mods: "+string.Join(", ", mods.Select( m => m.DisplayName + " " + m.Version.ToString() ).ToArray())
-				+ '\n'+" "+'\n' + issue;
+			string title = "In-game report: " + issue_title;
+			//string body = "Mods: " + string.Join( ", ", mods.Select( m => m.DisplayName + " " + m.Version.ToString() ).ToArray() );
+			string body = mods.Select( m => m.DisplayName + " " + m.Version.ToString() ).Aggregate( (all, next) => all + ", " + next );
+			body += '\n' + "Is day: " + Main.dayTime + ", Time of day/night: " + Main.time + ", Total time: "+Main._drawInterfaceGameTime;
+			body += '\n' + "World size: "+ WorldHelpers.WorldHelpers.GetSize().ToString();
+			body += '\n' + "World progress: "+string.Join(", ", this.OutputGameProgress().ToArray());
+			body += '\n' + "Items on ground: "+ ItemHelpers.ItemHelpers.GetActive().Count+", Npcs active: "+NPCHelpers.NPCHelpers.GetActive();
+			if( Main.netMode != 0 ) {
+				body += '\n' + "Player count: " + Main.ActivePlayersCount;
+			}
+			body += '\n' + " " + '\n' + issue_body;
 
 			var json = new ModIssueReport {
 				githubuser = ExtendedModManager.GetGithubUserName( mod ),
@@ -107,6 +116,7 @@ namespace HamstarHelpers.ControlPanel {
 				string msg = resp_json["Msg"].ToObject<string>();
 
 				Main.NewText( "Issue submit result: "+msg, Color.Yellow );
+				ErrorLogger.Log( "Issue submit result: " + msg );
 			} catch( Exception e ) {
 				ErrorLogger.Log( "Issue submit error: " + e.ToString() );
 			}
@@ -115,6 +125,31 @@ namespace HamstarHelpers.ControlPanel {
 
 		public void ApplyConfigChanges() {
 			ExtendedModManager.ReloadAllConfigsFromFile();
+		}
+
+
+		////////////////
+		
+		public IList<string> OutputGameProgress() {
+			var list = new List<string>();
+
+			if( NPC.downedBoss1 ) { list.Add("Eye of Cthulhu killed"); }
+			if( NPC.downedSlimeKing ) { list.Add( "King Slime killed" ); }
+			if( NPC.downedQueenBee ) { list.Add( "Queen Bee killed" ); }
+			if( NPC.downedBoss2 && !WorldGen.crimson ) { list.Add( "Eater of Worlds killed" ); }
+			if( NPC.downedBoss2 && WorldGen.crimson ) { list.Add( "Brain of Cthulhu killed" ); }
+			if( NPC.downedBoss3 ) { list.Add( "Skeletron killed" ); }
+			if( Main.hardMode ) { list.Add( "Wall of Flesh killed" ); }
+			if( NPC.downedMechBoss1 ) { list.Add( "Destroyer killed" ); }
+			if( NPC.downedMechBoss2 ) { list.Add( "Twins killed" ); }
+			if( NPC.downedMechBoss3 ) { list.Add( "Skeletron Prime killed" ); }
+			if( NPC.downedPlantBoss ) { list.Add( "Plantera killed" ); }
+			if( NPC.downedGolemBoss ) { list.Add( "Golem killed" ); }
+			if( NPC.downedFishron ) { list.Add( "Duke Fishron killed" ); }
+			if( NPC.downedAncientCultist ) { list.Add( "Ancient Cultist killed" ); }
+			if( NPC.downedMoonlord ) { list.Add( "Moon Lord killed" ); }
+
+			return list;
 		}
 	}
 }

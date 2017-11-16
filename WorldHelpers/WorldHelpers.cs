@@ -30,12 +30,22 @@ namespace HamstarHelpers.WorldHelpers {
 	}
 
 
+	public enum WorldSize {
+		SubSmall,
+		Small,
+		Medium,
+		Large,
+		SuperLarge
+	}
+
+
 
 	public static class WorldHelpers {
 		public static bool IsBeingInvaded() {
 			return Main.invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0;
 		}
 
+		////////////////
 
 		public static double GetDayOrNightPercentDone() {
 			if( Main.dayTime ) {
@@ -45,13 +55,32 @@ namespace HamstarHelpers.WorldHelpers {
 			}
 		}
 
-		
+		////////////////
+
 		public static bool IsAboveWorldSurface( Vector2 world_pos ) {
 			return world_pos.Y < (Main.worldSurface * 16);
 		}
 
 		public static bool IsWithinUnderworld( Vector2 world_pos ) {
 			return world_pos.Y > ((Main.maxTilesY - 200) * 16);
+		}
+
+		////////////////
+
+		public static WorldSize GetSize() {
+			int size = Main.maxTilesX * Main.maxTilesY;
+
+			if( size <= (4200 * 1200) / 2 ) {
+				return WorldSize.SubSmall;
+			} else if( size <= 4200 * 1200 + 1000 ) {
+				return WorldSize.Small;
+			} else if( size <= 6400 * 1800 + 1000 ) {
+				return WorldSize.Medium;
+			} else if( size <= 8400 * 2400 + 1000 ) {
+				return WorldSize.Large;
+			} else {
+				return WorldSize.SuperLarge;
+			}
 		}
 
 

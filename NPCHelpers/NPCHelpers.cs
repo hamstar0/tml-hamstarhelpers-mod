@@ -7,6 +7,20 @@ using Terraria.ID;
 
 namespace HamstarHelpers.NPCHelpers {
 	public static class NPCHelpers {
+		public static IList<NPC> GetActive() {
+			var list = new List<NPC>();
+
+			for( int i = 0; i < Main.npc.Length; i++ ) {
+				NPC npc = Main.npc[i];
+				if( npc != null && npc.active && npc.type != 0 ) {
+					list.Add( npc );
+				}
+			}
+			return list;
+		}
+
+		////////////////
+
 		public static bool IsNPCDead( NPC check_npc ) {
 			return check_npc.life <= 0 || !check_npc.active;
 		}
@@ -19,6 +33,7 @@ namespace HamstarHelpers.NPCHelpers {
 			NetMessage.SendData( 28, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
 		}
 
+		////////////////
 
 		public static Vector2 GetKnockbackVector( NPC npc, int dir, float knockback, bool crit, bool is_killing_blow ) {
 			float force = knockback * npc.knockBackResist;
@@ -72,6 +87,7 @@ namespace HamstarHelpers.NPCHelpers {
 			return force_vector - npc.velocity;
 		}
 
+		////////////////
 
 		public static float LooselyAssessThreat( NPC npc ) {
 			float damage_factor = (npc.damage / 100f) * (npc.coldDamage ? 1.2f : 1f);
@@ -97,6 +113,7 @@ namespace HamstarHelpers.NPCHelpers {
 			return (vitality_factor + damage_factor) / 2f;
 		}
 
+		////////////////
 
 		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale, Color color ) {
 			Texture2D tex = Main.npcTexture[ npc.type ];

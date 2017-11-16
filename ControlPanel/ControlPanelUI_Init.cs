@@ -88,16 +88,27 @@ namespace HamstarHelpers.ControlPanel {
 				}
 			}
 
-			this.IssueInput = new UITextArea( this.Theme, "Enter issue to report for mod" );
-			this.IssueInput.Top.Set( top, 0f );
-			this.IssueInput.Width.Set( 0f, 1f );
-			this.IssueInput.Height.Pixels = 36f;
-			this.IssueInput.HAlign = 0f;
-			this.IssueInput.SetPadding( 8f );
-			this.IssueInput.Disable();
-			this.InnerContainer.Append( (UIElement)this.IssueInput );
+			this.IssueTitleInput = new UITextArea( this.Theme, "Enter title of mod issue" );
+			this.IssueTitleInput.Top.Set( top, 0f );
+			this.IssueTitleInput.Width.Set( 0f, 1f );
+			this.IssueTitleInput.Height.Pixels = 36f;
+			this.IssueTitleInput.HAlign = 0f;
+			this.IssueTitleInput.SetPadding( 8f );
+			this.IssueTitleInput.Disable();
+			this.InnerContainer.Append( (UIElement)this.IssueTitleInput );
 
-			top += 64f;
+			top += 32f;
+
+			this.IssueBodyInput = new UITextArea( this.Theme, "Describe mod issue" );
+			this.IssueBodyInput.Top.Set( top, 0f );
+			this.IssueBodyInput.Width.Set( 0f, 1f );
+			this.IssueBodyInput.Height.Pixels = 36f;
+			this.IssueBodyInput.HAlign = 0f;
+			this.IssueBodyInput.SetPadding( 8f );
+			this.IssueBodyInput.Disable();
+			this.InnerContainer.Append( (UIElement)this.IssueBodyInput );
+			
+			top += 32f;
 
 			this.IssueSubmitButton = new UITextPanelButton( this.Theme, "Submit" );
 			this.IssueSubmitButton.Top.Set( top, 0f );

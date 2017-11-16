@@ -27,7 +27,9 @@ namespace HamstarHelpers.ControlPanel {
 		private UIElement OuterContainer = null;
 		private UIPanel InnerContainer = null;
 		private UIList ModListElem = null;
-		private UITextArea IssueInput = null;
+
+		private UITextArea IssueTitleInput = null;
+		private UITextArea IssueBodyInput = null;
 		private UITextPanelButton IssueSubmitButton = null;
 
 		private bool HasClicked = false;
@@ -102,7 +104,8 @@ namespace HamstarHelpers.ControlPanel {
 
 				if( this.ResetIssueInput ) {
 					this.ResetIssueInput = false;
-					this.IssueInput.SetText( "", true );
+					this.IssueTitleInput.SetText( "", true );
+					this.IssueBodyInput.SetText( "", true );
 
 					if( this.IsOpen ) {
 						this.Close();
@@ -177,7 +180,6 @@ namespace HamstarHelpers.ControlPanel {
 			this.Backend = null;
 		}
 
-
 		////////////////
 
 		private void SelectModFromList( UIModData list_item ) {
@@ -189,63 +191,17 @@ namespace HamstarHelpers.ControlPanel {
 			this.Theme.ApplyModListItemSelected( list_item );
 			this.CurrentModListItem = list_item;
 			this.Logic.SetCurrentMod( mod );
-			
-			if( !ExtendedModManager.HasGithub(mod) ) {
+
+			if( !ExtendedModManager.HasGithub( mod ) ) {
 				this.DisableIssueInput();
 			} else {
 				this.EnableIssueInput();
 			}
 		}
-		
 
-		private void SubmitIssue() {
-			if( this.CurrentModListItem == null ) { return; }
-			if( !ExtendedModManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
-
-			ControlPanelUI self = this;
-			string issue = this.IssueInput.Text;
-			if( string.IsNullOrEmpty(issue) ) { return; }
-
-			this.AwaitingReport = true;
-			this.DisableIssueInput();
-
-			var t = new Thread( new ThreadStart( delegate() {
-				try {
-					self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue );
-				} catch( Exception e ) {
-					ErrorLogger.Log( e.ToString() );
-				}
-				
-				self.AwaitingReport = false;
-				self.ResetIssueInput = true;
-			} ) );
-
-			t.Start();
-		}
 
 		private void ApplyConfigChanges() {
 			this.Logic.ApplyConfigChanges();
-		}
-
-
-		////////////////
-
-		public void EnableIssueInput() {
-			if( !this.IssueInput.IsEnabled ) {
-				this.IssueInput.Enable();
-			}
-			if( !this.IssueSubmitButton.IsEnabled ) {
-				this.IssueSubmitButton.Enable();
-			}
-		}
-
-		public void DisableIssueInput() {
-			if( this.IssueInput.IsEnabled ) {
-				this.IssueInput.Disable();
-			}
-			if( this.IssueSubmitButton.IsEnabled ) {
-				this.IssueSubmitButton.Disable();
-			}
 		}
 	}
 }

@@ -60,6 +60,7 @@
     <Compile Include="ControlPanel\ControlPanelLogic.cs" />
     <Compile Include="ControlPanel\ControlPanelUI.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Init.cs" />
+    <Compile Include="ControlPanel\ControlPanelUI_Issue.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Toggler.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
