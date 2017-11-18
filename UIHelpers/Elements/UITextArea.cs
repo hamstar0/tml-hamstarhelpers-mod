@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.UIHelpers;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -11,9 +11,16 @@ using Terraria.UI;
 
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UITextArea : UIPanel {
+		public delegate void TextChangeEvent( StringBuilder new_text );
+
+
 		public string Text { get; private set; }
+		public string DisplayText { get; private set; }
 		public string Hint { get; private set; }
-		
+		public int MaxLength { get; private set; }
+
+		public event TextChangeEvent OnPreChange;
+
 		public Color TextColor = Color.White;
 		public Color HintColor = Color.Gray;
 
@@ -27,42 +34,40 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		public UITextArea( UITheme theme, string hint ) {
+		
+		public UITextArea( UITheme theme, string hint, int max_length=2024 ) {
 			// TODO Add multiline support
 
 			this.Theme = theme;
 
-			this.SetText( "", true );
 			this.Hint = hint;
 			this.CursorPos = 0;
 			this.CursorAnimation = 0;
 			this.HasFocus = false;
 			this.IsEnabled = false;
+			this.MaxLength = max_length;
+
+			this.SetText( "" );
 		}
 
 
 		////////////////
-
-		public void SetText( string text, bool allow_overflow ) {
-			string substr = text;
-
-			if( !allow_overflow ) {
-				try {
-					float width = this.GetDimensions().Width;
-					float text_len = Main.fontMouseText.MeasureString( substr ).X;
-
-					while( text_len > width ) {
-						substr = substr.Substring( 0, substr.Length - 1 );
-						text_len = Main.fontMouseText.MeasureString( substr ).X;
-					}
-				} catch( Exception e ) {
-					ErrorLogger.Log( e.ToString() );
-				}
+		
+		public void SetText( string text ) {
+			var str_bldr = new StringBuilder( text );
+			if( this.OnPreChange != null ) {
+				this.OnPreChange.Invoke( str_bldr );
 			}
-			
-			this.Text = substr;
-			this.CursorPos = this.CursorPos > substr.Length ? substr.Length : this.CursorPos;
+
+			text = str_bldr.ToString();
+
+			if( text.Length > this.MaxLength ) {
+				text = text.Substring( 0, this.MaxLength );
+			}
+
+			this.Text = text;
+			this.CursorPos = text.Length; // TODO: Allow cursor moving
+			this.DisplayText = UITextArea.GetFittedText( text, this.CursorPos, this.GetInnerDimensions().Width );
 		}
 
 
@@ -80,11 +85,10 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				string new_text = Main.GetInputText( this.Text );
 
 				if( !new_text.Equals( this.Text ) ) {
-					this.CursorPos = new_text.Length;
-					this.Text = new_text;
+					this.SetText( new_text );
 				}
 
-				if( UIHelpers.JustPressedKey( Keys.Escape ) || UIHelpers.JustPressedKey(Keys.Enter) ) {
+				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
 					this.Unfocus();
 				}
 			}
@@ -100,7 +104,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		}
 
 		public override void Recalculate() {
-			this.SetText( this.Text, false );
+			this.SetText( this.Text );
 			base.Recalculate();
 		}
 
@@ -165,8 +169,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				CalculatedStyle inner_dim = this.GetInnerDimensions();
 				Vector2 pos = inner_dim.Position();
 
-				if( this.Text != "" ) {
-					Utils.DrawBorderString( sb, this.Text, pos, this.TextColor, 1f, 0.0f, 0.0f, -1 );
+				if( this.DisplayText != "" ) {
+					Utils.DrawBorderString( sb, this.DisplayText, pos, this.TextColor, 1f, 0.0f, 0.0f, -1 );
 				}
 
 				if( this.HasFocus ) {
@@ -174,21 +178,53 @@ namespace HamstarHelpers.UIHelpers.Elements {
 					Main.instance.DrawWindowsIMEPanel( ime_pos, 0.5f );
 
 					if( (this.CursorAnimation %= 40) <= 20 ) {
-						string substr = string.IsNullOrEmpty(this.Text) ? "" : this.Text.Substring( 0, this.CursorPos );
-						float cursor_offset_x = substr.Length == 0 ? 0f : Main.fontMouseText.MeasureString( substr ).X;
-
+						// TODO cursor needs to be offset according to display text:
+						
+						float cursor_offset_x = this.DisplayText.Length == 0 ? 0f : Main.fontMouseText.MeasureString( this.DisplayText ).X;
 						pos.X += cursor_offset_x + 2.0f;    //((inner_dim.Width - this.TextSize.X) * 0.5f)
 
 						Utils.DrawBorderString( sb, "|", pos, Color.White );
 					}
 				} else {
-					if( this.Text == "" && this.IsEnabled ) {
+					if( this.DisplayText == "" && this.IsEnabled ) {
 						Utils.DrawBorderString( sb, this.Hint, pos, this.HintColor );
 					}
 				}
 			} catch( Exception e ) {
 				ErrorLogger.Log( e.ToString() );
 			}
+		}
+
+
+		////////////////
+
+		public static string GetFittedText( string text, int cursor_pos, float width ) {
+			int start = 0;
+			int end = text.Length;
+			string substr = text;
+
+			while( Main.fontMouseText.MeasureString( substr ).X > width ) {
+				if( cursor_pos >= end ) {
+					substr = substr.Substring( 1 );
+					start++;
+				} else if( cursor_pos <= start ) {
+					end--;
+					substr = substr.Substring( 0, end - start );
+				} else {
+					start++;
+					end--;
+					substr = substr.Substring( 1, end - start );
+				}
+			}
+
+			//if( end < text.Length && end > 0 ) {
+			//	substr = substr.Substring( 0, substr.Length - 1 ) + '…';
+			//}
+			//if( start > 0 && substr.Length > 0 ) {
+			//	substr = '…' + substr.Substring( 1 );
+			//}
+
+			return substr;
 		}
 	}
 }

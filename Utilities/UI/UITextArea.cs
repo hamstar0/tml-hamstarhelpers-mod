@@ -42,7 +42,7 @@ namespace HamstarHelpers.Utilities.UI {
 		////////////////
 
 		public void SetText( string text, bool allow_overflow ) {
-			this.TrueElement.SetText( text, allow_overflow );
+			this.TrueElement.SetText( text );
 		}
 
 		////////////////

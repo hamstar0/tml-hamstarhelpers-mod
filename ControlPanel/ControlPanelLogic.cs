@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.ItemHelpers;
-using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -73,16 +72,8 @@ namespace HamstarHelpers.ControlPanel {
 			//string url = "http://localhost:12347/issue_submit/";
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "In-game report: " + issue_title;
-			//string body = "Mods: " + string.Join( ", ", mods.Select( m => m.DisplayName + " " + m.Version.ToString() ).ToArray() );
-			string body = mods.Select( m => m.DisplayName + " " + m.Version.ToString() ).Aggregate( (all, next) => all + ", " + next );
-			body += '\n' + "Is day: " + Main.dayTime + ", Time of day/night: " + Main.time + ", Total time: "+Main._drawInterfaceGameTime;
-			body += '\n' + "World size: "+ WorldHelpers.WorldHelpers.GetSize().ToString();
-			body += '\n' + "World progress: "+string.Join(", ", this.OutputGameProgress().ToArray());
-			body += '\n' + "Items on ground: "+ ItemHelpers.ItemHelpers.GetActive().Count+", Npcs active: "+NPCHelpers.NPCHelpers.GetActive();
-			if( Main.netMode != 0 ) {
-				body += '\n' + "Player count: " + Main.ActivePlayersCount;
-			}
-			body += '\n' + " " + '\n' + issue_body;
+			string body = this.OutputGameData( mods );
+			body += "\n \n" + issue_body;
 
 			var json = new ModIssueReport {
 				githubuser = ExtendedModManager.GetGithubUserName( mod ),
@@ -99,26 +90,29 @@ namespace HamstarHelpers.ControlPanel {
 				request.ContentType = "application/json";   //"application/vnd.github.v3+json";
 				request.ContentLength = json_bytes.Length;
 				request.UserAgent = "tModLoader "+ModLoader.version.ToString();
-
+				
 				using( Stream data_stream = request.GetRequestStream() ) {
 					data_stream.Write( json_bytes, 0, json_bytes.Length );
 					data_stream.Close();
 				}
-
+				
 				WebResponse resp = request.GetResponse();
-				byte[] resp_data = new byte[resp.ContentLength];
-				Stream resp_data_stream = resp.GetResponseStream();
-				resp_data_stream.Read( resp_data, 0, resp_data.Length );
-				string resp_str = Encoding.UTF8.GetString( resp_data );
-				object obj = JsonConvert.DeserializeObject( resp_str );
+				string resp_data;
 
-				JObject resp_json = JObject.Parse( resp_str );
+				using( Stream resp_data_stream = resp.GetResponseStream() ) {
+					var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
+					resp_data = stream_read.ReadToEnd();
+					resp_data_stream.Close();
+				}
+				
+				JObject resp_json = JObject.Parse( resp_data );
 				string msg = resp_json["Msg"].ToObject<string>();
 
 				Main.NewText( "Issue submit result: "+msg, Color.Yellow );
 				ErrorLogger.Log( "Issue submit result: " + msg );
 			} catch( Exception e ) {
 				ErrorLogger.Log( "Issue submit error: " + e.ToString() );
+				Main.NewText( "Issue submit error: "+e.ToString(), Color.Red );
 			}
 		}
 
@@ -129,8 +123,22 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		////////////////
+
+		public string OutputGameData( IEnumerable<Mod> mods ) {
+			string data = "Mods: " + string.Join( ", ", mods.Select( m => m.DisplayName + " " + m.Version.ToString() ).ToArray() );
+			//string data = mods.Select( m => m.DisplayName + " " + m.Version.ToString() ).Aggregate( ( all, next ) => all + ", " + next );
+			data += "\n \n" + "Is day: " + Main.dayTime + ", Time of day/night: " + Main.time + ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
+			data += "\n \n" + "World name: " + Main.worldName + ", world size: " + WorldHelpers.WorldHelpers.GetSize().ToString();
+			data += "\n \n" + "World progress: " + string.Join( ", ", this.OutputWorldProgress().ToArray() );
+			data += "\n \n" + "Items on ground: " + ItemHelpers.ItemHelpers.GetActive().Count + ", Npcs active: " + NPCHelpers.NPCHelpers.GetActive().Count;
+			if( Main.netMode != 0 ) {
+				data += "\n \n" + "Player count: " + Main.ActivePlayersCount;
+			}
+
+			return data;
+		}
 		
-		public IList<string> OutputGameProgress() {
+		public IList<string> OutputWorldProgress() {
 			var list = new List<string>();
 
 			if( NPC.downedBoss1 ) { list.Add("Eye of Cthulhu killed"); }

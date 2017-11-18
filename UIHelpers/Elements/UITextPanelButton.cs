@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.UIHelpers;
-using Terraria.GameContent.UI.Elements;
+﻿using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
@@ -23,11 +22,11 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			theme.ApplyButton( this );
 			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				if( !self.IsEnabled ) { return; }
-				theme.ApplyButtonLit( this );
+				theme.ApplyButtonLit( self );
 			};
 			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				if( !self.IsEnabled ) { return; }
-				theme.ApplyButton( this );
+				theme.ApplyButton( self );
 			};
 		}
 

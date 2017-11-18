@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.UIHelpers.Elements;
 using System;
 using System.Threading;
 using Terraria.ModLoader;
@@ -9,25 +8,40 @@ namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI {
 		public void EnableIssueInput() {
 			if( !this.IssueTitleInput.IsEnabled ) {
-				this.IssueBodyInput.Enable();
+				this.IssueTitleInput.Enable();
 			}
 			if( !this.IssueBodyInput.IsEnabled ) {
 				this.IssueBodyInput.Enable();
 			}
-			if( !this.IssueSubmitButton.IsEnabled ) {
-				this.IssueSubmitButton.Enable();
-			}
+			this.RefreshIssueSubmitButton();
 		}
 
 		public void DisableIssueInput() {
 			if( this.IssueTitleInput.IsEnabled ) {
-				this.IssueBodyInput.Disable();
+				this.IssueTitleInput.Disable();
 			}
 			if( this.IssueBodyInput.IsEnabled ) {
 				this.IssueBodyInput.Disable();
 			}
 			if( this.IssueSubmitButton.IsEnabled ) {
 				this.IssueSubmitButton.Disable();
+			}
+		}
+
+
+		public void RefreshIssueSubmitButton() {
+			if( this.IssueSubmitButton == null || this.IssueTitleInput == null || this.IssueBodyInput == null ) {
+				return;
+			}
+
+			if( this.IssueTitleInput.Text.Length < 4 || this.IssueBodyInput.Text.Length < 4 ) {
+				if( this.IssueSubmitButton.IsEnabled ) {
+					this.IssueSubmitButton.Disable();
+				}
+			} else {
+				if( !this.IssueSubmitButton.IsEnabled ) {
+					this.IssueSubmitButton.Enable();
+				}
 			}
 		}
 

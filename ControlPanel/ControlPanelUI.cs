@@ -3,7 +3,6 @@ using HamstarHelpers.UIHelpers;
 using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -96,7 +95,7 @@ namespace HamstarHelpers.ControlPanel {
 					Main.LocalPlayer.mouseInterface = true;
 				}
 				
-				if( this.AwaitingReport || this.CurrentModListItem == null || !ExtendedModManager.HasGithub( this.CurrentModListItem.Mod ) ) {
+				if( this.AwaitingReport || this.CurrentModListItem == null || !ExtendedModManager.HasGithub(this.CurrentModListItem.Mod) ) {
 					this.DisableIssueInput();
 				} else {
 					this.EnableIssueInput();
@@ -104,8 +103,8 @@ namespace HamstarHelpers.ControlPanel {
 
 				if( this.ResetIssueInput ) {
 					this.ResetIssueInput = false;
-					this.IssueTitleInput.SetText( "", true );
-					this.IssueBodyInput.SetText( "", true );
+					this.IssueTitleInput.SetText( "" );
+					this.IssueBodyInput.SetText( "" );
 
 					if( this.IsOpen ) {
 						this.Close();

@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework.Graphics;
+using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -9,7 +10,7 @@ using Terraria.UI;
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
 		public static float ContainerWidth = 600f;
-		public static float ContainerHeight = 460f;
+		public static float ContainerHeight = 480f;
 		public static float ModListHeight = 300f;
 		
 		public static Texture2D ControlPanelLabel { get; private set; }
@@ -32,13 +33,13 @@ namespace HamstarHelpers.ControlPanel {
 			ControlPanelLogic logic = this.Logic;
 			var mymod = HamstarHelpersMod.Instance;
 			float top = 0;
-
+			
 			this.OuterContainer = new UIElement();
 			this.OuterContainer.Width.Set( ControlPanelUI.ContainerWidth, 0f );
 			this.OuterContainer.Height.Set( ControlPanelUI.ContainerHeight, 0f );
 			this.OuterContainer.MaxWidth.Set( ControlPanelUI.ContainerWidth, 0f );
 			this.OuterContainer.MaxHeight.Set( ControlPanelUI.ContainerHeight, 0f );
-			this.OuterContainer.HAlign = 0.5f;
+			this.OuterContainer.HAlign = 0f;
 			//this.MainElement.BackgroundColor = ControlPanelUI.MainBgColor;
 			//this.MainElement.BorderColor = ControlPanelUI.MainEdgeColor;
 			this.Append( this.OuterContainer );
@@ -87,18 +88,21 @@ namespace HamstarHelpers.ControlPanel {
 					}
 				}
 			}
-
-			this.IssueTitleInput = new UITextArea( this.Theme, "Enter title of mod issue" );
+			
+			this.IssueTitleInput = new UITextArea( this.Theme, "Enter title of mod issue", 256 );
 			this.IssueTitleInput.Top.Set( top, 0f );
 			this.IssueTitleInput.Width.Set( 0f, 1f );
 			this.IssueTitleInput.Height.Pixels = 36f;
 			this.IssueTitleInput.HAlign = 0f;
 			this.IssueTitleInput.SetPadding( 8f );
 			this.IssueTitleInput.Disable();
+			this.IssueTitleInput.OnPreChange += delegate ( StringBuilder new_text ) {
+				self.RefreshIssueSubmitButton();
+			};
 			this.InnerContainer.Append( (UIElement)this.IssueTitleInput );
 
-			top += 32f;
-
+			top += 40f;
+			
 			this.IssueBodyInput = new UITextArea( this.Theme, "Describe mod issue" );
 			this.IssueBodyInput.Top.Set( top, 0f );
 			this.IssueBodyInput.Width.Set( 0f, 1f );
@@ -106,11 +110,14 @@ namespace HamstarHelpers.ControlPanel {
 			this.IssueBodyInput.HAlign = 0f;
 			this.IssueBodyInput.SetPadding( 8f );
 			this.IssueBodyInput.Disable();
+			this.IssueBodyInput.OnPreChange += delegate ( StringBuilder new_text ) {
+				self.RefreshIssueSubmitButton();
+			};
 			this.InnerContainer.Append( (UIElement)this.IssueBodyInput );
 			
-			top += 32f;
+			top += 40f;
 
-			this.IssueSubmitButton = new UITextPanelButton( this.Theme, "Submit" );
+			this.IssueSubmitButton = new UITextPanelButton( this.Theme, "Submit Issue" );
 			this.IssueSubmitButton.Top.Set( top, 0f );
 			this.IssueSubmitButton.Left.Set( 0f, 0f );
 			this.IssueSubmitButton.Width.Set( 128f, 0f );
@@ -125,7 +132,7 @@ namespace HamstarHelpers.ControlPanel {
 				var apply_config_button = new UITextPanelButton( this.Theme, "Apply Config Changes" );
 				apply_config_button.Top.Set( top, 0f );
 				apply_config_button.Left.Set( 0f, 0f );
-				apply_config_button.Width.Set( 264f, 0f );
+				apply_config_button.Width.Set( 200f, 0f );
 				apply_config_button.HAlign = 1f;
 				apply_config_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 					self.ApplyConfigChanges();
@@ -133,7 +140,7 @@ namespace HamstarHelpers.ControlPanel {
 				this.InnerContainer.Append( apply_config_button );
 			}
 
-			top += 42f;
+			top += 56f;
 
 			var support_url = new UIWebUrl( "Support my mods!", "" );
 			support_url.Top.Set( top, 0f );
