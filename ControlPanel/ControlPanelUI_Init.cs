@@ -142,7 +142,7 @@ namespace HamstarHelpers.ControlPanel {
 
 			top += 56f;
 
-			var support_url = new UIWebUrl( "Support my mods!", "" );
+			var support_url = new UIWebUrl( "Support my mods!", "https://www.patreon.com/hamstar0" );
 			support_url.Top.Set( top, 0f );
 			this.InnerContainer.Append( support_url );
 			support_url.Left.Set( -support_url.GetDimensions().Width * 0.5f, 0.5f );

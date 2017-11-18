@@ -36,6 +36,7 @@ namespace HamstarHelpers.ControlPanel {
 		public bool AwaitingReport { get; private set; }
 
 		private bool ResetIssueInput = false;
+		private bool CloseDialog = false;
 
 
 
@@ -61,59 +62,75 @@ namespace HamstarHelpers.ControlPanel {
 			}
 		}
 
+
 		////////////////
 
 		private void LoadModList() {
 			foreach( var mod in this.Logic.GetMods() ) {
 				this.ModDataList.Add( this.CreateModListItem( mod ) );
 			}
-
 			this.ModListUpdateRequired = true;
 		}
 
+
 		////////////////
 
-		public void UpdateMe( GameTime game_time ) {
-			if( this.Backend != null ) {
-				this.Backend.Update( game_time );
+		public void UpdateInteractivity( GameTime game_time ) {
+			if( this.Backend == null ) { return; }
 
-				if( this.ModListUpdateRequired ) {
-					this.ModListUpdateRequired = false;
+			this.Backend.Update( game_time );
+		}
+		
 
-					this.ModListElem.Clear();
-					this.ModListElem.AddRange( this.ModDataList );
-				}
+		private void UpdateModList() {
+			if( !this.ModListUpdateRequired ) { return; }
+
+			this.ModListUpdateRequired = false;
+
+			this.ModListElem.Clear();
+			this.ModListElem.AddRange( this.ModDataList );
+		}
+
+		private void UpdateDialog() {
+			if( !this.IsOpen ) { return; }
+
+			if( Main.playerInventory || Main.npcChatText != "" ) {
+				this.Close();
+				return;
 			}
 
-			if( this.IsOpen ) {
-				if( Main.playerInventory || Main.npcChatText != "" ) {
+			if( this.OuterContainer.IsMouseHovering ) {
+				Main.LocalPlayer.mouseInterface = true;
+			}
+
+			if( this.AwaitingReport || this.CurrentModListItem == null || !ExtendedModManager.HasGithub( this.CurrentModListItem.Mod ) ) {
+				this.DisableIssueInput();
+			} else {
+				this.EnableIssueInput();
+			}
+
+			if( this.ResetIssueInput ) {
+				this.ResetIssueInput = false;
+				this.IssueTitleInput.SetText( "" );
+				this.IssueBodyInput.SetText( "" );
+			}
+
+			if( this.CloseDialog ) {
+				this.CloseDialog = false;
+				if( this.IsOpen ) {
 					this.Close();
-					return;
-				}
-
-				if( this.OuterContainer.IsMouseHovering ) {
-					Main.LocalPlayer.mouseInterface = true;
-				}
-				
-				if( this.AwaitingReport || this.CurrentModListItem == null || !ExtendedModManager.HasGithub(this.CurrentModListItem.Mod) ) {
-					this.DisableIssueInput();
-				} else {
-					this.EnableIssueInput();
-				}
-
-				if( this.ResetIssueInput ) {
-					this.ResetIssueInput = false;
-					this.IssueTitleInput.SetText( "" );
-					this.IssueBodyInput.SetText( "" );
-
-					if( this.IsOpen ) {
-						this.Close();
-					}
 				}
 			}
+		}
 
+
+		public void UpdateLogic( GameTime game_time ) {
+			this.UpdateModList();
+			this.UpdateDialog();
 			this.UpdateToggler();
 		}
+
+		////////////////
 
 		public void RecalculateBackend() {
 			if( this.Backend != null ) {
@@ -160,10 +177,12 @@ namespace HamstarHelpers.ControlPanel {
 			Main.inFancyUI = true;
 			Main.InGameUI.SetState( (UIState)this );
 			
-			this.OuterContainer.Top.Set( -(ControlPanelUI.ContainerHeight / 2f), 0.5f );
+			this.OuterContainer.Top.Set( -(ControlPanelUI.ContainerHeight * 0.5f), 0.5f );
+			this.OuterContainer.Left.Set( -(ControlPanelUI.ContainerWidth * 0.5f), 0.5f );
 			this.Recalculate();
 
 			this.Backend = Main.InGameUI;
+			UserInterface.ActiveInstance = this.Backend;
 		}
 
 
@@ -201,6 +220,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void ApplyConfigChanges() {
 			this.Logic.ApplyConfigChanges();
+			this.CloseDialog = true;
 		}
 	}
 }

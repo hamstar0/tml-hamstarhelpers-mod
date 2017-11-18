@@ -118,7 +118,14 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		public void ApplyConfigChanges() {
-			ExtendedModManager.ReloadAllConfigsFromFile();
+			foreach( var kv in ExtendedModManager.ConfigMods ) {
+				ExtendedModManager.ReloadConfigFromFile( kv.Value );
+			}
+
+			string mod_names = string.Join( ", ", ExtendedModManager.ConfigMods.Keys.ToArray() );
+
+			Main.NewText( "Mod configs reloaded for " + mod_names, Color.Yellow );
+			ErrorLogger.Log( "Mod configs reloaded for " + mod_names );
 		}
 
 

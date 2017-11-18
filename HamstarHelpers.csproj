@@ -68,10 +68,10 @@
     <Compile Include="TmlHelpers\AltNPCInfo.cs" />
     <Compile Include="DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="MyLogic.cs" />
-    <Compile Include="MyModWorld.cs" />
-    <Compile Include="MyGlobalNpc.cs" />
+    <Compile Include="MyWorld.cs" />
+    <Compile Include="MyNpc.cs" />
     <Compile Include="HudHelpers\HudHealthBarHelpers.cs" />
-    <Compile Include="MyModPlayer.cs" />
+    <Compile Include="MyPlayer.cs" />
     <Compile Include="ItemHelpers\ItemMusicBoxHelpers.cs" />
     <Compile Include="DebugHelpers\DebugHelpers.cs" />
     <Compile Include="DustHelpers\DustHelpers.cs" />

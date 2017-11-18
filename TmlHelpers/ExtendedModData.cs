@@ -15,6 +15,7 @@ namespace HamstarHelpers.TmlHelpers {
 	}
 
 
+
 	public static class ExtendedModManager {
 		internal static IDictionary<string, Mod> GithubMods;
 		internal static IDictionary<string, Mod> ConfigMods;
@@ -50,21 +51,31 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
-		private static bool DetectGithub( Mod mod ) {
-			PropertyInfo git_user_prop = mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );
-			if( git_user_prop == null ) { return false; }
-			PropertyInfo git_proj_field = mod.GetType().GetProperty( "GithubProjectName", BindingFlags.Static | BindingFlags.Public );
-			if( git_proj_field == null ) { return false; }
+		private static PropertyInfo GetGithubUserNameProp( Mod mod ) {
+			return mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );
+		}
+		private static PropertyInfo GetGitubProjectNameProp( Mod mod ) {
+			return mod.GetType().GetProperty( "GithubProjectName", BindingFlags.Static | BindingFlags.Public );
+		}
 
+		private static PropertyInfo GetConfigFilePathProp( Mod mod ) {
+			return mod.GetType().GetProperty( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
+		}
+		private static MethodInfo GetConfigReloadMethod( Mod mod ) {
+			return mod.GetType().GetMethod( "ReloadConfigFromFile", BindingFlags.Static | BindingFlags.Public );
+		}
+
+		////////////////
+
+		private static bool DetectGithub( Mod mod ) {
+			if( ExtendedModManager.GetGithubUserNameProp( mod ) == null ) { return false; }
+			if( ExtendedModManager.GetGitubProjectNameProp( mod ) == null ) { return false; }
 			return true;
 		}
 
 		public static bool DetectConfig( Mod mod ) {
-			PropertyInfo config_path_field = mod.GetType().GetProperty( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
-			if( config_path_field == null ) { return false; }
-			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile", BindingFlags.Static | BindingFlags.Public );
-			if( config_reload_method == null ) { return false; }
-
+			if( ExtendedModManager.GetConfigFilePathProp( mod ) == null ) { return false; }
+			if( ExtendedModManager.GetConfigReloadMethod( mod ) == null ) { return false; }
 			return true;
 		}
 
@@ -82,7 +93,7 @@ namespace HamstarHelpers.TmlHelpers {
 		public static string GetConfigRelativePath( Mod mod ) {
 			if( !ExtendedModManager.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo config_path_field = mod.GetType().GetProperty( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
+			PropertyInfo config_path_field = ExtendedModManager.GetConfigFilePathProp( mod );
 			return (string)config_path_field.GetValue( null );
 		}
 
@@ -100,14 +111,8 @@ namespace HamstarHelpers.TmlHelpers {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
 
-			MethodInfo config_reload_method = mod.GetType().GetMethod( "ReloadConfigFromFile", BindingFlags.Static | BindingFlags.Public );
+			MethodInfo config_reload_method = ExtendedModManager.GetConfigReloadMethod( mod );
 			config_reload_method.Invoke( null, new object[] { } );
-		}
-
-		public static void ReloadAllConfigsFromFile() {
-			foreach( var kv in ExtendedModManager.ConfigMods ) {
-				ExtendedModManager.ReloadConfigFromFile( kv.Value );
-			}
 		}
 
 		////////////////
@@ -115,14 +120,14 @@ namespace HamstarHelpers.TmlHelpers {
 		public static string GetGithubUserName( Mod mod ) {
 			if( !ExtendedModManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo git_user_prop = mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );
+			PropertyInfo git_user_prop = ExtendedModManager.GetGithubUserNameProp( mod );
 			return (string)git_user_prop.GetValue( null );
 		}
 
 		public static string GetGithubProjectName( Mod mod ) {
 			if( !ExtendedModManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo git_proj_prop = mod.GetType().GetProperty( "GithubProjectName", BindingFlags.Static | BindingFlags.Public );
+			PropertyInfo git_proj_prop = ExtendedModManager.GetGitubProjectNameProp( mod );
 			return (string)git_proj_prop.GetValue( null );
 		}
 	}

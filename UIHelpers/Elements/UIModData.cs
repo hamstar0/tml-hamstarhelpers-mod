@@ -18,7 +18,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		public UIImage IconElem { get; private set; }
 		public UIElement TitleElem { get; private set; }
 		public UIElement AuthorElem { get; private set; }
-		public UITextPanel<string> ConfigButton { get; private set; }
+		public UITextPanelButton ConfigButton { get; private set; }
 
 		public bool HasIconLoaded { get; private set; }
 		public bool WillDrawOwnHoverElements { get; private set; }
@@ -82,6 +82,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 			if( ExtendedModManager.HasConfig(mod) ) {
 				var config_button = new UITextPanelButton( theme, "Open Config File" );
+				config_button.Width.Set( 160f, 0f );
 				config_button.HAlign = 1f;
 				config_button.VAlign = 1f;
 				this.Append( config_button );

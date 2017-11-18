@@ -6,7 +6,7 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	class MyModWorld : ModWorld {
+	class MyWorld : ModWorld {
 		public string ID { get; private set; }
 		public bool HasCorrectID { get; internal set; }  // Workaround for tml bug?
 

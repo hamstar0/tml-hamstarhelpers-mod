@@ -1,9 +1,9 @@
 v1.2.0
 -	@Create mod hub thread
 -	@Create mod thread (update build.txt homepage)
+
 -	Update support link
 -	Switch to dummy account for issue reports
-
 -	Ensure issue text fits in input box
 -	Add title input for issues
 -	@Verify all mods check for v1.2.0
