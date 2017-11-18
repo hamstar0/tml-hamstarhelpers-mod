@@ -6,6 +6,12 @@ using Terraria.UI;
 
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
+		private static Vector2 TogglerPosition = new Vector2( 128, 0 );
+
+
+
+		////////////////
+
 		public bool IsTogglerLit { get; private set; }
 
 		
@@ -26,6 +32,8 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		public void UpdateToggler() {
+			this.CheckTogglerMouseInteraction();
+
 			if( this.IsTogglerLit ) {
 				Main.LocalPlayer.mouseInterface = true;
 			}
@@ -54,7 +62,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 		
-		public void CheckTogglerMouseInteraction() {
+		private void CheckTogglerMouseInteraction() {
 			bool is_click = Main.mouseLeft && Main.mouseLeftRelease;
 			Vector2 pos = ControlPanelUI.TogglerPosition;
 			Vector2 size = ControlPanelUI.ControlPanelLabel.Size();

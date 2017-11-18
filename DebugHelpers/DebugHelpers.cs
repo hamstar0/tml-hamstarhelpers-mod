@@ -59,7 +59,7 @@ namespace HamstarHelpers.DebugHelpers {
 			}
 		}
 
-		public static void PrintToBatch( SpriteBatch sb ) {
+		internal static void PrintToBatch( SpriteBatch sb ) {
 			int y_pos = 0;
 
 			foreach( string key in DebugHelpers.Display.Keys.ToList() ) {

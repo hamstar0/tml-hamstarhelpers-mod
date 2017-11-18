@@ -38,5 +38,17 @@ namespace HamstarHelpers.UIHelpers {
 		public static bool JustPressedKey( Keys key ) {
 			return Main.inputText.IsKeyDown( key ) && !Main.oldInputText.IsKeyDown( key );
 		}
+
+
+		public static Vector2 GetHoverTipPosition( string str ) {
+			Vector2 dim = Main.fontMouseText.MeasureString( str );
+			Vector2 pos = new Vector2( Main.mouseX + 48f, Main.mouseY + 16f );
+
+			if( (pos.X + dim.X) > Main.screenWidth ) {
+				pos.X = Main.screenWidth - dim.X;
+			}
+
+			return pos;
+		}
 	}
 }

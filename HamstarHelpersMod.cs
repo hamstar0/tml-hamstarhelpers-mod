@@ -3,7 +3,6 @@ using HamstarHelpers.ItemHelpers;
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,10 +16,14 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers {
-	class HamstarHelpersMod : Mod, ExtendedModData {
+	class HamstarHelpersMod : Mod {
 		public static HamstarHelpersMod Instance { get; private set; }
 
+		public static string GithubUserName { get { return "hamstar0"; } }
+		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
+
+		////////////////
 
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
@@ -30,7 +33,6 @@ namespace HamstarHelpers {
 		private int LastSeenScreenWidth = -1;
 		private int LastSeenScreenHeight = -1;
 
-		public string GithubUrl { get { return "https://github.com/hamstar0/tml-hamstarhelpers-mod"; } }
 
 
 		////////////////
@@ -84,7 +86,6 @@ namespace HamstarHelpers {
 
 			if( !Main.dedServ ) {
 				ControlPanelUI.PostSetupContent( (HamstarHelpersMod)this );
-				this.ControlPanel.PostSetupComponents();
 			}
 
 			this.HasSetupContent = true;
@@ -93,7 +94,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreSaveAndQuit() {
-			var modworld = this.GetModWorld<MyModWorld>();
+			var modworld = this.GetModWorld<MyWorld>();
 
 			this.HasCurrentPlayerEnteredWorld = false;
 			modworld.HasCorrectID = false;
@@ -103,7 +104,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostDrawInterface( SpriteBatch sb ) {
-			var modworld = this.GetModWorld<MyModWorld>();
+			var modworld = this.GetModWorld<MyWorld>();
 
 			PlayerMessage.DrawPlayerLabels( sb );
 			SimpleMessage.DrawMessage( sb );
@@ -182,10 +183,11 @@ namespace HamstarHelpers {
 			RecipeGroup.RegisterGroup( "HamstarHelpers:RecordedMusicBoxes", musicbox_grp );
 		}
 		
+
 		////////////////
 
-		/*public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-			var modworld = this.GetModWorld<MyModWorld>();
+		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
+			var modworld = this.GetModWorld<MyWorld>();
 
 			if( modworld.Logic.IsReady() ) {
 				int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
@@ -197,7 +199,7 @@ namespace HamstarHelpers {
 							this.ControlPanel.RecalculateBackend();
 						}
 
-						this.ControlPanel.CheckTogglerMouseInteraction();
+						this.ControlPanel.UpdateInteractivity( Main._drawInterfaceGameTime );
 
 						this.ControlPanel.Draw( Main.spriteBatch );
 						this.ControlPanel.DrawToggler( Main.spriteBatch );
@@ -211,6 +213,6 @@ namespace HamstarHelpers {
 					layers.Insert( idx, interface_layer );
 				}
 			}
-		}*/
+		}
 	}
 }

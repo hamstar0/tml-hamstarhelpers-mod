@@ -49,7 +49,7 @@ namespace HamstarHelpers {
 			}
 
 			if( Main.netMode != 2 ) {
-				mymod.ControlPanel.UpdateMe( Main._drawInterfaceGameTime );
+				mymod.ControlPanel.UpdateLogic( Main._drawInterfaceGameTime );
 			}
 
 			this.UpdateDay();

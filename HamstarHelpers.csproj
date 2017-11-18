@@ -35,6 +35,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\System-Web-Helpers.dll.1.0.0\lib\Net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +59,8 @@
     <Compile Include="Commands\ConfigSettingCommand.cs" />
     <Compile Include="ControlPanel\ControlPanelLogic.cs" />
     <Compile Include="ControlPanel\ControlPanelUI.cs" />
+    <Compile Include="ControlPanel\ControlPanelUI_Init.cs" />
+    <Compile Include="ControlPanel\ControlPanelUI_Issue.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Toggler.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
@@ -62,10 +68,10 @@
     <Compile Include="TmlHelpers\AltNPCInfo.cs" />
     <Compile Include="DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="MyLogic.cs" />
-    <Compile Include="MyModWorld.cs" />
-    <Compile Include="MyGlobalNpc.cs" />
+    <Compile Include="MyWorld.cs" />
+    <Compile Include="MyNpc.cs" />
     <Compile Include="HudHelpers\HudHealthBarHelpers.cs" />
-    <Compile Include="MyModPlayer.cs" />
+    <Compile Include="MyPlayer.cs" />
     <Compile Include="ItemHelpers\ItemMusicBoxHelpers.cs" />
     <Compile Include="DebugHelpers\DebugHelpers.cs" />
     <Compile Include="DustHelpers\DustHelpers.cs" />
@@ -88,9 +94,10 @@
     <Compile Include="TileHelpers\TileWallHelpers.cs" />
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
     <Compile Include="TmlHelpers\AltProjectileInfo.cs" />
+    <Compile Include="TmlHelpers\BuildPropertiesInterface.cs" />
     <Compile Include="TmlHelpers\ExtendedModData.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
-    <Compile Include="Utilities\Config\ConfigurableMods.cs" />
+    <Compile Include="UIHelpers\UITheme.cs" />
     <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="DotNetHelpers\DotNetHelpers.cs" />
@@ -108,8 +115,16 @@
     <Compile Include="HudHelpers\HudHelpers.cs" />
     <Compile Include="HudHelpers\HudMapHelpers.cs" />
     <Compile Include="UIHelpers\UIHelpers.cs" />
+    <Compile Include="UIHelpers\Elements\UICheckbox.cs" />
+    <Compile Include="UIHelpers\Elements\UIModData.cs" />
+    <Compile Include="UIHelpers\Elements\UITextArea.cs" />
+    <Compile Include="UIHelpers\Elements\UITextPanelButton.cs" />
+    <Compile Include="UIHelpers\Elements\UIWebUrl.cs" />
     <Compile Include="Utilities\UI\UICheckbox.cs" />
+    <Compile Include="Utilities\UI\UIModData.cs" />
     <Compile Include="Utilities\UI\UITextArea.cs" />
+    <Compile Include="Utilities\UI\UITextPanelButton.cs" />
+    <Compile Include="Utilities\UI\UIWebUrl.cs" />
     <Compile Include="WorldHelpers\WorldHelpers.cs" />
     <Compile Include="XnaHelpers\XnaColorHelpers.cs" />
     <Compile Include="XnaHelpers\XnaHelpers.cs" />
@@ -120,16 +135,14 @@
     <Content Include="ControlPanel\ControlPanelLabelLit.png" />
     <Content Include="description.txt" />
     <Content Include="icon.png" />
-    <Content Include="Utilities\UI\check_box.png" />
-    <Content Include="Utilities\UI\check_mark.png" />
+    <Content Include="UIHelpers\Elements\check_box.png" />
+    <Content Include="UIHelpers\Elements\check_mark.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\Mod\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

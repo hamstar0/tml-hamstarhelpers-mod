@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	class MyModPlayer : ModPlayer {
+	class MyPlayer : ModPlayer {
 		public bool HasEnteredWorld { get; private set; }
 
 
@@ -16,7 +16,7 @@ namespace HamstarHelpers {
 		}
 
 		public override void clientClone( ModPlayer client_clone ) {
-			var clone = (MyModPlayer)client_clone;
+			var clone = (MyPlayer)client_clone;
 			clone.HasEnteredWorld = this.HasEnteredWorld;
 		}
 
@@ -24,7 +24,7 @@ namespace HamstarHelpers {
 		public override void OnEnterWorld( Player player ) {
 			if( player.whoAmI == this.player.whoAmI ) {    // Current player
 				var mymod = (HamstarHelpersMod)this.mod;
-				var modworld = mymod.GetModWorld<MyModWorld>();
+				var modworld = mymod.GetModWorld<MyWorld>();
 				
 				if( Main.netMode == 1 ) {   // Client
 					ClientPacketHandlers.SendRequestModDataFromClient( mymod );
@@ -38,7 +38,7 @@ namespace HamstarHelpers {
 
 		public void PostEnterWorld() {
 			var mymod = (HamstarHelpersMod)this.mod;
-			var modworld = mymod.GetModWorld<MyModWorld>();
+			var modworld = mymod.GetModWorld<MyWorld>();
 			
 			this.HasEnteredWorld = true;
 		}
@@ -53,7 +53,7 @@ namespace HamstarHelpers {
 			}
 
 			var mymod = (HamstarHelpersMod)this.mod;
-			var modworld = mymod.GetModWorld<MyModWorld>();
+			var modworld = mymod.GetModWorld<MyWorld>();
 
 			if( Main.netMode != 2 ) {   // Not server
 				if( this.player.whoAmI == Main.myPlayer ) { // Current player only

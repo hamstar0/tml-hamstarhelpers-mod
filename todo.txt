@@ -1,27 +1,47 @@
-v1.1.5
--	Implement config reloading command
-	-	Broadcast commands to players on change on server
-	-	Define whitelist of client-only commands
-	-	...
+v1.2.0
+-	@Create mod hub thread
+-	@Create mod thread (update build.txt homepage)
+
+-	Update support link
+-	Switch to dummy account for issue reports
+-	Ensure issue text fits in input box
+-	Add title input for issues
+-	@Verify all mods check for v1.2.0
+-	@Set wormholes mod icon to blue
+-	@Implement compatibility for v1.2.0 with other mods
+-	F&T
 -	Implement UI panel
-	-	Implement non-enabled mods in list
-	-	Implement 'Refresh Config Changes' button
+	-	Implement 'Apply Config Changes' button
+		-	Disable 'Apply Config Changes' button on clients
+		-	Apply changes on click
 	-	Issue submit form
+		-	Add submit response feedback
+		-	Use 3rd party application to forward issues to github
+			-	Add per-IP issue throttling
+			-	Add project release check anti-spam
+			-	Implement site app
+		-	F&T
+			-	Fix URL popup
+			-	Button lit = (old) normal color
+			-	Button normal = lit color
+			-	TextArea disable = button lit + hint remove
+			-	TextArea normal = disabled color
+		-	Handle form submit
+		-	Implement issue submit function
 	-	Mod list
 		-	'Open Mod's Config' button
 		-	Select to give context for issue submits
-		-	Display mod page
+		-	Display mod page + link
 		-	Display mod icon
-		-	Display mod info (name, author, version, side, etc.)
+		-	Display mod info (name, author, version, etc.)
 		-	Get tml mod data
 -	Define UI panel
 	-	Support link
 	-	'Refresh Config Changes' button
 	-	Issue submit form
-		-	Define submit button
+		-	Define submit and cancel buttons
 		-	Define text input
-
-		-	Implement text area ui element
+		-	Implement basic text area ui element
 	-	Mod list
 	-	Panel
 	-	@Layout
