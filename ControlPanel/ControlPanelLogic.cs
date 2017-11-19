@@ -71,7 +71,7 @@ namespace HamstarHelpers.ControlPanel {
 			
 			//string url = "http://localhost:12347/issue_submit/";
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
-			string title = "In-game report: " + issue_title;
+			string title = "In-game: " + issue_title;
 			string body = this.OutputGameData( mods );
 			body += "\n \n" + issue_body;
 

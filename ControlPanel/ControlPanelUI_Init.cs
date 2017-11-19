@@ -89,7 +89,7 @@ namespace HamstarHelpers.ControlPanel {
 				}
 			}
 			
-			this.IssueTitleInput = new UITextArea( this.Theme, "Enter title of mod issue", 256 );
+			this.IssueTitleInput = new UITextArea( this.Theme, "Enter title of mod issue", 128 );
 			this.IssueTitleInput.Top.Set( top, 0f );
 			this.IssueTitleInput.Width.Set( 0f, 1f );
 			this.IssueTitleInput.Height.Pixels = 36f;
