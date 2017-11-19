@@ -10,7 +10,7 @@ using Terraria.UI;
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
 		public static float ContainerWidth = 600f;
-		public static float ContainerHeight = 480f;
+		public static float ContainerHeight = 512f;
 		public static float ModListHeight = 300f;
 		
 		public static Texture2D ControlPanelLabel { get; private set; }
@@ -55,8 +55,21 @@ namespace HamstarHelpers.ControlPanel {
 
 			this.Theme.ApplyPanel( this.InnerContainer );
 
+			var tip = new UIText( "To receive issue reports for your mod, " );
+			this.InnerContainer.Append( (UIElement)tip );
+
+			var tip_url = new UIWebUrl( "read this.",
+				"https://forums.terraria.org/index.php?threads/hamstars-helpers-a-modders-mod-for-mods-and-modding.63670/",
+				true, 1f );
+			tip_url.Left.Set( tip.GetInnerDimensions().Width, 0f );
+			tip_url.Top.Set( -2f, 0f );
+			this.InnerContainer.Append( (UIElement)tip_url );
+
+			top += 24f;
+
 			var mod_list_panel = new UIPanel();
 			{
+				mod_list_panel.Top.Set( top, 0f );
 				mod_list_panel.Width.Set( 0f, 1f );
 				mod_list_panel.Height.Set( ControlPanelUI.ModListHeight, 0f );
 				mod_list_panel.HAlign = 0f;
@@ -80,7 +93,7 @@ namespace HamstarHelpers.ControlPanel {
 					UIScrollbar scrollbar = new UIScrollbar();
 					{
 						scrollbar.Top.Set( 8f, 0f );
-						scrollbar.Height.Set( -24f, 1f );
+						scrollbar.Height.Set( -16f, 1f );
 						scrollbar.SetView( 100f, 1000f );
 						scrollbar.HAlign = 1f;
 						mod_list_panel.Append( (UIElement)scrollbar ); 
