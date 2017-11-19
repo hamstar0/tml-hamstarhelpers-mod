@@ -83,7 +83,7 @@ namespace HamstarHelpers.ControlPanel {
 						scrollbar.Height.Set( -24f, 1f );
 						scrollbar.SetView( 100f, 1000f );
 						scrollbar.HAlign = 1f;
-						mod_list_panel.Append( (UIElement)scrollbar );
+						mod_list_panel.Append( (UIElement)scrollbar ); 
 						this.ModListElem.SetScrollbar( scrollbar );
 					}
 				}

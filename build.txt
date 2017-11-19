@@ -1,6 +1,6 @@
 author = hamstar
-version = 1.2.0
+version = 1.2.0.1
 displayName = Hamstar's Helpers
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 includePDB = true
-homepage = https://github.com/hamstar0/tml-hamstarhelpers-mod
+homepage = https://forums.terraria.org/index.php?threads/hamstars-helpers-a-modders-mod-for-mods-and-modding.63670/
