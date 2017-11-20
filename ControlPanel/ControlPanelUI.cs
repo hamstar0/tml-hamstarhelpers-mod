@@ -4,7 +4,6 @@ using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -37,6 +36,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		private bool ResetIssueInput = false;
 		private bool CloseDialog = false;
+		private bool IsPopulatingList = false;
 
 
 
@@ -52,12 +52,12 @@ namespace HamstarHelpers.ControlPanel {
 		public override void OnActivate() {
 			base.OnActivate();
 
-			if( this.ModDataList.Count == 0 ) {
-				if( SynchronizationContext.Current == null ) {
-					SynchronizationContext.SetSynchronizationContext( new SynchronizationContext() );
-				}
-				Task.Factory.StartNew( task => { }, TaskScheduler.FromCurrentSynchronizationContext() ).ContinueWith( task => {
+			if( this.ModDataList.Count == 0 && !this.IsPopulatingList ) {
+				this.IsPopulatingList = true;
+
+				Task.Run( () => {
 					this.LoadModList();
+					this.IsPopulatingList = false;
 				} );
 			}
 		}

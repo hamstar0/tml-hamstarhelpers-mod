@@ -200,6 +200,7 @@ namespace HamstarHelpers {
 						}
 
 						this.ControlPanel.UpdateInteractivity( Main._drawInterfaceGameTime );
+						//this.ControlPanel.UpdateLogic( Main._drawInterfaceGameTime );
 
 						this.ControlPanel.Draw( Main.spriteBatch );
 						this.ControlPanel.DrawToggler( Main.spriteBatch );
