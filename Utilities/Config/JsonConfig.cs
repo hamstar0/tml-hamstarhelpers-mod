@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Terraria;
 using Newtonsoft.Json;
-
+using System;
 
 namespace HamstarHelpers.Utilities.Config {
 	public class JsonConfig<T> {
@@ -61,19 +61,38 @@ namespace HamstarHelpers.Utilities.Config {
 
 		public bool LoadFile() {
 			string path = this.GetFullPath();
-			if( !File.Exists( path ) ) { return false; }
-
-			using( StreamReader r = new StreamReader( path ) ) {
-				string json = r.ReadToEnd();
-				this.DeserializeMe( json );
+			bool success = true;
+			if( !File.Exists( path ) ) {
+				success = false;
 			}
-			return true;
+
+			if( success ) {
+				try {
+					using( StreamReader r = new StreamReader( path ) ) {
+						string json = r.ReadToEnd();
+						this.DeserializeMe( json );
+					}
+				} catch( Exception e ) {
+					DebugHelpers.DebugHelpers.Log( "JsonConfig.LoadFile() failed - " + e.ToString() );
+					success = false;
+				}
+			}
+
+			if( this.Data is ConfigurationDataBase ) {
+				( (ConfigurationDataBase)(object)this.Data).OnLoad( success );
+			}
+
+			return success;
 		}
 
 		public void SaveFile() {
 			string path = this.GetFullPath();
 			string json = this.SerializeMe();
 			File.WriteAllText( path, json );
+
+			if( this.Data is ConfigurationDataBase ) {
+				((ConfigurationDataBase)(object)this.Data).OnSave();
+			}
 		}
 
 		public bool DestroyFile() {

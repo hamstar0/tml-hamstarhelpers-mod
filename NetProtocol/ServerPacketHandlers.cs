@@ -30,7 +30,7 @@ namespace HamstarHelpers.NetProtocol {
 			// Server only
 			if( Main.netMode != 2 ) { return; }
 
-			var modworld = mymod.GetModWorld<MyWorld>();
+			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			if( modworld.Logic == null ) { throw new Exception( "HH logic not initialized." ); }
 
 			ModPacket packet = mymod.GetPacket();

@@ -49,12 +49,12 @@ namespace HamstarHelpers.NetProtocol {
 
 			int half_days = reader.ReadInt32();
 
-			var modworld = mymod.GetModWorld<MyWorld>();
+			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			if( modworld.Logic == null ) { throw new Exception( "HH logic not initialized." ); }
 
 			modworld.Logic.LoadOnce( half_days );
 
-			var modplayer = Main.player[Main.myPlayer].GetModPlayer<MyPlayer>( mymod );
+			var modplayer = Main.player[Main.myPlayer].GetModPlayer<HamstarHelpersPlayer>( mymod );
 			modplayer.PostEnterWorld();
 		}
 	}

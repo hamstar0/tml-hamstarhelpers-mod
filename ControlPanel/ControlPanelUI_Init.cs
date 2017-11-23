@@ -28,7 +28,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public override void OnInitialize() {
+		private void InitializeInternals() {
 			ControlPanelUI self = this;
 			ControlPanelLogic logic = this.Logic;
 			var mymod = HamstarHelpersMod.Instance;

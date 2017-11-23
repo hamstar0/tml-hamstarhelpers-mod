@@ -6,11 +6,11 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	class MyWorld : ModWorld {
+	class HamstarHelpersWorld : ModWorld {
 		public string ID { get; private set; }
 		public bool HasCorrectID { get; internal set; }  // Workaround for tml bug?
 
-		public MyLogic Logic { get; private set; }
+		public HamstarHelpersLogic Logic { get; private set; }
 
 
 
@@ -19,7 +19,7 @@ namespace HamstarHelpers {
 		public override void Initialize() {
 			var mymod = (HamstarHelpersMod)this.mod;
 
-			this.Logic = new MyLogic( mymod );
+			this.Logic = new HamstarHelpersLogic( mymod );
 
 			this.ID = Guid.NewGuid().ToString( "D" );
 			this.HasCorrectID = false;	// 'Load()' decides if no pre-existing one is found

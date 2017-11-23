@@ -48,6 +48,10 @@ namespace HamstarHelpers.ControlPanel {
 			this.InitializeToggler();
 		}
 
+		public override void OnInitialize() {
+			this.InitializeInternals();
+		}
+
 
 		public override void OnActivate() {
 			base.OnActivate();

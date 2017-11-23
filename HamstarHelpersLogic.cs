@@ -3,7 +3,7 @@ using Terraria;
 
 
 namespace HamstarHelpers {
-	class MyLogic {
+	class HamstarHelpersLogic {
 		private bool IsLoaded = false;
 		private int StartupDelay = 0;
 
@@ -15,7 +15,7 @@ namespace HamstarHelpers {
 
 
 
-		public MyLogic( HamstarHelpersMod mymod ) { }
+		public HamstarHelpersLogic( HamstarHelpersMod mymod ) { }
 
 
 		public void LoadOnce( int half_days ) {

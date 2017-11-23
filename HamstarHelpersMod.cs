@@ -94,7 +94,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreSaveAndQuit() {
-			var modworld = this.GetModWorld<MyWorld>();
+			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			this.HasCurrentPlayerEnteredWorld = false;
 			modworld.HasCorrectID = false;
@@ -104,7 +104,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostDrawInterface( SpriteBatch sb ) {
-			var modworld = this.GetModWorld<MyWorld>();
+			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			PlayerMessage.DrawPlayerLabels( sb );
 			SimpleMessage.DrawMessage( sb );
@@ -187,7 +187,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-			var modworld = this.GetModWorld<MyWorld>();
+			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			if( modworld.Logic.IsReady() ) {
 				int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
