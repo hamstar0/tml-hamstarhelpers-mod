@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.ControlPanel;
-using HamstarHelpers.ItemHelpers;
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
@@ -8,9 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -33,6 +30,16 @@ namespace HamstarHelpers {
 		private int LastSeenScreenWidth = -1;
 		private int LastSeenScreenHeight = -1;
 
+		////////////////
+
+		//internal ModEvents ModEvents = new ModEvents();
+		//internal WorldEvents WorldEvents = new WorldEvents();
+		//internal PlayerEvents PlayerEvents = new PlayerEvents();
+		//internal ItemEvents ItemEvents = new ItemEvents();
+		//internal NPCEvents NPCEvents = new NPCEvents();
+		//internal ProjectileEvents ProjectileEvents = new ProjectileEvents();
+		//internal TileEvents TileEvents = new TileEvents();
+
 
 
 		////////////////
@@ -52,6 +59,8 @@ namespace HamstarHelpers {
 		public override void Load() {
 			HamstarHelpersMod.Instance = this;
 
+			//this.ModEvents.OnLoad();
+
 			this.ControlPanel = new ControlPanelUI();
 			AltNPCInfo.DataInitialize();
 			AltProjectileInfo.DataInitialize();
@@ -70,9 +79,11 @@ namespace HamstarHelpers {
 		}
 
 		public override void Unload() {
+			//this.ModEvents.OnUnload();
+
 			HamstarHelpersMod.Instance = null;
 
-			_ExtendedModManagerLoader.Unload();
+			_ModMetaDataManagerLoader.Unload();
 		}
 
 		////////////////
@@ -82,10 +93,12 @@ namespace HamstarHelpers {
 		}
 
 		public override void PostSetupContent() {
-			_ExtendedModManagerLoader.Load();
+			//this.ModEvents.OnPostSetupContent();
+			
+			_ModMetaDataManagerLoader.Load();
 
 			if( !Main.dedServ ) {
-				ControlPanelUI.PostSetupContent( (HamstarHelpersMod)this );
+				ControlPanelUI.Load( (HamstarHelpersMod)this );
 			}
 
 			this.HasSetupContent = true;
@@ -94,6 +107,8 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreSaveAndQuit() {
+			//this.ModEvents.OnPreSaveAndQuit();
+
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			this.HasCurrentPlayerEnteredWorld = false;
@@ -103,24 +118,9 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void PostDrawInterface( SpriteBatch sb ) {
-			var modworld = this.GetModWorld<HamstarHelpersWorld>();
-
-			PlayerMessage.DrawPlayerLabels( sb );
-			SimpleMessage.DrawMessage( sb );
-
-			DebugHelpers.DebugHelpers.PrintToBatch( sb );
-			DebugHelpers.DebugHelpers.Once = false;
-			DebugHelpers.DebugHelpers.OnceInAWhile--;
-
-			if( modworld.Logic != null ) {
-				modworld.Logic.ReadyClient = true;  // Ugh!
-			}
-		}
-
-		////////////////
-
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
+			//this.ModEvents.OnHandlePacket( reader, ref player_who );
+
 			try {
 				if( Main.netMode == 1 ) {
 					ClientPacketHandlers.RoutePacket( this, reader );
@@ -156,37 +156,39 @@ namespace HamstarHelpers {
 		////////////////
 		
 		public override void AddRecipeGroups() {
-			IDictionary<int, int> npc_types_to_banner_item_types = new Dictionary<int, int>();
+			//this.ModEvents.OnAddRecipeGroups();
+			
+			NPCBannerHelpers.InitializeBanners();
 
-			for( int npc_type = 0; npc_type < Main.npcTexture.Length; npc_type++ ) {
-				int banner_type = Item.NPCtoBanner( npc_type );
-				if( banner_type == 0 ) { continue; }
-
-				int banner_item_type = Item.BannerToItem( banner_type );
-				if( banner_item_type >= Main.itemTexture.Length || banner_item_type <= 0 ) { continue; }
-
-				npc_types_to_banner_item_types[npc_type] = banner_item_type;
+			foreach( var kv in RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {
+				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
-
-			// Initialize banners
-			NPCBannerHelpers.InitializeBanners( npc_types_to_banner_item_types );
-
-			string any = Lang.misc[37].ToString();
-			RecipeGroup evil_boss_drops_grp = new RecipeGroup( () => any + " Evil Biome Boss Chunk", new int[] { ItemID.ShadowScale, ItemID.TissueSample } );
-			RecipeGroup mirror_grp = new RecipeGroup( () => any + " Magic Mirrors", new int[] { ItemID.MagicMirror, ItemID.IceMirror } );
-			RecipeGroup banner_grp = new RecipeGroup( () => any + " Mob Banner", NPCBannerHelpers.GetBannerItemTypes().ToArray() );
-			RecipeGroup musicbox_grp = new RecipeGroup( () => any + " Recorded Music Box", ItemMusicBoxHelpers.GetMusicBoxes().ToArray() );
-
-			RecipeGroup.RegisterGroup( "HamstarHelpers:EvilBiomeBossDrops", evil_boss_drops_grp );
-			RecipeGroup.RegisterGroup( "HamstarHelpers:MagicMirrors", mirror_grp );
-			RecipeGroup.RegisterGroup( "HamstarHelpers:NpcBanners", banner_grp );
-			RecipeGroup.RegisterGroup( "HamstarHelpers:RecordedMusicBoxes", musicbox_grp );
 		}
-		
+
 
 		////////////////
 
+		public override void PostDrawInterface( SpriteBatch sb ) {
+			//this.ModEvents.OnPostDrawInterface( sb );
+
+			var modworld = this.GetModWorld<HamstarHelpersWorld>();
+
+			PlayerMessage.DrawPlayerLabels( sb );
+			SimpleMessage.DrawMessage( sb );
+
+			DebugHelpers.DebugHelpers.PrintToBatch( sb );
+			DebugHelpers.DebugHelpers.Once = false;
+			DebugHelpers.DebugHelpers.OnceInAWhile--;
+
+			if( modworld.Logic != null ) {
+				modworld.Logic.ReadyClient = true;  // Ugh!
+			}
+		}
+
+
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
+			//this.ModEvents.OnModifyInterfaceLayers( layers );
+
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			if( modworld.Logic.IsReady() ) {
@@ -198,9 +200,10 @@ namespace HamstarHelpers {
 							this.LastSeenScreenHeight = Main.screenHeight;
 							this.ControlPanel.RecalculateBackend();
 						}
-
+						
 						this.ControlPanel.UpdateInteractivity( Main._drawInterfaceGameTime );
-						//this.ControlPanel.UpdateLogic( Main._drawInterfaceGameTime );
+						this.ControlPanel.UpdateDialog();
+						this.ControlPanel.UpdateToggler();
 
 						this.ControlPanel.Draw( Main.spriteBatch );
 						this.ControlPanel.DrawToggler( Main.spriteBatch );
@@ -215,5 +218,50 @@ namespace HamstarHelpers {
 				}
 			}
 		}
+
+
+		////////////////
+
+		/*public override void AddRecipes() {
+			this.ModEvents.OnAddRecipes();
+			base.AddRecipes();
+		}
+		public override object Call( params object[] args ) {
+			this.ModEvents.OnCall( args );
+			return base.Call( args );
+		}
+		public override bool HijackGetData( ref byte messageType, ref BinaryReader reader, int playerNumber ) {
+			this.ModEvents.OnHijackGetData( ref messageType, ref reader, playerNumber );
+			return base.HijackGetData( ref messageType, ref reader, playerNumber );
+		}
+		public override bool HijackSendData( int whoAmI, int msgType, int remoteClient, int ignoreClient, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7 ) {
+			this.ModEvents.OnHijackSendData( ref whoAmI, ref msgType, ref remoteClient, ref ignoreClient, text, ref number, ref number2, ref number3, ref number4, ref number5, ref number6, ref number7 );
+			return base.HijackSendData( whoAmI, msgType, remoteClient, ignoreClient, text, number, number2, number3, number4, number5, number6, number7 );
+		}
+		public override void HotKeyPressed( string name ) {
+			this.ModEvents.OnHotKeyPressed( name );
+			base.HotKeyPressed( name );
+		}
+		public override void ModifyLightingBrightness( ref float scale ) {
+			this.ModEvents.OnModifyLightingBrightness( ref scale );
+			base.ModifyLightingBrightness( ref scale );
+		}
+		public override void ModifySunLightColor( ref Color tileColor, ref Color backgroundColor ) {
+			this.ModEvents.OnModifySunLightColor( ref tileColor, ref backgroundColor );
+			base.ModifySunLightColor( ref tileColor, ref backgroundColor );
+		}
+		public override Matrix ModifyTransformMatrix( Matrix transform ) {
+			this.ModEvents.OnModifyTransformMatrix( ref transform );
+			return base.ModifyTransformMatrix( transform );
+		}
+		public override void PostDrawFullscreenMap( ref string mouseText ) {
+			base.PostDrawFullscreenMap( ref mouseText );
+		}
+		public override void PostUpdateInput() {
+			base.PostUpdateInput();
+		}
+		public override void UpdateMusic( ref int music ) {
+			base.UpdateMusic( ref music );
+		}*/
 	}
 }

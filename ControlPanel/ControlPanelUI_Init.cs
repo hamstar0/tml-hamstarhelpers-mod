@@ -19,9 +19,11 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public static void PostSetupContent( HamstarHelpersMod mymod ) {
-			ControlPanelUI.ControlPanelLabel = mymod.GetTexture( "ControlPanel/ControlPanelLabel" );
-			ControlPanelUI.ControlPanelLabelLit = mymod.GetTexture( "ControlPanel/ControlPanelLabelLit" );
+		public static void Load( HamstarHelpersMod mymod ) {
+			if( !Main.dedServ ) {
+				ControlPanelUI.ControlPanelLabel = mymod.GetTexture( "ControlPanel/ControlPanelLabel" );
+				ControlPanelUI.ControlPanelLabelLit = mymod.GetTexture( "ControlPanel/ControlPanelLabelLit" );
+			}
 		}
 
 
@@ -55,7 +57,7 @@ namespace HamstarHelpers.ControlPanel {
 
 			this.Theme.ApplyPanel( this.InnerContainer );
 
-			var tip = new UIText( "To receive issue reports for your mod, " );
+			var tip = new UIText( "To get mod issue reports from here, " );
 			this.InnerContainer.Append( (UIElement)tip );
 
 			var tip_url = new UIWebUrl( "read this.",
@@ -155,10 +157,15 @@ namespace HamstarHelpers.ControlPanel {
 
 			top += 56f;
 
+			var modrec_url = new UIWebUrl( "Need mods?", "https://sites.google.com/site/terrariamodsuggestions/" );
+			modrec_url.Top.Set( top, 0f );
+			modrec_url.Left.Set( 0f, 0f );
+			this.InnerContainer.Append( modrec_url );
+
 			var support_url = new UIWebUrl( "Support my mods!", "https://www.patreon.com/hamstar0" );
 			support_url.Top.Set( top, 0f );
 			this.InnerContainer.Append( support_url );
-			support_url.Left.Set( -support_url.GetDimensions().Width * 0.5f, 0.5f );
+			support_url.Left.Set( -support_url.GetDimensions().Width, 1f );
 		}
 
 

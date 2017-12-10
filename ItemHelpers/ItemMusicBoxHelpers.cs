@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace HamstarHelpers.ItemHelpers {
 	public static class ItemMusicBoxHelpers {
-		public static ISet<int> GetMusicBoxes() {
+		public static ISet<int> GetVanillaMusicBoxes() {
 			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,
 				ItemID.MusicBoxAltUnderground,
 				ItemID.MusicBoxBoss1,
@@ -45,6 +45,11 @@ namespace HamstarHelpers.ItemHelpers {
 				ItemID.MusicBoxUndergroundCorruption,
 				ItemID.MusicBoxUndergroundCrimson,
 				ItemID.MusicBoxUndergroundHallow };
+		}
+
+		[System.Obsolete( "no mod support yet", false )]
+		public static ISet<int> GetMusicBoxes() {
+			return ItemMusicBoxHelpers.GetVanillaMusicBoxes();
 		}
 
 

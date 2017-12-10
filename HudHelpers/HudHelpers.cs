@@ -7,13 +7,17 @@ namespace HamstarHelpers.HudHelpers {
 	public static class HudHelpers {
 		public static void GetTopHeartPosition( Player player, ref int x, ref int y ) {
 			x = Main.screenWidth - 66;
-			y = 60;
+			y = 59;
 
-			if( player.statLifeMax2 < 400 && (player.statLifeMax2 / 20) % 10 != 0 ) {
-				x -= (10 - ((player.statLifeMax2 / 20) % 10)) * 26;
+			int hp = player.statLifeMax2 <= 400 ? player.statLifeMax2 : (player.statLifeMax2 - 400) * 4;
+			if( hp > 500 ) { hp = 500; }
+			int hearts = hp / 20;
+
+			if( hearts % 10 != 0 ) {
+				x -= (10 - (hearts % 10)) * 26;
 			}
-			if( player.statLifeMax2 / 20 <= 10 ) {
-				y -= 32;
+			if( hearts <= 10 ) {
+				y -= 27;
 			}
 		}
 

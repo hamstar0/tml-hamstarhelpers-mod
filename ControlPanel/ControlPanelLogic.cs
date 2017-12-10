@@ -40,7 +40,7 @@ namespace HamstarHelpers.ControlPanel {
 			mods.AddLast( HamstarHelpersMod.Instance );
 			mod_set.Add( HamstarHelpersMod.Instance.Name );
 
-			foreach( var kv in ExtendedModManager.ConfigMods ) {
+			foreach( var kv in ModMetaDataManager.ConfigMods ) {
 				if( kv.Key == HamstarHelpersMod.Instance.Name || kv.Value.File == null ) { continue; }
 				mods.AddLast( kv.Value );
 				mod_set.Add( kv.Value.Name );
@@ -64,7 +64,7 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 		
 		public void ReportIssue( Mod mod, string issue_title, string issue_body ) {
-			if( !ExtendedModManager.HasGithub( mod ) ) {
+			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
 			IEnumerable<Mod> mods = this.GetMods();
@@ -76,8 +76,8 @@ namespace HamstarHelpers.ControlPanel {
 			body += "\n \n" + issue_body;
 
 			var json = new ModIssueReport {
-				githubuser = ExtendedModManager.GetGithubUserName( mod ),
-				githubproject = ExtendedModManager.GetGithubProjectName( mod ),
+				githubuser = ModMetaDataManager.GetGithubUserName( mod ),
+				githubproject = ModMetaDataManager.GetGithubProjectName( mod ),
 				title = title,
 				body = body
 			};
@@ -118,11 +118,11 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		public void ApplyConfigChanges() {
-			foreach( var kv in ExtendedModManager.ConfigMods ) {
-				ExtendedModManager.ReloadConfigFromFile( kv.Value );
+			foreach( var kv in ModMetaDataManager.ConfigMods ) {
+				ModMetaDataManager.ReloadConfigFromFile( kv.Value );
 			}
 
-			string mod_names = string.Join( ", ", ExtendedModManager.ConfigMods.Keys.ToArray() );
+			string mod_names = string.Join( ", ", ModMetaDataManager.ConfigMods.Keys.ToArray() );
 
 			Main.NewText( "Mod configs reloaded for " + mod_names, Color.Yellow );
 			ErrorLogger.Log( "Mod configs reloaded for " + mod_names );

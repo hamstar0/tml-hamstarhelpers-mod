@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.World.Generation;
 
 
 namespace HamstarHelpers {
@@ -19,6 +21,8 @@ namespace HamstarHelpers {
 		public override void Initialize() {
 			var mymod = (HamstarHelpersMod)this.mod;
 
+			//mymod.WorldEvents.OnInitialize();
+
 			this.Logic = new HamstarHelpersLogic( mymod );
 
 			this.ID = Guid.NewGuid().ToString( "D" );
@@ -27,13 +31,15 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void Load( TagCompound tag ) {
+		public override void Load( TagCompound tags ) {
 			var mymod = (HamstarHelpersMod)this.mod;
 			int half_days = 0;
 
-			if( tag.ContainsKey( "world_id" ) ) {
-				this.ID = tag.GetString( "world_id" );
-				half_days = tag.GetInt( "half_days_elapsed_" + this.ID );
+			//mymod.WorldEvents.OnLoad( tags );
+
+			if( tags.ContainsKey( "world_id" ) ) {
+				this.ID = tags.GetString( "world_id" );
+				half_days = tags.GetInt( "half_days_elapsed_" + this.ID );
 			}
 
 			this.HasCorrectID = true;
@@ -42,23 +48,34 @@ namespace HamstarHelpers {
 		}
 
 		public override TagCompound Save() {
-			var tag = new TagCompound {
+			var mymod = (HamstarHelpersMod)this.mod;
+			var tags = new TagCompound {
 				{ "world_id", this.ID },
 				{ "half_days_elapsed_" + this.ID, (int)this.Logic.HalfDaysElapsed },
 			};
 
-			return tag;
+			//mymod.WorldEvents.OnSave( tags );
+
+			return tags;
 		}
 
 		
 		////////////////
 
 		public override void NetSend( BinaryWriter writer ) {
+			var mymod = (HamstarHelpersMod)this.mod;
+
+			//mymod.WorldEvents.OnNetSend( writer );
+
 			writer.Write( this.HasCorrectID );
 			writer.Write( this.ID );
 		}
 
 		public override void NetReceive( BinaryReader reader ) {
+			var mymod = (HamstarHelpersMod)this.mod;
+
+			//mymod.WorldEvents.OnNetReceive( reader );
+
 			bool has_correct_id = reader.ReadBoolean();
 			string id = reader.ReadString();
 
@@ -73,11 +90,44 @@ namespace HamstarHelpers {
 		public override void PreUpdate() {
 			var mymod = (HamstarHelpersMod)this.mod;
 
+			//mymod.WorldEvents.OnPreUpdate();
+			
 			if( Main.netMode == 2 ) { // Server only
 				if( this.Logic != null && mymod.HasSetupContent ) {
 					this.Logic.Update( mymod );
 				}
 			}
 		}
+
+
+		////////////////
+
+		/*public override void ChooseWaterStyle( ref int style ) {
+			base.ChooseWaterStyle( ref style );
+		}
+		public override void LoadLegacy( BinaryReader reader ) {
+			base.LoadLegacy( reader );
+		}
+		public override void ModifyWorldGenTasks( List<GenPass> tasks, ref float totalWeight ) {
+			base.ModifyWorldGenTasks( tasks, ref totalWeight );
+		}
+		public override void PostDrawTiles() {
+			base.PostDrawTiles();
+		}
+		public override void PostUpdate() {
+			base.PostUpdate();
+		}
+		public override void PostWorldGen() {
+			base.PostWorldGen();
+		}
+		public override void PreWorldGen() {
+			base.PreWorldGen();
+		}
+		public override void ResetNearbyTileEffects() {
+			base.ResetNearbyTileEffects();
+		}
+		public override void TileCountsAvailable( int[] tileCounts ) {
+			base.TileCountsAvailable( tileCounts );
+		}*/
 	}
 }

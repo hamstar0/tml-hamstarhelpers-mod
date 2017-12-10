@@ -3,12 +3,11 @@ using Terraria;
 using Newtonsoft.Json;
 using System;
 
+
 namespace HamstarHelpers.Utilities.Config {
 	public class JsonConfig<T> {
-		public string FileName { get; private set; }
-		public string PathName { get; private set; }
-		public T Data { get; private set; }
-
+		public static string RelativePath { get { return "Mod Configs"; } }
+		
 
 		////////////////
 
@@ -18,6 +17,13 @@ namespace HamstarHelpers.Utilities.Config {
 		public static T Deserialize( string data ) {
 			return JsonConvert.DeserializeObject<T>( data );
 		}
+
+
+		////////////////
+
+		public string FileName { get; private set; }
+		public string PathName { get; private set; }
+		public T Data { get; private set; }
 
 
 		////////////////

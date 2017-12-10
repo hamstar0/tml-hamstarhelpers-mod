@@ -1,7 +1,65 @@
+v1.2.2
+-	Update mod suggestions tool
+	-	Add mod homepage link field
+	-	Add value multipliers for each question
+	-	Add 'Is this mod best played after experiencing vanilla?"
+	-	Fix mod sortion in lists
+	-	Randomize list each time page is loaded
+	-	Change 'Irrelevant' field to 'Depends'
+	-	Restructure mod data submit form questions into sections
+
+-	Fix button not working in auto-pause mode
+-	Add 'Get Mod Suggestions' button
+-	Create mod suggestions tool
+	-	Create thread
+	-	Improve mod data submit form
+		-	Link back to mod recommend tool on form completion
+		-	Show answer in a row
+		-	Add progress bar
+	-	Add 'Reset Replies' button
+	-	Implement question answering
+		-	Fix 'Ambivalent' overriding all
+		-	Implement 'Never' reply
+		-	Implement 'Unpreferred' reply
+		-	Implement 'Preferred' reply
+		-	Implement 'Always' reply
+		-	@Plan
+			-	On Never
+				-	Move Yes, Partial to Boo
+				-	Move No, Irrelevant to Yay
+				-	Move Unknown to Meh
+			-	On Unpreferred
+				-	Move Yes to Boo
+				-	Move Partial, Unknown to Meh
+				-	Move No, Irrelevant to Yay
+			-	On Ambivalent
+				-	Move any to Yay
+			-	On Preferred
+				-	Move Yes, Partial to Yay
+				-	Move Irrelevant, Unknown to Meh
+				-	Move No to Boo
+			-	On Always
+				-	Move Yes to Yay
+				-	Move Partial, Unknown to Meh
+				-	Move No, Irrelevant to Boo
+		-	Add replies
+		-	Define a 'Maybe' and 'Maybe Not' mod list below the 'Recommended' mod list
+	-	Add link to correct mod info
+	-	Add panel to display individual mod info
+	-	Process submitted mod info to remove duplicates and select latest
+	-	Display full list of mods in a panel
+	-	Generate each question from list data
+	-	Setup page (google scripts web app with template)
+		-	Define mod info pane
+		-	Define mod list pane
+		-	Define question list pane
+		-	Load jquery
+-	create mod data input backend
+	-	Create script to generate mod data submit form
+	-	Define new sheet for mod data questions
 v1.2.0
 -	@Create mod hub thread
 -	@Create mod thread (update build.txt homepage)
-
 -	Update support link
 -	Switch to dummy account for issue reports
 -	Ensure issue text fits in input box

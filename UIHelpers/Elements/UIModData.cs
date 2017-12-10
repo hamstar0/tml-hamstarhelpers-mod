@@ -80,7 +80,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				}
 			}
 
-			if( ExtendedModManager.HasConfig(mod) ) {
+			if( ModMetaDataManager.HasConfig(mod) ) {
 				var config_button = new UITextPanelButton( theme, "Open Config File" );
 				config_button.Width.Set( 160f, 0f );
 				config_button.HAlign = 1f;
@@ -90,7 +90,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.ConfigButton = config_button;
 					
 				this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-					string path = ExtendedModManager.GetConfigRelativePath( mod );
+					string path = ModMetaDataManager.GetConfigRelativePath( mod );
 					Process.Start( Main.SavePath + Path.DirectorySeparatorChar + path );
 				};
 			}
@@ -108,10 +108,10 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			if( obj is UIModData ) {
 				var other = (UIModData)obj;
 
-				if( ExtendedModManager.HasGithub( this.Mod ) && !ExtendedModManager.HasGithub( other.Mod ) ) {
+				if( ModMetaDataManager.HasGithub( this.Mod ) && !ModMetaDataManager.HasGithub( other.Mod ) ) {
 					return -1;
 				}
-				if( ExtendedModManager.HasConfig( this.Mod ) && !ExtendedModManager.HasConfig( other.Mod ) ) {
+				if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
 					return -1;
 				}
 			}

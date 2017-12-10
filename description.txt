@@ -1,3 +1,3 @@
 Supplies assorted helper functions and classes. Meant for use primarily with hamstar mods.
 
-NEW! Now provides an in-game feedback UI for mods with github (see homepage).
+NEW! Now provides an in-game feedback UI for mods with github (see homepage). No mod dependency required!

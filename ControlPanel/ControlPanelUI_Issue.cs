@@ -51,7 +51,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void SubmitIssue() {
 			if( this.CurrentModListItem == null ) { return; }
-			if( !ExtendedModManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
+			if( !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
 
 			ControlPanelUI self = this;
 			string issue_title = this.IssueTitleInput.Text;

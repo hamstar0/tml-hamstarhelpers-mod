@@ -8,6 +8,38 @@ namespace HamstarHelpers.ItemHelpers {
 		public const int JunkRarity = -1;
 		public const int QuestItemRarity = -11;
 
+		////////////////
+
+		public static readonly int[] EvilBiomeBossChunkTypes = new int[] { ItemID.ShadowScale, ItemID.TissueSample };
+		public static readonly int[] EvilBiomeLightPetTypes = new int[] { ItemID.CrimsonHeart, ItemID.ShadowOrb };
+
+		public static readonly int[] MagicMirrorTypes = new int[] { ItemID.MagicMirror, ItemID.IceMirror };
+
+
+		public static readonly int[] VanillaAnimalTypes = new int[] { ItemID.Bird, ItemID.BlueJay, ItemID.Cardinal,
+			ItemID.Duck, ItemID.MallardDuck, ItemID.Penguin,
+			ItemID.Bunny, ItemID.Squirrel, ItemID.SquirrelRed, ItemID.Frog, ItemID.Mouse,
+			ItemID.Goldfish,
+			ItemID.GoldBunny, ItemID.GoldBird, ItemID.GoldFrog, ItemID.GoldMouse, ItemID.SquirrelGold };
+
+		public static readonly int[] VanillaBugTypes = new int[] { ItemID.Firefly, ItemID.LightningBug,
+			ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
+				ItemID.RedAdmiralButterfly, ItemID.SulphurButterfly, ItemID.TreeNymphButterfly,
+				ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly,
+			ItemID.Scorpion, ItemID.BlackScorpion, ItemID.Grasshopper,
+			ItemID.EnchantedNightcrawler, ItemID.Worm,
+			ItemID.GlowingSnail, ItemID.Grubby, ItemID.Sluggy, ItemID.Snail,
+			ItemID.TruffleWorm,
+			ItemID.GoldGrasshopper, ItemID.GoldWorm, ItemID.GoldButterfly };
+
+		public static readonly int[] VanillaButterflyTypes = new int[] {
+			ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
+			ItemID.RedAdmiralButterfly, ItemID.SulphurButterfly, ItemID.TreeNymphButterfly,
+			ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly, ItemID.GoldButterfly };
+
+		public static readonly int[] VanillaGoldCritterTypes = new int[] {
+			ItemID.GoldBunny, ItemID.GoldMouse, ItemID.SquirrelGold, ItemID.GoldBird, ItemID.GoldFrog,
+			ItemID.GoldGrasshopper, ItemID.GoldWorm, ItemID.GoldButterfly };
 
 
 		////////////////

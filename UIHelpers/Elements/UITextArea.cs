@@ -14,6 +14,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		public delegate void TextChangeEvent( StringBuilder new_text );
 
 
+		////////////////
+
 		public string Text { get; private set; }
 		public string DisplayText { get; private set; }
 		public string Hint { get; private set; }

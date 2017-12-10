@@ -9,8 +9,8 @@ using ReLogic.Graphics;
 
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIWebUrl : UIElement {
-		public static Color DefaultColor = new Color( 32, 32, 255 );
-		public static Color DefaultLitColor = new Color( 80, 80, 255 );
+		public static Color DefaultColor = new Color( 80, 80, 255 );
+		public static Color DefaultLitColor = new Color( 128, 128, 255 );
 		public static Color DefaultVisitColor = new Color( 192, 0, 255 );
 
 
@@ -33,17 +33,18 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.TextElem = new UIText( label, scale, large );
 			this.TextElem.TextColor = UIWebUrl.DefaultColor;
 			this.Append( this.TextElem );
-				
-			float underscore_len = Main.fontMouseText.MeasureString("_").X * scale;
-			CalculatedStyle dim = this.TextElem.GetDimensions();
-			int line_len = Math.Max( 1, (int)((dim.Width + 1) / underscore_len) + 1 );
+
+			CalculatedStyle label_size = this.TextElem.GetDimensions();
+			float underscore_len = Main.fontMouseText.MeasureString("_").X;
+			float text_len = Main.fontMouseText.MeasureString( label ).X;
+			int line_len = (int)Math.Max( 1f, Math.Round(text_len / (underscore_len - 2)) );
 
 			this.LineElem = new UIText( new String('_', line_len), scale, large );
 			this.LineElem.TextColor = UIWebUrl.DefaultColor;
 			this.Append( this.LineElem );
 
-			this.Width.Set( dim.Width, 0f );
-			this.Height.Set( dim.Height, 0f );
+			this.Width.Set( label_size.Width, 0f );
+			this.Height.Set( label_size.Height, 0f );
 
 			UIText text_elem = this.TextElem;
 			UIText line_elem = this.LineElem;
