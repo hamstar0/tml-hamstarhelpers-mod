@@ -2,7 +2,7 @@
 using HamstarHelpers.Utilities.Messages;
 using Terraria;
 using Terraria.ModLoader;
-
+using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	class HamstarHelpersPlayer : ModPlayer {
@@ -41,6 +41,21 @@ namespace HamstarHelpers {
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			
 			this.HasEnteredWorld = true;
+		}
+
+
+		////////////////
+
+		internal string ControlPanelNewSince = "1.0.0";
+
+		public override void Load( TagCompound tag ) {
+			if( tag.ContainsKey( "ControlPanelNewSince" ) ) {
+				this.ControlPanelNewSince = tag.GetString( "ControlPanelNewSince" );
+			}
+		}
+
+		public override TagCompound Save() {
+			return new TagCompound { { "ControlPanelNewSince", this.ControlPanelNewSince } };
 		}
 
 

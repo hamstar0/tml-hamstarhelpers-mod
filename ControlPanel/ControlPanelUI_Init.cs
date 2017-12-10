@@ -57,11 +57,11 @@ namespace HamstarHelpers.ControlPanel {
 
 			this.Theme.ApplyPanel( this.InnerContainer );
 
-			var tip = new UIText( "To get mod issue reports from here, " );
+			var tip = new UIText( "To get your own mod issue reporting, " );
 			this.InnerContainer.Append( (UIElement)tip );
 
 			var tip_url = new UIWebUrl( "read this.",
-				"https://forums.terraria.org/index.php?threads/hamstars-helpers-a-modders-mod-for-mods-and-modding.63670/",
+				"https://forums.terraria.org/index.php?threads/hamstars-helpers-a-modders-mod-for-mods-and-modding.63670/#modders",
 				true, 1f );
 			tip_url.Left.Set( tip.GetInnerDimensions().Width, 0f );
 			tip_url.Top.Set( -2f, 0f );
