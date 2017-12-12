@@ -105,7 +105,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				return -1;
 			}
 
-			if( obj is UIModData ) {
+			if( obj != null && obj is UIModData ) {
 				var other = (UIModData)obj;
 
 				if( ModMetaDataManager.HasGithub( this.Mod ) && !ModMetaDataManager.HasGithub( other.Mod ) ) {
@@ -114,9 +114,11 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
 					return -1;
 				}
+
+				return string.Compare( this.Mod.Name, other.Mod.Name );
 			}
 
-			return base.CompareTo( obj );
+			return -1;
 		}
 
 		////////////////

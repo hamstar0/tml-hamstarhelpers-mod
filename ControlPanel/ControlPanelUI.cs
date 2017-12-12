@@ -3,7 +3,9 @@ using HamstarHelpers.UIHelpers;
 using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -124,8 +126,10 @@ namespace HamstarHelpers.ControlPanel {
 
 			this.ModListUpdateRequired = false;
 
-			this.ModListElem.Clear();
-			this.ModListElem.AddRange( this.ModDataList );
+			try {
+				this.ModListElem.Clear();
+				this.ModListElem.AddRange( this.ModDataList );
+			} catch( Exception _ ) { }
 		}
 
 

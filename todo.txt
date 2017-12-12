@@ -1,13 +1,18 @@
+v1.2.3
+-	Improve mod recommendation tool
+	-	Add value multipliers for each question
+-	Remake mod recommendation data entry form
+	-	...
+	-	Change 'Irrelevant' field to 'Depends'
+	-	...
+
 v1.2.2
 -	Update mod suggestions tool
+	-	Add access code to site
 	-	Add mod homepage link field
-	-	Add value multipliers for each question
-	-	Add 'Is this mod best played after experiencing vanilla?"
-	-	Fix mod sortion in lists
+	-	Add "Is this mod suitable for first time Terraria players?"
 	-	Randomize list each time page is loaded
-	-	Change 'Irrelevant' field to 'Depends'
-	-	Restructure mod data submit form questions into sections
-
+	-	Fix mod sortion in lists
 -	Fix button not working in auto-pause mode
 -	Add 'Get Mod Suggestions' button
 -	Create mod suggestions tool
