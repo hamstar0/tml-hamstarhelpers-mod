@@ -9,107 +9,99 @@ namespace HamstarHelpers.RecipeHelpers {
 	public static class RecipeHelpers {
 		private static KeyValuePair<string, RecipeGroup> _EvilBossDrops;
 		public static KeyValuePair<string, RecipeGroup> EvilBossDrops { get {
-			if( string.IsNullOrEmpty(RecipeHelpers._EvilBossDrops.Key) ) {
-				RecipeHelpers._EvilBossDrops = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:EvilBiomeBossDrops",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Evil Biome Boss Chunk",
-						ItemIdentityHelpers.EvilBiomeBossChunkTypes )
-				);
-			}
-			return RecipeHelpers._EvilBossDrops;
+			int[] item_ids = ItemIdentityHelpers.EvilBiomeBossChunkTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._EvilBossDrops, "EvilBiomeBossDrops", "Evil Biome Boss Chunk", item_ids );
 		} }
-		private static KeyValuePair<string, RecipeGroup> _EvilLightPet;
+
+		 private static KeyValuePair<string, RecipeGroup> _EvilLightPet;
 		public static KeyValuePair<string, RecipeGroup> EvilLightPet { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._EvilLightPet.Key ) ) {
-				RecipeHelpers._EvilLightPet = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:EvilBiomeLightPet",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Evil Biome Light Pet",
-						ItemIdentityHelpers.EvilBiomeLightPetTypes )
-				);
-			}
-			return RecipeHelpers._EvilLightPet;
+			int[] item_ids = ItemIdentityHelpers.EvilBiomeLightPetTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._EvilLightPet, "EvilBiomeLightPet", "Evil Biome Light Pet", item_ids );
 		} }
-		private static KeyValuePair<string, RecipeGroup> _MagicMirrors;
+
+		 private static KeyValuePair<string, RecipeGroup> _MagicMirrors;
 		public static KeyValuePair<string, RecipeGroup> MagicMirrors { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._MagicMirrors.Key ) ) {
-				RecipeHelpers._MagicMirrors = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:MagicMirrors",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Magic Mirrors",
-						ItemIdentityHelpers.MagicMirrorTypes )
-				);
-			}
-			return RecipeHelpers._MagicMirrors;
+			int[] item_ids = ItemIdentityHelpers.MagicMirrorTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._MagicMirrors, "MagicMirrors", "Magic Mirrors", item_ids );
 		} }
 
-		private static KeyValuePair<string, RecipeGroup> _VanillaAnimals;
+		 private static KeyValuePair<string, RecipeGroup> _VanillaAnimals;
 		public static KeyValuePair<string, RecipeGroup> VanillaAnimals { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._VanillaAnimals.Key ) ) {
-				RecipeHelpers._VanillaAnimals = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:VanillaAnimals",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Live Animal (vanilla)",
-						ItemIdentityHelpers.VanillaAnimalTypes )
-				);
-			}
-			return RecipeHelpers._VanillaAnimals;
+			int[] item_ids = ItemIdentityHelpers.VanillaAnimalTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaAnimals, "VanillaAnimals", "Live Animal (vanilla)", item_ids );
 		} }
-		private static KeyValuePair<string, RecipeGroup> _VanillaBugs;
+
+		 private static KeyValuePair<string, RecipeGroup> _VanillaBugs;
 		public static KeyValuePair<string, RecipeGroup> VanillaBugs { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._VanillaBugs.Key ) ) {
-				RecipeHelpers._VanillaBugs = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:VanillaBugs",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Live Bug (vanilla)",
-						ItemIdentityHelpers.VanillaBugTypes )
-				);
-			}
-			return RecipeHelpers._VanillaBugs;
+			int[] item_ids = ItemIdentityHelpers.VanillaBugTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaBugs, "VanillaBugs", "Live Bug (vanilla)", item_ids );
 		} }
-		private static KeyValuePair<string, RecipeGroup> _VanillaButterfly;
+
+		 private static KeyValuePair<string, RecipeGroup> _VanillaButterfly;
 		public static KeyValuePair<string, RecipeGroup> VanillaButterfly { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._VanillaButterfly.Key ) ) {
-				RecipeHelpers._VanillaButterfly = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:VanillaButterflies",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Butterflies (vanilla)",
-						ItemIdentityHelpers.VanillaButterflyTypes )
-				);
-			}
-			return RecipeHelpers._VanillaButterfly;
+			int[] item_ids = ItemIdentityHelpers.VanillaButterflyTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaButterfly, "VanillaButterflies", "Butterflies (vanilla)", item_ids );
 		} }
-		private static KeyValuePair<string, RecipeGroup> _VanillaGoldCritter;
+
+		 private static KeyValuePair<string, RecipeGroup> _VanillaGoldCritter;
 		public static KeyValuePair<string, RecipeGroup> VanillaGoldCritter { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._VanillaGoldCritter.Key ) ) {
-				RecipeHelpers._VanillaGoldCritter = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:GoldCritter",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Gold Critters (vanilla)",
-						ItemIdentityHelpers.VanillaGoldCritterTypes )
-				);
-			}
-			return RecipeHelpers._VanillaGoldCritter;
+			int[] item_ids = ItemIdentityHelpers.VanillaGoldCritterTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaGoldCritter, "GoldCritter", "Gold Critters (vanilla)", item_ids );
 		} }
 
-		private static KeyValuePair<string, RecipeGroup> _MobBanners;
+		 private static KeyValuePair<string, RecipeGroup> _MobBanners;
 		public static KeyValuePair<string, RecipeGroup> MobBanners { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._MobBanners.Key ) ) {
-				RecipeHelpers._MobBanners = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:NpcBanners",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Mob Banner",
-						NPCBannerHelpers.GetBannerItemTypes().ToArray() )
-				);
-			}
-			return RecipeHelpers._MobBanners;
-		} }
-		private static KeyValuePair<string, RecipeGroup> _RecordedMusicBox;
-		public static KeyValuePair<string, RecipeGroup> RecordedMusicBox { get {
-			if( string.IsNullOrEmpty( RecipeHelpers._RecordedMusicBox.Key ) ) {
-				RecipeHelpers._RecordedMusicBox = new KeyValuePair<string, RecipeGroup>(
-					"HamstarHelpers:RecordedMusicBoxes",
-					new RecipeGroup( () => Lang.misc[37].ToString() + " Recorded Music Box (vanilla)",
-						ItemMusicBoxHelpers.GetVanillaMusicBoxes().ToArray() )
-				);
-			}
-			return RecipeHelpers._RecordedMusicBox;
+			int[] item_ids = NPCBannerHelpers.GetBannerItemTypes().ToArray();
+			return RecipeHelpers.GetPair( ref RecipeHelpers._MobBanners, "NpcBanners", "Mob Banner", item_ids );
 		} }
 
-		
+		 private static KeyValuePair<string, RecipeGroup> _RecordedMusicBox;
+		public static KeyValuePair<string, RecipeGroup> RecordedMusicBox { get {
+			int[] item_ids = ItemMusicBoxHelpers.GetVanillaMusicBoxes().ToArray();
+			return RecipeHelpers.GetPair( ref RecipeHelpers._RecordedMusicBox, "RecordedMusicBoxes", "Recorded Music Box (vanilla)", item_ids );
+		} }
+
+
+		 private static KeyValuePair<string, RecipeGroup> _AlchemyHerbs;
+		public static KeyValuePair<string, RecipeGroup> AlchemyHerbs { get {
+			int[] item_ids = ItemIdentityHelpers.AlchemyHerbsTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._AlchemyHerbs, "AlchemyHerbs", "Alchemy Herbs (vanilla)", item_ids );
+		} }
+
+		 private static KeyValuePair<string, RecipeGroup> _StrangePlants;
+		public static KeyValuePair<string, RecipeGroup> StrangePlants { get {
+			int[] item_ids = ItemIdentityHelpers.StrangePlantTypes;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._StrangePlants, "StrangePlants", "Strange Plant", item_ids );
+		} }
+
+		 private static KeyValuePair<string, RecipeGroup> _PressurePlates;
+		public static KeyValuePair<string, RecipeGroup> PressurePlates { get {
+			int[] item_ids = ItemIdentityHelpers.PressurePlates;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._PressurePlates, "PressurePlates", "Pressure Plates", item_ids );
+		} }
+		 private static KeyValuePair<string, RecipeGroup> _WeightedPressurePlates;
+		public static KeyValuePair<string, RecipeGroup> WeightedPressurePlates { get {
+			int[] item_ids = ItemIdentityHelpers.WeightedPressurePlates;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._WeightedPressurePlates, "WeightedPressurePlates", "Weighted Pressure Plates", item_ids );
+		} }
+		 private static KeyValuePair<string, RecipeGroup> _ConveyorBelts;
+		public static KeyValuePair<string, RecipeGroup> ConveyorBelts { get {
+			int[] item_ids = ItemIdentityHelpers.ConveyorBelts;
+			return RecipeHelpers.GetPair( ref RecipeHelpers._ConveyorBelts, "ConveyorBelts", "Conveyor Belts", item_ids );
+		} }
+
+		////////////////
+
+		private static KeyValuePair<string, RecipeGroup> GetPair( ref KeyValuePair<string, RecipeGroup> source, string name, string desc, int[] item_ids ) {
+			if( string.IsNullOrEmpty( source.Key ) ) {
+				source = new KeyValuePair<string, RecipeGroup>( "HamstarHelpers:"+name,
+					new RecipeGroup( () => Lang.misc[37].ToString() + " "+desc, item_ids ) );
+			}
+			return source;
+		}
+
+
+
 		////////////////
 
 		public static IDictionary<string, RecipeGroup> GetRecipeGroups() {
@@ -126,6 +118,13 @@ namespace HamstarHelpers.RecipeHelpers {
 
 			groups[RecipeHelpers.MobBanners.Key] = RecipeHelpers.MobBanners.Value;
 			groups[RecipeHelpers.RecordedMusicBox.Key] = RecipeHelpers.RecordedMusicBox.Value;
+
+			groups[RecipeHelpers.AlchemyHerbs.Key] = RecipeHelpers.AlchemyHerbs.Value;
+			groups[RecipeHelpers.StrangePlants.Key] = RecipeHelpers.StrangePlants.Value;
+
+			groups[RecipeHelpers.PressurePlates.Key] = RecipeHelpers.PressurePlates.Value;
+			groups[RecipeHelpers.WeightedPressurePlates.Key] = RecipeHelpers.WeightedPressurePlates.Value;
+			groups[RecipeHelpers.ConveyorBelts.Key] = RecipeHelpers.ConveyorBelts.Value;
 
 			return groups;
 		}

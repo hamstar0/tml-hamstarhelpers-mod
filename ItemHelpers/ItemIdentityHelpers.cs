@@ -40,6 +40,22 @@ namespace HamstarHelpers.ItemHelpers {
 		public static readonly int[] VanillaGoldCritterTypes = new int[] {
 			ItemID.GoldBunny, ItemID.GoldMouse, ItemID.SquirrelGold, ItemID.GoldBird, ItemID.GoldFrog,
 			ItemID.GoldGrasshopper, ItemID.GoldWorm, ItemID.GoldButterfly };
+		
+		public static readonly int[] AlchemyHerbsTypes = new int[] {
+			ItemID.Daybloom, ItemID.Blinkroot, ItemID.Moonglow, ItemID.Deathweed, ItemID.Fireblossom, ItemID.Shiverthorn };
+		public static readonly int[] StrangePlantTypes = new int[] {
+			ItemID.StrangePlant1, ItemID.StrangePlant2, ItemID.StrangePlant3, ItemID.StrangePlant4 };
+
+		public static readonly int[] PressurePlates = new int[] {
+			ItemID.BluePressurePlate, ItemID.BrownPressurePlate, ItemID.GrayPressurePlate, ItemID.GreenPressurePlate,
+			ItemID.LihzahrdPressurePlate, ItemID.RedPressurePlate, ItemID.YellowPressurePlate,
+			ItemID.WeightedPressurePlateCyan, ItemID.WeightedPressurePlateOrange, ItemID.WeightedPressurePlatePink,
+			ItemID.WeightedPressurePlatePurple, ItemID.ProjectilePressurePad };
+		public static readonly int[] WeightedPressurePlates = new int[] {
+			ItemID.WeightedPressurePlateCyan, ItemID.WeightedPressurePlateOrange, ItemID.WeightedPressurePlatePink,
+			ItemID.WeightedPressurePlatePurple };
+		public static readonly int[] ConveyorBelts = new int[] { ItemID.ConveyorBeltLeft, ItemID.ConveyorBeltRight };
+
 
 
 		////////////////

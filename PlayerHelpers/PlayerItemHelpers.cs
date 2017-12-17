@@ -36,7 +36,8 @@ namespace HamstarHelpers.PlayerHelpers {
 			return possible_purchases;
 		}
 
-		
+		////////////////
+
 		public static Item FindFirstOfItemFor( Player player, ISet<int> item_types ) {
 			int found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, item_types );
 			if( found != -1 ) {
@@ -78,6 +79,8 @@ namespace HamstarHelpers.PlayerHelpers {
 		}
 
 
+		////////////////
+
 		public static void DropInventoryItem( Player player, int slot ) {
 			if( slot == 58 && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
@@ -98,7 +101,7 @@ namespace HamstarHelpers.PlayerHelpers {
 				player.inventory[slot] = new Item();
 			}
 		}
-
+		
 
 		public static void DropEquippedItem( Player player, int slot ) {
 			Item item = player.armor[slot];
@@ -164,34 +167,40 @@ namespace HamstarHelpers.PlayerHelpers {
 			return is_unhanded;
 		}
 
+		////////////////
 
-		public static bool IsPlayerNaked( Player player, bool not_vanity = false ) {
+		public static bool IsPlayerNaked( Player player, bool also_vanity = false, bool can_hide = true ) {
 			// Armor
-			if( !player.armor[0].IsAir ) { return false; }
-			if( !player.armor[1].IsAir ) { return false; }
-			if( !player.armor[2].IsAir ) { return false; }
+			for( int i = 0; i < 3; i++ ) {
+				if( !player.armor[0].IsAir ) { return false; }
+			}
+
+			int acc_range = 8 + player.extraAccessorySlots;
+
 			// Accessory
-			if( !player.armor[3].IsAir && !player.hideVisual[3] ) { return false; }
-			if( !player.armor[4].IsAir && !player.hideVisual[4] ) { return false; }
-			if( !player.armor[5].IsAir && !player.hideVisual[5] ) { return false; }
-			if( !player.armor[6].IsAir && !player.hideVisual[6] ) { return false; }
-			if( !player.armor[7].IsAir && !player.hideVisual[7] ) { return false; }
-			if( not_vanity ) {
-				// Vanity
-				if( !player.armor[8].IsAir ) { return false; }
-				if( !player.armor[9].IsAir ) { return false; }
-				if( !player.armor[10].IsAir ) { return false; }
+			for( int i = 0; i < acc_range; i++ ) {
+				if( !player.armor[i].IsAir && (!player.hideVisual[3] || (player.hideVisual[3] && !can_hide)) ) {
+					return false;
+				}
+			}
+
+			if( also_vanity ) {
+				// Vanity armor/clothes
+				for( int i = acc_range; i < acc_range + 3; i++ ) {
+					if( !player.armor[i].IsAir ) { return false; }
+				}
 				// Vanity Accessory
-				if( !player.armor[11].IsAir /*&& !player.hideVisual[3]*/ ) { return false; }
-				if( !player.armor[12].IsAir /*&& !player.hideVisual[4]*/ ) { return false; }
-				if( !player.armor[13].IsAir /*&& !player.hideVisual[5]*/ ) { return false; }
-				if( !player.armor[14].IsAir /*&& !player.hideVisual[6]*/ ) { return false; }
-				if( !player.armor[15].IsAir /*&& !player.hideVisual[7]*/ ) { return false; }
+				for( int i = acc_range + 3; i < 20; i++ ) {
+					if( !player.armor[i].IsAir && (!player.hideVisual[i] || (player.hideVisual[i] && !can_hide)) ) {
+						return false;
+					}
+				}
 			}
 
 			return true;
 		}
 
+		////////////////
 
 		public static long CountMoney( Player player ) {
 			bool _;
@@ -201,7 +210,8 @@ namespace HamstarHelpers.PlayerHelpers {
 			long bank3_count = Utils.CoinsCount( out _, player.bank3.item, new int[0] );
 			return Utils.CoinsCombineStacks( out _, new long[] { inv_count, bank_count, bank2_count, bank3_count } );
 		}
-		
+
+		////////////////
 
 		public static Vector2 TipOfHeldItem( Player player ) {
 			Item item = player.HeldItem;
@@ -225,6 +235,7 @@ namespace HamstarHelpers.PlayerHelpers {
 			return pos + (player.itemRotation.ToRotationVector2() * reach);
 		}
 
+		////////////////
 
 		public static Item GetGrappleItem( Player player ) {
 			if( ItemIdentityHelpers.IsGrapple( player.miscEquips[4] ) ) {
@@ -236,6 +247,20 @@ namespace HamstarHelpers.PlayerHelpers {
 				}
 			}
 			return null;
+		}
+
+		////////////////
+
+		public static bool IsArmorSlot( int slot ) {
+			return slot < 3;
+		}
+
+		public static bool IsAccessorySlot( Player player, int slot ) {
+			return slot >= 3 && slot < 8 + player.extraAccessorySlots;
+		}
+
+		public static bool IsVanitySlot( Player player, int slot ) {
+			return slot >= 8 + player.extraAccessorySlots;
 		}
 	}
 }

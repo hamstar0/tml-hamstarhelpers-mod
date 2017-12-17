@@ -1,16 +1,23 @@
 ﻿using HamstarHelpers.NetProtocol;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Messages;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+
 
 namespace HamstarHelpers {
 	class HamstarHelpersPlayer : ModPlayer {
 		public bool HasEnteredWorld { get; private set; }
 
+		private ISet<int> BuffIds = new HashSet<int>();
+		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
+
 
 		////////////////
-		
+
 		public override void Initialize() {
 			this.HasEnteredWorld = false;
 		}
@@ -18,6 +25,8 @@ namespace HamstarHelpers {
 		public override void clientClone( ModPlayer client_clone ) {
 			var clone = (HamstarHelpersPlayer)client_clone;
 			clone.HasEnteredWorld = this.HasEnteredWorld;
+			clone.BuffIds = this.BuffIds;
+			clone.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;
 		}
 
 
@@ -77,7 +86,55 @@ namespace HamstarHelpers {
 					}
 				}
 			} else {    // Server
-				modworld.Logic.ReadyServer = true;  // Needed?
+				modworld.Logic.ReadyServer = true;	// Needed?
+			}
+
+			this.CheckBuffHooks();
+			this.CheckArmorEquipHooks();
+		}
+
+
+		private void CheckBuffHooks() {
+			// Add new buffs
+			for( int i = 0; i < this.player.buffTime.Length; i++ ) {
+				if( this.player.buffTime[i] > 0 ) {
+					int buff_id = this.player.buffType[i];
+					if( !this.BuffIds.Contains( buff_id ) ) {
+						this.BuffIds.Add( buff_id );
+					}
+				}
+			}
+
+			// Remove old buffs + fire hooks
+			foreach( int buff_id in this.BuffIds.ToArray() ) {
+				if( this.player.FindBuffIndex( buff_id ) == -1 ) {
+					this.BuffIds.Remove( buff_id );
+					TmlPlayerHelpers.OnBuffExpire( this.player, buff_id );
+				}
+			}
+		}
+
+		private void CheckArmorEquipHooks() {
+			for( int i = 0; i < this.player.armor.Length; i++ ) {
+				Item item = this.player.armor[i];
+
+				if( item != null && !item.IsAir ) {
+					bool found = this.EquipSlotsToItemTypes.ContainsKey( i );
+
+					if( found && item.type != this.EquipSlotsToItemTypes[i] ) {
+						TmlPlayerHelpers.OnArmorUnequip( this.player, i, this.EquipSlotsToItemTypes[i] );
+					}
+
+					if( !found || item.type != this.EquipSlotsToItemTypes[i] ) {
+						this.EquipSlotsToItemTypes[i] = item.type;
+						TmlPlayerHelpers.OnArmorEquip( this.player, i, item );
+					}
+				} else {
+					if( this.EquipSlotsToItemTypes.ContainsKey(i) ) {
+						TmlPlayerHelpers.OnArmorUnequip( this.player, i, this.EquipSlotsToItemTypes[i] );
+						this.EquipSlotsToItemTypes.Remove( i );
+					}
+				}
 			}
 		}
 	}

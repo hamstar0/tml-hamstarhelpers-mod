@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -83,6 +84,7 @@ namespace HamstarHelpers {
 
 			HamstarHelpersMod.Instance = null;
 
+			TmlPlayerHelpers.Reset();
 			_ModMetaDataManagerLoader.Unload();
 		}
 
@@ -154,10 +156,26 @@ namespace HamstarHelpers {
 		}*/
 
 		////////////////
-		
+
+		public override void AddRecipes() {
+			var vertebrae_to_leather = new ModRecipe( this );
+			vertebrae_to_leather.AddIngredient( ItemID.Vertebrae, 5 );
+			vertebrae_to_leather.SetResult( ItemID.Leather );
+			vertebrae_to_leather.AddRecipe();
+
+			/*var vertebrae_to_chunk = new ModRecipe( this );
+			vertebrae_to_chunk.AddIngredient( ItemID.Vertebrae, 1 );
+			vertebrae_to_chunk.SetResult( ItemID.RottenChunk );
+			vertebrae_to_chunk.AddRecipe();
+
+			var chunk_to_vertebrae = new ModRecipe( this );
+			chunk_to_vertebrae.AddIngredient( ItemID.RottenChunk, 1 );
+			chunk_to_vertebrae.SetResult( ItemID.Vertebrae );
+			chunk_to_vertebrae.AddRecipe();*/
+		}
+
 		public override void AddRecipeGroups() {
 			//this.ModEvents.OnAddRecipeGroups();
-			
 			NPCBannerHelpers.InitializeBanners();
 
 			foreach( var kv in RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {

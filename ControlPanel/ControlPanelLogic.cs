@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.PlayerHelpers;
+using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -138,6 +139,8 @@ namespace HamstarHelpers.ControlPanel {
 			data += "\n \n" + "World name: " + Main.worldName + ", world size: " + WorldHelpers.WorldHelpers.GetSize().ToString();
 			data += "\n \n" + "World progress: " + string.Join( ", ", this.OutputWorldProgress().ToArray() );
 			data += "\n \n" + "Items on ground: " + ItemHelpers.ItemHelpers.GetActive().Count + ", Npcs active: " + NPCHelpers.NPCHelpers.GetActive().Count;
+			data += "\n \n" + "Player info: " + string.Join( ", ", this.OutputCurrentPlayerInfo().ToArray() );
+			data += "\n \n" + "Player equips: " + string.Join( ", ", this.OutputCurrentPlayerEquipment().ToArray() );
 			if( Main.netMode != 0 ) {
 				data += "\n \n" + "Player count: " + Main.ActivePlayersCount;
 			}
@@ -163,6 +166,53 @@ namespace HamstarHelpers.ControlPanel {
 			if( NPC.downedFishron ) { list.Add( "Duke Fishron killed" ); }
 			if( NPC.downedAncientCultist ) { list.Add( "Ancient Cultist killed" ); }
 			if( NPC.downedMoonlord ) { list.Add( "Moon Lord killed" ); }
+
+			return list;
+		}
+
+
+		public IList<string> OutputCurrentPlayerInfo() {
+			Player player = Main.LocalPlayer;
+
+			string name = "Name: `" + player.name + "`";
+			string gender = "Male: " + player.Male;
+			string demon = "Demon Heart: " + player.extraAccessory;
+			string difficulty = "Difficulty mode: " + player.difficulty;
+			string life = "Life: " + player.statLife + " of " + player.statLifeMax2;
+			if( player.statLifeMax != player.statLifeMax2 ) { life += " (" + player.statLifeMax + ")"; }
+			string mana = "Mana: " + player.statMana + " of " + player.statManaMax2;
+			if( player.statManaMax != player.statManaMax2 ) { life += " (" + player.statManaMax + ")"; }
+			string def = "Defense: " + player.statDefense;
+
+			return new List<string> { name, gender, demon, difficulty, life, mana, def };
+		}
+
+
+		public IList<string> OutputCurrentPlayerEquipment() {
+			Player player = Main.LocalPlayer;
+			var list = new List<string>();
+
+			for( int i = 0; i < player.armor.Length; i++ ) {
+				string output = "";
+				Item item = player.armor[i];
+				if( item == null || item.IsAir ) { continue; }
+
+				if( i == 0 ) {
+					output += "Head: ";
+				} else if( i == 1 ) {
+					output += "Body: ";
+				} else if( i == 2 ) {
+					output += "Legs: ";
+				} else if( PlayerItemHelpers.IsAccessorySlot( player, i ) ) {
+					output += "Accessory: ";
+				} else if( PlayerItemHelpers.IsVanitySlot( player, i ) ) {
+					output += "Vanity: ";
+				}
+
+				output += item.HoverName;
+
+				list.Add( output );
+			}
 
 			return list;
 		}
