@@ -30,7 +30,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		private void InitializeInternals() {
+		private void InitializeComponents() {
 			ControlPanelUI self = this;
 			ControlPanelLogic logic = this.Logic;
 			var mymod = HamstarHelpersMod.Instance;
@@ -77,8 +77,8 @@ namespace HamstarHelpers.ControlPanel {
 				mod_list_panel.HAlign = 0f;
 				mod_list_panel.SetPadding( 4f );
 				mod_list_panel.PaddingTop = 0.0f;
-				mod_list_panel.BackgroundColor = this.Theme.ModListBgColor;
-				mod_list_panel.BorderColor = this.Theme.ModListEdgeColor;
+				mod_list_panel.BackgroundColor = this.Theme.ListBgColor;
+				mod_list_panel.BorderColor = this.Theme.ListEdgeColor;
 				this.InnerContainer.Append( (UIElement)mod_list_panel );
 
 				this.ModListElem = new UIList();
@@ -175,20 +175,20 @@ namespace HamstarHelpers.ControlPanel {
 			ControlPanelUI self = this;
 			var elem = new UIModData( this.Theme, mod, false );
 
-			this.Theme.ApplyModListItem( elem );
+			this.Theme.ApplyListItem( elem );
 
 			elem.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				if( !(from_elem is UIModData) ) { return; }
 
 				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
 
-				self.Theme.ApplyModListItemLit( elem );
+				self.Theme.ApplyListItemLit( elem );
 			};
 			elem.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				if( !(from_elem is UIModData) ) { return; }
 				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
 
-				self.Theme.ApplyModListItem( elem );
+				self.Theme.ApplyListItem( elem );
 			};
 
 			elem.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {

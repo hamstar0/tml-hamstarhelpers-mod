@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -51,7 +50,7 @@ namespace HamstarHelpers.ControlPanel {
 		}
 
 		public override void OnInitialize() {
-			this.InitializeInternals();
+			this.InitializeComponents();
 		}
 
 
@@ -207,9 +206,9 @@ namespace HamstarHelpers.ControlPanel {
 			Mod mod = list_item.Mod;
 
 			if( this.CurrentModListItem != null ) {
-				this.Theme.ApplyModListItem( this.CurrentModListItem );
+				this.Theme.ApplyListItem( this.CurrentModListItem );
 			}
-			this.Theme.ApplyModListItemSelected( list_item );
+			this.Theme.ApplyListItemSelected( list_item );
 			this.CurrentModListItem = list_item;
 			this.Logic.SetCurrentMod( mod );
 

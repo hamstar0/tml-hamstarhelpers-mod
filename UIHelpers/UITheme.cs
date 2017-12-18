@@ -5,24 +5,35 @@ using Terraria.GameContent.UI.Elements;
 
 namespace HamstarHelpers.UIHelpers {
 	public class UITheme {
+		////////////////
+		public Color ModListBgColor = new Color( 0, 0, 0, 128 );
+		public Color ModListEdgeColor = new Color( 32, 32, 32, 32 );
+		public Color ModListItemBgColor = new Color( 64, 0, 16, 128 );
+		public Color ModListItemEdgeColor = new Color( 224, 224, 224, 128 );
+		public Color ModListItemBgLitColor = new Color( 112, 32, 48, 128 );
+		public Color ModListItemEdgeLitColor = new Color( 255, 255, 255, 128 );
+		public Color ModListItemBgSelectedColor = new Color( 160, 64, 80, 128 );
+		public Color ModListItemEdgeSelectedColor = new Color( 224, 224, 224, 128 );
+		////////////////
+
+		
+		
 		public Color MainBgColor = new Color( 160, 0, 32, 192 );
 		public Color MainEdgeColor = new Color( 224, 224, 224, 192 );
 
 		////////////////
 
-		public Color ModListBgColor = new Color( 0, 0, 0, 128 );
-		public Color ModListEdgeColor = new Color( 32, 32, 32, 32 );
+		public Color ListBgColor = new Color( 0, 0, 0, 128 );
+		public Color ListEdgeColor = new Color( 32, 32, 32, 32 );
 
-		////////////////
+		public Color ListItemBgColor = new Color( 64, 0, 16, 128 );
+		public Color ListItemEdgeColor = new Color( 224, 224, 224, 128 );
 
-		public Color ModListItemBgColor = new Color( 64, 0, 16, 128 );
-		public Color ModListItemEdgeColor = new Color( 224, 224, 224, 128 );
+		public Color ListItemBgLitColor = new Color( 112, 32, 48, 128 );
+		public Color ListItemEdgeLitColor = new Color( 255, 255, 255, 128 );
 
-		public Color ModListItemBgLitColor = new Color( 112, 32, 48, 128 );
-		public Color ModListItemEdgeLitColor = new Color( 255, 255, 255, 128 );
-
-		public Color ModListItemBgSelectedColor = new Color( 160, 64, 80, 128 );
-		public Color ModListItemEdgeSelectedColor = new Color( 224, 224, 224, 128 );
+		public Color ListItemBgSelectedColor = new Color( 160, 64, 80, 128 );
+		public Color ListItemEdgeSelectedColor = new Color( 224, 224, 224, 128 );
 
 		////////////////
 
@@ -52,20 +63,20 @@ namespace HamstarHelpers.UIHelpers {
 
 		////////////////
 
-		public void ApplyPanel( UIPanel panel ) {
+		public virtual void ApplyPanel( UIPanel panel ) {
 			panel.BackgroundColor = this.MainBgColor;
 			panel.BorderColor = this.MainEdgeColor;
 		}
 
 		////////////////
 		
-		public void ApplyInput( UITextArea panel ) {
+		public virtual void ApplyInput( UITextArea panel ) {
 			panel.BackgroundColor = this.InputBgColor;
 			panel.BorderColor = this.InputEdgeColor;
 			panel.TextColor = this.InputTextColor;
 		}
 		
-		public void ApplyInputDisable( UITextArea panel ) {
+		public virtual void ApplyInputDisable( UITextArea panel ) {
 			panel.BackgroundColor = this.InputBgDisabledColor;
 			panel.BorderColor = this.InputEdgeDisabledColor;
 			panel.TextColor = this.InputTextDisabledColor;
@@ -73,19 +84,19 @@ namespace HamstarHelpers.UIHelpers {
 
 		////////////////
 
-		public void ApplyButton( UITextPanelButton panel ) {
+		public virtual void ApplyButton( UITextPanelButton panel ) {
 			panel.BackgroundColor = this.ButtonBgColor;
 			panel.BorderColor = this.ButtonEdgeColor;
 			panel.TextColor = this.ButtonTextColor;
 		}
 
-		public void ApplyButtonLit( UITextPanelButton panel ) {
+		public virtual void ApplyButtonLit( UITextPanelButton panel ) {
 			panel.BackgroundColor = this.ButtonBgLitColor;
 			panel.BorderColor = this.ButtonEdgeLitColor;
 			panel.TextColor = this.ButtonTextLitColor;
 		}
 
-		public void ApplyButtonDisable( UITextPanelButton panel ) {
+		public virtual void ApplyButtonDisable( UITextPanelButton panel ) {
 			panel.BackgroundColor = this.ButtonBgDisabledColor;
 			panel.BorderColor = this.ButtonEdgeDisabledColor;
 			panel.TextColor = this.ButtonTextDisabledColor;
@@ -93,26 +104,44 @@ namespace HamstarHelpers.UIHelpers {
 
 		////////////////
 
-		public void ApplyModList( UIPanel panel ) {
-			panel.BackgroundColor = this.ModListBgColor;
-			panel.BorderColor = this.ModListEdgeColor;
+		public virtual void ApplyList( UIPanel panel ) {
+			panel.BackgroundColor = this.ListBgColor;
+			panel.BorderColor = this.ListEdgeColor;
 		}
+
+		public virtual void ApplyListItem( UIModData panel ) {
+			panel.BackgroundColor = this.ListItemBgColor;
+			panel.BorderColor = this.ListItemEdgeColor;
+		}
+
+		public virtual void ApplyListItemLit( UIModData panel ) {
+			panel.BackgroundColor = this.ListItemBgLitColor;
+			panel.BorderColor = this.ListItemEdgeLitColor;
+		}
+
+		public virtual void ApplyListItemSelected( UIModData panel ) {
+			panel.BackgroundColor = this.ListItemBgSelectedColor;
+			panel.BorderColor = this.ListItemEdgeSelectedColor;
+		}
+
 
 		////////////////
 
+		[System.Obsolete( "use UITheme.ApplyList", true )]
+		public void ApplyModList( UIPanel panel ) {
+			this.ApplyList( panel );
+		}
+		[System.Obsolete( "use UITheme.ApplyListItem", true )]
 		public void ApplyModListItem( UIModData panel ) {
-			panel.BackgroundColor = this.ModListItemBgColor;
-			panel.BorderColor = this.ModListItemEdgeColor;
+			this.ApplyListItem( panel );
 		}
-
+		[System.Obsolete( "use UITheme.ApplyListItemLit", true )]
 		public void ApplyModListItemLit( UIModData panel ) {
-			panel.BackgroundColor = this.ModListItemBgLitColor;
-			panel.BorderColor = this.ModListItemEdgeLitColor;
+			this.ApplyListItemLit( panel );
 		}
-
+		[System.Obsolete( "use UITheme.ApplyListItemSelected", true )]
 		public void ApplyModListItemSelected( UIModData panel ) {
-			panel.BackgroundColor = this.ModListItemBgSelectedColor;
-			panel.BorderColor = this.ModListItemEdgeSelectedColor;
+			this.ApplyListItemSelected( panel );
 		}
 	}
 }
