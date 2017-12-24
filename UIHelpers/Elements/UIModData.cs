@@ -1,5 +1,7 @@
 ﻿using HamstarHelpers.TmlHelpers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Diagnostics;
 using System.IO;
 using Terraria;
@@ -27,6 +29,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		////////////////
 
 		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements=true ) {
+			var self = this;
 			TmodFile modfile = mod.File;
 
 			this.Mod = mod;
@@ -91,7 +94,18 @@ namespace HamstarHelpers.UIHelpers.Elements {
 					
 				this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 					string path = ModMetaDataManager.GetConfigRelativePath( mod );
-					Process.Start( Main.SavePath + Path.DirectorySeparatorChar + path );
+					string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;
+
+					try {
+						Process.Start( fullpath );
+					} catch( Exception e ) {
+						try {
+							string dir = new FileInfo( fullpath ).Directory.FullName;
+							Process.Start( dir );
+						} catch( Exception _ ) { }
+
+						Main.NewText( "Couldn't open config file " + path + ": " + e.Message, Color.Red );
+					}
 				};
 			}
 		}

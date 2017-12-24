@@ -70,7 +70,7 @@ namespace HamstarHelpers.ControlPanel {
 
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
-				self.CloseDialog = true;
+				self.SetDialogToClose = true;
 			} ) );
 
 			t.Start();

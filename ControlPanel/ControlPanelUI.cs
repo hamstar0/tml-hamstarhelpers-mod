@@ -36,7 +36,7 @@ namespace HamstarHelpers.ControlPanel {
 		public bool AwaitingReport { get; private set; }
 
 		private bool ResetIssueInput = false;
-		private bool CloseDialog = false;
+		private bool SetDialogToClose = false;
 		private bool IsPopulatingList = false;
 
 
@@ -111,8 +111,8 @@ namespace HamstarHelpers.ControlPanel {
 				this.IssueBodyInput.SetText( "" );
 			}
 
-			if( this.CloseDialog ) {
-				this.CloseDialog = false;
+			if( this.SetDialogToClose ) {
+				this.SetDialogToClose = false;
 				if( this.IsOpen ) {
 					this.Close();
 				}
@@ -222,7 +222,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void ApplyConfigChanges() {
 			this.Logic.ApplyConfigChanges();
-			this.CloseDialog = true;
+			this.SetDialogToClose = true;
 		}
 	}
 }
