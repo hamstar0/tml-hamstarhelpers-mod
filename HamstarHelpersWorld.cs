@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.World.Generation;
 
 
 namespace HamstarHelpers {
@@ -67,8 +65,12 @@ namespace HamstarHelpers {
 
 			//mymod.WorldEvents.OnNetSend( writer );
 
-			writer.Write( this.HasCorrectID );
-			writer.Write( this.ID );
+			try {
+				writer.Write( this.HasCorrectID );
+				writer.Write( this.ID );
+			} catch( Exception e ) {
+				ErrorLogger.Log( e.ToString() );
+			}
 		}
 
 		public override void NetReceive( BinaryReader reader ) {
@@ -76,12 +78,16 @@ namespace HamstarHelpers {
 
 			//mymod.WorldEvents.OnNetReceive( reader );
 
-			bool has_correct_id = reader.ReadBoolean();
-			string id = reader.ReadString();
+			try {
+				bool has_correct_id = reader.ReadBoolean();
+				string id = reader.ReadString();
 
-			if( has_correct_id ) {
-				this.ID = id;
-				this.HasCorrectID = true;
+				if( has_correct_id ) {
+					this.ID = id;
+					this.HasCorrectID = true;
+				}
+			} catch( Exception e ) {
+				ErrorLogger.Log( e.ToString() );
 			}
 		}
 

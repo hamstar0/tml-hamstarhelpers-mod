@@ -85,7 +85,7 @@ namespace HamstarHelpers.Utilities.Config {
 			}
 
 			if( this.Data is ConfigurationDataBase ) {
-				( (ConfigurationDataBase)(object)this.Data).OnLoad( success );
+				((ConfigurationDataBase)(object)this.Data).OnLoad( success );
 			}
 
 			return success;

@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.ItemHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
+
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerHelpers {

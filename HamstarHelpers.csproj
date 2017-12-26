@@ -62,6 +62,7 @@
     <Compile Include="ControlPanel\ControlPanelUI_Init.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Issue.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Toggler.cs" />
+    <Compile Include="DotNetHelpers\DataStructures\SimpleQuadTree.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
     <Compile Include="HamstarHelpersTile.cs" />
