@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 
@@ -13,6 +14,9 @@ namespace HamstarHelpers.NetProtocol {
 			case NetProtocolTypes.SendModData:
 				//if( is_debug ) { DebugHelpers.Log( "Packet ModData" ); }
 				ClientPacketHandlers.ReceiveModDataOnClient( mymod, reader );
+				break;
+			case NetProtocolTypes.SendPlayerPermaDeath:
+				ClientPacketHandlers.ReceivePlayerPermaDeathOnClient( mymod, reader );
 				break;
 			default:
 				DebugHelpers.DebugHelpers.Log( "Invalid packet protocol: " + protocol );
@@ -36,6 +40,17 @@ namespace HamstarHelpers.NetProtocol {
 
 			packet.Send();
 		}
+		public static void SendPermaDeathFromClient( HamstarHelpersMod mymod, string msg ) {
+			// Clients only
+			if( Main.netMode != 1 ) { return; }
+
+			ModPacket packet = mymod.GetPacket();
+
+			packet.Write( (byte)NetProtocolTypes.RequestPlayerPermaDeath );
+			packet.Write( msg );
+
+			packet.Send();
+		}
 
 
 
@@ -44,9 +59,6 @@ namespace HamstarHelpers.NetProtocol {
 		////////////////
 
 		private static void ReceiveModDataOnClient( HamstarHelpersMod mymod, BinaryReader reader ) {
-			// Clients only
-			if( Main.netMode != 1 ) { return; }
-
 			int half_days = reader.ReadInt32();
 
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
@@ -56,6 +68,17 @@ namespace HamstarHelpers.NetProtocol {
 
 			var modplayer = Main.player[Main.myPlayer].GetModPlayer<HamstarHelpersPlayer>( mymod );
 			modplayer.PostEnterWorld();
+		}
+
+		private static void ReceivePlayerPermaDeathOnClient( HamstarHelpersMod mymod, BinaryReader reader ) {
+			int player_who = reader.ReadInt32();
+			string msg = reader.ReadString();
+
+			Main.LocalPlayer.difficulty = 2;
+
+			if( Main.myPlayer == player_who ) {
+				Main.LocalPlayer.KillMe( PlayerDeathReason.ByCustomReason( msg ), 9999, 0 );
+			}
 		}
 	}
 }

@@ -96,7 +96,7 @@ namespace HamstarHelpers {
 
 		public override void PostSetupContent() {
 			//this.ModEvents.OnPostSetupContent();
-			
+			BuffHelpers.BuffHelpers.Initialize();
 			_ModMetaDataManagerLoader.Load();
 
 			if( !Main.dedServ ) {

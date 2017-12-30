@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.ItemHelpers;
+using HamstarHelpers.NetProtocol;
 using Microsoft.Xna.Framework;
 using Terraria;
 
@@ -148,6 +149,11 @@ namespace HamstarHelpers.PlayerHelpers {
 			if( sight_needed && player.blackout ) { return true; }
 			if( sanity_needed && player.confused ) { return true; }
 			return false;
+		}
+
+
+		public static void KillWithPermadeath( Player player, string death_msg ) {
+			ClientPacketHandlers.SendPermaDeathFromClient( HamstarHelpersMod.Instance, death_msg );
 		}
 
 

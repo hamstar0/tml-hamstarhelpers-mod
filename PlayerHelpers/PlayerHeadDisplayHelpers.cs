@@ -21,12 +21,12 @@ namespace HamstarHelpers.PlayerHelpers {
 
 
 		public static void DrawPlayerHead( SpriteBatch sb, Player player, float x, float y, float alpha = 1f, float scale = 1f ) {
-			PlayerHeadDrawInfo draw_info = new PlayerHeadDrawInfo();
-
-			draw_info.spriteBatch = sb;
-			draw_info.drawPlayer = player;
-			draw_info.alpha = alpha;
-			draw_info.scale = scale;
+			PlayerHeadDrawInfo draw_info = new PlayerHeadDrawInfo {
+				spriteBatch = sb,
+				drawPlayer = player,
+				alpha = alpha,
+				scale = scale
+			};
 
 			int shader_id = 0;
 			int skin_variant = player.skinVariant;

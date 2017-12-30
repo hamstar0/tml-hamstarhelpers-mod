@@ -11,9 +11,11 @@ using Terraria.ModLoader.IO;
 namespace HamstarHelpers {
 	class HamstarHelpersPlayer : ModPlayer {
 		public bool HasEnteredWorld { get; private set; }
-
-		private ISet<int> BuffIds = new HashSet<int>();
+		
+		private ISet<int> HasBuffIds = new HashSet<int>();
 		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
+
+		internal ISet<int> PermaBuffsById = new HashSet<int>();
 
 
 		////////////////
@@ -25,10 +27,12 @@ namespace HamstarHelpers {
 		public override void clientClone( ModPlayer client_clone ) {
 			var clone = (HamstarHelpersPlayer)client_clone;
 			clone.HasEnteredWorld = this.HasEnteredWorld;
-			clone.BuffIds = this.BuffIds;
+			clone.HasBuffIds = this.HasBuffIds;
 			clone.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;
+			clone.PermaBuffsById = this.PermaBuffsById;
 		}
 
+		////////////////
 
 		public override void OnEnterWorld( Player player ) {
 			if( player.whoAmI == this.player.whoAmI ) {    // Current player
@@ -89,6 +93,10 @@ namespace HamstarHelpers {
 				modworld.Logic.ReadyServer = true;	// Needed?
 			}
 
+			foreach( int buff_id in this.PermaBuffsById ) {
+				this.player.AddBuff( buff_id, 3 );
+			}
+
 			this.CheckBuffHooks();
 			this.CheckArmorEquipHooks();
 		}
@@ -99,16 +107,16 @@ namespace HamstarHelpers {
 			for( int i = 0; i < this.player.buffTime.Length; i++ ) {
 				if( this.player.buffTime[i] > 0 ) {
 					int buff_id = this.player.buffType[i];
-					if( !this.BuffIds.Contains( buff_id ) ) {
-						this.BuffIds.Add( buff_id );
+					if( !this.HasBuffIds.Contains( buff_id ) ) {
+						this.HasBuffIds.Add( buff_id );
 					}
 				}
 			}
 
 			// Remove old buffs + fire hooks
-			foreach( int buff_id in this.BuffIds.ToArray() ) {
+			foreach( int buff_id in this.HasBuffIds.ToArray() ) {
 				if( this.player.FindBuffIndex( buff_id ) == -1 ) {
-					this.BuffIds.Remove( buff_id );
+					this.HasBuffIds.Remove( buff_id );
 					TmlPlayerHelpers.OnBuffExpire( this.player, buff_id );
 				}
 			}
