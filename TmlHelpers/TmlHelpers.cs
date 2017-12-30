@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.IO;
 using Terraria.ModLoader;
@@ -20,14 +21,18 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
-		public static void Exit( bool save=true, bool to_main_menu=true ) {
-			if( save ) { WorldFile.saveWorld(); }
-			Netplay.disconnect = true;
-			if( to_main_menu ) {
-				SocialAPI.Shutdown();
-			} else {
-				Main.instance.Exit();
-			}
+		public static void ExitToDesktop() {
+			Main.SaveSettings();
+			SocialAPI.Shutdown();
+			Main.instance.Exit();
+		}
+
+		public static void ExitToMenu() {
+			//if( Main.netMode != 1 ) { WorldFile.saveWorld(); }
+
+			IngameOptions.Close();
+			Main.menuMode = 10;
+			WorldGen.SaveAndQuit( (Action)null );
 		}
 	}
 }
