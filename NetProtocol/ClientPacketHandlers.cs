@@ -31,8 +31,7 @@ namespace HamstarHelpers.NetProtocol {
 		////////////////
 
 		public static void SendRequestModDataFromClient( HamstarHelpersMod mymod ) {
-			// Clients only
-			if( Main.netMode != 1 ) { return; }
+			if( Main.netMode != 1 ) { throw new Exception( "Client only" ); }
 
 			ModPacket packet = mymod.GetPacket();
 
@@ -41,8 +40,7 @@ namespace HamstarHelpers.NetProtocol {
 			packet.Send();
 		}
 		public static void SendPermaDeathFromClient( HamstarHelpersMod mymod, string msg ) {
-			// Clients only
-			if( Main.netMode != 1 ) { return; }
+			if( Main.netMode != 1 ) { throw new Exception("Client only"); }
 
 			ModPacket packet = mymod.GetPacket();
 
@@ -59,6 +57,8 @@ namespace HamstarHelpers.NetProtocol {
 		////////////////
 
 		private static void ReceiveModDataOnClient( HamstarHelpersMod mymod, BinaryReader reader ) {
+			if( Main.netMode != 1 ) { throw new Exception( "Client only" ); }
+
 			int half_days = reader.ReadInt32();
 
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
@@ -71,6 +71,8 @@ namespace HamstarHelpers.NetProtocol {
 		}
 
 		private static void ReceivePlayerPermaDeathOnClient( HamstarHelpersMod mymod, BinaryReader reader ) {
+			if( Main.netMode != 1 ) { throw new Exception( "Client only" ); }
+
 			int player_who = reader.ReadInt32();
 			string msg = reader.ReadString();
 

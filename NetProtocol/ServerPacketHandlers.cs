@@ -30,6 +30,8 @@ namespace HamstarHelpers.NetProtocol {
 		////////////////
 		
 		public static void SendModDataFromServer( HamstarHelpersMod mymod, Player player ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			if( modworld.Logic == null ) { throw new Exception( "HH logic not initialized." ); }
 
@@ -42,6 +44,8 @@ namespace HamstarHelpers.NetProtocol {
 		}
 
 		public static void BroadcastPlayerPermaDeathFromServer( HamstarHelpersMod mymod, int player_who, string msg ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			if( modworld.Logic == null ) { throw new Exception( "HH logic not initialized." ); }
 
@@ -60,13 +64,17 @@ namespace HamstarHelpers.NetProtocol {
 		////////////////
 
 		private static void ReceiveRequestModDataOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+
 			ServerPacketHandlers.SendModDataFromServer( mymod, Main.player[player_who] );
 		}
 
 		private static void ReceivePlayerPermaDeathOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+
 			string msg = reader.ReadString();
 
-			Main.LocalPlayer.difficulty = 2;
+			Main.player[player_who].difficulty = 2;
 
 			ServerPacketHandlers.BroadcastPlayerPermaDeathFromServer( mymod, player_who, msg );
 		}
