@@ -6,88 +6,88 @@ using Terraria;
 
 
 namespace HamstarHelpers.RecipeHelpers {
-	public static class RecipeHelpers {
-		private static KeyValuePair<string, RecipeGroup> _EvilBossDrops;
+	public class RecipeHelpers {
+		 private KeyValuePair<string, RecipeGroup> _EvilBossDrops;
 		public static KeyValuePair<string, RecipeGroup> EvilBossDrops { get {
 			int[] item_ids = ItemIdentityHelpers.EvilBiomeBossChunkTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._EvilBossDrops, "EvilBiomeBossDrops", "Evil Biome Boss Chunk", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._EvilBossDrops, "EvilBiomeBossDrops", "Evil Biome Boss Chunk", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _EvilLightPet;
+		 private KeyValuePair<string, RecipeGroup> _EvilLightPet;
 		public static KeyValuePair<string, RecipeGroup> EvilLightPet { get {
 			int[] item_ids = ItemIdentityHelpers.EvilBiomeLightPetTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._EvilLightPet, "EvilBiomeLightPet", "Evil Biome Light Pet", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._EvilLightPet, "EvilBiomeLightPet", "Evil Biome Light Pet", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _MagicMirrors;
+		 private KeyValuePair<string, RecipeGroup> _MagicMirrors;
 		public static KeyValuePair<string, RecipeGroup> MagicMirrors { get {
 			int[] item_ids = ItemIdentityHelpers.MagicMirrorTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._MagicMirrors, "MagicMirrors", "Magic Mirrors", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._MagicMirrors, "MagicMirrors", "Magic Mirrors", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _VanillaAnimals;
+		 private KeyValuePair<string, RecipeGroup> _VanillaAnimals;
 		public static KeyValuePair<string, RecipeGroup> VanillaAnimals { get {
 			int[] item_ids = ItemIdentityHelpers.VanillaAnimalTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaAnimals, "VanillaAnimals", "Live Animal (vanilla)", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._VanillaAnimals, "VanillaAnimals", "Live Animal (vanilla)", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _VanillaBugs;
+		 private KeyValuePair<string, RecipeGroup> _VanillaBugs;
 		public static KeyValuePair<string, RecipeGroup> VanillaBugs { get {
 			int[] item_ids = ItemIdentityHelpers.VanillaBugTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaBugs, "VanillaBugs", "Live Bug (vanilla)", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._VanillaBugs, "VanillaBugs", "Live Bug (vanilla)", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _VanillaButterfly;
+		 private KeyValuePair<string, RecipeGroup> _VanillaButterfly;
 		public static KeyValuePair<string, RecipeGroup> VanillaButterfly { get {
 			int[] item_ids = ItemIdentityHelpers.VanillaButterflyTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaButterfly, "VanillaButterflies", "Butterflies (vanilla)", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._VanillaButterfly, "VanillaButterflies", "Butterflies (vanilla)", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _VanillaGoldCritter;
+		 private KeyValuePair<string, RecipeGroup> _VanillaGoldCritter;
 		public static KeyValuePair<string, RecipeGroup> VanillaGoldCritter { get {
 			int[] item_ids = ItemIdentityHelpers.VanillaGoldCritterTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._VanillaGoldCritter, "GoldCritter", "Gold Critters (vanilla)", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._VanillaGoldCritter, "GoldCritter", "Gold Critters (vanilla)", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _MobBanners;
+		 private KeyValuePair<string, RecipeGroup> _MobBanners;
 		public static KeyValuePair<string, RecipeGroup> MobBanners { get {
 			int[] item_ids = NPCBannerHelpers.GetBannerItemTypes().ToArray();
-			return RecipeHelpers.GetPair( ref RecipeHelpers._MobBanners, "NpcBanners", "Mob Banner", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._MobBanners, "NpcBanners", "Mob Banner", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _RecordedMusicBox;
+		 private KeyValuePair<string, RecipeGroup> _RecordedMusicBox;
 		public static KeyValuePair<string, RecipeGroup> RecordedMusicBox { get {
 			int[] item_ids = ItemMusicBoxHelpers.GetVanillaMusicBoxes().ToArray();
-			return RecipeHelpers.GetPair( ref RecipeHelpers._RecordedMusicBox, "RecordedMusicBoxes", "Recorded Music Box (vanilla)", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._RecordedMusicBox, "RecordedMusicBoxes", "Recorded Music Box (vanilla)", item_ids );
 		} }
 
 
-		 private static KeyValuePair<string, RecipeGroup> _AlchemyHerbs;
+		 private KeyValuePair<string, RecipeGroup> _AlchemyHerbs;
 		public static KeyValuePair<string, RecipeGroup> AlchemyHerbs { get {
 			int[] item_ids = ItemIdentityHelpers.AlchemyHerbsTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._AlchemyHerbs, "AlchemyHerbs", "Alchemy Herbs (vanilla)", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._AlchemyHerbs, "AlchemyHerbs", "Alchemy Herbs (vanilla)", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _StrangePlants;
+		 private KeyValuePair<string, RecipeGroup> _StrangePlants;
 		public static KeyValuePair<string, RecipeGroup> StrangePlants { get {
 			int[] item_ids = ItemIdentityHelpers.StrangePlantTypes;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._StrangePlants, "StrangePlants", "Strange Plant", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._StrangePlants, "StrangePlants", "Strange Plant", item_ids );
 		} }
 
-		 private static KeyValuePair<string, RecipeGroup> _PressurePlates;
+		 private KeyValuePair<string, RecipeGroup> _PressurePlates;
 		public static KeyValuePair<string, RecipeGroup> PressurePlates { get {
 			int[] item_ids = ItemIdentityHelpers.PressurePlates;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._PressurePlates, "PressurePlates", "Pressure Plates", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._PressurePlates, "PressurePlates", "Pressure Plates", item_ids );
 		} }
-		 private static KeyValuePair<string, RecipeGroup> _WeightedPressurePlates;
+		 private KeyValuePair<string, RecipeGroup> _WeightedPressurePlates;
 		public static KeyValuePair<string, RecipeGroup> WeightedPressurePlates { get {
 			int[] item_ids = ItemIdentityHelpers.WeightedPressurePlates;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._WeightedPressurePlates, "WeightedPressurePlates", "Weighted Pressure Plates", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._WeightedPressurePlates, "WeightedPressurePlates", "Weighted Pressure Plates", item_ids );
 		} }
-		 private static KeyValuePair<string, RecipeGroup> _ConveyorBelts;
+		 private KeyValuePair<string, RecipeGroup> _ConveyorBelts;
 		public static KeyValuePair<string, RecipeGroup> ConveyorBelts { get {
 			int[] item_ids = ItemIdentityHelpers.ConveyorBelts;
-			return RecipeHelpers.GetPair( ref RecipeHelpers._ConveyorBelts, "ConveyorBelts", "Conveyor Belts", item_ids );
+			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._ConveyorBelts, "ConveyorBelts", "Conveyor Belts", item_ids );
 		} }
 
 		////////////////

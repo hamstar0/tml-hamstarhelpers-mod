@@ -8,6 +8,7 @@ namespace HamstarHelpers.BuffHelpers {
 
 
 		internal static void Initialize() {
+			BuffHelpers.BuffIdsByName.Clear();
 			for( int i=0; i<Main.buffTexture.Length; i++ ) {
 				BuffHelpers.BuffIdsByName[ Lang.GetBuffName(i) ] = i;
 			}

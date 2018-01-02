@@ -2931,14 +2931,19 @@ namespace HamstarHelpers.TileHelpers {
 		}
 
 
+		[System.Obsolete( "use TileIdentityHelpers.GetVanillaTileName", false )]
 		public static string GetTileName( int tile_type ) {
-			if( !TileIdentityHelpers.Data.ContainsKey(tile_type) || !TileIdentityHelpers.Data[tile_type].ContainsKey(-1) ) {
+			return TileIdentityHelpers.GetVanillaTileName( tile_type );
+		}
+
+		public static string GetVanillaTileName( int tile_type ) {
+			if( !TileIdentityHelpers.Data.ContainsKey( tile_type ) || !TileIdentityHelpers.Data[tile_type].ContainsKey( -1 ) ) {
 				return "";
 			}
 			return TileIdentityHelpers.Data[tile_type][-1];
 		}
-		
-		
+
+
 		public static bool IsObject( int tile_type ) {
 			return Main.tileFrameImportant[tile_type]
 				|| Main.tileContainer[tile_type]

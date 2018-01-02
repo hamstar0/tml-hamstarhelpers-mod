@@ -1,5 +1,5 @@
 author = hamstar
-version = 1.2.5
+version = 1.2.5.1
 displayName = Hamstar's Helpers
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 includePDB = true

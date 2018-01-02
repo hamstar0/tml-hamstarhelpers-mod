@@ -23,6 +23,9 @@ namespace HamstarHelpers {
 
 		////////////////
 
+		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
+		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
+
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
 		public bool HasCurrentPlayerEnteredWorld { get; internal set; }
@@ -60,8 +63,8 @@ namespace HamstarHelpers {
 		public override void Load() {
 			HamstarHelpersMod.Instance = this;
 
-			//this.ModEvents.OnLoad();
-
+			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
+			this.NPCBannerHelpers = new NPCHelpers.NPCBannerHelpers();
 			this.ControlPanel = new ControlPanelUI();
 			AltNPCInfo.DataInitialize();
 			AltProjectileInfo.DataInitialize();
@@ -180,7 +183,7 @@ namespace HamstarHelpers {
 
 			NPCBannerHelpers.InitializeBanners();
 
-			foreach( var kv in RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {
+			foreach( var kv in HamstarHelpers.RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {
 				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
 		}

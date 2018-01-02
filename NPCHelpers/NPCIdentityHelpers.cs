@@ -1,17 +1,10 @@
 ﻿using HamstarHelpers.DotNetHelpers.DataStructures;
-using HamstarHelpers.WorldHelpers;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.ID;
 
 
 namespace HamstarHelpers.NPCHelpers {
-	public class OrSet<T> : HashSet<T> { }
-	public class AndSet<T> : HashSet<T> { }
-
-
-
 	public static class NPCIdentityHelpers {
 		public static string GetUniqueId( NPC npc ) {
 			string id = npc.TypeName;

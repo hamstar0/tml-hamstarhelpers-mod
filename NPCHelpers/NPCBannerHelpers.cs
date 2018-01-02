@@ -6,27 +6,27 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.NPCHelpers {
-	public static class NPCBannerHelpers {
-		private static IDictionary<int, int> NpcTypesToBannerItemTypes;
-		private static ISet<int> BannerItemTypes;
-		private static IDictionary<int, ISet<int>> BannerItemTypesToNpcTypes;
+	public class NPCBannerHelpers {
+		private IDictionary<int, int> NpcTypesToBannerItemTypes;
+		private ISet<int> BannerItemTypes;
+		private IDictionary<int, ISet<int>> BannerItemTypesToNpcTypes;
 
 
 
 		////////////////
 
-		internal static void InitializeBanners() {
-			NPCBannerHelpers.BannerItemTypesToNpcTypes = new Dictionary<int, ISet<int>>();
-			NPCBannerHelpers.NpcTypesToBannerItemTypes = NPCBannerHelpers.GetNpcToBannerItemTypes();
+		internal void InitializeBanners() {
+			this.BannerItemTypesToNpcTypes = new Dictionary<int, ISet<int>>();
+			this.NpcTypesToBannerItemTypes = NPCBannerHelpers.GetNpcToBannerItemTypes();
 
-			foreach( var kv in NPCBannerHelpers.NpcTypesToBannerItemTypes ) {
-				if( !NPCBannerHelpers.BannerItemTypesToNpcTypes.ContainsKey(kv.Value) ) {
-					NPCBannerHelpers.BannerItemTypesToNpcTypes[kv.Value] = new HashSet<int>();
+			foreach( var kv in this.NpcTypesToBannerItemTypes ) {
+				if( !this.BannerItemTypesToNpcTypes.ContainsKey(kv.Value) ) {
+					this.BannerItemTypesToNpcTypes[kv.Value] = new HashSet<int>();
 				}
-				NPCBannerHelpers.BannerItemTypesToNpcTypes[kv.Value].Add( kv.Key );
+				this.BannerItemTypesToNpcTypes[kv.Value].Add( kv.Key );
 			}
 
-			NPCBannerHelpers.BannerItemTypes = new HashSet<int>( NPCBannerHelpers.BannerItemTypesToNpcTypes.Keys );
+			this.BannerItemTypes = new HashSet<int>( this.BannerItemTypesToNpcTypes.Keys );
 		}
 
 
@@ -59,17 +59,23 @@ namespace HamstarHelpers.NPCHelpers {
 		////////////////
 
 		public static ReadOnlySet<int> GetBannerItemTypes() {
-			return new ReadOnlySet<int>( NPCBannerHelpers.BannerItemTypes );
+			var npc_banner_helpers = HamstarHelpersMod.Instance.NPCBannerHelpers;
+
+			return new ReadOnlySet<int>( npc_banner_helpers.BannerItemTypes );
 		}
 
 		public static int GetBannerItemTypeOfNpcType( int npc_type ) {
-			if( !NPCBannerHelpers.NpcTypesToBannerItemTypes.ContainsKey(npc_type) ) { return -1; }
-			return NPCBannerHelpers.NpcTypesToBannerItemTypes[ npc_type ];
+			var npc_banner_helpers = HamstarHelpersMod.Instance.NPCBannerHelpers;
+
+			if( !npc_banner_helpers.NpcTypesToBannerItemTypes.ContainsKey(npc_type) ) { return -1; }
+			return npc_banner_helpers.NpcTypesToBannerItemTypes[ npc_type ];
 		}
 
 		public static ReadOnlySet<int> GetNpcTypesOfBannerItemType( int item_type ) {
-			if( !NPCBannerHelpers.BannerItemTypesToNpcTypes.ContainsKey( item_type ) ) { return new ReadOnlySet<int>( new HashSet<int>() ); }
-			return new ReadOnlySet<int>( NPCBannerHelpers.BannerItemTypesToNpcTypes[ item_type ] );
+			var npc_banner_helpers = HamstarHelpersMod.Instance.NPCBannerHelpers;
+
+			if( !npc_banner_helpers.BannerItemTypesToNpcTypes.ContainsKey( item_type ) ) { return new ReadOnlySet<int>( new HashSet<int>() ); }
+			return new ReadOnlySet<int>( npc_banner_helpers.BannerItemTypesToNpcTypes[ item_type ] );
 		}
 	}
 }

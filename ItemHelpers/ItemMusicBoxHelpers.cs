@@ -53,7 +53,11 @@ namespace HamstarHelpers.ItemHelpers {
 		}
 
 
+		[System.Obsolete( "use ItemMusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", false )]
 		public static int GetMusicTypeOfMusicBox( int item_type ) {
+			return ItemMusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
+		}
+		public static int GetMusicTypeOfVanillaMusicBox( int item_type ) {
 			switch( item_type ) {
 			case ItemID.MusicBoxOverworldDay: return 1;
 			case ItemID.MusicBoxEerie: return 2;
