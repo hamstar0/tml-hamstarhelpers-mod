@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.TmlHelpers {
+	[System.Obsolete( "use GlobalNPC", false )]
 	public class AltNPCInfo {
 		private static IDictionary<string, Type> NpcInfoTypes;
 		private static IDictionary<int, IDictionary<string, AltNPCInfo>> NpcInfos;

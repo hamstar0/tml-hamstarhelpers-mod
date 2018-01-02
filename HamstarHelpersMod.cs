@@ -22,9 +22,13 @@ namespace HamstarHelpers {
 
 
 		////////////////
-
-		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
+		
+		internal BuffHelpers.BuffHelpers BuffHelpers;
+		internal ItemHelpers.ItemIdentityHelpers ItemIdentityHelpers;
 		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
+		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
+		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
+		internal WorldHelpers.WorldHelpers WorldHelpers;
 
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
@@ -63,9 +67,14 @@ namespace HamstarHelpers {
 		public override void Load() {
 			HamstarHelpersMod.Instance = this;
 
-			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
+			this.BuffHelpers = new BuffHelpers.BuffHelpers();
+			this.ItemIdentityHelpers = new ItemHelpers.ItemIdentityHelpers();
 			this.NPCBannerHelpers = new NPCHelpers.NPCBannerHelpers();
+			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
+			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
+			this.WorldHelpers = new WorldHelpers.WorldHelpers();
 			this.ControlPanel = new ControlPanelUI();
+
 			AltNPCInfo.DataInitialize();
 			AltProjectileInfo.DataInitialize();
 
@@ -86,8 +95,7 @@ namespace HamstarHelpers {
 			//this.ModEvents.OnUnload();
 
 			HamstarHelpersMod.Instance = null;
-
-			TmlPlayerHelpers.Reset();
+			
 			_ModMetaDataManagerLoader.Unload();
 		}
 
@@ -99,7 +107,9 @@ namespace HamstarHelpers {
 
 		public override void PostSetupContent() {
 			//this.ModEvents.OnPostSetupContent();
-			BuffHelpers.BuffHelpers.Initialize();
+			this.BuffHelpers.Initialize();
+			this.ItemIdentityHelpers.Initialize();
+
 			_ModMetaDataManagerLoader.Load();
 
 			if( !Main.dedServ ) {

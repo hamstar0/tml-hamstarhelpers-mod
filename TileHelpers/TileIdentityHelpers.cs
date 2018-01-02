@@ -6,22 +6,22 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.TileHelpers {
 	public static class TileIdentityHelpers {
-		private static IDictionary<int, IDictionary<int, string>> Data;
+		private static IDictionary<int, IDictionary<int, string>> VanillaTileData;
 
 		static TileIdentityHelpers() {
 			try {
-			TileIdentityHelpers.Data = new Dictionary<int, IDictionary<int, string>>();
+			TileIdentityHelpers.VanillaTileData = new Dictionary<int, IDictionary<int, string>>();
 
-			TileIdentityHelpers.Data[0] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[0] = new Dictionary<int, string> {
 				{ -1, "Dirt Block" }
 			};
-			TileIdentityHelpers.Data[1] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[1] = new Dictionary<int, string> {
 				{ -1, "Stone Block" }
 			};
-			TileIdentityHelpers.Data[2] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[2] = new Dictionary<int, string> {
 				{ -1, "Grass" }
 			};
-			TileIdentityHelpers.Data[3] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[3] = new Dictionary<int, string> {
 				{ 9, "Mushroom" },
 				{ 1, "Short Grass Plants" },
 				{ 2, "Short Grass Plants" },
@@ -46,7 +46,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 22, "Short Grass Plants" },
 				{ -1, "Short Grass Plants" }
 			};
-			TileIdentityHelpers.Data[4] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[4] = new Dictionary<int, string> {
 				{ 2, "Blue Torch" },
 				{ 3, "Red Torch" },
 				{ 4, "Green Torch" },
@@ -64,7 +64,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 16, "Pink Torch" },
 				{ -1, "Torch" }
 			};
-			TileIdentityHelpers.Data[5] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[5] = new Dictionary<int, string> {
 				{ 0, "Corrupt Tree" },
 				{ 1, "Jungle Tree" },
 				{ 2, "Hallow Tree" },
@@ -74,19 +74,19 @@ namespace HamstarHelpers.TileHelpers {
 				{ 6, "Giant Glowing Mushroom (surface)" },
 				{ -1, "Tree" }
 			};
-			TileIdentityHelpers.Data[6] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[6] = new Dictionary<int, string> {
 				{ -1, "Iron Ore" }
 			};
-			TileIdentityHelpers.Data[7] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[7] = new Dictionary<int, string> {
 				{ -1, "Copper Ore" }
 			};
-			TileIdentityHelpers.Data[8] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[8] = new Dictionary<int, string> {
 				{ -1, "Gold Ore" }
 			};
-			TileIdentityHelpers.Data[9] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[9] = new Dictionary<int, string> {
 				{ -1, "Silver Ore" }
 			};
-			TileIdentityHelpers.Data[10] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[10] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Door (closed)" },
 				{ 3, "Rich Mahogany Door (closed)" },
 				{ 4, "Pearlwood Door (closed)" },
@@ -125,7 +125,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 37, "Crystal Door  (closed)" },
 				{ -1, "Wooden Door (closed)" }
 			};
-			TileIdentityHelpers.Data[11] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[11] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Door (open)" },
 				{ 3, "Rich Mahogany Door (open)" },
 				{ 4, "Pearlwood Door (open)" },
@@ -164,10 +164,10 @@ namespace HamstarHelpers.TileHelpers {
 				{ 37, "Crystal Door  (open)" },
 				{ -1, "Wooden Door (open)" },
 			};
-			TileIdentityHelpers.Data[12] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[12] = new Dictionary<int, string> {
 				{ -1, "Crystal Heart" }
 			};
-			TileIdentityHelpers.Data[13] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[13] = new Dictionary<int, string> {
 				{ 2, "Lesser Healing Potion" },
 				{ 3, "Lesser Mana Potion" },
 				{ 4, "Pink Vase" },
@@ -178,7 +178,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 9, "Chalice" },
 				{ -1, "Bottle" }
 			};
-			TileIdentityHelpers.Data[14] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[14] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Table" },
 				{ 3, "Rich Mahogany Table" },
 				{ 4, "Pearlwood Table" },
@@ -216,7 +216,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 36, "Crystal Table" },
 				{ -1, "Wooden Table" }
 			};
-			TileIdentityHelpers.Data[15] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[15] = new Dictionary<int, string> {
 				{ 2, "Toilet" },
 				{ 3, "Ebonwood Chair" },
 				{ 4, "Rich Mahogany Chair" },
@@ -255,14 +255,14 @@ namespace HamstarHelpers.TileHelpers {
 				{ 37, "Crystal Chair" },
 				{ -1, "Wooden Chair" }
 			};
-			TileIdentityHelpers.Data[16] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[16] = new Dictionary<int, string> {
 				{ 2, "Lead Anvil" },
 				{ -1, "Iron Anvil" }
 			};
-			TileIdentityHelpers.Data[17] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[17] = new Dictionary<int, string> {
 				{ -1, "Furnace" }
 			};
-			TileIdentityHelpers.Data[18] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[18] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Work Bench" },
 				{ 3, "Rich Mahogany Work Bench" },
 				{ 4, "Pearlwood Work Bench" },
@@ -297,7 +297,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 33, "Golden Work Bench" },
 				{ -1, "Work Bench" }
 			};
-			TileIdentityHelpers.Data[19] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[19] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Platform" },
 				{ 3, "Rich Mahogany Platform" },
 				{ 4, "Pearlwood Platform" },
@@ -335,10 +335,10 @@ namespace HamstarHelpers.TileHelpers {
 				{ 36, "Frozen Platform" },
 				{ -1, "Wood Platform" }
 			};
-			TileIdentityHelpers.Data[20] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[20] = new Dictionary<int, string> {
 				{ -1, "Acorn" }
 			};
-			TileIdentityHelpers.Data[21] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[21] = new Dictionary<int, string> {
 				{ 2, "Gold Chest" },
 				{ 3, "Locked Gold Chest" },
 				{ 4, "Shadow Chest" },
@@ -394,13 +394,13 @@ namespace HamstarHelpers.TileHelpers {
 				{ 54, "Golden Chest" },
 				{ -1, "Chest" }
 			};
-			TileIdentityHelpers.Data[22] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[22] = new Dictionary<int, string> {
 				{ -1, "Demonite Ore" }
 			};
-			TileIdentityHelpers.Data[23] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[23] = new Dictionary<int, string> {
 				{ -1, "Corrupt grass" }
 			};
-			TileIdentityHelpers.Data[24] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[24] = new Dictionary<int, string> {
 				{ 9, "Vile Mushroom" },
 				{ 1, "Corruption Plants" },
 				{ 2, "Corruption Plants" },
@@ -426,33 +426,33 @@ namespace HamstarHelpers.TileHelpers {
 				{ 23, "Corruption Plants" },
 				{ -1, "Corruption Plants" }
 			};
-			TileIdentityHelpers.Data[25] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[25] = new Dictionary<int, string> {
 				{ -1, "Ebonstone Block" }
 			};
-			TileIdentityHelpers.Data[26] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[26] = new Dictionary<int, string> {
 				{ 2, "Crimson Altar" },
 				{ -1, "Demon Altar" }
 			};
-			TileIdentityHelpers.Data[27] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[27] = new Dictionary<int, string> {
 				{ -1, "Sunflower" }
 			};
-			TileIdentityHelpers.Data[28] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[28] = new Dictionary<int, string> {
 				{ -1, "Pot" }
 			};
-			TileIdentityHelpers.Data[29] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[29] = new Dictionary<int, string> {
 				{ -1, "Piggy Bank" }
 			};
-			TileIdentityHelpers.Data[30] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[30] = new Dictionary<int, string> {
 				{ -1, "Wood" }
 			};
-			TileIdentityHelpers.Data[31] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[31] = new Dictionary<int, string> {
 				{ 2, "Crimson Heart" },
 				{ -1, "Shadow Orb" }
 			};
-			TileIdentityHelpers.Data[32] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[32] = new Dictionary<int, string> {
 				{ -1, "Corruption Thorny Bush" }
 			};
-			TileIdentityHelpers.Data[33] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[33] = new Dictionary<int, string> {
 				{ 2, "Blue Dungeon Candle" },
 				{ 3, "Green Dungeon Candle" },
 				{ 4, "Pink Dungeon Candle" },
@@ -485,7 +485,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 31, "Crystal Candle" },
 				{ -1, "Candle" }
 			};
-			TileIdentityHelpers.Data[34] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[34] = new Dictionary<int, string> {
 				{ 2, "Silver Chandelier" },
 				{ 3, "Gold Chandelier" },
 				{ 4, "Tin Chandelier" },
@@ -525,28 +525,28 @@ namespace HamstarHelpers.TileHelpers {
 				{ 38, "Crystal Chandelier" },
 				{ -1, "Copper Chandelier" }
 			};
-			TileIdentityHelpers.Data[35] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[35] = new Dictionary<int, string> {
 				{ -1, "Jack 'O Lantern" }
 			};
-			TileIdentityHelpers.Data[36] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[36] = new Dictionary<int, string> {
 				{ -1, "Present" }
 			};
-			TileIdentityHelpers.Data[37] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[37] = new Dictionary<int, string> {
 				{ -1, "Meteorite" }
 			};
-			TileIdentityHelpers.Data[38] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[38] = new Dictionary<int, string> {
 				{ -1, "Gray Brick" }
 			};
-			TileIdentityHelpers.Data[39] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[39] = new Dictionary<int, string> {
 				{ -1, "Red Brick" }
 			};
-			TileIdentityHelpers.Data[40] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[40] = new Dictionary<int, string> {
 				{ -1, "Clay Block" }
 			};
-			TileIdentityHelpers.Data[41] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[41] = new Dictionary<int, string> {
 				{ -1, "Blue Brick" }
 			};
-			TileIdentityHelpers.Data[42] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[42] = new Dictionary<int, string> {
 				{ 2, "Brass Lantern" },
 				{ 3, "Caged Lantern" },
 				{ 4, "Carriage Lantern" },
@@ -586,61 +586,61 @@ namespace HamstarHelpers.TileHelpers {
 				{ 38, "Crystal Lantern" },
 				{ -1, "Chain Lantern" }
 			};
-			TileIdentityHelpers.Data[43] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[43] = new Dictionary<int, string> {
 				{ -1, "Green Brick" }
 			};
-			TileIdentityHelpers.Data[44] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[44] = new Dictionary<int, string> {
 				{ -1, "Pink Brick" }
 			};
-			TileIdentityHelpers.Data[45] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[45] = new Dictionary<int, string> {
 				{ -1, "Gold Brick" }
 			};
-			TileIdentityHelpers.Data[46] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[46] = new Dictionary<int, string> {
 				{ -1, "Silver Brick" }
 			};
-			TileIdentityHelpers.Data[47] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[47] = new Dictionary<int, string> {
 				{ -1, "Copper Brick" }
 			};
-			TileIdentityHelpers.Data[48] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[48] = new Dictionary<int, string> {
 				{ -1, "Spike" }
 			};
-			TileIdentityHelpers.Data[49] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[49] = new Dictionary<int, string> {
 				{ -1, "Water Candle" }
 			};
-			TileIdentityHelpers.Data[50] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[50] = new Dictionary<int, string> {
 				{ -1, "Book" }
 			};
-			TileIdentityHelpers.Data[51] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[51] = new Dictionary<int, string> {
 				{ -1, "Cobweb" }
 			};
-			TileIdentityHelpers.Data[52] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[52] = new Dictionary<int, string> {
 				{ -1, "Vines" }
 			};
-			TileIdentityHelpers.Data[53] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[53] = new Dictionary<int, string> {
 				{ -1, "Sand Block" }
 			};
-			TileIdentityHelpers.Data[54] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[54] = new Dictionary<int, string> {
 				{ -1, "Glass" }
 			};
-			TileIdentityHelpers.Data[55] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[55] = new Dictionary<int, string> {
 				{ -1, "Sign" }
 			};
-			TileIdentityHelpers.Data[56] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[56] = new Dictionary<int, string> {
 				{ -1, "Obsidian" }
 			};
-			TileIdentityHelpers.Data[57] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[57] = new Dictionary<int, string> {
 				{ -1, "Ash Block" }
 			};
-			TileIdentityHelpers.Data[58] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[58] = new Dictionary<int, string> {
 				{ -1, "Hellstone" }
 			};
-			TileIdentityHelpers.Data[59] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[59] = new Dictionary<int, string> {
 				{ -1, "Mud Block" }
 			};
-			TileIdentityHelpers.Data[60] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[60] = new Dictionary<int, string> {
 				{ -1, "Jungle Grass" }
 			};
-			TileIdentityHelpers.Data[61] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[61] = new Dictionary<int, string> {
 				{ 9, "Jungle Spore" },
 				{ 10, "Nature's Gift" },
 				{ 1, "Short Jungle Plants" },
@@ -666,58 +666,58 @@ namespace HamstarHelpers.TileHelpers {
 				{ 23, "Short Jungle Plants" },
 				{ -1, "Short Jungle Plants" }
 			};
-			TileIdentityHelpers.Data[62] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[62] = new Dictionary<int, string> {
 				{ -1, "Jungle Vine" }
 			};
-			TileIdentityHelpers.Data[63] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[63] = new Dictionary<int, string> {
 				{ -1, "Sapphire Block" }
 			};
-			TileIdentityHelpers.Data[64] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[64] = new Dictionary<int, string> {
 				{ -1, "Ruby Block" }
 			};
-			TileIdentityHelpers.Data[65] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[65] = new Dictionary<int, string> {
 				{ -1, "Emerald Block" }
 			};
-			TileIdentityHelpers.Data[66] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[66] = new Dictionary<int, string> {
 				{ -1, "Topaz Block" }
 			};
-			TileIdentityHelpers.Data[67] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[67] = new Dictionary<int, string> {
 				{ -1, "Amethyst Block" }
 			};
-			TileIdentityHelpers.Data[68] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[68] = new Dictionary<int, string> {
 				{ -1, "Diamond Block" }
 			};
-			TileIdentityHelpers.Data[69] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[69] = new Dictionary<int, string> {
 				{ -1, "Jungle Thorny Bush" }
 			};
-			TileIdentityHelpers.Data[70] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[70] = new Dictionary<int, string> {
 				{ -1, "Mushroom Grass" }
 			};
-			TileIdentityHelpers.Data[71] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[71] = new Dictionary<int, string> {
 				{ -1, "Glowing Mushroom (growing)" }
 			};
-			TileIdentityHelpers.Data[72] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[72] = new Dictionary<int, string> {
 				{ -1, "Giant Glowing Mushroom (underground)" }
 			};
-			TileIdentityHelpers.Data[73] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[73] = new Dictionary<int, string> {
 				{ -1, "Tall Grass Plants" }
 			};
-			TileIdentityHelpers.Data[74] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[74] = new Dictionary<int, string> {
 				{ -1, "Tall Jungle Plants" }
 			};
-			TileIdentityHelpers.Data[75] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[75] = new Dictionary<int, string> {
 				{ -1, "Obsidian Brick" }
 			};
-			TileIdentityHelpers.Data[76] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[76] = new Dictionary<int, string> {
 				{ -1, "Hellstone Brick" }
 			};
-			TileIdentityHelpers.Data[77] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[77] = new Dictionary<int, string> {
 				{ -1, "Hellforge" }
 			};
-			TileIdentityHelpers.Data[78] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[78] = new Dictionary<int, string> {
 				{ -1, "Clay Pot" }
 			};
-			TileIdentityHelpers.Data[79] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[79] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Bed" },
 				{ 3, "Rich Mahogany Bed" },
 				{ 4, "Pearlwood Bed" },
@@ -751,13 +751,13 @@ namespace HamstarHelpers.TileHelpers {
 				{ 32, "Crystal Bed" },
 				{ -1, "Bed" }
 			};
-			TileIdentityHelpers.Data[80] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[80] = new Dictionary<int, string> {
 				{ -1, "Cactus (growing)" }
 			};
-			TileIdentityHelpers.Data[81] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[81] = new Dictionary<int, string> {
 				{ -1, "Coral" }
 			};
-			TileIdentityHelpers.Data[82] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[82] = new Dictionary<int, string> {
 				{ 2, "Moonglow (growing)" },
 				{ 3, "Blinkroot (growing)" },
 				{ 4, "Deathweed (growing)" },
@@ -766,7 +766,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 7, "Shiverthorn (growing)" },
 				{ -1, "Daybloom (growing)" }
 			};
-			TileIdentityHelpers.Data[83] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[83] = new Dictionary<int, string> {
 				{ 2, "Moonglow (mature)" },
 				{ 3, "Blinkroot (mature)" },
 				{ 4, "Deathweed (mature)" },
@@ -775,7 +775,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 7, "Shiverthorn (mature)" },
 				{ -1, "Daybloom (mature)" }
 			};
-			TileIdentityHelpers.Data[84] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[84] = new Dictionary<int, string> {
 				{ 2, "Moonglow (blooming)" },
 				{ 3, "Blinkroot (blooming)" },
 				{ 4, "Deathweed (blooming)" },
@@ -784,7 +784,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 7, "Shiverthorn (blooming)" },
 				{ -1, "Daybloom (blooming)" }
 			};
-			TileIdentityHelpers.Data[85] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[85] = new Dictionary<int, string> {
 				{ 2, "Grave Marker" },
 				{ 3, "Cross Grave Marker" },
 				{ 4, "Headstone" },
@@ -797,10 +797,10 @@ namespace HamstarHelpers.TileHelpers {
 				{ 11, "Golden Headstone" },
 				{ -1, "Tombstone" }
 			};
-			TileIdentityHelpers.Data[86] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[86] = new Dictionary<int, string> {
 				{ -1, "Loom" }
 			};
-			TileIdentityHelpers.Data[87] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[87] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Piano" },
 				{ 3, "Rich Mahogany Piano" },
 				{ 4, "Pearlwood Piano" },
@@ -834,7 +834,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 32, "Dynasty Piano" },
 				{ -1, "Piano" }
 			};
-			TileIdentityHelpers.Data[88] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[88] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Dresser" },
 				{ 3, "Rich Mahogany Dresser" },
 				{ 4, "Pearlwood Dresser" },
@@ -868,7 +868,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 32, "Living Wood Dresser" },
 				{ -1, "Dresser" }
 			};
-			TileIdentityHelpers.Data[89] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[89] = new Dictionary<int, string> {
 				{ 2, "Sofa" },
 				{ 3, "Ebonwood Sofa" },
 				{ 4, "Rich Mahogany Sofa" },
@@ -905,7 +905,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 35, "Dynasty Sofa" },
 				{ -1, "Bench" }
 			};
-			TileIdentityHelpers.Data[90] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[90] = new Dictionary<int, string> {
 				{ 1, "Cactus Bathtub" },
 				{ 2, "Ebonwood Bathtub" },
 				{ 3, "Flesh Bathtub" },
@@ -939,7 +939,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 31, "Crystal Bathtub" },
 				{ -1, "Bathtub" }
 			};
-			TileIdentityHelpers.Data[91] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[91] = new Dictionary<int, string> {
 				{ 2, "Green Banner" },
 				{ 3, "Blue Banner" },
 				{ 4, "Yellow Banner" },
@@ -1228,10 +1228,10 @@ namespace HamstarHelpers.TileHelpers {
 				{ 297, "Etherian Lightning Bug Banner" },
 				{ -1, "Red Banner" }
 			};
-			TileIdentityHelpers.Data[92] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[92] = new Dictionary<int, string> {
 				{ -1, "Lamp Post" }
 			};
-			TileIdentityHelpers.Data[93] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[93] = new Dictionary<int, string> {
 				{ 2, "Cactus Lamp" },
 				{ 3, "Ebonwood Lamp" },
 				{ 4, "Flesh Lamp" },
@@ -1265,26 +1265,26 @@ namespace HamstarHelpers.TileHelpers {
 				{ 32, "Crystal Lamp" },
 				{ -1, "Tiki Torch" }
 			};
-			TileIdentityHelpers.Data[94] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[94] = new Dictionary<int, string> {
 				{ -1, "Keg" }
 			};
-			TileIdentityHelpers.Data[95] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[95] = new Dictionary<int, string> {
 				{ -1, "Chinese Lantern" }
 			};
-			TileIdentityHelpers.Data[96] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[96] = new Dictionary<int, string> {
 				{ 2, "Cauldron" },
 				{ -1, "Cooking Pot" }
 			};
-			TileIdentityHelpers.Data[97] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[97] = new Dictionary<int, string> {
 				{ -1, "Safe" }
 			};
-			TileIdentityHelpers.Data[98] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[98] = new Dictionary<int, string> {
 				{ -1, "Skull Lantern" }
 			};
-			TileIdentityHelpers.Data[99] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[99] = new Dictionary<int, string> {
 				{ -1, "Trash Can (not used)" }
 			};
-			TileIdentityHelpers.Data[100] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[100] = new Dictionary<int, string> {
 				{ 2, "Cactus Candelabra" },
 				{ 3, "Ebonwood Candelabra" },
 				{ 4, "Flesh Candelabra" },
@@ -1318,7 +1318,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 32, "Crystal Candelabra" },
 				{ -1, "Candelabra" }
 			};
-			TileIdentityHelpers.Data[101] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[101] = new Dictionary<int, string> {
 				{ 2, "Blue Dungeon Bookcase" },
 				{ 3, "Green Dungeon Bookcase" },
 				{ 4, "Pink Dungeon Bookcase" },
@@ -1348,16 +1348,16 @@ namespace HamstarHelpers.TileHelpers {
 				{ 28, "Crystal Bookcase" },
 				{ -1, "Bookcase" }
 			};
-			TileIdentityHelpers.Data[102] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[102] = new Dictionary<int, string> {
 				{ -1, "Throne" }
 			};
-			TileIdentityHelpers.Data[103] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[103] = new Dictionary<int, string> {
 				{ 2, "Dynasty Bowl" },
 				{ 3, "Fancy Dishes" },
 				{ 4, "Glass Bowl" },
 				{ -1, "Bowl" }
 			};
-			TileIdentityHelpers.Data[104] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[104] = new Dictionary<int, string> {
 				{ 2, "Dynasty Clock" },
 				{ 3, "Golden Clock" },
 				{ 4, "Glass Clock" },
@@ -1392,7 +1392,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 33, "Pink Dungeon Clock" },
 				{ -1, "Grandfather Clock" }
 			};
-			TileIdentityHelpers.Data[105] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[105] = new Dictionary<int, string> {
 				{ 2, "Angel Statue" },
 				{ 3, "Star Statue" },
 				{ 4, "Sword Statue" },
@@ -1472,96 +1472,96 @@ namespace HamstarHelpers.TileHelpers {
 				{ 78, "(Unimplemented Statue)" },
 				{ -1, "Armor Statue" }
 			};
-			TileIdentityHelpers.Data[106] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[106] = new Dictionary<int, string> {
 				{ -1, "Sawmill" }
 			};
-			TileIdentityHelpers.Data[107] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[107] = new Dictionary<int, string> {
 				{ -1, "Cobalt Ore" }
 			};
-			TileIdentityHelpers.Data[108] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[108] = new Dictionary<int, string> {
 				{ -1, "Mythril Ore" }
 			};
-			TileIdentityHelpers.Data[109] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[109] = new Dictionary<int, string> {
 				{ -1, "Hallowed Grass" }
 			};
-			TileIdentityHelpers.Data[110] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[110] = new Dictionary<int, string> {
 				{ -1, "Short Hallowed Plants" }
 			};
-			TileIdentityHelpers.Data[111] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[111] = new Dictionary<int, string> {
 				{ -1, "Adamantite Ore" }
 			};
-			TileIdentityHelpers.Data[112] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[112] = new Dictionary<int, string> {
 				{ -1, "Ebonsand Block" }
 			};
-			TileIdentityHelpers.Data[113] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[113] = new Dictionary<int, string> {
 				{ -1, "Tall Hallowed Plants" }
 			};
-			TileIdentityHelpers.Data[114] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[114] = new Dictionary<int, string> {
 				{ -1, "Tinkerer's Workshop" }
 			};
-			TileIdentityHelpers.Data[115] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[115] = new Dictionary<int, string> {
 				{ -1, "Hallowed Vines" }
 			};
-			TileIdentityHelpers.Data[116] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[116] = new Dictionary<int, string> {
 				{ -1, "Pearlsand Block" }
 			};
-			TileIdentityHelpers.Data[117] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[117] = new Dictionary<int, string> {
 				{ -1, "Pearlstone Block" }
 			};
-			TileIdentityHelpers.Data[118] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[118] = new Dictionary<int, string> {
 				{ -1, "Pearlstone Brick" }
 			};
-			TileIdentityHelpers.Data[119] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[119] = new Dictionary<int, string> {
 				{ -1, "Iridescent Brick" }
 			};
-			TileIdentityHelpers.Data[120] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[120] = new Dictionary<int, string> {
 				{ -1, "Mudstone Brick" }
 			};
-			TileIdentityHelpers.Data[121] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[121] = new Dictionary<int, string> {
 				{ -1, "Cobalt Brick" }
 			};
-			TileIdentityHelpers.Data[122] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[122] = new Dictionary<int, string> {
 				{ -1, "Mythril Brick" }
 			};
-			TileIdentityHelpers.Data[123] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[123] = new Dictionary<int, string> {
 				{ -1, "Silt Block" }
 			};
-			TileIdentityHelpers.Data[124] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[124] = new Dictionary<int, string> {
 				{ -1, "Wooden Beam" }
 			};
-			TileIdentityHelpers.Data[125] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[125] = new Dictionary<int, string> {
 				{ -1, "Crystal Ball" }
 			};
-			TileIdentityHelpers.Data[126] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[126] = new Dictionary<int, string> {
 				{ -1, "Disco Ball" }
 			};
-			TileIdentityHelpers.Data[127] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[127] = new Dictionary<int, string> {
 				{ -1, "Ice Block ( Ice Rod)" }
 			};
-			TileIdentityHelpers.Data[128] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[128] = new Dictionary<int, string> {
 				{ -1, "Mannequin" }
 			};
-			TileIdentityHelpers.Data[129] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[129] = new Dictionary<int, string> {
 				{ -1, "Crystal Shard" }
 			};
-			TileIdentityHelpers.Data[130] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[130] = new Dictionary<int, string> {
 				{ -1, "Active Stone Block" }
 			};
-			TileIdentityHelpers.Data[131] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[131] = new Dictionary<int, string> {
 				{ -1, "Inactive Stone Block" }
 			};
-			TileIdentityHelpers.Data[132] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[132] = new Dictionary<int, string> {
 				{ -1, "Lever" }
 			};
-			TileIdentityHelpers.Data[133] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[133] = new Dictionary<int, string> {
 				{ 2, "Titanium Forge" },
 				{ -1, "Adamantite Forge" }
 			};
-			TileIdentityHelpers.Data[134] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[134] = new Dictionary<int, string> {
 				{ 2, "Orichalcum Anvil" },
 				{ -1, "Mythril Anvil" }
 			};
-			TileIdentityHelpers.Data[135] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[135] = new Dictionary<int, string> {
 				{ 2, "Green Pressure Plate" },
 				{ 3, "Gray Pressure Plate" },
 				{ 4, "Brown Pressure Plate" },
@@ -1570,20 +1570,20 @@ namespace HamstarHelpers.TileHelpers {
 				{ 7, "Lihzahrd Pressure Plate" },
 				{ -1, "Red Pressure Plate" }
 			};
-			TileIdentityHelpers.Data[136] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[136] = new Dictionary<int, string> {
 				{ -1, "Switch" }
 			};
-			TileIdentityHelpers.Data[137] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[137] = new Dictionary<int, string> {
 				{ 2, "Super Dart Trap" },
 				{ 3, "Flame Trap" },
 				{ 4, "Spiky Ball Trap" },
 				{ 5, "Spear Trap" },
 				{ -1, "Dart Trap" }
 			};
-			TileIdentityHelpers.Data[138] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[138] = new Dictionary<int, string> {
 				{ -1, "Boulder" }
 			};
-			TileIdentityHelpers.Data[139] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[139] = new Dictionary<int, string> {
 				{ 2, "Music Box (Eerie)" },
 				{ 3, "Music Box (Night)" },
 				{ 4, "Music Box (Title)" },
@@ -1625,107 +1625,107 @@ namespace HamstarHelpers.TileHelpers {
 				{ 40, "Music Box (Old One's Army)" },
 				{ -1, "Music Box (Overworld Day)" }
 			};
-			TileIdentityHelpers.Data[140] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[140] = new Dictionary<int, string> {
 				{ -1, "Demonite Brick" }
 			};
-			TileIdentityHelpers.Data[141] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[141] = new Dictionary<int, string> {
 				{ -1, "Explosives" }
 			};
-			TileIdentityHelpers.Data[142] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[142] = new Dictionary<int, string> {
 				{ -1, "Inlet Pump" }
 			};
-			TileIdentityHelpers.Data[143] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[143] = new Dictionary<int, string> {
 				{ -1, "Outlet Pump" }
 			};
-			TileIdentityHelpers.Data[144] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[144] = new Dictionary<int, string> {
 				{ 2, "3 Second Timer" },
 				{ 3, "5 Second Timer" },
 				{ -1, "1 Second Timer" }
 			};
-			TileIdentityHelpers.Data[145] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[145] = new Dictionary<int, string> {
 				{ -1, "Candy Cane Block" }
 			};
-			TileIdentityHelpers.Data[146] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[146] = new Dictionary<int, string> {
 				{ -1, "Green Candy Cane Block" }
 			};
-			TileIdentityHelpers.Data[147] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[147] = new Dictionary<int, string> {
 				{ -1, "Snow Block" }
 			};
-			TileIdentityHelpers.Data[148] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[148] = new Dictionary<int, string> {
 				{ -1, "Snow Brick" }
 			};
-			TileIdentityHelpers.Data[149] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[149] = new Dictionary<int, string> {
 				{ 2, "Red Light" },
 				{ 3, "Green Light" },
 				{ -1, "Blue Light" }
 			};
-			TileIdentityHelpers.Data[150] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[150] = new Dictionary<int, string> {
 				{ -1, "Adamantite Beam" }
 			};
-			TileIdentityHelpers.Data[151] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[151] = new Dictionary<int, string> {
 				{ -1, "Sandstone Brick" }
 			};
-			TileIdentityHelpers.Data[152] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[152] = new Dictionary<int, string> {
 				{ -1, "Ebonstone Brick" }
 			};
-			TileIdentityHelpers.Data[153] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[153] = new Dictionary<int, string> {
 				{ -1, "Red Stucco" }
 			};
-			TileIdentityHelpers.Data[154] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[154] = new Dictionary<int, string> {
 				{ -1, "Yellow Stucco" }
 			};
-			TileIdentityHelpers.Data[155] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[155] = new Dictionary<int, string> {
 				{ -1, "Green Stucco" }
 			};
-			TileIdentityHelpers.Data[156] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[156] = new Dictionary<int, string> {
 				{ -1, "Gray Stucco" }
 			};
-			TileIdentityHelpers.Data[157] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[157] = new Dictionary<int, string> {
 				{ -1, "Ebonwood" }
 			};
-			TileIdentityHelpers.Data[158] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[158] = new Dictionary<int, string> {
 				{ -1, "Rich Mahogany" }
 			};
-			TileIdentityHelpers.Data[159] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[159] = new Dictionary<int, string> {
 				{ -1, "Pearlwood" }
 			};
-			TileIdentityHelpers.Data[160] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[160] = new Dictionary<int, string> {
 				{ -1, "Rainbow Brick" }
 			};
-			TileIdentityHelpers.Data[161] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[161] = new Dictionary<int, string> {
 				{ -1, "Ice Block" }
 			};
-			TileIdentityHelpers.Data[162] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[162] = new Dictionary<int, string> {
 				{ -1, "Thin Ice" }
 			};
-			TileIdentityHelpers.Data[163] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[163] = new Dictionary<int, string> {
 				{ -1, "Purple Ice Block" }
 			};
-			TileIdentityHelpers.Data[164] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[164] = new Dictionary<int, string> {
 				{ -1, "Pink Ice Block" }
 			};
-			TileIdentityHelpers.Data[165] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[165] = new Dictionary<int, string> {
 				{ -1, "Ambient Objects" }
 			};
-			TileIdentityHelpers.Data[166] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[166] = new Dictionary<int, string> {
 				{ -1, "Tin Ore" }
 			};
-			TileIdentityHelpers.Data[167] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[167] = new Dictionary<int, string> {
 				{ -1, "Lead Ore" }
 			};
-			TileIdentityHelpers.Data[168] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[168] = new Dictionary<int, string> {
 				{ -1, "Tungsten Ore" }
 			};
-			TileIdentityHelpers.Data[169] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[169] = new Dictionary<int, string> {
 				{ -1, "Platinum Ore" }
 			};
-			TileIdentityHelpers.Data[170] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[170] = new Dictionary<int, string> {
 				{ -1, "Pine Tree Block" }
 			};
-			TileIdentityHelpers.Data[171] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[171] = new Dictionary<int, string> {
 				{ -1, "Christmas Tree" }
 			};
-			TileIdentityHelpers.Data[172] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[172] = new Dictionary<int, string> {
 				{ 2, "Ebonwood Sink" },
 				{ 3, "Rich Mahogany Sink" },
 				{ 4, "Pearlwood Sink" },
@@ -1760,22 +1760,22 @@ namespace HamstarHelpers.TileHelpers {
 				{ 33, "Crystal Sink" },
 				{ -1, "Wooden Sink" }
 			};
-			TileIdentityHelpers.Data[173] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[173] = new Dictionary<int, string> {
 				{ -1, "Platinum Candelabra" }
 			};
-			TileIdentityHelpers.Data[174] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[174] = new Dictionary<int, string> {
 				{ -1, "Platinum Candle" }
 			};
-			TileIdentityHelpers.Data[175] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[175] = new Dictionary<int, string> {
 				{ -1, "Tin Brick" }
 			};
-			TileIdentityHelpers.Data[176] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[176] = new Dictionary<int, string> {
 				{ -1, "Tungsten Brick" }
 			};
-			TileIdentityHelpers.Data[177] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[177] = new Dictionary<int, string> {
 				{ -1, "Platinum Brick" }
 			};
-			TileIdentityHelpers.Data[178] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[178] = new Dictionary<int, string> {
 				{ 2, "Topaz" },
 				{ 3, "Sapphire" },
 				{ 4, "Emerald" },
@@ -1784,73 +1784,73 @@ namespace HamstarHelpers.TileHelpers {
 				{ 7, "Amber" },
 				{ -1, "Amethyst" }
 			};
-			TileIdentityHelpers.Data[179] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[179] = new Dictionary<int, string> {
 				{ -1, "Teal Moss" }
 			};
-			TileIdentityHelpers.Data[180] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[180] = new Dictionary<int, string> {
 				{ -1, "Chartreuse	Moss" }
 			};
-			TileIdentityHelpers.Data[181] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[181] = new Dictionary<int, string> {
 				{ -1, "Red Moss" }
 			};
-			TileIdentityHelpers.Data[182] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[182] = new Dictionary<int, string> {
 				{ -1, "Blue Moss" }
 			};
-			TileIdentityHelpers.Data[183] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[183] = new Dictionary<int, string> {
 				{ -1, "Purple Moss" }
 			};
-			TileIdentityHelpers.Data[184] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[184] = new Dictionary<int, string> {
 				{ -1, "Moss Growth" }
 			};
-			TileIdentityHelpers.Data[185] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[185] = new Dictionary<int, string> {
 				{ -1, "Small Ambient Objects" }
 			};
-			TileIdentityHelpers.Data[186] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[186] = new Dictionary<int, string> {
 				{ -1, "Large Ambient Objects" }
 			};
-			TileIdentityHelpers.Data[187] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[187] = new Dictionary<int, string> {
 				{ -1, "Large Ambient Objects" }
 			};
-			TileIdentityHelpers.Data[188] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[188] = new Dictionary<int, string> {
 				{ -1, "Cactus (placed)" }
 			};
-			TileIdentityHelpers.Data[189] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[189] = new Dictionary<int, string> {
 				{ -1, "Cloud" }
 			};
-			TileIdentityHelpers.Data[190] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[190] = new Dictionary<int, string> {
 				{ -1, "Glowing Mushroom (placed)" }
 			};
-			TileIdentityHelpers.Data[191] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[191] = new Dictionary<int, string> {
 				{ -1, "Living Wood" }
 			};
-			TileIdentityHelpers.Data[192] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[192] = new Dictionary<int, string> {
 				{ -1, "Leaf Block" }
 			};
-			TileIdentityHelpers.Data[193] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[193] = new Dictionary<int, string> {
 				{ -1, "Slime Block" }
 			};
-			TileIdentityHelpers.Data[194] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[194] = new Dictionary<int, string> {
 				{ -1, "Bone Block" }
 			};
-			TileIdentityHelpers.Data[195] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[195] = new Dictionary<int, string> {
 				{ -1, "Flesh Block" }
 			};
-			TileIdentityHelpers.Data[196] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[196] = new Dictionary<int, string> {
 				{ -1, "Rain Cloud" }
 			};
-			TileIdentityHelpers.Data[197] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[197] = new Dictionary<int, string> {
 				{ -1, "Frozen Slime Block" }
 			};
-			TileIdentityHelpers.Data[198] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[198] = new Dictionary<int, string> {
 				{ -1, "Asphalt Block" }
 			};
-			TileIdentityHelpers.Data[199] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[199] = new Dictionary<int, string> {
 				{ -1, "Crimson Grass" }
 			};
-			TileIdentityHelpers.Data[200] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[200] = new Dictionary<int, string> {
 				{ -1, "Red Ice Block" }
 			};
-			TileIdentityHelpers.Data[201] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[201] = new Dictionary<int, string> {
 				{ 16, "Vicious Mushroom" },
 				{ 1, "Short Crimson Plants" },
 				{ 2, "Short Crimson Plants" },
@@ -1876,22 +1876,22 @@ namespace HamstarHelpers.TileHelpers {
 				{ 23, "Short Crimson Plants" },
 				{ -1, "Short Crimson Plants" }
 			};
-			TileIdentityHelpers.Data[202] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[202] = new Dictionary<int, string> {
 				{ -1, "Sunplate Block" }
 			};
-			TileIdentityHelpers.Data[203] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[203] = new Dictionary<int, string> {
 				{ -1, "Crimstone Block" }
 			};
-			TileIdentityHelpers.Data[204] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[204] = new Dictionary<int, string> {
 				{ -1, "Crimtane Ore" }
 			};
-			TileIdentityHelpers.Data[205] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[205] = new Dictionary<int, string> {
 				{ -1, "Crimson Vines" }
 			};
-			TileIdentityHelpers.Data[206] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[206] = new Dictionary<int, string> {
 				{ -1, "Ice Brick" }
 			};
-			TileIdentityHelpers.Data[207] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[207] = new Dictionary<int, string> {
 				{ 2, "Desert Water Fountain" },
 				{ 3, "Jungle Water Fountain" },
 				{ 4, "Icy Water Fountain" },
@@ -1902,32 +1902,32 @@ namespace HamstarHelpers.TileHelpers {
 				{ 9, "Underground Water Fountain (unused)" },
 				{ -1, "Pure Water Fountain" }
 			};
-			TileIdentityHelpers.Data[208] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[208] = new Dictionary<int, string> {
 				{ -1, "Shadewood" }
 			};
-			TileIdentityHelpers.Data[209] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[209] = new Dictionary<int, string> {
 				{ 2, "Bunny Cannon" },
 				{ 3, "Confetti Cannon" },
 				{ 4, "Portal Gun Station (blue portal)" },
 				{ 5, "Portal Gun Station (orange portal)" },
 				{ -1, "Cannon" }
 			};
-			TileIdentityHelpers.Data[210] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[210] = new Dictionary<int, string> {
 				{ -1, "Land Mine" }
 			};
-			TileIdentityHelpers.Data[211] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[211] = new Dictionary<int, string> {
 				{ -1, "Chlorophyte Ore" }
 			};
-			TileIdentityHelpers.Data[212] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[212] = new Dictionary<int, string> {
 				{ -1, "Snowball Launcher" }
 			};
-			TileIdentityHelpers.Data[213] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[213] = new Dictionary<int, string> {
 				{ -1, "Rope" }
 			};
-			TileIdentityHelpers.Data[214] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[214] = new Dictionary<int, string> {
 				{ -1, "Chain" }
 			};
-			TileIdentityHelpers.Data[215] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[215] = new Dictionary<int, string> {
 				{ 2, "Cursed Campfire" },
 				{ 3, "Demon Campfire" },
 				{ 4, "Frozen Campfire" },
@@ -1937,43 +1937,43 @@ namespace HamstarHelpers.TileHelpers {
 				{ 8, "Bone Campfire" },
 				{ -1, "Campfire" }
 			};
-			TileIdentityHelpers.Data[216] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[216] = new Dictionary<int, string> {
 				{ 2, "Green Rocket" },
 				{ 3, "Blue Rocket" },
 				{ 4, "Yellow Rocket" },
 				{ -1, "Red Rocket" }
 			};
-			TileIdentityHelpers.Data[217] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[217] = new Dictionary<int, string> {
 				{ -1, "Blend-O-Matic" }
 			};
-			TileIdentityHelpers.Data[218] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[218] = new Dictionary<int, string> {
 				{ -1, "Meat Grinder" }
 			};
-			TileIdentityHelpers.Data[219] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[219] = new Dictionary<int, string> {
 				{ -1, "Extractinator" }
 			};
-			TileIdentityHelpers.Data[220] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[220] = new Dictionary<int, string> {
 				{ -1, "Solidifier" }
 			};
-			TileIdentityHelpers.Data[221] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[221] = new Dictionary<int, string> {
 				{ -1, "Palladium Ore" }
 			};
-			TileIdentityHelpers.Data[222] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[222] = new Dictionary<int, string> {
 				{ -1, "Orichalcum Ore" }
 			};
-			TileIdentityHelpers.Data[223] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[223] = new Dictionary<int, string> {
 				{ -1, "Titanium Ore" }
 			};
-			TileIdentityHelpers.Data[224] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[224] = new Dictionary<int, string> {
 				{ -1, "Slush Block" }
 			};
-			TileIdentityHelpers.Data[225] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[225] = new Dictionary<int, string> {
 				{ -1, "Hive" }
 			};
-			TileIdentityHelpers.Data[226] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[226] = new Dictionary<int, string> {
 				{ -1, "Lihzahrd Brick" }
 			};
-			TileIdentityHelpers.Data[227] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[227] = new Dictionary<int, string> {
 				{ 2, "Green Mushroom" },
 				{ 3, "Sky Blue Flower" },
 				{ 4, "Yellow Marigold" },
@@ -1984,40 +1984,40 @@ namespace HamstarHelpers.TileHelpers {
 				{ -1, "Teal Mushroom" },
 				{ 9-12, "Strange Plant" }
 			};
-			TileIdentityHelpers.Data[228] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[228] = new Dictionary<int, string> {
 				{ -1, "Dye Vat" }
 			};
-			TileIdentityHelpers.Data[229] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[229] = new Dictionary<int, string> {
 				{ -1, "Honey Block" }
 			};
-			TileIdentityHelpers.Data[230] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[230] = new Dictionary<int, string> {
 				{ -1, "Crispy Honey Block" }
 			};
-			TileIdentityHelpers.Data[231] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[231] = new Dictionary<int, string> {
 				{ -1, "larva" }
 			};
-			TileIdentityHelpers.Data[232] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[232] = new Dictionary<int, string> {
 				{ -1, "Wooden Spike" }
 			};
-			TileIdentityHelpers.Data[233] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[233] = new Dictionary<int, string> {
 				{ -1, "Plant Detritus" }
 			};
-			TileIdentityHelpers.Data[234] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[234] = new Dictionary<int, string> {
 				{ -1, "Crimsand Block" }
 			};
-			TileIdentityHelpers.Data[235] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[235] = new Dictionary<int, string> {
 				{ -1, "Teleporter" }
 			};
-			TileIdentityHelpers.Data[236] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[236] = new Dictionary<int, string> {
 				{ -1, "Life Fruit" }
 			};
-			TileIdentityHelpers.Data[237] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[237] = new Dictionary<int, string> {
 				{ -1, "Lihzahrd Altar" }
 			};
-			TileIdentityHelpers.Data[238] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[238] = new Dictionary<int, string> {
 				{ -1, "Plantera's Bulb" }
 			};
-			TileIdentityHelpers.Data[239] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[239] = new Dictionary<int, string> {
 				{ 2, "Tin Bar" },
 				{ 3, "Iron Bar" },
 				{ 4, "Lead Bar" },
@@ -2042,7 +2042,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 23, "Luminite Bar" },
 				{ -1, "Copper Bar" }
 			};
-			TileIdentityHelpers.Data[240] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[240] = new Dictionary<int, string> {
 				{ 2, "Eater of Worlds Trophy" },
 				{ 3, "Brain of Cthulhu Trophy" },
 				{ 4, "Skeletron Trophy" },
@@ -2105,10 +2105,10 @@ namespace HamstarHelpers.TileHelpers {
 				{ 63, "Ogre Trophy" },
 				{ -1, "Eye of Cthulhu Trophy" }
 			};
-			TileIdentityHelpers.Data[241] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[241] = new Dictionary<int, string> {
 				{ -1, "Catacomb" }
 			};
-			TileIdentityHelpers.Data[242] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[242] = new Dictionary<int, string> {
 				{ 2, "Something Evil is Watching You" },
 				{ 3, "The Twins Have Awoken" },
 				{ 4, "The Screamer" },
@@ -2147,13 +2147,13 @@ namespace HamstarHelpers.TileHelpers {
 				{ 37, "Not a Kid, nor a Squid" },
 				{ -1, "The Eye Sees the End" }
 			};
-			TileIdentityHelpers.Data[243] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[243] = new Dictionary<int, string> {
 				{ -1, "Imbuing Station" }
 			};
-			TileIdentityHelpers.Data[244] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[244] = new Dictionary<int, string> {
 				{ -1, "Bubble Machine" }
 			};
-			TileIdentityHelpers.Data[245] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[245] = new Dictionary<int, string> {
 				{ 2, "Darkness (Painting)" },
 				{ 3, "Dark Soul Reaper" },
 				{ 4, "Land" },
@@ -2162,7 +2162,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 7, "Glorious Night" },
 				{ -1, "Waldo" }
 			};
-			TileIdentityHelpers.Data[246] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[246] = new Dictionary<int, string> {
 				{ 2, "Finding Gold" },
 				{ 3, "First Encounter" },
 				{ 4, "Good Morning" },
@@ -2183,397 +2183,397 @@ namespace HamstarHelpers.TileHelpers {
 				{ 19, "Holly" },
 				{ -1, "Demon's Eye" }
 			};
-			TileIdentityHelpers.Data[247] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[247] = new Dictionary<int, string> {
 				{ -1, "Autohammer" }
 			};
-			TileIdentityHelpers.Data[248] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[248] = new Dictionary<int, string> {
 				{ -1, "Palladium Column" }
 			};
-			TileIdentityHelpers.Data[249] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[249] = new Dictionary<int, string> {
 				{ -1, "Bubblegum Block" }
 			};
-			TileIdentityHelpers.Data[250] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[250] = new Dictionary<int, string> {
 				{ -1, "Titanstone Block" }
 			};
-			TileIdentityHelpers.Data[251] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[251] = new Dictionary<int, string> {
 				{ -1, "Pumpkin" }
 			};
-			TileIdentityHelpers.Data[252] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[252] = new Dictionary<int, string> {
 				{ -1, "Hay" }
 			};
-			TileIdentityHelpers.Data[253] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[253] = new Dictionary<int, string> {
 				{ -1, "Spooky Wood" }
 			};
-			TileIdentityHelpers.Data[254] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[254] = new Dictionary<int, string> {
 				{ -1, "Pumpkin Seed" }
 			};
-			TileIdentityHelpers.Data[255] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[255] = new Dictionary<int, string> {
 				{ -1, "Amethyst Gemspark Block (offline)" }
 			};
-			TileIdentityHelpers.Data[256] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[256] = new Dictionary<int, string> {
 				{ -1, "Topaz Gemspark Block (offline)" }
 			};
-			TileIdentityHelpers.Data[257] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[257] = new Dictionary<int, string> {
 				{ -1, "Sapphire Gemspark Block (offline)" }
 			};
-			TileIdentityHelpers.Data[258] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[258] = new Dictionary<int, string> {
 				{ -1, "Emerald Gemspark Block(offline)" }
 			};
-			TileIdentityHelpers.Data[259] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[259] = new Dictionary<int, string> {
 				{ -1, "Ruby Gemspark Block (offline)" }
 			};
-			TileIdentityHelpers.Data[260] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[260] = new Dictionary<int, string> {
 				{ -1, "Diamond Gemspark Block (offline)" }
 			};
-			TileIdentityHelpers.Data[261] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[261] = new Dictionary<int, string> {
 				{ -1, "Amber Gemspark Block (offline)" }
 			};
-			TileIdentityHelpers.Data[262] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[262] = new Dictionary<int, string> {
 				{ -1, "Amethyst Gemspark Block (online)" }
 			};
-			TileIdentityHelpers.Data[263] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[263] = new Dictionary<int, string> {
 				{ -1, "Topaz Gemspark Block (online)" }
 			};
-			TileIdentityHelpers.Data[264] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[264] = new Dictionary<int, string> {
 				{ -1, "Sapphire Gemspark Block (online)" }
 			};
-			TileIdentityHelpers.Data[265] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[265] = new Dictionary<int, string> {
 				{ -1, "Emerald Gemspark Block (online)" }
 			};
-			TileIdentityHelpers.Data[266] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[266] = new Dictionary<int, string> {
 				{ -1, "Ruby Gemspark Block (online)" }
 			};
-			TileIdentityHelpers.Data[267] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[267] = new Dictionary<int, string> {
 				{ -1, "Diamond Gemspark Block (online)" }
 			};
-			TileIdentityHelpers.Data[268] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[268] = new Dictionary<int, string> {
 				{ -1, "Amber Gemspark Block (online)" }
 			};
-			TileIdentityHelpers.Data[269] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[269] = new Dictionary<int, string> {
 				{ -1, "Womannequin" }
 			};
-			TileIdentityHelpers.Data[270] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[270] = new Dictionary<int, string> {
 				{ -1, "Firefly in a Bottle" }
 			};
-			TileIdentityHelpers.Data[271] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[271] = new Dictionary<int, string> {
 				{ -1, "Lightning Bug in a Bottle" }
 			};
-			TileIdentityHelpers.Data[272] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[272] = new Dictionary<int, string> {
 				{ -1, "Cog" }
 			};
-			TileIdentityHelpers.Data[273] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[273] = new Dictionary<int, string> {
 				{ -1, "Stone Slab" }
 			};
-			TileIdentityHelpers.Data[274] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[274] = new Dictionary<int, string> {
 				{ -1, "Sandstone Slab" }
 			};
-			TileIdentityHelpers.Data[275] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[275] = new Dictionary<int, string> {
 				{ -1, "Bunny Cage" }
 			};
-			TileIdentityHelpers.Data[276] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[276] = new Dictionary<int, string> {
 				{ -1, "Squirrel Cage" }
 			};
-			TileIdentityHelpers.Data[277] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[277] = new Dictionary<int, string> {
 				{ -1, "Mallard Duck Cage" }
 			};
-			TileIdentityHelpers.Data[278] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[278] = new Dictionary<int, string> {
 				{ -1, "Duck Cage" }
 			};
-			TileIdentityHelpers.Data[279] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[279] = new Dictionary<int, string> {
 				{ -1, "Bird Cage" }
 			};
-			TileIdentityHelpers.Data[280] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[280] = new Dictionary<int, string> {
 				{ -1, "Blue Jay Cage" }
 			};
-			TileIdentityHelpers.Data[281] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[281] = new Dictionary<int, string> {
 				{ -1, "Cardinal Cage" }
 			};
-			TileIdentityHelpers.Data[282] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[282] = new Dictionary<int, string> {
 				{ -1, "Fish Bowl" }
 			};
-			TileIdentityHelpers.Data[283] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[283] = new Dictionary<int, string> {
 				{ -1, "Heavy Work Bench" }
 			};
-			TileIdentityHelpers.Data[284] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[284] = new Dictionary<int, string> {
 				{ -1, "Copper Plating" }
 			};
-			TileIdentityHelpers.Data[285] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[285] = new Dictionary<int, string> {
 				{ -1, "Snail Cage" }
 			};
-			TileIdentityHelpers.Data[286] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[286] = new Dictionary<int, string> {
 				{ -1, "Glowing Snail Cage" }
 			};
-			TileIdentityHelpers.Data[287] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[287] = new Dictionary<int, string> {
 				{ -1, "Ammo Box" }
 			};
-			TileIdentityHelpers.Data[288] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[288] = new Dictionary<int, string> {
 				{ -1, "Monarch Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[289] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[289] = new Dictionary<int, string> {
 				{ -1, "Purple Emperor Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[290] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[290] = new Dictionary<int, string> {
 				{ -1, "Red Admiral Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[291] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[291] = new Dictionary<int, string> {
 				{ -1, "Ulysses Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[292] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[292] = new Dictionary<int, string> {
 				{ -1, "Sulphur Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[293] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[293] = new Dictionary<int, string> {
 				{ -1, "Tree Nymph Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[294] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[294] = new Dictionary<int, string> {
 				{ -1, "Zebra Swallowtail Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[295] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[295] = new Dictionary<int, string> {
 				{ -1, "Julia Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[296] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[296] = new Dictionary<int, string> {
 				{ -1, "Scorpion Cage" }
 			};
-			TileIdentityHelpers.Data[297] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[297] = new Dictionary<int, string> {
 				{ -1, "Black Scorpion Cage" }
 			};
-			TileIdentityHelpers.Data[298] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[298] = new Dictionary<int, string> {
 				{ -1, "Frog Cage" }
 			};
-			TileIdentityHelpers.Data[299] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[299] = new Dictionary<int, string> {
 				{ -1, "Mouse Cage" }
 			};
-			TileIdentityHelpers.Data[300] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[300] = new Dictionary<int, string> {
 				{ -1, "Bone Welder" }
 			};
-			TileIdentityHelpers.Data[301] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[301] = new Dictionary<int, string> {
 				{ -1, "Flesh Cloning Vat" }
 			};
-			TileIdentityHelpers.Data[302] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[302] = new Dictionary<int, string> {
 				{ -1, "Glass Kiln" }
 			};
-			TileIdentityHelpers.Data[303] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[303] = new Dictionary<int, string> {
 				{ -1, "Lihzahrd Furnace" }
 			};
-			TileIdentityHelpers.Data[304] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[304] = new Dictionary<int, string> {
 				{ -1, "Living Loom" }
 			};
-			TileIdentityHelpers.Data[305] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[305] = new Dictionary<int, string> {
 				{ -1, "Sky Mill" }
 			};
-			TileIdentityHelpers.Data[306] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[306] = new Dictionary<int, string> {
 				{ -1, "Ice Machine" }
 			};
-			TileIdentityHelpers.Data[307] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[307] = new Dictionary<int, string> {
 				{ -1, "Steampunk Boiler" }
 			};
-			TileIdentityHelpers.Data[308] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[308] = new Dictionary<int, string> {
 				{ -1, "Honey Dispenser" }
 			};
-			TileIdentityHelpers.Data[309] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[309] = new Dictionary<int, string> {
 				{ -1, "Penguin Cage" }
 			};
-			TileIdentityHelpers.Data[310] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[310] = new Dictionary<int, string> {
 				{ -1, "Worm Cage" }
 			};
-			TileIdentityHelpers.Data[311] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[311] = new Dictionary<int, string> {
 				{ -1, "Dynasty Wood" }
 			};
-			TileIdentityHelpers.Data[312] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[312] = new Dictionary<int, string> {
 				{ -1, "Red Dynasty Shingles" }
 			};
-			TileIdentityHelpers.Data[313] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[313] = new Dictionary<int, string> {
 				{ -1, "Blue Dynasty Shingles" }
 			};
-			TileIdentityHelpers.Data[314] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[314] = new Dictionary<int, string> {
 				{ 2, "Pressure Plate Track" },
 				{ 3, "Booster Track" },
 				{ -1, "Minecart Track" }
 			};
-			TileIdentityHelpers.Data[315] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[315] = new Dictionary<int, string> {
 				{ -1, "Coralstone Block" }
 			};
-			TileIdentityHelpers.Data[316] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[316] = new Dictionary<int, string> {
 				{ -1, "Blue Jellyfish Jar" }
 			};
-			TileIdentityHelpers.Data[317] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[317] = new Dictionary<int, string> {
 				{ -1, "Green Jellyfish Jar" }
 			};
-			TileIdentityHelpers.Data[318] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[318] = new Dictionary<int, string> {
 				{ -1, "Pink Jellyfish Jar" }
 			};
-			TileIdentityHelpers.Data[319] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[319] = new Dictionary<int, string> {
 				{ -1, "Ship in a Bottle" }
 			};
-			TileIdentityHelpers.Data[320] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[320] = new Dictionary<int, string> {
 				{ -1, "Seaweed Planter" }
 			};
-			TileIdentityHelpers.Data[321] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[321] = new Dictionary<int, string> {
 				{ -1, "Boreal Wood" }
 			};
-			TileIdentityHelpers.Data[322] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[322] = new Dictionary<int, string> {
 				{ -1, "Palm Wood" }
 			};
-			TileIdentityHelpers.Data[323] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[323] = new Dictionary<int, string> {
 				{ -1, "Palm Tree" }
 			};
-			TileIdentityHelpers.Data[324] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[324] = new Dictionary<int, string> {
 				{ 2, "Starfish" },
 				{ -1, "Seashell" }
 			};
-			TileIdentityHelpers.Data[325] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[325] = new Dictionary<int, string> {
 				{ -1, "Tin Plating" }
 			};
-			TileIdentityHelpers.Data[326] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[326] = new Dictionary<int, string> {
 				{ -1, "Waterfall Block" }
 			};
-			TileIdentityHelpers.Data[327] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[327] = new Dictionary<int, string> {
 				{ -1, "Lavafall Block" }
 			};
-			TileIdentityHelpers.Data[328] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[328] = new Dictionary<int, string> {
 				{ -1, "Confetti Block" }
 			};
-			TileIdentityHelpers.Data[329] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[329] = new Dictionary<int, string> {
 				{ -1, "Midnight Confetti Block" }
 			};
-			TileIdentityHelpers.Data[330] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[330] = new Dictionary<int, string> {
 				{ -1, "Copper Coin Pile" }
 			};
-			TileIdentityHelpers.Data[331] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[331] = new Dictionary<int, string> {
 				{ -1, "Silver Coin Pile" }
 			};
-			TileIdentityHelpers.Data[332] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[332] = new Dictionary<int, string> {
 				{ -1, "Gold Coin Pile" }
 			};
-			TileIdentityHelpers.Data[333] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[333] = new Dictionary<int, string> {
 				{ -1, "Platinum Coin Pile" }
 			};
-			TileIdentityHelpers.Data[334] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[334] = new Dictionary<int, string> {
 				{ -1, "Weapon Rack" }
 			};
-			TileIdentityHelpers.Data[335] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[335] = new Dictionary<int, string> {
 				{ -1, "Fireworks Box" }
 			};
-			TileIdentityHelpers.Data[336] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[336] = new Dictionary<int, string> {
 				{ -1, "Living Fire Block" }
 			};
-			TileIdentityHelpers.Data[337] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[337] = new Dictionary<int, string> {
 				{ -1, "Text Statue" }
 			};
-			TileIdentityHelpers.Data[338] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[338] = new Dictionary<int, string> {
 				{ -1, "Firework Fountain" }
 			};
-			TileIdentityHelpers.Data[339] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[339] = new Dictionary<int, string> {
 				{ -1, "Grasshopper Cage" }
 			};
-			TileIdentityHelpers.Data[340] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[340] = new Dictionary<int, string> {
 				{ -1, "Living Cursed Fire Block" }
 			};
-			TileIdentityHelpers.Data[341] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[341] = new Dictionary<int, string> {
 				{ -1, "Living Demon Fire Block" }
 			};
-			TileIdentityHelpers.Data[342] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[342] = new Dictionary<int, string> {
 				{ -1, "Living Frost Fire Block" }
 			};
-			TileIdentityHelpers.Data[343] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[343] = new Dictionary<int, string> {
 				{ -1, "Living Ichor Fire Block" }
 			};
-			TileIdentityHelpers.Data[344] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[344] = new Dictionary<int, string> {
 				{ -1, "Living Ultrabright Fire Block" }
 			};
-			TileIdentityHelpers.Data[345] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[345] = new Dictionary<int, string> {
 				{ -1, "Honeyfall Block" }
 			};
-			TileIdentityHelpers.Data[346] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[346] = new Dictionary<int, string> {
 				{ -1, "Chlorophyte Brick" }
 			};
-			TileIdentityHelpers.Data[347] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[347] = new Dictionary<int, string> {
 				{ -1, "Crimtane Brick" }
 			};
-			TileIdentityHelpers.Data[348] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[348] = new Dictionary<int, string> {
 				{ -1, "Shroomite Plating" }
 			};
-			TileIdentityHelpers.Data[349] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[349] = new Dictionary<int, string> {
 				{ -1, "Mushroom Statue" }
 			};
-			TileIdentityHelpers.Data[350] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[350] = new Dictionary<int, string> {
 				{ -1, "Martian Conduit Plating" }
 			};
-			TileIdentityHelpers.Data[351] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[351] = new Dictionary<int, string> {
 				{ -1, "Smoke Block" }
 			};
-			TileIdentityHelpers.Data[352] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[352] = new Dictionary<int, string> {
 				{ -1, "Crimson Thorny Bush" }
 			};
-			TileIdentityHelpers.Data[353] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[353] = new Dictionary<int, string> {
 				{ -1, "Vine Rope" }
 			};
-			TileIdentityHelpers.Data[354] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[354] = new Dictionary<int, string> {
 				{ -1, "Bewitching Table" }
 			};
-			TileIdentityHelpers.Data[355] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[355] = new Dictionary<int, string> {
 				{ -1, "Alchemy Table" }
 			};
-			TileIdentityHelpers.Data[356] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[356] = new Dictionary<int, string> {
 				{ -1, "Enchanted Sundial" }
 			};
-			TileIdentityHelpers.Data[357] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[357] = new Dictionary<int, string> {
 				{ -1, "Smooth Marble Block" }
 			};
-			TileIdentityHelpers.Data[358] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[358] = new Dictionary<int, string> {
 				{ -1, "Gold Bird Cage" }
 			};
-			TileIdentityHelpers.Data[359] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[359] = new Dictionary<int, string> {
 				{ -1, "Gold Bunny Cage" }
 			};
-			TileIdentityHelpers.Data[360] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[360] = new Dictionary<int, string> {
 				{ -1, "Gold Butterfly Jar" }
 			};
-			TileIdentityHelpers.Data[361] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[361] = new Dictionary<int, string> {
 				{ -1, "Gold Frog Cage" }
 			};
-			TileIdentityHelpers.Data[362] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[362] = new Dictionary<int, string> {
 				{ -1, "Gold Grasshopper Cage" }
 			};
-			TileIdentityHelpers.Data[363] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[363] = new Dictionary<int, string> {
 				{ -1, "Gold Mouse Cage" }
 			};
-			TileIdentityHelpers.Data[364] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[364] = new Dictionary<int, string> {
 				{ -1, "Gold Worm Cage" }
 			};
-			TileIdentityHelpers.Data[365] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[365] = new Dictionary<int, string> {
 				{ -1, "Silk Rope" }
 			};
-			TileIdentityHelpers.Data[366] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[366] = new Dictionary<int, string> {
 				{ -1, "Web Rope" }
 			};
-			TileIdentityHelpers.Data[367] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[367] = new Dictionary<int, string> {
 				{ -1, "Marble Block" }
 			};
-			TileIdentityHelpers.Data[368] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[368] = new Dictionary<int, string> {
 				{ -1, "Granite Block" }
 			};
-			TileIdentityHelpers.Data[369] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[369] = new Dictionary<int, string> {
 				{ -1, "Smooth Granite Block" }
 			};
-			TileIdentityHelpers.Data[370] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[370] = new Dictionary<int, string> {
 				{ -1, "Meteorite Brick" }
 			};
-			TileIdentityHelpers.Data[371] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[371] = new Dictionary<int, string> {
 				{ -1, "Pink Slime Block" }
 			};
-			TileIdentityHelpers.Data[372] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[372] = new Dictionary<int, string> {
 				{ -1, "Peace Candle" }
 			};
-			TileIdentityHelpers.Data[373] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[373] = new Dictionary<int, string> {
 				{ -1, "Magic Water Dropper" }
 			};
-			TileIdentityHelpers.Data[374] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[374] = new Dictionary<int, string> {
 				{ -1, "Magic Lava Dropper" }
 			};
-			TileIdentityHelpers.Data[375] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[375] = new Dictionary<int, string> {
 				{ -1, "Magic Honey Dropper" }
 			};
-			TileIdentityHelpers.Data[376] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[376] = new Dictionary<int, string> {
 				{ 2, "Iron Crate" },
 				{ 3, "Golden Crate" },
 				{ 4, "Corrupt Crate" },
@@ -2584,199 +2584,199 @@ namespace HamstarHelpers.TileHelpers {
 				{ 9, "Jungle Crate" },
 				{ -1, "Wooden Crate" }
 			};
-			TileIdentityHelpers.Data[377] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[377] = new Dictionary<int, string> {
 				{ -1, "Sharpening Station" }
 			};
-			TileIdentityHelpers.Data[378] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[378] = new Dictionary<int, string> {
 				{ -1, "Target Dummy" }
 			};
-			TileIdentityHelpers.Data[379] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[379] = new Dictionary<int, string> {
 				{ -1, "Bubble" }
 			};
-			TileIdentityHelpers.Data[380] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[380] = new Dictionary<int, string> {
 				{ -1, "Planter Box" }
 			};
-			TileIdentityHelpers.Data[381] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[381] = new Dictionary<int, string> {
 				{ -1, "Fire Moss" }
 			};
-			TileIdentityHelpers.Data[382] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[382] = new Dictionary<int, string> {
 				{ -1, "Vine Flowers" }
 			};
-			TileIdentityHelpers.Data[383] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[383] = new Dictionary<int, string> {
 				{ -1, "Living Mahogany" }
 			};
-			TileIdentityHelpers.Data[384] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[384] = new Dictionary<int, string> {
 				{ -1, "Mahogany Leaf Block" }
 			};
-			TileIdentityHelpers.Data[385] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[385] = new Dictionary<int, string> {
 				{ -1, "Crystal Block" }
 			};
-			TileIdentityHelpers.Data[386] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[386] = new Dictionary<int, string> {
 				{ -1, "Trap Door  (open)" }
 			};
-			TileIdentityHelpers.Data[387] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[387] = new Dictionary<int, string> {
 				{ -1, "Trap Door  (closed)" }
 			};
-			TileIdentityHelpers.Data[388] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[388] = new Dictionary<int, string> {
 				{ -1, "Tall Gate  (closed)" }
 			};
-			TileIdentityHelpers.Data[389] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[389] = new Dictionary<int, string> {
 				{ -1, "Tall Gate  (open)" }
 			};
-			TileIdentityHelpers.Data[390] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[390] = new Dictionary<int, string> {
 				{ -1, "Lava Lamp" }
 			};
-			TileIdentityHelpers.Data[391] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[391] = new Dictionary<int, string> {
 				{ -1, "Enchanted Nightcrawler Cage" }
 			};
-			TileIdentityHelpers.Data[392] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[392] = new Dictionary<int, string> {
 				{ -1, "Buggy Cage" }
 			};
-			TileIdentityHelpers.Data[393] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[393] = new Dictionary<int, string> {
 				{ -1, "Grubby Cage" }
 			};
-			TileIdentityHelpers.Data[394] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[394] = new Dictionary<int, string> {
 				{ -1, "Sluggy Cage" }
 			};
-			TileIdentityHelpers.Data[395] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[395] = new Dictionary<int, string> {
 				{ -1, "Item Frame" }
 			};
-			TileIdentityHelpers.Data[396] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[396] = new Dictionary<int, string> {
 				{ -1, "Sandstone Block" }
 			};
-			TileIdentityHelpers.Data[397] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[397] = new Dictionary<int, string> {
 				{ -1, "Hardened Sand Block" }
 			};
-			TileIdentityHelpers.Data[398] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[398] = new Dictionary<int, string> {
 				{ -1, "Hardened Ebonsand Block" }
 			};
-			TileIdentityHelpers.Data[399] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[399] = new Dictionary<int, string> {
 				{ -1, "Hardened Crimsand Block" }
 			};
-			TileIdentityHelpers.Data[400] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[400] = new Dictionary<int, string> {
 				{ -1, "Ebonsandstone Block" }
 			};
-			TileIdentityHelpers.Data[401] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[401] = new Dictionary<int, string> {
 				{ -1, "Crimsandstone Block" }
 			};
-			TileIdentityHelpers.Data[402] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[402] = new Dictionary<int, string> {
 				{ -1, "Hardened Pearlsand Block" }
 			};
-			TileIdentityHelpers.Data[403] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[403] = new Dictionary<int, string> {
 				{ -1, "Pearlsandstone Block" }
 			};
-			TileIdentityHelpers.Data[404] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[404] = new Dictionary<int, string> {
 				{ -1, "Desert Fossil" }
 			};
-			TileIdentityHelpers.Data[405] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[405] = new Dictionary<int, string> {
 				{ -1, "Fireplace" }
 			};
-			TileIdentityHelpers.Data[406] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[406] = new Dictionary<int, string> {
 				{ -1, "Chimney" }
 			};
-			TileIdentityHelpers.Data[407] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[407] = new Dictionary<int, string> {
 				{ -1, "Sturdy Fossil" }
 			};
-			TileIdentityHelpers.Data[408] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[408] = new Dictionary<int, string> {
 				{ -1, "Luminite" }
 			};
-			TileIdentityHelpers.Data[409] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[409] = new Dictionary<int, string> {
 				{ -1, "Luminite Brick" }
 			};
-			TileIdentityHelpers.Data[410] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[410] = new Dictionary<int, string> {
 				{ 2, "Nebula Monolith" },
 				{ 3, "Stardust Monolith" },
 				{ 4, "Solar Monolith" },
 				{ -1, "Vortex Monolith" }
 			};
-			TileIdentityHelpers.Data[411] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[411] = new Dictionary<int, string> {
 				{ -1, "Detonator" }
 			};
-			TileIdentityHelpers.Data[412] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[412] = new Dictionary<int, string> {
 				{ -1, "Ancient Manipulator" }
 			};
-			TileIdentityHelpers.Data[413] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[413] = new Dictionary<int, string> {
 				{ -1, "Red Squirrel Cage" }
 			};
-			TileIdentityHelpers.Data[414] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[414] = new Dictionary<int, string> {
 				{ -1, "Gold Squirrel Cage" }
 			};
-			TileIdentityHelpers.Data[415] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[415] = new Dictionary<int, string> {
 				{ -1, "Solar Fragment Block" }
 			};
-			TileIdentityHelpers.Data[416] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[416] = new Dictionary<int, string> {
 				{ -1, "Vortex Fragment Block" }
 			};
-			TileIdentityHelpers.Data[417] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[417] = new Dictionary<int, string> {
 				{ -1, "Nebula Fragment Block" }
 			};
-			TileIdentityHelpers.Data[418] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[418] = new Dictionary<int, string> {
 				{ -1, "Stardust Fragment Block" }
 			};
-			TileIdentityHelpers.Data[419] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[419] = new Dictionary<int, string> {
 				{ -1, "Logic Gate Lamp" }
 			};
-			TileIdentityHelpers.Data[420] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[420] = new Dictionary<int, string> {
 				{ -1, "Logic Gate" }
 			};
-			TileIdentityHelpers.Data[421] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[421] = new Dictionary<int, string> {
 				{ -1, "Conveyor Belt (Clockwise)" }
 			};
-			TileIdentityHelpers.Data[422] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[422] = new Dictionary<int, string> {
 				{ -1, "Conveyor Belt (Counter Clockwise)" }
 			};
-			TileIdentityHelpers.Data[423] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[423] = new Dictionary<int, string> {
 				{ -1, "Logic Sensor" }
 			};
-			TileIdentityHelpers.Data[424] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[424] = new Dictionary<int, string> {
 				{ -1, "Junction Box" }
 			};
-			TileIdentityHelpers.Data[425] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[425] = new Dictionary<int, string> {
 				{ -1, "Announcement Box" }
 			};
-			TileIdentityHelpers.Data[426] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[426] = new Dictionary<int, string> {
 				{ -1, "Red Team Block" }
 			};
-			TileIdentityHelpers.Data[427] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[427] = new Dictionary<int, string> {
 				{ -1, "Red Team Platform" }
 			};
-			TileIdentityHelpers.Data[428] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[428] = new Dictionary<int, string> {
 				{ -1, "Weighted Pressure Plate" }
 			};
-			TileIdentityHelpers.Data[429] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[429] = new Dictionary<int, string> {
 				{ -1, "Wire Bulb" }
 			};
-			TileIdentityHelpers.Data[430] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[430] = new Dictionary<int, string> {
 				{ -1, "Green Team Block" }
 			};
-			TileIdentityHelpers.Data[431] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[431] = new Dictionary<int, string> {
 				{ -1, "Blue Team Block" }
 			};
-			TileIdentityHelpers.Data[432] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[432] = new Dictionary<int, string> {
 				{ -1, "Yellow Team Block" }
 			};
-			TileIdentityHelpers.Data[433] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[433] = new Dictionary<int, string> {
 				{ -1, "Pink Team Block" }
 			};
-			TileIdentityHelpers.Data[434] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[434] = new Dictionary<int, string> {
 				{ -1, "White Team Block" }
 			};
-			TileIdentityHelpers.Data[435] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[435] = new Dictionary<int, string> {
 				{ -1, "Green Team Platform" }
 			};
-			TileIdentityHelpers.Data[436] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[436] = new Dictionary<int, string> {
 				{ -1, "Blue Team Platform" }
 			};
-			TileIdentityHelpers.Data[437] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[437] = new Dictionary<int, string> {
 				{ -1, "Yellow Team Platform" }
 			};
-			TileIdentityHelpers.Data[438] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[438] = new Dictionary<int, string> {
 				{ -1, "Pink Team Platform" }
 			};
-			TileIdentityHelpers.Data[439] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[439] = new Dictionary<int, string> {
 				{ -1, "White Team Platform" }
 			};
-			TileIdentityHelpers.Data[440] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[440] = new Dictionary<int, string> {
 				{ 2, "Sapphire Gem Lock" },
 				{ 3, "Emerald Gem Lock" },
 				{ 4, "Topaz Gem Lock" },
@@ -2785,7 +2785,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ 7, "Amber Gem Lock" },
 				{ -1, "Ruby Gem Lock" }
 			};
-			TileIdentityHelpers.Data[441] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[441] = new Dictionary<int, string> {
 				{ 2, "Trapped Gold Chest" },
 				{ 3, "Trapped Locked Gold Chest" },
 				{ 4, "Trapped Shadow Chest" },
@@ -2839,90 +2839,90 @@ namespace HamstarHelpers.TileHelpers {
 				{ 52, "Trapped Marble Chest" },
 				{ -1, "Trapped Chest" }
 			};
-			TileIdentityHelpers.Data[442] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[442] = new Dictionary<int, string> {
 				{ -1, "Teal Pressure Pad" }
 			};
-			TileIdentityHelpers.Data[443] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[443] = new Dictionary<int, string> {
 				{ -1, "Geyser" }
 			};
-			TileIdentityHelpers.Data[444] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[444] = new Dictionary<int, string> {
 				{ -1, "Beehive" }
 			};
-			TileIdentityHelpers.Data[445] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[445] = new Dictionary<int, string> {
 				{ -1, "Pixel Box" }
 			};
-			TileIdentityHelpers.Data[446] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[446] = new Dictionary<int, string> {
 				{ -1, "Silly Pink Balloon" }
 			};
-			TileIdentityHelpers.Data[447] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[447] = new Dictionary<int, string> {
 				{ -1, "Silly Purple Balloon" }
 			};
-			TileIdentityHelpers.Data[448] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[448] = new Dictionary<int, string> {
 				{ -1, "Silly Green Balloon" }
 			};
-			TileIdentityHelpers.Data[449] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[449] = new Dictionary<int, string> {
 				{ -1, "Blue Streamer" }
 			};
-			TileIdentityHelpers.Data[450] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[450] = new Dictionary<int, string> {
 				{ -1, "Green Streamer" }
 			};
-			TileIdentityHelpers.Data[451] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[451] = new Dictionary<int, string> {
 				{ -1, "Pink Streamer" }
 			};
-			TileIdentityHelpers.Data[452] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[452] = new Dictionary<int, string> {
 				{ -1, "Silly Balloon Machine" }
 			};
-			TileIdentityHelpers.Data[453] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[453] = new Dictionary<int, string> {
 				{ -1, "Silly Tied Balloons" }
 			};
-			TileIdentityHelpers.Data[454] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[454] = new Dictionary<int, string> {
 				{ -1, "Pigronata" }
 			};
-			TileIdentityHelpers.Data[455] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[455] = new Dictionary<int, string> {
 				{ -1, "Party Center" }
 			};
-			TileIdentityHelpers.Data[456] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[456] = new Dictionary<int, string> {
 				{ -1, "Silly Tied Bundle of Balloons" }
 			};
-			TileIdentityHelpers.Data[457] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[457] = new Dictionary<int, string> {
 				{ -1, "Party Present" }
 			};
-			TileIdentityHelpers.Data[458] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[458] = new Dictionary<int, string> {
 				{ -1, "Sandfall Block" }
 			};
-			TileIdentityHelpers.Data[459] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[459] = new Dictionary<int, string> {
 				{ -1, "Snowfall Block" }
 			};
-			TileIdentityHelpers.Data[460] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[460] = new Dictionary<int, string> {
 				{ -1, "Snow Cloud" }
 			};
-			TileIdentityHelpers.Data[461] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[461] = new Dictionary<int, string> {
 				{ -1, "Magic Sand Dropper" }
 			};
-			TileIdentityHelpers.Data[462] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[462] = new Dictionary<int, string> {
 				{ -1, "Desert Spirit Lamp" }
 			};
-			TileIdentityHelpers.Data[463] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[463] = new Dictionary<int, string> {
 				{ -1, "Defender's Forge" }
 			};
-			TileIdentityHelpers.Data[464] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[464] = new Dictionary<int, string> {
 				{ -1, "War Table" }
 			};
-			TileIdentityHelpers.Data[465] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[465] = new Dictionary<int, string> {
 				{ -1, "War Table Banner" }
 			};
-			TileIdentityHelpers.Data[466] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[466] = new Dictionary<int, string> {
 				{ -1, "Eternia Crystal Stand" }
 			};
-			TileIdentityHelpers.Data[467] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[467] = new Dictionary<int, string> {
 				{ 2, "Golden Chest" },
 				{ -1, "Crystal Chest" }
 			};
-			TileIdentityHelpers.Data[468] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[468] = new Dictionary<int, string> {
 				{ 2, "Trapped Golden Chest" },
 				{ -1, "Trapped Crystal Chest" }
 			};
-			TileIdentityHelpers.Data[469] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[469] = new Dictionary<int, string> {
 				{ -1, "Crystal Table" }
 			};
 			} catch( Exception e ) {
@@ -2937,10 +2937,10 @@ namespace HamstarHelpers.TileHelpers {
 		}
 
 		public static string GetVanillaTileName( int tile_type ) {
-			if( !TileIdentityHelpers.Data.ContainsKey( tile_type ) || !TileIdentityHelpers.Data[tile_type].ContainsKey( -1 ) ) {
+			if( !TileIdentityHelpers.VanillaTileData.ContainsKey( tile_type ) || !TileIdentityHelpers.VanillaTileData[tile_type].ContainsKey( -1 ) ) {
 				return "";
 			}
-			return TileIdentityHelpers.Data[tile_type][-1];
+			return TileIdentityHelpers.VanillaTileData[tile_type][-1];
 		}
 
 

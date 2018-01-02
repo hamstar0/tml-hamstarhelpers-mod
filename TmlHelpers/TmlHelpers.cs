@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.Social;
+
 
 namespace HamstarHelpers.TmlHelpers {
 	public static class TmlHelpers {

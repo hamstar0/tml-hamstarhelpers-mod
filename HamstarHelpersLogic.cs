@@ -52,21 +52,21 @@ namespace HamstarHelpers {
 				mymod.ControlPanel.UpdateModList();
 			}
 
-			this.UpdateDay();
+			this.UpdateDay( mymod );
 			AltProjectileInfo.UpdateAll();
 			AltNPCInfo.UpdateAll();
 		}
 
 		////////////////
 
-		private void UpdateDay() {
+		private void UpdateDay( HamstarHelpersMod mymod ) {
 			if( this.IsDay != Main.dayTime ) {
 				this.HalfDaysElapsed++;
 
 				if( !this.IsDay ) {
-					foreach( var kv in WorldHelpers.WorldHelpers.DayHooks ) { kv.Value(); }
+					foreach( var kv in mymod.WorldHelpers.DayHooks ) { kv.Value(); }
 				} else {
-					foreach( var kv in WorldHelpers.WorldHelpers.NightHooks ) { kv.Value(); }
+					foreach( var kv in mymod.WorldHelpers.NightHooks ) { kv.Value(); }
 				}
 			}
 			this.IsDay = Main.dayTime;

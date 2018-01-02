@@ -4,6 +4,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.TmlHelpers {
+	[System.Obsolete( "use GlobalProjectile", false )]
 	public class AltProjectileInfo {
 		private static IDictionary<string, Type> ProjInfoTypes;
 		private static IDictionary<int, IDictionary<string, AltProjectileInfo>> ProjInfos;

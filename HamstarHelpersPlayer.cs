@@ -25,7 +25,7 @@ namespace HamstarHelpers {
 		}
 
 		public override void clientClone( ModPlayer client_clone ) {
-			var clone = (HamstarHelpersPlayer)client_clone;
+			var clone = (HamstarHelpersPlayer)client_clone;	// <- This might be misinformed usage
 			clone.HasEnteredWorld = this.HasEnteredWorld;
 			clone.HasBuffIds = this.HasBuffIds;
 			clone.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;

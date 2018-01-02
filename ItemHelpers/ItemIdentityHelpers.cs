@@ -5,7 +5,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.ItemHelpers {
-	public static class ItemIdentityHelpers {
+	public class ItemIdentityHelpers {
 		public const int HighestVanillaRarity = 11;
 		public const int JunkRarity = -1;
 		public const int QuestItemRarity = -11;
@@ -62,16 +62,31 @@ namespace HamstarHelpers.ItemHelpers {
 
 		////////////////
 
-		private static IDictionary<string, int> _NamesToIds = new Dictionary<string, int>();
-		public static readonly IReadOnlyDictionary<string, int> NamesToIds = new ReadOnlyDictionary<string, int>( ItemIdentityHelpers._NamesToIds );
+		public static IReadOnlyDictionary<string, int> NamesToIds {
+			get {
+				return HamstarHelpersMod.Instance.ItemIdentityHelpers._NamesToIds;
+			}
+		}
 
 
-		static ItemIdentityHelpers() {
-			for( int i=1; i<Main.itemTexture.Length; i++ ) {
+		////////////////
+
+		private IDictionary<string, int> __namesToIds = new Dictionary<string, int>();
+		private IReadOnlyDictionary<string, int> _NamesToIds;
+
+
+		////////////////
+
+		internal ItemIdentityHelpers() {
+			this._NamesToIds = new ReadOnlyDictionary<string, int>( this.__namesToIds );
+		}
+
+		internal void Initialize() {
+			for( int i = 1; i < Main.itemTexture.Length; i++ ) {
 				Item item = new Item();
 				item.SetDefaults( i );
 
-				ItemIdentityHelpers._NamesToIds[ item.Name ] = i;
+				this.__namesToIds[item.Name] = i;
 			}
 		}
 
@@ -87,6 +102,7 @@ namespace HamstarHelpers.ItemHelpers {
 			if( !ItemIdentityHelpers.ProjPene.Keys.Contains( item.shoot ) ) {
 				var proj = new Projectile();
 				proj.SetDefaults( item.shoot );
+
 				ItemIdentityHelpers.ProjPene[item.shoot] = proj.penetrate;
 			}
 

@@ -5,6 +5,9 @@ using Terraria;
 
 namespace HamstarHelpers.ItemHelpers {
 	public static class ItemFinderHelpers {
+		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
+
+
 		[System.Obsolete( "use ItemFinderHelpers.FindIndexOfFirstOfItemInCollection", true )]
 		public static int FindFirstOfItemInCollection( Item[] collection, ISet<int> item_types ) {
 			return FindIndexOfFirstOfItemInCollection( collection, item_types );
@@ -18,8 +21,7 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 			return -1;
 		}
-
-
+		
 
 		public static SortedSet<int> FindIndexOfEachItemInCollection( Item[] collection, ISet<int> item_types ) {
 			var set = new SortedSet<int>();
@@ -49,8 +51,6 @@ namespace HamstarHelpers.ItemHelpers {
 			return found;
 		}
 
-
-		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 
 		public static ReadOnlySet<int> FindItemsByValue( long sell_value, bool include_coins = false ) {
 			if( !ItemFinderHelpers.SellItems.Keys.Contains( sell_value ) ) {

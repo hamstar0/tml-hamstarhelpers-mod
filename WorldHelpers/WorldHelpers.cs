@@ -40,7 +40,13 @@ namespace HamstarHelpers.WorldHelpers {
 
 
 
-	public static class WorldHelpers {
+	public class WorldHelpers {
+		internal IDictionary<string, Action> DayHooks = new Dictionary<string, Action>();
+		internal IDictionary<string, Action> NightHooks = new Dictionary<string, Action>();
+
+		
+		////////////////
+
 		public static string GetUniqueId() {
 			return Main.worldName + ":" + Main.worldID;
 		}
@@ -91,15 +97,13 @@ namespace HamstarHelpers.WorldHelpers {
 
 		////////////////
 
-		internal static IDictionary<string, Action> DayHooks = new Dictionary<string, Action>();
-		internal static IDictionary<string, Action> NightHooks = new Dictionary<string, Action>();
 
 		public static void AddDayHook( string name, Action callback ) {
-			WorldHelpers.DayHooks[name] = callback;
+			HamstarHelpersMod.Instance.WorldHelpers.DayHooks[name] = callback;
 		}
 
 		public static void AddNightHook( string name, Action callback ) {
-			WorldHelpers.NightHooks[name] = callback;
+			HamstarHelpersMod.Instance.WorldHelpers.NightHooks[name] = callback;
 		}
 	}
 }

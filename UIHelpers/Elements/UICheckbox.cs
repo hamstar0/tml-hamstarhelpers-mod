@@ -4,7 +4,6 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using System;
 using Terraria;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.UIHelpers.Elements {
@@ -21,9 +20,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		}
 
 		internal static void LoadTextures() {
-			var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
-			UICheckbox.CheckboxTexture = mymod.GetTexture( "UIHelpers/Elements/check_box" );
-			UICheckbox.CheckmarkTexture = mymod.GetTexture( "UIHelpers/Elements/check_mark" );
+			UICheckbox.CheckboxTexture = HamstarHelpersMod.Instance.GetTexture( "UIHelpers/Elements/check_box" );
+			UICheckbox.CheckmarkTexture = HamstarHelpersMod.Instance.GetTexture( "UIHelpers/Elements/check_mark" );
 		}
 
 
@@ -90,7 +88,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			try {
 				UICheckbox other = obj as UICheckbox;
 				return this.Order.CompareTo( other.Order );
-			} catch( Exception e ) {
+			} catch( Exception _ ) {
 				return 0;
 			}
 		}

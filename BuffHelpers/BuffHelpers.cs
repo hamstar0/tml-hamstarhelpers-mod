@@ -1,18 +1,33 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Terraria;
 
 
 namespace HamstarHelpers.BuffHelpers {
-	public static class BuffHelpers {
-		public readonly static IDictionary<string, int> BuffIdsByName = new Dictionary<string, int>();
+	public class BuffHelpers {
+		public static IReadOnlyDictionary<string, int> BuffIdsByName { get {
+			return HamstarHelpersMod.Instance.BuffHelpers._BuffIdsByName;
+		} }
 
 
-		internal static void Initialize() {
-			BuffHelpers.BuffIdsByName.Clear();
-			for( int i=0; i<Main.buffTexture.Length; i++ ) {
-				BuffHelpers.BuffIdsByName[ Lang.GetBuffName(i) ] = i;
+		////////////////
+
+		private IDictionary<string, int> __buffIdsByName = new Dictionary<string, int>();
+		private IReadOnlyDictionary<string, int> _BuffIdsByName;
+
+
+		////////////////
+
+		internal BuffHelpers() {
+			this._BuffIdsByName = new ReadOnlyDictionary<string, int>( this.__buffIdsByName );
+		}
+
+		internal void Initialize() {
+			for( int i = 0; i < Main.buffTexture.Length; i++ ) {
+				this.__buffIdsByName[Lang.GetBuffName( i )] = i;
 			}
 		}
+
 
 		////////////////
 
