@@ -94,8 +94,8 @@ namespace HamstarHelpers.RecipeHelpers {
 
 		private static KeyValuePair<string, RecipeGroup> GetPair( ref KeyValuePair<string, RecipeGroup> source, string name, string desc, int[] item_ids ) {
 			if( string.IsNullOrEmpty( source.Key ) ) {
-				source = new KeyValuePair<string, RecipeGroup>( "HamstarHelpers:"+name,
-					new RecipeGroup( () => Lang.misc[37].ToString() + " "+desc, item_ids ) );
+				var rg = new RecipeGroup( () => Lang.misc[37].ToString() + " " + desc, item_ids );
+				source = new KeyValuePair<string, RecipeGroup>( "HamstarHelpers:"+name, rg );
 			}
 			return source;
 		}

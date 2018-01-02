@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.ID;
+
 
 namespace HamstarHelpers.ItemHelpers {
 	public static class ItemIdentityHelpers {
@@ -55,6 +57,23 @@ namespace HamstarHelpers.ItemHelpers {
 			ItemID.WeightedPressurePlateCyan, ItemID.WeightedPressurePlateOrange, ItemID.WeightedPressurePlatePink,
 			ItemID.WeightedPressurePlatePurple };
 		public static readonly int[] ConveyorBelts = new int[] { ItemID.ConveyorBeltLeft, ItemID.ConveyorBeltRight };
+
+
+
+		////////////////
+
+		private static IDictionary<string, int> _NamesToIds = new Dictionary<string, int>();
+		public static readonly IReadOnlyDictionary<string, int> NamesToIds = new ReadOnlyDictionary<string, int>( ItemIdentityHelpers._NamesToIds );
+
+
+		static ItemIdentityHelpers() {
+			for( int i=1; i<Main.itemTexture.Length; i++ ) {
+				Item item = new Item();
+				item.SetDefaults( i );
+
+				ItemIdentityHelpers._NamesToIds[ item.Name ] = i;
+			}
+		}
 
 
 

@@ -155,6 +155,7 @@ namespace HamstarHelpers {
 			return false;
 		}*/
 
+
 		////////////////
 
 		public override void AddRecipes() {
@@ -176,6 +177,7 @@ namespace HamstarHelpers {
 
 		public override void AddRecipeGroups() {
 			//this.ModEvents.OnAddRecipeGroups();
+
 			NPCBannerHelpers.InitializeBanners();
 
 			foreach( var kv in RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {
