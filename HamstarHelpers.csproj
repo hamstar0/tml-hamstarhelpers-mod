@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuffHelpers\BuffHelpers.cs" />
-    <Compile Include="Commands\ConfigSettingCommand.cs" />
+    <Compile Include="Commands\RefreshConfigsCommand.cs" />
+    <Compile Include="Commands\ControlPanelOpenCommand.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="ControlPanel\ControlPanelLogic.cs" />
     <Compile Include="ControlPanel\ControlPanelUI.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Init.cs" />
@@ -143,8 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="build.txt" />
-    <Content Include="ControlPanel\ControlPanelLabel.png" />
-    <Content Include="ControlPanel\ControlPanelLabelLit.png" />
+    <Content Include="ControlPanel\ControlPanelIcon.png" />
+    <Content Include="ControlPanel\ControlPanelIconLit.png" />
     <Content Include="description.txt" />
     <Content Include="icon.png" />
     <Content Include="UIHelpers\Elements\check_box.png" />

@@ -2,6 +2,7 @@
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,9 +21,26 @@ namespace HamstarHelpers {
 		public static string GithubUserName { get { return "hamstar0"; } }
 		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
+		public static string ConfigFileRelativePath {
+			get { return JsonConfig<HamstarHelpersConfigData>.RelativePath + Path.DirectorySeparatorChar + HamstarHelpersConfigData.ConfigFileName; }
+		}
+		public static void ReloadConfigFromFile() {
+			if( Main.netMode != 0 ) {
+				throw new Exception( "Cannot reload configs outside of single player." );
+			}
+			if( HamstarHelpersMod.Instance != null ) {
+				if( !HamstarHelpersMod.Instance.JsonConfig.LoadFile() ) {
+					HamstarHelpersMod.Instance.JsonConfig.SaveFile();
+				}
+			}
+		}
+
 
 		////////////////
-		
+
+		internal JsonConfig<HamstarHelpersConfigData> JsonConfig;
+		public HamstarHelpersConfigData Config { get { return JsonConfig.Data; } }
+
 		internal BuffHelpers.BuffHelpers BuffHelpers;
 		internal ItemHelpers.ItemIdentityHelpers ItemIdentityHelpers;
 		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
@@ -35,8 +53,8 @@ namespace HamstarHelpers {
 		public bool HasCurrentPlayerEnteredWorld { get; internal set; }
 
 		public ControlPanelUI ControlPanel = null;
-		private int LastSeenScreenWidth = -1;
-		private int LastSeenScreenHeight = -1;
+		 private int LastSeenScreenWidth = -1;
+		 private int LastSeenScreenHeight = -1;
 
 		////////////////
 
@@ -62,6 +80,9 @@ namespace HamstarHelpers {
 				AutoloadGores = true,
 				AutoloadSounds = true
 			};
+
+			this.JsonConfig = new JsonConfig<HamstarHelpersConfigData>( HamstarHelpersConfigData.ConfigFileName,
+				ConfigurationDataBase.RelativePath, new HamstarHelpersConfigData() );
 		}
 
 		public override void Load() {
@@ -89,11 +110,22 @@ namespace HamstarHelpers {
 				string gap = new string( ' ', 6 - digits );
 				ErrorLogger.Log( kv.Value.type + gap + " - " + kv.Key.ToString( "N2" ) + " = " + kv.Value.TypeName + "'s threat" );
 			}*/
+
+			this.LoadConfigs();
+		}
+
+		private void LoadConfigs() {
+			if( !this.JsonConfig.LoadFile() ) {
+				this.JsonConfig.SaveFile();
+			}
+
+			if( this.Config.UpdateToLatestVersion() ) {
+				ErrorLogger.Log( "Hamstar's Helpers updated to " + HamstarHelpersConfigData.ConfigVersion.ToString() );
+				this.JsonConfig.SaveFile();
+			}
 		}
 
 		public override void Unload() {
-			//this.ModEvents.OnUnload();
-
 			HamstarHelpersMod.Instance = null;
 			
 			_ModMetaDataManagerLoader.Unload();
@@ -106,7 +138,6 @@ namespace HamstarHelpers {
 		}
 
 		public override void PostSetupContent() {
-			//this.ModEvents.OnPostSetupContent();
 			this.BuffHelpers.Initialize();
 			this.ItemIdentityHelpers.Initialize();
 
@@ -122,8 +153,6 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreSaveAndQuit() {
-			//this.ModEvents.OnPreSaveAndQuit();
-
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			this.HasCurrentPlayerEnteredWorld = false;
@@ -134,8 +163,6 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
-			//this.ModEvents.OnHandlePacket( reader, ref player_who );
-
 			try {
 				if( Main.netMode == 1 ) {
 					ClientPacketHandlers.RoutePacket( this, reader );
@@ -172,25 +199,15 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void AddRecipes() {
-			var vertebrae_to_leather = new ModRecipe( this );
-			vertebrae_to_leather.AddIngredient( ItemID.Vertebrae, 5 );
-			vertebrae_to_leather.SetResult( ItemID.Leather );
-			vertebrae_to_leather.AddRecipe();
-
-			/*var vertebrae_to_chunk = new ModRecipe( this );
-			vertebrae_to_chunk.AddIngredient( ItemID.Vertebrae, 1 );
-			vertebrae_to_chunk.SetResult( ItemID.RottenChunk );
-			vertebrae_to_chunk.AddRecipe();
-
-			var chunk_to_vertebrae = new ModRecipe( this );
-			chunk_to_vertebrae.AddIngredient( ItemID.RottenChunk, 1 );
-			chunk_to_vertebrae.SetResult( ItemID.Vertebrae );
-			chunk_to_vertebrae.AddRecipe();*/
+			if( this.Config.AddCrimsonLeatherRecipe ) {
+				var vertebrae_to_leather = new ModRecipe( this );
+				vertebrae_to_leather.AddIngredient( ItemID.Vertebrae, 5 );
+				vertebrae_to_leather.SetResult( ItemID.Leather );
+				vertebrae_to_leather.AddRecipe();
+			}
 		}
 
 		public override void AddRecipeGroups() {
-			//this.ModEvents.OnAddRecipeGroups();
-
 			NPCBannerHelpers.InitializeBanners();
 
 			foreach( var kv in HamstarHelpers.RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {
@@ -202,8 +219,6 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostDrawInterface( SpriteBatch sb ) {
-			//this.ModEvents.OnPostDrawInterface( sb );
-
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			PlayerMessage.DrawPlayerLabels( sb );
@@ -220,26 +235,29 @@ namespace HamstarHelpers {
 
 
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-			//this.ModEvents.OnModifyInterfaceLayers( layers );
-
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
 			if( modworld.Logic.IsReady() ) {
 				int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 				if( idx != -1 ) {
 					GameInterfaceDrawMethod draw_method = delegate {
-						if( this.LastSeenScreenWidth != Main.screenWidth || this.LastSeenScreenHeight != Main.screenHeight ) {
-							this.LastSeenScreenWidth = Main.screenWidth;
-							this.LastSeenScreenHeight = Main.screenHeight;
-							this.ControlPanel.RecalculateBackend();
-						}
-						
-						this.ControlPanel.UpdateInteractivity( Main._drawInterfaceGameTime );
-						this.ControlPanel.UpdateDialog();
-						this.ControlPanel.UpdateToggler();
+						try {
+							if( this.LastSeenScreenWidth != Main.screenWidth || this.LastSeenScreenHeight != Main.screenHeight ) {
+								this.LastSeenScreenWidth = Main.screenWidth;
+								this.LastSeenScreenHeight = Main.screenHeight;
+								this.ControlPanel.Recalculate();
+							}
 
-						this.ControlPanel.Draw( Main.spriteBatch );
-						this.ControlPanel.DrawToggler( Main.spriteBatch );
+							this.ControlPanel.UpdateInteractivity( Main._drawInterfaceGameTime );
+							this.ControlPanel.UpdateDialog();
+
+							this.ControlPanel.Draw( Main.spriteBatch );
+
+							if( !this.Config.HideControlPanelIcon ) {
+								this.ControlPanel.UpdateToggler();
+								this.ControlPanel.DrawToggler( Main.spriteBatch );
+							}
+						} catch( Exception e ) { Main.NewText(e.Message); }
 						
 						return true;
 					};
@@ -251,50 +269,5 @@ namespace HamstarHelpers {
 				}
 			}
 		}
-
-
-		////////////////
-
-		/*public override void AddRecipes() {
-			this.ModEvents.OnAddRecipes();
-			base.AddRecipes();
-		}
-		public override object Call( params object[] args ) {
-			this.ModEvents.OnCall( args );
-			return base.Call( args );
-		}
-		public override bool HijackGetData( ref byte messageType, ref BinaryReader reader, int playerNumber ) {
-			this.ModEvents.OnHijackGetData( ref messageType, ref reader, playerNumber );
-			return base.HijackGetData( ref messageType, ref reader, playerNumber );
-		}
-		public override bool HijackSendData( int whoAmI, int msgType, int remoteClient, int ignoreClient, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7 ) {
-			this.ModEvents.OnHijackSendData( ref whoAmI, ref msgType, ref remoteClient, ref ignoreClient, text, ref number, ref number2, ref number3, ref number4, ref number5, ref number6, ref number7 );
-			return base.HijackSendData( whoAmI, msgType, remoteClient, ignoreClient, text, number, number2, number3, number4, number5, number6, number7 );
-		}
-		public override void HotKeyPressed( string name ) {
-			this.ModEvents.OnHotKeyPressed( name );
-			base.HotKeyPressed( name );
-		}
-		public override void ModifyLightingBrightness( ref float scale ) {
-			this.ModEvents.OnModifyLightingBrightness( ref scale );
-			base.ModifyLightingBrightness( ref scale );
-		}
-		public override void ModifySunLightColor( ref Color tileColor, ref Color backgroundColor ) {
-			this.ModEvents.OnModifySunLightColor( ref tileColor, ref backgroundColor );
-			base.ModifySunLightColor( ref tileColor, ref backgroundColor );
-		}
-		public override Matrix ModifyTransformMatrix( Matrix transform ) {
-			this.ModEvents.OnModifyTransformMatrix( ref transform );
-			return base.ModifyTransformMatrix( transform );
-		}
-		public override void PostDrawFullscreenMap( ref string mouseText ) {
-			base.PostDrawFullscreenMap( ref mouseText );
-		}
-		public override void PostUpdateInput() {
-			base.PostUpdateInput();
-		}
-		public override void UpdateMusic( ref int music ) {
-			base.UpdateMusic( ref music );
-		}*/
 	}
 }

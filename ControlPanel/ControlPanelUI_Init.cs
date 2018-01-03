@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -13,16 +14,16 @@ namespace HamstarHelpers.ControlPanel {
 		public static float ContainerHeight = 512f;
 		public static float ModListHeight = 300f;
 		
-		public static Texture2D ControlPanelLabel { get; private set; }
-		public static Texture2D ControlPanelLabelLit { get; private set; }
+		public static Texture2D ControlPanelIcon { get; private set; }
+		public static Texture2D ControlPanelIconLit { get; private set; }
 
 
 		////////////////
 
 		public static void Load( HamstarHelpersMod mymod ) {
 			if( !Main.dedServ ) {
-				ControlPanelUI.ControlPanelLabel = mymod.GetTexture( "ControlPanel/ControlPanelLabel" );
-				ControlPanelUI.ControlPanelLabelLit = mymod.GetTexture( "ControlPanel/ControlPanelLabelLit" );
+				ControlPanelUI.ControlPanelIcon = mymod.GetTexture( "ControlPanel/ControlPanelIcon" );
+				ControlPanelUI.ControlPanelIconLit = mymod.GetTexture( "ControlPanel/ControlPanelIconLit" );
 			}
 		}
 
@@ -46,9 +47,7 @@ namespace HamstarHelpers.ControlPanel {
 			//this.MainElement.BorderColor = ControlPanelUI.MainEdgeColor;
 			this.Append( this.OuterContainer );
 
-			CalculatedStyle dim = this.OuterContainer.GetDimensions();
-			this.OuterContainer.Left.Set( dim.Width * -0.5f, 0.5f );
-			this.OuterContainer.Top.Set( dim.Height * -0.5f, 0.5f );
+			this.RecalculateContainer();
 
 			this.InnerContainer = new UIPanel();
 			this.InnerContainer.Width.Set( 0f, 1f );
@@ -56,6 +55,24 @@ namespace HamstarHelpers.ControlPanel {
 			this.OuterContainer.Append( (UIElement)this.InnerContainer );
 
 			this.Theme.ApplyPanel( this.InnerContainer );
+
+
+			this.DialogClose = new UITextPanelButton( this.Theme, "X" );
+			this.DialogClose.Top.Set( -8f, 0f );
+			this.DialogClose.Left.Set( -16f, 1f );
+			this.DialogClose.Width.Set( 24f, 0f );
+			this.DialogClose.Height.Set( 24f, 0f );
+			this.DialogClose.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				self.Close();
+				Main.PlaySound( SoundID.MenuClose );
+			};
+			this.DialogClose.OnMouseOver += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				self.Theme.ApplyButtonLit( self.DialogClose );
+			};
+			this.DialogClose.OnMouseOut += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				self.Theme.ApplyButton( self.DialogClose );
+			};
+			this.InnerContainer.Append( this.DialogClose );
 
 			var tip = new UIText( "To get your own mod issue reporting, " );
 			this.InnerContainer.Append( (UIElement)tip );
@@ -200,6 +217,16 @@ namespace HamstarHelpers.ControlPanel {
 			};
 
 			return elem;
+		}
+
+
+		public void RecalculateContainer() {
+			CalculatedStyle dim = this.OuterContainer.GetDimensions();
+
+			//this.OuterContainer.Top.Set( ( ControlPanelUI.ContainerHeight * -0.5f ) + 32, 0.5f );
+			//this.OuterContainer.Left.Set( ( ControlPanelUI.ContainerWidth * -0.5f ), 0.5f );
+			this.OuterContainer.Top.Set( ( dim.Height * -0.5f ) + 32, 0.5f );
+			this.OuterContainer.Left.Set( ( dim.Width * -0.5f ), 0.5f );
 		}
 	}
 }

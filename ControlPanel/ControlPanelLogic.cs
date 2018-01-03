@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.PlayerHelpers;
+﻿using HamstarHelpers.Commands;
+using HamstarHelpers.PlayerHelpers;
 using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
@@ -55,15 +56,22 @@ namespace HamstarHelpers.ControlPanel {
 			return mods;
 		}
 
-		////////////////
-
 		public void SetCurrentMod( Mod mod ) {
 			this.CurrentMod = mod;
 		}
 
 
 		////////////////
-		
+
+		public void ApplyConfigChanges() {
+			string output = RefreshConfigsCommand.RefreshConfigs();
+
+			Main.NewText( output, Color.Yellow );
+			ErrorLogger.Log( output );
+		}
+
+		////////////////
+
 		public void ReportIssue( Mod mod, string issue_title, string issue_body ) {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
@@ -115,18 +123,6 @@ namespace HamstarHelpers.ControlPanel {
 				ErrorLogger.Log( "Issue submit error: " + e.ToString() );
 				Main.NewText( "Issue submit error: "+e.ToString(), Color.Red );
 			}
-		}
-
-
-		public void ApplyConfigChanges() {
-			foreach( var kv in ModMetaDataManager.ConfigMods ) {
-				ModMetaDataManager.ReloadConfigFromFile( kv.Value );
-			}
-
-			string mod_names = string.Join( ", ", ModMetaDataManager.ConfigMods.Keys.ToArray() );
-
-			Main.NewText( "Mod configs reloaded for " + mod_names, Color.Yellow );
-			ErrorLogger.Log( "Mod configs reloaded for " + mod_names );
 		}
 
 

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.Commands;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.UIHelpers;
 using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
@@ -26,6 +27,7 @@ namespace HamstarHelpers.ControlPanel {
 		private UIElement OuterContainer = null;
 		private UIPanel InnerContainer = null;
 		private UIList ModListElem = null;
+		private UITextPanelButton DialogClose = null;
 
 		private UITextArea IssueTitleInput = null;
 		private UITextArea IssueBodyInput = null;
@@ -134,9 +136,19 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public void RecalculateBackend() {
-			if( this.Backend != null ) {
+		 private bool _IsRecalculating = false;
+
+		public override void Recalculate() {
+			if( this.Backend != null && !this._IsRecalculating ) {
+				this._IsRecalculating = true;
 				this.Backend.Recalculate();
+				this._IsRecalculating = false;
+			} else {
+				base.Recalculate();
+			}
+
+			if( this.OuterContainer != null ) {
+				this.RecalculateContainer();
 			}
 		}
 
@@ -179,12 +191,10 @@ namespace HamstarHelpers.ControlPanel {
 			Main.inFancyUI = true;
 			Main.InGameUI.SetState( (UIState)this );
 			
-			this.OuterContainer.Top.Set( -(ControlPanelUI.ContainerHeight * 0.5f), 0.5f );
-			this.OuterContainer.Left.Set( -(ControlPanelUI.ContainerWidth * 0.5f), 0.5f );
-			this.Recalculate();
-
 			this.Backend = Main.InGameUI;
 			UserInterface.ActiveInstance = this.Backend;
+
+			this.Recalculate();
 		}
 
 
@@ -210,6 +220,7 @@ namespace HamstarHelpers.ControlPanel {
 			}
 			this.Theme.ApplyListItemSelected( list_item );
 			this.CurrentModListItem = list_item;
+
 			this.Logic.SetCurrentMod( mod );
 
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
@@ -222,6 +233,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void ApplyConfigChanges() {
 			this.Logic.ApplyConfigChanges();
+			
 			this.SetDialogToClose = true;
 		}
 	}

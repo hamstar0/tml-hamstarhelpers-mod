@@ -101,6 +101,7 @@ namespace HamstarHelpers {
 			this.CheckArmorEquipHooks();
 		}
 
+		////////////////
 
 		private void CheckBuffHooks() {
 			// Add new buffs
