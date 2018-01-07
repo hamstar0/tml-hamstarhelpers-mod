@@ -2,7 +2,7 @@
 using Terraria;
 using Newtonsoft.Json;
 using System;
-
+using HamstarHelpers.DebugHelpers;
 
 namespace HamstarHelpers.Utilities.Config {
 	public class JsonConfig<T> {
@@ -79,7 +79,7 @@ namespace HamstarHelpers.Utilities.Config {
 						this.DeserializeMe( json );
 					}
 				} catch( Exception e ) {
-					DebugHelpers.DebugHelpers.Log( "JsonConfig.LoadFile() failed - " + e.ToString() );
+					LogHelpers.Log( "JsonConfig.LoadFile() failed - " + e.ToString() );
 					success = false;
 				}
 			}

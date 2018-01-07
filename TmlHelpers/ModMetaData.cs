@@ -5,45 +5,56 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.TmlHelpers {
-	static class _ModMetaDataManagerLoader {
-		public static void Load() {
-			ModMetaDataManager.LoadMods();
-		}
-		public static void Unload() {
-			ModMetaDataManager.StaticInit();
-		}
-	}
+	public class ModMetaDataManager {
+		public static IEnumerable<Mod> GetAllMods() {
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			var mods = new LinkedList<Mod>();
+			var mod_set = new HashSet<string>();
 
+			mods.AddLast( HamstarHelpersMod.Instance );
+			mod_set.Add( HamstarHelpersMod.Instance.Name );
 
+			foreach( var kv in self.ConfigMods ) {
+				if( kv.Key == HamstarHelpersMod.Instance.Name || kv.Value.File == null ) { continue; }
+				mods.AddLast( kv.Value );
+				mod_set.Add( kv.Value.Name );
+			}
 
-	public static class ModMetaDataManager {
-		internal static IDictionary<string, Mod> GithubMods;
-		internal static IDictionary<string, Mod> ConfigMods;
+			foreach( var mod in ModLoader.LoadedMods ) {
+				if( mod_set.Contains( mod.Name ) || mod.File == null ) { continue; }
+				mods.AddLast( mod );
+			}
 
-
-		////////////////
-
-		static ModMetaDataManager() {
-			ModMetaDataManager.StaticInit();
-		}
-
-		internal static void StaticInit() {
-			ModMetaDataManager.GithubMods = new Dictionary<string, Mod>();
-			ModMetaDataManager.ConfigMods = new Dictionary<string, Mod>();
+			return mods;
 		}
 
 
 		////////////////
 
-		internal static void LoadMods() {
-			ModMetaDataManager.StaticInit();
+		internal IDictionary<string, Mod> GithubMods;
+		internal IDictionary<string, Mod> ConfigMods;
+
+
+		////////////////
+
+		internal ModMetaDataManager() {
+			this.GithubMods = new Dictionary<string, Mod>();
+			this.ConfigMods = new Dictionary<string, Mod>();
+		}
+
+
+		////////////////
+
+		internal void Initialize() {
+			this.GithubMods = new Dictionary<string, Mod>();
+			this.ConfigMods = new Dictionary<string, Mod>();
 
 			foreach( Mod mod in ModLoader.LoadedMods ) {
 				if( ModMetaDataManager.DetectGithub( mod ) ) {
-					ModMetaDataManager.GithubMods[mod.Name] = mod;
+					this.GithubMods[mod.Name] = mod;
 				}
 				if( ModMetaDataManager.DetectConfig( mod ) ) {
-					ModMetaDataManager.ConfigMods[mod.Name] = mod;
+					this.ConfigMods[mod.Name] = mod;
 				}
 			}
 		}
@@ -67,7 +78,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
-		private static bool DetectGithub( Mod mod ) {
+		public static bool DetectGithub( Mod mod ) {
 			if( ModMetaDataManager.GetGithubUserNameProp( mod ) == null ) { return false; }
 			if( ModMetaDataManager.GetGitubProjectNameProp( mod ) == null ) { return false; }
 			return true;
@@ -82,16 +93,19 @@ namespace HamstarHelpers.TmlHelpers {
 		////////////////
 
 		public static bool HasGithub( Mod mod ) {
-			return ModMetaDataManager.GithubMods.ContainsKey( mod.Name );
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			return self.GithubMods.ContainsKey( mod.Name );
 		}
 		public static bool HasConfig( Mod mod ) {
-			return ModMetaDataManager.ConfigMods.ContainsKey( mod.Name );
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			return self.ConfigMods.ContainsKey( mod.Name );
 		}
 
 		////////////////
 
 		public static string GetConfigRelativePath( Mod mod ) {
-			if( !ModMetaDataManager.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			if( !self.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
 
 			PropertyInfo config_path_field = ModMetaDataManager.GetConfigFilePathProp( mod );
 			return (string)config_path_field.GetValue( null );
@@ -107,7 +121,8 @@ namespace HamstarHelpers.TmlHelpers {
 		}*/
 
 		public static void ReloadConfigFromFile( Mod mod ) {
-			if( !ModMetaDataManager.ConfigMods.ContainsKey( mod.Name ) ) {
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			if( !self.ConfigMods.ContainsKey( mod.Name ) ) {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
 
@@ -118,14 +133,16 @@ namespace HamstarHelpers.TmlHelpers {
 		////////////////
 		
 		public static string GetGithubUserName( Mod mod ) {
-			if( !ModMetaDataManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
 			PropertyInfo git_user_prop = ModMetaDataManager.GetGithubUserNameProp( mod );
 			return (string)git_user_prop.GetValue( null );
 		}
 
 		public static string GetGithubProjectName( Mod mod ) {
-			if( !ModMetaDataManager.GithubMods.ContainsKey( mod.Name ) ) { return null; }
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
 			PropertyInfo git_proj_prop = ModMetaDataManager.GetGitubProjectNameProp( mod );
 			return (string)git_proj_prop.GetValue( null );

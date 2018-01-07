@@ -54,15 +54,15 @@ namespace HamstarHelpers.NPCHelpers {
 			NPCID.PirateCaptain, NPCID.PirateCorsair, NPCID.PirateCrossbower, NPCID.PirateDeadeye, NPCID.PirateDeckhand, NPCID.Parrot,
 			NPCID.PirateShip, NPCID.PirateShipCannon
 		};
-		private static ISet<int> _VanillaMartianTypes = new HashSet<int> {
-			NPCID.BrainScrambler, NPCID.GrayGrunt, NPCID.RayGunner, NPCID.MartianOfficer, NPCID.MartianOfficer, NPCID.MartianEngineer,
-			NPCID.GigaZapper, NPCID.MartianTurret, NPCID.MartianDrone, NPCID.MartianWalker, NPCID.Scutlix,
-			NPCID.MartianSaucer, NPCID.MartianSaucerCannon, NPCID.MartianSaucerCore, NPCID.MartianSaucerTurret
-		};
 		private static ISet<int> _VanillaSolarEclipseTypes = new HashSet<int> {
 			NPCID.Eyezor, NPCID.Frankenstein, NPCID.SwampThing, NPCID.Vampire, NPCID.CreatureFromTheDeep, NPCID.Fritz, NPCID.ThePossessed,
 			NPCID.Mothron, NPCID.MothronEgg, NPCID.MothronSpawn, NPCID.Reaper,
 			NPCID.Butcher, NPCID.DeadlySphere, NPCID.DrManFly, NPCID.Nailhead, NPCID.Psycho
+		};
+		private static ISet<int> _VanillaMartianTypes = new HashSet<int> {
+			NPCID.BrainScrambler, NPCID.GrayGrunt, NPCID.RayGunner, NPCID.MartianOfficer, NPCID.MartianOfficer, NPCID.MartianEngineer,
+			NPCID.GigaZapper, NPCID.MartianTurret, NPCID.MartianDrone, NPCID.MartianWalker, NPCID.Scutlix,
+			NPCID.MartianSaucer, NPCID.MartianSaucerCannon, NPCID.MartianSaucerCore, NPCID.MartianSaucerTurret
 		};
 		private static ISet<int> _VanillaPumpkingMoonTypes = new HashSet<int> {
 			NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7,

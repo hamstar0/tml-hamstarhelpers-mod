@@ -188,9 +188,9 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public UIModData CreateModListItem( Mod mod ) {
+		public UIModData CreateModListItem( int i, Mod mod ) {
 			ControlPanelUI self = this;
-			var elem = new UIModData( this.Theme, mod, false );
+			var elem = new UIModData( this.Theme, i, mod, false );
 
 			this.Theme.ApplyListItem( elem );
 

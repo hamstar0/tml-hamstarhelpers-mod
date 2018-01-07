@@ -26,9 +26,19 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		public bool WillDrawOwnHoverElements { get; private set; }
 
 
+
 		////////////////
 
-		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements=true ) {
+		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements = true ) {
+			this.Initialize( theme, null, mod, will_draw_own_hover_elements );
+		}
+
+		public UIModData( UITheme theme, int? idx, Mod mod, bool will_draw_own_hover_elements = true ) {
+			this.Initialize( theme, idx, mod, will_draw_own_hover_elements );
+		}
+
+
+		private void Initialize( UITheme theme, int? idx, Mod mod, bool will_draw_own_hover_elements = true ) {
 			var self = this;
 			TmodFile modfile = mod.File;
 
@@ -51,20 +61,30 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.Width.Set( 0f, 1f );
 			this.Height.Set( 64, 0f );
 
+			float title_offset = 72f;
+
+			if( idx != null ) {
+				var idxElem = new UIText( (int)idx + "" );
+				idxElem.Left.Set( title_offset, 0f );
+				this.Append( (UIElement)idxElem );
+
+				title_offset += 16f;
+			}
+
 			string mod_title = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
 			
-			if( this.HomepageUrl != null ) {
+			if( !String.IsNullOrEmpty(this.HomepageUrl) ) {
 				this.TitleElem = new UIWebUrl( mod_title, this.HomepageUrl, false );
 			} else {
 				this.TitleElem = new UIText( mod_title );
 			}
-			this.TitleElem.Left.Set( 72f, 0f );
+			this.TitleElem.Left.Set( 88f, 0f );
 			this.Append( (UIElement)this.TitleElem );
 
 			if( this.Author != null ) {
 				this.AuthorElem = new UIText( "By: "+this.Author, 0.7f );
 				this.AuthorElem.Top.Set( 20f, 0f );
-				this.AuthorElem.Left.Set( 72f, 0f );
+				this.AuthorElem.Left.Set( title_offset, 0f );
 				this.Append( (UIElement)this.AuthorElem );
 			}
 

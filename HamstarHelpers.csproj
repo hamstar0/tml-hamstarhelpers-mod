@@ -33,6 +33,9 @@
     <Reference Include="Libraries.JSON.NET.Newtonsoft.Json">
       <HintPath>..\..\Reference\Libraries.JSON.NET.Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Steamworks.NET">
+      <HintPath>..\..\Reference\tModLoader Patcher\references\Steamworks.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -57,25 +60,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuffHelpers\BuffHelpers.cs" />
-    <Compile Include="Commands\RefreshConfigsCommand.cs" />
+    <Compile Include="Commands\AdminUserRemoveCommand.cs" />
+    <Compile Include="Commands\AdminUserAddCommand.cs" />
+    <Compile Include="Commands\ConfigsRefreshCommand.cs" />
     <Compile Include="Commands\ControlPanelOpenCommand.cs" />
+    <Compile Include="Commands\ModIssueReportCommand.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ControlPanel\ControlPanelLogic.cs" />
     <Compile Include="ControlPanel\ControlPanelUI.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Init.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Issue.cs" />
     <Compile Include="ControlPanel\ControlPanelUI_Toggler.cs" />
+    <Compile Include="DebugHelpers\LogHelpers.cs" />
     <Compile Include="DotNetHelpers\DataStructures\SimpleQuadTree.cs" />
+    <Compile Include="DotNetHelpers\SteamHelpers.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
-    <Compile Include="HamstarHelpersTile.cs" />
     <Compile Include="ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="RecipeHelpers\RecipeHelpers.cs" />
     <Compile Include="TmlHelpers\AltNPCInfo.cs" />
     <Compile Include="DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="HamstarHelpersLogic.cs" />
     <Compile Include="HamstarHelpersWorld.cs" />
-    <Compile Include="HamstarHelpersNpc.cs" />
     <Compile Include="HudHelpers\HudHealthBarHelpers.cs" />
     <Compile Include="HamstarHelpersPlayer.cs" />
     <Compile Include="ItemHelpers\ItemMusicBoxHelpers.cs" />
@@ -101,17 +107,11 @@
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
     <Compile Include="TmlHelpers\AltProjectileInfo.cs" />
     <Compile Include="TmlHelpers\BuildPropertiesInterface.cs" />
-    <Compile Include="TmlHelpers\Events\TileEvents.cs" />
-    <Compile Include="TmlHelpers\Events\ProjectileEvents.cs" />
-    <Compile Include="TmlHelpers\Events\NPCEvents.cs" />
-    <Compile Include="TmlHelpers\Events\ModEvents.cs" />
-    <Compile Include="TmlHelpers\Events\ItemEvents.cs" />
-    <Compile Include="TmlHelpers\Events\PlayerEvents.cs" />
-    <Compile Include="TmlHelpers\Events\WorldEvents.cs" />
     <Compile Include="TmlHelpers\ModMetaData.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
     <Compile Include="TmlHelpers\TmlPlayerHelpers.cs" />
     <Compile Include="UIHelpers\UITheme.cs" />
+    <Compile Include="UserHelpers\UserHelpers.cs" />
     <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="DotNetHelpers\DotNetHelpers.cs" />
@@ -156,7 +156,9 @@
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="TmlHelpers\ModHelpers\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

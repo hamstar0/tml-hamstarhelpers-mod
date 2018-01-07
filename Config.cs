@@ -12,7 +12,7 @@ namespace HamstarHelpers {
 
 		public string VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
 
-		public bool HideControlPanelIcon = false;
+		public bool DisableControlPanel = false;
 		public int ControlPanelIconX = 0;
 		public int ControlPanelIconY = 0;
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -10,26 +11,42 @@ namespace HamstarHelpers.NetProtocol {
 			NetProtocolTypes protocol = (NetProtocolTypes)reader.ReadByte();
 
 			switch( protocol ) {
+			case NetProtocolTypes.RequestModSettings:
+				ServerPacketHandlers.ReceiveRequestModSettingsOnServer( mymod, reader, player_who );
+				break;
 			case NetProtocolTypes.RequestModData:
-				//if( is_debug ) { DebugHelpers.Log( "Packet RequestModData" ); }
 				ServerPacketHandlers.ReceiveRequestModDataOnServer( mymod, reader, player_who );
 				break;
 			case NetProtocolTypes.RequestPlayerPermaDeath:
 				ServerPacketHandlers.ReceivePlayerPermaDeathOnServer( mymod, reader, player_who );
 				break;
+			case NetProtocolTypes.UploadPlayerData:
+				ServerPacketHandlers.ReceivePlayerDataOnServer( mymod, reader, player_who );
+				break;
 			default:
-				DebugHelpers.DebugHelpers.Log( "Invalid packet protocol: " + protocol );
+				LogHelpers.Log( "Invalid packet protocol: " + protocol );
 				break;
 			}
 		}
-		
-		
+
+
 
 		////////////////
 		// Server Senders
 		////////////////
-		
-		public static void SendModDataFromServer( HamstarHelpersMod mymod, Player player ) {
+
+		public static void SendModSettingsFromServer( HamstarHelpersMod mymod, int to_who, int ignore_who ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+			
+			ModPacket packet = mymod.GetPacket();
+
+			packet.Write( (byte)NetProtocolTypes.SendModSettings );
+			packet.Write( (string)mymod.JsonConfig.SerializeMe() );
+
+			packet.Send( to_who, ignore_who );
+		}
+
+		public static void SendModDataFromServer( HamstarHelpersMod mymod, int to_who, int ignore_who ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
@@ -40,10 +57,10 @@ namespace HamstarHelpers.NetProtocol {
 			packet.Write( (byte)NetProtocolTypes.SendModData );
 			packet.Write( (int)modworld.Logic.HalfDaysElapsed );
 
-			packet.Send( (int)player.whoAmI );
+			packet.Send( to_who, ignore_who );
 		}
 
-		public static void BroadcastPlayerPermaDeathFromServer( HamstarHelpersMod mymod, int player_who, string msg ) {
+		public static void SendPlayerPermaDeathFromServer( HamstarHelpersMod mymod, int to_who, int ignore_who, int dead_player_who, string msg ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
@@ -52,21 +69,44 @@ namespace HamstarHelpers.NetProtocol {
 			ModPacket packet = mymod.GetPacket();
 
 			packet.Write( (byte)NetProtocolTypes.SendPlayerPermaDeath );
-			packet.Write( (int)player_who );
+			packet.Write( (int)dead_player_who );
 			packet.Write( (string)msg );
 
-			packet.Send();
+			packet.Send( to_who, ignore_who );
 		}
+		
+		public static void SendPlayerDataFromServer( HamstarHelpersMod mymod, int to_who, int ignore_who, int data_who ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+
+			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			if( modworld.Logic == null ) { throw new Exception( "HH logic not initialized." ); }
+
+			var myplayer = Main.player[data_who].GetModPlayer<HamstarHelpersPlayer>();
+			ModPacket packet = mymod.GetPacket();
+
+			packet.Write( (byte)NetProtocolTypes.SendPlayerData );
+			packet.Write( (int)data_who );
+			myplayer.NetSend( packet, false );
+
+			packet.Send( to_who, ignore_who );
+		}
+
 
 
 		////////////////
 		// Server Receivers
 		////////////////
 
-		private static void ReceiveRequestModDataOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+		private static void ReceiveRequestModSettingsOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
-			ServerPacketHandlers.SendModDataFromServer( mymod, Main.player[player_who] );
+			ServerPacketHandlers.SendModSettingsFromServer( mymod, player_who, -1 );
+		}
+
+		private static void ReceiveRequestModDataOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+			
+			ServerPacketHandlers.SendModDataFromServer( mymod, player_who, -1 );
 		}
 
 		private static void ReceivePlayerPermaDeathOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
@@ -76,7 +116,21 @@ namespace HamstarHelpers.NetProtocol {
 
 			Main.player[player_who].difficulty = 2;
 
-			ServerPacketHandlers.BroadcastPlayerPermaDeathFromServer( mymod, player_who, msg );
+			ServerPacketHandlers.SendPlayerPermaDeathFromServer( mymod, -1, -1, player_who, msg );
+		}
+		
+		private static void ReceivePlayerDataOnServer( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
+
+			Player player = Main.player[ player_who ];
+			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+
+			int to_who = reader.ReadInt32();
+			int ignore_who = to_who == -1 ? player_who : -1;
+
+			myplayer.NetReceive( reader );
+			
+			ServerPacketHandlers.SendPlayerDataFromServer( mymod, to_who, ignore_who, player_who );
 		}
 	}
 }

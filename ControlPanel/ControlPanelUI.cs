@@ -73,8 +73,9 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		private void LoadModList() {
-			foreach( var mod in this.Logic.GetMods() ) {
-				this.ModDataList.Add( this.CreateModListItem( mod ) );
+			int i = 1;
+			foreach( var mod in ModMetaDataManager.GetAllMods() ) {
+				this.ModDataList.Add( this.CreateModListItem( i++, mod ) );
 			}
 			this.ModListUpdateRequired = true;
 		}

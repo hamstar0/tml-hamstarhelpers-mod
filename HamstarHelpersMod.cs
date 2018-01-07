@@ -41,6 +41,8 @@ namespace HamstarHelpers {
 		internal JsonConfig<HamstarHelpersConfigData> JsonConfig;
 		public HamstarHelpersConfigData Config { get { return JsonConfig.Data; } }
 
+		internal DebugHelpers.LogHelpers LogHelpers;
+		internal TmlHelpers.ModMetaDataManager ModMetaDataManager;
 		internal BuffHelpers.BuffHelpers BuffHelpers;
 		internal ItemHelpers.ItemIdentityHelpers ItemIdentityHelpers;
 		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
@@ -50,7 +52,6 @@ namespace HamstarHelpers {
 
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
-		public bool HasCurrentPlayerEnteredWorld { get; internal set; }
 
 		public ControlPanelUI ControlPanel = null;
 		 private int LastSeenScreenWidth = -1;
@@ -73,7 +74,6 @@ namespace HamstarHelpers {
 		public HamstarHelpersMod() {
 			this.HasRecipesBeenAdded = false;
 			this.HasSetupContent = false;
-			this.HasCurrentPlayerEnteredWorld = false;
 
 			this.Properties = new ModProperties() {
 				Autoload = true,
@@ -88,6 +88,8 @@ namespace HamstarHelpers {
 		public override void Load() {
 			HamstarHelpersMod.Instance = this;
 
+			this.LogHelpers = new DebugHelpers.LogHelpers();
+			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();
 			this.BuffHelpers = new BuffHelpers.BuffHelpers();
 			this.ItemIdentityHelpers = new ItemHelpers.ItemIdentityHelpers();
 			this.NPCBannerHelpers = new NPCHelpers.NPCBannerHelpers();
@@ -127,8 +129,6 @@ namespace HamstarHelpers {
 
 		public override void Unload() {
 			HamstarHelpersMod.Instance = null;
-			
-			_ModMetaDataManagerLoader.Unload();
 		}
 
 		////////////////
@@ -140,8 +140,7 @@ namespace HamstarHelpers {
 		public override void PostSetupContent() {
 			this.BuffHelpers.Initialize();
 			this.ItemIdentityHelpers.Initialize();
-
-			_ModMetaDataManagerLoader.Load();
+			this.ModMetaDataManager.Initialize();
 
 			if( !Main.dedServ ) {
 				ControlPanelUI.Load( (HamstarHelpersMod)this );
@@ -154,8 +153,7 @@ namespace HamstarHelpers {
 
 		public override void PreSaveAndQuit() {
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
-
-			this.HasCurrentPlayerEnteredWorld = false;
+			
 			modworld.HasCorrectID = false;
 		}
 
@@ -170,7 +168,7 @@ namespace HamstarHelpers {
 					ServerPacketHandlers.RoutePacket( this, reader, player_who );
 				}
 			} catch( Exception e ) {
-				DebugHelpers.DebugHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
+				DebugHelpers.LogHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
 			}
 		}
 		/*public override bool HijackSendData( int who_am_i, int msg_type, int remote_client, int ignore_client, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7 ) {
@@ -229,7 +227,7 @@ namespace HamstarHelpers {
 			DebugHelpers.DebugHelpers.OnceInAWhile--;
 
 			if( modworld.Logic != null ) {
-				modworld.Logic.ReadyClient = true;  // Ugh!
+				modworld.Logic.IsClientPlaying = true;  // Ugh!
 			}
 		}
 
@@ -237,7 +235,7 @@ namespace HamstarHelpers {
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
-			if( modworld.Logic.IsReady() ) {
+			if( modworld.Logic.IsPlaying() ) {
 				int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 				if( idx != -1 ) {
 					GameInterfaceDrawMethod draw_method = delegate {
@@ -253,7 +251,7 @@ namespace HamstarHelpers {
 
 							this.ControlPanel.Draw( Main.spriteBatch );
 
-							if( !this.Config.HideControlPanelIcon ) {
+							if( !this.Config.DisableControlPanel ) {
 								this.ControlPanel.UpdateToggler();
 								this.ControlPanel.DrawToggler( Main.spriteBatch );
 							}

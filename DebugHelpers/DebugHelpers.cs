@@ -91,10 +91,11 @@ namespace HamstarHelpers.DebugHelpers {
 
 		////////////////
 
+		[System.Obsolete( "use LogHelpers.Log", true )]
 		public static void Log( string msg ) {
 			string now = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds.ToString( "N2" );
-			string logged = "" + Main.netMode + ":" + DebugHelpers.LoggedMessages + " " + now;
-			logged += new String( ' ', 24 - logged.Length );
+			string logged = "" + Main.netMode + ":" + Main.myPlayer.ToString("D3") + ":" + DebugHelpers.LoggedMessages + " - " + now;
+			logged += new String( ' ', 30 - logged.Length );
 
 			ErrorLogger.Log( logged+msg );
 

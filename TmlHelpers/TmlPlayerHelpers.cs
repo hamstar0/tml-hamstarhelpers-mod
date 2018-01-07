@@ -5,11 +5,18 @@ using Terraria;
 
 namespace HamstarHelpers.TmlHelpers {
 	public class TmlPlayerHelpers {
+		public static string GetUniqueId( Player player ) {
+			return player.GetModPlayer<HamstarHelpersPlayer>().UID;
+		}
+
+
+		////////////////
+
 		internal IDictionary<string, Action<Player, int>> BuffExpireHooks = new Dictionary<string, Action<Player, int>>();
 		internal IDictionary<string, Action<Player, int, Item>> ArmorEquipHooks = new Dictionary<string, Action<Player, int, Item>>();
 		internal IDictionary<string, Action<Player, int, int>> ArmorUnequipHooks = new Dictionary<string, Action<Player, int, int>>();
 
-
+		
 		////////////////
 
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {

@@ -1,13 +1,34 @@
-v1.2.4
+Future
 -	Improve mod recommendation tool
 	-	Add value multipliers for each question
 -	Remake mod recommendation data entry form
 	-	...
 	-	Change 'Irrelevant' field to 'Depends'
 	-	...
+
+
+
+v1.2.7
+-	Implement tab button to toggle control panel players tab
+-	Players tab on 
+	-	Add config options for things to show for each player
+	-	Add player stats
+		-	Max health
+		-	K/D
+		-	Latency
+	-	List players
+	-	Define new control panel tab
+v1.2.6
+-	Add 'mod lock' option for current world
+
+-	@Test player sync, admin command
+-	Add command to set/unset user to be 'mod admin' (must be a mod admin to perform)
+-	Add player sync
+-	Add control panel commands
+-	Add control panel close button
+-	Improve control panel toggler
 v1.2.3
 -	Add player equipment to report text
-
 v1.2.2
 -	Update mod suggestions tool
 	-	Add access code to site

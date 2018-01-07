@@ -38,7 +38,9 @@ namespace HamstarHelpers.BuffHelpers {
 
 		public static void RemovePermaBuff( Player player, int buff_id ) {
 			var modplayer = player.GetModPlayer<HamstarHelpersPlayer>();
-			modplayer.PermaBuffsById.Remove( buff_id );
+			if( modplayer.PermaBuffsById.Contains(buff_id) ) {
+				modplayer.PermaBuffsById.Remove( buff_id );
+			}
 		}
 	}
 }
