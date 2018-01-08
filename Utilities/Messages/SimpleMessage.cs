@@ -40,11 +40,8 @@ namespace HamstarHelpers.Utilities.Messages {
 
 		private static Vector2 DrawMessageText( SpriteBatch sb, string msg, float scale, Vector2 pos ) {
 			Vector2 size = Main.fontItemStack.MeasureString( msg );
-			size.X *= scale;
-			size.Y *= scale;
-
-			pos.X -= size.X / 2f;
-			pos.Y -= size.Y * 2f;
+			size *= scale;
+			pos -= size / 2f;
 
 			sb.DrawString( Main.fontItemStack, msg, pos, Color.White, 0f, new Vector2(0,0), scale, SpriteEffects.None, 1f );
 

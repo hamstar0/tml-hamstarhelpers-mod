@@ -9,13 +9,6 @@ namespace HamstarHelpers.TmlHelpers {
 			return player.GetModPlayer<HamstarHelpersPlayer>().UID;
 		}
 
-
-		////////////////
-
-		internal IDictionary<string, Action<Player, int>> BuffExpireHooks = new Dictionary<string, Action<Player, int>>();
-		internal IDictionary<string, Action<Player, int, Item>> ArmorEquipHooks = new Dictionary<string, Action<Player, int, Item>>();
-		internal IDictionary<string, Action<Player, int, int>> ArmorUnequipHooks = new Dictionary<string, Action<Player, int, int>>();
-
 		
 		////////////////
 
@@ -69,5 +62,13 @@ namespace HamstarHelpers.TmlHelpers {
 				action.Value( player, slot, item_type );
 			}
 		}
+
+
+
+		////////////////
+
+		internal IDictionary<string, Action<Player, int>> BuffExpireHooks = new Dictionary<string, Action<Player, int>>();
+		internal IDictionary<string, Action<Player, int, Item>> ArmorEquipHooks = new Dictionary<string, Action<Player, int, Item>>();
+		internal IDictionary<string, Action<Player, int, int>> ArmorUnequipHooks = new Dictionary<string, Action<Player, int, int>>();
 	}
 }

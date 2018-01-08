@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Commands {
-	class AdminUserRemoveCommand : ModCommand {
+	/*class AdminUserRemoveCommand : ModCommand {
 		public override CommandType Type { get { return CommandType.World; } }
 		public override string Command { get { return "hhadmindel"; } }
 		public override string Usage { get { return "/hhadmindel fake_hamstar_omg"; } }
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			if( Main.netMode != 0 && !UserHelpers.UserHelpers.IsAdmin(caller.Player) ) {
-				throw new UsageException( "Only admins are allowed to use this command.", Color.Yellow );
+				throw new UsageException( "Only admins are allowed to use this command.", Color.Red );
 			}
 
 			string name = args[0];
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Commands {
 				return;
 			}
 
-			caller.Reply( "No player by name "+name+" found.", Color.Yellow );
+			caller.Reply( "No player by name "+name+" found.", Color.Red );
 		}
-	}
+	}*/
 }

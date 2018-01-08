@@ -18,9 +18,17 @@ v1.2.7
 		-	Latency
 	-	List players
 	-	Define new control panel tab
-v1.2.6
--	Add 'mod lock' option for current world
+-	Add player world locks
 
+v1.2.6
+-	@Test commands
+-	Set commands to chat in single player, console in multiplayer
+-	Disable admin class
+-	Refresh class fields on game start
+-	Add 'mod lock' option for current world
+	-	Apply to multiplayer
+	-	Implement world auto-exit
+	-	Implement class
 -	@Test player sync, admin command
 -	Add command to set/unset user to be 'mod admin' (must be a mod admin to perform)
 -	Add player sync

@@ -7,16 +7,16 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Commands {
 	public class ConfigsRefreshCommand : ModCommand {
-		public static string RefreshConfigs() {
+		public static void RefreshConfigs() {
+			if( Main.netMode != 0 ) {
+				throw new UsageException( "Cannot refresh configs in multiplayer.", Color.Red );
+			}
+
 			var mymod = HamstarHelpersMod.Instance;
 
 			foreach( var kv in mymod.ModMetaDataManager.ConfigMods ) {
 				ModMetaDataManager.ReloadConfigFromFile( kv.Value );
 			}
-
-			string mod_names = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );
-
-			return "Mod configs reloaded for " + mod_names;
 		}
 
 
@@ -26,19 +26,18 @@ namespace HamstarHelpers.Commands {
 		public override CommandType Type { get { return CommandType.World; } }
 		public override string Command { get { return "hhconfigsrefresh"; } }
 		public override string Usage { get { return "/hhconfigsrefresh"; } }
-		public override string Description { get { return "Refreshes all config files (setup to do so with Hamstar's Helpers)."; } }
+		public override string Description { get { return "Refreshes all mod config files (single-player only). Only works for mods setup with Hamstar's Helpers to do so (see Control Panel)."; } }
 
 
 		////////////////
 		
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			if( Main.netMode != 0 ) {
-				throw new UsageException( "Command not available in multiplayer.", Color.Red );
-			}
+			var mymod = HamstarHelpersMod.Instance;
 
-			string output = ConfigsRefreshCommand.RefreshConfigs();
+			ConfigsRefreshCommand.RefreshConfigs();
 
-			caller.Reply( output, Color.Yellow );
+			string mod_names = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );
+			caller.Reply( "Mod configs reloaded for " + mod_names, Color.Yellow );
 		}
 	}
 }

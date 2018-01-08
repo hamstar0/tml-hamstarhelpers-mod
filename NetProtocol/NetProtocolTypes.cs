@@ -11,5 +11,7 @@
 
 		UploadPlayerData,
 		SendPlayerData
+		
+		//SendSetAdmin
 	}
 }

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Commands;
-using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.UIHelpers;
 using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
@@ -16,7 +16,7 @@ using Terraria.UI;
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
 		public bool IsOpen { get; private set; }
-
+		
 		private UITheme Theme = new UITheme();
 		private ControlPanelLogic Logic = new ControlPanelLogic();
 		private UserInterface Backend = null;
@@ -31,7 +31,10 @@ namespace HamstarHelpers.ControlPanel {
 
 		private UITextArea IssueTitleInput = null;
 		private UITextArea IssueBodyInput = null;
+
 		private UITextPanelButton IssueSubmitButton = null;
+		private UITextPanelButton ApplyConfigButton = null;
+		private UITextPanelButton ModLockButton = null;
 
 		private bool HasClicked = false;
 		private bool ModListUpdateRequired = false;
@@ -42,7 +45,6 @@ namespace HamstarHelpers.ControlPanel {
 		private bool IsPopulatingList = false;
 
 
-
 		////////////////
 
 		public ControlPanelUI() {
@@ -51,13 +53,16 @@ namespace HamstarHelpers.ControlPanel {
 			this.InitializeToggler();
 		}
 
+		////////////////
+
 		public override void OnInitialize() {
 			this.InitializeComponents();
 		}
 
-
 		public override void OnActivate() {
 			base.OnActivate();
+
+			this.RefreshApplyConfigButton();
 
 			if( this.ModDataList.Count == 0 && !this.IsPopulatingList ) {
 				this.IsPopulatingList = true;
@@ -74,7 +79,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void LoadModList() {
 			int i = 1;
-			foreach( var mod in ModMetaDataManager.GetAllMods() ) {
+			foreach( var mod in ModHelpers.GetAllMods() ) {
 				this.ModDataList.Add( this.CreateModListItem( i++, mod ) );
 			}
 			this.ModListUpdateRequired = true;
@@ -82,15 +87,10 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		////////////////
-
-		public void UpdateInteractivity( GameTime game_time ) {
-			if( this.Backend == null ) { return; }
-
-			this.Backend.Update( game_time );
-		}
 		
+		public override void Update( GameTime gameTime ) {
+			base.Update( gameTime );
 
-		public void UpdateDialog() {
 			if( !this.IsOpen ) { return; }
 
 			if( Main.playerInventory || Main.npcChatText != "" ) {
@@ -116,10 +116,11 @@ namespace HamstarHelpers.ControlPanel {
 
 			if( this.SetDialogToClose ) {
 				this.SetDialogToClose = false;
-				if( this.IsOpen ) {
-					this.Close();
-				}
+				this.Close();
+				return;
 			}
+
+			this.UpdateElements( HamstarHelpersMod.Instance );
 		}
 
 
@@ -137,16 +138,16 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		 private bool _IsRecalculating = false;
+		public void RecalculateMe() {
+			if( this.Backend != null ) {
+				this.Backend.Recalculate();
+			} else {
+				this.Recalculate();
+			}
+		}
 
 		public override void Recalculate() {
-			if( this.Backend != null && !this._IsRecalculating ) {
-				this._IsRecalculating = true;
-				this.Backend.Recalculate();
-				this._IsRecalculating = false;
-			} else {
-				base.Recalculate();
-			}
+			base.Recalculate();
 
 			if( this.OuterContainer != null ) {
 				this.RecalculateContainer();
@@ -155,12 +156,11 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		////////////////
-
+		
 		public override void Draw( SpriteBatch sb ) {
 			if( !this.IsOpen ) { return; }
-
+			
 			base.Draw( sb );
-
 			this.DrawHoverElements( sb );
 		}
 
@@ -193,17 +193,13 @@ namespace HamstarHelpers.ControlPanel {
 			Main.InGameUI.SetState( (UIState)this );
 			
 			this.Backend = Main.InGameUI;
-			UserInterface.ActiveInstance = this.Backend;
 
-			this.Recalculate();
+			this.RecalculateMe();
 		}
 
 
 		public void Close() {
 			this.IsOpen = false;
-
-			//this.Container.Top.Set( -ControlPanelUI.PanelHeight * 2f, 0f );
-			this.Deactivate();
 			
 			Main.inFancyUI = false;
 			Main.InGameUI.SetState( (UIState)null );
@@ -231,11 +227,22 @@ namespace HamstarHelpers.ControlPanel {
 			}
 		}
 
+		////////////////
 
-		private void ApplyConfigChanges() {
-			this.Logic.ApplyConfigChanges();
+		private void ApplyConfigChanges( HamstarHelpersMod mymod ) {
+			this.Logic.ApplyConfigChanges( mymod );
 			
 			this.SetDialogToClose = true;
+		}
+
+		private void ToggleModLock( HamstarHelpersMod mymod ) {
+			if( !ModLockHelpers.IsWorldLocked() ) {
+				ModLockHelpers.LockWorld();
+			} else {
+				ModLockHelpers.UnlockWorld();
+			}
+
+			this.RefreshModLockButton( mymod );
 		}
 	}
 }

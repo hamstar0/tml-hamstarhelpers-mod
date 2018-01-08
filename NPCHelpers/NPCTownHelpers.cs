@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.DebugHelpers;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -27,7 +28,7 @@ namespace HamstarHelpers.NPCHelpers {
 
 		public static Chest GetShop( int npc_type ) {
 			if( Main.instance == null ) {
-				ErrorLogger.Log( "No main instance." );
+				LogHelpers.Log( "No main instance." );
 				return null;
 			}
 

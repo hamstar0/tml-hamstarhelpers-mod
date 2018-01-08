@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.UIHelpers.Elements;
+﻿using HamstarHelpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using System.Text;
 using Terraria;
@@ -11,16 +12,18 @@ using Terraria.UI;
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
 		public static float ContainerWidth = 600f;
-		public static float ContainerHeight = 512f;
+		public static float ContainerHeight = 520f;
 		public static float ModListHeight = 300f;
 		
 		public static Texture2D ControlPanelIcon { get; private set; }
 		public static Texture2D ControlPanelIconLit { get; private set; }
 
+		public readonly static string ModLockTitle = "Mods locked for current world";
+
 
 		////////////////
 
-		public static void Load( HamstarHelpersMod mymod ) {
+		public static void OnPostSetupContent( HamstarHelpersMod mymod ) {
 			if( !Main.dedServ ) {
 				ControlPanelUI.ControlPanelIcon = mymod.GetTexture( "ControlPanel/ControlPanelIcon" );
 				ControlPanelUI.ControlPanelIconLit = mymod.GetTexture( "ControlPanel/ControlPanelIconLit" );
@@ -57,6 +60,8 @@ namespace HamstarHelpers.ControlPanel {
 			this.Theme.ApplyPanel( this.InnerContainer );
 
 
+			////////
+
 			this.DialogClose = new UITextPanelButton( this.Theme, "X" );
 			this.DialogClose.Top.Set( -8f, 0f );
 			this.DialogClose.Left.Set( -16f, 1f );
@@ -74,6 +79,8 @@ namespace HamstarHelpers.ControlPanel {
 			};
 			this.InnerContainer.Append( this.DialogClose );
 
+			////
+
 			var tip = new UIText( "To get your own mod issue reporting, " );
 			this.InnerContainer.Append( (UIElement)tip );
 
@@ -85,6 +92,8 @@ namespace HamstarHelpers.ControlPanel {
 			this.InnerContainer.Append( (UIElement)tip_url );
 
 			top += 24f;
+
+			////
 
 			var mod_list_panel = new UIPanel();
 			{
@@ -120,7 +129,9 @@ namespace HamstarHelpers.ControlPanel {
 					}
 				}
 			}
-			
+
+			////
+
 			this.IssueTitleInput = new UITextArea( this.Theme, "Enter title of mod issue", 128 );
 			this.IssueTitleInput.Top.Set( top, 0f );
 			this.IssueTitleInput.Width.Set( 0f, 1f );
@@ -149,30 +160,53 @@ namespace HamstarHelpers.ControlPanel {
 			
 			top += 40f;
 
+			////
+
 			this.IssueSubmitButton = new UITextPanelButton( this.Theme, "Submit Issue" );
 			this.IssueSubmitButton.Top.Set( top, 0f );
 			this.IssueSubmitButton.Left.Set( 0f, 0f );
-			this.IssueSubmitButton.Width.Set( 128f, 0f );
+			this.IssueSubmitButton.Width.Set( 200f, 0f );
 			this.IssueSubmitButton.Disable();
 			this.IssueSubmitButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 				if( self.AwaitingReport || !self.IssueSubmitButton.IsEnabled ) { return; }
 				self.SubmitIssue();
 			};
 			this.InnerContainer.Append( this.IssueSubmitButton );
-
-			if( Main.netMode != 1 ) {
-				var apply_config_button = new UITextPanelButton( this.Theme, "Apply Config Changes" );
-				apply_config_button.Top.Set( top, 0f );
-				apply_config_button.Left.Set( 0f, 0f );
-				apply_config_button.Width.Set( 200f, 0f );
-				apply_config_button.HAlign = 1f;
-				apply_config_button.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
-					self.ApplyConfigChanges();
-				};
-				this.InnerContainer.Append( apply_config_button );
+			
+			this.ApplyConfigButton = new UITextPanelButton( this.Theme, "Apply Config Changes" );
+			this.ApplyConfigButton.Top.Set( top, 0f );
+			this.ApplyConfigButton.Left.Set( 0f, 0f );
+			this.ApplyConfigButton.Width.Set( 200f, 0f );
+			this.ApplyConfigButton.HAlign = 1f;
+			if( Main.netMode != 0  ) {
+				this.ApplyConfigButton.Disable();
 			}
+			this.ApplyConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				if( !self.ApplyConfigButton.IsEnabled ) { return; }
+				self.ApplyConfigChanges( HamstarHelpersMod.Instance );
+			};
+			this.InnerContainer.Append( this.ApplyConfigButton );
 
-			top += 56f;
+			top += 30f;
+
+			this.ModLockButton = new UITextPanelButton( this.Theme, ControlPanelUI.ModLockTitle );
+			this.ModLockButton.Top.Set( top, 0f );
+			this.ModLockButton.Left.Set( 0f, 0f );
+			this.ModLockButton.Width.Set( 0f, 1f );
+			if( Main.netMode != 0 || !mymod.Config.WorldModLockEnable ) {
+				this.ModLockButton.Disable();
+			}
+			this.ModLockButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				if( !self.ModLockButton.IsEnabled ) { return; }
+				self.ToggleModLock( HamstarHelpersMod.Instance );
+			};
+			this.InnerContainer.Append( this.ModLockButton );
+
+			this.RefreshModLockButton( mymod );
+
+			top += 30f;
+
+			////
 
 			var modrec_url = new UIWebUrl( "Need mods?", "https://sites.google.com/site/terrariamodsuggestions/" );
 			modrec_url.Top.Set( top, 0f );
@@ -222,11 +256,65 @@ namespace HamstarHelpers.ControlPanel {
 
 		public void RecalculateContainer() {
 			CalculatedStyle dim = this.OuterContainer.GetDimensions();
-
-			//this.OuterContainer.Top.Set( ( ControlPanelUI.ContainerHeight * -0.5f ) + 32, 0.5f );
-			//this.OuterContainer.Left.Set( ( ControlPanelUI.ContainerWidth * -0.5f ), 0.5f );
+			
 			this.OuterContainer.Top.Set( ( dim.Height * -0.5f ) + 32, 0.5f );
 			this.OuterContainer.Left.Set( ( dim.Width * -0.5f ), 0.5f );
+		}
+
+
+		////////////////
+
+		public void RefreshModLockButton( HamstarHelpersMod mymod ) {
+			bool are_mods_locked = ModLockHelpers.IsWorldLocked();
+			string status = are_mods_locked ? ": ON" : ": OFF";
+			bool is_enabled = true;
+
+			if( !mymod.Config.WorldModLockEnable ) {
+				status += " (disabled)";
+				is_enabled = false;
+			} else if( Main.netMode != 0 ) {
+				status += " (single-player only)";
+				is_enabled = false;
+			}
+
+			if( !is_enabled ) {
+				if( this.ModLockButton.IsEnabled ) {
+					this.ModLockButton.Disable();
+				}
+			} else {
+				if( !this.ModLockButton.IsEnabled ) {
+					this.ModLockButton.Enable();
+				}
+			}
+
+			this.ModLockButton.SetText( ControlPanelUI.ModLockTitle + status );
+		}
+
+		public void RefreshApplyConfigButton() {
+			if( Main.netMode == 0 ) {
+				if( !this.ApplyConfigButton.IsEnabled ) {
+					this.ApplyConfigButton.Enable();
+				}
+			} else {
+				if( this.ApplyConfigButton.IsEnabled ) {
+					this.ApplyConfigButton.Disable();
+				}
+			}
+		}
+
+
+		////////////////
+
+		public void UpdateElements( HamstarHelpersMod mymod ) {
+			if( !mymod.Config.WorldModLockEnable ) {
+				if( this.ModLockButton.IsEnabled ) {
+					this.RefreshModLockButton( mymod );
+				}
+			} else {
+				if( !this.ModLockButton.IsEnabled ) {
+					this.RefreshModLockButton( mymod );
+				}
+			}
 		}
 	}
 }

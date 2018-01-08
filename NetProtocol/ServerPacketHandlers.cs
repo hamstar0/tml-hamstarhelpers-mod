@@ -90,9 +90,21 @@ namespace HamstarHelpers.NetProtocol {
 
 			packet.Send( to_who, ignore_who );
 		}
+		
+		/*public static void SendSetAdminFromServer( HamstarHelpersMod mymod, int to_who, int ignore_who, int target_who, bool is_set ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
+			ModPacket packet = mymod.GetPacket();
 
+			packet.Write( (byte)NetProtocolTypes.SendSetAdmin );
+			packet.Write( (int)target_who );
+			packet.Write( (bool)is_set );
 
+			packet.Send( to_who, ignore_who );
+		}*/
+
+		
+		
 		////////////////
 		// Server Receivers
 		////////////////

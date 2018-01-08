@@ -5,11 +5,6 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.DebugHelpers {
 	public class LogHelpers {
-		private int LoggedMessages = 0;
-		private double StartTime = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
-
-
-
 		public static void Log( string msg ) {
 			var log_helpers = HamstarHelpersMod.Instance.LogHelpers;
 
@@ -29,6 +24,29 @@ namespace HamstarHelpers.DebugHelpers {
 			ErrorLogger.Log( logged + msg );
 
 			log_helpers.LoggedMessages++;
+		}
+
+
+
+		////////////////
+
+		private int LoggedMessages;
+		private double StartTime;
+
+
+		////////////////
+
+		internal LogHelpers() {
+			this.Reset();
+		}
+
+		internal void OnWorldExit() {
+			this.Reset();
+		}
+
+		internal void Reset() {
+			this.LoggedMessages = 0;
+			this.StartTime = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
 		}
 	}
 }

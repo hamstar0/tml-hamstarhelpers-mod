@@ -24,6 +24,9 @@ namespace HamstarHelpers.NetProtocol {
 			case NetProtocolTypes.SendPlayerData:
 				ClientPacketHandlers.ReceivePlayerDataOnClient( mymod, reader );
 				break;
+			//case NetProtocolTypes.SendSetAdmin:
+			//	ClientPacketHandlers.ReceiveSetAdminOnClient( mymod, reader );
+			//	break;
 			default:
 				LogHelpers.Log( "Invalid packet protocol: " + protocol );
 				break;
@@ -131,5 +134,23 @@ namespace HamstarHelpers.NetProtocol {
 			player.difficulty = 2;
 			player.KillMe( PlayerDeathReason.ByCustomReason( msg ), 9999, 0 );
 		}
+
+		/*private static void ReceiveSetAdminOnClient( HamstarHelpersMod mymod, BinaryReader reader ) {
+			if( Main.netMode != 1 ) { throw new Exception( "Client only" ); }
+
+			int player_who = reader.ReadInt32();
+			bool is_set = reader.ReadBoolean();
+			Player player = Main.player[player_who];
+
+			if( UserHelpers.UserHelpers.IsAdmin(player) ) {
+				if( !is_set ) {
+					UserHelpers.UserHelpers.RemoveAdmin( player );
+				}
+			} else {
+				if( is_set ) {
+					UserHelpers.UserHelpers.AddAdmin( player );
+				}
+			}
+		}*/
 	}
 }

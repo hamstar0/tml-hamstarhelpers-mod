@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Commands;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -22,8 +23,11 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public void ApplyConfigChanges() {
-			string output = ConfigsRefreshCommand.RefreshConfigs();
+		public void ApplyConfigChanges( HamstarHelpersMod mymod ) {
+			ConfigsRefreshCommand.RefreshConfigs();
+
+			string mod_names = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );
+			string output = "Mod configs reloaded for " + mod_names;
 
 			Main.NewText( output, Color.Yellow );
 			ErrorLogger.Log( output );
@@ -37,8 +41,8 @@ namespace HamstarHelpers.ControlPanel {
 				Main.NewText( "Issue submit result: " + output, Color.Yellow );
 				ErrorLogger.Log( "Issue submit result: " + output );
 			} catch(Exception e ) {
-				ErrorLogger.Log( "Issue submit error: " + e.ToString() );
 				Main.NewText( "Issue submit error: "+e.ToString(), Color.Red );
+				throw e;
 			}
 		}
 	}

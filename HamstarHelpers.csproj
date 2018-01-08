@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuffHelpers\BuffHelpers.cs" />
+    <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\AdminUserRemoveCommand.cs" />
     <Compile Include="Commands\AdminUserAddCommand.cs" />
     <Compile Include="Commands\ConfigsRefreshCommand.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
     <Compile Include="TmlHelpers\AltProjectileInfo.cs" />
     <Compile Include="TmlHelpers\BuildPropertiesInterface.cs" />
+    <Compile Include="TmlHelpers\ModHelpers\ModHelpers.cs" />
+    <Compile Include="TmlHelpers\ModHelpers\ModLockHelpers.cs" />
     <Compile Include="TmlHelpers\ModMetaData.cs" />
     <Compile Include="TmlHelpers\TmlHelpers.cs" />
     <Compile Include="TmlHelpers\TmlPlayerHelpers.cs" />
@@ -156,9 +159,7 @@
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TmlHelpers\ModHelpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

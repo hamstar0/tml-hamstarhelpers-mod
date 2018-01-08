@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -2926,7 +2927,7 @@ namespace HamstarHelpers.TileHelpers {
 				{ -1, "Crystal Table" }
 			};
 			} catch( Exception e ) {
-				ErrorLogger.Log( e.ToString() );
+				LogHelpers.Log( e.ToString() );
 			}
 		}
 

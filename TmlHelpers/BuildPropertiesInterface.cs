@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader;
@@ -19,7 +20,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 			object build_props = method.Invoke( null, new object[] { modfile } );
 			if( build_props == null ) {
-				ErrorLogger.Log( "BuildProperties has changed." );
+				LogHelpers.Log( "BuildProperties has changed." );
 				return (BuildPropertiesInterface)null;
 			}
 

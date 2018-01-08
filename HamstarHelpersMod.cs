@@ -49,6 +49,8 @@ namespace HamstarHelpers {
 		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
+		//internal UserHelpers.UserHelpers UserHelpers;
+		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
 
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
@@ -96,22 +98,12 @@ namespace HamstarHelpers {
 			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
-			this.ControlPanel = new ControlPanelUI();
+			this.ControlPanel = new ControlPanel.ControlPanelUI();
+			//this.UserHelpers = new UserHelpers.UserHelpers();
+			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 
 			AltNPCInfo.DataInitialize();
 			AltProjectileInfo.DataInitialize();
-
-			/*var dict = new SortedDictionary<float, NPC>();
-			for( int i = 0; i < Main.npcTexture.Length; i++ ) {
-				NPC npc = new NPC();
-				npc.SetDefaults( i );
-				dict[NPCIdentityHelpers.LooselyAssessThreat( npc )] = npc;
-			}
-			foreach( var kv in dict ) {
-				int digits = (int)Math.Ceiling( Math.Log10( kv.Value.type ) );
-				string gap = new string( ' ', 6 - digits );
-				ErrorLogger.Log( kv.Value.type + gap + " - " + kv.Key.ToString( "N2" ) + " = " + kv.Value.TypeName + "'s threat" );
-			}*/
 
 			this.LoadConfigs();
 		}
@@ -138,12 +130,12 @@ namespace HamstarHelpers {
 		}
 
 		public override void PostSetupContent() {
-			this.BuffHelpers.Initialize();
-			this.ItemIdentityHelpers.Initialize();
-			this.ModMetaDataManager.Initialize();
+			this.BuffHelpers.OnPostSetupContent();
+			this.ItemIdentityHelpers.OnPostSetupContent();
+			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
-				ControlPanelUI.Load( (HamstarHelpersMod)this );
+				ControlPanelUI.OnPostSetupContent( this );
 			}
 
 			this.HasSetupContent = true;
@@ -153,8 +145,10 @@ namespace HamstarHelpers {
 
 		public override void PreSaveAndQuit() {
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
-			
-			modworld.HasCorrectID = false;
+
+			this.LogHelpers.OnWorldExit();
+			this.ModLockHelpers.OnWorldExit();
+			modworld.OnWorldExit();
 		}
 
 
@@ -171,27 +165,6 @@ namespace HamstarHelpers {
 				DebugHelpers.LogHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
 			}
 		}
-		/*public override bool HijackSendData( int who_am_i, int msg_type, int remote_client, int ignore_client, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7 ) {
-			var modplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-			if( !modplayer.HasEnteredWorld ) {
-				return false;
-			}
-
-			if( NPCSpawnInfoHelpers.IsSimulatingSpawns && msg_type == 23 ) {
-				if( number >= 0 && number <= Main.npc.Length ) {
-					NPC npc = Main.npc[number];
-
-					if( npc != null && npc.active ) {
-						NPCSpawnInfoHelpers.AddSpawn( npc.type );
-
-						Main.npc[number] = new NPC();
-						npc.active = false;
-					}
-				}
-				return true;
-			}
-			return false;
-		}*/
 
 
 		////////////////
@@ -219,13 +192,6 @@ namespace HamstarHelpers {
 		public override void PostDrawInterface( SpriteBatch sb ) {
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
-			PlayerMessage.DrawPlayerLabels( sb );
-			SimpleMessage.DrawMessage( sb );
-
-			DebugHelpers.DebugHelpers.PrintToBatch( sb );
-			DebugHelpers.DebugHelpers.Once = false;
-			DebugHelpers.DebugHelpers.OnceInAWhile--;
-
 			if( modworld.Logic != null ) {
 				modworld.Logic.IsClientPlaying = true;  // Ugh!
 			}
@@ -234,37 +200,56 @@ namespace HamstarHelpers {
 
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
+			if( !modworld.Logic.IsPlaying() ) { return; }
 
-			if( modworld.Logic.IsPlaying() ) {
-				int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
-				if( idx != -1 ) {
-					GameInterfaceDrawMethod draw_method = delegate {
-						try {
-							if( this.LastSeenScreenWidth != Main.screenWidth || this.LastSeenScreenHeight != Main.screenHeight ) {
-								this.LastSeenScreenWidth = Main.screenWidth;
-								this.LastSeenScreenHeight = Main.screenHeight;
-								this.ControlPanel.Recalculate();
-							}
+			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
+			if( idx == -1 ) { return; }
 
-							this.ControlPanel.UpdateInteractivity( Main._drawInterfaceGameTime );
-							this.ControlPanel.UpdateDialog();
+			GameInterfaceDrawMethod debug_layer_draw = delegate {
+				var sb = Main.spriteBatch;
 
-							this.ControlPanel.Draw( Main.spriteBatch );
+				PlayerMessage.DrawPlayerLabels( sb );
+				SimpleMessage.DrawMessage( sb );
 
-							if( !this.Config.DisableControlPanel ) {
-								this.ControlPanel.UpdateToggler();
-								this.ControlPanel.DrawToggler( Main.spriteBatch );
-							}
-						} catch( Exception e ) { Main.NewText(e.Message); }
-						
-						return true;
-					};
+				DebugHelpers.DebugHelpers.PrintToBatch( sb );
+				DebugHelpers.DebugHelpers.Once = false;
+				DebugHelpers.DebugHelpers.OnceInAWhile--;
+				return true;
+			};
 
-					var interface_layer = new LegacyGameInterfaceLayer( "HamstarHelpers: Control Panel",
-						draw_method, InterfaceScaleType.UI );
-
-					layers.Insert( idx, interface_layer );
+			GameInterfaceDrawMethod cp_layer_draw = delegate {
+				var sb = Main.spriteBatch;
+				
+				if( !this.Config.DisableControlPanel ) {
+					this.ControlPanel.UpdateToggler();
+					this.ControlPanel.DrawToggler( sb );
 				}
+				if( this.LastSeenScreenWidth != Main.screenWidth || this.LastSeenScreenHeight != Main.screenHeight ) {
+					this.LastSeenScreenWidth = Main.screenWidth;
+					this.LastSeenScreenHeight = Main.screenHeight;
+					this.ControlPanel.RecalculateMe();
+				}
+				return true;
+			};
+
+			GameInterfaceDrawMethod modlock_layer_draw = delegate {
+				this.ModLockHelpers.DrawWarning( Main.spriteBatch );
+				return true;
+			};
+
+
+			var debug_layer = new LegacyGameInterfaceLayer( "HamstarHelpers: Debug Display",
+				debug_layer_draw, InterfaceScaleType.UI );
+			layers.Insert( idx, debug_layer );
+
+			var modlock_layer = new LegacyGameInterfaceLayer( "HamstarHelpers: Mod Lock",
+				modlock_layer_draw, InterfaceScaleType.UI );
+			layers.Insert( idx, modlock_layer );
+
+			if( !this.Config.DisableControlPanel ) {
+				var cp_layer = new LegacyGameInterfaceLayer( "HamstarHelpers: Control Panel",
+					cp_layer_draw, InterfaceScaleType.UI );
+				layers.Insert( idx, cp_layer );
 			}
 		}
 	}

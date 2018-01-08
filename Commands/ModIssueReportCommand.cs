@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.PlayerHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.TmlHelpers.ModHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -29,7 +30,7 @@ namespace HamstarHelpers.Commands {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
-			IEnumerable<Mod> mods = ModMetaDataManager.GetAllMods();
+			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
 
 			//string url = "http://localhost:12347/issue_submit/";
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
@@ -67,9 +68,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			JObject resp_json = JObject.Parse( resp_data );
-			string msg = resp_json["Msg"].ToObject<string>();
-
-			return "Issue submit result: " + msg;
+			return resp_json["Msg"].ToObject<string>();
 		}
 
 
@@ -167,17 +166,13 @@ namespace HamstarHelpers.Commands {
 		public override CommandType Type { get { return CommandType.Chat; } }
 		public override string Command { get { return "hhmodissuereport"; } }
 		public override string Usage { get { return "/hhmodissuereport 4 \"issue title\" \"issue description text\""; } }
-		public override string Description { get { return "Reports an issue for a mod (setup to do so with Hamstar's Helpers)."; } }
+		public override string Description { get { return "Reports an issue for a mod. Only works for mods setup with Hamstar's Helpers to do so (see Control Panel)."; } }
 
 
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			if( Main.netMode == 1 ) {
-				throw new UsageException( "Command not available for clients.", Color.Red );
-			}
-
-			IList<Mod> mods = ModMetaDataManager.GetAllMods().ToList();
+			IList<Mod> mods = ModHelpers.GetAllMods().ToList();
 			int mod_idx, body_arg_idx;
 			string title = this.ParseIssueTitle( args, out body_arg_idx );
 			string body = this.ParseIssueDescription( body_arg_idx, args );
@@ -191,7 +186,7 @@ namespace HamstarHelpers.Commands {
 			
 			try {
 				string output = ModIssueReportCommand.ReportIssue( mods[mod_idx - 1], title, body );
-				caller.Reply( output, Color.White );
+				caller.Reply( output, Color.GreenYellow );
 			} catch( Exception e ) {
 				caller.Reply( e.Message, Color.Red );
 			}

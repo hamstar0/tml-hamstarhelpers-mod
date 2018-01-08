@@ -1,11 +1,13 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.TmlHelpers;
 using System;
-using System.Threading;
+using System.ComponentModel;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.ControlPanel {
-	partial class ControlPanelUI {
+	partial class ControlPanelUI : UIState {
 		public void EnableIssueInput() {
 			if( !this.IssueTitleInput.IsEnabled ) {
 				this.IssueTitleInput.Enable();
@@ -60,19 +62,21 @@ namespace HamstarHelpers.ControlPanel {
 			this.AwaitingReport = true;
 			this.DisableIssueInput();
 
-			var t = new Thread( new ThreadStart( delegate () {
+			var worker = new BackgroundWorker();
+			worker.DoWork += delegate( object sender, DoWorkEventArgs args ) {
 				try {
 					self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue_title, issue_body );
 				} catch( Exception e ) {
-					ErrorLogger.Log( e.ToString() );
+					LogHelpers.Log( e.ToString() );
 				}
-
+			};
+			worker.RunWorkerCompleted += delegate( object sender, RunWorkerCompletedEventArgs args ) {
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
 				self.SetDialogToClose = true;
-			} ) );
+			};
 
-			t.Start();
+			worker.RunWorkerAsync();
 		}
 	}
 }

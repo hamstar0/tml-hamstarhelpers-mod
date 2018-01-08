@@ -6,57 +6,9 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.TmlHelpers {
 	public class ModMetaDataManager {
+		[System.Obsolete( "use ModHelpers.GetAllMods", true )]
 		public static IEnumerable<Mod> GetAllMods() {
-			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
-			var mods = new LinkedList<Mod>();
-			var mod_set = new HashSet<string>();
-
-			mods.AddLast( HamstarHelpersMod.Instance );
-			mod_set.Add( HamstarHelpersMod.Instance.Name );
-
-			foreach( var kv in self.ConfigMods ) {
-				if( kv.Key == HamstarHelpersMod.Instance.Name || kv.Value.File == null ) { continue; }
-				mods.AddLast( kv.Value );
-				mod_set.Add( kv.Value.Name );
-			}
-
-			foreach( var mod in ModLoader.LoadedMods ) {
-				if( mod_set.Contains( mod.Name ) || mod.File == null ) { continue; }
-				mods.AddLast( mod );
-			}
-
-			return mods;
-		}
-
-
-		////////////////
-
-		internal IDictionary<string, Mod> GithubMods;
-		internal IDictionary<string, Mod> ConfigMods;
-
-
-		////////////////
-
-		internal ModMetaDataManager() {
-			this.GithubMods = new Dictionary<string, Mod>();
-			this.ConfigMods = new Dictionary<string, Mod>();
-		}
-
-
-		////////////////
-
-		internal void Initialize() {
-			this.GithubMods = new Dictionary<string, Mod>();
-			this.ConfigMods = new Dictionary<string, Mod>();
-
-			foreach( Mod mod in ModLoader.LoadedMods ) {
-				if( ModMetaDataManager.DetectGithub( mod ) ) {
-					this.GithubMods[mod.Name] = mod;
-				}
-				if( ModMetaDataManager.DetectConfig( mod ) ) {
-					this.ConfigMods[mod.Name] = mod;
-				}
-			}
+			return ModHelpers.ModHelpers.GetAllMods();
 		}
 
 
@@ -146,6 +98,38 @@ namespace HamstarHelpers.TmlHelpers {
 
 			PropertyInfo git_proj_prop = ModMetaDataManager.GetGitubProjectNameProp( mod );
 			return (string)git_proj_prop.GetValue( null );
+		}
+
+
+
+		////////////////
+
+		internal IDictionary<string, Mod> GithubMods;
+		internal IDictionary<string, Mod> ConfigMods;
+
+
+		////////////////
+
+		internal ModMetaDataManager() {
+			this.GithubMods = new Dictionary<string, Mod>();
+			this.ConfigMods = new Dictionary<string, Mod>();
+		}
+
+
+		////////////////
+
+		internal void OnPostSetupContent() {
+			this.GithubMods = new Dictionary<string, Mod>();
+			this.ConfigMods = new Dictionary<string, Mod>();
+
+			foreach( Mod mod in ModLoader.LoadedMods ) {
+				if( ModMetaDataManager.DetectGithub( mod ) ) {
+					this.GithubMods[mod.Name] = mod;
+				}
+				if( ModMetaDataManager.DetectConfig( mod ) ) {
+					this.ConfigMods[mod.Name] = mod;
+				}
+			}
 		}
 	}
 }

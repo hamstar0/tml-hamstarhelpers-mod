@@ -18,6 +18,9 @@ namespace HamstarHelpers {
 
 		public bool AddCrimsonLeatherRecipe = true;
 
+		public bool WorldModLockEnable = true;
+		public bool WorldModLockMinimumOnly = true;
+
 
 
 		////////////////

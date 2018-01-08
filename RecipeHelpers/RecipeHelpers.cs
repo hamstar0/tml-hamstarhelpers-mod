@@ -7,7 +7,47 @@ using Terraria;
 
 namespace HamstarHelpers.RecipeHelpers {
 	public class RecipeHelpers {
-		 private KeyValuePair<string, RecipeGroup> _EvilBossDrops;
+		public static IDictionary<string, RecipeGroup> GetRecipeGroups() {
+			IDictionary<string, RecipeGroup> groups = new Dictionary<string, RecipeGroup>();
+			
+			groups[RecipeHelpers.EvilBossDrops.Key] = RecipeHelpers.EvilBossDrops.Value;
+			groups[RecipeHelpers.EvilLightPet.Key] = RecipeHelpers.EvilLightPet.Value;
+			groups[RecipeHelpers.MagicMirrors.Key] = RecipeHelpers.MagicMirrors.Value;
+
+			groups[RecipeHelpers.VanillaAnimals.Key] = RecipeHelpers.VanillaAnimals.Value;
+			groups[RecipeHelpers.VanillaBugs.Key] = RecipeHelpers.VanillaBugs.Value;
+			groups[RecipeHelpers.VanillaButterfly.Key] = RecipeHelpers.VanillaButterfly.Value;
+			groups[RecipeHelpers.VanillaGoldCritter.Key] = RecipeHelpers.VanillaGoldCritter.Value;
+
+			groups[RecipeHelpers.MobBanners.Key] = RecipeHelpers.MobBanners.Value;
+			groups[RecipeHelpers.RecordedMusicBox.Key] = RecipeHelpers.RecordedMusicBox.Value;
+
+			groups[RecipeHelpers.AlchemyHerbs.Key] = RecipeHelpers.AlchemyHerbs.Value;
+			groups[RecipeHelpers.StrangePlants.Key] = RecipeHelpers.StrangePlants.Value;
+
+			groups[RecipeHelpers.PressurePlates.Key] = RecipeHelpers.PressurePlates.Value;
+			groups[RecipeHelpers.WeightedPressurePlates.Key] = RecipeHelpers.WeightedPressurePlates.Value;
+			groups[RecipeHelpers.ConveyorBelts.Key] = RecipeHelpers.ConveyorBelts.Value;
+
+			return groups;
+		}
+
+
+		////////////////
+
+		private static KeyValuePair<string, RecipeGroup> GetPair( ref KeyValuePair<string, RecipeGroup> source, string name, string desc, int[] item_ids ) {
+			if( string.IsNullOrEmpty( source.Key ) ) {
+				var rg = new RecipeGroup( () => Lang.misc[37].ToString() + " " + desc, item_ids );
+				source = new KeyValuePair<string, RecipeGroup>( "HamstarHelpers:"+name, rg );
+			}
+			return source;
+		}
+
+
+
+		////////////////
+
+		private KeyValuePair<string, RecipeGroup> _EvilBossDrops;
 		public static KeyValuePair<string, RecipeGroup> EvilBossDrops { get {
 			int[] item_ids = ItemIdentityHelpers.EvilBiomeBossChunkTypes;
 			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._EvilBossDrops, "EvilBiomeBossDrops", "Evil Biome Boss Chunk", item_ids );
@@ -89,44 +129,5 @@ namespace HamstarHelpers.RecipeHelpers {
 			int[] item_ids = ItemIdentityHelpers.ConveyorBelts;
 			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._ConveyorBelts, "ConveyorBelts", "Conveyor Belts", item_ids );
 		} }
-
-		////////////////
-
-		private static KeyValuePair<string, RecipeGroup> GetPair( ref KeyValuePair<string, RecipeGroup> source, string name, string desc, int[] item_ids ) {
-			if( string.IsNullOrEmpty( source.Key ) ) {
-				var rg = new RecipeGroup( () => Lang.misc[37].ToString() + " " + desc, item_ids );
-				source = new KeyValuePair<string, RecipeGroup>( "HamstarHelpers:"+name, rg );
-			}
-			return source;
-		}
-
-
-
-		////////////////
-
-		public static IDictionary<string, RecipeGroup> GetRecipeGroups() {
-			IDictionary<string, RecipeGroup> groups = new Dictionary<string, RecipeGroup>();
-			
-			groups[RecipeHelpers.EvilBossDrops.Key] = RecipeHelpers.EvilBossDrops.Value;
-			groups[RecipeHelpers.EvilLightPet.Key] = RecipeHelpers.EvilLightPet.Value;
-			groups[RecipeHelpers.MagicMirrors.Key] = RecipeHelpers.MagicMirrors.Value;
-
-			groups[RecipeHelpers.VanillaAnimals.Key] = RecipeHelpers.VanillaAnimals.Value;
-			groups[RecipeHelpers.VanillaBugs.Key] = RecipeHelpers.VanillaBugs.Value;
-			groups[RecipeHelpers.VanillaButterfly.Key] = RecipeHelpers.VanillaButterfly.Value;
-			groups[RecipeHelpers.VanillaGoldCritter.Key] = RecipeHelpers.VanillaGoldCritter.Value;
-
-			groups[RecipeHelpers.MobBanners.Key] = RecipeHelpers.MobBanners.Value;
-			groups[RecipeHelpers.RecordedMusicBox.Key] = RecipeHelpers.RecordedMusicBox.Value;
-
-			groups[RecipeHelpers.AlchemyHerbs.Key] = RecipeHelpers.AlchemyHerbs.Value;
-			groups[RecipeHelpers.StrangePlants.Key] = RecipeHelpers.StrangePlants.Value;
-
-			groups[RecipeHelpers.PressurePlates.Key] = RecipeHelpers.PressurePlates.Value;
-			groups[RecipeHelpers.WeightedPressurePlates.Key] = RecipeHelpers.WeightedPressurePlates.Value;
-			groups[RecipeHelpers.ConveyorBelts.Key] = RecipeHelpers.ConveyorBelts.Value;
-
-			return groups;
-		}
 	}
 }

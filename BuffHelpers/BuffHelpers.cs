@@ -12,6 +12,22 @@ namespace HamstarHelpers.BuffHelpers {
 
 		////////////////
 
+		public static void AddPermaBuff( Player player, int buff_id ) {
+			var modplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+			modplayer.PermaBuffsById.Add( buff_id );
+		}
+
+		public static void RemovePermaBuff( Player player, int buff_id ) {
+			var modplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+			if( modplayer.PermaBuffsById.Contains(buff_id) ) {
+				modplayer.PermaBuffsById.Remove( buff_id );
+			}
+		}
+
+
+
+		////////////////
+
 		private IDictionary<string, int> __buffIdsByName = new Dictionary<string, int>();
 		private IReadOnlyDictionary<string, int> _BuffIdsByName;
 
@@ -22,24 +38,9 @@ namespace HamstarHelpers.BuffHelpers {
 			this._BuffIdsByName = new ReadOnlyDictionary<string, int>( this.__buffIdsByName );
 		}
 
-		internal void Initialize() {
+		internal void OnPostSetupContent() {
 			for( int i = 0; i < Main.buffTexture.Length; i++ ) {
 				this.__buffIdsByName[Lang.GetBuffName( i )] = i;
-			}
-		}
-
-
-		////////////////
-
-		public static void AddPermaBuff( Player player, int buff_id ) {
-			var modplayer = player.GetModPlayer<HamstarHelpersPlayer>();
-			modplayer.PermaBuffsById.Add( buff_id );
-		}
-
-		public static void RemovePermaBuff( Player player, int buff_id ) {
-			var modplayer = player.GetModPlayer<HamstarHelpersPlayer>();
-			if( modplayer.PermaBuffsById.Contains(buff_id) ) {
-				modplayer.PermaBuffsById.Remove( buff_id );
 			}
 		}
 	}

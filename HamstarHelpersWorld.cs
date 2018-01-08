@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.TmlHelpers.ModHelpers;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -31,6 +33,11 @@ namespace HamstarHelpers {
 			}
 		}
 
+
+		internal void OnWorldExit() {
+			this.HasCorrectID = false;
+		}
+
 		////////////////
 
 		public override void Load( TagCompound tags ) {
@@ -39,8 +46,13 @@ namespace HamstarHelpers {
 			if( tags.ContainsKey( "world_id" ) ) {
 				this.ObsoleteID = tags.GetString( "world_id" );
 			}
-			
+
+			//mymod.UserHelpers.Load( mymod, tags );
+			mymod.ModLockHelpers.Load( mymod, tags );
 			this.Logic.Load( mymod, tags );
+
+			mymod.ModLockHelpers.OnWorldLoad( mymod, this );
+			//mymod.UserHelpers.OnWorldLoad( this );
 
 			this.HasCorrectID = true;
 		}
@@ -50,6 +62,9 @@ namespace HamstarHelpers {
 			TagCompound tags = new TagCompound();
 
 			tags.Set( "world_id", this.ObsoleteID );
+
+			//mymod.UserHelpers.Save( mymod, tags );
+			mymod.ModLockHelpers.Save( mymod, tags );
 			this.Logic.Save( mymod, tags );
 
 			return tags;
@@ -64,9 +79,8 @@ namespace HamstarHelpers {
 			try {
 				writer.Write( this.HasCorrectID );
 				writer.Write( this.ObsoleteID );
-				this.Logic.NetSend( writer );
 			} catch( Exception e ) {
-				ErrorLogger.Log( e.ToString() );
+				LogHelpers.Log( e.ToString() );
 			}
 		}
 
@@ -80,10 +94,9 @@ namespace HamstarHelpers {
 				if( has_correct_id ) {
 					this.ObsoleteID = id;
 					this.HasCorrectID = true;
-					this.Logic.NetReceive( reader );
 				}
 			} catch( Exception e ) {
-				ErrorLogger.Log( e.ToString() );
+				LogHelpers.Log( e.ToString() );
 			}
 		}
 
