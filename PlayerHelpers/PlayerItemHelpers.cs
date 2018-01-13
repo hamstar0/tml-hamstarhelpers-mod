@@ -7,82 +7,53 @@ using Terraria;
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerItemHelpers {
-		public static ISet<int> FindPossiblePurchaseTypes( Player player, long spent ) {
-			ISet<int> possible_purchases = new HashSet<int>();
+		public const int VanillaInventorySize = 58;
+		public const int VanillaInventoryHotbarSize = 10;
+		public const int VanillaInventoryMainSize = 40;
+		public const int VanillaInventoryLastMainSlot = 49;
+		public const int VanillaInventoryLastCoinSlot = 53;
+		public const int VanillaInventoryLastAmmolot = 57;
+		public const int VanillaInventorySelectedSlot = 58;
 
-			if( Main.npcShop <= 0 || Main.npcShop > Main.instance.shop.Length ) {
-				return possible_purchases;
-			}
-			Item[] shop_items = Main.instance.shop[Main.npcShop].item;
 
-			for( int i = 0; i < shop_items.Length; i++ ) {
-				Item shop_item = shop_items[i];
-				if( shop_item == null || shop_item.IsAir ) { continue; }
-
-				if( shop_item.value == spent ) {
-					// If shop item type occurs more than once, skip
-					int j;
-					for( j = 0; j < i; j++ ) {
-						if( shop_items[j].type == shop_item.type ) {
-							break;
-						}
-					}
-					if( j != i ) { continue; }
-
-					possible_purchases.Add( shop_item.type );
-				}
-			}
-
-			return possible_purchases;
-		}
 
 		////////////////
 
-		public static Item FindFirstOfItemFor( Player player, ISet<int> item_types ) {
-			int found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, item_types );
-			if( found != -1 ) {
-				return player.inventory[found];
-			} else {
-				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.armor, item_types );
-				if( found != -1 ) {
-					return player.armor[found];
-				}
-			}
-
-			return null;
+		[System.Obsolete( "use PlayerItemFinderHelpers.FindPossiblePurchaseTypes", true )]
+		public static ISet<int> FindPossiblePurchaseTypes( Player player, long spent ) {
+			return PlayerItemFinderHelpers.FindPossiblePurchaseTypes( player, spent );
 		}
 
+		[System.Obsolete( "use PlayerItemFinderHelpers.FindFirstOfItemFor", true )]
+		public static Item FindFirstOfItemFor( Player player, ISet<int> item_types ) {
+			return PlayerItemFinderHelpers.FindFirstOfItemFor( player, item_types );
+		}
 
+		[System.Obsolete( "use PlayerItemFinderHelpers.FindInventoryChanges", true )]
 		public static IDictionary<int, KeyValuePair<int, int>> FindInventoryChanges( Player player,
 				KeyValuePair<int, int> prev_mouse_info,
 				IDictionary<int, KeyValuePair<int, int>> prev_inv ) {
-			IDictionary<int, KeyValuePair<int, int>> changes = new Dictionary<int, KeyValuePair<int, int>>();
-			int len = player.inventory.Length;
-
-			for( int i = 0; i < len; i++ ) {
-				Item item = player.inventory[i];
-
-				if( prev_inv[i].Key != 0 && item == null ) {
-					changes[i] = new KeyValuePair<int, int>( 0, 0 );
-				} else if( prev_inv[i].Key != item.type || prev_inv[i].Value != item.stack ) {
-					changes[i] = new KeyValuePair<int, int>( item.type, item.stack );
-				}
-			}
-
-			if( prev_mouse_info.Key != 0 && Main.mouseItem == null ) {
-				changes[-1] = new KeyValuePair<int, int>( 0, 0 );
-			} else if( prev_mouse_info.Key != Main.mouseItem.type || prev_mouse_info.Value != Main.mouseItem.stack ) {
-				changes[-1] = new KeyValuePair<int, int>( Main.mouseItem.type, Main.mouseItem.stack );
-			}
-
-			return changes;
+			return PlayerItemFinderHelpers.FindInventoryChanges( player, prev_mouse_info, prev_inv );
 		}
 
 
 		////////////////
 
+		public static ISet<int> AvailableInventorySlots( Player player ) {
+			var myset = new HashSet<int>();
+
+			for( int i=0; i<PlayerItemHelpers.VanillaInventoryLastMainSlot; i++ ) {
+				if( player.inventory[i] != null && player.inventory[i].active && player.inventory[i].stack > 0 ) {
+					myset.Add( i );
+				}
+			}
+
+			return myset;
+		}
+
+
 		public static void DropInventoryItem( Player player, int slot ) {
-			if( slot == 58 && player.whoAmI == Main.myPlayer ) {
+			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
 
@@ -125,8 +96,8 @@ namespace HamstarHelpers.PlayerHelpers {
 			bool is_unhanded = false;
 
 			// Drop mouse item always
-			if( player.selectedItem == 58 ) {
-				PlayerItemHelpers.DropInventoryItem( player, 58 );
+			if( player.selectedItem == PlayerItemHelpers.VanillaInventorySelectedSlot ) {
+				PlayerItemHelpers.DropInventoryItem( player, PlayerItemHelpers.VanillaInventorySelectedSlot );
 				is_unhanded = true;
 			}
 			// Preferably select a blank slot
@@ -166,6 +137,7 @@ namespace HamstarHelpers.PlayerHelpers {
 
 			return is_unhanded;
 		}
+
 
 		////////////////
 
@@ -241,7 +213,7 @@ namespace HamstarHelpers.PlayerHelpers {
 			if( ItemIdentityHelpers.IsGrapple( player.miscEquips[4] ) ) {
 				return player.miscEquips[4];
 			}
-			for( int i = 0; i < 58; i++ ) {
+			for( int i = 0; i < PlayerItemHelpers.VanillaInventorySize; i++ ) {
 				if( Main.projHook[player.inventory[i].shoot] ) {
 					return player.inventory[i];
 				}

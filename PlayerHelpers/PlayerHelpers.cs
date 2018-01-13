@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 
+
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerHelpers {
 		public const int InventorySize = 58;

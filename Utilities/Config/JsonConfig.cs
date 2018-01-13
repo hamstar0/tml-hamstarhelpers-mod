@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using HamstarHelpers.DebugHelpers;
 
+
 namespace HamstarHelpers.Utilities.Config {
 	public class JsonConfig<T> {
 		public static string RelativePath { get { return "Mod Configs"; } }

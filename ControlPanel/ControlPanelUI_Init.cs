@@ -199,6 +199,7 @@ namespace HamstarHelpers.ControlPanel {
 			this.ModLockButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 				if( !self.ModLockButton.IsEnabled ) { return; }
 				self.ToggleModLock( HamstarHelpersMod.Instance );
+				Main.PlaySound( SoundID.Unlock );
 			};
 			this.InnerContainer.Append( this.ModLockButton );
 

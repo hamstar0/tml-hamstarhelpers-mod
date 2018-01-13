@@ -72,6 +72,12 @@ namespace HamstarHelpers {
 			var mymod = (HamstarHelpersMod)this.mod;
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
+			if( Main.netMode == 0 ) {   // Single player only
+				if( !mymod.JsonConfig.LoadFile() ) {
+					mymod.JsonConfig.SaveFile();
+				}
+			}
+
 			if( Main.netMode != 1 ) {   // NOT client
 				this.FinishModSettingsSync();
 				this.FinishPlayerDataSync();

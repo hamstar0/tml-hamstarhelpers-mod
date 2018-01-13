@@ -77,6 +77,8 @@
     <Compile Include="DotNetHelpers\SteamHelpers.cs" />
     <Compile Include="DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="EntityHelpers\EntityHelpers.cs" />
+    <Compile Include="NPCHelpers\NPCInvasionHelpers.cs" />
+    <Compile Include="PlayerHelpers\PlayerItemFinderHelpers.cs" />
     <Compile Include="ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="RecipeHelpers\RecipeHelpers.cs" />
     <Compile Include="TmlHelpers\AltNPCInfo.cs" />

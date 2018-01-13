@@ -6,7 +6,8 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.DebugHelpers {
 	public class LogHelpers {
 		public static void Log( string msg ) {
-			var log_helpers = HamstarHelpersMod.Instance.LogHelpers;
+			var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
+			var log_helpers = mymod.LogHelpers;
 
 			double now_seconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds - log_helpers.StartTime;
 

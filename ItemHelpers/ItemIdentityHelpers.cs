@@ -58,7 +58,35 @@ namespace HamstarHelpers.ItemHelpers {
 			ItemID.WeightedPressurePlateCyan, ItemID.WeightedPressurePlateOrange, ItemID.WeightedPressurePlatePink,
 			ItemID.WeightedPressurePlatePurple };
 		public static readonly int[] ConveyorBelts = new int[] { ItemID.ConveyorBeltLeft, ItemID.ConveyorBeltRight };
+
+
+		////////////////
+
+		public static IReadOnlyDictionary<string, int> NamesToIds {
+			get { return HamstarHelpersMod.Instance.ItemIdentityHelpers._NamesToIds; }
+		}
+
+
+
+		////////////////
+
+		private IDictionary<string, int> __namesToIds = new Dictionary<string, int>();
+		private IReadOnlyDictionary<string, int> _NamesToIds = null;
+
+
+		////////////////
 		
+		internal void OnPostSetupContent() {
+			this._NamesToIds = new ReadOnlyDictionary<string, int>( this.__namesToIds );
+
+			for( int i = 1; i < Main.itemTexture.Length; i++ ) {
+				Item item = new Item();
+				item.SetDefaults( i );
+
+				this.__namesToIds[item.Name] = i;
+			}
+		}
+
 
 		////////////////
 
@@ -147,38 +175,6 @@ namespace HamstarHelpers.ItemHelpers {
 				appraisal = ((appraisal * 4f) + value) / 5f;
 			}
 			return appraisal;
-		}
-		
-
-		////////////////
-
-		public static IReadOnlyDictionary<string, int> NamesToIds {
-			get {
-				return HamstarHelpersMod.Instance.ItemIdentityHelpers._NamesToIds;
-			}
-		}
-
-
-
-		////////////////
-
-		private IDictionary<string, int> __namesToIds = new Dictionary<string, int>();
-		private IReadOnlyDictionary<string, int> _NamesToIds;
-
-
-		////////////////
-
-		internal ItemIdentityHelpers() {
-			this._NamesToIds = new ReadOnlyDictionary<string, int>( this.__namesToIds );
-		}
-
-		internal void OnPostSetupContent() {
-			for( int i = 1; i < Main.itemTexture.Length; i++ ) {
-				Item item = new Item();
-				item.SetDefaults( i );
-
-				this.__namesToIds[item.Name] = i;
-			}
 		}
 	}
 }
