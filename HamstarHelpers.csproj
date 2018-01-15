@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuffHelpers\BuffHelpers.cs" />
+    <Compile Include="Commands\ModCallCommand.cs" />
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\AdminUserRemoveCommand.cs" />
     <Compile Include="Commands\AdminUserAddCommand.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="TileHelpers\TileWorldHelpers.cs" />
     <Compile Include="TmlHelpers\AltProjectileInfo.cs" />
     <Compile Include="TmlHelpers\BuildPropertiesInterface.cs" />
+    <Compile Include="TmlHelpers\CommandsHelpers\CommandsHelpers.cs" />
     <Compile Include="TmlHelpers\ModHelpers\ModHelpers.cs" />
     <Compile Include="TmlHelpers\ModHelpers\ModLockHelpers.cs" />
     <Compile Include="TmlHelpers\ModMetaData.cs" />

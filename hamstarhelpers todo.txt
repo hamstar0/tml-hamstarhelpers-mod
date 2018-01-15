@@ -5,20 +5,17 @@ Future
 	-	...
 	-	Change 'Irrelevant' field to 'Depends'
 	-	...
+-	Add player world locks?
 
 
 
-v1.2.7
--	Implement tab button to toggle control panel players tab
--	Players tab on 
-	-	Add config options for things to show for each player
-	-	Add player stats
-		-	Max health
-		-	K/D
-		-	Latency
-	-	List players
-	-	Define new control panel tab
--	Add player world locks
+v1.3.0
+-	@Create hotkeys-to-commands mod (uses a HH tab)
+-	Add tabs to UI
+-	Add hotkey to toggle UI
+-	Add build.txt fields to substitute for Mod static properties (for github, mod configs)
+v1.2.8
+-	Add command to make Mod.Call() requests
 
 v1.2.6
 -	@Test commands

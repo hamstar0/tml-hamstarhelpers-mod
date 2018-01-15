@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.PlayerHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.TmlHelpers.CommandsHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
@@ -166,22 +167,31 @@ namespace HamstarHelpers.Commands {
 		public override CommandType Type { get { return CommandType.Chat; } }
 		public override string Command { get { return "hhmodissuereport"; } }
 		public override string Usage { get { return "/hhmodissuereport 4 \"issue title\" \"issue description text\""; } }
-		public override string Description { get { return "Reports an issue for a mod. Only works for mods setup with Hamstar's Helpers to do so (see Control Panel)."; } }
+		public override string Description { get { return "Reports an issue for a mod. Only works for mods setup with Hamstar's Helpers to do so (see Control Panel). Parameters: <mod list index>, <quote-wrapped issue title>, <quote-wrapped issue description>"; } }
 
 
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			IList<Mod> mods = ModHelpers.GetAllMods().ToList();
-			int mod_idx, body_arg_idx;
-			string title = this.ParseIssueTitle( args, out body_arg_idx );
-			string body = this.ParseIssueDescription( body_arg_idx, args );
+			int arg_idx = 1;
 
+			string title = CommandsHelpers.GetQuotedStringFromArgsAt( args, arg_idx, out arg_idx );
+			if( arg_idx == -1 ) {
+				throw new UsageException( "Invalid issue report title string", Color.Red );
+			}
+
+			string body = CommandsHelpers.GetQuotedStringFromArgsAt( args, arg_idx, out arg_idx );
+			if( arg_idx == -1 ) {
+				throw new UsageException( "Invalid issue report description string", Color.Red );
+			}
+
+			int mod_idx;
 			if( !int.TryParse( args[0], out mod_idx ) ) {
-				throw new UsageException( args[0] + " is not an integer", Color.Red );
+				throw new UsageException( args[arg_idx] + " is not an integer", Color.Red );
 			}
 			if( mod_idx <= 0 || mod_idx > mods.Count ) {
-				throw new UsageException( args[0] + " is out of range", Color.Red );
+				throw new UsageException( mod_idx + " is not a mod entry; out of range", Color.Red );
 			}
 			
 			try {
@@ -190,66 +200,6 @@ namespace HamstarHelpers.Commands {
 			} catch( Exception e ) {
 				caller.Reply( e.Message, Color.Red );
 			}
-		}
-
-
-		////////////////
-
-		private string ParseIssueTitle( string[] args, out int body_arg_idx ) {
-			if( args[1][0] != '"' ) {
-				throw new UsageException( args[0] + " is not a valid issue report title string", Color.Red );
-			}
-
-			string title = args[1].Substring( 1 );
-			bool is_termined = false;
-			body_arg_idx = 1;
-
-			for( int i=2; i<args.Length - 1; i++ ) {
-				int arg_len = args[i].Length;
-				if( args[i][arg_len-1] == '"' ) {
-					is_termined = true;
-					body_arg_idx = i+1;
-
-					title += " " + args[i].Substring( 0, arg_len - 1 );
-					break;
-				} else {
-					title += " " + args[i];
-				}
-			}
-
-			if( !is_termined ) {
-				throw new UsageException( args[0] + " is not a valid issue report title string", Color.Red );
-			}
-
-			return title;
-		}
-
-
-		private string ParseIssueDescription( int body_arg_idx, string[] args ) {
-			if( args[body_arg_idx][0] != '"' ) {
-				throw new UsageException( args[0] + " is not a valid issue report description string", Color.Red );
-			}
-
-			string body = args[body_arg_idx].Substring( 1 );
-			bool is_termined = false;
-
-			for( int i = body_arg_idx+1; i < args.Length; i++ ) {
-				int arg_len = args[i].Length;
-				if( args[i][arg_len - 1] == '"' ) {
-					is_termined = true;
-
-					body += " " + args[i].Substring( 0, arg_len - 1 );
-					break;
-				} else {
-					body += " " + args[i];
-				}
-			}
-
-			if( !is_termined ) {
-				throw new UsageException( args[0] + " is not a valid issue report description string", Color.Red );
-			}
-
-			return body;
 		}
 	}
 }

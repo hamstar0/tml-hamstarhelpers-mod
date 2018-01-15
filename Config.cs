@@ -4,7 +4,7 @@ using System;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 2, 6); } }
+		public static Version ConfigVersion { get { return new Version(1, 2, 8); } }
 		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
 
 
@@ -20,6 +20,8 @@ namespace HamstarHelpers {
 
 		public bool WorldModLockEnable = true;
 		public bool WorldModLockMinimumOnly = true;
+
+		public bool ModCallCommandEnabled = true;
 
 
 
