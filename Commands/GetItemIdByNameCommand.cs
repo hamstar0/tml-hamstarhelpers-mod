@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.ItemHelpers;
+using HamstarHelpers.TmlHelpers.CommandsHelpers;
 using Terraria.ModLoader;
 
 
@@ -19,7 +20,8 @@ namespace HamstarHelpers.Commands {
 				throw new UsageException("No arguments supplied.");
 			}
 
-			string item_name = args[0];
+			int _;
+			string item_name = CommandsHelpers.GetQuotedStringFromArgsAt( args, 0, out _ );
 			if( !ItemIdentityHelpers.NamesToIds.ContainsKey( item_name ) ) {
 				throw new UsageException( "Invalid item type." );
 			}
