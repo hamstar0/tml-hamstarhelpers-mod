@@ -1,11 +1,13 @@
 ﻿using HamstarHelpers.NetProtocol;
 using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Messages;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -179,6 +181,21 @@ namespace HamstarHelpers {
 
 			this.CheckBuffHooks();
 			this.CheckArmorEquipHooks();
+		}
+
+
+		////////////////
+
+		public override void ProcessTriggers( TriggersSet triggers_set ) {
+			var mymod = (HamstarHelpersMod)this.mod;
+
+			if( mymod.ControlPanelHotkey.JustPressed ) {
+				if( mymod.Config.DisableControlPanel ) {
+					Main.NewText( "Control panel disabled.", Color.Red );
+				} else {
+					mymod.ControlPanel.Open();
+				}
+			}
 		}
 
 

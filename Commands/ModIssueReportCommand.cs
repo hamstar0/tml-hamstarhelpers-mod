@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -193,13 +194,23 @@ namespace HamstarHelpers.Commands {
 			if( mod_idx <= 0 || mod_idx > mods.Count ) {
 				throw new UsageException( mod_idx + " is not a mod entry; out of range", Color.Red );
 			}
-			
-			try {
-				string output = ModIssueReportCommand.ReportIssue( mods[mod_idx - 1], title, body );
-				caller.Reply( output, Color.GreenYellow );
-			} catch( Exception e ) {
-				caller.Reply( e.Message, Color.Red );
-			}
+
+			var worker = new BackgroundWorker();
+			string output = "Done?";
+			var self = this;
+
+			worker.DoWork += delegate ( object sender, DoWorkEventArgs e_args ) {
+				try {
+					output = ModIssueReportCommand.ReportIssue( mods[mod_idx - 1], title, body );
+				} catch( Exception e ) {
+					caller.Reply( e.Message, Color.Red );
+				}
+			};
+			worker.RunWorkerCompleted += delegate ( object sender, RunWorkerCompletedEventArgs e_args ) {
+				if( output != "Done?" ) {
+					caller.Reply( output, Color.GreenYellow );
+				}
+			};
 		}
 	}
 }

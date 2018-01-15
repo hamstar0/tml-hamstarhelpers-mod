@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuffHelpers\BuffHelpers.cs" />
+    <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\AdminUserRemoveCommand.cs" />

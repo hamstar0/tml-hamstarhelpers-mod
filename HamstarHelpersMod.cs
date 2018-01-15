@@ -4,6 +4,7 @@ using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,7 @@ namespace HamstarHelpers {
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
 
+		public ModHotKey ControlPanelHotkey = null;
 		public ControlPanelUI ControlPanel = null;
 		 private int LastSeenScreenWidth = -1;
 		 private int LastSeenScreenHeight = -1;
@@ -89,6 +91,8 @@ namespace HamstarHelpers {
 
 		public override void Load() {
 			HamstarHelpersMod.Instance = this;
+
+			this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );
 
 			this.LogHelpers = new DebugHelpers.LogHelpers();
 			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();

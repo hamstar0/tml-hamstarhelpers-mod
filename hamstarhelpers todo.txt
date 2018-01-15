@@ -12,11 +12,13 @@ Future
 v1.3.0
 -	@Create hotkeys-to-commands mod (uses a HH tab)
 -	Add tabs to UI
--	Add hotkey to toggle UI
 -	Add build.txt fields to substitute for Mod static properties (for github, mod configs)
+
+v1.2.9
+-	Add hotkey to toggle UI
+-	Wrap issue submit command with a thread
 v1.2.8
 -	Add command to make Mod.Call() requests
-
 v1.2.6
 -	@Test commands
 -	Set commands to chat in single player, console in multiplayer
