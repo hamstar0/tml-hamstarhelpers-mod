@@ -9,6 +9,7 @@ namespace HamstarHelpers.DotNetHelpers.DataStructures {
 
 
 		public ReadOnlySet( ISet<T> myset ) {
+			if( myset == null ) { throw new Exception("Base set not defined."); }
 			this.MySet = myset;
 		}
 

@@ -24,20 +24,6 @@ namespace HamstarHelpers.NPCHelpers {
 
 		////////////////
 
-		public static readonly ReadOnlySet<int> VanillaBloodMoonTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaBloodMoonTypes );
-		public static readonly ReadOnlySet<int> VanillaGoblinArmyTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaGoblinArmyTypes );
-		public static readonly ReadOnlySet<int> VanillaFrostLegionTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaFrostLegionTypes );
-		public static readonly ReadOnlySet<int> VanillaPirateTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaPirateTypes );
-		public static readonly ReadOnlySet<int> VanillaMartianTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaMartianTypes );
-		public static readonly ReadOnlySet<int> VanillaSolarEclipseTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaSolarEclipseTypes );
-		public static readonly ReadOnlySet<int> VanillaPumpkingMoonTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaPumpkingMoonTypes );
-		public static readonly ReadOnlySet<int> VanillaFrostMoonTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaFrostMoonTypes );
-		public static readonly ReadOnlySet<int> VanillaOldOnesArmyTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaOldOnesArmyTypes );
-		public static readonly ReadOnlySet<int> VanillaSolarPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaSolarPillarTypes );
-		public static readonly ReadOnlySet<int> VanillaNebulaPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaNebulaPillarTypes );
-		public static readonly ReadOnlySet<int> VanillaVortexPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaVortexPillarTypes );
-		public static readonly ReadOnlySet<int> VanillaStardustPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaStardustPillarTypes );
-
 		private static ISet<int> _VanillaBloodMoonTypes = new HashSet<int> {
 			NPCID.TheGroom, NPCID.TheBride, NPCID.BloodZombie, NPCID.Drippler,
 			NPCID.CorruptBunny, NPCID.CorruptGoldfish, NPCID.CorruptPenguin,
@@ -54,15 +40,15 @@ namespace HamstarHelpers.NPCHelpers {
 			NPCID.PirateCaptain, NPCID.PirateCorsair, NPCID.PirateCrossbower, NPCID.PirateDeadeye, NPCID.PirateDeckhand, NPCID.Parrot,
 			NPCID.PirateShip, NPCID.PirateShipCannon
 		};
-		private static ISet<int> _VanillaSolarEclipseTypes = new HashSet<int> {
-			NPCID.Eyezor, NPCID.Frankenstein, NPCID.SwampThing, NPCID.Vampire, NPCID.CreatureFromTheDeep, NPCID.Fritz, NPCID.ThePossessed,
-			NPCID.Mothron, NPCID.MothronEgg, NPCID.MothronSpawn, NPCID.Reaper,
-			NPCID.Butcher, NPCID.DeadlySphere, NPCID.DrManFly, NPCID.Nailhead, NPCID.Psycho
-		};
 		private static ISet<int> _VanillaMartianTypes = new HashSet<int> {
 			NPCID.BrainScrambler, NPCID.GrayGrunt, NPCID.RayGunner, NPCID.MartianOfficer, NPCID.MartianOfficer, NPCID.MartianEngineer,
 			NPCID.GigaZapper, NPCID.MartianTurret, NPCID.MartianDrone, NPCID.MartianWalker, NPCID.Scutlix,
 			NPCID.MartianSaucer, NPCID.MartianSaucerCannon, NPCID.MartianSaucerCore, NPCID.MartianSaucerTurret
+		};
+		private static ISet<int> _VanillaSolarEclipseTypes = new HashSet<int> {
+			NPCID.Eyezor, NPCID.Frankenstein, NPCID.SwampThing, NPCID.Vampire, NPCID.CreatureFromTheDeep, NPCID.Fritz, NPCID.ThePossessed,
+			NPCID.Mothron, NPCID.MothronEgg, NPCID.MothronSpawn, NPCID.Reaper,
+			NPCID.Butcher, NPCID.DeadlySphere, NPCID.DrManFly, NPCID.Nailhead, NPCID.Psycho
 		};
 		private static ISet<int> _VanillaPumpkingMoonTypes = new HashSet<int> {
 			NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7,
@@ -102,5 +88,19 @@ namespace HamstarHelpers.NPCHelpers {
 			NPCID.StardustSpiderBig, NPCID.StardustSpiderSmall, NPCID.StardustWormBody, NPCID.StardustWormHead, NPCID.StardustWormTail,
 			NPCID.LunarTowerStardust
 		};
+
+		public static readonly ReadOnlySet<int> VanillaBloodMoonTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaBloodMoonTypes );
+		public static readonly ReadOnlySet<int> VanillaGoblinArmyTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaGoblinArmyTypes );
+		public static readonly ReadOnlySet<int> VanillaFrostLegionTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaFrostLegionTypes );
+		public static readonly ReadOnlySet<int> VanillaPirateTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaPirateTypes );
+		public static readonly ReadOnlySet<int> VanillaMartianTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaMartianTypes );
+		public static readonly ReadOnlySet<int> VanillaSolarEclipseTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaSolarEclipseTypes );
+		public static readonly ReadOnlySet<int> VanillaPumpkingMoonTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaPumpkingMoonTypes );
+		public static readonly ReadOnlySet<int> VanillaFrostMoonTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaFrostMoonTypes );
+		public static readonly ReadOnlySet<int> VanillaOldOnesArmyTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaOldOnesArmyTypes );
+		public static readonly ReadOnlySet<int> VanillaSolarPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaSolarPillarTypes );
+		public static readonly ReadOnlySet<int> VanillaNebulaPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaNebulaPillarTypes );
+		public static readonly ReadOnlySet<int> VanillaVortexPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaVortexPillarTypes );
+		public static readonly ReadOnlySet<int> VanillaStardustPillarTypes = new ReadOnlySet<int>( NPCIdentityHelpers._VanillaStardustPillarTypes );
 	}
 }
