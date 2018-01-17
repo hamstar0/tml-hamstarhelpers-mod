@@ -12,6 +12,7 @@ Future
 v1.3.0
 -	@Create hotkeys-to-commands mod (uses a HH tab)
 -	Add tabs to UI
+-	Show mods that need updates in control panel list
 -	Add build.txt fields to substitute for Mod static properties (for github, mod configs)
 -	Remove 'seconds played' from issue reports
 -	Add net mode to issue reports
