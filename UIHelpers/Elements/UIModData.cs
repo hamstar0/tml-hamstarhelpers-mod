@@ -204,6 +204,10 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			if( this.IsMouseHovering && this.WillDrawOwnHoverElements ) {
 				this.DrawHoverEffects( sb );
 			}
+		}
+
+		protected override void DrawSelf( SpriteBatch spriteBatch ) {
+			base.DrawSelf( spriteBatch );
 
 			if( this.NewVersion > this.Mod.Version ) {
 				Color color = AnimatedColors.Fire.CurrentColor;
