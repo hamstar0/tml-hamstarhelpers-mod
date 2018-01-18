@@ -2,10 +2,12 @@
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,6 +54,7 @@ namespace HamstarHelpers {
 		internal WorldHelpers.WorldHelpers WorldHelpers;
 		//internal UserHelpers.UserHelpers UserHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
+		internal AnimatedColorsManager AnimatedColors;
 
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
@@ -85,6 +88,7 @@ namespace HamstarHelpers {
 				AutoloadSounds = true
 			};
 
+			this.AnimatedColors = new AnimatedColorsManager();
 			this.JsonConfig = new JsonConfig<HamstarHelpersConfigData>( HamstarHelpersConfigData.ConfigFileName,
 				ConfigurationDataBase.RelativePath, new HamstarHelpersConfigData() );
 		}
@@ -92,8 +96,8 @@ namespace HamstarHelpers {
 		public override void Load() {
 			HamstarHelpersMod.Instance = this;
 
-			this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );
-
+			this.LoadConfigs();
+			
 			this.LogHelpers = new DebugHelpers.LogHelpers();
 			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();
 			this.BuffHelpers = new BuffHelpers.BuffHelpers();
@@ -109,7 +113,7 @@ namespace HamstarHelpers {
 			AltNPCInfo.DataInitialize();
 			AltProjectileInfo.DataInitialize();
 
-			this.LoadConfigs();
+			this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );
 		}
 
 		private void LoadConfigs() {
@@ -233,6 +237,11 @@ namespace HamstarHelpers {
 					this.LastSeenScreenHeight = Main.screenHeight;
 					this.ControlPanel.RecalculateMe();
 				}
+//sb.DrawString( Main.fontDeathText, "ALERT", new Vector2(128, 128), this.AnimatedColors.Alert.CurrentColor );
+//sb.DrawString( Main.fontDeathText, "STROBE", new Vector2(128, 256), this.AnimatedColors.Strobe.CurrentColor );
+//sb.DrawString( Main.fontDeathText, "FIRE", new Vector2(128, 320), this.AnimatedColors.Fire.CurrentColor );
+//sb.DrawString( Main.fontDeathText, "WATER", new Vector2(128, 384), this.AnimatedColors.Water.CurrentColor );
+//sb.DrawString( Main.fontDeathText, "AIR", new Vector2(128, 448), this.AnimatedColors.Air.CurrentColor );
 				return true;
 			};
 

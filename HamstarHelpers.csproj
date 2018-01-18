@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Libraries.JSON.NET.Newtonsoft.Json">
-      <HintPath>..\..\Reference\Libraries.JSON.NET.Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Reference\tModLoader Patcher\references\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Steamworks.NET">
       <HintPath>..\..\Reference\tModLoader Patcher\references\Steamworks.NET.dll</HintPath>
@@ -120,6 +120,7 @@
     <Compile Include="TmlHelpers\TmlPlayerHelpers.cs" />
     <Compile Include="UIHelpers\UITheme.cs" />
     <Compile Include="UserHelpers\UserHelpers.cs" />
+    <Compile Include="Utilities\AnimatedColors\AnimatedColors.cs" />
     <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
     <Compile Include="Utilities\Config\JsonConfig.cs" />
     <Compile Include="DotNetHelpers\DotNetHelpers.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="PlayerHelpers\PlayerNPCHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileHelpers\TileHelpers.cs" />
+    <Compile Include="Utilities\Web\ModIssueReports.cs" />
     <Compile Include="Utilities\Messages\PlayerMessage.cs" />
     <Compile Include="Utilities\Messages\SimpleMessage.cs" />
     <Compile Include="HudHelpers\HudHelpers.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="Utilities\UI\UITextArea.cs" />
     <Compile Include="Utilities\UI\UITextPanelButton.cs" />
     <Compile Include="Utilities\UI\UIWebUrl.cs" />
+    <Compile Include="Utilities\Web\ModVersionGet.cs" />
     <Compile Include="WorldHelpers\WorldHelpers.cs" />
     <Compile Include="XnaHelpers\XnaColorHelpers.cs" />
     <Compile Include="XnaHelpers\XnaHelpers.cs" />

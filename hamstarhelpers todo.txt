@@ -6,19 +6,20 @@ Future
 	-	Change 'Irrelevant' field to 'Depends'
 	-	...
 -	Add player world locks?
+-	Add build.txt fields to substitute for Mod static properties (for github, mod configs)
+-	@Create hotkeys-to-commands mod (uses a HH tab)
+-	Add tabs to UI
 
 
 
 v1.3.0
--	@Create hotkeys-to-commands mod (uses a HH tab)
--	Add tabs to UI
 -	Show mods that need updates in control panel list
--	Add build.txt fields to substitute for Mod static properties (for github, mod configs)
+	-	On mod list load, supply versions
+	-	Implement mod latest version getter
 -	Remove 'seconds played' from issue reports
 -	Add net mode to issue reports
 -	Add list of recent error messages to issue reports
 -	Open issue reports in browser
-
 v1.2.9
 -	Add hotkey to toggle UI
 -	Wrap issue submit command with a thread

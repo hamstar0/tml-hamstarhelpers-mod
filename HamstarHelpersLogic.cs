@@ -91,7 +91,7 @@ namespace HamstarHelpers {
 
 
 		////////////////
-		
+
 		public void Update( HamstarHelpersMod mymod ) {
 			if( !this.IsLoaded( mymod ) ) {
 				return;
@@ -101,16 +101,23 @@ namespace HamstarHelpers {
 				mymod.ControlPanel.UpdateModList();
 			}
 
+			mymod.AnimatedColors.Update();
+
 			// Simply idle until ready (seems needed)
 			if( !this.IsFullyReady() ) {
 				this.IsDay = Main.dayTime;
 				return;
+			} else {
+				this.UpdateLoaded( mymod );
 			}
+		}
 
+
+		private void UpdateLoaded( HamstarHelpersMod mymod ) {
 			this.UpdateDay( mymod );
 
 			mymod.ModLockHelpers.Update();
-
+			
 			AltProjectileInfo.UpdateAll();
 			AltNPCInfo.UpdateAll();
 		}

@@ -1,7 +1,11 @@
 ﻿using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Utilities.AnimatedColor;
+using HamstarHelpers.Utilities.Web;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using Terraria;
@@ -13,14 +17,22 @@ using Terraria.UI;
 
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIModData : UIPanel {
+		private static readonly object MyLock = new object();
+		private static readonly BackgroundWorker Worker = new BackgroundWorker();
+
+
+		////////////////
+
 		public Mod Mod { get; private set; }
 		public string Author { get; private set; }
 		public string HomepageUrl { get; private set; }
+		public Version NewVersion { get; private set; }
 
 		public UIImage IconElem { get; private set; }
 		public UIElement TitleElem { get; private set; }
 		public UIElement AuthorElem { get; private set; }
 		public UITextPanelButton ConfigButton { get; private set; }
+		public UIElement VersionAlertElem { get; private set; }
 
 		public bool HasIconLoaded { get; private set; }
 		public bool WillDrawOwnHoverElements { get; private set; }
@@ -48,6 +60,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.Author = null;
 			this.HomepageUrl = null;
 			this.HasIconLoaded = false;
+			this.NewVersion = default( Version );
 
 			BuildPropertiesInterface props = modfile != null ?
 				BuildPropertiesInterface.GetBuildPropertiesForModFile( modfile ) :
@@ -57,19 +70,25 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.HomepageUrl = (string)props.GetField( "homepage" );
 			}
 			
+			// Container
+
 			this.SetPadding( 4f );
 			this.Width.Set( 0f, 1f );
 			this.Height.Set( 64, 0f );
 
 			float title_offset = 72f;
 
+			// Mod index
+
 			if( idx != null ) {
-				var idxElem = new UIText( (int)idx + "" );
-				idxElem.Left.Set( title_offset, 0f );
-				this.Append( (UIElement)idxElem );
+				var mod_idx_elem = new UIText( (int)idx + "" );
+				mod_idx_elem.Left.Set( title_offset, 0f );
+				this.Append( (UIElement)mod_idx_elem );
 
 				title_offset += 16f;
 			}
+
+			// Mod title
 
 			string mod_title = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
 			
@@ -81,12 +100,16 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.TitleElem.Left.Set( 88f, 0f );
 			this.Append( (UIElement)this.TitleElem );
 
+			// Mod author
+
 			if( this.Author != null ) {
 				this.AuthorElem = new UIText( "By: "+this.Author, 0.7f );
 				this.AuthorElem.Top.Set( 20f, 0f );
 				this.AuthorElem.Left.Set( title_offset, 0f );
 				this.Append( (UIElement)this.AuthorElem );
 			}
+
+			// Mod icon
 
 			if( modfile != null && modfile.HasFile( "icon.png" ) ) {
 				var stream = new MemoryStream( modfile.GetFile( "icon.png" ) );
@@ -102,6 +125,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 					this.Append( this.IconElem );
 				}
 			}
+
+			// Mod config button
 
 			if( ModMetaDataManager.HasConfig(mod) ) {
 				var config_button = new UITextPanelButton( theme, "Open Config File" );
@@ -132,7 +157,22 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
+		
+		public void CheckForNewVersion() {
+			UIModData.Worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
+				lock( UIModData.MyLock ) {
+					bool found = false;
+					Version vers = ModVersionGet.GetLatestKnownVersion( this.Mod, out found );
+					
+					if( found ) { this.NewVersion = vers; }
+				}
+			};
 
+			UIModData.Worker.RunWorkerAsync();
+		}
+
+
+		////////////////
 
 		public override int CompareTo( object obj ) {
 			if( this.Mod.Name == HamstarHelpersMod.Instance.Name ) {
@@ -163,6 +203,15 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 			if( this.IsMouseHovering && this.WillDrawOwnHoverElements ) {
 				this.DrawHoverEffects( sb );
+			}
+
+			if( this.NewVersion > this.Mod.Version ) {
+				Color color = AnimatedColors.Fire.CurrentColor;
+				CalculatedStyle inner_dim = base.GetInnerDimensions();
+				Vector2 pos = inner_dim.Position();
+				pos.X += 128f;
+			
+				sb.DrawString( Main.fontDeathText, "Update Needed!", pos, color, 0f, default( Vector2 ), 1f, SpriteEffects.None, 1f );
 			}
 		}
 

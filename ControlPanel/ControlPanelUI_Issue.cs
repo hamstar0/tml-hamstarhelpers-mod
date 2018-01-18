@@ -62,21 +62,11 @@ namespace HamstarHelpers.ControlPanel {
 			this.AwaitingReport = true;
 			this.DisableIssueInput();
 
-			var worker = new BackgroundWorker();
-			worker.DoWork += delegate( object sender, DoWorkEventArgs args ) {
-				try {
-					self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue_title, issue_body );
-				} catch( Exception e ) {
-					LogHelpers.Log( e.ToString() );
-				}
-			};
-			worker.RunWorkerCompleted += delegate( object sender, RunWorkerCompletedEventArgs args ) {
+			self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue_title, issue_body, delegate ( object sender, RunWorkerCompletedEventArgs args ) {
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
 				self.SetDialogToClose = true;
-			};
-
-			worker.RunWorkerAsync();
+			} );
 		}
 	}
 }

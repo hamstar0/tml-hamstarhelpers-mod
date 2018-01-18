@@ -1,6 +1,9 @@
 ﻿using HamstarHelpers.Commands;
+using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Utilities.Web;
 using Microsoft.Xna.Framework;
 using System;
+using System.ComponentModel;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
@@ -34,16 +37,21 @@ namespace HamstarHelpers.ControlPanel {
 		}
 
 
-		public void ReportIssue( Mod mod, string issue_title, string issue_body ) {
-			try {
-				string output = ModIssueReportCommand.ReportIssue( mod, issue_title, issue_body );
+		public void ReportIssue( Mod mod, string issue_title, string issue_body, RunWorkerCompletedEventHandler completion_callback ) {
+			var worker = new BackgroundWorker();
+			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
+				try {
+					string output = ModIssueReports.ReportIssue( mod, issue_title, issue_body );
 
-				Main.NewText( "Issue submit result: " + output, Color.Yellow );
-				ErrorLogger.Log( "Issue submit result: " + output );
-			} catch(Exception e ) {
-				Main.NewText( "Issue submit error: "+e.ToString(), Color.Red );
-				throw e;
-			}
+					Main.NewText( "Issue submit result: " + output, Color.Yellow );
+					ErrorLogger.Log( "Issue submit result: " + output );
+				} catch( Exception e ) {
+					Main.NewText( "Issue submit error: " + e.Message, Color.Red );
+					LogHelpers.Log( e.ToString() );
+				}
+			};
+			worker.RunWorkerCompleted += completion_callback;
+			worker.RunWorkerAsync();
 		}
 	}
 }

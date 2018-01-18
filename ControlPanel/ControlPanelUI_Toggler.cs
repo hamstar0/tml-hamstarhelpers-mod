@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Utilities.AnimatedColor;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System;
@@ -17,7 +18,7 @@ namespace HamstarHelpers.ControlPanel {
 				return new Vector2( x, y );
 			}
 		}
-		private static Version AlertVersion = new Version( 1, 2, 6 );
+		private static Version AlertVersion = new Version( 1, 3, 0 );
 
 
 
@@ -37,6 +38,22 @@ namespace HamstarHelpers.ControlPanel {
 
 		public bool IsTogglerShown() {
 			return Main.playerInventory;
+		}
+
+		public bool IsTogglerUpdateAlertShown() {
+			Player myplayer = Main.LocalPlayer;
+			var modplayer = myplayer.GetModPlayer<HamstarHelpersPlayer>();
+			var ver = new Version( modplayer.ControlPanelNewSince );
+
+			if( ver < ControlPanelUI.AlertVersion ) {
+				return true;
+			}
+
+			//foreach( var moditem in this.ModDataList ) {
+			//	if( moditem.IsUpdateNeeded ) { return true; }
+			//}
+
+			return false;
 		}
 
 
@@ -69,33 +86,18 @@ namespace HamstarHelpers.ControlPanel {
 
 			sb.Draw( tex, ControlPanelUI.TogglerPosition, null, color );
 
-			this.DrawTogglerAlert( sb );
+			if( this.IsTogglerUpdateAlertShown() ) {
+				this.DrawTogglerAlert( sb );
+			}
 		}
 
-
-		private int AnimateAlert = 0;
-
+		
 		private void DrawTogglerAlert( SpriteBatch sb ) {
-			Player myplayer = Main.LocalPlayer;
-			var modplayer = myplayer.GetModPlayer<HamstarHelpersPlayer>();
-			Version ver = new Version( modplayer.ControlPanelNewSince );
-
-			if( ver >= ControlPanelUI.AlertVersion ) { return; }
-
-			Color color = Color.Blue;
+			Color color = AnimatedColors.Alert != null ? AnimatedColors.Alert.CurrentColor : Color.White;
 			Vector2 pos = ControlPanelUI.TogglerPosition;
 			pos.Y += 6f;
 			//pos.X += 56f - (Main.fontMouseText.MeasureString("New!").X * 0.5f);
 			//pos.Y -= 4f;
-
-			if( this.AnimateAlert >= 16 ) { this.AnimateAlert = 0; }
-
-			if( this.AnimateAlert < 8 ) {
-				color = Color.Lerp( Color.Yellow, Color.Gray, (float)this.AnimateAlert / 8f );
-			} else if( this.AnimateAlert < 16 ) {
-				color = Color.Lerp( Color.Gray, Color.Yellow, (float)(this.AnimateAlert - 8) / 8f );
-			}
-			this.AnimateAlert++;
 
 			//sb.DrawString( Main.fontMouseText, "New!", pos, color );
 			sb.DrawString( Main.fontMouseText, "New!", pos+new Vector2(-0.35f,-0.35f), Color.Black, 0f, default( Vector2 ), 0.64f, SpriteEffects.None, 1f );

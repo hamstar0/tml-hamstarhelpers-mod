@@ -2,10 +2,13 @@
 using HamstarHelpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.UIHelpers;
 using HamstarHelpers.UIHelpers.Elements;
+using HamstarHelpers.Utilities.Web;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -79,9 +82,11 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void LoadModList() {
 			int i = 1;
+
 			foreach( var mod in ModHelpers.GetAllMods() ) {
 				this.ModDataList.Add( this.CreateModListItem( i++, mod ) );
 			}
+
 			this.ModListUpdateRequired = true;
 		}
 
@@ -133,8 +138,13 @@ namespace HamstarHelpers.ControlPanel {
 				this.ModListElem.Clear();
 				this.ModListElem.AddRange( this.ModDataList );
 			} catch( Exception _ ) { }
+			
+			foreach( var moditem in this.ModDataList ) {
+				if( !ModMetaDataManager.HasGithub(moditem.Mod) ) { continue; }
+				
+				moditem.CheckForNewVersion();
+			}
 		}
-
 
 		////////////////
 
