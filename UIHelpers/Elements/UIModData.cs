@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -18,7 +19,6 @@ using Terraria.UI;
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIModData : UIPanel {
 		private static readonly object MyLock = new object();
-		private static readonly BackgroundWorker Worker = new BackgroundWorker();
 
 
 		////////////////
@@ -159,16 +159,16 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		////////////////
 		
 		public void CheckForNewVersion() {
-			UIModData.Worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
+			var thread = new Thread( () => {
 				lock( UIModData.MyLock ) {
 					bool found = false;
 					Version vers = ModVersionGet.GetLatestKnownVersion( this.Mod, out found );
-					
+
 					if( found ) { this.NewVersion = vers; }
 				}
-			};
+			} );
 
-			UIModData.Worker.RunWorkerAsync();
+			thread.Start();
 		}
 
 
@@ -206,8 +206,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			}
 		}
 
-		protected override void DrawSelf( SpriteBatch spriteBatch ) {
-			base.DrawSelf( spriteBatch );
+		protected override void DrawSelf( SpriteBatch sb ) {
+			base.DrawSelf( sb );
 
 			if( this.NewVersion > this.Mod.Version ) {
 				Color color = AnimatedColors.Fire.CurrentColor;
