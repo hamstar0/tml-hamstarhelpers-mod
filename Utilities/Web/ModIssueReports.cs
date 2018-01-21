@@ -29,14 +29,16 @@ namespace HamstarHelpers.Utilities.Web {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
-			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
 
-			//string url = "http://localhost:12347/issue_submit/";
+			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
+			string body_info = string.Join( "\n \n", ModIssueReports.OutputGameData( mods ).ToArray() );
+			string body_errors = string.Join( "\n", ModIssueReports.OutputErrorLog().ToArray() );
+			
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "In-game: " + issue_title;
-			string body = ModIssueReports.OutputGameData( mods );
-			body += "\n \n \n \n" + "Recent error logs:\n" + ModIssueReports.OutputErrorLog();
-			body += "\n \n \n \n" + issue_body;
+			string body = body_info;
+			body += "\n \n \n \n" + "Recent error logs: ```\n" + body_errors + "\n```";
+			body += "\n \n \n \n`" + issue_body + '`';
 
 			var json = new ModIssueReportData {
 				githubuser = ModMetaDataManager.GetGithubUserName( mod ),
@@ -87,22 +89,33 @@ namespace HamstarHelpers.Utilities.Web {
 
 		////////////////
 
-		public static string OutputGameData( IEnumerable<Mod> mods ) {
+		public static IList<string> OutputGameData( IEnumerable<Mod> mods ) {
+			var list = new List<string>();
+
 			var mods_list = mods.OrderBy( m => m.Name ).Select( m => m.DisplayName + " " + m.Version.ToString() );
+			string[] mods_arr = mods_list.ToArray();
+			bool is_day = Main.dayTime;
+			double time_of_day = Main.time;
+			int half_days = WorldHelpers.WorldHelpers.GetElapsedHalfDays();
+			string world_size = WorldHelpers.WorldHelpers.GetSize().ToString();
+			string[] world_prog = ModIssueReports.OutputWorldProgress().ToArray();
+			int active_items = ItemHelpers.ItemHelpers.GetActive().Count;
+			int active_npcs = NPCHelpers.NPCHelpers.GetActive().Count;
+			string[] player_infos = ModIssueReports.OutputCurrentPlayerInfo().ToArray();
+			string[] player_equips = ModIssueReports.OutputCurrentPlayerEquipment().ToArray();
+			int active_players = Main.ActivePlayersCount;
+			string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
 
-			string data = "Mods: " + string.Join( ", ", mods_list.ToArray() );
-			data += "\n \n" + "Is day: " + Main.dayTime + ", Time of day/night: " + Main.time;  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
-			data += "\n \n" + "World name: " + Main.worldName + ", world size: " + WorldHelpers.WorldHelpers.GetSize().ToString();
-			data += "\n \n" + "World progress: " + string.Join( ", ", ModIssueReports.OutputWorldProgress().ToArray() );
-			data += "\n \n" + "Items on ground: " + ItemHelpers.ItemHelpers.GetActive().Count + ", Npcs active: " + NPCHelpers.NPCHelpers.GetActive().Count;
-			data += "\n \n" + "Player info: " + string.Join( ", ", ModIssueReports.OutputCurrentPlayerInfo().ToArray() );
-			data += "\n \n" + "Player equips: " + string.Join( ", ", ModIssueReports.OutputCurrentPlayerEquipment().ToArray() );
-			if( Main.netMode != 0 ) {
-				string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
-				data += "\n \n" + "Player count: " + Main.ActivePlayersCount + " ("+netmode+")";
-			}
+			list.Add( "Mods: " + string.Join( ", ", mods_arr ) );
+			list.Add( "Is day: " + is_day + ", Time of day/night: " + time_of_day + ", Elapsed half days: "+half_days );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
+			list.Add( "World name: " + Main.worldName + ", world size: " + world_size );
+			list.Add( "World progress: " + string.Join( ", ", world_prog ) );
+			list.Add( "Items on ground: " + active_items + ", Npcs active: " + active_npcs );
+			list.Add( "Player info: " + string.Join( ", ", player_infos ) );
+			list.Add( "Player equips: " + string.Join( ", ", player_equips ) );
+			list.Add( "Player count: " + active_players + " ("+netmode+")" );
 
-			return data;
+			return list;
 		}
 
 		public static IList<string> OutputWorldProgress() {
@@ -177,12 +190,14 @@ namespace HamstarHelpers.Utilities.Web {
 
 		////////////////
 
-		public static string OutputErrorLog() {
+		public static IList<string> OutputErrorLog() {
 			IList<string> lines = new List<string>();
 			char sep = Path.DirectorySeparatorChar;
 			string path = Main.SavePath + sep + "Logs" + sep + "Logs.txt";
 
-			if( !File.Exists( path ) ) { return "No error logs available."; }
+			if( !File.Exists( path ) ) {
+				return new List<string> { "No error logs available." };
+			}
 
 			using( var reader = new StreamReader( path ) ) {
 				int size = 1024;
@@ -208,10 +223,8 @@ namespace HamstarHelpers.Utilities.Web {
 
 			IList<string> rev_lines = lines.Reverse().Take( 25 ).ToList();
 			if( lines.Count > 25 ) { rev_lines.Add( "..." ); }
-
-			string[] lines_arr = rev_lines.Reverse().ToArray();
-
-			return "```\n" + string.Join( "\n", lines_arr.ToArray() ) + "\n```";
+			
+			return new List<string>( rev_lines.Reverse() );
 		}
 	}
 }

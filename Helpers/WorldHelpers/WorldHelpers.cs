@@ -46,7 +46,7 @@ namespace HamstarHelpers.WorldHelpers {
 
 		
 		////////////////
-
+		
 		public static string GetUniqueId() {
 			return Main.worldName + ":" + Main.worldID;
 		}
@@ -77,6 +77,11 @@ namespace HamstarHelpers.WorldHelpers {
 
 		////////////////
 
+		public static int GetElapsedHalfDays() {
+			var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
+			return myworld.WorldLogic.HalfDaysElapsed;
+		}
+
 		public static double GetDayOrNightPercentDone() {
 			if( Main.dayTime ) {
 				return Main.time / 54000d;
@@ -95,9 +100,9 @@ namespace HamstarHelpers.WorldHelpers {
 			return world_pos.Y > ((Main.maxTilesY - 200) * 16);
 		}
 
+
 		////////////////
-
-
+		
 		public static void AddDayHook( string name, Action callback ) {
 			HamstarHelpersMod.Instance.WorldHelpers.DayHooks[name] = callback;
 		}

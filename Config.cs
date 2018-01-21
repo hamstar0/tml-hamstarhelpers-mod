@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Utilities.Config;
 using System;
-
+using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
@@ -40,6 +40,15 @@ namespace HamstarHelpers {
 			this.VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
 
 			return true;
+		}
+
+
+		internal void LoadFromNetwork( HamstarHelpersMod mymod, string json ) {
+			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+
+			mymod.JsonConfig.DeserializeMe( json );
+
+			myplayer.FinishModSettingsSync();
 		}
 	}
 }

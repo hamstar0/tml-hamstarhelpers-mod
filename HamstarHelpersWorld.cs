@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Logic;
 using System;
 using System.IO;
 using Terraria;
@@ -14,7 +14,7 @@ namespace HamstarHelpers {
 		internal string ObsoleteID;
 		public bool HasCorrectID { get; internal set; }  // Workaround for tml bug?
 
-		internal HamstarHelpersLogic Logic { get; private set; }
+		internal WorldLogic WorldLogic { get; private set; }
 
 
 		////////////////
@@ -26,7 +26,7 @@ namespace HamstarHelpers {
 			this.ObsoleteID = Guid.NewGuid().ToString( "D" );
 			this.HasCorrectID = false;  // 'Load()' decides if no pre-existing one is found
 
-			this.Logic = new HamstarHelpersLogic( mymod );
+			this.WorldLogic = new WorldLogic( mymod );
 
 			if( String.IsNullOrEmpty(this.UID) ) {
 				throw new Exception( "UID not defined." );
@@ -49,7 +49,7 @@ namespace HamstarHelpers {
 
 			//mymod.UserHelpers.Load( mymod, tags );
 			mymod.ModLockHelpers.Load( mymod, tags );
-			this.Logic.Load( mymod, tags );
+			this.WorldLogic.LoadForWorld( mymod, tags );
 
 			mymod.ModLockHelpers.OnWorldLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
@@ -65,7 +65,7 @@ namespace HamstarHelpers {
 
 			//mymod.UserHelpers.Save( mymod, tags );
 			mymod.ModLockHelpers.Save( mymod, tags );
-			this.Logic.Save( mymod, tags );
+			this.WorldLogic.SaveForWorld( mymod, tags );
 
 			return tags;
 		}
@@ -106,8 +106,8 @@ namespace HamstarHelpers {
 			var mymod = (HamstarHelpersMod)this.mod;
 			
 			if( Main.netMode != 1 ) { // Not client
-				if( this.Logic != null ) {
-					this.Logic.Update( mymod );
+				if( this.WorldLogic != null ) {
+					this.WorldLogic.Update( mymod );
 				}
 			}
 		}

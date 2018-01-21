@@ -12,6 +12,9 @@ Future
 
 
 
+v1.3.1
+-	Add day counter
+
 v1.3.0
 -	Show mods that need updates in control panel list
 	-	On mod list load, supply versions

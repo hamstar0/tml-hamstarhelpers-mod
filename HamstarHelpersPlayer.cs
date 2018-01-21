@@ -1,11 +1,9 @@
 ﻿using HamstarHelpers.NetProtocol;
 using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Messages;
-using HamstarHelpers.Utilities.Web;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Terraria;
@@ -25,7 +23,8 @@ namespace HamstarHelpers {
 
 		public bool HasSyncedModSettings { get; private set; }
 		public bool HasSyncedPlayerData { get; private set; }
-		
+		public bool HasSyncedModData { get; private set; }
+
 
 
 		////////////////
@@ -38,59 +37,55 @@ namespace HamstarHelpers {
 			this.UID = Guid.NewGuid().ToString( "D" );
 			this.HasSyncedModSettings = false;
 			this.HasSyncedPlayerData = false;
+			this.HasSyncedModData = false;
 			this.PermaBuffsById = new HashSet<int>();
 		}
 
 		////////////////
 
 		public override void clientClone( ModPlayer client_clone ) {
-			var clone = (HamstarHelpersPlayer)client_clone; // <- This might be misinformed usage
+			var clone = (HamstarHelpersPlayer)client_clone;
 			clone.UID = this.UID;
 			clone.PermaBuffsById = this.PermaBuffsById;
 			clone.HasBuffIds = this.HasBuffIds;
 			clone.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;
 			clone.HasSyncedModSettings = this.HasSyncedModSettings;
 			clone.HasSyncedPlayerData = this.HasSyncedPlayerData;
+			clone.HasSyncedModData = this.HasSyncedModData;
 		}
-
-		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
-			var mymod = (HamstarHelpersMod)this.mod;
-
-			if( Main.netMode == 1 ) {
-				if( new_player ) {
-					ClientPacketHandlers.SendPlayerDataFromClient( mymod, -1 );
-					ClientPacketHandlers.SendRequestModSettingsFromClient( mymod );
-				}
-			}
-		}
-
+		
 		public override void SendClientChanges( ModPlayer client_player ) {
 			var myclient = (HamstarHelpersPlayer)client_player;
 
-			if( !myclient.UID.Equals(this.UID) || !myclient.PermaBuffsById.SetEquals(this.PermaBuffsById) ) {
-				ClientPacketHandlers.SendPlayerDataFromClient( (HamstarHelpersMod)this.mod, -1 );
+			if( (Main.netMode == 2 && !myclient.UID.Equals(this.UID)) || !myclient.PermaBuffsById.SetEquals(this.PermaBuffsById) ) {
+//LogHelpers.Log( "SendClientChanges to: " + ( Main.netMode == 2 && !myclient.UID.Equals( this.UID ) ) + "|"+ myclient.PermaBuffsById.SetEquals( this.PermaBuffsById ) + ", client: "+ client_player.player.whoAmI+ ", whoAmI: "+this.player.whoAmI );
+				ClientPacketHandlers.SendPlayerData( (HamstarHelpersMod)this.mod, -1 );
 			}
 		}
 
 		public override void OnEnterWorld( Player player ) {
+//LogHelpers.Log( "OnEnterWorld player: " + player.whoAmI+ ", me: "+this.player.whoAmI );
 			var mymod = (HamstarHelpersMod)this.mod;
-			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
-			if( Main.netMode == 0 ) {   // Single player only
-				if( !mymod.JsonConfig.LoadFile() ) {
-					mymod.JsonConfig.SaveFile();
+			if( player.whoAmI == this.player.whoAmI ) {
+				if( Main.netMode == 0 ) {   // Single player only
+					if( !mymod.JsonConfig.LoadFile() ) {
+						mymod.JsonConfig.SaveFile();
+					}
 				}
-			}
 
-			if( Main.netMode != 1 ) {   // NOT client
-				this.FinishModSettingsSync();
-				this.FinishPlayerDataSync();
-			}
-			if( Main.netMode == 1 ) {
-				ClientPacketHandlers.SendRequestModDataFromClient( mymod );
+				// Sync mod (world) data; must be called after world is loaded
+				if( Main.netMode == 1 ) {
+					ClientPacketHandlers.SendPlayerData( mymod, -1 );
+					ClientPacketHandlers.SendRequestPlayerData( mymod, -1 );
+					ClientPacketHandlers.SendRequestModSettings( mymod );
+					ClientPacketHandlers.SendRequestModData( mymod );
+				}
 
-				if( Main.ActivePlayersCount <= 1 ) {
+				if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server
 					this.FinishPlayerDataSync();
+					this.FinishModSettingsSync();
+					this.FinishModDataSync();
 				}
 			}
 		}
@@ -101,6 +96,9 @@ namespace HamstarHelpers {
 		}
 		public void FinishPlayerDataSync() {
 			this.HasSyncedPlayerData = true;
+		}
+		public void FinishModDataSync() {
+			this.HasSyncedModData = true;
 		}
 
 
@@ -143,12 +141,14 @@ namespace HamstarHelpers {
 				this.ControlPanelNewSince = tags.GetString( "cp_new_since" );
 			}
 			if( tags.ContainsKey( "perma_buffs" ) ) {
-				this.PermaBuffsById = new HashSet<int>( tags.GetList<int>( "perma_buffs" ).ToArray() );
+				var perma_buffs = tags.GetList<int>( "perma_buffs" );
+				this.PermaBuffsById = new HashSet<int>( perma_buffs.ToArray() );
 			}
 		}
 
 		public override TagCompound Save() {
 			var perma_buffs = this.PermaBuffsById.ToArray();
+
 			TagCompound tags = new TagCompound {
 				{ "uid", this.UID },
 				{ "cp_new_since", this.ControlPanelNewSince },
@@ -171,10 +171,10 @@ namespace HamstarHelpers {
 
 			if( Main.netMode == 1 ) {   // Client only
 				if( this.player.whoAmI == Main.myPlayer ) { // Current player only
-					modworld.Logic.Update( mymod );
+					modworld.WorldLogic.Update( mymod );
 				}
 			} else if( Main.netMode == 2 ) {    // Server
-				modworld.Logic.IsServerPlaying = true;	// Needed?
+				modworld.WorldLogic.IsServerPlaying = true;	// Needed?
 			}
 
 			foreach( int buff_id in this.PermaBuffsById ) {

@@ -3,9 +3,8 @@ using Terraria;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers {
-	class HamstarHelpersLogic {
-		internal bool HasSyncedModData = false;
+namespace HamstarHelpers.Logic {
+	class WorldLogic {
 		internal int StartupDelay = 0;
 
 		public bool IsClientPlaying = false;
@@ -18,13 +17,16 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public HamstarHelpersLogic( HamstarHelpersMod mymod ) { }
+		public WorldLogic( HamstarHelpersMod mymod ) { }
 		
 		////////////////
 
 		public bool IsLoaded( HamstarHelpersMod mymod ) {
 //DebugHelpers.DebugHelpers.SetDisplay( "load", "HasSyncedModData: "+ this.HasSyncedModData + ", HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", HasSyncedModSettings: "+ myplayer.HasSyncedModSettings+ ", HasSyncedPlayerData: " + myplayer.HasSyncedPlayerData, 30 );
-			if( !this.HasSyncedModData ) { return false; }
+			if( Main.netMode == 1 ) {
+				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+				if( !myplayer.HasSyncedModData ) { return false; }
+			}
 
 			if( !mymod.HasSetupContent ) { return false; }
 
@@ -41,34 +43,37 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public void Load( HamstarHelpersMod mymod, TagCompound tags ) {
+		public void LoadForWorld( HamstarHelpersMod mymod, TagCompound tags ) {
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			if( tags.ContainsKey( "world_id" ) ) {
 				this.HalfDaysElapsed = tags.GetInt( "half_days_elapsed_" + modworld.ObsoleteID );
 			}
-			
-			this.HasSyncedModData = true;
 		}
 
-		public void Save( HamstarHelpersMod mymod, TagCompound tags ) {
+		public void SaveForWorld( HamstarHelpersMod mymod, TagCompound tags ) {
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			tags.Set( "half_days_elapsed_" + modworld.ObsoleteID, (int)this.HalfDaysElapsed );
 		}
 		
 		public void LoadFromNetwork( int half_days ) {
+			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+
 			this.HalfDaysElapsed = half_days;
 
-			this.HasSyncedModData = true;
+			myplayer.FinishModDataSync();
 		}
 
 		
 		////////////////
 		
 		public bool IsPlaying() {
-			if( Main.netMode == 1 && !this.HasSyncedModData ) {  // Client
-				return false;
+			if( Main.netMode == 1 ) {
+				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+				if( !myplayer.HasSyncedModData ) {  // Client
+					return false;
+				}
 			}
 			if( Main.netMode != 2 && !this.IsClientPlaying ) {  // Client or single
 				return false;

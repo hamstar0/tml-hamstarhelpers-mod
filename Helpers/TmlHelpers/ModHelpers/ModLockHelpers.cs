@@ -199,7 +199,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			if( Main.netMode == 2 && !this.MismatchBroadcastMade ) {
 				var modworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
 
-				if( modworld.Logic.IsFullyReady() ) {
+				if( modworld.WorldLogic.IsFullyReady() ) {
 					this.MismatchBroadcastMade = true;
 
 					int eta = this.ExitDuration / 60;

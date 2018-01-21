@@ -1,8 +1,5 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.TmlHelpers;
-using System;
+﻿using HamstarHelpers.TmlHelpers;
 using System.ComponentModel;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 

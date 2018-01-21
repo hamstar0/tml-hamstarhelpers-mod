@@ -1,5 +1,5 @@
 ﻿namespace HamstarHelpers.NetProtocol {
-	public enum NetProtocolTypes : byte {
+	enum NetProtocolTypes : byte {
 		RequestModSettings,
 		SendModSettings,
 
@@ -9,8 +9,9 @@
 		RequestPlayerPermaDeath,
 		SendPlayerPermaDeath,
 
-		UploadPlayerData,
-		SendPlayerData
+		RequestPlayerData,
+		SendPlayerData,
+		UploadPlayerData
 		
 		//SendSetAdmin
 	}

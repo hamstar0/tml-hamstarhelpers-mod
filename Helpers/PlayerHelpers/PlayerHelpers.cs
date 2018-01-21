@@ -155,9 +155,9 @@ namespace HamstarHelpers.PlayerHelpers {
 
 		public static void KillWithPermadeath( Player player, string death_msg ) {
 			if( Main.netMode == 1 ) {
-				ClientPacketHandlers.SendPermaDeathFromClient( HamstarHelpersMod.Instance, death_msg );
+				ClientPacketHandlers.SendPermaDeath( HamstarHelpersMod.Instance, death_msg );
 			} else if( Main.netMode == 2 ) {
-				ServerPacketHandlers.SendPlayerPermaDeathFromServer( HamstarHelpersMod.Instance, -1, -1, player.whoAmI, death_msg );
+				ServerPacketHandlers.SendPlayerPermaDeath( HamstarHelpersMod.Instance, -1, -1, player.whoAmI, death_msg );
 			} else if( Main.netMode == 0 ) {
 				player.difficulty = 2;
 				player.KillMe( PlayerDeathReason.ByCustomReason( death_msg ), 9999, 0 );
