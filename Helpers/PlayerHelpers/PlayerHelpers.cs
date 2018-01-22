@@ -14,6 +14,44 @@ namespace HamstarHelpers.PlayerHelpers {
 
 		////////////////
 
+		public static string GetUniqueId( Player player, out bool has_loaded ) {
+			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+
+			has_loaded = myplayer.Logic.HasUID;
+			return myplayer.Logic.UID;
+		}
+
+
+		public static int GetVanillaSnapshotHash( Player player, bool no_context =false ) {
+			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( player, no_context );
+
+			hash ^= player.statLifeMax.GetHashCode();
+			hash ^= player.statManaMax.GetHashCode();
+
+			for( int i=0; i<player.inventory.Length; i++ ) {
+				Item item = player.inventory[i];
+				if( item == null || !item.active || item.stack == 0 ) {
+					hash ^= i.GetHashCode();
+				} else {
+					int item_hash = ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
+					hash ^= item_hash;
+				}
+			}
+			for( int i=0; i<player.armor.Length; i++ ) {
+				Item item = player.armor[i];
+				if( item == null || !item.active || item.stack == 0 ) {
+					hash ^= i.GetHashCode();
+				} else {
+					int item_hash = ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
+					hash ^= item_hash;
+				}
+			}
+			return hash;
+		}
+
+
+		////////////////
+
 		public static void Evac( Player player ) {
 			player.grappling[0] = -1;
 			player.grapCount = 0;

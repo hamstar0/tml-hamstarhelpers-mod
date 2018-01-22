@@ -5,8 +5,10 @@ using Terraria;
 
 namespace HamstarHelpers.TmlHelpers {
 	public class TmlPlayerHelpers {
+		[System.Obsolete( "use PlayerHelpers.GetUniqueId", true )]
 		public static string GetUniqueId( Player player ) {
-			return player.GetModPlayer<HamstarHelpersPlayer>().UID;
+			bool _;
+			return PlayerHelpers.PlayerHelpers.GetUniqueId( player, out _ );
 		}
 
 		

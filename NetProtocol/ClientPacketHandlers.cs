@@ -90,7 +90,7 @@ namespace HamstarHelpers.NetProtocol {
 
 			packet.Write( (byte)NetProtocolTypes.UploadPlayerData );
 			packet.Write( (int)to_who );
-			myplayer.NetSend( packet );
+			myplayer.Logic.NetSend( packet );
 
 			packet.Send();
 		}
@@ -127,9 +127,9 @@ namespace HamstarHelpers.NetProtocol {
 			Player of_player = Main.player[from_who];
 			var thatplayer = of_player.GetModPlayer<HamstarHelpersPlayer>();
 
-			thatplayer.NetReceive( reader, false );
+			thatplayer.Logic.NetReceive( reader, false );
 
-			thatplayer.FinishPlayerDataSync();
+			thatplayer.Logic.FinishPlayerDataSync();
 		}
 
 		private static void ReceivePlayerPermaDeath( HamstarHelpersMod mymod, BinaryReader reader ) {

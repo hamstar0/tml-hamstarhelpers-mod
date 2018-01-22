@@ -27,6 +27,121 @@ namespace HamstarHelpers.ItemHelpers {
 			return ""+ item.netID;
 		}
 
+
+		public static int GetVanillaSnapshotHash( Item item, bool no_context=false ) {
+			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( item, no_context );
+			
+			hash ^= item.mana.GetHashCode();
+			//hash ^= item.buyOnce.GetHashCode();	//?
+			hash ^= item.manaIncrease.GetHashCode();
+			hash ^= item.lifeRegen.GetHashCode();
+			hash ^= item.notAmmo.GetHashCode();
+			hash ^= item.ammo.GetHashCode();
+			hash ^= item.shootSpeed.GetHashCode();
+			hash ^= item.rare.GetHashCode();
+			if( !no_context ) { hash ^= item.owner.GetHashCode(); }
+			hash ^= item.noUseGraphic.GetHashCode();
+			hash ^= item.useAmmo.GetHashCode();
+			hash ^= item.shieldSlot.GetHashCode();
+			hash ^= item.stringColor.GetHashCode();
+			hash ^= item.balloonSlot.GetHashCode();
+			hash ^= item.faceSlot.GetHashCode();
+			hash ^= item.neckSlot.GetHashCode();
+			hash ^= item.noMelee.GetHashCode();
+			hash ^= item.wingSlot.GetHashCode();
+			hash ^= item.waistSlot.GetHashCode();
+			hash ^= item.shoeSlot.GetHashCode();
+			hash ^= item.frontSlot.GetHashCode();
+			hash ^= item.backSlot.GetHashCode();
+			hash ^= item.handOffSlot.GetHashCode();
+			//hash ^= item.ToolTip.GetHashCode();
+			//hash ^= item.release.GetHashCode();
+			hash ^= item.buffTime.GetHashCode();
+			//hash ^= item.buy.GetHashCode();	//?
+			//hash ^= item.newAndShiny.GetHashCode();	//?
+			hash ^= item.reuseDelay.GetHashCode();
+			hash ^= item.sentry.GetHashCode();
+			hash ^= item.summon.GetHashCode();
+			hash ^= item.thrown.GetHashCode();
+			hash ^= item.ranged.GetHashCode();
+			hash ^= item.magic.GetHashCode();
+			hash ^= item.melee.GetHashCode();
+			hash ^= item.prefix.GetHashCode();
+			hash ^= item.crit.GetHashCode();
+			if( !no_context ) { hash ^= item.netID.GetHashCode(); }
+			hash ^= item.DD2Summon.GetHashCode();
+			hash ^= ( (int)item.shopCustomPrice).GetHashCode();
+			hash ^= item.shopSpecialCurrency.GetHashCode();
+			hash ^= item.uniqueStack.GetHashCode();
+			hash ^= item.cartTrack.GetHashCode();
+			hash ^= item.mountType.GetHashCode();
+			hash ^= item.handOnSlot.GetHashCode();
+			hash ^= item.buffType.GetHashCode();
+			hash ^= item.noWet.GetHashCode();
+			hash ^= item.material.GetHashCode();
+			hash ^= item.vanity.GetHashCode();
+			hash ^= item.social.GetHashCode();
+			hash ^= item.value.GetHashCode();
+			hash ^= item.legSlot.GetHashCode();
+			hash ^= item.shoot.GetHashCode();
+			hash ^= item.headSlot.GetHashCode();
+			hash ^= item.holdStyle.GetHashCode();
+			hash ^= item.favorited.GetHashCode();	//?
+			hash ^= item.type.GetHashCode();
+			//hash ^= item.keepTime.GetHashCode();
+			//hash ^= item.ownTime.GetHashCode();
+			//hash ^= item.ownIgnore.GetHashCode();
+			hash ^= item.instanced.GetHashCode();
+			hash ^= item.paint.GetHashCode();
+			hash ^= item.hairDye.GetHashCode();
+			hash ^= item.expert.GetHashCode();
+			hash ^= item.expertOnly.GetHashCode();
+			hash ^= item.useStyle.GetHashCode();
+			hash ^= item.makeNPC.GetHashCode();
+			hash ^= item.fishingPole.GetHashCode();
+			hash ^= item.dye.GetHashCode();
+			hash ^= item.wornArmor.GetHashCode();
+			hash ^= item.tileWand.GetHashCode();
+			hash ^= item.spawnTime.GetHashCode();
+			hash ^= item.isBeingGrabbed.GetHashCode();
+			hash ^= item.beingGrabbed.GetHashCode();
+			hash ^= item.noGrabDelay.GetHashCode();
+			hash ^= item.bodySlot.GetHashCode();
+			hash ^= item.flame.GetHashCode();
+			hash ^= item.questItem.GetHashCode();
+			hash ^= item.bait.GetHashCode();
+			hash ^= item.channel.GetHashCode();
+			hash ^= item.mech.GetHashCode();
+			hash ^= item.useAnimation.GetHashCode();
+			hash ^= item.defense.GetHashCode();
+			//hash ^= item.UseSound.GetHashCode();
+			hash ^= item.scale.GetHashCode();
+			hash ^= item.glowMask.GetHashCode();
+			hash ^= item.alpha.GetHashCode();
+			hash ^= item.color.GetHashCode();
+			hash ^= item.useTurn.GetHashCode();
+			hash ^= item.autoReuse.GetHashCode();
+			hash ^= item.consumable.GetHashCode();
+			hash ^= item.potion.GetHashCode();
+			hash ^= item.healMana.GetHashCode();
+			hash ^= item.knockBack.GetHashCode();
+			hash ^= item.healLife.GetHashCode();
+			hash ^= item.placeStyle.GetHashCode();
+			hash ^= item.createWall.GetHashCode();
+			hash ^= item.createTile.GetHashCode();
+			hash ^= item.tileBoost.GetHashCode();
+			hash ^= item.hammer.GetHashCode();
+			hash ^= item.axe.GetHashCode();
+			hash ^= item.pick.GetHashCode();
+			hash ^= item.maxStack.GetHashCode();
+			hash ^= item.stack.GetHashCode();
+			hash ^= item.useTime.GetHashCode();
+			hash ^= item.damage.GetHashCode();
+			hash ^= item.accessory.GetHashCode();
+			return hash;
+		}
+
+
 		////////////////
 
 		public static int CreateItem( Vector2 pos, int type, int stack, int width, int height, int prefix = 0 ) {

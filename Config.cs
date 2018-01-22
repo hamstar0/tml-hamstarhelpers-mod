@@ -2,6 +2,7 @@
 using System;
 using Terraria;
 
+
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
 		public static Version ConfigVersion { get { return new Version(1, 2, 8); } }
@@ -48,7 +49,7 @@ namespace HamstarHelpers {
 
 			mymod.JsonConfig.DeserializeMe( json );
 
-			myplayer.FinishModSettingsSync();
+			myplayer.Logic.FinishModSettingsSync();
 		}
 	}
 }

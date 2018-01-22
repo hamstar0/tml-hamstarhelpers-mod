@@ -89,7 +89,7 @@ namespace HamstarHelpers.NetProtocol {
 
 			packet.Write( (byte)NetProtocolTypes.SendPlayerData );
 			packet.Write( (int)data_who_specific );
-			myplayer.NetSend( packet, false );
+			myplayer.Logic.NetSend( packet, false );
 
 			packet.Send( to_who, ignore_who );
 		}
@@ -160,7 +160,7 @@ namespace HamstarHelpers.NetProtocol {
 			int to_who = reader.ReadInt32();
 			int ignore_who = to_who == -1 ? player_who : -1;
 
-			myplayer.NetReceive( reader );
+			myplayer.Logic.NetReceive( reader );
 			
 			ServerPacketHandlers.SendPlayerData( mymod, to_who, ignore_who, player_who );
 		}

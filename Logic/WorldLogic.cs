@@ -23,11 +23,6 @@ namespace HamstarHelpers.Logic {
 
 		public bool IsLoaded( HamstarHelpersMod mymod ) {
 //DebugHelpers.DebugHelpers.SetDisplay( "load", "HasSyncedModData: "+ this.HasSyncedModData + ", HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", HasSyncedModSettings: "+ myplayer.HasSyncedModSettings+ ", HasSyncedPlayerData: " + myplayer.HasSyncedPlayerData, 30 );
-			if( Main.netMode == 1 ) {
-				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-				if( !myplayer.HasSyncedModData ) { return false; }
-			}
-
 			if( !mymod.HasSetupContent ) { return false; }
 
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
@@ -35,7 +30,7 @@ namespace HamstarHelpers.Logic {
 
 			if( Main.netMode == 0 || Main.netMode == 1 ) {
 				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-				return myplayer.HasSyncedModSettings && myplayer.HasSyncedPlayerData;
+				return myplayer.Logic.IsSynced();
 			}
 
 			return true;
@@ -62,7 +57,7 @@ namespace HamstarHelpers.Logic {
 
 			this.HalfDaysElapsed = half_days;
 
-			myplayer.FinishModDataSync();
+			myplayer.Logic.FinishModDataSync();
 		}
 
 		
@@ -71,7 +66,7 @@ namespace HamstarHelpers.Logic {
 		public bool IsPlaying() {
 			if( Main.netMode == 1 ) {
 				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-				if( !myplayer.HasSyncedModData ) {  // Client
+				if( !myplayer.Logic.HasSyncedModData ) {  // Client
 					return false;
 				}
 			}

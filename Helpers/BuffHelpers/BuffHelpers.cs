@@ -14,13 +14,13 @@ namespace HamstarHelpers.BuffHelpers {
 
 		public static void AddPermaBuff( Player player, int buff_id ) {
 			var modplayer = player.GetModPlayer<HamstarHelpersPlayer>();
-			modplayer.PermaBuffsById.Add( buff_id );
+			modplayer.Logic.PermaBuffsById.Add( buff_id );
 		}
 
 		public static void RemovePermaBuff( Player player, int buff_id ) {
 			var modplayer = player.GetModPlayer<HamstarHelpersPlayer>();
-			if( modplayer.PermaBuffsById.Contains(buff_id) ) {
-				modplayer.PermaBuffsById.Remove( buff_id );
+			if( modplayer.Logic.PermaBuffsById.Contains(buff_id) ) {
+				modplayer.Logic.PermaBuffsById.Remove( buff_id );
 			}
 		}
 
