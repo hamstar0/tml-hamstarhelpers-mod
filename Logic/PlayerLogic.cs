@@ -154,7 +154,7 @@ namespace HamstarHelpers.Logic {
 
 		public void Update( HamstarHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
-				PlayerMessage.UpdatePlayerLabels();
+				mymod.PlayerMessages.UpdatePlayerLabels();
 				SimpleMessage.UpdateMessage();
 			}
 			

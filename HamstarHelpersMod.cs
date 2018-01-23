@@ -55,7 +55,8 @@ namespace HamstarHelpers {
 		//internal UserHelpers.UserHelpers UserHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
 		internal AnimatedColorsManager AnimatedColors;
-
+		internal PlayerMessages PlayerMessages;
+		
 		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
 
@@ -109,6 +110,7 @@ namespace HamstarHelpers {
 			this.ControlPanel = new ControlPanel.ControlPanelUI();
 			//this.UserHelpers = new UserHelpers.UserHelpers();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
+			this.PlayerMessages = new PlayerMessages();
 
 			AltNPCInfo.DataInitialize();
 			AltProjectileInfo.DataInitialize();
@@ -216,7 +218,7 @@ namespace HamstarHelpers {
 			GameInterfaceDrawMethod debug_layer_draw = delegate {
 				var sb = Main.spriteBatch;
 
-				PlayerMessage.DrawPlayerLabels( sb );
+				this.PlayerMessages.DrawPlayerLabels( sb );
 				SimpleMessage.DrawMessage( sb );
 
 				DebugHelpers.DebugHelpers.PrintToBatch( sb );
