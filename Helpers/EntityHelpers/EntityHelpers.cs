@@ -5,23 +5,23 @@ using Terraria;
 namespace HamstarHelpers.EntityHelpers {
 	public static class EntityHelpers {
 		public static int GetVanillaSnapshotHash( Entity ent, bool no_context=false ) {
-			int hash = ent.active.GetHashCode();
+			int hash = ("active"+ent.active).GetHashCode();
 
 			if( !no_context ) {
-				hash ^= ent.position.GetHashCode();
-				hash ^= ent.velocity.GetHashCode();
-				hash ^= ent.oldPosition.GetHashCode();
-				hash ^= ent.oldVelocity.GetHashCode();
-				hash ^= ent.oldDirection.GetHashCode();
-				hash ^= ent.direction.GetHashCode();
-				hash ^= ent.whoAmI.GetHashCode();
-				hash ^= ent.wet.GetHashCode();
-				hash ^= ent.honeyWet.GetHashCode();
-				hash ^= ent.wetCount.GetHashCode();
-				hash ^= ent.lavaWet.GetHashCode();
+				//hash ^= ("position"+ent.position).GetHashCode();
+				//hash ^= ("velocity"+ent.velocity).GetHashCode();
+				//hash ^= ("oldPosition"+ent.oldPosition).GetHashCode();
+				//hash ^= ("oldVelocity"+ent.oldVelocity).GetHashCode();
+				//hash ^= ("oldDirection"+ent.oldDirection).GetHashCode();
+				//hash ^= ("direction"+ent.direction).GetHashCode();
+				hash ^= ("whoAmI"+ent.whoAmI).GetHashCode();
+				//hash ^= ("wet"+ent.wet).GetHashCode();
+				//hash ^= ("honeyWet"+ent.honeyWet).GetHashCode();
+				//hash ^= ("wetCount"+ent.wetCount).GetHashCode();
+				//hash ^= ("lavaWet"+ent.lavaWet).GetHashCode();
 			}
-			hash ^= ent.width.GetHashCode();
-			hash ^= ent.height.GetHashCode();
+			hash ^= ("width"+ent.width).GetHashCode();
+			hash ^= ("height"+ent.height).GetHashCode();
 			
 			return hash;
 		}

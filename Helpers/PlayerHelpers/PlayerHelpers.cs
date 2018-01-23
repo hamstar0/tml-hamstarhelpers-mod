@@ -22,27 +22,73 @@ namespace HamstarHelpers.PlayerHelpers {
 		}
 
 
-		public static int GetVanillaSnapshotHash( Player player, bool no_context =false ) {
+		public static int GetVanillaSnapshotHash( Player player, bool no_context=false, bool looks_matter=false ) {
 			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( player, no_context );
 
-			hash ^= player.statLifeMax.GetHashCode();
-			hash ^= player.statManaMax.GetHashCode();
+			hash ^= ("statLifeMax"+player.statLifeMax).GetHashCode();
+			hash ^= ("statManaMax"+player.statManaMax).GetHashCode();
+			hash ^= ("extraAccessory"+player.extraAccessory).GetHashCode();
+			hash ^= ("difficulty"+player.difficulty).GetHashCode();
+
+			if( !no_context ) {
+				hash ^= ("team"+player.team).GetHashCode();
+				hash ^= ("hostile"+player.hostile).GetHashCode();	//pvp?
+				hash ^= ("name"+player.name).GetHashCode();
+			}
+
+			if( looks_matter ) {
+				hash ^= ("Male"+player.Male).GetHashCode();
+				hash ^= ("skinColor"+player.skinColor).GetHashCode();
+				hash ^= ("hair"+player.hair).GetHashCode();
+				hash ^= ("hairColor"+player.hairColor).GetHashCode();
+				hash ^= ("shirtColor"+player.shirtColor).GetHashCode();
+				hash ^= ("underShirtColor"+player.underShirtColor).GetHashCode();
+				hash ^= ("pantsColor"+player.pantsColor).GetHashCode();
+				hash ^= ("shoeColor"+player.shoeColor).GetHashCode();
+			}
 
 			for( int i=0; i<player.inventory.Length; i++ ) {
 				Item item = player.inventory[i];
 				if( item == null || !item.active || item.stack == 0 ) {
-					hash ^= i.GetHashCode();
+					hash ^= ("inv"+i).GetHashCode();
 				} else {
-					int item_hash = ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
+					int item_hash = i + ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
 					hash ^= item_hash;
 				}
 			}
 			for( int i=0; i<player.armor.Length; i++ ) {
 				Item item = player.armor[i];
 				if( item == null || !item.active || item.stack == 0 ) {
-					hash ^= i.GetHashCode();
+					hash ^= ("arm"+i).GetHashCode();
 				} else {
-					int item_hash = ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
+					int item_hash = i + ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
+					hash ^= item_hash;
+				}
+			}
+			for( int i=0; i<player.bank.item.Length; i++ ) {
+				Item item = player.bank.item[i];
+				if( item == null || !item.active || item.stack == 0 ) {
+					hash ^= ("bank"+i).GetHashCode();
+				} else {
+					int item_hash = i + ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
+					hash ^= item_hash;
+				}
+			}
+			for( int i=0; i<player.bank2.item.Length; i++ ) {
+				Item item = player.bank2.item[i];
+				if( item == null || !item.active || item.stack == 0 ) {
+					hash ^= ("bank2"+i).GetHashCode();
+				} else {
+					int item_hash = i + ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
+					hash ^= item_hash;
+				}
+			}
+			for( int i=0; i<player.bank3.item.Length; i++ ) {
+				Item item = player.bank3.item[i];
+				if( item == null || !item.active || item.stack == 0 ) {
+					hash ^= ("bank3"+i).GetHashCode();
+				} else {
+					int item_hash = i + ItemHelpers.ItemHelpers.GetVanillaSnapshotHash( item );
 					hash ^= item_hash;
 				}
 			}
