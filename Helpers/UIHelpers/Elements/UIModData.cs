@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;

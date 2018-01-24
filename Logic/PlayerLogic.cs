@@ -23,7 +23,6 @@ namespace HamstarHelpers.Logic {
 		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
 
 		public bool HasSyncedModSettings { get; private set; }
-		public bool HasSyncedPlayerData { get; private set; }
 		public bool HasSyncedModData { get; private set; }
 
 
@@ -34,7 +33,6 @@ namespace HamstarHelpers.Logic {
 			this.UID = Guid.NewGuid().ToString( "D" );
 			this.HasUID = false;
 			this.HasSyncedModSettings = false;
-			this.HasSyncedPlayerData = false;
 			this.HasSyncedModData = false;
 			this.PermaBuffsById = new HashSet<int>();
 		}
@@ -69,7 +67,6 @@ namespace HamstarHelpers.Logic {
 			}
 
 			if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server
-				this.FinishPlayerDataSync();
 				this.FinishModSettingsSync();
 				this.FinishModDataSync();
 			}
@@ -78,14 +75,11 @@ namespace HamstarHelpers.Logic {
 		////////////////
 
 		public bool IsSynced() {
-			return this.HasSyncedModSettings && this.HasSyncedPlayerData && this.HasSyncedModData;
+			return this.HasSyncedModSettings && this.HasSyncedModData;
 		}
 
 		public void FinishModSettingsSync() {
 			this.HasSyncedModSettings = true;
-		}
-		public void FinishPlayerDataSync() {
-			this.HasSyncedPlayerData = true;
 		}
 		public void FinishModDataSync() {
 			this.HasSyncedModData = true;

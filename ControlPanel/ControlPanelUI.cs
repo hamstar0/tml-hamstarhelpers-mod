@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.UIHelpers;
 using HamstarHelpers.UIHelpers.Elements;
@@ -66,10 +67,10 @@ namespace HamstarHelpers.ControlPanel {
 			base.OnActivate();
 
 			this.RefreshApplyConfigButton();
-
+			
 			if( this.ModDataList.Count == 0 && !this.IsPopulatingList ) {
 				this.IsPopulatingList = true;
-
+				
 				Task.Run( () => {
 					this.LoadModList();
 					this.IsPopulatingList = false;
@@ -86,7 +87,7 @@ namespace HamstarHelpers.ControlPanel {
 			foreach( var mod in ModHelpers.GetAllMods() ) {
 				this.ModDataList.Add( this.CreateModListItem( i++, mod ) );
 			}
-
+			
 			this.ModListUpdateRequired = true;
 		}
 

@@ -112,13 +112,13 @@ namespace HamstarHelpers.NetProtocol {
 		// Server Receivers
 		////////////////
 
-		private static void ReceiveRequestModSettings( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+		private static void ReceiveRequestModSettings( HamstarHelpersMod mymod, BinaryReader reader, int packet_src_who ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
-			ServerPacketHandlers.SendModSettings( mymod, player_who, -1 );
+			ServerPacketHandlers.SendModSettings( mymod, packet_src_who, -1 );
 		}
 		
-		private static void ReceiveRequestPlayerData( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+		private static void ReceiveRequestPlayerData( HamstarHelpersMod mymod, BinaryReader reader, int packet_src_who ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
 			int from_who = reader.ReadInt32();
@@ -126,43 +126,46 @@ namespace HamstarHelpers.NetProtocol {
 			if( from_who == -1 ) {
 				for( int i = 0; i < Main.player.Length; i++ ) {
 					Player from_plr = Main.player[i];
-					if( from_plr == null || !from_plr.active || player_who == i ) { continue; }
+					if( from_plr == null || !from_plr.active || packet_src_who == i ) { continue; }
 
-					ServerPacketHandlers.SendPlayerData( mymod, player_who, player_who, i );
+					ServerPacketHandlers.SendPlayerData( mymod, packet_src_who, -1, i );
 				}
+
+				// If only 1 player is on the server, this bogus packet lets a return signal confirm data request received
+				ServerPacketHandlers.SendPlayerData( mymod, packet_src_who, -1, 255 );
 			} else {
-				ServerPacketHandlers.SendPlayerData( mymod, player_who, player_who, from_who );
+				ServerPacketHandlers.SendPlayerData( mymod, packet_src_who, -1, from_who );
 			}
 		}
 
-		private static void ReceiveRequestModData( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+		private static void ReceiveRequestModData( HamstarHelpersMod mymod, BinaryReader reader, int packet_src_who ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 			
-			ServerPacketHandlers.SendModData( mymod, player_who, -1 );
+			ServerPacketHandlers.SendModData( mymod, packet_src_who, -1 );
 		}
 
-		private static void ReceivePlayerPermaDeath( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+		private static void ReceivePlayerPermaDeath( HamstarHelpersMod mymod, BinaryReader reader, int packet_src_who ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
 			string msg = reader.ReadString();
 
-			Main.player[player_who].difficulty = 2;
+			Main.player[packet_src_who].difficulty = 2;
 
-			ServerPacketHandlers.SendPlayerPermaDeath( mymod, -1, -1, player_who, msg );
+			ServerPacketHandlers.SendPlayerPermaDeath( mymod, -1, -1, packet_src_who, msg );
 		}
 		
-		private static void ReceivePlayerData( HamstarHelpersMod mymod, BinaryReader reader, int player_who ) {
+		private static void ReceivePlayerData( HamstarHelpersMod mymod, BinaryReader reader, int packet_src_who ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Server only" ); }
 
-			Player player = Main.player[ player_who ];
+			Player player = Main.player[ packet_src_who ];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
 			int to_who = reader.ReadInt32();
-			int ignore_who = to_who == -1 ? player_who : -1;
+			int ignore_who = to_who == -1 ? packet_src_who : -1;
 
 			myplayer.Logic.NetReceive( reader );
 			
-			ServerPacketHandlers.SendPlayerData( mymod, to_who, ignore_who, player_who );
+			ServerPacketHandlers.SendPlayerData( mymod, to_who, ignore_who, packet_src_who );
 		}
 	}
 }

@@ -124,12 +124,11 @@ namespace HamstarHelpers.NetProtocol {
 			if( Main.netMode != 1 ) { throw new Exception( "Client only" ); }
 
 			int from_who = reader.ReadInt32();
+
 			Player of_player = Main.player[from_who];
 			var thatplayer = of_player.GetModPlayer<HamstarHelpersPlayer>();
-
+			
 			thatplayer.Logic.NetReceive( reader, false );
-
-			thatplayer.Logic.FinishPlayerDataSync();
 		}
 
 		private static void ReceivePlayerPermaDeath( HamstarHelpersMod mymod, BinaryReader reader ) {

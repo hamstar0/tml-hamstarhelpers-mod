@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.DebugHelpers;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria.ModLoader;
 
 
@@ -22,7 +24,6 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 				if( mod_set.Contains( mod.Name ) || mod.File == null ) { continue; }
 				mods.AddLast( mod );
 			}
-
 			return mods;
 		}
 	}

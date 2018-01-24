@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Utilities.Config;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Utilities.Config;
 using System;
 using Terraria;
 
