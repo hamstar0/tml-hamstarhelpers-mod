@@ -9,8 +9,7 @@ namespace HamstarHelpers {
 	class HamstarHelpersPlayer : ModPlayer {
 		public PlayerLogic Logic;
 
-
-
+		
 		////////////////
 		
 		public override void Initialize() {

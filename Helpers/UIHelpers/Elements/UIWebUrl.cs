@@ -5,7 +5,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-
+using HamstarHelpers.Helpers.DotNetHelpers;
 
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIWebUrl : UIElement {
@@ -64,7 +64,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 			this.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 				try {
-					System.Diagnostics.Process.Start( this.Url );
+					SystemHelpers.OpenUrl( this.Url );
+					//System.Diagnostics.Process.Start( this.Url );
 
 					text_elem.TextColor = UIWebUrl.DefaultVisitColor;
 					line_elem.TextColor = UIWebUrl.DefaultVisitColor;

@@ -4,7 +4,7 @@ using Terraria;
 
 namespace HamstarHelpers.EntityHelpers {
 	public static class EntityHelpers {
-		public static int GetVanillaSnapshotHash( Entity ent, bool no_context=false ) {
+		public static int GetVanillaSnapshotHash( Entity ent, bool no_context ) {
 			int hash = ("active"+ent.active).GetHashCode();
 
 			if( !no_context ) {

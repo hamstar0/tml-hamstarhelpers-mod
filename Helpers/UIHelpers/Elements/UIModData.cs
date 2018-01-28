@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Web;
 using Microsoft.Xna.Framework;

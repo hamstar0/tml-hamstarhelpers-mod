@@ -24,16 +24,16 @@ namespace HamstarHelpers.Utilities.Web {
 			request.Method = "GET";
 			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
 
-			WebResponse resp = request.GetResponse();
-			string resp_data;
-
-			using( Stream resp_data_stream = resp.GetResponseStream() ) {
-				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
-				resp_data = stream_read.ReadToEnd();
-				resp_data_stream.Close();
-			}
-			
 			try {
+				WebResponse resp = request.GetResponse();
+				string resp_data;
+
+				using( Stream resp_data_stream = resp.GetResponseStream() ) {
+					var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
+					resp_data = stream_read.ReadToEnd();
+					resp_data_stream.Close();
+				}
+				
 				JArray resp_json = JArray.Parse( resp_data );
 				if( resp_json.Count == 0 ) {
 					return mod.Version;

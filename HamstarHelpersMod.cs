@@ -2,6 +2,7 @@
 using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
@@ -46,6 +47,9 @@ namespace HamstarHelpers {
 		internal TmlHelpers.ModMetaDataManager ModMetaDataManager;
 		internal BuffHelpers.BuffHelpers BuffHelpers;
 		internal ItemHelpers.ItemIdentityHelpers ItemIdentityHelpers;
+		internal NPCHelpers.NPCIdentityHelpers NPCIdentityHelpers;
+		internal ProjectileHelpers.ProjectileIdentityHelpers ProjectileIdentityHelpers;
+		internal BuffHelpers.BuffIdentityHelpers BuffIdentityHelpers;
 		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
 		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
@@ -59,6 +63,7 @@ namespace HamstarHelpers {
 		public bool HasSetupContent { get; private set; }
 
 		public ModHotKey ControlPanelHotkey = null;
+
 		public ControlPanelUI ControlPanel = null;
 		 private int LastSeenScreenWidth = -1;
 		 private int LastSeenScreenHeight = -1;
@@ -101,6 +106,9 @@ namespace HamstarHelpers {
 			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();
 			this.BuffHelpers = new BuffHelpers.BuffHelpers();
 			this.ItemIdentityHelpers = new ItemHelpers.ItemIdentityHelpers();
+			this.NPCIdentityHelpers = new NPCHelpers.NPCIdentityHelpers();
+			this.ProjectileIdentityHelpers = new ProjectileHelpers.ProjectileIdentityHelpers();
+			this.BuffIdentityHelpers = new BuffHelpers.BuffIdentityHelpers();
 			this.NPCBannerHelpers = new NPCHelpers.NPCBannerHelpers();
 			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
@@ -140,6 +148,9 @@ namespace HamstarHelpers {
 		public override void PostSetupContent() {
 			this.BuffHelpers.OnPostSetupContent();
 			this.ItemIdentityHelpers.OnPostSetupContent();
+			this.NPCIdentityHelpers.OnPostSetupContent();
+			this.ProjectileIdentityHelpers.OnPostSetupContent();
+			this.BuffIdentityHelpers.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
@@ -216,7 +227,7 @@ namespace HamstarHelpers {
 			GameInterfaceDrawMethod debug_layer_draw = delegate {
 				var sb = Main.spriteBatch;
 
-				this.PlayerMessages.DrawPlayerLabels( sb );
+				this.PlayerMessages.Draw( sb );
 				SimpleMessage.DrawMessage( sb );
 
 				DebugHelpers.DebugHelpers.PrintToBatch( sb );

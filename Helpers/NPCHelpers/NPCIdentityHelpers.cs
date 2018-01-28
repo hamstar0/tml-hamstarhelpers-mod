@@ -1,11 +1,13 @@
 ﻿using HamstarHelpers.DotNetHelpers.DataStructures;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.NPCHelpers {
-	public static class NPCIdentityHelpers {
+	public class NPCIdentityHelpers {
 		public static string GetUniqueId( NPC npc ) {
 			string id = npc.TypeName;
 
@@ -15,15 +17,12 @@ namespace HamstarHelpers.NPCHelpers {
 			if( id != "" ) { return id; }
 			return "" + npc.type;
 		}
+		
+		// TODO: GetVanillaSnapshotHash
 
-
-		[System.Obsolete( "use NPCHelpers.LooselyAssessThreat", true )]
-		public static float LooselyAssessThreat( NPC npc ) {
-			return NPCHelpers.LooselyAssessThreat( npc );
-		}
 
 		////////////////
-		
+
 		public static readonly ReadOnlySet<int> VanillaBloodMoonTypes;
 		public static readonly ReadOnlySet<int> VanillaGoblinArmyTypes;
 		public static readonly ReadOnlySet<int> VanillaFrostLegionTypes;
@@ -119,6 +118,40 @@ namespace HamstarHelpers.NPCHelpers {
 			NPCIdentityHelpers.VanillaNebulaPillarTypes = new ReadOnlySet<int>( nebula_pillar );
 			NPCIdentityHelpers.VanillaVortexPillarTypes = new ReadOnlySet<int>( vortex_pillar );
 			NPCIdentityHelpers.VanillaStardustPillarTypes = new ReadOnlySet<int>( stardust_pillar );
+		}
+
+
+		////////////////
+
+		public static IReadOnlyDictionary<string, int> NamesToIds {
+			get { return HamstarHelpersMod.Instance.NPCIdentityHelpers._NamesToIds; }
+		}
+
+
+
+		////////////////
+
+		private IDictionary<string, int> __namesToIds = new Dictionary<string, int>();
+		private IReadOnlyDictionary<string, int> _NamesToIds = null;
+
+
+		////////////////
+
+		internal void OnPostSetupContent() {
+			for( int i = 1; i < NPCLoader.NPCCount; i++ ) {
+				string name = Lang.GetNPCNameValue( i );
+				this.__namesToIds[name] = i;
+			}
+
+			this._NamesToIds = new ReadOnlyDictionary<string, int>( this.__namesToIds );
+		}
+
+
+		////////////////
+
+		[System.Obsolete( "use NPCHelpers.LooselyAssessThreat", true )]
+		public static float LooselyAssessThreat( NPC npc ) {
+			return NPCHelpers.LooselyAssessThreat( npc );
 		}
 	}
 }

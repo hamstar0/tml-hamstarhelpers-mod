@@ -37,8 +37,8 @@ namespace HamstarHelpers.Utilities.Web {
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "In-game: " + issue_title;
 			string body = body_info;
-			body += "\n \n \n \n" + "Recent error logs: ```\n" + body_errors + "\n```";
-			body += "\n \n \n \n`" + issue_body + '`';
+			body += "\n \n \n \n" + "Recent error logs:\n```\n" + body_errors + "\n```";
+			body += "\n \n" + issue_body;
 
 			var json = new ModIssueReportData {
 				githubuser = ModMetaDataManager.GetGithubUserName( mod ),
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Utilities.Web {
 			/*if( data != null ) {
 				string post_at_url = data.ToObject<string>();
 				if( !string.IsNullOrEmpty( post_at_url ) ) {
-					System.Diagnostics.Process.Start( post_at_url );
+					SystemHelpers.Start( post_at_url );
 				}
 			}*/
 

@@ -49,7 +49,7 @@ namespace HamstarHelpers.Utilities.Messages {
 
 		////////////////
 
-		internal void UpdatePlayerLabels() {   // Called from an Update function
+		internal void Update() {   // Called from an Update function
 			foreach( var kv in this.PlayerTexts.ToArray() ) {
 				int who = kv.Key;
 				IList<PlayerLabelText> list = kv.Value;
@@ -72,7 +72,7 @@ namespace HamstarHelpers.Utilities.Messages {
 			}
 		}
 
-		internal void DrawPlayerLabels( SpriteBatch sb ) { // Called from a Draw function
+		internal void Draw( SpriteBatch sb ) { // Called from a Draw function
 			foreach( var kv in this.PlayerTexts ) {
 				int who = kv.Key;
 				IList<PlayerLabelText> list = kv.Value;

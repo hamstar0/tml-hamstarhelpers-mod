@@ -1,15 +1,11 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.UIHelpers;
 using HamstarHelpers.UIHelpers.Elements;
-using HamstarHelpers.Utilities.Web;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
