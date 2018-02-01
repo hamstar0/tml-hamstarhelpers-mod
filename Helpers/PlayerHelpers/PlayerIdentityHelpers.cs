@@ -52,7 +52,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || !item.active || item.stack == 0 ) {
 					item_hash = ( "inv" + i ).GetHashCode();
 				} else {
-					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context );
+					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context, true );
 				}
 				hash ^= item_hash;
 			}
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || !item.active || item.stack == 0 ) {
 					item_hash = ( "arm" + i ).GetHashCode();
 				} else {
-					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context );
+					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context, true );
 				}
 				hash ^= item_hash;
 			}
@@ -70,7 +70,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || !item.active || item.stack == 0 ) {
 					item_hash = ( "bank" + i ).GetHashCode();
 				} else {
-					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context );
+					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context, true );
 				}
 				hash ^= item_hash;
 			}
@@ -79,7 +79,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || !item.active || item.stack == 0 ) {
 					item_hash = ( "bank2" + i ).GetHashCode();
 				} else {
-					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context );
+					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context, true );
 				}
 				hash ^= item_hash;
 			}
@@ -88,7 +88,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || !item.active || item.stack == 0 ) {
 					item_hash = ( "bank3" + i ).GetHashCode();
 				} else {
-					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context );
+					item_hash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, no_context, true );
 				}
 				hash ^= item_hash;
 			}

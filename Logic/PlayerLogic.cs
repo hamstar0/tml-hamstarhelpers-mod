@@ -2,7 +2,6 @@
 using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
@@ -28,22 +27,12 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 
-		public PlayerLogic() {
-			this.PrivateUID = Guid.NewGuid().ToString( "D" );
-			this.HasUID = false;
-			this.HasSyncedModSettings = false;
-			this.HasSyncedModData = false;
-			this.PermaBuffsById = new HashSet<int>();
-		}
-
-		////////////////
-		
 		public void SendClientChanges( HamstarHelpersMod mymod, ModPlayer client_player ) {
 			var myclient = (HamstarHelpersPlayer)client_player;
 			var logic = myclient.Logic;
-			bool uid_mismatch = Main.netMode == 2 && !logic.PrivateUID.Equals( this.PrivateUID );
+			bool uid_changed = this.HasUID != logic.HasUID || this.PrivateUID != logic.PrivateUID;
 			
-			if( uid_mismatch || !logic.PermaBuffsById.SetEquals( this.PermaBuffsById ) ) {
+			if( !logic.PermaBuffsById.SetEquals( this.PermaBuffsById ) || uid_changed ) {
 				ClientPacketHandlers.SendPlayerData( mymod, -1 );
 			}
 		}

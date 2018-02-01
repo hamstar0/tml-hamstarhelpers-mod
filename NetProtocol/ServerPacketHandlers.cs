@@ -163,7 +163,7 @@ namespace HamstarHelpers.NetProtocol {
 			int to_who = reader.ReadInt32();
 			int ignore_who = to_who == -1 ? packet_src_who : -1;
 
-			myplayer.Logic.NetReceive( reader );
+			myplayer.Logic.NetReceive( reader, true );
 			
 			ServerPacketHandlers.SendPlayerData( mymod, to_who, ignore_who, packet_src_who );
 		}

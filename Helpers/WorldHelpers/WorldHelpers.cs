@@ -41,6 +41,12 @@ namespace HamstarHelpers.WorldHelpers {
 
 
 	public class WorldHelpers {
+		public readonly static int VanillaDayDuration = 54000;
+		public readonly static int VanillaNightDuration = 32400;
+
+
+		////////////////
+
 		internal IDictionary<string, Action> DayHooks = new Dictionary<string, Action>();
 		internal IDictionary<string, Action> NightHooks = new Dictionary<string, Action>();
 
@@ -84,9 +90,9 @@ namespace HamstarHelpers.WorldHelpers {
 
 		public static double GetDayOrNightPercentDone() {
 			if( Main.dayTime ) {
-				return Main.time / 54000d;
+				return Main.time / (double)WorldHelpers.VanillaDayDuration;
 			} else {
-				return Main.time / 32400d;
+				return Main.time / (double)WorldHelpers.VanillaNightDuration;
 			}
 		}
 

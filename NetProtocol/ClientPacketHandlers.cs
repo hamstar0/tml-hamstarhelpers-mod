@@ -36,7 +36,7 @@ namespace HamstarHelpers.NetProtocol {
 
 
 		////////////////
-		// Client Senders
+		// Senders
 		////////////////
 
 		public static void SendRequestModSettings( HamstarHelpersMod mymod ) {
@@ -90,7 +90,7 @@ namespace HamstarHelpers.NetProtocol {
 
 			packet.Write( (byte)NetProtocolTypes.UploadPlayerData );
 			packet.Write( (int)to_who );
-			myplayer.Logic.NetSend( packet );
+			myplayer.Logic.NetSend( packet, true );
 
 			packet.Send();
 		}
@@ -98,7 +98,7 @@ namespace HamstarHelpers.NetProtocol {
 
 
 		////////////////
-		// Client Receivers
+		// Receivers
 		////////////////
 
 		private static void ReceiveModSettings( HamstarHelpersMod mymod, BinaryReader reader ) {

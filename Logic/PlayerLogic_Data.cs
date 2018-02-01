@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria.ModLoader.IO;
@@ -6,8 +7,20 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers.Logic {
 	partial class PlayerLogic {
-		public void NetSend( BinaryWriter writer, bool include_uid = true ) {
+		public PlayerLogic() {
+			this.PrivateUID = Guid.NewGuid().ToString( "D" );
+			this.HasUID = false;
+			this.HasSyncedModSettings = false;
+			this.HasSyncedModData = false;
+			this.PermaBuffsById = new HashSet<int>();
+		}
+
+
+		////////////////
+		
+		public void NetSend( BinaryWriter writer, bool include_uid ) {
 			if( include_uid ) {
+				writer.Write( (bool)this.HasUID );
 				writer.Write( (string)this.PrivateUID );
 			}
 
@@ -18,11 +31,17 @@ namespace HamstarHelpers.Logic {
 			}
 		}
 
-		public void NetReceive( BinaryReader reader, bool include_uid = true ) {
+		public void NetReceive( BinaryReader reader, bool include_uid ) {
 			this.PermaBuffsById = new HashSet<int>();
 
 			if( include_uid ) {
-				this.PrivateUID = reader.ReadString();
+				bool has = reader.ReadBoolean();
+				string uid = reader.ReadString();
+
+				if( has ) {
+					this.HasUID = has;
+					this.PrivateUID = uid;
+				}
 			}
 
 			int perma_buff_id_count = reader.ReadInt32();
