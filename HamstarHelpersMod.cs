@@ -1,11 +1,10 @@
 ﻿using HamstarHelpers.ControlPanel;
-using HamstarHelpers.NetProtocol;
 using HamstarHelpers.NPCHelpers;
 using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
+using HamstarHelpers.Utilities.Network;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -42,6 +41,8 @@ namespace HamstarHelpers {
 
 		internal JsonConfig<HamstarHelpersConfigData> JsonConfig;
 		public HamstarHelpersConfigData Config { get { return JsonConfig.Data; } }
+
+		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
 
 		internal DebugHelpers.LogHelpers LogHelpers;
 		internal TmlHelpers.ModMetaDataManager ModMetaDataManager;
@@ -146,6 +147,8 @@ namespace HamstarHelpers {
 		}
 
 		public override void PostSetupContent() {
+			this.PacketProtocols = PacketProtocol.GetProtocols();
+
 			this.BuffHelpers.OnPostSetupContent();
 			this.ItemIdentityHelpers.OnPostSetupContent();
 			this.NPCIdentityHelpers.OnPostSetupContent();
@@ -175,11 +178,7 @@ namespace HamstarHelpers {
 
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
 			try {
-				if( Main.netMode == 1 ) {
-					ClientPacketHandlers.RoutePacket( this, reader );
-				} else if( Main.netMode == 2 ) {
-					ServerPacketHandlers.RoutePacket( this, reader, player_who );
-				}
+				PacketProtocol.HandlePacket( reader, player_who );
 			} catch( Exception e ) {
 				DebugHelpers.LogHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
 			}

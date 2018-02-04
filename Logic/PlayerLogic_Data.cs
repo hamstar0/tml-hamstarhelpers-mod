@@ -1,11 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using Terraria;
 using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Logic {
+	public class PlayerDataProtocol : AbstractPlayerDataProtocol {
+		public override string GetName() { return "PlayerData"; }
+
+		////////////////
+		
+		public bool HasUID;
+		public string PrivateUID;
+		public ISet<int> PermaBuffsById;
+
+		////////////////
+
+		public PlayerDataProtocol() : base( 0 ) { }
+
+		internal PlayerDataProtocol( int player_who, ISet<int> perma_buff_ids ) : base( player_who ) {
+			this.HasUID = false;
+			this.PrivateUID = "";
+			this.PermaBuffsById = perma_buff_ids;
+		}
+
+		internal PlayerDataProtocol( int player_who, bool has_uid, string uid, ISet<int> perma_buff_ids ) : base( player_who ) {
+			this.HasUID = has_uid;
+			this.PrivateUID = uid;
+			this.PermaBuffsById = perma_buff_ids;
+		}
+
+		////////////////
+
+		public override void ReceiveOnServer( int from_who ) {
+			Player player = Main.player[ from_who ];
+			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+
+			myplayer.Logic.NetReceive( this.HasUID, this.PrivateUID, this.PermaBuffsById );
+		}
+
+		public override void ReceiveOnClient() {
+			Player player = Main.player[ this.PlayerWho ];
+			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+
+			myplayer.Logic.NetReceive( this.PermaBuffsById );
+		}
+	}
+
+
+
+
 	partial class PlayerLogic {
 		public PlayerLogic() {
 			this.PrivateUID = Guid.NewGuid().ToString( "D" );
@@ -15,43 +60,7 @@ namespace HamstarHelpers.Logic {
 			this.PermaBuffsById = new HashSet<int>();
 		}
 
-
-		////////////////
 		
-		public void NetSend( BinaryWriter writer, bool include_uid ) {
-			if( include_uid ) {
-				writer.Write( (bool)this.HasUID );
-				writer.Write( (string)this.PrivateUID );
-			}
-
-			writer.Write( (int)this.PermaBuffsById.Count );
-
-			foreach( int buff_id in this.PermaBuffsById ) {
-				writer.Write( (int)buff_id );
-			}
-		}
-
-		public void NetReceive( BinaryReader reader, bool include_uid ) {
-			this.PermaBuffsById = new HashSet<int>();
-
-			if( include_uid ) {
-				bool has = reader.ReadBoolean();
-				string uid = reader.ReadString();
-
-				if( has ) {
-					this.HasUID = has;
-					this.PrivateUID = uid;
-				}
-			}
-
-			int perma_buff_id_count = reader.ReadInt32();
-
-			for( int i = 0; i < perma_buff_id_count; i++ ) {
-				this.PermaBuffsById.Add( reader.ReadInt32() );
-			}
-		}
-
-
 		////////////////
 
 		public void Load( TagCompound tags ) {
@@ -78,6 +87,31 @@ namespace HamstarHelpers.Logic {
 				{ "perma_buffs", perma_buffs }
 			};
 			return tags;
+		}
+
+
+		////////////////
+
+		public void NetSend( HamstarHelpersMod mymod, Player me, int to_who, int ignore_who, bool include_uid ) {
+			PlayerDataProtocol protocol;
+
+			if( include_uid ) {
+				protocol = new PlayerDataProtocol( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
+			} else {
+				protocol = new PlayerDataProtocol( me.whoAmI, this.PermaBuffsById );
+			}
+
+			protocol.SendData( to_who, ignore_who );
+		}
+
+		public void NetReceive( ISet<int> perma_buff_ids ) {
+			this.PermaBuffsById = perma_buff_ids;
+		}
+
+		public void NetReceive( bool has_uid, string uid, ISet<int> perma_buff_ids ) {
+			this.HasUID = has_uid;
+			this.PrivateUID = uid;
+			this.PermaBuffsById = perma_buff_ids;
 		}
 	}
 }

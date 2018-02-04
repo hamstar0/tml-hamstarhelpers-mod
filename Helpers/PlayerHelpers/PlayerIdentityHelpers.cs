@@ -11,10 +11,10 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 		////////////////
 
-		public static string GetUniqueId( Player player, out bool has_loaded ) {
+		public static string GetUniqueId( Player player, out bool has_uid ) {
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
-			has_loaded = myplayer.Logic.HasUID;
+			has_uid = myplayer.Logic.HasUID;
 			return myplayer.Logic.PrivateUID;
 		}
 

@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.NetProtocol;
-using HamstarHelpers.UIHelpers.Elements;
+﻿using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Messages;
+using HamstarHelpers.Utilities.Network;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -27,13 +27,13 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 
-		public void SendClientChanges( HamstarHelpersMod mymod, ModPlayer client_player ) {
+		public void SendClientChanges( HamstarHelpersMod mymod, Player me, ModPlayer client_player ) {
 			var myclient = (HamstarHelpersPlayer)client_player;
 			var logic = myclient.Logic;
 			bool uid_changed = this.HasUID != logic.HasUID || this.PrivateUID != logic.PrivateUID;
 			
 			if( !logic.PermaBuffsById.SetEquals( this.PermaBuffsById ) || uid_changed ) {
-				ClientPacketHandlers.SendPlayerData( mymod, -1 );
+				this.NetSend( mymod , me, -1, -1, true );
 			}
 		}
 
@@ -46,10 +46,11 @@ namespace HamstarHelpers.Logic {
 
 			// Sync mod (world) data; must be called after world is loaded
 			if( Main.netMode == 1 ) {
-				ClientPacketHandlers.SendPlayerData( mymod, -1 );
-				ClientPacketHandlers.SendRequestPlayerData( mymod, -1 );
-				ClientPacketHandlers.SendRequestModSettings( mymod );
-				ClientPacketHandlers.SendRequestModData( mymod );
+				var player_data = new PlayerDataProtocol( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
+				player_data.SendData( -1, -1 );
+				player_data.SendRequest( -1, -1 );
+				PacketProtocol.QuickSendRequest<ModSettingsProtocol>( -1, -1 );
+				PacketProtocol.QuickSendRequest<ModDataProtocol>( -1, -1 );
 			}
 
 			if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server

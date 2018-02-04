@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.Helpers.PlayerHelpers;
-using HamstarHelpers.ItemHelpers;
-using HamstarHelpers.NetProtocol;
+﻿using HamstarHelpers.ItemHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -156,14 +154,17 @@ namespace HamstarHelpers.PlayerHelpers {
 
 
 		public static void KillWithPermadeath( Player player, string death_msg ) {
-			if( Main.netMode == 1 ) {
-				ClientPacketHandlers.SendPermaDeath( HamstarHelpersMod.Instance, death_msg );
-			} else if( Main.netMode == 2 ) {
-				ServerPacketHandlers.SendPlayerPermaDeath( HamstarHelpersMod.Instance, -1, -1, player.whoAmI, death_msg );
-			} else if( Main.netMode == 0 ) {
-				player.difficulty = 2;
-				player.KillMe( PlayerDeathReason.ByCustomReason( death_msg ), 9999, 0 );
+			if( Main.netMode != 0 ) {
+				var protocol = new PlayerPermaDeathProtocol( player.whoAmI, death_msg );
+				protocol.BroadcastData();
+			} else {
+				PlayerHelpers.ApplyPermaDeath( player, death_msg );
 			}
+		}
+
+		internal static void ApplyPermaDeath( Player player, string death_msg ) {
+			player.difficulty = 2;
+			player.KillMe( PlayerDeathReason.ByCustomReason( death_msg ), 9999, 0 );
 		}
 
 

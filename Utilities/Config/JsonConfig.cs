@@ -48,6 +48,10 @@ namespace HamstarHelpers.Utilities.Config {
 			this.Data = JsonConfig<T>.Deserialize( data );
 		}
 
+		public void SetData( T data ) {
+			this.Data = data;
+		}
+
 		////////////////
 
 		public string GetPathOnly() {

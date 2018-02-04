@@ -92,6 +92,7 @@
     <Compile Include="Logic\PlayerLogic_Data.cs" />
     <Compile Include="Logic\PlayerLogic_TmlHelpers.cs" />
     <Compile Include="Logic\PlayerLogic.cs" />
+    <Compile Include="Logic\WorldLogic_Update.cs" />
     <Compile Include="Logic\WorldLogic.cs" />
     <Compile Include="HamstarHelpersWorld.cs" />
     <Compile Include="Helpers\HudHelpers\HudHealthBarHelpers.cs" />
@@ -103,9 +104,7 @@
     <Compile Include="Helpers\ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers.cs" />
-    <Compile Include="NetProtocol\ClientPacketHandlers.cs" />
-    <Compile Include="NetProtocol\NetProtocolTypes.cs" />
-    <Compile Include="NetProtocol\ServerPacketHandlers.cs" />
+    <Compile Include="NetProtocols.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCAIHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCBannerHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers.cs" />
@@ -142,6 +141,7 @@
     <Compile Include="Helpers\TileHelpers\TileHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\UIDialog.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\Dialogs\UIPromptDialog.cs" />
+    <Compile Include="Utilities\Network\PacketProtocol.cs" />
     <Compile Include="Utilities\Web\ModIssueReports.cs" />
     <Compile Include="Utilities\Messages\PlayerMessages.cs" />
     <Compile Include="Utilities\Messages\SimpleMessage.cs" />

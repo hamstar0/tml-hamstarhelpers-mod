@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.NetProtocol;
-using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.TmlHelpers;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;

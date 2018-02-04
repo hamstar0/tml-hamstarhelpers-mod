@@ -6,13 +6,15 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 2, 8); } }
+		public static Version ConfigVersion { get { return new Version(1, 3, 3); } }
 		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
 
 
 		////////////////
 
 		public string VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
+
+		public bool DebugModeNetInfo = false;
 
 		public bool DisableControlPanel = false;
 		public int ControlPanelIconX = 0;
@@ -45,10 +47,12 @@ namespace HamstarHelpers {
 		}
 
 
-		internal void LoadFromNetwork( HamstarHelpersMod mymod, string json ) {
+		////////////////
+		
+		internal void LoadFromNetwork( HamstarHelpersMod mymod, HamstarHelpersConfigData config ) {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
-			mymod.JsonConfig.DeserializeMe( json );
+			mymod.JsonConfig.SetData( config );
 
 			myplayer.Logic.FinishModSettingsSync();
 		}

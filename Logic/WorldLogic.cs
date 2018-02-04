@@ -1,10 +1,9 @@
-﻿using HamstarHelpers.TmlHelpers;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Logic {
-	class WorldLogic {
+	partial class WorldLogic {
 		internal int StartupDelay = 0;
 
 		public bool IsClientPlaying = false;
@@ -53,7 +52,13 @@ namespace HamstarHelpers.Logic {
 
 			tags.Set( "half_days_elapsed_" + modworld.ObsoleteID, (int)this.HalfDaysElapsed );
 		}
-		
+
+		////////////////
+
+		public void SaveForNetwork( ModDataProtocol protocol ) {
+			protocol.HalfDays = this.HalfDaysElapsed;
+		}
+
 		public void LoadFromNetwork( int half_days ) {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
@@ -89,54 +94,6 @@ namespace HamstarHelpers.Logic {
 				return false;
 			}
 			return true;
-		}
-
-
-		////////////////
-
-		public void Update( HamstarHelpersMod mymod ) {
-			if( !this.IsLoaded( mymod ) ) {
-				return;
-			}
-
-			if( this.IsPlaying() ) {
-				mymod.ControlPanel.UpdateModList();
-			}
-
-			mymod.AnimatedColors.Update();
-
-			// Simply idle until ready (seems needed)
-			if( !this.IsFullyReady() ) {
-				this.IsDay = Main.dayTime;
-				return;
-			} else {
-				this.UpdateLoaded( mymod );
-			}
-		}
-
-
-		private void UpdateLoaded( HamstarHelpersMod mymod ) {
-			this.UpdateDay( mymod );
-
-			mymod.ModLockHelpers.Update();
-			
-			AltProjectileInfo.UpdateAll();
-			AltNPCInfo.UpdateAll();
-		}
-
-		////////////////
-
-		private void UpdateDay( HamstarHelpersMod mymod ) {
-			if( this.IsDay != Main.dayTime ) {
-				this.HalfDaysElapsed++;
-
-				if( !this.IsDay ) {
-					foreach( var kv in mymod.WorldHelpers.DayHooks ) { kv.Value(); }
-				} else {
-					foreach( var kv in mymod.WorldHelpers.NightHooks ) { kv.Value(); }
-				}
-			}
-			this.IsDay = Main.dayTime;
 		}
 	}
 }

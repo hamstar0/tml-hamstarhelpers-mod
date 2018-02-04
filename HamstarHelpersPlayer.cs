@@ -24,7 +24,7 @@ namespace HamstarHelpers {
 		}
 		
 		public override void SendClientChanges( ModPlayer client_player ) {
-			this.Logic.SendClientChanges( (HamstarHelpersMod)this.mod, client_player );
+			this.Logic.SendClientChanges( (HamstarHelpersMod)this.mod, this.player, client_player );
 		}
 
 		public override void OnEnterWorld( Player player ) {

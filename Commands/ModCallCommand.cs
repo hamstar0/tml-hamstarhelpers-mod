@@ -15,12 +15,13 @@ namespace HamstarHelpers.Commands {
 			}
 		}
 		public override string Command { get { return "hhmodcall"; } }
-		public override string Usage { get { return "/hhmodcall MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped string needs spaces\" anotherparametc"; } }
-		public override string Description { get { return "Runs Mod.Call(). Use with care!"; } }
+		public override string Usage { get { return "/hhmodcall MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped strings needs spaces\" anotherparametc"; } }
+		public override string Description { get { return "Runs Mod.Call(). Use with care!"+
+					"\n   Parameters: <mod name> <parameter 1> <parameter 2> etc..."; } }
 
 
 		////////////////
-		
+
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			var mymod = HamstarHelpersMod.Instance;
 			if( !mymod.Config.ModCallCommandEnabled ) {
