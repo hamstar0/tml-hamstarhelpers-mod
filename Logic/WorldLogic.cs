@@ -55,7 +55,7 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 
-		public void SaveForNetwork( ModDataProtocol protocol ) {
+		public void SaveForNetwork( HHModDataProtocol protocol ) {
 			protocol.HalfDays = this.HalfDaysElapsed;
 		}
 

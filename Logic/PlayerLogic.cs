@@ -46,11 +46,11 @@ namespace HamstarHelpers.Logic {
 
 			// Sync mod (world) data; must be called after world is loaded
 			if( Main.netMode == 1 ) {
-				var player_data = new PlayerDataProtocol( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
+				var player_data = new HHPlayerDataProtocol( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
 				player_data.SendData( -1, -1 );
 				player_data.SendRequest( -1, -1 );
-				PacketProtocol.QuickSendRequest<ModSettingsProtocol>( -1, -1 );
-				PacketProtocol.QuickSendRequest<ModDataProtocol>( -1, -1 );
+				PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
+				PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
 			}
 
 			if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server

@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Terraria;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Utilities.Network {
 	public abstract class PacketProtocol {
+		protected static readonly object MyLock = new object();
+
+
 		internal static IDictionary<int, Type> GetProtocols() {
 			IDictionary<int, Type> protocols = new Dictionary<int, Type>();
 			
@@ -21,8 +25,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 			foreach( Type subclass in subclasses ) {
 				try {
-					PacketProtocol protocol = (PacketProtocol)Activator.CreateInstance( subclass );
-					string name = protocol.GetName();
+					string name = subclass.Name;
 					protocols[ name.GetHashCode() ] = subclass;
 				} catch( Exception e ) {
 					LogHelpers.Log( subclass.Name + " - " + e.Message );
@@ -76,14 +79,6 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
-		public abstract string GetName();
-
-
-
-		////////////////
-
-		public PacketProtocol() { }
-
 		public virtual void SetDefaults() { }
 		
 
@@ -91,7 +86,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 		public void SendRequest( int to_who, int ignore_who ) {
 			var mymod = HamstarHelpersMod.Instance;
-			string name = this.GetName();
+			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
 
 			packet.Write( name.GetHashCode() );
@@ -101,13 +96,17 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Send( to_who, ignore_who );
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				LogHelpers.Log( ">" + name + " SendRequest "+to_who+", "+ignore_who );
+				new Thread( () => {
+					lock( PacketProtocol.MyLock ) {
+						LogHelpers.Log( ">" + name + " SendRequest " + to_who + ", " + ignore_who );
+					}
+				} ).Start();
 			}
 		}
 		
 		public void SendData( int to_who, int ignore_who ) {
 			var mymod = HamstarHelpersMod.Instance;
-			string name = this.GetName();
+			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
 			string json_str = (string)JsonConvert.SerializeObject( this );
 
@@ -119,13 +118,17 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Send( to_who, ignore_who );
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				LogHelpers.Log( ">" + name + " SendData " + to_who + ", " + ignore_who+": "+ json_str );
+				new Thread( () => {
+					lock( PacketProtocol.MyLock ) {
+						LogHelpers.Log( ">" + name + " SendData " + to_who + ", " + ignore_who + ": " + json_str );
+					}
+				} ).Start();
 			}
 		}
 
 		public void BroadcastData() {
 			var mymod = HamstarHelpersMod.Instance;
-			string name = this.GetName();
+			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
 			string json_str = (string)JsonConvert.SerializeObject( this );
 
@@ -137,7 +140,11 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Send( -1, -1 );
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				LogHelpers.Log( ">" + name + " BroadcastData: " + json_str );
+				new Thread( () => {
+					lock( PacketProtocol.MyLock ) {
+						LogHelpers.Log( ">" + name + " BroadcastData: " + json_str );
+					}
+				} ).Start();
 			}
 		}
 
@@ -147,12 +154,17 @@ namespace HamstarHelpers.Utilities.Network {
 		internal void Receive( BinaryReader reader, int from_who ) {
 			var mymod = HamstarHelpersMod.Instance;
 			Type my_type = this.GetType();
+			string name = my_type.Name;
 
 			string json_str = reader.ReadString();
 			var json_obj = JsonConvert.DeserializeObject( json_str, my_type );
 			
 			if( mymod.Config.DebugModeNetInfo ) {
-				LogHelpers.Log( "<" + this.GetName() + " Receive: " + json_str );
+				new Thread( () => {
+					lock( PacketProtocol.MyLock ) {
+						LogHelpers.Log( "<" + name + " Receive: " + json_str );
+					}
+				} ).Start();
 			}
 
 			Type your_type = json_obj.GetType();
@@ -161,7 +173,11 @@ namespace HamstarHelpers.Utilities.Network {
 				FieldInfo yours_field = your_type.GetField( mine_field.Name );
 
 				if( yours_field == null ) {
-					LogHelpers.Log( "Missing " + this.GetName() + " protocol value for " + mine_field.Name );
+					new Thread( () => {
+						lock( PacketProtocol.MyLock ) {
+							LogHelpers.Log( "Missing " + name + " protocol value for " + mine_field.Name );
+						}
+					} ).Start();
 					continue;
 				}
 
@@ -183,9 +199,14 @@ namespace HamstarHelpers.Utilities.Network {
 
 		internal void ReceiveRequest( int from_who ) {
 			var mymod = HamstarHelpersMod.Instance;
+			string name = this.GetType().Name;
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				LogHelpers.Log( "<" + this.GetName() + " ReceiveRequest..." );
+				new Thread( () => {
+					lock( PacketProtocol.MyLock ) {
+						LogHelpers.Log( "<" + name + " ReceiveRequest..." );
+					}
+				} ).Start();
 			}
 
 			this.SetDefaults();

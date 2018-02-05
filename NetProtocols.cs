@@ -3,16 +3,12 @@ using Terraria;
 
 
 namespace HamstarHelpers {
-	public class ModSettingsProtocol : PacketProtocol {
-		public override string GetName() { return "ModSettings"; }
-
-		////////////////
-
+	class HHModSettingsProtocol : PacketProtocol {
 		public HamstarHelpersConfigData Data;
 
-		public ModSettingsProtocol() { }
-
 		////////////////
+
+		public HHModSettingsProtocol() { }
 
 		public override void SetDefaults() {
 			var mymod = HamstarHelpersMod.Instance;
@@ -29,16 +25,12 @@ namespace HamstarHelpers {
 
 
 
-	public class ModDataProtocol : PacketProtocol {
-		public override string GetName() { return "ModData"; }
-
-		////////////////
-
+	class HHModDataProtocol : PacketProtocol {
 		public int HalfDays;
 
-		public ModDataProtocol() { }
-
 		////////////////
+
+		public HHModDataProtocol() { }
 
 		public override void SetDefaults() {
 			var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
@@ -55,19 +47,15 @@ namespace HamstarHelpers {
 
 
 
-	public class PlayerPermaDeathProtocol : PacketProtocol {
-		public override string GetName() { return "PlayerPermaDeath"; }
-
-		////////////////
-
+	class HHPlayerPermaDeathProtocol : PacketProtocol {
 		public int PlayerWho;
 		public string Msg;
 
-		public PlayerPermaDeathProtocol() { }
-
 		////////////////
 
-		internal PlayerPermaDeathProtocol( int player_who, string msg ) {
+		public HHPlayerPermaDeathProtocol() { }
+
+		internal HHPlayerPermaDeathProtocol( int player_who, string msg ) {
 			this.PlayerWho = player_who;
 			this.Msg = msg;
 		}
@@ -83,10 +71,10 @@ namespace HamstarHelpers {
 
 
 
-	abstract public class AbstractPlayerDataProtocol : PacketProtocol {
+	abstract class AbstractHHPlayerDataProtocol : PacketProtocol {
 		public int PlayerWho;
 		
-		protected AbstractPlayerDataProtocol( int player_who ) {
+		protected AbstractHHPlayerDataProtocol( int player_who ) {
 			this.PlayerWho = player_who;
 		}
 	}

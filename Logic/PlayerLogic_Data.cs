@@ -6,26 +6,22 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Logic {
-	public class PlayerDataProtocol : AbstractPlayerDataProtocol {
-		public override string GetName() { return "PlayerData"; }
-
-		////////////////
-		
+	class HHPlayerDataProtocol : AbstractHHPlayerDataProtocol {
 		public bool HasUID;
 		public string PrivateUID;
 		public ISet<int> PermaBuffsById;
 
 		////////////////
 
-		public PlayerDataProtocol() : base( 0 ) { }
+		public HHPlayerDataProtocol() : base(255) { }
 
-		internal PlayerDataProtocol( int player_who, ISet<int> perma_buff_ids ) : base( player_who ) {
+		internal HHPlayerDataProtocol( int player_who, ISet<int> perma_buff_ids ) : base( player_who ) {
 			this.HasUID = false;
 			this.PrivateUID = "";
 			this.PermaBuffsById = perma_buff_ids;
 		}
 
-		internal PlayerDataProtocol( int player_who, bool has_uid, string uid, ISet<int> perma_buff_ids ) : base( player_who ) {
+		internal HHPlayerDataProtocol( int player_who, bool has_uid, string uid, ISet<int> perma_buff_ids ) : base( player_who ) {
 			this.HasUID = has_uid;
 			this.PrivateUID = uid;
 			this.PermaBuffsById = perma_buff_ids;
@@ -93,12 +89,12 @@ namespace HamstarHelpers.Logic {
 		////////////////
 
 		public void NetSend( HamstarHelpersMod mymod, Player me, int to_who, int ignore_who, bool include_uid ) {
-			PlayerDataProtocol protocol;
+			HHPlayerDataProtocol protocol;
 
 			if( include_uid ) {
-				protocol = new PlayerDataProtocol( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
+				protocol = new HHPlayerDataProtocol( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
 			} else {
-				protocol = new PlayerDataProtocol( me.whoAmI, this.PermaBuffsById );
+				protocol = new HHPlayerDataProtocol( me.whoAmI, this.PermaBuffsById );
 			}
 
 			protocol.SendData( to_who, ignore_who );
