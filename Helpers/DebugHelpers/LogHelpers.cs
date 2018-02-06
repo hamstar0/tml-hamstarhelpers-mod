@@ -22,7 +22,9 @@ namespace HamstarHelpers.DebugHelpers {
 				logged += "  ";
 			}
 
+			//new Thread( () => {
 			ErrorLogger.Log( logged + msg );
+			//} ).Start();
 
 			log_helpers.LoggedMessages++;
 		}

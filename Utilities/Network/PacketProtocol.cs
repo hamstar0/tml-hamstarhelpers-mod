@@ -96,11 +96,7 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Send( to_who, ignore_who );
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				new Thread( () => {
-					lock( PacketProtocol.MyLock ) {
-						LogHelpers.Log( ">" + name + " SendRequest " + to_who + ", " + ignore_who );
-					}
-				} ).Start();
+				LogHelpers.Log( ">" + name + " SendRequest " + to_who + ", " + ignore_who );
 			}
 		}
 		
@@ -118,11 +114,7 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Send( to_who, ignore_who );
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				new Thread( () => {
-					lock( PacketProtocol.MyLock ) {
-						LogHelpers.Log( ">" + name + " SendData " + to_who + ", " + ignore_who + ": " + json_str );
-					}
-				} ).Start();
+				LogHelpers.Log( ">" + name + " SendData " + to_who + ", " + ignore_who + ": " + json_str );
 			}
 		}
 
@@ -140,11 +132,7 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Send( -1, -1 );
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				new Thread( () => {
-					lock( PacketProtocol.MyLock ) {
-						LogHelpers.Log( ">" + name + " BroadcastData: " + json_str );
-					}
-				} ).Start();
+				LogHelpers.Log( ">" + name + " BroadcastData: " + json_str );
 			}
 		}
 
@@ -160,11 +148,7 @@ namespace HamstarHelpers.Utilities.Network {
 			var json_obj = JsonConvert.DeserializeObject( json_str, my_type );
 			
 			if( mymod.Config.DebugModeNetInfo ) {
-				new Thread( () => {
-					lock( PacketProtocol.MyLock ) {
-						LogHelpers.Log( "<" + name + " Receive: " + json_str );
-					}
-				} ).Start();
+				LogHelpers.Log( "<" + name + " Receive: " + json_str );
 			}
 
 			Type your_type = json_obj.GetType();
@@ -173,11 +157,7 @@ namespace HamstarHelpers.Utilities.Network {
 				FieldInfo yours_field = your_type.GetField( mine_field.Name );
 
 				if( yours_field == null ) {
-					new Thread( () => {
-						lock( PacketProtocol.MyLock ) {
-							LogHelpers.Log( "Missing " + name + " protocol value for " + mine_field.Name );
-						}
-					} ).Start();
+					LogHelpers.Log( "Missing " + name + " protocol value for " + mine_field.Name );
 					continue;
 				}
 
@@ -202,11 +182,7 @@ namespace HamstarHelpers.Utilities.Network {
 			string name = this.GetType().Name;
 
 			if( mymod.Config.DebugModeNetInfo ) {
-				new Thread( () => {
-					lock( PacketProtocol.MyLock ) {
-						LogHelpers.Log( "<" + name + " ReceiveRequest..." );
-					}
-				} ).Start();
+				LogHelpers.Log( "<" + name + " ReceiveRequest..." );
 			}
 
 			this.SetDefaults();

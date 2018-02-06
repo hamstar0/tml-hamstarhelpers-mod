@@ -141,6 +141,7 @@
     <Compile Include="Helpers\TileHelpers\TileHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\UIDialog.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\Dialogs\UIPromptDialog.cs" />
+    <Compile Include="Utilities\Errors\Errors.cs" />
     <Compile Include="Utilities\Network\PacketProtocol.cs" />
     <Compile Include="Utilities\Web\ModIssueReports.cs" />
     <Compile Include="Utilities\Messages\PlayerMessages.cs" />
