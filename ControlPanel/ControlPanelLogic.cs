@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Commands;
 using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.Utilities.Web;
+using HamstarHelpers.WebHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.ComponentModel;
@@ -41,7 +42,7 @@ namespace HamstarHelpers.ControlPanel {
 			var worker = new BackgroundWorker();
 			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
 				try {
-					string output = ModIssueReports.ReportIssue( mod, issue_title, issue_body );
+					string output = GithubModIssueReports.ReportIssue( mod, issue_title, issue_body );
 
 					Main.NewText( "Issue submit result: " + output, Color.Yellow );
 					ErrorLogger.Log( "Issue submit result: " + output );

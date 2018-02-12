@@ -34,9 +34,9 @@ namespace HamstarHelpers.Utilities.Network {
 
 				mine_field.SetValue( this, val );
 
-				if( mymod.Config.DebugModeNetInfo ) {
-					LogHelpers.Log( "  " + yours_field.Name + ": " + val );
-				}
+				//if( mymod.Config.DebugModeNetInfo ) {
+				//	LogHelpers.Log( "  " + yours_field.Name + ": " + val );
+				//}
 			}
 
 			if( Main.netMode == 1 ) {

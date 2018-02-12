@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.DotNetHelpers.DataStructures;
+using HamstarHelpers.Helpers.DotNetHelpers.DataStructures;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -121,29 +121,36 @@ namespace HamstarHelpers.NPCHelpers {
 		}
 
 
+
 		////////////////
 
-		public static IReadOnlyDictionary<string, int> NamesToIds {
+		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get { return HamstarHelpersMod.Instance.NPCIdentityHelpers._NamesToIds; }
 		}
 
 
 
 		////////////////
-
-		private IDictionary<string, int> __namesToIds = new Dictionary<string, int>();
-		private IReadOnlyDictionary<string, int> _NamesToIds = null;
+		
+		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 
 
 		////////////////
 
 		internal void OnPostSetupContent() {
+			var dict = new Dictionary<string, ISet<int>>();
+
 			for( int i = 1; i < NPCLoader.NPCCount; i++ ) {
 				string name = Lang.GetNPCNameValue( i );
-				this.__namesToIds[name] = i;
+
+				if( dict.ContainsKey(name) ) {
+					dict[name].Add( i );
+				} else {
+					dict[name] = new HashSet<int>() { i };
+				}
 			}
 
-			this._NamesToIds = new ReadOnlyDictionary<string, int>( this.__namesToIds );
+			this._NamesToIds = new ReadOnlyDictionaryOfSets<string, int>( dict );
 		}
 
 

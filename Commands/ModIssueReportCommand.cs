@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.TmlHelpers.CommandsHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Utilities.Web;
+using HamstarHelpers.WebHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace HamstarHelpers.Commands {
 
 			worker.DoWork += delegate ( object sender, DoWorkEventArgs e_args ) {
 				try {
-					output = ModIssueReports.ReportIssue( mods[mod_idx - 1], title, body );
+					output = GithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body );
 				} catch( Exception e ) {
 					caller.Reply( e.Message, Color.Red );
 				}

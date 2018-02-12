@@ -13,8 +13,8 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Utilities.Web {
-	public struct ModIssueReportData {
+namespace HamstarHelpers.WebHelpers {
+	public struct GithubModIssueReportData {
 		public string githubuser;
 		public string githubproject;
 		public string title;
@@ -24,15 +24,15 @@ namespace HamstarHelpers.Utilities.Web {
 
 
 
-	public static class ModIssueReports {
+	public static class GithubModIssueReports {
 		public static string ReportIssue( Mod mod, string issue_title, string issue_body ) {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
 
 			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
-			string body_info = string.Join( "\n \n", ModIssueReports.OutputGameData( mods ).ToArray() );
-			string body_errors = string.Join( "\n", ModIssueReports.OutputErrorLog().ToArray() );
+			string body_info = string.Join( "\n \n", GithubModIssueReports.OutputGameData( mods ).ToArray() );
+			string body_errors = string.Join( "\n", GithubModIssueReports.OutputErrorLog().ToArray() );
 			
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "In-game: " + issue_title;
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Utilities.Web {
 			body += "\n \n \n \n" + "Recent error logs:\n```\n" + body_errors + "\n```";
 			body += "\n \n" + issue_body;
 
-			var json = new ModIssueReportData {
+			var json = new GithubModIssueReportData {
 				githubuser = ModMetaDataManager.GetGithubUserName( mod ),
 				githubproject = ModMetaDataManager.GetGithubProjectName( mod ),
 				title = title,
@@ -98,11 +98,11 @@ namespace HamstarHelpers.Utilities.Web {
 			double time_of_day = Main.time;
 			int half_days = WorldHelpers.WorldHelpers.GetElapsedHalfDays();
 			string world_size = WorldHelpers.WorldHelpers.GetSize().ToString();
-			string[] world_prog = ModIssueReports.OutputWorldProgress().ToArray();
+			string[] world_prog = GithubModIssueReports.OutputWorldProgress().ToArray();
 			int active_items = ItemHelpers.ItemHelpers.GetActive().Count;
 			int active_npcs = NPCHelpers.NPCHelpers.GetActive().Count;
-			string[] player_infos = ModIssueReports.OutputCurrentPlayerInfo().ToArray();
-			string[] player_equips = ModIssueReports.OutputCurrentPlayerEquipment().ToArray();
+			string[] player_infos = GithubModIssueReports.OutputCurrentPlayerInfo().ToArray();
+			string[] player_equips = GithubModIssueReports.OutputCurrentPlayerEquipment().ToArray();
 			int active_players = Main.ActivePlayersCount;
 			string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
 
