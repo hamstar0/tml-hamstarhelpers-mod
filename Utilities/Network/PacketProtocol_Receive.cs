@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using Terraria;
 
 
@@ -13,24 +14,24 @@ namespace HamstarHelpers.Utilities.Network {
 			Type my_type = this.GetType();
 			string name = my_type.Name;
 
-			string json_str = reader.ReadString();
-			var json_obj = JsonConvert.DeserializeObject( json_str, my_type );
+			PacketProtocol data_obj = this.ReadData( reader );
+			//Type your_type = data_obj.GetType();
 			
 			if( mymod.Config.DebugModeNetInfo ) {
+				string json_str = JsonConvert.SerializeObject( data_obj );
 				LogHelpers.Log( "<" + name + " Receive: " + json_str );
 			}
 
-			Type your_type = json_obj.GetType();
-
 			foreach( FieldInfo mine_field in my_type.GetFields() ) {
-				FieldInfo yours_field = your_type.GetField( mine_field.Name );
+				//FieldInfo yours_field = your_type.GetField( mine_field.Name );
+				FieldInfo yours_field = my_type.GetField( mine_field.Name );
 
 				if( yours_field == null ) {
 					LogHelpers.Log( "Missing " + name + " protocol value for " + mine_field.Name );
 					continue;
 				}
 
-				object val = yours_field.GetValue( json_obj );
+				object val = yours_field.GetValue( data_obj );
 
 				mine_field.SetValue( this, val );
 
@@ -91,6 +92,19 @@ namespace HamstarHelpers.Utilities.Network {
 		}
 		public virtual bool ReceiveRequestOnServer( int from_who ) {
 			return false;
+		}
+
+
+		////////////////
+
+		public virtual PacketProtocol ReadData( BinaryReader reader ) {
+			int num = reader.ReadInt32();
+			byte[] data = reader.ReadBytes( num );
+
+			Type my_type = this.GetType();
+			string json_str = Encoding.UTF8.GetString( data );
+
+			return (PacketProtocol)JsonConvert.DeserializeObject( json_str, my_type );
 		}
 	}
 }

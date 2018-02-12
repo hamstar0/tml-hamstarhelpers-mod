@@ -1,5 +1,7 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using Newtonsoft.Json;
+using System.IO;
+using System.Text;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -48,18 +50,29 @@ namespace HamstarHelpers.Utilities.Network {
 			var mymod = HamstarHelpersMod.Instance;
 			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
-			string json_str = (string)JsonConvert.SerializeObject( this );
 
 			packet.Write( name.GetHashCode() );
 			packet.Write( false );  // Request
 			packet.Write( server_rebroadcast );  // Broadcast
-			packet.Write( json_str );
+			this.WriteData( packet, this );
 
 			packet.Send( to_who, ignore_who );
 
 			if( mymod.Config.DebugModeNetInfo ) {
+				string json_str = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( ">" + name + " SendData " + to_who + ", " + ignore_who + ": " + json_str );
 			}
+		}
+
+
+		////////////////
+
+		public virtual void WriteData( BinaryWriter writer, PacketProtocol me ) {
+			string json_str = JsonConvert.SerializeObject( me );
+			var data = Encoding.ASCII.GetBytes( json_str );
+
+			writer.Write( (int)data.Length );
+			writer.Write( data );
 		}
 	}
 }
