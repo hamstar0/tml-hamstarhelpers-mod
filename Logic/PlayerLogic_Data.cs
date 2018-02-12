@@ -29,11 +29,18 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 
+		public override void SetServerDefaults() { }
+
+		////////////////
+
 		public override void ReceiveOnServer( int from_who ) {
 			Player player = Main.player[ from_who ];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
 			myplayer.Logic.NetReceive( this.HasUID, this.PrivateUID, this.PermaBuffsById );
+
+			this.HasUID = false;
+			this.PrivateUID = "";
 		}
 
 		public override void ReceiveOnClient() {
@@ -41,6 +48,21 @@ namespace HamstarHelpers.Logic {
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
 			myplayer.Logic.NetReceive( this.PermaBuffsById );
+		}
+
+		////////////////
+
+		public override bool ReceiveRequestOnServer( int from_who ) {
+			for( int i=0; i<Main.player.Length; i++ ) {
+				Player player = Main.player[i];
+				if( player == null || !player.active ) { continue; }
+				var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+
+				var plr_data = new HHPlayerDataProtocol( i, myplayer.Logic.PermaBuffsById );
+				plr_data.SendData( from_who, -1, false );
+			}
+			
+			return true;
 		}
 	}
 
@@ -87,19 +109,7 @@ namespace HamstarHelpers.Logic {
 
 
 		////////////////
-
-		public void NetSend( HamstarHelpersMod mymod, Player me, int to_who, int ignore_who, bool include_uid ) {
-			HHPlayerDataProtocol protocol;
-
-			if( include_uid ) {
-				protocol = new HHPlayerDataProtocol( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
-			} else {
-				protocol = new HHPlayerDataProtocol( me.whoAmI, this.PermaBuffsById );
-			}
-
-			protocol.SendData( to_who, ignore_who );
-		}
-
+		
 		public void NetReceive( ISet<int> perma_buff_ids ) {
 			this.PermaBuffsById = perma_buff_ids;
 		}

@@ -10,15 +10,12 @@ namespace HamstarHelpers {
 
 		public HHModSettingsProtocol() { }
 
-		public override void SetDefaults() {
-			var mymod = HamstarHelpersMod.Instance;
-
-			this.Data = mymod.Config;
+		public override void SetServerDefaults() {
+			this.Data = HamstarHelpersMod.Instance.Config;
 		}
 
 		public override void ReceiveOnClient() {
 			var mymod = HamstarHelpersMod.Instance;
-
 			mymod.Config.LoadFromNetwork( mymod, this.Data );
 		}
 	}
@@ -32,7 +29,7 @@ namespace HamstarHelpers {
 
 		public HHModDataProtocol() { }
 
-		public override void SetDefaults() {
+		public override void SetServerDefaults() {
 			var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
 
 			myworld.WorldLogic.SaveForNetwork( this );

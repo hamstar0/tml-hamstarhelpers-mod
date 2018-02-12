@@ -29,14 +29,24 @@ namespace HamstarHelpers.Utilities.Config {
 
 		////////////////
 
-		public JsonConfig( string filename, string pathname, T data ) {
-			this.FileName = filename;
-			this.PathName = pathname;
-			this.Data = data;
+		public JsonConfig( string file_name, string relative_path ) {
+			this.FileName = file_name;
+			this.PathName = relative_path;
+			this.Data = (T)Activator.CreateInstance( typeof( T ) );
 
 			Directory.CreateDirectory( Main.SavePath );
 			Directory.CreateDirectory( this.GetPathOnly() );
 		}
+
+		public JsonConfig( string file_name, string relative_path, T defaults_copy_only ) {
+			this.FileName = file_name;
+			this.PathName = relative_path;
+			this.Data = defaults_copy_only;
+
+			Directory.CreateDirectory( Main.SavePath );
+			Directory.CreateDirectory( this.GetPathOnly() );
+		}
+
 
 		////////////////
 
@@ -44,13 +54,26 @@ namespace HamstarHelpers.Utilities.Config {
 			return JsonConfig<T>.Serialize( this.Data );
 		}
 
-		public void DeserializeMe( string data ) {
-			this.Data = JsonConfig<T>.Deserialize( data );
+		public void DeserializeMe( string str_data ) {
+			this.Data = JsonConfig<T>.Deserialize( str_data );
+
+			//T data = JsonConfig<T>.Deserialize( str_data );
+			//Type data_type = data.GetType();
+			//Type my_type = this.Data.GetType();
+			//FieldInfo[] data_fields = data_type.GetFields( BindingFlags.Public | BindingFlags.Instance );
+
+			//foreach( var data_field in data_fields ) {
+			//	FieldInfo my_field = my_type.GetField( data_field.Name );
+			//	var data_val = data_field.GetValue( data );
+
+			//	my_field.SetValue( this, data_val );
+			//}
 		}
 
 		public void SetData( T data ) {
 			this.Data = data;
 		}
+
 
 		////////////////
 

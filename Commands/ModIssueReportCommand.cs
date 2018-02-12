@@ -15,7 +15,7 @@ namespace HamstarHelpers.Commands {
 		public override string Command { get { return "hhmodissuereport"; } }
 		public override string Usage { get { return "/hhmodissuereport 4 \"issue title\" \"issue description text\""; } }
 		public override string Description { get { return "Reports an issue for a mod. Only works for mods setup with Hamstar's Helpers to do so (see Control Panel)."+
-					"\n   Parameters: <mod list index>, <quote-wrapped issue title>, <quote-wrapped issue description>"; } }
+					"\n   Parameters: <mod list index> \"<quote-wrapped issue title>\" \"<quote-wrapped issue description>\""; } }
 
 
 		////////////////
@@ -26,20 +26,24 @@ namespace HamstarHelpers.Commands {
 
 			string title = CommandsHelpers.GetQuotedStringFromArgsAt( args, arg_idx, out arg_idx );
 			if( arg_idx == -1 ) {
-				throw new UsageException( "Invalid issue report title string", Color.Red );
+				caller.Reply( "Invalid issue report title string", Color.Red );
+				return;
 			}
 
 			string body = CommandsHelpers.GetQuotedStringFromArgsAt( args, arg_idx, out arg_idx );
 			if( arg_idx == -1 ) {
-				throw new UsageException( "Invalid issue report description string", Color.Red );
+				caller.Reply( "Invalid issue report description string", Color.Red );
+				return;
 			}
 
 			int mod_idx;
 			if( !int.TryParse( args[0], out mod_idx ) ) {
-				throw new UsageException( args[arg_idx] + " is not an integer", Color.Red );
+				caller.Reply( args[arg_idx] + " is not an integer", Color.Red );
+				return;
 			}
 			if( mod_idx <= 0 || mod_idx > mods.Count ) {
-				throw new UsageException( mod_idx + " is not a mod entry; out of range", Color.Red );
+				caller.Reply( args[arg_idx] + " is not a mod entry; out of range", Color.Red );
+				return;
 			}
 
 			var worker = new BackgroundWorker();
@@ -55,8 +59,11 @@ namespace HamstarHelpers.Commands {
 			worker.RunWorkerCompleted += delegate ( object sender, RunWorkerCompletedEventArgs e_args ) {
 				if( output != "Done?" ) {
 					caller.Reply( output, Color.GreenYellow );
+				} else {
+					caller.Reply( "Issue report was not sent", Color.Red );
 				}
 			};
+			worker.RunWorkerAsync();
 		}
 	}
 }

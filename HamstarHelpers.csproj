@@ -77,6 +77,7 @@
     <Compile Include="Helpers\DotNetHelpers\SteamHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="Helpers\EntityHelpers\EntityHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\FileHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Id.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Draw.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="Helpers\UIHelpers\Elements\UIDialog.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Utilities\Errors\Errors.cs" />
+    <Compile Include="Utilities\Network\PacketProtocol_Receive.cs" />
+    <Compile Include="Utilities\Network\PacketProtocol_Send.cs" />
     <Compile Include="Utilities\Network\PacketProtocol.cs" />
     <Compile Include="Utilities\Web\ModIssueReports.cs" />
     <Compile Include="Utilities\Messages\PlayerMessages.cs" />

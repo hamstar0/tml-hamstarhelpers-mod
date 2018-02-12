@@ -33,7 +33,8 @@ namespace HamstarHelpers.Logic {
 			bool uid_changed = this.HasUID != logic.HasUID || this.PrivateUID != logic.PrivateUID;
 			
 			if( !logic.PermaBuffsById.SetEquals( this.PermaBuffsById ) || uid_changed ) {
-				this.NetSend( mymod , me, -1, -1, true );
+				var protocol = new HHPlayerDataProtocol( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
+				protocol.SendData( -1, -1, false );
 			}
 		}
 
@@ -47,7 +48,7 @@ namespace HamstarHelpers.Logic {
 			// Sync mod (world) data; must be called after world is loaded
 			if( Main.netMode == 1 ) {
 				var player_data = new HHPlayerDataProtocol( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
-				player_data.SendData( -1, -1 );
+				player_data.SendData( -1, -1, true );
 				player_data.SendRequest( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
