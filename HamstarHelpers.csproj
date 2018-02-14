@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HamstarHelpersMod_Load.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffHelpers.cs" />
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Helpers\ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\TmlWorldHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_AltNPCInfo.cs" />
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Helpers\WebHelpers\GithubModIssueReports.cs" />

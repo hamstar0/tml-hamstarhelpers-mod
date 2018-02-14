@@ -17,8 +17,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers.DataStructures {
 			}
 		}
 
-		public ReadOnlyDictionaryOfSets( IDictionary<K, ISet<V>> dict ) {
-			this.Dict = new Dictionary<K, ISet<V>>( dict );
+		public ReadOnlyDictionaryOfSets( IDictionary<K, ISet<V>> dict_copy ) {
+			this.Dict = new Dictionary<K, ISet<V>>( dict_copy );
 		}
 
 

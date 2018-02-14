@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DotNetHelpers.DataStructures;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -143,17 +144,13 @@ namespace HamstarHelpers.ItemHelpers {
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get { return HamstarHelpersMod.Instance.ItemIdentityHelpers._NamesToIds; }
 		}
-
-
-
-		////////////////
 		
 		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 
 
 		////////////////
-		
-		internal void OnPostSetupContent() {
+
+		internal void PopulateNames() {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < ItemLoader.ItemCount; i++ ) {

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using HamstarHelpers.DebugHelpers;
+using Terraria;
 using Terraria.ModLoader.IO;
 
 
@@ -23,7 +24,7 @@ namespace HamstarHelpers.Logic {
 		public bool IsLoaded( HamstarHelpersMod mymod ) {
 //var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 //var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-//LogHelpers.Log( "HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", who: "+myplayer.player.whoAmI+", HasSyncedModSettings: "+ myplayer.Logic.HasSyncedModData+", HasSyncedModData: " + myplayer.Logic.HasSyncedModData );
+//LogHelpers.Log( "HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", who: "+myplayer.player.whoAmI+", HasSyncedModSettings: "+ myplayer.Logic.HasSyncedModSettings + ", HasSyncedModData: " + myplayer.Logic.HasSyncedModData );
 			if( !mymod.HasSetupContent ) { return false; }
 
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();

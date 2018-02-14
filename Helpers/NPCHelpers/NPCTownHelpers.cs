@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -7,6 +8,37 @@ using Terraria.Localization;
 
 namespace HamstarHelpers.NPCHelpers {
 	public static class NPCTownHelpers {
+		public static void Spawn( int town_npc_type, int tile_x, int tile_y ) {
+			int npc_who = NPC.NewNPC( tile_x * 16, tile_y * 16, town_npc_type, 1, 0f, 0f, 0f, 0f, 255 );
+			NPC npc = Main.npc[ npc_who ];
+
+			Main.townNPCCanSpawn[ town_npc_type ] = false;
+			npc.homeTileX = tile_x;
+			npc.homeTileY = tile_y;
+			npc.homeless = true;
+
+			if( tile_x < WorldGen.bestX ) {
+				npc.direction = 1;
+			} else {
+				npc.direction = -1;
+			}
+
+			npc.netUpdate = true;
+
+			if( Main.netMode == 0 ) {
+				Main.NewText( Language.GetTextValue( "Announcement.HasArrived", npc.FullName ), 50, 125, 255, false );
+			} else if( Main.netMode == 2 ) {
+				var msg = NetworkText.FromKey( "Announcement.HasArrived", new object[] { npc.GetFullNetName() } );
+				NetMessage.BroadcastChatMessage( msg, new Color( 50, 125, 255 ), -1 );
+			}
+
+			//AchievementsHelper.NotifyProgressionEvent( 8 );
+			//if( Main.npc[ npc_who ].type == 160 ) {
+			//	AchievementsHelper.NotifyProgressionEvent( 18 );
+			//}
+		}
+
+
 		public static void Leave( NPC npc, bool announce = true ) {
 			int whoami = npc.whoAmI;
 			if( announce ) {

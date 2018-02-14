@@ -18,7 +18,7 @@ namespace HamstarHelpers.BuffHelpers {
 
 		////////////////
 		
-		internal void OnPostSetupContent() {
+		internal void PopulateNames() {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < Main.buffTexture.Length; i++ ) {

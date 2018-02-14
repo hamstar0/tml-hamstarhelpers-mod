@@ -38,6 +38,7 @@ namespace HamstarHelpers.Logic {
 			}
 		}
 
+
 		public void OnEnterWorld( HamstarHelpersMod mymod, Player player ) {
 			if( Main.netMode == 0 ) {   // Single player only
 				if( !mymod.JsonConfig.LoadFile() ) {
