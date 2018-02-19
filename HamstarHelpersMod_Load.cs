@@ -14,6 +14,15 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
+		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
+			DebugHelpers.LogHelpers.Log( "UNHANDLED "+e.ToString() );
+			Environment.Exit( 1 );
+		}
+
+
+
+		////////////////
+
 		internal JsonConfig<HamstarHelpersConfigData> JsonConfig;
 		public HamstarHelpersConfigData Config { get { return JsonConfig.Data; } }
 
@@ -45,15 +54,8 @@ namespace HamstarHelpers {
 		 private int LastSeenScreenWidth = -1;
 		 private int LastSeenScreenHeight = -1;
 
-		////////////////
 
-		//internal ModEvents ModEvents = new ModEvents();
-		//internal WorldEvents WorldEvents = new WorldEvents();
-		//internal PlayerEvents PlayerEvents = new PlayerEvents();
-		//internal ItemEvents ItemEvents = new ItemEvents();
-		//internal NPCEvents NPCEvents = new NPCEvents();
-		//internal ProjectileEvents ProjectileEvents = new ProjectileEvents();
-		//internal TileEvents TileEvents = new TileEvents();
+		private bool HasUnhandledExceptionLogger = false;
 
 
 
@@ -78,7 +80,12 @@ namespace HamstarHelpers {
 			HamstarHelpersMod.Instance = this;
 
 			this.LoadConfigs();
-			
+
+			if( !this.HasUnhandledExceptionLogger && this.Config.DebugModeUnhandledExceptionLogging ) {
+				this.HasUnhandledExceptionLogger = true;
+				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
+			}
+
 			this.LogHelpers = new DebugHelpers.LogHelpers();
 			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();
 			this.BuffHelpers = new BuffHelpers.BuffHelpers();
@@ -102,6 +109,7 @@ namespace HamstarHelpers {
 			this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );
 		}
 
+
 		private void LoadConfigs() {
 			if( !this.JsonConfig.LoadFile() ) {
 				this.JsonConfig.SaveFile();
@@ -114,6 +122,11 @@ namespace HamstarHelpers {
 		}
 
 		public override void Unload() {
+			if( this.HasUnhandledExceptionLogger ) {
+				this.HasUnhandledExceptionLogger = false;
+				AppDomain.CurrentDomain.UnhandledException -= HamstarHelpersMod.UnhandledLogger;
+			}
+
 			this.JsonConfig = null;
 			this.PacketProtocols = null;
 			this.LogHelpers = null;
