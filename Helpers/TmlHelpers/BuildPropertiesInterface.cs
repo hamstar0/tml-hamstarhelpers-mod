@@ -1,15 +1,15 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.TmlHelpers {
 	public class BuildPropertiesInterface {
 		public static BuildPropertiesInterface GetBuildPropertiesForModFile( TmodFile modfile ) {
-			var class_types = from t in AppDomain.CurrentDomain.GetAssemblies().SelectMany( t => t.GetTypes() )
+			IEnumerable<Type> class_types = from t in AppDomain.CurrentDomain.GetAssemblies().SelectMany( t => t.GetTypes() )
 							  where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
 							  select t;
 			if( class_types.Count() == 0 ) { return (BuildPropertiesInterface)null; }

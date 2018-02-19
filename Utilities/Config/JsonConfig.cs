@@ -2,7 +2,6 @@
 using Terraria;
 using Newtonsoft.Json;
 using System;
-using HamstarHelpers.DebugHelpers;
 
 
 namespace HamstarHelpers.Utilities.Config {
@@ -93,6 +92,11 @@ namespace HamstarHelpers.Utilities.Config {
 		}
 
 
+		public bool FileExists() {
+			return File.Exists( this.GetFullPath() );
+		}
+
+
 		public bool LoadFile() {
 			string path = this.GetFullPath();
 			bool success = true;
@@ -101,14 +105,9 @@ namespace HamstarHelpers.Utilities.Config {
 			}
 
 			if( success ) {
-				try {
-					using( StreamReader r = new StreamReader( path ) ) {
-						string json = r.ReadToEnd();
-						this.DeserializeMe( json );
-					}
-				} catch( Exception e ) {
-					LogHelpers.Log( "JsonConfig.LoadFile() failed - " + e.ToString() );
-					success = false;
+				using( StreamReader r = new StreamReader( path ) ) {
+					string json = r.ReadToEnd();
+					this.DeserializeMe( json );
 				}
 			}
 
