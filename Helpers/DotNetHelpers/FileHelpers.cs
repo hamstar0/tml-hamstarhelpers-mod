@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.IO.Compression;
 using Terraria.ModLoader.IO;
@@ -8,6 +9,15 @@ using Terraria.Utilities;
 
 namespace HamstarHelpers.Helpers {
 	public static class FileHelpers {
+		public static string SanitizePath( string path ) {
+			char[] inv_chars = Path.GetInvalidFileNameChars();
+			string[] splits = path.Split( inv_chars );
+			if( splits.Length == 1 ) { return path; }
+
+			return String.Concat( splits );
+		}
+
+
 		public static bool SaveBinaryFile<T>( T obj, string full_path, bool is_cloud, bool backup_old )
 				where T : class {
 			if( backup_old && FileUtilities.Exists( full_path, is_cloud ) ) {

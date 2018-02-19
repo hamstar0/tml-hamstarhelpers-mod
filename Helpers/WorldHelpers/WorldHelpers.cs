@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -54,7 +55,7 @@ namespace HamstarHelpers.WorldHelpers {
 		////////////////
 		
 		public static string GetUniqueId() {
-			return Main.worldName + ":" + Main.worldID;
+			return FileHelpers.SanitizePath( Main.worldName) + ":" + Main.worldID;
 		}
 
 

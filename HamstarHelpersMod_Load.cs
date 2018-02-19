@@ -15,8 +15,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
-			DebugHelpers.LogHelpers.Log( "UNHANDLED "+e.ToString() );
-			Environment.Exit( 1 );
+			DebugHelpers.LogHelpers.Log( "UNHANDLED crash? "+e.IsTerminating+" \nSender: "+sender.ToString()+" \nMessage: "+e.ExceptionObject.ToString() );
 		}
 
 
