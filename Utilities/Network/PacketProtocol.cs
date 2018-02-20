@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -10,6 +11,20 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Utilities.Network {
 	public abstract partial class PacketProtocol {
 		protected static readonly object MyLock = new object();
+
+
+		public static int GetPacketCode( string str ) {
+			byte[] bytes = Encoding.UTF8.GetBytes( str );
+			int code = 0;
+			int pos = 0;
+
+			for( int i=0; i<bytes.Length; i++ ) {
+				code ^= (int)bytes[i] << pos;
+				pos = pos >= 24 ? 0 : pos + 8;
+			}
+
+			return code;
+		}
 
 
 		internal static IDictionary<int, Type> GetProtocols() {
@@ -30,7 +45,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 				try {
 					string name = subclass.Name;
-					protocols[ name.GetHashCode() ] = subclass;
+					protocols[ PacketProtocol.GetPacketCode( name ) ] = subclass;
 				} catch( Exception e ) {
 					LogHelpers.Log( subclass.Name + " - " + e.Message );
 				}

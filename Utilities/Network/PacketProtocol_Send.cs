@@ -35,7 +35,7 @@ namespace HamstarHelpers.Utilities.Network {
 			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
 
-			packet.Write( name.GetHashCode() );
+			packet.Write( PacketProtocol.GetPacketCode( name ) );
 			packet.Write( true );   // Request
 			packet.Write( false );  // Broadcast
 
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Utilities.Network {
 			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
 
-			packet.Write( name.GetHashCode() );
+			packet.Write( PacketProtocol.GetPacketCode( name ) );
 			packet.Write( false );  // Request
 			packet.Write( server_rebroadcast );  // Broadcast
 			this.WriteData( packet, this );
