@@ -30,9 +30,11 @@ namespace HamstarHelpers.WebHelpers {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
 
+			int max_lines = HamstarHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
+
 			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
 			string body_info = string.Join( "\n \n", GithubModIssueReports.OutputGameData( mods ).ToArray() );
-			string body_errors = string.Join( "\n", GithubModIssueReports.OutputErrorLog().ToArray() );
+			string body_errors = string.Join( "\n", GithubModIssueReports.OutputErrorLog( max_lines ).ToArray() );
 			
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "In-game: " + issue_title;
@@ -190,7 +192,9 @@ namespace HamstarHelpers.WebHelpers {
 
 		////////////////
 
-		public static IList<string> OutputErrorLog() {
+		public static IList<string> OutputErrorLog( int max_lines ) {
+			if( max_lines > 150 ) { max_lines = 150; }
+
 			IList<string> lines = new List<string>();
 			char sep = Path.DirectorySeparatorChar;
 			string path = Main.SavePath + sep + "Logs" + sep + "Logs.txt";
@@ -204,7 +208,7 @@ namespace HamstarHelpers.WebHelpers {
 				bool eof = false;
 
 				do {
-					lines = new List<string>( 50 );
+					lines = new List<string>( max_lines + 25 );
 					
 					if( reader.BaseStream.Length > size ) {
 						reader.BaseStream.Seek( -size, SeekOrigin.End );
@@ -218,11 +222,11 @@ namespace HamstarHelpers.WebHelpers {
 					while( ( line = reader.ReadLine() ) != null ) {
 						lines.Add( line );
 					}
-				} while( lines.Count < 25 && !eof );
+				} while( lines.Count < max_lines && !eof );
 			}
 
 			IList<string> rev_lines = lines.Reverse().Take( 25 ).ToList();
-			if( lines.Count > 25 ) { rev_lines.Add( "..." ); }
+			if( lines.Count > max_lines ) { rev_lines.Add( "..." ); }
 			
 			return new List<string>( rev_lines.Reverse() );
 		}

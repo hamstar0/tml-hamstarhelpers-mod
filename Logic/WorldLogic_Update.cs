@@ -5,7 +5,7 @@ using Terraria;
 namespace HamstarHelpers.Logic {
 	partial class WorldLogic {
 		public void Update( HamstarHelpersMod mymod ) {
-			if( !this.IsLoaded( mymod ) ) {
+			if( !TmlWorldHelpers.IsGameLoaded() ) {
 				return;
 			}
 

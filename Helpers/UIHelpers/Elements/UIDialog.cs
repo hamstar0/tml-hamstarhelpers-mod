@@ -9,8 +9,11 @@ namespace HamstarHelpers.UIHelpers.Elements {
 	class DialogManager {
 		public static DialogManager Instance {
 			get {
-				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-				return myplayer.Logic.DialogManager;
+				try {
+					var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+					return myplayer.Logic.DialogManager;
+				} catch { }
+				return null;
 			}
 		}
 
@@ -194,7 +197,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		////////////////
 
 		public virtual bool CanOpen() {
-			return !this.IsOpen && !Main.inFancyUI && DialogManager.Instance.CurrentDialog == null;
+			return !this.IsOpen && !Main.inFancyUI &&
+				(DialogManager.Instance != null && DialogManager.Instance.CurrentDialog == null);
 		}
 
 
@@ -212,7 +216,9 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 			this.RecalculateMe();
 
-			DialogManager.Instance.SetCurrentDialog( this );
+			if( DialogManager.Instance != null ) {
+				DialogManager.Instance.SetCurrentDialog( this );
+			}
 		}
 
 

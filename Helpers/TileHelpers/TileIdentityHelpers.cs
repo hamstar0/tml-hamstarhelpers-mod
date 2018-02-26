@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
-
+using Terraria.ID;
 
 namespace HamstarHelpers.TileHelpers {
 	public static class TileIdentityHelpers {
@@ -13,13 +12,13 @@ namespace HamstarHelpers.TileHelpers {
 			try {
 			TileIdentityHelpers.VanillaTileData = new Dictionary<int, IDictionary<int, string>>();
 
-			TileIdentityHelpers.VanillaTileData[0] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[TileID.Dirt] = new Dictionary<int, string> {
 				{ -1, "Dirt Block" }
 			};
-			TileIdentityHelpers.VanillaTileData[1] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[TileID.Stone] = new Dictionary<int, string> {
 				{ -1, "Stone Block" }
 			};
-			TileIdentityHelpers.VanillaTileData[2] = new Dictionary<int, string> {
+			TileIdentityHelpers.VanillaTileData[TileID.Grass] = new Dictionary<int, string> {
 				{ -1, "Grass" }
 			};
 			TileIdentityHelpers.VanillaTileData[3] = new Dictionary<int, string> {
@@ -2926,16 +2925,14 @@ namespace HamstarHelpers.TileHelpers {
 			TileIdentityHelpers.VanillaTileData[469] = new Dictionary<int, string> {
 				{ -1, "Crystal Table" }
 			};
+			
 			} catch( Exception e ) {
 				LogHelpers.Log( e.ToString() );
 			}
 		}
 
 
-		[System.Obsolete( "use TileIdentityHelpers.GetVanillaTileName", false )]
-		public static string GetTileName( int tile_type ) {
-			return TileIdentityHelpers.GetVanillaTileName( tile_type );
-		}
+		////////////////
 
 		public static string GetVanillaTileName( int tile_type ) {
 			if( !TileIdentityHelpers.VanillaTileData.ContainsKey( tile_type ) || !TileIdentityHelpers.VanillaTileData[tile_type].ContainsKey( -1 ) ) {
@@ -2951,6 +2948,14 @@ namespace HamstarHelpers.TileHelpers {
 				|| Main.tileSign[tile_type]
 				|| Main.tileAlch[tile_type]
 				|| Main.tileTable[tile_type]; //tileFlame
+		}
+
+
+		////////////////
+
+		[System.Obsolete( "use TileIdentityHelpers.GetVanillaTileName", false )]
+		public static string GetTileName( int tile_type ) {
+			return TileIdentityHelpers.GetVanillaTileName( tile_type );
 		}
 	}
 }

@@ -11,10 +11,27 @@ Future
 -	Add tabs to UI
 
 
+v1.4.0
+-	Show New! animation for mod updates
+-	@Implement server browser
+	-	Add 'Join Server' option for each server
+	-	Render server list json in dialog
+	-	@Implement server list site
+	-	Set servers to report to hamstar.pw via. REST API
+	-	Implement dialog
+		-	Implement server list item
+		-	Define server list data
+		-	Layout dialog (buttons, list, search)
 
+	-	Open dialog for multiplayer menu
+	-	Add menu item to multiplayer menu
+		-	Implement menu transition
+		-	Implement menu item interaction
+		-	Define menu item (implement rendering)
+		-	@Discover rendering method for menu items
+...
 v1.3.1
 -	Add day counter
-
 v1.3.0
 -	Show mods that need updates in control panel list
 	-	On mod list load, supply versions

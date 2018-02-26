@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.TmlHelpers.CommandsHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
-using HamstarHelpers.Utilities.Web;
 using HamstarHelpers.WebHelpers;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Commands {
 	class ModIssueReportCommand : ModCommand {
-		public override CommandType Type { get { return CommandType.Chat; } }
+		public override CommandType Type { get { return CommandType.Chat | CommandType.Console; } }
 		public override string Command { get { return "hhmodissuereport"; } }
 		public override string Usage { get { return "/hhmodissuereport 4 \"issue title\" \"issue description text\""; } }
 		public override string Description { get { return "Reports an issue for a mod. Only works for mods setup with Hamstar's Helpers to do so (see Control Panel)."+

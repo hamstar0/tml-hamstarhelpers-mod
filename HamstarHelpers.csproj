@@ -84,6 +84,7 @@
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Obsolete.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Draw.cs" />
+    <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCInvasionHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerHelpers_Obsolete.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers.cs" />
@@ -91,11 +92,13 @@
     <Compile Include="Helpers\ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlWorldHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_AltNPCInfo.cs" />
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Helpers\WebHelpers\GithubModIssueReports.cs" />
     <Compile Include="Helpers\WebHelpers\ModVersionGet.cs" />
+    <Compile Include="Helpers\XnaHelpers\GeometryHelpers.cs" />
     <Compile Include="Logic\PlayerLogic_Data.cs" />
     <Compile Include="Logic\PlayerLogic_TmlHelpers.cs" />
     <Compile Include="Logic\PlayerLogic.cs" />
@@ -114,7 +117,7 @@
     <Compile Include="NetProtocols.cs" />
     <Compile Include="Helpers\NPCHelpers\_NPCAIHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCBannerHelpers.cs" />
-    <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers.cs" />
+    <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers_Groups.cs" />
     <Compile Include="Helpers\NPCHelpers\_NPCSpawnInfoHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCTownHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerMovementHelpers.cs" />

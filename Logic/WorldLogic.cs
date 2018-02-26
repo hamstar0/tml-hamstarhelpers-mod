@@ -19,27 +19,9 @@ namespace HamstarHelpers.Logic {
 
 		public WorldLogic( HamstarHelpersMod mymod ) { }
 		
-		////////////////
-
-		public bool IsLoaded( HamstarHelpersMod mymod ) {
-//var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
-//var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-//LogHelpers.Log( "HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", who: "+myplayer.player.whoAmI+", HasSyncedModSettings: "+ myplayer.Logic.HasSyncedModSettings + ", HasSyncedModData: " + myplayer.Logic.HasSyncedModData );
-			if( !mymod.HasSetupContent ) { return false; }
-
-			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
-			if( !modworld.HasCorrectID ) { return false; }
-
-			if( Main.netMode == 0 || Main.netMode == 1 ) {
-				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-				return myplayer.Logic.IsSynced();
-			}
-
-			return true;
-		}
 
 		////////////////
-
+		
 		public void LoadForWorld( HamstarHelpersMod mymod, TagCompound tags ) {
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 

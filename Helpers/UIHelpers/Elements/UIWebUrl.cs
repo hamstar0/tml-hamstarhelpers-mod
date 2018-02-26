@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using HamstarHelpers.Helpers.DotNetHelpers;
 
+
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIWebUrl : UIElement {
 		public static Color DefaultColor = new Color( 80, 80, 255 );

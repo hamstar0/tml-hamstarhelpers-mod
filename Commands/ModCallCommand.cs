@@ -34,7 +34,7 @@ namespace HamstarHelpers.Commands {
 			try {
 				callmod = ModLoader.GetMod( args[0] );
 				if( callmod == null ) { throw new Exception( "Invalid mod name." ); }
-			} catch( Exception e ) {
+			} catch( Exception _ ) {
 				throw new UsageException( "Invald mod name argument." );
 			}
 

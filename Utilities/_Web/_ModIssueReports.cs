@@ -46,7 +46,7 @@ namespace HamstarHelpers.Utilities.Web {
 		////////////////
 
 		public static IList<string> OutputErrorLog() {
-			return GithubModIssueReports.OutputErrorLog();
+			return GithubModIssueReports.OutputErrorLog( HamstarHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines );
 		}
 	}
 }

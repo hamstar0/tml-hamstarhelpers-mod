@@ -36,6 +36,7 @@ namespace HamstarHelpers {
 		internal BuffHelpers.BuffIdentityHelpers BuffIdentityHelpers;
 		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
 		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
+		internal TmlHelpers.TmlLoadHelpers TmlLoadHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
 		internal TmlHelpers.TmlWorldHelpers TmlWorldHelpers;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
@@ -44,8 +45,9 @@ namespace HamstarHelpers {
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
 		
-		public bool HasRecipesBeenAdded { get; private set; }
 		public bool HasSetupContent { get; private set; }
+		public bool HasAddedRecipeGroups { get; private set; }
+		public bool HasAddedRecipes { get; private set; }
 
 		public ModHotKey ControlPanelHotkey = null;
 
@@ -61,8 +63,9 @@ namespace HamstarHelpers {
 		////////////////
 
 		public HamstarHelpersMod() {
-			this.HasRecipesBeenAdded = false;
 			this.HasSetupContent = false;
+			this.HasAddedRecipeGroups = false;
+			this.HasAddedRecipes = false;
 
 			this.Properties = new ModProperties() {
 				Autoload = true,
@@ -96,6 +99,7 @@ namespace HamstarHelpers {
 			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
 			this.TmlWorldHelpers = new TmlHelpers.TmlWorldHelpers();
+			this.TmlLoadHelpers = new TmlHelpers.TmlLoadHelpers();
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
 			this.ControlPanel = new ControlPanel.ControlPanelUI();
 			//this.UserHelpers = new UserHelpers.UserHelpers();
@@ -139,6 +143,7 @@ namespace HamstarHelpers {
 			this.RecipeHelpers = null;
 			this.TmlPlayerHelpers = null;
 			this.TmlWorldHelpers = null;
+			this.TmlLoadHelpers = null;
 			this.WorldHelpers = null;
 			this.ModLockHelpers = null;
 			this.AnimatedColors = null;
@@ -166,6 +171,7 @@ namespace HamstarHelpers {
 			}
 
 			this.HasSetupContent = true;
+			this.CheckAndProcessLoadFinish();
 		}
 
 		////////////////
@@ -185,6 +191,9 @@ namespace HamstarHelpers {
 			foreach( var kv in HamstarHelpers.RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {
 				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
+
+			this.HasAddedRecipeGroups = true;
+			this.CheckAndProcessLoadFinish();
 		}
 
 		public override void PostAddRecipes() {
@@ -192,8 +201,20 @@ namespace HamstarHelpers {
 			this.NPCIdentityHelpers.PopulateNames();
 			this.ProjectileIdentityHelpers.PopulateNames();
 			this.BuffIdentityHelpers.PopulateNames();
+			
+			this.HasAddedRecipes = true;
+			this.CheckAndProcessLoadFinish();
+		}
 
-			this.HasRecipesBeenAdded = true;
+
+		////////////////
+
+		private void CheckAndProcessLoadFinish() {
+			if( !this.HasSetupContent ) { return; }
+			if( !this.HasAddedRecipeGroups ) { return; }
+			if( !this.HasAddedRecipes ) { return; }
+
+			this.TmlLoadHelpers.FulfillPromises();
 		}
 	}
 }
