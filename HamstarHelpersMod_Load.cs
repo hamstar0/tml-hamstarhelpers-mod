@@ -39,6 +39,7 @@ namespace HamstarHelpers {
 		internal TmlHelpers.TmlLoadHelpers TmlLoadHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
 		internal TmlHelpers.TmlWorldHelpers TmlWorldHelpers;
+		internal WebHelpers.ModVersionGet ModVersionGet;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
 		//internal UserHelpers.UserHelpers UserHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
@@ -100,6 +101,7 @@ namespace HamstarHelpers {
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
 			this.TmlWorldHelpers = new TmlHelpers.TmlWorldHelpers();
 			this.TmlLoadHelpers = new TmlHelpers.TmlLoadHelpers();
+			this.ModVersionGet = new WebHelpers.ModVersionGet();
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
 			this.ControlPanel = new ControlPanel.ControlPanelUI();
 			//this.UserHelpers = new UserHelpers.UserHelpers();
@@ -144,6 +146,7 @@ namespace HamstarHelpers {
 			this.TmlPlayerHelpers = null;
 			this.TmlWorldHelpers = null;
 			this.TmlLoadHelpers = null;
+			this.ModVersionGet = null;
 			this.WorldHelpers = null;
 			this.ModLockHelpers = null;
 			this.AnimatedColors = null;

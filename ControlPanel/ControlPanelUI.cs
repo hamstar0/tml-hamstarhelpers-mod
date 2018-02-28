@@ -65,26 +65,33 @@ namespace HamstarHelpers.ControlPanel {
 			this.RefreshApplyConfigButton();
 			
 			if( this.ModDataList.Count == 0 && !this.IsPopulatingList ) {
-				this.IsPopulatingList = true;
-				
-				Task.Run( () => {
-					this.LoadModList();
-					this.IsPopulatingList = false;
-				} );
+				this.LoadModList();
 			}
 		}
 
 
 		////////////////
+		
+		public void LoadModList() {
+			Task.Run( () => {
+				this.IsPopulatingList = true;
 
-		private void LoadModList() {
-			int i = 1;
+				this.ModDataList.Clear();
 
-			foreach( var mod in ModHelpers.GetAllMods() ) {
-				this.ModDataList.Add( this.CreateModListItem( i++, mod ) );
-			}
-			
-			this.ModListUpdateRequired = true;
+				int i = 1;
+
+				foreach( var mod in ModHelpers.GetAllMods() ) {
+					UIModData moditem = this.CreateModListItem( i++, mod );
+
+					this.ModDataList.Add( moditem );
+
+					//if( ModMetaDataManager.HasGithub( moditem.Mod ) ) {
+					moditem.CheckForNewVersion();
+				}
+
+				this.ModListUpdateRequired = true;
+				this.IsPopulatingList = false;
+			} );
 		}
 
 
@@ -127,20 +134,13 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		public void UpdateModList() {
-			if( !this.ModListUpdateRequired ) { return; }
-
+			if( !this.ModListUpdateRequired || !this.IsOpen ) { return; }
 			this.ModListUpdateRequired = false;
 
 			try {
 				this.ModListElem.Clear();
 				this.ModListElem.AddRange( this.ModDataList );
 			} catch( Exception _ ) { }
-			
-			foreach( var moditem in this.ModDataList ) {
-				if( !ModMetaDataManager.HasGithub(moditem.Mod) ) { continue; }
-				
-				moditem.CheckForNewVersion();
-			}
 		}
 
 		////////////////

@@ -1,10 +1,11 @@
 ﻿using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.AnimatedColor;
-using HamstarHelpers.Utilities.Web;
+using HamstarHelpers.WebHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -25,7 +26,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		public Mod Mod { get; private set; }
 		public string Author { get; private set; }
 		public string HomepageUrl { get; private set; }
-		public Version NewVersion { get; private set; }
+		public Version LatestAvailableVersion { get; private set; }
 
 		public UIImage IconElem { get; private set; }
 		public UIElement TitleElem { get; private set; }
@@ -59,7 +60,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.Author = null;
 			this.HomepageUrl = null;
 			this.HasIconLoaded = false;
-			this.NewVersion = default( Version );
+			this.LatestAvailableVersion = default( Version );
 
 			BuildPropertiesInterface props = modfile != null ?
 				BuildPropertiesInterface.GetBuildPropertiesForModFile( modfile ) :
@@ -157,17 +158,25 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 		
-		public void CheckForNewVersion() {
-			var thread = new Thread( () => {
+		public void CheckForNewVersion() {  //Action<bool, Version> on_finished
+			bool found = false;
+			var worker = new BackgroundWorker();
+			Version vers = default(Version);
+
+			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
 				lock( UIModData.MyLock ) {
-					bool found = false;
-					Version vers = ModVersionGet.GetLatestKnownVersion( this.Mod, out found );
+					vers = ModVersionGet.GetLatestKnownVersion( this.Mod, out found );
 
-					if( found ) { this.NewVersion = vers; }
+					if( found ) {
+						this.LatestAvailableVersion = vers;
+					}
 				}
-			} );
+			};
+			//worker.RunWorkerCompleted += delegate ( object sender, RunWorkerCompletedEventArgs args ) {
+			//	on_finished( found, vers );
+			//};
 
-			thread.Start();
+			worker.RunWorkerAsync();
 		}
 
 
@@ -208,7 +217,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
 
-			if( this.NewVersion > this.Mod.Version ) {
+			if( this.LatestAvailableVersion > this.Mod.Version ) {
 				Color color = AnimatedColors.Fire.CurrentColor;
 				CalculatedStyle inner_dim = base.GetInnerDimensions();
 				Vector2 pos = inner_dim.Position();

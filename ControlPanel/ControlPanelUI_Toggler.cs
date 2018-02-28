@@ -49,9 +49,11 @@ namespace HamstarHelpers.ControlPanel {
 				return true;
 			}
 
-			//foreach( var moditem in this.ModDataList ) {
-			//	if( moditem.IsUpdateNeeded ) { return true; }
-			//}
+			foreach( var moditem in this.ModDataList ) {
+				if( moditem.LatestAvailableVersion != moditem.Mod.Version ) {
+					return true;
+				}
+			}
 
 			return false;
 		}

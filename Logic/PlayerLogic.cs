@@ -59,6 +59,8 @@ namespace HamstarHelpers.Logic {
 				this.FinishModSettingsSync();
 				this.FinishModDataSync();
 			}
+
+			mymod.ControlPanel.LoadModList();
 		}
 
 		////////////////

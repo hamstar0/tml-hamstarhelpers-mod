@@ -72,7 +72,7 @@ namespace HamstarHelpers.WebHelpers {
 			}
 
 			JObject resp_json = JObject.Parse( resp_data );
-			JToken data = resp_json.SelectToken( "Data.html_url" );
+			//JToken data = resp_json.SelectToken( "Data.html_url" );
 			JToken msg = resp_json.SelectToken( "Msg" );
 
 			/*if( data != null ) {
@@ -82,10 +82,10 @@ namespace HamstarHelpers.WebHelpers {
 				}
 			}*/
 
-			if( msg != null ) {
-				return msg.ToObject<string>();
+			if( msg == null ) {
+				return "Failure.";
 			}
-			return "Failure.";
+			return msg.ToObject<string>();
 		}
 
 
