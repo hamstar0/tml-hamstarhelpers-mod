@@ -30,15 +30,15 @@ namespace HamstarHelpers {
 		public HHModDataProtocol() { }
 
 		public override void SetServerDefaults() {
-			var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
-
-			myworld.WorldLogic.SaveForNetwork( this );
+			HamstarHelpersMod.Instance.WorldHelpers.SaveForNetwork( this );
 		}
 
 		public override void ReceiveOnClient() {
-			var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
+			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
-			myworld.WorldLogic.LoadFromNetwork( this.HalfDays );
+			HamstarHelpersMod.Instance.WorldHelpers.LoadFromNetwork( this.HalfDays );
+
+			myplayer.Logic.FinishModDataSync();
 		}
 	}
 

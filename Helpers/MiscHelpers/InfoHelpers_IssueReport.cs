@@ -1,96 +1,13 @@
 ﻿using HamstarHelpers.PlayerHelpers;
-using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.TmlHelpers.ModHelpers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.WebHelpers {
-	public struct GithubModIssueReportData {
-		public string githubuser;
-		public string githubproject;
-		public string title;
-		public string body;
-		//public string[] labels;
-	}
-
-
-
-	public static class GithubModIssueReports {
-		public static string ReportIssue( Mod mod, string issue_title, string issue_body ) {
-			if( !ModMetaDataManager.HasGithub( mod ) ) {
-				throw new Exception( "Mod is not eligable for submitting issues." );
-			}
-
-			int max_lines = HamstarHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
-
-			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
-			string body_info = string.Join( "\n \n", GithubModIssueReports.OutputGameData( mods ).ToArray() );
-			string body_errors = string.Join( "\n", GithubModIssueReports.OutputErrorLog( max_lines ).ToArray() );
-			
-			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
-			string title = "In-game: " + issue_title;
-			string body = body_info;
-			body += "\n \n \n \n" + "Recent error logs:\n```\n" + body_errors + "\n```";
-			body += "\n \n" + issue_body;
-
-			var json = new GithubModIssueReportData {
-				githubuser = ModMetaDataManager.GetGithubUserName( mod ),
-				githubproject = ModMetaDataManager.GetGithubProjectName( mod ),
-				title = title,
-				body = body
-			};
-			string json_str = JsonConvert.SerializeObject( json, Formatting.Indented );
-			byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
-
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
-			request.Method = "POST";
-			request.ContentType = "application/json";   //"application/vnd.github.v3+json";
-			request.ContentLength = json_bytes.Length;
-			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
-
-			using( Stream data_stream = request.GetRequestStream() ) {
-				data_stream.Write( json_bytes, 0, json_bytes.Length );
-				data_stream.Close();
-			}
-
-			WebResponse resp = request.GetResponse();
-			string resp_data;
-
-			using( Stream resp_data_stream = resp.GetResponseStream() ) {
-				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
-				resp_data = stream_read.ReadToEnd();
-				resp_data_stream.Close();
-			}
-
-			JObject resp_json = JObject.Parse( resp_data );
-			//JToken data = resp_json.SelectToken( "Data.html_url" );
-			JToken msg = resp_json.SelectToken( "Msg" );
-
-			/*if( data != null ) {
-				string post_at_url = data.ToObject<string>();
-				if( !string.IsNullOrEmpty( post_at_url ) ) {
-					SystemHelpers.Start( post_at_url );
-				}
-			}*/
-
-			if( msg == null ) {
-				return "Failure.";
-			}
-			return msg.ToObject<string>();
-		}
-
-
-		////////////////
-
+namespace HamstarHelpers.MiscHelpers {
+	public static partial class InfoHelpers {
 		public static IList<string> OutputGameData( IEnumerable<Mod> mods ) {
 			var list = new List<string>();
 
@@ -100,22 +17,22 @@ namespace HamstarHelpers.WebHelpers {
 			double time_of_day = Main.time;
 			int half_days = WorldHelpers.WorldHelpers.GetElapsedHalfDays();
 			string world_size = WorldHelpers.WorldHelpers.GetSize().ToString();
-			string[] world_prog = GithubModIssueReports.OutputWorldProgress().ToArray();
+			string[] world_prog = InfoHelpers.OutputWorldProgress().ToArray();
 			int active_items = ItemHelpers.ItemHelpers.GetActive().Count;
 			int active_npcs = NPCHelpers.NPCHelpers.GetActive().Count;
-			string[] player_infos = GithubModIssueReports.OutputCurrentPlayerInfo().ToArray();
-			string[] player_equips = GithubModIssueReports.OutputCurrentPlayerEquipment().ToArray();
+			string[] player_infos = InfoHelpers.OutputCurrentPlayerInfo().ToArray();
+			string[] player_equips = InfoHelpers.OutputCurrentPlayerEquipment().ToArray();
 			int active_players = Main.ActivePlayersCount;
 			string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
 
 			list.Add( "Mods: " + string.Join( ", ", mods_arr ) );
-			list.Add( "Is day: " + is_day + ", Time of day/night: " + time_of_day + ", Elapsed half days: "+half_days );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
+			list.Add( "Is day: " + is_day + ", Time of day/night: " + time_of_day + ", Elapsed half days: " + half_days );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
 			list.Add( "World name: " + Main.worldName + ", world size: " + world_size );
 			list.Add( "World progress: " + string.Join( ", ", world_prog ) );
 			list.Add( "Items on ground: " + active_items + ", Npcs active: " + active_npcs );
 			list.Add( "Player info: " + string.Join( ", ", player_infos ) );
 			list.Add( "Player equips: " + string.Join( ", ", player_equips ) );
-			list.Add( "Player count: " + active_players + " ("+netmode+")" );
+			list.Add( "Player count: " + active_players + " (" + netmode + ")" );
 
 			return list;
 		}
@@ -209,7 +126,7 @@ namespace HamstarHelpers.WebHelpers {
 
 				do {
 					lines = new List<string>( max_lines + 25 );
-					
+
 					if( reader.BaseStream.Length > size ) {
 						reader.BaseStream.Seek( -size, SeekOrigin.End );
 						size += 1024;
@@ -227,7 +144,7 @@ namespace HamstarHelpers.WebHelpers {
 
 			IList<string> rev_lines = lines.Reverse().Take( 25 ).ToList();
 			if( lines.Count > max_lines ) { rev_lines.Add( "..." ); }
-			
+
 			return new List<string>( rev_lines.Reverse() );
 		}
 	}

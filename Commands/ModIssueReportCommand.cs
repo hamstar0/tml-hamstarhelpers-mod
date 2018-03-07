@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.TmlHelpers.CommandsHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
-using HamstarHelpers.WebHelpers;
+using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,17 @@ namespace HamstarHelpers.Commands {
 				return;
 			}
 
-			var worker = new BackgroundWorker();
+			GithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body, delegate ( string output ) {
+				if( output != "Done?" ) {
+					caller.Reply( output, Color.GreenYellow );
+				} else {
+					caller.Reply( "Issue report was not sent", Color.Red );
+				}
+			}, delegate( Exception e ) {
+				caller.Reply( e.Message, Color.Red );
+			} );
+
+			/*var worker = new BackgroundWorker();
 			string output = "Done?";
 
 			worker.DoWork += delegate ( object sender, DoWorkEventArgs e_args ) {
@@ -63,7 +73,7 @@ namespace HamstarHelpers.Commands {
 					caller.Reply( "Issue report was not sent", Color.Red );
 				}
 			};
-			worker.RunWorkerAsync();
+			worker.RunWorkerAsync();*/
 		}
 	}
 }

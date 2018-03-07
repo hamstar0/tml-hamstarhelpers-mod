@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.TmlHelpers;
-using System.ComponentModel;
 using Terraria.UI;
 
 
@@ -59,7 +58,7 @@ namespace HamstarHelpers.ControlPanel {
 			this.AwaitingReport = true;
 			this.DisableIssueInput();
 
-			self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue_title, issue_body, delegate ( object sender, RunWorkerCompletedEventArgs args ) {
+			self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue_title, issue_body, delegate {
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
 				self.SetDialogToClose = true;

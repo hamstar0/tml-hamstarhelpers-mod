@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -15,6 +16,25 @@ using Terraria.UI;
 
 namespace HamstarHelpers.ControlPanel {
 	partial class ControlPanelUI : UIState {
+		public static void UpdateModList( HamstarHelpersMod mymod ) {
+			var ctrl_panel = mymod.ControlPanel;
+
+			if( ctrl_panel == null || !ctrl_panel.ModListUpdateRequired || !ctrl_panel.IsOpen ) {
+				return;
+			}
+
+			ctrl_panel.ModListUpdateRequired = false;
+
+			try {
+				ctrl_panel.ModListElem.Clear();
+				ctrl_panel.ModListElem.AddRange( ctrl_panel.ModDataList.ToArray() );
+			} catch( Exception _ ) { }
+		}
+
+
+
+		////////////////
+
 		public bool IsOpen { get; private set; }
 		
 		private UITheme Theme = new UITheme();
@@ -132,16 +152,6 @@ namespace HamstarHelpers.ControlPanel {
 			this.UpdateElements( HamstarHelpersMod.Instance );
 		}
 
-
-		public void UpdateModList() {
-			if( !this.ModListUpdateRequired || !this.IsOpen ) { return; }
-			this.ModListUpdateRequired = false;
-
-			try {
-				this.ModListElem.Clear();
-				this.ModListElem.AddRange( this.ModDataList );
-			} catch( Exception _ ) { }
-		}
 
 		////////////////
 

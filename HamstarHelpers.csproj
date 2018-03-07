@@ -82,6 +82,9 @@
     <Compile Include="Helpers\ItemHelpers\ItemHelpers_Obsolete.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Id.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
+    <Compile Include="Helpers\MiscHelpers\InfoHelpers_IssueReport.cs" />
+    <Compile Include="Helpers\MiscHelpers\InfoHelpers.cs" />
+    <Compile Include="Helpers\NetHelpers\NetHelpers_Web.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Obsolete.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Draw.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers.cs" />
@@ -93,17 +96,21 @@
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers.cs" />
-    <Compile Include="Helpers\TmlHelpers\TmlWorldHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\_TmlWorldHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_AltNPCInfo.cs" />
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlySet.cs" />
-    <Compile Include="Helpers\WebHelpers\GithubModIssueReports.cs" />
-    <Compile Include="Helpers\WebHelpers\ModVersionGet.cs" />
+    <Compile Include="Helpers\UIHelpers\Elements\UITextField.cs" />
+    <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="WebRequests\GithubModIssueReports.cs" />
+    <Compile Include="WebRequests\ModVersionGet.cs" />
+    <Compile Include="Helpers\NetHelpers\NetHelpers.cs" />
+    <Compile Include="WebRequests\ServerBrowserReport.cs" />
     <Compile Include="Helpers\XnaHelpers\GeometryHelpers.cs" />
     <Compile Include="Logic\PlayerLogic_Data.cs" />
     <Compile Include="Logic\PlayerLogic_TmlHelpers.cs" />
     <Compile Include="Logic\PlayerLogic.cs" />
     <Compile Include="Logic\WorldLogic_Update.cs" />
-    <Compile Include="Logic\WorldLogic.cs" />
+    <Compile Include="Logic\WorldLogic_Data.cs" />
     <Compile Include="HamstarHelpersWorld.cs" />
     <Compile Include="Helpers\HudHelpers\HudHealthBarHelpers.cs" />
     <Compile Include="HamstarHelpersPlayer.cs" />
@@ -155,7 +162,7 @@
     <Compile Include="Utilities\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Utilities\Network\PacketProtocol_Send.cs" />
     <Compile Include="Utilities\Network\PacketProtocol.cs" />
-    <Compile Include="Utilities\_Web\_ModIssueReports.cs" />
+    <Compile Include="Utilities\Timers\Timers.cs" />
     <Compile Include="Utilities\Messages\PlayerMessages.cs" />
     <Compile Include="Utilities\Messages\SimpleMessage.cs" />
     <Compile Include="Helpers\HudHelpers\HudHelpers.cs" />
@@ -171,8 +178,7 @@
     <Compile Include="Utilities\_UI\_UITextArea.cs" />
     <Compile Include="Utilities\_UI\_UITextPanelButton.cs" />
     <Compile Include="Utilities\_UI\_UIWebUrl.cs" />
-    <Compile Include="Utilities\_Web\_ModVersionGet.cs" />
-    <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="Helpers\WorldHelpers\WorldHelpers_Defs.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaColorHelpers.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaHelpers.cs" />
   </ItemGroup>

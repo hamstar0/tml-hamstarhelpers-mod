@@ -6,7 +6,6 @@ using System;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 

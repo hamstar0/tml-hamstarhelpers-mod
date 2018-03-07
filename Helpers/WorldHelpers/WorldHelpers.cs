@@ -1,63 +1,19 @@
 ﻿using HamstarHelpers.Helpers;
+using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.WorldHelpers {
-	public enum VanillaBiomes {
-		Forest, Space, Ocean, Cave, Hell,
-		Desert, Cold, Mushroom, Jungle, Corruption, Crimson, Hallow,
-		Granite, Marble, SpiderNest, Dungeon, Temple
-	}
-	public enum VanillaSectionalBiomes {
-		Forest, Space, Ocean, Cave, Hell
-	}
-	public enum VanillaSurfaceBiomes {
-		Forest, Desert, Cold, Mushroom, Jungle, Ocean, Space, Corruption, Crimson, Hallow
-	}
-	public enum VanillaUndergroundBiomes {
-		Cave, Desert, Cold, Mushroom, Granite, Marble, SpiderNest, Dungeon, Jungle, Temple, Corruption, Crimson, Hallow, Hell
-	}
-	public enum VanillaHardModeSurfaceBiomes {
-		Corruption, Crimson, Hallow
-	}
-	public enum VanillaHardModeUndergroundBiomes {
-		Temple, Corruption, Crimson, Hallow
-	}
-	public enum VanillaHardModeConvertibleBiomes {
-		Cave, Desert, Cold
-	}
-
-
-	public enum WorldSize {
-		SubSmall,
-		Small,
-		Medium,
-		Large,
-		SuperLarge
-	}
-
-
-
-	public class WorldHelpers {
-		public readonly static int VanillaDayDuration = 54000;
-		public readonly static int VanillaNightDuration = 32400;
-
-
-		////////////////
-
-		internal IDictionary<string, Action> DayHooks = new Dictionary<string, Action>();
-		internal IDictionary<string, Action> NightHooks = new Dictionary<string, Action>();
-
-		
-		////////////////
-		
+	public partial class WorldHelpers {
 		public static string GetUniqueId() {
-			return FileHelpers.SanitizePath( Main.worldName) + ":" + Main.worldID;
+			return FileHelpers.SanitizePath(Main.worldName) + ":" + Main.worldID;
 		}
 
+		////////////////
 
 		public static WorldSize GetSize() {
 			int size = Main.maxTilesX * Main.maxTilesY;
@@ -74,7 +30,7 @@ namespace HamstarHelpers.WorldHelpers {
 				return WorldSize.SuperLarge;
 			}
 		}
-
+		
 
 		////////////////
 
@@ -82,11 +38,15 @@ namespace HamstarHelpers.WorldHelpers {
 			return Main.invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0;
 		}
 
+
 		////////////////
 
+		public static int GetElapsedPlayTime() {
+			return (int)(HamstarHelpersMod.Instance.WorldHelpers.TicksElapsed / 60);
+		}
+
 		public static int GetElapsedHalfDays() {
-			var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
-			return myworld.WorldLogic.HalfDaysElapsed;
+			return HamstarHelpersMod.Instance.WorldHelpers.HalfDaysElapsed;
 		}
 
 		public static double GetDayOrNightPercentDone() {
@@ -116,6 +76,67 @@ namespace HamstarHelpers.WorldHelpers {
 
 		public static void AddNightHook( string name, Action callback ) {
 			HamstarHelpersMod.Instance.WorldHelpers.NightHooks[name] = callback;
+		}
+
+
+
+		////////////////
+
+		private bool IsDay;
+		private int HalfDaysElapsed;
+		private long TicksElapsed;
+
+		internal IDictionary<string, Action> DayHooks = new Dictionary<string, Action>();
+		internal IDictionary<string, Action> NightHooks = new Dictionary<string, Action>();
+
+
+		////////////////
+
+		internal void Load( HamstarHelpersMod mymod, TagCompound tags ) {
+			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+
+			if( tags.ContainsKey( "world_id" ) ) {
+				this.HalfDaysElapsed = tags.GetInt( "half_days_elapsed_" + myworld.ObsoleteID );
+			}
+		}
+
+		internal void Save( HamstarHelpersMod mymod, TagCompound tags ) {
+			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+
+			tags.Set( "half_days_elapsed_" + myworld.ObsoleteID, (int)this.HalfDaysElapsed );
+		}
+
+		////////////////
+
+		internal void SaveForNetwork( HHModDataProtocol protocol ) {
+			protocol.HalfDays = this.HalfDaysElapsed;
+		}
+
+		internal void LoadFromNetwork( int half_days ) {
+			this.HalfDaysElapsed = half_days;
+		}
+
+
+		////////////////
+
+		internal void Update( HamstarHelpersMod mymod ) {
+			if( !TmlLoadHelpers.IsWorldSafelyBeingPlayed() ) {
+				this.IsDay = Main.dayTime;
+			} else {
+				if( this.IsDay != Main.dayTime ) {
+					this.HalfDaysElapsed++;
+
+					if( !this.IsDay ) {
+						foreach( var kv in mymod.WorldHelpers.DayHooks ) { kv.Value(); }
+					} else {
+						foreach( var kv in mymod.WorldHelpers.NightHooks ) { kv.Value(); }
+					}
+				}
+
+				this.IsDay = Main.dayTime;
+			}
+
+			this.TicksElapsed++;
 		}
 	}
 }

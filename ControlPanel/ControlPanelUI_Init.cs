@@ -81,7 +81,7 @@ namespace HamstarHelpers.ControlPanel {
 
 			////
 
-			var tip = new UIText( "To get your own mod issue reporting, " );
+			var tip = new UIText( "To enable issue reports for your mod, " );
 			this.InnerContainer.Append( (UIElement)tip );
 
 			var tip_url = new UIWebUrl( "read this.",

@@ -1,6 +1,8 @@
-﻿using HamstarHelpers.UIHelpers.Elements;
+﻿using HamstarHelpers.NetHelpers;
+using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Messages;
 using HamstarHelpers.Utilities.Network;
+using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -17,6 +19,7 @@ namespace HamstarHelpers.Logic {
 
 		private ISet<int> HasBuffIds = new HashSet<int>();
 		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
+		private uint TestPing = 0;
 
 		public DialogManager DialogManager = new DialogManager();
 
@@ -39,6 +42,11 @@ namespace HamstarHelpers.Logic {
 		}
 
 
+		public void OnEnterWorldForServer( Player player ) {
+			ServerBrowserReport.AnnounceServer();
+		}
+
+
 		public void OnEnterWorld( HamstarHelpersMod mymod, Player player ) {
 			if( Main.netMode == 0 ) {   // Single player only
 				if( !mymod.JsonConfig.LoadFile() ) {
@@ -53,6 +61,7 @@ namespace HamstarHelpers.Logic {
 				player_data.SendRequest( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
+				ServerBrowserReport.AnnounceServerConnect();
 			}
 
 			if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server
@@ -79,19 +88,47 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 
-		public void Update( HamstarHelpersMod mymod, Player player ) {
+		public void PreUpdateSingle( HamstarHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 				SimpleMessage.UpdateMessage();
 				mymod.PlayerMessages.Update();
 				this.DialogManager.Update( mymod );
-			
-				if( Main.netMode == 1 ) {   // Client only
-					modworld.WorldLogic.Update( mymod );
-				} else if( Main.netMode == 2 ) {    // Server
-					modworld.WorldLogic.IsServerPlaying = true;
-				}
+			}
+
+			foreach( int buff_id in this.PermaBuffsById ) {
+				player.AddBuff( buff_id, 3 );
+			}
+
+			this.UpdateTml( mymod, player );
+		}
+
+		public void PreUpdateClient( HamstarHelpersMod mymod, Player player ) {
+			this.PreUpdateSingle( mymod, player );
+
+			if( player.whoAmI == Main.myPlayer ) { // Current player
+				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+				myworld.WorldLogic.PreUpdateNotServer( mymod );
+			}
+
+			// Update ping every 10 seconds
+			if( this.TestPing % (600) == 0 ) {
+				PacketProtocol.QuickSendData<HHPingProtocol>( -1, -1, false );
+			}
+
+			// Update server status 60 seconds
+			if( this.TestPing % ( 3600 ) == 0 ) {
+				ServerBrowserReport.AnnounceServerConnect();
+			}
+
+			this.TestPing++;
+		}
+
+		public void PreUpdateServer( HamstarHelpersMod mymod, Player player ) {
+			if( player.whoAmI == Main.myPlayer ) { // Current player
+				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+				mymod.TmlLoadHelpers.HasServerBegunHavingPlayers = true;
 			}
 
 			foreach( int buff_id in this.PermaBuffsById ) {
@@ -106,8 +143,8 @@ namespace HamstarHelpers.Logic {
 
 		public void ProcessTriggers( HamstarHelpersMod mymod, TriggersSet triggers_set ) {
 			if( mymod.ControlPanelHotkey.JustPressed ) {
-				if( mymod.Config.DisableControlPanel ) {
-					Main.NewText( "Control panel disabled.", Color.Red );
+				if( mymod.Config.DisableControlPanelHotkey ) {
+					Main.NewText( "Control panel hotkey disabled.", Color.Red );
 				} else {
 					mymod.ControlPanel.Open();
 				}

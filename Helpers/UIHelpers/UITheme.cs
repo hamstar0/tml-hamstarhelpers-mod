@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.UIHelpers.Elements;
+﻿using HamstarHelpers.Helpers.UIHelpers.Elements;
+using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 
@@ -69,7 +70,12 @@ namespace HamstarHelpers.UIHelpers {
 		}
 
 		////////////////
-		
+
+		public virtual void ApplyInput( UITextField panel ) {
+			panel.BackgroundColor = this.InputBgColor;
+			panel.BorderColor = this.InputEdgeColor;
+			panel.TextColor = this.InputTextColor;
+		}
 		public virtual void ApplyInput( UITextArea panel ) {
 			panel.BackgroundColor = this.InputBgColor;
 			panel.BorderColor = this.InputEdgeColor;
@@ -109,17 +115,17 @@ namespace HamstarHelpers.UIHelpers {
 			panel.BorderColor = this.ListEdgeColor;
 		}
 
-		public virtual void ApplyListItem( UIModData panel ) {
+		public virtual void ApplyListItem( UIPanel panel ) {
 			panel.BackgroundColor = this.ListItemBgColor;
 			panel.BorderColor = this.ListItemEdgeColor;
 		}
 
-		public virtual void ApplyListItemLit( UIModData panel ) {
+		public virtual void ApplyListItemLit( UIPanel panel ) {
 			panel.BackgroundColor = this.ListItemBgLitColor;
 			panel.BorderColor = this.ListItemEdgeLitColor;
 		}
 
-		public virtual void ApplyListItemSelected( UIModData panel ) {
+		public virtual void ApplyListItemSelected( UIPanel panel ) {
 			panel.BackgroundColor = this.ListItemBgSelectedColor;
 			panel.BorderColor = this.ListItemEdgeSelectedColor;
 		}

@@ -21,6 +21,11 @@ namespace HamstarHelpers.Utilities.Messages {
 
 
 	public class PlayerMessages {
+		private IDictionary<int, IList<PlayerLabelText>> PlayerTexts = new Dictionary<int, IList<PlayerLabelText>>();
+
+
+		////////////////
+
 		public static void AddPlayerLabel( Player player, string text, Color color, int duration, bool evaporates, bool following=true ) {
 			var pm = HamstarHelpersMod.Instance.PlayerMessages;
 
@@ -40,11 +45,6 @@ namespace HamstarHelpers.Utilities.Messages {
 
 			pm.PlayerTexts[ player.whoAmI ].Add( pt );
 		}
-
-
-		////////////////
-
-		private IDictionary<int, IList<PlayerLabelText>> PlayerTexts = new Dictionary<int, IList<PlayerLabelText>>();
 
 
 		////////////////

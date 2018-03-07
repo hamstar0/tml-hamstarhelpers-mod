@@ -1,52 +1,41 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.ControlPanel;
+using HamstarHelpers.TmlHelpers;
 using Terraria;
 
 
 namespace HamstarHelpers.Logic {
 	partial class WorldLogic {
-		public void Update( HamstarHelpersMod mymod ) {
-			if( !TmlWorldHelpers.IsGameLoaded() ) {
-				return;
-			}
-
-			if( this.IsPlaying() ) {
-				mymod.ControlPanel.UpdateModList();
-			}
+		public void PreUpdateNotServer( HamstarHelpersMod mymod ) {
+			this.PreUpdateServer( mymod );
 
 			mymod.AnimatedColors.Update();
 
-			// Simply idle until ready (seems needed)
-			if( !this.IsFullyReady() ) {
-				this.IsDay = Main.dayTime;
+			ControlPanelUI.UpdateModList( mymod );
+		}
+
+
+		public void PreUpdateServer( HamstarHelpersMod mymod ) {
+			if( !TmlLoadHelpers.IsWorldBeingPlayed() ) {
 				return;
-			} else {
+			}
+
+			mymod.TmlLoadHelpers.Update();
+			mymod.WorldHelpers.Update( mymod );
+
+			// Simply idle until ready (seems needed)
+			if( TmlLoadHelpers.IsWorldSafelyBeingPlayed() ) {
 				this.UpdateLoaded( mymod );
 			}
 		}
 
 
+		////////////////
+		
 		private void UpdateLoaded( HamstarHelpersMod mymod ) {
-			this.UpdateDay( mymod );
-
 			mymod.ModLockHelpers.Update();
 			
 			AltProjectileInfo.UpdateAll();
 			AltNPCInfo.UpdateAll();
-		}
-
-		////////////////
-
-		private void UpdateDay( HamstarHelpersMod mymod ) {
-			if( this.IsDay != Main.dayTime ) {
-				this.HalfDaysElapsed++;
-
-				if( !this.IsDay ) {
-					foreach( var kv in mymod.WorldHelpers.DayHooks ) { kv.Value(); }
-				} else {
-					foreach( var kv in mymod.WorldHelpers.NightHooks ) { kv.Value(); }
-				}
-			}
-			this.IsDay = Main.dayTime;
 		}
 	}
 }

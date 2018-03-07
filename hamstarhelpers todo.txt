@@ -17,19 +17,21 @@ v1.4.0
 -	Wrap issue reports and mod version getter with thread
 -	@Implement server browser
 	-	Add 'Join Server' option for each server
-	-	Render server list json in dialog
+	-	Request server list
+	-	@Set Helpers to transmit server data to site
 	-	@Implement server list site
-	-	Set servers to report to hamstar.pw via. REST API
+		-	Validate server
+
+		-	Implement returning server list
+		-	Implement submitting a server entry
 	-	Implement dialog
 		-	Implement server list item
-		-	Define server list data
 		-	Layout dialog
 			-	@Layout
 				-	Search input (top)
 				-	List sort buttons
 				-	Server list
 				-	Refresh button
-
 	-	Open dialog for multiplayer menu
 	-	Add menu item to multiplayer menu
 		-	Implement menu transition

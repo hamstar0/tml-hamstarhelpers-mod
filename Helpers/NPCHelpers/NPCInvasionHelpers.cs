@@ -20,6 +20,7 @@ namespace HamstarHelpers.NPCHelpers {
 
 
 
+
 	public static class NPCInvasionHelpers {
 		public static VanillaInvasionType GetInvasionType( int which ) {
 			switch( which ) {
@@ -44,9 +45,9 @@ namespace HamstarHelpers.NPCHelpers {
 				if( Main.snowMoon ) { return VanillaInvasionType.FrostMoon; }
 				if( Main.pumpkinMoon ) { return VanillaInvasionType.PumpkinMoon; }
 				if( Main.eclipse ) { return VanillaInvasionType.SolarEclipse; }
+				if( Main.slimeRain ) { return VanillaInvasionType.SlimeRain; }
 				if( NPC.LunarApocalypseIsUp ) { return VanillaInvasionType.LunarApocalypse; }
 				if( Main.bloodMoon ) { return VanillaInvasionType.BloodMoon; }
-				if( Main.slimeRain ) { return VanillaInvasionType.SlimeRain; }
 				if( Sandstorm.Happening ) { return VanillaInvasionType.Sandstorm; }
 			}
 			return inv_type;

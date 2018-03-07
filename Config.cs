@@ -18,6 +18,7 @@ namespace HamstarHelpers {
 		public bool DebugModeUnhandledExceptionLogging = true;
 
 		public bool DisableControlPanel = false;
+		public bool DisableControlPanelHotkey = false;
 		public int ControlPanelIconX = 0;
 		public int ControlPanelIconY = 0;
 

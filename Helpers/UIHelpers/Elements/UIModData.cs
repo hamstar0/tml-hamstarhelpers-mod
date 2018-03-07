@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.AnimatedColor;
-using HamstarHelpers.WebHelpers;
+using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -8,7 +8,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -158,9 +157,14 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 		
-		public void CheckForNewVersion() {  //Action<bool, Version> on_finished
-			bool found = false;
-			var worker = new BackgroundWorker();
+		public void CheckForNewVersion() {
+			lock( UIModData.MyLock ) {
+				ModVersionGet.GetLatestKnownVersion( this.Mod, delegate ( Version vers ) {
+					this.LatestAvailableVersion = vers;
+				} );
+			}
+
+			/*var worker = new BackgroundWorker();
 			Version vers = default(Version);
 
 			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
@@ -172,11 +176,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 					}
 				}
 			};
-			//worker.RunWorkerCompleted += delegate ( object sender, RunWorkerCompletedEventArgs args ) {
-			//	on_finished( found, vers );
-			//};
 
-			worker.RunWorkerAsync();
+			worker.RunWorkerAsync();*/
 		}
 
 
@@ -190,12 +191,14 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			if( obj != null && obj is UIModData ) {
 				var other = (UIModData)obj;
 
-				if( ModMetaDataManager.HasGithub( this.Mod ) && !ModMetaDataManager.HasGithub( other.Mod ) ) {
-					return -1;
-				}
-				if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
-					return -1;
-				}
+				try {
+					if( ModMetaDataManager.HasGithub( this.Mod ) && !ModMetaDataManager.HasGithub( other.Mod ) ) {
+						return -1;
+					}
+					if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
+						return -1;
+					}
+				} catch( Exception _ ) { }
 
 				return string.Compare( this.Mod.Name, other.Mod.Name );
 			}

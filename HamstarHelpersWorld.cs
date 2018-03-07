@@ -107,7 +107,7 @@ namespace HamstarHelpers {
 			
 			if( Main.netMode != 1 ) { // Not client
 				if( this.WorldLogic != null ) {
-					this.WorldLogic.Update( mymod );
+					this.WorldLogic.PreUpdateNotServer( mymod );
 				}
 			}
 		}
