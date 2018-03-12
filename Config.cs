@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 3, 7); } }
+		public static Version ConfigVersion { get { return new Version(1, 4, 0); } }
 		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
 
 
@@ -30,6 +30,8 @@ namespace HamstarHelpers {
 		public bool ModCallCommandEnabled = true;
 
 		public int ModIssueReportErrorLogMaxLines = 35;
+
+		public bool IsServerHiddenFromBrowser = false;
 
 
 

@@ -1,11 +1,9 @@
-﻿using HamstarHelpers.ControlPanel;
-using HamstarHelpers.NPCHelpers;
-using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.Utilities.AnimatedColor;
+﻿using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Messages;
 using HamstarHelpers.Utilities.Network;
 using HamstarHelpers.Utilities.Timers;
+using HamstarHelpers.WebRequests;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -41,20 +39,21 @@ namespace HamstarHelpers {
 		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
 		internal TmlHelpers.TmlLoadHelpers TmlLoadHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
-		internal WebRequests.ModVersionGet ModVersionGet;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
 		//internal UserHelpers.UserHelpers UserHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
-		
+		internal ModVersionGet ModVersionGet;
+		internal ServerBrowserReport ServerBrowser;
+
 		public bool HasSetupContent { get; private set; }
 		public bool HasAddedRecipeGroups { get; private set; }
 		public bool HasAddedRecipes { get; private set; }
 
 		public ModHotKey ControlPanelHotkey = null;
 
-		public ControlPanelUI ControlPanel = null;
+		public ControlPanel.ControlPanelUI ControlPanel = null;
 		 private int LastSeenScreenWidth = -1;
 		 private int LastSeenScreenHeight = -1;
 
@@ -90,7 +89,8 @@ namespace HamstarHelpers {
 				this.HasUnhandledExceptionLogger = true;
 				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
 			}
-
+			
+			this.TmlLoadHelpers = new TmlHelpers.TmlLoadHelpers();
 			this.Timers = new Timers();
 			this.LogHelpers = new DebugHelpers.LogHelpers();
 			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();
@@ -103,18 +103,18 @@ namespace HamstarHelpers {
 			this.NPCBannerHelpers = new NPCHelpers.NPCBannerHelpers();
 			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
-			this.TmlLoadHelpers = new TmlHelpers.TmlLoadHelpers();
-			this.ModVersionGet = new WebRequests.ModVersionGet();
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
 			this.ControlPanel = new ControlPanel.ControlPanelUI();
 			//this.UserHelpers = new UserHelpers.UserHelpers();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 			this.PlayerMessages = new PlayerMessages();
+			this.ModVersionGet = new ModVersionGet();
+			this.ServerBrowser = new ServerBrowserReport();
 
 			this.Timers.Begin();
 
-			AltNPCInfo.DataInitialize();
-			AltProjectileInfo.DataInitialize();
+			TmlHelpers.AltNPCInfo.DataInitialize();
+			TmlHelpers.AltProjectileInfo.DataInitialize();
 
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );
@@ -140,6 +140,8 @@ namespace HamstarHelpers {
 			}
 
 			this.Timers.End();
+			this.TmlLoadHelpers.Unload();
+			this.NetHelpers.Unload();
 
 			this.Timers = null;
 			this.JsonConfig = null;
@@ -163,6 +165,7 @@ namespace HamstarHelpers {
 			this.PlayerMessages = null;
 			this.ControlPanelHotkey = null;
 			this.ControlPanel = null;
+			this.ServerBrowser = null;
 
 			HamstarHelpersMod.Instance = null;
 		}
@@ -180,7 +183,7 @@ namespace HamstarHelpers {
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
-				ControlPanelUI.OnPostSetupContent( this );
+				HamstarHelpers.ControlPanel.ControlPanelUI.OnPostSetupContent( this );
 			}
 
 			this.HasSetupContent = true;

@@ -9,35 +9,13 @@ Future
 -	Add build.txt fields to substitute for Mod static properties (for github, mod configs)
 -	@Create hotkeys-to-commands mod (uses a HH tab)
 -	Add tabs to UI
+-	Send issue reports for unhandled exceptions
 
 
 
 v1.4.0
--	Send issue reports for unhandled exceptions
--	Wrap issue reports and mod version getter with thread
+-	Make issue reports and mod version getter async
 -	@Implement server browser
-	-	Add 'Join Server' option for each server
-	-	Request server list
-	-	@Set Helpers to transmit server data to site
-	-	@Implement server list site
-		-	Validate server
-
-		-	Implement returning server list
-		-	Implement submitting a server entry
-	-	Implement dialog
-		-	Implement server list item
-		-	Layout dialog
-			-	@Layout
-				-	Search input (top)
-				-	List sort buttons
-				-	Server list
-				-	Refresh button
-	-	Open dialog for multiplayer menu
-	-	Add menu item to multiplayer menu
-		-	Implement menu transition
-		-	Implement menu item interaction
-		-	Define menu item (implement rendering)
-		-	@Discover rendering method for menu items
 -	Show New! animation for mod updates
 	-	Check mod versions amidst json
 	-	Call google scripts site for mod JSON

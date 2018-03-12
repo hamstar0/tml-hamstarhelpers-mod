@@ -81,20 +81,35 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 
+		public static void AddWorldLoadPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+				action();
+			} else {
+				mymod.TmlLoadHelpers.WorldLoadPromises.Add( action );
+			}
+		}
+
+
 
 		////////////////
 
 		internal IList<Action> PostModLoadPromises = new List<Action>();
+		internal IList<Action> WorldLoadPromises = new List<Action>();
+		
 		internal bool PostModLoadPromiseConditionsMet = false;
-
+		internal bool WorldLoadPromiseConditionsMet = false;
+		
 		internal int StartupDelay = 0;
 
 		internal bool IsClientPlaying = false;
 		internal bool HasServerBegunHavingPlayers = false;
 
 
-		////////////////
 
+		////////////////
+		
 		internal void FulfillPostModLoadPromises() {
 			foreach( Action promise in this.PostModLoadPromises ) {
 				promise();
@@ -105,9 +120,35 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 
+		internal void FulfillWorldLoadPromises() {
+			foreach( Action promise in this.WorldLoadPromises ) {
+				promise();
+			}
+			
+			this.WorldLoadPromises.Clear();
+			this.WorldLoadPromiseConditionsMet = true;
+		}
+
+
 		////////////////
-		
+
+		internal TmlLoadHelpers() {
+			Main.OnTick += this.Update;
+		}
+
+		internal void Unload() {
+			Main.OnTick -= this.Update;
+		}
+
+		////////////////
+
 		internal void Update() {
+			if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
+				this.WorldLoadPromiseConditionsMet = false; // Does this work?
+			}
+		}
+
+		internal void PostWorldLoadUpdate() {
 			this.StartupDelay++;    // Seems needed for day/night tracking (and possibly other things?)
 		}
 	}

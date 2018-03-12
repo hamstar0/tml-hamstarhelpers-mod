@@ -89,6 +89,11 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
+		public virtual bool IsVerbose { get { return true; } }
+
+
+		////////////////
+
 		[System.Obsolete( "use either PacketProtocol.SetClientDefaults or PacketProtocol.SetServerDefaults", false )]
 		public virtual void SetDefaults() {
 			//throw new NotImplementedException();

@@ -19,12 +19,13 @@ namespace HamstarHelpers.Logic {
 
 		private ISet<int> HasBuffIds = new HashSet<int>();
 		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
-		private uint TestPing = 0;
+		private uint TestPing = 1;
 
 		public DialogManager DialogManager = new DialogManager();
 
 		public bool HasSyncedModSettings { get; private set; }
 		public bool HasSyncedModData { get; private set; }
+		private bool IsFinishedSyncing = false;
 
 
 
@@ -43,7 +44,6 @@ namespace HamstarHelpers.Logic {
 
 
 		public void OnEnterWorldForServer( Player player ) {
-			ServerBrowserReport.AnnounceServer();
 		}
 
 
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Logic {
 				player_data.SendRequest( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
-				ServerBrowserReport.AnnounceServerConnect();
+				PacketProtocol.QuickSendRequest<HHServerUpdateRequestProtocol>( -1, -1 );
 			}
 
 			if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server
@@ -80,9 +80,20 @@ namespace HamstarHelpers.Logic {
 
 		public void FinishModSettingsSync() {
 			this.HasSyncedModSettings = true;
+			if( this.IsSynced() ) { this.FinishSync(); }
 		}
 		public void FinishModDataSync() {
 			this.HasSyncedModData = true;
+			if( this.IsSynced() ) { this.FinishSync(); }
+		}
+
+		private void FinishSync() {
+			if( this.IsFinishedSyncing ) { return; }
+			this.IsFinishedSyncing = true;
+
+			if( ServerBrowserReport.CanAnnounce() ) {
+				ServerBrowserReport.AnnounceServerConnect();
+			}
 		}
 
 
@@ -109,17 +120,19 @@ namespace HamstarHelpers.Logic {
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
-				myworld.WorldLogic.PreUpdateNotServer( mymod );
+				myworld.WorldLogic.PreUpdateSingle( mymod );
 			}
 
-			// Update ping every 10 seconds
-			if( this.TestPing % (600) == 0 ) {
+			// Update ping every 15 seconds
+			if( this.TestPing % (60*15) == 0 ) {
 				PacketProtocol.QuickSendData<HHPingProtocol>( -1, -1, false );
 			}
 
 			// Update server status 60 seconds
-			if( this.TestPing % ( 3600 ) == 0 ) {
-				ServerBrowserReport.AnnounceServerConnect();
+			if( this.TestPing % (60*60) == 0 ) {
+				if( ServerBrowserReport.CanAnnounce() ) {
+					ServerBrowserReport.AnnounceServerConnect();
+				}
 			}
 
 			this.TestPing++;

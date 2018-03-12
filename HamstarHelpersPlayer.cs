@@ -24,8 +24,10 @@ namespace HamstarHelpers {
 		}
 
 		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
-			if( to_who != -1 && Main.netMode == 2 ) {
-				this.Logic.OnEnterWorldForServer( this.player );
+			if( Main.netMode == 2 ) {
+				if( to_who == -1 && from_who == this.player.whoAmI ) {
+					this.Logic.OnEnterWorldForServer( this.player );
+				}
 			}
 		}
 

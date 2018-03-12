@@ -15,6 +15,7 @@ namespace HamstarHelpers {
 		public bool HasCorrectID { get; internal set; }  // Workaround for tml bug?
 
 		internal WorldLogic WorldLogic { get; private set; }
+		
 
 
 		////////////////
@@ -105,9 +106,11 @@ namespace HamstarHelpers {
 		public override void PreUpdate() {
 			var mymod = (HamstarHelpersMod)this.mod;
 			
-			if( Main.netMode != 1 ) { // Not client
-				if( this.WorldLogic != null ) {
-					this.WorldLogic.PreUpdateNotServer( mymod );
+			if( this.WorldLogic != null ) {
+				if( Main.netMode == 0 ) { // Single
+					this.WorldLogic.PreUpdateSingle( mymod );
+				} else if( Main.netMode == 2 ) {
+					this.WorldLogic.PreUpdateServer( mymod );
 				}
 			}
 		}

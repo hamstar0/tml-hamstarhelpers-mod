@@ -4,6 +4,11 @@ using System.Diagnostics;
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public static class SystemHelpers {
+		public static long TimeStampInSeconds() {
+			return DateTime.UtcNow.Ticks / TimeSpan.TicksPerMillisecond;
+		}
+
+
 		public static void OpenUrl( string url ) {
 			try {
 				Process.Start( url );

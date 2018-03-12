@@ -82,9 +82,9 @@
     <Compile Include="Helpers\ItemHelpers\ItemHelpers_Obsolete.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Id.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
-    <Compile Include="Helpers\MiscHelpers\InfoHelpers_IssueReport.cs" />
     <Compile Include="Helpers\MiscHelpers\InfoHelpers.cs" />
-    <Compile Include="Helpers\NetHelpers\NetHelpers_Web.cs" />
+    <Compile Include="Helpers\NetHelpers\NetHelpers_Ping.cs" />
+    <Compile Include="Helpers\NetHelpers\NetHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Obsolete.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Draw.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers.cs" />
@@ -103,7 +103,7 @@
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
     <Compile Include="WebRequests\ModVersionGet.cs" />
-    <Compile Include="Helpers\NetHelpers\NetHelpers.cs" />
+    <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
     <Compile Include="WebRequests\ServerBrowserReport.cs" />
     <Compile Include="Helpers\XnaHelpers\GeometryHelpers.cs" />
     <Compile Include="Logic\PlayerLogic_Data.cs" />

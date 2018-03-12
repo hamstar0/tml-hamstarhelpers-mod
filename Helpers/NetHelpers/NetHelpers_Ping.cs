@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Utilities.Network;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Utilities.Network;
 using System;
 using System.IO;
 using Terraria;
@@ -6,13 +7,14 @@ using Terraria;
 
 namespace HamstarHelpers.NetHelpers {
 	class HHPingProtocol : PacketProtocol {
+		public override bool IsVerbose { get { return false; } }
 		public long StartTime;
 
 
 		////////////////
 		
 		public override void SetClientDefaults() {
-			this.StartTime = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+			this.StartTime = SystemHelpers.TimeStampInSeconds();
 		}
 
 
@@ -22,7 +24,7 @@ namespace HamstarHelpers.NetHelpers {
 
 
 		public override void ReceiveOnClient() {
-			long now = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+			long now = SystemHelpers.TimeStampInSeconds();
 			long time = now - this.StartTime;
 
 			HamstarHelpersMod.Instance.NetHelpers.UpdatePing( (int)time );

@@ -30,8 +30,8 @@ namespace HamstarHelpers.WebRequests {
 			int max_lines = HamstarHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
 
 			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
-			string body_info = string.Join( "\n \n", InfoHelpers.OutputGameData( mods ).ToArray() );
-			string body_errors = string.Join( "\n", InfoHelpers.OutputErrorLog( max_lines ).ToArray() );
+			string body_info = string.Join( "\n \n", InfoHelpers.GetGameData( mods ).ToArray() );
+			string body_errors = string.Join( "\n", InfoHelpers.GetErrorLog( max_lines ).ToArray() );
 			
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "In-game: " + issue_title;

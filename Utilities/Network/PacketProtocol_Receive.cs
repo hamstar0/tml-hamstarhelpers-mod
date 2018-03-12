@@ -17,7 +17,7 @@ namespace HamstarHelpers.Utilities.Network {
 			PacketProtocol data_obj = this.ReadData( reader );
 			//Type your_type = data_obj.GetType();
 			
-			if( mymod.Config.DebugModeNetInfo ) {
+			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( data_obj );
 				LogHelpers.Log( "<" + name + " Receive: " + json_str );
 			}
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Utilities.Network {
 			var mymod = HamstarHelpersMod.Instance;
 			string name = this.GetType().Name;
 
-			if( mymod.Config.DebugModeNetInfo ) {
+			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				LogHelpers.Log( "<" + name + " ReceiveRequest..." );
 			}
 

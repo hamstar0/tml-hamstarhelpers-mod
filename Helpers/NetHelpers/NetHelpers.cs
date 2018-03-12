@@ -1,115 +1,67 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Net;
-using System.Text;
-using Terraria.ModLoader;
-
+﻿using HamstarHelpers.DebugHelpers;
+using System;
+using Terraria;
 
 namespace HamstarHelpers.NetHelpers {
 	public partial class NetHelpers {
-		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception> on_error=null, Action on_completion=null ) {
-			var worker = new BackgroundWorker();
-			string output = "";
-			Exception err = null;
-
-			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
-				try {
-					output = NetHelpers.MakePostRequest( url, bytes );
-				} catch( Exception e ) {
-					err = e;
-				}
-			};
-			worker.RunWorkerCompleted += delegate( object sender, RunWorkerCompletedEventArgs args ) {
-				if( err == null ) {
-					on_response( output );
-				} else {
-					if( on_error != null ) {
-						on_error( err );
-					}
-				}
-
-				if( on_completion != null ) {
-					on_completion();
-				}
-			};
-
-			worker.RunWorkerAsync();
+		public static string GetPublicIP() {
+			var mymod = HamstarHelpersMod.Instance;
+			if( mymod.NetHelpers.PublicIP == null ) {
+				throw new Exception( "Public IP not yet acquired." );
+			}
+			return mymod.NetHelpers.PublicIP;
 		}
 
 
-		public static string MakePostRequest( string url, byte[] bytes ) {
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
-			request.Method = "POST";
-			request.ContentType = "application/json";   //"application/vnd.github.v3+json";
-			request.ContentLength = bytes.Length;
-			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
-
-			using( Stream data_stream = request.GetRequestStream() ) {
-				data_stream.Write( bytes, 0, bytes.Length );
-				data_stream.Close();
+		public static void JoinServer( string ip, int port ) {	// Currently only meant for use in main menu only
+			Main.autoPass = false;
+			Netplay.ListenPort = port;
+			Main.getIP = ip;
+			if( Netplay.SetRemoteIP( ip ) ) {
+				Main.menuMode = 10;
+				Netplay.StartTcpClient();
 			}
-
-			WebResponse resp = request.GetResponse();
-			string resp_data;
-
-			using( Stream resp_data_stream = resp.GetResponseStream() ) {
-				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
-				resp_data = stream_read.ReadToEnd();
-				resp_data_stream.Close();
-			}
-
-			return resp_data;
 		}
+
 
 
 		////////////////
 
-		public static void MakeGetRequestAsync( string url, Action<string> on_response, Action<Exception> on_error = null, Action on_completion = null ) {
-			var worker = new BackgroundWorker();
-			string output = "";
-			Exception err = null;
+		private string PublicIP = null;
+		private int IPLoadRetryTimer = 0;
 
-			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
-				try {
-					output = NetHelpers.MakeGetRequest( url );
-				} catch( Exception e ) {
-					err = e;
-				}
-			};
-			worker.RunWorkerCompleted += delegate ( object sender, RunWorkerCompletedEventArgs args ) {
-				if( err == null ) {
-					on_response( output );
-				} else {
-					if( on_error != null ) {
-						on_error( err );
-					}
-				}
 
-				if( on_completion != null ) {
-					on_completion();
-				}
-			};
+		////////////////
 
-			worker.RunWorkerAsync();
+		internal NetHelpers() {
+			this.LoadIP();
+			Main.OnTick += this.RetryLoadIP;
 		}
 
+		internal void Unload() {
+			Main.OnTick -= this.RetryLoadIP;
+		}
 
-		public static string MakeGetRequest( string url ) {
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
-			request.Method = "GET";
-			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
-
-			WebResponse resp = request.GetResponse();
-			string resp_data;
-
-			using( Stream resp_data_stream = resp.GetResponseStream() ) {
-				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
-				resp_data = stream_read.ReadToEnd();
-				resp_data_stream.Close();
+		private void RetryLoadIP() {
+			if( this.PublicIP == null ) {
+				if( this.IPLoadRetryTimer >= ( 60 * 60 ) ) {
+					this.IPLoadRetryTimer = 0;
+					this.LoadIP();
+				}
+				this.IPLoadRetryTimer++;
 			}
+		}
+		
 
-			return resp_data;
+		internal void LoadIP() {
+			NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", delegate ( string output ) {
+				this.PublicIP = output;
+			}, delegate( Exception e ) {
+				LogHelpers.Log( "Could not acquire IP: "+e.ToString() );
+			} );
+			//using( WebClient web_client = new WebClient() ) {
+			//	this.PublicIP = web_client.DownloadString( "http://ifconfig.me/ip" );
+			//}
 		}
 	}
 }

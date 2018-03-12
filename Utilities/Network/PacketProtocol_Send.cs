@@ -41,7 +41,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 			packet.Send( to_who, ignore_who );
 
-			if( mymod.Config.DebugModeNetInfo ) {
+			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				LogHelpers.Log( ">" + name + " SendRequest " + to_who + ", " + ignore_who );
 			}
 		}
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 			packet.Send( to_who, ignore_who );
 
-			if( mymod.Config.DebugModeNetInfo ) {
+			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( ">" + name + " SendData " + to_who + ", " + ignore_who + ": " + json_str );
 			}
