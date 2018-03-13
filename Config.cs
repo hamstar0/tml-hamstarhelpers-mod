@@ -32,6 +32,7 @@ namespace HamstarHelpers {
 		public int ModIssueReportErrorLogMaxLines = 35;
 
 		public bool IsServerHiddenFromBrowser = false;
+		public bool IsServerPromptingForBrowser = true;
 
 
 

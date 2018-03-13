@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
 

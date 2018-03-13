@@ -3,7 +3,10 @@ using HamstarHelpers.DotNetHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.MiscHelpers;
 using HamstarHelpers.NPCHelpers;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Network;
+using HamstarHelpers.Utilities.Timers;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,10 +33,11 @@ namespace HamstarHelpers.WebRequests {
 		public bool IsClient = false;
 		public string ServerIP;
 		public int Port;
+		public string Motd;
 		public string WorldName;
 		public string WorldProgress;
 		public string WorldEvent;
-		public long Since;
+		public long Created;
 		public int MaxPlayerCount;
 		public int PlayerCount;
 		public int PlayerPvpCount;
@@ -61,12 +65,27 @@ namespace HamstarHelpers.WebRequests {
 			"https://script.google.com/macros/s/AKfycbzQl2JmJzdEHguVI011Hk1KuLktYJPDzpWA_tDbyU_Pk02fILUw/exec";
 
 
+		////////////////
+
 		public static bool CanAnnounce() {
 			//Netplay.UseUPNP
 			//return Netplay.ServerPassword == "";
 			return !HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser;
 		}
 
+		public static bool CanPrompt() {
+			return HamstarHelpersMod.Instance.Config.IsServerPromptingForBrowser;
+		}
+
+		public static void EndPrompts() {
+			var mymod = HamstarHelpersMod.Instance;
+
+			mymod.Config.IsServerPromptingForBrowser = false;
+			mymod.JsonConfig.SaveFile();
+		}
+
+
+		////////////////
 
 		public static void AnnounceServer() {
 			int pvp = 0;
@@ -90,10 +109,11 @@ namespace HamstarHelpers.WebRequests {
 			var server_data = new ServerBrowserEntry();
 			server_data.ServerIP = NetHelpers.NetHelpers.GetPublicIP(); //	Netplay.ServerIP.ToString();	//Main.recentIP[0];
 			server_data.Port = Netplay.ListenPort;
+			server_data.Motd = Main.motd;
 			server_data.WorldName = Main.worldName;
 			server_data.WorldProgress = InfoHelpers.GetVanillaProgress();
 			server_data.WorldEvent = NPCInvasionHelpers.GetCurrentInvasionType().ToString();
-			server_data.Since = SystemHelpers.TimeStampInSeconds() - WorldHelpers.WorldHelpers.GetElapsedPlayTime();
+			server_data.Created = SystemHelpers.TimeStampInSeconds() - WorldHelpers.WorldHelpers.GetElapsedPlayTime();
 			server_data.MaxPlayerCount = Main.maxNetPlayers;
 			server_data.PlayerCount = Main.ActivePlayersCount;
 			server_data.PlayerPvpCount = pvp;
@@ -101,6 +121,7 @@ namespace HamstarHelpers.WebRequests {
 			server_data.Mods = new Dictionary<string, string>();
 
 			foreach( Mod mod in ModLoader.LoadedMods ) {
+				if( mod.File == null ) { continue; }
 				server_data.Mods[ mod.DisplayName ] = mod.Version.ToString();
 			}
 			
@@ -139,37 +160,40 @@ namespace HamstarHelpers.WebRequests {
 
 		////////////////
 
-		private bool IsInWorld = false;
+		private bool IsSendingUpdates = true;
 
 
 		////////////////
 
 		internal ServerBrowserReport() {
-			Main.OnTick += this.Update;
-		}
-
-		internal void Unload() {
-			Main.OnTick -= this.Update;
-		}
-
-		////////////////
-
-		private void Update() {
-			var mymod = HamstarHelpersMod.Instance;
-			if( mymod == null || mymod.TmlLoadHelpers == null ) { return; }
-
-			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
-				if( !this.IsInWorld ) {
-					this.IsInWorld = true;
+			TmlLoadHelpers.AddWorldLoadPromise( delegate {
+				if( Main.dedServ ) {
 					if( ServerBrowserReport.CanAnnounce() ) {
-						ServerBrowserReport.AnnounceServer();
+						if( ServerBrowserReport.CanPrompt() ) {
+							Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
+								string msg = "Hamstar's Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
+
+								Main.NewText( msg, Color.Yellow );
+								Console.WriteLine( msg );
+								return false;
+							} );
+
+							Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
+								ServerBrowserReport.EndPrompts();
+								ServerBrowserReport.AnnounceServer();
+								return false;
+							} );
+						} else {
+							ServerBrowserReport.AnnounceServer();
+						}
 					}
 				}
-			} else {
-				if( !this.IsInWorld ) {
-					this.IsInWorld = false;
-				}
-			}
+			} );
+		}
+
+
+		internal void StopUpdates() {
+			this.IsSendingUpdates = false;
 		}
 	}
 }

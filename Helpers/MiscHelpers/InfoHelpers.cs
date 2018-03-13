@@ -29,9 +29,9 @@ namespace HamstarHelpers.MiscHelpers {
 			}
 			if( NPC.downedBoss2 ) {
 				if( WorldGen.crimson ) {
-					return "Post Eater of Worlds";
-				} else {
 					return "Post Brain of Cthuluhu";
+				} else {
+					return "Post Eater of Worlds";
 				}
 			}
 			if( NPC.downedBoss3 ) {
@@ -46,7 +46,7 @@ namespace HamstarHelpers.MiscHelpers {
 			if( NPC.downedGoblins ) {
 				return "Goblins killed";
 			}
-			return "Start";
+			return "Start of game";
 		}
 
 
