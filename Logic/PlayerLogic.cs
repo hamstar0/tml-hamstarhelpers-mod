@@ -129,8 +129,8 @@ namespace HamstarHelpers.Logic {
 				PacketProtocol.QuickSendData<HHPingProtocol>( -1, -1, false );
 			}
 
-			// Update server status 60 seconds
-			if( this.TestPing % (60*60) == 0 ) {
+			// Update server status every 3 minutes
+			if( this.TestPing % (60*60*3) == 0 ) {
 				if( ServerBrowserReport.CanAddToBrowser() ) {
 					ServerBrowserReport.AnnounceServerConnect();
 				}
