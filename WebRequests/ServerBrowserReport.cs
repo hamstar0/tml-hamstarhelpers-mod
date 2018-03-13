@@ -73,13 +73,18 @@ namespace HamstarHelpers.WebRequests {
 			//Netplay.UseUPNP
 			//return Netplay.ServerPassword == "";
 			if( Main.netMode == 0 ) {
-				return false;
+				throw new Exception("Cannot add single player games to server browser.");
 			}
-			if( !HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
+			if( HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
 				return false;
 			}
 			if( (SystemHelpers.TimeStampInSeconds() - ServerBrowserReport.LastSendTimestamp) <= 3 ) {
 				return false;
+			}
+			if( Main.netMode == 1 ) {
+				if( NetHelpers.NetHelpers.GetServerPing() == -1 ) {
+					return false;
+				}
 			}
 			return true;
 		}
@@ -186,26 +191,27 @@ namespace HamstarHelpers.WebRequests {
 
 		internal ServerBrowserReport() {
 			TmlLoadHelpers.AddWorldLoadPromise( delegate {
-				if( Main.dedServ ) {
-					if( ServerBrowserReport.CanAddToBrowser() ) {
-						if( ServerBrowserReport.CanPromptForBrowserAdd() ) {
-							Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
-								string msg = "Hamstar's Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
+				if( Main.netMode != 2 ) { return; }
+				if( !ServerBrowserReport.CanAddToBrowser() ) { return; }
 
-								Main.NewText( msg, Color.Yellow );
-								Console.WriteLine( msg );
-								return false;
-							} );
+				if( ServerBrowserReport.CanPromptForBrowserAdd() ) {
+					Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
+						string msg = "Hamstar's Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
 
-							Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
-								ServerBrowserReport.EndPrompts();
-								ServerBrowserReport.AnnounceServer();
-								return false;
-							} );
-						} else {
+						Main.NewText( msg, Color.Yellow );
+						Console.WriteLine( msg );
+						return false;
+					} );
+
+					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
+						if( ServerBrowserReport.CanAddToBrowser() ) {
+							ServerBrowserReport.EndPrompts();
 							ServerBrowserReport.AnnounceServer();
 						}
-					}
+						return false;
+					} );
+				} else {
+					ServerBrowserReport.AnnounceServer();
 				}
 			} );
 		}

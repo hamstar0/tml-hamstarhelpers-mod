@@ -19,7 +19,7 @@ namespace HamstarHelpers.Logic {
 
 		private ISet<int> HasBuffIds = new HashSet<int>();
 		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
-		private uint TestPing = 1;
+		private uint TestPing = 0;
 
 		public DialogManager DialogManager = new DialogManager();
 
@@ -61,7 +61,6 @@ namespace HamstarHelpers.Logic {
 				player_data.SendRequest( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
 				PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
-				PacketProtocol.QuickSendRequest<HHServerUpdateRequestProtocol>( -1, -1 );
 			}
 
 			if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server
@@ -91,8 +90,10 @@ namespace HamstarHelpers.Logic {
 			if( this.IsFinishedSyncing ) { return; }
 			this.IsFinishedSyncing = true;
 
-			if( ServerBrowserReport.CanAddToBrowser() ) {
-				ServerBrowserReport.AnnounceServerConnect();
+			if( Main.netMode != 0 ) {
+				if( ServerBrowserReport.CanAddToBrowser() ) {
+					ServerBrowserReport.AnnounceServerConnect();
+				}
 			}
 		}
 
@@ -124,7 +125,7 @@ namespace HamstarHelpers.Logic {
 			}
 
 			// Update ping every 15 seconds
-			if( this.TestPing % (60*15) == 0 ) {
+			if( this.TestPing % (60*10) == 0 ) {
 				PacketProtocol.QuickSendData<HHPingProtocol>( -1, -1, false );
 			}
 

@@ -57,13 +57,13 @@ namespace HamstarHelpers.NetHelpers {
 
 		////////////////
 
-		private int CurrentPing = 0;
+		private int CurrentPing = -1;
 
 
 		////////////////
 
 		internal void UpdatePing( int ping ) {
-			this.CurrentPing = (this.CurrentPing + ping) / 2;
+			this.CurrentPing = ((this.CurrentPing * 2) + ping) / 3;
 		}
 	}
 }
