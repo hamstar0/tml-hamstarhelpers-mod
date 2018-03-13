@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Utilities.Network {
 	public abstract partial class PacketProtocol {
-		public static void QuickSendData<T>( int to_who, int ignore_who, bool server_rebroadcast )
+		public static void QuickSendData<T>( int to_who, int ignore_who, bool forward_to_all )
 				where T : PacketProtocol, new() {
 			T t = new T();
 			t.SetDefaults();
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Utilities.Network {
 			} else if( Main.netMode == 2 ) {
 				t.SetServerDefaults();
 			}
-			t.SendData( to_who, ignore_who, server_rebroadcast );
+			t.SendData( to_who, ignore_who, forward_to_all );
 		}
 
 		public static void QuickSendRequest<T>( int to_who, int ignore_who )
@@ -46,14 +46,14 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 		}
 		
-		public void SendData( int to_who, int ignore_who, bool server_rebroadcast ) {
+		public void SendData( int to_who, int ignore_who, bool forward_to_all ) {
 			var mymod = HamstarHelpersMod.Instance;
 			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
 
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
 			packet.Write( false );  // Request
-			packet.Write( server_rebroadcast );  // Broadcast
+			packet.Write( forward_to_all );  // Broadcast
 			this.WriteData( packet, this );
 
 			packet.Send( to_who, ignore_who );

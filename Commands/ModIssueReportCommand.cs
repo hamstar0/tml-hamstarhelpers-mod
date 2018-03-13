@@ -4,7 +4,6 @@ using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Terraria.ModLoader;
 

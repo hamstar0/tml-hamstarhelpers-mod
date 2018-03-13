@@ -91,7 +91,7 @@ namespace HamstarHelpers.Logic {
 			if( this.IsFinishedSyncing ) { return; }
 			this.IsFinishedSyncing = true;
 
-			if( ServerBrowserReport.CanAnnounce() ) {
+			if( ServerBrowserReport.CanAddToBrowser() ) {
 				ServerBrowserReport.AnnounceServerConnect();
 			}
 		}
@@ -130,7 +130,7 @@ namespace HamstarHelpers.Logic {
 
 			// Update server status 60 seconds
 			if( this.TestPing % (60*60) == 0 ) {
-				if( ServerBrowserReport.CanAnnounce() ) {
+				if( ServerBrowserReport.CanAddToBrowser() ) {
 					ServerBrowserReport.AnnounceServerConnect();
 				}
 			}
