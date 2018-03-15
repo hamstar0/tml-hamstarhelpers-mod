@@ -50,9 +50,10 @@ namespace HamstarHelpers.NetHelpers {
 			}
 
 			HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
+			int status_code = (int)resp.StatusCode;
 			string resp_data;
 
-			success = ( (int)resp.StatusCode / 200 ) == 1;
+			success = status_code >= 200 && status_code < 300;
 
 			using( Stream resp_data_stream = resp.GetResponseStream() ) {
 				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
@@ -96,9 +97,10 @@ namespace HamstarHelpers.NetHelpers {
 			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
 
 			HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
+			int status_code = (int)resp.StatusCode;
 			string resp_data;
 
-			success = ((int)resp.StatusCode / 200) == 1;
+			success = status_code >= 200 && status_code < 300;
 
 			using( Stream resp_data_stream = resp.GetResponseStream() ) {
 				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
