@@ -34,7 +34,6 @@ namespace HamstarHelpers.NetHelpers {
 		////////////////
 
 		internal NetHelpers() {
-			this.LoadIP();
 			Main.OnTick += this.RetryLoadIP;
 		}
 
@@ -46,19 +45,22 @@ namespace HamstarHelpers.NetHelpers {
 			if( this.PublicIP == null ) {
 				if( this.IPLoadRetryTimer >= ( 60 * 60 ) ) {
 					this.IPLoadRetryTimer = 0;
-					this.LoadIP();
+					this.LoadIPAsync();
 				}
 				this.IPLoadRetryTimer++;
 			}
 		}
 		
 
-		internal void LoadIP() {
-			NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", delegate ( string output ) {
+		internal void LoadIPAsync() {
+			Action<string> on_success = delegate ( string output ) {
 				this.PublicIP = output;
-			}, delegate( Exception e ) {
-				LogHelpers.Log( "Could not acquire IP: "+e.ToString() );
-			} );
+			};
+			Action<Exception> on_fail = delegate ( Exception e ) {
+				LogHelpers.Log( "Could not acquire IP: " + e.ToString() );
+			};
+
+			NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", on_success, on_fail );
 			//using( WebClient web_client = new WebClient() ) {
 			//	this.PublicIP = web_client.DownloadString( "http://ifconfig.me/ip" );
 			//}

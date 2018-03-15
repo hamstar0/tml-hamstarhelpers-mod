@@ -8,11 +8,19 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.NetHelpers {
 	public partial class NetHelpers {
+		private readonly static object RequestMutex = new object();
+
+
+
 		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception> on_error=null, Action on_completion=null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				try {
 					bool success;
-					string output = NetHelpers.MakePostRequest( url, bytes, out success );
+					string output;
+
+					lock( NetHelpers.RequestMutex ) {
+						output = NetHelpers.MakePostRequest( url, bytes, out success );
+					}
 
 					if( success ) {
 						on_response( output );
@@ -32,6 +40,7 @@ namespace HamstarHelpers.NetHelpers {
 		}
 
 
+		[System.Obsolete( "use NetHelpers.MakePostRequest(string, byte[], out bool)", true )]
 		public static string MakePostRequest( string url, byte[] bytes ) {
 			bool _;
 			return NetHelpers.MakePostRequest( url, bytes, out _ );
@@ -71,8 +80,12 @@ namespace HamstarHelpers.NetHelpers {
 			ThreadPool.QueueUserWorkItem( _ => {
 				try {
 					bool success;
-					string output = NetHelpers.MakeGetRequest( url, out success );
-					
+					string output;
+
+					lock( NetHelpers.RequestMutex ) {
+						output = NetHelpers.MakeGetRequest( url, out success );
+					}
+
 					if( success ) {
 						on_response( output );
 					} else {
@@ -90,6 +103,12 @@ namespace HamstarHelpers.NetHelpers {
 			} );
 		}
 
+
+		[System.Obsolete( "use NetHelpers.MakeGetRequest(string, out bool)", true )]
+		public static string MakeGetRequest( string url ) {
+			bool _;
+			return NetHelpers.MakeGetRequest( url, out _ );
+		}
 
 		public static string MakeGetRequest( string url, out bool success ) {
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
@@ -109,11 +128,6 @@ namespace HamstarHelpers.NetHelpers {
 			}
 
 			return resp_data;
-		}
-
-		public static string MakeGetRequest( string url ) {
-			bool _;
-			return NetHelpers.MakeGetRequest( url, out _ );
 		}
 	}
 }

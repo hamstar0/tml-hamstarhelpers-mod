@@ -12,7 +12,16 @@ namespace HamstarHelpers.WebRequests {
 
 
 
-		public static void GetLatestKnownVersion( Mod mod, Action<Version> on_success, Action<Version> on_fail=null ) {
+		[System.Obsolete( "use ModVersionGet.GetLatestKnownVersionAsync", true )]
+		public static void GetLatestKnownVersion( Mod mod, Action<Version> on_success, Action<Version> on_fail = null ) {
+			ModVersionGet.GetLatestKnownVersionAsync( mod, on_success, delegate( Exception _ ) {
+				if( on_fail != null ) {
+					on_fail( mod.Version );
+				}
+			} );
+		}
+
+		public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> on_success, Action<Exception> on_fail ) {
 			var mymod = HamstarHelpersMod.Instance;
 
 			Action check = delegate () {
@@ -20,20 +29,17 @@ namespace HamstarHelpers.WebRequests {
 					try {
 						if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
 							on_success( mymod.ModVersionGet.ModVersions[mod.Name] );
-						} else if( on_fail != null ) {
-							on_fail( mod.Version );
+						} else {
+							throw new Exception( "GetLatestKnownVersion - Invalid mod" );
 						}
 					} catch( Exception e ) {
-						LogHelpers.Log( "Could not retrieve version for mod " + mod.DisplayName + ": " + e.ToString() );
-						if( on_fail != null ) {
-							on_fail( mod.Version );
-						}
+						on_fail( e );
 					}
 				}
 			};
 			
 			if( mymod.ModVersionGet.ModVersions == null ) {
-				ModVersionGet.RetrieveLatestKnownVersions( delegate( IDictionary<string, Version> versions, bool found ) {
+				ModVersionGet.RetrieveLatestKnownVersionsAsync( delegate( IDictionary<string, Version> versions, bool found ) {
 					if( found ) {
 						mymod.ModVersionGet.ModVersions = versions;
 					}
@@ -50,7 +56,7 @@ namespace HamstarHelpers.WebRequests {
 
 
 
-		private static void RetrieveLatestKnownVersions( Action<IDictionary<string, Version>, bool> on_success ) {
+		private static void RetrieveLatestKnownVersionsAsync( Action<IDictionary<string, Version>, bool> on_success ) {
 			IDictionary<string, Version> mod_versions = new Dictionary<string, Version>();
 			string url = "https://script.googleusercontent.com/macros/echo?user_content_key=Owhg1llbbzrzST1eMJvfeO2IxGCHpigWMQZOsv1llpGT7ySYkY8EIxaJk0AVD_8Aegr6CiO9znq24nrES8NyTgg99q5WPQbwm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBSjTGNl2m1Kws9l1N8jgtgHBs4_KqXHF12fqfuynNZuDJVLqqr8NLJ1-kzKtsTLVrxy_u9Yn2NR&lib=MLDmsgwwdl8rHsa0qIkfykg_ahli_ZfP5";
 

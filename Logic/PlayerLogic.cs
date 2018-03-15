@@ -69,7 +69,7 @@ namespace HamstarHelpers.Logic {
 			}
 
 			if( Main.netMode != 2 ) {   // Redundant, but whatever
-				mymod.ControlPanel.LoadModList();
+				mymod.ControlPanel.LoadModListAsync();
 			}
 		}
 

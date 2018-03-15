@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
@@ -16,9 +17,6 @@ using Terraria.UI;
 
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIModData : UIPanel {
-		private readonly static object MyLock = new object();
-
-
 		public Mod Mod { get; private set; }
 		public string Author { get; private set; }
 		public string HomepageUrl { get; private set; }
@@ -153,13 +151,21 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-		
+
+		[System.Obsolete( "use UIModData.CheckForNewVersionAsync", true )]
 		public void CheckForNewVersion() {
-			lock( UIModData.MyLock ) {
-				ModVersionGet.GetLatestKnownVersion( this.Mod, delegate ( Version vers ) {
-					this.LatestAvailableVersion = vers;
-				} );
-			}
+			this.CheckForNewVersionAsync();
+		}
+
+		public void CheckForNewVersionAsync() {
+			Action<Version> on_success = delegate ( Version vers ) {
+				this.LatestAvailableVersion = vers;
+			};
+			Action<Exception> on_fail = delegate ( Exception e ) {
+				LogHelpers.Log( "Error retrieving " + this.Mod.DisplayName + " version: " + e.ToString() );
+			};
+
+			ModVersionGet.GetLatestKnownVersionAsync( this.Mod, on_success, on_fail );
 		}
 
 

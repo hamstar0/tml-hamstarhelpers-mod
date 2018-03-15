@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -85,15 +86,16 @@ namespace HamstarHelpers.ControlPanel {
 			this.RefreshApplyConfigButton();
 			
 			if( this.ModDataList.Count == 0 && !this.IsPopulatingList ) {
-				this.LoadModList();
+				this.LoadModListAsync();
 			}
 		}
 
 
 		////////////////
 		
-		public void LoadModList() {
-			Task.Run( () => {
+		public void LoadModListAsync() {
+			//Task.Run( () => {
+			ThreadPool.QueueUserWorkItem( _ => {
 				this.IsPopulatingList = true;
 
 				this.ModDataList.Clear();
@@ -106,7 +108,7 @@ namespace HamstarHelpers.ControlPanel {
 					this.ModDataList.Add( moditem );
 
 					//if( ModMetaDataManager.HasGithub( moditem.Mod ) ) {
-					moditem.CheckForNewVersion();
+					moditem.CheckForNewVersionAsync();
 				}
 
 				this.ModListUpdateRequired = true;
