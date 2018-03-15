@@ -45,34 +45,18 @@ namespace HamstarHelpers.Commands {
 				return;
 			}
 
-			GithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body, delegate ( string output ) {
+			Action<string> on_success = delegate ( string output ) {
 				if( output != "Done?" ) {
 					caller.Reply( output, Color.GreenYellow );
 				} else {
 					caller.Reply( "Issue report was not sent", Color.Red );
 				}
-			}, delegate( Exception e ) {
+			};
+			Action<Exception> on_fail = delegate ( Exception e ) {
 				caller.Reply( e.Message, Color.Red );
-			} );
-
-			/*var worker = new BackgroundWorker();
-			string output = "Done?";
-
-			worker.DoWork += delegate ( object sender, DoWorkEventArgs e_args ) {
-				try {
-					output = GithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body );
-				} catch( Exception e ) {
-					caller.Reply( e.Message, Color.Red );
-				}
 			};
-			worker.RunWorkerCompleted += delegate ( object sender, RunWorkerCompletedEventArgs e_args ) {
-				if( output != "Done?" ) {
-					caller.Reply( output, Color.GreenYellow );
-				} else {
-					caller.Reply( "Issue report was not sent", Color.Red );
-				}
-			};
-			worker.RunWorkerAsync();*/
+
+			GithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body, on_success, on_fail );
 		}
 	}
 }

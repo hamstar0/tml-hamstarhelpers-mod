@@ -37,29 +37,17 @@ namespace HamstarHelpers.ControlPanel {
 		}
 
 
-		public void ReportIssue( Mod mod, string issue_title, string issue_body, Action completion_callback ) {
-			GithubModIssueReports.ReportIssue( mod, issue_title, issue_body, delegate(string output) {
+		public void ReportIssue( Mod mod, string issue_title, string issue_body, Action on_completion ) {
+			Action<string> on_success = delegate ( string output ) {
 				Main.NewText( "Issue submit result: " + output, Color.Yellow );
 				ErrorLogger.Log( "Issue submit result: " + output );
-			}, delegate( Exception e ) {
+			};
+			Action<Exception> on_fail = delegate ( Exception e ) {
 				Main.NewText( "Issue submit error: " + e.Message, Color.Red );
 				LogHelpers.Log( e.ToString() );
-			}, completion_callback );
-
-			/*var worker = new BackgroundWorker();
-			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
-				try {
-					string output = GithubModIssueReports.ReportIssue( mod, issue_title, issue_body );
-
-					Main.NewText( "Issue submit result: " + output, Color.Yellow );
-					ErrorLogger.Log( "Issue submit result: " + output );
-				} catch( Exception e ) {
-					Main.NewText( "Issue submit error: " + e.Message, Color.Red );
-					LogHelpers.Log( e.ToString() );
-				}
 			};
-			worker.RunWorkerCompleted += completion_callback;
-			worker.RunWorkerAsync();*/
+
+			GithubModIssueReports.ReportIssue( mod, issue_title, issue_body, on_success, on_fail, on_completion );
 		}
 	}
 }

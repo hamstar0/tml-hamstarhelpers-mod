@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using Terraria;
@@ -17,10 +16,8 @@ using Terraria.UI;
 
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIModData : UIPanel {
-		private static readonly object MyLock = new object();
+		private readonly static object MyLock = new object();
 
-
-		////////////////
 
 		public Mod Mod { get; private set; }
 		public string Author { get; private set; }
@@ -163,21 +160,6 @@ namespace HamstarHelpers.UIHelpers.Elements {
 					this.LatestAvailableVersion = vers;
 				} );
 			}
-
-			/*var worker = new BackgroundWorker();
-			Version vers = default(Version);
-
-			worker.DoWork += delegate ( object sender, DoWorkEventArgs args ) {
-				lock( UIModData.MyLock ) {
-					vers = ModVersionGet.GetLatestKnownVersion( this.Mod, out found );
-
-					if( found ) {
-						this.LatestAvailableVersion = vers;
-					}
-				}
-			};
-
-			worker.RunWorkerAsync();*/
 		}
 
 

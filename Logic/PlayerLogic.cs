@@ -68,7 +68,9 @@ namespace HamstarHelpers.Logic {
 				this.FinishModDataSync();
 			}
 
-			mymod.ControlPanel.LoadModList();
+			if( Main.netMode != 2 ) {   // Redundant, but whatever
+				mymod.ControlPanel.LoadModList();
+			}
 		}
 
 		////////////////
