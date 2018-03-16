@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Terraria.ModLoader;
 
 
@@ -26,29 +27,31 @@ namespace HamstarHelpers.WebRequests {
 			var mymod = HamstarHelpersMod.Instance;
 
 			Action check = delegate () {
-				lock( ModVersionGet.MyLock ) {
-					try {
-						if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
-							on_success( mymod.ModVersionGet.ModVersions[mod.Name] );
-						} else {
-							throw new Exception( "GetLatestKnownVersion - Unrecognized mod" );
-						}
-					} catch( Exception e ) {
-						on_fail( e );
+				try {
+					if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
+						on_success( mymod.ModVersionGet.ModVersions[ mod.Name ] );
+					} else {
+						throw new Exception( "GetLatestKnownVersion - Unrecognized mod" );
 					}
+				} catch( Exception e ) {
+					on_fail( e );
 				}
 			};
-			
-			if( mymod.ModVersionGet.ModVersions == null ) {
-				ModVersionGet.RetrieveLatestKnownVersionsAsync( delegate( IDictionary<string, Version> versions, bool found ) {
-					if( found ) {
-						mymod.ModVersionGet.ModVersions = versions;
+
+			ThreadPool.QueueUserWorkItem( _ => {
+				lock( ModVersionGet.MyLock ) {
+					if( mymod.ModVersionGet.ModVersions == null ) {
+						ModVersionGet.RetrieveLatestKnownVersionsAsync( ( versions, found ) => {
+							if( found ) {
+								mymod.ModVersionGet.ModVersions = versions;
+							}
+							check();
+						} );
+					} else {
+						check();
 					}
-					check();
-				} );
-			} else {
-				check();
-			}
+				}
+			} );
 			
 			//string username = ModMetaDataManager.GetGithubUserName( mod );
 			//string projname = ModMetaDataManager.GetGithubProjectName( mod );

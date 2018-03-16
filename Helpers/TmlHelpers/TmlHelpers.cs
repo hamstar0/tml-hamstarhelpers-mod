@@ -19,7 +19,7 @@ namespace HamstarHelpers.TmlHelpers {
 		public static string GetModUniqueName( Mod mod ) {
 			if( TmlHelpers.ModIds.ContainsKey(mod) ) { return TmlHelpers.ModIds[mod]; }
 			TmlHelpers.ModIds[mod] = mod.Name + ":" + mod.Version;
-			return TmlHelpers.ModIds[mod];
+			return TmlHelpers.ModIds[ mod ];
 		}
 
 
