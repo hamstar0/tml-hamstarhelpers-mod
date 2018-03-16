@@ -150,7 +150,7 @@ namespace HamstarHelpers.WebRequests {
 			
 			NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReport.URL, json_bytes, delegate ( string output ) {
 				LogHelpers.Log( "Server data added to browser. " + output );
-			}, delegate( Exception e ) {
+			}, delegate( Exception e, string output ) {
 				LogHelpers.Log( "Server browser returned error: " + e.ToString() );
 			} );
 
@@ -173,7 +173,7 @@ namespace HamstarHelpers.WebRequests {
 			
 			NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReport.URL, json_bytes, delegate ( string output ) {
 				LogHelpers.Log( "Server connection data added to browser. " + output );
-			}, delegate ( Exception e ) {
+			}, delegate ( Exception e, string output ) {
 				LogHelpers.Log( "Server browser returned error for client: " + e.ToString() );
 			} );
 

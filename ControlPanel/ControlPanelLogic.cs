@@ -42,7 +42,7 @@ namespace HamstarHelpers.ControlPanel {
 				Main.NewText( "Issue submit result: " + output, Color.Yellow );
 				ErrorLogger.Log( "Issue submit result: " + output );
 			};
-			Action<Exception> on_fail = delegate ( Exception e ) {
+			Action<Exception, string> on_fail = ( e, output ) => {
 				Main.NewText( "Issue submit error: " + e.Message, Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};

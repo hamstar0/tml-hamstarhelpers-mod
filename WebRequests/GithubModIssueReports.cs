@@ -22,7 +22,7 @@ namespace HamstarHelpers.WebRequests {
 
 
 	class GithubModIssueReports {
-		public static void ReportIssue( Mod mod, string issue_title, string issue_body, Action<string> on_success, Action<Exception> on_error=null, Action on_completion=null ) {
+		public static void ReportIssue( Mod mod, string issue_title, string issue_body, Action<string> on_success, Action<Exception, string> on_error, Action on_completion=null ) {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
@@ -48,7 +48,7 @@ namespace HamstarHelpers.WebRequests {
 			string json_str = JsonConvert.SerializeObject( json, Formatting.Indented );
 			byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
 
-			NetHelpers.NetHelpers.MakePostRequestAsync( url, json_bytes, delegate ( string output ) {
+			Action<String> on_response = ( output ) => {
 				JObject resp_json = JObject.Parse( output );
 				//JToken data = resp_json.SelectToken( "Data.html_url" );
 				JToken msg = resp_json.SelectToken( "Msg" );
@@ -65,7 +65,9 @@ namespace HamstarHelpers.WebRequests {
 				} else {
 					on_success( msg.ToObject<string>() );
 				}
-			}, on_error, on_completion );
+			};
+
+			NetHelpers.NetHelpers.MakePostRequestAsync( url, json_bytes, on_response, on_error, on_completion );
 		}
 	}
 }

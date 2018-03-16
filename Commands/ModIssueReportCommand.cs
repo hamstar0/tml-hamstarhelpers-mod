@@ -52,7 +52,7 @@ namespace HamstarHelpers.Commands {
 					caller.Reply( "Issue report was not sent", Color.Red );
 				}
 			};
-			Action<Exception> on_fail = delegate ( Exception e ) {
+			Action<Exception, string> on_fail = ( e, output ) => {
 				caller.Reply( e.Message, Color.Red );
 			};
 

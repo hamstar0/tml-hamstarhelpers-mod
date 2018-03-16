@@ -12,24 +12,36 @@ namespace HamstarHelpers.NetHelpers {
 
 
 
-		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception> on_error=null, Action on_completion=null ) {
-			ThreadPool.QueueUserWorkItem( _ => {
-				try {
-					bool success;
-					string output;
+		[System.Obsolete( "use NetHelpers.MakePostRequestAsync(string, byte[], Action<string>, Action<Exception, string>, [Action])", true )]
+		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception> on_error = null, Action on_completion = null ) {
+			Action<Exception, string> on_wrapped_error = ( e, _ ) => {
+				if( on_error != null ) {
+					on_error( e );
+				}
+			};
 
-					lock( NetHelpers.RequestMutex ) {
-						output = NetHelpers.MakePostRequest( url, bytes, out success );
-					}
+			NetHelpers.MakePostRequestAsync( url, bytes, on_response, on_wrapped_error, on_completion );
+		}
+
+		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception, string> on_error, Action on_completion=null ) {
+			ThreadPool.QueueUserWorkItem( _ => {
+				bool success;
+				string output = null;
+
+				try {
+					//lock( NetHelpers.RequestMutex ) {
+					output = NetHelpers.MakePostRequest( url, bytes, out success );
+					//}
 
 					if( success ) {
 						on_response( output );
 					} else {
+						output = null;
 						throw new Exception( "POST request unsuccessful (url: "+url+")" );
 					}
 				} catch( Exception e ) {
 					if( on_error != null ) {
-						on_error( e );
+						on_error( e, output );
 					}
 				}
 
@@ -76,24 +88,36 @@ namespace HamstarHelpers.NetHelpers {
 
 		////////////////
 
+		[System.Obsolete( "use NetHelpers.MakeGetRequestAsync(string, Action<string>, Action<Exception, string>, [Action])", true )]
 		public static void MakeGetRequestAsync( string url, Action<string> on_response, Action<Exception> on_error = null, Action on_completion = null ) {
-			ThreadPool.QueueUserWorkItem( _ => {
-				try {
-					bool success;
-					string output;
+			Action<Exception, string> on_wrapped_error = ( e, _ ) => {
+				if( on_error != null ) {
+					on_error( e );
+				}
+			};
 
-					lock( NetHelpers.RequestMutex ) {
-						output = NetHelpers.MakeGetRequest( url, out success );
-					}
+			NetHelpers.MakeGetRequestAsync( url, on_response, on_wrapped_error, on_completion );
+		}
+
+		public static void MakeGetRequestAsync( string url, Action<string> on_response, Action<Exception, string> on_error, Action on_completion = null ) {
+			ThreadPool.QueueUserWorkItem( _ => {
+				bool success;
+				string output = null;
+
+				try {
+					//lock( NetHelpers.RequestMutex ) {
+					output = NetHelpers.MakeGetRequest( url, out success );
+					//}
 
 					if( success ) {
 						on_response( output );
 					} else {
+						output = null;
 						throw new Exception( "GET request unsuccessful (url: " + url + ")" );
 					}
 				} catch( Exception e ) {
 					if( on_error != null ) {
-						on_error( e );
+						on_error( e, output );
 					}
 				}
 

@@ -56,7 +56,7 @@ namespace HamstarHelpers.NetHelpers {
 			Action<string> on_success = delegate ( string output ) {
 				this.PublicIP = output;
 			};
-			Action<Exception> on_fail = delegate ( Exception e ) {
+			Action<Exception, string> on_fail = delegate ( Exception e, string output ) {
 				LogHelpers.Log( "Could not acquire IP: " + e.ToString() );
 			};
 

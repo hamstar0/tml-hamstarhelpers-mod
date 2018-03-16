@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace HamstarHelpers.WebRequests {
 						if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
 							on_success( mymod.ModVersionGet.ModVersions[mod.Name] );
 						} else {
-							throw new Exception( "GetLatestKnownVersion - Invalid mod" );
+							throw new Exception( "GetLatestKnownVersion - Unrecognized mod" );
 						}
 					} catch( Exception e ) {
 						on_fail( e );
@@ -81,8 +82,12 @@ namespace HamstarHelpers.WebRequests {
 
 				on_success( mod_versions, found );
 			};
-			Action<Exception> on_fail = delegate ( Exception e ) {
-				LogHelpers.Log( "RetrieveLatestKnownVersions - " + e.ToString() );
+			Action<Exception, string> on_fail = ( e, output ) => {
+				if( e is JsonReaderException ) {
+					LogHelpers.Log( "RetrieveLatestKnownVersions - "+output );
+				} else {
+					LogHelpers.Log( "RetrieveLatestKnownVersions - " + e.ToString() );
+				}
 			};
 
 			NetHelpers.NetHelpers.MakeGetRequestAsync( url, on_response, on_fail );

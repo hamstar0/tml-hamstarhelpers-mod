@@ -7,9 +7,9 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers.Logic {
 	class HHPlayerDataProtocol : AbstractHHPlayerDataProtocol {
-		public bool HasUID;
-		public string PrivateUID;
-		public ISet<int> PermaBuffsById;
+		public bool HasUID = false;
+		public string PrivateUID = "";
+		public ISet<int> PermaBuffsById = new HashSet<int>();
 
 		////////////////
 
@@ -41,6 +41,7 @@ namespace HamstarHelpers.Logic {
 
 			this.HasUID = false;
 			this.PrivateUID = "";
+			this.PermaBuffsById = new HashSet<int>();
 		}
 
 		public override void ReceiveOnClient() {
