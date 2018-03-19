@@ -92,7 +92,7 @@ namespace HamstarHelpers.Logic {
 			if( this.IsFinishedSyncing ) { return; }
 			this.IsFinishedSyncing = true;
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode == 1 ) {
 				Timers.SetTimer( "server_connect", 60 * 10, delegate () {
 					if( ServerBrowserReport.CanAddToBrowser() ) {
 						ServerBrowserReport.AnnounceServerConnect();

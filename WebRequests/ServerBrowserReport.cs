@@ -16,19 +16,6 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.WebRequests {
-	class HHServerUpdateRequestProtocol : PacketProtocol {
-		public override void SetServerDefaults() { }
-		
-		public override bool ReceiveRequestOnServer( int from_who ) {
-			if( ServerBrowserReport.CanAddToBrowser() ) {
-				ServerBrowserReport.AnnounceServer();
-			}
-			return true;
-		}
-	}
-
-
-
 	class ServerBrowserEntry {
 		public bool IsClient = false;
 		public string ServerIP;
@@ -86,8 +73,37 @@ namespace HamstarHelpers.WebRequests {
 					return false;
 				}
 			}
-			string ip = NetHelpers.NetHelpers.GetPublicIP();
-			if( ip == "127.0.0.1" || ip.Substring(0, 7) == "192.168" ) {
+
+			string ip;
+			try {
+				ip = NetHelpers.NetHelpers.GetPublicIP();
+			} catch( Exception _ ) {
+				LogHelpers.Log( "CanAddToBrowser - Invalid public IP" );
+				return false;
+			}
+
+			if( ip == "127.0.0.1" || ip.Substring(0, 3) == "10." ) {
+				return false;
+			}
+			switch( ip.Substring( 0, 7 ) ) {
+			case "192.168":
+			case "172.16.":
+			case "172.17.":
+			case "172.18.":
+			case "172.19.":
+			case "172.20.":
+			case "172.21.":
+			case "172.22.":
+			case "172.23.":
+			case "172.24.":
+			case "172.25.":
+			case "172.26.":
+			case "172.27.":
+			case "172.28.":
+			case "172.29.":
+			case "172.30.":
+			case "172.31.":
+			case "172.32.":
 				return false;
 			}
 			return true;
