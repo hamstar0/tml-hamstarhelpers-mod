@@ -65,14 +65,4 @@ namespace HamstarHelpers {
 			PlayerHelpers.PlayerHelpers.ApplyPermaDeath( player, this.Msg );
 		}
 	}
-
-
-
-	abstract class AbstractHHPlayerDataProtocol : PacketProtocol {
-		public int PlayerWho;
-		
-		protected AbstractHHPlayerDataProtocol( int player_who ) {
-			this.PlayerWho = player_who;
-		}
-	}
 }

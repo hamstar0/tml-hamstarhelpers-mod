@@ -50,7 +50,7 @@ namespace HamstarHelpers.ControlPanel {
 			}
 
 			foreach( var moditem in this.ModDataList ) {
-				if( moditem.LatestAvailableVersion != moditem.Mod.Version ) {
+				if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
 					return true;
 				}
 			}

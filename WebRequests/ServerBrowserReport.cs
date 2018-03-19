@@ -86,6 +86,10 @@ namespace HamstarHelpers.WebRequests {
 					return false;
 				}
 			}
+			string ip = NetHelpers.NetHelpers.GetPublicIP();
+			if( ip == "127.0.0.1" || ip.Substring(0, 7) == "192.168" ) {
+				return false;
+			}
 			return true;
 		}
 
@@ -126,58 +130,68 @@ namespace HamstarHelpers.WebRequests {
 				if( team_checks[i] ) { team_count++; }
 			}
 
-			var server_data = new ServerBrowserEntry();
-			server_data.ServerIP = NetHelpers.NetHelpers.GetPublicIP(); //	Netplay.ServerIP.ToString();	//Main.recentIP[0];
-			server_data.Port = Netplay.ListenPort;
-			server_data.Motd = Main.motd;
-			server_data.WorldName = Main.worldName;
-			server_data.WorldProgress = InfoHelpers.GetVanillaProgress();
-			server_data.WorldEvent = NPCInvasionHelpers.GetCurrentInvasionType().ToString();
-			server_data.Created = SystemHelpers.TimeStampInSeconds() - WorldHelpers.WorldHelpers.GetElapsedPlayTime();
-			server_data.MaxPlayerCount = Main.maxNetPlayers;
-			server_data.PlayerCount = Main.ActivePlayersCount;
-			server_data.PlayerPvpCount = pvp;
-			server_data.TeamsCount = team_count;
-			server_data.Mods = new Dictionary<string, string>();
+			try {
+				var server_data = new ServerBrowserEntry();
+				server_data.ServerIP = NetHelpers.NetHelpers.GetPublicIP(); //	Netplay.ServerIP.ToString();	//Main.recentIP[0];
+				server_data.Port = Netplay.ListenPort;
+				server_data.Motd = Main.motd;
+				server_data.WorldName = Main.worldName;
+				server_data.WorldProgress = InfoHelpers.GetVanillaProgress();
+				server_data.WorldEvent = NPCInvasionHelpers.GetCurrentInvasionType().ToString();
+				server_data.Created = SystemHelpers.TimeStampInSeconds() - WorldHelpers.WorldHelpers.GetElapsedPlayTime();
+				server_data.MaxPlayerCount = Main.maxNetPlayers;
+				server_data.PlayerCount = Main.ActivePlayersCount;
+				server_data.PlayerPvpCount = pvp;
+				server_data.TeamsCount = team_count;
+				server_data.Mods = new Dictionary<string, string>();
 
-			foreach( Mod mod in ModLoader.LoadedMods ) {
-				if( mod.File == null ) { continue; }
-				server_data.Mods[ mod.DisplayName ] = mod.Version.ToString();
+				foreach( Mod mod in ModLoader.LoadedMods ) {
+					if( mod.File == null ) { continue; }
+					server_data.Mods[ mod.DisplayName ] = mod.Version.ToString();
+				}
+			
+				string json_str = JsonConvert.SerializeObject( server_data, Formatting.None );
+				byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
+			
+				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReport.URL, json_bytes, delegate ( string output ) {
+					LogHelpers.Log( "Server data added to browser. " + output );
+				}, delegate( Exception e, string output ) {
+					LogHelpers.Log( "Server browser returned error: " + e.ToString() );
+				} );
+
+				ServerBrowserReport.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
+			} catch( Exception e ) {
+				LogHelpers.Log( "AnnounceServer - " + e.ToString() );
+				return;
 			}
-			
-			string json_str = JsonConvert.SerializeObject( server_data, Formatting.None );
-			byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
-			
-			NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReport.URL, json_bytes, delegate ( string output ) {
-				LogHelpers.Log( "Server data added to browser. " + output );
-			}, delegate( Exception e, string output ) {
-				LogHelpers.Log( "Server browser returned error: " + e.ToString() );
-			} );
-
-			ServerBrowserReport.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
 		}
 
 
 		public static void AnnounceServerConnect() {
-			var client_data = new ServerBrowserClientData();
-			client_data.SteamID = SteamHelpers.GetSteamID();
-			client_data.ClientIP = Netplay.GetLocalIPAddress();
-			client_data.ServerIP = Netplay.ServerIP.ToString(); //Main.recentIP[0];
-			client_data.WorldName = Main.worldName;
-			client_data.Port = Netplay.ListenPort;
-			client_data.Ping = NetHelpers.NetHelpers.GetServerPing();
-			client_data.IsPassworded = !string.IsNullOrEmpty( Netplay.ServerPassword );
+			try {
+				var client_data = new ServerBrowserClientData();
+				client_data.SteamID = SteamHelpers.GetSteamID();
+				client_data.ClientIP = NetHelpers.NetHelpers.GetPublicIP();	// Netplay.GetLocalIPAddress();
+				client_data.ServerIP = Netplay.ServerIP.ToString(); //Main.recentIP[0];
+				client_data.WorldName = Main.worldName;
+				client_data.Port = Netplay.ListenPort;
+				client_data.Ping = NetHelpers.NetHelpers.GetServerPing();
+				client_data.IsPassworded = !string.IsNullOrEmpty( Netplay.ServerPassword );
 			
-			string json_str = JsonConvert.SerializeObject( client_data, Formatting.None );
-			byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
+				string json_str = JsonConvert.SerializeObject( client_data, Formatting.None );
+				byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
 			
-			NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReport.URL, json_bytes, delegate ( string output ) {
-				LogHelpers.Log( "Server connection data added to browser. " + output );
-			}, delegate ( Exception e, string output ) {
-				LogHelpers.Log( "Server browser returned error for client: " + e.ToString() );
-			} );
+				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReport.URL, json_bytes, delegate ( string output ) {
+					LogHelpers.Log( "Server connection data added to browser. " + output );
+				}, delegate ( Exception e, string output ) {
+					LogHelpers.Log( "Server browser returned error for client: " + e.ToString() );
+				} );
 
-			ServerBrowserReport.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
+				ServerBrowserReport.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
+			} catch( Exception e ) {
+				LogHelpers.Log( "AnnounceServerConnect - " + e.ToString() );
+				return;
+			}
 		}
 
 

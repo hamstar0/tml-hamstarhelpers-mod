@@ -141,7 +141,6 @@ namespace HamstarHelpers {
 
 			this.Timers.End();
 			this.TmlLoadHelpers.Unload();
-			this.NetHelpers.Unload();
 
 			this.Timers = null;
 			this.JsonConfig = null;

@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Utilities.Timers;
 using System;
 using Terraria;
 
@@ -28,27 +29,20 @@ namespace HamstarHelpers.NetHelpers {
 		////////////////
 
 		private string PublicIP = null;
-		private int IPLoadRetryTimer = 0;
 
 
 		////////////////
 
 		internal NetHelpers() {
-			Main.OnTick += this.RetryLoadIP;
-		}
+			this.LoadIPAsync();
 
-		internal void Unload() {
-			Main.OnTick -= this.RetryLoadIP;
-		}
+			int attempts = 3;
 
-		private void RetryLoadIP() {
-			if( this.PublicIP == null ) {
-				if( this.IPLoadRetryTimer >= ( 60 * 60 ) ) {
-					this.IPLoadRetryTimer = 0;
-					this.LoadIPAsync();
-				}
-				this.IPLoadRetryTimer++;
-			}
+			Timers.SetTimer( "retry_ip", 60 * 20, delegate () {
+				if( this.PublicIP != null ) { return false; }
+				this.LoadIPAsync();
+				return attempts-- > 0;
+			} );
 		}
 		
 

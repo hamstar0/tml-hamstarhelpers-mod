@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Utilities.Network;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -6,29 +7,35 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Logic {
-	class HHPlayerDataProtocol : AbstractHHPlayerDataProtocol {
+	class HHPlayerDataProtocol : PacketProtocol {
+		public int PlayerWho;
 		public bool HasUID = false;
 		public string PrivateUID = "";
 		public ISet<int> PermaBuffsById = new HashSet<int>();
 
+
 		////////////////
 
-		public HHPlayerDataProtocol() : base(255) { }
+		public HHPlayerDataProtocol() {
+			this.PlayerWho = 255;
+		}
 
-		internal HHPlayerDataProtocol( int player_who, ISet<int> perma_buff_ids ) : base( player_who ) {
+		internal HHPlayerDataProtocol( int player_who, ISet<int> perma_buff_ids ) {
+			this.PlayerWho = player_who;
 			this.HasUID = false;
 			this.PrivateUID = "";
 			this.PermaBuffsById = perma_buff_ids;
 		}
 
-		internal HHPlayerDataProtocol( int player_who, bool has_uid, string uid, ISet<int> perma_buff_ids ) : base( player_who ) {
+		internal HHPlayerDataProtocol( int player_who, bool has_uid, string uid, ISet<int> perma_buff_ids ) {
+			this.PlayerWho = player_who;
 			this.HasUID = has_uid;
 			this.PrivateUID = uid;
 			this.PermaBuffsById = perma_buff_ids;
 		}
 
 		////////////////
-
+		
 		public override void SetServerDefaults() { }
 
 		////////////////
@@ -41,7 +48,6 @@ namespace HamstarHelpers.Logic {
 
 			this.HasUID = false;
 			this.PrivateUID = "";
-			this.PermaBuffsById = new HashSet<int>();
 		}
 
 		public override void ReceiveOnClient() {

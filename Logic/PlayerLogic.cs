@@ -2,6 +2,7 @@
 using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Messages;
 using HamstarHelpers.Utilities.Network;
+using HamstarHelpers.Utilities.Timers;
 using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -33,18 +34,17 @@ namespace HamstarHelpers.Logic {
 
 		public void SendClientChanges( HamstarHelpersMod mymod, Player me, ModPlayer client_player ) {
 			var myclient = (HamstarHelpersPlayer)client_player;
-			var logic = myclient.Logic;
-			bool uid_changed = this.HasUID != logic.HasUID || this.PrivateUID != logic.PrivateUID;
+			var clone = myclient.Logic;
+			bool uid_changed = this.HasUID != clone.HasUID || this.PrivateUID != clone.PrivateUID;
 			
-			if( !logic.PermaBuffsById.SetEquals( this.PermaBuffsById ) || uid_changed ) {
+			if( !clone.PermaBuffsById.SetEquals( this.PermaBuffsById ) || uid_changed ) {
 				var protocol = new HHPlayerDataProtocol( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
 				protocol.SendData( -1, -1, false );
 			}
 		}
 
 
-		public void OnEnterWorldForServer( Player player ) {
-		}
+		public void OnEnterWorldForServer( Player player ) { }
 
 
 		public void OnEnterWorld( HamstarHelpersMod mymod, Player player ) {
@@ -93,9 +93,12 @@ namespace HamstarHelpers.Logic {
 			this.IsFinishedSyncing = true;
 
 			if( Main.netMode != 0 ) {
-				if( ServerBrowserReport.CanAddToBrowser() ) {
-					ServerBrowserReport.AnnounceServerConnect();
-				}
+				Timers.SetTimer( "server_connect", 60 * 10, delegate () {
+					if( ServerBrowserReport.CanAddToBrowser() ) {
+						ServerBrowserReport.AnnounceServerConnect();
+					}
+					return false;
+				} );
 			}
 		}
 
@@ -127,16 +130,16 @@ namespace HamstarHelpers.Logic {
 			}
 
 			// Update ping every 15 seconds
-			if( this.TestPing % (60*10) == 0 ) {
+			if( this.TestPing % (60*15) == 0 ) {
 				PacketProtocol.QuickSendData<HHPingProtocol>( -1, -1, false );
 			}
 
 			// Update server status every 3 minutes
-			if( this.TestPing % (60*60*3) == 0 ) {
-				if( ServerBrowserReport.CanAddToBrowser() ) {
-					ServerBrowserReport.AnnounceServerConnect();
-				}
-			}
+			//if( this.TestPing % ( 60 * 60 * 3 ) == 0 ) {
+			//	if( ServerBrowserReport.CanAddToBrowser() ) {
+			//		ServerBrowserReport.AnnounceServerConnect();
+			//	}
+			//}
 
 			this.TestPing++;
 		}
