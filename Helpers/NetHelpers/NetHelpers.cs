@@ -48,13 +48,19 @@ namespace HamstarHelpers.NetHelpers {
 
 		internal void LoadIPAsync() {
 			Action<string> on_success = delegate ( string output ) {
-				this.PublicIP = output;
+				string[] a = output.Split( ':' );
+				string a2 = a[1].Substring( 1 );
+				string[] a3 = a2.Split( '<' );
+				string a4 = a3[0];
+
+				this.PublicIP = a4;
 			};
 			Action<Exception, string> on_fail = delegate ( Exception e, string output ) {
 				LogHelpers.Log( "Could not acquire IP: " + e.ToString() );
 			};
 
-			NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", on_success, on_fail );
+			NetHelpers.MakeGetRequestAsync( "http://checkip.dyndns.org/", on_success, on_fail );
+			//NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", on_success, on_fail );
 			//using( WebClient web_client = new WebClient() ) {
 			//	this.PublicIP = web_client.DownloadString( "http://ifconfig.me/ip" );
 			//}

@@ -102,6 +102,7 @@
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\UITextField.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="Utilities\Menu\MenuItem.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
     <Compile Include="WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />

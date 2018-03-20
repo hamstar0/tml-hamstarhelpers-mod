@@ -33,6 +33,7 @@ namespace HamstarHelpers {
 
 		public bool IsServerHiddenFromBrowser = false;
 		public bool IsServerPromptingForBrowser = true;
+		public int ServerBrowserAutoRefreshSeconds = 60 * 10;	// 10 minutes
 
 
 

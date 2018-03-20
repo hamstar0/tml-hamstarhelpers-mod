@@ -19,10 +19,12 @@ namespace HamstarHelpers.Commands {
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			var mymod = (HamstarHelpersMod)this.mod;
+			if( !mymod.Config.IsServerPromptingForBrowser && (caller.CommandType & CommandType.Console) == 0 ) {
+				caller.Reply( "Cannot set server private; grace period has expired." );
+				return;
+			}
 
 			mymod.ServerBrowser.StopUpdates();
-			
-			Timers.UnsetTimer( "server_browser_report" );
 
 			caller.Reply( "Server set to be private. To set all future servers private, set IsServerHiddenFromBrowser to false in the Hamstar's Helpers config settings.", Color.GreenYellow );
 		}

@@ -42,6 +42,7 @@ namespace HamstarHelpers.WebRequests {
 		public string WorldName;
 		public int Ping;
 		public bool IsPassworded;
+		public string HelpersVersion;
 	}
 
 
@@ -60,7 +61,8 @@ namespace HamstarHelpers.WebRequests {
 			//Netplay.UseUPNP
 			//return Netplay.ServerPassword == "";
 			if( Main.netMode == 0 ) {
-				throw new Exception("Cannot add single player games to server browser.");
+				//throw new Exception("Cannot add single player games to server browser.");
+				return false;
 			}
 			if( HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
 				return false;
@@ -193,6 +195,7 @@ namespace HamstarHelpers.WebRequests {
 				client_data.Port = Netplay.ListenPort;
 				client_data.Ping = NetHelpers.NetHelpers.GetServerPing();
 				client_data.IsPassworded = !string.IsNullOrEmpty( Netplay.ServerPassword );
+				client_data.HelpersVersion = HamstarHelpersMod.Instance.Version.ToString();
 			
 				string json_str = JsonConvert.SerializeObject( client_data, Formatting.None );
 				byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
@@ -233,13 +236,25 @@ namespace HamstarHelpers.WebRequests {
 						return false;
 					} );
 
-					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
+					int seconds = HamstarHelpersMod.Instance.Config.ServerBrowserAutoRefreshSeconds;
+					seconds = seconds > 10 ? seconds : 10;
+
+					Func<bool> repeats = delegate () {
+						if( ServerBrowserReport.CanAddToBrowser() ) {
+							ServerBrowserReport.AnnounceServer();
+						}
+						return true;
+					};
+					Func<bool> initial = delegate () {
 						if( ServerBrowserReport.CanAddToBrowser() ) {
 							ServerBrowserReport.EndPrompts();
 							ServerBrowserReport.AnnounceServer();
 						}
+						Timers.SetTimer( "server_browser_report", seconds * 60, repeats );	// 10 minutes by default
 						return false;
-					} );
+					};
+
+					Timers.SetTimer( "server_browser_report", 60 * 60, initial );	// 1 minute
 				} else {
 					ServerBrowserReport.AnnounceServer();
 				}
@@ -248,6 +263,7 @@ namespace HamstarHelpers.WebRequests {
 
 
 		internal void StopUpdates() {
+			Timers.UnsetTimer( "server_browser_report" );
 			//this.IsSendingUpdates = false;
 		}
 	}

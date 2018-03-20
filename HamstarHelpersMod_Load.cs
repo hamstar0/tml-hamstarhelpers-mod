@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
+using HamstarHelpers.Utilities.Menu;
 using HamstarHelpers.Utilities.Messages;
 using HamstarHelpers.Utilities.Network;
 using HamstarHelpers.Utilities.Timers;
@@ -46,6 +47,7 @@ namespace HamstarHelpers {
 		internal PlayerMessages PlayerMessages;
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReport ServerBrowser;
+		internal MenuItemManager MenuItemMngr;
 
 		public bool HasSetupContent { get; private set; }
 		public bool HasAddedRecipeGroups { get; private set; }
@@ -110,6 +112,7 @@ namespace HamstarHelpers {
 			this.PlayerMessages = new PlayerMessages();
 			this.ModVersionGet = new ModVersionGet();
 			this.ServerBrowser = new ServerBrowserReport();
+			this.MenuItemMngr = new MenuItemManager();
 
 			this.Timers.Begin();
 
@@ -141,6 +144,7 @@ namespace HamstarHelpers {
 
 			this.Timers.End();
 			this.TmlLoadHelpers.Unload();
+			this.MenuItemMngr.Unload();
 
 			this.Timers = null;
 			this.JsonConfig = null;
@@ -165,6 +169,7 @@ namespace HamstarHelpers {
 			this.ControlPanelHotkey = null;
 			this.ControlPanel = null;
 			this.ServerBrowser = null;
+			this.MenuItemMngr = null;
 
 			HamstarHelpersMod.Instance = null;
 		}

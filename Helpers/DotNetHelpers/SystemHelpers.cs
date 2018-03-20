@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public static class SystemHelpers {
 		public static long TimeStampInSeconds() {
-			return DateTime.UtcNow.Ticks / TimeSpan.TicksPerMillisecond;
+			return (DateTime.UtcNow.Ticks / TimeSpan.TicksPerMillisecond) / 1000L;
 		}
 
 
