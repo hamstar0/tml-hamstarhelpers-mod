@@ -29,7 +29,7 @@ namespace HamstarHelpers.MiscHelpers {
 			}
 			if( NPC.downedBoss2 ) {
 				if( WorldGen.crimson ) {
-					return "Post Brain of Cthuluhu";
+					return "Post Brain of Cthulhu";
 				} else {
 					return "Post Eater of Worlds";
 				}
