@@ -24,7 +24,7 @@ namespace HamstarHelpers.WebRequests {
 		public string WorldName;
 		public string WorldProgress;
 		public string WorldEvent;
-		public long Created;
+		//public long Created;
 		public int MaxPlayerCount;
 		public int PlayerCount;
 		public int PlayerPvpCount;
@@ -58,12 +58,14 @@ namespace HamstarHelpers.WebRequests {
 		////////////////
 
 		public static bool CanAddToBrowser() {
-			//Netplay.UseUPNP
 			//return Netplay.ServerPassword == "";
 			if( Main.netMode == 0 ) {
 				//throw new Exception("Cannot add single player games to server browser.");
 				return false;
 			}
+			//if( !Netplay.UseUPNP ) {
+			//	return false;
+			//}
 			if( HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
 				return false;
 			}
@@ -149,6 +151,9 @@ namespace HamstarHelpers.WebRequests {
 			}
 
 			try {
+				//long now = SystemHelpers.TimeStampInSeconds();
+				//long elapsed = WorldHelpers.WorldHelpers.GetElapsedPlayTime();
+
 				var server_data = new ServerBrowserEntry();
 				server_data.ServerIP = NetHelpers.NetHelpers.GetPublicIP(); //	Netplay.ServerIP.ToString();	//Main.recentIP[0];
 				server_data.Port = Netplay.ListenPort;
@@ -156,7 +161,7 @@ namespace HamstarHelpers.WebRequests {
 				server_data.WorldName = Main.worldName;
 				server_data.WorldProgress = InfoHelpers.GetVanillaProgress();
 				server_data.WorldEvent = NPCInvasionHelpers.GetCurrentInvasionType().ToString();
-				server_data.Created = SystemHelpers.TimeStampInSeconds() - WorldHelpers.WorldHelpers.GetElapsedPlayTime();
+				//server_data.Created = now - elapsed;
 				server_data.MaxPlayerCount = Main.maxNetPlayers;
 				server_data.PlayerCount = Main.ActivePlayersCount;
 				server_data.PlayerPvpCount = pvp;

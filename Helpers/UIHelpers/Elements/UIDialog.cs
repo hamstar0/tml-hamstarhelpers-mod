@@ -89,6 +89,14 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		protected bool SetDialogToClose = false;
 
+		private float TopPixels = 32f;
+		private float TopPercent = 0.5f;
+		private float LeftPixels = 0f;
+		private float LeftPercent = 0.5f;
+		private bool TopCentered = true;
+		private bool LeftCentered = true;
+		
+
 
 		////////////////
 
@@ -161,7 +169,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
-		public void RecalculateMe() {
+		public void RecalculateMe() {	// Call this instead of Recalculate
 			if( this.Backend != null ) {
 				this.Backend.Recalculate();
 			} else {
@@ -179,9 +187,18 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		public void RecalculateContainer() {
 			CalculatedStyle dim = this.OuterContainer.GetDimensions();
+			float offset_x = this.LeftPixels;
+			float offset_y = this.TopPixels;
 
-			this.OuterContainer.Top.Set( ( dim.Height * -0.5f ) + 32, 0.5f );
-			this.OuterContainer.Left.Set( ( dim.Width * -0.5f ), 0.5f );
+			if( this.LeftCentered ) {
+				offset_x -= dim.Width * 0.5f;
+			}
+			if( this.TopCentered ) {
+				offset_y -= dim.Height * 0.5f;
+			}
+			
+			this.OuterContainer.Left.Set( offset_x, this.LeftPercent );
+			this.OuterContainer.Top.Set( offset_y, this.TopPercent );
 		}
 
 
@@ -231,6 +248,23 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			}
 
 			this.Backend = null;
+		}
+
+
+		////////////////
+
+		public void SetLeftPosition( float pixels, float percent, bool centered ) {
+			this.LeftPixels = pixels;
+			this.LeftPercent = percent;
+			this.LeftCentered = centered;
+			this.RecalculateContainer();
+		}
+
+		public void SetTopPosition( float pixels, float percent, bool centered ) {
+			this.TopPixels = pixels;
+			this.TopPercent = percent;
+			this.TopCentered = centered;
+			this.RecalculateContainer();
 		}
 	}
 }
