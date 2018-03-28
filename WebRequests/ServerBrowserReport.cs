@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.DotNetHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.MiscHelpers;
 using HamstarHelpers.NPCHelpers;
@@ -17,7 +16,6 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.WebRequests {
 	class ServerBrowserEntry {
-		public bool IsClient = false;
 		public string ServerIP;
 		public int Port;
 		public string Motd;
@@ -29,11 +27,12 @@ namespace HamstarHelpers.WebRequests {
 		public int PlayerCount;
 		public int PlayerPvpCount;
 		public int TeamsCount;
+		public int AveragePing;
 		public IDictionary<string, string> Mods = new Dictionary<string, string>();
 	}
 
 
-	public class ServerBrowserClientData {
+	/*public class ServerBrowserClientData {
 		public bool IsClient = true;
 		public string SteamID;
 		public string ClientIP;
@@ -43,7 +42,7 @@ namespace HamstarHelpers.WebRequests {
 		public int Ping;
 		public bool IsPassworded;
 		public string HelpersVersion;
-	}
+	}*/
 
 
 
@@ -117,6 +116,7 @@ namespace HamstarHelpers.WebRequests {
 			return HamstarHelpersMod.Instance.Config.IsServerPromptingForBrowser;
 		}
 
+
 		public static void EndPrompts() {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -166,6 +166,7 @@ namespace HamstarHelpers.WebRequests {
 				server_data.PlayerCount = Main.ActivePlayersCount;
 				server_data.PlayerPvpCount = pvp;
 				server_data.TeamsCount = team_count;
+				server_data.AveragePing = HamstarHelpersMod.Instance.ServerBrowser.AveragePing;
 				server_data.Mods = new Dictionary<string, string>();
 
 				foreach( Mod mod in ModLoader.LoadedMods ) {
@@ -191,7 +192,8 @@ namespace HamstarHelpers.WebRequests {
 
 
 		public static void AnnounceServerConnect() {
-			try {
+			throw new NotImplementedException();
+			/*try {
 				var client_data = new ServerBrowserClientData();
 				client_data.SteamID = SteamHelpers.GetSteamID();
 				client_data.ClientIP = NetHelpers.NetHelpers.GetPublicIP();	// Netplay.GetLocalIPAddress();
@@ -215,7 +217,7 @@ namespace HamstarHelpers.WebRequests {
 			} catch( Exception e ) {
 				LogHelpers.Log( "AnnounceServerConnect - " + e.ToString() );
 				return;
-			}
+			}*/
 		}
 
 
@@ -223,11 +225,14 @@ namespace HamstarHelpers.WebRequests {
 		////////////////
 
 		//private bool IsSendingUpdates = true;
+		public int AveragePing { get; internal set; }
 
 
 		////////////////
 
 		internal ServerBrowserReport() {
+			this.AveragePing = -1;
+
 			TmlLoadHelpers.AddWorldLoadPromise( delegate {
 				if( Main.netMode != 2 ) { return; }
 				if( !ServerBrowserReport.CanAddToBrowser() ) { return; }
@@ -270,6 +275,15 @@ namespace HamstarHelpers.WebRequests {
 		internal void StopUpdates() {
 			Timers.UnsetTimer( "server_browser_report" );
 			//this.IsSendingUpdates = false;
+		}
+
+
+		internal void AddPingToAverage( int ping ) {
+			if( this.AveragePing == -1 ) {
+				this.AveragePing = ping;
+			} else {
+				this.AveragePing = (ping + ( this.AveragePing * 2 )) / 3;
+			}
 		}
 	}
 }

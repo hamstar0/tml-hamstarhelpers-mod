@@ -162,7 +162,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.LatestAvailableVersion = vers;
 			};
 			Action<Exception> on_fail = delegate ( Exception e ) {
-				LogHelpers.Log( "Error retrieving " + this.Mod.DisplayName + " version: " + e.ToString() );
+				LogHelpers.Log( "Error retrieving '" + this.Mod.DisplayName + "' version: " + e.ToString() );
 			};
 
 			ModVersionGet.GetLatestKnownVersionAsync( this.Mod, on_success, on_fail );

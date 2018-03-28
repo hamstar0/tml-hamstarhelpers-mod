@@ -40,14 +40,17 @@ namespace HamstarHelpers.NetHelpers {
 
 			Timers.SetTimer( "retry_ip", 60 * 20, delegate () {
 				if( this.PublicIP != null ) { return false; }
+
 				this.LoadIPAsync();
 				return attempts-- > 0;
 			} );
 		}
 		
 
-		internal void LoadIPAsync() {
+		private void LoadIPAsync() {
 			Action<string> on_success = delegate ( string output ) {
+				if( this.PublicIP != null ) { return; }
+
 				string[] a = output.Split( ':' );
 				string a2 = a[1].Substring( 1 );
 				string[] a3 = a2.Split( '<' );

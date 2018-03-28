@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Text;
 using Terraria;
@@ -31,6 +32,10 @@ namespace HamstarHelpers.Utilities.Network {
 		////////////////
 
 		public void SendRequest( int to_who, int ignore_who ) {
+			if( Main.netMode == 0 ) {
+				throw new Exception( "Cannot send packets in single player." );
+			}
+
 			var mymod = HamstarHelpersMod.Instance;
 			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();
@@ -47,6 +52,10 @@ namespace HamstarHelpers.Utilities.Network {
 		}
 		
 		public void SendData( int to_who, int ignore_who, bool forward_to_all ) {
+			if( Main.netMode == 0 ) {
+				throw new Exception("Cannot send packets in single player.");
+			}
+
 			var mymod = HamstarHelpersMod.Instance;
 			string name = this.GetType().Name;
 			ModPacket packet = mymod.GetPacket();

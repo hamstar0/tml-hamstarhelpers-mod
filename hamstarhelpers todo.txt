@@ -14,8 +14,14 @@ Future
 
 
 v1.4.1
--	...
+-	Implement custom logging
 
+-	Server browser
+	-	Fix player max
+
+	-	Revise ping
+		-	Send avg ping with server (not including local network players)
+		-	Update server with player ping
 -	Do not send local IP client connections
 v1.4.0
 -	Make issue reports and mod version getter async

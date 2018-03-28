@@ -7,25 +7,39 @@ using Terraria;
 
 namespace HamstarHelpers.NetHelpers {
 	class HHPingProtocol : PacketProtocol {
-		public override bool IsVerbose { get { return false; } }
-		public long StartTime;
+		public long StartTime = -1;
+		public long EndTime = -1;
+
 
 
 		////////////////
-		
+
+		public override bool IsVerbose { get { return false; } }
+
+
+		////////////////
+
 		public override void SetClientDefaults() {
 			this.StartTime = SystemHelpers.TimeStampInSeconds();
 		}
 
 
 		public override void ReceiveOnServer( int from_who ) {
-			this.SendData( from_who, -1, false );
+			if( this.EndTime == -1 ) {
+				this.SendData( from_who, -1, false );
+			} else {
+				HamstarHelpersMod.Instance.ServerBrowser.AddPingToAverage( (int)(this.EndTime - this.StartTime) );
+			}
 		}
 
 
 		public override void ReceiveOnClient() {
 			long now = SystemHelpers.TimeStampInSeconds();
 			long time = now - this.StartTime;
+
+			this.EndTime = time;
+
+			this.SendData( -1, -1, false );
 
 			HamstarHelpersMod.Instance.NetHelpers.UpdatePing( (int)time );
 		}

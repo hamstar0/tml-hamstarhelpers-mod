@@ -2,8 +2,6 @@
 using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Messages;
 using HamstarHelpers.Utilities.Network;
-using HamstarHelpers.Utilities.Timers;
-using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -92,14 +90,14 @@ namespace HamstarHelpers.Logic {
 			if( this.IsFinishedSyncing ) { return; }
 			this.IsFinishedSyncing = true;
 
-			if( Main.netMode == 1 ) {
-				Timers.SetTimer( "server_connect", 60 * 30, delegate () {	// 30 seconds
+			/*if( Main.netMode == 1 ) {
+				Timers.SetTimer( "server_connect", 60 * 30, delegate () {   // 30 seconds
 					if( ServerBrowserReport.CanAddToBrowser() ) {
 						ServerBrowserReport.AnnounceServerConnect();
 					}
 					return false;
 				} );
-			}
+			}*/
 		}
 
 

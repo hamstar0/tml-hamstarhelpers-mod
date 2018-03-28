@@ -151,6 +151,17 @@ namespace HamstarHelpers.MiscHelpers {
 
 		////////////////
 
+		public static int GetAveragePingOfServer() {
+			if( Main.netMode != 2 ) {
+				throw new Exception("Server-side only.");
+			}
+
+			return HamstarHelpersMod.Instance.ServerBrowser.AveragePing;
+		}
+
+
+		////////////////
+
 		public static IList<string> GetErrorLog( int max_lines ) {
 			if( max_lines > 150 ) { max_lines = 150; }
 
