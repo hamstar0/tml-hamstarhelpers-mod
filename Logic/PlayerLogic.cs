@@ -41,35 +41,35 @@ namespace HamstarHelpers.Logic {
 			}
 		}
 
+		////////////////
 
-		public void OnEnterWorldForServer( Player player ) { }
-
-
-		public void OnEnterWorld( HamstarHelpersMod mymod, Player player ) {
-			if( Main.netMode == 0 ) {   // Single player only
-				if( !mymod.JsonConfig.LoadFile() ) {
-					mymod.JsonConfig.SaveFile();
-				}
+		public void OnEnterWorldForSingle( HamstarHelpersMod mymod, Player player ) {
+			if( !mymod.JsonConfig.LoadFile() ) {
+				mymod.JsonConfig.SaveFile();
 			}
 
-			// Sync mod (world) data; must be called after world is loaded
-			if( Main.netMode == 1 ) {
-				var player_data = new HHPlayerDataProtocol( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
-				player_data.SendData( -1, -1, true );
-				player_data.SendRequest( -1, -1 );
-				PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
-				PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
-			}
+			this.FinishModSettingsSync();
+			this.FinishModDataSync();
 
-			if( Main.netMode != 1 ) {   // NOT client; clients won't receive their own data back from server
-				this.FinishModSettingsSync();
-				this.FinishModDataSync();
-			}
-
-			if( Main.netMode != 2 ) {   // Redundant, but whatever
-				mymod.ControlPanel.LoadModListAsync();
-			}
+			mymod.ControlPanel.LoadModListAsync();
 		}
+
+		public void OnEnterWorldForClient( HamstarHelpersMod mymod, Player player ) {
+			var player_data = new HHPlayerDataProtocol( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
+			player_data.SendData( -1, -1, true );
+			player_data.SendRequest( -1, -1 );
+
+			PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
+			PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
+
+			mymod.ControlPanel.LoadModListAsync();
+		}
+
+		public void OnEnterWorldForServer( HamstarHelpersMod mymod, Player player ) {
+			this.FinishModSettingsSync();
+			this.FinishModDataSync();
+		}
+
 
 		////////////////
 

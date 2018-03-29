@@ -46,7 +46,7 @@ namespace HamstarHelpers {
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
 		internal ModVersionGet ModVersionGet;
-		internal ServerBrowserReport ServerBrowser;
+		internal ServerBrowserReporter ServerBrowser;
 		internal MenuItemManager MenuItemMngr;
 
 		public bool HasSetupContent { get; private set; }
@@ -111,7 +111,7 @@ namespace HamstarHelpers {
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 			this.PlayerMessages = new PlayerMessages();
 			this.ModVersionGet = new ModVersionGet();
-			this.ServerBrowser = new ServerBrowserReport();
+			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
 
 			this.Timers.Begin();

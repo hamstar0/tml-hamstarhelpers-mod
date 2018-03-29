@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 4, 0); } }
+		public static Version ConfigVersion { get { return new Version(1, 4, 2); } }
 		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
 
 
@@ -16,6 +16,10 @@ namespace HamstarHelpers {
 		
 		public bool DebugModeNetInfo = false;
 		public bool DebugModeUnhandledExceptionLogging = true;
+
+		public bool UseCustomLogging = false;
+		public bool UseCustomModeLogging = false;
+		public bool UseAlsoNormalLogging = false;
 
 		public bool DisableControlPanel = false;
 		public bool DisableControlPanelHotkey = false;
@@ -48,6 +52,8 @@ namespace HamstarHelpers {
 			if( vers_since >= HamstarHelpersConfigData.ConfigVersion ) {
 				return false;
 			}
+			//if( vers_since < new Version( 1, 4, 2 ) ) {
+			//}
 
 			this.VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
 

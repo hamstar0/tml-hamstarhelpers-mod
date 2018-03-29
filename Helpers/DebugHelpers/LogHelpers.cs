@@ -1,10 +1,15 @@
 ﻿using System;
+using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.DebugHelpers {
 	public class LogHelpers {
+		private static Object MyLock = new Object();
+
+
+
 		public static void Log( string msg ) {
 			var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
 			var log_helpers = mymod.LogHelpers;
@@ -23,13 +28,23 @@ namespace HamstarHelpers.DebugHelpers {
 					logged += "  ";
 				}
 
-				//new Thread( () => {
-				ErrorLogger.Log( logged + msg );
-				//} ).Start();
+				if( mymod.Config.UseCustomLogging ) {
+					log_helpers.OutputDirect( log_helpers.GetHourlyLogFileName(), logged + msg );
+
+					if( mymod.Config.UseCustomModeLogging ) {
+						log_helpers.OutputDirect( log_helpers.GetModalLogFileName(), logged + msg );
+					}
+
+					if( mymod.Config.UseAlsoNormalLogging ) {
+						ErrorLogger.Log( logged + msg );
+					}
+				} else {
+					ErrorLogger.Log( logged + msg );
+				}
 
 				log_helpers.LoggedMessages++;
-			} catch( Exception _ ) {
-				ErrorLogger.Log( "E " + msg );
+			} catch( Exception e ) {
+				ErrorLogger.Log( "FALLBACK LOGGER 2 (" + e.GetType().Name + ") " + msg );
 			}
 		}
 
@@ -38,6 +53,7 @@ namespace HamstarHelpers.DebugHelpers {
 		////////////////
 
 		private int LoggedMessages;
+		private DateTime StartTimeBase;
 		private double StartTime;
 
 
@@ -53,7 +69,71 @@ namespace HamstarHelpers.DebugHelpers {
 
 		internal void Reset() {
 			this.LoggedMessages = 0;
-			this.StartTime = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
+			this.StartTimeBase = DateTime.UtcNow;
+			this.StartTime = this.StartTimeBase.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
+		}
+
+		////////////////
+
+		public string GetLogPath() {
+			string base_path = ErrorLogger.LogPath + Path.DirectorySeparatorChar;
+			string full_path = base_path + "History" + Path.DirectorySeparatorChar;
+
+			Directory.CreateDirectory( base_path );
+			Directory.CreateDirectory( full_path );
+
+			return full_path;
+		}
+
+		public string GetHourlyLogFileName() {
+			DateTime curr_hour = this.StartTimeBase;
+			curr_hour.AddMinutes( -curr_hour.Minute );
+			curr_hour.AddSeconds( -curr_hour.Second );
+			curr_hour.AddMilliseconds( -curr_hour.Millisecond );
+
+			string when = curr_hour.ToString( "MM-dd, HH" );
+
+			return "Log Any " + when + ".txt";
+		}
+
+		public string GetModalLogFileName() {
+			string mode;
+			
+			switch( Main.netMode ) {
+			case 0:
+				mode = "Single";
+				break;
+			case 1:
+				mode = "Client";
+				break;
+			case 2:
+				mode = "Server";
+				break;
+			default:
+				mode = "Unknown Mode";
+				break;
+			}
+
+			string when = this.StartTimeBase.ToString( "MM-dd, HH.mm.ss" );
+
+			return "Log " + mode + " " + when + ".txt";
+		}
+
+
+		////////////////
+
+		public void OutputDirect( string file_name, string log_entry ) {
+			lock( LogHelpers.MyLock ) {
+				string path = this.GetLogPath();
+
+				try {
+					using( StreamWriter writer = File.AppendText( path + file_name ) ) {
+						writer.WriteLine( log_entry );
+					}
+				} catch( Exception e ) {
+					ErrorLogger.Log( "FALLBACK LOGGER ("+e.GetType().Name+"; "+file_name+") - " + log_entry );
+				}
+			}
 		}
 	}
 }

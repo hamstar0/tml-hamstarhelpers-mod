@@ -47,7 +47,7 @@ namespace HamstarHelpers.WebRequests {
 
 
 
-	class ServerBrowserReport {
+	class ServerBrowserReporter {
 		private readonly static string URL =
 			"https://script.google.com/macros/s/AKfycbzQl2JmJzdEHguVI011Hk1KuLktYJPDzpWA_tDbyU_Pk02fILUw/exec";
 
@@ -68,7 +68,7 @@ namespace HamstarHelpers.WebRequests {
 			if( HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
 				return false;
 			}
-			if( (SystemHelpers.TimeStampInSeconds() - ServerBrowserReport.LastSendTimestamp) <= 3 ) {
+			if( (SystemHelpers.TimeStampInSeconds() - ServerBrowserReporter.LastSendTimestamp) <= 3 ) {
 				return false;
 			}
 			if( Main.netMode == 1 ) {
@@ -177,13 +177,13 @@ namespace HamstarHelpers.WebRequests {
 				string json_str = JsonConvert.SerializeObject( server_data, Formatting.None );
 				byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
 			
-				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReport.URL, json_bytes, delegate ( string output ) {
+				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, delegate ( string output ) {
 					LogHelpers.Log( "Server data added to browser. " + output );
 				}, delegate( Exception e, string output ) {
 					LogHelpers.Log( "Server browser returned error: " + e.ToString() );
 				} );
 
-				ServerBrowserReport.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
+				ServerBrowserReporter.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
 			} catch( Exception e ) {
 				LogHelpers.Log( "AnnounceServer - " + e.ToString() );
 				return;
@@ -230,14 +230,14 @@ namespace HamstarHelpers.WebRequests {
 
 		////////////////
 
-		internal ServerBrowserReport() {
+		internal ServerBrowserReporter() {
 			this.AveragePing = -1;
 
 			TmlLoadHelpers.AddWorldLoadPromise( delegate {
 				if( Main.netMode != 2 ) { return; }
-				if( !ServerBrowserReport.CanAddToBrowser() ) { return; }
+				if( !ServerBrowserReporter.CanAddToBrowser() ) { return; }
 
-				if( ServerBrowserReport.CanPromptForBrowserAdd() ) {
+				if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 					Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
 						string msg = "Hamstar's Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
 
@@ -250,15 +250,15 @@ namespace HamstarHelpers.WebRequests {
 					seconds = seconds > 10 ? seconds : 10;
 
 					Func<bool> repeats = delegate () {
-						if( ServerBrowserReport.CanAddToBrowser() ) {
-							ServerBrowserReport.AnnounceServer();
+						if( ServerBrowserReporter.CanAddToBrowser() ) {
+							ServerBrowserReporter.AnnounceServer();
 						}
 						return true;
 					};
 					Func<bool> initial = delegate () {
-						if( ServerBrowserReport.CanAddToBrowser() ) {
-							ServerBrowserReport.EndPrompts();
-							ServerBrowserReport.AnnounceServer();
+						if( ServerBrowserReporter.CanAddToBrowser() ) {
+							ServerBrowserReporter.EndPrompts();
+							ServerBrowserReporter.AnnounceServer();
 						}
 						Timers.SetTimer( "server_browser_report", seconds * 60, repeats );	// 10 minutes by default
 						return false;
@@ -266,7 +266,7 @@ namespace HamstarHelpers.WebRequests {
 
 					Timers.SetTimer( "server_browser_report", 60 * 60, initial );	// 1 minute
 				} else {
-					ServerBrowserReport.AnnounceServer();
+					ServerBrowserReporter.AnnounceServer();
 				}
 			} );
 		}
@@ -278,7 +278,7 @@ namespace HamstarHelpers.WebRequests {
 		}
 
 
-		internal void AddPingToAverage( int ping ) {
+		internal void UpdatePingAverage( int ping ) {
 			if( this.AveragePing == -1 ) {
 				this.AveragePing = ping;
 			} else {
