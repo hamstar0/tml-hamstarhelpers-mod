@@ -77,7 +77,7 @@ namespace HamstarHelpers.WebRequests {
 						string mod_vers_raw = mod_entry.SelectToken( "version" ).ToObject<string>();
 						Version mod_vers = Version.Parse( mod_vers_raw.Substring( 1 ) );
 
-						mod_versions[mod_name] = mod_vers;
+						mod_versions[ mod_name ] = mod_vers;
 					}
 
 					found = true;

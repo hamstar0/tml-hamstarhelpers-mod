@@ -106,6 +106,9 @@
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
     <Compile Include="WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
+    <Compile Include="WebRequests\ServerBrowserReport_Announce.cs" />
+    <Compile Include="WebRequests\ServerBrowserReport_ProofOfWork.cs" />
+    <Compile Include="WebRequests\ServerBrowserReport_AutoUpdate.cs" />
     <Compile Include="WebRequests\ServerBrowserReport.cs" />
     <Compile Include="Helpers\XnaHelpers\GeometryHelpers.cs" />
     <Compile Include="Logic\PlayerLogic_Data.cs" />

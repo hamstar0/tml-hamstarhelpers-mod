@@ -31,7 +31,7 @@ namespace HamstarHelpers.DebugHelpers {
 				if( mymod.Config.UseCustomLogging ) {
 					log_helpers.OutputDirect( log_helpers.GetHourlyLogFileName(), logged + msg );
 
-					if( mymod.Config.UseCustomModeLogging ) {
+					if( mymod.Config.UseCustomLoggingPerNetMode ) {
 						log_helpers.OutputDirect( log_helpers.GetModalLogFileName(), logged + msg );
 					}
 

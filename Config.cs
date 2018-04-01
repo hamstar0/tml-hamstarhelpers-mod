@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 4, 2); } }
+		public static Version ConfigVersion { get { return new Version(1, 4, 2, 1); } }
 		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
 
 
@@ -18,7 +18,7 @@ namespace HamstarHelpers {
 		public bool DebugModeUnhandledExceptionLogging = true;
 
 		public bool UseCustomLogging = false;
-		public bool UseCustomModeLogging = false;
+		public bool UseCustomLoggingPerNetMode = false;
 		public bool UseAlsoNormalLogging = false;
 
 		public bool DisableControlPanel = false;
@@ -37,8 +37,15 @@ namespace HamstarHelpers {
 
 		public bool IsServerHiddenFromBrowser = false;
 		public bool IsServerPromptingForBrowser = true;
-		public int ServerBrowserAutoRefreshSeconds = 60 * 10;	// 10 minutes
+		public int ServerBrowserAutoRefreshSeconds = 60 * 10;   // 10 minutes
 
+
+
+		////////////////
+
+		public string _OLD_CONFIGS_BELOW_ = "";
+
+		public bool UseCustomModeLogging = false;
 
 
 		////////////////
@@ -52,8 +59,9 @@ namespace HamstarHelpers {
 			if( vers_since >= HamstarHelpersConfigData.ConfigVersion ) {
 				return false;
 			}
-			//if( vers_since < new Version( 1, 4, 2 ) ) {
-			//}
+			if( vers_since < new Version( 1, 4, 2, 1 ) ) {
+				this.UseCustomLoggingPerNetMode = this.UseCustomModeLogging;
+			}
 
 			this.VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
 

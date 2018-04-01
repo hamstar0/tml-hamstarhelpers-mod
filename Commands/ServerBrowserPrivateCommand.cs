@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Utilities.Timers;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
 
@@ -20,13 +19,13 @@ namespace HamstarHelpers.Commands {
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			var mymod = (HamstarHelpersMod)this.mod;
 			if( !mymod.Config.IsServerPromptingForBrowser && (caller.CommandType & CommandType.Console) == 0 ) {
-				caller.Reply( "Cannot set server private; grace period has expired." );
+				caller.Reply( "Cannot set server private; grace period has expired. Use console instead." );
 				return;
 			}
 
-			mymod.ServerBrowser.StopUpdates();
+			mymod.ServerBrowser.StopAutoServerUpdates();
 
-			caller.Reply( "Server set to be private. To set all future servers private, set IsServerHiddenFromBrowser to false in the Hamstar's Helpers config settings.", Color.GreenYellow );
+			caller.Reply( "Server set as private. For all future servers, set IsServerHiddenFromBrowser to true in the Hamstar's Helpers config settings.", Color.GreenYellow );
 		}
 	}
 }

@@ -13,7 +13,13 @@ Future
 
 
 
-v1.4.1
+v1.4.2.1
+-	Proof-of-work anti-spam
+	-	Post solution when found
+	-	Begin solving for a given 3 digit code by brute force hashing
+
+	-	@Plan: Generate a small hash code and have client brute-force its solution
+v1.4.2
 -	Server browser
 	-	Fix player max
 	-	Revise ping
