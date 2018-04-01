@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -71,7 +72,7 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 		public static void AddPostModLoadPromise( Action action ) {
-				var mymod = HamstarHelpersMod.Instance;
+			var mymod = HamstarHelpersMod.Instance;
 
 			if( mymod.TmlLoadHelpers.PostModLoadPromiseConditionsMet ) {
 				action();
@@ -111,22 +112,25 @@ namespace HamstarHelpers.TmlHelpers {
 		////////////////
 		
 		internal void FulfillPostModLoadPromises() {
+			if( this.PostModLoadPromiseConditionsMet ) { return; }
+			this.PostModLoadPromiseConditionsMet = true;
+
 			foreach( Action promise in this.PostModLoadPromises ) {
 				promise();
 			}
-
 			this.PostModLoadPromises.Clear();
-			this.PostModLoadPromiseConditionsMet = true;
 		}
 
 
 		internal void FulfillWorldLoadPromises() {
+			if( this.WorldLoadPromiseConditionsMet ) { return; }
+			this.WorldLoadPromiseConditionsMet = true;
+
 			foreach( Action promise in this.WorldLoadPromises ) {
+				LogHelpers.Log( "FulfillWorldLoadPromises run?" );
 				promise();
 			}
-			
 			this.WorldLoadPromises.Clear();
-			this.WorldLoadPromiseConditionsMet = true;
 		}
 
 

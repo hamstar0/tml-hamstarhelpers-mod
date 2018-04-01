@@ -56,7 +56,7 @@ namespace HamstarHelpers.WebRequests {
 				byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
 			
 				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, delegate ( string output ) {
-					ServerBrowserReporter.HandleServerAnnounceOutput( server_data, output );
+					ServerBrowserReporter.HandleServerAnnounceOutputAsync( server_data, output );
 				}, delegate( Exception e, string output ) {
 					LogHelpers.Log( "Server browser returned error: " + e.ToString() );
 				} );
@@ -68,7 +68,7 @@ namespace HamstarHelpers.WebRequests {
 			}
 		}
 
-		private static void HandleServerAnnounceOutput( ServerBrowserEntry server_data, string output ) {
+		private static void HandleServerAnnounceOutputAsync( ServerBrowserEntry server_data, string output ) {
 			try {
 				var reply = JsonConvert.DeserializeObject<ServerBrowserWorkAssignment>( output );
 

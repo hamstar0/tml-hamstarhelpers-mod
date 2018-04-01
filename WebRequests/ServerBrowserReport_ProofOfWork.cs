@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.DotNetHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Text;
-
+using System.Threading;
 
 namespace HamstarHelpers.WebRequests {
 	partial class ServerBrowserReporter {
@@ -40,6 +40,8 @@ namespace HamstarHelpers.WebRequests {
 
 			string json_str = JsonConvert.SerializeObject( output_obj, Formatting.None );
 			byte[] json_bytes = Encoding.ASCII.GetBytes( json_str );
+
+			Thread.Sleep( 1000 );
 
 			NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, delegate ( string output ) {
 				LogHelpers.Log( "Server browser processing complete." );

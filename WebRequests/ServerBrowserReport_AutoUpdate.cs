@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Network;
 using HamstarHelpers.Utilities.Timers;
 using Microsoft.Xna.Framework;
@@ -30,22 +31,24 @@ namespace HamstarHelpers.WebRequests {
 
 		private void InitializeAutoServerUpdates() {
 			Action alert_privacy = delegate {
-				if( Main.netMode != 2 ) {
-					string msg = "Hamstar's Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
+				string msg = "Hamstar's Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
 
-					Main.NewText( msg, Color.Yellow );
-					Console.WriteLine( msg );
-				}
+				Main.NewText( msg, Color.Yellow );
+				Console.WriteLine( msg );
 			};
 
 			TmlLoadHelpers.AddWorldLoadPromise( delegate {
-				if( ServerBrowserReporter.CanAddToBrowser() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
-					//	3 seconds
-					Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
-						alert_privacy();
-						return false;
-					} );
+				if( Main.netMode == 1 ) {
+					if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
+						//	3 seconds
+						Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
+							alert_privacy();
+							return false;
+						} );
+					}
+				}
 
+				if( ServerBrowserReporter.CanAddToBrowser() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 					// 1 minute
 					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
 						this.BeginAutoServerUpdates();
