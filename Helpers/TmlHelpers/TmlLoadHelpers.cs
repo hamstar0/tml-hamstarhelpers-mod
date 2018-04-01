@@ -127,7 +127,6 @@ namespace HamstarHelpers.TmlHelpers {
 			this.WorldLoadPromiseConditionsMet = true;
 
 			foreach( Action promise in this.WorldLoadPromises ) {
-				LogHelpers.Log( "FulfillWorldLoadPromises run?" );
 				promise();
 			}
 			this.WorldLoadPromises.Clear();
