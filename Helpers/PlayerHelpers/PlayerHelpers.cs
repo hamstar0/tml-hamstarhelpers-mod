@@ -53,12 +53,12 @@ namespace HamstarHelpers.PlayerHelpers {
 		public static Vector2 GetSpawnPoint( Player player ) {
 			var pos = new Vector2();
 
-			if( player.SpawnY >= 0 ) {
-				pos.X = (float)(player.SpawnX * 16 + 8 - player.width / 2);
-				pos.Y = (float)(player.SpawnY * 16 - player.height);
+			if( player.SpawnX >= 0 && player.SpawnY >= 0 ) {
+				pos.X = (float)( ( player.SpawnX * 16 ) + 8 - ( player.width / 2 ) );
+				pos.Y = (float)( ( player.SpawnY * 16 ) - player.height );
 			} else {
-				pos.X = (float)(Main.spawnTileX * 16 + 8 - player.width / 2);
-				pos.Y = (float)(Main.spawnTileY * 16 - player.height);
+				pos.X = (float)( ( Main.spawnTileX * 16 ) + 8 - ( player.width / 2 ) );
+				pos.Y = (float)( ( Main.spawnTileY * 16 ) - player.height );
 			}
 
 			return pos;

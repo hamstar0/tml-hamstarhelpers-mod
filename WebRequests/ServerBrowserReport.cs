@@ -37,7 +37,7 @@ namespace HamstarHelpers.WebRequests {
 
 		public string ServerIP;
 		public int Port;
-		public string WoldName;
+		public string WorldName;
 
 		public string HashBase;
 	}

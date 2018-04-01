@@ -34,7 +34,7 @@ namespace HamstarHelpers.WebRequests {
 			var output_obj = new ServerBrowserWorkProof {
 				ServerIP = server_data.ServerIP,
 				Port = server_data.Port,
-				WoldName = server_data.WorldName,
+				WorldName = server_data.WorldName,
 				HashBase = hash_base
 			};
 
