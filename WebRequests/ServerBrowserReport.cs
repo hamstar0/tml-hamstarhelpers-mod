@@ -80,9 +80,6 @@ namespace HamstarHelpers.WebRequests {
 			if( HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
 				return false;
 			}
-			if( (SystemHelpers.TimeStampInSeconds() - ServerBrowserReporter.LastSendTimestamp) <= 3 ) {
-				return false;
-			}
 			if( Main.netMode == 1 ) {
 				if( NetHelpers.NetHelpers.GetServerPing() == -1 ) {
 					return false;
@@ -122,6 +119,10 @@ namespace HamstarHelpers.WebRequests {
 				return false;
 			}
 			return true;
+		}
+
+		public static bool IsHammering() {
+			return ( SystemHelpers.TimeStampInSeconds() - ServerBrowserReporter.LastSendTimestamp ) <= 5;
 		}
 
 

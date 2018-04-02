@@ -5,29 +5,18 @@ using System;
 using System.Text;
 using System.Threading;
 
+
 namespace HamstarHelpers.WebRequests {
 	partial class ServerBrowserReporter {
 		private static void DoWorkToValidateServer( ServerBrowserEntry server_data, string hash ) {
-			const int Radix = 36;
-			const int DigitOne = Radix;
-			const int DigitTwo = DigitOne * Radix;
-			const int DigitThree = DigitTwo * Radix;
-			const int DigitFour = DigitTwo * Radix;
-
 			string hash_base = "";
 
-			for( int i = 0; i < DigitFour; i += DigitThree ) {
-				for( int j = 0; j < DigitThree; j += DigitTwo ) {
-					for( int k = 0; k < DigitTwo; k += DigitOne ) {
-						for( int l = 0; l < DigitOne; l += 1 ) {
-							hash_base = SystemHelpers.ConvertDecimalToRadix( i + j + k + l, 36 );
-							string test_hash = SystemHelpers.ComputeSHA256Hash( hash_base );
+			for( int i = 0; i < 1000000; i++ ) {
+				hash_base = i + "";
 
-							if( test_hash == hash_base ) {
-								break;
-							}
-						}
-					}
+				string test_hash = SystemHelpers.ComputeSHA256Hash( hash_base );
+				if( hash == test_hash ) {
+					break;
 				}
 			}
 
@@ -48,6 +37,8 @@ namespace HamstarHelpers.WebRequests {
 			}, delegate ( Exception e, string output ) {
 				LogHelpers.Log( "Server browser reply returned error: " + e.ToString() );
 			} );
+
+			ServerBrowserReporter.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
 		}
 	}
 }
