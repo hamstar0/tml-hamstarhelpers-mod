@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 4, 2, 1); } }
+		public static Version ConfigVersion { get { return new Version(1, 4, 2, 3); } }
 		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
 
 
@@ -61,6 +61,9 @@ namespace HamstarHelpers {
 			}
 			if( vers_since < new Version( 1, 4, 2, 1 ) ) {
 				this.UseCustomLoggingPerNetMode = this.UseCustomModeLogging;
+			}
+			if( vers_since < new Version( 1, 4, 2, 3 ) ) {
+				this.IsServerPromptingForBrowser = this.IsServerHiddenFromBrowser;
 			}
 
 			this.VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
