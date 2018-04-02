@@ -48,27 +48,28 @@ namespace HamstarHelpers.WebRequests {
 					}
 				}
 
-				if( Main.netMode == 2 ) {
-					if( ServerBrowserReporter.CanAddToBrowser() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
-						// 1 minute
-						Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
-							this.BeginAutoServerUpdates();
-							return false;
-						} );
-					} else {
+				if( ServerBrowserReporter.CanAddToBrowser() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
+					// 1 minute
+					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
 						this.BeginAutoServerUpdates();
-					}
+						return false;
+					} );
+				} else {
+					this.BeginAutoServerUpdates();
 				}
 			} );
 		}
 
 		
 		private void BeginAutoServerUpdates() {
+			if( Main.netMode != 2 ) { return; }
+			
 			int seconds = 60 * 10;	// 10 minutes
 
 			if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 				ServerBrowserReporter.EndPrompts();
 			}
+
 			if( ServerBrowserReporter.CanAddToBrowser() ) {
 				ServerBrowserReporter.AnnounceServer();
 			}
