@@ -41,7 +41,7 @@ namespace HamstarHelpers.WebRequests {
 			string json_str = JsonConvert.SerializeObject( output_obj, Formatting.None );
 			byte[] json_bytes = Encoding.ASCII.GetBytes( json_str );
 
-			Thread.Sleep( 1000 );
+			Thread.Sleep( 1500 );
 
 			NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, delegate ( string output ) {
 				LogHelpers.Log( "Server browser processing complete." );

@@ -63,7 +63,7 @@ namespace HamstarHelpers {
 				this.UseCustomLoggingPerNetMode = this.UseCustomModeLogging;
 			}
 			if( vers_since < new Version( 1, 4, 2, 3 ) ) {
-				this.IsServerPromptingForBrowser = this.IsServerHiddenFromBrowser;
+				this.IsServerPromptingForBrowser = true;
 			}
 
 			this.VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
