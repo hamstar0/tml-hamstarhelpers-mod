@@ -18,6 +18,7 @@ namespace HamstarHelpers.NetHelpers {
 			Main.autoPass = false;
 			Netplay.ListenPort = port;
 			Main.getIP = ip;
+			Main.defaultIP = ip;
 			if( Netplay.SetRemoteIP( ip ) ) {
 				Main.menuMode = 10;
 				Netplay.StartTcpClient();

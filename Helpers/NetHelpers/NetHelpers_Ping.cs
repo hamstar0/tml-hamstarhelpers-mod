@@ -19,7 +19,7 @@ namespace HamstarHelpers.NetHelpers {
 		
 
 		public override void SetClientDefaults() {
-			this.StartTime = SystemHelpers.TimeStampInSeconds();
+			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 		}
 
 		public override void SetServerDefaults() { }
@@ -37,7 +37,7 @@ namespace HamstarHelpers.NetHelpers {
 
 
 		public override void ReceiveOnClient() {
-			long now = SystemHelpers.TimeStampInSeconds();
+			var now = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 
 			this.EndTime = now;
 

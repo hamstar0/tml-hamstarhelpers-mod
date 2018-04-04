@@ -128,18 +128,10 @@ namespace HamstarHelpers.Logic {
 			}
 
 			// Update ping every 15 seconds
-			if( this.TestPing % (60*15) == 0 ) {
+			if( this.TestPing++ > (60*15) ) {
 				PacketProtocol.QuickSendData<HHPingProtocol>( -1, -1, false );
+				this.TestPing = 0;
 			}
-
-			// Update server status every 3 minutes
-			//if( this.TestPing % ( 60 * 60 * 3 ) == 0 ) {
-			//	if( ServerBrowserReport.CanAddToBrowser() ) {
-			//		ServerBrowserReport.AnnounceServerConnect();
-			//	}
-			//}
-
-			this.TestPing++;
 		}
 
 		public void PreUpdateServer( HamstarHelpersMod mymod, Player player ) {

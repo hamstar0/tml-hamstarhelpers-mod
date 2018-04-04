@@ -48,7 +48,7 @@ namespace HamstarHelpers.WebRequests {
 					}
 				}
 
-				if( ServerBrowserReporter.CanAddToBrowser() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
+				if( ServerBrowserReporter.CanAnnounceServer() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 					// 1 minute
 					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
 						this.BeginAutoServerUpdates();
@@ -70,13 +70,13 @@ namespace HamstarHelpers.WebRequests {
 				ServerBrowserReporter.EndPrompts();
 			}
 
-			if( ServerBrowserReporter.CanAddToBrowser() ) {
+			if( ServerBrowserReporter.CanAnnounceServer() ) {
 				ServerBrowserReporter.AnnounceServer();
 			}
 
 			// 10 minutes by default between reports
 			Timers.SetTimer( "server_browser_report", seconds * 60, delegate {
-				if( ServerBrowserReporter.CanAddToBrowser() && !ServerBrowserReporter.IsHammering() ) {
+				if( ServerBrowserReporter.CanAnnounceServer() && !ServerBrowserReporter.IsHammering() ) {
 					ServerBrowserReporter.AnnounceServer();
 				}
 				return true;

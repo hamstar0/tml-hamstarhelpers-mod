@@ -3,10 +3,17 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 
+
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public static class SystemHelpers {
+		public static TimeSpan TimeStamp() {
+			return ( DateTime.UtcNow - new DateTime( 1970, 1, 1, 0, 0, 0 ) );
+		}
+
 		public static long TimeStampInSeconds() {
-			return (DateTime.UtcNow.Ticks / TimeSpan.TicksPerMillisecond) / 1000L;
+			//return DateTime.UtcNow.Ticks / TimeSpan.TicksPerSecond;
+			TimeSpan span = ( DateTime.UtcNow - new DateTime( 1970, 1, 1, 0, 0, 0 ) );
+			return (long)span.TotalSeconds;
 		}
 
 
