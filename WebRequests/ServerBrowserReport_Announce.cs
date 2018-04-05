@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.MiscHelpers;
-using HamstarHelpers.NPCHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Terraria;
 using Terraria.ModLoader;
@@ -73,6 +73,7 @@ namespace HamstarHelpers.WebRequests {
 
 		public static void AnnounceServer() {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			Version vers = mymod.Version;
 
 			int port = Netplay.ListenPort;
 			if( mymod.Config.ServerBrowserCustomPort != -1 ) {
@@ -106,13 +107,14 @@ namespace HamstarHelpers.WebRequests {
 				server_data.Motd = Main.motd;
 				server_data.WorldName = Main.worldName;
 				server_data.WorldProgress = InfoHelpers.GetVanillaProgress();
-				server_data.WorldEvent = NPCInvasionHelpers.GetCurrentInvasionType().ToString();
+				server_data.WorldEvent = string.Join( ", ", InfoHelpers.GetCurrentVanillaEvents().ToArray() );
 				server_data.MaxPlayerCount = Main.maxNetPlayers;
 				server_data.PlayerCount = Main.ActivePlayersCount;
 				server_data.PlayerPvpCount = pvp;
 				server_data.TeamsCount = team_count;
 				server_data.AveragePing = HamstarHelpersMod.Instance.ServerBrowser.AveragePing;
 				server_data.Mods = new Dictionary<string, string>();
+				server_data.Version = ( vers.Major * 1000000 ) + ( vers.Minor * 10000 ) + ( vers.Build * 100 ) + vers.Revision;
 
 				foreach( Mod mod in ModLoader.LoadedMods ) {
 					if( mod.File == null ) { continue; }

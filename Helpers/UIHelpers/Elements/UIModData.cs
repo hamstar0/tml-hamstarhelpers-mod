@@ -35,16 +35,10 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
-		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements = true ) {
-			this.Initialize( theme, null, mod, will_draw_own_hover_elements );
-		}
-
+		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements = true )
+				: this( theme, null, mod, will_draw_own_hover_elements ) { }
+		
 		public UIModData( UITheme theme, int? idx, Mod mod, bool will_draw_own_hover_elements = true ) {
-			this.Initialize( theme, idx, mod, will_draw_own_hover_elements );
-		}
-
-
-		private void Initialize( UITheme theme, int? idx, Mod mod, bool will_draw_own_hover_elements = true ) {
 			var self = this;
 			TmodFile modfile = mod.File;
 
@@ -87,7 +81,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			string mod_title = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
 			
 			if( !String.IsNullOrEmpty(this.HomepageUrl) ) {
-				this.TitleElem = new UIWebUrl( mod_title, this.HomepageUrl, false );
+				this.TitleElem = new UIWebUrl( theme, mod_title, this.HomepageUrl, false );
 			} else {
 				this.TitleElem = new UIText( mod_title );
 			}

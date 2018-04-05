@@ -10,14 +10,18 @@ using HamstarHelpers.Helpers.DotNetHelpers;
 
 namespace HamstarHelpers.UIHelpers.Elements {
 	public class UIWebUrl : UIElement {
+		[System.Obsolete( "use UITheme.UrlColor", true )]
 		public static Color DefaultColor = new Color( 80, 80, 255 );
+		[System.Obsolete( "use UITheme.UrlLitColor", true )]
 		public static Color DefaultLitColor = new Color( 128, 128, 255 );
+		[System.Obsolete( "use UITheme.UrlVisitColor", true )]
 		public static Color DefaultVisitColor = new Color( 192, 0, 255 );
 
 
 
 		////////////////
 
+		public UITheme Theme { get; private set; }
 		public UIText TextElem { get; private set; }
 		public UIText LineElem { get; private set; }
 
@@ -27,12 +31,18 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
-		public UIWebUrl( string label, string url, bool hover_url=true, float scale=0.85f, bool large=false ) : base() {
+		[System.Obsolete( "use other constructor", true )]
+		public UIWebUrl( string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false )
+				: this( new UITheme(), label, url, hover_url, scale, large ) { }
+
+		public UIWebUrl( UITheme theme, string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false ) : base() {
+			this.Theme = theme;
+
 			this.WillDrawOwnHoverUrl = hover_url;
 			this.Url = url;
 
 			this.TextElem = new UIText( label, scale, large );
-			this.TextElem.TextColor = UIWebUrl.DefaultColor;
+			this.TextElem.TextColor = theme.UrlColor;
 			this.Append( this.TextElem );
 
 			CalculatedStyle label_size = this.TextElem.GetDimensions();
@@ -41,7 +51,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			int line_len = (int)Math.Max( 1f, Math.Round(text_len / (underscore_len - 2)) );
 
 			this.LineElem = new UIText( new String('_', line_len), scale, large );
-			this.LineElem.TextColor = UIWebUrl.DefaultColor;
+			this.LineElem.TextColor = theme.UrlColor;
 			this.Append( this.LineElem );
 
 			this.Width.Set( label_size.Width, 0f );
@@ -51,15 +61,15 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			UIText line_elem = this.LineElem;
 
 			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-				if( text_elem.TextColor != UIWebUrl.DefaultVisitColor ) {
-					text_elem.TextColor = UIWebUrl.DefaultLitColor;
-					text_elem.TextColor = UIWebUrl.DefaultLitColor;
+				if( text_elem.TextColor != theme.UrlVisitColor ) {
+					text_elem.TextColor = theme.UrlLitColor;
+					text_elem.TextColor = theme.UrlLitColor;
 				}
 			};
 			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-				if( text_elem.TextColor != UIWebUrl.DefaultVisitColor ) {
-					text_elem.TextColor = UIWebUrl.DefaultColor;
-					text_elem.TextColor = UIWebUrl.DefaultColor;
+				if( text_elem.TextColor != theme.UrlVisitColor ) {
+					text_elem.TextColor = theme.UrlColor;
+					text_elem.TextColor = theme.UrlColor;
 				}
 			};
 
@@ -68,8 +78,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 					SystemHelpers.OpenUrl( this.Url );
 					//System.Diagnostics.Process.Start( this.Url );
 
-					text_elem.TextColor = UIWebUrl.DefaultVisitColor;
-					line_elem.TextColor = UIWebUrl.DefaultVisitColor;
+					text_elem.TextColor = theme.UrlVisitColor;
+					line_elem.TextColor = theme.UrlVisitColor;
 				} catch( Exception e ) {
 					Main.NewText( e.Message );
 				}

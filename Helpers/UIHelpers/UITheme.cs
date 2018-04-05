@@ -59,7 +59,13 @@ namespace HamstarHelpers.UIHelpers {
 		public Color ButtonBgDisabledColor = new Color( 128, 80, 96, 128 );
 		public Color ButtonEdgeDisabledColor = new Color( 160, 160, 160, 128 );
 		public Color ButtonTextDisabledColor = new Color( 128, 128, 128, 96 );
-		
+
+		////////////////
+
+		public Color UrlColor = new Color( 80, 80, 255 );
+		public Color UrlLitColor = new Color( 128, 128, 255 );
+		public Color UrlVisitColor = new Color( 192, 0, 255 );
+
 
 
 		////////////////

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.PlayerHelpers;
+﻿using HamstarHelpers.NPCHelpers;
+using HamstarHelpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ namespace HamstarHelpers.MiscHelpers {
 				return "Post Moon Lord";
 			}
 			if( NPC.LunarApocalypseIsUp ) {
-				return "Lunar apocalypse happening";
+				return "Lunar apocalypse";
 			}
 			if( NPC.downedGolemBoss ) {
 				return "Post Golem";
@@ -48,6 +49,39 @@ namespace HamstarHelpers.MiscHelpers {
 				return "Goblins killed";
 			}
 			return "Start of game";
+		}
+
+
+		public static IList<string> GetCurrentVanillaEvents() {
+			IList<VanillaInvasionType> list = NPCInvasionHelpers.GetCurrentEventTypes();
+			IList<string> out_list = new List<string>(
+				list.Select( event_type => {
+					switch( event_type ) {
+					case VanillaInvasionType.FrostLegion:
+						return "Frost Legion";
+					case VanillaInvasionType.BloodMoon:
+						return "Blood Moon";
+					case VanillaInvasionType.SlimeRain:
+						return "Slime Rain";
+					case VanillaInvasionType.SolarEclipse:
+						return "Solar Eclipse";
+					case VanillaInvasionType.PumpkinMoon:
+						return "Pumpkin Moon";
+					case VanillaInvasionType.FrostMoon:
+						return "Frost Moon";
+					case VanillaInvasionType.LunarApocalypse:
+						return "Lunar Apocalypse";
+					default:
+						return event_type.ToString();
+					}
+				} )
+			);
+
+			if( out_list.Count > 0 ) {
+				out_list.Add( "Normal" );
+			}
+
+			return out_list;
 		}
 
 

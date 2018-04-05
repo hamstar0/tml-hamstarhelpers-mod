@@ -23,6 +23,7 @@ namespace HamstarHelpers.WebRequests {
 		public int AveragePing;
 
 		public IDictionary<string, string> Mods = new Dictionary<string, string>();
+		public long Version;
 	}
 
 
