@@ -11,7 +11,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
-		public UITextPanelButton( UITheme theme, string label ) : base( label ) {
+		public UITextPanelButton( UITheme theme, string label, float scale = 1f, bool large = false ) : base( label, scale, large ) {
 			this.Theme = theme;
 			this.IsEnabled = true;
 

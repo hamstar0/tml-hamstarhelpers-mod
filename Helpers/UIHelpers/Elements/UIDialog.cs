@@ -76,8 +76,27 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 	public class UIDialog : UIState {
-		public virtual int ContainerWidth { get; protected set; }
-		public virtual int ContainerHeight { get; protected set; }
+		[System.Obsolete( "use UIDialog.InitialContainerWidth", true )]
+		public virtual int ContainerWidth {
+			get {
+				return InitialContainerWidth;
+			}
+			protected set {
+				InitialContainerWidth = value;
+			}
+		}
+		[System.Obsolete( "use UIDialog.InitialContainerHeight", true )]
+		public virtual int ContainerHeight {
+			get {
+				return InitialContainerHeight;
+			}
+			protected set {
+				InitialContainerHeight = value;
+			}
+		}
+
+		public virtual int InitialContainerWidth { get; protected set; }
+		public virtual int InitialContainerHeight { get; protected set; }
 
 		public bool IsOpen { get; private set; }
 
@@ -100,11 +119,11 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
-		public UIDialog( UITheme theme, int width, int height ) {
+		public UIDialog( UITheme theme, int initial_width, int initial_height ) {
 			this.IsOpen = false;
 			this.Theme = theme;
-			this.ContainerWidth = width;
-			this.ContainerHeight = height;
+			this.InitialContainerWidth = initial_width;
+			this.InitialContainerHeight = initial_height;
 		}
 
 		////////////////
@@ -114,7 +133,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		}
 
 		public override void OnInitialize() {
-			this.InitializeContainer( this.ContainerWidth, this.ContainerHeight );
+			this.InitializeContainer( this.InitialContainerWidth, this.InitialContainerHeight );
 			this.InitializeComponents();
 		}
 
@@ -205,7 +224,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		////////////////
 
 		public override void Draw( SpriteBatch sb ) {
-			if( !this.IsOpen ) { return; }
+			if( !this.IsOpen ) { return;
+			}
 
 			base.Draw( sb );
 		}

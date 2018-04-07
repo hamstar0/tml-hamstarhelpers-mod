@@ -77,7 +77,7 @@ namespace HamstarHelpers.MiscHelpers {
 				} )
 			);
 
-			if( out_list.Count > 0 ) {
+			if( out_list.Count == 0 ) {
 				out_list.Add( "Normal" );
 			}
 

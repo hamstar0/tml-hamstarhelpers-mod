@@ -59,9 +59,13 @@ namespace HamstarHelpers.Utilities.Menu {
 
 
 		internal bool IsMouseOverMenuItem() {
+			int rel_offset_y = this.OffsetY < 0 ? Main.screenHeight + this.OffsetY : this.OffsetY;
+			
 			Vector2 dim = Main.fontDeathText.MeasureString( this.MenuText );
+			Vector2 origin = dim * 0.5f;
+
 			float base_pos_x = Main.screenWidth / 2;
-			float base_pos_y = (float)MenuItem.MenuTopPos + (float)this.OffsetY + ( dim.Y * 0.5f );
+			float base_pos_y = rel_offset_y + origin.Y;
 
 			return Main.mouseX >= base_pos_x - ( dim.X * 0.5f ) && Main.mouseX <= base_pos_x + ( dim.X * 0.5f ) &&
 					Main.mouseY >= base_pos_y - ( dim.Y * 0.5f ) && Main.mouseY <= base_pos_y + ( dim.Y * 0.5f );
@@ -71,18 +75,19 @@ namespace HamstarHelpers.Utilities.Menu {
 		////////////////
 
 		internal void DrawMenuItem() {
+			int rel_offset_y = this.OffsetY < 0 ? Main.screenHeight + this.OffsetY : this.OffsetY;
+
 			byte b = (byte)( ( 255 + Main.tileColor.R * 2 ) / 3 );
 			Color color = new Color( (int)b, (int)b, (int)b, 255 );
 
-			int menu_item_pos_x_base = Main.screenWidth / 2;
-			int menu_item_pos_y_base = MenuItem.MenuTopPos;
-
 			Vector2 dim = Main.fontDeathText.MeasureString( this.MenuText );
 			Vector2 origin = dim * 0.5f;
-			var base_pos = new Vector2( (float)( menu_item_pos_x_base ), (float)( menu_item_pos_y_base + this.OffsetY + origin.Y ) );
 
-			bool is_selected = Main.mouseX >= base_pos.X - ( dim.X / 2 ) && Main.mouseX <= base_pos.X + ( dim.X / 2 ) &&
-							   Main.mouseY >= base_pos.Y - ( dim.Y / 2 ) && Main.mouseY <= base_pos.Y + ( dim.Y / 2 );
+			float base_pos_x = Main.screenWidth / 2;
+			float base_pos_y = rel_offset_y + origin.Y;
+
+			bool is_selected = Main.mouseX >= base_pos_x - ( dim.X * 0.5f ) && Main.mouseX <= base_pos_x + ( dim.X * 0.5f ) &&
+							   Main.mouseY >= base_pos_y - ( dim.Y * 0.5f ) && Main.mouseY <= base_pos_y + ( dim.Y * 0.5f );
 
 			if( is_selected && !this.MenuItemHovered ) {
 				Main.PlaySound( 12 );
@@ -135,7 +140,7 @@ namespace HamstarHelpers.Utilities.Menu {
 
 				float menu_item_scale = this.MenuItemScale;
 
-				Vector2 draw_pos = base_pos;
+				Vector2 draw_pos = new Vector2( base_pos_x, base_pos_y );
 				draw_pos.X += x_shift;
 				draw_pos.Y += y_shift;
 

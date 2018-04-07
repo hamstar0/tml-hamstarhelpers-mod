@@ -9,6 +9,16 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Helpers.UIHelpers.Elements {
+	public class TextInputEventArgs : EventArgs {
+		public string Text;
+
+		public TextInputEventArgs( string text ) : base() {
+			this.Text = text;
+		}
+	}
+
+
+
 	public class UITextField : UIPanel {
 		public delegate void EventHandler( Object sender, EventArgs e );
 
@@ -44,7 +54,7 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 			this.Text = new_str;
 
 			if( !new_str.Equals( this.Text ) ) {
-				this.OnTextChange( this, new EventArgs() );
+				this.OnTextChange( this, new TextInputEventArgs(this.Text) );
 			}
 			
 			CalculatedStyle dim = this.GetDimensions();
