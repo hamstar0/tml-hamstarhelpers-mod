@@ -50,6 +50,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.MaxLength = max_length;
 
 			this.SetText( "" );
+
+			this.RefreshTheme();
 		}
 
 
@@ -152,13 +154,24 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.Unfocus();
 			}
 
-			this.Theme.ApplyInputDisable( this );
+			this.RefreshTheme();
 		}
 
 		public void Enable() {
 			this.IsEnabled = true;
 
-			this.Theme.ApplyInput( this );
+			this.RefreshTheme();
+		}
+
+
+		////////////////
+
+		public virtual void RefreshTheme() {
+			if( this.IsEnabled ) {
+				this.Theme.ApplyInput( this );
+			} else {
+				this.Theme.ApplyInputDisable( this );
+			}
 		}
 
 

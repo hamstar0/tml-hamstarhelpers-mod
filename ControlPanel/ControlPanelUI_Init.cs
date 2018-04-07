@@ -214,7 +214,7 @@ namespace HamstarHelpers.ControlPanel {
 			modrec_url.Left.Set( 0f, 0f );
 			this.InnerContainer.Append( modrec_url );
 
-			var serverbrowser_url = new UIWebUrl( this.Theme, "Lonely (WIP)?", "https://forums.terraria.org/index.php?threads/server-browser-early-beta.68346/" );
+			var serverbrowser_url = new UIWebUrl( this.Theme, "Lonely?", "https://forums.terraria.org/index.php?threads/server-browser-early-beta.68346/" );
 			serverbrowser_url.Top.Set( top, 0f );
 			this.InnerContainer.Append( serverbrowser_url );
 			serverbrowser_url.Left.Set( -serverbrowser_url.GetDimensions().Width * 0.5f, 0.5f );

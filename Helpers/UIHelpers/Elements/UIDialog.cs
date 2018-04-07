@@ -223,16 +223,6 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
-		public override void Draw( SpriteBatch sb ) {
-			if( !this.IsOpen ) { return;
-			}
-
-			base.Draw( sb );
-		}
-
-
-		////////////////
-
 		public virtual bool CanOpen() {
 			return !this.IsOpen && !Main.inFancyUI &&
 				(DialogManager.Instance != null && DialogManager.Instance.CurrentDialog == null);
@@ -285,6 +275,24 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.TopPercent = percent;
 			this.TopCentered = centered;
 			this.RecalculateContainer();
+		}
+
+
+		////////////////
+
+		public virtual void RefreshTheme() {
+			this.Theme.ApplyPanel( this.InnerContainer );
+		}
+
+
+		////////////////
+
+		public override void Draw( SpriteBatch sb ) {
+			if( !this.IsOpen ) {
+				return;
+			}
+
+			base.Draw( sb );
 		}
 	}
 }

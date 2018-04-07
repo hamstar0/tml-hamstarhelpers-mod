@@ -22,6 +22,9 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 	public class UITextField : UIPanel {
 		public delegate void EventHandler( Object sender, EventArgs e );
 
+
+		private UITheme Theme;
+
 		public event EventHandler OnTextChange;
 		public Color TextColor;
 
@@ -29,15 +32,25 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 		internal string Text = "";
 		private uint CursorAnimation;
 
+		private bool IsSelected = false;
+
 
 
 		////////////////
 
 		public UITextField( UITheme theme, string hint_text ) {
+			this.Theme = theme;
 			this.HintText = hint_text;
-
-			theme.ApplyInput( this );
+			
 			this.SetPadding( 6f );
+			this.RefreshTheme();
+		}
+
+
+		////////////////
+
+		public virtual void RefreshTheme() {
+			this.Theme.ApplyInput( this );
 		}
 
 
@@ -45,19 +58,34 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
+			
+			////
 
-			PlayerInput.WritingText = true;
-			Main.instance.HandleIME();
+			CalculatedStyle dim = this.GetDimensions();
 
-			string new_str = Main.GetInputText( this.Text );
+			if( Main.mouseLeft ) {
+				this.IsSelected = false;
 
-			this.Text = new_str;
-
-			if( !new_str.Equals( this.Text ) ) {
-				this.OnTextChange( this, new TextInputEventArgs(this.Text) );
+				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {
+					if( Main.mouseY >= dim.Y && Main.mouseY < ( dim.Y + dim.Height ) ) {
+						this.IsSelected = true;
+					}
+				}
 			}
 			
-			CalculatedStyle dim = this.GetDimensions();
+			if( this.IsSelected ) {
+				PlayerInput.WritingText = true;
+				Main.instance.HandleIME();
+
+				string new_str = Main.GetInputText( this.Text );
+
+				if( !new_str.Equals( this.Text ) ) {
+					this.OnTextChange( this, new TextInputEventArgs( new_str ) );
+				}
+
+				this.Text = new_str;
+			}
+
 			var pos = new Vector2( dim.X + this.PaddingLeft, dim.Y + this.PaddingTop );
 
 			if( this.Text.Length == 0 ) {

@@ -28,6 +28,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				if( !self.IsEnabled ) { return; }
 				theme.ApplyButton( self );
 			};
+
+			this.RefreshTheme();
 		}
 
 
@@ -35,12 +37,23 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		public void Enable() {
 			this.IsEnabled = true;
-			this.Theme.ApplyButton( this );
+			this.RefreshTheme();
 		}
 
 		public void Disable() {
 			this.IsEnabled = false;
-			this.Theme.ApplyButtonDisable( this );
+			this.RefreshTheme();
+		}
+
+
+		////////////////
+
+		public virtual void RefreshTheme() {
+			if( this.IsEnabled ) {
+				this.Theme.ApplyButton( this );
+			} else {
+				this.Theme.ApplyButtonDisable( this );
+			}
 		}
 	}
 }

@@ -67,6 +67,9 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.Recalculate();
 		}
 
+
+		////////////////
+		
 		protected override void DrawSelf( SpriteBatch sb ) {
 			CalculatedStyle inner_pos = base.GetInnerDimensions();
 			Vector2 pos = new Vector2( inner_pos.X, inner_pos.Y - 5 );
@@ -83,6 +86,9 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				Main.hoverItemName = this.Title;
 			}
 		}
+
+
+		////////////////
 
 		public override int CompareTo( object obj ) {
 			try {
