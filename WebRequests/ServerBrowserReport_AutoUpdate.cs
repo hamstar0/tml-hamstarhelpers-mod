@@ -76,8 +76,10 @@ namespace HamstarHelpers.WebRequests {
 
 			// 10 minutes by default between reports
 			Timers.SetTimer( "server_browser_report", seconds * 60, delegate {
-				if( ServerBrowserReporter.CanAnnounceServer() && !ServerBrowserReporter.IsHammering() ) {
-					ServerBrowserReporter.AnnounceServer();
+				if( ServerBrowserReporter.CanAnnounceServer() ) {
+					if( !ServerBrowserReporter.IsHammering() ) {
+						ServerBrowserReporter.AnnounceServer();
+					}
 				}
 				return true;
 			} );

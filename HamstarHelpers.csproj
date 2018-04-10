@@ -61,8 +61,8 @@
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
-    <Compile Include="Commands\AdminUserRemoveCommand.cs" />
-    <Compile Include="Commands\AdminUserAddCommand.cs" />
+    <Compile Include="Commands\_AdminUserRemoveCommand.cs" />
+    <Compile Include="Commands\_AdminUserAddCommand.cs" />
     <Compile Include="Commands\ConfigsRefreshCommand.cs" />
     <Compile Include="Commands\ControlPanelOpenCommand.cs" />
     <Compile Include="Commands\ModIssueReportCommand.cs" />
