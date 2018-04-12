@@ -75,6 +75,7 @@ namespace HamstarHelpers.ControlPanel {
 		public void DrawToggler( SpriteBatch sb ) {
 			if( !this.IsTogglerShown() ) { return; }
 
+			bool alert_shown = this.IsTogglerUpdateAlertShown();
 			Texture2D tex;
 			Color color;
 
@@ -88,8 +89,16 @@ namespace HamstarHelpers.ControlPanel {
 
 			sb.Draw( tex, ControlPanelUI.TogglerPosition, null, color );
 
-			if( this.IsTogglerUpdateAlertShown() ) {
+			if( alert_shown ) {
 				this.DrawTogglerAlert( sb );
+			}
+
+			if( this.IsTogglerLit ) {
+				if( alert_shown ) {
+					sb.DrawString( Main.fontMouseText, "New mod updates!", new Vector2( Main.mouseX + 8, Main.mouseY + 8 ), AnimatedColors.Alert.CurrentColor );
+				} else {
+					sb.DrawString( Main.fontMouseText, "Mod Control Panel", new Vector2( Main.mouseX + 8, Main.mouseY + 8 ), Color.White );
+				}
 			}
 		}
 
