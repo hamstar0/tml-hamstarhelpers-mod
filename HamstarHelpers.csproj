@@ -90,6 +90,7 @@
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Draw.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCInvasionHelpers.cs" />
+    <Compile Include="Helpers\PlayerHelpers\PlayerHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerHelpers_Obsolete.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerItemFinderHelpers.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Helpers\UIHelpers\UITheme_Vanilla.cs" />
     <Compile Include="Helpers\UIHelpers\UITheme_Default.cs" />
     <Compile Include="Helpers\UIHelpers\UITheme_Obsolete.cs" />
+    <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
     <Compile Include="Utilities\Menu\MenuItem.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
@@ -159,7 +161,7 @@
     <Compile Include="Helpers\NPCHelpers\NPCFinderHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerHeadDisplayHelpers.cs" />
-    <Compile Include="Helpers\PlayerHelpers\PlayerHelpers.cs" />
+    <Compile Include="Helpers\PlayerHelpers\PlayerFileHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerItemHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerNPCHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

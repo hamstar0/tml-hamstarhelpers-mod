@@ -13,6 +13,7 @@ namespace HamstarHelpers.WorldHelpers {
 			return FileHelpers.SanitizePath(Main.worldName) + ":" + Main.worldID;
 		}
 
+
 		////////////////
 
 		public static WorldSize GetSize() {
