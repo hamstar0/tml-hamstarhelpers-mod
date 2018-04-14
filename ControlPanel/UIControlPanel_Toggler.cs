@@ -8,7 +8,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.ControlPanel {
-	partial class ControlPanelUI : UIState {
+	partial class UIControlPanel : UIState {
 		private static Vector2 TogglerPosition {
 			get {
 				var config = HamstarHelpersMod.Instance.Config;
@@ -45,7 +45,7 @@ namespace HamstarHelpers.ControlPanel {
 			var modplayer = myplayer.GetModPlayer<HamstarHelpersPlayer>();
 			var ver = new Version( modplayer.Logic.ControlPanelNewSince );
 
-			if( ver < ControlPanelUI.AlertVersion ) {
+			if( ver < UIControlPanel.AlertVersion ) {
 				return true;
 			}
 
@@ -80,14 +80,14 @@ namespace HamstarHelpers.ControlPanel {
 			Color color;
 
 			if( this.IsTogglerLit ) {
-				tex = ControlPanelUI.ControlPanelIconLit;
+				tex = UIControlPanel.ControlPanelIconLit;
 				color = new Color( 192, 192, 192, 192 );
 			} else {
-				tex = ControlPanelUI.ControlPanelIcon;
+				tex = UIControlPanel.ControlPanelIcon;
 				color = new Color( 160, 160, 160, 160 );
 			}
 
-			sb.Draw( tex, ControlPanelUI.TogglerPosition, null, color );
+			sb.Draw( tex, UIControlPanel.TogglerPosition, null, color );
 
 			if( alert_shown ) {
 				this.DrawTogglerAlert( sb );
@@ -105,7 +105,7 @@ namespace HamstarHelpers.ControlPanel {
 		
 		private void DrawTogglerAlert( SpriteBatch sb ) {
 			Color color = AnimatedColors.Alert != null ? AnimatedColors.Alert.CurrentColor : Color.White;
-			Vector2 pos = ControlPanelUI.TogglerPosition;
+			Vector2 pos = UIControlPanel.TogglerPosition;
 			pos.Y += 6f;
 			//pos.X += 56f - (Main.fontMouseText.MeasureString("New!").X * 0.5f);
 			//pos.Y -= 4f;
@@ -120,8 +120,8 @@ namespace HamstarHelpers.ControlPanel {
 		
 		private void CheckTogglerMouseInteraction() {
 			bool is_click = Main.mouseLeft && Main.mouseLeftRelease;
-			Vector2 pos = ControlPanelUI.TogglerPosition;
-			Vector2 size = ControlPanelUI.ControlPanelIcon.Size();
+			Vector2 pos = UIControlPanel.TogglerPosition;
+			Vector2 size = UIControlPanel.ControlPanelIcon.Size();
 
 			this.IsTogglerLit = false;
 
@@ -135,7 +135,7 @@ namespace HamstarHelpers.ControlPanel {
 								this.Open();
 
 								var modplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-								modplayer.Logic.ControlPanelNewSince = ControlPanelUI.AlertVersion.ToString();
+								modplayer.Logic.ControlPanelNewSince = UIControlPanel.AlertVersion.ToString();
 							}
 						}
 

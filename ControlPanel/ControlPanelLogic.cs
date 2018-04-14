@@ -3,7 +3,6 @@ using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
-using System.ComponentModel;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;

@@ -3,7 +3,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.ControlPanel {
-	partial class ControlPanelUI : UIState {
+	partial class UIControlPanel : UIState {
 		public void EnableIssueInput() {
 			if( !this.IssueTitleInput.IsEnabled ) {
 				this.IssueTitleInput.Enable();
@@ -50,7 +50,7 @@ namespace HamstarHelpers.ControlPanel {
 			if( this.CurrentModListItem == null ) { return; }
 			if( !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
 
-			ControlPanelUI self = this;
+			UIControlPanel self = this;
 			string issue_title = this.IssueTitleInput.Text;
 			string issue_body = this.IssueBodyInput.Text;
 			if( string.IsNullOrEmpty( issue_title ) || string.IsNullOrEmpty( issue_body ) ) { return; }

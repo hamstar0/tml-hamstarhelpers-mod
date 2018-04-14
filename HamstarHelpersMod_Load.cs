@@ -55,7 +55,7 @@ namespace HamstarHelpers {
 
 		public ModHotKey ControlPanelHotkey = null;
 
-		public ControlPanel.ControlPanelUI ControlPanel = null;
+		public ControlPanel.UIControlPanel ControlPanel = null;
 		 private int LastSeenScreenWidth = -1;
 		 private int LastSeenScreenHeight = -1;
 
@@ -106,7 +106,7 @@ namespace HamstarHelpers {
 			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
-			this.ControlPanel = new ControlPanel.ControlPanelUI();
+			this.ControlPanel = new ControlPanel.UIControlPanel();
 			//this.UserHelpers = new UserHelpers.UserHelpers();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 			this.PlayerMessages = new PlayerMessages();
@@ -187,7 +187,7 @@ namespace HamstarHelpers {
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
-				HamstarHelpers.ControlPanel.ControlPanelUI.OnPostSetupContent( this );
+				HamstarHelpers.ControlPanel.UIControlPanel.OnPostSetupContent( this );
 			}
 
 			this.HasSetupContent = true;

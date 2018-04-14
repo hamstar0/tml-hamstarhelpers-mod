@@ -68,10 +68,10 @@
     <Compile Include="Commands\ModIssueReportCommand.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ControlPanel\ControlPanelLogic.cs" />
-    <Compile Include="ControlPanel\ControlPanelUI.cs" />
-    <Compile Include="ControlPanel\ControlPanelUI_Init.cs" />
-    <Compile Include="ControlPanel\ControlPanelUI_Issue.cs" />
-    <Compile Include="ControlPanel\ControlPanelUI_Toggler.cs" />
+    <Compile Include="ControlPanel\UIControlPanel.cs" />
+    <Compile Include="ControlPanel\UIControlPanel_Init.cs" />
+    <Compile Include="ControlPanel\UIControlPanel_Issue.cs" />
+    <Compile Include="ControlPanel\UIControlPanel_Toggler.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffIdentityHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\LogHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlyDictionaryOfSets.cs" />

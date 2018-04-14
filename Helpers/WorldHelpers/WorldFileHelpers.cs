@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
+using System.IO;
 using Terraria;
 using Terraria.IO;
 using Terraria.Social;
-using Terraria.Utilities;
 
 
 namespace HamstarHelpers.WorldHelpers {
@@ -31,9 +32,15 @@ namespace HamstarHelpers.WorldHelpers {
 			} catch { }
 		}*/
 
-		public static void EraseWorld( int i, bool also_bak=true ) {
-			WorldFileData data = Main.WorldList[i];
 
+		[System.Obsolete( "use WorldFileHelpers.EraseWorld( WorldFileData, bool )", false )]
+		public static void EraseWorld( int which, bool also_bak = true ) {
+			WorldFileData data = Main.WorldList[ which ];
+			WorldFileHelpers.EraseWorld( data, also_bak );
+		}
+
+
+		public static void EraseWorld( WorldFileData data, bool also_bak=true ) {
 			try {
 				if( !data.IsCloudSave ) {
 					File.Delete( data.Path );
@@ -56,7 +63,11 @@ namespace HamstarHelpers.WorldHelpers {
 				}
 
 				Main.LoadWorlds();
-			} catch { }
+
+				LogHelpers.Log( "World "+data.Name+" deleted." );
+			} catch( Exception e ) {
+				LogHelpers.Log( "WorldFileHelpers.EraseWorld - Path: " + data.Path + " - " + e.ToString() );
+			}
 		}
 	}
 }

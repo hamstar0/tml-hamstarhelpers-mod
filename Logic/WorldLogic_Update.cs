@@ -28,7 +28,7 @@ namespace HamstarHelpers.Logic {
 
 			mymod.AnimatedColors.Update();
 
-			ControlPanelUI.UpdateModList( mymod );
+			UIControlPanel.UpdateModList( mymod );
 		}
 
 

@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -16,7 +15,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.ControlPanel {
-	partial class ControlPanelUI : UIState {
+	partial class UIControlPanel : UIState {
 		public static void UpdateModList( HamstarHelpersMod mymod ) {
 			var ctrl_panel = mymod.ControlPanel;
 
@@ -37,7 +36,7 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		public bool IsOpen { get; private set; }
-		
+
 		private UITheme Theme = new UITheme();
 		private ControlPanelLogic Logic = new ControlPanelLogic();
 		private UserInterface Backend = null;
@@ -68,7 +67,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		////////////////
 
-		public ControlPanelUI() {
+		public UIControlPanel() {
 			this.IsOpen = false;
 			this.AwaitingReport = false;
 			this.InitializeToggler();
@@ -84,7 +83,7 @@ namespace HamstarHelpers.ControlPanel {
 			base.OnActivate();
 
 			this.RefreshApplyConfigButton();
-			
+
 			if( this.ModDataList.Count == 0 && !this.IsPopulatingList ) {
 				this.LoadModListAsync();
 			}
@@ -92,7 +91,7 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		////////////////
-		
+
 		public void LoadModListAsync() {
 			//Task.Run( () => {
 			ThreadPool.QueueUserWorkItem( _ => {
@@ -118,7 +117,7 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		////////////////
-		
+
 		public override void Update( GameTime gameTime ) {
 			base.Update( gameTime );
 
@@ -175,10 +174,10 @@ namespace HamstarHelpers.ControlPanel {
 
 
 		////////////////
-		
+
 		public override void Draw( SpriteBatch sb ) {
 			if( !this.IsOpen ) { return; }
-			
+
 			base.Draw( sb );
 			this.DrawHoverElements( sb );
 		}
@@ -188,7 +187,8 @@ namespace HamstarHelpers.ControlPanel {
 
 			foreach( UIElement elem in this.ModListElem._items ) {
 				if( elem.IsMouseHovering ) {
-					((UIModData)elem).DrawHoverEffects( sb );
+					( (UIModData)elem ).DrawHoverEffects( sb );
+					break;
 				}
 			}
 		}
@@ -207,10 +207,10 @@ namespace HamstarHelpers.ControlPanel {
 			Main.playerInventory = false;
 			Main.editChest = false;
 			Main.npcChatText = "";
-			
+
 			Main.inFancyUI = true;
 			Main.InGameUI.SetState( (UIState)this );
-			
+
 			this.Backend = Main.InGameUI;
 
 			this.RecalculateMe();
@@ -219,7 +219,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		public void Close() {
 			this.IsOpen = false;
-			
+
 			Main.inFancyUI = false;
 			Main.InGameUI.SetState( (UIState)null );
 
@@ -250,7 +250,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void ApplyConfigChanges( HamstarHelpersMod mymod ) {
 			this.Logic.ApplyConfigChanges( mymod );
-			
+
 			this.SetDialogToClose = true;
 		}
 

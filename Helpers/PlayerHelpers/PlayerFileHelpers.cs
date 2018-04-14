@@ -1,29 +1,31 @@
-﻿using HamstarHelpers.ItemHelpers;
-using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using System.IO;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.IO;
 using Terraria.Utilities;
 
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerFileHelpers {
-		public static void ErasePlayer( int i ) {
-			PlayerFileData data = Main.PlayerList[i];
+		[System.Obsolete( "use PlayerFileHelpers.ErasePlayer( WorldFileData, bool )", false )]
+		public static void ErasePlayer( int which ) {
+			PlayerFileData data = Main.PlayerList[which];
+			PlayerFileHelpers.ErasePlayer( data );
+		}
 
+
+		public static void ErasePlayer( PlayerFileData data ) {
 			try {
 				FileUtilities.Delete( data.Path, data.IsCloudSave );
 				FileUtilities.Delete( data.Path + ".bak", data.IsCloudSave );
-			} catch { }
 
-			bool cloud_save = data.IsCloudSave;
-			string path = Path.ChangeExtension( data.Path, ".tplr" );
+				bool cloud_save = data.IsCloudSave;
+				string path = Path.ChangeExtension( data.Path, ".tplr" );
 
-			FileUtilities.Delete( path, cloud_save );
-			FileUtilities.Delete( path + ".bak", cloud_save );
-
-			try {
+				FileUtilities.Delete( path, cloud_save );
+				FileUtilities.Delete( path + ".bak", cloud_save );
+			
 				string dir_path = data.Path.Substring( 0, data.Path.Length - 4 );
 
 				if( Directory.Exists( dir_path ) ) {
@@ -31,7 +33,11 @@ namespace HamstarHelpers.PlayerHelpers {
 				}
 
 				Main.LoadPlayers();
-			} catch { }
+
+				LogHelpers.Log( "Player " + data.Name + " deleted." );
+			} catch( Exception e ) {
+				LogHelpers.Log( "PlayerFileHelpers.ErasePlayer - Path: " + data.Path + " - " + e.ToString() );
+			}
 		}
 	}
 }

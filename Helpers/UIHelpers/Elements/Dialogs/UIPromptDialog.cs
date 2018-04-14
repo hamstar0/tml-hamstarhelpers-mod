@@ -5,8 +5,6 @@ using Terraria.UI;
 
 namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 	public class UIPromptDialog : UIDialog {
-		private UITheme Theme;
-
 		protected UITextPanelButton ConfirmButton;
 		protected UITextPanelButton CancelButton;
 
@@ -19,7 +17,6 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 		////////////////
 
 		public UIPromptDialog( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null ) : base( theme, width, height ) {
-			this.Theme = theme;
 			this.TitleText = title;
 			this.ConfirmAction = confirm;
 			this.CancelAction = cancel;

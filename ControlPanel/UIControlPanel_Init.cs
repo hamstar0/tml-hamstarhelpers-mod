@@ -10,7 +10,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.ControlPanel {
-	partial class ControlPanelUI : UIState {
+	partial class UIControlPanel : UIState {
 		public static float ContainerWidth = 600f;
 		public static float ContainerHeight = 520f;
 		public static float ModListHeight = 300f;
@@ -25,8 +25,8 @@ namespace HamstarHelpers.ControlPanel {
 
 		public static void OnPostSetupContent( HamstarHelpersMod mymod ) {
 			if( !Main.dedServ ) {
-				ControlPanelUI.ControlPanelIcon = mymod.GetTexture( "ControlPanel/ControlPanelIcon" );
-				ControlPanelUI.ControlPanelIconLit = mymod.GetTexture( "ControlPanel/ControlPanelIconLit" );
+				UIControlPanel.ControlPanelIcon = mymod.GetTexture( "ControlPanel/ControlPanelIcon" );
+				UIControlPanel.ControlPanelIconLit = mymod.GetTexture( "ControlPanel/ControlPanelIconLit" );
 			}
 		}
 
@@ -35,16 +35,16 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		private void InitializeComponents() {
-			ControlPanelUI self = this;
+			UIControlPanel self = this;
 			ControlPanelLogic logic = this.Logic;
 			var mymod = HamstarHelpersMod.Instance;
 			float top = 0;
 			
 			this.OuterContainer = new UIElement();
-			this.OuterContainer.Width.Set( ControlPanelUI.ContainerWidth, 0f );
-			this.OuterContainer.Height.Set( ControlPanelUI.ContainerHeight, 0f );
-			this.OuterContainer.MaxWidth.Set( ControlPanelUI.ContainerWidth, 0f );
-			this.OuterContainer.MaxHeight.Set( ControlPanelUI.ContainerHeight, 0f );
+			this.OuterContainer.Width.Set( UIControlPanel.ContainerWidth, 0f );
+			this.OuterContainer.Height.Set( UIControlPanel.ContainerHeight, 0f );
+			this.OuterContainer.MaxWidth.Set( UIControlPanel.ContainerWidth, 0f );
+			this.OuterContainer.MaxHeight.Set( UIControlPanel.ContainerHeight, 0f );
 			this.OuterContainer.HAlign = 0f;
 			//this.MainElement.BackgroundColor = ControlPanelUI.MainBgColor;
 			//this.MainElement.BorderColor = ControlPanelUI.MainEdgeColor;
@@ -99,7 +99,7 @@ namespace HamstarHelpers.ControlPanel {
 			{
 				mod_list_panel.Top.Set( top, 0f );
 				mod_list_panel.Width.Set( 0f, 1f );
-				mod_list_panel.Height.Set( ControlPanelUI.ModListHeight, 0f );
+				mod_list_panel.Height.Set( UIControlPanel.ModListHeight, 0f );
 				mod_list_panel.HAlign = 0f;
 				mod_list_panel.SetPadding( 4f );
 				mod_list_panel.PaddingTop = 0.0f;
@@ -116,7 +116,7 @@ namespace HamstarHelpers.ControlPanel {
 					this.ModListElem.SetPadding( 0f );
 					mod_list_panel.Append( (UIElement)this.ModListElem );
 
-					top += ControlPanelUI.ModListHeight + this.InnerContainer.PaddingTop;
+					top += UIControlPanel.ModListHeight + this.InnerContainer.PaddingTop;
 
 					UIScrollbar scrollbar = new UIScrollbar();
 					{
@@ -189,7 +189,7 @@ namespace HamstarHelpers.ControlPanel {
 
 			top += 30f;
 
-			this.ModLockButton = new UITextPanelButton( this.Theme, ControlPanelUI.ModLockTitle );
+			this.ModLockButton = new UITextPanelButton( this.Theme, UIControlPanel.ModLockTitle );
 			this.ModLockButton.Top.Set( top, 0f );
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );
@@ -229,7 +229,7 @@ namespace HamstarHelpers.ControlPanel {
 		////////////////
 
 		public UIModData CreateModListItem( int i, Mod mod ) {
-			ControlPanelUI self = this;
+			UIControlPanel self = this;
 			var elem = new UIModData( this.Theme, i, mod, false );
 
 			this.Theme.ApplyListItem( elem );
@@ -295,7 +295,7 @@ namespace HamstarHelpers.ControlPanel {
 				}
 			}
 
-			this.ModLockButton.SetText( ControlPanelUI.ModLockTitle + status );
+			this.ModLockButton.SetText( UIControlPanel.ModLockTitle + status );
 		}
 
 		public void RefreshApplyConfigButton() {
