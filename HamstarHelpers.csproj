@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
+    <Compile Include="ControlPanel\_Inbox\_InboxControl.cs" />
     <Compile Include="HamstarHelpersMod_Load.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffHelpers.cs" />
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="Helpers\ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor_Obsolete.cs" />
+    <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_TmlWorldHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_AltNPCInfo.cs" />
@@ -107,7 +110,9 @@
     <Compile Include="Helpers\UIHelpers\UITheme_Obsolete.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
     <Compile Include="Utilities\Menu\MenuItem.cs" />
+    <Compile Include="Utilities\Messages\InboxMessages.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
     <Compile Include="WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
@@ -144,7 +149,7 @@
     <Compile Include="Helpers\TileHelpers\TileWallHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileWorldHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_AltProjectileInfo.cs" />
-    <Compile Include="Helpers\TmlHelpers\BuildPropertiesInterface.cs" />
+    <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor.cs" />
     <Compile Include="Helpers\TmlHelpers\CommandsHelpers\CommandsHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModLockHelpers.cs" />

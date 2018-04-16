@@ -27,9 +27,9 @@ namespace HamstarHelpers.WorldHelpers {
 				} else if( SocialAPI.Cloud != null ) {
 					SocialAPI.Cloud.Delete( t_path );
 				}
-
-				Main.LoadWorlds();
 			} catch { }
+
+			Main.LoadWorlds();
 		}*/
 
 
@@ -62,12 +62,12 @@ namespace HamstarHelpers.WorldHelpers {
 					SocialAPI.Cloud.Delete( t_path );
 				}
 
-				Main.LoadWorlds();
-
 				LogHelpers.Log( "World "+data.Name+" deleted." );
 			} catch( Exception e ) {
 				LogHelpers.Log( "WorldFileHelpers.EraseWorld - Path: " + data.Path + " - " + e.ToString() );
 			}
+
+			Main.LoadWorlds();
 		}
 	}
 }

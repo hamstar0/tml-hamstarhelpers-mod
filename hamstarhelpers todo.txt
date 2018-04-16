@@ -1,4 +1,4 @@
-Future
+Future?
 -	Improve mod recommendation tool
 	-	Add value multipliers for each question
 -	Remake mod recommendation data entry form
@@ -13,6 +13,13 @@ Future
 
 
 
+v1.4.5
+-	Add inbox
+	-	Implement message scrolling
+	-	Display icon
+
+	-	Save messages
+	-	Define data structures and API
 v1.4.2.1
 -	Proof-of-work anti-spam
 	-	Post solution when found

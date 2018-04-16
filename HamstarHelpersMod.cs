@@ -18,7 +18,7 @@ namespace HamstarHelpers {
 		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
 		public static string ConfigFileRelativePath {
-			get { return JsonConfig<HamstarHelpersConfigData>.RelativePath + Path.DirectorySeparatorChar + HamstarHelpersConfigData.ConfigFileName; }
+			get { return JsonConfig<HamstarHelpersConfigData>.ConfigSubfolder + Path.DirectorySeparatorChar + HamstarHelpersConfigData.ConfigFileName; }
 		}
 		public static void ReloadConfigFromFile() {
 			if( Main.netMode != 0 ) {

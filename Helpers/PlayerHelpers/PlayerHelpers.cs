@@ -184,12 +184,34 @@ namespace HamstarHelpers.PlayerHelpers {
 			for( int i = 0; i < player.bank3.item.Length; i++ ) {
 				player.bank3.item[i] = new Item();
 			}
-			player.trashItem = new Item();
-			Main.mouseItem = new Item();
+			for( int i = 0; i < player.dye.Length; i++ ) {
+				player.dye[i] = new Item();
+			}
+			for( int i = 0; i < player.miscDyes.Length; i++ ) {
+				player.miscDyes[i] = new Item();
+			}
+			for( int i = 0; i < player.miscEquips.Length; i++ ) {
+				player.miscEquips[i] = new Item();
+			}
 
-			player.extraAccessory = false;
+			for( int i = 0; i < player.buffType.Length; i++ ) {
+				player.buffType[i] = 0;
+				player.buffTime[i] = 0;
+			}
+
+			player.trashItem = new Item();
+			if( player.whoAmI == Main.myPlayer ) {
+				Main.mouseItem = new Item();
+			}
+
 			player.statLifeMax = 100;
 			player.statManaMax = 20;
+
+			player.extraAccessory = false;
+			player.anglerQuestsFinished = 0;
+			player.bartenderQuestLog = 0;
+			player.downedDD2EventAnyDifficulty = false;
+			player.taxMoney = 0;
 
 			PlayerHooks.SetStartInventory( player );
 		}

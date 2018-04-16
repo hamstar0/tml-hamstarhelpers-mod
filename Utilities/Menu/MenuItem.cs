@@ -178,10 +178,12 @@ namespace HamstarHelpers.Utilities.Menu {
 			}
 		}
 
-		public void Unload() {
-			if( !Main.dedServ ) {
-				Main.OnPostDraw -= this.Draw;
-			}
+		~MenuItemManager() {
+			try {
+				if( !Main.dedServ ) {
+					Main.OnPostDraw -= this.Draw;
+				}
+			} catch { }
 		}
 
 		////////////////

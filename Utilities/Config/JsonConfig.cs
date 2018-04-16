@@ -5,12 +5,14 @@ using System;
 
 
 namespace HamstarHelpers.Utilities.Config {
-	public class JsonConfig<T> {
-		public static string RelativePath { get { return "Mod Configs"; } }
-		
+	public class JsonConfig {
+		public static string ConfigSubfolder { get { return "Mod Configs"; } }
+	}
 
-		////////////////
 
+
+
+	public partial class JsonConfig<T> : JsonConfig {
 		public static string Serialize( T data ) {
 			return JsonConvert.SerializeObject( data, Formatting.Indented );
 		}
@@ -20,7 +22,7 @@ namespace HamstarHelpers.Utilities.Config {
 
 
 		////////////////
-
+		
 		public string FileName { get; private set; }
 		public string PathName { get; private set; }
 		public T Data { get; private set; }

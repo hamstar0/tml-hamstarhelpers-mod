@@ -139,8 +139,10 @@ namespace HamstarHelpers.TmlHelpers {
 			Main.OnTick += this.Update;
 		}
 
-		internal void Unload() {
-			Main.OnTick -= this.Update;
+		~TmlLoadHelpers() {
+			try {
+				Main.OnTick -= this.Update;
+			} catch { }
 		}
 
 		////////////////

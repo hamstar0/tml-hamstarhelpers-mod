@@ -17,6 +17,7 @@ namespace HamstarHelpers.Helpers {
 			return String.Concat( splits );
 		}
 
+		////////////////
 
 		public static bool SaveBinaryFile<T>( T obj, string full_path, bool is_cloud, bool backup_old )
 				where T : class {

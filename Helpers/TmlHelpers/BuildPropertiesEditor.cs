@@ -7,36 +7,36 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.TmlHelpers {
-	public class BuildPropertiesInterface {
-		public static BuildPropertiesInterface GetBuildPropertiesForModFile( TmodFile modfile ) {
+	public class BuildPropertiesEditor {
+			public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
 			IEnumerable<Type> class_types = from t in AppDomain.CurrentDomain.GetAssemblies().SelectMany( t => t.GetTypes() )
 							  where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
 							  select t;
-			if( class_types.Count() == 0 ) { return (BuildPropertiesInterface)null; }
+			if( class_types.Count() == 0 ) { return (BuildPropertiesEditor)null; }
 
 			Type build_prop_type = class_types.First();
 			MethodInfo method = build_prop_type.GetMethod( "ReadModFile", BindingFlags.NonPublic | BindingFlags.Static );
-			if( method == null ) { return (BuildPropertiesInterface)null; }
+			if( method == null ) { return (BuildPropertiesEditor)null; }
 
 			object build_props = method.Invoke( null, new object[] { modfile } );
 			if( build_props == null ) {
 				LogHelpers.Log( "BuildProperties has changed." );
-				return (BuildPropertiesInterface)null;
+				return (BuildPropertiesEditor)null;
 			}
 
-			return new BuildPropertiesInterface( build_props );
+			return new BuildPropertiesEditor( build_props );
 		}
 
 
 
 		////////////////
 
-		private object BuildProps;
+		internal object BuildProps;
 
 
 		////////////////
 
-		internal BuildPropertiesInterface( object build_props ) {
+		internal BuildPropertiesEditor( object build_props ) {
 			this.BuildProps = build_props;
 		}
 

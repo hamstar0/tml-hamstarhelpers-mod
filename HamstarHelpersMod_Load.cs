@@ -45,6 +45,7 @@ namespace HamstarHelpers {
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
+		internal InboxMessages Inbox;
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
 		internal MenuItemManager MenuItemMngr;
@@ -110,11 +111,10 @@ namespace HamstarHelpers {
 			//this.UserHelpers = new UserHelpers.UserHelpers();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 			this.PlayerMessages = new PlayerMessages();
+			this.Inbox = new InboxMessages();
 			this.ModVersionGet = new ModVersionGet();
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
-
-			this.Timers.Begin();
 
 			TmlHelpers.AltNPCInfo.DataInitialize();
 			TmlHelpers.AltProjectileInfo.DataInitialize();
@@ -137,14 +137,17 @@ namespace HamstarHelpers {
 		}
 
 		public override void Unload() {
-			if( this.HasUnhandledExceptionLogger ) {
-				this.HasUnhandledExceptionLogger = false;
-				AppDomain.CurrentDomain.UnhandledException -= HamstarHelpersMod.UnhandledLogger;
-			}
+			try {
+				if( this.HasUnhandledExceptionLogger ) {
+					this.HasUnhandledExceptionLogger = false;
+					AppDomain.CurrentDomain.UnhandledException -= HamstarHelpersMod.UnhandledLogger;
+				}
+			} catch { }
 
-			this.Timers.End();
-			this.TmlLoadHelpers.Unload();
-			this.MenuItemMngr.Unload();
+			//this.Timers.Unload();
+			//this.TmlLoadHelpers.Unload();
+			//this.MenuItemMngr.Unload();
+			//this.Inbox.Unload();
 
 			this.Timers = null;
 			this.JsonConfig = null;
@@ -166,6 +169,7 @@ namespace HamstarHelpers {
 			this.ModLockHelpers = null;
 			this.AnimatedColors = null;
 			this.PlayerMessages = null;
+			this.Inbox = null;
 			this.ControlPanelHotkey = null;
 			this.ControlPanel = null;
 			this.ServerBrowser = null;

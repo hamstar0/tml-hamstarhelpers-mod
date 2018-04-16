@@ -50,9 +50,9 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.HasIconLoaded = false;
 			this.LatestAvailableVersion = default( Version );
 
-			BuildPropertiesInterface props = modfile != null ?
-				BuildPropertiesInterface.GetBuildPropertiesForModFile( modfile ) :
-				(BuildPropertiesInterface)null;
+			BuildPropertiesEditor props = modfile != null ?
+				BuildPropertiesEditor.GetBuildPropertiesForModFile( modfile ) :
+				(BuildPropertiesEditor)null;
 			if( props != null ) {
 				this.Author = (string)props.GetField( "author" );
 				this.HomepageUrl = (string)props.GetField( "homepage" );

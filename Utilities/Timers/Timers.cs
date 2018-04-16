@@ -57,12 +57,14 @@ namespace HamstarHelpers.Utilities.Timers {
 
 		////////////////
 
-		internal void Begin() {
+		internal Timers() {
 			Main.OnTick += this.RunTimers;
 		}
 
-		internal void End() {
-			Main.OnTick -= this.RunTimers;
+		~Timers() {
+			try {
+				Main.OnTick -= this.RunTimers;
+			} catch { }
 		}
 
 
