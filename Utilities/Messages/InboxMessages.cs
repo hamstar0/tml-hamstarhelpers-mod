@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.MiscHelpers;
+using HamstarHelpers.TmlHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -8,7 +9,7 @@ using Terraria;
 namespace HamstarHelpers.Utilities.Messages {
 	public class InboxMessages {
 		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox;
+			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
 
 			inbox.Messages[which] = msg;
 			inbox.MessageActions[which] = on_run;
@@ -25,8 +26,15 @@ namespace HamstarHelpers.Utilities.Messages {
 		}
 
 
+		public static int CountUnreadMessages() {
+			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+
+			return inbox.Messages.Count - inbox.Current;
+		}
+
+
 		public static string DequeueMessage() {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox;
+			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
 			
 			if( inbox.Current >= inbox.Order.Count ) {
 				return null;
@@ -40,7 +48,7 @@ namespace HamstarHelpers.Utilities.Messages {
 
 
 		public static string GetMessageAt( int i, out bool is_unread ) {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox;
+			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
 			is_unread = false;
 
 			if( i < 0 || i >= inbox.Order.Count ) {
@@ -64,25 +72,31 @@ namespace HamstarHelpers.Utilities.Messages {
 		private IList<string> Order = new List<string>();
 		public int Current { get; private set; }
 
+		private bool IsLoaded = false;
+
 
 		////////////////
 
 		internal InboxMessages() {
 			this.Current = 0;
 
-			bool success;
-			InboxMessages inbox_copy = this.LoadFromFile( out success );
+			TmlLoadHelpers.AddWorldLoadPromise( () => {
+				if( this.IsLoaded ) { return; }
+				InboxMessages inbox_copy = this.LoadFromFile( out this.IsLoaded );
 
-			if( success ) {
-				this.Messages = inbox_copy.Messages;
-				this.MessageActions = inbox_copy.MessageActions;
-				this.Order = inbox_copy.Order;
-				this.Current = inbox_copy.Current;
-			}
+				if( this.IsLoaded ) {
+					this.Messages = inbox_copy.Messages;
+					this.MessageActions = inbox_copy.MessageActions;
+					this.Order = inbox_copy.Order;
+					this.Current = inbox_copy.Current;
+				}
+			} );
 		}
 		
 		~InboxMessages() {
-			this.SaveToFile();
+			if( this.IsLoaded ) {
+				this.SaveToFile();
+			}
 		}
 
 

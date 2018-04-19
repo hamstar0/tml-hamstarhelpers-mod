@@ -62,6 +62,7 @@ namespace HamstarHelpers.Utilities.Timers {
 		}
 
 		~Timers() {
+		//internal void Unload() {
 			try {
 				Main.OnTick -= this.RunTimers;
 			} catch { }

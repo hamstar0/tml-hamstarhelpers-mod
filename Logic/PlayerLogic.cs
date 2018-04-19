@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.NetHelpers;
+using HamstarHelpers.NetProtocols;
 using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Messages;
 using HamstarHelpers.Utilities.Network;
@@ -36,8 +37,7 @@ namespace HamstarHelpers.Logic {
 			bool uid_changed = this.HasUID != clone.HasUID || this.PrivateUID != clone.PrivateUID;
 			
 			if( !clone.PermaBuffsById.SetEquals( this.PermaBuffsById ) || uid_changed ) {
-				var protocol = new HHPlayerDataProtocol( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
-				protocol.SendData( -1, -1, false );
+				HHPlayerDataProtocol.SendToClient( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
 			}
 		}
 
@@ -55,12 +55,11 @@ namespace HamstarHelpers.Logic {
 		}
 
 		public void OnEnterWorldForClient( HamstarHelpersMod mymod, Player player ) {
-			var player_data = new HHPlayerDataProtocol( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
-			player_data.SendData( -1, -1, true );
-			player_data.SendRequest( -1, -1 );
+			HHPlayerDataProtocol.SyncToOtherClients( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
 
-			PacketProtocol.QuickSendRequest<HHModSettingsProtocol>( -1, -1 );
-			PacketProtocol.QuickSendRequest<HHModDataProtocol>( -1, -1 );
+			PacketProtocol.QuickRequestFromServer<HHPlayerDataProtocol>();
+			PacketProtocol.QuickRequestFromServer<HHModSettingsProtocol>();
+			PacketProtocol.QuickRequestFromServer<HHModDataProtocol>();
 
 			mymod.ControlPanel.LoadModListAsync();
 		}
@@ -129,7 +128,7 @@ namespace HamstarHelpers.Logic {
 
 			// Update ping every 15 seconds
 			if( this.TestPing++ > (60*15) ) {
-				PacketProtocol.QuickSendData<HHPingProtocol>( -1, -1, false );
+				PacketProtocol.QuickSendToServer<HHPingProtocol>();
 				this.TestPing = 0;
 			}
 		}

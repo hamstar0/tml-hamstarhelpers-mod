@@ -5,12 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.TmlHelpers {
-	public class TmlLoadHelpers {
-		[System.Obsolete( "use TmlLoadHelpers.IsModLoaded", true )]
-		public static bool IsLoaded() {
-			return TmlLoadHelpers.IsModLoaded();
-		}
-
+	public partial class TmlLoadHelpers {
 		public static bool IsModLoaded() {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -20,7 +15,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 			return true;
 		}
-		
+
 
 		public static bool IsWorldLoaded() {
 			if( !TmlLoadHelpers.IsModLoaded() ) { return false; }
@@ -32,17 +27,17 @@ namespace HamstarHelpers.TmlHelpers {
 			return true;
 		}
 
-		
+
 		public static bool IsWorldBeingPlayed() {
-//var mymod = HamstarHelpersMod.Instance;
-//var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
-//var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-//LogHelpers.Log( "HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", who: "+myplayer.player.whoAmI+", HasSyncedModSettings: "+ myplayer.Logic.HasSyncedModSettings + ", HasSyncedModData: " + myplayer.Logic.HasSyncedModData );
+			//var mymod = HamstarHelpersMod.Instance;
+			//var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			//var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+			//LogHelpers.Log( "HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", who: "+myplayer.player.whoAmI+", HasSyncedModSettings: "+ myplayer.Logic.HasSyncedModSettings + ", HasSyncedModData: " + myplayer.Logic.HasSyncedModData );
 			if( !TmlLoadHelpers.IsWorldLoaded() ) { return false; }
 
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( Main.netMode == 0 || Main.netMode == 1 ) {	// Client or single
+			if( Main.netMode == 0 || Main.netMode == 1 ) {  // Client or single
 				if( !mymod.TmlLoadHelpers.IsClientPlaying ) {
 					return false;
 				}
@@ -65,11 +60,6 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		////////////////
-
-		[System.Obsolete( "use TmlLoadHelpers.AddPostModLoadPromise", true )]
-		public static void AddPostLoadPromise( Action action ) {
-			TmlLoadHelpers.AddPostModLoadPromise( action );
-		}
 
 		public static void AddPostModLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
@@ -98,10 +88,10 @@ namespace HamstarHelpers.TmlHelpers {
 
 		internal IList<Action> PostModLoadPromises = new List<Action>();
 		internal IList<Action> WorldLoadPromises = new List<Action>();
-		
+
 		internal bool PostModLoadPromiseConditionsMet = false;
 		internal bool WorldLoadPromiseConditionsMet = false;
-		
+
 		internal int StartupDelay = 0;
 
 		internal bool IsClientPlaying = false;
@@ -110,7 +100,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		////////////////
-		
+
 		internal void FulfillPostModLoadPromises() {
 			if( this.PostModLoadPromiseConditionsMet ) { return; }
 			this.PostModLoadPromiseConditionsMet = true;
@@ -140,6 +130,7 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 		~TmlLoadHelpers() {
+			//internal void Unload() {
 			try {
 				Main.OnTick -= this.Update;
 			} catch { }

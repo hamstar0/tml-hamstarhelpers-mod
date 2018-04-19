@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Utilities.AnimatedColor;
+﻿using HamstarHelpers.ControlPanel.Inbox;
+using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.Menu;
 using HamstarHelpers.Utilities.Messages;
@@ -45,7 +46,7 @@ namespace HamstarHelpers {
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
-		internal InboxMessages Inbox;
+		internal InboxControl Inbox;
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
 		internal MenuItemManager MenuItemMngr;
@@ -111,7 +112,7 @@ namespace HamstarHelpers {
 			//this.UserHelpers = new UserHelpers.UserHelpers();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 			this.PlayerMessages = new PlayerMessages();
-			this.Inbox = new InboxMessages();
+			this.Inbox = new InboxControl();
 			this.ModVersionGet = new ModVersionGet();
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();

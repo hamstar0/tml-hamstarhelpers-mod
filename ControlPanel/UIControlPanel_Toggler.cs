@@ -1,4 +1,6 @@
-﻿using HamstarHelpers.Utilities.AnimatedColor;
+﻿using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Utilities.AnimatedColor;
+using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -31,6 +33,29 @@ namespace HamstarHelpers.ControlPanel {
 
 		private void InitializeToggler() {
 			this.IsTogglerLit = false;
+
+			TmlLoadHelpers.AddWorldLoadPromise( () => {
+				int mod_update_count = this.ModUpdatesAvailable();
+				
+				if( mod_update_count > 0 ) {
+					InboxMessages.SetMessage( "mod_updates", mod_update_count + " mod updates available. See mod browser.", true );
+				}
+			} );
+		}
+
+
+		////////////////
+
+		private int ModUpdatesAvailable() {
+			int updates = 0;
+
+			foreach( var moditem in this.ModDataList ) {
+				if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
+					updates++;
+				}
+			}
+
+			return updates;
 		}
 
 
@@ -49,10 +74,8 @@ namespace HamstarHelpers.ControlPanel {
 				return true;
 			}
 
-			foreach( var moditem in this.ModDataList ) {
-				if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
-					return true;
-				}
+			if( this.ModUpdatesAvailable() > 0 ) {
+				return true;
 			}
 
 			return false;

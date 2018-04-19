@@ -5,13 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.UIHelpers {
-	public static class UIHelpers {
-		[System.Obsolete( "use HudHelpers.DrawBorderedRect", true )]
-		public static void DrawBorderedRect( SpriteBatch sb, Color color, Color border_color, Vector2 position, Vector2 size, int border_width ) {
-			HudHelpers.HudHelpers.DrawBorderedRect( sb, color, border_color, position, size, border_width );
-		}
-
-
+	public static partial class UIHelpers {
 		public static Rectangle GetWorldFrameOfScreen() {
 			int screen_wid = (int)((float)Main.screenWidth / Main.GameZoomTarget);
 			int screen_hei = (int)((float)Main.screenHeight / Main.GameZoomTarget);
@@ -34,21 +28,36 @@ namespace HamstarHelpers.UIHelpers {
 			return screen_mouse + new Vector2( screen_frame.X, screen_frame.Y );
 		}
 
-		
+
+		////////////////
+
 		public static bool JustPressedKey( Keys key ) {
 			return Main.inputText.IsKeyDown( key ) && !Main.oldInputText.IsKeyDown( key );
 		}
 
+		////////////////
 
 		public static Vector2 GetHoverTipPosition( string str ) {
 			Vector2 dim = Main.fontMouseText.MeasureString( str );
-			Vector2 pos = new Vector2( Main.mouseX + 48f, Main.mouseY + 16f );
+			Vector2 pos = new Vector2( Main.mouseX + 40f, Main.mouseY + 16f );
 
 			if( (pos.X + dim.X) > Main.screenWidth ) {
 				pos.X = Main.screenWidth - dim.X;
 			}
 
 			return pos;
+		}
+
+
+		////////////////
+
+		public static bool MouseInRectangle( Rectangle rect ) {
+			if( Main.mouseX >= rect.X && Main.mouseX < (rect.X + rect.Width) ) {
+				if( Main.mouseY >= rect.Y && Main.mouseY < ( rect.Y + rect.Height ) ) {
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }

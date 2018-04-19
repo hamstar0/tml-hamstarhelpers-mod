@@ -72,24 +72,47 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			if( !skip_send ) {
-				this.SendData( from_who, -1, false );
+				if( Main.netMode == 1 ) {
+					this.SendToServer( false );
+				} else {
+					this.SendToClient( from_who, -1 );
+				}
 			}
 		}
 
 
 		////////////////
 
+		/// <summary>
+		/// Runs when data received on client (class's own fields).
+		/// </summary>
 		public virtual void ReceiveOnClient() {
 			throw new NotImplementedException();
 		}
+		/// <summary>
+		/// Runs when data received on server (class's own fields).
+		/// </summary>
+		/// <param name="from_who">Main.player index of the player (client) sending us our data.</param>
 		public virtual void ReceiveOnServer( int from_who ) {
 			throw new NotImplementedException();
 		}
 
 
+		/// <summary>
+		/// Runs when a request is received for the client to send data to the server. Expects
+		/// `SetClientDefaults()` to be implemented.
+		/// </summary>
+		/// <returns>True to indicate the request is being handled manually.</returns>
 		public virtual bool ReceiveRequestOnClient() {
 			return false;
 		}
+		/// <summary>
+		/// Runs when a request is received for the server to send data to the client. Expects
+		/// `SetServerDefaults()` to be implemented.
+		/// to be implemented to provide this data.
+		/// </summary>
+		/// <param name="from_who">Main.player index of player (client) sending this request.</param>
+		/// <returns>True to indicate the request is being handled manually.</returns>
 		public virtual bool ReceiveRequestOnServer( int from_who ) {
 			return false;
 		}
@@ -97,6 +120,13 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
+		/// <summary>
+		/// Manually implements reading our protocol's binary data. Defaults to deserializing a
+		/// single string of JSON data into a new instance of the current class (no
+		/// SetClientDefaults or SetServerDefaults invoked).
+		/// </summary>
+		/// <param name="reader">Given readable stream of binary data. Protocol must be handled manually.</param>
+		/// <returns>A new PacketProtocol instance.</returns>
 		public virtual PacketProtocol ReadData( BinaryReader reader ) {
 			int num = reader.ReadInt32();
 			byte[] data = reader.ReadBytes( num );

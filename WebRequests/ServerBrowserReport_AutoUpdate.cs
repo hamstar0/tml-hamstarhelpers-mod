@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.NetProtocols;
 using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.Network;
 using HamstarHelpers.Utilities.Timers;
@@ -21,7 +22,7 @@ namespace HamstarHelpers.WebRequests {
 			mymod.JsonConfig.SaveFile();
 
 			if( Main.netMode == 2 ) {
-				PacketProtocol.QuickSendData<HHModSettingsProtocol>( -1, -1, false );
+				PacketProtocol.QuickSendToClient<HHModSettingsProtocol>( -1, -1 );
 			}
 		}
 

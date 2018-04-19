@@ -95,6 +95,9 @@ namespace HamstarHelpers {
 					this.LastSeenScreenHeight = Main.screenHeight;
 					this.ControlPanel.RecalculateMe();
 				}
+
+				this.Inbox.Draw( sb );
+
 //sb.DrawString( Main.fontDeathText, "ALERT", new Vector2(128, 128), this.AnimatedColors.Alert.CurrentColor );
 //sb.DrawString( Main.fontDeathText, "STROBE", new Vector2(128, 256), this.AnimatedColors.Strobe.CurrentColor );
 //sb.DrawString( Main.fontDeathText, "FIRE", new Vector2(128, 320), this.AnimatedColors.Fire.CurrentColor );

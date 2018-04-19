@@ -16,15 +16,14 @@ Future?
 v1.4.5
 -	Add inbox
 	-	Implement message scrolling
+	-	Implement new message reading
 	-	Display icon
-
 	-	Save messages
 	-	Define data structures and API
 v1.4.2.1
 -	Proof-of-work anti-spam
 	-	Post solution when found
 	-	Begin solving for a given 3 digit code by brute force hashing
-
 	-	@Plan: Generate a small hash code and have client brute-force its solution
 v1.4.2
 -	Server browser

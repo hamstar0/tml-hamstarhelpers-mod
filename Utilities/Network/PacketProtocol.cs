@@ -13,6 +13,14 @@ namespace HamstarHelpers.Utilities.Network {
 		protected static readonly object MyLock = new object();
 
 
+		////////////////
+
+		/// <summary>
+		/// Gets a random integer as a code representing a given protocol (by name) to identify its
+		/// network packets.
+		/// </summary>
+		/// <param name="str">A protocol's name. Internally uses class names.</param>
+		/// <returns>Random integer code.</returns>
 		public static int GetPacketCode( string str ) {
 			byte[] bytes = Encoding.UTF8.GetBytes( str );
 			int code = 0;
@@ -55,12 +63,14 @@ namespace HamstarHelpers.Utilities.Network {
 		}
 
 
+		////////////////
+
 		internal static void HandlePacket( BinaryReader reader, int player_who ) {
 			var mymod = HamstarHelpersMod.Instance;
 
 			int protocol_hash = reader.ReadInt32();
 			bool is_request = reader.ReadBoolean();
-			bool is_broadcast = reader.ReadBoolean();
+			bool is_synced_to_clients = Main.netMode == 2 ? reader.ReadBoolean() : false;
 
 			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
 				throw new Exception( "Unrecognized packet." );
@@ -76,8 +86,10 @@ namespace HamstarHelpers.Utilities.Network {
 				} else {
 					protocol.Receive( reader, player_who );
 
-					if( is_broadcast && Main.netMode == 2 ) {
-						protocol.SendData( -1, player_who, false );
+					if( Main.netMode == 2 ) {
+						if( is_synced_to_clients ) {
+							protocol.SendToClient( -1, player_who );
+						}
 					}
 				}
 			} catch( Exception e ) {
@@ -89,19 +101,22 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates whether send packets will be logged if the config specifies to do so. Defaults to true.
+		/// </summary>
 		public virtual bool IsVerbose { get { return true; } }
 
 
 		////////////////
 
-		[System.Obsolete( "use either PacketProtocol.SetClientDefaults or PacketProtocol.SetServerDefaults", false )]
-		public virtual void SetDefaults() {
-			//throw new NotImplementedException();
-		}
+		public PacketProtocol() { }
+
+		////////////////
 
 		public virtual void SetClientDefaults() {
 			throw new NotImplementedException();
 		}
+
 		public virtual void SetServerDefaults() {
 			throw new NotImplementedException();
 		}

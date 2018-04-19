@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.ItemHelpers;
+using System;
 using Terraria;
 
 
@@ -11,10 +12,10 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 		////////////////
 
-		public static string GetUniqueId( Player player, out bool has_uid ) {
+		public static string GetUniqueId( Player player, out bool success ) {
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
-			has_uid = myplayer.Logic.HasUID;
+			success = myplayer.Logic.HasUID;
 			return myplayer.Logic.PrivateUID;
 		}
 

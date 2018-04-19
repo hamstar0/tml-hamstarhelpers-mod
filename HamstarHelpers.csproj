@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
-    <Compile Include="ControlPanel\_Inbox\_InboxControl.cs" />
+    <Compile Include="ControlPanel\Inbox\InboxControl.cs" />
     <Compile Include="HamstarHelpersMod_Load.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffHelpers.cs" />
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
@@ -100,19 +100,26 @@
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_TmlWorldHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_AltNPCInfo.cs" />
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\UITextField.cs" />
+    <Compile Include="Helpers\UIHelpers\UIHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\UITheme_Vanilla.cs" />
     <Compile Include="Helpers\UIHelpers\UITheme_Default.cs" />
     <Compile Include="Helpers\UIHelpers\UITheme_Obsolete.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="NetProtocols\PingProtocol.cs" />
+    <Compile Include="NetProtocols\PlayerDataProtocol.cs" />
+    <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />
+    <Compile Include="NetProtocols\ModDataProtocol.cs" />
     <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
     <Compile Include="Utilities\Menu\MenuItem.cs" />
     <Compile Include="Utilities\Messages\InboxMessages.cs" />
+    <Compile Include="Utilities\Network\PacketProtocol_Obsolete.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
     <Compile Include="WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
@@ -136,7 +143,7 @@
     <Compile Include="Helpers\ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers.cs" />
-    <Compile Include="NetProtocols.cs" />
+    <Compile Include="NetProtocols\ModSettingsProtocol.cs" />
     <Compile Include="Helpers\NPCHelpers\_NPCAIHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCBannerHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCIdentityHelpers_Groups.cs" />
@@ -182,7 +189,7 @@
     <Compile Include="Utilities\Messages\SimpleMessage.cs" />
     <Compile Include="Helpers\HudHelpers\HudHelpers.cs" />
     <Compile Include="Helpers\HudHelpers\HudMapHelpers.cs" />
-    <Compile Include="Helpers\UIHelpers\UIHelpers.cs" />
+    <Compile Include="Helpers\UIHelpers\UIHelpers_Obsolete.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\UICheckbox.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\UIModData.cs" />
     <Compile Include="Helpers\UIHelpers\Elements\UITextArea.cs" />
@@ -201,6 +208,11 @@
     <Content Include="build.txt" />
     <Content Include="ControlPanel\ControlPanelIcon.png" />
     <Content Include="ControlPanel\ControlPanelIconLit.png" />
+    <Content Include="ControlPanel\Inbox\ArrowLeft.png" />
+    <Content Include="ControlPanel\Inbox\ArrowRight.png" />
+    <Content Include="ControlPanel\Inbox\MiniIcon.png" />
+    <Content Include="ControlPanel\Inbox\MiniIconLit.png" />
+    <Content Include="ControlPanel\Inbox\MiniIconLit2.png" />
     <Content Include="description.txt" />
     <Content Include="icon.png" />
     <Content Include="Helpers\UIHelpers\Elements\check_box.png" />
