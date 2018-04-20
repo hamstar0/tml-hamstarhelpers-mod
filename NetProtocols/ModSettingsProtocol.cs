@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Utilities.Network;
-using Terraria;
 
 
 namespace HamstarHelpers.NetProtocols {
@@ -7,8 +6,6 @@ namespace HamstarHelpers.NetProtocols {
 		public HamstarHelpersConfigData Data;
 
 		////////////////
-
-		public HHModSettingsProtocol() { }
 
 		public override void SetServerDefaults() {
 			this.Data = HamstarHelpersMod.Instance.Config;

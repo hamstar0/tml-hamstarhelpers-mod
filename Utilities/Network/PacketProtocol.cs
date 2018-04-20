@@ -107,18 +107,22 @@ namespace HamstarHelpers.Utilities.Network {
 		/// </summary>
 		public virtual bool IsVerbose { get { return true; } }
 
-		private IOrderedEnumerable<FieldInfo> OrderedFields;
+		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
+		private IOrderedEnumerable<FieldInfo> OrderedFields {
+			get {
+				if( this._OrderedFields == null ) {
+					FieldInfo[] fields = this.GetType().GetFields( BindingFlags.Public | BindingFlags.Instance );
+					this._OrderedFields = fields.Where( f => f.FieldType.IsPrimitive )
+						.OrderByDescending( x => x.Name );
+				}
+				return this._OrderedFields;
+			}
+		}
 
 
 		////////////////
 
-		protected PacketProtocol() {
-			if( this.OrderedFields == null ) {
-				FieldInfo[] fields = this.GetType().GetFields( BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance );
-				this.OrderedFields = fields.Where( f => f.FieldType.IsPrimitive )
-					.OrderByDescending( x => x.Name );
-			}
-		}
+		public PacketProtocol() { }
 
 		////////////////
 

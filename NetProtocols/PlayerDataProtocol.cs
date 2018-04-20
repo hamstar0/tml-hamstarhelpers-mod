@@ -24,7 +24,7 @@ namespace HamstarHelpers.NetProtocols {
 
 		////////////////
 
-		public int PlayerWho;
+		public int PlayerWho = 255;
 		public bool HasUID = false;
 		public string PrivateUID = "";
 		public ISet<int> PermaBuffsById = new HashSet<int>();
@@ -32,18 +32,16 @@ namespace HamstarHelpers.NetProtocols {
 
 		////////////////
 
-		public HHPlayerDataProtocol() {
-			this.PlayerWho = 255;
-		}
+		public HHPlayerDataProtocol() { }
 
-		internal HHPlayerDataProtocol( int player_who, ISet<int> perma_buff_ids ) {
+		private HHPlayerDataProtocol( int player_who, ISet<int> perma_buff_ids ) {
 			this.PlayerWho = player_who;
 			this.HasUID = false;
 			this.PrivateUID = "";
 			this.PermaBuffsById = perma_buff_ids;
 		}
 
-		internal HHPlayerDataProtocol( int player_who, bool has_uid, string uid, ISet<int> perma_buff_ids ) {
+		private HHPlayerDataProtocol( int player_who, bool has_uid, string uid, ISet<int> perma_buff_ids ) {
 			this.PlayerWho = player_who;
 			this.HasUID = has_uid;
 			this.PrivateUID = uid;

@@ -8,8 +8,6 @@ namespace HamstarHelpers.NetProtocols {
 
 		////////////////
 
-		public HHModDataProtocol() { }
-
 		public override void SetServerDefaults() {
 			HamstarHelpersMod.Instance.WorldHelpers.SaveForNetwork( this );
 		}
