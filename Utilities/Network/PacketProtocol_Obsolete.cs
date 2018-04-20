@@ -1,5 +1,8 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using Newtonsoft.Json;
+using System;
 using System.IO;
+using System.Text;
 using Terraria;
 
 
@@ -54,6 +57,28 @@ namespace HamstarHelpers.Utilities.Network {
 			} else if( Main.netMode == 2 ) {
 				this.SendToClient( to_who, ignore_who );
 			}
+		}
+
+
+		[System.Obsolete( "do not use; automatic", true )]
+		public virtual PacketProtocol ReadData( BinaryReader reader ) {
+			int num = reader.ReadInt32();
+
+			byte[] data = reader.ReadBytes( num );
+
+			Type my_type = this.GetType();
+			string json_str = Encoding.UTF8.GetString( data );
+
+			return (PacketProtocol)JsonConvert.DeserializeObject( json_str, my_type );
+		}
+
+		[System.Obsolete( "do not use; automatic", true )]
+		public virtual void WriteData( BinaryWriter writer ) {
+			string json_str = JsonConvert.SerializeObject( this );
+			var data = Encoding.ASCII.GetBytes( json_str );
+
+			writer.Write( (int)data.Length );
+			writer.Write( data );
 		}
 	}
 }

@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using Terraria;
 
 
@@ -14,11 +13,11 @@ namespace HamstarHelpers.Utilities.Network {
 			Type my_type = this.GetType();
 			string name = my_type.Name;
 
-			PacketProtocol data_obj = this.ReadData( reader );
+			this.ReadDataToFields( reader );
 			//Type your_type = data_obj.GetType();
 			
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-				string json_str = JsonConvert.SerializeObject( data_obj );
+				string json_str = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( "<" + name + " Receive: " + json_str );
 			}
 
@@ -31,7 +30,7 @@ namespace HamstarHelpers.Utilities.Network {
 					continue;
 				}
 
-				object val = yours_field.GetValue( data_obj );
+				object val = yours_field.GetValue( this );
 
 				mine_field.SetValue( this, val );
 
@@ -120,21 +119,67 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
-		/// <summary>
-		/// Manually implements reading our protocol's binary data. Defaults to deserializing a
-		/// single string of JSON data into a new instance of the current class (no
-		/// SetClientDefaults or SetServerDefaults invoked).
-		/// </summary>
-		/// <param name="reader">Given readable stream of binary data. Protocol must be handled manually.</param>
-		/// <returns>A new PacketProtocol instance.</returns>
-		public virtual PacketProtocol ReadData( BinaryReader reader ) {
-			int num = reader.ReadInt32();
-			byte[] data = reader.ReadBytes( num );
+		private void ReadDataToFields( BinaryReader reader ) {
+			foreach( FieldInfo field in this.OrderedFields ) {
+				Type field_type = field.FieldType;
 
-			Type my_type = this.GetType();
-			string json_str = Encoding.UTF8.GetString( data );
-
-			return (PacketProtocol)JsonConvert.DeserializeObject( json_str, my_type );
+				switch( Type.GetTypeCode( field_type ) ) {
+				case TypeCode.String:
+					field.SetValue( this, reader.ReadString() );
+					break;
+				case TypeCode.Single:
+					field.SetValue( this, reader.ReadSingle() );
+					break;
+				case TypeCode.UInt64:
+					field.SetValue( this, reader.ReadUInt64() );
+					break;
+				case TypeCode.Int64:
+					field.SetValue( this, reader.ReadInt64() );
+					break;
+				case TypeCode.UInt32:
+					field.SetValue( this, reader.ReadUInt32() );
+					break;
+				case TypeCode.Int32:
+					field.SetValue( this, reader.ReadInt32() );
+					break;
+				case TypeCode.UInt16:
+					field.SetValue( this, reader.ReadUInt16() );
+					break;
+				case TypeCode.Int16:
+					field.SetValue( this, reader.ReadInt16() );
+					break;
+				case TypeCode.Double:
+					field.SetValue( this, reader.ReadDouble() );
+					break;
+				case TypeCode.Char:
+					if( field_type.IsArray ) {
+						int count = reader.ReadInt32();
+						field.SetValue( this, reader.ReadChars(count) );
+					} else {
+						field.SetValue( this, reader.ReadChar() );
+					}
+					break;
+				case TypeCode.SByte:
+					field.SetValue( this, reader.ReadSByte() );
+					break;
+				case TypeCode.Byte:
+					if( field_type.IsArray ) {
+						int count = reader.ReadInt32();
+						field.SetValue( this, reader.ReadBytes( count ) );
+					} else {
+						field.SetValue( this, reader.ReadByte() );
+					}
+					break;
+				case TypeCode.Boolean:
+					field.SetValue( this, reader.ReadBoolean() );
+					break;
+				case TypeCode.Decimal:
+					field.SetValue( this, reader.ReadDecimal() );
+					break;
+				default:
+					throw new Exception( "Invalid field "+field.Name+" type being read. Primitive types only." );
+				}
+			}
 		}
 	}
 }

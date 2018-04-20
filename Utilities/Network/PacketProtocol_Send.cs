@@ -2,7 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Text;
+using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -97,7 +98,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 
 		////////////////
-
+		
 		private void SendRequestOnly( int to_who, int ignore_who ) {
 			if( Main.netMode == 0 ) {
 				throw new Exception( "Cannot send packets in single player." );
@@ -130,7 +131,7 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
 			packet.Write( false );  // Request
 			packet.Write( sync_to_clients );  // Broadcast
-			this.WriteData( packet );
+			this.WriteFieldData( packet );
 
 			packet.Send( -1, -1 );
 
@@ -151,7 +152,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
 			packet.Write( false );  // Request
-			this.WriteData( packet );
+			this.WriteFieldData( packet );
 
 			packet.Send( to_who, ignore_who );
 
@@ -164,17 +165,71 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
-		/// <summary>
-		/// Manually implements writing our protocol's binary data. Defaults to serializing a
-		/// single string of JSON data to the given binary stream.
-		/// </summary>
-		/// <param name="writer">Given writable stream of binary data. Protocol must be handled manually.</param>
-		public virtual void WriteData( BinaryWriter writer ) {
-			string json_str = JsonConvert.SerializeObject( this );
-			var data = Encoding.ASCII.GetBytes( json_str );
+		private void WriteFieldData( BinaryWriter writer ) {
+			foreach( FieldInfo field in this.OrderedFields ) {
+				object raw_val = field.GetValue( this );
+				Type val_type = field.FieldType;
+				//dynamic dyn_val = Convert.ChangeType( raw_val, val_type );
 
-			writer.Write( (int)data.Length );
-			writer.Write( data );
+				switch( Type.GetTypeCode( val_type ) ) {
+				case TypeCode.String:
+					writer.Write( (String)raw_val );
+					break;
+				case TypeCode.Single:
+					writer.Write( (Single)raw_val );
+					break;
+				case TypeCode.UInt64:
+					writer.Write( (UInt64)raw_val );
+					break;
+				case TypeCode.Int64:
+					writer.Write( (Int64)raw_val );
+					break;
+				case TypeCode.UInt32:
+					writer.Write( (UInt32)raw_val );
+					break;
+				case TypeCode.Int32:
+					writer.Write( (Int32)raw_val );
+					break;
+				case TypeCode.UInt16:
+					writer.Write( (UInt16)raw_val );
+					break;
+				case TypeCode.Int16:
+					writer.Write( (Int16)raw_val );
+					break;
+				case TypeCode.Double:
+					writer.Write( (Double)raw_val );
+					break;
+				case TypeCode.Char:
+					if( val_type.IsArray ) {
+						var val = (Char[])raw_val;
+						writer.Write( (Int32)val.Length );
+						writer.Write( val );
+					} else {
+						writer.Write( (Char)raw_val );
+					}
+					break;
+				case TypeCode.SByte:
+					writer.Write( (SByte)raw_val );
+					break;
+				case TypeCode.Byte:
+					if( val_type.IsArray ) {
+						var val = (Byte[])raw_val;
+						writer.Write( (Int32)val.Length );
+						writer.Write( val );
+					} else {
+						writer.Write( (Byte)raw_val );
+					}
+					break;
+				case TypeCode.Boolean:
+					writer.Write( (Boolean)raw_val );
+					break;
+				case TypeCode.Decimal:
+					writer.Write( (Decimal)raw_val );
+					break;
+				default:
+					throw new Exception( "Invalid field "+field.Name+" type for transmission. Primitive types only." );
+				}
+			}
 		}
 	}
 }
