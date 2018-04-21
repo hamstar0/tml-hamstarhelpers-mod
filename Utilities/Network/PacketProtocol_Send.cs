@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
@@ -28,10 +27,10 @@ namespace HamstarHelpers.Utilities.Network {
 		}
 
 		/// <summary>
-		/// Shorthand to send a default instance of this protocol's data to all other clients. Requires `SetClientDefaults()`
+		/// Shorthand to send a default instance of this protocol's data to everyone. Requires `SetClientDefaults()`
 		/// to be implemented.
 		/// </summary>
-		public static void QuickSyncToOtherClients<T>()
+		public static void QuickSyncToServerAndClients<T>()
 				where T : PacketProtocol, new() {
 			if( Main.netMode != 1 ) {
 				throw new Exception( "Can only sync as a client." );
@@ -131,7 +130,13 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
 			packet.Write( false );  // Request
 			packet.Write( sync_to_clients );  // Broadcast
-			this.WriteFieldData( packet );
+			
+			try {
+				this.WriteFieldData( packet );
+			} catch( Exception e ) {
+				LogHelpers.Log( "PacketProtocol.SendToServer - " + e.ToString() );
+				return;
+			}
 
 			packet.Send( -1, -1 );
 
@@ -152,7 +157,13 @@ namespace HamstarHelpers.Utilities.Network {
 
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
 			packet.Write( false );  // Request
-			this.WriteFieldData( packet );
+
+			try {
+				this.WriteFieldData( packet );
+			} catch( Exception e ) {
+				LogHelpers.Log( "PacketProtocol.SendToServer - " + e.ToString() );
+				return;
+			}
 
 			packet.Send( to_who, ignore_who );
 
@@ -227,7 +238,8 @@ namespace HamstarHelpers.Utilities.Network {
 					writer.Write( (Decimal)raw_val );
 					break;
 				default:
-					throw new Exception( "Invalid field "+field.Name+" type for transmission. Primitive types only." );
+					writer.Write( (String)JsonConvert.SerializeObject( raw_val ) );
+					break;
 				}
 			}
 		}

@@ -13,30 +13,29 @@ namespace HamstarHelpers.Utilities.Network {
 			Type my_type = this.GetType();
 			string name = my_type.Name;
 
-			this.ReadDataToFields( reader );
-			//Type your_type = data_obj.GetType();
+			try {
+				this.ReadDataToFields( reader );
+			} catch( Exception e ) {
+				LogHelpers.Log( "PacketProtocol.Receive - "+e.ToString() );
+				return;
+			}
 			
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( "<" + name + " Receive: " + json_str );
 			}
 
-			foreach( FieldInfo mine_field in my_type.GetFields() ) {
-				//FieldInfo yours_field = your_type.GetField( mine_field.Name );
-				FieldInfo yours_field = my_type.GetField( mine_field.Name );
+			foreach( FieldInfo my_field in my_type.GetFields() ) {
+				FieldInfo your_field = my_type.GetField( my_field.Name );
 
-				if( yours_field == null ) {
-					LogHelpers.Log( "Missing " + name + " protocol value for " + mine_field.Name );
+				if( your_field == null ) {
+					LogHelpers.Log( "Missing " + name + " protocol value for " + my_field.Name );
 					continue;
 				}
 
-				object val = yours_field.GetValue( this );
+				object val = your_field.GetValue( this );
 
-				mine_field.SetValue( this, val );
-
-				//if( mymod.Config.DebugModeNetInfo ) {
-				//	LogHelpers.Log( "  " + yours_field.Name + ": " + val );
-				//}
+				my_field.SetValue( this, val );
 			}
 
 			if( Main.netMode == 1 ) {
@@ -177,7 +176,9 @@ namespace HamstarHelpers.Utilities.Network {
 					field.SetValue( this, reader.ReadDecimal() );
 					break;
 				default:
-					throw new Exception( "Invalid field "+field.Name+" type being read. Primitive types only." );
+					var json_val = JsonConvert.DeserializeObject( reader.ReadString(), field_type );
+					field.SetValue( this, json_val );
+					break;
 				}
 			}
 		}

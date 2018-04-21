@@ -14,18 +14,12 @@ namespace HamstarHelpers.Utilities.Network {
 		}
 
 
-		[System.Obsolete( "use WriteData( BinaryWriter )", true )]
-		public virtual void WriteData( BinaryWriter writer, PacketProtocol me ) {
-			this.WriteData( writer );
-		}
-
-
-		[System.Obsolete( "use either QuickSendToServer(), QuickSendToClient(int, int), or QuickSyncToOtherClients()", true )]
+		[System.Obsolete( "use either QuickSendToServer(), QuickSendToClient(int, int), or QuickSyncToServerAndClients()", true )]
 		public static void QuickSendData<T>( int to_who, int ignore_who, bool sync_to_clients )
 				where T : PacketProtocol, new() {
 			if( Main.netMode == 1 ) {
 				if( sync_to_clients ) {
-					PacketProtocol.QuickSyncToOtherClients<T>();
+					PacketProtocol.QuickSyncToServerAndClients<T>();
 				} else {
 					PacketProtocol.QuickSendToServer<T>();
 				}
@@ -73,7 +67,7 @@ namespace HamstarHelpers.Utilities.Network {
 		}
 
 		[System.Obsolete( "do not use; automatic", true )]
-		public virtual void WriteData( BinaryWriter writer ) {
+		public virtual void WriteData( BinaryWriter writer, PacketProtocol _ ) {
 			string json_str = JsonConvert.SerializeObject( this );
 			var data = Encoding.ASCII.GetBytes( json_str );
 
