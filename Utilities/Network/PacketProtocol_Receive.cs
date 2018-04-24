@@ -14,7 +14,7 @@ namespace HamstarHelpers.Utilities.Network {
 			string name = my_type.Name;
 
 			try {
-				this.ReadDataToFields( reader );
+				this.ReadStream( reader );
 			} catch( Exception e ) {
 				LogHelpers.Log( "PacketProtocol.Receive - "+e.ToString() );
 				return;
@@ -37,11 +37,23 @@ namespace HamstarHelpers.Utilities.Network {
 
 				my_field.SetValue( this, val );
 			}
-
+			
 			if( Main.netMode == 1 ) {
-				this.ReceiveOnClient();
+				try {
+#pragma warning disable 612, 618
+					this.ReceiveOnClient();
+#pragma warning restore 612, 618
+				} catch( NotImplementedException ) {
+					this.ReceiveWithClient();
+				}
 			} else {
-				this.ReceiveOnServer( from_who );
+				try {
+#pragma warning disable 612, 618
+					this.ReceiveOnServer( from_who );
+#pragma warning restore 612, 618
+				} catch( NotImplementedException ) {
+					this.ReceiveWithServer( from_who );
+				}
 			}
 		}
 
@@ -54,7 +66,9 @@ namespace HamstarHelpers.Utilities.Network {
 				LogHelpers.Log( "<" + name + " ReceiveRequest..." );
 			}
 
+#pragma warning disable 612, 618
 			this.SetDefaults();
+#pragma warning restore 612, 618
 			if( Main.netMode == 1 ) {
 				this.SetClientDefaults();
 			} else if( Main.netMode == 2 ) {
@@ -64,9 +78,21 @@ namespace HamstarHelpers.Utilities.Network {
 			bool skip_send = false;
 
 			if( Main.netMode == 1 ) {
-				skip_send = this.ReceiveRequestOnClient();
+				try {
+#pragma warning disable 612, 618
+					skip_send = this.ReceiveRequestOnClient();
+#pragma warning restore 612, 618
+				} catch( NotImplementedException ) {
+					skip_send = this.ReceiveRequestWithClient();
+				}
 			} else {
-				skip_send = this.ReceiveRequestOnServer( from_who );
+				try {
+#pragma warning disable 612, 618
+					skip_send = this.ReceiveRequestOnServer( from_who );
+#pragma warning restore 612, 618
+				} catch( NotImplementedException ) {
+					skip_send = this.ReceiveRequestWithServer( from_who );
+				}
 			}
 
 			if( !skip_send ) {
@@ -84,14 +110,14 @@ namespace HamstarHelpers.Utilities.Network {
 		/// <summary>
 		/// Runs when data received on client (class's own fields).
 		/// </summary>
-		public virtual void ReceiveOnClient() {
+		protected virtual void ReceiveWithClient() {
 			throw new NotImplementedException();
 		}
 		/// <summary>
 		/// Runs when data received on server (class's own fields).
 		/// </summary>
 		/// <param name="from_who">Main.player index of the player (client) sending us our data.</param>
-		public virtual void ReceiveOnServer( int from_who ) {
+		protected virtual void ReceiveWithServer( int from_who ) {
 			throw new NotImplementedException();
 		}
 
@@ -101,24 +127,27 @@ namespace HamstarHelpers.Utilities.Network {
 		/// `SetClientDefaults()` to be implemented.
 		/// </summary>
 		/// <returns>True to indicate the request is being handled manually.</returns>
-		public virtual bool ReceiveRequestOnClient() {
+		protected virtual bool ReceiveRequestWithClient() {
 			return false;
 		}
 		/// <summary>
 		/// Runs when a request is received for the server to send data to the client. Expects
 		/// `SetServerDefaults()` to be implemented.
-		/// to be implemented to provide this data.
 		/// </summary>
 		/// <param name="from_who">Main.player index of player (client) sending this request.</param>
 		/// <returns>True to indicate the request is being handled manually.</returns>
-		public virtual bool ReceiveRequestOnServer( int from_who ) {
+		protected virtual bool ReceiveRequestWithServer( int from_who ) {
 			return false;
 		}
 
 
 		////////////////
 
-		private void ReadDataToFields( BinaryReader reader ) {
+		/// <summary>
+		/// Implements internal low level data reading for packet receipt.
+		/// </summary>
+		/// <param name="reader">Binary data reader.</returns>
+		protected virtual void ReadStream( BinaryReader reader ) {
 			foreach( FieldInfo field in this.OrderedFields ) {
 				Type field_type = field.FieldType;
 

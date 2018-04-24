@@ -11,7 +11,7 @@ namespace HamstarHelpers.NetProtocols {
 			this.Data = HamstarHelpersMod.Instance.Config;
 		}
 
-		public override void ReceiveOnClient() {
+		protected override void ReceiveWithClient() {
 			var mymod = HamstarHelpersMod.Instance;
 			mymod.Config.LoadFromNetwork( mymod, this.Data );
 		}

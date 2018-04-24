@@ -94,7 +94,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			try {
 				UICheckbox other = obj as UICheckbox;
 				return this.Order.CompareTo( other.Order );
-			} catch( Exception _ ) {
+			} catch( Exception ) {
 				return 0;
 			}
 		}

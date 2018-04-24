@@ -74,10 +74,10 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 					//else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
 					url = url.Replace( "&", "^&" );
 					Process.Start( new ProcessStartInfo( "cmd", "/c start "+url ) { CreateNoWindow = true } );
-				} catch( Exception _ ) {
+				} catch( Exception ) {
 					try {
 						Process.Start( "xdg-open", url );
-					} catch( Exception __ ) {
+					} catch( Exception ) {
 						Process.Start( "open", url );
 					}
 				}

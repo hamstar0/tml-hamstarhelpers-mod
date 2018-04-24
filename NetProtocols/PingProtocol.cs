@@ -24,7 +24,7 @@ namespace HamstarHelpers.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnServer( int from_who ) {
+		protected override void ReceiveWithServer( int from_who ) {
 			if( this.EndTime == -1 ) {
 				this.SendToClient( from_who, -1 );
 			} else {
@@ -33,7 +33,7 @@ namespace HamstarHelpers.NetProtocols {
 		}
 
 
-		public override void ReceiveOnClient() {
+		protected override void ReceiveWithClient() {
 			var now = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 
 			this.EndTime = now;
@@ -41,20 +41,6 @@ namespace HamstarHelpers.NetProtocols {
 			this.SendToServer( false );
 
 			HamstarHelpersMod.Instance.NetHelpers.UpdatePing( (int)( now - this.StartTime ) );
-		}
-
-		////////////////
-
-		public override PacketProtocol ReadData( BinaryReader reader ) {
-			this.StartTime = reader.ReadInt64();
-			this.EndTime = reader.ReadInt64();
-			return this;
-		}
-
-		public override void WriteData( BinaryWriter writer, PacketProtocol me ) {
-			var self = (HHPingProtocol)me;
-			writer.Write( self.StartTime );
-			writer.Write( self.EndTime );
 		}
 	}
 }

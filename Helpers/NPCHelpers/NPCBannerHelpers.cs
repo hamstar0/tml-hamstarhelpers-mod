@@ -21,7 +21,7 @@ namespace HamstarHelpers.NPCHelpers {
 				try {
 					Item item = new Item();
 					item.SetDefaults( banner_item_type );
-				} catch( Exception _ ) {
+				} catch( Exception ) {
 					LogHelpers.Log( "Could not find banner of item id " + banner_item_type + " for npc id " + npc_type );
 					continue;
 				}

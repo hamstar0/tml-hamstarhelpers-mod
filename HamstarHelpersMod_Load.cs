@@ -117,8 +117,10 @@ namespace HamstarHelpers {
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
 
+#pragma warning disable 612, 618
 			TmlHelpers.AltNPCInfo.DataInitialize();
 			TmlHelpers.AltProjectileInfo.DataInitialize();
+#pragma warning restore 612, 618
 
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );

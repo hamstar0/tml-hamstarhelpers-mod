@@ -28,7 +28,7 @@ namespace HamstarHelpers.ControlPanel {
 			try {
 				ctrl_panel.ModListElem.Clear();
 				ctrl_panel.ModListElem.AddRange( ctrl_panel.ModDataList.ToArray() );
-			} catch( Exception _ ) { }
+			} catch( Exception ) { }
 		}
 
 

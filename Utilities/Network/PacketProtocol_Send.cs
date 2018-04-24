@@ -20,7 +20,9 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			T t = new T();
+#pragma warning disable 612, 618
 			t.SetDefaults();
+#pragma warning restore 612, 618
 			t.SetClientDefaults();
 
 			t.SendToServer( false );
@@ -37,7 +39,9 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			T t = new T();
+#pragma warning disable 612, 618
 			t.SetDefaults();
+#pragma warning restore 612, 618
 			t.SetClientDefaults();
 
 			t.SendToServer( true );
@@ -56,7 +60,9 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			T t = new T();
+#pragma warning disable 612, 618
 			t.SetDefaults();
+#pragma warning restore 612, 618
 			t.SetServerDefaults();
 
 			t.SendToClient( to_who, ignore_who );
@@ -132,7 +138,7 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Write( sync_to_clients );  // Broadcast
 			
 			try {
-				this.WriteFieldData( packet );
+				this.WriteStream( packet );
 			} catch( Exception e ) {
 				LogHelpers.Log( "PacketProtocol.SendToServer - " + e.ToString() );
 				return;
@@ -159,7 +165,7 @@ namespace HamstarHelpers.Utilities.Network {
 			packet.Write( false );  // Request
 
 			try {
-				this.WriteFieldData( packet );
+				this.WriteStream( packet );
 			} catch( Exception e ) {
 				LogHelpers.Log( "PacketProtocol.SendToServer - " + e.ToString() );
 				return;
@@ -176,7 +182,11 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
-		private void WriteFieldData( BinaryWriter writer ) {
+		/// <summary>
+		/// Implements low level data writing for packet output.
+		/// </summary>
+		/// <param name="writer">Binary data writer.</returns>
+		protected virtual void WriteStream( BinaryWriter writer ) {
 			foreach( FieldInfo field in this.OrderedFields ) {
 				object raw_val = field.GetValue( this );
 				Type val_type = field.FieldType;

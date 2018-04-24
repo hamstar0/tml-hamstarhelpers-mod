@@ -35,7 +35,7 @@ namespace HamstarHelpers.WebRequests {
 			string ip;
 			try {
 				ip = NetHelpers.NetHelpers.GetPublicIP();
-			} catch( Exception _ ) {
+			} catch( Exception ) {
 				LogHelpers.Log( "CanAddToBrowser - Invalid public IP" );
 				return false;
 			}

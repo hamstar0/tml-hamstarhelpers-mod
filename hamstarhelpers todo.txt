@@ -10,10 +10,14 @@ Future?
 -	@Create hotkeys-to-commands mod (uses a HH tab)
 -	Add tabs to UI
 -	Send issue reports for unhandled exceptions
+-	Optimize PacketProtocol
+	-	Refactor packet id code to use indexes, not hashes (stored as ushort)
+-	Set UI elements to be 'Components'
 
 
 
-v1.4.5
+v1.5.0
+-	Allow unsafe use of the underlying stream in PacketProtocol
 -	Add inbox
 	-	Implement message scrolling
 	-	Implement new message reading

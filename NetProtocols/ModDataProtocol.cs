@@ -12,7 +12,7 @@ namespace HamstarHelpers.NetProtocols {
 			HamstarHelpersMod.Instance.WorldHelpers.SaveForNetwork( this );
 		}
 
-		public override void ReceiveOnClient() {
+		protected override void ReceiveWithClient() {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
 			HamstarHelpersMod.Instance.WorldHelpers.LoadFromNetwork( this.HalfDays );

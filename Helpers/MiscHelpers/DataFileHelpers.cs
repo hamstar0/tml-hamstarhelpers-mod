@@ -50,9 +50,8 @@ namespace HamstarHelpers.MiscHelpers {
 
 				return json_file.Data;
 			} catch( IOException e ) {
-				string dir_file = rel_dir + Path.DirectorySeparatorChar + name + ".json";
-				throw new IOException( "Failed to load json file " + name + " at " + rel_dir, e );
-				return null;
+				string full_dir = DataFileHelpers.GetFullDirectoryPath( mod );
+				throw new IOException( "Failed to load json file " + name + " at " + full_dir, e );
 			}
 		}
 
@@ -66,7 +65,6 @@ namespace HamstarHelpers.MiscHelpers {
 				return FileHelpers.LoadBinaryFile<T>( full_dir, false );
 			} catch( IOException e ) {
 				throw new IOException( "Failed to load binary file "+name+" at " + full_dir, e );
-				return null;
 			}
 		}
 

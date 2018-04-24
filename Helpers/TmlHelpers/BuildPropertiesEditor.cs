@@ -9,10 +9,19 @@ using Terraria.ModLoader.IO;
 namespace HamstarHelpers.TmlHelpers {
 	public class BuildPropertiesEditor {
 			public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
-			IEnumerable<Type> class_types = from t in AppDomain.CurrentDomain.GetAssemblies().SelectMany( t => t.GetTypes() )
+			IEnumerable<Type> class_types;
+			try {
+				class_types = from t in AppDomain.CurrentDomain.GetAssemblies()
+							  .SelectMany( t => t.GetTypes() )
 							  where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
 							  select t;
-			if( class_types.Count() == 0 ) { return (BuildPropertiesEditor)null; }
+			} catch( Exception e ) {
+				LogHelpers.Log( "BuildPropertiesEditor.GetBuildPropertiesForModFile - " + e.ToString() );
+				return (BuildPropertiesEditor)null;
+			}
+			if( class_types.Count() == 0 ) {
+				return (BuildPropertiesEditor)null;
+			}
 
 			Type build_prop_type = class_types.First();
 			MethodInfo method = build_prop_type.GetMethod( "ReadModFile", BindingFlags.NonPublic | BindingFlags.Static );

@@ -61,6 +61,17 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
+		public static void AddPostGameLoadPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( TmlLoadHelpers.PostGameLoadPromiseConditionsMet ) {
+				action();
+			} else {
+				mymod.TmlLoadHelpers.PostGameLoadPromises.Add( action );
+			}
+		}
+		
+
 		public static void AddPostModLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -74,7 +85,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 		public static void AddWorldLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
-
+			
 			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
 				action();
 			} else {
@@ -86,9 +97,11 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
+		internal IList<Action> PostGameLoadPromises = new List<Action>();
 		internal IList<Action> PostModLoadPromises = new List<Action>();
 		internal IList<Action> WorldLoadPromises = new List<Action>();
 
+		internal static bool PostGameLoadPromiseConditionsMet = false;
 		internal bool PostModLoadPromiseConditionsMet = false;
 		internal bool WorldLoadPromiseConditionsMet = false;
 
@@ -101,7 +114,18 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
+		internal void FulfillPostGameLoadPromises() {
+			TmlLoadHelpers.PostGameLoadPromiseConditionsMet = true;
+
+			foreach( Action promise in this.PostGameLoadPromises ) {
+				promise();
+			}
+			this.PostGameLoadPromises.Clear();
+		}
+
 		internal void FulfillPostModLoadPromises() {
+			this.FulfillPostGameLoadPromises(); // Always
+
 			if( this.PostModLoadPromiseConditionsMet ) { return; }
 			this.PostModLoadPromiseConditionsMet = true;
 

@@ -23,7 +23,7 @@ namespace HamstarHelpers.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnClient() {
+		protected override void ReceiveWithClient() {
 			Player player = Main.player[ this.PlayerWho ];
 
 			PlayerHelpers.PlayerHelpers.ApplyPermaDeath( player, this.Msg );

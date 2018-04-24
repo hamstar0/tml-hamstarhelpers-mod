@@ -135,7 +135,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 						try {
 							string dir = new FileInfo( fullpath ).Directory.FullName;
 							Process.Start( dir );
-						} catch( Exception _ ) { }
+						} catch( Exception ) { }
 
 						Main.NewText( "Couldn't open config file " + path + ": " + e.Message, Color.Red );
 					}
@@ -180,7 +180,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 					if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
 						return -1;
 					}
-				} catch( Exception _ ) { }
+				} catch( Exception ) { }
 
 				return string.Compare( this.Mod.Name, other.Mod.Name );
 			}

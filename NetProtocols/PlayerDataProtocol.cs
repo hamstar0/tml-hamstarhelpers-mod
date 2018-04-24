@@ -54,7 +54,7 @@ namespace HamstarHelpers.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnServer( int from_who ) {
+		protected override void ReceiveWithServer( int from_who ) {
 			Player player = Main.player[from_who];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
@@ -64,7 +64,7 @@ namespace HamstarHelpers.NetProtocols {
 			this.PrivateUID = "";
 		}
 
-		public override void ReceiveOnClient() {
+		protected override void ReceiveWithClient() {
 			Player player = Main.player[this.PlayerWho];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
@@ -73,7 +73,7 @@ namespace HamstarHelpers.NetProtocols {
 
 		////////////////
 
-		public override bool ReceiveRequestOnServer( int from_who ) {
+		protected override bool ReceiveRequestWithServer( int from_who ) {
 			for( int i = 0; i < Main.player.Length; i++ ) {
 				Player player = Main.player[i];
 				if( player == null || !player.active ) { continue; }

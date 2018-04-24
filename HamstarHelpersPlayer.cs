@@ -31,10 +31,6 @@ namespace HamstarHelpers {
 			}
 		}
 
-		public override void SendClientChanges( ModPlayer client_player ) {
-			this.Logic.SendClientChanges( (HamstarHelpersMod)this.mod, this.player, client_player );
-		}
-
 		public override void OnEnterWorld( Player player ) {
 			var mymod = (HamstarHelpersMod)this.mod;
 
@@ -43,6 +39,10 @@ namespace HamstarHelpers {
 			} else if( Main.netMode == 1 ) {
 				this.Logic.OnEnterWorldForClient( mymod, player );
 			}
+		}
+
+		public override void SendClientChanges( ModPlayer client_player ) {
+			this.Logic.SendClientChanges( (HamstarHelpersMod)this.mod, this.player, client_player );
 		}
 
 

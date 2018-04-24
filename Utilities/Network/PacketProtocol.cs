@@ -53,7 +53,7 @@ namespace HamstarHelpers.Utilities.Network {
 				}
 
 				try {
-					string name = subclass.Name;
+					string name = subclass.Namespace + "." + subclass.Name;
 					protocols[ PacketProtocol.GetPacketCode( name ) ] = subclass;
 				} catch( Exception e ) {
 					LogHelpers.Log( subclass.Name + " - " + e.Message );
