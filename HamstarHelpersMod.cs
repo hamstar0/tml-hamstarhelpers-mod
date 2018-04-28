@@ -12,7 +12,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
-		public static HamstarHelpersMod Instance { get; private set; }
+		public static HamstarHelpersMod Instance;
 
 		public static string GithubUserName { get { return "hamstar0"; } }
 		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }

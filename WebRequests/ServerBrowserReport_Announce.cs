@@ -82,7 +82,7 @@ namespace HamstarHelpers.WebRequests {
 
 			int pvp = 0;
 			bool[] team_checks = new bool[10];
-			ServerBrowserReporter server_browser = HamstarHelpersMod.Instance.ServerBrowser;
+			ServerBrowserReporter server_browser = mymod.ServerBrowser;
 
 			for( int i=0; i<Main.player.Length; i++ ) {
 				Player player = Main.player[i];
@@ -112,7 +112,7 @@ namespace HamstarHelpers.WebRequests {
 				server_data.PlayerCount = Main.ActivePlayersCount;
 				server_data.PlayerPvpCount = pvp;
 				server_data.TeamsCount = team_count;
-				server_data.AveragePing = HamstarHelpersMod.Instance.ServerBrowser.AveragePing;
+				server_data.AveragePing = mymod.ServerBrowser.AveragePing;
 				server_data.Mods = new Dictionary<string, string>();
 				server_data.Version = ( vers.Major * 1000000 ) + ( vers.Minor * 10000 ) + ( vers.Build * 100 ) + vers.Revision;
 

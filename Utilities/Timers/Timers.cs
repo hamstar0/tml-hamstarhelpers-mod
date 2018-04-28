@@ -58,18 +58,25 @@ namespace HamstarHelpers.Utilities.Timers {
 		////////////////
 
 		internal Timers() {
-			Main.OnTick += this.RunTimers;
+			Main.OnTick += Timers._RunTimers;
 		}
 
 		~Timers() {
 		//internal void Unload() {
 			try {
-				Main.OnTick -= this.RunTimers;
+				Main.OnTick -= Timers._RunTimers;
 			} catch { }
 		}
 
 
 		////////////////
+
+		private static void _RunTimers() {  // <- Just in case references are doing something funky...
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			if( mymod == null ) { return; }
+
+			mymod.Timers.RunTimers();
+		}
 
 		internal void RunTimers() {
 			foreach( string name in this.Running.Keys.ToArray() ) {

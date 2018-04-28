@@ -11,9 +11,6 @@ namespace HamstarHelpers.Utilities.Messages {
 		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
 			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
 
-			inbox.Messages[which] = msg;
-			inbox.MessageActions[which] = on_run;
-
 			if( inbox.Messages.ContainsKey( which ) ) {
 				if( force_unread ) {
 					inbox.Order.Remove( which );
@@ -21,7 +18,9 @@ namespace HamstarHelpers.Utilities.Messages {
 					return;
 				}
 			}
-			
+
+			inbox.Messages[which] = msg;
+			inbox.MessageActions[which] = on_run;
 			inbox.Order.Add( which );
 		}
 

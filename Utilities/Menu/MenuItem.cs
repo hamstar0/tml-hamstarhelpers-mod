@@ -188,6 +188,13 @@ namespace HamstarHelpers.Utilities.Menu {
 
 		////////////////
 
+		private static void _Draw( GameTime game_time ) {	// <- Just in case references are doing something funky...
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			if( mymod == null ) { return; }
+
+			mymod.MenuItemMngr.Draw( game_time );
+		}
+
 		private void Draw( GameTime game_time ) {
 			foreach( var kv in this.Items ) {
 				if( kv.Value.MenuContext == Main.menuMode ) {

@@ -116,7 +116,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 		internal void FulfillPostGameLoadPromises() {
 			TmlLoadHelpers.PostGameLoadPromiseConditionsMet = true;
-
+			
 			foreach( Action promise in this.PostGameLoadPromises ) {
 				promise();
 			}
@@ -128,7 +128,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 			if( this.PostModLoadPromiseConditionsMet ) { return; }
 			this.PostModLoadPromiseConditionsMet = true;
-
+			
 			foreach( Action promise in this.PostModLoadPromises ) {
 				promise();
 			}
@@ -139,7 +139,7 @@ namespace HamstarHelpers.TmlHelpers {
 		internal void FulfillWorldLoadPromises() {
 			if( this.WorldLoadPromiseConditionsMet ) { return; }
 			this.WorldLoadPromiseConditionsMet = true;
-
+			
 			foreach( Action promise in this.WorldLoadPromises ) {
 				promise();
 			}
@@ -150,20 +150,27 @@ namespace HamstarHelpers.TmlHelpers {
 		////////////////
 
 		internal TmlLoadHelpers() {
-			Main.OnTick += this.Update;
+			Main.OnTick += TmlLoadHelpers._Update;
 		}
 
 		~TmlLoadHelpers() {
 			//internal void Unload() {
 			try {
-				Main.OnTick -= this.Update;
+				Main.OnTick -= TmlLoadHelpers._Update;
 			} catch { }
 		}
 
 		////////////////
 
+		private static void _Update() { // <- Just in case references are doing something funky...
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			if( mymod == null ) { return; }
+
+			mymod.TmlLoadHelpers.Update();
+		}
+
 		internal void Update() {
-			if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
+			if( Main.netMode != 2 && this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
 				this.WorldLoadPromiseConditionsMet = false; // Does this work?
 			}
 		}

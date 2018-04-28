@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
@@ -15,7 +16,7 @@ namespace HamstarHelpers.Utilities.Network {
 		/// </summary>
 		public static void QuickSendToServer<T>()
 				where T : PacketProtocol, new() {
-			if( Main.netMode != -1 ) {
+			if( Main.netMode != 1 ) {
 				throw new Exception( "Can only send as client." );
 			}
 
@@ -110,7 +111,8 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			var mymod = HamstarHelpersMod.Instance;
-			string name = this.GetType().Name;
+			Type mytype = this.GetType();
+			string name = mytype.Namespace + "." + mytype.Name;
 			ModPacket packet = mymod.GetPacket();
 
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
@@ -123,14 +125,25 @@ namespace HamstarHelpers.Utilities.Network {
 				LogHelpers.Log( ">" + name + " SendRequest " + to_who + ", " + ignore_who );
 			}
 		}
-		
+
+		private void SendRequestReply( int to_who ) {
+			if( Main.netMode == 1 ) {
+				this.SendToServer( false );
+			} else {
+				this.SendToClient( to_who, -1 );
+			}
+		}
+
+		////////////////
+
 		protected void SendToServer( bool sync_to_clients ) {
 			if( Main.netMode != 1 ) {
 				throw new Exception("Not a client.");
 			}
 
 			var mymod = HamstarHelpersMod.Instance;
-			string name = this.GetType().Name;
+			Type mytype = this.GetType();
+			string name = mytype.Namespace + "." + mytype.Name;
 			ModPacket packet = mymod.GetPacket();
 
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
@@ -158,7 +171,8 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			var mymod = HamstarHelpersMod.Instance;
-			string name = this.GetType().Name;
+			Type mytype = this.GetType();
+			string name = mytype.Namespace + "." + mytype.Name;
 			ModPacket packet = mymod.GetPacket();
 
 			packet.Write( PacketProtocol.GetPacketCode( name ) );
@@ -187,12 +201,13 @@ namespace HamstarHelpers.Utilities.Network {
 		/// </summary>
 		/// <param name="writer">Binary data writer.</returns>
 		protected virtual void WriteStream( BinaryWriter writer ) {
+//LogHelpers.Log( "SEND PLZ!! packet: "+this.GetType().Name+", field: "+ string.Join(",",this.OrderedFields.Select(f=>f.Name).ToArray()) );
 			foreach( FieldInfo field in this.OrderedFields ) {
 				object raw_val = field.GetValue( this );
-				Type val_type = field.FieldType;
+				Type field_type = field.FieldType;
 				//dynamic dyn_val = Convert.ChangeType( raw_val, val_type );
 
-				switch( Type.GetTypeCode( val_type ) ) {
+				switch( Type.GetTypeCode( field_type ) ) {
 				case TypeCode.String:
 					writer.Write( (String)raw_val );
 					break;
@@ -221,7 +236,7 @@ namespace HamstarHelpers.Utilities.Network {
 					writer.Write( (Double)raw_val );
 					break;
 				case TypeCode.Char:
-					if( val_type.IsArray ) {
+					if( field_type.IsArray ) {
 						var val = (Char[])raw_val;
 						writer.Write( (Int32)val.Length );
 						writer.Write( val );
@@ -233,7 +248,7 @@ namespace HamstarHelpers.Utilities.Network {
 					writer.Write( (SByte)raw_val );
 					break;
 				case TypeCode.Byte:
-					if( val_type.IsArray ) {
+					if( field_type.IsArray ) {
 						var val = (Byte[])raw_val;
 						writer.Write( (Int32)val.Length );
 						writer.Write( val );
@@ -248,7 +263,9 @@ namespace HamstarHelpers.Utilities.Network {
 					writer.Write( (Decimal)raw_val );
 					break;
 				default:
-					writer.Write( (String)JsonConvert.SerializeObject( raw_val ) );
+					string json_enc_val = JsonConvert.SerializeObject( raw_val );
+
+					writer.Write( (String)json_enc_val );
 					break;
 				}
 			}

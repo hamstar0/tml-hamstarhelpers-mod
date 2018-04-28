@@ -16,7 +16,9 @@ Future?
 
 
 
-v1.5.0
+v1.4.5
+-	@Test Nihilism (including MP)
+-	@Test Reset Mode
 -	Allow unsafe use of the underlying stream in PacketProtocol
 -	Add inbox
 	-	Implement message scrolling

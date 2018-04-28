@@ -7,7 +7,7 @@ using Terraria;
 namespace HamstarHelpers.NetProtocols {
 	class HHPlayerDataProtocol : PacketProtocol {
 		public static void SyncToOtherClients( int from_who, bool has_uid, string uid, ISet<int> perma_buffs_by_id ) {
-			if( Main.netMode != 2 ) { throw new Exception( "Not client" ); }
+			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
 			var protocol = new HHPlayerDataProtocol( from_who, has_uid, uid, perma_buffs_by_id );
 			protocol.SendToServer( true );

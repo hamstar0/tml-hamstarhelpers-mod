@@ -23,7 +23,7 @@ namespace HamstarHelpers.Commands {
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			var mymod = HamstarHelpersMod.Instance;
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( !mymod.Config.ModCallCommandEnabled ) {
 				throw new UsageException( "Mod.Call() command disabled by settings." );
 			}

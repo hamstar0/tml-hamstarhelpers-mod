@@ -8,7 +8,7 @@ namespace HamstarHelpers.NetHelpers {
 			if( Main.netMode != 1 ) {
 				throw new Exception("Only clients can gauge ping.");
 			}
-
+			
 			return HamstarHelpersMod.Instance.NetHelpers.CurrentPing;
 		}
 

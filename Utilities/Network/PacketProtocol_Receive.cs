@@ -2,24 +2,25 @@
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Terraria;
-
+using Terraria.ModLoader;
 
 namespace HamstarHelpers.Utilities.Network {
 	public abstract partial class PacketProtocol {
 		internal void Receive( BinaryReader reader, int from_who ) {
-			var mymod = HamstarHelpersMod.Instance;
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			Type my_type = this.GetType();
 			string name = my_type.Name;
 
 			try {
 				this.ReadStream( reader );
 			} catch( Exception e ) {
-				LogHelpers.Log( "PacketProtocol.Receive - "+e.ToString() );
+				LogHelpers.Log( "PacketProtocol.Receive - " + e.ToString() );
 				return;
 			}
-			
+
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( "<" + name + " Receive: " + json_str );
@@ -29,12 +30,16 @@ namespace HamstarHelpers.Utilities.Network {
 				FieldInfo your_field = my_type.GetField( my_field.Name );
 
 				if( your_field == null ) {
-					LogHelpers.Log( "Missing " + name + " protocol value for " + my_field.Name );
-					continue;
+					LogHelpers.Log( "Missing " + name + " protocol field for " + my_field.Name );
+					return;
 				}
 
 				object val = your_field.GetValue( this );
-
+				
+				if( val == null ) {
+					LogHelpers.Log( "Missing " + name + " protocol value for " + your_field.Name );
+					return;
+				}
 				my_field.SetValue( this, val );
 			}
 			
@@ -59,7 +64,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 
 		internal void ReceiveRequest( int from_who ) {
-			var mymod = HamstarHelpersMod.Instance;
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			string name = this.GetType().Name;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
@@ -96,11 +101,7 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			if( !skip_send ) {
-				if( Main.netMode == 1 ) {
-					this.SendToServer( false );
-				} else {
-					this.SendToClient( from_who, -1 );
-				}
+				this.SendRequestReply( from_who );
 			}
 		}
 
@@ -148,6 +149,7 @@ namespace HamstarHelpers.Utilities.Network {
 		/// </summary>
 		/// <param name="reader">Binary data reader.</returns>
 		protected virtual void ReadStream( BinaryReader reader ) {
+//LogHelpers.Log( "RECEIVE PLZ!! packet: " + this.GetType().Name+", field: "+ string.Join(",",this.OrderedFields.Select(f=>f.Name).ToArray()) );
 			foreach( FieldInfo field in this.OrderedFields ) {
 				Type field_type = field.FieldType;
 
@@ -205,7 +207,9 @@ namespace HamstarHelpers.Utilities.Network {
 					field.SetValue( this, reader.ReadDecimal() );
 					break;
 				default:
-					var json_val = JsonConvert.DeserializeObject( reader.ReadString(), field_type );
+					string raw_json = reader.ReadString();
+					var json_val = JsonConvert.DeserializeObject( raw_json, field_type );
+
 					field.SetValue( this, json_val );
 					break;
 				}

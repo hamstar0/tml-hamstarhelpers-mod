@@ -54,7 +54,9 @@ namespace HamstarHelpers.Utilities.Network {
 
 				try {
 					string name = subclass.Namespace + "." + subclass.Name;
-					protocols[ PacketProtocol.GetPacketCode( name ) ] = subclass;
+					int code = PacketProtocol.GetPacketCode( name );
+
+					protocols[ code ] = subclass;
 				} catch( Exception e ) {
 					LogHelpers.Log( subclass.Name + " - " + e.Message );
 				}
@@ -77,7 +79,7 @@ namespace HamstarHelpers.Utilities.Network {
 				throw new Exception( "Unrecognized packet." );
 			}
 
-			Type protocol_type = mymod.PacketProtocols[protocol_hash];
+			Type protocol_type = mymod.PacketProtocols[ protocol_hash ];
 
 			try {
 				PacketProtocol protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
@@ -111,9 +113,9 @@ namespace HamstarHelpers.Utilities.Network {
 		private IOrderedEnumerable<FieldInfo> OrderedFields {
 			get {
 				if( this._OrderedFields == null ) {
-					FieldInfo[] fields = this.GetType().GetFields( BindingFlags.Public | BindingFlags.Instance );
-					this._OrderedFields = fields.Where( f => f.FieldType.IsPrimitive )
-						.OrderByDescending( x => x.Name );
+					Type mytype = this.GetType();
+					FieldInfo[] fields = mytype.GetFields( BindingFlags.Public | BindingFlags.Instance );
+					this._OrderedFields = fields.OrderByDescending( x => x.Name );  //Where( f => f.FieldType.IsPrimitive )
 				}
 				return this._OrderedFields;
 			}

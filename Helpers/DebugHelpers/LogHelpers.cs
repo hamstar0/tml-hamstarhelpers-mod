@@ -11,10 +11,10 @@ namespace HamstarHelpers.DebugHelpers {
 
 
 		public static void Log( string msg ) {
-			var mymod = (HamstarHelpersMod)ModLoader.GetMod( "HamstarHelpers" );
-			var log_helpers = mymod.LogHelpers;
-
 			try {
+				HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+				var log_helpers = mymod.LogHelpers;
+
 				double now_seconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds - log_helpers.StartTime;
 
 				string now_seconds_whole = ( (int)now_seconds ).ToString( "D6" );
