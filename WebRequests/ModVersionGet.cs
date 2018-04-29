@@ -29,7 +29,7 @@ namespace HamstarHelpers.WebRequests {
 					if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
 						on_success( mymod.ModVersionGet.ModVersions[ mod.Name ] );
 					} else {
-						throw new Exception( "GetLatestKnownVersion - Unrecognized mod" );
+						throw new Exception( "GetLatestKnownVersion - Unrecognized mod (not found on mod browser)" );
 					}
 				} catch( Exception e ) {
 					on_fail( e );

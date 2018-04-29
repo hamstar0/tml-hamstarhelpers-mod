@@ -127,7 +127,7 @@ namespace HamstarHelpers.Logic {
 			}
 
 			// Update ping every 15 seconds
-			if( this.TestPing++ > (60*15) ) {
+			if( mymod.Config.IsServerGaugingAveragePing && this.TestPing++ > (60*15) ) {
 				PacketProtocol.QuickSendToServer<HHPingProtocol>();
 				this.TestPing = 0;
 			}

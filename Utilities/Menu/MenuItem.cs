@@ -12,7 +12,7 @@ namespace HamstarHelpers.Utilities.Menu {
 			var mymod = HamstarHelpersMod.Instance;
 			var item = new MenuItem( text, offset_y, menu_context, my_action );
 
-			mymod.MenuItemMngr.Items[ item.GetHashCode() ] = item;
+			mymod.MenuItemMngr.Items[ text+"."+menu_context+"."+offset_y ] = item;
 		}
 
 
@@ -167,7 +167,7 @@ namespace HamstarHelpers.Utilities.Menu {
 
 
 	class MenuItemManager {
-		internal IDictionary<int, MenuItem> Items = new Dictionary<int, MenuItem>();
+		internal IDictionary<string, MenuItem> Items = new Dictionary<string, MenuItem>();
 
 		
 		////////////////

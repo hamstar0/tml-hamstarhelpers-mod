@@ -49,7 +49,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 			foreach( Type subclass in subclasses ) {
 				if( HamstarHelpersMod.Instance.Config.DebugModeNetInfo ) {
-					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + subclass.Name );
+					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + subclass.Namespace+"."+subclass.Name );
 				}
 
 				try {

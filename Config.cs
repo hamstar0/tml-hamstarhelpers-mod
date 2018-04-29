@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 4, 5); } }
+		public static Version ConfigVersion { get { return new Version(1, 4, 6); } }
 		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
 
 
@@ -42,6 +42,8 @@ namespace HamstarHelpers {
 
 		public int InboxIconPosX = 2;
 		public int InboxIconPosY = 80;
+
+		public bool IsServerGaugingAveragePing = true;
 
 
 
