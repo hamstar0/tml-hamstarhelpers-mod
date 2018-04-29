@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.DebugHelpers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System;
@@ -11,8 +12,9 @@ namespace HamstarHelpers.Utilities.Menu {
 		public static void AddMenuItem( string text, int offset_y, int menu_context, Action my_action ) {
 			var mymod = HamstarHelpersMod.Instance;
 			var item = new MenuItem( text, offset_y, menu_context, my_action );
-
-			mymod.MenuItemMngr.Items[ text+"."+menu_context+"."+offset_y ] = item;
+			string key = text + "." + offset_y + "." + menu_context;
+			
+			mymod.MenuItemMngr.Items[ key ] = item;
 		}
 
 
@@ -174,14 +176,14 @@ namespace HamstarHelpers.Utilities.Menu {
 
 		public MenuItemManager() {
 			if( !Main.dedServ ) {
-				Main.OnPostDraw += this.Draw;
+				Main.OnPostDraw += MenuItemManager._Draw;
 			}
 		}
 
 		~MenuItemManager() {
 			try {
 				if( !Main.dedServ ) {
-					Main.OnPostDraw -= this.Draw;
+					Main.OnPostDraw -= MenuItemManager._Draw;
 				}
 			} catch { }
 		}
@@ -196,9 +198,9 @@ namespace HamstarHelpers.Utilities.Menu {
 		}
 
 		private void Draw( GameTime game_time ) {
-			foreach( var kv in this.Items ) {
-				if( kv.Value.MenuContext == Main.menuMode ) {
-					kv.Value.Draw();
+			foreach( MenuItem item in this.Items.Values ) {
+				if( item.MenuContext == Main.menuMode ) {
+					item.Draw();
 				}
 			}
 		}
