@@ -13,7 +13,15 @@ namespace HamstarHelpers.TmlHelpers {
 
 			try {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-				class_types = from t in assemblies.SelectMany( a => a.GetTypes() )
+				Func<Assembly, IEnumerable<Type>> select_many = delegate( Assembly a ) {
+					try {
+						return a.GetTypes();
+					} catch {
+						return new List<Type>();
+					}
+				};
+
+				class_types = from t in assemblies.SelectMany( select_many )
 							  where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
 							  select t;
 			} catch( Exception e ) {
