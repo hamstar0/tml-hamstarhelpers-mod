@@ -44,6 +44,7 @@ namespace HamstarHelpers {
 		public int InboxIconPosY = 80;
 
 		public bool IsServerGaugingAveragePing = true;
+		public bool IsCheckingModVersions = true;
 
 
 

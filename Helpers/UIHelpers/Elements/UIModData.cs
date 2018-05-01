@@ -50,12 +50,14 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.HasIconLoaded = false;
 			this.LatestAvailableVersion = default( Version );
 
-			BuildPropertiesEditor props = modfile != null ?
-				BuildPropertiesEditor.GetBuildPropertiesForModFile( modfile ) :
-				(BuildPropertiesEditor)null;
-			if( props != null ) {
-				this.Author = (string)props.GetField( "author" );
-				this.HomepageUrl = (string)props.GetField( "homepage" );
+			if( HamstarHelpersMod.Instance.Config.IsCheckingModVersions ) {
+				BuildPropertiesEditor props = modfile != null ?
+					BuildPropertiesEditor.GetBuildPropertiesForModFile( modfile ) :
+					(BuildPropertiesEditor)null;
+				if( props != null ) {
+					this.Author = (string)props.GetField( "author" );
+					this.HomepageUrl = (string)props.GetField( "homepage" );
+				}
 			}
 			
 			// Container

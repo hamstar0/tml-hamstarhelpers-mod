@@ -10,15 +10,17 @@ namespace HamstarHelpers.TmlHelpers {
 	public class BuildPropertiesEditor {
 			public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
 			IEnumerable<Type> class_types;
+
 			try {
-				class_types = from t in AppDomain.CurrentDomain.GetAssemblies()
-							  .SelectMany( t => t.GetTypes() )
+				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+				class_types = from t in assemblies.SelectMany( a => a.GetTypes() )
 							  where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
 							  select t;
 			} catch( Exception e ) {
 				LogHelpers.Log( "BuildPropertiesEditor.GetBuildPropertiesForModFile - " + e.ToString() );
 				return (BuildPropertiesEditor)null;
 			}
+
 			if( class_types.Count() == 0 ) {
 				return (BuildPropertiesEditor)null;
 			}
