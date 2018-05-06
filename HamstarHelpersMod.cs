@@ -47,7 +47,11 @@ namespace HamstarHelpers {
 
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
 			try {
-				PacketProtocol.HandlePacket( reader, player_who );
+				if( Main.netMode == 1 ) {
+					PacketProtocol.HandlePacketOnClient( reader, player_who );
+				} else if( Main.netMode == 2 ) {
+					PacketProtocol.HandlePacketOnServer( reader, player_who );
+				}
 			} catch( Exception e ) {
 				DebugHelpers.LogHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
 			}

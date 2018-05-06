@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Terraria;
 using Terraria.ModLoader;
 
 
@@ -68,12 +67,11 @@ namespace HamstarHelpers.Utilities.Network {
 
 		////////////////
 
-		internal static void HandlePacket( BinaryReader reader, int player_who ) {
+		internal static void HandlePacketOnClient( BinaryReader reader, int player_who ) {
 			var mymod = HamstarHelpersMod.Instance;
 
 			int protocol_hash = reader.ReadInt32();
 			bool is_request = reader.ReadBoolean();
-			bool is_synced_to_clients = Main.netMode == 2 ? reader.ReadBoolean() : false;
 
 			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
 				throw new Exception( "Unrecognized packet." );
@@ -85,14 +83,38 @@ namespace HamstarHelpers.Utilities.Network {
 				PacketProtocol protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
 
 				if( is_request ) {
-					protocol.ReceiveRequest( player_who );
+					protocol.ReceiveBaseRequestOnClient();
 				} else {
-					protocol.Receive( reader, player_who );
+					protocol.ReceiveBaseOnClient( reader, player_who );
+				}
+			} catch( Exception e ) {
+				throw new Exception( protocol_type.Name + " - " + e.ToString() );
+			}
+		}
 
-					if( Main.netMode == 2 ) {
-						if( is_synced_to_clients ) {
-							protocol.SendToClient( -1, player_who );
-						}
+		internal static void HandlePacketOnServer( BinaryReader reader, int player_who ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			int protocol_hash = reader.ReadInt32();
+			bool is_request = reader.ReadBoolean();
+			bool is_synced_to_clients = reader.ReadBoolean();
+
+			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
+				throw new Exception( "Unrecognized packet." );
+			}
+
+			Type protocol_type = mymod.PacketProtocols[protocol_hash];
+
+			try {
+				PacketProtocol protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
+
+				if( is_request ) {
+					protocol.ReceiveBaseRequestOnServer( player_who );
+				} else {
+					protocol.ReceiveBaseOnServer( reader, player_who );
+
+					if( is_synced_to_clients ) {
+						protocol.SendToClient( -1, player_who );
 					}
 				}
 			} catch( Exception e ) {
@@ -129,11 +151,11 @@ namespace HamstarHelpers.Utilities.Network {
 		////////////////
 
 		public virtual void SetClientDefaults() {
-			throw new NotImplementedException();
+			throw new NotImplementedException( "No SetClientDefaults" );
 		}
 
 		public virtual void SetServerDefaults() {
-			throw new NotImplementedException();
+			throw new NotImplementedException( "No SetServerDefaults" );
 		}
 	}
 }

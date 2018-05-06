@@ -122,6 +122,7 @@
     <Compile Include="Utilities\Menu\MenuItem.cs" />
     <Compile Include="Utilities\Messages\InboxMessages.cs" />
     <Compile Include="Utilities\Network\PacketProtocol_Obsolete.cs" />
+    <Compile Include="Utilities\Network\PacketProtocol_Stream.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
     <Compile Include="WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />

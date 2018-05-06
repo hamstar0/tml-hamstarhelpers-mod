@@ -38,25 +38,25 @@ namespace HamstarHelpers.MiscHelpers {
 
 		////////////////
 
-		public static T LoadJson<T>( Mod mod, string name, out bool success ) where T : class {
-			DataFileHelpers.PrepareDir( mod, name );
+		public static T LoadJson<T>( Mod mod, string name_only, out bool success ) where T : class {
+			DataFileHelpers.PrepareDir( mod, name_only );
 
 			string rel_dir = DataFileHelpers.GetRelativeDirectoryPath( mod );
 			success = false;
 
 			try {
-				var json_file = new JsonConfig<T>( name + ".json", rel_dir );
+				var json_file = new JsonConfig<T>( name_only + ".json", rel_dir );
 				success = json_file.LoadFile();
 
 				return json_file.Data;
 			} catch( IOException e ) {
 				string full_dir = DataFileHelpers.GetFullDirectoryPath( mod );
-				throw new IOException( "Failed to load json file " + name + " at " + full_dir, e );
+				throw new IOException( "Failed to load json file " + name_only + " at " + full_dir, e );
 			}
 		}
 
-		public static T LoadBinary<T>( Mod mod, string name, out bool success ) where T : class {
-			DataFileHelpers.PrepareDir( mod, name );
+		public static T LoadBinary<T>( Mod mod, string name_only, out bool success ) where T : class {
+			DataFileHelpers.PrepareDir( mod, name_only );
 
 			string full_dir = DataFileHelpers.GetFullDirectoryPath( mod );
 			success = false;
@@ -64,34 +64,34 @@ namespace HamstarHelpers.MiscHelpers {
 			try {
 				return FileHelpers.LoadBinaryFile<T>( full_dir, false );
 			} catch( IOException e ) {
-				throw new IOException( "Failed to load binary file "+name+" at " + full_dir, e );
+				throw new IOException( "Failed to load binary file "+name_only+" at " + full_dir, e );
 			}
 		}
 
 		////////////////
 		
-		public static void SaveAsJson<T>( Mod mod, string name, T data ) where T : class {
-			DataFileHelpers.PrepareDir( mod, name );
+		public static void SaveAsJson<T>( Mod mod, string name_only, T data ) where T : class {
+			DataFileHelpers.PrepareDir( mod, name_only );
 
 			string rel_dir = DataFileHelpers.GetRelativeDirectoryPath( mod );
 
 			try {
-				var json_file = new JsonConfig<T>( name + ".json", rel_dir, data );
+				var json_file = new JsonConfig<T>( name_only + ".json", rel_dir, data );
 				json_file.SaveFile();
 			} catch( IOException e ) {
-				throw new IOException( "Failed to save json file " + name + " at " + rel_dir, e );
+				throw new IOException( "Failed to save json file " + name_only + " at " + rel_dir, e );
 			}
 		}
 
-		public static void SaveAsBinary<T>( Mod mod, string name, T data ) where T : class {
-			DataFileHelpers.PrepareDir( mod, name );
+		public static void SaveAsBinary<T>( Mod mod, string name_only, T data ) where T : class {
+			DataFileHelpers.PrepareDir( mod, name_only );
 
 			string full_dir = DataFileHelpers.GetFullDirectoryPath( mod );
 
 			try {
 				FileHelpers.SaveBinaryFile<T>( data, full_dir, false, false );
 			} catch( IOException e ) {
-				throw new IOException( "Failed to save binary file " + name + " at " + full_dir, e );
+				throw new IOException( "Failed to save binary file " + name_only + " at " + full_dir, e );
 			}
 		}
 	}
