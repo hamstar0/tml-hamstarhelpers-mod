@@ -42,7 +42,6 @@ namespace HamstarHelpers {
 		internal TmlHelpers.TmlLoadHelpers TmlLoadHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
-		//internal UserHelpers.UserHelpers UserHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
@@ -109,7 +108,6 @@ namespace HamstarHelpers {
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
 			this.ControlPanel = new ControlPanel.UIControlPanel();
-			//this.UserHelpers = new UserHelpers.UserHelpers();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 			this.PlayerMessages = new PlayerMessages();
 			this.Inbox = new InboxControl();
@@ -147,11 +145,6 @@ namespace HamstarHelpers {
 				}
 			} catch { }
 
-			//this.Timers.Unload();
-			//this.TmlLoadHelpers.Unload();
-			//this.MenuItemMngr.Unload();
-			//this.Inbox.Unload();
-
 			this.Timers = null;
 			this.JsonConfig = null;
 			this.PacketProtocols = null;
@@ -186,11 +179,6 @@ namespace HamstarHelpers {
 		public override void PostSetupContent() {
 			this.PacketProtocols = PacketProtocol.GetProtocols();
 
-			//this.ItemIdentityHelpers.PopulateNames();
-			//this.NPCIdentityHelpers.PopulateNames();
-			//this.ProjectileIdentityHelpers.PopulateNames();
-			//this.BuffIdentityHelpers.PopulateNames();
-
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
@@ -215,7 +203,7 @@ namespace HamstarHelpers {
 		public override void AddRecipeGroups() {
 			NPCBannerHelpers.InitializeBanners();
 
-			foreach( var kv in HamstarHelpers.RecipeHelpers.RecipeHelpers.GetRecipeGroups() ) {
+			foreach( var kv in HamstarHelpers.RecipeHelpers.RecipeHelpers.Groups ) {
 				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
 

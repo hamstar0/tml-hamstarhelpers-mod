@@ -82,6 +82,7 @@
     <Compile Include="Helpers\EntityHelpers\EntityHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\FileHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups_Obsolete.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Id.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
     <Compile Include="Helpers\MiscHelpers\InfoHelpers.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Helpers\PlayerHelpers\PlayerItemFinderHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
+    <Compile Include="Helpers\RecipeHelpers\RecipeHelpers_Obsolete.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />

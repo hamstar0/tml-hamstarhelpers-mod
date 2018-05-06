@@ -28,14 +28,20 @@ namespace HamstarHelpers.Commands {
 				throw new UsageException( "Mod.Call() command disabled by settings." );
 			}
 
-			if( args.Length < 2 ) { throw new UsageException( "Invald argument quantity ("+ args.Length +": "+string.Join(", ", args)+ ")" ); }
+			if( args.Length < 2 ) {
+				if( args.Length == 0 ) {
+					throw new UsageException( "No arguments given." );
+				} else {
+					throw new UsageException( "More arguments needed." );
+				}
+			}
 
 			Mod callmod = null;
 			try {
 				callmod = ModLoader.GetMod( args[0] );
-				if( callmod == null ) { throw new Exception( "Invalid mod name." ); }
+				if( callmod == null ) { throw new Exception(); }
 			} catch( Exception ) {
-				throw new UsageException( "Invald mod name argument." );
+				throw new UsageException( "Invald mod name "+args[0] );
 			}
 
 			try {
