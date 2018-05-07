@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace HamstarHelpers.ItemHelpers {
 	public static class ItemMusicBoxHelpers {
-		public static ISet<int> GetVanillaMusicBoxes() {
+		public static ISet<int> GetVanillaMusicBoxItemIds() {
 			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,
 				ItemID.MusicBoxAltUnderground,
 				ItemID.MusicBoxBoss1,
@@ -47,61 +47,113 @@ namespace HamstarHelpers.ItemHelpers {
 				ItemID.MusicBoxUndergroundHallow };
 		}
 
-		[System.Obsolete( "no mod support yet", false )]
+		public static int GetMusicTypeOfVanillaMusicBox( int item_type ) {
+			switch( item_type ) {
+			case ItemID.MusicBoxOverworldDay:
+				return 1;
+			case ItemID.MusicBoxEerie:
+				return 2;
+			case ItemID.MusicBoxNight:
+				return 3;
+			case ItemID.MusicBoxUnderground:
+				return 4;
+			case ItemID.MusicBoxBoss1:
+				return 5;
+			case ItemID.MusicBoxTitle:
+				return 6;
+			case ItemID.MusicBoxJungle:
+				return 7;
+			case ItemID.MusicBoxCorruption:
+				return 8;
+			case ItemID.MusicBoxTheHallow:
+				return 9;
+			case ItemID.MusicBoxUndergroundCorruption:
+				return 10;
+			case ItemID.MusicBoxUndergroundHallow:
+				return 11;
+			case ItemID.MusicBoxBoss2:
+				return 12;
+			case ItemID.MusicBoxBoss3:
+				return 13;
+			case ItemID.MusicBoxSnow:
+				return 14;
+			case ItemID.MusicBoxSpace:
+				return 15;
+			case ItemID.MusicBoxCrimson:
+				return 16;
+			case ItemID.MusicBoxBoss4:
+				return 17;
+			case ItemID.MusicBoxAltOverworldDay:
+				return 18;
+			case ItemID.MusicBoxRain:
+				return 19;
+			case ItemID.MusicBoxIce:
+				return 20;
+			case ItemID.MusicBoxDesert:
+				return 21;
+			case ItemID.MusicBoxOcean:
+				return 22;
+			case ItemID.MusicBoxDungeon:
+				return 23;
+			case ItemID.MusicBoxPlantera:
+				return 24;
+			case ItemID.MusicBoxBoss5:
+				return 25;
+			case ItemID.MusicBoxTemple:
+				return 26;
+			case ItemID.MusicBoxEclipse:
+				return 27;
+			//return 28; Pumpkin moon?
+			case ItemID.MusicBoxMushrooms:
+				return 29;
+			case ItemID.MusicBoxPumpkinMoon:
+				return 30;
+			case ItemID.MusicBoxAltUnderground:
+				return 31;
+			case ItemID.MusicBoxFrostMoon:
+				return 32;
+			case ItemID.MusicBoxUndergroundCrimson:
+				return 33;
+			case ItemID.MusicBoxTowers:
+				return 34;
+			case ItemID.MusicBoxPirates:
+				return 35;
+			case ItemID.MusicBoxHell:
+				return 36;
+			case ItemID.MusicBoxMartians:
+				return 37;
+			case ItemID.MusicBoxLunarBoss:
+				return 38;
+			case ItemID.MusicBoxGoblins:
+				return 39;
+			case ItemID.MusicBoxSandstorm:
+				return 40;
+			case ItemID.MusicBoxDD2:
+				return 41;
+			default:
+				return 0;
+			}
+		}
+
+
+
+		////////////////
+
+		[System.Obsolete( "no mod support yet", true )]
 		public static ISet<int> GetMusicBoxes() {
 			return ItemMusicBoxHelpers.GetVanillaMusicBoxes();
 		}
 
 
-		[System.Obsolete( "use ItemMusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", false )]
+		[System.Obsolete( "use ItemMusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
 		public static int GetMusicTypeOfMusicBox( int item_type ) {
 			return ItemMusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
 		}
-		public static int GetMusicTypeOfVanillaMusicBox( int item_type ) {
-			switch( item_type ) {
-			case ItemID.MusicBoxOverworldDay: return 1;
-			case ItemID.MusicBoxEerie: return 2;
-			case ItemID.MusicBoxNight: return 3;
-			case ItemID.MusicBoxUnderground: return 4;
-			case ItemID.MusicBoxBoss1: return 5;
-			case ItemID.MusicBoxTitle: return 6;
-			case ItemID.MusicBoxJungle: return 7;
-			case ItemID.MusicBoxCorruption: return 8;
-			case ItemID.MusicBoxTheHallow: return 9;
-			case ItemID.MusicBoxUndergroundCorruption: return 10;
-			case ItemID.MusicBoxUndergroundHallow: return 11;
-			case ItemID.MusicBoxBoss2: return 12;
-			case ItemID.MusicBoxBoss3: return 13;
-			case ItemID.MusicBoxSnow: return 14;
-			case ItemID.MusicBoxSpace: return 15;
-			case ItemID.MusicBoxCrimson: return 16;
-			case ItemID.MusicBoxBoss4: return 17;
-			case ItemID.MusicBoxAltOverworldDay: return 18;
-			case ItemID.MusicBoxRain: return 19;
-			case ItemID.MusicBoxIce: return 20;
-			case ItemID.MusicBoxDesert: return 21;
-			case ItemID.MusicBoxOcean: return 22;
-			case ItemID.MusicBoxDungeon: return 23;
-			case ItemID.MusicBoxPlantera: return 24;
-			case ItemID.MusicBoxBoss5: return 25;
-			case ItemID.MusicBoxTemple: return 26;
-			case ItemID.MusicBoxEclipse: return 27;
-			//return 28; Pumpkin moon?
-			case ItemID.MusicBoxMushrooms: return 29;
-			case ItemID.MusicBoxPumpkinMoon: return 30;
-			case ItemID.MusicBoxAltUnderground: return 31;
-			case ItemID.MusicBoxFrostMoon: return 32;
-			case ItemID.MusicBoxUndergroundCrimson: return 33;
-			case ItemID.MusicBoxTowers: return 34;
-			case ItemID.MusicBoxPirates: return 35;
-			case ItemID.MusicBoxHell: return 36;
-			case ItemID.MusicBoxMartians: return 37;
-			case ItemID.MusicBoxLunarBoss: return 38;
-			case ItemID.MusicBoxGoblins: return 39;
-			case ItemID.MusicBoxSandstorm: return 40;
-			case ItemID.MusicBoxDD2: return 41;
-			default: return 0;
-			}
+
+
+		[System.Obsolete( "use ItemMusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
+		public static ISet<int> GetVanillaMusicBoxes() {
+			return ItemMusicBoxHelpers.GetVanillaMusicBoxItemIds();
 		}
 	}
 }

@@ -1,9 +1,50 @@
-﻿using System;
+﻿using HamstarHelpers.NPCHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Terraria.ID;
 
 
 namespace HamstarHelpers.ItemHelpers {
 	public partial class ItemIdentityHelpers {
+		public static IDictionary<string, Tuple<string, int[]>> GetCommonItemGroups() {
+			IEnumerable<FieldInfo> item_grp_fields = typeof( ItemIdentityHelpers ).GetFields( BindingFlags.Static | BindingFlags.Public );
+			item_grp_fields = item_grp_fields.Where( field => {
+				return field.FieldType == typeof( Tuple<string, int[]> );
+			} );
+
+			var groups = item_grp_fields.ToDictionary(
+				field => field.Name,
+				field => (Tuple<string, int[]>)field.GetValue( null )
+			);
+			groups["NpcBanners"] = ItemIdentityHelpers.MobBanners;
+			groups["RecordedMusicBoxes"] = ItemIdentityHelpers.VanillaRecordedMusicBoxes;
+
+			return groups;
+		}
+
+
+		////////////////
+
+		public static Tuple<string, int[]> MobBanners {
+			get {
+				return Tuple.Create(
+				   "Mob Banners",
+				   NPCBannerHelpers.GetBannerItemTypes().ToArray()
+			   );
+			}
+		}
+
+		public static Tuple<string, int[]> VanillaRecordedMusicBoxes {
+			get {
+				return Tuple.Create(
+				   "Recorded Music Box (vanilla)",
+				   ItemMusicBoxHelpers.GetVanillaMusicBoxItemIds().ToArray()
+			   );
+			}
+		}
+
 		public static readonly Tuple<string, int[]> EvilBiomeBossChunks = Tuple.Create(
 			"Evil Biome Boss Chunk",
 			new int[] { ItemID.ShadowScale, ItemID.TissueSample }
