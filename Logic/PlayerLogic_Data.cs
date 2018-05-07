@@ -13,7 +13,6 @@ namespace HamstarHelpers.Logic {
 			this.HasSyncedModSettings = false;
 			this.HasSyncedModData = false;
 			this.PermaBuffsById = new HashSet<int>();
-LogHelpers.Log("NO UID");
 		}
 
 		
@@ -31,7 +30,6 @@ LogHelpers.Log("NO UID");
 				this.PermaBuffsById = new HashSet<int>( perma_buffs.ToArray() );
 			}
 			
-LogHelpers.Log("HAS UID");
 			this.HasUID = true;
 		}
 
@@ -57,7 +55,6 @@ LogHelpers.Log("HAS UID");
 			this.HasUID = has_uid;
 			this.PrivateUID = uid;
 			this.PermaBuffsById = perma_buff_ids;
-LogHelpers.Log("HAS UID? "+has_uid);
 		}
 	}
 }

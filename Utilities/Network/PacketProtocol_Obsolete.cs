@@ -95,22 +95,22 @@ namespace HamstarHelpers.Utilities.Network {
 
 		[System.Obsolete( "use ReceiveWithClient()", false )]
 		public virtual void ReceiveOnClient() {
-			throw new NotImplementedException();
+			throw new NotImplementedException( "No ReceiveOnClient" );
 		}
 
 		[System.Obsolete( "use ReceiveWithServer()", false )]
 		public virtual void ReceiveOnServer( int from_who ) {
-			throw new NotImplementedException();
+			throw new NotImplementedException( "No ReceiveOnServer" );
 		}
 
 		[System.Obsolete( "use ReceiveRequestWithClient()", false )]
 		public virtual bool ReceiveRequestOnClient() {
-			return false;
+			throw new NotImplementedException( "No ReceiveRequestOnClient" );
 		}
 
 		[System.Obsolete( "use ReceiveRequestWithServer()", false )]
 		public virtual bool ReceiveRequestOnServer( int from_who ) {
-			return false;
+			throw new NotImplementedException( "No ReceiveRequestOnServer" );
 		}
 	}
 }
