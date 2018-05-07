@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -48,7 +47,8 @@ namespace HamstarHelpers.Utilities.Network {
 
 			foreach( Type subclass in subclasses ) {
 				if( HamstarHelpersMod.Instance.Config.DebugModeNetInfo ) {
-					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + subclass.Namespace+"."+subclass.Name );
+					string name = subclass.Namespace + "." + subclass.Name;
+					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + name );
 				}
 
 				try {
@@ -62,64 +62,6 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			return protocols;
-		}
-
-
-		////////////////
-
-		internal static void HandlePacketOnClient( BinaryReader reader, int player_who ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			int protocol_hash = reader.ReadInt32();
-			bool is_request = reader.ReadBoolean();
-
-			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
-				throw new Exception( "Unrecognized packet." );
-			}
-
-			Type protocol_type = mymod.PacketProtocols[ protocol_hash ];
-
-			try {
-				PacketProtocol protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
-
-				if( is_request ) {
-					protocol.ReceiveBaseRequestOnClient();
-				} else {
-					protocol.ReceiveBaseOnClient( reader, player_who );
-				}
-			} catch( Exception e ) {
-				throw new Exception( protocol_type.Name + " - " + e.ToString() );
-			}
-		}
-
-		internal static void HandlePacketOnServer( BinaryReader reader, int player_who ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			int protocol_hash = reader.ReadInt32();
-			bool is_request = reader.ReadBoolean();
-			bool is_synced_to_clients = reader.ReadBoolean();
-
-			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
-				throw new Exception( "Unrecognized packet." );
-			}
-
-			Type protocol_type = mymod.PacketProtocols[protocol_hash];
-
-			try {
-				PacketProtocol protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
-
-				if( is_request ) {
-					protocol.ReceiveBaseRequestOnServer( player_who );
-				} else {
-					protocol.ReceiveBaseOnServer( reader, player_who );
-
-					if( is_synced_to_clients ) {
-						protocol.SendToClient( -1, player_who );
-					}
-				}
-			} catch( Exception e ) {
-				throw new Exception( protocol_type.Name + " - " + e.ToString() );
-			}
 		}
 
 
@@ -147,6 +89,15 @@ namespace HamstarHelpers.Utilities.Network {
 		////////////////
 
 		public PacketProtocol() { }
+
+
+		////////////////
+
+		public string GetPacketName() {
+			var mytype = this.GetType();
+			return mytype.Namespace + "." + mytype.Name;
+		}
+
 
 		////////////////
 

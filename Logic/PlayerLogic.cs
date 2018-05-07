@@ -55,8 +55,7 @@ namespace HamstarHelpers.Logic {
 
 		public void OnEnterWorldForClient( HamstarHelpersMod mymod, Player player ) {
 			HHPlayerDataProtocol.SyncToOtherClients( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById );
-
-			PacketProtocol.QuickRequestToServer<HHPlayerDataProtocol>();
+			
 			PacketProtocol.QuickRequestToServer<HHModSettingsProtocol>();
 			PacketProtocol.QuickRequestToServer<HHModDataProtocol>();
 

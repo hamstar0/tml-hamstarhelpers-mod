@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.ItemHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using Terraria;
 namespace HamstarHelpers.RecipeHelpers {
 	public partial class RecipeHelpers {
 		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
-			IDictionary<string, RecipeGroup> groups;
+			IDictionary<string, RecipeGroup> groups = null;
 
 			try {
 				IEnumerable<FieldInfo> item_grp_fields = typeof( ItemIdentityHelpers ).GetFields( BindingFlags.Static | BindingFlags.Public );

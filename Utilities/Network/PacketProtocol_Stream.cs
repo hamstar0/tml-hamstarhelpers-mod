@@ -3,10 +3,41 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Reflection;
+using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Utilities.Network {
 	public abstract partial class PacketProtocol {
+		private ModPacket GetClientPacket( bool is_request, bool sync_to_all ) {
+			if( Main.netMode != 1 ) { throw new Exception("Not a client"); }
+
+			string name = this.GetPacketName();
+			var packet = HamstarHelpersMod.Instance.GetPacket();
+
+			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
+			packet.Write( is_request );
+			packet.Write( sync_to_all );
+
+			return packet;
+		}
+
+
+		private ModPacket GetServerPacket( bool is_request ) {
+			if( Main.netMode != 2 ) { throw new Exception( "Not a server" ); }
+
+			string name = this.GetPacketName();
+			var packet = HamstarHelpersMod.Instance.GetPacket();
+
+			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
+			packet.Write( is_request );
+
+			return packet;
+		}
+		
+		////////////////
+
+
 		/// <summary>
 		/// Implements internal low level data reading for packet receipt.
 		/// </summary>

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Utilities.Network;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Utilities.Network;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -14,7 +15,7 @@ namespace HamstarHelpers.NetProtocols {
 		}
 
 		public static void SendToClient( int from_who, bool has_uid, string uid, ISet<int> perma_buffs_by_id ) {
-			if( Main.netMode != 2 ) { throw new Exception("Not server"); }
+			if( Main.netMode != 2 ) { throw new Exception( "Not server" ); }
 
 			var protocol = new HHPlayerDataProtocol( from_who, has_uid, uid, perma_buffs_by_id );
 			protocol.SendToClient( -1, -1 );
@@ -58,8 +59,9 @@ namespace HamstarHelpers.NetProtocols {
 			Player player = Main.player[from_who];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
-			myplayer.Logic.NetReceive( this.HasUID, this.PrivateUID, this.PermaBuffsById );
+			myplayer.Logic.NetReceiveServer( this.HasUID, this.PrivateUID, this.PermaBuffsById );
 
+			// Empty this data so we don't retransmit it to clients
 			this.HasUID = false;
 			this.PrivateUID = "";
 		}
@@ -68,22 +70,22 @@ namespace HamstarHelpers.NetProtocols {
 			Player player = Main.player[this.PlayerWho];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
-			myplayer.Logic.NetReceive( this.PermaBuffsById );
+			myplayer.Logic.NetReceiveClient( this.PermaBuffsById );
 		}
 
 		////////////////
 
-		protected override bool ReceiveRequestWithServer( int from_who ) {
+		/*protected override bool ReceiveRequestWithServer( int from_who ) {
 			for( int i = 0; i < Main.player.Length; i++ ) {
 				Player player = Main.player[i];
 				if( player == null || !player.active ) { continue; }
 				var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 				
-				var plr_data = new HHPlayerDataProtocol( i, myplayer.Logic.PermaBuffsById );
-				plr_data.SendToClient( from_who, -1 );
+				var protocol = new HHPlayerDataProtocol( i, myplayer.Logic.PermaBuffsById );
+				protocol.SendToClient( from_who, -1 );
 			}
 
 			return true;
-		}
+		}*/
 	}
 }

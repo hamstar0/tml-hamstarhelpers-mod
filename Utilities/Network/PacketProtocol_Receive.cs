@@ -9,25 +9,26 @@ namespace HamstarHelpers.Utilities.Network {
 	public abstract partial class PacketProtocol {
 		private void ReceiveBaseEither( BinaryReader reader, int from_who ) {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
-			Type my_type = this.GetType();
-			string name = my_type.Name;
+			Type mytype = this.GetType();
 
 			try {
 				this.ReadStream( reader );
 			} catch( Exception e ) {
-				LogHelpers.Log( "PacketProtocol.ReceiveBaseEither - " + e.ToString() );
+				LogHelpers.Log( "Stream read error - " + e.ToString() );
 				return;
 			}
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+				string name = mytype.Namespace + "." + mytype.Name;
 				string json_str = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( "<" + name + " ReceiveBaseEither: " + json_str );
 			}
 
-			foreach( FieldInfo my_field in my_type.GetFields() ) {
-				FieldInfo your_field = my_type.GetField( my_field.Name );
+			foreach( FieldInfo my_field in mytype.GetFields() ) {
+				FieldInfo your_field = mytype.GetField( my_field.Name );
 
 				if( your_field == null ) {
+					string name = mytype.Namespace + "." + mytype.Name;
 					LogHelpers.Log( "Missing " + name + " protocol field for " + my_field.Name );
 					return;
 				}
@@ -35,6 +36,7 @@ namespace HamstarHelpers.Utilities.Network {
 				object val = your_field.GetValue( this );
 
 				if( val == null ) {
+					string name = mytype.Namespace + "." + mytype.Name;
 					LogHelpers.Log( "Missing " + name + " protocol value for " + your_field.Name );
 					return;
 				}
@@ -56,6 +58,8 @@ namespace HamstarHelpers.Utilities.Network {
 		}
 
 		private void ReceiveBaseOnServer( BinaryReader reader, int from_who ) {
+			this.ReceiveBaseEither( reader, from_who );
+
 			try {
 #pragma warning disable 612, 618
 				this.ReceiveOnServer( from_who );
@@ -65,13 +69,15 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 		}
 
+
 		////////
 
 		private void ReceiveBaseRequestOnClient() {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
-			string name = this.GetType().Name;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+				Type mytype = this.GetType();
+				string name = mytype.Namespace + "." + mytype.Name;
 				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnClient..." );
 			}
 
@@ -97,9 +103,10 @@ namespace HamstarHelpers.Utilities.Network {
 
 		private void ReceiveBaseRequestOnServer( int from_who ) {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
-			string name = this.GetType().Name;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+				Type mytype = this.GetType();
+				string name = mytype.Namespace + "." + mytype.Name;
 				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnServer..." );
 			}
 

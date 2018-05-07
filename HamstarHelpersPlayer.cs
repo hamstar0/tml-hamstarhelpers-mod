@@ -7,20 +7,20 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	class HamstarHelpersPlayer : ModPlayer {
-		public PlayerLogic Logic;
-
-		
-		////////////////
-		
-		public override void Initialize() {
-			this.Logic = new PlayerLogic();
+		private PlayerLogic _Logic = null;
+		public PlayerLogic Logic {
+			get {
+				if( this._Logic == null ) { this._Logic = new PlayerLogic(); }
+				return this._Logic;
+			}
 		}
 
+		
 		////////////////
-
+		
 		public override void clientClone( ModPlayer client_clone ) {
 			var clone = (HamstarHelpersPlayer)client_clone;
-			clone.Logic = this.Logic;
+			clone._Logic = this.Logic;
 		}
 
 		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {

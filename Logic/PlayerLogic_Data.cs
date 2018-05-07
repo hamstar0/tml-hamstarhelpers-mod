@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ModLoader.IO;
@@ -12,6 +13,7 @@ namespace HamstarHelpers.Logic {
 			this.HasSyncedModSettings = false;
 			this.HasSyncedModData = false;
 			this.PermaBuffsById = new HashSet<int>();
+LogHelpers.Log("NO UID");
 		}
 
 		
@@ -28,7 +30,8 @@ namespace HamstarHelpers.Logic {
 				var perma_buffs = tags.GetList<int>( "perma_buffs" );
 				this.PermaBuffsById = new HashSet<int>( perma_buffs.ToArray() );
 			}
-
+			
+LogHelpers.Log("HAS UID");
 			this.HasUID = true;
 		}
 
@@ -46,14 +49,15 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 		
-		public void NetReceive( ISet<int> perma_buff_ids ) {
+		public void NetReceiveClient( ISet<int> perma_buff_ids ) {
 			this.PermaBuffsById = perma_buff_ids;
 		}
 
-		public void NetReceive( bool has_uid, string uid, ISet<int> perma_buff_ids ) {
+		public void NetReceiveServer( bool has_uid, string uid, ISet<int> perma_buff_ids ) {
 			this.HasUID = has_uid;
 			this.PrivateUID = uid;
 			this.PermaBuffsById = perma_buff_ids;
+LogHelpers.Log("HAS UID? "+has_uid);
 		}
 	}
 }

@@ -104,36 +104,27 @@ namespace HamstarHelpers.Utilities.Network {
 
 		private void SendRequestToClient( int to_who, int ignore_who ) {
 			var mymod = HamstarHelpersMod.Instance;
-			Type mytype = this.GetType();
-			string name = mytype.Namespace + "." + mytype.Name;
-			ModPacket packet = mymod.GetPacket();
-
-			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
-			packet.Write( true );   // Request
-			packet.Write( false );  // Broadcast (only from a client)
+			ModPacket packet = this.GetServerPacket( true );
 
 			packet.Send( to_who, ignore_who );
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-				LogHelpers.Log( ">" + name + " SendRequestToClient " + to_who + ", " + ignore_who );
+				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToClient " + to_who + ", " + ignore_who );
 			}
 		}
 
+
 		private void SendRequestToServer() {
 			var mymod = HamstarHelpersMod.Instance;
-			Type mytype = this.GetType();
-			string name = mytype.Namespace + "." + mytype.Name;
-			ModPacket packet = mymod.GetPacket();
-
-			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
-			packet.Write( true );   // Request
+			ModPacket packet = this.GetClientPacket( true, false );
 
 			packet.Send( -1, -1 );
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-				LogHelpers.Log( ">" + name + " SendRequestToServer" );
+				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
 			}
 		}
+
 
 		////////////////
 
@@ -143,13 +134,7 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			var mymod = HamstarHelpersMod.Instance;
-			Type mytype = this.GetType();
-			string name = mytype.Namespace + "." + mytype.Name;
-			ModPacket packet = mymod.GetPacket();
-
-			packet.Write( PacketProtocol.GetPacketCode( name ) );
-			packet.Write( false );  // Request
-			packet.Write( sync_to_clients );  // Broadcast
+			ModPacket packet = this.GetClientPacket( false, sync_to_clients );
 			
 			try {
 				this.WriteStream( packet );
@@ -162,9 +147,10 @@ namespace HamstarHelpers.Utilities.Network {
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( this );
-				LogHelpers.Log( ">" + name + " SendDataToServer: " + json_str );
+				LogHelpers.Log( ">" + this.GetPacketName() + " SendToServer: " + json_str );
 			}
 		}
+
 
 		protected void SendToClient( int to_who, int ignore_who ) {
 			if( Main.netMode != 2 ) {
@@ -172,17 +158,12 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 
 			var mymod = HamstarHelpersMod.Instance;
-			Type mytype = this.GetType();
-			string name = mytype.Namespace + "." + mytype.Name;
-			ModPacket packet = mymod.GetPacket();
-
-			packet.Write( PacketProtocol.GetPacketCode( name ) );
-			packet.Write( false );  // Request
+			ModPacket packet = this.GetServerPacket( false );
 
 			try {
 				this.WriteStream( packet );
 			} catch( Exception e ) {
-				LogHelpers.Log( "PacketProtocol.SendToServer - " + e.ToString() );
+				LogHelpers.Log( "PacketProtocol.SendToClient - " + e.ToString() );
 				return;
 			}
 
@@ -190,7 +171,7 @@ namespace HamstarHelpers.Utilities.Network {
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( this );
-				LogHelpers.Log( ">" + name + " SendDataToClient " + to_who + ", " + ignore_who + ": " + json_str );
+				LogHelpers.Log( ">" + this.GetPacketName() + " SendToClient " + to_who + ", " + ignore_who + ": " + json_str );
 			}
 		}
 	}

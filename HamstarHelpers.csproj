@@ -121,6 +121,7 @@
     <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
     <Compile Include="Utilities\Menu\MenuItem.cs" />
     <Compile Include="Utilities\Messages\InboxMessages.cs" />
+    <Compile Include="Utilities\Network\PacketProtocol_Handler.cs" />
     <Compile Include="Utilities\Network\PacketProtocol_Obsolete.cs" />
     <Compile Include="Utilities\Network\PacketProtocol_Stream.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
