@@ -23,15 +23,17 @@ namespace HamstarHelpers.RecipeHelpers {
 					field => (Tuple<string, int[]>)field.GetValue( null )
 				);
 
-				groups = tuples.ToDictionary( kv => kv.Key, kv => {
-					string grp_name = kv.Value.Item1;
-					int[] item_ids = kv.Value.Item2;
-					return new RecipeGroup( () => Lang.misc[37].ToString() + " " + grp_name, item_ids );
-				} );
+				groups = tuples.ToDictionary( kv => "HamstarHelpers:"+kv.Key,
+					kv => {
+						string grp_name = kv.Value.Item1;
+						int[] item_ids = kv.Value.Item2;
+						return new RecipeGroup( () => Lang.misc[37].ToString() + " " + grp_name, item_ids );
+					}
+				);
 			} catch( Exception e ) {
 				LogHelpers.Log( "RecipeHelpers.CreateRecipeGroups - " + e.ToString() );
 			}
-
+			
 			return groups;
 		}
 
