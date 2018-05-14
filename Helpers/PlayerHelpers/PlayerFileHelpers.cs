@@ -8,7 +8,7 @@ using Terraria.Utilities;
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerFileHelpers {
-		[System.Obsolete( "use PlayerFileHelpers.ErasePlayer( WorldFileData, bool )", false )]
+		[System.Obsolete( "use PlayerFileHelpers.ErasePlayer( WorldFileData )", false )]
 		public static void ErasePlayer( int which ) {
 			PlayerFileData data = Main.PlayerList[which];
 			PlayerFileHelpers.ErasePlayer( data );

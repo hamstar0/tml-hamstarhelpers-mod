@@ -100,7 +100,7 @@ namespace HamstarHelpers.ControlPanel.Inbox {
 			if( unread <= 0 ) {
 				if( Main.playerInventory ) {
 					if( is_hover ) {
-						sb.DrawString( Main.fontMouseText, "No new messages", mouse_pos, Color.Gray );
+						sb.DrawString( Main.fontMouseText, "No new messages", mouse_pos, Color.LightGray );
 					}
 					this.DrawIcon( sb );
 				}

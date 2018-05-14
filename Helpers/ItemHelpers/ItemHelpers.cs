@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.PlayerHelpers;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 

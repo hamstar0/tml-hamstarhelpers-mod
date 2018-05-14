@@ -99,6 +99,7 @@
     <Compile Include="Helpers\PlayerHelpers\PlayerHelpers_Obsolete.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerItemFinderHelpers.cs" />
+    <Compile Include="Helpers\PlayerHelpers\PlayerItemHelpers_Obsolete.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers_Obsolete.cs" />
@@ -157,7 +158,7 @@
     <Compile Include="Helpers\NPCHelpers\_NPCSpawnInfoHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCTownHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerMovementHelpers.cs" />
-    <Compile Include="Helpers\PlayerHelpers\PlayerWorldHelpers.cs" />
+    <Compile Include="Helpers\PlayerHelpers\PlayerWorldHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TileHelpers\TileFinderHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileIdentityHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileWallHelpers.cs" />

@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DotNetHelpers.DataStructures;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
@@ -135,6 +136,18 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 
 			return hash;
+		}
+
+
+		public static int GetTypeByName( string name, Mod mod=null ) {
+			if( mod == null ) {
+				if( !ItemID.Search.ContainsName( name ) )
+					return 0;
+				return ItemID.Search.GetId( name );
+			}
+
+			ModItem moditem = mod.GetItem( name );
+			return moditem == null ? 0 : moditem.item.type;
 		}
 
 

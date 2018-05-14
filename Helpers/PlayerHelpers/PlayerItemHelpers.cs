@@ -6,7 +6,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.PlayerHelpers {
-	public static class PlayerItemHelpers {
+	public static partial class PlayerItemHelpers {
 		public const int VanillaInventorySize = 58;
 		public const int VanillaInventoryHotbarSize = 10;
 		public const int VanillaInventoryMainSize = 40;
@@ -14,27 +14,6 @@ namespace HamstarHelpers.PlayerHelpers {
 		public const int VanillaInventoryLastCoinSlot = 53;
 		public const int VanillaInventoryLastAmmolot = 57;
 		public const int VanillaInventorySelectedSlot = 58;
-
-
-
-		////////////////
-
-		[System.Obsolete( "use PlayerItemFinderHelpers.FindPossiblePurchaseTypes", true )]
-		public static ISet<int> FindPossiblePurchaseTypes( Player player, long spent ) {
-			return PlayerItemFinderHelpers.FindPossiblePurchaseTypes( player, spent );
-		}
-
-		[System.Obsolete( "use PlayerItemFinderHelpers.FindFirstOfItemFor", true )]
-		public static Item FindFirstOfItemFor( Player player, ISet<int> item_types ) {
-			return PlayerItemFinderHelpers.FindFirstOfItemFor( player, item_types );
-		}
-
-		[System.Obsolete( "use PlayerItemFinderHelpers.FindInventoryChanges", true )]
-		public static IDictionary<int, KeyValuePair<int, int>> FindInventoryChanges( Player player,
-				KeyValuePair<int, int> prev_mouse_info,
-				IDictionary<int, KeyValuePair<int, int>> prev_inv ) {
-			return PlayerItemFinderHelpers.FindInventoryChanges( player, prev_mouse_info, prev_inv );
-		}
 
 
 		////////////////
