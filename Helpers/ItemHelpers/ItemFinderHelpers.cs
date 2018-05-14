@@ -4,15 +4,10 @@ using Terraria;
 
 
 namespace HamstarHelpers.ItemHelpers {
-	public static class ItemFinderHelpers {
+	public static partial class ItemFinderHelpers {
 		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 
-
-		[System.Obsolete( "use ItemFinderHelpers.FindIndexOfFirstOfItemInCollection", true )]
-		public static int FindFirstOfItemInCollection( Item[] collection, ISet<int> item_types ) {
-			return FindIndexOfFirstOfItemInCollection( collection, item_types );
-		}
-
+		
 		public static int FindIndexOfFirstOfItemInCollection( Item[] collection, ISet<int> item_types ) {
 			for( int i = 0; i < collection.Length; i++ ) {
 				Item item = collection[i];
@@ -21,16 +16,28 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 			return -1;
 		}
-		
 
-		public static SortedSet<int> FindIndexOfEachItemInCollection( Item[] collection, ISet<int> item_types ) {
+		
+		public static ISet<int> FindIndexOfEach( Item[] collection, ISet<int> item_types ) {
 			var set = new SortedSet<int>();
+
 			for( int i=0; i<collection.Length; i++ ) {
 				Item item = collection[i];
 				if( item == null || item.IsAir ) { continue; }
 				if( item_types.Contains( item.type ) ) { set.Add( i ); }
 			}
 			return set;
+		}
+
+		
+		public static int CountTotalOfEach( Item[] collection, ISet<int> item_types ) {
+			var set = ItemFinderHelpers.FindIndexOfEach( collection, item_types );
+			int total = 0;
+
+			foreach( int idx in set ) {
+				total += collection[idx].stack;
+			}
+			return total;
 		}
 
 

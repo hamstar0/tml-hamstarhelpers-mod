@@ -111,32 +111,32 @@ namespace HamstarHelpers.PlayerHelpers {
 
 			for( int i=0; i<PlayerHelpers.InventoryHotbarSize; i++ ) {
 				Item item = player.inventory[i];
-				if( item == null || item.IsAir || !ItemIdentityHelpers.IsGameplayRelevant(item) ) { continue; }
+				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant(item) ) { continue; }
 
-				tally += ItemIdentityHelpers.LooselyAppraise( item );
+				tally += ItemAttributeHelpers.LooselyAppraise( item );
 				item_count += 1;
 			}
 
 			for( int i=0; i<player.armor.Length; i++ ) {
 				Item item = player.inventory[i];
-				if( item == null || item.IsAir || !ItemIdentityHelpers.IsGameplayRelevant( item ) ) { continue; }
+				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
 
-				tally += ItemIdentityHelpers.LooselyAppraise( item );
+				tally += ItemAttributeHelpers.LooselyAppraise( item );
 				item_count += 1;
 			}
 
 			for( int i = 0; i < player.miscEquips.Length; i++ ) {
 				Item item = player.miscEquips[i];
-				if( item == null || item.IsAir || !ItemIdentityHelpers.IsGameplayRelevant( item ) ) { continue; }
+				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
 
-				tally += ItemIdentityHelpers.LooselyAppraise( item );
+				tally += ItemAttributeHelpers.LooselyAppraise( item );
 				item_count += 1;
 			}
 
-			float tech_factor = tally / (item_count * ItemIdentityHelpers.HighestVanillaRarity);
+			float tech_factor = tally / (item_count * ItemAttributeHelpers.HighestVanillaRarity);
 			float defense_factor = 1f + ((float)player.statDefense * 0.01f);
 			float vitality = (float)player.statLifeMax / 20f;
-			float vitality_factor = (vitality / (4f * ItemIdentityHelpers.HighestVanillaRarity)) * defense_factor;
+			float vitality_factor = (vitality / (4f * ItemAttributeHelpers.HighestVanillaRarity)) * defense_factor;
 
 			return (tech_factor + vitality_factor) / 2f;
 		}

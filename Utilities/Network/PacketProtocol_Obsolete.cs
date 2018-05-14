@@ -28,30 +28,30 @@ namespace HamstarHelpers.Utilities.Network {
 			}
 		}
 
-		[System.Obsolete( "use QuickRequestOfServer() or QuickRequestOfClient(int, int)", true )]
+		[System.Obsolete( "use QuickRequestToServer() or QuickRequestToClient(int, int)", true )]
 		public static void QuickSendRequest<T>( int to_who, int ignore_who )
 				where T : PacketProtocol, new() {
 			if( Main.netMode == 1 ) {
-				PacketProtocol.QuickRequestFromServer<T>();
+				PacketProtocol.QuickRequestToServer<T>();
 			} else if( Main.netMode == 2 ) {
-				PacketProtocol.QuickRequestFromClient<T>( to_who, ignore_who );
+				PacketProtocol.QuickRequestToClient<T>( to_who, ignore_who );
 			}
 		}
 
 
-		[System.Obsolete( "use QuickRequestOfClient(int, int)", true )]
+		[System.Obsolete( "use QuickRequestToClient(int, int)", true )]
 		public static void QuickRequestFromClient<T>( int to_who, int ignore_who )
 				where T : PacketProtocol, new() {
 			PacketProtocol.QuickRequestToClient<T>( to_who, ignore_who );
 		}
-		[System.Obsolete( "use QuickRequestOfServer(int, int)", true )]
+		[System.Obsolete( "use QuickRequestToServer(int, int)", true )]
 		public static void QuickRequestFromServer<T>()
 				where T : PacketProtocol, new() {
 			PacketProtocol.QuickRequestToServer<T>( );
 		}
 
 
-		[System.Obsolete( "use QuickRequestFromServer() or QuickRequestFromClient(int, int)", true )]
+		[System.Obsolete( "use QuickRequestToServer() or QuickRequestToClient(int, int)", true )]
 		public void SendRequest( int to_who, int ignore_who ) {
 			if( Main.netMode == 1 ) {
 				this.SendRequestToServer();

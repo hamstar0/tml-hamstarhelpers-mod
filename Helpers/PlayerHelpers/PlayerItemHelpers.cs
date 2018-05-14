@@ -51,6 +51,29 @@ namespace HamstarHelpers.PlayerHelpers {
 			return myset;
 		}
 
+		public static int RemoveInventoryItemQuantity( Player player, int item_type, int quantity ) {
+			int removed = 0;
+
+			for( int i = 0; i < player.inventory.Length; i++ ) {
+				Item item = player.inventory[i];
+				if( item == null || item.IsAir || item.type != item_type ) { continue; }
+
+				int stack = item.stack;
+
+				if( stack > quantity ) {
+					item.stack -= quantity;
+					removed += quantity;
+					break;
+				} else {
+					quantity -= stack;
+					removed += stack;
+					player.inventory[i] = new Item();
+				}
+			}
+
+			return removed;
+		}
+
 
 		public static void DropInventoryItem( Player player, int slot ) {
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
@@ -210,7 +233,7 @@ namespace HamstarHelpers.PlayerHelpers {
 		////////////////
 
 		public static Item GetGrappleItem( Player player ) {
-			if( ItemIdentityHelpers.IsGrapple( player.miscEquips[4] ) ) {
+			if( ItemAttributeHelpers.IsGrapple( player.miscEquips[4] ) ) {
 				return player.miscEquips[4];
 			}
 			for( int i = 0; i < PlayerItemHelpers.VanillaInventorySize; i++ ) {

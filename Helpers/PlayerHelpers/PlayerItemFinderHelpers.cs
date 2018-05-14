@@ -75,6 +75,5 @@ namespace HamstarHelpers.PlayerHelpers {
 
 			return changes;
 		}
-
 	}
 }

@@ -81,11 +81,14 @@
     <Compile Include="Helpers\DotNetHelpers\XnaHelpers.cs" />
     <Compile Include="Helpers\EntityHelpers\EntityHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\FileHelpers.cs" />
+    <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers.cs" />
+    <Compile Include="Helpers\ItemHelpers\ItemFinderHelpers_Obsolete.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemHelpers_Obsolete.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups_Obsolete.cs" />
-    <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Id.cs" />
+    <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
     <Compile Include="Helpers\MiscHelpers\InfoHelpers.cs" />
+    <Compile Include="Helpers\MiscHelpers\MiscHelpers_Obsolete.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Ping.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Obsolete.cs" />
@@ -146,7 +149,7 @@
     <Compile Include="HamstarHelpersMod.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemHelpers.cs" />
-    <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers.cs" />
+    <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Obsolete.cs" />
     <Compile Include="NetProtocols\ModSettingsProtocol.cs" />
     <Compile Include="Helpers\NPCHelpers\_NPCAIHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCBannerHelpers.cs" />
