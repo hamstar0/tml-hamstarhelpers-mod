@@ -22,9 +22,6 @@ namespace HamstarHelpers.Logic {
 			if( tags.ContainsKey( "uid" ) ) {
 				this.PrivateUID = tags.GetString( "uid" );
 			}
-			if( tags.ContainsKey( "cp_new_since" ) ) {
-				this.ControlPanelNewSince = tags.GetString( "cp_new_since" );
-			}
 			if( tags.ContainsKey( "perma_buffs" ) ) {
 				var perma_buffs = tags.GetList<int>( "perma_buffs" );
 				this.PermaBuffsById = new HashSet<int>( perma_buffs.ToArray() );
@@ -38,7 +35,6 @@ namespace HamstarHelpers.Logic {
 
 			TagCompound tags = new TagCompound {
 				{ "uid", this.PrivateUID },
-				{ "cp_new_since", this.ControlPanelNewSince },
 				{ "perma_buffs", perma_buffs }
 			};
 			return tags;

@@ -66,9 +66,8 @@ namespace HamstarHelpers.ControlPanel {
 		}
 
 		public bool IsTogglerUpdateAlertShown() {
-			Player myplayer = Main.LocalPlayer;
-			var modplayer = myplayer.GetModPlayer<HamstarHelpersPlayer>();
-			var ver = new Version( modplayer.Logic.ControlPanelNewSince );
+			var mymod = HamstarHelpersMod.Instance;
+			var ver = new Version( mymod.Data.ControlPanelNewSince );
 
 			if( ver < UIControlPanel.AlertVersion ) {
 				return true;
@@ -157,8 +156,8 @@ namespace HamstarHelpers.ControlPanel {
 							} else if( this.CanOpen() ) {
 								this.Open();
 
-								var modplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-								modplayer.Logic.ControlPanelNewSince = UIControlPanel.AlertVersion.ToString();
+								var mymod = HamstarHelpersMod.Instance;
+								mymod.Data.ControlPanelNewSince = UIControlPanel.AlertVersion.ToString();
 							}
 						}
 

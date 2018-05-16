@@ -123,6 +123,8 @@ namespace HamstarHelpers {
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );
 			}
+
+			this.LoadModData();
 		}
 
 
@@ -138,6 +140,8 @@ namespace HamstarHelpers {
 		}
 
 		public override void Unload() {
+			this.SaveModData();
+
 			try {
 				if( this.HasUnhandledExceptionLogger ) {
 					this.HasUnhandledExceptionLogger = false;

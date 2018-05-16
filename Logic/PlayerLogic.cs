@@ -14,7 +14,6 @@ namespace HamstarHelpers.Logic {
 		public string PrivateUID { get; private set; }
 		public bool HasUID { get; private set; }
 		public ISet<int> PermaBuffsById { get; private set; }
-		internal string ControlPanelNewSince = "1.0.0";
 
 		private ISet<int> HasBuffIds = new HashSet<int>();
 		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
