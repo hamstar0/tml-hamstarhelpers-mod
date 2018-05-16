@@ -69,7 +69,7 @@ namespace HamstarHelpers.Utilities.Messages {
 		}
 
 
-		public static string ReadMessage( string which, bool run_action ) {
+		public static string ReadMessage( string which ) {
 			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
 			int idx = -1;
 
@@ -83,10 +83,9 @@ namespace HamstarHelpers.Utilities.Messages {
 			if( idx == -1 ) { return null; }
 
 			string msg = inbox.Messages[ which ];
-			if( run_action ) {
-				Action<bool> action = inbox.MessageActions[ which ];
-				action( idx >= inbox.Current );
-			}
+
+			Action<bool> action = inbox.MessageActions[ which ];
+			action( idx >= inbox.Current );
 
 			inbox.Order.RemoveAt( idx );
 			inbox.Messages.Remove( which );
