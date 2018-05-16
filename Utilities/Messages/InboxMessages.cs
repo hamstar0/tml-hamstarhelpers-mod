@@ -42,23 +42,60 @@ namespace HamstarHelpers.Utilities.Messages {
 			string which = inbox.Order[ inbox.Current++ ];
 			string msg = inbox.Messages[ which ];
 
+			Action<bool> action = inbox.MessageActions[ which ];
+			action( true );
+
 			return msg;
 		}
 
 
-		public static string GetMessageAt( int i, out bool is_unread ) {
+		public static string GetMessageAt( int idx, out bool is_unread ) {
 			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
 			is_unread = false;
 
-			if( i < 0 || i >= inbox.Order.Count ) {
+			if( idx < 0 || idx >= inbox.Order.Count ) {
 				return null;
 			}
 
-			string which = inbox.Order[ i ];
+			string which = inbox.Order[ idx ];
 			string msg = inbox.Messages[ which ];
 
-			is_unread = i >= inbox.Current;
+			is_unread = idx >= inbox.Current;
 
+			Action<bool> action = inbox.MessageActions[which];
+			action( is_unread );
+
+			return msg;
+		}
+
+
+		public static string ReadMessage( string which, bool run_action ) {
+			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+			int idx = -1;
+
+			for( int i=0; i<inbox.Order.Count; i++ ) {
+				if( inbox.Order[i] == which ) {
+					idx = i;
+					break;
+				}
+			}
+
+			if( idx == -1 ) { return null; }
+
+			string msg = inbox.Messages[ which ];
+			if( run_action ) {
+				Action<bool> action = inbox.MessageActions[ which ];
+				action( idx >= inbox.Current );
+			}
+
+			inbox.Order.RemoveAt( idx );
+			inbox.Messages.Remove( which );
+			inbox.MessageActions.Remove( which );
+
+			if( inbox.Current >= inbox.Messages.Count ) {
+				inbox.Current--;
+			}
+			
 			return msg;
 		}
 
