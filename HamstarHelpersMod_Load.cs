@@ -140,7 +140,7 @@ namespace HamstarHelpers {
 		}
 
 		public override void Unload() {
-			this.SaveModData();
+			this.UnloadModData();
 
 			try {
 				if( this.HasUnhandledExceptionLogger ) {

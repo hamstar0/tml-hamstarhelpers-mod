@@ -43,7 +43,7 @@ namespace HamstarHelpers.Utilities.Messages {
 			string msg = inbox.Messages[ which ];
 
 			Action<bool> action = inbox.MessageActions[ which ];
-			action( true );
+			if( action != null ) { action( true ); }
 
 			return msg;
 		}
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Utilities.Messages {
 			is_unread = idx >= inbox.Current;
 
 			Action<bool> action = inbox.MessageActions[which];
-			action( is_unread );
+			if( action != null ) { action( is_unread ); }
 
 			return msg;
 		}
@@ -71,28 +71,22 @@ namespace HamstarHelpers.Utilities.Messages {
 
 		public static string ReadMessage( string which ) {
 			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
-			int idx = -1;
 
-			for( int i=0; i<inbox.Order.Count; i++ ) {
-				if( inbox.Order[i] == which ) {
-					idx = i;
-					break;
-				}
-			}
-
+			int idx = inbox.Order.IndexOf( which );
 			if( idx == -1 ) { return null; }
 
 			string msg = inbox.Messages[ which ];
+			bool is_unread = idx >= inbox.Current;
 
 			Action<bool> action = inbox.MessageActions[ which ];
-			action( idx >= inbox.Current );
-
-			inbox.Order.RemoveAt( idx );
-			inbox.Messages.Remove( which );
-			inbox.MessageActions.Remove( which );
-
-			if( inbox.Current >= inbox.Messages.Count ) {
-				inbox.Current--;
+			if( action != null ) { action( is_unread ); }
+			
+			if( is_unread ) {
+				if( inbox.Current != idx ) {
+					inbox.Order.RemoveAt( idx );
+					inbox.Order.Insert( inbox.Current, which );
+				}
+				inbox.Current++;
 			}
 			
 			return msg;
@@ -104,7 +98,7 @@ namespace HamstarHelpers.Utilities.Messages {
 
 		private IDictionary<string, string> Messages = new Dictionary<string, string>();
 		private IDictionary<string, Action<bool>> MessageActions = new Dictionary<string, Action<bool>>();
-		private IList<string> Order = new List<string>();
+		private List<string> Order = new List<string>();
 		public int Current { get; private set; }
 
 		private bool IsLoaded = false;

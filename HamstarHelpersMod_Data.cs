@@ -3,7 +3,7 @@
 
 namespace HamstarHelpers {
 	class HamstarHelpersData {
-		internal string ControlPanelNewSince = "1.0.0";
+		public string ControlPanelNewSince = "1.0.0";
 	}
 
 
@@ -26,8 +26,10 @@ namespace HamstarHelpers {
 		}
 
 
-		private void SaveModData() {
+		private void UnloadModData() {
 			DataFileHelpers.SaveAsJson<HamstarHelpersData>( this, "data", this.Data );
+
+			this.Data = null;
 		}
 	}
 }
