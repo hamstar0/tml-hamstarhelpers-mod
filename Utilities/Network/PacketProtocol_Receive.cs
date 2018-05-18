@@ -49,8 +49,7 @@ namespace HamstarHelpers.Utilities.Network {
 			this.ReceiveBaseEither( reader, from_who );
 
 			var method_info = this.GetType().GetMethod( "ReceiveOnClient" );
-
-			//if( this.GetType().GetMethod( "ReceiveOnClient", BindingFlags.Instance | BindingFlags.DeclaredOnly ) != null ) {
+			
 			if( method_info != null && method_info.DeclaringType != method_info.GetBaseDefinition().DeclaringType ) {
 #pragma warning disable 612, 618
 				this.ReceiveOnClient();
@@ -58,21 +57,13 @@ namespace HamstarHelpers.Utilities.Network {
 			} else {
 				this.ReceiveWithClient();
 			}
-			/*try {
-#pragma warning disable 612, 618
-				this.ReceiveOnClient();
-#pragma warning restore 612, 618
-			} catch( NotImplementedException ) {
-				this.ReceiveWithClient();
-			}*/
 		}
 
 		private void ReceiveBaseOnServer( BinaryReader reader, int from_who ) {
 			this.ReceiveBaseEither( reader, from_who );
 
 			var method_info = this.GetType().GetMethod( "ReceiveOnServer" );
-
-			//if( this.GetType().GetMethod( "ReceiveOnServer", BindingFlags.Instance | BindingFlags.DeclaredOnly ) != null ) {
+			
 			if( method_info != null && method_info.DeclaringType != method_info.GetBaseDefinition().DeclaringType ) {
 #pragma warning disable 612, 618
 				this.ReceiveOnServer( from_who );
@@ -80,13 +71,6 @@ namespace HamstarHelpers.Utilities.Network {
 			} else {
 				this.ReceiveWithServer( from_who );
 			}
-			/*try {
-#pragma warning disable 612, 618
-				this.ReceiveOnServer( from_who );
-#pragma warning restore 612, 618
-			} catch( NotImplementedException ) {
-				this.ReceiveWithServer( from_who );
-			}*/
 		}
 
 
@@ -108,22 +92,14 @@ namespace HamstarHelpers.Utilities.Network {
 
 			bool skip_send = false;
 			var method_info = this.GetType().GetMethod( "ReceiveRequestOnClient" );
-
-			//if( this.GetType().GetMethod( "ReceiveRequestOnClient", BindingFlags.Instance | BindingFlags.DeclaredOnly ) != null ) {
+			
 			if( method_info != null && method_info.DeclaringType != method_info.GetBaseDefinition().DeclaringType ) {
-#pragma warning disable 612, 618
-				this.ReceiveRequestOnClient();
-#pragma warning restore 612, 618
-			} else {
-				this.ReceiveRequestWithClient();
-			}
-			/*try {
 #pragma warning disable 612, 618
 				skip_send = this.ReceiveRequestOnClient();
 #pragma warning restore 612, 618
-			} catch( NotImplementedException ) {
+			} else {
 				skip_send = this.ReceiveRequestWithClient();
-			}*/
+			}
 
 			if( !skip_send ) {
 				this.SendToServer( false );
@@ -147,21 +123,13 @@ namespace HamstarHelpers.Utilities.Network {
 			bool skip_send = false;
 			var method_info = this.GetType().GetMethod( "ReceiveRequestOnServer" );
 			
-			//if( this.GetType().GetMethod( "ReceiveRequestOnServer", BindingFlags.Instance | BindingFlags.DeclaredOnly ) != null ) {
 			if( method_info != null && method_info.DeclaringType != method_info.GetBaseDefinition().DeclaringType ) {
-#pragma warning disable 612, 618
-				this.ReceiveRequestOnServer( from_who );
-#pragma warning restore 612, 618
-			} else {
-				this.ReceiveRequestWithServer( from_who );
-			}
-			/*try {
 #pragma warning disable 612, 618
 				skip_send = this.ReceiveRequestOnServer( from_who );
 #pragma warning restore 612, 618
-			} catch( NotImplementedException ) {
+			} else {
 				skip_send = this.ReceiveRequestWithServer( from_who );
-			}*/
+			}
 
 			if( !skip_send ) {
 				this.SendToClient( from_who, -1 );
