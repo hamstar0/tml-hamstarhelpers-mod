@@ -24,5 +24,16 @@ namespace HamstarHelpers.TmlHelpers {
 				mymod.TmlLoadHelpers.PostGameLoadPromises.Add( action );
 			}
 		}
+
+		[System.Obsolete( "use TmlLoadHelpers.AddWorldLoadOncePromise or AddWorldLoadEachPromise", true )]
+		public static void AddWorldLoadPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+				action();
+			} else {
+				mymod.TmlLoadHelpers.WorldLoadOncePromises.Add( action );
+			}
+		}
 	}
 }
