@@ -60,18 +60,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		////////////////
-
-		public static void AddPostGameLoadPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			if( TmlLoadHelpers.PostGameLoadPromiseConditionsMet ) {
-				action();
-			} else {
-				mymod.TmlLoadHelpers.PostGameLoadPromises.Add( action );
-			}
-		}
 		
-
 		public static void AddPostModLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -124,7 +113,7 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 		internal void FulfillPostModLoadPromises() {
-			this.FulfillPostGameLoadPromises(); // Always
+			this.FulfillPostGameLoadPromises();
 
 			if( this.PostModLoadPromiseConditionsMet ) { return; }
 			this.PostModLoadPromiseConditionsMet = true;
@@ -143,7 +132,6 @@ namespace HamstarHelpers.TmlHelpers {
 			foreach( Action promise in this.WorldLoadPromises ) {
 				promise();
 			}
-			this.WorldLoadPromises.Clear();
 		}
 
 
@@ -170,7 +158,7 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 		internal void Update() {
-			if( Main.netMode != 2 && this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
+			if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
 				this.WorldLoadPromiseConditionsMet = false; // Does this work?
 			}
 		}

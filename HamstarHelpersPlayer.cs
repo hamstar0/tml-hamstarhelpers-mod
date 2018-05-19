@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Logic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
@@ -7,20 +8,19 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	class HamstarHelpersPlayer : ModPlayer {
-		private PlayerLogic _Logic = null;
-		public PlayerLogic Logic {
-			get {
-				if( this._Logic == null ) { this._Logic = new PlayerLogic(); }
-				return this._Logic;
-			}
+		public override bool CloneNewInstances { get { return false; } }
+		
+		public PlayerLogic Logic { get; private set; }
+
+
+		////////////////
+
+		public override void Initialize() {
+			this.Logic = new PlayerLogic();
 		}
 
-		
-		////////////////
-		
 		public override void clientClone( ModPlayer client_clone ) {
-			var clone = (HamstarHelpersPlayer)client_clone;
-			clone._Logic = this.Logic;
+			this.Logic.ClientClone( (HamstarHelpersPlayer)client_clone );
 		}
 
 		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
@@ -42,7 +42,7 @@ namespace HamstarHelpers {
 		}
 
 		public override void SendClientChanges( ModPlayer client_player ) {
-			this.Logic.SendClientChanges( (HamstarHelpersMod)this.mod, this.player, client_player );
+			this.Logic.SendClientChanges( (HamstarHelpersMod)this.mod, this.player, (HamstarHelpersPlayer)client_player );
 		}
 
 
@@ -73,7 +73,15 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void ProcessTriggers( TriggersSet triggers_set ) {
-			this.Logic.ProcessTriggers( (HamstarHelpersMod)this.mod, triggers_set );
+			var mymod = (HamstarHelpersMod)this.mod;
+
+			if( mymod.ControlPanelHotkey.JustPressed ) {
+				if( mymod.Config.DisableControlPanelHotkey ) {
+					Main.NewText( "Control panel hotkey disabled.", Color.Red );
+				} else {
+					mymod.ControlPanel.Open();
+				}
+			}
 		}
 	}
 }

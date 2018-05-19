@@ -13,5 +13,16 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void AddPostLoadPromise( Action action ) {
 			TmlLoadHelpers.AddPostModLoadPromise( action );
 		}
+
+		[System.Obsolete( "use TmlLoadHelpers.AddPostModLoadPromise", true )]
+		public static void AddPostGameLoadPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( TmlLoadHelpers.PostGameLoadPromiseConditionsMet ) {
+				action();
+			} else {
+				mymod.TmlLoadHelpers.PostGameLoadPromises.Add( action );
+			}
+		}
 	}
 }

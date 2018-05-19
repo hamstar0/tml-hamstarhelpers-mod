@@ -22,8 +22,9 @@ namespace HamstarHelpers.Logic {
 			}
 		}
 
+		////
 
-		public void PreUpdateSingle( HamstarHelpersMod mymod ) {
+		private void PreUpdatePlayer( HamstarHelpersMod mymod ) {
 			this.PreUpdate( mymod );
 
 			mymod.AnimatedColors.Update();
@@ -32,6 +33,14 @@ namespace HamstarHelpers.Logic {
 		}
 
 
+		public void PreUpdateSingle( HamstarHelpersMod mymod ) {
+			this.PreUpdatePlayer( mymod );
+		}
+
+		public void PreUpdateClient( HamstarHelpersMod mymod ) {
+			this.PreUpdatePlayer( mymod );
+		}
+		
 		public void PreUpdateServer( HamstarHelpersMod mymod ) {
 			this.PreUpdate( mymod );
 		}

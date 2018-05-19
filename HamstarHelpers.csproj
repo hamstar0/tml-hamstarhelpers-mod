@@ -59,6 +59,7 @@
     <Compile Include="ControlPanel\Inbox\InboxControl.cs" />
     <Compile Include="HamstarHelpersMod_Data.cs" />
     <Compile Include="HamstarHelpersMod_Load.cs" />
+    <Compile Include="Helpers\BuffHelpers\BuffHelpers_Obsolete.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffHelpers.cs" />
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Helpers\UIHelpers\UITheme_Obsolete.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="Logic\PlayerLogic_Update.cs" />
     <Compile Include="NetProtocols\PingProtocol.cs" />
     <Compile Include="NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />

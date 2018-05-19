@@ -12,7 +12,6 @@ namespace HamstarHelpers.Logic {
 			this.HasUID = false;
 			this.HasSyncedModSettings = false;
 			this.HasSyncedModData = false;
-			this.PermaBuffsById = new HashSet<int>();
 		}
 
 		
@@ -43,14 +42,20 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 		
-		public void NetReceiveClient( ISet<int> perma_buff_ids ) {
+		public void NetReceiveClient( ISet<int> perma_buff_ids, ISet<int> has_buff_ids,
+				IDictionary<int, int> equip_slots_to_item_types ) {
 			this.PermaBuffsById = perma_buff_ids;
+			this.HasBuffIds = has_buff_ids;
+			this.EquipSlotsToItemTypes = equip_slots_to_item_types;
 		}
 
-		public void NetReceiveServer( bool has_uid, string uid, ISet<int> perma_buff_ids ) {
+		public void NetReceiveServer( bool has_uid, string uid, ISet<int> perma_buff_ids,
+				ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			this.HasUID = has_uid;
 			this.PrivateUID = uid;
 			this.PermaBuffsById = perma_buff_ids;
+			this.HasBuffIds = has_buff_ids;
+			this.EquipSlotsToItemTypes = equip_slots_to_item_types;
 		}
 	}
 }
