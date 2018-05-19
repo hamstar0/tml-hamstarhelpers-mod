@@ -52,8 +52,13 @@ namespace HamstarHelpers.Logic {
 			if( !send && clone.IsFinishedSyncing != this.IsFinishedSyncing ) { send = true; }
 
 			if( send ) {
-				HHPlayerDataProtocol.SendStateToClient( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById, this.HasBuffIds,
-					this.EquipSlotsToItemTypes );
+				if( Main.netMode == 1 ) {
+					HHPlayerDataProtocol.SendStateToServer( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById,
+						this.HasBuffIds, this.EquipSlotsToItemTypes );
+				} else if( Main.netMode == 2 ) {
+					HHPlayerDataProtocol.SendStateToClient( me.whoAmI, me.whoAmI, this.HasUID, this.PermaBuffsById,
+						this.HasBuffIds, this.EquipSlotsToItemTypes );
+				}
 			}
 		}
 
@@ -71,7 +76,7 @@ namespace HamstarHelpers.Logic {
 		}
 
 		public void OnEnterWorldForClient( HamstarHelpersMod mymod, Player player ) {
-			HHPlayerDataProtocol.SyncToOtherClients( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById,
+			HHPlayerDataProtocol.SyncToEveryone( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById,
 				this.HasBuffIds, this.EquipSlotsToItemTypes );
 			
 			PacketProtocol.QuickRequestToServer<HHModSettingsProtocol>();

@@ -7,7 +7,7 @@ using Terraria;
 
 namespace HamstarHelpers.NetProtocols {
 	class HHPlayerDataProtocol : PacketProtocol {
-		public static void SyncToOtherClients( int from_who, bool has_uid, string uid, ISet<int> perma_buffs_by_id,
+		public static void SyncToEveryone( int from_who, bool has_uid, string uid, ISet<int> perma_buffs_by_id,
 				ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
@@ -15,12 +15,12 @@ namespace HamstarHelpers.NetProtocols {
 			protocol.SendToServer( true );
 		}
 
-		public static void SendStateToClient( int from_who, bool has_uid, string uid,
+		public static void SendStateToClient( int to_who, int from_who, bool has_uid,
 				ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			if( Main.netMode != 2 ) { throw new Exception( "Not server" ); }
 
-			var protocol = new HHPlayerDataProtocol( from_who, has_uid, uid, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
-			protocol.SendToClient( -1, -1 );
+			var protocol = new HHPlayerDataProtocol( from_who, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
+			protocol.SendToClient( to_who, -1 );
 		}
 
 		public static void SendStateToServer( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids,
@@ -28,6 +28,14 @@ namespace HamstarHelpers.NetProtocols {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
 			var protocol = new HHPlayerDataProtocol( Main.myPlayer, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
+			protocol.SendToServer( false );
+		}
+
+		public static void SendStateToServer( int from_who, bool has_uid, string uid, ISet<int> perma_buffs_by_id,
+				ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
+			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
+
+			var protocol = new HHPlayerDataProtocol( from_who, has_uid, uid, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
 			protocol.SendToServer( false );
 		}
 
@@ -90,20 +98,5 @@ namespace HamstarHelpers.NetProtocols {
 
 			myplayer.Logic.NetReceiveClient( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
-
-		////////////////
-
-		/*protected override bool ReceiveRequestWithServer( int from_who ) {
-			for( int i = 0; i < Main.player.Length; i++ ) {
-				Player player = Main.player[i];
-				if( player == null || !player.active ) { continue; }
-				var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
-				
-				var protocol = new HHPlayerDataProtocol( i, myplayer.Logic.PermaBuffsById );
-				protocol.SendToClient( from_who, -1 );
-			}
-
-			return true;
-		}*/
 	}
 }
