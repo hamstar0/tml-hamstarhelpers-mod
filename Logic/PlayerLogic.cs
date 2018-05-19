@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.NetProtocols;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.NetProtocols;
 using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Network;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace HamstarHelpers.Logic {
 		////////////////
 
 		public void ClientClone( HamstarHelpersPlayer client_clone ) {
+			client_clone.Logic.PrivateUID = this.PrivateUID;
+			client_clone.Logic.HasUID = this.HasUID;
 			client_clone.Logic.PermaBuffsById = this.PermaBuffsById;
 			client_clone.Logic.HasBuffIds = this.HasBuffIds;
 			client_clone.Logic.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;
@@ -38,18 +41,24 @@ namespace HamstarHelpers.Logic {
 			var myclient = (HamstarHelpersPlayer)client_player;
 			var clone = myclient.Logic;
 
-			bool send = this.HasUID != clone.HasUID || this.PrivateUID != clone.PrivateUID;
+			bool send = false;
 			
-			if( !send && !clone.PermaBuffsById.SetEquals( this.PermaBuffsById ) ) { send = true; }
-			if( !send && !clone.HasBuffIds.SetEquals( this.HasBuffIds ) ) { send = true; }
+			if( this.HasUID != clone.HasUID || this.PrivateUID != clone.PrivateUID ) {
+				send = true;
+			}
+			if( !send && !clone.PermaBuffsById.SetEquals( this.PermaBuffsById ) ) {
+				send = true;
+			}
+			if( !send && !clone.HasBuffIds.SetEquals( this.HasBuffIds ) ) {
+				send = true;
+			}
 			if( !send ) {
 				var dict1 = clone.EquipSlotsToItemTypes;
 				var dict2 = this.EquipSlotsToItemTypes;
-				if( dict1.Count == dict2.Count && !dict1.Except(dict2).Any() ) { send = true; }
+				if( dict1.Count != dict2.Count || dict1.Except(dict2).Any() ) {
+					send = true;
+				}
 			}
-			if( !send && clone.HasSyncedModSettings != this.HasSyncedModSettings ) { send = true; }
-			if( !send && clone.HasSyncedModData != this.HasSyncedModData ) { send = true; }
-			if( !send && clone.IsFinishedSyncing != this.IsFinishedSyncing ) { send = true; }
 
 			if( send ) {
 				if( Main.netMode == 1 ) {

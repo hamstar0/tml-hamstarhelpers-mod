@@ -44,7 +44,9 @@ namespace HamstarHelpers.DebugHelpers {
 
 				log_helpers.LoggedMessages++;
 			} catch( Exception e ) {
-				ErrorLogger.Log( "FALLBACK LOGGER 2 (" + e.GetType().Name + ") " + msg );
+				try {
+					ErrorLogger.Log( "FALLBACK LOGGER 2 (" + e.GetType().Name + ") " + msg );
+				} catch { }
 			}
 		}
 
