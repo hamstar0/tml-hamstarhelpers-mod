@@ -38,7 +38,7 @@ namespace HamstarHelpers.WebRequests {
 				Console.WriteLine( msg );
 			};
 
-			TmlLoadHelpers.AddWorldLoadPromise( delegate {
+			TmlLoadHelpers.AddWorldLoadEachPromise( delegate {
 				if( Main.netMode == 1 ) {
 					if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 						//	3 seconds

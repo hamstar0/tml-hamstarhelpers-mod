@@ -109,7 +109,7 @@ namespace HamstarHelpers.Utilities.Messages {
 		internal InboxMessages() {
 			this.Current = 0;
 
-			TmlLoadHelpers.AddWorldLoadPromise( () => {
+			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
 				if( this.IsLoaded ) { return; }
 				InboxMessages inbox_copy = this.LoadFromFile( out this.IsLoaded );
 

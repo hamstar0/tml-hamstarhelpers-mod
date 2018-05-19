@@ -34,7 +34,7 @@ namespace HamstarHelpers.ControlPanel {
 		private void InitializeToggler() {
 			this.IsTogglerLit = false;
 
-			TmlLoadHelpers.AddWorldLoadPromise( () => {
+			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
 				int mod_update_count = this.ModUpdatesAvailable();
 				
 				if( mod_update_count > 0 ) {
