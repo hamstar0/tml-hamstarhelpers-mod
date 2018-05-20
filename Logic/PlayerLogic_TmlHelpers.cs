@@ -21,6 +21,7 @@ namespace HamstarHelpers.Logic {
 			for( int i = 0; i < player.buffTime.Length; i++ ) {
 				if( player.buffTime[i] > 0 ) {
 					int buff_id = player.buffType[i];
+
 					if( !this.HasBuffIds.Contains( buff_id ) ) {
 						this.HasBuffIds.Add( buff_id );
 						buff_change = true;
@@ -32,14 +33,15 @@ namespace HamstarHelpers.Logic {
 			foreach( int buff_id in this.HasBuffIds.ToArray() ) {
 				if( player.FindBuffIndex( buff_id ) == -1 ) {
 					this.HasBuffIds.Remove( buff_id );
-					TmlPlayerHelpers.OnBuffExpire( player, buff_id );
 					buff_change = true;
+
+					TmlPlayerHelpers.OnBuffExpire( player, buff_id );
 				}
 			}
 
 			if( buff_change ) {
 				if( Main.netMode == 1 ) {
-					HHPlayerDataProtocol.SendStateToServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+					HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 				}
 			}
 		}
@@ -51,13 +53,16 @@ namespace HamstarHelpers.Logic {
 				Item item = player.armor[i];
 
 				if( item != null && !item.IsAir ) {
-					bool found = this.EquipSlotsToItemTypes.ContainsKey( i );
+					bool had_an_equip = this.EquipSlotsToItemTypes.ContainsKey( i );
 
-					if( found && item.type != this.EquipSlotsToItemTypes[i] ) {
-						TmlPlayerHelpers.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
-					}
-
-					if( !found || item.type != this.EquipSlotsToItemTypes[i] ) {
+					if( had_an_equip ) {
+						if( item.type != this.EquipSlotsToItemTypes[i] ) {
+							TmlPlayerHelpers.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
+							TmlPlayerHelpers.OnArmorEquip( player, i, item );
+							this.EquipSlotsToItemTypes[i] = item.type;
+							equip_change = true;
+						}
+					} else {
 						this.EquipSlotsToItemTypes[i] = item.type;
 						TmlPlayerHelpers.OnArmorEquip( player, i, item );
 						equip_change = true;
@@ -73,7 +78,7 @@ namespace HamstarHelpers.Logic {
 
 			if( equip_change ) {
 				if( Main.netMode == 1 ) {
-					HHPlayerDataProtocol.SendStateToServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+					HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 				}
 			}
 		}
@@ -82,17 +87,17 @@ namespace HamstarHelpers.Logic {
 		////////////////
 
 		public void AddPermaBuff( int buff_id ) {
-			this.PermaBuffsById.Add( buff_id );
-
-			HHPlayerDataProtocol.SendStateToServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			if( this.PermaBuffsById.Add( buff_id ) ) {
+				HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			}
 		}
 
 		public void RemovePermaBuff( int buff_id ) {
 			if( !this.PermaBuffsById.Contains( buff_id ) ) { return; }
 
-			this.PermaBuffsById.Remove( buff_id );
-
-			HHPlayerDataProtocol.SendStateToServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			if( this.PermaBuffsById.Remove( buff_id ) ) {
+				HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			}
 		}
 	}
 }

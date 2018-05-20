@@ -3,9 +3,7 @@ using HamstarHelpers.NetProtocols;
 using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Network;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Logic {
@@ -28,51 +26,7 @@ namespace HamstarHelpers.Logic {
 
 
 		////////////////
-
-		public void ClientClone( HamstarHelpersPlayer client_clone ) {
-			client_clone.Logic.PrivateUID = this.PrivateUID;
-			client_clone.Logic.HasUID = this.HasUID;
-			client_clone.Logic.PermaBuffsById = this.PermaBuffsById;
-			client_clone.Logic.HasBuffIds = this.HasBuffIds;
-			client_clone.Logic.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;
-		}
-
-		public void SendClientChanges( HamstarHelpersMod mymod, Player me, ModPlayer client_player ) {
-			var myclient = (HamstarHelpersPlayer)client_player;
-			var clone = myclient.Logic;
-
-			bool send = false;
-			
-			if( this.HasUID != clone.HasUID || this.PrivateUID != clone.PrivateUID ) {
-				send = true;
-			}
-			if( !send && !clone.PermaBuffsById.SetEquals( this.PermaBuffsById ) ) {
-				send = true;
-			}
-			if( !send && !clone.HasBuffIds.SetEquals( this.HasBuffIds ) ) {
-				send = true;
-			}
-			if( !send ) {
-				var dict1 = clone.EquipSlotsToItemTypes;
-				var dict2 = this.EquipSlotsToItemTypes;
-				if( dict1.Count != dict2.Count || dict1.Except(dict2).Any() ) {
-					send = true;
-				}
-			}
-
-			if( send ) {
-				if( Main.netMode == 1 ) {
-					HHPlayerDataProtocol.SendStateToServer( me.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById,
-						this.HasBuffIds, this.EquipSlotsToItemTypes );
-				} else if( Main.netMode == 2 ) {
-					HHPlayerDataProtocol.SendStateToClient( me.whoAmI, me.whoAmI, this.HasUID, this.PermaBuffsById,
-						this.HasBuffIds, this.EquipSlotsToItemTypes );
-				}
-			}
-		}
-
-		////////////////
-
+		
 		public void OnEnterWorldForSingle( HamstarHelpersMod mymod, Player player ) {
 			if( !mymod.JsonConfig.LoadFile() ) {
 				mymod.JsonConfig.SaveFile();
@@ -85,8 +39,8 @@ namespace HamstarHelpers.Logic {
 		}
 
 		public void OnEnterWorldForClient( HamstarHelpersMod mymod, Player player ) {
-			HHPlayerDataProtocol.SyncToEveryone( player.whoAmI, this.HasUID, this.PrivateUID, this.PermaBuffsById,
-				this.HasBuffIds, this.EquipSlotsToItemTypes );
+			HHPlayerDataProtocol.SyncToEveryone( this.HasUID, this.PrivateUID, this.PermaBuffsById, this.HasBuffIds,
+				this.EquipSlotsToItemTypes );
 			
 			PacketProtocol.QuickRequestToServer<HHModSettingsProtocol>();
 			PacketProtocol.QuickRequestToServer<HHModDataProtocol>();

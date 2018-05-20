@@ -7,36 +7,20 @@ using Terraria;
 
 namespace HamstarHelpers.NetProtocols {
 	class HHPlayerDataProtocol : PacketProtocol {
-		public static void SyncToEveryone( int from_who, bool has_uid, string uid, ISet<int> perma_buffs_by_id,
+		public static void SyncToEveryone( bool has_uid, string uid, ISet<int> perma_buffs_by_id,
 				ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
-			var protocol = new HHPlayerDataProtocol( from_who, has_uid, uid, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
+			var protocol = new HHPlayerDataProtocol( Main.myPlayer, has_uid, uid, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
 			protocol.SendToServer( true );
 		}
 
-		public static void SendStateToClient( int to_who, int from_who, bool has_uid,
-				ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
-			if( Main.netMode != 2 ) { throw new Exception( "Not server" ); }
-
-			var protocol = new HHPlayerDataProtocol( from_who, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
-			protocol.SendToClient( to_who, -1 );
-		}
-
-		public static void SendStateToServer( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids,
-				IDictionary<int, int> equip_slots_to_item_types ) {
+		public static void SyncToEveryone( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids,
+			IDictionary<int, int> equip_slots_to_item_types ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
 			var protocol = new HHPlayerDataProtocol( Main.myPlayer, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
-			protocol.SendToServer( false );
-		}
-
-		public static void SendStateToServer( int from_who, bool has_uid, string uid, ISet<int> perma_buffs_by_id,
-				ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
-			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
-
-			var protocol = new HHPlayerDataProtocol( from_who, has_uid, uid, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
-			protocol.SendToServer( false );
+			protocol.SendToServer( true );
 		}
 
 

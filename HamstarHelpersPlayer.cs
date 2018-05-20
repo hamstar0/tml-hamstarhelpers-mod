@@ -18,11 +18,7 @@ namespace HamstarHelpers {
 		public override void Initialize() {
 			this.Logic = new PlayerLogic();
 		}
-
-		public override void clientClone( ModPlayer client_clone ) {
-			this.Logic.ClientClone( (HamstarHelpersPlayer)client_clone );
-		}
-
+		
 		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
 			if( Main.netMode == 2 ) {
 				if( to_who == -1 && from_who == this.player.whoAmI ) {
@@ -39,10 +35,6 @@ namespace HamstarHelpers {
 			} else if( Main.netMode == 1 ) {
 				this.Logic.OnEnterWorldForClient( mymod, player );
 			}
-		}
-
-		public override void SendClientChanges( ModPlayer client_player ) {
-			this.Logic.SendClientChanges( (HamstarHelpersMod)this.mod, this.player, (HamstarHelpersPlayer)client_player );
 		}
 
 
