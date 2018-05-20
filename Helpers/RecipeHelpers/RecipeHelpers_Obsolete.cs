@@ -27,14 +27,14 @@ namespace HamstarHelpers.RecipeHelpers {
 		////////////////
 
 		private KeyValuePair<string, RecipeGroup> _EvilBossDrops;
-		[Obsolete( "Use RecipeHelpers.Groups[\"EvilBossDrops\"]", true )]
+		[Obsolete( "Use RecipeHelpers.Groups[\"EvilBiomeBossDrops\"]", true )]
 		public static KeyValuePair<string, RecipeGroup> EvilBossDrops { get {
 			int[] item_ids = ItemIdentityHelpers.EvilBiomeBossChunkTypes;
 			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._EvilBossDrops, "EvilBiomeBossDrops", "Evil Biome Boss Chunk", item_ids );
 		} }
 
 		 private KeyValuePair<string, RecipeGroup> _EvilLightPet;
-		[Obsolete( "Use RecipeHelpers.Groups[\"EvilLightPet\"]", true )]
+		[Obsolete( "Use RecipeHelpers.Groups[\"EvilBiomeLightPet\"]", true )]
 		public static KeyValuePair<string, RecipeGroup> EvilLightPet { get {
 			int[] item_ids = ItemIdentityHelpers.EvilBiomeLightPetTypes;
 			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._EvilLightPet, "EvilBiomeLightPet", "Evil Biome Light Pet", item_ids );
@@ -62,14 +62,14 @@ namespace HamstarHelpers.RecipeHelpers {
 		} }
 
 		 private KeyValuePair<string, RecipeGroup> _VanillaButterfly;
-		[Obsolete( "Use RecipeHelpers.Groups[\"VanillaButterfly\"]", true )]
+		[Obsolete( "Use RecipeHelpers.Groups[\"VanillaButterflies\"]", true )]
 		public static KeyValuePair<string, RecipeGroup> VanillaButterfly { get {
 			int[] item_ids = ItemIdentityHelpers.VanillaButterflyTypes;
 			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._VanillaButterfly, "VanillaButterflies", "Butterflies (vanilla)", item_ids );
 		} }
 
 		 private KeyValuePair<string, RecipeGroup> _VanillaGoldCritter;
-		[Obsolete( "Use RecipeHelpers.Groups[\"VanillaGoldCritter\"]", true )]
+		[Obsolete( "Use RecipeHelpers.Groups[\"VanillaGoldCritters\"]", true )]
 		public static KeyValuePair<string, RecipeGroup> VanillaGoldCritter { get {
 			int[] item_ids = ItemIdentityHelpers.VanillaGoldCritterTypes;
 			return RecipeHelpers.GetPair( ref HamstarHelpersMod.Instance.RecipeHelpers._VanillaGoldCritter, "GoldCritter", "Gold Critters (vanilla)", item_ids );
