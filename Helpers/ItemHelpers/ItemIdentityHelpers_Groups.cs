@@ -18,6 +18,13 @@ namespace HamstarHelpers.ItemHelpers {
 				field => field.Name,
 				field => (Tuple<string, ISet<int>>)field.GetValue( null )
 			);
+			groups["EvilBiomeBossChunks"] = groups["EvilBossDrops"];
+			groups["EvilBiomeLightPets"] = groups["EvilLightPet"];
+			groups["VanillaButterfly"] = groups["VanillaButterflies"];
+			groups["VanillaGoldCritter"] = groups["VanillaGoldCritters"];
+			groups["PressurePlates"] = groups["AllPressurePlates"];
+			groups["WeightedPressurePlates"] = groups["WeightPressurePlates"];
+			groups["ConveyorBelts"] = groups["ConveyorBeltPair"];
 			groups["NpcBanners"] = ItemIdentityHelpers.MobBanners;
 			groups["RecordedMusicBoxes"] = ItemIdentityHelpers.VanillaRecordedMusicBoxes;
 

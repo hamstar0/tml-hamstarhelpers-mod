@@ -9,8 +9,8 @@ using Terraria;
 namespace HamstarHelpers.RecipeHelpers {
 	public partial class RecipeHelpers {
 		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
-			IDictionary<string, Tuple<string, ISet<int>>> tuples = ItemIdentityHelpers.GetCommonItemGroups();
-			IDictionary<string, RecipeGroup> groups = tuples.ToDictionary( kv => "HamstarHelpers:"+kv.Key,
+			IDictionary<string, Tuple<string, ISet<int>>> dict = ItemIdentityHelpers.GetCommonItemGroups();
+			IDictionary<string, RecipeGroup> groups = dict.ToDictionary( kv => "HamstarHelpers:"+kv.Key,
 				kv => {
 					string grp_name = kv.Value.Item1;
 					ISet<int> item_ids = kv.Value.Item2;
@@ -24,16 +24,19 @@ namespace HamstarHelpers.RecipeHelpers {
 
 
 		////////////////
-
-		private IDictionary<string, RecipeGroup> _Groups = null;
+		
 		public static IDictionary<string, RecipeGroup> Groups {
 			get {
 				var mymod = HamstarHelpersMod.Instance;
+
 				if( mymod.RecipeHelpers._Groups == null ) {
 					mymod.RecipeHelpers._Groups = RecipeHelpers.CreateRecipeGroups();
 				}
 				return mymod.RecipeHelpers._Groups;
 			}
 		}
+
+
+		private IDictionary<string, RecipeGroup> _Groups = null;
 	}
 }
