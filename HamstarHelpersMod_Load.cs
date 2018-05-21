@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.ControlPanel.Inbox;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
+using HamstarHelpers.Utilities.Errors;
 using HamstarHelpers.Utilities.Menu;
 using HamstarHelpers.Utilities.Messages;
 using HamstarHelpers.Utilities.Network;
@@ -28,6 +29,7 @@ namespace HamstarHelpers {
 
 		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
 
+		internal HamstarExceptionManager ExceptionMngr;
 		internal Timers Timers;
 		internal DebugHelpers.LogHelpers LogHelpers;
 		internal TmlHelpers.ModMetaDataManager ModMetaDataManager;
@@ -78,6 +80,7 @@ namespace HamstarHelpers {
 				AutoloadSounds = true
 			};
 
+			this.ExceptionMngr = new HamstarExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
 			this.JsonConfig = new JsonConfig<HamstarHelpersConfigData>( HamstarHelpersConfigData.ConfigFileName,
 				ConfigurationDataBase.RelativePath, new HamstarHelpersConfigData() );
@@ -92,7 +95,7 @@ namespace HamstarHelpers {
 				this.HasUnhandledExceptionLogger = true;
 				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
 			}
-			
+
 			this.TmlLoadHelpers = new TmlHelpers.TmlLoadHelpers();
 			this.Timers = new Timers();
 			this.LogHelpers = new DebugHelpers.LogHelpers();
@@ -149,6 +152,7 @@ namespace HamstarHelpers {
 				}
 			} catch { }
 
+			this.ExceptionMngr = null;
 			this.Timers = null;
 			this.JsonConfig = null;
 			this.PacketProtocols = null;

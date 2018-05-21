@@ -51,7 +51,7 @@ namespace HamstarHelpers.Helpers {
 			}
 
 			byte[] buf = FileUtilities.ReadAllBytes( full_path, is_cloud );
-			if( buf[0] != 0x1F || buf[1] != 0x8B ) {
+			if( buf.Length < 1 || buf[0] != 0x1F || buf[1] != 0x8B ) {
 				return null;
 			}
 

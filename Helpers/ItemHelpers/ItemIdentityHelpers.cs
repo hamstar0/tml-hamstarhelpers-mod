@@ -15,6 +15,12 @@ namespace HamstarHelpers.ItemHelpers {
 		}
 
 
+		public static string GetQualifiedName( Item item ) {
+			return Lang.GetItemNameValue( item.type );  //item.Name;
+		}
+
+
+
 		public static int GetVanillaSnapshotHash( Item item, bool no_context, bool minimal ) {
 			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( item, no_context );
 
