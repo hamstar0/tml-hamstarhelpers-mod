@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.ItemHelpers;
-using System;
 using Terraria;
 
 

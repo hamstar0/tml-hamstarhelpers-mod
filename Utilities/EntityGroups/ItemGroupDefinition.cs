@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Utilities.EntityGroups {
@@ -21,7 +22,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		public override Item[] GetPool() {
 			if( this.MyPool == null ) {
-				for( int i = 0; i < Main.itemTexture.Length; i++ ) {
+				for( int i = 0; i < ItemLoader.ItemCount; i++ ) {
 					this.MyPool[i] = new Item();
 					this.MyPool[i].SetDefaults( i, true );
 				}
