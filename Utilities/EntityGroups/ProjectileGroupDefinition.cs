@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public class ProjectileGroupDefinition : EntityGroupDefinition<Projectile> {
-		public static IList<Projectile> GetProjectileGroup( string query_json ) {
+		public static ISet<Projectile> GetProjectileGroup( string query_json ) {
 			var def = JsonConvert.DeserializeObject<ProjectileGroupDefinition>( query_json );
 			return def.GetGroup();
 		}
@@ -14,7 +14,9 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		////////////////
 
-		private readonly Projectile[] MyPool = null;
+		private Projectile[] MyPool = null;
+
+		////////////////
 
 		public override Projectile[] GetPool() {
 			if( this.MyPool == null ) {
@@ -24,6 +26,10 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 			}
 			return this.MyPool;
+		}
+
+		public override void ClearPool() {
+			this.MyPool = null;
 		}
 	}
 }

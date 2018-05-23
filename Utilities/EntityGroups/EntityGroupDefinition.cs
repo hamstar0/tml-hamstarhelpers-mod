@@ -10,11 +10,30 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 		public IDictionary<string, bool> BoolFields { get; private set; }
 		public IDictionary<string, IDictionary<double, double>> NumFields { get; private set; }
 		public IDictionary<string, Regex> StringFields { get; private set; }
+		public EntityGroupDefinition<T> AnyOf { get; private set; }
+
+		protected Func<T, bool> CustomMatcher = null;
+
+
+		////////////////
+
+		public EntityGroupDefinition() {
+			this.BoolFields = new Dictionary<string, bool>();
+			this.NumFields = new Dictionary<string, IDictionary<double, double>>();
+			this.StringFields = new Dictionary<string, Regex>();
+			this.AnyOf = null;
+		}
+
+		public EntityGroupDefinition( Func<T, bool> matcher ) : this() {
+			this.CustomMatcher = matcher;
+		}
 
 
 		////////////////
 
 		abstract public T[] GetPool();
+
+		abstract public void ClearPool();
 
 
 		////////////////
@@ -43,7 +62,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		////////////////
 
-		public bool ValidateBoolFields( T entity ) {
+		public bool ValidateBoolFields( T entity, bool all_only ) {
 			Type mytype = typeof( T );
 
 			foreach( var kv in this.BoolFields ) {
@@ -54,15 +73,21 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 					throw new InvalidCastException();
 				}
 
-				if( (bool)raw_field_value != kv.Value ) {
-					return false;
+				if( (bool)raw_field_value == kv.Value ) {
+					if( !all_only ) {
+						return true;
+					}
+				} else {
+					if( all_only ) {
+						return false;
+					}
 				}
 			}
 
-			return true;
+			return all_only;
 		}
 
-		public bool ValidateNumFields( T entity ) {
+		public bool ValidateNumFields( T entity, bool all_only ) {
 			Type mytype = typeof( T );
 
 			foreach( var kv in this.NumFields ) {
@@ -107,15 +132,21 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 				foreach( KeyValuePair<double, double> match_val in kv.Value ) {
 					if( field_val < match_val.Key || field_val >= match_val.Value ) {
-						return false;
+						if( all_only ) {
+							return false;
+						}
+					} else {
+						if( !all_only ) {
+							return true;
+						}
 					}
 				}
 			}
 
-			return true;
+			return all_only;
 		}
 
-		public bool ValidateStringFields( T entity ) {
+		public bool ValidateStringFields( T entity, bool all_only ) {
 			Type mytype = typeof( T );
 
 			foreach( var kv in this.StringFields ) {
@@ -126,28 +157,53 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 					throw new InvalidCastException();
 				}
 
-				if( !kv.Value.IsMatch( (string)raw_field_value ) ) {
-					return false;
+				if( kv.Value.IsMatch( (string)raw_field_value ) ) {
+					if( !all_only ) {
+						return true;
+					}
+				} else {
+					if( all_only ) {
+						return false;
+					}
 				}
 			}
 
+			return all_only;
+		}
+
+		////////////////
+
+		public bool Validate( T entity ) {
+			if( !this.ValidateBoolFields( entity, false ) ) { return false; }
+			if( !this.ValidateNumFields( entity, false ) ) { return false; }
+			if( !this.ValidateStringFields( entity, false ) ) { return false; }
+			if( this.AnyOf != null && !this.AnyOf.ValidateAny( entity ) ) { return false; }
+			if( this.CustomMatcher != null && !this.CustomMatcher( entity ) ) { return false; }
+
 			return true;
+		}
+
+		protected virtual bool ValidateAny( T entity ) {
+			if( this.ValidateBoolFields( entity, false ) ) { return true; }
+			if( this.ValidateNumFields( entity, false ) ) { return true; }
+			if( this.ValidateStringFields( entity, false ) ) { return true; }
+			if( this.CustomMatcher != null && this.CustomMatcher( entity ) ) { return true; }
+
+			return false;
 		}
 
 
 		////////////////
 
-		public virtual IList<T> GetGroup() {
+		public virtual ISet<T> GetGroup() {
 			Type mytype = typeof( T );
 			T[] pool = this.GetPool();
-			IList<T> group = new List<T>();
+			ISet<T> group = new HashSet<T>();
 
 			foreach( T ent in pool ) {
-				if( !this.ValidateBoolFields( ent ) ) { continue; }
-				if( !this.ValidateNumFields( ent ) ) { continue; }
-				if( !this.ValidateStringFields( ent ) ) { continue; }
-
-				group.Add( ent );
+				if( this.Validate(ent) ) {
+					group.Add( ent );
+				}
 			}
 
 			return group;

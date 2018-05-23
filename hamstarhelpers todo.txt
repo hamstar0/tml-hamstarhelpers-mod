@@ -12,10 +12,16 @@ Future?
 -	Send issue reports for unhandled exceptions
 -	Optimize PacketProtocol
 	-	Refactor packet id code to use indexes, not hashes (stored as ushort)
+
+
+
+v1.5.0
 -	Set UI elements to be 'Components'
 
-
-
+-	Implement entity groups
+	-	Implement arbitrary code filters
+	-	Implement item recipe querying
+	-	Implement basic attribute querying
 v1.4.5
 -	@Test Nihilism (including MP)
 -	@Test Reset Mode

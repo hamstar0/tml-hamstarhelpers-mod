@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public class NPCGroupDefinition : EntityGroupDefinition<NPC> {
-		public static IList<NPC> GetNpcGroup( string query_json ) {
+		public static ISet<NPC> GetNpcGroup( string query_json ) {
 			var def = JsonConvert.DeserializeObject<NPCGroupDefinition>( query_json );
 			return def.GetGroup();
 		}
@@ -14,7 +14,9 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 		
 		////////////////
 
-		private readonly NPC[] MyPool = null;
+		private NPC[] MyPool = null;
+
+		////////////////
 
 		public override NPC[] GetPool() {
 			if( this.MyPool == null ) {
@@ -24,6 +26,10 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 			}
 			return this.MyPool;
+		}
+
+		public override void ClearPool() {
+			this.MyPool = null;
 		}
 	}
 }

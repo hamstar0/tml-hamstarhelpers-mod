@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public class ItemGroupDefinition : EntityGroupDefinition<Item> {
-		public static IList<Item> GetItemGroup( string query_json ) {
+		public static ISet<Item> GetItemGroup( string query_json ) {
 			var def = JsonConvert.DeserializeObject<ItemGroupDefinition>( query_json );
 			return def.GetGroup();
 		}
@@ -18,7 +18,9 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		public ISet<string> UsesItemIngredients { get; private set; }
 
-		private readonly Item[] MyPool = null;
+		private Item[] MyPool = null;
+
+		////////////////
 
 		public override Item[] GetPool() {
 			if( this.MyPool == null ) {
@@ -30,8 +32,13 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			return this.MyPool;
 		}
 
+		public override void ClearPool() {
+			this.MyPool = null;
+		}
 
-		public override IList<Item> GetGroup() {
+		////////////////
+
+		public override ISet<Item> GetGroup() {
 			var items = base.GetGroup();
 			Item[] item_arr = items.ToArray();
 
@@ -61,7 +68,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 					}
 
 					if( missing_ingredients ) {
-						items.RemoveAt( i );
+						items.Remove( item );
 					}
 
 					missing_recipe = false;
@@ -69,7 +76,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 
 				if( missing_recipe ) {
-					items.RemoveAt( i );
+					items.Remove( item );
 				}
 			}
 

@@ -123,7 +123,7 @@ namespace HamstarHelpers.ItemHelpers {
 				}
 			}
 			if( junk_relevant && item.rare < 0 ) { return false; }
-			return !item.vanity && item.dye <= 0 && item.hairDye <= 0 && item.paint > 0 && !Main.vanityPet[item.buffType];
+			return !item.vanity && item.dye <= 0 && item.hairDye <= 0 && item.paint == 0 && !Main.vanityPet[item.buffType];
 		}
 
 
