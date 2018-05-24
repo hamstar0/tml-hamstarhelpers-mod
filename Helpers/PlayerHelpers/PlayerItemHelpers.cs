@@ -47,6 +47,8 @@ namespace HamstarHelpers.PlayerHelpers {
 					quantity -= stack;
 					removed += stack;
 					player.inventory[i] = new Item();
+
+					if( quantity == 0 ) { break; }
 				}
 			}
 
@@ -216,7 +218,7 @@ namespace HamstarHelpers.PlayerHelpers {
 				return player.miscEquips[4];
 			}
 			for( int i = 0; i < PlayerItemHelpers.VanillaInventorySize; i++ ) {
-				if( Main.projHook[player.inventory[i].shoot] ) {
+				if( Main.projHook[ player.inventory[i].shoot ] ) {
 					return player.inventory[i];
 				}
 			}

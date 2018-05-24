@@ -91,6 +91,12 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.WorldLoadEachPromises.Add( action );
 		}
 
+		public static void AddModUnloadPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			mymod.TmlLoadHelpers.ModUnloadPromises.Add( action );
+		}
+
 
 
 		////////////////
@@ -99,6 +105,7 @@ namespace HamstarHelpers.TmlHelpers {
 		internal IList<Action> PostModLoadPromises = new List<Action>();
 		internal IList<Action> WorldLoadOncePromises = new List<Action>();
 		internal IList<Action> WorldLoadEachPromises = new List<Action>();
+		internal IList<Action> ModUnloadPromises = new List<Action>();
 
 		internal static bool PostGameLoadPromiseConditionsMet = false;
 		internal bool PostModLoadPromiseConditionsMet = false;
@@ -146,6 +153,14 @@ namespace HamstarHelpers.TmlHelpers {
 				promise();
 			}
 			this.WorldLoadOncePromises.Clear();
+		}
+
+
+		internal void FulfillModUnloadPromises() {
+			foreach( Action promise in this.ModUnloadPromises ) {
+				promise();
+			}
+			this.ModUnloadPromises.Clear();
 		}
 
 

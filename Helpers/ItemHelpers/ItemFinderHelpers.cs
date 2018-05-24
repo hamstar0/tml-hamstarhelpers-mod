@@ -24,6 +24,7 @@ namespace HamstarHelpers.ItemHelpers {
 			for( int i=0; i<collection.Length; i++ ) {
 				Item item = collection[i];
 				if( item == null || item.IsAir ) { continue; }
+
 				if( item_types.Contains( item.type ) ) { set.Add( i ); }
 			}
 			return set;

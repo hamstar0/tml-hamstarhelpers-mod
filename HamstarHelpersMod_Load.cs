@@ -145,6 +145,8 @@ namespace HamstarHelpers {
 		public override void Unload() {
 			this.UnloadModData();
 
+			this.TmlLoadHelpers.FulfillModUnloadPromises();
+
 			try {
 				if( this.HasUnhandledExceptionLogger ) {
 					this.HasUnhandledExceptionLogger = false;
