@@ -16,7 +16,11 @@ namespace HamstarHelpers.ItemHelpers {
 
 
 		public static string GetQualifiedName( Item item ) {
-			return Lang.GetItemNameValue( item.type );  //item.Name;
+			return Lang.GetItemNameValue( item.type );  // not netID?
+		}
+
+		public static string GetQualifiedName( int item_type ) {
+			return Lang.GetItemNameValue( item_type );
 		}
 
 

@@ -19,6 +19,15 @@ namespace HamstarHelpers.NPCHelpers {
 		
 		// TODO: GetVanillaSnapshotHash
 
+		
+		public static string GetQualifiedName( NPC npc ) {
+			return Lang.GetNPCNameValue( npc.netID );
+		}
+
+		public static string GetQualifiedName( int netid ) {    //npc_type?
+			return Lang.GetNPCNameValue( netid );
+		}
+
 
 
 		////////////////

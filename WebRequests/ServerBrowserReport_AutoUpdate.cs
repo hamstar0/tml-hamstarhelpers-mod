@@ -52,7 +52,9 @@ namespace HamstarHelpers.WebRequests {
 				if( ServerBrowserReporter.CanAnnounceServer() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 					// 1 minute
 					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
-						this.BeginAutoServerUpdates();
+						try {
+							this.BeginAutoServerUpdates();
+						} catch { }
 						return false;
 					} );
 				} else {
