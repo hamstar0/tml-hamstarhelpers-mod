@@ -64,47 +64,47 @@ namespace HamstarHelpers.NPCHelpers {
 			}
 
 			switch( npc_type ) {
-			case 17:
+			case NPCID.Merchant:
 				return Main.instance.shop[1];
-			case 19:
+			case NPCID.ArmsDealer:
 				return Main.instance.shop[2];
-			case 20:
+			case NPCID.Dryad:
 				return Main.instance.shop[3];
-			case 38:
+			case NPCID.Demolitionist:
 				return Main.instance.shop[4];
-			case 54:
+			case NPCID.Clothier:
 				return Main.instance.shop[5];
-			case 107:
+			case NPCID.GoblinTinkerer:
 				return Main.instance.shop[6];
-			case 108:
+			case NPCID.Wizard:
 				return Main.instance.shop[7];
-			case 124:
+			case NPCID.Mechanic:
 				return Main.instance.shop[8];
-			case 142:
+			case NPCID.SantaClaus:
 				return Main.instance.shop[9];
-			case 160:
+			case NPCID.Truffle:
 				return Main.instance.shop[10];
-			case 178:
+			case NPCID.Steampunker:
 				return Main.instance.shop[11];
-			case 207:
+			case NPCID.DyeTrader:
 				return Main.instance.shop[12];
-			case 208:
+			case NPCID.PartyGirl:
 				return Main.instance.shop[13];
-			case 209:
+			case NPCID.Cyborg:
 				return Main.instance.shop[14];
-			case 227:
+			case NPCID.Painter:
 				return Main.instance.shop[15];
-			case 228:
+			case NPCID.WitchDoctor:
 				return Main.instance.shop[16];
-			case 229:
+			case NPCID.Pirate:
 				return Main.instance.shop[17];
-			case 353:
+			case NPCID.Stylist:
 				return Main.instance.shop[18];
-			case 368:
+			case NPCID.TravellingMerchant:
 				return Main.instance.shop[19];
-			case 453:
+			case NPCID.SkeletonMerchant:
 				return Main.instance.shop[20];
-			case 550:
+			case NPCID.DD2Bartender:
 				return Main.instance.shop[21];
 			}
 

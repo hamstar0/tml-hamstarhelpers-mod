@@ -27,30 +27,30 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 		
-		public void OnEnterWorldForSingle( HamstarHelpersMod mymod, Player player ) {
+		public void OnEnterWorldSingle( HamstarHelpersMod mymod, Player player ) {
 			if( !mymod.JsonConfig.LoadFile() ) {
 				mymod.JsonConfig.SaveFile();
 			}
 
 			this.FinishModSettingsSync();
-			this.FinishModDataSync();
+			this.FinishWorldDataSync();
 
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnEnterWorldForClient( HamstarHelpersMod mymod, Player player ) {
+		public void OnEnterWorldClient( HamstarHelpersMod mymod, Player player ) {
 			HHPlayerDataProtocol.SyncToEveryone( this.HasUID, this.PrivateUID, this.PermaBuffsById, this.HasBuffIds,
 				this.EquipSlotsToItemTypes );
 			
 			PacketProtocol.QuickRequestToServer<HHModSettingsProtocol>();
-			PacketProtocol.QuickRequestToServer<HHModDataProtocol>();
+			PacketProtocol.QuickRequestToServer<WorldDataProtocol>();
 
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnEnterWorldForServer( HamstarHelpersMod mymod, Player player ) {
+		public void OnEnterWorldServer( HamstarHelpersMod mymod, Player player ) {
 			this.FinishModSettingsSync();
-			this.FinishModDataSync();
+			this.FinishWorldDataSync();
 		}
 
 
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Logic {
 			this.HasSyncedModSettings = true;
 			if( this.IsSynced() ) { this.FinishSync(); }
 		}
-		public void FinishModDataSync() {
+		public void FinishWorldDataSync() {
 			this.HasSyncedModData = true;
 			if( this.IsSynced() ) { this.FinishSync(); }
 		}

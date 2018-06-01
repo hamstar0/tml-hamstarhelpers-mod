@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.Logic;
 using System;
-using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -74,7 +73,7 @@ namespace HamstarHelpers {
 		
 		////////////////
 
-		public override void NetSend( BinaryWriter writer ) {
+		/*public override void NetSend( BinaryWriter writer ) {		<- TML's ModWorld.Net stuff is notoriously buggy!
 			var mymod = (HamstarHelpersMod)this.mod;
 
 			try {
@@ -99,7 +98,7 @@ namespace HamstarHelpers {
 			} catch( Exception e ) {
 				LogHelpers.Log( e.ToString() );
 			}
-		}
+		}*/
 
 		////////////////
 

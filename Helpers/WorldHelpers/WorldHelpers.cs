@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers;
-using HamstarHelpers.NetProtocols;
 using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using System;
@@ -117,13 +116,13 @@ namespace HamstarHelpers.WorldHelpers {
 		}
 
 		////////////////
+		
+		internal void LoadFromData( HamstarHelpersMod mymod, int half_days, string world_id ) {
+			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
-		internal void SaveForNetwork( HHModDataProtocol protocol ) {
-			protocol.HalfDays = this.HalfDaysElapsed;
-		}
-
-		internal void LoadFromNetwork( int half_days ) {
 			this.HalfDaysElapsed = half_days;
+
+			myworld.ObsoleteID = world_id;
 		}
 
 

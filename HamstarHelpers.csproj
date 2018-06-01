@@ -106,6 +106,7 @@
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers_Obsolete.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
+    <Compile Include="Helpers\TileHelpers\TileHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Obsolete.cs" />
@@ -120,11 +121,12 @@
     <Compile Include="Helpers\UIHelpers\UITheme_Obsolete.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="Helpers\XnaHelpers\XnaColorHelpers_Obsolete.cs" />
     <Compile Include="Logic\PlayerLogic_Update.cs" />
     <Compile Include="NetProtocols\PingProtocol.cs" />
     <Compile Include="NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />
-    <Compile Include="NetProtocols\ModDataProtocol.cs" />
+    <Compile Include="NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
     <Compile Include="Utilities\EntityGroups\ProjectileGroupDefinition.cs" />
     <Compile Include="Utilities\EntityGroups\NPCGroupDefinition.cs" />

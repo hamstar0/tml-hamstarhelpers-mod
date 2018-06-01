@@ -192,13 +192,14 @@ namespace HamstarHelpers.PlayerHelpers {
 		public static Vector2 TipOfHeldItem( Player player ) {
 			Item item = player.HeldItem;
 			if( item == null || item.IsAir ) { return Vector2.Zero; }
+
 			Vector2 pos = player.RotatedRelativePoint( player.MountedCenter, true );
 
-			int wid = Main.itemTexture[item.type].Width;
+			int wid = Main.itemTexture[ item.type ].Width;
 			int length = wid;
 			
 			if( item.useStyle != 5 ) {
-				int hei = Main.itemTexture[item.type].Height;
+				int hei = Main.itemTexture[ item.type ].Height;
 				length = (int)Math.Sqrt( wid * wid + hei * hei );
 			}
 
