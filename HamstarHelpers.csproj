@@ -89,6 +89,7 @@
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups_Obsolete.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
+    <Compile Include="Helpers\MiscHelpers\DataFileHelpers_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\InfoHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\MiscHelpers_Obsolete.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Ping.cs" />

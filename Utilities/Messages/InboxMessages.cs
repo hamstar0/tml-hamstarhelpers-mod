@@ -1,12 +1,21 @@
-﻿using HamstarHelpers.Helpers.PlayerHelpers;
+﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.MiscHelpers;
 using HamstarHelpers.TmlHelpers;
 using System;
 using System.Collections.Generic;
-using Terraria;
 
 
 namespace HamstarHelpers.Utilities.Messages {
+	class InboxMessageData {
+		public IDictionary<string, string> Messages = new Dictionary<string, string>();
+		internal IDictionary<string, Action<bool>> MessageActions = new Dictionary<string, Action<bool>>();
+		public List<string> Order = new List<string>();
+		public int Current = 0;
+	}
+
+
+
+
 	public class InboxMessages {
 		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
 			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
@@ -96,12 +105,15 @@ namespace HamstarHelpers.Utilities.Messages {
 
 		////////////////
 
-		private IDictionary<string, string> Messages = new Dictionary<string, string>();
-		private IDictionary<string, Action<bool>> MessageActions = new Dictionary<string, Action<bool>>();
-		private List<string> Order = new List<string>();
-		public int Current { get; private set; }
+		private IDictionary<string, string> Messages { get { return this.Data.Messages; } }
+		private IDictionary<string, Action<bool>> MessageActions { get { return this.Data.MessageActions; } }
+		private List<string> Order { get { return this.Data.Order; } }
+		public int Current {
+			get { return this.Data.Current; }
+			set { this.Data.Current = value; }
+		}
 
-		private bool IsLoaded = false;
+		private InboxMessageData Data = new InboxMessageData();
 
 
 		////////////////
@@ -110,44 +122,31 @@ namespace HamstarHelpers.Utilities.Messages {
 			this.Current = 0;
 
 			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
-				if( this.IsLoaded ) { return; }
-				InboxMessages inbox_copy = this.LoadFromFile( out this.IsLoaded );
-
-				if( this.IsLoaded ) {
-					this.Messages = inbox_copy.Messages;
-					this.MessageActions = inbox_copy.MessageActions;
-					this.Order = inbox_copy.Order;
-					this.Current = inbox_copy.Current;
-				}
+				bool success = this.LoadFromFile();
 			} );
 		}
 		
-		~InboxMessages() {
-			if( this.IsLoaded ) {
-				this.SaveToFile();
-			}
+		//~InboxMessages() {
+
+		internal void OnWorldExit() {
+			this.SaveToFile();
 		}
 
 
 		////////////////
 
-		internal InboxMessages LoadFromFile( out bool success ) {
-			string pid = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer, out success );
-			if( !success ) {
-				return null;
-			}
+		internal bool LoadFromFile() {
+			bool success;
+			var data = DataFileHelpers.LoadJson<InboxMessageData>( HamstarHelpersMod.Instance, "Inbox", out success );
 
-			return DataFileHelpers.LoadBinary<InboxMessages>( HamstarHelpersMod.Instance, "Inbox_" + pid, out success );
+			if( success ) {
+				this.Data = data;
+			}
+			return success;
 		}
 
 		internal void SaveToFile() {
-			bool success;
-			string pid = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer, out success );
-			if( !success ) {
-				return;
-			}
-
-			DataFileHelpers.SaveAsBinary<InboxMessages>( HamstarHelpersMod.Instance, "Inbox_" + pid, this );
+			DataFileHelpers.SaveAsJson<InboxMessageData>( HamstarHelpersMod.Instance, "Inbox", this.Data );
 		}
 	}
 }

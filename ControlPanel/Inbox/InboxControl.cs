@@ -52,6 +52,10 @@ namespace HamstarHelpers.ControlPanel.Inbox {
 			this.MessageScrollPos = this.Messages.Current;
 		}
 
+		internal void OnWorldExit() {
+			this.Messages.OnWorldExit();
+		}
+
 
 		////////////////
 

@@ -71,6 +71,12 @@ namespace HamstarHelpers.TmlHelpers {
 			}
 		}
 
+		public static void AddModUnloadPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			mymod.TmlLoadHelpers.ModUnloadPromises.Add( action );
+		}
+
 
 		public static void AddWorldLoadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
@@ -91,10 +97,13 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.WorldLoadEachPromises.Add( action );
 		}
 
-		public static void AddModUnloadPromise( Action action ) {
+		public static void AddPostWorldLoadEachPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			mymod.TmlLoadHelpers.ModUnloadPromises.Add( action );
+			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+				action();
+			}
+			mymod.TmlLoadHelpers.PostWorldLoadEachPromises.Add( action );
 		}
 
 
@@ -103,9 +112,10 @@ namespace HamstarHelpers.TmlHelpers {
 
 		internal IList<Action> PostGameLoadPromises = new List<Action>();
 		internal IList<Action> PostModLoadPromises = new List<Action>();
+		internal IList<Action> ModUnloadPromises = new List<Action>();
 		internal IList<Action> WorldLoadOncePromises = new List<Action>();
 		internal IList<Action> WorldLoadEachPromises = new List<Action>();
-		internal IList<Action> ModUnloadPromises = new List<Action>();
+		internal IList<Action> PostWorldLoadEachPromises = new List<Action>();
 
 		internal static bool PostGameLoadPromiseConditionsMet = false;
 		internal bool PostModLoadPromiseConditionsMet = false;
@@ -141,6 +151,13 @@ namespace HamstarHelpers.TmlHelpers {
 			this.PostModLoadPromises.Clear();
 		}
 
+		internal void FulfillModUnloadPromises() {
+			foreach( Action promise in this.ModUnloadPromises ) {
+				promise();
+			}
+			this.ModUnloadPromises.Clear();
+		}
+
 
 		internal void FulfillWorldLoadPromises() {
 			if( this.WorldLoadPromiseConditionsMet ) { return; }
@@ -152,15 +169,11 @@ namespace HamstarHelpers.TmlHelpers {
 			foreach( Action promise in this.WorldLoadEachPromises ) {
 				promise();
 			}
-			this.WorldLoadOncePromises.Clear();
-		}
-
-
-		internal void FulfillModUnloadPromises() {
-			foreach( Action promise in this.ModUnloadPromises ) {
+			foreach( Action promise in this.PostWorldLoadEachPromises ) {
 				promise();
 			}
-			this.ModUnloadPromises.Clear();
+			this.WorldLoadOncePromises.Clear();
+			this.PostWorldLoadEachPromises.Clear();
 		}
 
 

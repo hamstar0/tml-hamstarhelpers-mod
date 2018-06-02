@@ -39,6 +39,8 @@ namespace HamstarHelpers {
 
 			this.LogHelpers.OnWorldExit();
 			this.ModLockHelpers.OnWorldExit();
+			this.Inbox.OnWorldExit();
+
 			modworld.OnWorldExit();
 		}
 
