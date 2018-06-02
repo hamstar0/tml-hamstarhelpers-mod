@@ -19,18 +19,22 @@ namespace HamstarHelpers.Utilities.Messages {
 	public class InboxMessages {
 		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
 			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+			bool is_update_only = false;
 
 			if( inbox.Messages.ContainsKey( which ) ) {
 				if( force_unread ) {
 					inbox.Order.Remove( which );
 				} else {
-					return;
+					is_update_only = true;
 				}
 			}
 
 			inbox.Messages[which] = msg;
 			inbox.MessageActions[which] = on_run;
-			inbox.Order.Add( which );
+
+			if( !is_update_only ) {
+				inbox.Order.Add( which );
+			}
 		}
 
 
@@ -141,6 +145,10 @@ namespace HamstarHelpers.Utilities.Messages {
 
 			if( success ) {
 				this.Data = data;
+
+				foreach( string msg_name in this.Data.Messages.Keys ) {
+					this.Data.MessageActions[ msg_name ] = null;
+				}
 			}
 			return success;
 		}
