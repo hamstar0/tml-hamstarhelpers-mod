@@ -29,8 +29,10 @@ namespace HamstarHelpers.WebRequests {
 
 
 		////////////////
-
-		private void InitializeAutoServerUpdates() {
+		
+		private void InitializeLoopingServerAnnounce() {
+			if( Main.netMode == 0 ) { return; }
+				
 			Action alert_privacy = delegate {
 				string msg = "Hamstar's Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
 
@@ -38,47 +40,45 @@ namespace HamstarHelpers.WebRequests {
 				Console.WriteLine( msg );
 			};
 
-			TmlLoadHelpers.AddWorldLoadEachPromise( delegate {
-				if( Main.netMode == 1 ) {
-					if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
-						//	3 seconds
-						Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
-							alert_privacy();
-							return false;
-						} );
-					}
-				}
-
-				if( ServerBrowserReporter.CanAnnounceServer() && ServerBrowserReporter.CanPromptForBrowserAdd() ) {
-					// 1 minute
-					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {
-						try {
-							this.BeginAutoServerUpdates();
-						} catch { }
+			if( Main.netMode == 1 ) {
+				if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
+					//	3 seconds
+					Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
+						alert_privacy();
 						return false;
 					} );
-				} else {
-					this.BeginAutoServerUpdates();
 				}
-			} );
-		}
-
-		
-		private void BeginAutoServerUpdates() {
-			if( Main.netMode != 2 ) { return; }
-			
-			int seconds = 60 * 10;	// 10 minutes
-
-			if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
-				ServerBrowserReporter.EndPrompts();
 			}
 
 			if( ServerBrowserReporter.CanAnnounceServer() ) {
+				if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
+					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {   // 1 minute, no repeat
+						if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
+							ServerBrowserReporter.EndPrompts();
+						}
+
+						try {
+							this.BeginLoopingServerAnnounce();
+						} catch { }
+
+						return false;
+					} );
+				} else {
+					this.BeginLoopingServerAnnounce();
+				}
+			}
+		}
+
+		
+		private void BeginLoopingServerAnnounce() {
+			if( Main.netMode != 2 ) { return; }
+
+			// First time no timer
+			if( ServerBrowserReporter.CanAnnounceServer() ) {
 				ServerBrowserReporter.AnnounceServer();
 			}
-
-			// 10 minutes by default between reports
-			Timers.SetTimer( "server_browser_report", seconds * 60, delegate {
+			
+			Timers.SetTimer( "server_browser_report", (60 * 10) * 60, delegate {  // 10 minutes
 				if( ServerBrowserReporter.CanAnnounceServer() ) {
 					if( !ServerBrowserReporter.IsHammering() ) {
 						ServerBrowserReporter.AnnounceServer();
@@ -91,7 +91,7 @@ namespace HamstarHelpers.WebRequests {
 
 		////////////////
 
-		internal void StopAutoServerUpdates() {
+		internal void StopLoopingServerAnnounce() {
 			Timers.UnsetTimer( "server_browser_report" );
 			//this.IsSendingUpdates = false;
 		}

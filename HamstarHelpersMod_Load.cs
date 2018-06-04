@@ -124,7 +124,7 @@ namespace HamstarHelpers {
 #pragma warning restore 612, 618
 
 			if( !this.Config.DisableControlPanelHotkey ) {
-				this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helper Control Panel", "O" );
+				this.ControlPanelHotkey = this.RegisterHotKey( "Hamstar's Helpers Control Panel", "O" );
 			}
 
 			this.LoadModData();

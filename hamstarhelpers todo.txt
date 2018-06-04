@@ -12,6 +12,7 @@ Future?
 -	Send issue reports for unhandled exceptions
 -	Optimize PacketProtocol
 	-	Refactor packet id code to use indexes, not hashes (stored as ushort)
+-	Show main menu indicator of new mod versions
 
 
 

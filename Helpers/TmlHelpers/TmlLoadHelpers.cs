@@ -200,8 +200,10 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 
 		internal void Update() {
-			if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
-				this.WorldLoadPromiseConditionsMet = false; // Does this work?
+			if( Main.netMode != 2 ) {
+				if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
+					this.WorldLoadPromiseConditionsMet = false; // Does this work?
+				}
 			}
 		}
 

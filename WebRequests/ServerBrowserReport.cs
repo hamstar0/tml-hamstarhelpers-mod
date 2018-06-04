@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.TmlHelpers;
 using System.Collections.Generic;
 
 
@@ -72,7 +73,7 @@ namespace HamstarHelpers.WebRequests {
 		////////////////
 
 		public static bool IsHammering() {
-			return ( SystemHelpers.TimeStampInSeconds() - ServerBrowserReporter.LastSendTimestamp ) <= 5;
+			return ( SystemHelpers.TimeStampInSeconds() - ServerBrowserReporter.LastSendTimestamp ) <= 10;
 		}
 
 
@@ -88,7 +89,13 @@ namespace HamstarHelpers.WebRequests {
 		internal ServerBrowserReporter() {
 			this.AveragePing = -1;
 
-			this.InitializeAutoServerUpdates();
+			TmlLoadHelpers.AddWorldLoadEachPromise( delegate {
+				this.InitializeLoopingServerAnnounce();
+			} );
+		}
+
+		internal void OnWorldExit() {
+			this.StopLoopingServerAnnounce();
 		}
 
 

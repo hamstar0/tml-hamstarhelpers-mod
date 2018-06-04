@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.Utilities.Timers;
 using System;
+using System.Net;
 using Terraria;
 
 namespace HamstarHelpers.NetHelpers {
@@ -60,7 +61,11 @@ namespace HamstarHelpers.NetHelpers {
 				this.PublicIP = a4;
 			};
 			Action<Exception, string> on_fail = delegate ( Exception e, string output ) {
-				LogHelpers.Log( "Could not acquire IP: " + e.ToString() );
+				if( e is WebException ) {
+					LogHelpers.Log( "Could not acquire IP: " + e.Message );
+				} else {
+					LogHelpers.Log( "Could not acquire IP: " + e.ToString() );
+				}
 			};
 
 			NetHelpers.MakeGetRequestAsync( "http://checkip.dyndns.org/", on_success, on_fail );

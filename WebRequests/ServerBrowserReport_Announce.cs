@@ -123,12 +123,15 @@ namespace HamstarHelpers.WebRequests {
 				
 				string json_str = JsonConvert.SerializeObject( server_data, Formatting.None );
 				byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
-				
-				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, delegate ( string output ) {
+
+				Action<string> on_response = delegate ( string output ) {
 					ServerBrowserReporter.HandleServerAnnounceOutputAsync( server_data, output );
-				}, delegate( Exception e, string output ) {
+				};
+				Action<Exception, string> on_error = delegate ( Exception e, string output ) {
 					LogHelpers.Log( "Server browser returned error: " + e.ToString() );
-				} );
+				};
+
+				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, on_response, on_error );
 
 				ServerBrowserReporter.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
 			} catch( Exception e ) {
@@ -149,7 +152,9 @@ namespace HamstarHelpers.WebRequests {
 					LogHelpers.Log( "Server updated on browser? " + reply.Success );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( "HandleServerAnnounceOutput - " + e.ToString() + " - " + (output.Length>256?output.Substring(0,256):output) );
+				if( !( e is JsonReaderException ) ) {
+					LogHelpers.Log( "HandleServerAnnounceOutput - " + e.ToString() + " - " + ( output.Length > 256 ? output.Substring( 0, 256 ) : output ) );
+				}
 			}
 		}
 

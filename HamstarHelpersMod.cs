@@ -37,6 +37,7 @@ namespace HamstarHelpers {
 		public override void PreSaveAndQuit() {
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
+			this.ServerBrowser.OnWorldExit();
 			this.LogHelpers.OnWorldExit();
 			this.ModLockHelpers.OnWorldExit();
 			this.Inbox.OnWorldExit();

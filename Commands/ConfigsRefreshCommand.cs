@@ -22,7 +22,7 @@ namespace HamstarHelpers.Commands {
 
 
 		////////////////
-
+		
 		public override CommandType Type { get { return CommandType.World; } }
 		public override string Command { get { return "hhconfigsrefresh"; } }
 		public override string Usage { get { return "/hhconfigsrefresh"; } }
