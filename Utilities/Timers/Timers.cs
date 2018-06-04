@@ -21,6 +21,19 @@ namespace HamstarHelpers.Utilities.Timers {
 		}
 
 
+		public static int GetTimerTickDuration( string name ) {
+			var timers = HamstarHelpersMod.Instance.Timers;
+
+			lock( Timers.MyLock ) {
+				if( timers.Running.ContainsKey( name ) ) {
+					return timers.Running[name].Value - timers.Elapsed[ name ];
+				}
+			}
+
+			return 0;
+		}
+
+
 		public static void UnsetTimer( string name ) {
 			var timers = HamstarHelpersMod.Instance.Timers;
 

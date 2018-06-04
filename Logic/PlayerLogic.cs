@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.NetProtocols;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Network;
 using System.Collections.Generic;
@@ -39,10 +40,12 @@ namespace HamstarHelpers.Logic {
 		}
 
 		public void OnEnterWorldClient( HamstarHelpersMod mymod, Player player ) {
-			HHPlayerDataProtocol.SyncToEveryone( this.HasUID, this.PrivateUID, this.PermaBuffsById, this.HasBuffIds,
-				this.EquipSlotsToItemTypes );
+			if( this.HasUID ) {
+				PacketProtocol.QuickSendToServer<PlayerIdProtocol>();
+			}
+			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			
-			PacketProtocol.QuickRequestToServer<HHModSettingsProtocol>();
+			PacketProtocol.QuickRequestToServer<ModSettingsProtocol>();
 			PacketProtocol.QuickRequestToServer<WorldDataProtocol>();
 
 			mymod.ControlPanel.LoadModListAsync();

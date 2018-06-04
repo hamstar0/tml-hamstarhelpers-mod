@@ -60,6 +60,13 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 		}
 
+		public static void ReduceWorldItemStack( int idx, int amt ) {
+			Item item = Main.item[ idx ];
+			item.whoAmI = idx;
+
+			ItemHelpers.ReduceStack( item, amt );
+		}
+
 		////////////////
 
 		public static int CalculateStandardUseTime( Item item ) {

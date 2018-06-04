@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.TmlHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,20 +43,23 @@ namespace HamstarHelpers.Logic {
 
 		////////////////
 		
-		public void NetReceiveClient( ISet<int> perma_buff_ids, ISet<int> has_buff_ids,
+		public void NetReceiveDataClient( ISet<int> perma_buff_ids, ISet<int> has_buff_ids,
 				IDictionary<int, int> equip_slots_to_item_types ) {
 			this.PermaBuffsById = perma_buff_ids;
 			this.HasBuffIds = has_buff_ids;
 			this.EquipSlotsToItemTypes = equip_slots_to_item_types;
 		}
 
-		public void NetReceiveServer( bool has_uid, string uid, ISet<int> perma_buff_ids,
-				ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
-			this.HasUID = has_uid;
-			this.PrivateUID = uid;
+		public void NetReceiveDataServer( ISet<int> perma_buff_ids, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			this.PermaBuffsById = perma_buff_ids;
 			this.HasBuffIds = has_buff_ids;
 			this.EquipSlotsToItemTypes = equip_slots_to_item_types;
+		}
+
+
+		public void NetReceiveIdServer( bool has_uid, string uid ) {
+			this.HasUID = has_uid;
+			this.PrivateUID = uid;
 		}
 	}
 }

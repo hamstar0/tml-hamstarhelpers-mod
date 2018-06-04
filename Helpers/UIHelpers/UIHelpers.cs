@@ -22,11 +22,16 @@ namespace HamstarHelpers.UIHelpers {
 		}
 
 		public static Vector2 GetWorldMousePosition() {
-			Rectangle screen_frame = UIHelpers.GetWorldFrameOfScreen();
-			Vector2 screen_mouse = UIHelpers.ConvertToScreenPosition( new Vector2( Main.mouseX, Main.mouseY ) + Main.screenPosition );
-			return screen_mouse + new Vector2( screen_frame.X, screen_frame.Y );
-		}
+			Rectangle zoomed_screen_frame = UIHelpers.GetWorldFrameOfScreen();
+			var zoomed_screen_pos = new Vector2( zoomed_screen_frame.X, zoomed_screen_frame.Y );
+			var mouse_pos = new Vector2( Main.mouseX, Main.mouseY );
 
+			Vector2 screen_mouse_pos = UIHelpers.ConvertToScreenPosition( mouse_pos + Main.screenPosition );
+			Vector2 world_mouse_pos = screen_mouse_pos + zoomed_screen_pos;
+
+			return world_mouse_pos;
+		}
+		
 
 		////////////////
 

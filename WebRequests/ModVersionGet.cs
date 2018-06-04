@@ -68,11 +68,23 @@ namespace HamstarHelpers.WebRequests {
 				JObject resp_json = JObject.Parse( output );
 
 				if( resp_json.Count > 0 ) {
-					JToken[] mod_list = resp_json.SelectToken( "modlist" ).ToArray();
+					JToken mod_list_token = resp_json.SelectToken( "modlist" );
+					if( mod_list_token == null ) {
+						throw new NullReferenceException( "No modlist" );
+					}
+
+					JToken[] mod_list = mod_list_token.ToArray();
 
 					foreach( JToken mod_entry in mod_list ) {
-						string mod_name = mod_entry.SelectToken( "name" ).ToObject<string>();
-						string mod_vers_raw = mod_entry.SelectToken( "version" ).ToObject<string>();
+						JToken mod_name_token = mod_entry.SelectToken( "name" );
+						JToken mod_vers_raw_token = mod_entry.SelectToken( "version" );
+						if( mod_name_token == null || mod_vers_raw_token == null ) {
+							continue;
+						}
+
+						string mod_name = mod_name_token.ToObject<string>();
+						string mod_vers_raw = mod_vers_raw_token.ToObject<string>();
+
 						Version mod_vers = Version.Parse( mod_vers_raw.Substring( 1 ) );
 
 						mod_versions[ mod_name ] = mod_vers;

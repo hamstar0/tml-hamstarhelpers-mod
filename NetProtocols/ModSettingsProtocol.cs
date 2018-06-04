@@ -2,7 +2,7 @@
 
 
 namespace HamstarHelpers.NetProtocols {
-	class HHModSettingsProtocol : PacketProtocol {
+	class ModSettingsProtocol : PacketProtocol {
 		public HamstarHelpersConfigData Data;
 
 		////////////////

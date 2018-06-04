@@ -1,10 +1,9 @@
 ﻿using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Utilities.Network;
-using System.IO;
 
 
 namespace HamstarHelpers.NetProtocols {
-	class HHPingProtocol : PacketProtocol {
+	class PingProtocol : PacketProtocol {
 		public long StartTime = -1;
 		public long EndTime = -1;
 

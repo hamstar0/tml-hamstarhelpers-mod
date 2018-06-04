@@ -156,7 +156,7 @@ namespace HamstarHelpers.PlayerHelpers {
 
 		public static void KillWithPermadeath( Player player, string death_msg ) {
 			if( Main.netMode != 0 ) {
-				var protocol = new HHPlayerPermaDeathProtocol( player.whoAmI, death_msg );
+				var protocol = new PlayerPermaDeathProtocol( player.whoAmI, death_msg );
 			} else {
 				PlayerHelpers.ApplyPermaDeath( player, death_msg );
 			}

@@ -116,7 +116,6 @@ namespace HamstarHelpers.Utilities.Network {
 		/// </summary>
 		/// <param name="writer">Binary data writer.</returns>
 		protected virtual void WriteStream( BinaryWriter writer ) {
-			//LogHelpers.Log( "SEND PLZ!! packet: "+this.GetType().Name+", field: "+ string.Join(",",this.OrderedFields.Select(f=>f.Name).ToArray()) );
 			foreach( FieldInfo field in this.OrderedFields ) {
 				object raw_val = field.GetValue( this );
 				Type field_type = field.FieldType;

@@ -22,7 +22,7 @@ namespace HamstarHelpers.WebRequests {
 			mymod.JsonConfig.SaveFile();
 
 			if( Main.netMode == 2 ) {
-				PacketProtocol.QuickSendToClient<HHModSettingsProtocol>( -1, -1 );
+				PacketProtocol.QuickSendToClient<ModSettingsProtocol>( -1, -1 );
 			}
 		}
 

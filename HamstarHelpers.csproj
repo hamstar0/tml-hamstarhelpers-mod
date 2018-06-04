@@ -126,6 +126,7 @@
     <Compile Include="Logic\PlayerLogic_Update.cs" />
     <Compile Include="NetProtocols\PingProtocol.cs" />
     <Compile Include="NetProtocols\PlayerDataProtocol.cs" />
+    <Compile Include="NetProtocols\PlayerIdProtocol.cs" />
     <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />

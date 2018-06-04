@@ -3,14 +3,14 @@ using Terraria;
 
 
 namespace HamstarHelpers.NetProtocols {
-	class HHPlayerPermaDeathProtocol : PacketProtocol {
+	class PlayerPermaDeathProtocol : PacketProtocol {
 		public int PlayerWho;
 		public string Msg;
 
 
 		////////////////
 
-		internal HHPlayerPermaDeathProtocol( int player_who, string msg ) {
+		internal PlayerPermaDeathProtocol( int player_who, string msg ) {
 			this.PlayerWho = player_who;
 			this.Msg = msg;
 

@@ -1,11 +1,17 @@
 ﻿using HamstarHelpers.NetProtocols;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Utilities.Timers;
 using System.Linq;
 using Terraria;
 
 
 namespace HamstarHelpers.Logic {
 	partial class PlayerLogic {
+		private bool CanUpdateData = true;
+
+
+		////////////////
+
 		public void UpdateTml( HamstarHelpersMod mymod, Player player ) {
 			this.CheckBuffHooks( player );
 			this.CheckArmorEquipHooks( player );
@@ -41,7 +47,16 @@ namespace HamstarHelpers.Logic {
 
 			if( buff_change ) {
 				if( Main.netMode == 1 ) {
-					HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+					if( this.CanUpdateData ) {
+						this.CanUpdateData = false;
+
+						Timers.SetTimer( "HHPlayerDataAntiHammer", 60 * 3, () => {
+							this.CanUpdateData = true;
+							return false;
+						} );
+
+						PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+					}
 				}
 			}
 		}
@@ -78,7 +93,16 @@ namespace HamstarHelpers.Logic {
 
 			if( equip_change ) {
 				if( Main.netMode == 1 ) {
-					HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+					if( this.CanUpdateData ) {
+						this.CanUpdateData = false;
+
+						Timers.SetTimer( "HHPlayerDataAntiHammer", 60 * 3, () => {
+							this.CanUpdateData = true;
+							return false;
+						} );
+
+						PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+					}
 				}
 			}
 		}
@@ -88,7 +112,7 @@ namespace HamstarHelpers.Logic {
 
 		public void AddPermaBuff( int buff_id ) {
 			if( this.PermaBuffsById.Add( buff_id ) ) {
-				HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+				PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			}
 		}
 
@@ -96,7 +120,7 @@ namespace HamstarHelpers.Logic {
 			if( !this.PermaBuffsById.Contains( buff_id ) ) { return; }
 
 			if( this.PermaBuffsById.Remove( buff_id ) ) {
-				HHPlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+				PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			}
 		}
 	}
