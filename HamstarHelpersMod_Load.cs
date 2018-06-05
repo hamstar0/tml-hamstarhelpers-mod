@@ -189,6 +189,7 @@ namespace HamstarHelpers {
 		public override void PostSetupContent() {
 			this.PacketProtocols = PacketProtocol.GetProtocols();
 
+			this.TmlLoadHelpers.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {

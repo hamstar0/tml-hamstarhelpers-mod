@@ -260,10 +260,6 @@ namespace HamstarHelpers.TmlHelpers {
 
 		internal TmlLoadHelpers() {
 			Main.OnTick += TmlLoadHelpers._Update;
-
-			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
-				this.WorldUnloadPromiseConditionsMet = false;
-			} );
 		}
 
 		~TmlLoadHelpers() {
@@ -271,6 +267,13 @@ namespace HamstarHelpers.TmlHelpers {
 			try {
 				Main.OnTick -= TmlLoadHelpers._Update;
 			} catch { }
+		}
+
+
+		internal void OnPostSetupContent() {
+			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
+				this.WorldUnloadPromiseConditionsMet = false;
+			} );
 		}
 
 
