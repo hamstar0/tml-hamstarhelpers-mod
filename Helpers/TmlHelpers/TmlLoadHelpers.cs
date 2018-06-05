@@ -93,6 +93,15 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.WorldLoadEachPromises.Add( action );
 		}
 
+		public static void AddPostWorldLoadOncePromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+				action();
+			}
+			mymod.TmlLoadHelpers.PostWorldLoadOncePromises.Add( action );
+		}
+
 		public static void AddPostWorldLoadEachPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -102,13 +111,22 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.PostWorldLoadEachPromises.Add( action );
 		}
 
-		public static void AddPostWorldLoadOncePromise( Action action ) {
+		public static void AddWorldUnloadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+			if( mymod.TmlLoadHelpers.WorldUnloadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.PostWorldLoadOncePromises.Add( action );
+			mymod.TmlLoadHelpers.WorldUnloadOncePromises.Add( action );
+		}
+
+		public static void AddWorldUnloadEachPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.WorldUnloadPromiseConditionsMet ) {
+				action();
+			}
+			mymod.TmlLoadHelpers.WorldUnloadEachPromises.Add( action );
 		}
 
 		////////////////
@@ -164,11 +182,14 @@ namespace HamstarHelpers.TmlHelpers {
 		private IList<Action> WorldLoadOncePromises = new List<Action>();
 		private IList<Action> WorldLoadEachPromises = new List<Action>();
 		private IList<Action> PostWorldLoadOncePromises = new List<Action>();
-		private IList<Action> PostWorldLoadEachPromises = new List<Action>();
+		private IList<Action> PostWorldLoadEachPromises = new List<Action>(); 
+		private IList<Action> WorldUnloadOncePromises = new List<Action>();
+		private IList<Action> WorldUnloadEachPromises = new List<Action>();
 		private IDictionary<string, List<Func<bool>>> CustomPromise = new Dictionary<string, List<Func<bool>>>();
 
 		private bool PostModLoadPromiseConditionsMet = false;
 		private bool WorldLoadPromiseConditionsMet = false;
+		private bool WorldUnloadPromiseConditionsMet = false;
 		private ISet<string> CustomPromiseConditionsMet = new HashSet<string>();
 
 		private int StartupDelay = 0;
@@ -220,11 +241,29 @@ namespace HamstarHelpers.TmlHelpers {
 			this.PostWorldLoadOncePromises.Clear();
 		}
 
+		internal void FulfillWorldUnloadPromises() {
+			if( this.WorldUnloadPromiseConditionsMet ) { return; }
+			this.WorldUnloadPromiseConditionsMet = true;
+
+			foreach( Action promise in this.WorldUnloadOncePromises ) {
+				promise();
+			}
+			foreach( Action promise in this.WorldUnloadEachPromises ) {
+				promise();
+			}
+
+			this.WorldUnloadOncePromises.Clear();
+		}
+
 
 		////////////////
 
 		internal TmlLoadHelpers() {
 			Main.OnTick += TmlLoadHelpers._Update;
+
+			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
+				this.WorldUnloadPromiseConditionsMet = false;
+			} );
 		}
 
 		~TmlLoadHelpers() {
@@ -233,6 +272,14 @@ namespace HamstarHelpers.TmlHelpers {
 				Main.OnTick -= TmlLoadHelpers._Update;
 			} catch { }
 		}
+
+
+		////////////////
+
+		internal void OnWorldExit() {
+			this.FulfillWorldUnloadPromises();
+		}
+
 
 		////////////////
 
