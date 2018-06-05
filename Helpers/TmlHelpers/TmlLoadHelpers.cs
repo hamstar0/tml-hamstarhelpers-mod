@@ -29,10 +29,6 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		public static bool IsWorldBeingPlayed() {
-			//var mymod = HamstarHelpersMod.Instance;
-			//var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
-			//var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-			//LogHelpers.Log( "HasSetupContent: "+ mymod.HasSetupContent + ", HasCorrectID: "+ modworld.HasCorrectID+ ", who: "+myplayer.player.whoAmI+", HasSyncedModSettings: "+ myplayer.Logic.HasSyncedModSettings + ", HasSyncedModData: " + myplayer.Logic.HasSyncedModData );
 			if( !TmlLoadHelpers.IsWorldLoaded() ) { return false; }
 
 			var mymod = HamstarHelpersMod.Instance;
@@ -115,19 +111,65 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.PostWorldLoadOncePromises.Add( action );
 		}
 
+		////////////////
+
+		public static void AddCustomPromise( string name, Func<bool> action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.CustomPromiseConditionsMet.Contains(name) ) {
+				if( !action() ) {
+					return;
+				}
+			}
+
+			if( !mymod.TmlLoadHelpers.CustomPromise.ContainsKey(name) ) {
+				mymod.TmlLoadHelpers.CustomPromise[ name ] = new List<Func<bool>>();
+			}
+			mymod.TmlLoadHelpers.CustomPromise[ name ].Add( action );
+		}
+
+		public static void TriggerCustomPromise( string name ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			mymod.TmlLoadHelpers.CustomPromiseConditionsMet.Add( name );
+
+			if( mymod.TmlLoadHelpers.CustomPromise.ContainsKey(name) ) {
+				var func_list = mymod.TmlLoadHelpers.CustomPromise[ name ];
+
+				for( int i=0; i<func_list.Count; i++ ) {
+					if( !func_list[i]() ) {
+						func_list.RemoveAt( i );
+						i--;
+					}
+				}
+			}
+		}
+
+		public static void ClearCustomPromise( string name ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			mymod.TmlLoadHelpers.CustomPromiseConditionsMet.Remove( name );
+
+			if( mymod.TmlLoadHelpers.CustomPromise.ContainsKey( name ) ) {
+				mymod.TmlLoadHelpers.CustomPromise.Remove( name );
+			}
+		}
+
 
 
 		////////////////
-		
+
 		private IList<Action> PostModLoadPromises = new List<Action>();
 		private IList<Action> ModUnloadPromises = new List<Action>();
 		private IList<Action> WorldLoadOncePromises = new List<Action>();
 		private IList<Action> WorldLoadEachPromises = new List<Action>();
 		private IList<Action> PostWorldLoadOncePromises = new List<Action>();
 		private IList<Action> PostWorldLoadEachPromises = new List<Action>();
+		private IDictionary<string, List<Func<bool>>> CustomPromise = new Dictionary<string, List<Func<bool>>>();
 
 		private bool PostModLoadPromiseConditionsMet = false;
 		private bool WorldLoadPromiseConditionsMet = false;
+		private ISet<string> CustomPromiseConditionsMet = new HashSet<string>();
 
 		private int StartupDelay = 0;
 
