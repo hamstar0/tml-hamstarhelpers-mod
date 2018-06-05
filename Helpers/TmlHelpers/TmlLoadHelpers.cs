@@ -106,22 +106,30 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.PostWorldLoadEachPromises.Add( action );
 		}
 
+		public static void AddPostWorldLoadOncePromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+				action();
+			}
+			mymod.TmlLoadHelpers.PostWorldLoadOncePromises.Add( action );
+		}
+
 
 
 		////////////////
+		
+		private IList<Action> PostModLoadPromises = new List<Action>();
+		private IList<Action> ModUnloadPromises = new List<Action>();
+		private IList<Action> WorldLoadOncePromises = new List<Action>();
+		private IList<Action> WorldLoadEachPromises = new List<Action>();
+		private IList<Action> PostWorldLoadOncePromises = new List<Action>();
+		private IList<Action> PostWorldLoadEachPromises = new List<Action>();
 
-		internal IList<Action> PostGameLoadPromises = new List<Action>();
-		internal IList<Action> PostModLoadPromises = new List<Action>();
-		internal IList<Action> ModUnloadPromises = new List<Action>();
-		internal IList<Action> WorldLoadOncePromises = new List<Action>();
-		internal IList<Action> WorldLoadEachPromises = new List<Action>();
-		internal IList<Action> PostWorldLoadEachPromises = new List<Action>();
+		private bool PostModLoadPromiseConditionsMet = false;
+		private bool WorldLoadPromiseConditionsMet = false;
 
-		internal static bool PostGameLoadPromiseConditionsMet = false;
-		internal bool PostModLoadPromiseConditionsMet = false;
-		internal bool WorldLoadPromiseConditionsMet = false;
-
-		internal int StartupDelay = 0;
+		private int StartupDelay = 0;
 
 		internal bool IsClientPlaying = false;
 		internal bool HasServerBegunHavingPlayers = false;
@@ -129,19 +137,8 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		////////////////
-
-		internal void FulfillPostGameLoadPromises() {
-			TmlLoadHelpers.PostGameLoadPromiseConditionsMet = true;
-			
-			foreach( Action promise in this.PostGameLoadPromises ) {
-				promise();
-			}
-			this.PostGameLoadPromises.Clear();
-		}
-
+		
 		internal void FulfillPostModLoadPromises() {
-			this.FulfillPostGameLoadPromises();
-
 			if( this.PostModLoadPromiseConditionsMet ) { return; }
 			this.PostModLoadPromiseConditionsMet = true;
 			
@@ -169,11 +166,16 @@ namespace HamstarHelpers.TmlHelpers {
 			foreach( Action promise in this.WorldLoadEachPromises ) {
 				promise();
 			}
+			
+			foreach( Action promise in this.PostWorldLoadOncePromises ) {
+				promise();
+			}
 			foreach( Action promise in this.PostWorldLoadEachPromises ) {
 				promise();
 			}
+
 			this.WorldLoadOncePromises.Clear();
-			this.PostWorldLoadEachPromises.Clear();
+			this.PostWorldLoadOncePromises.Clear();
 		}
 
 

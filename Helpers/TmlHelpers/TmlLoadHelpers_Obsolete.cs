@@ -18,10 +18,10 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void AddPostGameLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( TmlLoadHelpers.PostGameLoadPromiseConditionsMet ) {
+			if( mymod.TmlLoadHelpers.PostModLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				mymod.TmlLoadHelpers.PostGameLoadPromises.Add( action );
+				mymod.TmlLoadHelpers.PostModLoadPromises.Add( action );
 			}
 		}
 
