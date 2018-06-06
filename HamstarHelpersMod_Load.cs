@@ -205,6 +205,7 @@ namespace HamstarHelpers {
 		public override void AddRecipes() {
 			if( this.Config.AddCrimsonLeatherRecipe ) {
 				var vertebrae_to_leather = new ModRecipe( this );
+
 				vertebrae_to_leather.AddIngredient( ItemID.Vertebrae, 5 );
 				vertebrae_to_leather.SetResult( ItemID.Leather );
 				vertebrae_to_leather.AddRecipe();

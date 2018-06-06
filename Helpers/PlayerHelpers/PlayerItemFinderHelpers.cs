@@ -75,5 +75,26 @@ namespace HamstarHelpers.PlayerHelpers {
 
 			return changes;
 		}
+
+
+		public static Item GetCurrentAmmo( Player player, Item weapon ) {
+			if( weapon.useAmmo == 0 ) { return null; }
+
+			bool first = true;
+
+			for( int i = 54; i < player.inventory.Length; i++ ) {
+				if( i == 58 ) { i = 0; }
+				else if( !first && i == 54 ) { break; }
+
+				Item ammo_item = player.inventory[i];
+				if( ammo_item == null || ammo_item.IsAir ) { continue; }
+
+				if( ammo_item.ammo == weapon.useAmmo ) {
+					return ammo_item;
+				}
+			}
+
+			return null;
+		}
 	}
 }

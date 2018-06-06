@@ -18,23 +18,27 @@ namespace HamstarHelpers.Utilities.Messages {
 
 	public class InboxMessages {
 		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
-			bool is_update_only = false;
+			TmlLoadHelpers.AddPostWorldLoadOncePromise( () => {
+				InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+				int idx = inbox.Order.IndexOf( which );
 
-			if( inbox.Messages.ContainsKey( which ) ) {
-				if( force_unread ) {
-					inbox.Order.Remove( which );
+				inbox.Messages[which] = msg;
+				inbox.MessageActions[which] = on_run;
+
+				if( idx >= 0 ) {
+					if( force_unread ) {
+						if( idx < inbox.Current ) {
+							inbox.Current--;
+						}
+
+						inbox.Order.Remove( which );
+						inbox.Order.Add( which );
+					}
 				} else {
-					is_update_only = true;
+					inbox.Order.Add( which );
 				}
-			}
-
-			inbox.Messages[which] = msg;
-			inbox.MessageActions[which] = on_run;
-
-			if( !is_update_only ) {
-				inbox.Order.Add( which );
-			}
+//LogHelpers.Log("which:"+which+", curr:"+inbox.Current+", pos:"+inbox.Order.IndexOf( which )+", forced:"+force_unread);
+			} );
 		}
 
 
