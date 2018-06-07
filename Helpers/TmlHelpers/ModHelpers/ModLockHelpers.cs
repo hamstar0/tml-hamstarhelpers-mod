@@ -17,7 +17,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			var modlock = mymod.ModLockHelpers;
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
-			return modlock.WorldModLocks.ContainsKey( modworld.UID );
+			return modlock.WorldModLocks.ContainsKey( modworld.ObsoleteID2 );
 		}
 
 		public static bool IsModMismatchFound() {
@@ -43,7 +43,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 				mod_names.Add( mod.Name );
 			}
 
-			modlock.WorldModLocks[ modworld.UID ] = mod_names;
+			modlock.WorldModLocks[ modworld.ObsoleteID2 ] = mod_names;
 
 			modlock.ScanMods( modworld );
 
@@ -59,7 +59,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			var modlock = mymod.ModLockHelpers;
 			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
-			modlock.WorldModLocks.Remove( modworld.UID );
+			modlock.WorldModLocks.Remove( modworld.ObsoleteID2 );
 			modlock.MismatchBroadcastMade = false;
 
 			modlock.ScanMods( modworld );
@@ -87,6 +87,8 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 		internal ModLockHelpers() {
 			this.WorldModLocks = new Dictionary<string, ISet<string>>();
 			this.MismatchBroadcastMade = false;
+
+			TmlLoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		internal void OnWorldLoad( HamstarHelpersMod mymod, HamstarHelpersWorld modworld ) {
@@ -96,7 +98,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			this.ExitDuration = 60 * 20;
 		}
 
-		internal void OnWorldExit() {
+		private void OnWorldExit() {
 			this.MismatchBroadcastMade = false;
 			this.ExitDuration = 60 * 20;
 		}
@@ -109,12 +111,12 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			this.MissingModNames = new HashSet<string>();
 			this.ExtraModNames = new HashSet<string>();
 
-			if( !this.WorldModLocks.ContainsKey( modworld.UID ) ) {
+			if( !this.WorldModLocks.ContainsKey( modworld.ObsoleteID2 ) ) {
 				this.IsMismatched = false;
 				return;
 			}
 
-			ISet<string> req_mod_names = this.WorldModLocks[ modworld.UID] ;
+			ISet<string> req_mod_names = this.WorldModLocks[ modworld.ObsoleteID2] ;
 			ISet<string> checked_mod_names = new HashSet<string>();
 			IEnumerable<Mod> all_mods = ModHelpers.GetAllMods();
 

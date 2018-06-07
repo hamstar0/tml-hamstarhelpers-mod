@@ -16,6 +16,11 @@ using Terraria.UI;
 
 namespace HamstarHelpers.ControlPanel {
 	partial class UIControlPanel : UIState {
+		private static object ModDataListLock = new object();
+		
+		////////////////
+
+
 		public static void UpdateModList( HamstarHelpersMod mymod ) {
 			var ctrl_panel = mymod.ControlPanel;
 
@@ -24,11 +29,13 @@ namespace HamstarHelpers.ControlPanel {
 			}
 
 			ctrl_panel.ModListUpdateRequired = false;
-
-			try {
-				ctrl_panel.ModListElem.Clear();
-				ctrl_panel.ModListElem.AddRange( ctrl_panel.ModDataList.ToArray() );
-			} catch( Exception ) { }
+			
+			lock( UIControlPanel.ModDataListLock ) {
+				try {
+					ctrl_panel.ModListElem.Clear();
+					ctrl_panel.ModListElem.AddRange( ctrl_panel.ModDataList.ToArray() );
+				} catch( Exception ) { }
+			}
 		}
 
 
@@ -84,7 +91,12 @@ namespace HamstarHelpers.ControlPanel {
 
 			this.RefreshApplyConfigButton();
 
-			if( this.ModDataList.Count == 0 && !this.IsPopulatingList ) {
+			int count;
+			lock( UIControlPanel.ModDataListLock ) {
+				count = this.ModDataList.Count;
+			}
+
+			if( count == 0 && !this.IsPopulatingList ) {
 				this.LoadModListAsync();
 			}
 		}
@@ -97,14 +109,18 @@ namespace HamstarHelpers.ControlPanel {
 			ThreadPool.QueueUserWorkItem( _ => {
 				this.IsPopulatingList = true;
 
-				this.ModDataList.Clear();
+				lock( UIControlPanel.ModDataListLock ) {
+					this.ModDataList.Clear();
+				}
 
 				int i = 1;
 
 				foreach( var mod in ModHelpers.GetAllMods() ) {
 					UIModData moditem = this.CreateModListItem( i++, mod );
 
-					this.ModDataList.Add( moditem );
+					lock( UIControlPanel.ModDataListLock ) {
+						this.ModDataList.Add( moditem );
+					}
 
 					//if( ModMetaDataManager.HasGithub( moditem.Mod ) ) {
 					moditem.CheckForNewVersionAsync();
@@ -184,7 +200,7 @@ namespace HamstarHelpers.ControlPanel {
 
 		public void DrawHoverElements( SpriteBatch sb ) {
 			if( !this.ModListElem.IsMouseHovering ) { return; }
-
+			
 			foreach( UIElement elem in this.ModListElem._items ) {
 				if( elem.IsMouseHovering ) {
 					( (UIModData)elem ).DrawHoverEffects( sb );

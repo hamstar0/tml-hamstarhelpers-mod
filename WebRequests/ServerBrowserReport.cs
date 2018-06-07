@@ -92,9 +92,11 @@ namespace HamstarHelpers.WebRequests {
 			TmlLoadHelpers.AddWorldLoadEachPromise( delegate {
 				this.InitializeLoopingServerAnnounce();
 			} );
+
+			TmlLoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
-		internal void OnWorldExit() {
+		private void OnWorldExit() {
 			this.StopLoopingServerAnnounce();
 		}
 

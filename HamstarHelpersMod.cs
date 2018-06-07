@@ -34,21 +34,6 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void PreSaveAndQuit() {
-			var modworld = this.GetModWorld<HamstarHelpersWorld>();
-
-			this.TmlLoadHelpers.OnWorldExit();
-			this.Inbox.OnWorldExit();
-			this.ServerBrowser.OnWorldExit();
-			this.LogHelpers.OnWorldExit();
-			this.ModLockHelpers.OnWorldExit();
-
-			modworld.OnWorldExit();
-		}
-
-
-		////////////////
-
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
 			try {
 				if( Main.netMode == 1 ) {

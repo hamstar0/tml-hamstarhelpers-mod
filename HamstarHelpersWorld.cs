@@ -8,7 +8,7 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	class HamstarHelpersWorld : ModWorld {
-		public string UID { get; private set; }
+		public string ObsoleteID2 { get; private set; }
 		
 		internal string ObsoleteID;
 		public bool HasCorrectID { get; internal set; }  // Workaround for tml bug?
@@ -22,13 +22,13 @@ namespace HamstarHelpers {
 		public override void Initialize() {
 			var mymod = (HamstarHelpersMod)this.mod;
 
-			this.UID = WorldHelpers.WorldHelpers.GetUniqueId();
+			this.ObsoleteID2 = WorldHelpers.WorldHelpers.GetUniqueId();
 			this.ObsoleteID = Guid.NewGuid().ToString( "D" );
 			this.HasCorrectID = false;  // 'Load()' decides if no pre-existing one is found
 
 			this.WorldLogic = new WorldLogic( mymod );
 
-			if( String.IsNullOrEmpty(this.UID) ) {
+			if( String.IsNullOrEmpty(this.ObsoleteID2) ) {
 				throw new Exception( "UID not defined." );
 			}
 		}

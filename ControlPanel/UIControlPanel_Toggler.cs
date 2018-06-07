@@ -49,9 +49,11 @@ namespace HamstarHelpers.ControlPanel {
 		private int ModUpdatesAvailable() {
 			int updates = 0;
 
-			foreach( var moditem in this.ModDataList ) {
-				if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
-					updates++;
+			lock( UIControlPanel.ModDataListLock ) {
+				foreach( var moditem in this.ModDataList ) {
+					if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
+						updates++;
+					}
 				}
 			}
 

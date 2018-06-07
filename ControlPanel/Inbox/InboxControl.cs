@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Utilities.Messages;
+﻿using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Utilities.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -50,9 +51,11 @@ namespace HamstarHelpers.ControlPanel.Inbox {
 			this.ArrowRight = mymod.GetTexture( "ControlPanel/Inbox/ArrowRight" );
 
 			this.MessageScrollPos = this.Messages.Current;
+
+			TmlLoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
-		internal void OnWorldExit() {
+		private void OnWorldExit() {
 			this.Messages.OnWorldExit();
 		}
 

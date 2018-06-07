@@ -97,6 +97,7 @@ namespace HamstarHelpers {
 			}
 
 			this.TmlLoadHelpers = new TmlHelpers.TmlLoadHelpers();
+
 			this.Timers = new Timers();
 			this.LogHelpers = new DebugHelpers.LogHelpers();
 			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();
@@ -241,7 +242,26 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipeGroups ) { return; }
 			if( !this.HasAddedRecipes ) { return; }
 
+			TmlHelpers.TmlLoadHelpers.AddWorldUnloadEachPromise( () => {
+				this.OnWorldExit();
+			} );
+
 			this.TmlLoadHelpers.FulfillPostModLoadPromises();
+		}
+
+
+		////////////////
+
+		public override void PreSaveAndQuit() {
+			this.TmlLoadHelpers.PreSaveAndExit();
+		}
+
+
+		////////////////
+		
+		private void OnWorldExit() {
+			var myworld = this.GetModWorld<HamstarHelpersWorld>();
+			myworld.OnWorldExit();
 		}
 	}
 }

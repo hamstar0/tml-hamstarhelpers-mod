@@ -265,6 +265,10 @@ namespace HamstarHelpers.TmlHelpers {
 		~TmlLoadHelpers() {
 			//internal void Unload() {
 			try {
+				if( this.WorldLoadPromiseConditionsMet && !this.WorldUnloadPromiseConditionsMet ) {
+					this.FulfillWorldUnloadPromises();
+				}
+
 				Main.OnTick -= TmlLoadHelpers._Update;
 			} catch { }
 		}
@@ -279,7 +283,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
-		internal void OnWorldExit() {
+		internal void PreSaveAndExit() {
 			this.FulfillWorldUnloadPromises();
 		}
 
