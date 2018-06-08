@@ -130,10 +130,9 @@
     <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
-    <Compile Include="Utilities\EntityGroups\ProjectileGroupDefinition.cs" />
-    <Compile Include="Utilities\EntityGroups\NPCGroupDefinition.cs" />
-    <Compile Include="Utilities\EntityGroups\ItemGroupDefinition.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroupDefinition.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups_Compute.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups.cs" />
     <Compile Include="Utilities\Menu\MenuItem.cs" />
     <Compile Include="Utilities\Messages\InboxMessages.cs" />
     <Compile Include="Utilities\Network\PacketProtocol_Handler.cs" />

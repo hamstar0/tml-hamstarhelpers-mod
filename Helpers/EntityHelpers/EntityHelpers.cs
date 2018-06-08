@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.ItemHelpers;
+using HamstarHelpers.NPCHelpers;
+using HamstarHelpers.ProjectileHelpers;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 
@@ -39,6 +42,25 @@ namespace HamstarHelpers.EntityHelpers {
 				return !TileHelpers.TileHelpers.IsSolid( Framing.GetTileSafely( tile_x, tile_y ) );
 			} );
 			return Utils.PlotTileLine( position, to.position, 1, trace );
+		}
+
+
+		////////////////
+
+		public static string GetQualifiedName( Entity ent ) {
+			if( ent is Item ) {
+				return ItemIdentityHelpers.GetQualifiedName( (Item)ent );
+			}
+			if( ent is NPC ) {
+				return NPCIdentityHelpers.GetQualifiedName( (NPC)ent );
+			}
+			if( ent is Projectile ) {
+				return ProjectileIdentityHelpers.GetQualifiedName( (Projectile)ent );
+			}
+			if( ent is Player ) {
+				return ( (Player)ent ).name;
+			}
+			return "...a "+ent.GetType().Name;
 		}
 	}
 }

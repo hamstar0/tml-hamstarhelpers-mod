@@ -6,6 +6,15 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.ProjectileHelpers {
 	public class ProjectileIdentityHelpers {
+		public static string GetQualifiedName( Projectile proj ) {
+			return ProjectileIdentityHelpers.GetQualifiedName( proj.type );
+		}
+
+		public static string GetQualifiedName( int proj_type ) {
+			string name = Lang.GetProjectileName( proj_type ).Value;
+			return name;
+		}
+
 		// TODO: GetUniqueId()
 
 		// TODO: GetVanillaSnapshotHash()
@@ -30,7 +39,7 @@ namespace HamstarHelpers.ProjectileHelpers {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < ProjectileLoader.ProjectileCount; i++ ) {
-				string name = Lang.GetProjectileName( i ).Value;
+				string name = ProjectileIdentityHelpers.GetQualifiedName( i );
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );

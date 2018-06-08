@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.ControlPanel.Inbox;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
+using HamstarHelpers.Utilities.EntityGroups;
 using HamstarHelpers.Utilities.Errors;
 using HamstarHelpers.Utilities.Menu;
 using HamstarHelpers.Utilities.Messages;
@@ -45,6 +46,7 @@ namespace HamstarHelpers {
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
+		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
 		internal InboxControl Inbox;
@@ -73,7 +75,7 @@ namespace HamstarHelpers {
 			this.HasSetupContent = false;
 			this.HasAddedRecipeGroups = false;
 			this.HasAddedRecipes = false;
-
+			
 			this.Properties = new ModProperties() {
 				Autoload = true,
 				AutoloadGores = true,
@@ -113,6 +115,7 @@ namespace HamstarHelpers {
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
 			this.ControlPanel = new ControlPanel.UIControlPanel();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
+			this.EntityGroups = new EntityGroups();
 			this.PlayerMessages = new PlayerMessages();
 			this.Inbox = new InboxControl();
 			this.ModVersionGet = new ModVersionGet();
@@ -174,6 +177,7 @@ namespace HamstarHelpers {
 			this.ModVersionGet = null;
 			this.WorldHelpers = null;
 			this.ModLockHelpers = null;
+			this.EntityGroups = null;
 			this.AnimatedColors = null;
 			this.PlayerMessages = null;
 			this.Inbox = null;
