@@ -1,24 +1,35 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.DotNetHelpers.DataStructures;
+using HamstarHelpers.TmlHelpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Terraria;
 
 
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public partial class EntityGroups {
-		public static IDictionary<string, ISet<int>> ItemGroups {
+		private static object MyLock = new object();
+
+
+		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ItemGroups {
 			get {
-				return HamstarHelpersMod.Instance.EntityGroups._ItemGroups;
+				lock( EntityGroups.MyLock ) {
+					return HamstarHelpersMod.Instance.EntityGroups._ItemGroups;
+				}
 			}
 		}
-		public static IDictionary<string, ISet<int>> NPCGroups {
+		public static IReadOnlyDictionary<string, ReadOnlySet<int>> NPCGroups {
 			get {
-				return HamstarHelpersMod.Instance.EntityGroups._NPCGroups;
+				lock( EntityGroups.MyLock ) {
+					return HamstarHelpersMod.Instance.EntityGroups._NPCGroups;
+				}
 			}
 		}
-		public static IDictionary<string, ISet<int>> ProjectileGroups {
+		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ProjectileGroups {
 			get {
-				return HamstarHelpersMod.Instance.EntityGroups._ProjGroups;
+				lock( EntityGroups.MyLock ) {
+					return HamstarHelpersMod.Instance.EntityGroups._ProjGroups;
+				}
 			}
 		}
 
@@ -26,24 +37,27 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		////////////////
 
-		private IDictionary<string, ISet<int>> _ItemGroups = new Dictionary<string, ISet<int>>();
-		private IDictionary<string, ISet<int>> _NPCGroups = new Dictionary<string, ISet<int>>();
-		private IDictionary<string, ISet<int>> _ProjGroups = new Dictionary<string, ISet<int>>();
-
-		private IDictionary<string, Func<Item, bool>> ItemMatchers = new Dictionary<string, Func<Item, bool>>();
-		private IDictionary<string, Func<NPC, bool>> NPCMatchers = new Dictionary<string, Func<NPC, bool>>();
-		private IDictionary<string, Func<Projectile, bool>> ProjMatchers = new Dictionary<string, Func<Projectile, bool>>();
+		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ItemGroups;
+		private IReadOnlyDictionary<string, ReadOnlySet<int>> _NPCGroups;
+		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ProjGroups;
 
 
 		////////////////
 
 		internal EntityGroups() {
-			this.DefinePrimaryItemGroups();
-
 			TmlLoadHelpers.AddPostModLoadPromise( () => {
-				this.ComputeItemGroups();
-				this.ComputeNPCGroups();
-				this.ComputeProjectileGroups();
+				var item_matchers = new List<KeyValuePair<string, Func<Item, bool>>>();
+				var npc_matchers = new List<KeyValuePair<string, Func<NPC, bool>>>();
+				var proj_matchers = new List<KeyValuePair<string, Func<Projectile, bool>>>();
+
+				this.DefineItemEquipmentGroups( item_matchers );
+				this.DefineItemPlaceablesGroups( item_matchers );
+
+				lock( EntityGroups.MyLock ) {
+					this._ItemGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( EntityGroups.ComputeGroups( item_matchers ) );
+					this._NPCGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( EntityGroups.ComputeGroups( npc_matchers ) );
+					this._ProjGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( EntityGroups.ComputeGroups( proj_matchers ) );
+				}
 			} );
 		}
 	}

@@ -130,7 +130,8 @@
     <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups_ItemDefs_Placeables.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups_ItemDefs_Equipment.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Compute.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups.cs" />
     <Compile Include="Utilities\Menu\MenuItem.cs" />
