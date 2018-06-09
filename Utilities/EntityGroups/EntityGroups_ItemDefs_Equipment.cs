@@ -24,6 +24,9 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			add_def( "Any Vanity", ( Item item ) => {
 				return item.vanity;
 			} );
+			add_def( "Any Potion", ( Item item ) => {
+				return item.potion;
+			} );
 
 			// Weapon Classes
 
@@ -164,6 +167,31 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 			// Accessory Classes
 
+			add_def( "Any Defense Accessory", ( Item item ) => {
+				if( !item.accessory || item.vanity ) { return false; }
+			} );
+			add_def( "Any Offense Accessory", ( Item item ) => {
+				if( !item.accessory || item.vanity ) { return false; }
+			} );
+			add_def( "Any Movement Accessory", ( Item item ) => {
+				if( !item.accessory || item.vanity ) { return false; }
+			} );
+			add_def( "Any Information Accessory", ( Item item ) => {
+				if( !item.accessory || item.vanity ) { return false; }
+			} );
+			add_def( "Any Misc Accessory", ( Item item ) => {
+				if( !item.accessory || item.vanity ) { return false; }
+			} );
+
+			// Vanity Classes
+			add_def( "Any Vanity Accessory", ( Item item ) => {
+				if( !item.vanity ) { return false; }
+				return item.accessory;
+			} );
+			add_def( "Any Vanity Garment", ( Item item ) => {
+				if( !item.vanity ) { return false; }
+				return !item.accessory;
+			} );
 		}
 
 
@@ -352,7 +380,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				return !placeables.Contains( item.type );
 			} );
 
-			add_def( "Any Frost Equipment", ( Item item ) => {
+			add_def( "Any Frost Core Equipment", ( Item item ) => {
 				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.FrostCore }, 1 );
 				if( !has ) { return false; }
 				return !placeables.Contains( item.type );
@@ -438,17 +466,18 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 					EntityGroups.ItemGroups["Any Tungsten Equipment"].Contains( item.type );
 			} );
 			add_def( "Any Gold Or Platinum Equipment", ( Item item ) => {
-				return EntityGroups.ItemGroups["Any Silver Equipment"].Contains( item.type ) ||
-					EntityGroups.ItemGroups["Any Tungsten Equipment"].Contains( item.type );
+				return EntityGroups.ItemGroups["Any Gold Equipment"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Platinum Equipment"].Contains( item.type );
 			} );
 			add_def( "Any Demonite Or Crimtane Equipment", ( Item item ) => {
 				return EntityGroups.ItemGroups["Any Demonite Equipment"].Contains( item.type ) ||
 					EntityGroups.ItemGroups["Any Crimtane Equipment"].Contains( item.type );
 			} );
-			add_def( "Any Meteor Or Jungle Or Bone Equipment", ( Item item ) => {
+			add_def( "Any Meteor Or Jungle Or Bone Or Bee Equipment", ( Item item ) => {
 				return EntityGroups.ItemGroups["Any Meteor Equipment"].Contains( item.type ) ||
 					EntityGroups.ItemGroups["Any Jungle Equipment"].Contains( item.type ) ||
-					EntityGroups.ItemGroups["Any Bone Equipment"].Contains( item.type );
+					EntityGroups.ItemGroups["Any Bone Equipment"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Bee Equipment"].Contains( item.type );
 			} );
 			add_def( "Any Cobalt Or Palladium Equipment", ( Item item ) => {
 				return EntityGroups.ItemGroups["Any Cobalt Equipment"].Contains( item.type ) ||
@@ -462,9 +491,20 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				return EntityGroups.ItemGroups["Any Adamantite Equipment"].Contains( item.type ) ||
 					EntityGroups.ItemGroups["Any Titanium Equipment"].Contains( item.type );
 			} );
-			add_def( "Any Shroomite Or Spectre Equipment", ( Item item ) => {
-				return EntityGroups.ItemGroups["Any Shroomite Equipment"].Contains( item.type ) ||
+			add_def( "Any Frost Core Or Forbidden Equipment", ( Item item ) => {
+				return EntityGroups.ItemGroups["Any Frost Core Equipment"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Forbidden Equipment"].Contains( item.type );
+			} );
+			add_def( "Any Chlorophyte Or Shroomite Or Spectre Equipment", ( Item item ) => {
+				return EntityGroups.ItemGroups["Any Chlorophyte Equipment"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Shroomite Equipment"].Contains( item.type ) ||
 					EntityGroups.ItemGroups["Any Spectre Equipment"].Contains( item.type );
+			} );
+			add_def( "Any Celestial Equipment", ( Item item ) => {
+				return EntityGroups.ItemGroups["Any Nebula Equipment"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Vortex Equipment"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Solar Equipment"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Stardust Equipment"].Contains( item.type );
 			} );
 		}
 	}
