@@ -8,6 +8,23 @@ using Terraria;
 
 namespace HamstarHelpers.RecipeHelpers {
 	public partial class RecipeHelpers {
+		public static bool ItemHasIngredients( Item item, ISet<int> ingredients, int min_stack ) {
+			foreach( Recipe recipe in Main.recipe ) {
+				if( recipe.createItem.type != item.type ) { continue; }
+
+				foreach( Item reqitem in recipe.requiredItem ) {
+					if( reqitem.stack < min_stack ) { continue; }
+					if( ingredients.Contains( reqitem.type ) ) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
+
+		////////////////
+
 		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
 			IDictionary<string, Tuple<string, ISet<int>>> dict = ItemIdentityHelpers.GetCommonItemGroups();
 			IDictionary<string, RecipeGroup> groups = dict.ToDictionary( kv => "HamstarHelpers:"+kv.Key,
@@ -24,7 +41,7 @@ namespace HamstarHelpers.RecipeHelpers {
 
 
 		////////////////
-		
+
 		public static IDictionary<string, RecipeGroup> Groups {
 			get {
 				var mymod = HamstarHelpersMod.Instance;

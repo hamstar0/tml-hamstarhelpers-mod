@@ -7,41 +7,8 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public partial class EntityGroups {
-		private static Item[] GetItemPool() {
-			Item[] pool = new Item[ItemLoader.ItemCount];
-
-			for( int i = 0; i < ItemLoader.ItemCount; i++ ) {
-				pool[i] = new Item();
-				pool[i].SetDefaults( i, true );
-			}
-			return pool;
-		}
-
-		private static NPC[] GetNPCPool() {
-			NPC[] pool = new NPC[NPCLoader.NPCCount];
-
-			for( int i = 0; i < NPCLoader.NPCCount; i++ ) {
-				pool[i] = new NPC();
-				pool[i].SetDefaults( i );
-			}
-			return pool;
-		}
-
-		private static Projectile[] GetProjPool() {
-			Projectile[] pool = new Projectile[ProjectileLoader.ProjectileCount];
-
-			for( int i = 0; i < ProjectileLoader.ProjectileCount; i++ ) {
-				pool[i] = new Projectile();
-				pool[i].SetDefaults( i );
-			}
-			return pool;
-		}
-
-
-		////////////////
-
-		private static IDictionary<string, ReadOnlySet<int>> ComputeGroups( IList<KeyValuePair<string, Func<Item, bool>>> matchers ) {
-			var pool = EntityGroups.GetItemPool();
+		private IDictionary<string, ReadOnlySet<int>> ComputeGroups( IList<KeyValuePair<string, Func<Item, bool>>> matchers ) {
+			var pool = this.GetItemPool();
 			var groups = new Dictionary<string, ReadOnlySet<int>>();
 
 			foreach( var kv in matchers ) {
@@ -61,8 +28,8 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			return groups;
 		}
 
-		private static IDictionary<string, ReadOnlySet<int>> ComputeGroups( IList<KeyValuePair<string, Func<NPC, bool>>> matchers ) {
-			var pool = EntityGroups.GetNPCPool();
+		private IDictionary<string, ReadOnlySet<int>> ComputeGroups( IList<KeyValuePair<string, Func<NPC, bool>>> matchers ) {
+			var pool = this.GetNPCPool();
 			var groups = new Dictionary<string, ReadOnlySet<int>>();
 
 			foreach( var kv in matchers ) {
@@ -82,8 +49,8 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			return groups;
 		}
 
-		private static IDictionary<string, ReadOnlySet<int>> ComputeGroups( IList<KeyValuePair<string, Func<Projectile, bool>>> matchers ) {
-			var pool = EntityGroups.GetProjPool();
+		private IDictionary<string, ReadOnlySet<int>> ComputeGroups( IList<KeyValuePair<string, Func<Projectile, bool>>> matchers ) {
+			var pool = this.GetProjPool();
 			var groups = new Dictionary<string, ReadOnlySet<int>>();
 
 			foreach( var kv in matchers ) {
