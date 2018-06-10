@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using Terraria;
 using Terraria.ID;
 
@@ -6,13 +7,13 @@ using Terraria.ID;
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public partial class EntityGroups {
 		private void DefineItemPlaceablesGroups1( Action<string, Func<Item, bool>> add_def ) {
-			add_def( "Any Placeable", ( item ) => {
+			add_def( "Any Placeable", ( Item item ) => {
 				return item.createTile != -1 || item.createWall != -1;
 			} );
-			add_def( "Any Tile", ( item ) => {
+			add_def( "Any Tile", ( Item item ) => {
 				return item.createTile != -1;
 			} );
-			add_def( "Any Wall", ( item ) => {
+			add_def( "Any Wall", ( Item item ) => {
 				return item.createWall != -1;
 			} );
 		}
@@ -20,9 +21,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		private void DefineItemPlaceablesGroups2( Action<string, Func<Item, bool>> add_def ) {
 			// Materials
-
-			add_def( "Any Wood", ( item ) => {
-				if( item.createTile == -1 ) { return false; }
+			add_def( "Any Wood", ( Item item ) => {
 				switch( item.type ) {
 				case ItemID.Wood:
 				case ItemID.RichMahogany:
@@ -34,29 +33,28 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				case ItemID.DynastyWood:
 				case ItemID.SpookyWood:
 					return true;
-				default:
-					return false;
 				}
+				return false;
 			} );
 
 			// Stations
-
-			add_def( "Any Workbench", ( item ) => {
+			
+			add_def( "Any Workbench", ( Item item ) => {
 				return item.createTile == 18;
 			} );
-			add_def( "Any Anvil", ( item ) => {
+			add_def( "Any Anvil", ( Item item ) => {
 				return item.createTile == 16 || item.createTile == 134;
 			} );
-			add_def( "Any Forge", ( item ) => {
+			add_def( "Any Forge", ( Item item ) => {
 				return item.createTile == 18;
 			} );
-			add_def( "Any Table", ( item ) => {
+			add_def( "Any Table", ( Item item ) => {
 				return item.createTile == 14;
 			} );
-			add_def( "Any Alchemy Station", ( item ) => {
+			add_def( "Any Alchemy Station", ( Item item ) => {
 				return item.createTile == 13 || item.createTile == 355;
 			} );
-			add_def( "Any Hardmode Crafting Station", ( item ) => {
+			add_def( "Any Hardmode Crafting Station", ( Item item ) => {
 				switch( item.createTile ) {
 				case 133:   // Hardmode Forge
 				case 134:   // Hardmode Anvil
@@ -70,7 +68,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 				return false;
 			} );
-			add_def( "Any Vanilla Themed Crafting Station", ( item ) => {
+			add_def( "Any Vanilla Themed Crafting Station", ( Item item ) => {
 				switch( item.type ) {
 				case ItemID.Solidifier:
 				case ItemID.GlassKiln:
@@ -86,7 +84,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 				return false;
 			} );
-			add_def( "Any Misc Crafting Station", ( item ) => {
+			add_def( "Any Misc Crafting Station", ( Item item ) => {
 				switch( item.createTile ) {
 				case 86:    // Loom
 				case 94:    // Keg
@@ -103,20 +101,20 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 			// Chests
 
-			add_def( "Any Chest", ( item ) => {
+			add_def( "Any Chest", ( Item item ) => {
 				return item.createTile == 21;
 			} );
 
 			// Wire
 
-			add_def( "Any Wire Component", ( item ) => {
+			add_def( "Any Wire Component", ( Item item ) => {
 				if( item.createTile == -1 ) { return false; }
 				return item.mech;
 			} );
-			add_def( "Any Trap Chest", ( item ) => {
+			add_def( "Any Trap Chest", ( Item item ) => {
 				return item.createTile == 441;
 			} );
-			add_def( "Any Vanilla Wire Trap", ( item ) => {
+			add_def( "Any Vanilla Wire Trap", ( Item item ) => {
 				switch( item.type ) {
 				case ItemID.DartTrap:
 				case ItemID.SuperDartTrap:
@@ -138,7 +136,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 				return false;
 			} );
-			add_def( "Any Vanilla Wire Switch", ( item ) => {
+			add_def( "Any Vanilla Wire Switch", ( Item item ) => {
 				switch( item.type ) {
 				case ItemID.Switch:
 				case ItemID.Lever:
@@ -173,7 +171,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 			// Lights
 
-			add_def( "Any Light", ( item ) => {
+			add_def( "Any Light", ( Item item ) => {
 				switch( item.createTile ) {
 				case 4:		// Torch
 				case 33:	// Candle
@@ -202,7 +200,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 				return false;
 			} );
-			add_def( "Any Candle", ( item ) => {
+			add_def( "Any Candle", ( Item item ) => {
 				switch( item.createTile ) {
 				case 33:    // Candle
 				case 174:   // Platinum Candle (?)
@@ -212,16 +210,16 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				}
 				return false;
 			} );
-			add_def( "Any Wall Torch", ( item ) => {
+			add_def( "Any Wall Torch", ( Item item ) => {
 				return item.createTile == 4;
 			} );
-			add_def( "Any Campfire", ( item ) => {
+			add_def( "Any Campfire", ( Item item ) => {
 				return item.createTile == 215 || item.createTile == 405;
 			} );
 
 			// Misc
 
-			add_def( "Any Statue", ( item ) => {
+			add_def( "Any Statue", ( Item item ) => {
 				return item.createTile == 105;
 			} );
 		}

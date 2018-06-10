@@ -1,11 +1,12 @@
-﻿using System;
+﻿using HamstarHelpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public partial class EntityGroups {
-		private IList<KeyValuePair<string, Func<Item, bool>>> DefineGroups() {
+		private IList<KeyValuePair<string, Func<Item, bool>>> DefineItemGroups() {
 			var matchers = new List<KeyValuePair<string, Func<Item, bool>>>();
 
 			Action<string, Func<Item, bool>> add_item_grp_def = ( name, matcher ) => {
@@ -23,6 +24,16 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 			this.DefineItemEquipmentGroups3( add_item_grp_def );
 			
+			return matchers;
+		}
+
+		private IList<KeyValuePair<string, Func<NPC, bool>>> DefineNPCGroups() {
+			var matchers = new List<KeyValuePair<string, Func<NPC, bool>>>();
+			return matchers;
+		}
+
+		private IList<KeyValuePair<string, Func<Projectile, bool>>> DefineProjectileGroups() {
+			var matchers = new List<KeyValuePair<string, Func<Projectile, bool>>>();
 			return matchers;
 		}
 	}

@@ -9,10 +9,12 @@ using Terraria;
 namespace HamstarHelpers.RecipeHelpers {
 	public partial class RecipeHelpers {
 		public static bool ItemHasIngredients( Item item, ISet<int> ingredients, int min_stack ) {
-			foreach( Recipe recipe in Main.recipe ) {
+			for( int i=0; i<Main.recipe.Length; i++ ) {
+				Recipe recipe = Main.recipe[i];
 				if( recipe.createItem.type != item.type ) { continue; }
-
-				foreach( Item reqitem in recipe.requiredItem ) {
+				
+				for( int j=0; j<recipe.requiredItem.Length; j++ ) {
+					Item reqitem = recipe.requiredItem[j];
 					if( reqitem.stack < min_stack ) { continue; }
 					if( ingredients.Contains( reqitem.type ) ) {
 						return true;

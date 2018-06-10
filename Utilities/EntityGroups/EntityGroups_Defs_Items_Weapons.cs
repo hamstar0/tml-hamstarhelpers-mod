@@ -35,6 +35,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				if( !item.melee || item.useStyle != 5 ) { return false; }
 				if( item.type == ItemID.Anchor ) { return true; }
 
+				if( item.shoot == 0 ) { return false; }
 				var proj_pool = this.GetProjPool();
 
 				switch( proj_pool[ item.shoot ].aiStyle ) {
@@ -43,7 +44,6 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				case 69:    // Flairon
 				case 75:    // Solar Eruption
 					return true;
-				//case 3:     // Anchor
 				}
 				return false;
 			} );
@@ -51,6 +51,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				if( !item.melee || item.useStyle != 1 ) { return false; }
 				if( item.type == ItemID.FlyingKnife ) { return true; }
 
+				if( item.shoot == 0 ) { return false; }
 				var proj_pool = this.GetProjPool();
 
 				switch( proj_pool[ item.shoot ].aiStyle ) {
