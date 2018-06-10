@@ -6,7 +6,7 @@ using Terraria;
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public partial class EntityGroups {
 		private IList<KeyValuePair<string, Func<Item, bool>>> DefineGroups() {
-			IList<KeyValuePair<string, Func<Item, bool>>> matchers = new List<KeyValuePair<string, Func<Item, bool>>>();
+			var matchers = new List<KeyValuePair<string, Func<Item, bool>>>();
 
 			void add_item_grp_def( string name, Func<Item, bool> matcher ) {
 				matchers.Add( new KeyValuePair<string, Func<Item, bool>>( name, matcher ) );
@@ -22,7 +22,6 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			this.DefineItemPlaceablesGroups2( add_item_grp_def );
 
 			this.DefineItemEquipmentGroups3( add_item_grp_def );
-			this.DefineItemPlaceablesGroups3( add_item_grp_def );
 
 			return matchers;
 		}
