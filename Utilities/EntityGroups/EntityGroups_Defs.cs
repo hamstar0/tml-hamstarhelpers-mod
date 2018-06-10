@@ -8,10 +8,10 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 		private IList<KeyValuePair<string, Func<Item, bool>>> DefineGroups() {
 			var matchers = new List<KeyValuePair<string, Func<Item, bool>>>();
 
-			void add_item_grp_def( string name, Func<Item, bool> matcher ) {
+			Action<string, Func<Item, bool>> add_item_grp_def = ( name, matcher ) => {
 				matchers.Add( new KeyValuePair<string, Func<Item, bool>>( name, matcher ) );
-			}
-
+			};
+			
 			this.DefineItemEquipmentGroups1( add_item_grp_def );
 			this.DefineItemAccessoriesGroups1( add_item_grp_def );
 			this.DefineItemWeaponGroups1( add_item_grp_def );
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			this.DefineItemPlaceablesGroups2( add_item_grp_def );
 
 			this.DefineItemEquipmentGroups3( add_item_grp_def );
-
+			
 			return matchers;
 		}
 	}
