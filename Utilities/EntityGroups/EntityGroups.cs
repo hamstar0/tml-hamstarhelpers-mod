@@ -38,9 +38,9 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		////////////////
 
-		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ItemGroups;
-		private IReadOnlyDictionary<string, ReadOnlySet<int>> _NPCGroups;
-		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ProjGroups;
+		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ItemGroups = null;
+		private IReadOnlyDictionary<string, ReadOnlySet<int>> _NPCGroups = null;
+		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ProjGroups = null;
 
 		private Item[] ItemPool = null;
 		private NPC[] NPCPool = null;
@@ -51,12 +51,10 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		internal EntityGroups() {
 			TmlLoadHelpers.AddPostModLoadPromise( () => {
-				var item_matchers = new List<KeyValuePair<string, Func<Item, bool>>>();
-				var npc_matchers = new List<KeyValuePair<string, Func<NPC, bool>>>();
-				var proj_matchers = new List<KeyValuePair<string, Func<Projectile, bool>>>();
-
 				lock( EntityGroups.MyLock ) {
-					this.DefineGroups( item_matchers );
+					IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineGroups();
+					var npc_matchers = new List<KeyValuePair<string, Func<NPC, bool>>>();
+					var proj_matchers = new List<KeyValuePair<string, Func<Projectile, bool>>>();
 
 					this._ItemGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this.ComputeGroups( item_matchers ) );
 					this._NPCGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this.ComputeGroups( npc_matchers ) );
