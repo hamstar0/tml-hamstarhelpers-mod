@@ -27,10 +27,19 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			return matchers;
 		}
 
+
 		private IList<KeyValuePair<string, Func<NPC, bool>>> DefineNPCGroups() {
 			var matchers = new List<KeyValuePair<string, Func<NPC, bool>>>();
+
+			Action<string, Func<NPC, bool>> add_item_grp_def = ( name, matcher ) => {
+				matchers.Add( new KeyValuePair<string, Func<NPC, bool>>( name, matcher ) );
+			};
+
+			this.DefineNPCGroups1( add_item_grp_def );
+
 			return matchers;
 		}
+
 
 		private IList<KeyValuePair<string, Func<Projectile, bool>>> DefineProjectileGroups() {
 			var matchers = new List<KeyValuePair<string, Func<Projectile, bool>>>();

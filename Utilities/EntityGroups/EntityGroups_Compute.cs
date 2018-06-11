@@ -20,13 +20,9 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 				var grp = new HashSet<int>();
 				
 				for( int i = 1; i < pool.Count; i++ ) {
-					T ent = pool[i];
-
-					try {
-					if( matcher( ent ) ) {
+					if( matcher( pool[i] ) ) {
 						grp.Add( i );
 					}
-					} catch( Exception e ) { LogHelpers.Log( "! "+grp_name+" "+grp.Count+": "+ e.Message ); break; }
 				}
 				
 				groups[ grp_name ] = new ReadOnlySet<int>( grp );

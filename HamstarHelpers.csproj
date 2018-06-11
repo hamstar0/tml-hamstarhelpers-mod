@@ -133,6 +133,7 @@
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Accessories.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Weapons.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_NPCs.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Placeables.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Equipment.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Compute.cs" />
