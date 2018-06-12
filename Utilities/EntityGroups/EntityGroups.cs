@@ -4,6 +4,7 @@ using HamstarHelpers.TmlHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -15,87 +16,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 		////////////////
 
-		public static void AddCustomItemGroup( string name, Func<Item, bool> matcher ) {
-			lock( EntityGroups.MyLock ) {
-				var ent_grps = HamstarHelpersMod.Instance.EntityGroups;
-				if( ent_grps.CustomItemMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
-
-				var entry = new KeyValuePair<string, Func<Item, bool>>( name, matcher );
-				ent_grps.CustomItemMatchers.Add( entry );
-			}
-		}
-
-		public static void AddCustomNPCGroup( string name, Func<NPC, bool> matcher ) {
-			lock( EntityGroups.MyLock ) {
-				var ent_grps = HamstarHelpersMod.Instance.EntityGroups;
-				if( ent_grps.CustomNPCMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
-
-				var entry = new KeyValuePair<string, Func<NPC, bool>>( name, matcher );
-				ent_grps.CustomNPCMatchers.Add( entry );
-			}
-		}
-
-		public static void AddCustomProjectileGroup( string name, Func<Projectile, bool> matcher ) {
-			lock( EntityGroups.MyLock ) {
-				var ent_grps = HamstarHelpersMod.Instance.EntityGroups;
-				if( ent_grps.CustomProjMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
-
-				var entry = new KeyValuePair<string, Func<Projectile, bool>>( name, matcher );
-				ent_grps.CustomProjMatchers.Add( entry );
-			}
-		}
-
-
-		////////////////
-
-		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ItemGroups {
-			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._ItemGroups;
-				}
-			}
-		}
-		public static IReadOnlyDictionary<string, ReadOnlySet<int>> NPCGroups {
-			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._NPCGroups;
-				}
-			}
-		}
-		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ProjectileGroups {
-			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._ProjGroups;
-				}
-			}
-		}
-
-
-		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerItem {
-			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._GroupsPerItem;
-				}
-			}
-		}
-		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerNPC {
-			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._GroupsPerNPC;
-				}
-			}
-		}
-		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerProj {
-			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._GroupsPerProj;
-				}
-			}
-		}
-
-
-
-		////////////////
+		private bool IsEnabled = false;
 
 		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ItemGroups = null;
 		private IReadOnlyDictionary<string, ReadOnlySet<int>> _NPCGroups = null;
@@ -134,26 +55,32 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			this._GroupsPerProj = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerProj );
 
 			TmlLoadHelpers.AddPostModLoadPromise( () => {
-				lock( EntityGroups.MyLock ) {
-					IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineItemGroups();
-					IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers = this.DefineNPCGroups();
-					IList<KeyValuePair<string, Func<Projectile, bool>>> proj_matchers = this.DefineProjectileGroups();
-					
-					this.ComputeGroups<Item>( item_matchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
-					this.ComputeGroups<NPC>( npc_matchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
-					this.ComputeGroups<Projectile>( proj_matchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+				if( !this.IsEnabled ) { return; }
 
-					this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
-					this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
-					this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+				ThreadPool.QueueUserWorkItem( _ => {
+					lock( EntityGroups.MyLock ) {
+						IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineItemGroups();
+						IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers = this.DefineNPCGroups();
+						IList<KeyValuePair<string, Func<Projectile, bool>>> proj_matchers = this.DefineProjectileGroups();
 
-					this.CustomItemMatchers = null;
-					this.CustomNPCMatchers = null;
-					this.CustomProjMatchers = null;
-					this.ItemPool = null;
-					this.NPCPool = null;
-					this.ProjPool = null;
-				}
+						this.ComputeGroups<Item>( item_matchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						this.ComputeGroups<NPC>( npc_matchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						this.ComputeGroups<Projectile>( proj_matchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+
+						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+
+						this.CustomItemMatchers = null;
+						this.CustomNPCMatchers = null;
+						this.CustomProjMatchers = null;
+						this.ItemPool = null;
+						this.NPCPool = null;
+						this.ProjPool = null;
+					}
+
+					TmlLoadHelpers.TriggerCustomPromise( "EntityGroupsLoaded" );
+				} );
 			} );
 		}
 

@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.ControlPanel.Inbox;
+using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.EntityGroups;
@@ -53,6 +54,7 @@ namespace HamstarHelpers {
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
 		internal MenuItemManager MenuItemMngr;
+		internal MusicHelpers MusicHelpers;
 
 		public bool HasSetupContent { get; private set; }
 		public bool HasAddedRecipeGroups { get; private set; }
@@ -121,6 +123,7 @@ namespace HamstarHelpers {
 			this.ModVersionGet = new ModVersionGet();
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
+			this.MusicHelpers = new MusicHelpers();
 
 #pragma warning disable 612, 618
 			TmlHelpers.AltNPCInfo.DataInitialize();
@@ -185,6 +188,7 @@ namespace HamstarHelpers {
 			this.ControlPanel = null;
 			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
+			this.MusicHelpers = null;
 
 			HamstarHelpersMod.Instance = null;
 		}

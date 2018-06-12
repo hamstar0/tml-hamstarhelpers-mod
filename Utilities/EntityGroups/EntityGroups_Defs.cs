@@ -23,6 +23,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			this.DefineItemPlaceablesGroups2( add_item_grp_def );
 
 			this.DefineItemEquipmentGroups3( add_item_grp_def );
+			this.DefineItemMiscGroups3( add_item_grp_def );
 			
 			return matchers;
 		}

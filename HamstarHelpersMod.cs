@@ -119,5 +119,12 @@ namespace HamstarHelpers {
 				layers.Insert( idx, cp_layer );
 			}
 		}
+
+
+		////////////////
+
+		//public override void UpdateMusic( ref int music ) { //, ref MusicPriority priority
+		//	this.MusicHelpers.UpdateMusic();
+		//}
 	}
 }

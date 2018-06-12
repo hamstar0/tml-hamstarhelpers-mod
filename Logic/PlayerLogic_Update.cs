@@ -22,6 +22,7 @@ namespace HamstarHelpers.Logic {
 			this.UpdateTml( mymod, player );
 		}
 
+		////////////////
 
 		public void PreUpdateSingle( HamstarHelpersMod mymod, Player player ) {
 			this.PreUpdatePlayer( mymod, player );

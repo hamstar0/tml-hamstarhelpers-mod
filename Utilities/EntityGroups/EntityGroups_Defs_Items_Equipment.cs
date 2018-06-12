@@ -14,6 +14,35 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			add_def( "Any Tool", ( Item item ) => {
 				return ItemAttributeHelpers.IsTool( item );
 			} );
+			add_def( "Any Vanilla Explosive", ( Item item ) => {
+				switch( item.type ) {
+				case ItemID.Bomb:
+				case ItemID.StickyBomb:
+				case ItemID.BouncyBomb:
+				case ItemID.Dynamite:
+				case ItemID.StickyDynamite:
+				case ItemID.BouncyDynamite:
+				case ItemID.Grenade:
+				case ItemID.StickyGrenade:
+				case ItemID.BouncyGrenade:
+				case ItemID.BombFish:
+				case ItemID.PartyGirlGrenade:
+				case ItemID.Explosives:	//?
+				case ItemID.LandMine:   //?
+				case ItemID.RocketI:
+				case ItemID.RocketII:
+				case ItemID.RocketIII:
+				case ItemID.RocketIV:
+				case ItemID.StyngerBolt:
+				case ItemID.HellfireArrow:
+				case ItemID.ExplosiveJackOLantern:
+				case ItemID.ExplosiveBunny:
+				case ItemID.Cannonball:
+				case ItemID.Beenade:	//?
+					return true;
+				}
+				return false;
+			} );
 
 			add_def( "Any Accessory", ( Item item ) => {
 				return item.accessory && !item.vanity;
@@ -273,6 +302,14 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 
 		private void DefineItemEquipmentGroups3( Action<string, Func<Item, bool>> add_def ) {
+			add_def( "Any Equipment", ( Item item ) => {
+				return EntityGroups.ItemGroups["Any Tool"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Accessory"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Armor"].Contains( item.type ) ||
+					//EntityGroups.ItemGroups["Any Vanity"].Contains( item.type ) ||	?
+					EntityGroups.ItemGroups["Any Potion"].Contains( item.type );
+			} );
+
 			add_def( "Any Wood Equipment", ( Item item ) => {
 				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, EntityGroups.ItemGroups["Any Wood"], 1 );
 				if( !has ) { return false; }

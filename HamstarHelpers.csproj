@@ -92,6 +92,7 @@
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\InfoHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\MiscHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\MiscHelpers\MusicHelpers.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Ping.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCHelpers_Obsolete.cs" />
@@ -130,8 +131,10 @@
     <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups_API.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Accessories.cs" />
+    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Misc.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Weapons.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_NPCs.cs" />
     <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Placeables.cs" />
