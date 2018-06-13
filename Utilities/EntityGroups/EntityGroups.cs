@@ -57,6 +57,10 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			TmlLoadHelpers.AddPostModLoadPromise( () => {
 				if( !this.IsEnabled ) { return; }
 
+				this.GetItemPool();
+				this.GetNPCPool();
+				this.GetProjPool();
+
 				ThreadPool.QueueUserWorkItem( _ => {
 					lock( EntityGroups.MyLock ) {
 						IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineItemGroups();
@@ -142,7 +146,7 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			
 			var list = new Projectile[ ProjectileLoader.ProjectileCount ];
 			list[0] = null;
-
+			
 			for( int i = 1; i < ProjectileLoader.ProjectileCount; i++ ) {
 				list[i] = new Projectile();
 				list[i].SetDefaults( i );

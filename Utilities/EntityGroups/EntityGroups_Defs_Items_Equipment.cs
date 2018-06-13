@@ -80,47 +80,47 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 			} );
 
 			add_def( "Any Plain Wood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Wood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Wood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Boreal Wood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.BorealWood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.BorealWood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Palm Wood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.PalmWood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.PalmWood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Rich Mahogany Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.RichMahogany }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.RichMahogany }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Ebonwood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Ebonwood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Ebonwood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Shadewood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Shadewood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Shadewood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Pearlwood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Pearlwood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.Pearlwood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Dynasty Wood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.DynastyWood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.DynastyWood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
 			add_def( "Any Spooky Wood Equipment", ( Item item ) => {
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.SpookyWood }, 1 );
+				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.SpookyWood }, 2 );
 				if( !has ) { return false; }
 				return item.createTile == -1 && item.createWall == -1;
 			} );
