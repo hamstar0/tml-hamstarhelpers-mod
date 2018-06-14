@@ -111,6 +111,7 @@
     <Compile Include="Helpers\TileHelpers\TileHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Load.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_TmlWorldHelpers.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Helpers\UIHelpers\UITheme_Default.cs" />
     <Compile Include="Helpers\UIHelpers\UITheme_Obsolete.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
+    <Compile Include="Helpers\WorldHelpers\WorldHelpers_Obsolete.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaColorHelpers_Obsolete.cs" />
     <Compile Include="Logic\PlayerLogic_Update.cs" />

@@ -62,9 +62,9 @@ namespace HamstarHelpers.WorldHelpers {
 					SocialAPI.Cloud.Delete( t_path );
 				}
 
-				LogHelpers.Log( "World "+data.Name+" deleted." );
+				LogHelpers.Log( "WorldFileHelpers.EraseWorld - World \"" + data.Name + "\" deleted. ("+data.Path+")" );
 			} catch( Exception e ) {
-				LogHelpers.Log( "WorldFileHelpers.EraseWorld - Path: " + data.Path + " - " + e.ToString() );
+				LogHelpers.Log( "WorldFileHelpers.EraseWorld - Error (path: " + data.Path + ") - " + e.ToString() );
 			}
 
 			Main.LoadWorlds();
