@@ -73,6 +73,7 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.ModUnloadPromises.Add( action );
 		}
 
+		////////////////
 
 		public static void AddWorldLoadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
@@ -111,6 +112,8 @@ namespace HamstarHelpers.TmlHelpers {
 			mymod.TmlLoadHelpers.PostWorldLoadEachPromises.Add( action );
 		}
 
+		////////////////
+
 		public static void AddWorldUnloadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -128,6 +131,26 @@ namespace HamstarHelpers.TmlHelpers {
 			}
 			mymod.TmlLoadHelpers.WorldUnloadEachPromises.Add( action );
 		}
+
+
+		public static void AddPostWorldUnloadOncePromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.PostWorldUnloadPromiseConditionsMet ) {
+				action();
+			}
+			mymod.TmlLoadHelpers.PostWorldUnloadOncePromises.Add( action );
+		}
+
+		public static void AddPostWorldUnloadEachPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.TmlLoadHelpers.PostWorldUnloadPromiseConditionsMet ) {
+				action();
+			}
+			mymod.TmlLoadHelpers.PostWorldUnloadEachPromises.Add( action );
+		}
+
 
 		////////////////
 

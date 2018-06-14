@@ -11,14 +11,17 @@ namespace HamstarHelpers.TmlHelpers {
 		private IList<Action> WorldLoadOncePromises = new List<Action>();
 		private IList<Action> WorldLoadEachPromises = new List<Action>();
 		private IList<Action> PostWorldLoadOncePromises = new List<Action>();
-		private IList<Action> PostWorldLoadEachPromises = new List<Action>(); 
+		private IList<Action> PostWorldLoadEachPromises = new List<Action>();
 		private IList<Action> WorldUnloadOncePromises = new List<Action>();
 		private IList<Action> WorldUnloadEachPromises = new List<Action>();
+		private IList<Action> PostWorldUnloadOncePromises = new List<Action>();
+		private IList<Action> PostWorldUnloadEachPromises = new List<Action>();
 		private IDictionary<string, List<Func<bool>>> CustomPromise = new Dictionary<string, List<Func<bool>>>();
 
 		private bool PostModLoadPromiseConditionsMet = false;
 		private bool WorldLoadPromiseConditionsMet = false;
 		private bool WorldUnloadPromiseConditionsMet = false;
+		private bool PostWorldUnloadPromiseConditionsMet = false;
 		private ISet<string> CustomPromiseConditionsMet = new HashSet<string>();
 
 		private int StartupDelay = 0;
@@ -84,6 +87,20 @@ namespace HamstarHelpers.TmlHelpers {
 			this.WorldUnloadOncePromises.Clear();
 		}
 
+		internal void FulfillPostWorldUnloadPromises() {
+			if( this.PostWorldUnloadPromiseConditionsMet ) { return; }
+			this.PostWorldUnloadPromiseConditionsMet = true;
+
+			foreach( Action promise in this.PostWorldUnloadOncePromises ) {
+				promise();
+			}
+			foreach( Action promise in this.PostWorldUnloadEachPromises ) {
+				promise();
+			}
+
+			this.PostWorldUnloadOncePromises.Clear();
+		}
+
 
 		////////////////
 
@@ -93,11 +110,12 @@ namespace HamstarHelpers.TmlHelpers {
 
 		~TmlLoadHelpers() {
 			try {
+				Main.OnTick -= TmlLoadHelpers._Update;
+
 				if( this.WorldLoadPromiseConditionsMet && !this.WorldUnloadPromiseConditionsMet ) {
 					this.FulfillWorldUnloadPromises();
+					this.FulfillPostWorldUnloadPromises();
 				}
-
-				Main.OnTick -= TmlLoadHelpers._Update;
 			} catch { }
 		}
 
@@ -105,6 +123,7 @@ namespace HamstarHelpers.TmlHelpers {
 		internal void OnPostSetupContent() {
 			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
 				this.WorldUnloadPromiseConditionsMet = false;
+				this.PostWorldUnloadPromiseConditionsMet = false;
 			} );
 		}
 
@@ -129,6 +148,12 @@ namespace HamstarHelpers.TmlHelpers {
 			if( Main.netMode != 2 ) {
 				if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
 					this.WorldLoadPromiseConditionsMet = false; // Does this work?
+				}
+			}
+
+			if( this.WorldUnloadPromiseConditionsMet ) {
+				if( Main.gameMenu && Main.menuMode == 0 ) {
+					this.FulfillPostWorldUnloadPromises();
 				}
 			}
 		}
