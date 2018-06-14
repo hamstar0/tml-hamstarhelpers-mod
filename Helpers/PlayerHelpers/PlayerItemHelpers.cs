@@ -76,7 +76,24 @@ namespace HamstarHelpers.PlayerHelpers {
 				player.inventory[slot] = new Item();
 			}
 		}
-		
+
+		public static void DropEquippedMiscItem( Player player, int slot ) {
+			Item item = player.miscEquips[ slot ];
+
+			if( item != null && !item.IsAir ) {
+				int idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
+
+				item.position = Main.item[ idx ].position;
+				Main.item[ idx ] = item;
+
+				if( Main.netMode == 1 ) {   // Client
+					NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
+				}
+
+				player.miscEquips[ slot ] = new Item();
+			}
+		}
+
 
 		public static void DropEquippedItem( Player player, int slot ) {
 			Item item = player.armor[slot];
