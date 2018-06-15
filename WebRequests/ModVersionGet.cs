@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using Terraria.ModLoader;
 
@@ -100,6 +101,8 @@ namespace HamstarHelpers.WebRequests {
 				if( e is JsonReaderException ) {
 					LogHelpers.Log( "RetrieveLatestKnownVersions - Bad JSON: "+
 						(output.Length > 256 ? output.Substring(0, 256) : output) );
+				} else if( e is WebException || e is NullReferenceException ) {
+					LogHelpers.Log( "RetrieveLatestKnownVersions - " + e.Message );
 				} else {
 					LogHelpers.Log( "RetrieveLatestKnownVersions - " + e.ToString() );
 				}
