@@ -4,6 +4,10 @@ using Terraria.GameContent.UI.Elements;
 
 namespace HamstarHelpers.UIHelpers {
 	public partial class UITheme {
+		[System.Obsolete( "use UITheme.ApplyListContainer", true )]
+		public virtual void ApplyList( UIPanel panel ) {
+			this.ApplyListContainer( panel );
+		}
 		[System.Obsolete( "use UITheme.ApplyList", true )]
 		public void ApplyModList( UIPanel panel ) {
 			this.ApplyList( panel );

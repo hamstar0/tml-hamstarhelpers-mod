@@ -2,7 +2,7 @@
 using Terraria.UI;
 
 
-namespace HamstarHelpers.UIHelpers.Elements {
+namespace HamstarHelpers.Components.UI.Elements {
 	public class UITextPanelButton : UITextPanel<string> {
 		private UITheme Theme;
 

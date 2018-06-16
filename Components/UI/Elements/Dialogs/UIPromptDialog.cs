@@ -3,7 +3,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
+namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 	public class UIPromptDialog : UIDialog {
 		protected UITextPanelButton ConfirmButton;
 		protected UITextPanelButton CancelButton;

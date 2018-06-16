@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.PlayerHelpers {
+namespace HamstarHelpers.PlayerHelpers {
 	public static class PlayerIdentityHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;

@@ -16,28 +16,42 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.UIHelpers.Elements {
+	[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 	public class UIModData : UIPanel {
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public Mod Mod { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public string Author { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public string HomepageUrl { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public Version LatestAvailableVersion { get; private set; }
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public UIImage IconElem { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public UIElement TitleElem { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public UIElement AuthorElem { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public UITextPanelButton ConfigButton { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public UIElement VersionAlertElem { get; private set; }
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public bool HasIconLoaded { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public bool WillDrawOwnHoverElements { get; private set; }
 
 
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements = true )
 				: this( theme, null, mod, will_draw_own_hover_elements ) { }
-		
+
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public UIModData( UITheme theme, int? idx, Mod mod, bool will_draw_own_hover_elements = true ) {
 			var self = this;
 			TmodFile modfile = mod.File;
@@ -153,6 +167,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.CheckForNewVersionAsync();
 		}
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public void CheckForNewVersionAsync() {
 			Action<Version> on_success = delegate ( Version vers ) {
 				this.LatestAvailableVersion = vers;
@@ -169,6 +184,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public override int CompareTo( object obj ) {
 			if( this.Mod.Name == HamstarHelpersMod.Instance.Name ) {
 				return -1;
@@ -195,6 +211,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		////////////////
 
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
@@ -217,6 +234,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		}
 
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIModData", true )]
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( this.TitleElem.IsMouseHovering ) {
 				if( this.TitleElem is UIWebUrl ) {

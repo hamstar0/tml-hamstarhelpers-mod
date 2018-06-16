@@ -10,33 +10,47 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.UIHelpers.Elements {
+	[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 	public class UITextArea : UIPanel {
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public delegate void TextChangeEvent( StringBuilder new_text );
 
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public string Text { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public string DisplayText { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public string Hint { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public int MaxLength { get; private set; }
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public event TextChangeEvent OnPreChange;
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public Color TextColor = Color.White;
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public Color HintColor = Color.Gray;
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public int CursorPos { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public int CursorAnimation { get; private set; }
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public bool HasFocus { get; private set; }
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public bool IsEnabled { get; private set; }
 
 		private UITheme Theme;
 
 
 		////////////////
-		
+
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public UITextArea( UITheme theme, string hint, int max_length=2024 ) {
 			// TODO Add multiline support
 
@@ -56,7 +70,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-		
+
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public void SetText( string text ) {
 			var str_bldr = new StringBuilder( text );
 			if( this.OnPreChange != null ) {
@@ -77,6 +92,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public override void Update( GameTime game_time ) {
 			if( this.HasFocus ) {
 				Main.blockInput = true;	// Force the point!
@@ -107,6 +123,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			base.Update( game_time );
 		}
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public override void Recalculate() {
 			this.SetText( this.Text );
 			base.Recalculate();
@@ -115,6 +132,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public override void Click( UIMouseEvent evt ) {
 			this.Focus();
 			base.Click( evt );
@@ -122,6 +140,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public bool Focus() {
 			if( !this.IsEnabled ) { return false; }
 			if( this.HasFocus ) { return false; }
@@ -135,6 +154,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			return true;
 		}
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public bool Unfocus() {
 			if( !this.HasFocus ) { return false; }
 			this.HasFocus = false;
@@ -147,6 +167,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public void Disable() {
 			this.IsEnabled = false;
 
@@ -157,6 +178,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.RefreshTheme();
 		}
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public void Enable() {
 			this.IsEnabled = true;
 
@@ -166,6 +188,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public virtual void RefreshTheme() {
 			if( this.IsEnabled ) {
 				this.Theme.ApplyInput( this );
@@ -213,6 +236,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextArea", true )]
 		public static string GetFittedText( string text, int cursor_pos, float width ) {
 			int start = 0;
 			int end = text.Length;

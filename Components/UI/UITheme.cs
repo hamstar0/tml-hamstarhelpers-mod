@@ -2,9 +2,9 @@
 using HamstarHelpers.UIHelpers.Elements;
 using System.Reflection;
 using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
 
-namespace HamstarHelpers.UIHelpers {
+
+namespace HamstarHelpers.Components.UI {
 	public partial class UITheme {
 		public UITheme Clone() {
 			return (UITheme)this.MemberwiseClone();
@@ -107,12 +107,7 @@ namespace HamstarHelpers.UIHelpers {
 		}
 
 		////////////////
-
-		[System.Obsolete( "use UITheme.ApplyListContainer", true )]
-		public virtual void ApplyList( UIPanel panel ) {
-			this.ApplyListContainer( panel );
-		}
-
+		
 		public virtual void ApplyListContainer( UIPanel panel ) {
 			panel.BackgroundColor = this.ListBgColor;
 			panel.BorderColor = this.ListEdgeColor;

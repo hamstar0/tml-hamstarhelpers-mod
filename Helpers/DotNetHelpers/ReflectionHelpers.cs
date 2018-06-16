@@ -2,45 +2,58 @@
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers {
-	public class ModReferenceHelpers {
-		public static object GetVariable( Object obj, string field_or_prop_name, out bool success ) {
+namespace HamstarHelpers.DotNetHelpers {
+	public class ReflectionHelpers {
+		public static object GetField( Object obj, string field_name, out bool success ) {
 			success = false;
 			Type objtype = obj.GetType();
-			FieldInfo field = objtype.GetField( field_or_prop_name );
+			FieldInfo field = objtype.GetField( field_name );
 
-			if( field != null ) {
-				success = true;
-				return field.GetValue( obj );
-			} else {
-				PropertyInfo prop = objtype.GetProperty( field_or_prop_name );
-				if( prop == null ) {
-					return null;
-				}
+			if( field == null ) { return null; }
 
-				success = true;
-				return prop.GetValue( obj );
-			}
+			success = true;
+			return field.GetValue( obj );
 		}
-		
-		public static void SetVariable( Object obj, string field_or_prop_name, object value, out bool success ) {
+
+		public static void SetField( Object obj, string field_name, object value, out bool success ) {
 			success = false;
 			Type objtype = obj.GetType();
-			FieldInfo field = objtype.GetField( field_or_prop_name );
+			FieldInfo field = objtype.GetField( field_name );
 
-			if( field != null ) {
-				success = true;
-				field.SetValue( obj, value );
-			} else {
-				PropertyInfo prop = objtype.GetProperty( field_or_prop_name );
-				if( prop == null ) {
-					return;
-				}
+			if( field == null ) { return; }
 
-				success = true;
-				prop.SetValue( obj, value );
-			}
+			success = true;
+			field.SetValue( obj, value );
 		}
+
+
+		////////////////
+
+		public static object GetProperty( Object obj, string field_or_prop_name, out bool success ) {
+			success = false;
+			Type objtype = obj.GetType();
+			PropertyInfo prop = objtype.GetProperty( field_or_prop_name );
+
+			if( prop == null ) { return null; }
+
+			success = true;
+			return prop.GetValue( obj );
+		}
+
+		public static void SetProperty( Object obj, string prop_name, object value, out bool success ) {
+			success = false;
+			Type objtype = obj.GetType();
+			FieldInfo field = objtype.GetField( prop_name );
+			PropertyInfo prop = objtype.GetProperty( prop_name );
+
+			if( prop == null ) { return; }
+
+			success = true;
+			prop.SetValue( obj, value );
+		}
+
+
+		////////////////
 
 		public static object RunMethod( Object obj, string method_name, object[] args, out bool success ) {
 			success = false;

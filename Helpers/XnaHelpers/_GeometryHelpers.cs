@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.XnaHelpers {
+namespace HamstarHelpers.XnaHelpers {
 	/*public class Polygon {
 		public IList<Line> Lines { get; private set; }
 		private Rectangle? Bounds = null;

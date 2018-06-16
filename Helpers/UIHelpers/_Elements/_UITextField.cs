@@ -9,9 +9,11 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Helpers.UIHelpers.Elements {
+	[Obsolete( "HamstarHelpers.Components.UI.Elements.TextInputEventArgs", true )]
 	public class TextInputEventArgs : EventArgs {
 		public string Text;
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.TextInputEventArgs", true )]
 		public TextInputEventArgs( string text ) : base() {
 			this.Text = text;
 		}
@@ -19,13 +21,17 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 
 
 
+	[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextField", true )]
 	public class UITextField : UIPanel {
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextField", true )]
 		public delegate void EventHandler( Object sender, EventArgs e );
 
 
 		private UITheme Theme;
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextField", true )]
 		public event EventHandler OnTextChange;
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextField", true )]
 		public Color TextColor;
 
 		private string HintText;
@@ -38,6 +44,7 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextField", true )]
 		public UITextField( UITheme theme, string hint_text ) {
 			this.Theme = theme;
 			this.HintText = hint_text;
@@ -49,6 +56,7 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextField", true )]
 		public virtual void RefreshTheme() {
 			this.Theme.ApplyInput( this );
 		}
@@ -56,6 +64,7 @@ namespace HamstarHelpers.Helpers.UIHelpers.Elements {
 
 		////////////////
 
+		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextField", true )]
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
 			

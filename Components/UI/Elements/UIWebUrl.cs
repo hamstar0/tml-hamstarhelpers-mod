@@ -8,7 +8,7 @@ using ReLogic.Graphics;
 using HamstarHelpers.Helpers.DotNetHelpers;
 
 
-namespace HamstarHelpers.UIHelpers.Elements {
+namespace HamstarHelpers.Components.UI.Elements {
 	public class UIWebUrl : UIElement {
 		[System.Obsolete( "use UITheme.UrlColor", true )]
 		public static Color DefaultColor = new Color( 80, 80, 255 );

@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.DotNetHelpers {
 	public static class SystemHelpers {
 		public static TimeSpan TimeStamp() {
 			return ( DateTime.UtcNow - new DateTime( 1970, 1, 1, 0, 0, 0 ) );
