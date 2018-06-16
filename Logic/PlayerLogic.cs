@@ -1,6 +1,5 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.NetProtocols;
-using HamstarHelpers.UIHelpers.Elements;
 using HamstarHelpers.Utilities.Network;
 using System.Collections.Generic;
 using Terraria;
@@ -18,6 +17,7 @@ namespace HamstarHelpers.Logic {
 		private uint TestPing = 0;
 
 		public DialogManager DialogManager = new DialogManager();
+		internal UIHelpers.Elements.DialogManager OldDialogManager = new UIHelpers.Elements.DialogManager();
 
 		public bool HasSyncedModSettings { get; private set; }
 		public bool HasSyncedModData { get; private set; }

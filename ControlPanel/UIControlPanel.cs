@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.Components.UI;
+using HamstarHelpers.Components.UI.Elements;
+using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
-using HamstarHelpers.UIHelpers;
-using HamstarHelpers.UIHelpers.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

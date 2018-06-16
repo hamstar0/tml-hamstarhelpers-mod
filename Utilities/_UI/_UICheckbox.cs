@@ -6,18 +6,18 @@ using Terraria;
 
 
 namespace HamstarHelpers.Utilities.UI {
-	[System.Obsolete( "use UIHelpers.UI.UICheckbox", true )]
+	[System.Obsolete( "use Components.UI.Elements.UICheckbox", true )]
 	public class UICheckbox : UIText {
-		[System.Obsolete( "use UIHelpers.UI.UICheckbox.CheckboxTexture", true )]
-		public static Texture2D CheckboxTexture { get { return UIHelpers.Elements.UICheckbox.CheckboxTexture; } }
+		[System.Obsolete( "use Components.UI.Elements.UICheckbox.CheckboxTexture", true )]
+		public static Texture2D CheckboxTexture { get { return Components.UI.Elements.UICheckbox.CheckboxTexture; } }
 
-		[System.Obsolete( "use UIHelpers.UI.UICheckbox.CheckmarkTexture", true )]
-		public static Texture2D CheckmarkTexture { get { return UIHelpers.Elements.UICheckbox.CheckmarkTexture; } }
+		[System.Obsolete( "use Components.UI.Elements.UICheckbox.CheckmarkTexture", true )]
+		public static Texture2D CheckmarkTexture { get { return Components.UI.Elements.UICheckbox.CheckmarkTexture; } }
 
 
 		////////////////
 
-		private UIHelpers.Elements.UICheckbox TrueElement;
+		private Components.UI.Elements.UICheckbox TrueElement;
 		private object JuryriggedMutex = new Object();
 
 		public event Action OnSelectedChanged {
@@ -54,10 +54,10 @@ namespace HamstarHelpers.Utilities.UI {
 
 		public UICheckbox( string label, string title, bool is_clickable = true, float text_scale = 1, bool large = false ) : base( label, text_scale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
-				UIHelpers.Elements.UICheckbox.LoadTextures();
+				Components.UI.Elements.UICheckbox.LoadTextures();
 			}
 
-			this.TrueElement = new UIHelpers.Elements.UICheckbox( label, title, is_clickable, text_scale, large );
+			this.TrueElement = new Components.UI.Elements.UICheckbox( label, title, is_clickable, text_scale, large );
 			this.Append( this.TrueElement );
 
 			CalculatedStyle dim = this.TrueElement.GetDimensions();

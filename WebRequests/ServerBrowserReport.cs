@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.DotNetHelpers;
 using HamstarHelpers.TmlHelpers;
 using System.Collections.Generic;
 

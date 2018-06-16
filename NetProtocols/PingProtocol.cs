@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers;
+﻿using HamstarHelpers.DotNetHelpers;
 using HamstarHelpers.Utilities.Network;
 
 

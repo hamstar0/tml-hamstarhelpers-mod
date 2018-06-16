@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers.ModHelpers;
-using HamstarHelpers.UIHelpers.Elements;
+﻿using HamstarHelpers.Components.UI.Elements;
+using HamstarHelpers.TmlHelpers.ModHelpers;
 using Microsoft.Xna.Framework.Graphics;
 using System.Text;
 using Terraria;

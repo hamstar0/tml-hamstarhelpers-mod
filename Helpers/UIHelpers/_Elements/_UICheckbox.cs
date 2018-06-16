@@ -7,11 +7,11 @@ using Terraria;
 
 
 namespace HamstarHelpers.UIHelpers.Elements {
-	[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
+	[Obsolete( "use Components.UI.Elements.UICheckbox", true )]
 	public class UICheckbox : UIText {
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
+		[Obsolete( "use Components.UI.Elements.UICheckbox", true )]
 		public static Texture2D CheckboxTexture { get; private set; }
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
+		[Obsolete( "use Components.UI.Elements.UICheckbox", true )]
 		public static Texture2D CheckmarkTexture { get; private set; }
 
 
@@ -29,18 +29,13 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
+		
 		public event Action OnSelectedChanged = null;
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
 		public float Order = 0f;
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
 		public bool IsClickable = true;
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
 		public string Title = "";
 
 		private bool _selected = false;
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
 		public bool Selected {
 			get { return this._selected; }
 			set {
@@ -55,8 +50,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
+		
 		public UICheckbox( string label, string title, bool is_clickable = true, float text_scale = 1, bool large = false ) : base( label, text_scale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
 				UICheckbox.LoadTextures();
@@ -68,8 +62,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.SetText( "   " + label );
 			this.Recalculate();
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
+		
 		public override void Click( UIMouseEvent evt ) {
 			if( this.IsClickable ) {
 				this.Selected = !this.Selected;
@@ -99,8 +92,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UICheckbox", true )]
+		
 		public override int CompareTo( object obj ) {
 			try {
 				UICheckbox other = obj as UICheckbox;

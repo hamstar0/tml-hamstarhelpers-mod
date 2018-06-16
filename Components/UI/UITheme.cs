@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Helpers.UIHelpers.Elements;
-using HamstarHelpers.UIHelpers.Elements;
+﻿using HamstarHelpers.Components.UI.Elements;
 using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 

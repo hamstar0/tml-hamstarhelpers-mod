@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.ControlPanel.Inbox;
-using HamstarHelpers.Helpers.MiscHelpers;
+using HamstarHelpers.MiscHelpers;
 using HamstarHelpers.Utilities.AnimatedColor;
 using HamstarHelpers.Utilities.Config;
 using HamstarHelpers.Utilities.EntityGroups;

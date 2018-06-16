@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.DotNetHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Text;

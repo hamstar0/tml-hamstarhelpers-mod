@@ -9,7 +9,7 @@ using HamstarHelpers.Helpers.DotNetHelpers;
 
 
 namespace HamstarHelpers.UIHelpers.Elements {
-	[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
+	[Obsolete( "use Components.UI.Elements.UIWebUrl", true )]
 	public class UIWebUrl : UIElement {
 		[System.Obsolete( "use UITheme.UrlColor", true )]
 		public static Color DefaultColor = new Color( 80, 80, 255 );
@@ -21,27 +21,20 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
+		
 		public UITheme Theme { get; private set; }
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
 		public UIText TextElem { get; private set; }
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
 		public UIText LineElem { get; private set; }
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
+		
 		public string Url { get; private set; }
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
 		public bool WillDrawOwnHoverUrl { get; private set; }
 
 
 		////////////////
-
-		[Obsolete( "use other constructor", true )]
+		
 		public UIWebUrl( string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false )
 				: this( new UITheme(), label, url, hover_url, scale, large ) { }
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
+		
 		public UIWebUrl( UITheme theme, string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false ) : base() {
 			this.Theme = theme;
 
@@ -95,8 +88,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
+		
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
@@ -104,8 +96,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.DrawHoverEffects( sb );
 			}
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIWebUrl", true )]
+		
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( !string.IsNullOrEmpty(this.Url) ) {
 				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );

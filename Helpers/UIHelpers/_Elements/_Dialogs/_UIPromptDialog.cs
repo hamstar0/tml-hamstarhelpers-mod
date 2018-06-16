@@ -4,21 +4,19 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
-	[Obsolete( "HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog", true )]
+	[Obsolete( "use Components.UI.Elements.Dialogs.UIPromptDialog", true )]
 	public class UIPromptDialog : UIDialog {
 		protected UITextPanelButton ConfirmButton;
 		protected UITextPanelButton CancelButton;
 
 		protected Action ConfirmAction;
 		protected Action CancelAction;
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog", true )]
+		
 		public string TitleText { get; private set; }
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog", true )]
+		
 		public UIPromptDialog( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null ) : base( theme, width, height ) {
 			this.TitleText = title;
 			this.ConfirmAction = confirm;
@@ -26,8 +24,7 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 		}
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog", true )]
+		
 		public override void InitializeComponents() {
 			var self = this;
 
@@ -61,8 +58,7 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog", true )]
+		
 		public override void Open() {
 			base.Open();
 
@@ -71,8 +67,7 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog", true )]
+		
 		public override void RefreshTheme() {
 			base.RefreshTheme();
 

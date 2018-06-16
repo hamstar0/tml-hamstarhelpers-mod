@@ -7,14 +7,13 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.UIHelpers.Elements {
-	[Obsolete( "HamstarHelpers.Components.UI.DialogManager", true )]
+	[Obsolete( "HamstarHelpers.Components.UI.DialogManager", false )]
 	class DialogManager {
-		[Obsolete( "HamstarHelpers.Components.UI.DialogManager", true )]
 		public static DialogManager Instance {
 			get {
 				try {
 					var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-					return myplayer.Logic.DialogManager;
+					return myplayer.Logic.OldDialogManager;
 				} catch { }
 				return null;
 			}
@@ -22,16 +21,13 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.DialogManager", true )]
+		
 		public bool ForcedModalDialog { get; private set; }
-		[Obsolete( "HamstarHelpers.Components.UI.DialogManager", true )]
 		public UIDialog CurrentDialog { get; private set; }
 
 
 		////////////////
 
-		[Obsolete( "HamstarHelpers.Components.UI.DialogManager", true )]
 		public DialogManager() {
 			this.ForcedModalDialog = false;
 			this.CurrentDialog = null;
@@ -83,7 +79,6 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 	[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
 	public class UIDialog : UIState {
-		[Obsolete( "use UIDialog.InitialContainerWidth", true )]
 		public virtual int ContainerWidth {
 			get {
 				return InitialContainerWidth;
@@ -92,7 +87,6 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				InitialContainerWidth = value;
 			}
 		}
-		[Obsolete( "use UIDialog.InitialContainerHeight", true )]
 		public virtual int ContainerHeight {
 			get {
 				return InitialContainerHeight;
@@ -101,13 +95,10 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				InitialContainerHeight = value;
 			}
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public virtual int InitialContainerWidth { get; protected set; }
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
 		public virtual int InitialContainerHeight { get; protected set; }
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public bool IsOpen { get; private set; }
 
 		protected UserInterface Backend = null;
@@ -128,8 +119,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public UIDialog( UITheme theme, int initial_width, int initial_height ) {
 			this.IsOpen = false;
 			this.Theme = theme;
@@ -138,20 +128,17 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		}
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public override void OnActivate() {
 			base.OnActivate();
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public override void OnInitialize() {
 			this.InitializeContainer( this.InitialContainerWidth, this.InitialContainerHeight );
 			this.InitializeComponents();
 		}
 
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public void InitializeContainer( int width, int height ) {
 			this.OuterContainer = new UIElement();
 			this.OuterContainer.Width.Set( width, 0f );
@@ -171,14 +158,12 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			this.Theme.ApplyPanel( this.InnerContainer );
 		}
 
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public virtual void InitializeComponents() { }
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public override void Update( GameTime game_time ) {
 			base.Update( game_time );
 
@@ -203,8 +188,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		}
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public void RecalculateMe() {	// Call this instead of Recalculate
 			if( this.Backend != null ) {
 				this.Backend.Recalculate();
@@ -212,8 +196,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.Recalculate();
 			}
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public override void Recalculate() {
 			base.Recalculate();
 
@@ -221,8 +204,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.RecalculateContainer();
 			}
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public void RecalculateContainer() {
 			CalculatedStyle dim = this.OuterContainer.GetDimensions();
 			float offset_x = this.LeftPixels;
@@ -241,15 +223,13 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public virtual bool CanOpen() {
 			return !this.IsOpen && !Main.inFancyUI &&
 				(DialogManager.Instance != null && DialogManager.Instance.CurrentDialog == null);
 		}
 
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public virtual void Open() {
 			this.IsOpen = true;
 
@@ -269,8 +249,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 			}
 		}
 
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public virtual void Close() {
 			this.IsOpen = false;
 
@@ -284,16 +263,14 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public void SetLeftPosition( float pixels, float percent, bool centered ) {
 			this.LeftPixels = pixels;
 			this.LeftPercent = percent;
 			this.LeftCentered = centered;
 			this.RecalculateContainer();
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public void SetTopPosition( float pixels, float percent, bool centered ) {
 			this.TopPixels = pixels;
 			this.TopPercent = percent;
@@ -303,16 +280,14 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public virtual void RefreshTheme() {
 			this.Theme.ApplyPanel( this.InnerContainer );
 		}
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
+		
 		public override void Draw( SpriteBatch sb ) {
 			if( !this.IsOpen ) {
 				return;

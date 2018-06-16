@@ -5,24 +5,24 @@ using Microsoft.Xna.Framework.Graphics;
 
 
 namespace HamstarHelpers.Utilities.UI {
-	[System.Obsolete( "use UIHelpers.UI.UIWebUrl", true )]
+	[System.Obsolete( "use Components.UI.Elements.UIWebUrl.UIWebUrl", true )]
 	public class UIWebUrl : UIElement {
-		[System.Obsolete( "use UIHelpers.UI.UIWebUrl.DefaultColor", true )]
+		[System.Obsolete( "use Components.UI.Elements.UIWebUrl.DefaultColor", true )]
 		public static Color DefaultColor {
-			get { return UIHelpers.Elements.UIWebUrl.DefaultColor; }
-			set { UIHelpers.Elements.UIWebUrl.DefaultColor = value; }
+			get { return Components.UI.Elements.UIWebUrl.DefaultColor; }
+			set { Components.UI.Elements.UIWebUrl.DefaultColor = value; }
 		}
 
-		[System.Obsolete( "use UIHelpers.UI.UIWebUrl.DefaultLitColor", true )]
+		[System.Obsolete( "use Components.UI.Elements.UIWebUrl.DefaultLitColor", true )]
 		public static Color DefaultLitColor {
-			get { return UIHelpers.Elements.UIWebUrl.DefaultLitColor; }
-			set { UIHelpers.Elements.UIWebUrl.DefaultLitColor = value; }
+			get { return Components.UI.Elements.UIWebUrl.DefaultLitColor; }
+			set { Components.UI.Elements.UIWebUrl.DefaultLitColor = value; }
 		}
 
-		[System.Obsolete( "use UIHelpers.UI.UIWebUrl.DefaultVisitColor", true )]
+		[System.Obsolete( "use Components.UI.Elements.UIWebUrl.DefaultVisitColor", true )]
 		public static Color DefaultVisitColor {
-			get { return UIHelpers.Elements.UIWebUrl.DefaultVisitColor; }
-			set { UIHelpers.Elements.UIWebUrl.DefaultVisitColor = value; }
+			get { return Components.UI.Elements.UIWebUrl.DefaultVisitColor; }
+			set { Components.UI.Elements.UIWebUrl.DefaultVisitColor = value; }
 		}
 
 
