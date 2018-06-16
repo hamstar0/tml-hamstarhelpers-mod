@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.DotNetHelpers;
-using HamstarHelpers.Utilities.Network;
+using HamstarHelpers.Components.Network;
 
 
 namespace HamstarHelpers.NetProtocols {

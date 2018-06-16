@@ -1,8 +1,9 @@
 ﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.Utilities.Timers;
+using HamstarHelpers.Services.Timers;
 using System;
 using System.Net;
 using Terraria;
+
 
 namespace HamstarHelpers.NetHelpers {
 	public partial class NetHelpers {

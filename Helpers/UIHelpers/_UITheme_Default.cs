@@ -2,7 +2,7 @@
 
 
 namespace HamstarHelpers.UIHelpers {
-	public partial class UITheme {
+	public partial class OldUITheme {
 		////////////////
 		public Color ModListBgColor = new Color( 0, 0, 0, 128 );
 		public Color ModListEdgeColor = new Color( 32, 32, 32, 32 );

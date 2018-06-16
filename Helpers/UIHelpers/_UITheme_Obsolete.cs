@@ -3,7 +3,7 @@ using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.UIHelpers {
-	public partial class UITheme {
+	public partial class OldUITheme {
 		[System.Obsolete( "use UITheme.ApplyListContainer", true )]
 		public virtual void ApplyList( UIPanel panel ) {
 			this.ApplyListContainer( panel );

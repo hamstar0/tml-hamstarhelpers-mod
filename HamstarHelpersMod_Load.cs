@@ -1,13 +1,13 @@
-﻿using HamstarHelpers.ControlPanel.Inbox;
+﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.ControlPanel.Inbox;
 using HamstarHelpers.MiscHelpers;
-using HamstarHelpers.Utilities.AnimatedColor;
-using HamstarHelpers.Utilities.Config;
-using HamstarHelpers.Utilities.EntityGroups;
-using HamstarHelpers.Utilities.Errors;
-using HamstarHelpers.Utilities.Menu;
-using HamstarHelpers.Utilities.Messages;
-using HamstarHelpers.Utilities.Network;
-using HamstarHelpers.Utilities.Timers;
+using HamstarHelpers.Services.AnimatedColor;
+using HamstarHelpers.Services.EntityGroups;
+using HamstarHelpers.Services.Messages;
+using HamstarHelpers.Services.Timers;
 using HamstarHelpers.WebRequests;
 using System;
 using System.Collections.Generic;
@@ -54,6 +54,7 @@ namespace HamstarHelpers {
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
 		internal MenuItemManager MenuItemMngr;
+		internal Utilities.Menu.OldMenuItemManager OldMenuItemMngr;
 		internal MusicHelpers MusicHelpers;
 
 		public bool HasSetupContent { get; private set; }
@@ -123,6 +124,7 @@ namespace HamstarHelpers {
 			this.ModVersionGet = new ModVersionGet();
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
+			this.OldMenuItemMngr = new Utilities.Menu.OldMenuItemManager();
 			this.MusicHelpers = new MusicHelpers();
 
 #pragma warning disable 612, 618
@@ -188,6 +190,7 @@ namespace HamstarHelpers {
 			this.ControlPanel = null;
 			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
+			this.OldMenuItemMngr = null;
 			this.MusicHelpers = null;
 
 			HamstarHelpersMod.Instance = null;

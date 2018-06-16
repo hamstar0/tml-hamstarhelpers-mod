@@ -1,8 +1,7 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.NetProtocols;
-using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.Utilities.Network;
-using HamstarHelpers.Utilities.Timers;
+using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

@@ -6,17 +6,14 @@ using Terraria.UI;
 namespace HamstarHelpers.UIHelpers.Elements {
 	[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextPanelButton", true )]
 	public class UITextPanelButton : UITextPanel<string> {
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextPanelButton", true )]
-		private UITheme Theme;
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextPanelButton", true )]
+		private OldUITheme Theme;
+		
 		public bool IsEnabled { get; private set; }
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextPanelButton", true )]
-		public UITextPanelButton( UITheme theme, string label, float scale = 1f, bool large = false ) : base( label, scale, large ) {
+		
+		public UITextPanelButton( OldUITheme theme, string label, float scale = 1f, bool large = false ) : base( label, scale, large ) {
 			this.Theme = theme;
 			this.IsEnabled = true;
 
@@ -39,14 +36,12 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextPanelButton", true )]
+		
 		public void Enable() {
 			this.IsEnabled = true;
 			this.RefreshTheme();
 		}
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextPanelButton", true )]
+		
 		public void Disable() {
 			this.IsEnabled = false;
 			this.RefreshTheme();
@@ -54,8 +49,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 		////////////////
-
-		[Obsolete( "HamstarHelpers.Components.UI.Elements.UITextPanelButton", true )]
+		
 		public virtual void RefreshTheme() {
 			if( this.IsEnabled ) {
 				this.Theme.ApplyButton( this );

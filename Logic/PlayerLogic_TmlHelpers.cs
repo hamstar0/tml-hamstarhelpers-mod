@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.NetProtocols;
+using HamstarHelpers.Services.Timers;
 using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.Utilities.Timers;
 using System.Linq;
 using Terraria;
 

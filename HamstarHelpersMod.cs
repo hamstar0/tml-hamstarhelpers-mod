@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Utilities.Config;
-using HamstarHelpers.Utilities.Messages;
-using HamstarHelpers.Utilities.Network;
+﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Components.Network;
+using HamstarHelpers.Services.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -37,8 +37,10 @@ namespace HamstarHelpers {
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
 			try {
 				if( Main.netMode == 1 ) {
+					Utilities.Network.OldPacketProtocol.HandlePacketOnClient( reader, player_who );
 					PacketProtocol.HandlePacketOnClient( reader, player_who );
 				} else if( Main.netMode == 2 ) {
+					Utilities.Network.OldPacketProtocol.HandlePacketOnServer( reader, player_who );
 					PacketProtocol.HandlePacketOnServer( reader, player_who );
 				}
 			} catch( Exception e ) {

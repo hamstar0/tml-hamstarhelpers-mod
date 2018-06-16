@@ -65,9 +65,15 @@
     <Compile Include="Components\UI\Elements\UITextPanelButton.cs" />
     <Compile Include="Components\UI\Elements\UIWebUrl.cs" />
     <Compile Include="Components\UI\DialogManager.cs" />
+    <Compile Include="Components\UI\Menu\MenuItem.cs" />
     <Compile Include="Components\UI\UITheme.cs" />
     <Compile Include="Components\UI\UITheme_Default.cs" />
     <Compile Include="Components\UI\UITheme_Vanilla.cs" />
+    <Compile Include="Components\Network\PacketProtocol.cs" />
+    <Compile Include="Components\Network\PacketProtocol_Handler.cs" />
+    <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
+    <Compile Include="Components\Network\PacketProtocol_Send.cs" />
+    <Compile Include="Components\Network\PacketProtocol_Stream.cs" />
     <Compile Include="ControlPanel\Inbox\InboxControl.cs" />
     <Compile Include="HamstarHelpersMod_Data.cs" />
     <Compile Include="HamstarHelpersMod_Load.cs" />
@@ -148,22 +154,31 @@
     <Compile Include="NetProtocols\PlayerIdProtocol.cs" />
     <Compile Include="NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="NetProtocols\WorldDataProtocol.cs" />
-    <Compile Include="Utilities\Config\JsonConfig_Obsolete.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_API.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Accessories.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Misc.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Weapons.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_NPCs.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Placeables.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Defs_Items_Equipment.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups_Compute.cs" />
-    <Compile Include="Utilities\EntityGroups\EntityGroups.cs" />
-    <Compile Include="Utilities\Menu\MenuItem.cs" />
-    <Compile Include="Utilities\Messages\InboxMessages.cs" />
-    <Compile Include="Utilities\Network\PacketProtocol_Handler.cs" />
-    <Compile Include="Utilities\Network\PacketProtocol_Obsolete.cs" />
-    <Compile Include="Utilities\Network\PacketProtocol_Stream.cs" />
+    <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_API.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Compute.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Defs.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Accessories.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Equipment.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Misc.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Placeables.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Weapons.cs" />
+    <Compile Include="Services\EntityGroups\EntityGroups_Defs_NPCs.cs" />
+    <Compile Include="Services\Messages\InboxMessages.cs" />
+    <Compile Include="Services\Messages\PlayerMessages.cs" />
+    <Compile Include="Services\Messages\SimpleMessage.cs" />
+    <Compile Include="Services\Timers\Timers.cs" />
+    <Compile Include="_Utilities\Errors\Errors.cs" />
+    <Compile Include="_Utilities\_Config\_ConfigurationDataBase.cs" />
+    <Compile Include="_Utilities\_Config\_JsonConfig.cs" />
+    <Compile Include="_Utilities\_Config\_JsonConfig_Obsolete.cs" />
+    <Compile Include="_Utilities\_EntityGroups\_EntityGroups_API.cs" />
+    <Compile Include="_Utilities\_Menu\_MenuItem.cs" />
+    <Compile Include="_Utilities\_Messages\_InboxMessages.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Handler.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Obsolete.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Stream.cs" />
     <Compile Include="WebRequests\GithubModIssueReports.cs" />
     <Compile Include="WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
@@ -209,9 +224,9 @@
     <Compile Include="Helpers\TmlHelpers\TmlPlayerHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\_UITheme.cs" />
     <Compile Include="Helpers\_UserHelpers\_UserHelpers.cs" />
-    <Compile Include="Utilities\AnimatedColors\AnimatedColors.cs" />
-    <Compile Include="Utilities\Config\ConfigurationDataBase.cs" />
-    <Compile Include="Utilities\Config\JsonConfig.cs" />
+    <Compile Include="_Utilities\_AnimatedColors\_AnimatedColors.cs" />
+    <Compile Include="Components\Config\ConfigurationDataBase.cs" />
+    <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Helpers\DotNetHelpers\DotNetHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\MiscHelpers.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCFinderHelpers.cs" />
@@ -224,13 +239,13 @@
     <Compile Include="Helpers\TileHelpers\TileHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\_Elements\_UIDialog.cs" />
     <Compile Include="Helpers\UIHelpers\_Elements\_Dialogs\_UIPromptDialog.cs" />
-    <Compile Include="Utilities\Errors\Errors.cs" />
-    <Compile Include="Utilities\Network\PacketProtocol_Receive.cs" />
-    <Compile Include="Utilities\Network\PacketProtocol_Send.cs" />
-    <Compile Include="Utilities\Network\PacketProtocol.cs" />
-    <Compile Include="Utilities\Timers\Timers.cs" />
-    <Compile Include="Utilities\Messages\PlayerMessages.cs" />
-    <Compile Include="Utilities\Messages\SimpleMessage.cs" />
+    <Compile Include="Components\Errors\Errors.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Receive.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Send.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol.cs" />
+    <Compile Include="_Utilities\_Timers\_Timers.cs" />
+    <Compile Include="_Utilities\_Messages\_PlayerMessages.cs" />
+    <Compile Include="_Utilities\_Messages\_SimpleMessage.cs" />
     <Compile Include="Helpers\HudHelpers\HudHelpers.cs" />
     <Compile Include="Helpers\HudHelpers\HudMapHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\UIHelpers_Obsolete.cs" />
@@ -239,11 +254,11 @@
     <Compile Include="Helpers\UIHelpers\_Elements\_UITextArea.cs" />
     <Compile Include="Helpers\UIHelpers\_Elements\_UITextPanelButton.cs" />
     <Compile Include="Helpers\UIHelpers\_Elements\_UIWebUrl.cs" />
-    <Compile Include="Utilities\_UI\_UICheckbox.cs" />
-    <Compile Include="Utilities\_UI\_UIModData.cs" />
-    <Compile Include="Utilities\_UI\_UITextArea.cs" />
-    <Compile Include="Utilities\_UI\_UITextPanelButton.cs" />
-    <Compile Include="Utilities\_UI\_UIWebUrl.cs" />
+    <Compile Include="_Utilities\_UI\_UICheckbox.cs" />
+    <Compile Include="_Utilities\_UI\_UIModData.cs" />
+    <Compile Include="_Utilities\_UI\_UITextArea.cs" />
+    <Compile Include="_Utilities\_UI\_UITextPanelButton.cs" />
+    <Compile Include="_Utilities\_UI\_UIWebUrl.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers_Defs.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaColorHelpers.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaHelpers.cs" />
@@ -266,9 +281,7 @@
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>

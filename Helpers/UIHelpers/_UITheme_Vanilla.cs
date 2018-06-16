@@ -2,11 +2,11 @@
 
 
 namespace HamstarHelpers.UIHelpers {
-	public partial class UITheme {
-		public static UITheme Vanilla;
+	public partial class OldUITheme {
+		public static OldUITheme Vanilla;
 
-		static UITheme() {
-			UITheme.Vanilla = new UITheme();
+		static OldUITheme() {
+			UITheme.Vanilla = new OldUITheme();
 
 			//Color defaultUIBlue = new Color( 73, 94, 171 );
 			//Color defaultUIBlueMouseOver = new Color( 63, 82, 151 ) * 0.7f;

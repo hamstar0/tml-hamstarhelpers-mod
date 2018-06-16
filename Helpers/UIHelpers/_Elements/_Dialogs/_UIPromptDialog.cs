@@ -17,7 +17,7 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 
 		////////////////
 		
-		public UIPromptDialog( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null ) : base( theme, width, height ) {
+		public UIPromptDialog( OldUITheme theme, int width, int height, string title, Action confirm, Action cancel=null ) : base( theme, width, height ) {
 			this.TitleText = title;
 			this.ConfirmAction = confirm;
 			this.CancelAction = cancel;
@@ -38,7 +38,7 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 			this.ConfirmButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 				self.ConfirmAction();
 				self.SetDialogToClose = true;
-				DialogManager.Instance.UnsetForcedModality();
+				OldDialogManager.Instance.UnsetForcedModality();
 			};
 			this.InnerContainer.Append( this.ConfirmButton );
 
@@ -51,7 +51,7 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 					self.CancelAction.Invoke();
 				}
 				self.SetDialogToClose = true;
-				DialogManager.Instance.UnsetForcedModality();
+				OldDialogManager.Instance.UnsetForcedModality();
 			};
 			this.InnerContainer.Append( this.CancelButton );
 		}
@@ -62,7 +62,7 @@ namespace HamstarHelpers.UIHelpers.Elements.Dialogs {
 		public override void Open() {
 			base.Open();
 
-			DialogManager.Instance.SetForcedModality();
+			OldDialogManager.Instance.SetForcedModality();
 		}
 
 

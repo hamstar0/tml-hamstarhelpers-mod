@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.DotNetHelpers;
-using HamstarHelpers.Utilities.Config;
+﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.DotNetHelpers;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;

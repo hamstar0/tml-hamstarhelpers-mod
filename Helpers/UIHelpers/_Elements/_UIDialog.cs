@@ -7,9 +7,8 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.UIHelpers.Elements {
-	[Obsolete( "HamstarHelpers.Components.UI.DialogManager", false )]
-	class DialogManager {
-		public static DialogManager Instance {
+	class OldDialogManager {
+		public static OldDialogManager Instance {
 			get {
 				try {
 					var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
@@ -23,12 +22,12 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		////////////////
 		
 		public bool ForcedModalDialog { get; private set; }
-		public UIDialog CurrentDialog { get; private set; }
+		public OldUIDialog CurrentDialog { get; private set; }
 
 
 		////////////////
 
-		public DialogManager() {
+		public OldDialogManager() {
 			this.ForcedModalDialog = false;
 			this.CurrentDialog = null;
 		}
@@ -46,7 +45,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		}
 
 
-		internal void SetCurrentDialog( UIDialog dlg ) {
+		internal void SetCurrentDialog( OldUIDialog dlg ) {
 			if( this.CurrentDialog != null && this.CurrentDialog != dlg ) {
 				this.CurrentDialog.Close();
 			}
@@ -78,7 +77,12 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 
 	[Obsolete( "HamstarHelpers.Components.UI.Elements.UIDialog", true )]
-	public class UIDialog : UIState {
+	public class UIDialog : OldUIDialog {
+		public UIDialog( OldUITheme theme, int initial_width, int initial_height ) : base(theme, initial_width, initial_height) { }
+	}
+
+
+	public class OldUIDialog : UIState {
 		public virtual int ContainerWidth {
 			get {
 				return InitialContainerWidth;
@@ -102,7 +106,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		public bool IsOpen { get; private set; }
 
 		protected UserInterface Backend = null;
-		protected UITheme Theme;
+		protected OldUITheme Theme;
 
 		protected UIElement OuterContainer = null;
 		protected UIPanel InnerContainer = null;
@@ -120,7 +124,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 		////////////////
 		
-		public UIDialog( UITheme theme, int initial_width, int initial_height ) {
+		public OldUIDialog( OldUITheme theme, int initial_width, int initial_height ) {
 			this.IsOpen = false;
 			this.Theme = theme;
 			this.InitialContainerWidth = initial_width;
@@ -226,7 +230,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 		
 		public virtual bool CanOpen() {
 			return !this.IsOpen && !Main.inFancyUI &&
-				(DialogManager.Instance != null && DialogManager.Instance.CurrentDialog == null);
+				(OldDialogManager.Instance != null && OldDialogManager.Instance.CurrentDialog == null);
 		}
 
 		
@@ -244,8 +248,8 @@ namespace HamstarHelpers.UIHelpers.Elements {
 
 			this.RecalculateMe();
 
-			if( DialogManager.Instance != null ) {
-				DialogManager.Instance.SetCurrentDialog( this );
+			if( OldDialogManager.Instance != null ) {
+				OldDialogManager.Instance.SetCurrentDialog( this );
 			}
 		}
 

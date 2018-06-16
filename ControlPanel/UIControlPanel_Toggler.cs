@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.Utilities.AnimatedColor;
-using HamstarHelpers.Utilities.Messages;
+﻿using HamstarHelpers.Services.AnimatedColor;
+using HamstarHelpers.Services.Messages;
+using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
