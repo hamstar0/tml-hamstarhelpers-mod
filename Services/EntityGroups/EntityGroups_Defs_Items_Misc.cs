@@ -7,6 +7,10 @@ using Terraria;
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
 		private void DefineItemMiscGroups3( Action<string, Func<Item, bool>> add_def ) {
+			add_def( "Any Item", ( Item item ) => {
+				return true;
+			} );
+
 			for( int i = -12; i <= ItemAttributeHelpers.HighestVanillaRarity; i++ ) {
 				if( i >= -10 && i <= -3 ) { i = -2; }
 
@@ -15,7 +19,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return item.rare == tier;
 				} );
 			}
-
+			
 			add_def( "Any Plain Material", ( Item item ) => {
 				return item.material &&
 					//!EntityGroups.ItemGroups["Any Placeable"].Contains( item.type ) &&

@@ -18,12 +18,12 @@ namespace HamstarHelpers.Utilities.Network {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
 			}
 
-			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
+			if( !mymod.OldPacketProtocols.ContainsKey( protocol_hash ) ) {
 				throw new HamstarException( "Unrecognized packet." );
 			}
 
 			Type protocol_type;
-			if( !mymod.PacketProtocols.TryGetValue( protocol_hash, out protocol_type ) ) {
+			if( !mymod.OldPacketProtocols.TryGetValue( protocol_hash, out protocol_type ) ) {
 				throw new HamstarException( "Invalid protocol (hash: " + protocol_hash + ")" );
 			}
 
@@ -54,12 +54,12 @@ namespace HamstarHelpers.Utilities.Network {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
 			}
 
-			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
+			if( !mymod.OldPacketProtocols.ContainsKey( protocol_hash ) ) {
 				throw new HamstarException( "Unrecognized packet." );
 			}
 
 			Type protocol_type;
-			if( !mymod.PacketProtocols.TryGetValue( protocol_hash, out protocol_type ) ) {
+			if( !mymod.OldPacketProtocols.TryGetValue( protocol_hash, out protocol_type ) ) {
 				throw new HamstarException( "Invalid protocol (hash: " + protocol_hash+")" );
 			}
 

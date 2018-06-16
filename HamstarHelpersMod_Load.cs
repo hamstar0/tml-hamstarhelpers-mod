@@ -29,6 +29,7 @@ namespace HamstarHelpers {
 		internal JsonConfig<HamstarHelpersConfigData> JsonConfig;
 		public HamstarHelpersConfigData Config { get { return JsonConfig.Data; } }
 
+		internal IDictionary<int, Type> OldPacketProtocols = new Dictionary<int, Type>();
 		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
 
 		internal HamstarExceptionManager ExceptionMngr;
@@ -199,6 +200,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostSetupContent() {
+			this.OldPacketProtocols = Utilities.Network.OldPacketProtocol.GetProtocols();
 			this.PacketProtocols = PacketProtocol.GetProtocols();
 
 			this.TmlLoadHelpers.OnPostSetupContent();
