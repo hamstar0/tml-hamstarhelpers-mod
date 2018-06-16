@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers;
+﻿using HamstarHelpers.DotNetHelpers;
 using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using System;

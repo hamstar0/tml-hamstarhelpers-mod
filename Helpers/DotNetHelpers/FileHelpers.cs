@@ -7,7 +7,7 @@ using Terraria.Social;
 using Terraria.Utilities;
 
 
-namespace HamstarHelpers.Helpers {
+namespace HamstarHelpers.DotNetHelpers {
 	public static class FileHelpers {
 		public static string SanitizePath( string path ) {
 			char[] inv_chars = Path.GetInvalidFileNameChars();

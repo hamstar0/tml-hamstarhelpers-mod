@@ -78,6 +78,7 @@
     <Compile Include="Helpers\BuffHelpers\BuffIdentityHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\LogHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlyDictionaryOfSets.cs" />
+    <Compile Include="Helpers\DotNetHelpers\FileHelpers_Obsolete.cs" />
     <Compile Include="Helpers\DotNetHelpers\SystemHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\SteamHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\XnaHelpers.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Helpers\TileHelpers\TileHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Load.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers.cs" />
