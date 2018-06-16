@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.ItemHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -163,17 +164,19 @@ namespace HamstarHelpers.Utilities.EntityGroups {
 
 			add_def( "Any Ranger Misc", ( Item item ) => {
 				if( !item.ranged ) { return false; }
-				return !EntityGroups.ItemGroups["Any Ranger Gun"].Contains( item.type ) &&
-						!EntityGroups.ItemGroups["Any Ranger Bow"].Contains( item.type ) &&
-						!EntityGroups.ItemGroups["Any Ranger Launcher"].Contains( item.type );
+				bool ranger = EntityGroups.ItemGroups["Any Ranger Gun"].Contains( item.type );
+				bool bow = EntityGroups.ItemGroups["Any Ranger Bow"].Contains( item.type );
+				bool launcher = EntityGroups.ItemGroups["Any Ranger Launcher"].Contains( item.type );
+				return !ranger && !bow && !launcher;
 			} );
 
 			add_def( "Any Magic Misc", ( Item item ) => {
 				if( !item.magic ) { return false; }
-				return !EntityGroups.ItemGroups["Any Magic Staff Or Scepter Or Wand"].Contains( item.type ) &&
-						!EntityGroups.ItemGroups["Any Magic Rod"].Contains( item.type ) &&
-						!EntityGroups.ItemGroups["Any Magic Gun"].Contains( item.type ) &&
-						!EntityGroups.ItemGroups["Any Magic Tome"].Contains( item.type );
+				bool staff = EntityGroups.ItemGroups["Any Magic Staff Or Scepter Or Wand"].Contains( item.type );
+				bool rod = EntityGroups.ItemGroups["Any Magic Rod"].Contains( item.type );
+				bool gun = EntityGroups.ItemGroups["Any Magic Gun"].Contains( item.type );
+				bool tome = EntityGroups.ItemGroups["Any Magic Tome"].Contains( item.type );
+				return !staff && !rod && !gun && !tome;
 			} );
 		}
 	}

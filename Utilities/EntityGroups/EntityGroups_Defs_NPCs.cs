@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.ItemHelpers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using Terraria;
 using Terraria.ID;
 
@@ -8,7 +6,19 @@ using Terraria.ID;
 namespace HamstarHelpers.Utilities.EntityGroups {
 	public partial class EntityGroups {
 		private void DefineNPCGroups1( Action<string, Func<NPC, bool>> add_def ) {
-			// Weapon Classes
+			// General
+
+			add_def( "Any Friendly NPC", ( NPC npc ) => {
+				return npc.friendly;
+			} );
+			add_def( "Any Hostile NPC", ( NPC npc ) => {
+				return !npc.friendly;
+			} );
+			add_def( "Any Town NPC", ( NPC npc ) => {
+				return npc.townNPC;
+			} );
+
+			// Monsters
 
 			add_def( "Any Slime", ( NPC npc ) => {
 				if( npc.aiStyle == 1 ) {
