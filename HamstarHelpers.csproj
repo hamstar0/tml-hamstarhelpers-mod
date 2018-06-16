@@ -169,7 +169,7 @@
     <Compile Include="Services\Messages\PlayerMessages.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
     <Compile Include="Services\Timers\Timers.cs" />
-    <Compile Include="_Utilities\Errors\Errors.cs" />
+    <Compile Include="_Utilities\_Errors\_Errors.cs" />
     <Compile Include="_Utilities\_Config\_ConfigurationDataBase.cs" />
     <Compile Include="_Utilities\_Config\_JsonConfig.cs" />
     <Compile Include="_Utilities\_Config\_JsonConfig_Obsolete.cs" />

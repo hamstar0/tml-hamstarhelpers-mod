@@ -29,10 +29,10 @@ namespace HamstarHelpers.DotNetHelpers {
 
 		////////////////
 
-		public static object GetProperty( Object obj, string field_or_prop_name, out bool success ) {
+		public static object GetProperty( Object obj, string prop_name, out bool success ) {
 			success = false;
 			Type objtype = obj.GetType();
-			PropertyInfo prop = objtype.GetProperty( field_or_prop_name );
+			PropertyInfo prop = objtype.GetProperty( prop_name );
 
 			if( prop == null ) { return null; }
 

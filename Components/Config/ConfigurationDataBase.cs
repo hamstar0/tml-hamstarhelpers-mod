@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+
 namespace HamstarHelpers.Components.Config {
 	public class ConfigurationDataBase {
 		public static string RelativePath { get { return "Mod Configs"; } }
