@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.WebRequests {
+namespace HamstarHelpers.Internals.WebRequests {
 	partial class ServerBrowserReporter {
 		public static bool CanAnnounceServer() {
 			//return Netplay.ServerPassword == "";

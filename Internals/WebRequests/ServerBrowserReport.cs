@@ -4,7 +4,7 @@ using HamstarHelpers.TmlHelpers;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.WebRequests {
+namespace HamstarHelpers.Internals.WebRequests {
 	class ServerBrowserEntry {
 		public string ServerIP;
 		public int Port;

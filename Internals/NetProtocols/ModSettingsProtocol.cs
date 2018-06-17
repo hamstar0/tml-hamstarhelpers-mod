@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Network;
 
 
-namespace HamstarHelpers.NetProtocols {
+namespace HamstarHelpers.Internals.NetProtocols {
 	class ModSettingsProtocol : PacketProtocol {
 		public HamstarHelpersConfigData Data;
 

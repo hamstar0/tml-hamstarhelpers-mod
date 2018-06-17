@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Logic {
+namespace HamstarHelpers.Internals.Logic {
 	partial class WorldLogic {
 		public WorldLogic( HamstarHelpersMod mymod ) { }
 		

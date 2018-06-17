@@ -10,7 +10,7 @@ using System.Text;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.WebRequests {
+namespace HamstarHelpers.Internals.WebRequests {
 	public struct GithubModIssueReportData {
 		public string githubuser;
 		public string githubproject;

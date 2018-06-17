@@ -6,7 +6,7 @@ using System.Linq;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Logic {
+namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
 		public PlayerLogic() {
 			this.PrivateUID = Guid.NewGuid().ToString( "D" );

@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.ControlPanel {
+namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		private static Vector2 TogglerPosition {
 			get {

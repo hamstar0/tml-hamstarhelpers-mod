@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.NetProtocols {
+namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerDataProtocol : PacketProtocol {
 		public static void SyncToEveryone( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }

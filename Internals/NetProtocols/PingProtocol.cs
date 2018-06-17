@@ -2,7 +2,7 @@
 using HamstarHelpers.Components.Network;
 
 
-namespace HamstarHelpers.NetProtocols {
+namespace HamstarHelpers.Internals.NetProtocols {
 	class PingProtocol : PacketProtocol {
 		public long StartTime = -1;
 		public long EndTime = -1;

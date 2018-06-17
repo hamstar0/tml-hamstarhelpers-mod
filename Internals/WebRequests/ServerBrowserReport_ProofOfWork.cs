@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 
 
-namespace HamstarHelpers.WebRequests {
+namespace HamstarHelpers.Internals.WebRequests {
 	partial class ServerBrowserReporter {
 		private static void DoWorkToValidateServer( ServerBrowserEntry server_data, string hash ) {
 			string hash_base = "";

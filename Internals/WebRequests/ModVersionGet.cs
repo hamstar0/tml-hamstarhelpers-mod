@@ -9,7 +9,7 @@ using System.Threading;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.WebRequests {
+namespace HamstarHelpers.Internals.WebRequests {
 	public class ModVersionGet {
 		private readonly static object MyLock = new object();
 		

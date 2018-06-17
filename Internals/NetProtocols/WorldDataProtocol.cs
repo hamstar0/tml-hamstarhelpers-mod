@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.NetProtocols {
+namespace HamstarHelpers.Internals.NetProtocols {
 	class WorldDataProtocol : PacketProtocol {
 		public int HalfDays;
 		public bool HasCorrectWorldId;

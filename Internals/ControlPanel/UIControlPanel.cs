@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.ControlPanel {
+namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		private static object ModDataListLock = new object();
 		

@@ -4,7 +4,7 @@ using HamstarHelpers.Services.Messages;
 using Terraria;
 
 
-namespace HamstarHelpers.Logic {
+namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
 		private void PreUpdatePlayer( HamstarHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player

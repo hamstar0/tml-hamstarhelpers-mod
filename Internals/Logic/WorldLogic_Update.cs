@@ -2,7 +2,7 @@
 using HamstarHelpers.TmlHelpers;
 
 
-namespace HamstarHelpers.Logic {
+namespace HamstarHelpers.Internals.Logic {
 	partial class WorldLogic {
 		private void PreUpdate( HamstarHelpersMod mymod ) {
 			if( TmlLoadHelpers.IsWorldLoaded() ) {

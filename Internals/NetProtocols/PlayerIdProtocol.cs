@@ -3,7 +3,7 @@ using HamstarHelpers.Components.Network;
 using Terraria;
 
 
-namespace HamstarHelpers.NetProtocols {
+namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerIdProtocol : PacketProtocol {
 		public bool HasUID = false;
 		public string PrivateUID = "";

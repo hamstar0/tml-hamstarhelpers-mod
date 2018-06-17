@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Logic {
+namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
 		public string PrivateUID { get; private set; }
 		public bool HasUID { get; private set; }

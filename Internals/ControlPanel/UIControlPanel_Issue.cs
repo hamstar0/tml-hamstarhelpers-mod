@@ -2,7 +2,7 @@
 using Terraria.UI;
 
 
-namespace HamstarHelpers.ControlPanel {
+namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		public void EnableIssueInput() {
 			if( !this.IssueTitleInput.IsEnabled ) {

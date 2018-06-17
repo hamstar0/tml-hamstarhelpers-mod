@@ -5,7 +5,7 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Logic {
+namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
 		private bool CanUpdateData = true;
 

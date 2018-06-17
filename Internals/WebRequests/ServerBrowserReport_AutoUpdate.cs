@@ -7,7 +7,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.WebRequests {
+namespace HamstarHelpers.Internals.WebRequests {
 	partial class ServerBrowserReporter {
 		public static bool CanPromptForBrowserAdd() {
 			return HamstarHelpersMod.Instance.Config.IsServerPromptingForBrowser;

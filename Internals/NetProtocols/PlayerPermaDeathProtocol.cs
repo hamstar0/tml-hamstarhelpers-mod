@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.NetProtocols {
+namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerPermaDeathProtocol : PacketProtocol {
 		public int PlayerWho;
 		public string Msg;
