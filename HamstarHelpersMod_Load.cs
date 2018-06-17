@@ -2,19 +2,19 @@
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.ControlPanel.Inbox;
+using HamstarHelpers.Internals.ControlPanel.Inbox;
 using HamstarHelpers.MiscHelpers;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Timers;
-using HamstarHelpers.WebRequests;
+using HamstarHelpers.Internals.WebRequests;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using HamstarHelpers.Internals.ControlPanel;
 
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
@@ -64,7 +64,7 @@ namespace HamstarHelpers {
 
 		public ModHotKey ControlPanelHotkey = null;
 
-		public ControlPanel.UIControlPanel ControlPanel = null;
+		public UIControlPanel ControlPanel = null;
 		 private int LastSeenScreenWidth = -1;
 		 private int LastSeenScreenHeight = -1;
 
@@ -117,7 +117,7 @@ namespace HamstarHelpers {
 			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
 			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
 			this.WorldHelpers = new WorldHelpers.WorldHelpers();
-			this.ControlPanel = new ControlPanel.UIControlPanel();
+			this.ControlPanel = new UIControlPanel();
 			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
 			this.EntityGroups = new EntityGroups();
 			this.PlayerMessages = new PlayerMessages();
@@ -207,7 +207,7 @@ namespace HamstarHelpers {
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
-				HamstarHelpers.ControlPanel.UIControlPanel.OnPostSetupContent( this );
+				UIControlPanel.OnPostSetupContent( this );
 			}
 
 			this.HasSetupContent = true;

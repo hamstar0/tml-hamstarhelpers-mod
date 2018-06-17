@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.NetProtocols;
+using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;

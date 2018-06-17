@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.TmlHelpers.CommandsHelpers;
 using HamstarHelpers.TmlHelpers.ModHelpers;
-using HamstarHelpers.WebRequests;
+using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

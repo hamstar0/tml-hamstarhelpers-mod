@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.Logic;
+using HamstarHelpers.Internals.Logic;
 using System;
 using Terraria;
 using Terraria.ModLoader;

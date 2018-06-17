@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Logic;
+﻿using HamstarHelpers.Internals.Logic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;

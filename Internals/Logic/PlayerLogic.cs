@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI;
-using HamstarHelpers.NetProtocols;
+using HamstarHelpers.Internals.NetProtocols;
 using System.Collections.Generic;
 using Terraria;
 

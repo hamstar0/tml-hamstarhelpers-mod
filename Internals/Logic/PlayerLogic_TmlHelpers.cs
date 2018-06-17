@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.NetProtocols;
+﻿using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.TmlHelpers;
 using System.Linq;

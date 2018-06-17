@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Commands;
 using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.WebRequests;
+using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
 using System.Linq;

@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.TmlHelpers;
 using HamstarHelpers.Utilities.AnimatedColor;
-using HamstarHelpers.WebRequests;
+using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;

@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.NetProtocols;
+using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Messages;
 using Terraria;
 

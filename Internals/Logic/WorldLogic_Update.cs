@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.ControlPanel;
+﻿using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.TmlHelpers;
 
 

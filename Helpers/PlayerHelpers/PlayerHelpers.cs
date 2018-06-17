@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.ItemHelpers;
-using HamstarHelpers.NetProtocols;
+using HamstarHelpers.Internals.NetProtocols;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
