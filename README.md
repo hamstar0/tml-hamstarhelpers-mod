@@ -1,4 +1,4 @@
-# Hamstar's Helpers
+# Mod Helpers
 
 Supplies assorted helper functions and classes, and provides a handy in-game mod control panel UI for listing mods, reporting bugs, editing configs, and adding other customizeable functions.
 

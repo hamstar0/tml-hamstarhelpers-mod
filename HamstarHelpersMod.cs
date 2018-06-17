@@ -52,7 +52,7 @@ namespace HamstarHelpers {
 					}
 				}
 			} catch( Exception e ) {
-				DebugHelpers.LogHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
+				DebugHelpers.LogHelpers.Log( "(Mod Helpers) HandlePacket - " + e.ToString() );
 			}
 		}
 

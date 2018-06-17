@@ -25,7 +25,7 @@ namespace HamstarHelpers.Commands {
 
 			mymod.ServerBrowser.StopLoopingServerAnnounce();
 
-			caller.Reply( "Server set private. For future servers, set \"IsServerHiddenFromBrowser: true\" in the Hamstar's Helpers config settings.", Color.GreenYellow );
+			caller.Reply( "Server set private. For future servers, set \"IsServerHiddenFromBrowser: true\" in the Mod Helpers config settings.", Color.GreenYellow );
 		}
 	}
 }
