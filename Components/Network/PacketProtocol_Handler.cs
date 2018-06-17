@@ -6,25 +6,23 @@ using System.IO;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol {
-		internal static void HandlePacketOnClient( BinaryReader reader, int player_who ) {
+		internal static void HandlePacketOnClient( int protocol_code, BinaryReader reader, int player_who ) {
 			var mymod = HamstarHelpersMod.Instance;
-			int protocol_hash;
 			bool is_request;
 
 			try {
-				protocol_hash = reader.ReadInt32();
 				is_request = reader.ReadBoolean();
 			} catch( Exception e ) {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
 			}
 
-			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
+			if( !mymod.PacketProtocols.ContainsKey( protocol_code ) ) {
 				throw new HamstarException( "Unrecognized packet." );
 			}
 
 			Type protocol_type;
-			if( !mymod.PacketProtocols.TryGetValue( protocol_hash, out protocol_type ) ) {
-				throw new HamstarException( "Invalid protocol (hash: " + protocol_hash + ")" );
+			if( !mymod.PacketProtocols.TryGetValue( protocol_code, out protocol_type ) ) {
+				throw new HamstarException( "Invalid protocol (hash: " + protocol_code + ")" );
 			}
 
 			try {
@@ -41,26 +39,24 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 
-		internal static void HandlePacketOnServer( BinaryReader reader, int player_who ) {
+		internal static void HandlePacketOnServer( int protocol_code, BinaryReader reader, int player_who ) {
 			var mymod = HamstarHelpersMod.Instance;
-			int protocol_hash;
 			bool is_request, is_synced_to_clients;
 
 			try {
-				protocol_hash = reader.ReadInt32();
 				is_request = reader.ReadBoolean();
 				is_synced_to_clients = reader.ReadBoolean();
 			} catch( Exception e ) {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
 			}
 
-			if( !mymod.PacketProtocols.ContainsKey( protocol_hash ) ) {
+			if( !mymod.PacketProtocols.ContainsKey( protocol_code ) ) {
 				throw new HamstarException( "Unrecognized packet." );
 			}
 
 			Type protocol_type;
-			if( !mymod.PacketProtocols.TryGetValue( protocol_hash, out protocol_type ) ) {
-				throw new HamstarException( "Invalid protocol (hash: " + protocol_hash+")" );
+			if( !mymod.PacketProtocols.TryGetValue( protocol_code, out protocol_type ) ) {
+				throw new HamstarException( "Invalid protocol (hash: " + protocol_code + ")" );
 			}
 
 			try {

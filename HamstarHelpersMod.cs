@@ -36,12 +36,20 @@ namespace HamstarHelpers {
 
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
 			try {
+				int protocol_code = reader.ReadInt32();
+
 				if( Main.netMode == 1 ) {
-					Utilities.Network.OldPacketProtocol.HandlePacketOnClient( reader, player_who );
-					PacketProtocol.HandlePacketOnClient( reader, player_who );
+					if( protocol_code >= 0 ) {
+						PacketProtocol.HandlePacketOnClient( protocol_code, reader, player_who );
+					} else {
+						Utilities.Network.OldPacketProtocol.HandlePacketOnClient( protocol_code, reader, player_who );
+					}
 				} else if( Main.netMode == 2 ) {
-					Utilities.Network.OldPacketProtocol.HandlePacketOnServer( reader, player_who );
-					PacketProtocol.HandlePacketOnServer( reader, player_who );
+					if( protocol_code >= 0 ) {
+						PacketProtocol.HandlePacketOnServer( protocol_code, reader, player_who );
+					} else {
+						Utilities.Network.OldPacketProtocol.HandlePacketOnServer( protocol_code, reader, player_who );
+					}
 				}
 			} catch( Exception e ) {
 				DebugHelpers.LogHelpers.Log( "(Hamstar's Helpers) HandlePacket - " + e.ToString() );
