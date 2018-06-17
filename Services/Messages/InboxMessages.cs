@@ -59,8 +59,7 @@ namespace HamstarHelpers.Services.Messages {
 			string which = inbox.Order[ inbox.Current++ ];
 			string msg = inbox.Messages[ which ];
 
-			Action<bool> action = inbox.MessageActions[ which ];
-			if( action != null ) { action( true ); }
+			inbox.MessageActions[which]?.Invoke( true );
 
 			return msg;
 		}
@@ -79,8 +78,7 @@ namespace HamstarHelpers.Services.Messages {
 
 			is_unread = idx >= inbox.Current;
 
-			Action<bool> action = inbox.MessageActions[which];
-			if( action != null ) { action( is_unread ); }
+			inbox.MessageActions[which]?.Invoke( is_unread );
 
 			return msg;
 		}
@@ -95,9 +93,8 @@ namespace HamstarHelpers.Services.Messages {
 			string msg = inbox.Messages[ which ];
 			bool is_unread = idx >= inbox.Current;
 
-			Action<bool> action = inbox.MessageActions[ which ];
-			if( action != null ) { action( is_unread ); }
-			
+			inbox.MessageActions[which]?.Invoke( is_unread );
+
 			if( is_unread ) {
 				if( inbox.Current != idx ) {
 					inbox.Order.RemoveAt( idx );

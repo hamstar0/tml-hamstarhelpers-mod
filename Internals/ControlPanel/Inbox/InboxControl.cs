@@ -75,11 +75,11 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 
 		public void ReadLatestMessage() {
 			string msg = InboxMessages.DequeueMessage();
-			
-			if( msg != null ) {
-				Main.NewText( "New message: " + msg, Color.LightYellow );
-				this.MessageScrollPos = this.Messages.Current - 1;
-			}
+
+			if( msg == null ) { return; }
+
+			Main.NewText( "New message: " + msg, Color.LightYellow );
+			this.MessageScrollPos = this.Messages.Current - 1;
 		}
 
 
