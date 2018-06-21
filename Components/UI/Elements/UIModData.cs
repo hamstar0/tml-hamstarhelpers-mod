@@ -25,7 +25,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public UIImage IconElem { get; private set; }
 		public UIElement TitleElem { get; private set; }
 		public UIElement AuthorElem { get; private set; }
-		public UITextPanelButton ConfigButton { get; private set; }
+		public UITextPanelButton ConfigResetButton { get; private set; }
+		public UITextPanelButton ConfigOpenButton { get; private set; }
 		public UIElement VersionAlertElem { get; private set; }
 
 		public bool HasIconLoaded { get; private set; }
@@ -119,15 +120,25 @@ namespace HamstarHelpers.Components.UI.Elements {
 			// Mod config button
 
 			if( ModMetaDataManager.HasConfig(mod) ) {
-				var config_button = new UITextPanelButton( theme, "Open Config File" );
-				config_button.Width.Set( 160f, 0f );
-				config_button.HAlign = 1f;
-				config_button.VAlign = 1f;
-				this.Append( config_button );
+				if( ModMetaDataManager.HasConfigReset( mod ) ) {
+					this.ConfigResetButton = new UITextPanelButton( theme, "Reset Config File" );
+					this.ConfigResetButton.Width.Set( 160f, 0f );
+					this.ConfigResetButton.Left.Set( -320f, 1f );
+					this.ConfigResetButton.VAlign = 1f;
+					this.Append( this.ConfigResetButton );
 
-				this.ConfigButton = config_button;
+					this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+						ModMetaDataManager.ResetConfig( mod );
+					};
+				}
+
+				this.ConfigOpenButton = new UITextPanelButton( theme, "Open Config File" );
+				this.ConfigOpenButton.Width.Set( 160f, 0f );
+				this.ConfigOpenButton.HAlign = 1f;
+				this.ConfigOpenButton.VAlign = 1f;
+				this.Append( this.ConfigOpenButton );
 					
-				this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+				this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 					string path = ModMetaDataManager.GetConfigRelativePath( mod );
 					string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;
 

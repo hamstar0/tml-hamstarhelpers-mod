@@ -52,6 +52,9 @@ namespace HamstarHelpers.TmlHelpers {
 			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
 			return self.ConfigMods.ContainsKey( mod.Name );
 		}
+		public static bool HasConfigReset( Mod mod ) {
+			true;
+		}
 
 		////////////////
 
@@ -80,6 +83,10 @@ namespace HamstarHelpers.TmlHelpers {
 
 			MethodInfo config_reload_method = ModMetaDataManager.GetConfigReloadMethod( mod );
 			config_reload_method.Invoke( null, new object[] { } );
+		}
+		
+		public static void ResetConfig( Mod mod ) {
+			true;
 		}
 
 		////////////////

@@ -64,13 +64,33 @@ namespace HamstarHelpers.XnaHelpers {
 				Math.Abs((int)c1.A - (int)c2.A)
 			);
 		}
+		public static Color DifferenceRGB( Color c1, Color c2 ) {
+			return new Color(
+				Math.Abs( (int)c1.R - (int)c2.R ),
+				Math.Abs( (int)c1.G - (int)c2.G ),
+				Math.Abs( (int)c1.B - (int)c2.B )
+			);
+		}
 
 		public static int SumRGBA( Color c ) {
 			return (int)c.R + c.G + (int)c.B + (int)c.A;
 		}
+		public static int SumRGB( Color c ) {
+			return (int)c.R + c.G + (int)c.B;
+		}
 
 		public static float AvgRGBA( Color c ) {
-			return (float)XnaColorHelpers.SumRGBA(c) / 4f;
+			return (float)XnaColorHelpers.SumRGBA(c) * 0.25f;
+		}
+		public static float AvgRGB( Color c ) {
+			return (float)XnaColorHelpers.SumRGB( c ) / 3f;
+		}
+
+
+		public static Color FlattenColor( Color c ) {
+			Color lerped = Color.Lerp( Color.White, c, c.A / 255f );
+			lerped.A = 255;
+			return lerped;
 		}
 	}
 }

@@ -9,19 +9,18 @@ namespace HamstarHelpers.TileHelpers {
 			return tile == null || (!tile.active() && tile.wall == 0) /*|| tile.type == 0*/;
 		}
 
-
+		
 		public static bool IsSolid( Tile tile, bool is_platform_solid = false, bool is_actuated_solid = false ) {
 			if( tile == null || !tile.active() ) { return false; }
+			if( !Main.tileSolid[ tile.type ] ) { return false; }
 
-			if( Main.tileSolid[(int)tile.type] ) {  // Solid
-				bool is_top_solid = Main.tileSolidTop[(int)tile.type];
-				bool is_passable = tile.inActive();
+			bool is_top_solid = Main.tileSolidTop[ tile.type ];
+			bool is_passable = tile.inActive();
 
-				if( !is_platform_solid && is_top_solid ) { return false; }
-				if( !is_actuated_solid && is_passable ) { return false; }
-				return true;
-			}
-			return false;
+			if( !is_platform_solid && is_top_solid ) { return false; }
+			if( !is_actuated_solid && is_passable ) { return false; }
+			
+			return true;
 		}
 
 
@@ -31,13 +30,12 @@ namespace HamstarHelpers.TileHelpers {
 		}
 
 
-		public static bool IsNotBombable( int tile_x, int tile_y ) {
-			//Tile tile = Main.tile[i, j];
+		public static bool IsNotVanillaBombable( int tile_x, int tile_y ) {
 			Tile tile = Framing.GetTileSafely( tile_x, tile_y );
-			return !TileLoader.CanExplode( tile_x, tile_y ) || TileHelpers.IsNotBombableType( tile );
+			return !TileLoader.CanExplode( tile_x, tile_y ) || TileHelpers.IsNotVanillaBombableType( tile );
 		}
 
-		public static bool IsNotBombableType( Tile tile ) {
+		public static bool IsNotVanillaBombableType( Tile tile ) {
 			return Main.tileDungeon[(int)tile.type] ||
 				tile.type == 88 ||  // Dresser
 				tile.type == 21 ||  // Chest

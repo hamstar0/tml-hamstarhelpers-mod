@@ -127,7 +127,7 @@ namespace HamstarHelpers.UIHelpers.Elements {
 				this.Append( config_button );
 
 				this.ConfigButton = config_button;
-					
+
 				this.ConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
 					string path = ModMetaDataManager.GetConfigRelativePath( mod );
 					string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;

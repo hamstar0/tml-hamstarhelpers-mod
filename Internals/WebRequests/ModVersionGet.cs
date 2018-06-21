@@ -28,9 +28,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 				try {
 					if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
-						on_success( mymod.ModVersionGet.ModVersions[ mod.Name ] );
+						on_success( mymod.ModVersionGet.ModVersions[mod.Name] );
 					} else {
-						throw new Exception( "GetLatestKnownVersion - Unrecognized mod (not found on mod browser)" );
+						var ke = new KeyNotFoundException( "GetLatestKnownVersion - Unrecognized mod " + mod.Name + " (not found on mod browser)" );
+						on_fail( ke );
 					}
 				} catch( Exception e ) {
 					on_fail( e );

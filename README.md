@@ -11,6 +11,6 @@ Supplies assorted helper functions and classes, and provides a handy in-game mod
 
 Note: NO mod dependency required!
 
-For more information on additional mod helper features, [visit the homepage](https://forums.terraria.org/index.php?threads/hamstars-helpers-a-modders-mod-for-mods-and-modding.63670/).
+For more information on additional mod helper features, [visit the homepage](https://forums.terraria.org/index.php?threads/mod-helpers-a-modders-mod-for-mods-and-modding.63670/).
 
 [Support my mods!](https://www.patreon.com/hamstar0)
