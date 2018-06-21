@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.DotNetHelpers.DataStructures;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.TmlHelpers.LoadHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,7 +55,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			this._GroupsPerNPC = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerNPC );
 			this._GroupsPerProj = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerProj );
 
-			TmlLoadHelpers.AddPostModLoadPromise( () => {
+			LoadHelpers.AddPostModLoadPromise( () => {
 				if( !this.IsEnabled ) { return; }
 
 				this.GetItemPool();
@@ -83,7 +84,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 						this.ProjPool = null;
 					}
 
-					TmlLoadHelpers.TriggerCustomPromise( "EntityGroupsLoaded" );
+					LoadHelpers.TriggerCustomPromise( "EntityGroupsLoaded" );
 				} );
 			} );
 		}

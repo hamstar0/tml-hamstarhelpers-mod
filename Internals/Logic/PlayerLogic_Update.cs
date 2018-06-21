@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.Logic {
 		public void PreUpdateServer( HamstarHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
-				mymod.TmlLoadHelpers.HasServerBegunHavingPlayers = true;
+				mymod.LoadHelpers.HasServerBegunHavingPlayers = true;
 			}
 
 			foreach( int buff_id in this.PermaBuffsById ) {

@@ -6,22 +6,22 @@ namespace HamstarHelpers.TmlHelpers {
 	public partial class TmlLoadHelpers {
 		[Obsolete( "use TmlLoadHelpers.IsModLoaded", true )]
 		public static bool IsLoaded() {
-			return TmlLoadHelpers.IsModLoaded();
+			return LoadHelpers.LoadHelpers.IsModLoaded();
 		}
 
 		[Obsolete( "use TmlLoadHelpers.AddPostModLoadPromise", true )]
 		public static void AddPostLoadPromise( Action action ) {
-			TmlLoadHelpers.AddPostModLoadPromise( action );
+			LoadHelpers.LoadHelpers.AddPostModLoadPromise( action );
 		}
 
 		[Obsolete( "use TmlLoadHelpers.AddPostModLoadPromise", true )]
 		public static void AddPostGameLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.PostModLoadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.PostModLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				mymod.TmlLoadHelpers.PostModLoadPromises.Add( action );
+				mymod.LoadHelpers.PostModLoadPromises.Add( action );
 			}
 		}
 
@@ -29,10 +29,10 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void AddWorldLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.WorldLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				mymod.TmlLoadHelpers.WorldLoadOncePromises.Add( action );
+				mymod.LoadHelpers.WorldLoadOncePromises.Add( action );
 			}
 		}
 	}

@@ -76,6 +76,8 @@
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_Stream.cs" />
+    <Compile Include="Helpers\TmlHelpers\LoadHelpers\LoadHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\LoadHelpers\LoadHelpers_Load.cs" />
     <Compile Include="Internals\ControlPanel\Inbox\InboxControl.cs" />
     <Compile Include="HamstarHelpersMod_Data.cs" />
     <Compile Include="HamstarHelpersMod_Load.cs" />
@@ -135,9 +137,8 @@
     <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor_Obsolete.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers.cs" />
-    <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Load.cs" />
-    <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers_Obsolete.cs" />
-    <Compile Include="Helpers\TmlHelpers\TmlLoadHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\_TmlLoadHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\TmlHelpers\_TmlLoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_TmlWorldHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_AltNPCInfo.cs" />
     <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlySet.cs" />

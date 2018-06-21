@@ -62,14 +62,14 @@ namespace HamstarHelpers {
 		public override void PostDrawInterface( SpriteBatch sb ) {
 			var modworld = this.GetModWorld<HamstarHelpersWorld>();
 
-			if( this.TmlLoadHelpers != null ) {
-				this.TmlLoadHelpers.IsClientPlaying = true;  // Ugh!
+			if( this.LoadHelpers != null ) {
+				this.LoadHelpers.IsClientPlaying = true;  // Ugh!
 			}
 		}
 
 
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-			if( this.TmlLoadHelpers != null && !TmlHelpers.TmlLoadHelpers.IsWorldBeingPlayed() ) { return; }
+			if( this.LoadHelpers != null && !TmlHelpers.LoadHelpers.LoadHelpers.IsWorldBeingPlayed() ) { return; }
 
 			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 			if( idx == -1 ) { return; }

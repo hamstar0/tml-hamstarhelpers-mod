@@ -15,6 +15,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Internals.ControlPanel;
+using HamstarHelpers.TmlHelpers.LoadHelpers;
 
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
@@ -44,7 +45,7 @@ namespace HamstarHelpers {
 		internal BuffHelpers.BuffIdentityHelpers BuffIdentityHelpers;
 		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
 		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
-		internal TmlHelpers.TmlLoadHelpers TmlLoadHelpers;
+		internal LoadHelpers LoadHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
@@ -102,7 +103,7 @@ namespace HamstarHelpers {
 				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
 			}
 
-			this.TmlLoadHelpers = new TmlHelpers.TmlLoadHelpers();
+			this.LoadHelpers = new LoadHelpers();
 
 			this.Timers = new Timers();
 			this.LogHelpers = new DebugHelpers.LogHelpers();
@@ -155,7 +156,7 @@ namespace HamstarHelpers {
 		public override void Unload() {
 			this.UnloadModData();
 
-			this.TmlLoadHelpers.FulfillModUnloadPromises();
+			this.LoadHelpers.FulfillModUnloadPromises();
 
 			try {
 				if( this.HasUnhandledExceptionLogger ) {
@@ -179,7 +180,7 @@ namespace HamstarHelpers {
 			this.NPCBannerHelpers = null;
 			this.RecipeHelpers = null;
 			this.TmlPlayerHelpers = null;
-			this.TmlLoadHelpers = null;
+			this.LoadHelpers = null;
 			this.ModVersionGet = null;
 			this.WorldHelpers = null;
 			this.ModLockHelpers = null;
@@ -203,7 +204,7 @@ namespace HamstarHelpers {
 			this.OldPacketProtocols = Utilities.Network.OldPacketProtocol.GetProtocols();
 			this.PacketProtocols = PacketProtocol.GetProtocols();
 
-			this.TmlLoadHelpers.OnPostSetupContent();
+			this.LoadHelpers.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
@@ -255,18 +256,18 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipeGroups ) { return; }
 			if( !this.HasAddedRecipes ) { return; }
 
-			TmlHelpers.TmlLoadHelpers.AddWorldUnloadEachPromise( () => {
+			this.LoadHelpers.AddWorldUnloadEachPromise( () => {
 				this.OnWorldExit();
 			} );
 
-			this.TmlLoadHelpers.FulfillPostModLoadPromises();
+			this.LoadHelpers.FulfillPostModLoadPromises();
 		}
 
 
 		////////////////
 
 		public override void PreSaveAndQuit() {
-			this.TmlLoadHelpers.PreSaveAndExit();
+			this.LoadHelpers.PreSaveAndExit();
 		}
 
 

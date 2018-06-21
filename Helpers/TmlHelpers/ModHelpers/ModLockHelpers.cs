@@ -88,7 +88,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			this.WorldModLocks = new Dictionary<string, ISet<string>>();
 			this.MismatchBroadcastMade = false;
 
-			TmlLoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
+			LoadHelpers.LoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		internal void OnWorldLoad( HamstarHelpersMod mymod, HamstarHelpersWorld modworld ) {
@@ -201,7 +201,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			if( Main.netMode == 2 && !this.MismatchBroadcastMade ) {
 				var modworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
 
-				if( TmlLoadHelpers.IsWorldSafelyBeingPlayed() ) {
+				if( LoadHelpers.LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 					this.MismatchBroadcastMade = true;
 
 					int eta = this.ExitDuration / 60;

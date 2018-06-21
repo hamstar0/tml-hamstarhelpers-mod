@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.DotNetHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.TmlHelpers.LoadHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -121,7 +122,7 @@ namespace HamstarHelpers.WorldHelpers {
 		////////////////
 
 		internal void Update( HamstarHelpersMod mymod ) {
-			if( !TmlLoadHelpers.IsWorldSafelyBeingPlayed() ) {
+			if( !LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 				this.IsDay = Main.dayTime;
 			} else {
 				if( this.IsDay != Main.dayTime ) {

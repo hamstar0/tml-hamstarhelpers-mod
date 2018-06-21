@@ -4,27 +4,27 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.TmlHelpers {
-	public partial class TmlLoadHelpers {
-		private IList<Action> PostModLoadPromises = new List<Action>();
-		private IList<Action> ModUnloadPromises = new List<Action>();
-		private IList<Action> WorldLoadOncePromises = new List<Action>();
-		private IList<Action> WorldLoadEachPromises = new List<Action>();
-		private IList<Action> PostWorldLoadOncePromises = new List<Action>();
-		private IList<Action> PostWorldLoadEachPromises = new List<Action>();
-		private IList<Action> WorldUnloadOncePromises = new List<Action>();
-		private IList<Action> WorldUnloadEachPromises = new List<Action>();
-		private IList<Action> PostWorldUnloadOncePromises = new List<Action>();
-		private IList<Action> PostWorldUnloadEachPromises = new List<Action>();
-		private IDictionary<string, List<Func<bool>>> CustomPromise = new Dictionary<string, List<Func<bool>>>();
+namespace HamstarHelpers.TmlHelpers.LoadHelpers {
+	public partial class LoadHelpers {
+		internal IList<Action> PostModLoadPromises = new List<Action>();
+		internal IList<Action> ModUnloadPromises = new List<Action>();
+		internal IList<Action> WorldLoadOncePromises = new List<Action>();
+		internal IList<Action> WorldLoadEachPromises = new List<Action>();
+		internal IList<Action> PostWorldLoadOncePromises = new List<Action>();
+		internal IList<Action> PostWorldLoadEachPromises = new List<Action>();
+		internal IList<Action> WorldUnloadOncePromises = new List<Action>();
+		internal IList<Action> WorldUnloadEachPromises = new List<Action>();
+		internal IList<Action> PostWorldUnloadOncePromises = new List<Action>();
+		internal IList<Action> PostWorldUnloadEachPromises = new List<Action>();
+		internal IDictionary<string, List<Func<bool>>> CustomPromise = new Dictionary<string, List<Func<bool>>>();
 
-		private bool PostModLoadPromiseConditionsMet = false;
-		private bool WorldLoadPromiseConditionsMet = false;
-		private bool WorldUnloadPromiseConditionsMet = false;
-		private bool PostWorldUnloadPromiseConditionsMet = false;
-		private ISet<string> CustomPromiseConditionsMet = new HashSet<string>();
+		internal bool PostModLoadPromiseConditionsMet = false;
+		internal bool WorldLoadPromiseConditionsMet = false;
+		internal bool WorldUnloadPromiseConditionsMet = false;
+		internal bool PostWorldUnloadPromiseConditionsMet = false;
+		internal ISet<string> CustomPromiseConditionsMet = new HashSet<string>();
 
-		private int StartupDelay = 0;
+		internal int StartupDelay = 0;
 
 		internal bool IsClientPlaying = false;
 		internal bool HasServerBegunHavingPlayers = false;
@@ -104,13 +104,13 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
-		internal TmlLoadHelpers() {
-			Main.OnTick += TmlLoadHelpers._Update;
+		internal LoadHelpers() {
+			Main.OnTick += LoadHelpers._Update;
 		}
 
-		~TmlLoadHelpers() {
+		~LoadHelpers() {
 			try {
-				Main.OnTick -= TmlLoadHelpers._Update;
+				Main.OnTick -= LoadHelpers._Update;
 
 				if( this.WorldLoadPromiseConditionsMet && !this.WorldUnloadPromiseConditionsMet ) {
 					this.FulfillWorldUnloadPromises();
@@ -121,7 +121,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		internal void OnPostSetupContent() {
-			TmlLoadHelpers.AddWorldLoadEachPromise( () => {
+			LoadHelpers.AddWorldLoadEachPromise( () => {
 				this.WorldUnloadPromiseConditionsMet = false;
 				this.PostWorldUnloadPromiseConditionsMet = false;
 			} );
@@ -141,7 +141,7 @@ namespace HamstarHelpers.TmlHelpers {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
-			mymod.TmlLoadHelpers.Update();
+			mymod.LoadHelpers.Update();
 		}
 
 		private void Update() {

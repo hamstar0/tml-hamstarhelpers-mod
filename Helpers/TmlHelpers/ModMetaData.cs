@@ -53,7 +53,7 @@ namespace HamstarHelpers.TmlHelpers {
 			return self.ConfigMods.ContainsKey( mod.Name );
 		}
 		public static bool HasConfigReset( Mod mod ) {
-			true;
+			return 
 		}
 
 		////////////////
@@ -86,7 +86,7 @@ namespace HamstarHelpers.TmlHelpers {
 		}
 		
 		public static void ResetConfig( Mod mod ) {
-			true;
+			return
 		}
 
 		////////////////

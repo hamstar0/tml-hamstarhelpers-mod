@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.TmlHelpers {
-	public partial class TmlLoadHelpers {
+namespace HamstarHelpers.TmlHelpers.LoadHelpers {
+	public partial class LoadHelpers {
 		public static bool IsModLoaded() {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -18,7 +18,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		public static bool IsWorldLoaded() {
-			if( !TmlLoadHelpers.IsModLoaded() ) { return false; }
+			if( !LoadHelpers.IsModLoaded() ) { return false; }
 
 			var mymod = HamstarHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
@@ -29,19 +29,19 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		public static bool IsWorldBeingPlayed() {
-			if( !TmlLoadHelpers.IsWorldLoaded() ) { return false; }
+			if( !LoadHelpers.IsWorldLoaded() ) { return false; }
 
 			var mymod = HamstarHelpersMod.Instance;
 
 			if( Main.netMode == 0 || Main.netMode == 1 ) {  // Client or single
-				if( !mymod.TmlLoadHelpers.IsClientPlaying ) {
+				if( !mymod.LoadHelpers.IsClientPlaying ) {
 					return false;
 				}
 
 				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 				return myplayer.Logic.IsSynced();
 			} else {  // Server
-				if( !mymod.TmlLoadHelpers.HasServerBegunHavingPlayers ) {
+				if( !mymod.LoadHelpers.HasServerBegunHavingPlayers ) {
 					return false;
 				}
 
@@ -51,7 +51,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 
 		public static bool IsWorldSafelyBeingPlayed() {
-			return HamstarHelpersMod.Instance.TmlLoadHelpers.StartupDelay >= ( 60 * 2 );
+			return HamstarHelpersMod.Instance.LoadHelpers.StartupDelay >= ( 60 * 2 );
 		}
 
 
@@ -60,17 +60,17 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void AddPostModLoadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.PostModLoadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.PostModLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				mymod.TmlLoadHelpers.PostModLoadPromises.Add( action );
+				mymod.LoadHelpers.PostModLoadPromises.Add( action );
 			}
 		}
 
 		public static void AddModUnloadPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			mymod.TmlLoadHelpers.ModUnloadPromises.Add( action );
+			mymod.LoadHelpers.ModUnloadPromises.Add( action );
 		}
 
 		////////////////
@@ -78,38 +78,38 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void AddWorldLoadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 			
-			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.WorldLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				mymod.TmlLoadHelpers.WorldLoadOncePromises.Add( action );
+				mymod.LoadHelpers.WorldLoadOncePromises.Add( action );
 			}
 		}
 		
 		public static void AddWorldLoadEachPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.WorldLoadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.WorldLoadEachPromises.Add( action );
+			mymod.LoadHelpers.WorldLoadEachPromises.Add( action );
 		}
 
 		public static void AddPostWorldLoadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.WorldLoadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.PostWorldLoadOncePromises.Add( action );
+			mymod.LoadHelpers.PostWorldLoadOncePromises.Add( action );
 		}
 
 		public static void AddPostWorldLoadEachPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.WorldLoadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.WorldLoadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.PostWorldLoadEachPromises.Add( action );
+			mymod.LoadHelpers.PostWorldLoadEachPromises.Add( action );
 		}
 
 		////////////////
@@ -117,38 +117,38 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void AddWorldUnloadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.WorldUnloadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.WorldUnloadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.WorldUnloadOncePromises.Add( action );
+			mymod.LoadHelpers.WorldUnloadOncePromises.Add( action );
 		}
 
 		public static void AddWorldUnloadEachPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.WorldUnloadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.WorldUnloadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.WorldUnloadEachPromises.Add( action );
+			mymod.LoadHelpers.WorldUnloadEachPromises.Add( action );
 		}
 
 
 		public static void AddPostWorldUnloadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.PostWorldUnloadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.PostWorldUnloadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.PostWorldUnloadOncePromises.Add( action );
+			mymod.LoadHelpers.PostWorldUnloadOncePromises.Add( action );
 		}
 
 		public static void AddPostWorldUnloadEachPromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.PostWorldUnloadPromiseConditionsMet ) {
+			if( mymod.LoadHelpers.PostWorldUnloadPromiseConditionsMet ) {
 				action();
 			}
-			mymod.TmlLoadHelpers.PostWorldUnloadEachPromises.Add( action );
+			mymod.LoadHelpers.PostWorldUnloadEachPromises.Add( action );
 		}
 
 
@@ -157,25 +157,25 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void AddCustomPromise( string name, Func<bool> action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.TmlLoadHelpers.CustomPromiseConditionsMet.Contains(name) ) {
+			if( mymod.LoadHelpers.CustomPromiseConditionsMet.Contains(name) ) {
 				if( !action() ) {
 					return;
 				}
 			}
 
-			if( !mymod.TmlLoadHelpers.CustomPromise.ContainsKey(name) ) {
-				mymod.TmlLoadHelpers.CustomPromise[ name ] = new List<Func<bool>>();
+			if( !mymod.LoadHelpers.CustomPromise.ContainsKey(name) ) {
+				mymod.LoadHelpers.CustomPromise[ name ] = new List<Func<bool>>();
 			}
-			mymod.TmlLoadHelpers.CustomPromise[ name ].Add( action );
+			mymod.LoadHelpers.CustomPromise[ name ].Add( action );
 		}
 
 		public static void TriggerCustomPromise( string name ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			mymod.TmlLoadHelpers.CustomPromiseConditionsMet.Add( name );
+			mymod.LoadHelpers.CustomPromiseConditionsMet.Add( name );
 
-			if( mymod.TmlLoadHelpers.CustomPromise.ContainsKey(name) ) {
-				var func_list = mymod.TmlLoadHelpers.CustomPromise[ name ];
+			if( mymod.LoadHelpers.CustomPromise.ContainsKey(name) ) {
+				var func_list = mymod.LoadHelpers.CustomPromise[ name ];
 
 				for( int i=0; i<func_list.Count; i++ ) {
 					if( !func_list[i]() ) {
@@ -189,10 +189,10 @@ namespace HamstarHelpers.TmlHelpers {
 		public static void ClearCustomPromise( string name ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			mymod.TmlLoadHelpers.CustomPromiseConditionsMet.Remove( name );
+			mymod.LoadHelpers.CustomPromiseConditionsMet.Remove( name );
 
-			if( mymod.TmlLoadHelpers.CustomPromise.ContainsKey( name ) ) {
-				mymod.TmlLoadHelpers.CustomPromise.Remove( name );
+			if( mymod.LoadHelpers.CustomPromise.ContainsKey( name ) ) {
+				mymod.LoadHelpers.CustomPromise.Remove( name );
 			}
 		}
 	}

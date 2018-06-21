@@ -1,23 +1,24 @@
 ﻿using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.TmlHelpers.LoadHelpers;
 
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class WorldLogic {
 		private void PreUpdate( HamstarHelpersMod mymod ) {
-			if( TmlLoadHelpers.IsWorldLoaded() ) {
-				mymod.TmlLoadHelpers.FulfillWorldLoadPromises();
+			if( LoadHelpers.IsWorldLoaded() ) {
+				mymod.LoadHelpers.FulfillWorldLoadPromises();
 			}
 
-			if( !TmlLoadHelpers.IsWorldBeingPlayed() ) {
+			if( !LoadHelpers.IsWorldBeingPlayed() ) {
 				return;
 			}
 
-			mymod.TmlLoadHelpers.PostWorldLoadUpdate();
+			mymod.LoadHelpers.PostWorldLoadUpdate();
 			mymod.WorldHelpers.Update( mymod );
 
 			// Simply idle until ready (seems needed)
-			if( TmlLoadHelpers.IsWorldSafelyBeingPlayed() ) {
+			if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 				this.UpdateLoaded( mymod );
 			}
 		}

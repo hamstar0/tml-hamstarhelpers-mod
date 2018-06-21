@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.DotNetHelpers;
 using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.TmlHelpers.LoadHelpers;
 using System.Collections.Generic;
 
 
@@ -89,11 +90,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 		internal ServerBrowserReporter() {
 			this.AveragePing = -1;
 
-			TmlLoadHelpers.AddWorldLoadEachPromise( delegate {
+			LoadHelpers.AddWorldLoadEachPromise( delegate {
 				this.InitializeLoopingServerAnnounce();
 			} );
 
-			TmlLoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
+			LoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		private void OnWorldExit() {
