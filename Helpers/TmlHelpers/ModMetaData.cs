@@ -24,9 +24,13 @@ namespace HamstarHelpers.TmlHelpers {
 		private static PropertyInfo GetConfigFilePathProp( Mod mod ) {
 			return mod.GetType().GetProperty( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
 		}
-		private static MethodInfo GetConfigReloadMethod( Mod mod ) {
+		private static MethodInfo GetConfigFileLoadMethod( Mod mod ) {
 			return mod.GetType().GetMethod( "ReloadConfigFromFile", BindingFlags.Static | BindingFlags.Public );
 		}
+		private static MethodInfo GetConfigDefaultsResetMethod( Mod mod ) {
+			return mod.GetType().GetMethod( "ResetConfigFromDefaults", BindingFlags.Static | BindingFlags.Public );
+		}
+
 
 		////////////////
 
@@ -38,9 +42,15 @@ namespace HamstarHelpers.TmlHelpers {
 
 		public static bool DetectConfig( Mod mod ) {
 			if( ModMetaDataManager.GetConfigFilePathProp( mod ) == null ) { return false; }
-			if( ModMetaDataManager.GetConfigReloadMethod( mod ) == null ) { return false; }
+			if( ModMetaDataManager.GetConfigFileLoadMethod( mod ) == null ) { return false; }
 			return true;
 		}
+
+		public static bool DetectConfigDefaultsReset( Mod mod ) {
+			if( ModMetaDataManager.GetConfigDefaultsResetMethod( mod ) == null ) { return false; }
+			return true;
+		}
+
 
 		////////////////
 
@@ -52,8 +62,9 @@ namespace HamstarHelpers.TmlHelpers {
 			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
 			return self.ConfigMods.ContainsKey( mod.Name );
 		}
-		public static bool HasConfigReset( Mod mod ) {
-			return 
+		public static bool HasConfigDefaultsReset( Mod mod ) {
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			return self.ConfigDefaultsResetMods.ContainsKey( mod.Name );
 		}
 
 		////////////////
@@ -81,16 +92,22 @@ namespace HamstarHelpers.TmlHelpers {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
 
-			MethodInfo config_reload_method = ModMetaDataManager.GetConfigReloadMethod( mod );
+			MethodInfo config_reload_method = ModMetaDataManager.GetConfigFileLoadMethod( mod );
 			config_reload_method.Invoke( null, new object[] { } );
 		}
 		
-		public static void ResetConfig( Mod mod ) {
-			return
+		public static void ResetDefaultsConfig( Mod mod ) {
+			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			if( !self.ConfigDefaultsResetMods.ContainsKey( mod.Name ) ) {
+				throw new Exception( "Not a recognized config resetable mod." );
+			}
+
+			MethodInfo config_defaults_method = ModMetaDataManager.GetConfigDefaultsResetMethod( mod );
+			config_defaults_method.Invoke( null, new object[] { } );
 		}
 
 		////////////////
-		
+
 		public static string GetGithubUserName( Mod mod ) {
 			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
 			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
@@ -113,6 +130,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 		internal IDictionary<string, Mod> GithubMods;
 		internal IDictionary<string, Mod> ConfigMods;
+		internal IDictionary<string, Mod> ConfigDefaultsResetMods;
 
 
 		////////////////
@@ -120,6 +138,7 @@ namespace HamstarHelpers.TmlHelpers {
 		internal ModMetaDataManager() {
 			this.GithubMods = new Dictionary<string, Mod>();
 			this.ConfigMods = new Dictionary<string, Mod>();
+			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();
 		}
 
 
@@ -128,6 +147,7 @@ namespace HamstarHelpers.TmlHelpers {
 		internal void OnPostSetupContent() {
 			this.GithubMods = new Dictionary<string, Mod>();
 			this.ConfigMods = new Dictionary<string, Mod>();
+			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();
 
 			foreach( Mod mod in ModLoader.LoadedMods ) {
 				if( ModMetaDataManager.DetectGithub( mod ) ) {
@@ -135,6 +155,9 @@ namespace HamstarHelpers.TmlHelpers {
 				}
 				if( ModMetaDataManager.DetectConfig( mod ) ) {
 					this.ConfigMods[mod.Name] = mod;
+				}
+				if( ModMetaDataManager.DetectConfigDefaultsReset( mod ) ) {
+					this.ConfigDefaultsResetMods[mod.Name] = mod;
 				}
 			}
 		}

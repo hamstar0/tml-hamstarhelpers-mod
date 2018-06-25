@@ -28,8 +28,8 @@ namespace HamstarHelpers.Internals.Logic {
 		////////////////
 		
 		public void OnEnterWorldSingle( HamstarHelpersMod mymod, Player player ) {
-			if( !mymod.JsonConfig.LoadFile() ) {
-				mymod.JsonConfig.SaveFile();
+			if( !mymod.ConfigJson.LoadFile() ) {
+				mymod.ConfigJson.SaveFile();
 			}
 
 			this.FinishModSettingsSync();

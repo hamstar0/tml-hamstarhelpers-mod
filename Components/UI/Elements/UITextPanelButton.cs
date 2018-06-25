@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.UI.Elements;
+﻿using HamstarHelpers.DebugHelpers;
+using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 

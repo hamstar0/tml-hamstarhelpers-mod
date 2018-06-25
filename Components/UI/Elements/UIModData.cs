@@ -120,7 +120,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			// Mod config button
 
 			if( ModMetaDataManager.HasConfig(mod) ) {
-				if( ModMetaDataManager.HasConfigReset( mod ) ) {
+				if( ModMetaDataManager.HasConfigDefaultsReset( mod ) ) {
 					this.ConfigResetButton = new UITextPanelButton( theme, "Reset Config File" );
 					this.ConfigResetButton.Width.Set( 160f, 0f );
 					this.ConfigResetButton.Left.Set( -320f, 1f );
@@ -128,7 +128,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 					this.Append( this.ConfigResetButton );
 
 					this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-						ModMetaDataManager.ResetConfig( mod );
+						ModMetaDataManager.ResetDefaultsConfig( mod );
 					};
 				}
 

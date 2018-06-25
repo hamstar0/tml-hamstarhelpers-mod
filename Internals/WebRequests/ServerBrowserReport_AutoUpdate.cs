@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			var mymod = HamstarHelpersMod.Instance;
 
 			mymod.Config.IsServerPromptingForBrowser = false;
-			mymod.JsonConfig.SaveFile();
+			mymod.ConfigJson.SaveFile();
 
 			if( Main.netMode == 2 ) {
 				PacketProtocol.QuickSendToClient<ModSettingsProtocol>( -1, -1 );

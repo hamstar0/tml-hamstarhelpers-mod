@@ -68,6 +68,7 @@
     <Compile Include="Components\UI\Elements\UIWebUrl.cs" />
     <Compile Include="Components\UI\DialogManager.cs" />
     <Compile Include="Components\UI\Menu\MenuItem.cs" />
+    <Compile Include="Components\UI\Menu\MenuUI.cs" />
     <Compile Include="Components\UI\UITheme.cs" />
     <Compile Include="Components\UI\UITheme_Default.cs" />
     <Compile Include="Components\UI\UITheme_Vanilla.cs" />

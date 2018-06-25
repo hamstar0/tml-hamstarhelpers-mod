@@ -25,10 +25,13 @@ namespace HamstarHelpers {
 				throw new Exception( "Cannot reload configs outside of single player." );
 			}
 			if( HamstarHelpersMod.Instance != null ) {
-				if( !HamstarHelpersMod.Instance.JsonConfig.LoadFile() ) {
-					HamstarHelpersMod.Instance.JsonConfig.SaveFile();
+				if( !HamstarHelpersMod.Instance.ConfigJson.LoadFile() ) {
+					HamstarHelpersMod.Instance.ConfigJson.SaveFile();
 				}
 			}
+		}
+		public static void ResetConfigFromDefaults() {
+			HamstarHelpersMod.Instance.ConfigJson.SetData( new HamstarHelpersConfigData() );
 		}
 
 

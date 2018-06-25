@@ -17,6 +17,7 @@ using Terraria.ModLoader;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.TmlHelpers.LoadHelpers;
 
+
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
@@ -27,8 +28,8 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		internal JsonConfig<HamstarHelpersConfigData> JsonConfig;
-		public HamstarHelpersConfigData Config { get { return JsonConfig.Data; } }
+		internal JsonConfig<HamstarHelpersConfigData> ConfigJson;
+		public HamstarHelpersConfigData Config { get { return ConfigJson.Data; } }
 
 		internal IDictionary<int, Type> OldPacketProtocols = new Dictionary<int, Type>();
 		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
@@ -56,6 +57,7 @@ namespace HamstarHelpers {
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
 		internal MenuItemManager MenuItemMngr;
+		internal MenuUIManager MenuUIMngr;
 		internal Utilities.Menu.OldMenuItemManager OldMenuItemMngr;
 		internal MusicHelpers MusicHelpers;
 
@@ -89,7 +91,7 @@ namespace HamstarHelpers {
 
 			this.ExceptionMngr = new HamstarExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
-			this.JsonConfig = new JsonConfig<HamstarHelpersConfigData>( HamstarHelpersConfigData.ConfigFileName,
+			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>( HamstarHelpersConfigData.ConfigFileName,
 				ConfigurationDataBase.RelativePath, new HamstarHelpersConfigData() );
 		}
 
@@ -126,6 +128,7 @@ namespace HamstarHelpers {
 			this.ModVersionGet = new ModVersionGet();
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
+			this.MenuUIMngr = new MenuUIManager();
 			this.OldMenuItemMngr = new Utilities.Menu.OldMenuItemManager();
 			this.MusicHelpers = new MusicHelpers();
 
@@ -143,13 +146,13 @@ namespace HamstarHelpers {
 
 
 		private void LoadConfigs() {
-			if( !this.JsonConfig.LoadFile() ) {
-				this.JsonConfig.SaveFile();
+			if( !this.ConfigJson.LoadFile() ) {
+				this.ConfigJson.SaveFile();
 			}
 
 			if( this.Config.UpdateToLatestVersion() ) {
 				ErrorLogger.Log( "Mod Helpers updated to " + HamstarHelpersConfigData.ConfigVersion.ToString() );
-				this.JsonConfig.SaveFile();
+				this.ConfigJson.SaveFile();
 			}
 		}
 
@@ -167,7 +170,7 @@ namespace HamstarHelpers {
 
 			this.ExceptionMngr = null;
 			this.Timers = null;
-			this.JsonConfig = null;
+			this.ConfigJson = null;
 			this.PacketProtocols = null;
 			this.LogHelpers = null;
 			this.ModMetaDataManager = null;
@@ -192,6 +195,7 @@ namespace HamstarHelpers {
 			this.ControlPanel = null;
 			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
+			this.MenuUIMngr = null;
 			this.OldMenuItemMngr = null;
 			this.MusicHelpers = null;
 
@@ -205,6 +209,7 @@ namespace HamstarHelpers {
 			this.PacketProtocols = PacketProtocol.GetProtocols();
 
 			this.LoadHelpers.OnPostSetupContent();
+			this.MenuUIMngr.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
@@ -256,7 +261,7 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipeGroups ) { return; }
 			if( !this.HasAddedRecipes ) { return; }
 
-			this.LoadHelpers.AddWorldUnloadEachPromise( () => {
+			LoadHelpers.AddWorldUnloadEachPromise( () => {
 				this.OnWorldExit();
 			} );
 
