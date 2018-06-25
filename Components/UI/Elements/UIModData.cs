@@ -129,7 +129,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 						this.Append( this.ConfigResetButton );
 
 						this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+							string msg = mod.DisplayName + " config file reset to defaults.";
+
 							ModMetaDataManager.ResetDefaultsConfig( mod );
+							Main.NewText( msg, Color.LimeGreen );
+							LogHelpers.Log( msg );
 						};
 					}
 				}

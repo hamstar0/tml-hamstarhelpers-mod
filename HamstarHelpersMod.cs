@@ -35,6 +35,7 @@ namespace HamstarHelpers {
 				throw new Exception( "Cannot reset to default configs outside of single player." );
 			}
 			HamstarHelpersMod.Instance.ConfigJson.SetData( new HamstarHelpersConfigData() );
+			HamstarHelpersMod.Instance.ConfigJson.SaveFile();
 		}
 
 
