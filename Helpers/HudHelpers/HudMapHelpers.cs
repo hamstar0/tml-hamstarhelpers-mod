@@ -8,7 +8,7 @@ namespace HamstarHelpers.HudHelpers {
 			float map_x = 200f;
 			float map_y = 300f;
 
-			float map_scale = Main.mapFullscreenScale;
+			float map_scale = Main.mapFullscreenScale / Main.UIScale;
 
 			float offscr_lit_x = 10f * map_scale;
 			float offscr_lit_y = 10f * map_scale;
