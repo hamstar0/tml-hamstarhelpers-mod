@@ -10,7 +10,7 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 
 			if( LoadHelpers.IsWorldBeingPlayed() ) {
-				mymod.Promises.PostWorldLoadUpdate();
+				mymod.LoadHelpers.PostWorldLoadUpdate();
 				mymod.WorldHelpers.Update( mymod );
 
 				// Simply idle until ready (seems needed)

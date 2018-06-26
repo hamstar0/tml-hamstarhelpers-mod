@@ -24,83 +24,6 @@ namespace HamstarHelpers.Services.Promises {
 		internal bool PostWorldUnloadPromiseConditionsMet = false;
 		internal ISet<string> CustomPromiseConditionsMet = new HashSet<string>();
 
-		internal int StartupDelay = 0;
-
-		internal bool IsClientPlaying = false;
-		internal bool HasServerBegunHavingPlayers = false;
-
-
-
-		////////////////
-		
-		internal void FulfillPostModLoadPromises() {
-			if( this.PostModLoadPromiseConditionsMet ) { return; }
-			this.PostModLoadPromiseConditionsMet = true;
-			
-			foreach( Action promise in this.PostModLoadPromises ) {
-				promise();
-			}
-			this.PostModLoadPromises.Clear();
-		}
-
-		internal void FulfillModUnloadPromises() {
-			foreach( Action promise in this.ModUnloadPromises ) {
-				promise();
-			}
-			this.ModUnloadPromises.Clear();
-		}
-
-
-		internal void FulfillWorldLoadPromises() {
-			if( this.WorldLoadPromiseConditionsMet ) { return; }
-			this.WorldLoadPromiseConditionsMet = true;
-			
-			foreach( Action promise in this.WorldLoadOncePromises ) {
-				promise();
-			}
-			foreach( Action promise in this.WorldLoadEachPromises ) {
-				promise();
-			}
-			
-			foreach( Action promise in this.PostWorldLoadOncePromises ) {
-				promise();
-			}
-			foreach( Action promise in this.PostWorldLoadEachPromises ) {
-				promise();
-			}
-
-			this.WorldLoadOncePromises.Clear();
-			this.PostWorldLoadOncePromises.Clear();
-		}
-
-		internal void FulfillWorldUnloadPromises() {
-			if( this.WorldUnloadPromiseConditionsMet ) { return; }
-			this.WorldUnloadPromiseConditionsMet = true;
-
-			foreach( Action promise in this.WorldUnloadOncePromises ) {
-				promise();
-			}
-			foreach( Action promise in this.WorldUnloadEachPromises ) {
-				promise();
-			}
-
-			this.WorldUnloadOncePromises.Clear();
-		}
-
-		internal void FulfillPostWorldUnloadPromises() {
-			if( this.PostWorldUnloadPromiseConditionsMet ) { return; }
-			this.PostWorldUnloadPromiseConditionsMet = true;
-
-			foreach( Action promise in this.PostWorldUnloadOncePromises ) {
-				promise();
-			}
-			foreach( Action promise in this.PostWorldUnloadEachPromises ) {
-				promise();
-			}
-
-			this.PostWorldUnloadOncePromises.Clear();
-		}
-
 
 		////////////////
 
@@ -158,8 +81,75 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
-		internal void PostWorldLoadUpdate() {
-			this.StartupDelay++;    // Seems needed for day/night tracking (and possibly other things?)
+		
+		////////////////
+
+		internal void FulfillPostModLoadPromises() {
+			if( this.PostModLoadPromiseConditionsMet ) { return; }
+			this.PostModLoadPromiseConditionsMet = true;
+
+			foreach( Action promise in this.PostModLoadPromises ) {
+				promise();
+			}
+			this.PostModLoadPromises.Clear();
+		}
+
+		internal void FulfillModUnloadPromises() {
+			foreach( Action promise in this.ModUnloadPromises ) {
+				promise();
+			}
+			this.ModUnloadPromises.Clear();
+		}
+
+
+		internal void FulfillWorldLoadPromises() {
+			if( this.WorldLoadPromiseConditionsMet ) { return; }
+			this.WorldLoadPromiseConditionsMet = true;
+
+			foreach( Action promise in this.WorldLoadOncePromises ) {
+				promise();
+			}
+			foreach( Action promise in this.WorldLoadEachPromises ) {
+				promise();
+			}
+
+			foreach( Action promise in this.PostWorldLoadOncePromises ) {
+				promise();
+			}
+			foreach( Action promise in this.PostWorldLoadEachPromises ) {
+				promise();
+			}
+
+			this.WorldLoadOncePromises.Clear();
+			this.PostWorldLoadOncePromises.Clear();
+		}
+
+		internal void FulfillWorldUnloadPromises() {
+			if( this.WorldUnloadPromiseConditionsMet ) { return; }
+			this.WorldUnloadPromiseConditionsMet = true;
+
+			foreach( Action promise in this.WorldUnloadOncePromises ) {
+				promise();
+			}
+			foreach( Action promise in this.WorldUnloadEachPromises ) {
+				promise();
+			}
+
+			this.WorldUnloadOncePromises.Clear();
+		}
+
+		internal void FulfillPostWorldUnloadPromises() {
+			if( this.PostWorldUnloadPromiseConditionsMet ) { return; }
+			this.PostWorldUnloadPromiseConditionsMet = true;
+
+			foreach( Action promise in this.PostWorldUnloadOncePromises ) {
+				promise();
+			}
+			foreach( Action promise in this.PostWorldUnloadEachPromises ) {
+				promise();
+			}
+
+			this.PostWorldUnloadOncePromises.Clear();
 		}
 	}
 }
