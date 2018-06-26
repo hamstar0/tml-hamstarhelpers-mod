@@ -1,25 +1,22 @@
 ﻿using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.TmlHelpers.LoadHelpers;
 
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class WorldLogic {
 		private void PreUpdate( HamstarHelpersMod mymod ) {
 			if( LoadHelpers.IsWorldLoaded() ) {
-				mymod.LoadHelpers.FulfillWorldLoadPromises();
+				mymod.Promises.FulfillWorldLoadPromises();
 			}
 
-			if( !LoadHelpers.IsWorldBeingPlayed() ) {
-				return;
-			}
+			if( LoadHelpers.IsWorldBeingPlayed() ) {
+				mymod.Promises.PostWorldLoadUpdate();
+				mymod.WorldHelpers.Update( mymod );
 
-			mymod.LoadHelpers.PostWorldLoadUpdate();
-			mymod.WorldHelpers.Update( mymod );
-
-			// Simply idle until ready (seems needed)
-			if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
-				this.UpdateLoaded( mymod );
+				// Simply idle until ready (seems needed)
+				if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
+					this.UpdateSafelyLoaded( mymod );
+				}
 			}
 		}
 
@@ -49,7 +46,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 		
-		private void UpdateLoaded( HamstarHelpersMod mymod ) {
+		private void UpdateSafelyLoaded( HamstarHelpersMod mymod ) {
 			mymod.ModLockHelpers.Update();
 
 #pragma warning disable 612, 618

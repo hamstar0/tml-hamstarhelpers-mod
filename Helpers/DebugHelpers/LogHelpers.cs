@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.TmlHelpers.LoadHelpers;
+﻿using HamstarHelpers.Services.Promises;
+using HamstarHelpers.TmlHelpers;
 using System;
 using System.IO;
 using Terraria;
@@ -66,7 +66,7 @@ namespace HamstarHelpers.DebugHelpers {
 		internal LogHelpers() {
 			this.Reset();
 
-			LoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
+			Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		private void OnWorldExit() {

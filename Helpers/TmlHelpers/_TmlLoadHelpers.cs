@@ -1,60 +1,61 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Services.Promises;
 using System;
 
 
 namespace HamstarHelpers.TmlHelpers {
-	[Obsolete("use TmlHelpers.LoadHelpers", true)]
+	[Obsolete("use Promises or LoadHelpers (respectively)", true)]
 	public partial class TmlLoadHelpers {
 		public static bool IsModLoaded() {
-			return LoadHelpers.LoadHelpers.IsModLoaded();
+			return LoadHelpers.IsModLoaded();
 		}
 		public static bool IsWorldLoaded() {
-			return LoadHelpers.LoadHelpers.IsWorldLoaded();
+			return LoadHelpers.IsWorldLoaded();
 		}
 		public static bool IsWorldBeingPlayed() {
-			return LoadHelpers.LoadHelpers.IsWorldBeingPlayed();
+			return LoadHelpers.IsWorldBeingPlayed();
 		}
 		public static bool IsWorldSafelyBeingPlayed() {
-			return LoadHelpers.LoadHelpers.IsWorldSafelyBeingPlayed();
+			return LoadHelpers.IsWorldSafelyBeingPlayed();
 		}
 		public static void AddPostModLoadPromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddPostModLoadPromise( action );
+			Promises.AddPostModLoadPromise( action );
 		}
 		public static void AddModUnloadPromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddModUnloadPromise( action );
+			Promises.AddModUnloadPromise( action );
 		}
 		public static void AddWorldLoadOncePromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddWorldLoadOncePromise( action );
+			Promises.AddWorldLoadOncePromise( action );
 		}
 		public static void AddWorldLoadEachPromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddWorldLoadEachPromise( action );
+			Promises.AddWorldLoadEachPromise( action );
 		}
 		public static void AddPostWorldLoadOncePromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddPostWorldLoadOncePromise( action );
+			Promises.AddPostWorldLoadOncePromise( action );
 		}
 		public static void AddPostWorldLoadEachPromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddPostWorldLoadEachPromise( action );
+			Promises.AddPostWorldLoadEachPromise( action );
 		}
 		public static void AddWorldUnloadOncePromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddWorldUnloadOncePromise( action );
+			Promises.AddWorldUnloadOncePromise( action );
 		}
 		public static void AddWorldUnloadEachPromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddWorldUnloadEachPromise( action );
+			Promises.AddWorldUnloadEachPromise( action );
 		}
 		public static void AddPostWorldUnloadOncePromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddPostWorldUnloadOncePromise( action );
+			Promises.AddPostWorldUnloadOncePromise( action );
 		}
 		public static void AddPostWorldUnloadEachPromise( Action action ) {
-			LoadHelpers.LoadHelpers.AddPostWorldUnloadEachPromise( action );
+			Promises.AddPostWorldUnloadEachPromise( action );
 		}
 		public static void AddCustomPromise( string name, Func<bool> action ) {
-			LoadHelpers.LoadHelpers.AddCustomPromise( name, action );
+			Promises.AddCustomPromise( name, action );
 		}
 		public static void TriggerCustomPromise( string name ) {
-			LoadHelpers.LoadHelpers.TriggerCustomPromise( name );
+			Promises.TriggerCustomPromise( name );
 		}
 		public static void ClearCustomPromise( string name ) {
-			LoadHelpers.LoadHelpers.ClearCustomPromise( name );
+			Promises.ClearCustomPromise( name );
 		}
 	}
 }

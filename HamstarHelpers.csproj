@@ -77,8 +77,8 @@
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_Stream.cs" />
-    <Compile Include="Helpers\TmlHelpers\LoadHelpers\LoadHelpers.cs" />
-    <Compile Include="Helpers\TmlHelpers\LoadHelpers\LoadHelpers_Load.cs" />
+    <Compile Include="Helpers\TmlHelpers\LoadHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\LoadHelpers_Load.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData_API.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData_Obsolete.cs" />
     <Compile Include="Internals\ControlPanel\Inbox\InboxControl.cs" />
@@ -174,6 +174,8 @@
     <Compile Include="Services\Messages\InboxMessages.cs" />
     <Compile Include="Services\Messages\PlayerMessages.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
+    <Compile Include="Services\Promises\Promises.cs" />
+    <Compile Include="Services\Promises\Promises_Load.cs" />
     <Compile Include="Services\Timers\Timers.cs" />
     <Compile Include="_Utilities\_Errors\_Errors.cs" />
     <Compile Include="_Utilities\_Config\_ConfigurationDataBase.cs" />

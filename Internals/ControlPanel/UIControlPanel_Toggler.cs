@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Messages;
+using HamstarHelpers.Services.Promises;
 using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.TmlHelpers.LoadHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private void InitializeToggler() {
 			this.IsTogglerLit = false;
 
-			LoadHelpers.AddWorldLoadEachPromise( () => {
+			Promises.AddWorldLoadEachPromise( () => {
 				int mod_update_count = this.ModUpdatesAvailable();
 				
 				if( mod_update_count > 0 ) {

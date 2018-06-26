@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Services.Messages;
+using HamstarHelpers.Services.Promises;
 using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.TmlHelpers.LoadHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 
 			this.MessageScrollPos = this.Messages.Current;
 
-			LoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
+			Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		private void OnWorldExit() {

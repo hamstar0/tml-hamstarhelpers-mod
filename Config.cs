@@ -6,8 +6,8 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 6, 2); } }
-		public static string ConfigFileName { get { return "HamstarHelpers Config.json"; } }
+		public static Version ConfigVersion { get { return new Version(1, 6, 3); } }
+		public static string ConfigFileName { get { return "Mod Helpers Config.json"; } }
 
 
 		////////////////

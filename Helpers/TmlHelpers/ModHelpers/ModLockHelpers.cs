@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -88,7 +89,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			this.WorldModLocks = new Dictionary<string, ISet<string>>();
 			this.MismatchBroadcastMade = false;
 
-			LoadHelpers.LoadHelpers.AddWorldUnloadEachPromise( this.OnWorldExit );
+			Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		internal void OnWorldLoad( HamstarHelpersMod mymod, HamstarHelpersWorld modworld ) {
@@ -201,7 +202,7 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			if( Main.netMode == 2 && !this.MismatchBroadcastMade ) {
 				var modworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
 
-				if( LoadHelpers.LoadHelpers.IsWorldSafelyBeingPlayed() ) {
+				if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 					this.MismatchBroadcastMade = true;
 
 					int eta = this.ExitDuration / 60;

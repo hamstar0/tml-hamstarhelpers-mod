@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.TmlHelpers.LoadHelpers {
-	public partial class LoadHelpers {
+namespace HamstarHelpers.Services.Promises {
+	public partial class Promises {
 		internal IList<Action> PostModLoadPromises = new List<Action>();
 		internal IList<Action> ModUnloadPromises = new List<Action>();
 		internal IList<Action> WorldLoadOncePromises = new List<Action>();
@@ -104,13 +104,13 @@ namespace HamstarHelpers.TmlHelpers.LoadHelpers {
 
 		////////////////
 
-		internal LoadHelpers() {
-			Main.OnTick += LoadHelpers._Update;
+		internal Promises() {
+			Main.OnTick += Promises._Update;
 		}
 
-		~LoadHelpers() {
+		~Promises() {
 			try {
-				Main.OnTick -= LoadHelpers._Update;
+				Main.OnTick -= Promises._Update;
 
 				if( this.WorldLoadPromiseConditionsMet && !this.WorldUnloadPromiseConditionsMet ) {
 					this.FulfillWorldUnloadPromises();
@@ -121,7 +121,7 @@ namespace HamstarHelpers.TmlHelpers.LoadHelpers {
 
 
 		internal void OnPostSetupContent() {
-			LoadHelpers.AddWorldLoadEachPromise( () => {
+			Promises.AddWorldLoadEachPromise( () => {
 				this.WorldUnloadPromiseConditionsMet = false;
 				this.PostWorldUnloadPromiseConditionsMet = false;
 			} );
@@ -141,7 +141,7 @@ namespace HamstarHelpers.TmlHelpers.LoadHelpers {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
-			mymod.LoadHelpers.Update();
+			mymod.Promises.Update();
 		}
 
 		private void Update() {

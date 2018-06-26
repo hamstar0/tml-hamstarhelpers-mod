@@ -15,7 +15,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Internals.ControlPanel;
-using HamstarHelpers.TmlHelpers.LoadHelpers;
+using HamstarHelpers.Services.Promises;
 
 
 namespace HamstarHelpers {
@@ -34,8 +34,20 @@ namespace HamstarHelpers {
 		internal IDictionary<int, Type> OldPacketProtocols = new Dictionary<int, Type>();
 		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
 
+
+		// Components
 		internal HamstarExceptionManager ExceptionMngr;
+		internal MenuUIManager MenuUIMngr;
+		internal Utilities.Menu.OldMenuItemManager OldMenuItemMngr;
+
+		// Services
 		internal Timers Timers;
+		internal EntityGroups EntityGroups;
+		internal AnimatedColorsManager AnimatedColors;
+		internal PlayerMessages PlayerMessages;
+		internal Promises Promises;
+
+		// Helpers
 		internal DebugHelpers.LogHelpers LogHelpers;
 		internal TmlHelpers.ModMetaDataManager ModMetaDataManager;
 		internal NetHelpers.NetHelpers NetHelpers;
@@ -46,30 +58,28 @@ namespace HamstarHelpers {
 		internal BuffHelpers.BuffIdentityHelpers BuffIdentityHelpers;
 		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
 		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
-		internal LoadHelpers LoadHelpers;
+		internal TmlHelpers.LoadHelpers LoadHelpers;
 		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
 		internal WorldHelpers.WorldHelpers WorldHelpers;
 		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
-		internal EntityGroups EntityGroups;
-		internal AnimatedColorsManager AnimatedColors;
-		internal PlayerMessages PlayerMessages;
+		internal MusicHelpers MusicHelpers;
+
+		// Internals
 		internal InboxControl Inbox;
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
 		internal MenuItemManager MenuItemMngr;
-		internal MenuUIManager MenuUIMngr;
-		internal Utilities.Menu.OldMenuItemManager OldMenuItemMngr;
-		internal MusicHelpers MusicHelpers;
+		public UIControlPanel ControlPanel = null;
+
 
 		public bool HasSetupContent { get; private set; }
 		public bool HasAddedRecipeGroups { get; private set; }
 		public bool HasAddedRecipes { get; private set; }
 
 		public ModHotKey ControlPanelHotkey = null;
-
-		public UIControlPanel ControlPanel = null;
-		 private int LastSeenScreenWidth = -1;
-		 private int LastSeenScreenHeight = -1;
+		
+		private int LastSeenCPScreenWidth = -1;
+		private int LastSeenCPScreenHeight = -1;
 
 
 		private bool HasUnhandledExceptionLogger = false;
@@ -105,7 +115,8 @@ namespace HamstarHelpers {
 				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
 			}
 
-			this.LoadHelpers = new LoadHelpers();
+			this.LoadHelpers = new TmlHelpers.LoadHelpers();
+			this.Promises = new Promises();
 
 			this.Timers = new Timers();
 			this.LogHelpers = new DebugHelpers.LogHelpers();
@@ -159,7 +170,7 @@ namespace HamstarHelpers {
 		public override void Unload() {
 			this.UnloadModData();
 
-			this.LoadHelpers.FulfillModUnloadPromises();
+			this.Promises.FulfillModUnloadPromises();
 
 			try {
 				if( this.HasUnhandledExceptionLogger ) {
@@ -198,6 +209,7 @@ namespace HamstarHelpers {
 			this.MenuUIMngr = null;
 			this.OldMenuItemMngr = null;
 			this.MusicHelpers = null;
+			this.Promises = null;
 
 			HamstarHelpersMod.Instance = null;
 		}
@@ -208,7 +220,7 @@ namespace HamstarHelpers {
 			this.OldPacketProtocols = Utilities.Network.OldPacketProtocol.GetProtocols();
 			this.PacketProtocols = PacketProtocol.GetProtocols();
 
-			this.LoadHelpers.OnPostSetupContent();
+			this.Promises.OnPostSetupContent();
 			this.MenuUIMngr.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
 
@@ -261,18 +273,18 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipeGroups ) { return; }
 			if( !this.HasAddedRecipes ) { return; }
 
-			LoadHelpers.AddWorldUnloadEachPromise( () => {
+			Promises.AddWorldUnloadEachPromise( () => {
 				this.OnWorldExit();
 			} );
 
-			this.LoadHelpers.FulfillPostModLoadPromises();
+			this.Promises.FulfillPostModLoadPromises();
 		}
 
 
 		////////////////
 
 		public override void PreSaveAndQuit() {
-			this.LoadHelpers.PreSaveAndExit();
+			this.Promises.PreSaveAndExit();
 		}
 
 

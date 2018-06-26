@@ -76,7 +76,7 @@ namespace HamstarHelpers {
 
 
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-			if( this.LoadHelpers != null && !TmlHelpers.LoadHelpers.LoadHelpers.IsWorldBeingPlayed() ) { return; }
+			if( this.LoadHelpers != null && !TmlHelpers.LoadHelpers.IsWorldBeingPlayed() ) { return; }
 
 			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 			if( idx == -1 ) { return; }
@@ -100,9 +100,9 @@ namespace HamstarHelpers {
 					this.ControlPanel.UpdateToggler();
 					this.ControlPanel.DrawToggler( sb );
 				}
-				if( this.LastSeenScreenWidth != Main.screenWidth || this.LastSeenScreenHeight != Main.screenHeight ) {
-					this.LastSeenScreenWidth = Main.screenWidth;
-					this.LastSeenScreenHeight = Main.screenHeight;
+				if( this.LastSeenCPScreenWidth != Main.screenWidth || this.LastSeenCPScreenHeight != Main.screenHeight ) {
+					this.LastSeenCPScreenWidth = Main.screenWidth;
+					this.LastSeenCPScreenHeight = Main.screenHeight;
 					this.ControlPanel.RecalculateMe();
 				}
 

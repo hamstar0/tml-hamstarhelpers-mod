@@ -1,7 +1,5 @@
 ﻿using HamstarHelpers.DebugHelpers;
 using HamstarHelpers.MiscHelpers;
-using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.TmlHelpers.LoadHelpers;
 using System;
 using System.Collections.Generic;
 
@@ -19,7 +17,7 @@ namespace HamstarHelpers.Services.Messages {
 
 	public class InboxMessages {
 		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
-			LoadHelpers.AddPostWorldLoadOncePromise( () => {
+			Promises.Promises.AddPostWorldLoadOncePromise( () => {
 				InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
 				int idx = inbox.Order.IndexOf( which );
 
@@ -126,8 +124,8 @@ namespace HamstarHelpers.Services.Messages {
 
 		internal InboxMessages() {
 			this.Current = 0;
-
-			LoadHelpers.AddWorldLoadEachPromise( () => {
+			
+			Promises.Promises.AddWorldLoadEachPromise( () => {
 				bool success = this.LoadFromFile();
 			} );
 		}
