@@ -86,9 +86,9 @@ namespace HamstarHelpers.XnaHelpers {
 			return (float)XnaColorHelpers.SumRGB( c ) / 3f;
 		}
 
-
-		public static Color FlattenColor( Color c ) {
-			Color lerped = Color.Lerp( Color.White, c, c.A / 255f );
+		
+		public static Color FlattenColor( Color bg, Color c ) {
+			Color lerped = Color.Lerp( bg, c, (float)c.A / 255f );
 			lerped.A = 255;
 			return lerped;
 		}

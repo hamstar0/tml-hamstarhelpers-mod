@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria.ID;
 
 
 namespace HamstarHelpers.ItemHelpers {
-	public static class ItemMusicBoxHelpers {
+	public static class MusicBoxHelpers {
 		public static ISet<int> GetVanillaMusicBoxItemIds() {
 			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,
 				ItemID.MusicBoxAltUnderground,
@@ -134,26 +135,31 @@ namespace HamstarHelpers.ItemHelpers {
 				return 0;
 			}
 		}
+	}
 
 
 
-		////////////////
-
-		[System.Obsolete( "no mod support yet", true )]
-		public static ISet<int> GetMusicBoxes() {
-			return ItemMusicBoxHelpers.GetVanillaMusicBoxes();
-		}
-
-
-		[System.Obsolete( "use ItemMusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
+	public static class ItemMusicBoxHelpers {
+		[Obsolete( "use MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
 		public static int GetMusicTypeOfMusicBox( int item_type ) {
-			return ItemMusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
+			return MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
+		}
+		[Obsolete( "use MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
+		public static int GetMusicTypeOfVanillaMusicBox( int item_type ) {
+			return MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
 		}
 
-
-		[System.Obsolete( "use ItemMusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
+		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
+		public static ISet<int> GetMusicBoxes() {
+			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
+		}
+		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
+		public static ISet<int> GetVanillaMusicBoxItemIds() {
+			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
+		}
+		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
 		public static ISet<int> GetVanillaMusicBoxes() {
-			return ItemMusicBoxHelpers.GetVanillaMusicBoxItemIds();
+			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
 		}
 	}
 }

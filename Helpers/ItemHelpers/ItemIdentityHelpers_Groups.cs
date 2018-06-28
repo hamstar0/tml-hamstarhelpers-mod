@@ -49,7 +49,7 @@ namespace HamstarHelpers.ItemHelpers {
 			get {
 				return Tuple.Create(
 				   "Recorded Music Box (vanilla)",
-				   (ISet<int>)ItemMusicBoxHelpers.GetVanillaMusicBoxItemIds()
+				   (ISet<int>)MusicBoxHelpers.GetVanillaMusicBoxItemIds()
 			   );
 			}
 		}

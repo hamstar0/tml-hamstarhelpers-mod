@@ -18,6 +18,11 @@ namespace HamstarHelpers.XnaHelpers {
 			return XnaColorHelpers.BrightnessRGB( value );
 		}
 
+		[System.Obsolete( "use XnaColorHelpers.FlattenColor( Color bg, Color c )", true )]
+		public static Color FlattenColor( Color c ) {
+			return XnaColorHelpers.FlattenColor( Color.White, c );
+		}
+
 		/*public static Color BlendIntoByAlpha( Color c1, Color c2 ) {
 			float scale = (float)c2.A / 255f;
 			float nscale = 1f - scale;

@@ -77,6 +77,7 @@
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_Stream.cs" />
+    <Compile Include="Helpers\MiscHelpers\PaintHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers_Load.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData_API.cs" />
@@ -203,7 +204,7 @@
     <Compile Include="HamstarHelpersWorld.cs" />
     <Compile Include="Helpers\HudHelpers\HudHealthBarHelpers.cs" />
     <Compile Include="HamstarHelpersPlayer.cs" />
-    <Compile Include="Helpers\ItemHelpers\ItemMusicBoxHelpers.cs" />
+    <Compile Include="Helpers\ItemHelpers\MusicBoxHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers.cs" />
     <Compile Include="Helpers\DustHelpers\DustHelpers.cs" />
     <Compile Include="HamstarHelpersMod.cs" />
