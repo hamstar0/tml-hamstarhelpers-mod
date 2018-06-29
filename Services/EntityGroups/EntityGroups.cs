@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using Terraria;
 using Terraria.ModLoader;
-
+using Terraria.Utilities;
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
@@ -145,11 +145,21 @@ namespace HamstarHelpers.Services.EntityGroups {
 			
 			var list = new Projectile[ ProjectileLoader.ProjectileCount ];
 			list[0] = null;
+
+			UnifiedRandom old_rand = Main.rand;
+			Main.rand = new UnifiedRandom();
 			
 			for( int i = 1; i < ProjectileLoader.ProjectileCount; i++ ) {
 				list[i] = new Projectile();
-				list[i].SetDefaults( i );
+
+				try {
+					list[i].SetDefaults( i );
+				} catch( Exception e ) {
+					LogHelpers.Log( "GetProjPool " + i + " - " + e.ToString() );
+				}
 			}
+
+			Main.rand = old_rand;
 
 			this.ProjPool = new List<Projectile>( list );
 			return this.ProjPool;
