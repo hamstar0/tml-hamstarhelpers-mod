@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-
+using HamstarHelpers.DotNetHelpers;
 
 namespace HamstarHelpers.PlayerHelpers {
 	public static partial class PlayerHelpers {
@@ -214,6 +214,50 @@ namespace HamstarHelpers.PlayerHelpers {
 			player.taxMoney = 0;
 
 			PlayerHooks.SetStartInventory( player );
+		}
+
+
+		public static void ModdedExtensionsReset( Player player ) {
+			var wingmod = ModLoader.GetMod( "Wing Slot" );
+
+			if( wingmod != null ) {
+				bool success;
+				var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
+				ModPlayer mywingplayer = player.GetModPlayer( wingmod, "WingSlotPlayer" );
+
+				object wing_equip_slot = ReflectionHelpers.GetField( mywingplayer, "EquipSlot", out success );
+
+				if( success && wing_equip_slot != null ) {
+					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_equip_slot, "Item", out success );
+
+					if( success && wing_item != null && !wing_item.IsAir ) {
+						ReflectionHelpers.SetProperty( wing_equip_slot, "Item", new Item(), out success );
+						ReflectionHelpers.SetField( mywingplayer, "EquipSlot", wing_equip_slot, out success );
+					}
+				}
+				
+				object wing_vanity_slot = ReflectionHelpers.GetField( mywingplayer, "VanitySlot", out success );
+
+				if( success && wing_vanity_slot != null ) {
+					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_vanity_slot, "Item", out success );
+
+					if( success && wing_item != null && !wing_item.IsAir ) {
+						ReflectionHelpers.SetProperty( wing_vanity_slot, "Item", new Item(), out success );
+						ReflectionHelpers.SetField( mywingplayer, "VanitySlot", wing_vanity_slot, out success );
+					}
+				}
+
+				object wing_dye_slot = ReflectionHelpers.GetField( mywingplayer, "DyeSlot", out success );
+
+				if( success && wing_dye_slot != null ) {
+					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_dye_slot, "Item", out success );
+
+					if( success && wing_item != null && !wing_item.IsAir ) {
+						ReflectionHelpers.SetProperty( wing_dye_slot, "Item", new Item(), out success );
+						ReflectionHelpers.SetField( mywingplayer, "DyeSlot", wing_dye_slot, out success );
+					}
+				}
+			}
 		}
 	}
 }
