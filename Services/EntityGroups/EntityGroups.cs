@@ -157,7 +157,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				} catch( Exception e ) {
 					LogHelpers.Log( "GetProjPool " + i + " - " + e.ToString() );
 				}
-			}
+			} 
 
 			Main.rand = old_rand;
 
