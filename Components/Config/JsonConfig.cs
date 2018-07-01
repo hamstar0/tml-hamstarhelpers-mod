@@ -2,7 +2,7 @@
 using Terraria;
 using Newtonsoft.Json;
 using System;
-
+using HamstarHelpers.DebugHelpers;
 
 namespace HamstarHelpers.Components.Config {
 	public class JsonConfig {
@@ -55,20 +55,21 @@ namespace HamstarHelpers.Components.Config {
 			return JsonConfig<T>.Serialize( this.Data );
 		}
 
+		public void DeserializeMe( string str_data, out bool success ) {
+			success = false;
+			try {
+				T data = JsonConfig<T>.Deserialize( str_data );
+
+				this.Data = data;
+				success = true;
+			} catch( Exception e ) {
+				LogHelpers.Log( "JsonConfig.DeserializeMe - "+e.Message );
+			}
+		}
+		[Obsolete( "use JsonConfig.DeserializeMe(string, out bool)", true )]
 		public void DeserializeMe( string str_data ) {
-			this.Data = JsonConfig<T>.Deserialize( str_data );
-
-			//T data = JsonConfig<T>.Deserialize( str_data );
-			//Type data_type = data.GetType();
-			//Type my_type = this.Data.GetType();
-			//FieldInfo[] data_fields = data_type.GetFields( BindingFlags.Public | BindingFlags.Instance );
-
-			//foreach( var data_field in data_fields ) {
-			//	FieldInfo my_field = my_type.GetField( data_field.Name );
-			//	var data_val = data_field.GetValue( data );
-
-			//	my_field.SetValue( this, data_val );
-			//}
+			bool _;
+			this.DeserializeMe( str_data, out _ );
 		}
 
 		public void SetData( T data ) {
@@ -109,7 +110,7 @@ namespace HamstarHelpers.Components.Config {
 			if( success ) {
 				using( StreamReader r = new StreamReader( path ) ) {
 					string json = r.ReadToEnd();
-					this.DeserializeMe( json );
+					this.DeserializeMe( json, out success );
 				}
 			}
 

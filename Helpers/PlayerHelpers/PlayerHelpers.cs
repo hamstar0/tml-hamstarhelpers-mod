@@ -222,7 +222,6 @@ namespace HamstarHelpers.PlayerHelpers {
 
 			if( wingmod != null ) {
 				bool success;
-				var myworld = HamstarHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
 				ModPlayer mywingplayer = player.GetModPlayer( wingmod, "WingSlotPlayer" );
 
 				object wing_equip_slot = ReflectionHelpers.GetField( mywingplayer, "EquipSlot", out success );

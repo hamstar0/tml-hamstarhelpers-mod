@@ -3,6 +3,7 @@ using HamstarHelpers.Components.Network;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using HamstarHelpers.Components.Errors;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -42,14 +43,22 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void ReceiveWithServer( int from_who ) {
-			Player player = Main.player[from_who];
+			Player player = Main.player[ from_who ];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveDataServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
 
 		protected override void ReceiveWithClient() {
-			Player player = Main.player[this.PlayerWho];
+			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
+				throw new HamstarException( "PlayerDataProtocol.ReceiveWithClient - Invalid player index "+this.PlayerWho );
+			}
+
+			Player player = Main.player[ this.PlayerWho ];
+			if( player == null || !player.active ) {
+				throw new HamstarException( "PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+			}
+
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 
 			myplayer.Logic.NetReceiveDataClient( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );

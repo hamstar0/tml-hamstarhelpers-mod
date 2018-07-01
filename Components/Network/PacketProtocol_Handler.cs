@@ -13,16 +13,16 @@ namespace HamstarHelpers.Components.Network {
 			try {
 				is_request = reader.ReadBoolean();
 			} catch( Exception e ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
+				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - " + e.ToString() );
 			}
 
 			if( !mymod.PacketProtocols.ContainsKey( protocol_code ) ) {
-				throw new HamstarException( "Unrecognized packet." );
+				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Unrecognized packet." );
 			}
 
 			Type protocol_type;
 			if( !mymod.PacketProtocols.TryGetValue( protocol_code, out protocol_type ) ) {
-				throw new HamstarException( "Invalid protocol (hash: " + protocol_code + ")" );
+				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Invalid protocol (hash: " + protocol_code + ")" );
 			}
 
 			try {
@@ -51,12 +51,12 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			if( !mymod.PacketProtocols.ContainsKey( protocol_code ) ) {
-				throw new HamstarException( "Unrecognized packet." );
+				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Unrecognized packet." );
 			}
 
 			Type protocol_type;
 			if( !mymod.PacketProtocols.TryGetValue( protocol_code, out protocol_type ) ) {
-				throw new HamstarException( "Invalid protocol (hash: " + protocol_code + ")" );
+				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Invalid protocol (hash: " + protocol_code + ")" );
 			}
 
 			try {
