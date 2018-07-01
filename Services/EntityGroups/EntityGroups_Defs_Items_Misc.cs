@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private void DefineItemMiscGroups3( Action<string, Func<Item, bool>> add_def ) {
+		private void DefineItemMiscGroups4( Action<string, Func<Item, bool>> add_def ) {
 			add_def( "Any Item", ( Item item ) => {
 				return true;
 			} );

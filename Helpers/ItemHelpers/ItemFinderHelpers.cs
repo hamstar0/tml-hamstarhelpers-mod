@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.DotNetHelpers.DataStructures;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -169,6 +170,19 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 
 			return found;
+		}
+
+
+		public static IList<int> FindMatches( Item[] collection, Func<Item, bool> matcher ) {
+			var matches = new List<int>();
+
+			for( int i=0; i<collection.Length; i++ ) {
+				if( matcher(collection[i]) ) {
+					matches.Add( i );
+				}
+			}
+
+			return matches;
 		}
 	}
 }

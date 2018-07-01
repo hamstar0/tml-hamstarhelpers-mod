@@ -305,9 +305,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			add_def( "Any Equipment", ( Item item ) => {
 				return EntityGroups.ItemGroups["Any Tool"].Contains( item.type ) ||
 					EntityGroups.ItemGroups["Any Accessory"].Contains( item.type ) ||
-					EntityGroups.ItemGroups["Any Armor"].Contains( item.type ) ||
-					//EntityGroups.ItemGroups["Any Vanity"].Contains( item.type ) ||	?
-					EntityGroups.ItemGroups["Any Potion"].Contains( item.type );
+					EntityGroups.ItemGroups["Any Armor"].Contains( item.type );
 			} );
 
 			add_def( "Any Wood Equipment", ( Item item ) => {

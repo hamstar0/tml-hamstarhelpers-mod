@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
+
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
 		private static object MyLock = new object();
@@ -52,37 +53,41 @@ namespace HamstarHelpers.Services.EntityGroups {
 			this._GroupsPerItem = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerItem );
 			this._GroupsPerNPC = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerNPC );
 			this._GroupsPerProj = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerProj );
-
+			
 			Promises.Promises.AddPostModLoadPromise( () => {
 				if( !this.IsEnabled ) { return; }
 
 				this.GetItemPool();
 				this.GetNPCPool();
 				this.GetProjPool();
-
+				
 				ThreadPool.QueueUserWorkItem( _ => {
-					lock( EntityGroups.MyLock ) {
-						IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineItemGroups();
-						IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers = this.DefineNPCGroups();
-						IList<KeyValuePair<string, Func<Projectile, bool>>> proj_matchers = this.DefineProjectileGroups();
+					try {
+						lock( EntityGroups.MyLock ) {
+							IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineItemGroups();
+							IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers = this.DefineNPCGroups();
+							IList<KeyValuePair<string, Func<Projectile, bool>>> proj_matchers = this.DefineProjectileGroups();
 
-						this.ComputeGroups<Item>( item_matchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
-						this.ComputeGroups<NPC>( npc_matchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
-						this.ComputeGroups<Projectile>( proj_matchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+							this.ComputeGroups<Item>( item_matchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+							this.ComputeGroups<NPC>( npc_matchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+							this.ComputeGroups<Projectile>( proj_matchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
 
-						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
-						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
-						this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+							this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+							this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+							this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
 
-						this.CustomItemMatchers = null;
-						this.CustomNPCMatchers = null;
-						this.CustomProjMatchers = null;
-						this.ItemPool = null;
-						this.NPCPool = null;
-						this.ProjPool = null;
+							this.CustomItemMatchers = null;
+							this.CustomNPCMatchers = null;
+							this.CustomProjMatchers = null;
+							this.ItemPool = null;
+							this.NPCPool = null;
+							this.ProjPool = null;
+						}
+						
+						Promises.Promises.TriggerCustomPromise( "EntityGroupsLoaded" );
+					} catch( Exception e ) {
+						LogHelpers.Log( "EntityGroups - Initialization failed: "+e.ToString() );
 					}
-
-					Promises.Promises.TriggerCustomPromise( "EntityGroupsLoaded" );
 				} );
 			} );
 		}
@@ -95,7 +100,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			
 			switch( typeof( T ).Name ) {
 			case "Item":
-				list =( IList<T>)this.GetItemPool();
+				list = (IList<T>)this.GetItemPool();
 				break;
 			case "NPC":
 				list = (IList<T>)this.GetNPCPool();

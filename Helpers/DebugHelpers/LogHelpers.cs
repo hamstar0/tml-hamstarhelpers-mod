@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Services.Promises;
-using HamstarHelpers.TmlHelpers;
 using System;
 using System.IO;
 using Terraria;
