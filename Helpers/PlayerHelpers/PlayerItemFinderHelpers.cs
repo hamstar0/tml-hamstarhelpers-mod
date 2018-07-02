@@ -92,6 +92,8 @@ namespace HamstarHelpers.PlayerHelpers {
 				if( ammo_item.ammo == weapon.useAmmo ) {
 					return ammo_item;
 				}
+
+				first = false;
 			}
 
 			return null;
