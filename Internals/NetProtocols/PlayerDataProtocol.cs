@@ -56,7 +56,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
-				throw new HamstarException( "PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+				LogHelpers.Log( "PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+				return;
 			}
 
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();

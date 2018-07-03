@@ -57,7 +57,7 @@ namespace HamstarHelpers {
 			} else if( Main.netMode == 1 ) {
 				this.Logic.PreUpdateClient( (HamstarHelpersMod)this.mod, this.player );
 			} else {
-				this.Logic.PreUpdateSingle( (HamstarHelpersMod)this.mod, this.player );
+				this.Logic.PreUpdateSingle( (HamstarHelpersMod)this.mod );
 			}
 		}
 

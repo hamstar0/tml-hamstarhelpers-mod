@@ -58,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntityManager.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntity.cs" />
+    <Compile Include="Components\CustomEntity\Properties.cs" />
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
     <Compile Include="Components\UI\Elements\UIDialog.cs" />
@@ -91,8 +94,6 @@
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
-    <Compile Include="Commands\_AdminUserRemoveCommand.cs" />
-    <Compile Include="Commands\_AdminUserAddCommand.cs" />
     <Compile Include="Commands\ConfigsRefreshCommand.cs" />
     <Compile Include="Commands\ControlPanelOpenCommand.cs" />
     <Compile Include="Commands\ModIssueReportCommand.cs" />
@@ -179,16 +180,6 @@
     <Compile Include="Services\Promises\Promises.cs" />
     <Compile Include="Services\Promises\Promises_Load.cs" />
     <Compile Include="Services\Timers\Timers.cs" />
-    <Compile Include="_Utilities\_Errors\_Errors.cs" />
-    <Compile Include="_Utilities\_Config\_ConfigurationDataBase.cs" />
-    <Compile Include="_Utilities\_Config\_JsonConfig.cs" />
-    <Compile Include="_Utilities\_Config\_JsonConfig_Obsolete.cs" />
-    <Compile Include="_Utilities\_EntityGroups\_EntityGroups_API.cs" />
-    <Compile Include="_Utilities\_Menu\_MenuItem.cs" />
-    <Compile Include="_Utilities\_Messages\_InboxMessages.cs" />
-    <Compile Include="_Utilities\_Network\_PacketProtocol_Handler.cs" />
-    <Compile Include="_Utilities\_Network\_PacketProtocol_Obsolete.cs" />
-    <Compile Include="_Utilities\_Network\_PacketProtocol_Stream.cs" />
     <Compile Include="Internals\WebRequests\GithubModIssueReports.cs" />
     <Compile Include="Internals\WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
@@ -234,7 +225,6 @@
     <Compile Include="Helpers\TmlHelpers\TmlPlayerHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\_UITheme.cs" />
     <Compile Include="Helpers\_UserHelpers\_UserHelpers.cs" />
-    <Compile Include="_Utilities\_AnimatedColors\_AnimatedColors.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Helpers\DotNetHelpers\DotNetHelpers.cs" />
@@ -250,12 +240,6 @@
     <Compile Include="Helpers\UIHelpers\_Elements\_UIDialog.cs" />
     <Compile Include="Helpers\UIHelpers\_Elements\_Dialogs\_UIPromptDialog.cs" />
     <Compile Include="Components\Errors\Errors.cs" />
-    <Compile Include="_Utilities\_Network\_PacketProtocol_Receive.cs" />
-    <Compile Include="_Utilities\_Network\_PacketProtocol_Send.cs" />
-    <Compile Include="_Utilities\_Network\_PacketProtocol.cs" />
-    <Compile Include="_Utilities\_Timers\_Timers.cs" />
-    <Compile Include="_Utilities\_Messages\_PlayerMessages.cs" />
-    <Compile Include="_Utilities\_Messages\_SimpleMessage.cs" />
     <Compile Include="Helpers\HudHelpers\HudHelpers.cs" />
     <Compile Include="Helpers\HudHelpers\HudMapHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\UIHelpers_Obsolete.cs" />
@@ -264,14 +248,31 @@
     <Compile Include="Helpers\UIHelpers\_Elements\_UITextArea.cs" />
     <Compile Include="Helpers\UIHelpers\_Elements\_UITextPanelButton.cs" />
     <Compile Include="Helpers\UIHelpers\_Elements\_UIWebUrl.cs" />
+    <Compile Include="Helpers\WorldHelpers\WorldHelpers_Defs.cs" />
+    <Compile Include="Helpers\XnaHelpers\XnaColorHelpers.cs" />
+    <Compile Include="Helpers\XnaHelpers\XnaHelpers.cs" />
+    <Compile Include="_Utilities\_AnimatedColors\_AnimatedColors.cs" />
+    <Compile Include="_Utilities\_Config\_ConfigurationDataBase.cs" />
+    <Compile Include="_Utilities\_Config\_JsonConfig.cs" />
+    <Compile Include="_Utilities\_Config\_JsonConfig_Obsolete.cs" />
+    <Compile Include="_Utilities\_EntityGroups\_EntityGroups_API.cs" />
+    <Compile Include="_Utilities\_Errors\_Errors.cs" />
+    <Compile Include="_Utilities\_Menu\_MenuItem.cs" />
+    <Compile Include="_Utilities\_Messages\_InboxMessages.cs" />
+    <Compile Include="_Utilities\_Messages\_PlayerMessages.cs" />
+    <Compile Include="_Utilities\_Messages\_SimpleMessage.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Handler.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Obsolete.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Receive.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Send.cs" />
+    <Compile Include="_Utilities\_Network\_PacketProtocol_Stream.cs" />
+    <Compile Include="_Utilities\_Timers\_Timers.cs" />
     <Compile Include="_Utilities\_UI\_UICheckbox.cs" />
     <Compile Include="_Utilities\_UI\_UIModData.cs" />
     <Compile Include="_Utilities\_UI\_UITextArea.cs" />
     <Compile Include="_Utilities\_UI\_UITextPanelButton.cs" />
     <Compile Include="_Utilities\_UI\_UIWebUrl.cs" />
-    <Compile Include="Helpers\WorldHelpers\WorldHelpers_Defs.cs" />
-    <Compile Include="Helpers\XnaHelpers\XnaColorHelpers.cs" />
-    <Compile Include="Helpers\XnaHelpers\XnaHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build.txt" />

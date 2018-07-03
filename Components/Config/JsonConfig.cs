@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using HamstarHelpers.DebugHelpers;
 
+
 namespace HamstarHelpers.Components.Config {
 	public class JsonConfig {
 		public static string ConfigSubfolder { get { return "Mod Configs"; } }

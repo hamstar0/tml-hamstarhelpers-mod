@@ -229,7 +229,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 				Vector2 pos = inner_dim.Position();
 				pos.X += 128f;
 			
-				sb.DrawString( Main.fontDeathText, "Update Needed!", pos, color, 0f, default( Vector2 ), 1f, SpriteEffects.None, 1f );
+				sb.DrawString( Main.fontDeathText, this.LatestAvailableVersion.ToString()+" Available", pos, color, 0f, default( Vector2 ), 1f, SpriteEffects.None, 1f );
 			}
 		}
 

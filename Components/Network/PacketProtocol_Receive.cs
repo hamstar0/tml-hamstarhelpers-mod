@@ -7,7 +7,20 @@ using System.Reflection;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol {
-		private void ReceiveBaseEither( BinaryReader reader, int from_who ) {
+		private void ReceiveWithClientBase( BinaryReader reader, int from_who ) {
+			this.ReceiveWithEitherBase( reader, from_who );
+
+			this.ReceiveWithClient();
+		}
+
+		private void ReceiveWithServerBase( BinaryReader reader, int from_who ) {
+			this.ReceiveWithEitherBase( reader, from_who );
+
+			this.ReceiveWithServer( from_who );
+		}
+
+
+		private void ReceiveWithEitherBase( BinaryReader reader, int from_who ) {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			Type mytype = this.GetType();
 
@@ -45,26 +58,9 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 
-		private void ReceiveBaseOnClient( BinaryReader reader, int from_who ) {
-			this.ReceiveBaseEither( reader, from_who );
-
-			var method_info = this.GetType().GetMethod( "ReceiveOnClient" );
-			
-			this.ReceiveWithClient();
-		}
-
-		private void ReceiveBaseOnServer( BinaryReader reader, int from_who ) {
-			this.ReceiveBaseEither( reader, from_who );
-
-			var method_info = this.GetType().GetMethod( "ReceiveOnServer" );
-			
-			this.ReceiveWithServer( from_who );
-		}
-
-
 		////////
 
-		private void ReceiveBaseRequestOnClient() {
+		private void ReceiveRequestWithClientBase() {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
@@ -85,7 +81,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 		}
 
-		private void ReceiveBaseRequestOnServer( int from_who ) {
+		private void ReceiveRequestWithServerBase( int from_who ) {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {

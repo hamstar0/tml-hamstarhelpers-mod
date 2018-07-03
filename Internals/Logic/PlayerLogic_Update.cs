@@ -25,8 +25,8 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void PreUpdateSingle( HamstarHelpersMod mymod, Player player ) {
-			this.PreUpdatePlayer( mymod, player );
+		public void PreUpdateSingle( HamstarHelpersMod mymod ) {
+			this.PreUpdatePlayer( mymod, Main.LocalPlayer );
 		}
 
 		public void PreUpdateClient( HamstarHelpersMod mymod, Player player ) {
