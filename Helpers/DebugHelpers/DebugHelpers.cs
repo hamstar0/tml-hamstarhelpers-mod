@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.DebugHelpers {
@@ -86,20 +85,6 @@ namespace HamstarHelpers.DebugHelpers {
 				}
 				y_pos += 24;
 			}
-		}
-
-
-		////////////////
-
-		[System.Obsolete( "use LogHelpers.Log", true )]
-		public static void Log( string msg ) {
-			string now = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds.ToString( "N2" );
-			string logged = "" + Main.netMode + ":" + Main.myPlayer.ToString("D3") + ":" + DebugHelpers.LoggedMessages + " - " + now;
-			logged += new String( ' ', 30 - logged.Length );
-
-			ErrorLogger.Log( logged+msg );
-
-			DebugHelpers.LoggedMessages++;
 		}
 	}
 }

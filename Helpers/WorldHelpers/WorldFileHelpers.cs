@@ -32,14 +32,7 @@ namespace HamstarHelpers.WorldHelpers {
 			Main.LoadWorlds();
 		}*/
 
-
-		[System.Obsolete( "use WorldFileHelpers.EraseWorld( WorldFileData, bool )", false )]
-		public static void EraseWorld( int which, bool also_bak = true ) {
-			WorldFileData data = Main.WorldList[ which ];
-			WorldFileHelpers.EraseWorld( data, also_bak );
-		}
-
-
+		
 		public static void EraseWorld( WorldFileData data, bool also_bak=true ) {
 			try {
 				if( !data.IsCloudSave ) {

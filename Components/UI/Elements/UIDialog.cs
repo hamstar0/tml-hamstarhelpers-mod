@@ -7,25 +7,6 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public class UIDialog : UIState {
-		[System.Obsolete( "use UIDialog.InitialContainerWidth", true )]
-		public virtual int ContainerWidth {
-			get {
-				return InitialContainerWidth;
-			}
-			protected set {
-				InitialContainerWidth = value;
-			}
-		}
-		[System.Obsolete( "use UIDialog.InitialContainerHeight", true )]
-		public virtual int ContainerHeight {
-			get {
-				return InitialContainerHeight;
-			}
-			protected set {
-				InitialContainerHeight = value;
-			}
-		}
-
 		public virtual int InitialContainerWidth { get; protected set; }
 		public virtual int InitialContainerHeight { get; protected set; }
 

@@ -136,30 +136,4 @@ namespace HamstarHelpers.ItemHelpers {
 			}
 		}
 	}
-
-
-
-	public static class ItemMusicBoxHelpers {
-		[Obsolete( "use MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
-		public static int GetMusicTypeOfMusicBox( int item_type ) {
-			return MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
-		}
-		[Obsolete( "use MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
-		public static int GetMusicTypeOfVanillaMusicBox( int item_type ) {
-			return MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
-		}
-
-		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
-		public static ISet<int> GetMusicBoxes() {
-			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
-		}
-		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
-		public static ISet<int> GetVanillaMusicBoxItemIds() {
-			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
-		}
-		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
-		public static ISet<int> GetVanillaMusicBoxes() {
-			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
-		}
-	}
 }

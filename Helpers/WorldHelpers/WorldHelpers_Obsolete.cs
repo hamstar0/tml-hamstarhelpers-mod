@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers;
+﻿using HamstarHelpers.DotNetHelpers;
 using System;
 using Terraria;
 

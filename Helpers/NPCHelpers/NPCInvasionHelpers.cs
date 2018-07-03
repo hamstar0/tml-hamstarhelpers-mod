@@ -39,23 +39,6 @@ namespace HamstarHelpers.NPCHelpers {
 		}
 
 
-		[System.Obsolete( "use NPCInvasionHelpers.GetCurrentEventTypes", true )]
-		public static VanillaInvasionType GetCurrentInvasionType() {
-			VanillaInvasionType inv_type = NPCInvasionHelpers.GetInvasionType( Main.invasionType );
-
-			if( inv_type == VanillaInvasionType.None ) {
-				if( Main.snowMoon ) { return VanillaInvasionType.FrostMoon; }
-				if( Main.pumpkinMoon ) { return VanillaInvasionType.PumpkinMoon; }
-				if( Main.eclipse ) { return VanillaInvasionType.SolarEclipse; }
-				if( Main.slimeRain ) { return VanillaInvasionType.SlimeRain; }
-				if( NPC.LunarApocalypseIsUp ) { return VanillaInvasionType.LunarApocalypse; }
-				if( Main.bloodMoon ) { return VanillaInvasionType.BloodMoon; }
-				if( Sandstorm.Happening ) { return VanillaInvasionType.Sandstorm; }
-			}
-			return inv_type;
-		}
-
-
 		public static IList<VanillaInvasionType> GetCurrentEventTypes() {
 			var event_types = new List<VanillaInvasionType>();
 			var inv_type = NPCInvasionHelpers.GetInvasionType( Main.invasionType );

@@ -164,12 +164,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 
 		////////////////
-
-		[System.Obsolete( "use UIModData.CheckForNewVersionAsync", true )]
-		public void CheckForNewVersion() {
-			this.CheckForNewVersionAsync();
-		}
-
+		
 		public void CheckForNewVersionAsync() {
 			Action<Version> on_success = delegate ( Version vers ) {
 				this.LatestAvailableVersion = vers;

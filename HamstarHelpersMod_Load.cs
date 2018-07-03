@@ -38,7 +38,6 @@ namespace HamstarHelpers {
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;
 		internal MenuUIManager MenuUIMngr;
-		internal Utilities.Menu.OldMenuItemManager OldMenuItemMngr;
 
 		// Services
 		internal Timers Timers;
@@ -140,13 +139,7 @@ namespace HamstarHelpers {
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuUIMngr = new MenuUIManager();
-			this.OldMenuItemMngr = new Utilities.Menu.OldMenuItemManager();
 			this.MusicHelpers = new MusicHelpers();
-
-#pragma warning disable 612, 618
-			TmlHelpers.AltNPCInfo.DataInitialize();
-			TmlHelpers.AltProjectileInfo.DataInitialize();
-#pragma warning restore 612, 618
 
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Mod Helpers Control Panel", "O" );
@@ -207,7 +200,6 @@ namespace HamstarHelpers {
 			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
 			this.MenuUIMngr = null;
-			this.OldMenuItemMngr = null;
 			this.MusicHelpers = null;
 			this.Promises = null;
 
@@ -217,7 +209,6 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostSetupContent() {
-			this.OldPacketProtocols = Utilities.Network.OldPacketProtocol.GetProtocols();
 			this.PacketProtocols = PacketProtocol.GetProtocols();
 
 			this.Promises.OnPostSetupContent();

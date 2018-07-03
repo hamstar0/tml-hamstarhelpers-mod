@@ -11,18 +11,7 @@ namespace HamstarHelpers.NetHelpers {
 		private readonly static object RequestMutex = new object();
 
 
-
-		[System.Obsolete( "use NetHelpers.MakePostRequestAsync(string, byte[], Action<string>, Action<Exception, string>, [Action])", true )]
-		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception> on_error = null, Action on_completion = null ) {
-			Action<Exception, string> on_wrapped_error = ( e, _ ) => {
-				if( on_error != null ) {
-					on_error( e );
-				}
-			};
-
-			NetHelpers.MakePostRequestAsync( url, bytes, on_response, on_wrapped_error, on_completion );
-		}
-
+		
 		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception, string> on_error, Action on_completion=null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success;
@@ -51,13 +40,7 @@ namespace HamstarHelpers.NetHelpers {
 			} );
 		}
 
-
-		[System.Obsolete( "use NetHelpers.MakePostRequest(string, byte[], out bool)", true )]
-		public static string MakePostRequest( string url, byte[] bytes ) {
-			bool _;
-			return NetHelpers.MakePostRequest( url, bytes, out _ );
-		}
-
+		
 		public static string MakePostRequest( string url, byte[] bytes, out bool success ) {
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
 			request.Method = "POST";
@@ -87,18 +70,7 @@ namespace HamstarHelpers.NetHelpers {
 
 
 		////////////////
-
-		[System.Obsolete( "use NetHelpers.MakeGetRequestAsync(string, Action<string>, Action<Exception, string>, [Action])", true )]
-		public static void MakeGetRequestAsync( string url, Action<string> on_response, Action<Exception> on_error = null, Action on_completion = null ) {
-			Action<Exception, string> on_wrapped_error = ( e, _ ) => {
-				if( on_error != null ) {
-					on_error( e );
-				}
-			};
-
-			NetHelpers.MakeGetRequestAsync( url, on_response, on_wrapped_error, on_completion );
-		}
-
+		
 		public static void MakeGetRequestAsync( string url, Action<string> on_response, Action<Exception, string> on_error, Action on_completion = null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success;
@@ -127,13 +99,7 @@ namespace HamstarHelpers.NetHelpers {
 			} );
 		}
 
-
-		[System.Obsolete( "use NetHelpers.MakeGetRequest(string, out bool)", true )]
-		public static string MakeGetRequest( string url ) {
-			bool _;
-			return NetHelpers.MakeGetRequest( url, out _ );
-		}
-
+		
 		public static string MakeGetRequest( string url, out bool success ) {
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
 			request.Method = "GET";

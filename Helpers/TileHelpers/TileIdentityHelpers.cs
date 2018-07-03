@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
+
 namespace HamstarHelpers.TileHelpers {
 	public static class TileIdentityHelpers {
 		private static IDictionary<int, IDictionary<int, string>> VanillaTileData;
@@ -2948,14 +2949,6 @@ namespace HamstarHelpers.TileHelpers {
 				|| Main.tileSign[tile_type]
 				|| Main.tileAlch[tile_type]
 				|| Main.tileTable[tile_type]; //tileFlame
-		}
-
-
-		////////////////
-
-		[System.Obsolete( "use TileIdentityHelpers.GetVanillaTileName", false )]
-		public static string GetTileName( int tile_type ) {
-			return TileIdentityHelpers.GetVanillaTileName( tile_type );
 		}
 	}
 }

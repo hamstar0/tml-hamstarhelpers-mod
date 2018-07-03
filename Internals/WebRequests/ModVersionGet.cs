@@ -117,18 +117,5 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		private IDictionary<string, Version> ModVersions = null;
-
-
-
-		////////////////
-
-		[System.Obsolete( "use ModVersionGet.GetLatestKnownVersionAsync", true )]
-		public static void GetLatestKnownVersion( Mod mod, Action<Version> on_success, Action<Version> on_fail = null ) {
-			ModVersionGet.GetLatestKnownVersionAsync( mod, on_success, delegate ( Exception _ ) {
-				if( on_fail != null ) {
-					on_fail( mod.Version );
-				}
-			} );
-		}
 	}
 }

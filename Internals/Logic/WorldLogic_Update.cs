@@ -48,11 +48,6 @@ namespace HamstarHelpers.Internals.Logic {
 		
 		private void UpdateSafelyLoaded( HamstarHelpersMod mymod ) {
 			mymod.ModLockHelpers.Update();
-
-#pragma warning disable 612, 618
-			AltProjectileInfo.UpdateAll();
-			AltNPCInfo.UpdateAll();
-#pragma warning restore 612, 618
 		}
 	}
 }

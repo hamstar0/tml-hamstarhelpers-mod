@@ -13,7 +13,6 @@ namespace HamstarHelpers.Internals.Logic {
 				SimpleMessage.UpdateMessage();
 				mymod.PlayerMessages.Update();
 				this.DialogManager.Update( mymod );
-				this.OldDialogManager.Update( mymod );
 			}
 
 			foreach( int buff_id in this.PermaBuffsById ) {

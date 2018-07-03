@@ -5,15 +5,6 @@ using Terraria;
 
 namespace HamstarHelpers.TmlHelpers {
 	public class TmlPlayerHelpers {
-		[System.Obsolete( "use PlayerHelpers.GetUniqueId", true )]
-		public static string GetUniqueId( Player player ) {
-			bool _;
-			return PlayerHelpers.PlayerHelpers.GetUniqueId( player, out _ );
-		}
-
-		
-		////////////////
-
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
 			var tml_player = HamstarHelpersMod.Instance.TmlPlayerHelpers;
 

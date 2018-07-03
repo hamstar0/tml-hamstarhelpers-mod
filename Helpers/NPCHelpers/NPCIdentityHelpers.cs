@@ -62,13 +62,5 @@ namespace HamstarHelpers.NPCHelpers {
 
 			this._NamesToIds = new ReadOnlyDictionaryOfSets<string, int>( dict );
 		}
-
-
-		////////////////
-
-		[System.Obsolete( "use NPCHelpers.LooselyAssessThreat", true )]
-		public static float LooselyAssessThreat( NPC npc ) {
-			return NPCHelpers.LooselyAssessThreat( npc );
-		}
 	}
 }

@@ -30,7 +30,7 @@ namespace HamstarHelpers.Components.Network {
 				pos = pos >= 24 ? 0 : pos + 8;
 			}
 
-			return Math.Abs(code);
+			return code;
 		}
 
 

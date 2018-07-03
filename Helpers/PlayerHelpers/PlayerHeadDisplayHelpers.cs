@@ -362,17 +362,4 @@ namespace HamstarHelpers.PlayerHelpers {
 			}
 		}
 	}
-
-
-
-	[System.Obsolete( "use PlayerHeadDisplayHelpers", true )]
-	public static class PlayerHeadHelpers {
-		public static Color quickAlpha( Color old_color, float alpha ) {
-			return PlayerHeadDisplayHelpers.QuickAlpha( old_color, alpha );
-		}
-		
-		public static void DrawPlayerHead( SpriteBatch sb, Player player, float x, float y, float alpha = 1f, float scale = 1f ) {
-			PlayerHeadDisplayHelpers.DrawPlayerHead( sb, player, x, y, alpha, scale );
-		}
-	}
 }

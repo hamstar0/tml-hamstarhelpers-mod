@@ -17,7 +17,6 @@ namespace HamstarHelpers.Internals.Logic {
 		private uint TestPing = 0;
 
 		public DialogManager DialogManager = new DialogManager();
-		internal UIHelpers.Elements.OldDialogManager OldDialogManager = new UIHelpers.Elements.OldDialogManager();
 
 		public bool HasSyncedModSettings { get; private set; }
 		public bool HasSyncedModData { get; private set; }

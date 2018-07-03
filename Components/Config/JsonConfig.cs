@@ -67,11 +67,6 @@ namespace HamstarHelpers.Components.Config {
 				LogHelpers.Log( "JsonConfig.DeserializeMe - "+e.Message );
 			}
 		}
-		[Obsolete( "use JsonConfig.DeserializeMe(string, out bool)", true )]
-		public void DeserializeMe( string str_data ) {
-			bool _;
-			this.DeserializeMe( str_data, out _ );
-		}
 
 		public void SetData( T data ) {
 			this.Data = data;

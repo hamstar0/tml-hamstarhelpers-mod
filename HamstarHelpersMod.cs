@@ -50,17 +50,9 @@ namespace HamstarHelpers {
 				int protocol_code = reader.ReadInt32();
 
 				if( Main.netMode == 1 ) {
-					if( protocol_code >= 0 ) {
-						PacketProtocol.HandlePacketOnClient( protocol_code, reader, player_who );
-					} else {
-						Utilities.Network.OldPacketProtocol.HandlePacketOnClient( protocol_code, reader, player_who );
-					}
+					PacketProtocol.HandlePacketOnClient( protocol_code, reader, player_who );
 				} else if( Main.netMode == 2 ) {
-					if( protocol_code >= 0 ) {
-						PacketProtocol.HandlePacketOnServer( protocol_code, reader, player_who );
-					} else {
-						Utilities.Network.OldPacketProtocol.HandlePacketOnServer( protocol_code, reader, player_who );
-					}
+					PacketProtocol.HandlePacketOnServer( protocol_code, reader, player_who );
 				}
 			} catch( Exception e ) {
 				DebugHelpers.LogHelpers.Log( "HamstarHelpersMod.HandlePacket - " + e.ToString() );
