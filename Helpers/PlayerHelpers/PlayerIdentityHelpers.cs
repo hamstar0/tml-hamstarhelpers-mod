@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.ItemHelpers;
 using Terraria;
 
 
-namespace HamstarHelpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static class PlayerIdentityHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;

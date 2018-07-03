@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.MiscHelpers;
+﻿using HamstarHelpers.Helpers.MiscHelpers;
 
 
 namespace HamstarHelpers {

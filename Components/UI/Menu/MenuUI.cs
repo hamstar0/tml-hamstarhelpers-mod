@@ -1,12 +1,10 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.UI.Elements;

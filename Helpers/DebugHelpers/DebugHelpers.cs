@@ -7,7 +7,7 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.DebugHelpers {
+namespace HamstarHelpers.Helpers.DebugHelpers {
 	public static class DebugHelpers {
 		internal static bool Once;
 		internal static int OnceInAWhile;

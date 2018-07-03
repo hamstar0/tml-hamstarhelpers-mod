@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Services.Promises;
-using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 using System.Collections.Generic;
 
 

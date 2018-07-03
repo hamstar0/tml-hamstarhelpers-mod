@@ -2,7 +2,7 @@
 using Terraria.ID;
 
 
-namespace HamstarHelpers.TileHelpers {
+namespace HamstarHelpers.Helpers.TileHelpers {
 	public static class TileWallHelpers {
 		public static bool IsDungeon( Tile tile ) {
 			if( tile == null ) { return false; }

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Internals.Logic;
 using System;
 using Terraria;
@@ -22,7 +22,7 @@ namespace HamstarHelpers {
 		public override void Initialize() {
 			var mymod = (HamstarHelpersMod)this.mod;
 
-			this.ObsoleteID2 = WorldHelpers.WorldHelpers.GetUniqueId();
+			this.ObsoleteID2 = WorldHelpers.GetUniqueId();
 			this.ObsoleteID = Guid.NewGuid().ToString( "D" );
 			this.HasCorrectID = false;  // 'Load()' decides if no pre-existing one is found
 

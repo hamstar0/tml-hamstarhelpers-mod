@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.DebugHelpers {
+namespace HamstarHelpers.Helpers.DebugHelpers {
 	public class LogHelpers {
 		private static Object MyLock = new Object();
 

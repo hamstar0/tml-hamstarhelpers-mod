@@ -6,7 +6,7 @@ using System.Threading;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.NetHelpers {
+namespace HamstarHelpers.Helpers.NetHelpers {
 	public partial class NetHelpers {
 		private readonly static object RequestMutex = new object();
 

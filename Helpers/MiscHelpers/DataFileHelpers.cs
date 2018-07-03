@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.MiscHelpers {
 	public partial class DataFileHelpers {
 		public static string BaseFolder { get { return "Mod Specific Data"; } }
 

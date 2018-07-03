@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 using Terraria;
 
 
-namespace HamstarHelpers.UIHelpers {
+namespace HamstarHelpers.Helpers.UIHelpers {
 	public static partial class UIHelpers {
 		public static Rectangle GetWorldFrameOfScreen() {
 			int screen_wid = (int)((float)Main.screenWidth / Main.GameZoomTarget);

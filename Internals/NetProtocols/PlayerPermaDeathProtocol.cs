@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using Terraria;
 
 
@@ -26,7 +27,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void ReceiveWithClient() {
 			Player player = Main.player[ this.PlayerWho ];
 
-			PlayerHelpers.PlayerHelpers.ApplyPermaDeath( player, this.Msg );
+			PlayerHelpers.ApplyPermaDeath( player, this.Msg );
 		}
 	}
 }

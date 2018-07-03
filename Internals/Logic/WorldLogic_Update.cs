@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Internals.ControlPanel;
-using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 
 
 namespace HamstarHelpers.Internals.Logic {

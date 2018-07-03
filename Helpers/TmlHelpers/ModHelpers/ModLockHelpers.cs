@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 	public class ModLockHelpers {
 		public static bool IsWorldLocked() {
 			var mymod = HamstarHelpersMod.Instance;

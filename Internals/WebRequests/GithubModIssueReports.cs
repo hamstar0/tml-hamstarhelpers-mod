@@ -1,6 +1,7 @@
-﻿using HamstarHelpers.MiscHelpers;
-using HamstarHelpers.TmlHelpers;
-using HamstarHelpers.TmlHelpers.ModHelpers;
+﻿using HamstarHelpers.Helpers.MiscHelpers;
+using HamstarHelpers.Helpers.NetHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -67,7 +68,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			NetHelpers.NetHelpers.MakePostRequestAsync( url, json_bytes, on_response, on_error, on_completion );
+			NetHelpers.MakePostRequestAsync( url, json_bytes, on_response, on_error, on_completion );
 		}
 	}
 }

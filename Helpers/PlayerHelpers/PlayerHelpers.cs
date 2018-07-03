@@ -1,12 +1,13 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.ItemHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using HamstarHelpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 
-namespace HamstarHelpers.PlayerHelpers {
+
+namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;

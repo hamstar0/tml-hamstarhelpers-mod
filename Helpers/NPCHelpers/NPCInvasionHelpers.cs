@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameContent.Events;
 
 
-namespace HamstarHelpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCHelpers {
 	public enum VanillaInvasionType {
 		None = 1,
 		Goblins = 2,

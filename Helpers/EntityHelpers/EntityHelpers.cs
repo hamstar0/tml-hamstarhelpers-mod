@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.ItemHelpers;
-using HamstarHelpers.NPCHelpers;
-using HamstarHelpers.ProjectileHelpers;
+﻿using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.NPCHelpers;
+using HamstarHelpers.Helpers.ProjectileHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
 
 
-namespace HamstarHelpers.EntityHelpers {
+namespace HamstarHelpers.Helpers.EntityHelpers {
 	public static class EntityHelpers {
 		public static int GetVanillaSnapshotHash( Entity ent, bool no_context ) {
 			int hash = ("active"+ent.active).GetHashCode();

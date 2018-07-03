@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public static partial class ItemHelpers {
 		public static IList<Item> GetActive() {
 			var list = new List<Item>();

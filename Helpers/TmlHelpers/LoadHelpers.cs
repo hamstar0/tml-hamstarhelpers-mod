@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Terraria;
 
 
-namespace HamstarHelpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers {
 	public partial class LoadHelpers {
 		public static bool IsModLoaded() {
 			var mymod = HamstarHelpersMod.Instance;

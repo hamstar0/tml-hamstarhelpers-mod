@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 
 
-namespace HamstarHelpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCHelpers {
 	public static class NPCTownHelpers {
 		public static void Spawn( int town_npc_type, int tile_x, int tile_y ) {
 			int npc_who = NPC.NewNPC( tile_x * 16, tile_y * 16, town_npc_type, 1, 0f, 0f, 0f, 0f, 255 );

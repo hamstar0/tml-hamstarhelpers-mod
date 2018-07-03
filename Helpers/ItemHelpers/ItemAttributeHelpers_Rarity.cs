@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public static partial class ItemAttributeHelpers {
 		public const int HighestVanillaRarity = 11;
 		public const int JunkRarity = -1;

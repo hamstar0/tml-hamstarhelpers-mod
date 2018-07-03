@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers {
 	public class TmlPlayerHelpers {
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
 			var tml_player = HamstarHelpersMod.Instance.TmlPlayerHelpers;

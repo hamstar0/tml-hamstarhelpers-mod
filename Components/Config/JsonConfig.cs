@@ -2,7 +2,7 @@
 using Terraria;
 using Newtonsoft.Json;
 using System;
-using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Helpers.DebugHelpers;
 
 
 namespace HamstarHelpers.Components.Config {

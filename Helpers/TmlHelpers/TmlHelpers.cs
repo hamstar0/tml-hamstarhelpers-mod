@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 using Terraria.Social;
 
 
-namespace HamstarHelpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers {
 	public static class TmlHelpers {
 		private static IDictionary<Mod, string> ModIds = new Dictionary<Mod, string>();
 

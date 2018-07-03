@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.NetHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -109,7 +110,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			NetHelpers.NetHelpers.MakeGetRequestAsync( ModVersionGet.ModVersionUrl, on_response, on_fail );
+			NetHelpers.MakeGetRequestAsync( ModVersionGet.ModVersionUrl, on_response, on_fail );
 		}
 
 

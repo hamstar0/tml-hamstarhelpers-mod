@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.XnaHelpers;
+﻿using HamstarHelpers.Helpers.XnaHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.MiscHelpers {
 	public class PaintHelpers {
 		private static IDictionary<int, byte> CachedMatches = new Dictionary<int, byte>();
 

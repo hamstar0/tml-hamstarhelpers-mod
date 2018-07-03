@@ -5,7 +5,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.HudHelpers {
+namespace HamstarHelpers.Helpers.HudHelpers {
 	public static class HudHealthBarHelpers {
 		public static Color GetHealthBarColor( int hp, int max_hp, float alpha ) {
 			if( hp <= 0 ) { return Color.Black; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers.DataStructures {
+namespace HamstarHelpers.Components.DataStructures {
 	public class ReadOnlyDictionaryOfSets<K, V> : IReadOnlyDictionary<K, V> {
 		private IDictionary<K, ISet<V>> Dict = new Dictionary<K, ISet<V>>();
 

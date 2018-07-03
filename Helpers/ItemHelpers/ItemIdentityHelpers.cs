@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public partial class ItemIdentityHelpers {
 		public static string GetUniqueId( Item item ) {
 			if( item.modItem != null ) {

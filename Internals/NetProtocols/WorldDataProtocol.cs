@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.WorldHelpers;
 using Terraria;
 
 
@@ -15,7 +16,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var mymod = HamstarHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
-			this.HalfDays = WorldHelpers.WorldHelpers.GetElapsedHalfDays();
+			this.HalfDays = WorldHelpers.GetElapsedHalfDays();
 			this.HasCorrectWorldId = myworld.HasCorrectID;
 			this.ObsoleteWorldId = myworld.ObsoleteID;
 		}

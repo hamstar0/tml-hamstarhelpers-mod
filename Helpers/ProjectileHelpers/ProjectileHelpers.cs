@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.ProjectileHelpers {
+namespace HamstarHelpers.Helpers.ProjectileHelpers {
 	public static class ProjectileHelpers {
 		public static void DrawSimple( SpriteBatch sb, Projectile proj, Vector2 pos, float rot, Color color, float scale ) {
 			Texture2D tex = Main.projectileTexture[proj.type];

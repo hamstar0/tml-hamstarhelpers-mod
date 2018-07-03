@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.TmlHelpers;
 using Terraria.UI;
 
 

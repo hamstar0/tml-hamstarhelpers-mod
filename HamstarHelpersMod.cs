@@ -1,5 +1,7 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Services.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -55,7 +57,7 @@ namespace HamstarHelpers {
 					PacketProtocol.HandlePacketOnServer( protocol_code, reader, player_who );
 				}
 			} catch( Exception e ) {
-				DebugHelpers.LogHelpers.Log( "HamstarHelpersMod.HandlePacket - " + e.ToString() );
+				LogHelpers.Log( "HamstarHelpersMod.HandlePacket - " + e.ToString() );
 			}
 		}
 
@@ -72,7 +74,7 @@ namespace HamstarHelpers {
 
 
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-			if( this.LoadHelpers != null && !TmlHelpers.LoadHelpers.IsWorldBeingPlayed() ) { return; }
+			if( this.LoadHelpers != null && !LoadHelpers.IsWorldBeingPlayed() ) { return; }
 
 			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 			if( idx == -1 ) { return; }
@@ -83,9 +85,9 @@ namespace HamstarHelpers {
 				this.PlayerMessages.Draw( sb );
 				SimpleMessage.DrawMessage( sb );
 
-				DebugHelpers.DebugHelpers.PrintToBatch( sb );
-				DebugHelpers.DebugHelpers.Once = false;
-				DebugHelpers.DebugHelpers.OnceInAWhile--;
+				DebugHelpers.PrintToBatch( sb );
+				DebugHelpers.Once = false;
+				DebugHelpers.OnceInAWhile--;
 				return true;
 			};
 

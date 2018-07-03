@@ -5,7 +5,8 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using HamstarHelpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.UIHelpers;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
@@ -84,7 +85,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( !string.IsNullOrEmpty(this.Url) ) {
-				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
+				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
 			}
 		}
 	}

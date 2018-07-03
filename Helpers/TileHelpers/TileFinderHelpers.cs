@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.TileHelpers {
+namespace HamstarHelpers.Helpers.TileHelpers {
 	public static class TileFinderHelpers {
 		public static bool HasNearbySolid( int tile_x, int tile_y, int proximity_in_tiles ) {
 			int min_x = Math.Max( tile_x - proximity_in_tiles, 0 );

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -48,7 +49,7 @@ namespace HamstarHelpers.Commands {
 				object[] call_args = new object[ args.Length - 1 ];
 
 				for( int i=1; i<args.Length; i++ ) {
-					call_args[i - 1] = DotNetHelpers.DotNetHelpers.ParseToInferredPrimitiveType( args[i] );
+					call_args[i - 1] = DotNetHelpers.ParseToInferredPrimitiveType( args[i] );
 				}
 
 				callmod.Call( call_args );

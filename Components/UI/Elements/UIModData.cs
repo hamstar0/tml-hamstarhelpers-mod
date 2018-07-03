@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.AnimatedColor;
-using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

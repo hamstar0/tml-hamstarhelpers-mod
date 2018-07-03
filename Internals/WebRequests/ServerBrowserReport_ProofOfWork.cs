@@ -1,5 +1,6 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.NetHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Text;
@@ -39,7 +40,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			Thread.Sleep( 1500 );
 
-			NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, delegate ( string output ) {
+			NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, delegate ( string output ) {
 				LogHelpers.Log( "Server browser processing complete." );
 			}, delegate ( Exception e, string output ) {
 				LogHelpers.Log( "Server browser reply returned error: " + e.ToString() );

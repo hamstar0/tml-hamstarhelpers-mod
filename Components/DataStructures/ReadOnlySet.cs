@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.DotNetHelpers.DataStructures {
+namespace HamstarHelpers.Components.DataStructures {
 	public class ReadOnlySet<T> : ISet<T> {
 		private ISet<T> MySet;
 

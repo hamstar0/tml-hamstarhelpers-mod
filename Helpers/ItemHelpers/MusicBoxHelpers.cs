@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public static class MusicBoxHelpers {
 		public static ISet<int> GetVanillaMusicBoxItemIds() {
 			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,

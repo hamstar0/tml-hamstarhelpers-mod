@@ -1,7 +1,7 @@
 ﻿using Terraria;
 
 
-namespace HamstarHelpers.BuffHelpers {
+namespace HamstarHelpers.Helpers.BuffHelpers {
 	public partial class BuffHelpers {
 		public static void AddPermaBuff( Player player, int buff_id ) {
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();

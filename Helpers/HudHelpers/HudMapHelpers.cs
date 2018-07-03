@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.HudHelpers {
+namespace HamstarHelpers.Helpers.HudHelpers {
 	public static class HudMapHelpers {
 		public static Vector2 GetFullMapPosition( Rectangle origin ) {    //Main.mapFullscreen
 			float map_x = 200f;

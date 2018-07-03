@@ -2,7 +2,7 @@
 using System.Linq;
 
 
-namespace HamstarHelpers.TmlHelpers.CommandsHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers.CommandsHelpers {
 	public static class CommandsHelpers {
 		public static string GetQuotedStringFromArgsAt( string[] args, int start_pos, out int next_arg_idx ) {
 			next_arg_idx = -1;

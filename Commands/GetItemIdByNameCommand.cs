@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.ItemHelpers;
-using HamstarHelpers.TmlHelpers.CommandsHelpers;
+﻿using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.CommandsHelpers;
 using Terraria.ModLoader;
 
 

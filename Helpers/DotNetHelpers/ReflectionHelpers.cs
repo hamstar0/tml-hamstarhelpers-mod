@@ -2,7 +2,7 @@
 using System.Reflection;
 
 
-namespace HamstarHelpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public class ReflectionHelpers {
 		public static object GetField( Object obj, string field_name, out bool success ) {
 			success = false;

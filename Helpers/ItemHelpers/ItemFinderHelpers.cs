@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public static partial class ItemFinderHelpers {
 		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 

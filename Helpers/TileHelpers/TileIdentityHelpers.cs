@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.TileHelpers {
+namespace HamstarHelpers.Helpers.TileHelpers {
 	public static class TileIdentityHelpers {
 		private static IDictionary<int, IDictionary<int, string>> VanillaTileData;
 

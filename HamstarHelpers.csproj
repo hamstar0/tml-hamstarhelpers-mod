@@ -104,7 +104,7 @@
     <Compile Include="Internals\ControlPanel\UIControlPanel_Toggler.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffIdentityHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\LogHelpers.cs" />
-    <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlyDictionaryOfSets.cs" />
+    <Compile Include="Components\DataStructures\ReadOnlyDictionaryOfSets.cs" />
     <Compile Include="Helpers\DotNetHelpers\SystemHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\SteamHelpers.cs" />
     <Compile Include="Helpers\EntityHelpers\EntityHelpers.cs" />
@@ -127,7 +127,7 @@
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers.cs" />
-    <Compile Include="Helpers\DotNetHelpers\DataStructures\ReadOnlySet.cs" />
+    <Compile Include="Components\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Helpers\UIHelpers\UIHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />

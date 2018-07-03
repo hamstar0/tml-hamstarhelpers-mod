@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.ItemHelpers;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static class PlayerItemFinderHelpers {
 		public static ISet<int> FindPossiblePurchaseTypes( Player player, long spent ) {
 			ISet<int> possible_purchases = new HashSet<int>();
