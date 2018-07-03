@@ -6,6 +6,12 @@ using HamstarHelpers.DebugHelpers;
 
 namespace HamstarHelpers.Components.Config {
 	public class JsonConfig {
+		protected static readonly object MyLock = new object();
+		protected static readonly object MyFileLock = new object();
+
+
+		////////////////
+
 		public static string ConfigSubfolder { get { return "Mod Configs"; } }
 	}
 
@@ -14,10 +20,14 @@ namespace HamstarHelpers.Components.Config {
 
 	public partial class JsonConfig<T> : JsonConfig {
 		public static string Serialize( T data ) {
-			return JsonConvert.SerializeObject( data, Formatting.Indented );
+			lock( JsonConfig.MyLock ) {
+				return JsonConvert.SerializeObject( data, Formatting.Indented );
+			}
 		}
 		public static T Deserialize( string data ) {
-			return JsonConvert.DeserializeObject<T>( data );
+			lock( JsonConfig.MyLock ) {
+				return JsonConvert.DeserializeObject<T>( data );
+			}
 		}
 
 
@@ -35,8 +45,10 @@ namespace HamstarHelpers.Components.Config {
 			this.PathName = relative_path;
 			this.Data = (T)Activator.CreateInstance( typeof( T ) );
 
-			Directory.CreateDirectory( Main.SavePath );
-			Directory.CreateDirectory( this.GetPathOnly() );
+			lock( JsonConfig.MyFileLock ) {
+				Directory.CreateDirectory( Main.SavePath );
+				Directory.CreateDirectory( this.GetPathOnly() );
+			}
 		}
 
 		public JsonConfig( string file_name, string relative_path, T defaults_copy_only ) {
@@ -44,8 +56,10 @@ namespace HamstarHelpers.Components.Config {
 			this.PathName = relative_path;
 			this.Data = defaults_copy_only;
 
-			Directory.CreateDirectory( Main.SavePath );
-			Directory.CreateDirectory( this.GetPathOnly() );
+			lock( JsonConfig.MyFileLock ) {
+				Directory.CreateDirectory( Main.SavePath );
+				Directory.CreateDirectory( this.GetPathOnly() );
+			}
 		}
 
 
@@ -96,26 +110,36 @@ namespace HamstarHelpers.Components.Config {
 
 
 		public bool FileExists() {
-			return File.Exists( this.GetFullPath() );
+			lock( JsonConfig.MyFileLock ) {
+				return File.Exists( this.GetFullPath() );
+			}
 		}
 
 
 		public bool LoadFile() {
 			string path = this.GetFullPath();
+			string json;
 			bool success = true;
-			if( !File.Exists( path ) ) {
-				success = false;
+
+			lock( JsonConfig.MyFileLock ) {
+				if( !File.Exists( path ) ) {
+					success = false;
+				}
 			}
 
 			if( success ) {
 				using( StreamReader r = new StreamReader( path ) ) {
-					string json = r.ReadToEnd();
+					lock( JsonConfig.MyFileLock ) {
+						json = r.ReadToEnd();
+					}
 					this.DeserializeMe( json, out success );
 				}
 			}
 
 			if( this.Data is ConfigurationDataBase ) {
-				((ConfigurationDataBase)(object)this.Data).OnLoad( success );
+				var data = (object)this.Data;
+				var config_data = (ConfigurationDataBase)data;
+				config_data.OnLoad( success );
 			}
 
 			return success;
@@ -124,18 +148,27 @@ namespace HamstarHelpers.Components.Config {
 		public void SaveFile() {
 			string path = this.GetFullPath();
 			string json = this.SerializeMe();
-			File.WriteAllText( path, json );
+
+			lock( JsonConfig.MyFileLock ) {
+				File.WriteAllText( path, json );
+			}
 
 			if( this.Data is ConfigurationDataBase ) {
-				((ConfigurationDataBase)(object)this.Data).OnSave();
+				var data = (object)this.Data;
+				var config_data = (ConfigurationDataBase)data;
+				config_data.OnSave();
 			}
 		}
 
 		public bool DestroyFile() {
 			string path = this.GetFullPath();
-			if( !File.Exists( path ) ) { return false; }
 
-			File.Delete( path );
+			lock( JsonConfig.MyFileLock ) {
+				if( !File.Exists( path ) ) { return false; }
+
+				File.Delete( path );
+			}
+
 			return true;
 		}
 	}
