@@ -26,6 +26,7 @@ using HamstarHelpers.Helpers.ItemHelpers;
 using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.ProjectileHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
+using HamstarHelpers.Components.CustomEntity;
 
 
 namespace HamstarHelpers {
@@ -48,13 +49,15 @@ namespace HamstarHelpers {
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;
 		internal MenuUIManager MenuUIMngr;
+		internal MenuItemManager MenuItemMngr;
+		internal CustomEntityManager CustomEntMngr;
 
 		// Services
+		internal Promises Promises;
 		internal Timers Timers;
 		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
-		internal Promises Promises;
 
 		// Helpers
 		internal LogHelpers LogHelpers;
@@ -77,8 +80,7 @@ namespace HamstarHelpers {
 		internal InboxControl Inbox;
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
-		internal MenuItemManager MenuItemMngr;
-		public UIControlPanel ControlPanel = null;
+		internal UIControlPanel ControlPanel;
 
 
 		public bool HasSetupContent { get; private set; }
@@ -150,6 +152,7 @@ namespace HamstarHelpers {
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuUIMngr = new MenuUIManager();
 			this.MusicHelpers = new MusicHelpers();
+			this.CustomEntMngr = new CustomEntityManager();
 
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Mod Helpers Control Panel", "O" );
@@ -211,6 +214,7 @@ namespace HamstarHelpers {
 			this.MenuItemMngr = null;
 			this.MenuUIMngr = null;
 			this.MusicHelpers = null;
+			this.CustomEntMngr = null;
 			this.Promises = null;
 
 			HamstarHelpersMod.Instance = null;

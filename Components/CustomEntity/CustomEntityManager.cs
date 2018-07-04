@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.Services.Promises;
+using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
@@ -10,7 +12,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		internal CustomEntityManager() { }
+		internal CustomEntityManager() {
+			Main.OnTick += CustomEntityManager._Update;
+
+			Promises.AddWorldUnloadEachPromise( () => {
+				this.Entities.Clear();
+				this.EntitiesByName.Clear();
+			} );
+		}
+
+		~CustomEntityManager() {
+			Main.OnTick -= CustomEntityManager._Update;
+		}
 
 
 		////////////////
@@ -62,6 +75,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
+
+		private static void _Update() { // <- Just in case references are doing something funky...
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			if( mymod == null ) { return; }
+
+			mymod.CustomEntMngr.Update();
+		}
 
 		internal void Update() {
 			int ent_count = this.Entities.Count;

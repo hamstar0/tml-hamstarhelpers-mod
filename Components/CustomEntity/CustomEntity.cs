@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Terraria;
 
 
@@ -37,28 +38,58 @@ namespace HamstarHelpers.Components.CustomEntity {
 	//Wanders,
 	//AlwaysAimsAtTarget
 
-
-
+	
+	
+	
 	abstract public class CustomEntity : Entity {
 		abstract public string DisplayName { get; }
 
 		abstract public Texture2D Texture { get; }
-
-		abstract public IList<CustomEntityProperty> Attributes { get; }
-
-
-		////////////////
-
-		protected CustomEntity() : base() { }
-
-
-		////////////////
 		
-		internal void Update() {
-			int attr_count = this.Attributes.Count;
+		abstract protected IList<CustomEntityProperty> _OrderedProperties { get; }
+		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; }
 
-			for( int i=0; i<attr_count; i++ ) {
-				this.Attributes[ i ].Update( this );
+		private readonly IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
+
+
+
+		////////////////
+
+		protected CustomEntity() : base() {
+			this.OrderedProperties = new ReadOnlyCollection<CustomEntityProperty>( this._OrderedProperties );
+		}
+
+
+		////////////////
+
+		public CustomEntityProperty GetPropertyByName( string name ) {
+			int prop_count = this.OrderedProperties.Count;
+
+			if( this.PropertiesByName.Count != prop_count ) {
+				this.PropertiesByName.Clear();
+
+				for( int i = 0; i < prop_count; i++ ) {
+					string prop_name = this.OrderedProperties[i].GetType().Name;
+					this.PropertiesByName[prop_name] = i;
+				}
+			}
+
+			int idx;
+
+			if( this.PropertiesByName.TryGetValue(name, out idx ) ) {
+				return this.OrderedProperties[ idx ];
+			}
+			return null;
+		}
+
+
+		////////////////
+
+		internal void Update() {
+			int prop_count = this.OrderedProperties.Count;
+			
+			for( int i=0; i<prop_count; i++ ) {
+				this.OrderedProperties[ i ].Update( this );
 			}
 		}
 	}

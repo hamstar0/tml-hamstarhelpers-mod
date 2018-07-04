@@ -14,8 +14,10 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		////////////////
 
 		public static byte GetNearestPaintType( Color color ) {
-			if( PaintHelpers.CachedMatches.ContainsKey(color.GetHashCode()) ) {
-				return PaintHelpers.CachedMatches[ color.GetHashCode()];
+			int color_code = (((int)color.R >> 3) << 3) + (((int)color.G >> 3) << 11) + (((int)color.B >> 3) << 19 );
+
+			if( PaintHelpers.CachedMatches.ContainsKey( color_code ) ) {
+				return PaintHelpers.CachedMatches[ color_code ];
 			}
 
 			float min_val = 9999;
@@ -32,7 +34,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				}
 			}
 
-			PaintHelpers.CachedMatches[ color.GetHashCode()] = (byte)min_idx;
+			PaintHelpers.CachedMatches[ color_code ] = (byte)min_idx;
 
 			return (byte)min_idx;
 		}
