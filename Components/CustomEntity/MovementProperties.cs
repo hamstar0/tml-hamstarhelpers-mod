@@ -162,4 +162,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 		}
 	}
+
+
+
+
+	public class ClingsToRailEntityProperty : CustomEntityProperty {
+		public override void Update( CustomEntity ent ) {
+		}
+	}
 }
