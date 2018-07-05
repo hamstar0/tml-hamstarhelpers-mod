@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Internals.Logic;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -112,6 +113,31 @@ namespace HamstarHelpers {
 					this.WorldLogic.PreUpdateServer( mymod );
 				}
 			}
+		}
+
+
+		////////////////
+
+		public override void PostDrawTiles() {
+			Player player = Main.LocalPlayer;
+			var mymod = (HamstarHelpersMod)this.mod;
+			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>( mymod );
+
+			//Main.spriteBatch.Begin();
+			RasterizerState rasterizer = Main.gameMenu ||
+				(double)player.gravDir == 1.0 ?
+					RasterizerState.CullCounterClockwise :
+					RasterizerState.CullClockwise;
+			Main.spriteBatch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, rasterizer, (Effect)null, Main.GameViewMatrix.TransformationMatrix );
+
+			try {
+				mymod.CustomEntMngr.DrawAll( Main.spriteBatch );
+			} catch( Exception e ) {
+				ErrorLogger.Log( "HamstarHelpersWorld.PostDrawTiles - " + e.ToString() );
+				throw e;
+			}
+
+			Main.spriteBatch.End();
 		}
 	}
 }

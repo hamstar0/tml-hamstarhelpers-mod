@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Services.Promises;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -32,6 +33,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			get {
 				return this.Entities[ idx ];
 			}
+
 
 			set {
 				string old_name = this.Entities[idx] == null ? null : this.Entities[idx].GetType().Name;
@@ -88,6 +90,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			for( int i=0; i<ent_count; i++ ) {
 				this.Entities[i]?.Update();
+			}
+		}
+
+
+		////////////////
+
+		internal void DrawAll( SpriteBatch sb ) {
+			foreach( var ent in this.Entities ) {
+				ent.Draw( sb );
 			}
 		}
 	}
