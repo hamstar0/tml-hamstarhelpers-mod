@@ -82,6 +82,7 @@
     <Compile Include="Components\Network\PacketProtocol_Stream.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers_Rarity.cs" />
     <Compile Include="Helpers\MiscHelpers\PaintHelpers.cs" />
+    <Compile Include="Helpers\PlayerHelpers\PlayerModHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers_Load.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData_API.cs" />
