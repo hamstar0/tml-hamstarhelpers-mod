@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 6, 4); } }
+		public static Version ConfigVersion { get { return new Version(1, 6, 6); } }
 		public static string ConfigFileName { get { return "Mod Helpers Config.json"; } }
 
 
@@ -45,6 +45,8 @@ namespace HamstarHelpers {
 
 		public bool IsServerGaugingAveragePing = true;
 		public bool IsCheckingModVersions = true;
+
+		public string PrivilegedUserId = "";
 
 
 

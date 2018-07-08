@@ -24,14 +24,18 @@ namespace HamstarHelpers.Commands {
 		////////////////
 		
 		public override CommandType Type { get { return CommandType.World; } }
-		public override string Command { get { return "hhconfigsrefresh"; } }
-		public override string Usage { get { return "/hhconfigsrefresh"; } }
+		public override string Command { get { return "mhconfigsrefresh"; } }
+		public override string Usage { get { return "/" + this.Command; } }
 		public override string Description { get { return "Refreshes all mod config files (single-player only). Only works for mods setup with Mod Helpers to do so (see Control Panel)."; } }
 
 
 		////////////////
 		
 		public override void Action( CommandCaller caller, string input, string[] args ) {
+			if( Main.netMode != 0 ) {
+				throw new UsageException( "Not single player.", Color.Red );
+			}
+
 			var mymod = HamstarHelpersMod.Instance;
 
 			ConfigsRefreshCommand.RefreshConfigs();

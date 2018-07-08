@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
@@ -92,8 +93,6 @@
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
-    <Compile Include="Commands\_AdminUserRemoveCommand.cs" />
-    <Compile Include="Commands\_AdminUserAddCommand.cs" />
     <Compile Include="Commands\ConfigsRefreshCommand.cs" />
     <Compile Include="Commands\ControlPanelOpenCommand.cs" />
     <Compile Include="Commands\ModIssueReportCommand.cs" />
@@ -234,7 +233,7 @@
     <Compile Include="Helpers\TmlHelpers\TmlHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlPlayerHelpers.cs" />
     <Compile Include="Helpers\UIHelpers\_UITheme.cs" />
-    <Compile Include="Helpers\_UserHelpers\_UserHelpers.cs" />
+    <Compile Include="Helpers\UserHelpers\UserHelpers.cs" />
     <Compile Include="_Utilities\_AnimatedColors\_AnimatedColors.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
