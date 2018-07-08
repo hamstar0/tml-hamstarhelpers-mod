@@ -82,6 +82,10 @@ namespace HamstarHelpers {
 
 
 		////////////////
+
+		internal HamstarHelpersConfigData Clone() {
+			return (HamstarHelpersConfigData)this.MemberwiseClone();
+		}
 		
 		internal void LoadFromNetwork( HamstarHelpersMod mymod, HamstarHelpersConfigData config ) {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.DebugHelpers;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -11,7 +12,7 @@ namespace HamstarHelpers.Commands {
 				if( Main.netMode == 0 && !Main.dedServ ) {
 					return CommandType.World;
 				}
-				return CommandType.Console | CommandType.Server;
+				return CommandType.Console | CommandType.World;
 			}
 		}
 		public override string Command { get { return "mhmodcall"; } }
@@ -23,6 +24,11 @@ namespace HamstarHelpers.Commands {
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
+			if( Main.netMode == 1 ) {
+				LogHelpers.Log( "ModCallCommand - Not supposed to run on client." );
+				return;
+			}
+
 			if( Main.netMode == 2 && caller.CommandType != CommandType.Console ) {
 				bool success;
 				bool has_priv = UserHelpers.UserHelpers.HasBasicServerPrivilege( caller.Player, out success );

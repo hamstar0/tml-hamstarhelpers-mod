@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.DebugHelpers;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 
@@ -6,7 +8,7 @@ namespace HamstarHelpers.Commands {
 	class ServerBrowserPrivateCommand : ModCommand {
 		public override CommandType Type {
 			get {
-				return CommandType.Console | CommandType.Server;
+				return CommandType.Console | CommandType.World;
 			}
 		}
 		public override string Command { get { return "mhprivateserver"; } }
@@ -17,6 +19,11 @@ namespace HamstarHelpers.Commands {
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
+			if( Main.netMode == 1 ) {
+				LogHelpers.Log( "ServerBrowserPrivateCommand - Not supposed to run on client." );
+				return;
+			}
+
 			var mymod = (HamstarHelpersMod)this.mod;
 			if( !mymod.Config.IsServerPromptingUsersBeforeListingOnBrowser && (caller.CommandType & CommandType.Console) == 0 ) {
 				caller.Reply( "Cannot set server private; grace period has expired. Set \"IsServerHiddenFromBrowser: true\" in config file, then restart server." );
