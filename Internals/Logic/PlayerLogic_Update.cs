@@ -47,6 +47,8 @@ namespace HamstarHelpers.Internals.Logic {
 		public void PreUpdateServer( HamstarHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			}
+			if( player.whoAmI != 255 ) {
 				mymod.LoadHelpers.HasServerBegunHavingPlayers = true;
 			}
 

@@ -22,8 +22,8 @@ namespace HamstarHelpers.DebugHelpers {
 				string now_seconds_decimal = ( now_seconds - (int)now_seconds ).ToString( "N2" );
 				string now = now_seconds_whole + "." + ( now_seconds_decimal.Length > 2 ? now_seconds_decimal.Substring( 2 ) : now_seconds_decimal );
 
-				string from = Main.netMode + ":" + Main.myPlayer.ToString( "D3" );
-				string logged = from + ":" + log_helpers.LoggedMessages.ToString( "D5" ) + " - " + now;
+				string from = Main.myPlayer.ToString( "D3" );
+				string logged = Main.netMode + ":" + from + ":" + log_helpers.LoggedMessages.ToString( "D5" ) + " - " + now;
 				if( logged.Length < 26 ) {
 					logged += new String( ' ', 26 - logged.Length );
 				} else {
@@ -76,7 +76,7 @@ namespace HamstarHelpers.DebugHelpers {
 		internal void Reset() {
 			this.LoggedMessages = 0;
 			this.StartTimeBase = DateTime.UtcNow;
-			this.StartTime = this.StartTimeBase.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
+			this.StartTime = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
 		}
 
 		////////////////

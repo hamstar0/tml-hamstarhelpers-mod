@@ -1,7 +1,4 @@
 ﻿using HamstarHelpers.DebugHelpers;
-using System;
-using System.Collections.Generic;
-using Terraria;
 
 
 namespace HamstarHelpers.TmlHelpers {
@@ -19,7 +16,7 @@ namespace HamstarHelpers.TmlHelpers {
 
 		////////////////
 
-		internal void PostWorldLoadUpdate() {
+		internal void Update() {
 			this.StartupDelay++;    // Seems needed for day/night tracking (and possibly other things?)
 		}
 	}
