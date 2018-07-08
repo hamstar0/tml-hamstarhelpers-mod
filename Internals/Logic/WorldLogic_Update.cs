@@ -4,13 +4,13 @@ using HamstarHelpers.Helpers.TmlHelpers;
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class WorldLogic {
-		private void PreUpdate( HamstarHelpersMod mymod ) {
+		private void PreUpdateShared( HamstarHelpersMod mymod ) {
 			if( LoadHelpers.IsWorldLoaded() ) {
 				mymod.Promises.FulfillWorldLoadPromises();
 			}
 
 			if( LoadHelpers.IsWorldBeingPlayed() ) {
-				mymod.LoadHelpers.PostWorldLoadUpdate();
+				mymod.LoadHelpers.Update();
 				mymod.WorldHelpers.Update( mymod );
 
 				// Simply idle until ready (seems needed)
@@ -20,27 +20,27 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 		}
 
-		////
-
-		private void PreUpdatePlayer( HamstarHelpersMod mymod ) {
-			this.PreUpdate( mymod );
-
+		private void PreUpdateLocal( HamstarHelpersMod mymod ) {
 			mymod.AnimatedColors.Update();
 
 			UIControlPanel.UpdateModList( mymod );
 		}
 
+		////
+
 
 		public void PreUpdateSingle( HamstarHelpersMod mymod ) {
-			this.PreUpdatePlayer( mymod );
+			this.PreUpdateShared( mymod );
+			this.PreUpdateLocal( mymod );
 		}
 
 		public void PreUpdateClient( HamstarHelpersMod mymod ) {
-			this.PreUpdatePlayer( mymod );
+			this.PreUpdateShared( mymod );
+			this.PreUpdateLocal( mymod );
 		}
 		
 		public void PreUpdateServer( HamstarHelpersMod mymod ) {
-			this.PreUpdate( mymod );
+			this.PreUpdateShared( mymod );
 		}
 
 

@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 		////////////////
 
-		internal void PostWorldLoadUpdate() {
+		internal void Update() {
 			this.StartupDelay++;    // Seems needed for day/night tracking (and possibly other things?)
 		}
 	}
