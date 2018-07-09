@@ -7,7 +7,8 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	abstract public class CustomEntityProperty {
-		public virtual void Update( CustomEntity ent ) { }
+		public virtual void QualifyEntity( CustomEntity ent ) { }
+		public abstract void Update( CustomEntity ent );
 	}
 	//IsItem,
 	//IsPlayerHostile,
@@ -22,8 +23,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 	//TakesDamage,
 	//TakesKnockback,
 	//RespectsTerrain
-
-	//abstract public class CustomEntityAttributeMovement { }
+	
 	//SeeksTarget,
 	//IsGravityBound,
 	//IsRailBound,
@@ -56,6 +56,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected CustomEntity( bool is_this_the_real_life ) : base() {
+			foreach( CustomEntityProperty prop in this._OrderedProperties ) {
+				prop.QualifyEntity( this );
+			}
 			this.OrderedProperties = new ReadOnlyCollection<CustomEntityProperty>( this._OrderedProperties );
 		}
 

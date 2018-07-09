@@ -60,7 +60,9 @@
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
-    <Compile Include="Components\CustomEntity\MovementProperties.cs" />
+    <Compile Include="Components\CustomEntity\EntityProperties\ClingsToRailEntityProperty.cs" />
+    <Compile Include="Components\CustomEntity\EntityProperties\RespectsTerrainEntityProperty.cs" />
+    <Compile Include="Components\CustomEntity\EntityProperties\RespectsGravityEntityProperty.cs" />
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
     <Compile Include="Components\UI\Elements\UIDialog.cs" />

@@ -4,47 +4,7 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Components.CustomEntity {
-	public class RespectsGravityEntityProperty : CustomEntityProperty {
-		public override void Update( CustomEntity ent ) {
-			float gravity = 0.1f;
-			float max_fall_speed = 7f;
-
-			// Halts movement into unload parts of the map
-			if( Main.netMode == 1 ) {
-				int x = (int)( ent.position.X + (float)( ent.width / 2 ) ) / 16;
-				int y = (int)( ent.position.Y + (float)( ent.height / 2 ) ) / 16;
-
-				if( x >= 0 && y >= 0 && x < Main.maxTilesX && y < Main.maxTilesY && Main.tile[x, y] == null ) {
-					gravity = 0f;
-					ent.velocity.X = 0f;
-					ent.velocity.Y = 0f;
-				}
-			}
-
-			if( ent.honeyWet ) {
-				gravity = 0.05f;
-				max_fall_speed = 3f;
-			} else if( ent.wet ) {
-				max_fall_speed = 5f;
-				gravity = 0.08f;
-			}
-			
-			ent.velocity.Y = ent.velocity.Y + gravity;
-			if( ent.velocity.Y > max_fall_speed ) {
-				ent.velocity.Y = max_fall_speed;
-			}
-
-			ent.velocity.X = ent.velocity.X * 0.95f;
-
-			if( (double)ent.velocity.X < 0.1 && (double)ent.velocity.X > -0.1 ) {
-				ent.velocity.X = 0f;
-			}
-		}
-	}
-
-
-
+namespace HamstarHelpers.Components.CustomEntity.Properties {
 	public class RespectsTerrainEntityProperty : CustomEntityProperty {
 		public override void Update( CustomEntity ent ) {
 			bool respects_gravity = ent.GetPropertyByName( "RespectsGravityEntityProperty" ) != null;
@@ -162,44 +122,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 			} else {
 				ent.position += ent.velocity;
 			}
-		}
-	}
-
-
-	
-
-	public class ClingsToRailEntityProperty : CustomEntityProperty {
-		public override void Update( CustomEntity ent ) {
-			int x_beg = (int)ent.position.X / 16;
-			int y_beg = ( (int)ent.position.Y + ent.height ) / 16;
-
-			int x_end = Math.Max( ( (int)ent.position.X + ent.width ) / 16, x_beg + 1 );
-
-			int x_mid = ( x_beg + x_end ) / 2;
-
-			for( int i_off = 0; i_off < 2; i_off++ ) {
-				int flip = 0;
-
-				do {
-					int i = x_mid + i_off;
-
-					for( int j = y_beg; j < y_beg + 2; j++ ) {
-						if( Main.tile[i, j] != null && Main.tile[i, j].type == TileID.MinecartTrack ) {
-							this.SnapToTrack( ent, i, j );
-						}
-					}
-
-					if( i_off == 0 ) { break; }
-					i_off = -i_off;
-				} while( flip++ == 0 );
-			}
-		}
-
-
-		public void SnapToTrack( CustomEntity ent, int tile_x, int tile_y ) {
-			ent.position.Y = (tile_y * 16) - ent.height;
-			ent.velocity.X = 0;
-			ent.velocity.Y = 0;
 		}
 	}
 }
