@@ -168,7 +168,7 @@ namespace HamstarHelpers.PlayerHelpers {
 			player.KillMe( PlayerDeathReason.ByCustomReason( death_msg ), 9999, 0 );
 		}
 
-
+		
 		public static void FullVanillaReset( Player player ) {
 			for( int i = 0; i < player.inventory.Length; i++ ) {
 				player.inventory[i] = new Item();

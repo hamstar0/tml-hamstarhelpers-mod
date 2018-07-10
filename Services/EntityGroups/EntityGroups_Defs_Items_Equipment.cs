@@ -303,7 +303,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		private void DefineItemEquipmentGroups3( Action<string, Func<Item, bool>> add_def ) {
 			add_def( "Any Equipment", ( Item item ) => {
-				return EntityGroups.ItemGroups["Any Tool"].Contains( item.type ) ||
+				return EntityGroups.ItemGroups["Any Weapon"].Contains( item.type ) ||
+					EntityGroups.ItemGroups["Any Tool"].Contains( item.type ) ||
 					EntityGroups.ItemGroups["Any Accessory"].Contains( item.type ) ||
 					EntityGroups.ItemGroups["Any Armor"].Contains( item.type );
 			} );
