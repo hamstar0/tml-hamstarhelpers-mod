@@ -6,59 +6,30 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	abstract public class CustomEntityProperty {
-		public virtual void QualifyEntity( CustomEntity ent ) { }
-		public abstract void Update( CustomEntity ent );
-	}
-	//IsItem,
-	//IsPlayerHostile,
-	//IsFriendlyNpcHostile,
-	//IsPvpHostile,
-	//IsPlayerTarget,
-	//IsPvpTarget,
-	//IsFiendlyNpcTarget,
-	//IsHostileNpcTarget,
-	//IsCapturable,
-	//TakesHits,
-	//TakesDamage,
-	//TakesKnockback,
-	//RespectsTerrain
-	
-	//SeeksTarget,
-	//IsGravityBound,
-	//IsRailBound,
-	//IsRopeBound,
-	//Floats,
-	//Flies,
-	//Crawls,
-	//Swims
-
-	//abstract public class CustomEntityAttributeBehavior { }
-	//SeeksTarget,
-	//AvoidsTarget,
-	//Wanders,
-	//AlwaysAimsAtTarget
-	
-	
-	
 	abstract public class CustomEntity : Entity {
 		abstract public string DisplayName { get; }
 
 		abstract public Texture2D Texture { get; }
-		
+
 		abstract protected IList<CustomEntityProperty> _OrderedProperties { get; }
 		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; }
-
 		private readonly IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
+		
+		private IDictionary<int, CustomEntityPropertyData> PropertyData = new Dictionary<int, CustomEntityPropertyData>();
 
 
 
 		////////////////
 
 		protected CustomEntity( bool is_this_the_real_life ) : base() {
-			foreach( CustomEntityProperty prop in this._OrderedProperties ) {
-				prop.QualifyEntity( this );
+			foreach( var prop in this._OrderedProperties ) {
+				CustomEntityPropertyData data = prop.CreateData();
+
+				if( data != null ) {
+					this.PropertyData[ prop.GetHashCode() ] = data;
+				}
 			}
+
 			this.OrderedProperties = new ReadOnlyCollection<CustomEntityProperty>( this._OrderedProperties );
 		}
 
@@ -81,6 +52,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			if( this.PropertiesByName.TryGetValue(name, out idx ) ) {
 				return this.OrderedProperties[ idx ];
+			}
+			return null;
+		}
+
+		internal CustomEntityPropertyData GetPropertyData( CustomEntityProperty prop ) {
+			int hash = prop.GetHashCode();
+
+			if( this.PropertyData.ContainsKey(hash) ) {
+				return this.PropertyData[ hash ];
 			}
 			return null;
 		}
@@ -119,6 +99,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			this.PostDraw( sb );
 		}
+
 
 		public virtual bool PreDraw( SpriteBatch sb ) { return true; }
 		public virtual void PostDraw( SpriteBatch sb ) { }

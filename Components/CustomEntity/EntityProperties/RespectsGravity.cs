@@ -1,11 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Terraria;
-using Terraria.ID;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Properties {
 	public class RespectsTerrainEntityProperty : CustomEntityProperty {
+		public override CustomEntityPropertyData CreateData() {
+			return null;
+		}
+
+		
 		public override void Update( CustomEntity ent ) {
 			bool respects_gravity = ent.GetPropertyByName( "RespectsGravityEntityProperty" ) != null;
 			Vector2 wet_velocity = ent.velocity * 0.5f;

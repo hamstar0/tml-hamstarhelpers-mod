@@ -1,11 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.ID;
+﻿using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Properties {
 	public class RespectsGravityEntityProperty : CustomEntityProperty {
+		public override CustomEntityPropertyData CreateData() {
+			return null;
+		}
+
+
 		public override void Update( CustomEntity ent ) {
 			float gravity = 0.1f;
 			float max_fall_speed = 7f;

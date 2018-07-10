@@ -4,18 +4,16 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Properties {
-	public interface IRailBoundEntity {
-		bool IsOnRail { get; set; }
+	public class RailBoundEntityPropertyData : CustomEntityPropertyData {
+		public bool IsOnRail { get; internal set; }
 	}
 
 
 
 
-	public class ClingsToRailEntityProperty : CustomEntityProperty {
-		public override void QualifyEntity( CustomEntity ent ) {
-			if( !(ent is IRailBoundEntity ) ) {
-				throw new FormatException( "Entity must be a RailBoundEntity." );
-			}
+	public class RailBoundEntityProperty : CustomEntityProperty {
+		public override CustomEntityPropertyData CreateData() {
+			return new RailBoundEntityPropertyData();
 		}
 
 
@@ -52,14 +50,14 @@ namespace HamstarHelpers.Components.CustomEntity.Properties {
 				if( is_on_rail ) { break; }
 			}
 
-			var rail_ent = (IRailBoundEntity)ent;
+			var rail_data = (RailBoundEntityPropertyData)ent.GetPropertyData( this );
 
-			if( !rail_ent.IsOnRail && is_on_rail ) {
-				rail_ent.IsOnRail = true;
+			if( !rail_data.IsOnRail && is_on_rail ) {
+				rail_data.IsOnRail = true;
 				Main.PlaySound( SoundID.Item53 );
 			}
 
-			rail_ent.IsOnRail = is_on_rail;
+			rail_data.IsOnRail = is_on_rail;
 		}
 
 
