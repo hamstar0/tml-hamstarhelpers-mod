@@ -1,32 +1,38 @@
-﻿using Terraria;
+﻿using HamstarHelpers.Components.Network;
+using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
-	public class PeriodicSyncEntityPropertyData : CustomEntityPropertyData {
+	class PeriodicSyncEntityData : CustomEntityData {
 		public int LastSynced { get; internal set; }
 
 
-		internal PeriodicSyncEntityPropertyData() {
+		internal PeriodicSyncEntityData() {
 			this.LastSynced = Main.rand.Next( 60 * 5 );
 		}
 	}
 
 
 
+	class PeriodicSyncEntityProtocol : PacketProtocol {
+
+	}
+
+
 
 	public class PeriodicSyncEntityProperty : CustomEntityProperty {
-		public override CustomEntityPropertyData CreateData() {
-			return new PeriodicSyncEntityPropertyData();
+		public override CustomEntityData CreateData() {
+			return new PeriodicSyncEntityData();
 		}
 
 		
 		public override void Update( CustomEntity ent ) {
-			var sync_data = (PeriodicSyncEntityPropertyData)ent.GetPropertyData( this );
+			var sync_data = (PeriodicSyncEntityData)ent.GetPropertyData( this );
 
 			if( sync_data.LastSynced-- <= 0 ) {
 				sync_data.LastSynced = 60 * 5;
 
-				SyncCustomEntityProtocol.SendToClients( ent );
+				ent.Sync();
 			}
 		}
 	}

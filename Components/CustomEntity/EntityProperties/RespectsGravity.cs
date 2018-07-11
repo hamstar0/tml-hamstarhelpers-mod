@@ -4,7 +4,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Properties {
 	public class RespectsTerrainEntityProperty : CustomEntityProperty {
-		public override CustomEntityPropertyData CreateData() {
+		public override CustomEntityData CreateData() {
 			return null;
 		}
 

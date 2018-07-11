@@ -15,7 +15,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; }
 		private readonly IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
 		
-		private IDictionary<int, CustomEntityPropertyData> PropertyData = new Dictionary<int, CustomEntityPropertyData>();
+		private IDictionary<int, CustomEntityData> PropertyData = new Dictionary<int, CustomEntityData>();
 
 
 
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected CustomEntity( bool is_this_the_real_life ) : base() {
 			foreach( var prop in this._OrderedProperties ) {
-				CustomEntityPropertyData data = prop.CreateData();
+				CustomEntityData data = prop.CreateData();
 
 				if( data != null ) {
 					this.PropertyData[ prop.GetHashCode() ] = data;
@@ -56,13 +56,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return null;
 		}
 
-		internal CustomEntityPropertyData GetPropertyData( CustomEntityProperty prop ) {
+		internal CustomEntityData GetPropertyData( CustomEntityProperty prop ) {
 			int hash = prop.GetHashCode();
 
 			if( this.PropertyData.ContainsKey(hash) ) {
 				return this.PropertyData[ hash ];
 			}
 			return null;
+		}
+
+
+		internal void Sync() {
+			//foreach( )
 		}
 
 
