@@ -5,7 +5,7 @@ using System.IO;
 
 
 namespace HamstarHelpers.Components.Network {
-	public abstract partial class PacketProtocol {
+	public abstract partial class PacketProtocol : PacketProtocolData {
 		internal static void HandlePacketOnClient( int protocol_code, BinaryReader reader, int player_who ) {
 			var mymod = HamstarHelpersMod.Instance;
 			bool is_request;

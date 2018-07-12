@@ -8,7 +8,26 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.Network {
-	public abstract partial class PacketProtocol {
+	public class PacketProtocolData {
+		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
+
+		internal IOrderedEnumerable<FieldInfo> OrderedFields {
+			get {
+				if( this._OrderedFields == null ) {
+					Type mytype = this.GetType();
+					FieldInfo[] fields = mytype.GetFields( BindingFlags.Public | BindingFlags.Instance );
+
+					this._OrderedFields = fields.OrderByDescending( x => x.Name );  //Where( f => f.FieldType.IsPrimitive )
+				}
+				return this._OrderedFields;
+			}
+		}
+	}
+
+
+
+
+	public abstract partial class PacketProtocol : PacketProtocolData {
 		protected static readonly object MyLock = new object();
 
 
@@ -72,18 +91,6 @@ namespace HamstarHelpers.Components.Network {
 		/// Indicates whether send packets will be logged if the config specifies to do so. Defaults to true.
 		/// </summary>
 		public virtual bool IsVerbose { get { return true; } }
-
-		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
-		private IOrderedEnumerable<FieldInfo> OrderedFields {
-			get {
-				if( this._OrderedFields == null ) {
-					Type mytype = this.GetType();
-					FieldInfo[] fields = mytype.GetFields( BindingFlags.Public | BindingFlags.Instance );
-					this._OrderedFields = fields.OrderByDescending( x => x.Name );  //Where( f => f.FieldType.IsPrimitive )
-				}
-				return this._OrderedFields;
-			}
-		}
 
 
 		////////////////

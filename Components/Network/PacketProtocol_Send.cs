@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.Network {
-	public abstract partial class PacketProtocol {
+	public abstract partial class PacketProtocol : PacketProtocolData {
 		/// <summary>
 		/// Shorthand to send a default instance of this protocol's data to the server. Requires `SetClientDefaults()`
 		/// to be implemented.

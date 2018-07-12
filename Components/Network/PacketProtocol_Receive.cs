@@ -6,7 +6,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Components.Network {
-	public abstract partial class PacketProtocol {
+	public abstract partial class PacketProtocol : PacketProtocolData {
 		private void ReceiveWithClientBase( BinaryReader reader, int from_who ) {
 			this.ReceiveWithEitherBase( reader, from_who );
 

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using Terraria;
 
 
@@ -14,8 +15,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 		abstract protected IList<CustomEntityProperty> _OrderedProperties { get; }
 		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; }
 		private readonly IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
-		
-		private IDictionary<int, CustomEntityData> PropertyData = new Dictionary<int, CustomEntityData>();
+
+		private readonly IList<int> PropertyDataOrder = new List<int>();
+		private readonly IDictionary<int, CustomEntityData> PropertyData = new Dictionary<int, CustomEntityData>();
 
 
 
@@ -26,7 +28,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 				CustomEntityData data = prop.CreateData();
 
 				if( data != null ) {
-					this.PropertyData[ prop.GetHashCode() ] = data;
+					int code = prop.GetHashCode();
+					this.PropertyDataOrder.Add( code );
+					this.PropertyData[ code ] = data;
 				}
 			}
 
@@ -66,8 +70,20 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
-		internal void Sync() {
-			//foreach( )
+		////////////////
+		
+		internal void SerializeToStream( BinaryWriter writer ) {
+			for( int i=0; i<this.PropertyDataOrder.Count; i++ ) {
+				int code = this.PropertyDataOrder[ i ];
+				this.PropertyData[ code ].Serialize( writer, this );
+			}
+		}
+
+		internal void DeserializeFromStream( BinaryReader reader ) {
+			for( int i = 0; i < this.PropertyDataOrder.Count; i++ ) {
+				int code = this.PropertyDataOrder[i];
+				this.PropertyData[ code ].Deserialize( reader, this );
+			}
 		}
 
 
