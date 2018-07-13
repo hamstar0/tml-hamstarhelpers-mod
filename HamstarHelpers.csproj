@@ -137,6 +137,7 @@
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
     <Compile Include="Internals\Logic\PlayerLogic_Update.cs" />
+    <Compile Include="Internals\NetProtocols\CustomEntityProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PingProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerIdProtocol.cs" />

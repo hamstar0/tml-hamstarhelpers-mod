@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -38,89 +37,88 @@ namespace HamstarHelpers.Components.Network {
 			return packet;
 		}
 
-		////////////////
 
+		////////////////
 
 		/// <summary>
 		/// Implements internal low level data reading for packet receipt.
 		/// </summary>
 		/// <param name="reader">Binary data reader.</returns>
 		protected virtual void ReadStream( BinaryReader reader ) {
-			this.ReadStreamData( reader, this );
+			PacketProtocol.ReadStreamIntoContainer( reader, this );
 		}
 
-		private void ReadStreamData( BinaryReader reader, PacketProtocolData data ) {
+		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
-				this.ReadStreamField( reader, data, field );
+				var data_type = field.FieldType;
+
+				if( typeof( PacketProtocolData ).IsAssignableFrom( data_type ) ) {
+					PacketProtocol.ReadStreamIntoContainer( reader, (PacketProtocolData)field.GetValue( data ) );
+				} else {
+					var field_data = PacketProtocol.ReadStreamValue( reader, data_type );
+					field.SetValue( data, field_data );
+				}
 			}
 		}
-		
-		private void ReadStreamField( BinaryReader reader, PacketProtocolData data, FieldInfo field ) {
-			Type field_type = field.FieldType;
 
-			switch( Type.GetTypeCode( field_type ) ) {
+		private static object ReadStreamValue( BinaryReader reader, Type data_type ) {
+			switch( Type.GetTypeCode( data_type ) ) {
 			case TypeCode.String:
-				field.SetValue( data, reader.ReadString() );
-				break;
+				return reader.ReadString();
 			case TypeCode.Single:
-				field.SetValue( data, reader.ReadSingle() );
-				break;
+				return reader.ReadSingle();
 			case TypeCode.UInt64:
-				field.SetValue( data, reader.ReadUInt64() );
-				break;
+				return reader.ReadUInt64();
 			case TypeCode.Int64:
-				field.SetValue( data, reader.ReadInt64() );
-				break;
+				return reader.ReadInt64();
 			case TypeCode.UInt32:
-				field.SetValue( data, reader.ReadUInt32() );
-				break;
+				return reader.ReadUInt32();
 			case TypeCode.Int32:
-				field.SetValue( data, reader.ReadInt32() );
-				break;
+				return reader.ReadInt32();
 			case TypeCode.UInt16:
-				field.SetValue( data, reader.ReadUInt16() );
-				break;
+				return reader.ReadUInt16();
 			case TypeCode.Int16:
-				field.SetValue( data, reader.ReadInt16() );
-				break;
+				return reader.ReadInt16();
 			case TypeCode.Double:
-				field.SetValue( data, reader.ReadDouble() );
-				break;
+				return reader.ReadDouble();
 			case TypeCode.Char:
-				if( field_type.IsArray ) {
+				if( data_type.IsArray ) {
 					int count = reader.ReadInt32();
-					field.SetValue( data, reader.ReadChars(count) );
+					return reader.ReadChars( count );
 				} else {
-					field.SetValue( data, reader.ReadChar() );
+					return reader.ReadChar();
 				}
-				break;
 			case TypeCode.SByte:
-				field.SetValue( data, reader.ReadSByte() );
-				break;
+				return reader.ReadSByte();
 			case TypeCode.Byte:
-				if( field_type.IsArray ) {
+				if( data_type.IsArray ) {
 					int count = reader.ReadInt32();
-					field.SetValue( data, reader.ReadBytes( count ) );
+					return reader.ReadBytes( count );
 				} else {
-					field.SetValue( data, reader.ReadByte() );
+					return reader.ReadByte();
 				}
-				break;
 			case TypeCode.Boolean:
-				field.SetValue( data, reader.ReadBoolean() );
-				break;
+				return reader.ReadBoolean();
 			case TypeCode.Decimal:
-				field.SetValue( data, reader.ReadDecimal() );
-				break;
+				return reader.ReadDecimal();
 			default:
-				if( typeof( PacketProtocolData ).IsAssignableFrom( field_type ) ) {
-					this.ReadStreamData( reader, data );
+				if( typeof( ICollection ).IsAssignableFrom( data_type ) ) {
+					Type inner_type = data_type.GetGenericArguments().Single();
+					ushort length = reader.ReadUInt16();
+
+					Array arr = Array.CreateInstance( inner_type, length );
+
+					for( int i = 0; i < length; i++ ) {
+						object item = PacketProtocol.ReadStreamValue( reader, inner_type );
+						arr.SetValue( item, i );
+					}
+
+					return Activator.CreateInstance( data_type, arr );
 				} else {
 					string raw_json = reader.ReadString();
-					var json_val = JsonConvert.DeserializeObject( raw_json, field_type );
-					field.SetValue( this, json_val );
+					var json_val = JsonConvert.DeserializeObject( raw_json, data_type );
+					return json_val;
 				}
-
-				break;
 			}
 		}
 
@@ -132,19 +130,19 @@ namespace HamstarHelpers.Components.Network {
 		/// </summary>
 		/// <param name="writer">Binary data writer.</returns>
 		protected virtual void WriteStream( BinaryWriter writer ) {
-			this.WriteStreamData( writer, this );
+			PacketProtocol.WriteStreamIntoContainer( writer, this );
 		}
 
-		private void WriteStreamData( BinaryWriter writer, PacketProtocolData data ) {
+		private static void WriteStreamIntoContainer( BinaryWriter writer, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
 				object raw_val = field.GetValue( data );
 				Type field_type = field.FieldType;
 
-				this.WriteStreamField( writer, field_type, raw_val );
+				PacketProtocol.WriteStreamValue( writer, field_type, raw_val );
 			}
 		}
 
-		private void WriteStreamField( BinaryWriter writer, Type field_type, object raw_val ) {
+		private static void WriteStreamValue( BinaryWriter writer, Type field_type, object raw_val ) {
 			switch( Type.GetTypeCode( field_type ) ) {
 			case TypeCode.String:
 				writer.Write( (String)raw_val );
@@ -202,7 +200,16 @@ namespace HamstarHelpers.Components.Network {
 				break;
 			default:
 				if( typeof( PacketProtocolData ).IsAssignableFrom( field_type ) ) {
-					this.WriteStreamData( writer, (PacketProtocolData)raw_val );
+					PacketProtocol.WriteStreamIntoContainer( writer, (PacketProtocolData)raw_val );
+				} if( typeof( ICollection ).IsAssignableFrom( field_type ) ) {
+					var collection = (ICollection)raw_val;
+					Type inner_type = collection.GetType().GetGenericArguments().Single();
+
+					writer.Write( (ushort)collection.Count );
+
+					foreach( object item in collection ) {
+						PacketProtocol.WriteStreamValue( writer, inner_type, item );
+					}
 				} else {
 					string json_enc_val = JsonConvert.SerializeObject( raw_val );
 					writer.Write( (String)json_enc_val );

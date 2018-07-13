@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Internals.NetProtocols;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using Terraria;
 
 
@@ -12,12 +13,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		abstract public Texture2D Texture { get; }
 
-		abstract protected IList<CustomEntityProperty> _OrderedProperties { get; }
-		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; }
 		private readonly IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
+		abstract protected IList<CustomEntityProperty> _OrderedProperties { get; }
+		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; private set; }
 
-		private readonly IList<int> PropertyDataOrder = new List<int>();
-		private readonly IDictionary<int, CustomEntityData> PropertyData = new Dictionary<int, CustomEntityData>();
+		private readonly IList<int> _PropertyDataOrder = new List<int>();
+		private readonly IDictionary<int, CustomEntityData> _PropertyData = new Dictionary<int, CustomEntityData>();
+
+		public IReadOnlyList<int> PropertyDataOrder { get; private set; }
+		public IReadOnlyDictionary<int, CustomEntityData> PropertyData { get; private set; }
 
 
 
@@ -29,12 +33,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 				if( data != null ) {
 					int code = prop.GetHashCode();
-					this.PropertyDataOrder.Add( code );
-					this.PropertyData[ code ] = data;
+					this._PropertyDataOrder.Add( code );
+					this._PropertyData[ code ] = data;
 				}
 			}
 
 			this.OrderedProperties = new ReadOnlyCollection<CustomEntityProperty>( this._OrderedProperties );
+			this.PropertyDataOrder = new ReadOnlyCollection<int>( this._PropertyDataOrder );
+			this.PropertyData = new ReadOnlyDictionary<int, CustomEntityData>( this._PropertyData );
 		}
 
 
@@ -63,27 +69,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal CustomEntityData GetPropertyData( CustomEntityProperty prop ) {
 			int hash = prop.GetHashCode();
 
-			if( this.PropertyData.ContainsKey(hash) ) {
-				return this.PropertyData[ hash ];
+			if( this._PropertyData.ContainsKey(hash) ) {
+				return this._PropertyData[ hash ];
 			}
 			return null;
 		}
 
 
 		////////////////
-		
-		internal void SerializeToStream( BinaryWriter writer ) {
-			for( int i=0; i<this.PropertyDataOrder.Count; i++ ) {
-				int code = this.PropertyDataOrder[ i ];
-				this.PropertyData[ code ].Serialize( writer, this );
-			}
-		}
 
-		internal void DeserializeFromStream( BinaryReader reader ) {
-			for( int i = 0; i < this.PropertyDataOrder.Count; i++ ) {
-				int code = this.PropertyDataOrder[i];
-				this.PropertyData[ code ].Deserialize( reader, this );
-			}
+		public void Sync() {
+			if( Main.netMode != 2 ) { throw new Exception("Server only"); }
+			CustomEntityProtocol.SendToClients( this );
 		}
 
 

@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
-using Terraria;
+﻿using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
@@ -10,12 +9,6 @@ namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
 		internal PeriodicSyncEntityData() {
 			this.LastSynced = Main.rand.Next( 60 * 5 );
 		}
-	}
-
-
-
-	class PeriodicSyncEntityProtocol : PacketProtocol {
-
 	}
 
 

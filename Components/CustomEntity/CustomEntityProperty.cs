@@ -1,8 +1,8 @@
-﻿using System.IO;
+﻿using HamstarHelpers.Components.Network;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	abstract public class CustomEntityData { }
+	abstract public class CustomEntityData : PacketProtocolData { }
 
 
 
@@ -10,8 +10,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 	abstract public class CustomEntityProperty {
 		public abstract CustomEntityData CreateData();
 		public abstract void Update( CustomEntity ent );
-		internal virtual void Serialize( BinaryWriter writer, CustomEntity ent ) { }
-		internal virtual void Deserialize( BinaryReader reader, CustomEntity ent ) { }
 	}
 	//IsItem,
 	//IsPlayerHostile,
