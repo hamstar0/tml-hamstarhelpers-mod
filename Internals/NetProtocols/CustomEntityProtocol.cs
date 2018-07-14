@@ -13,14 +13,15 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public IList<CustomEntityData> Data;
-		public int EntId;
+		public IList<CustomEntityPropertyData> Data;
+		public int NetId;
 
 
 		////////////////
 
 		private CustomEntityProtocol( CustomEntity ent ) {
-			this.Data = new List<CustomEntityData>( ent.PropertyDataOrder.Count );
+			this.NetId = ent.whoAmI;
+			this.Data = new List<CustomEntityPropertyData>( ent.PropertyDataOrder.Count );
 
 			for( int i = 0; i < ent.PropertyDataOrder.Count; i++ ) {
 				int idx = ent.PropertyDataOrder[i];
@@ -32,7 +33,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void ReceiveWithClient() {
-			var ent = CustomEntity.Get( this.EntId );
+			var ent = CustomEntityManager.Entities[ this.NetId ];
 			ent.SetData( this.Data );
 		}
 	}

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Terraria;
 
 
@@ -13,15 +14,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		abstract public Texture2D Texture { get; }
 
-		private readonly IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
+		private IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
 		abstract protected IList<CustomEntityProperty> _OrderedProperties { get; }
 		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; private set; }
 
-		private readonly IList<int> _PropertyDataOrder = new List<int>();
-		private readonly IDictionary<int, CustomEntityData> _PropertyData = new Dictionary<int, CustomEntityData>();
+		private IList<int> _PropertyDataOrder = new List<int>();
+		private IDictionary<int, CustomEntityPropertyData> _PropertyData = new Dictionary<int, CustomEntityPropertyData>();
 
 		public IReadOnlyList<int> PropertyDataOrder { get; private set; }
-		public IReadOnlyDictionary<int, CustomEntityData> PropertyData { get; private set; }
+		public IReadOnlyDictionary<int, CustomEntityPropertyData> PropertyData { get; private set; }
 
 
 
@@ -29,7 +30,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected CustomEntity( bool is_this_the_real_life ) : base() {
 			foreach( var prop in this._OrderedProperties ) {
-				CustomEntityData data = prop.CreateData();
+				CustomEntityPropertyData data = prop.CreateData();
 
 				if( data != null ) {
 					int code = prop.GetHashCode();
@@ -40,12 +41,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			this.OrderedProperties = new ReadOnlyCollection<CustomEntityProperty>( this._OrderedProperties );
 			this.PropertyDataOrder = new ReadOnlyCollection<int>( this._PropertyDataOrder );
-			this.PropertyData = new ReadOnlyDictionary<int, CustomEntityData>( this._PropertyData );
+			this.PropertyData = new ReadOnlyDictionary<int, CustomEntityPropertyData>( this._PropertyData );
 		}
 
-
 		////////////////
-
+		
 		public CustomEntityProperty GetPropertyByName( string name ) {
 			int prop_count = this.OrderedProperties.Count;
 
@@ -66,7 +66,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return null;
 		}
 
-		internal CustomEntityData GetPropertyData( CustomEntityProperty prop ) {
+		internal CustomEntityPropertyData GetPropertyData( CustomEntityProperty prop ) {
 			int hash = prop.GetHashCode();
 
 			if( this._PropertyData.ContainsKey(hash) ) {
@@ -81,6 +81,21 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public void Sync() {
 			if( Main.netMode != 2 ) { throw new Exception("Server only"); }
 			CustomEntityProtocol.SendToClients( this );
+		}
+
+		internal void SetData( IList<CustomEntityPropertyData> data_list ) {
+			int i = 0;
+			
+			foreach( int code in this._PropertyData.Keys.ToArray() ) {
+				CustomEntityPropertyData data = data_list[i++];
+				CustomEntityPropertyData old_data = this._PropertyData[ code ];
+
+				if( data.GetType().Name != old_data.GetType().Name ) {
+					throw new Exception( "Custom entity data mismatch." );
+				}
+
+				this._PropertyData[ code ] = data;
+			}
 		}
 
 

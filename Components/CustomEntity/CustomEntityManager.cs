@@ -7,7 +7,12 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public class CustomEntityManager {
-		private readonly IList<CustomEntity> Entities = new List<CustomEntity>();
+		public static CustomEntityManager Entities { get { return HamstarHelpersMod.Instance.CustomEntMngr; } }
+
+
+		////////////////
+
+		private readonly IDictionary<int, CustomEntity> EntitiesToIds = new Dictionary<int, CustomEntity>();
 		private readonly IDictionary<string, ISet<int>> EntitiesByName = new Dictionary<string, ISet<int>>();
 
 
@@ -17,7 +22,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Main.OnTick += CustomEntityManager._Update;
 
 			Promises.AddWorldUnloadEachPromise( () => {
-				this.Entities.Clear();
+				this.EntitiesToIds.Clear();
 				this.EntitiesByName.Clear();
 			} );
 		}
@@ -31,12 +36,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		public CustomEntity this[ int idx ] {
 			get {
-				return this.Entities[ idx ];
+				CustomEntity ent = null;
+				this.EntitiesToIds.TryGetValue( idx, out ent );
+				return ent;
 			}
 
 
 			set {
-				string old_name = this.Entities[idx] == null ? null : this.Entities[idx].GetType().Name;
+				string old_name = this.EntitiesToIds[idx] == null ? null : this.EntitiesToIds[idx].GetType().Name;
 
 				if( old_name != null ) {
 					this.EntitiesByName[old_name].Remove( idx );
@@ -51,7 +58,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 					this.EntitiesByName[ new_name ].Add( idx );
 				}
 
-				this.Entities[ idx ] = value;
+				this.EntitiesToIds[ idx ] = value;
 				value.whoAmI = idx;
 			}
 		}
@@ -63,16 +70,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 			ISet<int> ent_idxs;
 			bool found = this.EntitiesByName.TryGetValue( name, out ent_idxs );
 
-			return new HashSet<CustomEntity>( ent_idxs.Select( i => this.Entities[i] ) );
+			return new HashSet<CustomEntity>( ent_idxs.Select( i => this.EntitiesToIds[i] ) );
 		}
 
 		public void Add( CustomEntity ent ) {
-			int idx = this.Entities.Count;
-
-			this.Entities.Add( ent );
+			int idx = this.EntitiesToIds.Count;
+			
 			this[ idx ] = ent;
-
-			ent.whoAmI = idx;
 		}
 
 
@@ -86,10 +90,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal void Update() {
-			int ent_count = this.Entities.Count;
+			int ent_count = this.EntitiesToIds.Count;
 
 			for( int i=0; i<ent_count; i++ ) {
-				this.Entities[i]?.Update();
+				this.EntitiesToIds[i]?.Update();
 			}
 		}
 
@@ -97,8 +101,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void DrawAll( SpriteBatch sb ) {
-			foreach( var ent in this.Entities ) {
-				ent.Draw( sb );
+			foreach( var kv in this.EntitiesToIds ) {
+				kv.Value.Draw( sb );
 			}
 		}
 	}

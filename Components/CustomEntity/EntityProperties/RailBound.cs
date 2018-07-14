@@ -4,7 +4,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Properties {
-	public class RailBoundEntityPropertyData : CustomEntityData {
+	public class RailBoundEntityPropertyData : CustomEntityPropertyData {
 		public bool IsOnRail { get; internal set; }
 	}
 
@@ -12,7 +12,7 @@ namespace HamstarHelpers.Components.CustomEntity.Properties {
 
 
 	public class RailBoundEntityProperty : CustomEntityProperty {
-		public override CustomEntityData CreateData() {
+		public override CustomEntityPropertyData CreateData() {
 			return new RailBoundEntityPropertyData();
 		}
 

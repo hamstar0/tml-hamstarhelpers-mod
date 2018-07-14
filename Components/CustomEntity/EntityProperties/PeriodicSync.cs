@@ -2,7 +2,7 @@
 
 
 namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
-	class PeriodicSyncEntityData : CustomEntityData {
+	class PeriodicSyncEntityData : CustomEntityPropertyData {
 		public int LastSynced { get; internal set; }
 
 
@@ -14,7 +14,7 @@ namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
 
 
 	public class PeriodicSyncEntityProperty : CustomEntityProperty {
-		public override CustomEntityData CreateData() {
+		public override CustomEntityPropertyData CreateData() {
 			return new PeriodicSyncEntityData();
 		}
 

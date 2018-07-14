@@ -2,13 +2,13 @@
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	abstract public class CustomEntityData : PacketProtocolData { }
+	abstract public class CustomEntityPropertyData : PacketProtocolData { }
 
 
 
 
 	abstract public class CustomEntityProperty {
-		public abstract CustomEntityData CreateData();
+		public abstract CustomEntityPropertyData CreateData();
 		public abstract void Update( CustomEntity ent );
 	}
 	//IsItem,

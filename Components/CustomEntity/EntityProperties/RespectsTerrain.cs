@@ -3,7 +3,7 @@
 
 namespace HamstarHelpers.Components.CustomEntity.Properties {
 	public class RespectsGravityEntityProperty : CustomEntityProperty {
-		public override CustomEntityData CreateData() {
+		public override CustomEntityPropertyData CreateData() {
 			return null;
 		}
 
