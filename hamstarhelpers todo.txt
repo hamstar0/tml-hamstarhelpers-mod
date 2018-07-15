@@ -5,20 +5,66 @@ Future?
 	-	...
 	-	Change 'Irrelevant' field to 'Depends'
 	-	...
--	Add player world locks?
 -	Add build.txt fields to substitute for Mod static properties (for github, mod configs)
 -	@Create hotkeys-to-commands mod (uses a HH tab)
 -	Add tabs to UI
 -	Send issue reports for unhandled exceptions
 -	Optimize PacketProtocol
 	-	Refactor packet id code to use indexes, not hashes (stored as ushort)
--	Show main menu indicator of new mod versions
 
 
 
-v1.5.0
+v2.0.0
+-	Add mod browser support links
+-	Add mod browser tags
+	-	@Tags
+		-	Challenge
+		-	Core Gameplay Mechanics
+		-	Meta Game Mechanics
+		-	Quests
+		-	Discrete Game Mode(s)
+		-	Story or Lore
+		-	Traveling
+		-	Player Stats
+		-	NPC Stats
+		-	Combat Special Abilities
+		-	Movement Special Abilities
+		-	Building & Creativity
+		-	Informational
+		-	Specialized
+		-	Cheat
+		-	Vanilla Balanced
+		-	Gameplay Balance Affecting
+		-	Convenience
+		-	Esoteric
+		-	Theme: Dark
+		-	Theme: Silly
+		-	Theme: Fantasy
+		-	Theme: Steampunk
+		-	Theme: Mixed
+		-	Content: Music
+		-	Content: Fancy Art
+		-	Content: Tools
+		-	Content: Weapons
+		-	Content: Hostile NPCs
+		-	Content: Town NPCs
+		-	Content: Friendly NPCs
+		-	Content: Bosses
+		-	Content: Invasions
+		-	Content: Building Blocks
+		-	Content: Fishing
+		-	Content: Buffs & Potions
+		-	Content: Accessories
+		-	Content: Biomes
+		-	Multiplayer Compatible
+		-	PvP
+		-	Team-based
+		-	Affects World
+		-	Special FX
+		-	Open Source
+		-	Team-Built
+
 -	Set UI elements to be 'Components'
-
 -	Implement entity groups
 	-	Implement arbitrary code filters
 	-	Implement item recipe querying

@@ -5,6 +5,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	class ModSettingsProtocol : PacketProtocol {
 		public HamstarHelpersConfigData Data;
 
+
 		////////////////
 
 		public override void SetServerDefaults() {
