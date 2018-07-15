@@ -128,7 +128,7 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 			bool has_right = this.MessageScrollPos < (this.Messages.Current - 1);
 			
 			if( has_left ) {
-				var l_arrow_rect = new Rectangle( (int)this.IconAreaPos.X - 1, (int)this.IconAreaPos.Y, this.ArrowLeft.Width, this.ArrowLeft.Height );
+				var l_arrow_rect = new Rectangle( (int)this.IconAreaPos.X - 1, (int)this.IconAreaPos.Y - 2, this.ArrowLeft.Width, this.ArrowLeft.Height );
 
 				if( Main.mouseLeft && UIHelpers.MouseInRectangle( l_arrow_rect ) ) {
 					if( !this.IsLeftArrowClicked ) {
@@ -147,7 +147,7 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 			}
 			if( has_right ) {
 				var r_arrow_rect = new Rectangle( (int)( ( this.IconAreaPos.X + this.Icon.Width + 1 ) - this.ArrowRight.Width ),
-					(int)this.IconAreaPos.Y, this.ArrowRight.Width, this.ArrowRight.Height );
+					(int)this.IconAreaPos.Y - 2, this.ArrowRight.Width, this.ArrowRight.Height );
 
 				if( Main.mouseLeft && UIHelpers.MouseInRectangle( r_arrow_rect ) ) {
 					if( !this.IsRightArrowClicked ) {
