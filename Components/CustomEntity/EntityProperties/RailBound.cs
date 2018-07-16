@@ -12,7 +12,7 @@ namespace HamstarHelpers.Components.CustomEntity.Properties {
 
 
 	public class RailBoundEntityProperty : CustomEntityProperty {
-		public override CustomEntityPropertyData CreateData() {
+		protected override CustomEntityPropertyData CreateData() {
 			return new RailBoundEntityPropertyData();
 		}
 

@@ -14,7 +14,7 @@ namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
 
 
 	public class PeriodicSyncEntityProperty : CustomEntityProperty {
-		public override CustomEntityPropertyData CreateData() {
+		protected override CustomEntityPropertyData CreateData() {
 			return new PeriodicSyncEntityData();
 		}
 

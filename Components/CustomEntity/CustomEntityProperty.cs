@@ -8,8 +8,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 	abstract public class CustomEntityProperty {
-		public abstract CustomEntityPropertyData CreateData();
+		protected virtual CustomEntityPropertyData CreateData() { return null; }
 		public abstract void Update( CustomEntity ent );
+
+		internal CustomEntityPropertyData CreateDataInternalWrapper() {
+			return this.CreateData();
+		}
 	}
 	//IsItem,
 	//IsPlayerHostile,

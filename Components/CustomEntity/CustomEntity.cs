@@ -30,7 +30,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected CustomEntity( bool is_this_the_real_life ) : base() {
 			foreach( var prop in this._OrderedProperties ) {
-				CustomEntityPropertyData data = prop.CreateData();
+				CustomEntityPropertyData data = prop.CreateDataInternalWrapper();
 
 				if( data != null ) {
 					int code = prop.GetHashCode();
