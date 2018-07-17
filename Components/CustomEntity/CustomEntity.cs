@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Internals.NetProtocols;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.NetProtocols;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -28,14 +29,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected CustomEntity( bool is_this_the_real_life ) : base() {
+		protected CustomEntity( bool is_this_the_real_life ) {
 			foreach( var prop in this._OrderedProperties ) {
 				CustomEntityPropertyData data = prop.CreateDataInternalWrapper();
 
 				if( data != null ) {
 					int code = prop.GetHashCode();
 					this._PropertyDataOrder.Add( code );
-					this._PropertyData[ code ] = data;
+					this._PropertyData[code] = data;
 				}
 			}
 
@@ -43,6 +44,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.PropertyDataOrder = new ReadOnlyCollection<int>( this._PropertyDataOrder );
 			this.PropertyData = new ReadOnlyDictionary<int, CustomEntityPropertyData>( this._PropertyData );
 		}
+
+
+		public void DestroyMe() {
+			3
+		}
+
 
 		////////////////
 		
@@ -112,6 +119,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		public virtual void OnMouseHover() {
+			1
+		}
+
+		public virtual void OnMouseClick() {
+			2
+		}
+
+
+		////////////////
+
 		public void Draw( SpriteBatch sb ) {
 			if( Main.netMode == 2 ) { return; }
 
@@ -121,10 +139,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			if( !this.PreDraw(sb) ) { return; }
 
-			Vector2 scr_scr_pos = this.position - Main.screenPosition;
-			Rectangle scr_rect = my_rect;
-			scr_rect.X -= world_scr_rect.X;
-			scr_rect.Y -= world_scr_rect.Y;
+			var scr_scr_pos = this.position - Main.screenPosition;
+			var scr_rect = new Rectangle( 0, 0, this.width, this.height );
 
 			float scale = 1f;
 

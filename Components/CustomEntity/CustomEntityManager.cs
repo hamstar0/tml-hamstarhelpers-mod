@@ -43,7 +43,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 			set {
-				string old_name = this.EntitiesToIds[idx] == null ? null : this.EntitiesToIds[idx].GetType().Name;
+				string old_name = this[idx] == null ? null : this[idx].GetType().Name;
 
 				if( old_name != null ) {
 					this.EntitiesByName[old_name].Remove( idx );
@@ -72,6 +72,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			return new HashSet<CustomEntity>( ent_idxs.Select( i => this.EntitiesToIds[i] ) );
 		}
+
 
 		public void Add( CustomEntity ent ) {
 			int idx = this.EntitiesToIds.Count;
