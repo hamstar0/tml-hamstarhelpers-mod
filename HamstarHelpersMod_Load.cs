@@ -228,6 +228,7 @@ namespace HamstarHelpers {
 			this.Promises.OnPostSetupContent();
 			this.MenuUIMngr.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
+			this.ModVersionGet.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
 				UIControlPanel.OnPostSetupContent( this );

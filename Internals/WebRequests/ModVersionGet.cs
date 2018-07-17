@@ -39,23 +39,28 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
+			ModVersionGet.CacheAllModVersionsAsync( check );
+		}
+
+
+		internal static void CacheAllModVersionsAsync( Action on_success ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				lock( ModVersionGet.MyLock ) {
 					var mymod = HamstarHelpersMod.Instance;
 
 					if( mymod.ModVersionGet.ModVersions == null ) {
-						ModVersionGet.RetrieveLatestKnownVersionsAsync( ( versions, found ) => {
+						ModVersionGet.RetrieveAllModVersionsAsync( ( versions, found ) => {
 							if( found ) {
 								mymod.ModVersionGet.ModVersions = versions;
 							}
-							check();
+							on_success();
 						} );
 					} else {
-						check();
+						on_success();
 					}
 				}
 			} );
-			
+
 			//string username = ModMetaDataManager.GetGithubUserName( mod );
 			//string projname = ModMetaDataManager.GetGithubProjectName( mod );
 			//string url = "https://api.github.com/repos/" + username + "/" + projname + "/releases";
@@ -63,7 +68,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-		private static void RetrieveLatestKnownVersionsAsync( Action<IDictionary<string, Version>, bool> on_success ) {
+		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, Version>, bool> on_success ) {
 			Action<string> on_response = delegate ( string output ) {
 				IDictionary<string, Version> mod_versions = new Dictionary<string, Version>();
 				bool found = false;
@@ -118,5 +123,14 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		private IDictionary<string, Version> ModVersions = null;
+
+
+		////////////////
+
+		internal void OnPostSetupContent() {
+			ModVersionGet.CacheAllModVersionsAsync( () => {
+				LogHelpers.Log( "Mod versions successfully retrieved and cached." );
+			} );
+		}
 	}
 }

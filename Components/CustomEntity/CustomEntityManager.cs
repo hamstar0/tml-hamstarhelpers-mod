@@ -43,10 +43,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 			set {
-				string old_name = this[idx] == null ? null : this[idx].GetType().Name;
+				string old_name = this[ idx ]?.GetType().Name;
 
 				if( old_name != null ) {
-					this.EntitiesByName[old_name].Remove( idx );
+					this.EntitiesByName[ old_name ].Remove( idx );
 				}
 
 				if( value != null ) {
@@ -56,10 +56,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 						this.EntitiesByName[ new_name ] = new HashSet<int>();
 					}
 					this.EntitiesByName[ new_name ].Add( idx );
-				}
 
-				this.EntitiesToIds[ idx ] = value;
-				value.whoAmI = idx;
+					value.whoAmI = idx;
+					this.EntitiesToIds[idx] = value;
+				} else {
+					this.EntitiesToIds.Remove( idx );
+				}
 			}
 		}
 
@@ -73,11 +75,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return new HashSet<CustomEntity>( ent_idxs.Select( i => this.EntitiesToIds[i] ) );
 		}
 
+		////////////////
 
 		public void Add( CustomEntity ent ) {
 			int idx = this.EntitiesToIds.Count;
 			
 			this[ idx ] = ent;
+		}
+
+		public void Remove( CustomEntity ent ) {
+			this[ ent.whoAmI ] = null;
+		}
+		public void Remove( int idx ) {
+			this[ idx ] = null;
 		}
 
 
@@ -91,10 +101,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal void Update() {
-			int ent_count = this.EntitiesToIds.Count;
-
-			for( int i=0; i<ent_count; i++ ) {
-				this.EntitiesToIds[i]?.Update();
+			foreach( CustomEntity ent in this.EntitiesToIds.Values.ToArray() ) {
+				ent.Update();
 			}
 		}
 

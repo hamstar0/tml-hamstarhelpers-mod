@@ -46,11 +46,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
-		public void DestroyMe() {
-			3
-		}
-
-
 		////////////////
 		
 		public CustomEntityProperty GetPropertyByName( string name ) {
@@ -114,28 +109,39 @@ namespace HamstarHelpers.Components.CustomEntity {
 			for( int i=0; i<prop_count; i++ ) {
 				this.OrderedProperties[ i ].Update( this );
 			}
+
+			if( this.CheckMouseHover() ) {
+				this.OnMouseHover();
+			}
 		}
 
 
 		////////////////
+		
+		private bool CheckMouseHover() {
+			if( Main.netMode == 2 ) { throw new Exception( "Server cannot OnMouseClick." ); }
 
-		public virtual void OnMouseHover() {
-			1
+			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
+			Rectangle box = this.Hitbox;
+			if( !box.Intersects( world_scr_rect ) ) {
+				return false;
+			}
+
+			var screen_box = new Rectangle( box.X - world_scr_rect.X, box.Y - world_scr_rect.Y, box.Width, box.Height );
+
+			return screen_box.Contains( Main.mouseX, Main.mouseY );
 		}
 
-		public virtual void OnMouseClick() {
-			2
-		}
+		public virtual void OnMouseHover() { }
 
 
 		////////////////
 
 		public void Draw( SpriteBatch sb ) {
-			if( Main.netMode == 2 ) { return; }
+			if( Main.netMode == 2 ) { throw new Exception( "Server cannot Draw." ); }
 
-			Rectangle world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
-			Rectangle my_rect = this.Hitbox;
-			if( !my_rect.Intersects( world_scr_rect ) ) { return; }
+			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
+			if( !this.Hitbox.Intersects( world_scr_rect ) ) { return; }
 
 			if( !this.PreDraw(sb) ) { return; }
 

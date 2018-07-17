@@ -129,13 +129,8 @@ namespace HamstarHelpers {
 					RasterizerState.CullCounterClockwise :
 					RasterizerState.CullClockwise;
 			Main.spriteBatch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, rasterizer, (Effect)null, Main.GameViewMatrix.TransformationMatrix );
-
-			try {
-				mymod.CustomEntMngr.DrawAll( Main.spriteBatch );
-			} catch( Exception e ) {
-				ErrorLogger.Log( "HamstarHelpersWorld.PostDrawTiles - " + e.ToString() );
-				throw e;
-			}
+			
+			mymod.CustomEntMngr.DrawAll( Main.spriteBatch );
 
 			Main.spriteBatch.End();
 		}
