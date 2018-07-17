@@ -2,16 +2,16 @@
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	abstract public class CustomEntityPropertyData : PacketProtocolData { }
+	abstract public class CustomEntityComponentData : PacketProtocolData { }
 
 
 
 
-	abstract public class CustomEntityProperty {
-		protected virtual CustomEntityPropertyData CreateData() { return null; }
+	abstract public class CustomEntityComponent {
+		protected virtual CustomEntityComponentData CreateData() { return null; }
 		public abstract void Update( CustomEntity ent );
 
-		internal CustomEntityPropertyData CreateDataInternalWrapper() {
+		internal CustomEntityComponentData CreateDataInternalWrapper() {
 			return this.CreateData();
 		}
 	}

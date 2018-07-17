@@ -71,35 +71,6 @@ namespace HamstarHelpers {
 			return tags;
 		}
 
-		
-		////////////////
-
-		/*public override void NetSend( BinaryWriter writer ) {		<- TML's ModWorld.Net stuff is notoriously buggy!
-			var mymod = (HamstarHelpersMod)this.mod;
-
-			try {
-				writer.Write( this.HasCorrectID );
-				writer.Write( this.ObsoleteID );
-			} catch( Exception e ) {
-				LogHelpers.Log( e.ToString() );
-			}
-		}
-
-		public override void NetReceive( BinaryReader reader ) {
-			var mymod = (HamstarHelpersMod)this.mod;
-
-			try {
-				bool has_correct_id = reader.ReadBoolean();
-				string id = reader.ReadString();
-
-				if( has_correct_id ) {
-					this.ObsoleteID = id;
-					this.HasCorrectID = true;
-				}
-			} catch( Exception e ) {
-				LogHelpers.Log( e.ToString() );
-			}
-		}*/
 
 		////////////////
 
@@ -131,7 +102,7 @@ namespace HamstarHelpers {
 			Main.spriteBatch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, rasterizer, (Effect)null, Main.GameViewMatrix.TransformationMatrix );
 			
 			mymod.CustomEntMngr.DrawAll( Main.spriteBatch );
-
+			
 			Main.spriteBatch.End();
 		}
 	}

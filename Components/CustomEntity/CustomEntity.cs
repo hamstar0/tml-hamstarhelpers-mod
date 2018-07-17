@@ -15,64 +15,64 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		abstract public Texture2D Texture { get; }
 
-		private IDictionary<string, int> PropertiesByName = new Dictionary<string, int>();
-		abstract protected IList<CustomEntityProperty> _OrderedProperties { get; }
-		public IReadOnlyList<CustomEntityProperty> OrderedProperties { get; private set; }
+		private IDictionary<string, int> ComponentsByName = new Dictionary<string, int>();
+		abstract protected IList<CustomEntityComponent> _OrderedComponents { get; }
+		public IReadOnlyList<CustomEntityComponent> OrderedComponents { get; private set; }
 
-		private IList<int> _PropertyDataOrder = new List<int>();
-		private IDictionary<int, CustomEntityPropertyData> _PropertyData = new Dictionary<int, CustomEntityPropertyData>();
+		private IList<int> _ComponentDataOrder = new List<int>();
+		private IDictionary<int, CustomEntityComponentData> _ComponentData = new Dictionary<int, CustomEntityComponentData>();
 
-		public IReadOnlyList<int> PropertyDataOrder { get; private set; }
-		public IReadOnlyDictionary<int, CustomEntityPropertyData> PropertyData { get; private set; }
+		public IReadOnlyList<int> ComponentDataOrder { get; private set; }
+		public IReadOnlyDictionary<int, CustomEntityComponentData> ComponentData { get; private set; }
 
 
 
 		////////////////
 
 		protected CustomEntity( bool is_this_the_real_life ) {
-			foreach( var prop in this._OrderedProperties ) {
-				CustomEntityPropertyData data = prop.CreateDataInternalWrapper();
+			foreach( var prop in this._OrderedComponents ) {
+				CustomEntityComponentData data = prop.CreateDataInternalWrapper();
 
 				if( data != null ) {
 					int code = prop.GetHashCode();
-					this._PropertyDataOrder.Add( code );
-					this._PropertyData[code] = data;
+					this._ComponentDataOrder.Add( code );
+					this._ComponentData[code] = data;
 				}
 			}
 
-			this.OrderedProperties = new ReadOnlyCollection<CustomEntityProperty>( this._OrderedProperties );
-			this.PropertyDataOrder = new ReadOnlyCollection<int>( this._PropertyDataOrder );
-			this.PropertyData = new ReadOnlyDictionary<int, CustomEntityPropertyData>( this._PropertyData );
+			this.OrderedComponents = new ReadOnlyCollection<CustomEntityComponent>( this._OrderedComponents );
+			this.ComponentDataOrder = new ReadOnlyCollection<int>( this._ComponentDataOrder );
+			this.ComponentData = new ReadOnlyDictionary<int, CustomEntityComponentData>( this._ComponentData );
 		}
 
 
 		////////////////
 		
-		public CustomEntityProperty GetPropertyByName( string name ) {
-			int prop_count = this.OrderedProperties.Count;
+		public CustomEntityComponent GetPropertyByName( string name ) {
+			int prop_count = this.OrderedComponents.Count;
 
-			if( this.PropertiesByName.Count != prop_count ) {
-				this.PropertiesByName.Clear();
+			if( this.ComponentsByName.Count != prop_count ) {
+				this.ComponentsByName.Clear();
 
 				for( int i = 0; i < prop_count; i++ ) {
-					string prop_name = this.OrderedProperties[i].GetType().Name;
-					this.PropertiesByName[prop_name] = i;
+					string prop_name = this.OrderedComponents[i].GetType().Name;
+					this.ComponentsByName[prop_name] = i;
 				}
 			}
 
 			int idx;
 
-			if( this.PropertiesByName.TryGetValue(name, out idx ) ) {
-				return this.OrderedProperties[ idx ];
+			if( this.ComponentsByName.TryGetValue(name, out idx ) ) {
+				return this.OrderedComponents[ idx ];
 			}
 			return null;
 		}
 
-		internal CustomEntityPropertyData GetPropertyData( CustomEntityProperty prop ) {
+		internal CustomEntityComponentData GetPropertyData( CustomEntityComponent prop ) {
 			int hash = prop.GetHashCode();
 
-			if( this._PropertyData.ContainsKey(hash) ) {
-				return this._PropertyData[ hash ];
+			if( this._ComponentData.ContainsKey(hash) ) {
+				return this._ComponentData[ hash ];
 			}
 			return null;
 		}
@@ -85,18 +85,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityProtocol.SendToClients( this );
 		}
 
-		internal void SetData( IList<CustomEntityPropertyData> data_list ) {
+		internal void SetData( IList<CustomEntityComponentData> data_list ) {
 			int i = 0;
 			
-			foreach( int code in this._PropertyData.Keys.ToArray() ) {
-				CustomEntityPropertyData data = data_list[i++];
-				CustomEntityPropertyData old_data = this._PropertyData[ code ];
+			foreach( int code in this._ComponentData.Keys.ToArray() ) {
+				CustomEntityComponentData data = data_list[i++];
+				CustomEntityComponentData old_data = this._ComponentData[ code ];
 
 				if( data.GetType().Name != old_data.GetType().Name ) {
 					throw new Exception( "Custom entity data mismatch." );
 				}
 
-				this._PropertyData[ code ] = data;
+				this._ComponentData[ code ] = data;
 			}
 		}
 
@@ -104,10 +104,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void Update() {
-			int prop_count = this.OrderedProperties.Count;
+			int prop_count = this.OrderedComponents.Count;
 			
 			for( int i=0; i<prop_count; i++ ) {
-				this.OrderedProperties[ i ].Update( this );
+				this.OrderedComponents[ i ].Update( this );
 			}
 
 			if( this.CheckMouseHover() ) {

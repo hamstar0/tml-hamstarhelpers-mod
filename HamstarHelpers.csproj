@@ -60,11 +60,11 @@
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
-    <Compile Include="Components\CustomEntity\CustomEntityProperty.cs" />
-    <Compile Include="Components\CustomEntity\EntityProperties\RailBound.cs" />
-    <Compile Include="Components\CustomEntity\EntityProperties\PeriodicSync.cs" />
-    <Compile Include="Components\CustomEntity\EntityProperties\RespectsTerrain.cs" />
-    <Compile Include="Components\CustomEntity\EntityProperties\RespectsGravity.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntityComponent.cs" />
+    <Compile Include="Components\CustomEntity\Components\RailBound.cs" />
+    <Compile Include="Components\CustomEntity\Components\PeriodicSync.cs" />
+    <Compile Include="Components\CustomEntity\Components\RespectsTerrain.cs" />
+    <Compile Include="Components\CustomEntity\Components\RespectsGravity.cs" />
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
     <Compile Include="Components\UI\Elements\UIDialog.cs" />

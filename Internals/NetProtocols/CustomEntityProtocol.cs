@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public IList<CustomEntityPropertyData> Data;
+		public IList<CustomEntityComponentData> Data;
 		public int NetId;
 
 
@@ -21,11 +21,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private CustomEntityProtocol( CustomEntity ent ) {
 			this.NetId = ent.whoAmI;
-			this.Data = new List<CustomEntityPropertyData>( ent.PropertyDataOrder.Count );
+			this.Data = new List<CustomEntityComponentData>( ent.ComponentDataOrder.Count );
 
-			for( int i = 0; i < ent.PropertyDataOrder.Count; i++ ) {
-				int idx = ent.PropertyDataOrder[i];
-				var data = ent.PropertyData[idx];
+			for( int i = 0; i < ent.ComponentDataOrder.Count; i++ ) {
+				int idx = ent.ComponentDataOrder[i];
+				var data = ent.ComponentData[idx];
 				this.Data.Add( data );
 			}
 		}

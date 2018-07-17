@@ -3,17 +3,17 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Components.CustomEntity.Properties {
-	public class RailBoundEntityPropertyData : CustomEntityPropertyData {
+namespace HamstarHelpers.Components.CustomEntity.Components {
+	public class RailBoundEntityComponentData : CustomEntityComponentData {
 		public bool IsOnRail { get; internal set; }
 	}
 
 
 
 
-	public class RailBoundEntityProperty : CustomEntityProperty {
-		protected override CustomEntityPropertyData CreateData() {
-			return new RailBoundEntityPropertyData();
+	public class RailBoundEntityComponent : CustomEntityComponent {
+		protected override CustomEntityComponentData CreateData() {
+			return new RailBoundEntityComponentData();
 		}
 
 
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Components.CustomEntity.Properties {
 				if( is_on_rail ) { break; }
 			}
 
-			var rail_data = (RailBoundEntityPropertyData)ent.GetPropertyData( this );
+			var rail_data = (RailBoundEntityComponentData)ent.GetPropertyData( this );
 
 			if( !rail_data.IsOnRail && is_on_rail ) {
 				rail_data.IsOnRail = true;

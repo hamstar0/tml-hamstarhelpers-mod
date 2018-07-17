@@ -1,8 +1,8 @@
 ﻿using Terraria;
 
 
-namespace HamstarHelpers.Components.CustomEntity.Properties {
-	public class RespectsGravityEntityProperty : CustomEntityProperty {
+namespace HamstarHelpers.Components.CustomEntity.Components {
+	public class RespectsGravityEntityComponent : CustomEntityComponent {
 		public override void Update( CustomEntity ent ) {
 			float gravity = 0.1f;
 			float max_fall_speed = 7f;

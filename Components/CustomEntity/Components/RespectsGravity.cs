@@ -2,8 +2,8 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Components.CustomEntity.Properties {
-	public class RespectsTerrainEntityProperty : CustomEntityProperty {
+namespace HamstarHelpers.Components.CustomEntity.Components {
+	public class RespectsTerrainEntityComponent : CustomEntityComponent {
 		public override void Update( CustomEntity ent ) {
 			bool respects_gravity = ent.GetPropertyByName( "RespectsGravityEntityProperty" ) != null;
 			Vector2 wet_velocity = ent.velocity * 0.5f;
