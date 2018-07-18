@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		abstract public Texture2D Texture { get; }
 		abstract public int FrameCount { get; }
 
-		private IDictionary<string, int> ComponentsByName = new Dictionary<string, int>();
+		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
 		abstract protected IList<CustomEntityComponent> _OrderedComponents { get; }
 		public IReadOnlyList<CustomEntityComponent> OrderedComponents { get; private set; }
 
@@ -49,24 +49,24 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 		
-		public CustomEntityComponent GetComponentByName( Type component_type ) {
-			int prop_count = this.OrderedComponents.Count;
+		public CustomEntityComponent GetComponentByType<T>() where T : CustomEntityComponent {
+			int comp_count = this.OrderedComponents.Count;
 
-			if( this.ComponentsByName.Count != prop_count ) {
-				this.ComponentsByName.Clear();
+			if( this.ComponentsByTypeName.Count != comp_count ) {
+				this.ComponentsByTypeName.Clear();
 
-				for( int i = 0; i < prop_count; i++ ) {
-					string prop_name = this.OrderedComponents[i].GetType().Name;
-					this.ComponentsByName[prop_name] = i;
+				for( int i = 0; i < comp_count; i++ ) {
+					string comp_name = this.OrderedComponents[i].GetType().Name;
+					this.ComponentsByTypeName[comp_name] = i;
 				}
 			}
 
 			int idx;
 
-			if( this.ComponentsByName.TryGetValue(component_type.Name, out idx ) ) {
-				return this.OrderedComponents[ idx ];
+			if( !this.ComponentsByTypeName.TryGetValue( typeof(T).Name, out idx ) ) {
+				return null;
 			}
-			return null;
+			return this.OrderedComponents[ idx ];
 		}
 
 		internal CustomEntityComponentData GetPropertyData( CustomEntityComponent prop ) {

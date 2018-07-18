@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -13,7 +14,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private readonly IDictionary<int, CustomEntity> EntitiesToIds = new Dictionary<int, CustomEntity>();
-		private readonly IDictionary<string, ISet<int>> EntitiesByName = new Dictionary<string, ISet<int>>();
+		private readonly IDictionary<string, ISet<int>> EntitiesByTypeName = new Dictionary<string, ISet<int>>();
 
 
 		////////////////
@@ -23,7 +24,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Promises.AddWorldUnloadEachPromise( () => {
 				this.EntitiesToIds.Clear();
-				this.EntitiesByName.Clear();
+				this.EntitiesByTypeName.Clear();
 			} );
 		}
 
@@ -46,16 +47,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 				string old_name = this[ idx ]?.GetType().Name;
 
 				if( old_name != null ) {
-					this.EntitiesByName[ old_name ].Remove( idx );
+					this.EntitiesByTypeName[ old_name ].Remove( idx );
 				}
 
 				if( value != null ) {
 					string new_name = value.GetType().Name;
 
-					if( !this.EntitiesByName.ContainsKey(new_name) ) {
-						this.EntitiesByName[ new_name ] = new HashSet<int>();
+					if( !this.EntitiesByTypeName.ContainsKey(new_name) ) {
+						this.EntitiesByTypeName[ new_name ] = new HashSet<int>();
 					}
-					this.EntitiesByName[ new_name ].Add( idx );
+					this.EntitiesByTypeName[ new_name ].Add( idx );
 
 					value.whoAmI = idx;
 					this.EntitiesToIds[idx] = value;
@@ -68,11 +69,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public ISet<CustomEntity> GetByName( string name ) {
+		public ISet<T> GetByType<T>() where T : CustomEntity {
 			ISet<int> ent_idxs;
-			bool found = this.EntitiesByName.TryGetValue( name, out ent_idxs );
 
-			return new HashSet<CustomEntity>( ent_idxs.Select( i => this.EntitiesToIds[i] ) );
+			if( !this.EntitiesByTypeName.TryGetValue( typeof(T).Name, out ent_idxs ) ) {
+				return new HashSet<T>();
+			}
+			
+			return new HashSet<T>( ent_idxs.Select( i => (T)this.EntitiesToIds[i] ) );
 		}
 
 		////////////////

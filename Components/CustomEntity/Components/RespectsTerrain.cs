@@ -6,7 +6,7 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
 		public override void Update( CustomEntity ent ) {
-			bool respects_gravity = ent.GetComponentByName( typeof(RespectsGravityEntityComponent) ) != null;
+			bool respects_gravity = ent.GetComponentByType<RespectsGravityEntityComponent>() != null;
 			Vector2 wet_velocity = ent.velocity * 0.5f;
 
 			if( !respects_gravity ) {
