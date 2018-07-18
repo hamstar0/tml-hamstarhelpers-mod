@@ -14,6 +14,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		abstract public string DisplayName { get; }
 
 		abstract public Texture2D Texture { get; }
+		abstract public int FrameCount { get; }
 
 		private IDictionary<string, int> ComponentsByName = new Dictionary<string, int>();
 		abstract protected IList<CustomEntityComponent> _OrderedComponents { get; }
@@ -39,7 +40,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 					this._ComponentData[code] = data;
 				}
 			}
-
+			
 			this.OrderedComponents = new ReadOnlyCollection<CustomEntityComponent>( this._OrderedComponents );
 			this.ComponentDataOrder = new ReadOnlyCollection<int>( this._ComponentDataOrder );
 			this.ComponentData = new ReadOnlyDictionary<int, CustomEntityComponentData>( this._ComponentData );
@@ -48,7 +49,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 		
-		public CustomEntityComponent GetPropertyByName( string name ) {
+		public CustomEntityComponent GetComponentByName( Type component_type ) {
 			int prop_count = this.OrderedComponents.Count;
 
 			if( this.ComponentsByName.Count != prop_count ) {
@@ -62,7 +63,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			int idx;
 
-			if( this.ComponentsByName.TryGetValue(name, out idx ) ) {
+			if( this.ComponentsByName.TryGetValue(component_type.Name, out idx ) ) {
 				return this.OrderedComponents[ idx ];
 			}
 			return null;
@@ -146,11 +147,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !this.PreDraw(sb) ) { return; }
 
 			var scr_scr_pos = this.position - Main.screenPosition;
-			var scr_rect = new Rectangle( 0, 0, this.width, this.height );
+			var tex_rect = new Rectangle( 0, 0, this.Texture.Width, this.Texture.Height / this.FrameCount );
 
 			float scale = 1f;
 
-			sb.Draw( this.Texture, scr_scr_pos, scr_rect, Color.White, 0f, new Vector2(), scale, SpriteEffects.None, 1f );
+			sb.Draw( this.Texture, scr_scr_pos, tex_rect, Color.White, 0f, new Vector2(), scale, SpriteEffects.None, 1f );
 
 			this.PostDraw( sb );
 		}
