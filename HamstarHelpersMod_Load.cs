@@ -223,7 +223,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostSetupContent() {
-			this.PacketProtocols = PacketProtocol.GetProtocols();
+			this.PacketProtocols = PacketProtocol.GetProtocolTypes();
 
 			this.Promises.OnPostSetupContent();
 			this.MenuUIMngr.OnPostSetupContent();

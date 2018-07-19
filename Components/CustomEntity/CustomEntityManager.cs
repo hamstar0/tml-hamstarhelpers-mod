@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -81,10 +80,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public void Add( CustomEntity ent ) {
+		public int Add( CustomEntity ent ) {
 			int idx = this.EntitiesToIds.Count;
 			
 			this[ idx ] = ent;
+
+			return idx;
 		}
 
 		public void Remove( CustomEntity ent ) {

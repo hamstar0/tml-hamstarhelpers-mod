@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -56,9 +57,10 @@ namespace HamstarHelpers {
 
 			//mymod.UserHelpers.Load( mymod, tags );
 			mymod.ModLockHelpers.Load( mymod, tags );
+
 			this.WorldLogic.LoadForWorld( mymod, tags );
 
-			mymod.ModLockHelpers.OnWorldLoad( mymod, this );
+			mymod.ModLockHelpers.PostLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
 			this.HasCorrectID = true;
@@ -72,6 +74,7 @@ namespace HamstarHelpers {
 
 			//mymod.UserHelpers.Save( mymod, tags );
 			mymod.ModLockHelpers.Save( mymod, tags );
+
 			this.WorldLogic.SaveForWorld( mymod, tags );
 
 			return tags;

@@ -53,7 +53,7 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 
-		internal static IDictionary<int, Type> GetProtocols() {
+		internal static IDictionary<int, Type> GetProtocolTypes() {
 			IDictionary<int, Type> protocols = new Dictionary<int, Type>();
 
 			//var subclasses = from assembly in AppDomain.CurrentDomain.GetAssemblies()

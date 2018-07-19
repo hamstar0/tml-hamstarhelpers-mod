@@ -61,6 +61,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			rail_data.IsOnRail = is_on_rail;
 		}
 
+		////////////////
 
 		public void SnapToTrack( CustomEntity ent, int tile_x, int tile_y ) {
 			ent.position.Y = (tile_y * 16) - ent.height;

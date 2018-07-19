@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
+    <Compile Include="Components\CustomEntity\Components\PerWorldSave.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityComponent.cs" />
