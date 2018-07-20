@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.CustomEntity.EntityProperties;
+﻿using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;

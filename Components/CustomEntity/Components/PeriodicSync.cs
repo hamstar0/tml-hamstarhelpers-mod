@@ -1,7 +1,7 @@
 ﻿using Terraria;
 
 
-namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
+namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PeriodicSyncEntityComponent : CustomEntityComponent {
 		public int LastSynced;
 

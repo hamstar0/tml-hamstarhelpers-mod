@@ -5,7 +5,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
+namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsEntityComponent : CustomEntityComponent {
 		public string TexturePath;
 		public int FrameCount;
@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
 
 		////////////////
 
-		protected DrawsEntityComponent( string texture_path, int frame_count ) {
+		public DrawsEntityComponent( string texture_path, int frame_count ) {
 			this.TexturePath = texture_path;
 			this.FrameCount = frame_count;
 

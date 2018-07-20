@@ -18,7 +18,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 
-	abstract public partial class CustomEntity : Entity {
+	public partial class CustomEntity : Entity {
 		internal static CustomEntity Deserialize( string data ) {
 			var deserialized = JsonConvert.DeserializeObject<CustomEntitySerializeable>( data );
 

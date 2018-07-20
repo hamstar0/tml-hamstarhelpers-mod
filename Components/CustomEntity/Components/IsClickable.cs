@@ -3,7 +3,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
+namespace HamstarHelpers.Components.CustomEntity.Components {
 	abstract public class IsClickableEntityComponent : CustomEntityComponent {
 		public override void Update( CustomEntity ent ) {
 			if( this.CheckMouseHover( ent ) ) {

@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Services.Promises;
 
 
-namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
+namespace HamstarHelpers.Components.CustomEntity.Components {
 	class CustomEntityWorldData {
 		public int EntityCount;
 		public CustomEntity[] Entities;
