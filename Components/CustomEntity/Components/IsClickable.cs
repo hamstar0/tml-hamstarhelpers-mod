@@ -11,6 +11,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			}
 		}
 
+		////////////////
 
 		protected abstract void OnMouseHover( CustomEntity ent );
 

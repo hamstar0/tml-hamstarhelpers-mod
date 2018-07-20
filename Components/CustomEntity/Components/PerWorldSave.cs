@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		internal PerWorldSaveEntityComponent( bool as_json ) {
+		public PerWorldSaveEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
 		}
 

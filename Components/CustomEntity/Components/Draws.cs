@@ -32,7 +32,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
 			if( !ent.Hitbox.Intersects( world_scr_rect ) ) { return; }
 
-			if( !this.PreDraw( sb ) ) { return; }
+			if( !this.PreDraw( sb, ent ) ) { return; }
 
 			var scr_scr_pos = ent.position - Main.screenPosition;
 			var tex_rect = new Rectangle( 0, 0, this.Texture.Width, this.Texture.Height / this.FrameCount );
@@ -41,11 +41,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			sb.Draw( this.Texture, scr_scr_pos, tex_rect, Color.White, 0f, new Vector2(), scale, SpriteEffects.None, 1f );
 
-			this.PostDraw( sb );
+			this.PostDraw( sb, ent );
 		}
 
 
-		public virtual bool PreDraw( SpriteBatch sb ) { return true; }
-		public virtual void PostDraw( SpriteBatch sb ) { }
+		public virtual bool PreDraw( SpriteBatch sb, CustomEntity ent ) { return true; }
+		public virtual void PostDraw( SpriteBatch sb, CustomEntity ent ) { }
 	}
 }
