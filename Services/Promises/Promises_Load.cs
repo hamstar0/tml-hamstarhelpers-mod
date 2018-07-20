@@ -22,7 +22,10 @@ namespace HamstarHelpers.Services.Promises {
 		internal bool WorldLoadPromiseConditionsMet = false;
 		internal bool WorldUnloadPromiseConditionsMet = false;
 		internal bool PostWorldUnloadPromiseConditionsMet = false;
-		internal ISet<string> CustomPromiseConditionsMet = new HashSet<string>();
+		internal ISet<string> NamedCustomPromiseConditionsMet = new HashSet<string>();
+
+		internal IDictionary<object, List<Func<bool>>> CustomObjectPromise = new Dictionary<object, List<Func<bool>>>();
+		internal ISet<object> ObjectCustomPromiseConditionsMet = new HashSet<object>();
 
 
 		////////////////

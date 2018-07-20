@@ -58,7 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
+    <Compile Include="Components\CustomEntity\Components\IsClickable.cs" />
+    <Compile Include="Components\CustomEntity\Components\Draws.cs" />
     <Compile Include="Components\CustomEntity\Components\PerWorldSave.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntity_Serialize.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityComponent.cs" />
@@ -159,6 +162,7 @@
     <Compile Include="Services\Messages\InboxMessages.cs" />
     <Compile Include="Services\Messages\PlayerMessages.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
+    <Compile Include="Services\Promises\Promises_Custom.cs" />
     <Compile Include="Services\Promises\Promises.cs" />
     <Compile Include="Services\Promises\Promises_Load.cs" />
     <Compile Include="Services\Timers\Timers.cs" />

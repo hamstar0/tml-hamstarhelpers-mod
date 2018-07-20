@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.Network {
@@ -54,17 +54,10 @@ namespace HamstarHelpers.Components.Network {
 
 
 		internal static IDictionary<int, Type> GetProtocolTypes() {
-			IDictionary<int, Type> protocols = new Dictionary<int, Type>();
+			IEnumerable<Type> protocol_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( PacketProtocol ) );
+			IDictionary<int, Type> protocol_type_map = new Dictionary<int, Type>();
 
-			//var subclasses = from assembly in AppDomain.CurrentDomain.GetAssemblies()
-			var mod_types = ModLoader.LoadedMods.Select( mod => mod.GetType() );
-			var assemblies = mod_types.Select( mod_type => mod_type.Assembly );
-			var subclasses = from assembly in assemblies
-							 from type in assembly.GetTypes()
-							 where type.IsSubclassOf( typeof( PacketProtocol ) ) && !type.IsAbstract
-							 select type;
-
-			foreach( Type subclass in subclasses ) {
+			foreach( Type subclass in protocol_types ) {
 				if( HamstarHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					string name = subclass.Namespace + "." + subclass.Name;
 					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + name );
@@ -74,13 +67,13 @@ namespace HamstarHelpers.Components.Network {
 					string name = subclass.Namespace + "." + subclass.Name;
 					int code = PacketProtocol.GetPacketCode( name );
 
-					protocols[ code ] = subclass;
+					protocol_type_map[ code ] = subclass;
 				} catch( Exception e ) {
 					LogHelpers.Log( subclass.Name + " - " + e.Message );
 				}
 			}
 
-			return protocols;
+			return protocol_type_map;
 		}
 
 

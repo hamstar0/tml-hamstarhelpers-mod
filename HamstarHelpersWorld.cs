@@ -63,6 +63,8 @@ namespace HamstarHelpers {
 			mymod.ModLockHelpers.PostLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
+			Promises.TriggerCustomPromiseForObject( this );
+
 			this.HasCorrectID = true;
 		}
 
@@ -76,6 +78,8 @@ namespace HamstarHelpers {
 			mymod.ModLockHelpers.Save( mymod, tags );
 
 			this.WorldLogic.SaveForWorld( mymod, tags );
+
+			Promises.TriggerCustomPromiseForObject( this );
 
 			return tags;
 		}

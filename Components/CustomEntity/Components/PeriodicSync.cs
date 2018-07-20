@@ -2,28 +2,18 @@
 
 
 namespace HamstarHelpers.Components.CustomEntity.EntityProperties {
-	public class PeriodicSyncEntityComponentData : CustomEntityComponentData {
-		public int LastSynced { get; internal set; }
+	public class PeriodicSyncEntityComponent : CustomEntityComponent {
+		public int LastSynced;
 
 
-		internal PeriodicSyncEntityComponentData() {
+		internal PeriodicSyncEntityComponent() {
 			this.LastSynced = Main.rand.Next( 60 * 5 );
 		}
-	}
 
 
-
-	public class PeriodicSyncEntityComponent : CustomEntityComponent {
-		protected override CustomEntityComponentData CreateData() {
-			return new PeriodicSyncEntityComponentData();
-		}
-
-		
 		public override void Update( CustomEntity ent ) {
-			var sync_data = (PeriodicSyncEntityComponentData)ent.GetPropertyData( this );
-
-			if( sync_data.LastSynced-- <= 0 ) {
-				sync_data.LastSynced = 60 * 5;
+			if( this.LastSynced-- <= 0 ) {
+				this.LastSynced = 60 * 5;
 
 				ent.Sync();
 			}

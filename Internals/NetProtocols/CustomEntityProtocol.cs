@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public IList<CustomEntityComponentData> Data;
+		public IList<CustomEntityComponent> Components;
 		public int NetId;
 
 
@@ -21,12 +21,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private CustomEntityProtocol( CustomEntity ent ) {
 			this.NetId = ent.whoAmI;
-			this.Data = new List<CustomEntityComponentData>( ent.ComponentDataOrder.Count );
+			this.Components = new List<CustomEntityComponent>( ent.ComponentsInOrder.Count );
 
-			for( int i = 0; i < ent.ComponentDataOrder.Count; i++ ) {
-				int idx = ent.ComponentDataOrder[i];
-				var data = ent.ComponentData[idx];
-				this.Data.Add( data );
+			for( int i = 0; i < ent.ComponentsInOrder.Count; i++ ) {
+				CustomEntityComponent component = ent.ComponentsInOrder[ i ];
+				this.Components.Add( component );
 			}
 		}
 
@@ -34,7 +33,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithClient() {
 			var ent = CustomEntityManager.Entities[ this.NetId ];
-			ent.SetData( this.Data );
+			ent.SetComponents( this.Components );
 		}
 	}
 }

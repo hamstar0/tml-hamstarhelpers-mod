@@ -50,6 +50,10 @@ namespace HamstarHelpers.Components.Network {
 
 		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
+				if( Attribute.IsDefined( field, typeof(JsonIgnoreAttribute) ) ) {
+					continue;
+				}
+
 				var data_type = field.FieldType;
 
 				if( typeof( PacketProtocolData ).IsAssignableFrom( data_type ) ) {
@@ -135,6 +139,10 @@ namespace HamstarHelpers.Components.Network {
 
 		private static void WriteStreamIntoContainer( BinaryWriter writer, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
+				if( Attribute.IsDefined( field, typeof( JsonIgnoreAttribute ) ) ) {
+					continue;
+				}
+
 				object raw_val = field.GetValue( data );
 				Type field_type = field.FieldType;
 

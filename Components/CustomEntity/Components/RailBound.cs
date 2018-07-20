@@ -1,22 +1,17 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using Newtonsoft.Json;
 using System;
 using Terraria;
 using Terraria.ID;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
-	public class RailBoundEntityComponentData : CustomEntityComponentData {
-		public bool IsOnRail { get; internal set; }
-	}
-
-
-
-
 	public class RailBoundEntityComponent : CustomEntityComponent {
-		protected override CustomEntityComponentData CreateData() {
-			return new RailBoundEntityComponentData();
-		}
+		[JsonIgnore]
+		public bool IsOnRail;
 
+
+		////////////////
 
 		public override void Update( CustomEntity ent ) {
 			bool is_on_rail = false;
@@ -50,15 +45,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 				if( is_on_rail ) { break; }
 			}
-
-			var rail_data = (RailBoundEntityComponentData)ent.GetPropertyData( this );
-
-			if( !rail_data.IsOnRail && is_on_rail ) {
-				rail_data.IsOnRail = true;
+			
+			if( !this.IsOnRail && is_on_rail ) {
+				this.IsOnRail = true;
 				Main.PlaySound( SoundID.Item53 );
 			}
 
-			rail_data.IsOnRail = is_on_rail;
+			this.IsOnRail = is_on_rail;
 		}
 
 		////////////////

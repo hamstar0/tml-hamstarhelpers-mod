@@ -1,24 +1,16 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Terraria.ModLoader;
+
 
 namespace HamstarHelpers.Components.CustomEntity {
-	abstract public class CustomEntityComponentData : PacketProtocolData { }
-
-
-
-
-	abstract public class CustomEntityComponent {
-		protected virtual void StaticModInitialize() { }
-
-		protected virtual CustomEntityComponentData CreateData() { return null; }
+	abstract public class CustomEntityComponent : PacketProtocolData {
+		protected virtual void StaticInitialize() { }
 		public virtual void Update( CustomEntity ent ) { }
 
-		internal CustomEntityComponentData CreateDataInternalWrapper() {
-			return this.CreateData();
+		////////////////
+
+		internal void StaticInitializeInternalWrapper() {
+			this.StaticInitialize();
 		}
 	}
 

@@ -1,19 +1,23 @@
-﻿using HamstarHelpers.Services.Promises;
+﻿using HamstarHelpers.Components.CustomEntity.EntityProperties;
+using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	public class CustomEntityManager {
+	public class CustomEntityManager : IEnumerable<CustomEntity> {
 		public static CustomEntityManager Entities { get { return HamstarHelpersMod.Instance.CustomEntMngr; } }
 
 
 		////////////////
 
 		private readonly IDictionary<int, CustomEntity> EntitiesToIds = new Dictionary<int, CustomEntity>();
-		private readonly IDictionary<string, ISet<int>> EntitiesByTypeName = new Dictionary<string, ISet<int>>();
+		private readonly IDictionary<string, ISet<int>> EntitiesByComponentName = new Dictionary<string, ISet<int>>();
 
 
 		////////////////
@@ -21,9 +25,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal CustomEntityManager() {
 			Main.OnTick += CustomEntityManager._Update;
 
+			// Initialize components:
+			IEnumerable<Type> component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
+			foreach( var component_type in component_types ) {
+				var component = (CustomEntityComponent)Activator.CreateInstance( component_type, new object[] { true } );
+				component.StaticInitializeInternalWrapper();
+			}
+
 			Promises.AddWorldUnloadEachPromise( () => {
 				this.EntitiesToIds.Clear();
-				this.EntitiesByTypeName.Clear();
+				this.EntitiesByComponentName.Clear();
 			} );
 		}
 
@@ -43,26 +54,41 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 			set {
-				string old_name = this[ idx ]?.GetType().Name;
+				if( value == null ) {
+					if( this.EntitiesToIds.ContainsKey( idx ) ) {
+						IReadOnlyList<CustomEntityComponent> components = this.EntitiesToIds[idx].ComponentsInOrder;
 
-				if( old_name != null ) {
-					this.EntitiesByTypeName[ old_name ].Remove( idx );
-				}
+						foreach( CustomEntityComponent component in components ) {
+							string comp_name = component.GetType().Name;
 
-				if( value != null ) {
-					string new_name = value.GetType().Name;
+							if( this.EntitiesByComponentName.ContainsKey( comp_name ) ) {
+								this.EntitiesByComponentName[comp_name].Remove( idx );
+							}
+						}
 
-					if( !this.EntitiesByTypeName.ContainsKey(new_name) ) {
-						this.EntitiesByTypeName[ new_name ] = new HashSet<int>();
+						this.EntitiesToIds.Remove( idx );
 					}
-					this.EntitiesByTypeName[ new_name ].Add( idx );
+				} else {
+					foreach( CustomEntityComponent component in value.ComponentsInOrder ) {
+						string comp_name = component.GetType().Name;
+
+						if( !this.EntitiesByComponentName.ContainsKey( comp_name ) ) {
+							this.EntitiesByComponentName[comp_name] = new HashSet<int>();
+						}
+						this.EntitiesByComponentName[comp_name].Add( idx );
+					}
 
 					value.whoAmI = idx;
 					this.EntitiesToIds[idx] = value;
-				} else {
-					this.EntitiesToIds.Remove( idx );
 				}
 			}
+		}
+		
+		public IEnumerator<CustomEntity> GetEnumerator() {
+			return this.EntitiesToIds.Values.GetEnumerator();
+		}
+		IEnumerator IEnumerable.GetEnumerator() {
+			return this.EntitiesToIds.Values.GetEnumerator();
 		}
 
 
@@ -71,7 +97,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public ISet<T> GetByType<T>() where T : CustomEntity {
 			ISet<int> ent_idxs;
 
-			if( !this.EntitiesByTypeName.TryGetValue( typeof(T).Name, out ent_idxs ) ) {
+			if( !this.EntitiesByComponentName.TryGetValue( typeof(T).Name, out ent_idxs ) ) {
 				return new HashSet<T>();
 			}
 			
@@ -115,8 +141,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void DrawAll( SpriteBatch sb ) {
-			foreach( var kv in this.EntitiesToIds ) {
-				kv.Value.Draw( sb );
+			foreach( CustomEntity ent in this.EntitiesToIds.Values ) {
+				var draw_comp = (DrawsEntityComponent)ent.GetComponentByType<DrawsEntityComponent>();
+				if( draw_comp != null ) {
+					draw_comp.Draw( sb, ent );
+				}
 			}
 		}
 	}
