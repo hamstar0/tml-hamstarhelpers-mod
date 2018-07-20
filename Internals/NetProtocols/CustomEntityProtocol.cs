@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void ReceiveWithClient() {
-			var ent = CustomEntityManager.Entities[ this.NetId ];
+			var ent = CustomEntityManager.Instance[ this.NetId ];
 			ent.SetComponents( this.Components );
 		}
 	}

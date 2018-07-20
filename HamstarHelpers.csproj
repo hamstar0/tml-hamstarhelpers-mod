@@ -61,6 +61,7 @@
     <Compile Include="Components\CustomEntity\Components\IsClickable.cs" />
     <Compile Include="Components\CustomEntity\Components\Draws.cs" />
     <Compile Include="Components\CustomEntity\Components\PerWorldSave.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntityManager_Access.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity_Serialize.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />

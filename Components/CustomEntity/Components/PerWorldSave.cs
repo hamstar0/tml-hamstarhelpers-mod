@@ -1,10 +1,16 @@
-﻿using HamstarHelpers.Services.Promises;
+﻿using HamstarHelpers.Helpers.MiscHelpers;
+using HamstarHelpers.Helpers.WorldHelpers;
+using HamstarHelpers.Services.Promises;
+using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	class CustomEntityWorldData {
-		public int EntityCount;
 		public CustomEntity[] Entities;
+		
+		public CustomEntityWorldData( CustomEntity[] ents ) {
+			this.Entities = ents;
+		}
 	}
 
 
@@ -12,6 +18,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 	
 	public class PerWorldSaveEntityComponent : CustomEntityComponent {
 		public bool AsJson;
+
 
 
 		////////////////
@@ -37,18 +44,50 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		internal void LoadAll() {
-			
-			// Load file
-			// Load list of entities
+		public string GetFileNameBase() {
+			return WorldHelpers.GetUniqueIdWithSeed() + "_ents";
+		}
+
+
+		////////////////
+
+		internal bool LoadAll() {
+			var mymod = HamstarHelpersMod.Instance;
+			string file_name = this.GetFileNameBase();
+			bool success;
+			CustomEntityWorldData data;
+
+			if( this.AsJson ) {
+				data = DataFileHelpers.LoadJson<CustomEntityWorldData>( mymod, file_name, out success );
+			} else {
+				data = DataFileHelpers.LoadBinary<CustomEntityWorldData>( mymod, file_name, false );
+				success = data != null;
+			}
+
+			if( success ) {
+				var mngr = CustomEntityManager.Instance;
+				mngr.Clear();
+
+				int i = 0;
+				foreach( var ent in data.Entities ) {
+					mngr[ i++ ] = ent;
+				}
+			}
+
+			return success;
 		}
 
 
 		internal void SaveAll() {
-			foreach( var ent in CustomEntityManager.Entities ) {
-				//ent.Save();
+			var mymod = HamstarHelpersMod.Instance;
+			var data = new CustomEntityWorldData( CustomEntityManager.Instance.ToArray() );
+			string file_name = this.GetFileNameBase();
+			
+			if( this.AsJson ) {
+				DataFileHelpers.SaveAsJson<CustomEntityWorldData>( mymod, file_name + ".json", data );
+			} else {
+				DataFileHelpers.SaveAsBinary<CustomEntityWorldData>( mymod, file_name + ".dat", false, data );
 			}
-			// Save each entity that implements this component
 		}
 	}
 }
