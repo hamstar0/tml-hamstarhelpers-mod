@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.MiscHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Services.Promises;
 using System.Linq;
@@ -32,7 +33,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			Promises.AddCustomPromiseForObject( myworld, () => {
-				this.LoadAll();
+				if( !this.LoadAll() ) {
+					LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Save failed." );
+				}
 				return true;
 			} );
 			Promises.AddCustomPromiseForObject( myworld, () => {
@@ -45,7 +48,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public string GetFileNameBase() {
-			return WorldHelpers.GetUniqueIdWithSeed() + "_ents";
+			return "world_"+WorldHelpers.GetUniqueIdWithSeed() + "_ents";
 		}
 
 
@@ -80,7 +83,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		internal void SaveAll() {
 			var mymod = HamstarHelpersMod.Instance;
-			var data = new CustomEntityWorldData( CustomEntityManager.Instance.ToArray() );
+			var data = new CustomEntityWorldData(
+				CustomEntityManager.Instance.TakeWhile(
+					t => t.GetComponentByType<PerWorldSaveEntityComponent>() != null
+				).ToArray()
+			);
 			string file_name = this.GetFileNameBase();
 			
 			if( this.AsJson ) {
