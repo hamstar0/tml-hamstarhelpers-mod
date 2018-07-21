@@ -26,7 +26,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal static string Serialize( CustomEntity ent ) {
-			var serialize = new CustomEntitySerializeable( ent._ComponentsInOrder );
+			var serialize = new CustomEntitySerializeable( ent.ComponentsInOrder );
 
 			return JsonConvert.SerializeObject( serialize );
 		}

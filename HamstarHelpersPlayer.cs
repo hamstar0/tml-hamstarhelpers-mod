@@ -18,7 +18,7 @@ namespace HamstarHelpers {
 	class HamstarHelpersPlayer : ModPlayer {
 		internal static readonly PlayerLoadSave PlayerLoad = new PlayerLoadSave();
 		internal static readonly PlayerLoadSave PlayerSave = new PlayerLoadSave();
-
+		
 
 
 		////////////////
