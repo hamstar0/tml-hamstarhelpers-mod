@@ -68,12 +68,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			}
 
 			if( success ) {
-				var mngr = CustomEntityManager.Instance;
-				mngr.Clear();
-
-				int i = 0;
 				foreach( var ent in data.Entities ) {
-					mngr[ i++ ] = ent;
+					CustomEntityManager.Instance.Add( ent );
 				}
 			}
 
