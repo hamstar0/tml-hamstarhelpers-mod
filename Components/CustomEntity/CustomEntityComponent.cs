@@ -4,13 +4,15 @@ using HamstarHelpers.Helpers.DebugHelpers;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	abstract public class CustomEntityComponent : PacketProtocolData {
-		protected virtual void StaticInitialize() { }
 		public virtual void Update( CustomEntity ent ) { }
 
 		////////////////
-
-		internal void StaticInitializeInternalWrapper() {
-			this.StaticInitialize();
+		
+		public class StaticInitializer {
+			protected virtual void StaticInitialize() { }
+			internal void StaticInitializationWrapper() {
+				this.StaticInitialize();
+			}
 		}
 	}
 

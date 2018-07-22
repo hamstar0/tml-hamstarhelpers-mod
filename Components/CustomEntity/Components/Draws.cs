@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Components.Network;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using System;
@@ -10,8 +11,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public string TexturePath;
 		public int FrameCount;
 
+		[PacketProtocolIgnore]
 		[JsonIgnore]
 		public Texture2D Texture { get; protected set; }
+
 
 
 		////////////////

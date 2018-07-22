@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 
 
@@ -27,10 +28,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Main.OnTick += CustomEntityManager._Update;
 
 			// Initialize components:
-			IEnumerable<Type> component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
+			var component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
+
 			foreach( var component_type in component_types ) {
-				var component = (CustomEntityComponent)Activator.CreateInstance( component_type, new object[] { true } );
-				component.StaticInitializeInternalWrapper();
+				Type[] nested_types = component_type.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
+
+				foreach( var nested_type in nested_types ) {
+					if( nested_type.IsSubclassOf(typeof(CustomEntityComponent.StaticInitializer)) ) {
+						var static_init = (CustomEntityComponent.StaticInitializer)Activator.CreateInstance( nested_type );
+						static_init.StaticInitializationWrapper();
+					}
+				}
 			}
 
 			Promises.AddWorldUnloadEachPromise( () => {
@@ -48,7 +56,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		private static void _Update() { // <- Just in case references are doing something funky...
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
-			if( mymod == null ) { return; }
+			if( mymod == null || mymod.CustomEntMngr == null ) { return; }
 
 			mymod.CustomEntMngr.Update();
 		}
@@ -64,7 +72,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal void DrawAll( SpriteBatch sb ) {
 			foreach( CustomEntity ent in this.EntitiesToIds.Values ) {
-				var draw_comp = (DrawsEntityComponent)ent.GetComponentByType<DrawsEntityComponent>();
+				var draw_comp = ent.GetComponentByType<DrawsEntityComponent>();
 				if( draw_comp != null ) {
 					draw_comp.Draw( sb, ent );
 				}

@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using HamstarHelpers.Components.Network;
+using Newtonsoft.Json;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PeriodicSyncEntityComponent : CustomEntityComponent {
-		[JsonIgnore]
-		public int LastSynced;
+		private int LastSynced;
+
 
 
 		////////////////

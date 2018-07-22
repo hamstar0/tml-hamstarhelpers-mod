@@ -119,6 +119,9 @@ namespace HamstarHelpers.Components.Network {
 
 		////////////////
 
+		/// <summary>
+		/// Sends the current packet to the server.
+		/// </summary>
 		protected void SendToServer( bool sync_to_clients ) {
 			if( Main.netMode != 1 ) {
 				throw new Exception("Not a client.");
@@ -143,6 +146,9 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 
+		/// <summary>
+		/// Sends the current packet to the client.
+		/// </summary>
 		protected void SendToClient( int to_who, int ignore_who ) {
 			if( Main.netMode != 2 ) {
 				throw new Exception( "Not server." );

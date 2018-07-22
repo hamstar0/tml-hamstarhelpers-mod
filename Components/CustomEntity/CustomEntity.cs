@@ -6,10 +6,17 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
+	/// <summary>
+	/// Implements extensible custom game entities. Uses Components to implement functionality.
+	/// </summary>
 	public partial class CustomEntity : Entity {
+		/// <summary>
+		/// Lists all Components in order.
+		/// </summary>
 		public IList<CustomEntityComponent> ComponentsInOrder;
+
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
-		
+
 
 
 		////////////////
@@ -17,6 +24,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public CustomEntity( IList<CustomEntityComponent> components ) {
 			this.ComponentsInOrder = components;
 		}
+
 		
 		internal void SetComponents( IList<CustomEntityComponent> components ) {
 			this.ComponentsInOrder = components;
@@ -26,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public CustomEntityComponent GetComponentByType<T>() where T : CustomEntityComponent {
+		public T GetComponentByType<T>() where T : CustomEntityComponent {
 			int comp_count = this.ComponentsInOrder.Count;
 
 			if( this.ComponentsByTypeName.Count != comp_count ) {
@@ -43,7 +51,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !this.ComponentsByTypeName.TryGetValue( typeof(T).Name, out idx ) ) {
 				return null;
 			}
-			return this.ComponentsInOrder[ idx ];
+			return (T)this.ComponentsInOrder[ idx ];
 		}
 
 

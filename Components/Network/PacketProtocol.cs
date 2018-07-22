@@ -8,6 +8,17 @@ using System.Text;
 
 
 namespace HamstarHelpers.Components.Network {
+	/// <summary>
+	/// Sets a field to be ignored by a protocol.
+	/// </summary>
+	public class PacketProtocolIgnoreAttribute : Attribute { }
+
+
+
+
+	/// <summary>
+	/// Provides a way to automatically ensure order of fields for transmission.
+	/// </summary>
 	public class PacketProtocolData {
 		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
 
@@ -27,12 +38,10 @@ namespace HamstarHelpers.Components.Network {
 
 
 
+	/// <summary>
+	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
+	/// </summary>
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		protected static readonly object MyLock = new object();
-
-
-		////////////////
-
 		/// <summary>
 		/// Gets a random integer as a code representing a given protocol (by name) to identify its
 		/// network packets.
@@ -88,11 +97,9 @@ namespace HamstarHelpers.Components.Network {
 
 		////////////////
 
-		public PacketProtocol() { }
-
-
-		////////////////
-
+		/// <summary>
+		/// Returns qualified name of current packet class.
+		/// </summary>
 		public string GetPacketName() {
 			var mytype = this.GetType();
 			return mytype.Namespace + "." + mytype.Name;
@@ -101,10 +108,16 @@ namespace HamstarHelpers.Components.Network {
 
 		////////////////
 
+		/// <summary>
+		/// Overridden for initializing the class to create a reply in a request to the client.
+		/// </summary>
 		public virtual void SetClientDefaults() {
 			throw new NotImplementedException( "No SetClientDefaults" );
 		}
 
+		/// <summary>
+		/// Overridden for initializing the class to create a reply in a request to the server.
+		/// </summary>
 		public virtual void SetServerDefaults() {
 			throw new NotImplementedException( "No SetServerDefaults" );
 		}

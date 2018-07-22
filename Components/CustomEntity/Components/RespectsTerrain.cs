@@ -8,30 +8,40 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public override void Update( CustomEntity ent ) {
 			bool respects_gravity = ent.GetComponentByType<RespectsGravityEntityComponent>() != null;
 			Vector2 wet_velocity = ent.velocity * 0.5f;
+			bool lava_wet, honey_wet;
 
 			if( !respects_gravity ) {
-				ent.velocity.X = ent.velocity.X * 0.95f;
-
-				if( (double)ent.velocity.X < 0.01 && (double)ent.velocity.X > -0.01 ) {
-					ent.velocity.X = 0f;
-				}
-				ent.velocity.Y = ent.velocity.Y * 0.95f;
-
-				if( (double)ent.velocity.Y < 0.01 && (double)ent.velocity.Y > -0.01 ) {
-					ent.velocity.Y = 0f;
-				}
+				this.ApplyZeroGravityMovement( ent );
 			}
+			this.RefreshLiquidContactStates( ent, out lava_wet, out honey_wet );
+			this.ApplyLiquidMovement( ent, lava_wet, honey_wet );
+			this.ApplyCollisionMovement( ent, ref wet_velocity );
+			this.ApplySlopeDodgeAndConveyorMovement( ent );
 
-			bool lava_wet = Collision.LavaCollision( ent.position, ent.width, ent.height );
+			if( ent.wet ) {
+				ent.position += wet_velocity;
+			} else {
+				ent.position += ent.velocity;
+			}
+		}
+
+
+		////////////////
+
+		public void RefreshLiquidContactStates( CustomEntity ent, out bool lava_wet, out bool honey_wet ) {
+			lava_wet = Collision.LavaCollision( ent.position, ent.width, ent.height );
 			if( lava_wet ) {
 				ent.lavaWet = true;
 			}
 
-			bool honey_wet = Collision.WetCollision( ent.position, ent.width, ent.height );
+			honey_wet = Collision.WetCollision( ent.position, ent.width, ent.height );
 			if( Collision.honey ) {
 				ent.honeyWet = true;
 			}
+		}
 
+
+		public void ApplyLiquidMovement( CustomEntity ent, bool lava_wet, bool honey_wet ) {
 			if( honey_wet ) {
 				if( !ent.wet ) {
 					if( ent.wetCount == 0 ) {
@@ -85,6 +95,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				ent.wet = false;
 			}
 
+			// Update wet state
 			if( !ent.wet ) {
 				ent.lavaWet = false;
 				ent.honeyWet = false;
@@ -92,7 +103,24 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( ent.wetCount > 0 ) {
 				ent.wetCount -= 1;
 			}
+		}
 
+
+		public void ApplyZeroGravityMovement( CustomEntity ent ) {
+			ent.velocity.X = ent.velocity.X* 0.95f;
+
+				if((double) ent.velocity.X< 0.01 && (double) ent.velocity.X > -0.01 ) {
+				ent.velocity.X = 0f;
+			}
+			ent.velocity.Y *= 0.95f;
+
+			if( (double)ent.velocity.Y < 0.01 && (double)ent.velocity.Y > -0.01 ) {
+				ent.velocity.Y = 0f;
+			}
+		}
+
+
+		public void ApplyCollisionMovement( CustomEntity ent, ref Vector2 wet_velocity ) {
 			if( ent.wet ) {
 				Vector2 old_vel = ent.velocity;
 				ent.velocity = Collision.TileCollision( ent.position, ent.velocity, ent.width, ent.height, false, false, 1 );
@@ -106,7 +134,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			} else {
 				ent.velocity = Collision.TileCollision( ent.position, ent.velocity, ent.width, ent.height, false, false, 1 );
 			}
-			
+		}
+
+
+		public void ApplySlopeDodgeAndConveyorMovement( CustomEntity ent ) {
 			Vector4 slope_dodge = Collision.SlopeCollision( ent.position, ent.velocity, ent.width, ent.height );
 
 			ent.position.X = slope_dodge.X;
@@ -115,12 +146,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			ent.velocity.Y = slope_dodge.W;
 
 			Collision.StepConveyorBelt( ent, 1f );
-			
-			if( ent.wet ) {
-				ent.position += wet_velocity;
-			} else {
-				ent.position += ent.velocity;
-			}
 		}
 	}
 }

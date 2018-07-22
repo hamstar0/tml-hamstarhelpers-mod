@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
 using Terraria;
@@ -7,8 +8,10 @@ using Terraria.ID;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RailBoundEntityComponent : CustomEntityComponent {
+		[PacketProtocolIgnore]
 		[JsonIgnore]
 		public bool IsOnRail;
+
 
 
 		////////////////

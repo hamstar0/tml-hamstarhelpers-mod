@@ -20,30 +20,41 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 	
 	public class PerPlayerSaveEntityComponent : CustomEntityComponent {
 		public bool AsJson;
-		
+
+
 
 		////////////////
-
+		
 		public PerPlayerSaveEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
 		}
 
-		protected override void StaticInitialize() {
-			var mymod = HamstarHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+		private class MyStaticInitializer : StaticInitializer {
+			protected override void StaticInitialize() {
+				var mymod = HamstarHelpersMod.Instance;
+				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+				var plr_save_json = new PerPlayerSaveEntityComponent( true );
+				var plr_save_nojson = new PerPlayerSaveEntityComponent( true );
 
-			Promises.AddCustomPromiseForObject( HamstarHelpersPlayer.PlayerLoad, () => {
-				if( !this.Load( HamstarHelpersPlayer.PlayerLoad.MyPlayer ) ) {
-					LogHelpers.Log( "HamstarHelpersMod.PerPlayerSaveEntityComponent.StaticInitialize - Load failed for "+ HamstarHelpersPlayer.PlayerLoad.MyPlayer.name );
-				}
-				return true;
-			} );
-			Promises.AddCustomPromiseForObject( HamstarHelpersPlayer.PlayerSave, () => {
-				if( !this.Save( HamstarHelpersPlayer.PlayerSave.MyPlayer ) ) {
-					LogHelpers.Log( "HamstarHelpersMod.PerPlayerSaveEntityComponent.StaticInitialize - Save failed for " + HamstarHelpersPlayer.PlayerSave.MyPlayer.name );
-				}
-				return true;
-			} );
+				Promises.AddCustomPromiseForObject( HamstarHelpersPlayer.PlayerLoad, () => {
+					if( !plr_save_json.LoadAll( HamstarHelpersPlayer.PlayerLoad.MyPlayer ) ) {
+						LogHelpers.Log( "HamstarHelpersMod.PerPlayerSaveEntityComponent.StaticInitialize - Load (json) failed for " + HamstarHelpersPlayer.PlayerLoad.MyPlayer.name );
+					}
+					if( !plr_save_nojson.LoadAll( HamstarHelpersPlayer.PlayerLoad.MyPlayer ) ) {
+						LogHelpers.Log( "HamstarHelpersMod.PerPlayerSaveEntityComponent.StaticInitialize - Load (no json) failed for " + HamstarHelpersPlayer.PlayerLoad.MyPlayer.name );
+					}
+					return true;
+				} );
+				Promises.AddCustomPromiseForObject( HamstarHelpersPlayer.PlayerSave, () => {
+					if( !plr_save_json.SaveAll( HamstarHelpersPlayer.PlayerSave.MyPlayer ) ) {
+						LogHelpers.Log( "HamstarHelpersMod.PerPlayerSaveEntityComponent.StaticInitialize - Save (json) failed for " + HamstarHelpersPlayer.PlayerSave.MyPlayer.name );
+					}
+					if( !plr_save_nojson.SaveAll( HamstarHelpersPlayer.PlayerSave.MyPlayer ) ) {
+						LogHelpers.Log( "HamstarHelpersMod.PerPlayerSaveEntityComponent.StaticInitialize - Save (no json) failed for " + HamstarHelpersPlayer.PlayerSave.MyPlayer.name );
+					}
+					return true;
+				} );
+			}
 		}
 
 
@@ -56,7 +67,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		internal bool Load( Player player ) {
+		private bool LoadAll( Player player ) {
 			var mymod = HamstarHelpersMod.Instance;
 			bool success;
 			string file_name = this.GetFileNameBase( player, out success );
@@ -81,7 +92,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		}
 
 
-		internal bool Save( Player player ) {
+		private bool SaveAll( Player player ) {
 			var mymod = HamstarHelpersMod.Instance;
 
 			bool success;
@@ -89,9 +100,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( !success ) { return false; }
 			
 			var data = new CustomEntityPlayerData(
-				CustomEntityManager.Instance.TakeWhile(
-					t => t.GetComponentByType<PerPlayerSaveEntityComponent>() != null
-				).ToArray()
+				CustomEntityManager.Instance.TakeWhile( ( t ) => {
+					var save_comp = t.GetComponentByType<PerPlayerSaveEntityComponent>();
+					return save_comp != null && save_comp.AsJson == this.AsJson;
+				} ).ToArray()
 			);
 
 			if( this.AsJson ) {

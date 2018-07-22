@@ -43,14 +43,14 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Implements internal low level data reading for packet receipt.
 		/// </summary>
-		/// <param name="reader">Binary data reader.</returns>
+		/// <param name="reader">Binary data reader.</param>
 		protected virtual void ReadStream( BinaryReader reader ) {
 			PacketProtocol.ReadStreamIntoContainer( reader, this );
 		}
 
 		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
-				if( Attribute.IsDefined( field, typeof(JsonIgnoreAttribute) ) ) {
+				if( Attribute.IsDefined( field, typeof(PacketProtocolIgnoreAttribute) ) ) {
 					continue;
 				}
 
@@ -132,14 +132,14 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Implements low level stream output for packet output.
 		/// </summary>
-		/// <param name="writer">Binary data writer.</returns>
+		/// <param name="writer">Binary data writer.</param>
 		protected virtual void WriteStream( BinaryWriter writer ) {
 			PacketProtocol.WriteStreamIntoContainer( writer, this );
 		}
 
 		private static void WriteStreamIntoContainer( BinaryWriter writer, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
-				if( Attribute.IsDefined( field, typeof( JsonIgnoreAttribute ) ) ) {
+				if( Attribute.IsDefined( field, typeof(PacketProtocolIgnoreAttribute) ) ) {
 					continue;
 				}
 

@@ -23,25 +23,35 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		////////////////
-
+		
 		public PerWorldSaveEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
 		}
 
-		protected override void StaticInitialize() {
-			var mymod = HamstarHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+		////////////////
 
-			Promises.AddCustomPromiseForObject( myworld, () => {
-				if( !this.LoadAll() ) {
-					LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Save failed." );
-				}
-				return true;
-			} );
-			Promises.AddCustomPromiseForObject( myworld, () => {
-				this.SaveAll();
-				return true;
-			} );
+		protected class MyStaticInitializer : StaticInitializer {
+			protected override void StaticInitialize() {
+				var mymod = HamstarHelpersMod.Instance;
+				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+				var wld_save_json = new PerWorldSaveEntityComponent( true );
+				var wld_save_nojson = new PerWorldSaveEntityComponent( true );
+
+				Promises.AddCustomPromiseForObject( myworld, () => {
+					if( !wld_save_json.LoadAll() ) {
+						LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Load (json) failed." );
+					}
+					if( !wld_save_nojson.LoadAll() ) {
+						LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Load (no json) failed." );
+					}
+					return true;
+				} );
+				Promises.AddCustomPromiseForObject( myworld, () => {
+					wld_save_json.SaveAll();
+					wld_save_nojson.SaveAll();
+					return true;
+				} );
+			}
 		}
 
 
@@ -54,7 +64,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		internal bool LoadAll() {
+		private bool LoadAll() {
 			var mymod = HamstarHelpersMod.Instance;
 			string file_name = this.GetFileNameBase();
 			bool success;
@@ -77,12 +87,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		}
 
 
-		internal void SaveAll() {
+		private void SaveAll() {
 			var mymod = HamstarHelpersMod.Instance;
 			var data = new CustomEntityWorldData(
-				CustomEntityManager.Instance.TakeWhile(
-					t => t.GetComponentByType<PerWorldSaveEntityComponent>() != null
-				).ToArray()
+				CustomEntityManager.Instance.TakeWhile( (t) => {
+					var save_comp = t.GetComponentByType<PerWorldSaveEntityComponent>();
+					return save_comp != null && save_comp.AsJson == this.AsJson;
+				} ).ToArray()
 			);
 			string file_name = this.GetFileNameBase();
 			
