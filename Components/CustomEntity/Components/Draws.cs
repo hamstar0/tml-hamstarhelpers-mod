@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
@@ -19,11 +20,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public DrawsEntityComponent( string texture_path, int frame_count ) {
-			this.TexturePath = texture_path;
+		public DrawsEntityComponent( string terraria_texture_path, int frame_count ) {
+			this.TexturePath = terraria_texture_path;
 			this.FrameCount = frame_count;
 
-			this.Texture = HamstarHelpersMod.Instance.GetTexture( texture_path );
+			this.Texture = ModLoader.GetTexture( terraria_texture_path );
 		}
 
 

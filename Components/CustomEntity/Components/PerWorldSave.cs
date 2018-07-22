@@ -37,7 +37,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				var wld_save_json = new PerWorldSaveEntityComponent( true );
 				var wld_save_nojson = new PerWorldSaveEntityComponent( true );
 
-				Promises.AddCustomPromiseForObject( myworld, () => {
+				Promises.AddCustomPromiseForObject( HamstarHelpersWorld.WorldLoad, () => {
 					if( !wld_save_json.LoadAll() ) {
 						LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Load (json) failed." );
 					}
@@ -46,7 +46,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					}
 					return true;
 				} );
-				Promises.AddCustomPromiseForObject( myworld, () => {
+
+				Promises.AddCustomPromiseForObject( HamstarHelpersWorld.WorldSave, () => {
 					wld_save_json.SaveAll();
 					wld_save_nojson.SaveAll();
 					return true;
