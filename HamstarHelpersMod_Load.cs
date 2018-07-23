@@ -27,7 +27,7 @@ using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.ProjectileHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
 using HamstarHelpers.Components.CustomEntity;
-
+using HamstarHelpers.Services.GlobalDataStore;
 
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
@@ -58,6 +58,7 @@ namespace HamstarHelpers {
 		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
+		internal LocalDataStore LocalData;
 
 		// Helpers
 		internal LogHelpers LogHelpers;
@@ -126,6 +127,7 @@ namespace HamstarHelpers {
 				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
 			}
 
+			this.LocalData = new LocalDataStore();
 			this.LoadHelpers = new LoadHelpers();
 			this.Promises = new Promises();
 
@@ -216,6 +218,7 @@ namespace HamstarHelpers {
 			this.MusicHelpers = null;
 			this.CustomEntMngr = null;
 			this.Promises = null;
+			this.LocalData = null;
 
 			HamstarHelpersMod.Instance = null;
 		}

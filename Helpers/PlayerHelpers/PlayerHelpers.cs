@@ -5,6 +5,8 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Services.GlobalDataStore;
+using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
@@ -64,6 +66,52 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			}
 
 			return pos;
+		}
+
+
+		 internal static object SpawnPointKey = new object();
+
+		public static void SetSpawnPoint( Player player, int tile_x, int tile_y ) {
+			IDictionary<string, IDictionary<int, int>> spawn_map;
+			int highest_idx = 0;
+
+			player.SpawnX = tile_x;
+			player.SpawnY = tile_y;
+
+			if( LocalDataStore.Instance.ContainsKey( PlayerHelpers.SpawnPointKey ) ) {
+				spawn_map = (IDictionary<string, IDictionary<int, int>>)LocalDataStore.Instance[ PlayerHelpers.SpawnPointKey ];
+			} else {
+				spawn_map = new Dictionary<string, IDictionary<int, int>>();
+
+				for( int i = 0; i < 200; i++ ) {
+					highest_idx = i;
+
+					string key1 = player.spN[i];
+					int key2 = player.spI[i];
+
+					if( key1 == null ) {
+						break;
+					}
+
+					if( !spawn_map.ContainsKey( key1 ) ) {
+						spawn_map[ key1 ] = new Dictionary<int, int>();
+					}
+					spawn_map[key1][key2] = i;
+				}
+
+				LocalDataStore.Instance[ PlayerHelpers.SpawnPointKey ] = spawn_map;
+			}
+
+			if( spawn_map.ContainsKey( Main.worldName ) && spawn_map[Main.worldName].ContainsKey( Main.worldID ) ) {
+				int idx = spawn_map[Main.worldName][Main.worldID];
+
+				player.spX[idx] = tile_x;
+				player.spY[idx] = tile_y;
+			} else {
+				player.ChangeSpawn( tile_x, tile_y );
+
+				LocalDataStore.Instance.Remove( PlayerHelpers.SpawnPointKey );
+			}
 		}
 
 

@@ -163,6 +163,7 @@
     <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Placeables.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Weapons.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_Defs_NPCs.cs" />
+    <Compile Include="Services\LocalDataStore\LocalDataStore.cs" />
     <Compile Include="Services\Messages\InboxMessages.cs" />
     <Compile Include="Services\Messages\PlayerMessages.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
