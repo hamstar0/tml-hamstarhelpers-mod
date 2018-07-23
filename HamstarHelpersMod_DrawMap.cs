@@ -14,6 +14,7 @@ namespace HamstarHelpers {
 
 			foreach( var ent in ents ) {
 				var map_comp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
+
 				if( Main.mapStyle == 1 ) {
 					map_comp.DrawMiniMap( sb, ent );
 				} else {
@@ -28,6 +29,7 @@ namespace HamstarHelpers {
 
 			foreach( var ent in ents ) {
 				var map_comp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
+				
 				map_comp.DrawFullscreenMap( sb, ent );
 			}
 		}

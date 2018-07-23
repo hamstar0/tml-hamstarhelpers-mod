@@ -18,7 +18,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		private readonly IDictionary<int, CustomEntity> EntitiesToIds = new Dictionary<int, CustomEntity>();
+		private readonly IDictionary<int, CustomEntity> EntitiesByIds = new Dictionary<int, CustomEntity>();
 		private readonly IDictionary<string, ISet<int>> EntitiesByComponentName = new Dictionary<string, ISet<int>>();
 
 
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			Promises.AddWorldUnloadEachPromise( () => {
-				this.EntitiesToIds.Clear();
+				this.EntitiesByIds.Clear();
 				this.EntitiesByComponentName.Clear();
 			} );
 		}
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal void Update() {
-			foreach( CustomEntity ent in this.EntitiesToIds.Values.ToArray() ) {
+			foreach( CustomEntity ent in this.EntitiesByIds.Values.ToArray() ) {
 				ent.Update();
 			}
 		}
@@ -72,7 +72,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void DrawAll( SpriteBatch sb ) {
-			foreach( CustomEntity ent in this.EntitiesToIds.Values ) {
+			foreach( CustomEntity ent in this.EntitiesByIds.Values ) {
 				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
 				if( draw_comp != null ) {
 					draw_comp.Draw( sb, ent );
