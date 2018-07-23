@@ -73,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal void DrawAll( SpriteBatch sb ) {
 			foreach( CustomEntity ent in this.EntitiesToIds.Values ) {
-				var draw_comp = ent.GetComponentByType<DrawsEntityComponent>();
+				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
 				if( draw_comp != null ) {
 					draw_comp.Draw( sb, ent );
 				}

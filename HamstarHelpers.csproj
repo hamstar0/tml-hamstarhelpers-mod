@@ -60,8 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
+    <Compile Include="Components\CustomEntity\Components\DrawsMap.cs" />
     <Compile Include="Components\CustomEntity\Components\IsClickable.cs" />
-    <Compile Include="Components\CustomEntity\Components\Draws.cs" />
+    <Compile Include="Components\CustomEntity\Components\DrawsGame.cs" />
     <Compile Include="Components\CustomEntity\Components\PerPlayerSave.cs" />
     <Compile Include="Components\CustomEntity\Components\PerWorldSave.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager_Access.cs" />
@@ -92,6 +93,9 @@
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_Stream.cs" />
+    <Compile Include="HamstarHelpersMod_DrawMap.cs" />
+    <Compile Include="HamstarHelpersMod_Meta.cs" />
+    <Compile Include="HamstarHelpersMod_Draw.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers_Rarity.cs" />
     <Compile Include="Helpers\MiscHelpers\PaintHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerModHelpers.cs" />

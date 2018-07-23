@@ -9,8 +9,10 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
-	public class DrawsEntityComponent : CustomEntityComponent {
+	public class DrawsInGameEntityComponent : CustomEntityComponent {
+		[PacketProtocolIgnore]
 		public string TexturePath;
+		[PacketProtocolIgnore]
 		public int FrameCount;
 
 		[PacketProtocolIgnore]
@@ -21,7 +23,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public DrawsEntityComponent( string terraria_texture_path, int frame_count ) {
+		public DrawsInGameEntityComponent( string terraria_texture_path, int frame_count ) {
 			this.TexturePath = terraria_texture_path;
 			this.FrameCount = frame_count;
 			
@@ -42,9 +44,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var scr_scr_pos = ent.position - Main.screenPosition;
 			var tex_rect = new Rectangle( 0, 0, this.Texture.Width, this.Texture.Height / this.FrameCount );
 
+			Color color = Lighting.GetColor( (int)(ent.position.X / 16), (int)( ent.position.Y / 16), Color.White );
 			float scale = 1f;
 
-			sb.Draw( this.Texture, scr_scr_pos, tex_rect, Color.White, 0f, new Vector2(), scale, SpriteEffects.None, 1f );
+			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, new Vector2(), scale, SpriteEffects.None, 1f );
 
 			this.PostDraw( sb, ent );
 		}
