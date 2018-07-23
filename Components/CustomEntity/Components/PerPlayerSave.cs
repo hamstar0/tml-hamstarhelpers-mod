@@ -9,10 +9,6 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	class CustomEntityPlayerData {
 		public CustomEntity[] Entities;
-		
-		public CustomEntityPlayerData( CustomEntity[] ents ) {
-			this.Entities = ents;
-		}
 	}
 
 
@@ -98,13 +94,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			bool success;
 			string file_name = this.GetFileNameBase( player, out success );
 			if( !success ) { return false; }
-			
-			var data = new CustomEntityPlayerData(
-				CustomEntityManager.Instance.TakeWhile( ( t ) => {
+
+			var data = new CustomEntityPlayerData {
+				Entities = CustomEntityManager.Instance.TakeWhile( ( t ) => {
 					var save_comp = t.GetComponentByType<PerPlayerSaveEntityComponent>();
 					return save_comp != null && save_comp.AsJson == this.AsJson;
 				} ).ToArray()
-			);
+			};
 
 			if( this.AsJson ) {
 				DataFileHelpers.SaveAsJson<CustomEntityPlayerData>( mymod, file_name + ".json", data );

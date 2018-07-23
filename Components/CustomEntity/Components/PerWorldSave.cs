@@ -8,10 +8,6 @@ using System.Linq;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	class CustomEntityWorldData {
 		public CustomEntity[] Entities;
-		
-		public CustomEntityWorldData( CustomEntity[] ents ) {
-			this.Entities = ents;
-		}
 	}
 
 
@@ -90,12 +86,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private void SaveAll() {
 			var mymod = HamstarHelpersMod.Instance;
-			var data = new CustomEntityWorldData(
-				CustomEntityManager.Instance.TakeWhile( (t) => {
+			var data = new CustomEntityWorldData {
+				Entities = CustomEntityManager.Instance.TakeWhile( ( t ) => {
 					var save_comp = t.GetComponentByType<PerWorldSaveEntityComponent>();
 					return save_comp != null && save_comp.AsJson == this.AsJson;
 				} ).ToArray()
-			);
+			};
 			string file_name = this.GetFileNameBase();
 			
 			if( this.AsJson ) {

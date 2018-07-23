@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
-using Newtonsoft.Json;
-using Terraria;
+﻿using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
@@ -18,6 +16,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public override void Update( CustomEntity ent ) {
+			if( Main.netMode == 0 ) { return; }
+
 			if( this.LastSynced-- <= 0 ) {
 				this.LastSynced = 60 * 5;
 

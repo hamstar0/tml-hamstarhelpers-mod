@@ -10,6 +10,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			protocol.SendToClient( -1, -1 );
 		}
 
+		public static void SyncToAll( CustomEntity ent ) {
+			var protocol = new CustomEntityProtocol( ent );
+			protocol.SendToServer( true );
+		}
+
+
 
 		////////////////
 

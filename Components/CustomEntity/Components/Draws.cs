@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
@@ -23,7 +24,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public DrawsEntityComponent( string terraria_texture_path, int frame_count ) {
 			this.TexturePath = terraria_texture_path;
 			this.FrameCount = frame_count;
-
+			
 			this.Texture = ModLoader.GetTexture( terraria_texture_path );
 		}
 

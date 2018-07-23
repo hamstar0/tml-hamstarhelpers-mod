@@ -41,8 +41,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 				this.ComponentsByTypeName.Clear();
 
 				for( int i = 0; i < comp_count; i++ ) {
-					string comp_name = this.ComponentsInOrder[ i ].GetType().Name;
-					this.ComponentsByTypeName[ comp_name ] = i;
+					Type comp_type = this.ComponentsInOrder[i].GetType();
+					do {
+						string comp_name = comp_type.Name;
+
+						this.ComponentsByTypeName[ comp_name ] = i;
+
+						comp_type = comp_type.BaseType;
+					} while( comp_type.Name != "CustomEntityComponent" );
 				}
 			}
 
@@ -58,8 +64,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		public void Sync() {
-			if( Main.netMode != 2 ) { throw new Exception("Server only"); }
-			CustomEntityProtocol.SendToClients( this );
+			if( Main.netMode == 2 ) {
+				CustomEntityProtocol.SendToClients( this );
+			} else if( Main.netMode == 1 ) {
+				CustomEntityProtocol.SyncToAll( this );
+			} else {
+				throw new Exception( "Multiplayer only." );
+			}
 		}
 
 
