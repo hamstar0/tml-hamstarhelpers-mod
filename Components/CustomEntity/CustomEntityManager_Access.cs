@@ -25,14 +25,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 						foreach( CustomEntityComponent component in ent_components ) {
 							comp_type = component.GetType();
 							do {
-								comp_name = comp_type.Name;
-
-								if( this.EntitiesByComponentName.ContainsKey( comp_name ) ) {
-									this.EntitiesByComponentName[ comp_name ].Remove( idx );
+								if( this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+									this.EntitiesByComponentType[ comp_type ].Remove( idx );
 								}
 
 								comp_type = comp_type.BaseType;
-							} while( comp_name != "CustomEntityComponent" );
+							} while( comp_type != typeof(CustomEntityComponent) );
 						}
 
 						this.EntitiesByIds.Remove( idx );
@@ -41,15 +39,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 					foreach( CustomEntityComponent component in value.ComponentsInOrder ) {
 						comp_type = component.GetType();
 						do {
-							comp_name = comp_type.Name;
-
-							if( !this.EntitiesByComponentName.ContainsKey( comp_name ) ) {
-								this.EntitiesByComponentName[ comp_name ] = new HashSet<int>();
+							if( !this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+								this.EntitiesByComponentType[comp_type] = new HashSet<int>();
 							}
-							this.EntitiesByComponentName[ comp_name ].Add( idx );
+							this.EntitiesByComponentType[comp_type].Add( idx );
 
 							comp_type = comp_type.BaseType;
-						} while( comp_name != "CustomEntityComponent" );
+						} while( comp_type != typeof( CustomEntityComponent ) );
 					}
 
 					value.whoAmI = idx;
@@ -87,7 +83,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		public void Clear() {
 			this.EntitiesByIds.Clear();
-			this.EntitiesByComponentName.Clear();
+			this.EntitiesByComponentType.Clear();
 		}
 
 
@@ -95,10 +91,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		public ISet<CustomEntity> GetByComponentType<T>() where T : CustomEntityComponent {
-			ISet<int> ent_idxs;
+			ISet<int> ent_idxs = new HashSet<int>();
+			Type curr_type = typeof( T );
 
-			if( !this.EntitiesByComponentName.TryGetValue( typeof( T ).Name, out ent_idxs ) ) {
-				return new HashSet<CustomEntity>();
+			if( !this.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
+				foreach( Type comp_type in this.EntitiesByComponentType.Keys ) {
+					if( comp_type.IsSubclassOf( curr_type ) ) {
+						ent_idxs.UnionWith( this.EntitiesByComponentType[ comp_type ] );
+					}
+				}
 			}
 
 			return new HashSet<CustomEntity>(

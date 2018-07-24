@@ -19,7 +19,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private readonly IDictionary<int, CustomEntity> EntitiesByIds = new Dictionary<int, CustomEntity>();
-		private readonly IDictionary<string, ISet<int>> EntitiesByComponentName = new Dictionary<string, ISet<int>>();
+		private readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
 
 
 
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Promises.AddWorldUnloadEachPromise( () => {
 				this.EntitiesByIds.Clear();
-				this.EntitiesByComponentName.Clear();
+				this.EntitiesByComponentType.Clear();
 			} );
 		}
 

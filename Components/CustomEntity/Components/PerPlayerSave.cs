@@ -2,18 +2,12 @@
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.Promises;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
-	class CustomEntityPlayerData {
-		public CustomEntity[] Entities;
-	}
-
-
-
-	
 	public class PerPlayerSaveEntityComponent : CustomEntityComponent {
 		public bool AsJson;
 
@@ -30,7 +24,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				var mymod = HamstarHelpersMod.Instance;
 				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 				var plr_save_json = new PerPlayerSaveEntityComponent( true );
-				var plr_save_nojson = new PerPlayerSaveEntityComponent( true );
+				var plr_save_nojson = new PerPlayerSaveEntityComponent( false );
 
 				Promises.AddCustomPromiseForObject( HamstarHelpersPlayer.PlayerLoad, () => {
 					if( !plr_save_json.LoadAll( HamstarHelpersPlayer.PlayerLoad.MyPlayer ) ) {
@@ -69,17 +63,17 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			string file_name = this.GetFileNameBase( player, out success );
 			if( !success ) { return false; }
 
-			CustomEntityPlayerData data;
+			ISet<CustomEntity> ents;
 
 			if( this.AsJson ) {
-				data = DataFileHelpers.LoadJson<CustomEntityPlayerData>( mymod, file_name, out success );
+				ents = DataFileHelpers.LoadJson<HashSet<CustomEntity>>( mymod, file_name, out success );
 			} else {
-				data = DataFileHelpers.LoadBinary<CustomEntityPlayerData>( mymod, file_name, false );
-				success = data != null;
+				ents = DataFileHelpers.LoadBinary<HashSet<CustomEntity>>( mymod, file_name+".dat", false );
+				success = ents != null;
 			}
 
 			if( success ) {
-				foreach( var ent in data.Entities ) {
+				foreach( var ent in ents ) {
 					CustomEntityManager.Instance.Add( ent );
 				}
 			}
@@ -95,17 +89,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			string file_name = this.GetFileNameBase( player, out success );
 			if( !success ) { return false; }
 
-			var data = new CustomEntityPlayerData {
-				Entities = CustomEntityManager.Instance.TakeWhile( ( t ) => {
-					var save_comp = t.GetComponentByType<PerPlayerSaveEntityComponent>();
-					return save_comp != null && save_comp.AsJson == this.AsJson;
-				} ).ToArray()
-			};
+			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<PerWorldSaveEntityComponent>();
 
-			if( this.AsJson ) {
-				DataFileHelpers.SaveAsJson<CustomEntityPlayerData>( mymod, file_name + ".json", data );
-			} else {
-				DataFileHelpers.SaveAsBinary<CustomEntityPlayerData>( mymod, file_name + ".dat", false, data );
+			if( ents.Count > 0 ) {
+				if( this.AsJson ) {
+					DataFileHelpers.SaveAsJson( mymod, file_name, ents );
+				} else {
+					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, ents );
+				}
 			}
 
 			return true;

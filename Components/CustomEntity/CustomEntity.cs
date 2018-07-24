@@ -10,6 +10,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 	/// Implements extensible custom game entities. Uses Components to implement functionality.
 	/// </summary>
 	public partial class CustomEntity : Entity {
+		public string DisplayName = "";
+
 		/// <summary>
 		/// Lists all Components in order.
 		/// </summary>
@@ -21,7 +23,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public CustomEntity( IList<CustomEntityComponent> components ) {
+		public CustomEntity( string name, IList<CustomEntityComponent> components ) {
+			this.DisplayName = name;
 			this.ComponentsInOrder = components;
 		}
 

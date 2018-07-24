@@ -2,17 +2,11 @@
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Services.Promises;
+using System.Collections.Generic;
 using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
-	class CustomEntityWorldData {
-		public CustomEntity[] Entities;
-	}
-
-
-
-	
 	public class PerWorldSaveEntityComponent : CustomEntityComponent {
 		public bool AsJson;
 
@@ -31,7 +25,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				var mymod = HamstarHelpersMod.Instance;
 				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 				var wld_save_json = new PerWorldSaveEntityComponent( true );
-				var wld_save_nojson = new PerWorldSaveEntityComponent( true );
+				var wld_save_nojson = new PerWorldSaveEntityComponent( false );
 
 				Promises.AddCustomPromiseForObject( HamstarHelpersWorld.WorldLoad, () => {
 					if( !wld_save_json.LoadAll() ) {
@@ -65,17 +59,17 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = HamstarHelpersMod.Instance;
 			string file_name = this.GetFileNameBase();
 			bool success;
-			CustomEntityWorldData data;
+			ISet<CustomEntity> ents;
 
 			if( this.AsJson ) {
-				data = DataFileHelpers.LoadJson<CustomEntityWorldData>( mymod, file_name, out success );
+				ents = DataFileHelpers.LoadJson<HashSet<CustomEntity>>( mymod, file_name, out success );
 			} else {
-				data = DataFileHelpers.LoadBinary<CustomEntityWorldData>( mymod, file_name, false );
-				success = data != null;
+				ents = DataFileHelpers.LoadBinary<HashSet<CustomEntity>>( mymod, file_name+".dat", false );
+				success = ents != null;
 			}
 
 			if( success ) {
-				foreach( var ent in data.Entities ) {
+				foreach( var ent in ents ) {
 					CustomEntityManager.Instance.Add( ent );
 				}
 			}
@@ -86,18 +80,16 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private void SaveAll() {
 			var mymod = HamstarHelpersMod.Instance;
-			var data = new CustomEntityWorldData {
-				Entities = CustomEntityManager.Instance.TakeWhile( ( t ) => {
-					var save_comp = t.GetComponentByType<PerWorldSaveEntityComponent>();
-					return save_comp != null && save_comp.AsJson == this.AsJson;
-				} ).ToArray()
-			};
 			string file_name = this.GetFileNameBase();
-			
-			if( this.AsJson ) {
-				DataFileHelpers.SaveAsJson<CustomEntityWorldData>( mymod, file_name + ".json", data );
-			} else {
-				DataFileHelpers.SaveAsBinary<CustomEntityWorldData>( mymod, file_name + ".dat", false, data );
+
+			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<PerWorldSaveEntityComponent>();
+
+			if( ents.Count > 0 ) {
+				if( this.AsJson ) {
+					DataFileHelpers.SaveAsJson( mymod, file_name, ents );
+				} else {
+					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, ents );
+				}
 			}
 		}
 	}
