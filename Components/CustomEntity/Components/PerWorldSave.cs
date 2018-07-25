@@ -3,23 +3,10 @@ using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PerWorldSaveEntityComponent : CustomEntityComponent {
-		public bool AsJson;
-
-
-
-		////////////////
-		
-		public PerWorldSaveEntityComponent( bool as_json ) {
-			this.AsJson = as_json;
-		}
-
-		////////////////
-
 		protected class MyStaticInitializer : StaticInitializer {
 			protected override void StaticInitialize() {
 				var mymod = HamstarHelpersMod.Instance;
@@ -46,10 +33,23 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		}
 
 
+
+		////////////////
+
+		public bool AsJson;
+
+
+
+		////////////////
+		
+		public PerWorldSaveEntityComponent( bool as_json ) {
+			this.AsJson = as_json;
+		}
+
 		////////////////
 
 		public string GetFileNameBase() {
-			return "world_"+WorldHelpers.GetUniqueIdWithSeed() + "_ents";
+			return "world_" + WorldHelpers.GetUniqueIdWithSeed() + "_ents";
 		}
 
 
@@ -62,9 +62,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			ISet<CustomEntity> ents;
 
 			if( this.AsJson ) {
-				ents = DataFileHelpers.LoadJson<HashSet<CustomEntity>>( mymod, file_name, out success );
+				ents = DataFileHelpers.LoadJson<HashSet<CustomEntity>>( mymod, file_name, CustomEntity.SerializerSettings, out success );
 			} else {
-				ents = DataFileHelpers.LoadBinary<HashSet<CustomEntity>>( mymod, file_name+".dat", false );
+				ents = DataFileHelpers.LoadBinary<HashSet<CustomEntity>>( mymod, file_name+".dat", false, CustomEntity.SerializerSettings );
 				success = ents != null;
 			}
 
@@ -86,9 +86,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			if( ents.Count > 0 ) {
 				if( this.AsJson ) {
-					DataFileHelpers.SaveAsJson( mymod, file_name, ents );
+					DataFileHelpers.SaveAsJson( mymod, file_name, CustomEntity.SerializerSettings, ents );
 				} else {
-					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, ents );
+					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings, ents );
 				}
 			}
 		}

@@ -42,7 +42,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 			}
 
-			Promises.AddWorldUnloadEachPromise( () => {
+			Promises.AddPostWorldUnloadEachPromise( () => {
 				this.EntitiesByIds.Clear();
 				this.EntitiesByComponentType.Clear();
 			} );

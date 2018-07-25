@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 			
 			set {
 				Type comp_type;
-				string comp_name;
 
 				if( value == null ) {
 					if( this.EntitiesByIds.ContainsKey( idx ) ) {
@@ -93,15 +93,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public ISet<CustomEntity> GetByComponentType<T>() where T : CustomEntityComponent {
 			ISet<int> ent_idxs = new HashSet<int>();
 			Type curr_type = typeof( T );
-
+			
 			if( !this.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
-				foreach( Type comp_type in this.EntitiesByComponentType.Keys ) {
-					if( comp_type.IsSubclassOf( curr_type ) ) {
-						ent_idxs.UnionWith( this.EntitiesByComponentType[ comp_type ] );
+				foreach( var kv in this.EntitiesByComponentType ) {
+					if( kv.Key.IsSubclassOf( curr_type ) ) {
+						ent_idxs.UnionWith( kv.Value );
 					}
 				}
-			}
 
+				if( ent_idxs == null ) {
+					return new HashSet<CustomEntity>();
+				}
+			}
+			
 			return new HashSet<CustomEntity>(
 				ent_idxs.Select( i => (CustomEntity)this.EntitiesByIds[i] )
 			);

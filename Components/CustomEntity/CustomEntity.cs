@@ -10,6 +10,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 	/// Implements extensible custom game entities. Uses Components to implement functionality.
 	/// </summary>
 	public partial class CustomEntity : Entity {
+		/// <summary>
+		/// Name shown on mouse hover or when referenced.
+		/// </summary>
 		public string DisplayName = "";
 
 		/// <summary>
