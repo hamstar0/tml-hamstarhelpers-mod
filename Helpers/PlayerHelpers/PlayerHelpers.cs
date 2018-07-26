@@ -18,6 +18,12 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 		////////////////
 
+		private static object SpawnPointKey = new object();
+
+
+
+		////////////////
+
 		public static void Evac( Player player ) {
 			player.grappling[0] = -1;
 			player.grapCount = 0;
@@ -69,23 +75,17 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		}
 
 
-		 internal static object SpawnPointKey = new object();
-
 		public static void SetSpawnPoint( Player player, int tile_x, int tile_y ) {
-			IDictionary<string, IDictionary<int, int>> spawn_map;
-			int highest_idx = 0;
+			bool success;
+			var spawn_map = (IDictionary<string, IDictionary<int, int>>)DataStore.Get( PlayerHelpers.SpawnPointKey, out success );
 
 			player.SpawnX = tile_x;
 			player.SpawnY = tile_y;
 
-			if( LocalDataStore.Instance.ContainsKey( PlayerHelpers.SpawnPointKey ) ) {
-				spawn_map = (IDictionary<string, IDictionary<int, int>>)LocalDataStore.Instance[ PlayerHelpers.SpawnPointKey ];
-			} else {
+			if( !success ) {
 				spawn_map = new Dictionary<string, IDictionary<int, int>>();
 
 				for( int i = 0; i < 200; i++ ) {
-					highest_idx = i;
-
 					string key1 = player.spN[i];
 					int key2 = player.spI[i];
 
@@ -99,10 +99,10 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 					spawn_map[key1][key2] = i;
 				}
 
-				LocalDataStore.Instance[ PlayerHelpers.SpawnPointKey ] = spawn_map;
+				DataStore.Set( PlayerHelpers.SpawnPointKey, spawn_map );
 			}
 
-			if( spawn_map.ContainsKey( Main.worldName ) && spawn_map[Main.worldName].ContainsKey( Main.worldID ) ) {
+			if( spawn_map.ContainsKey( Main.worldName ) && spawn_map[ Main.worldName ].ContainsKey( Main.worldID ) ) {
 				int idx = spawn_map[Main.worldName][Main.worldID];
 
 				player.spX[idx] = tile_x;
@@ -110,7 +110,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			} else {
 				player.ChangeSpawn( tile_x, tile_y );
 
-				LocalDataStore.Instance.Remove( PlayerHelpers.SpawnPointKey );
+				DataStore.Remove( PlayerHelpers.SpawnPointKey );	// <- Force rebuild
 			}
 		}
 

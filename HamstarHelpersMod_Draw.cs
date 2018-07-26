@@ -50,7 +50,7 @@ namespace HamstarHelpers {
 				this.PlayerMessages.Draw( sb );
 				SimpleMessage.DrawMessage( sb );
 
-				DebugHelpers.PrintToBatch( sb );
+				DebugHelpers.PrintAll( sb );
 				DebugHelpers.Once = false;
 				DebugHelpers.OnceInAWhile--;
 				return true;

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Internals.Logic;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -92,8 +93,17 @@ namespace HamstarHelpers {
 				if( mymod.Config.DisableControlPanelHotkey ) {
 					Main.NewText( "Control panel hotkey disabled.", Color.Red );
 				} else {
-					mymod.ControlPanel.Open();
+					if( mymod.ControlPanel.IsOpen ) {
+						mymod.ControlPanel.Open();
+					} else {
+						mymod.ControlPanel.Close();
+					}
 				}
+			}
+
+			if( mymod.DataDumpHotkey.JustPressed ) {
+				string file_name = DataDumpHelpers.DumpToFile();
+				Main.NewText( "Dumped latest debug data to log file "+file_name, Color.Azure );
 			}
 		}
 	}

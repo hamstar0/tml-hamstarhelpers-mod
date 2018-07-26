@@ -29,6 +29,7 @@ using HamstarHelpers.Helpers.RecipeHelpers;
 using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Services.GlobalDataStore;
 
+
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
@@ -58,7 +59,7 @@ namespace HamstarHelpers {
 		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
-		internal LocalDataStore LocalData;
+		internal DataStore DataStore;
 
 		// Helpers
 		internal LogHelpers LogHelpers;
@@ -89,7 +90,8 @@ namespace HamstarHelpers {
 		public bool HasAddedRecipes { get; private set; }
 
 		public ModHotKey ControlPanelHotkey = null;
-		
+		public ModHotKey DataDumpHotkey = null;
+
 		private int LastSeenCPScreenWidth = -1;
 		private int LastSeenCPScreenHeight = -1;
 
@@ -127,7 +129,7 @@ namespace HamstarHelpers {
 				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
 			}
 
-			this.LocalData = new LocalDataStore();
+			this.DataStore = new DataStore();
 			this.LoadHelpers = new LoadHelpers();
 			this.Promises = new Promises();
 
@@ -158,6 +160,7 @@ namespace HamstarHelpers {
 
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Mod Helpers Control Panel", "O" );
+				this.DataDumpHotkey = this.RegisterHotKey( "Mod Helpers Data Dump (debug)", "P" );
 			}
 
 			this.LoadModData();
@@ -210,7 +213,6 @@ namespace HamstarHelpers {
 			this.AnimatedColors = null;
 			this.PlayerMessages = null;
 			this.Inbox = null;
-			this.ControlPanelHotkey = null;
 			this.ControlPanel = null;
 			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
@@ -218,7 +220,10 @@ namespace HamstarHelpers {
 			this.MusicHelpers = null;
 			this.CustomEntMngr = null;
 			this.Promises = null;
-			this.LocalData = null;
+			this.DataStore = null;
+
+			this.ControlPanelHotkey = null;
+			this.DataDumpHotkey = null;
 
 			HamstarHelpersMod.Instance = null;
 		}
