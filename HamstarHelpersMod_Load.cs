@@ -27,7 +27,7 @@ using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.ProjectileHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
 using HamstarHelpers.Components.CustomEntity;
-using HamstarHelpers.Services.GlobalDataStore;
+using HamstarHelpers.Services.DataStore;
 
 
 namespace HamstarHelpers {

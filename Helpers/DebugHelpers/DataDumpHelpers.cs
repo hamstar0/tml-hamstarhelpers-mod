@@ -1,11 +1,13 @@
 ﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Services.GlobalDataStore;
+using HamstarHelpers.Components.Network;
+using HamstarHelpers.Internals.NetProtocols;
+using HamstarHelpers.Services.DataStore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+
 
 namespace HamstarHelpers.Helpers.DebugHelpers {
 	public static class DataDumpHelpers {
@@ -72,15 +74,11 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 		public static string DumpToFile() {
 			IDictionary<string, string> data;
-			var dumpables = DataDumpHelpers.GetDumpables();
+			IDictionary<string, Func<string>> dumpables = DataDumpHelpers.GetDumpables();
 
 			Func<KeyValuePair<string, Func<string>>, string> getKey = ( kv ) => {
-				try {
-					string val = kv.Value();
-					return val;
-				} catch {
-					return "ERROR";
-				}
+				try { return kv.Value(); }
+				catch { return "ERROR"; }
 			};
 
 			lock( DataDumpHelpers.MyLock ) {
@@ -95,7 +93,10 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 			// Allow admins to dump on behalf of server, also
 			if( Main.netMode == 1 ) {
-				if( UserHelpers.)
+				bool success;
+				if( UserHelpers.UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out success ) ) {
+					PacketProtocol.QuickRequestToServer<DataDumpProtocol>();
+				}
 			}
 
 			return file_name;

@@ -10,7 +10,7 @@ namespace HamstarHelpers.Commands {
 			}
 		}
 		public override string Command { get { return "hhprivateserver"; } }
-		public override string Usage { get { return "/hhprivateserver"; } }
+		public override string Usage { get { return "/" + this.Command; } }
 		public override string Description { get { return "Sets current server to not be listed on the server browser."; } }
 
 

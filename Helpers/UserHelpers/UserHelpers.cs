@@ -4,7 +4,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.UserHelpers {
-	public class UserHelpers {
+	public static class UserHelpers {
 		public static bool HasBasicServerPrivilege( Player player, out bool success ) {
 			if( Main.netMode == 0 && !Main.dedServ ) {
 				throw new Exception( "Not multiplayer." );

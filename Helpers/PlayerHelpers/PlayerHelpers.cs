@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Services.GlobalDataStore;
+using HamstarHelpers.Services.DataStore;
 using System.Collections.Generic;
 
 

@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
     <Compile Include="Components\CustomEntity\Components\DrawsMap.cs" />
     <Compile Include="Components\CustomEntity\Components\IsClickable.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Internals\Logic\PlayerLogic_Update.cs" />
     <Compile Include="Internals\ModTags\ModBrowserExtension.cs" />
     <Compile Include="Internals\NetProtocols\CustomEntityProtocol.cs" />
+    <Compile Include="Internals\NetProtocols\DataDumpProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PingProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerIdProtocol.cs" />

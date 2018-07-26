@@ -11,8 +11,8 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Commands {
 	class ModIssueReportCommand : ModCommand {
 		public override CommandType Type { get { return CommandType.Chat | CommandType.Console; } }
-		public override string Command { get { return "hhmodissue"; } }
-		public override string Usage { get { return "/hhmodissue 4 \"issue title\" \"issue description text\""; } }
+		public override string Command { get { return "mhmodissue"; } }
+		public override string Usage { get { return "/" + this.Command + " 4 \"issue title\" \"issue description text\""; } }
 		public override string Description { get { return "Reports an issue for a mod. Only works for mods setup to do so (see Control Panel)."+
 					"\n   Parameters: <mod list index> \"<quote-wrapped issue title>\" \"<quote-wrapped issue description>\""; } }
 

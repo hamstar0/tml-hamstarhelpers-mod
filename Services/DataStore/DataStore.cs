@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Services.GlobalDataStore {
+namespace HamstarHelpers.Services.DataStore {
 	public class DataStore {
 		private static object MyLock = new object();
 
