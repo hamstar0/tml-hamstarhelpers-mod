@@ -3,6 +3,7 @@ using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
@@ -83,6 +84,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			string file_name = this.GetFileNameBase();
 
 			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<PerWorldSaveEntityComponent>();
+			ents = new HashSet<CustomEntity>(
+				ents.Where(
+					ent => ent.GetComponentByType<PerWorldSaveEntityComponent>().AsJson == this.AsJson
+				)
+			);
 
 			if( ents.Count > 0 ) {
 				if( this.AsJson ) {

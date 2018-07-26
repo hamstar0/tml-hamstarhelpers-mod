@@ -1,83 +1,72 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	public partial class CustomEntityManager : IEnumerable<CustomEntity> {
-		public CustomEntity this[ int idx ] {
-			get {
-				CustomEntity ent = null;
-				this.EntitiesByIds.TryGetValue( idx, out ent );
-				return ent;
-			}
+	public partial class CustomEntityManager {
+		public CustomEntity Get( int idx ) {
+			CustomEntity ent = null;
+			this.EntitiesByIds.TryGetValue( idx, out ent );
+			return ent;
+		}
 
-			
-			set {
-				Type comp_type;
 
-				if( value == null ) {
-					if( this.EntitiesByIds.ContainsKey( idx ) ) {
-						IList<CustomEntityComponent> ent_components = this.EntitiesByIds[idx].ComponentsInOrder;
+		public void Set( int idx, CustomEntity ent ) {
+			Type comp_type;
 
-						foreach( CustomEntityComponent component in ent_components ) {
-							comp_type = component.GetType();
-							do {
-								if( this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-									this.EntitiesByComponentType[ comp_type ].Remove( idx );
-								}
+			if( ent == null ) {
+				if( this.EntitiesByIds.ContainsKey( idx ) ) {
+					IList<CustomEntityComponent> ent_components = this.EntitiesByIds[idx].ComponentsInOrder;
 
-								comp_type = comp_type.BaseType;
-							} while( comp_type != typeof(CustomEntityComponent) );
-						}
-
-						this.EntitiesByIds.Remove( idx );
-					}
-				} else {
-					foreach( CustomEntityComponent component in value.ComponentsInOrder ) {
+					foreach( CustomEntityComponent component in ent_components ) {
 						comp_type = component.GetType();
 						do {
-							if( !this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-								this.EntitiesByComponentType[comp_type] = new HashSet<int>();
+							if( this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+								this.EntitiesByComponentType[ comp_type ].Remove( idx );
 							}
-							this.EntitiesByComponentType[comp_type].Add( idx );
 
 							comp_type = comp_type.BaseType;
-						} while( comp_type != typeof( CustomEntityComponent ) );
+						} while( comp_type != typeof(CustomEntityComponent) );
 					}
 
-					value.whoAmI = idx;
-					this.EntitiesByIds[idx] = value;
+					this.EntitiesByIds.Remove( idx );
 				}
+			} else {
+				foreach( CustomEntityComponent component in ent.ComponentsInOrder ) {
+					comp_type = component.GetType();
+					do {
+						if( !this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+							this.EntitiesByComponentType[comp_type] = new HashSet<int>();
+						}
+						this.EntitiesByComponentType[comp_type].Add( idx );
+
+						comp_type = comp_type.BaseType;
+					} while( comp_type != typeof( CustomEntityComponent ) );
+				}
+
+				ent.whoAmI = idx;
+				this.EntitiesByIds[ idx ] = ent;
 			}
 		}
 
-		////////////////
-
-		public IEnumerator<CustomEntity> GetEnumerator() {
-			return this.EntitiesByIds.Values.GetEnumerator();
-		}
-		IEnumerator IEnumerable.GetEnumerator() {
-			return this.EntitiesByIds.Values.GetEnumerator();
-		}
 
 		////////////////
 
 		public int Add( CustomEntity ent ) {
 			int idx = this.EntitiesByIds.Count;
 			
-			this[ idx ] = ent;
+			this.Set( idx, ent );
 
 			return idx;
 		}
 
 		public void Remove( CustomEntity ent ) {
-			this[ ent.whoAmI ] = null;
+			this.Set( ent.whoAmI, null );
 		}
 		public void Remove( int idx ) {
-			this[ idx ] = null;
+			this.Set( idx, null );
 		}
 
 

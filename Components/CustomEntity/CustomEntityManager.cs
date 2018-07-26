@@ -11,7 +11,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	public partial class CustomEntityManager : IEnumerable<CustomEntity> {
+	public partial class CustomEntityManager {
 		public static CustomEntityManager Instance { get { return HamstarHelpersMod.Instance.CustomEntMngr; } }
 
 
