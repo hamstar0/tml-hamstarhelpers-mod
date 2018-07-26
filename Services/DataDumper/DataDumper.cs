@@ -1,7 +1,8 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Services.DataStore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,8 +10,8 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.DebugHelpers {
-	public static class DataDumpHelpers {
+namespace HamstarHelpers.Services.DataDumper {
+	public static class DataDumper {
 		private static object MyLock = new object();
 		private static object MyDataStorekey = new object();
 
@@ -20,12 +21,12 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 		internal static IDictionary<string, Func<string>> GetDumpables() {
 			bool success;
-			var dumpables = (IDictionary<string, Func<string>>)DataStore.Get( DataDumpHelpers.MyDataStorekey, out success );
+			var dumpables = (IDictionary<string, Func<string>>)DataStore.DataStore.Get( DataDumper.MyDataStorekey, out success );
 
-			lock( DataDumpHelpers.MyLock ) {
+			lock( DataDumper.MyLock ) {
 				if( !success ) {
 					dumpables = new Dictionary<string, Func<string>>();
-					DataStore.Set( DataDumpHelpers.MyDataStorekey, dumpables );
+					DataStore.DataStore.Set( DataDumper.MyDataStorekey, dumpables );
 				}
 			}
 
@@ -61,10 +62,11 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 			return netmode+"_"+now + "_dump.json";
 		}
 
-		public static void SetDumpSource( string name, Func<string> dump ) {
-			var dumpables = DataDumpHelpers.GetDumpables();
 
-			lock( DataDumpHelpers.MyLock ) {
+		public static void SetDumpSource( string name, Func<string> dump ) {
+			var dumpables = DataDumper.GetDumpables();
+
+			lock( DataDumper.MyLock ) {
 				dumpables[ name ] = dump;
 			}
 		}
@@ -74,18 +76,18 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 		public static string DumpToFile() {
 			IDictionary<string, string> data;
-			IDictionary<string, Func<string>> dumpables = DataDumpHelpers.GetDumpables();
+			IDictionary<string, Func<string>> dumpables = DataDumper.GetDumpables();
 
 			Func<KeyValuePair<string, Func<string>>, string> getKey = ( kv ) => {
 				try { return kv.Value(); }
 				catch { return "ERROR"; }
 			};
 
-			lock( DataDumpHelpers.MyLock ) {
+			lock( DataDumper.MyLock ) {
 				data = dumpables.ToDictionary( kv => kv.Key, getKey );
 			}
 			
-			string file_name = DataDumpHelpers.GetFileName();
+			string file_name = DataDumper.GetFileName();
 			string rel_path = "Logs" + Path.DirectorySeparatorChar + "Dumps";
 			var json_file = new JsonConfig<IDictionary<string, string>>( file_name, rel_path, data );
 
@@ -94,7 +96,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 			// Allow admins to dump on behalf of server, also
 			if( Main.netMode == 1 ) {
 				bool success;
-				if( UserHelpers.UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out success ) ) {
+				if( UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out success ) ) {
 					PacketProtocol.QuickRequestToServer<DataDumpProtocol>();
 				}
 			}

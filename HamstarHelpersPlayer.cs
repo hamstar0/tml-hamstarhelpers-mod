@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -102,7 +103,7 @@ namespace HamstarHelpers {
 			}
 
 			if( mymod.DataDumpHotkey.JustPressed ) {
-				string file_name = DataDumpHelpers.DumpToFile();
+				string file_name = DataDumper.DumpToFile();
 				Main.NewText( "Dumped latest debug data to log file "+file_name, Color.Azure );
 			}
 		}

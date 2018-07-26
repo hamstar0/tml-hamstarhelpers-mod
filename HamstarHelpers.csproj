@@ -195,7 +195,7 @@
     <Compile Include="Helpers\HudHelpers\HudHealthBarHelpers.cs" />
     <Compile Include="HamstarHelpersPlayer.cs" />
     <Compile Include="Helpers\ItemHelpers\MusicBoxHelpers.cs" />
-    <Compile Include="Helpers\DebugHelpers\DataDumpHelpers.cs" />
+    <Compile Include="Services\DataDumper\DataDumper.cs" />
     <Compile Include="Helpers\DustHelpers\DustHelpers.cs" />
     <Compile Include="HamstarHelpersMod.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemFinderHelpers.cs" />
