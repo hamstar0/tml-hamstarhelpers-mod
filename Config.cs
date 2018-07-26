@@ -46,6 +46,8 @@ namespace HamstarHelpers {
 		public bool IsServerGaugingAveragePing = true;
 		public bool IsCheckingModVersions = true;
 
+		public string PrivilegedUserId = "";
+
 
 
 		////////////////

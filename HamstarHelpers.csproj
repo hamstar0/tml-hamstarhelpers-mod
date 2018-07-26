@@ -103,6 +103,7 @@
     <Compile Include="Helpers\TmlHelpers\LoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers_Load.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData_API.cs" />
+    <Compile Include="Helpers\UserHelpers\UserHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers_Obsolete.cs" />
     <Compile Include="Internals\ControlPanel\Inbox\InboxControl.cs" />
     <Compile Include="HamstarHelpersMod_Data.cs" />
