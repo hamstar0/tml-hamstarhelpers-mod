@@ -159,8 +159,8 @@ namespace HamstarHelpers {
 			this.CustomEntMngr = new CustomEntityManager();
 
 			if( !this.Config.DisableControlPanelHotkey ) {
-				this.ControlPanelHotkey = this.RegisterHotKey( "Mod Helpers Control Panel", "O" );
-				this.DataDumpHotkey = this.RegisterHotKey( "Mod Helpers Data Dump (debug)", "P" );
+				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
+				this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
 			}
 
 			this.LoadModData();
