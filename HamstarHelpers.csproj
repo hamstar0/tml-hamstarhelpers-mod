@@ -153,6 +153,7 @@
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
     <Compile Include="Internals\Logic\PlayerLogic_Update.cs" />
     <Compile Include="Internals\ModTags\ModBrowserExtension.cs" />
+    <Compile Include="Internals\NetProtocols\CustomEntityAllProtocol.cs" />
     <Compile Include="Internals\NetProtocols\CustomEntityProtocol.cs" />
     <Compile Include="Internals\NetProtocols\DataDumpProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PingProtocol.cs" />

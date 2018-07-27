@@ -262,7 +262,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			player.downedDD2EventAnyDifficulty = false;
 			player.taxMoney = 0;
 
-			PlayerHooks.SetStartInventory( player );
+			Terraria.ModLoader.PlayerHooks.SetStartInventory( player );
 		}
 
 

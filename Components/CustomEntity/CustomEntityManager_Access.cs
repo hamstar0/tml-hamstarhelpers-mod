@@ -79,7 +79,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
-
+		
 		public ISet<CustomEntity> GetByComponentType<T>() where T : CustomEntityComponent {
 			ISet<int> ent_idxs = new HashSet<int>();
 			Type curr_type = typeof( T );

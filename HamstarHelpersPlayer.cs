@@ -10,7 +10,12 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	class PlayerLoadSave {
+	class PlayerHooks {
+		internal static readonly PlayerHooks PlayerLoad = new PlayerHooks();
+		internal static readonly PlayerHooks PlayerSave = new PlayerHooks();
+		
+		////////////////
+
 		public Player MyPlayer = null;
 	}
 
@@ -18,13 +23,6 @@ namespace HamstarHelpers {
 
 
 	class HamstarHelpersPlayer : ModPlayer {
-		internal static readonly PlayerLoadSave PlayerLoad = new PlayerLoadSave();
-		internal static readonly PlayerLoadSave PlayerSave = new PlayerLoadSave();
-		
-
-
-		////////////////
-
 		public override bool CloneNewInstances { get { return false; } }
 		
 		public PlayerLogic Logic { get; private set; }
@@ -60,13 +58,13 @@ namespace HamstarHelpers {
 		public override void Load( TagCompound tags ) {
 			this.Logic.Load( tags );
 
-			HamstarHelpersPlayer.PlayerLoad.MyPlayer = this.player;
-			Promises.TriggerCustomPromiseForObject( HamstarHelpersPlayer.PlayerLoad );
+			PlayerHooks.PlayerLoad.MyPlayer = this.player;
+			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerLoad );
 		}
 
 		public override TagCompound Save() {
-			HamstarHelpersPlayer.PlayerSave.MyPlayer = this.player;
-			Promises.TriggerCustomPromiseForObject( HamstarHelpersPlayer.PlayerSave );
+			PlayerHooks.PlayerSave.MyPlayer = this.player;
+			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerSave );
 
 			return this.Logic.Save();
 		}

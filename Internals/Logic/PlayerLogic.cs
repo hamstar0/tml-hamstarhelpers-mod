@@ -1,11 +1,23 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI;
 using HamstarHelpers.Internals.NetProtocols;
+using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
+	class PlayerLogicHook {
+		internal static PlayerLogicHook ConnectServer = new PlayerLogicHook();
+
+		////////////////
+
+		public Player MyPlayer;
+	}
+
+
+
+
 	partial class PlayerLogic {
 		public string PrivateUID { get; private set; }
 		public bool HasUID { get; private set; }
@@ -52,6 +64,9 @@ namespace HamstarHelpers.Internals.Logic {
 		public void OnEnterWorldServer( HamstarHelpersMod mymod, Player player ) {
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
+
+			PlayerLogicHook.ConnectServer.MyPlayer = player;
+			Promises.TriggerCustomPromiseForObject( PlayerLogicHook.ConnectServer );
 		}
 
 

@@ -9,7 +9,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public override void SetServerDefaults() {
-			this.Data = HamstarHelpersMod.Instance.Config.Clone();
+			this.Data = (HamstarHelpersConfigData)HamstarHelpersMod.Instance.Config.Clone();
 			this.Data.PrivilegedUserId = "";
 		}
 

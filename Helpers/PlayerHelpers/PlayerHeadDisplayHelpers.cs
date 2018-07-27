@@ -97,7 +97,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			ItemLoader.DrawHair( player, ref draw_hair, ref draw_alt_hair );
 			draw_info.drawHair = draw_hair;
 			draw_info.drawAltHair = draw_alt_hair;
-			List<PlayerHeadLayer> draw_layers = PlayerHooks.GetDrawHeadLayers( player );
+			List<PlayerHeadLayer> draw_layers = Terraria.ModLoader.PlayerHooks.GetDrawHeadLayers( player );
 
 			for( int i = 0; i < draw_layers.Count; i++ ) {
 				if( draw_layers[i].ShouldDraw( draw_layers ) ) {

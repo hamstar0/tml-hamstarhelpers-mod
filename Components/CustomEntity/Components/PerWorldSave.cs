@@ -1,6 +1,9 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
+using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
@@ -53,6 +56,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 				Promises.AddPostWorldUnloadEachPromise( () => {
 					DataStore.Remove( PerWorldSaveEntityComponent.LoadKey );
+				} );
+
+				Promises.AddCustomPromiseForObject( PlayerLogicHook.ConnectServer, () => {
+					PacketProtocol.QuickSendToClient<CustomEntityAllProtocol>( PlayerLogicHook.ConnectServer.MyPlayer.whoAmI, -1 );
+					return true;
 				} );
 			}
 		}
