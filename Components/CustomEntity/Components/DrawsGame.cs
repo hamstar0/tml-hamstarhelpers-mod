@@ -10,6 +10,17 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsInGameEntityComponent : CustomEntityComponent {
+		public static SpriteEffects GetOrientation( Entity ent ) {
+			SpriteEffects dir = ent.direction > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+			//dir |= ( Main.LocalPlayer.gravDir < 0 ) ? SpriteEffects.FlipVertically : SpriteEffects.None;
+			return dir;
+		}
+
+
+		////////////////
+
+		[PacketProtocolIgnore]
+		public string ModName;
 		[PacketProtocolIgnore]
 		public string TexturePath;
 		[PacketProtocolIgnore]
@@ -23,11 +34,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public DrawsInGameEntityComponent( string terraria_texture_path, int frame_count ) {
-			this.TexturePath = terraria_texture_path;
+		public DrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
+			var src_mod = ModLoader.GetMod( src_mod_name );
+
+			this.ModName = src_mod_name;
+			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
 			
-			this.Texture = ModLoader.GetTexture( terraria_texture_path );
+			this.Texture = src_mod.GetTexture( rel_texture_path );
 		}
 
 
@@ -44,10 +58,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var scr_scr_pos = ent.position - Main.screenPosition;
 			var tex_rect = new Rectangle( 0, 0, this.Texture.Width, this.Texture.Height / this.FrameCount );
 
-			Color color = Lighting.GetColor( (int)(ent.position.X / 16), (int)( ent.position.Y / 16), Color.White );
+			Color color = Lighting.GetColor( (int)(ent.position.X / 16), (int)(ent.position.Y / 16), Color.White );
 			float scale = 1f;
 
-			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, new Vector2(), scale, SpriteEffects.None, 1f );
+			SpriteEffects dir = DrawsInGameEntityComponent.GetOrientation( ent );
+
+			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, default(Vector2), scale, dir, 1f );
 
 			this.PostDraw( sb, ent );
 		}

@@ -11,6 +11,8 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsOnMapEntityComponent : CustomEntityComponent {
 		[PacketProtocolIgnore]
+		public string ModName;
+		[PacketProtocolIgnore]
 		public string TexturePath;
 		[PacketProtocolIgnore]
 		public int FrameCount;
@@ -25,12 +27,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public DrawsOnMapEntityComponent( string terraria_texture_path, int frame_count, float scale ) {
-			this.TexturePath = terraria_texture_path;
+		public DrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale ) {
+			var src_mod = ModLoader.GetMod( src_mod_name );
+
+			this.ModName = src_mod_name;
+			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
 			this.Scale = scale;
 			
-			this.Texture = ModLoader.GetTexture( terraria_texture_path );
+			this.Texture = src_mod.GetTexture( rel_texture_path );
 		}
 
 
