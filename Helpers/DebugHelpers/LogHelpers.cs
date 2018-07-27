@@ -103,24 +103,29 @@ namespace HamstarHelpers.DebugHelpers {
 		}
 
 		public string GetModalLogFileName() {
-			string mode;
+			string mode = "";
+
+			if( Main.dedServ ) {
+				mode += "Dedi ";
+			}
 			
 			switch( Main.netMode ) {
 			case 0:
-				mode = "Single";
+				mode += "Single";
 				break;
 			case 1:
-				mode = "Client";
+				mode += "Client";
 				break;
 			case 2:
-				mode = "Server";
+				mode += "Server";
 				break;
 			default:
-				mode = "Unknown Mode";
+				mode += "Unknown Mode";
 				break;
 			}
 
-			string when = this.StartTimeBase.ToString( "MM-dd, HH.mm.ss" );
+			//string when = this.StartTimeBase.ToString( "MM-dd, HH.mm.ss" );
+			string when = this.StartTimeBase.ToString( "MM-dd, HH.mm" );
 
 			return "Log " + mode + " " + when + ".txt";
 		}

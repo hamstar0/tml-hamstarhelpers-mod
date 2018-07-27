@@ -136,36 +136,36 @@ namespace HamstarHelpers.Components.UI.Elements {
 							LogHelpers.Log( msg );
 						};
 					}
-				}
 
-				this.ConfigOpenButton = new UITextPanelButton( theme, "Open Config File" );
-				this.ConfigOpenButton.Width.Set( 160f, 0f );
-				this.ConfigOpenButton.HAlign = 1f;
-				this.ConfigOpenButton.VAlign = 1f;
-				this.Append( this.ConfigOpenButton );
+					this.ConfigOpenButton = new UITextPanelButton( theme, "Open Config File" );
+					this.ConfigOpenButton.Width.Set( 160f, 0f );
+					this.ConfigOpenButton.HAlign = 1f;
+					this.ConfigOpenButton.VAlign = 1f;
+					this.Append( this.ConfigOpenButton );
 					
-				this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-					string path = ModMetaDataManager.GetConfigRelativePath( mod );
-					string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;
+					this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+						string path = ModMetaDataManager.GetConfigRelativePath( mod );
+						string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;
 
-					try {
-						Process.Start( fullpath );
-					} catch( Exception e ) {
 						try {
-							string dir = new FileInfo( fullpath ).Directory.FullName;
-							Process.Start( dir );
-						} catch( Exception ) { }
+							Process.Start( fullpath );
+						} catch( Exception e ) {
+							try {
+								string dir = new FileInfo( fullpath ).Directory.FullName;
+								Process.Start( dir );
+							} catch( Exception ) { }
 
-						Main.NewText( "Couldn't open config file " + path + ": " + e.Message, Color.Red );
-					}
-				};
+							Main.NewText( "Couldn't open config file " + path + ": " + e.Message, Color.Red );
+						}
+					};
+				}
 			}
 		}
 
 
 		////////////////
 
-		[System.Obsolete( "use UIModData.CheckForNewVersionAsync", true )]
+		[Obsolete( "use UIModData.CheckForNewVersionAsync", true )]
 		public void CheckForNewVersion() {
 			this.CheckForNewVersionAsync();
 		}

@@ -78,6 +78,7 @@
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_Stream.cs" />
+    <Compile Include="HamstarHelpersMod_Meta.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers_Rarity.cs" />
     <Compile Include="Helpers\MiscHelpers\PaintHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerModHelpers.cs" />
