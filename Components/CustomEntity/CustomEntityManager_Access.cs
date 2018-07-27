@@ -15,6 +15,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		public void Set( int idx, CustomEntity ent ) {
 			Type comp_type;
+			Type base_type = typeof( CustomEntityComponent );
 
 			if( ent == null ) {
 				if( this.EntitiesByIds.ContainsKey( idx ) ) {
@@ -28,7 +29,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 							}
 
 							comp_type = comp_type.BaseType;
-						} while( comp_type != typeof(CustomEntityComponent) );
+						} while( comp_type != base_type );
 					}
 
 					this.EntitiesByIds.Remove( idx );
@@ -43,7 +44,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 						this.EntitiesByComponentType[comp_type].Add( idx );
 
 						comp_type = comp_type.BaseType;
-					} while( comp_type != typeof( CustomEntityComponent ) );
+					} while( comp_type != base_type );
 				}
 
 				ent.whoAmI = idx;

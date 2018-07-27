@@ -14,6 +14,7 @@ namespace HamstarHelpers.Services.DataDumper {
 	public static class DataDumper {
 		private static object MyLock = new object();
 		private static object MyDataStorekey = new object();
+		private static int Dumps = 0;
 
 
 
@@ -36,17 +37,17 @@ namespace HamstarHelpers.Services.DataDumper {
 
 		////////////////
 
-		internal static string GetFileName() {
+		internal static string GetFileName( string prefix ) {
 			string netmode;
 			switch( Main.netMode ) {
 			case 0:
 				netmode = "single";
 				break;
 			case 1:
-				netmode = "";
+				netmode = "client";
 				break;
 			case 2:
-				netmode = "";
+				netmode = "server";
 				break;
 			default:
 				netmode = "!";
@@ -59,7 +60,7 @@ namespace HamstarHelpers.Services.DataDumper {
 			string now_seconds_decimal = ( now_seconds - (int)now_seconds ).ToString( "N2" );
 			string now = now_seconds_whole + "." + ( now_seconds_decimal.Length > 2 ? now_seconds_decimal.Substring( 2 ) : now_seconds_decimal );
 
-			return netmode+"_"+now + "_dump.json";
+			return prefix + "_"+netmode +"_"+now + "_dump.json";
 		}
 
 
@@ -87,7 +88,7 @@ namespace HamstarHelpers.Services.DataDumper {
 				data = dumpables.ToDictionary( kv => kv.Key, getKey );
 			}
 			
-			string file_name = DataDumper.GetFileName();
+			string file_name = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
 			string rel_path = "Logs" + Path.DirectorySeparatorChar + "Dumps";
 			var json_file = new JsonConfig<IDictionary<string, string>>( file_name, rel_path, data );
 

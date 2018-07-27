@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
+using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,21 @@ using System.Linq;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PerWorldSaveEntityComponent : CustomEntityComponent {
+		private static object LoadKey = new object();
+
+
+		////////////////
+
+		public static bool IsLoaded {
+			get {
+				bool success;
+				bool output = (bool)DataStore.Get( PerWorldSaveEntityComponent.LoadKey, out success );
+				return success && output;
+			}
+		}
+
+		////////////////
+
 		protected class MyStaticInitializer : StaticInitializer {
 			protected override void StaticInitialize() {
 				var mymod = HamstarHelpersMod.Instance;
@@ -22,13 +38,21 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					if( !wld_save_nojson.LoadAll() ) {
 						LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Load (no json) failed." );
 					}
+
+					DataStore.Set( PerWorldSaveEntityComponent.LoadKey, true );
+
 					return true;
 				} );
 
 				Promises.AddCustomPromiseForObject( HamstarHelpersWorld.WorldSave, () => {
 					wld_save_json.SaveAll();
 					wld_save_nojson.SaveAll();
+
 					return true;
+				} );
+
+				Promises.AddPostWorldUnloadEachPromise( () => {
+					DataStore.Remove( PerWorldSaveEntityComponent.LoadKey );
 				} );
 			}
 		}
