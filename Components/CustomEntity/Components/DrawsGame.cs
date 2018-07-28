@@ -40,8 +40,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.ModName = src_mod_name;
 			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
-			
-			this.Texture = src_mod.GetTexture( rel_texture_path );
+
+			if( !Main.dedServ ) {
+				this.Texture = src_mod.GetTexture( rel_texture_path );
+			}
 		}
 
 

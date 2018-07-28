@@ -11,8 +11,10 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
-	public class PerWorldSaveEntityComponent : CustomEntityComponent {
-		private static object LoadKey = new object();
+	public class SaveableEntityComponent : CustomEntityComponent {
+		public readonly static object LoadHook = new object();
+
+		private static object LoadDataKey = new object();
 
 
 		////////////////
@@ -20,8 +22,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public static bool IsLoaded {
 			get {
 				bool success;
-				bool output = (bool)DataStore.Get( PerWorldSaveEntityComponent.LoadKey, out success );
-				return success && output;
+				object raw_output = DataStore.Get( SaveableEntityComponent.LoadDataKey, out success );
+				return success && (bool)raw_output;
 			}
 		}
 
@@ -31,8 +33,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			protected override void StaticInitialize() {
 				var mymod = HamstarHelpersMod.Instance;
 				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
-				var wld_save_json = new PerWorldSaveEntityComponent( true );
-				var wld_save_nojson = new PerWorldSaveEntityComponent( false );
+				var wld_save_json = new SaveableEntityComponent( true );
+				var wld_save_nojson = new SaveableEntityComponent( false );
 
 				Promises.AddCustomPromiseForObject( HamstarHelpersWorld.WorldLoad, () => {
 					if( !wld_save_json.LoadAll() ) {
@@ -42,7 +44,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 						LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Load (no json) failed." );
 					}
 
-					DataStore.Set( PerWorldSaveEntityComponent.LoadKey, true );
+					DataStore.Set( SaveableEntityComponent.LoadDataKey, true );
+					Promises.TriggerCustomPromiseForObject( SaveableEntityComponent.LoadHook );
 
 					return true;
 				} );
@@ -55,7 +58,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				} );
 
 				Promises.AddPostWorldUnloadEachPromise( () => {
-					DataStore.Remove( PerWorldSaveEntityComponent.LoadKey );
+					DataStore.Remove( SaveableEntityComponent.LoadDataKey );
 				} );
 
 				Promises.AddCustomPromiseForObject( PlayerLogicHook.ConnectServer, () => {
@@ -75,7 +78,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 		
-		public PerWorldSaveEntityComponent( bool as_json ) {
+		public SaveableEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
 		}
 
@@ -115,10 +118,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = HamstarHelpersMod.Instance;
 			string file_name = this.GetFileNameBase();
 
-			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<PerWorldSaveEntityComponent>();
+			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<SaveableEntityComponent>();
 			ents = new HashSet<CustomEntity>(
 				ents.Where(
-					ent => ent.GetComponentByType<PerWorldSaveEntityComponent>().AsJson == this.AsJson
+					ent => ent.GetComponentByType<SaveableEntityComponent>().AsJson == this.AsJson
 				)
 			);
 
