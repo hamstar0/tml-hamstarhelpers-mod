@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.MiscHelpers {
 	public partial class DataFileHelpers {
-		[Obsolete("use LoadBinary<T>(Mod, string)", true)]
+		[Obsolete("use LoadBinary<T>(Mod, string, bool)", true)]
 		public static T LoadBinary<T>( Mod mod, string file_name_has_ext, out bool success ) where T : class {
 			T file = DataFileHelpers.LoadBinary<T>( mod, file_name_has_ext, false );
 			success = file != null;
