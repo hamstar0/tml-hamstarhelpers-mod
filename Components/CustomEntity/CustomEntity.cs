@@ -29,6 +29,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public CustomEntity( string name, IList<CustomEntityComponent> components ) {
 			this.DisplayName = name;
 			this.ComponentsInOrder = components;
+
+			for( int i=0; i<components.Count; i++ ) {
+				bool success;
+				var comp = components[i].Clone( out success );
+
+				if( success ) {
+					this.ComponentsInOrder[i] = comp;
+				}
+			}
 		}
 
 		

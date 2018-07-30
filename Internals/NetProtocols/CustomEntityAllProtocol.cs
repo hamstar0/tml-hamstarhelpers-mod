@@ -24,7 +24,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				CustomEntityManager.Instance.Set( kv.Key, kv.Value );
 			}
 
-			Promises.TriggerCustomPromiseForObject( SaveableEntityComponent.LoadHook );
+			Promises.TriggerCustomPromiseForObject( SaveableEntityComponent.LoadAllHook, SaveableEntityComponent.PromiseTriggerValidator );
 		}
 	}
 }

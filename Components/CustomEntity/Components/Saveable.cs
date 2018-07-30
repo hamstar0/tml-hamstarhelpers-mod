@@ -6,15 +6,26 @@ using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class SaveableEntityComponent : CustomEntityComponent {
-		public readonly static object LoadHook = new object();
+		public readonly static PromiseTrigger LoadAllHook;
+		internal readonly static object PromiseTriggerValidator;
 
-		private static object LoadDataKey = new object();
+		private readonly static object IsAllLoadedKey = new object();
+
+
+		////////////////
+
+		static SaveableEntityComponent() {
+			SaveableEntityComponent.PromiseTriggerValidator = new object();
+			SaveableEntityComponent.LoadAllHook = new PromiseTrigger( SaveableEntityComponent.PromiseTriggerValidator );
+			SaveableEntityComponent.IsAllLoadedKey = new object();
+		}
 
 
 		////////////////
@@ -22,7 +33,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public static bool IsLoaded {
 			get {
 				bool success;
-				object raw_output = DataStore.Get( SaveableEntityComponent.LoadDataKey, out success );
+				object raw_output = DataStore.Get( SaveableEntityComponent.IsAllLoadedKey, out success );
 				return success && (bool)raw_output;
 			}
 		}
@@ -37,15 +48,24 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				var wld_save_nojson = new SaveableEntityComponent( false );
 
 				Promises.AddCustomPromiseForObject( HamstarHelpersWorld.WorldLoad, () => {
-					if( !wld_save_json.LoadAll() ) {
-						LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Load (json) failed." );
-					}
-					if( !wld_save_nojson.LoadAll() ) {
-						LogHelpers.Log( "HamstarHelpersMod.PerWorldSaveEntityComponent.StaticInitialize - Load (no json) failed." );
+					try {
+						if( !wld_save_json.LoadAll() ) {
+							if( mymod.Config.DebugModeNetInfo ) {
+								LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - Load (json) failed." );
+							}
+						}
+						if( !wld_save_nojson.LoadAll() ) {
+							if( mymod.Config.DebugModeNetInfo ) {
+								LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - Load (no json) failed." );
+							}
+						}
+					} catch( Exception e ) {
+						LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - " + e.ToString() );
 					}
 
-					DataStore.Set( SaveableEntityComponent.LoadDataKey, true );
-					Promises.TriggerCustomPromiseForObject( SaveableEntityComponent.LoadHook );
+					DataStore.Set( SaveableEntityComponent.IsAllLoadedKey, true );
+
+					Promises.TriggerCustomPromiseForObject( SaveableEntityComponent.LoadAllHook, SaveableEntityComponent.PromiseTriggerValidator );
 
 					return true;
 				} );
@@ -58,7 +78,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				} );
 
 				Promises.AddPostWorldUnloadEachPromise( () => {
-					DataStore.Remove( SaveableEntityComponent.LoadDataKey );
+					DataStore.Remove( SaveableEntityComponent.IsAllLoadedKey );
 				} );
 
 				Promises.AddCustomPromiseForObject( PlayerLogicHook.ConnectServer, () => {
@@ -80,6 +100,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		
 		public SaveableEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
+		}
+
+		////////////////
+
+		public override CustomEntityComponent Clone( out bool can_clone ) {
+			can_clone = true;
+			return (SaveableEntityComponent)this.MemberwiseClone();
 		}
 
 		////////////////

@@ -4,6 +4,17 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Services.Promises {
+	public class PromiseTrigger {
+		internal object Validator;
+
+		public PromiseTrigger( object validator ) {
+			this.Validator = validator;
+		}
+	}
+
+
+
+
 	public partial class Promises {
 		public static void AddCustomPromise( string name, Func<bool> action ) {
 			var mymod = HamstarHelpersMod.Instance;
@@ -69,8 +80,12 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 
-		public static void TriggerCustomPromiseForObject( object obj ) {
+		public static void TriggerCustomPromiseForObject( PromiseTrigger obj, object validator ) {
 			var mymod = HamstarHelpersMod.Instance;
+
+			if( obj.Validator != validator ) {
+				throw new Exception( "Validation failed." );
+			}
 
 			mymod.Promises.ObjectCustomPromiseConditionsMet.Add( obj );
 

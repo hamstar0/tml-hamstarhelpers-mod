@@ -4,6 +4,11 @@ using HamstarHelpers.Helpers.DebugHelpers;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	abstract public class CustomEntityComponent : PacketProtocolData {
+		public virtual CustomEntityComponent Clone( out bool can_clone ) {
+			can_clone = false;
+			return null;
+		}
+
 		public virtual void Update( CustomEntity ent ) { }
 
 		////////////////

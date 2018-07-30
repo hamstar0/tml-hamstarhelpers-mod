@@ -11,9 +11,21 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	class HamstarHelpersWorld : ModWorld {
-		internal static readonly object WorldLoad = new object();
-		internal static readonly object WorldSave = new object();
+		private static readonly object WorldHookValidator;
+
+		internal static readonly PromiseTrigger WorldLoad;
+		internal static readonly PromiseTrigger WorldSave;
+
 		private static object MyLock = new object();
+
+
+		////////////////
+
+		static HamstarHelpersWorld() {
+			HamstarHelpersWorld.WorldHookValidator = new object();
+			HamstarHelpersWorld.WorldLoad = new PromiseTrigger( HamstarHelpersWorld.WorldHookValidator );
+			HamstarHelpersWorld.WorldSave = new PromiseTrigger( HamstarHelpersWorld.WorldHookValidator );
+		}
 
 
 		////////////////
@@ -65,7 +77,7 @@ namespace HamstarHelpers {
 			mymod.ModLockHelpers.PostLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
-			Promises.TriggerCustomPromiseForObject( HamstarHelpersWorld.WorldLoad );
+			Promises.TriggerCustomPromiseForObject( HamstarHelpersWorld.WorldLoad, HamstarHelpersWorld.WorldHookValidator );
 
 			this.HasCorrectID = true;
 		}
@@ -81,7 +93,7 @@ namespace HamstarHelpers {
 
 			this.WorldLogic.SaveForWorld( mymod, tags );
 
-			Promises.TriggerCustomPromiseForObject( HamstarHelpersWorld.WorldSave );
+			Promises.TriggerCustomPromiseForObject( HamstarHelpersWorld.WorldSave, HamstarHelpersWorld.WorldHookValidator );
 
 			return tags;
 		}

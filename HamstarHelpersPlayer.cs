@@ -10,13 +10,20 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	class PlayerHooks {
+	class PlayerHooks : PromiseTrigger {
+		internal static readonly object PlayerHookValidator = new object();
 		internal static readonly PlayerHooks PlayerLoad = new PlayerHooks();
 		internal static readonly PlayerHooks PlayerSave = new PlayerHooks();
-		
+
+
 		////////////////
 
 		public Player MyPlayer = null;
+
+
+		////////////////
+
+		public PlayerHooks() : base( PlayerHooks.PlayerHookValidator ) { }
 	}
 
 
@@ -59,12 +66,12 @@ namespace HamstarHelpers {
 			this.Logic.Load( tags );
 
 			PlayerHooks.PlayerLoad.MyPlayer = this.player;
-			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerLoad );
+			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerLoad, PlayerHooks.PlayerHookValidator );
 		}
 
 		public override TagCompound Save() {
 			PlayerHooks.PlayerSave.MyPlayer = this.player;
-			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerSave );
+			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerSave, PlayerHooks.PlayerHookValidator );
 
 			return this.Logic.Save();
 		}

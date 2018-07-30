@@ -7,12 +7,27 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
-	class PlayerLogicHook {
-		internal static PlayerLogicHook ConnectServer = new PlayerLogicHook();
+	class PlayerLogicHook : PromiseTrigger {
+		internal readonly static object PlayerLogicHookValidator;
+		internal readonly static PlayerLogicHook ConnectServer;
+
 
 		////////////////
 
+		static PlayerLogicHook() {
+			PlayerLogicHook.PlayerLogicHookValidator = new object();
+			PlayerLogicHook.ConnectServer = new PlayerLogicHook();
+		}
+
+
+		////////////////
+		
 		public Player MyPlayer;
+		
+
+		////////////////
+
+		private PlayerLogicHook() : base( PlayerLogicHook.PlayerLogicHookValidator ) { }
 	}
 
 
@@ -66,7 +81,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.FinishWorldDataSync();
 
 			PlayerLogicHook.ConnectServer.MyPlayer = player;
-			Promises.TriggerCustomPromiseForObject( PlayerLogicHook.ConnectServer );
+			Promises.TriggerCustomPromiseForObject( PlayerLogicHook.ConnectServer, PlayerLogicHook.PlayerLogicHookValidator );
 		}
 
 

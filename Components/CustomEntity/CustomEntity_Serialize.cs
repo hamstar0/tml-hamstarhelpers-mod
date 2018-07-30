@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 	public partial class CustomEntity : Entity {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
-			TypeNameHandling = TypeNameHandling.All,
+			TypeNameHandling = TypeNameHandling.Auto,
 			ContractResolver = new CustomEntityContractResolver()
 		};
 

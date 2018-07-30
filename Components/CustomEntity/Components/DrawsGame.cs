@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
@@ -67,11 +68,17 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, default(Vector2), scale, dir, 1f );
 
+			if( HamstarHelpersMod.Instance.Config.DebugModeHighlightEntities ) {
+				var rect = new Rectangle( (int)( ent.position.X - Main.screenPosition.X ), (int)( ent.position.Y - Main.screenPosition.Y ), ent.width, ent.height );
+				HudHelpers.DrawBorderedRect( sb, null, Color.Red, rect, 1 );
+			}
+
 			this.PostDraw( sb, ent );
 		}
 
 
 		public virtual bool PreDraw( SpriteBatch sb, CustomEntity ent ) { return true; }
+
 		public virtual void PostDraw( SpriteBatch sb, CustomEntity ent ) { }
 	}
 }

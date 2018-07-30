@@ -21,11 +21,12 @@ v2.0.0
 	-	Implement fetching mod tag data	
 	-	Implement mod browser list draw hooking
 	-	Define component
-
 	-	@Tags
-		-	Challenge
 		-	Core Game Mechanics
-		-	Meta Game Mechanics
+		-	Combat Mechanics
+		-	Movement Mechanics
+		-	Building Mechanics
+		-	Mining Mechanics
 		-	Quests
 		-	Discrete Game Mode(s)
 		-	Story or Lore
@@ -33,18 +34,21 @@ v2.0.0
 		-	Player Stats
 		-	NPC Stats
 		-	Player Class(es)
-		-	Combat Special Abilities
-		-	Movement Special Abilities
 		-	Building & Creativity
 		-	Informational
 		-	Specialized
-		-	Replacement(s)
-		-	Retexturing
-		-	Cheat
-		-	Vanilla Balanced
-		-	Balance Altering
-		-	Convenience
+		-	Replaces Game Element(s)
+		-	Visuals
+		-	Special FX
+		-	Affects World
 		-	Esoteric
+		-	Minimalistic
+		-	Challenge
+		-	Makes Game Easier
+		-	Adds Convenience
+		-	Vanilla Balanced
+		-	Loosely Balanced
+		-	Cheaty
 		-	Theme: Dark
 		-	Theme: Silly
 		-	Theme: Fantasy
@@ -61,6 +65,7 @@ v2.0.0
 		-	Content: Bosses
 		-	Content: Invasions
 		-	Content: Building Blocks
+		-	Content: Wiring
 		-	Content: Decorative
 		-	Content: Fishing
 		-	Content: Buffs & Potions
@@ -68,25 +73,34 @@ v2.0.0
 		-	Content: Biomes
 		-	Content: Vanity
 		-	Content: Ores
-		-	Location: Surface
-		-	Location: Underground
-		-	Location: Ocean
-		-	Location: Dungeon
-		-	Location: Jungle
-		-	Location: Hell
-		-	Location: Evil Biome
-		-	Location: Hallow Biome
-		-	Pre-Wall of Flesh
-		-	Hard Mode
-		-	Post-Plantera
-		-	Post-Moon Lord
+		-	Where: Surface
+		-	Where: Underground
+		-	Where: Ocean
+		-	Where: Dungeon
+		-	Where: Jungle
+		-	Where: Hell
+		-	Where: Evil Biome
+		-	Where: Hallow Biome
+		-	When: Pre-Hard Mode
+		-	When: Hard Mode
+		-	When: Post-Plantera
+		-	When: Post-Moon Lord
 		-	Multiplayer Compatible
 		-	PvP
 		-	Teams
-		-	Affects World
-		-	Special FX
 		-	Open Source
-		-	Team-Built
+		-	Made By Team
+		-	Unmaintained
+		-	Unfinished
+		-	Buggy
+		-	Non-functional
+		-	Simplistic
+		-	Shows Effort
+		-	Polished
+-	Implement entity component sync
+	-	On receive, rebuild each component from stream
+	-	Map component loadouts to keys (hash codes), shared between client and server
+
 -	Set UI elements to be 'Components'
 -	Implement entity groups
 	-	Implement arbitrary code filters
