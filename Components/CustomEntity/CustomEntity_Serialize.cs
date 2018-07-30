@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -8,11 +9,13 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	class CustomEntityContractResolver : DefaultContractResolver {
-		protected override IList<JsonProperty> CreateProperties( Type type, MemberSerialization memberSerialization ) {
-			IList<JsonProperty> properties = base.CreateProperties( type, memberSerialization );
+	internal class CustomEntityContractResolver : DefaultContractResolver {
+		protected override IList<JsonProperty> CreateProperties( Type type, MemberSerialization member_serialization ) {
+			IList<JsonProperty> properties = base.CreateProperties( type, member_serialization );
 			
 			properties = properties.Where( (p) => {
+				if( p.DeclaringType.Name != "CustomEntityCore" ) { return true; }
+
 				switch( p.PropertyName ) {
 				case "whoAmI":
 				case "lavaWet":
@@ -37,6 +40,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				case "Center":
 					return false;
 				}
+
 				return true;
 			} ).ToList();
 			
@@ -46,20 +50,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 
-
-	class CustomEntitySerializeable {
-		public IList<CustomEntityComponent> ComponentsInOrder;
-
-
-		internal CustomEntitySerializeable( IList<CustomEntityComponent> data ) {
-			this.ComponentsInOrder = data;
-		}
-	}
-
-
-
-
-	public partial class CustomEntity : Entity {
+	
+	public partial class CustomEntity : PacketProtocolData {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
 			TypeNameHandling = TypeNameHandling.Auto,
 			ContractResolver = new CustomEntityContractResolver()
@@ -69,15 +61,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal static CustomEntity Deserialize( string data ) {
-			var deserialized = JsonConvert.DeserializeObject<CustomEntitySerializeable>( data, CustomEntity.SerializerSettings );
-
-			return (CustomEntity)Activator.CreateInstance( typeof(CustomEntity) );
+			return JsonConvert.DeserializeObject<CustomEntity>( data, CustomEntity.SerializerSettings );
 		}
 
 		internal static string Serialize( CustomEntity ent ) {
-			var serialize = new CustomEntitySerializeable( ent.ComponentsInOrder );
-
-			return JsonConvert.SerializeObject( serialize, CustomEntity.SerializerSettings );
+			return JsonConvert.SerializeObject( ent, CustomEntity.SerializerSettings );
 		}
+
+
+		////////////////
+
+		public 
 	}
 }

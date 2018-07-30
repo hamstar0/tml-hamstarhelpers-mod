@@ -22,8 +22,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		private bool CheckMouseHover( CustomEntity ent ) {
 			if( Main.netMode == 2 ) { throw new Exception( "Server cannot OnMouseClick." ); }
 
+			Entity core = ent.Core;
 			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
-			Rectangle box = ent.Hitbox;
+			Rectangle box = core.Hitbox;
 			if( !box.Intersects( world_scr_rect ) ) {
 				return false;
 			}

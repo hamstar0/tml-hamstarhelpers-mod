@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using System;
 using System.Collections.Generic;
@@ -6,18 +7,8 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	/// <summary>
-	/// Implements extensible custom game entities. Uses Components to implement functionality.
-	/// </summary>
-	public partial class CustomEntity : Entity {
-		/// <summary>
-		/// Name shown on mouse hover or when referenced.
-		/// </summary>
-		public string DisplayName = "";
-
-		/// <summary>
-		/// Lists all Components in order.
-		/// </summary>
+	public partial class CustomEntity : PacketProtocolData {
+		public CustomEntityCore Core;
 		public IList<CustomEntityComponent> ComponentsInOrder;
 
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
@@ -27,7 +18,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		public CustomEntity( string name, IList<CustomEntityComponent> components ) {
-			this.DisplayName = name;
+			this.Core = new CustomEntityCore( name );
 			this.ComponentsInOrder = components;
 
 			for( int i=0; i<components.Count; i++ ) {

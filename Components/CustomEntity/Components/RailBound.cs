@@ -17,11 +17,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public override void Update( CustomEntity ent ) {
+			Entity core = ent.Core;
 			bool is_on_rail = false;
-			int x_beg = (int)ent.position.X / 16;
-			int y_beg = ( (int)ent.position.Y + ent.height ) / 16;
+			int x_beg = (int)core.position.X / 16;
+			int y_beg = ( (int)core.position.Y + core.height ) / 16;
 
-			int x_end = Math.Max( ( (int)ent.position.X + ent.width ) / 16, x_beg + 1 );
+			int x_end = Math.Max( ( (int)core.position.X + core.width ) / 16, x_beg + 1 );
 
 			int x_mid = ( x_beg + x_end ) / 2;
 
@@ -60,9 +61,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public void SnapToTrack( CustomEntity ent, int tile_x, int tile_y ) {
-			ent.position.Y = (tile_y * 16) - ent.height;
-			ent.velocity.X = 0;
-			ent.velocity.Y = 0;
+			Entity core = ent.Core;
+
+			core.position.Y = (tile_y * 16) - core.height;
+			core.velocity.X = 0;
+			core.velocity.Y = 0;
 		}
 	}
 }

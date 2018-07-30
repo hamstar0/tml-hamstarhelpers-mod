@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,48 +15,33 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		public void Set( int idx, CustomEntity ent ) {
+			if( ent == null ) { throw new HamstarException("Null ent not allowed."); }
+
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
-
-			if( ent == null ) {
-				if( this.EntitiesByIds.ContainsKey( idx ) ) {
-					IList<CustomEntityComponent> ent_components = this.EntitiesByIds[idx].ComponentsInOrder;
-
-					foreach( CustomEntityComponent component in ent_components ) {
-						comp_type = component.GetType();
-						do {
-							if( this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-								this.EntitiesByComponentType[ comp_type ].Remove( idx );
-							}
-
-							comp_type = comp_type.BaseType;
-						} while( comp_type != base_type );
+			
+			foreach( CustomEntityComponent component in ent.ComponentsInOrder ) {
+				comp_type = component.GetType();
+				do {
+					if( !this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+						this.EntitiesByComponentType[comp_type] = new HashSet<int>();
 					}
+					this.EntitiesByComponentType[comp_type].Add( idx );
 
-					this.EntitiesByIds.Remove( idx );
-				}
-			} else {
-				foreach( CustomEntityComponent component in ent.ComponentsInOrder ) {
-					comp_type = component.GetType();
-					do {
-						if( !this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-							this.EntitiesByComponentType[comp_type] = new HashSet<int>();
-						}
-						this.EntitiesByComponentType[comp_type].Add( idx );
-
-						comp_type = comp_type.BaseType;
-					} while( comp_type != base_type );
-				}
-
-				ent.whoAmI = idx;
-				this.EntitiesByIds[ idx ] = ent;
+					comp_type = comp_type.BaseType;
+				} while( comp_type != base_type );
 			}
+
+			ent.whoAmI = idx;
+			this.EntitiesByIds[ idx ] = ent;
 		}
 
 
 		////////////////
 
 		public int Add( CustomEntity ent ) {
+			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
+
 			int idx = this.EntitiesByIds.Count;
 			
 			this.Set( idx, ent );
@@ -63,11 +49,33 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return idx;
 		}
 
+
 		public void Remove( CustomEntity ent ) {
-			this.Set( ent.whoAmI, null );
+			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
+
+			this.Remove( ent.whoAmI );
 		}
+
 		public void Remove( int idx ) {
-			this.Set( idx, null );
+			if( !this.EntitiesByIds.ContainsKey( idx ) ) { return; }
+
+			Type comp_type;
+			Type base_type = typeof( CustomEntityComponent );
+
+			IList<CustomEntityComponent> ent_components = this.EntitiesByIds[ idx ].ComponentsInOrder;
+
+			foreach( CustomEntityComponent component in ent_components ) {
+				comp_type = component.GetType();
+				do {
+					if( this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+						this.EntitiesByComponentType[comp_type].Remove( idx );
+					}
+
+					comp_type = comp_type.BaseType;
+				} while( comp_type != base_type );
+			}
+
+			this.EntitiesByIds.Remove( idx );
 		}
 
 

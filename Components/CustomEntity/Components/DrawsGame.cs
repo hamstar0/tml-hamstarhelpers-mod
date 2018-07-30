@@ -53,23 +53,25 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public void Draw( SpriteBatch sb, CustomEntity ent ) {
 			if( Main.netMode == 2 ) { throw new Exception( "Server cannot Draw." ); }
 
-			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
-			if( !ent.Hitbox.Intersects( world_scr_rect ) ) { return; }
-
 			if( !this.PreDraw( sb, ent ) ) { return; }
 
-			var scr_scr_pos = ent.position - Main.screenPosition;
+			var core = ent.Core;
+			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
+
+			if( !core.Hitbox.Intersects( world_scr_rect ) ) { return; }
+
+			var scr_scr_pos = core.position - Main.screenPosition;
 			var tex_rect = new Rectangle( 0, 0, this.Texture.Width, this.Texture.Height / this.FrameCount );
 
-			Color color = Lighting.GetColor( (int)(ent.position.X / 16), (int)(ent.position.Y / 16), Color.White );
+			Color color = Lighting.GetColor( (int)( core.position.X / 16), (int)( core.position.Y / 16), Color.White );
 			float scale = 1f;
 
-			SpriteEffects dir = DrawsInGameEntityComponent.GetOrientation( ent );
+			SpriteEffects dir = DrawsInGameEntityComponent.GetOrientation( core );
 
 			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, default(Vector2), scale, dir, 1f );
 
 			if( HamstarHelpersMod.Instance.Config.DebugModeHighlightEntities ) {
-				var rect = new Rectangle( (int)( ent.position.X - Main.screenPosition.X ), (int)( ent.position.Y - Main.screenPosition.Y ), ent.width, ent.height );
+				var rect = new Rectangle( (int)( core.position.X - Main.screenPosition.X ), (int)( core.position.Y - Main.screenPosition.Y ), core.width, core.height );
 				HudHelpers.DrawBorderedRect( sb, null, Color.Red, rect, 1 );
 			}
 

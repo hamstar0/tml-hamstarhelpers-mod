@@ -6,8 +6,9 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
 		public override void Update( CustomEntity ent ) {
+			var core = ent.Core;
 			bool respects_gravity = ent.GetComponentByType<RespectsGravityEntityComponent>() != null;
-			Vector2 wet_velocity = ent.velocity * 0.5f;
+			Vector2 wet_velocity = core.velocity * 0.5f;
 			bool lava_wet, honey_wet;
 
 			if( !respects_gravity ) {
@@ -18,10 +19,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.ApplyCollisionMovement( ent, ref wet_velocity );
 			this.ApplySlopeDodgeAndConveyorMovement( ent );
 
-			if( ent.wet ) {
-				ent.position += wet_velocity;
+			if( core.wet ) {
+				core.position += wet_velocity;
 			} else {
-				ent.position += ent.velocity;
+				core.position += core.velocity;
 			}
 		}
 
@@ -29,30 +30,34 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public void RefreshLiquidContactStates( CustomEntity ent, out bool lava_wet, out bool honey_wet ) {
-			lava_wet = Collision.LavaCollision( ent.position, ent.width, ent.height );
+			var core = ent.Core;
+
+			lava_wet = Collision.LavaCollision( core.position, core.width, core.height );
 			if( lava_wet ) {
-				ent.lavaWet = true;
+				core.lavaWet = true;
 			}
 
-			honey_wet = Collision.WetCollision( ent.position, ent.width, ent.height );
+			honey_wet = Collision.WetCollision( core.position, core.width, core.height );
 			if( Collision.honey ) {
-				ent.honeyWet = true;
+				core.honeyWet = true;
 			}
 		}
 
 
 		public void ApplyLiquidMovement( CustomEntity ent, bool lava_wet, bool honey_wet ) {
-			if( honey_wet ) {
-				if( !ent.wet ) {
-					if( ent.wetCount == 0 ) {
-						ent.wetCount = 20;
+			var core = ent.Core;
 
-						var dust_pos = new Vector2( ent.position.X - 6f, ent.position.Y + (float)( ent.height / 2 ) - 8f );
+			if( honey_wet ) {
+				if( !core.wet ) {
+					if( core.wetCount == 0 ) {
+						core.wetCount = 20;
+
+						var dust_pos = new Vector2( core.position.X - 6f, core.position.Y + (float)( core.height / 2 ) - 8f );
 
 						if( !lava_wet ) {
-							if( ent.honeyWet ) {
+							if( core.honeyWet ) {
 								for( int i = 0; i < 5; i++ ) {
-									int idx = Dust.NewDust( dust_pos, ent.width + 12, 24, 152, 0f, 0f, 0, default( Color ), 1f );
+									int idx = Dust.NewDust( dust_pos, core.width + 12, 24, 152, 0f, 0f, 0, default( Color ), 1f );
 									Dust dust = Main.dust[idx];
 
 									dust.velocity.Y = dust.velocity.Y - 1f;
@@ -63,7 +68,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 								}
 							} else {
 								for( int i = 0; i < 10; i++ ) {
-									int idx = Dust.NewDust( dust_pos, ent.width + 12, 24, Dust.dustWater(), 0f, 0f, 0, default( Color ), 1f );
+									int idx = Dust.NewDust( dust_pos, core.width + 12, 24, Dust.dustWater(), 0f, 0f, 0, default( Color ), 1f );
 									Dust dust = Main.dust[idx];
 
 									dust.velocity.Y = dust.velocity.Y - 4f;
@@ -75,7 +80,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 							}
 						} else {
 							for( int i = 0; i < 5; i++ ) {
-								int idx = Dust.NewDust( dust_pos, ent.width + 12, 24, 35, 0f, 0f, 0, default( Color ), 1f );
+								int idx = Dust.NewDust( dust_pos, core.width + 12, 24, 35, 0f, 0f, 0, default( Color ), 1f );
 								Dust dust = Main.dust[idx];
 
 								dust.velocity.Y = dust.velocity.Y - 1.5f;
@@ -86,66 +91,71 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 							}
 						}
 
-						Main.PlaySound( 19, (int)ent.position.X, (int)ent.position.Y, 1, 1f, 0f );
+						Main.PlaySound( 19, (int)core.position.X, (int)core.position.Y, 1, 1f, 0f );
 					}
 
-					ent.wet = true;
+					core.wet = true;
 				}
-			} else if( ent.wet ) {
-				ent.wet = false;
+			} else if( core.wet ) {
+				core.wet = false;
 			}
 
 			// Update wet state
-			if( !ent.wet ) {
-				ent.lavaWet = false;
-				ent.honeyWet = false;
+			if( !core.wet ) {
+				core.lavaWet = false;
+				core.honeyWet = false;
 			}
-			if( ent.wetCount > 0 ) {
-				ent.wetCount -= 1;
+			if( core.wetCount > 0 ) {
+				core.wetCount -= 1;
 			}
 		}
 
 
 		public void ApplyZeroGravityMovement( CustomEntity ent ) {
-			ent.velocity.X = ent.velocity.X* 0.95f;
+			var core = ent.Core;
 
-				if((double) ent.velocity.X< 0.01 && (double) ent.velocity.X > -0.01 ) {
-				ent.velocity.X = 0f;
+			core.velocity.X = core.velocity.X* 0.95f;
+
+				if((double)core.velocity.X< 0.01 && (double)core.velocity.X > -0.01 ) {
+				core.velocity.X = 0f;
 			}
-			ent.velocity.Y *= 0.95f;
+			core.velocity.Y *= 0.95f;
 
-			if( (double)ent.velocity.Y < 0.01 && (double)ent.velocity.Y > -0.01 ) {
-				ent.velocity.Y = 0f;
+			if( (double)core.velocity.Y < 0.01 && (double)core.velocity.Y > -0.01 ) {
+				core.velocity.Y = 0f;
 			}
 		}
 
 
 		public void ApplyCollisionMovement( CustomEntity ent, ref Vector2 wet_velocity ) {
-			if( ent.wet ) {
-				Vector2 old_vel = ent.velocity;
-				ent.velocity = Collision.TileCollision( ent.position, ent.velocity, ent.width, ent.height, false, false, 1 );
+			var core = ent.Core;
 
-				if( ent.velocity.X != old_vel.X ) {
-					wet_velocity.X = ent.velocity.X;
+			if( core.wet ) {
+				Vector2 old_vel = core.velocity;
+				core.velocity = Collision.TileCollision( core.position, core.velocity, core.width, core.height, false, false, 1 );
+
+				if( core.velocity.X != old_vel.X ) {
+					wet_velocity.X = core.velocity.X;
 				}
-				if( ent.velocity.Y != old_vel.Y ) {
-					wet_velocity.Y = ent.velocity.Y;
+				if( core.velocity.Y != old_vel.Y ) {
+					wet_velocity.Y = core.velocity.Y;
 				}
 			} else {
-				ent.velocity = Collision.TileCollision( ent.position, ent.velocity, ent.width, ent.height, false, false, 1 );
+				core.velocity = Collision.TileCollision( core.position, core.velocity, core.width, core.height, false, false, 1 );
 			}
 		}
 
 
 		public void ApplySlopeDodgeAndConveyorMovement( CustomEntity ent ) {
-			Vector4 slope_dodge = Collision.SlopeCollision( ent.position, ent.velocity, ent.width, ent.height );
+			var core = ent.Core;
+			Vector4 slope_dodge = Collision.SlopeCollision( core.position, core.velocity, core.width, core.height );
 
-			ent.position.X = slope_dodge.X;
-			ent.position.Y = slope_dodge.Y;
-			ent.velocity.X = slope_dodge.Z;
-			ent.velocity.Y = slope_dodge.W;
+			core.position.X = slope_dodge.X;
+			core.position.Y = slope_dodge.Y;
+			core.velocity.X = slope_dodge.Z;
+			core.velocity.Y = slope_dodge.W;
 
-			Collision.StepConveyorBelt( ent, 1f );
+			Collision.StepConveyorBelt( core, 1f );
 		}
 	}
 }

@@ -46,9 +46,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public void DrawMiniMap( SpriteBatch sb, CustomEntity ent ) {
 			if( !this.PreDrawMiniMap( sb, ent ) ) { return; }
 
+			Entity core = ent.Core;
 			float scale = Main.mapMinimapScale * this.Scale;
 
-			var rect = new Rectangle( (int)ent.position.X, (int)ent.position.Y, this.Texture.Width, this.Texture.Height );
+			var rect = new Rectangle( (int)core.position.X, (int)core.position.Y, this.Texture.Width, this.Texture.Height );
 			Vector2? mini_map_pos = HudMapHelpers.GetMiniMapPosition( rect );
 
 			if( mini_map_pos != null ) {
@@ -61,9 +62,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public void DrawOverlayMap( SpriteBatch sb, CustomEntity ent ) {
 			if( !this.PreDrawOverlayMap( sb, ent ) ) { return; }
 
+			Entity core = ent.Core;
 			float scale = Main.mapOverlayScale * this.Scale;
 
-			var rect = new Rectangle( (int)ent.position.X, (int)ent.position.Y, this.Texture.Width, this.Texture.Height );
+			var rect = new Rectangle( (int)core.position.X, (int)core.position.Y, this.Texture.Width, this.Texture.Height );
 			Vector2? over_map_pos = HudMapHelpers.GetOverlayMapPosition( rect );
 
 			if( over_map_pos != null ) {
@@ -76,9 +78,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public void DrawFullscreenMap( SpriteBatch sb, CustomEntity ent ) {
 			if( !this.PreDrawFullscreenMap( sb, ent) ) { return; }
 
+			Entity core = ent.Core;
 			float scale = Main.mapFullscreenScale * this.Scale;
 
-			var rect = new Rectangle( (int)ent.position.X, (int)ent.position.Y, this.Texture.Width, this.Texture.Height );
+			var rect = new Rectangle( (int)core.position.X, (int)core.position.Y, this.Texture.Width, this.Texture.Height );
 			Vector2 pos = HudMapHelpers.GetFullMapPosition( rect );
 
 			sb.Draw( this.Texture, pos, null, Color.White, 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
