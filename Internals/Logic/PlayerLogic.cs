@@ -7,27 +7,23 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
-	class PlayerLogicHook : PromiseTrigger {
-		internal readonly static object PlayerLogicHookValidator;
-		internal readonly static PlayerLogicHook ConnectServer;
-
+	internal class PlayerLogicPromiseValidator : PromiseValidator {
+		internal readonly static object MyValidatorKey;
+		internal readonly static PlayerLogicPromiseValidator ConnectValidator;
 
 		////////////////
 
-		static PlayerLogicHook() {
-			PlayerLogicHook.PlayerLogicHookValidator = new object();
-			PlayerLogicHook.ConnectServer = new PlayerLogicHook();
+		static PlayerLogicPromiseValidator() {
+			PlayerLogicPromiseValidator.ConnectValidator = new PlayerLogicPromiseValidator();
 		}
 
-
 		////////////////
-		
+
 		public Player MyPlayer;
-		
 
 		////////////////
 
-		private PlayerLogicHook() : base( PlayerLogicHook.PlayerLogicHookValidator ) { }
+		public PlayerLogicPromiseValidator() : base( PlayerLogicPromiseValidator.MyValidatorKey ) { }
 	}
 
 
@@ -80,8 +76,8 @@ namespace HamstarHelpers.Internals.Logic {
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
 
-			PlayerLogicHook.ConnectServer.MyPlayer = player;
-			Promises.TriggerCustomPromiseForObject( PlayerLogicHook.ConnectServer, PlayerLogicHook.PlayerLogicHookValidator );
+			PlayerLogicPromiseValidator.ConnectValidator.MyPlayer = player;
+			Promises.TriggerCustomValidatedPromise( PlayerLogicPromiseValidator.ConnectValidator, PlayerLogicPromiseValidator.MyValidatorKey );
 		}
 
 

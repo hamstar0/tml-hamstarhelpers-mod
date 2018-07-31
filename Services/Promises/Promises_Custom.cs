@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Services.Promises {
-	public class PromiseTrigger {
-		internal object Validator;
+	public class PromiseValidator {
+		internal object ValidatorKey;
 
-		public PromiseTrigger( object validator ) {
-			this.Validator = validator;
+
+		public PromiseValidator( object validator_key ) {
+			this.ValidatorKey = validator_key;
 		}
 	}
 
@@ -64,33 +65,33 @@ namespace HamstarHelpers.Services.Promises {
 		////////////////
 
 
-		public static void AddCustomPromiseForObject( object obj, Func<bool> action ) {
+		public static void AddCustomValidatedPromise( PromiseValidator validator, Func<bool> action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.Promises.ObjectCustomPromiseConditionsMet.Contains( obj ) ) {
+			if( mymod.Promises.ObjectCustomPromiseConditionsMet.Contains( validator ) ) {
 				if( !action() ) {
 					return;
 				}
 			}
 
-			if( !mymod.Promises.CustomObjectPromise.ContainsKey( obj ) ) {
-				mymod.Promises.CustomObjectPromise[ obj ] = new List<Func<bool>>();
+			if( !mymod.Promises.CustomObjectPromise.ContainsKey( validator ) ) {
+				mymod.Promises.CustomObjectPromise[ validator ] = new List<Func<bool>>();
 			}
-			mymod.Promises.CustomObjectPromise[ obj ].Add( action );
+			mymod.Promises.CustomObjectPromise[ validator ].Add( action );
 		}
 
 
-		public static void TriggerCustomPromiseForObject( PromiseTrigger obj, object validator ) {
+		public static void TriggerCustomValidatedPromise( PromiseValidator validator, object validator_key ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( obj.Validator != validator ) {
+			if( validator.ValidatorKey != validator_key ) {
 				throw new Exception( "Validation failed." );
 			}
 
-			mymod.Promises.ObjectCustomPromiseConditionsMet.Add( obj );
+			mymod.Promises.ObjectCustomPromiseConditionsMet.Add( validator );
 
-			if( mymod.Promises.CustomObjectPromise.ContainsKey( obj ) ) {
-				var func_list = mymod.Promises.CustomObjectPromise[ obj ];
+			if( mymod.Promises.CustomObjectPromise.ContainsKey( validator ) ) {
+				var func_list = mymod.Promises.CustomObjectPromise[ validator ];
 
 				for( int i = 0; i < func_list.Count; i++ ) {
 					if( !func_list[i]() ) {
@@ -102,13 +103,13 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 
-		public static void ClearCustomPromiseForObject( object obj ) {
+		public static void ClearCustomValidatedPromise( PromiseValidator validator ) {
 			var mymod = HamstarHelpersMod.Instance;
 
-			mymod.Promises.ObjectCustomPromiseConditionsMet.Remove( obj );
+			mymod.Promises.ObjectCustomPromiseConditionsMet.Remove( validator );
 
-			if( mymod.Promises.CustomObjectPromise.ContainsKey( obj ) ) {
-				mymod.Promises.CustomObjectPromise.Remove( obj );
+			if( mymod.Promises.CustomObjectPromise.ContainsKey( validator ) ) {
+				mymod.Promises.CustomObjectPromise.Remove( validator );
 			}
 		}
 	}

@@ -10,20 +10,25 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	class PlayerHooks : PromiseTrigger {
-		internal static readonly object PlayerHookValidator = new object();
-		internal static readonly PlayerHooks PlayerLoad = new PlayerHooks();
-		internal static readonly PlayerHooks PlayerSave = new PlayerHooks();
+	internal class PlayerPromiseValidator : PromiseValidator {
+		internal readonly static readonly object MyValidatorKey = new object();
+		internal readonly static readonly PlayerPromiseValidator LoadValidator;
+		internal readonly static readonly PlayerPromiseValidator SaveValidator;
 
+		////////////////
+
+		static PlayerPromiseValidator() {
+			PlayerPromiseValidator.LoadValidator = new PlayerPromiseValidator();
+			PlayerPromiseValidator.SaveValidator = new PlayerPromiseValidator();
+		}
 
 		////////////////
 
 		public Player MyPlayer = null;
 
-
 		////////////////
 
-		public PlayerHooks() : base( PlayerHooks.PlayerHookValidator ) { }
+		public PlayerPromiseValidator() : base( PlayerPromiseValidator.MyValidatorKey ) { }
 	}
 
 
@@ -65,13 +70,13 @@ namespace HamstarHelpers {
 		public override void Load( TagCompound tags ) {
 			this.Logic.Load( tags );
 
-			PlayerHooks.PlayerLoad.MyPlayer = this.player;
-			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerLoad, PlayerHooks.PlayerHookValidator );
+			PlayerPromiseValidator.LoadValidator.MyPlayer = this.player;
+			Promises.TriggerCustomValidatedPromise( PlayerPromiseValidator.LoadValidator, PlayerPromiseValidator.MyValidatorKey );
 		}
 
 		public override TagCompound Save() {
-			PlayerHooks.PlayerSave.MyPlayer = this.player;
-			Promises.TriggerCustomPromiseForObject( PlayerHooks.PlayerSave, PlayerHooks.PlayerHookValidator );
+			PlayerPromiseValidator.SaveValidator.MyPlayer = this.player;
+			Promises.TriggerCustomValidatedPromise( PlayerPromiseValidator.SaveValidator, PlayerPromiseValidator.MyValidatorKey );
 
 			return this.Logic.Save();
 		}

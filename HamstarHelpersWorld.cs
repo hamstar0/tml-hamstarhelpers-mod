@@ -11,10 +11,10 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	class HamstarHelpersWorld : ModWorld {
-		private static readonly object WorldHookValidator;
+		private readonly static object MyValidatorKey;
 
-		internal static readonly PromiseTrigger WorldLoad;
-		internal static readonly PromiseTrigger WorldSave;
+		internal readonly static PromiseValidator LoadValidator;
+		internal readonly static PromiseValidator SaveValidator;
 
 		private static object MyLock = new object();
 
@@ -22,10 +22,11 @@ namespace HamstarHelpers {
 		////////////////
 
 		static HamstarHelpersWorld() {
-			HamstarHelpersWorld.WorldHookValidator = new object();
-			HamstarHelpersWorld.WorldLoad = new PromiseTrigger( HamstarHelpersWorld.WorldHookValidator );
-			HamstarHelpersWorld.WorldSave = new PromiseTrigger( HamstarHelpersWorld.WorldHookValidator );
+			HamstarHelpersWorld.MyValidatorKey = new object();
+			HamstarHelpersWorld.LoadValidator = new PromiseValidator( HamstarHelpersWorld.MyValidatorKey );
+			HamstarHelpersWorld.SaveValidator = new PromiseValidator( HamstarHelpersWorld.MyValidatorKey );
 		}
+
 
 
 		////////////////
@@ -76,8 +77,8 @@ namespace HamstarHelpers {
 
 			mymod.ModLockHelpers.PostLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
-
-			Promises.TriggerCustomPromiseForObject( HamstarHelpersWorld.WorldLoad, HamstarHelpersWorld.WorldHookValidator );
+			
+			Promises.TriggerCustomValidatedPromise( HamstarHelpersWorld.LoadValidator, HamstarHelpersWorld.MyValidatorKey );
 
 			this.HasCorrectID = true;
 		}
@@ -93,7 +94,7 @@ namespace HamstarHelpers {
 
 			this.WorldLogic.SaveForWorld( mymod, tags );
 
-			Promises.TriggerCustomPromiseForObject( HamstarHelpersWorld.WorldSave, HamstarHelpersWorld.WorldHookValidator );
+			Promises.TriggerCustomValidatedPromise( HamstarHelpersWorld.SaveValidator, HamstarHelpersWorld.MyValidatorKey );
 
 			return tags;
 		}

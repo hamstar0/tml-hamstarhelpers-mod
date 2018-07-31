@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public int AddEntityTemplate( string name, IList<CustomEntityComponent> components ) {
+		public int AddEntityTemplate( string name, int width, int height, IList<CustomEntityComponent> components ) {
 			int id = this.LatestEntityID++;
 
-			this.EntityTemplates[id] = new CustomEntity( id, name, components );
+			this.EntityTemplates[id] = new CustomEntity( id, name, width, height, components );
 			return id;
 		}
-
 
 		public int TotalEntityTemplates() {
 			return this.LatestEntityID;
 		}
+
 
 		////////////////
 

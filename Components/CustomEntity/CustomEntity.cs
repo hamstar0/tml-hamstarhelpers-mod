@@ -22,9 +22,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		internal CustomEntity( int id, string name, IList<CustomEntityComponent> components ) {
+		internal CustomEntity( int id, string name, int width, int height, IList<CustomEntityComponent> components ) {
 			this.ID = id;
-			this.Core = new CustomEntityCore( name );
+			this.Core = new CustomEntityCore( name, width, height );
 			this.Components = components;
 
 			for( int i=0; i<components.Count; i++ ) {

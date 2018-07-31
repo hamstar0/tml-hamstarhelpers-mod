@@ -9,8 +9,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		
 		////////////////
 
-		public CustomEntityCore( string name ) {
+		public CustomEntityCore( string name, int width, int height ) {
 			this.DisplayName = name;
+			this.width = width;
+			this.height = height;
 		}
 		
 		internal CustomEntityCore Clone() {
