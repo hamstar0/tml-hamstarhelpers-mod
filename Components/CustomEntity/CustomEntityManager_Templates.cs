@@ -1,12 +1,13 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public int AddEntityTemplate( CustomEntity entity ) {
+		public int AddEntityTemplate( string name, IList<CustomEntityComponent> components ) {
 			int id = this.LatestEntityID++;
 
-			this.EntityTemplates[id] = entity;
+			this.EntityTemplates[id] = new CustomEntity( id, name, components );
 			return id;
 		}
 
@@ -15,8 +16,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return this.LatestEntityID;
 		}
 
+		////////////////
 
-		public CustomEntity CreateEntityOfType( int id ) {
+		public CustomEntity CreateEntityFromTemplate( int id ) {
 			CustomEntity val = null;
 
 			if( !this.EntityTemplates.TryGetValue( id, out val ) ) {

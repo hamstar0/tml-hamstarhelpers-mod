@@ -91,7 +91,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				Y = reader.ReadSingle()
 			};
 
-			CustomEntity new_ent = CustomEntityManager.Instance.CreateEntityOfType( this.ID );
+			CustomEntity new_ent = CustomEntityManager.Instance.CreateEntityFromTemplate( this.ID );
 
 			for( int i = 0; i < new_ent.Components.Count; i++ ) {
 				new_ent.Components[i].ReadStreamForwarded( reader );

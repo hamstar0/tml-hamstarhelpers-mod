@@ -11,7 +11,7 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntity : PacketProtocolData {
 		[JsonIgnore]
-		public int ID;
+		public int ID { get; internal set; }
 
 		public CustomEntityCore Core;
 		public IList<CustomEntityComponent> Components;
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected CustomEntity( int id, string name, IList<CustomEntityComponent> components ) {
+		internal CustomEntity( int id, string name, IList<CustomEntityComponent> components ) {
 			this.ID = id;
 			this.Core = new CustomEntityCore( name );
 			this.Components = components;
@@ -39,10 +39,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public void CopyFrom( CustomEntity copy ) {
 			this.ID = copy.ID;
 			this.Core = copy.Core.Clone();
-			this.Components = copy.Components.Select( (component) => {
-				var clone = component.Clone();
-				return clone == null ? component : clone;
-			} ).ToList();
+			this.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
 
 			this.ComponentsByTypeName.Clear();
 		}
@@ -52,10 +49,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			var copy = (CustomEntity)this.MemberwiseClone();
 
 			copy.Core = copy.Core.Clone();
-			copy.Components = copy.Components.Select( ( component ) => {
-				var clone = component.Clone();
-				return clone == null ? component : clone;
-			} ).ToList();
+			copy.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
 
 			return copy;
 		}
