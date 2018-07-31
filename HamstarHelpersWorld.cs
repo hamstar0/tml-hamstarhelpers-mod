@@ -78,7 +78,7 @@ namespace HamstarHelpers {
 			mymod.ModLockHelpers.PostLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 			
-			Promises.TriggerCustomValidatedPromise( HamstarHelpersWorld.LoadValidator, HamstarHelpersWorld.MyValidatorKey );
+			Promises.TriggerValidatedPromise( HamstarHelpersWorld.LoadValidator, HamstarHelpersWorld.MyValidatorKey );
 
 			this.HasCorrectID = true;
 		}
@@ -94,7 +94,7 @@ namespace HamstarHelpers {
 
 			this.WorldLogic.SaveForWorld( mymod, tags );
 
-			Promises.TriggerCustomValidatedPromise( HamstarHelpersWorld.SaveValidator, HamstarHelpersWorld.MyValidatorKey );
+			Promises.TriggerValidatedPromise( HamstarHelpersWorld.SaveValidator, HamstarHelpersWorld.MyValidatorKey );
 
 			return tags;
 		}

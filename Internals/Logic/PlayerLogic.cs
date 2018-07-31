@@ -77,7 +77,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.FinishWorldDataSync();
 
 			PlayerLogicPromiseValidator.ConnectValidator.MyPlayer = player;
-			Promises.TriggerCustomValidatedPromise( PlayerLogicPromiseValidator.ConnectValidator, PlayerLogicPromiseValidator.MyValidatorKey );
+			Promises.TriggerValidatedPromise( PlayerLogicPromiseValidator.ConnectValidator, PlayerLogicPromiseValidator.MyValidatorKey );
 		}
 
 

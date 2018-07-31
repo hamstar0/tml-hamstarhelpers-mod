@@ -16,16 +16,14 @@ namespace HamstarHelpers.Services.Promises {
 		internal IList<Action> WorldUnloadEachPromises = new List<Action>();
 		internal IList<Action> PostWorldUnloadOncePromises = new List<Action>();
 		internal IList<Action> PostWorldUnloadEachPromises = new List<Action>();
-		internal IDictionary<string, List<Func<bool>>> CustomPromise = new Dictionary<string, List<Func<bool>>>();
 
 		internal bool PostModLoadPromiseConditionsMet = false;
 		internal bool WorldLoadPromiseConditionsMet = false;
 		internal bool WorldUnloadPromiseConditionsMet = false;
 		internal bool PostWorldUnloadPromiseConditionsMet = false;
-		internal ISet<string> NamedCustomPromiseConditionsMet = new HashSet<string>();
 
-		internal IDictionary<object, List<Func<bool>>> CustomObjectPromise = new Dictionary<object, List<Func<bool>>>();
-		internal ISet<object> ObjectCustomPromiseConditionsMet = new HashSet<object>();
+		internal IDictionary<object, List<Func<bool>>> ValidatedPromise = new Dictionary<object, List<Func<bool>>>();
+		internal ISet<object> ValidatedPromiseConditionsMet = new HashSet<object>();
 
 
 		////////////////

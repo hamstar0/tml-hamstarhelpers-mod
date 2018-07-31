@@ -11,9 +11,9 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	internal class PlayerPromiseValidator : PromiseValidator {
-		internal readonly static readonly object MyValidatorKey = new object();
-		internal readonly static readonly PlayerPromiseValidator LoadValidator;
-		internal readonly static readonly PlayerPromiseValidator SaveValidator;
+		internal readonly static object MyValidatorKey = new object();
+		internal readonly static PlayerPromiseValidator LoadValidator;
+		internal readonly static PlayerPromiseValidator SaveValidator;
 
 		////////////////
 
@@ -71,12 +71,12 @@ namespace HamstarHelpers {
 			this.Logic.Load( tags );
 
 			PlayerPromiseValidator.LoadValidator.MyPlayer = this.player;
-			Promises.TriggerCustomValidatedPromise( PlayerPromiseValidator.LoadValidator, PlayerPromiseValidator.MyValidatorKey );
+			Promises.TriggerValidatedPromise( PlayerPromiseValidator.LoadValidator, PlayerPromiseValidator.MyValidatorKey );
 		}
 
 		public override TagCompound Save() {
 			PlayerPromiseValidator.SaveValidator.MyPlayer = this.player;
-			Promises.TriggerCustomValidatedPromise( PlayerPromiseValidator.SaveValidator, PlayerPromiseValidator.MyValidatorKey );
+			Promises.TriggerValidatedPromise( PlayerPromiseValidator.SaveValidator, PlayerPromiseValidator.MyValidatorKey );
 
 			return this.Logic.Save();
 		}
