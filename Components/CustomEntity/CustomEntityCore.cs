@@ -12,10 +12,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public CustomEntityCore( string name ) {
 			this.DisplayName = name;
 		}
-
-
-		public bool ShouldSerialize() {
-			return false;
+		
+		internal CustomEntityCore Clone() {
+			return (CustomEntityCore)this.MemberwiseClone();
 		}
 	}
 }

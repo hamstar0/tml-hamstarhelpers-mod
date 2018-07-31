@@ -17,28 +17,6 @@ namespace HamstarHelpers.Components.Network {
 
 
 	/// <summary>
-	/// Provides a way to automatically ensure order of fields for transmission.
-	/// </summary>
-	public class PacketProtocolData {
-		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
-
-		internal IOrderedEnumerable<FieldInfo> OrderedFields {
-			get {
-				if( this._OrderedFields == null ) {
-					Type mytype = this.GetType();
-					FieldInfo[] fields = mytype.GetFields( BindingFlags.Public | BindingFlags.Instance );
-
-					this._OrderedFields = fields.OrderByDescending( x => x.Name );  //Where( f => f.FieldType.IsPrimitive )
-				}
-				return this._OrderedFields;
-			}
-		}
-	}
-
-
-
-
-	/// <summary>
 	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
 	/// </summary>
 	public abstract partial class PacketProtocol : PacketProtocolData {

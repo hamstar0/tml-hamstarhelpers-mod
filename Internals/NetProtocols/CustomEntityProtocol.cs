@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.Network;
-using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -19,27 +18,25 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public IList<CustomEntityComponent> Components;
-		public int NetId;
+		public CustomEntity Entity;
 
 
 		////////////////
 
 		private CustomEntityProtocol( CustomEntity ent ) {
-			this.NetId = ent.whoAmI;
-			this.Components = new List<CustomEntityComponent>( ent.ComponentsInOrder.Count );
-
-			for( int i = 0; i < ent.ComponentsInOrder.Count; i++ ) {
-				CustomEntityComponent component = ent.ComponentsInOrder[ i ];
-				this.Components.Add( component );
-			}
+			this.Entity = ent;
 		}
 
 		////////////////
 
 		protected override void ReceiveWithClient() {
-			var ent = CustomEntityManager.Instance.Get( this.NetId );
-			ent.SetComponents( this.Components );
+			var ent = CustomEntityManager.Instance.Get( this.Entity.Core.whoAmI );
+
+			if( ent == null ) {
+				CustomEntityManager.Instance.Set( this.Entity.Core.whoAmI, this.Entity );
+			} else {
+				ent.CopyFrom( this.Entity );
+			}
 		}
 	}
 }

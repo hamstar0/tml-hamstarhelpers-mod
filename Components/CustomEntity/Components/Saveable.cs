@@ -104,8 +104,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public override CustomEntityComponent Clone( out bool can_clone ) {
-			can_clone = true;
+		public override CustomEntityComponent Clone() {
 			return (SaveableEntityComponent)this.MemberwiseClone();
 		}
 

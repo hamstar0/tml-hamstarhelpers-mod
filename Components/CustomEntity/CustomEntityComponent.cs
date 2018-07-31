@@ -1,12 +1,12 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
+using System.IO;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
 	abstract public class CustomEntityComponent : PacketProtocolData {
-		public virtual CustomEntityComponent Clone( out bool can_clone ) {
-			can_clone = false;
-			return null;
+		public virtual CustomEntityComponent Clone() {
+			return (CustomEntityComponent)null;
 		}
 
 		public virtual void Update( CustomEntity ent ) { }
@@ -18,6 +18,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 			internal void StaticInitializationWrapper() {
 				this.StaticInitialize();
 			}
+		}
+
+		////////////////
+
+		internal void ReadStreamForwarded( BinaryReader reader ) {
+			this.ReadStream( reader );
+		}
+		internal void WriteStreamForwarded( BinaryWriter writer ) {
+			this.WriteStream( writer );
 		}
 	}
 

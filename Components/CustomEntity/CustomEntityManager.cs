@@ -18,7 +18,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		internal readonly IDictionary<int, CustomEntity> EntitiesByIds = new Dictionary<int, CustomEntity>();
+		private int LatestEntityID = 0;
+		private readonly IDictionary<int, CustomEntity> EntityTemplates = new Dictionary<int, CustomEntity>();
+
+		internal readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
 		internal readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
 
 
@@ -28,7 +31,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal CustomEntityManager() {
 			Main.OnTick += CustomEntityManager._Update;
 
-			// Initialize components:
+			// Initialize components
 			var component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
 
 			foreach( var component_type in component_types ) {
@@ -43,8 +46,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			Promises.AddPostWorldUnloadEachPromise( () => {
-				this.EntitiesByIds.Clear();
+				this.EntitiesByIndexes.Clear();
 				this.EntitiesByComponentType.Clear();
+			} );
+
+			Promises.AddModUnloadPromise( () => {
+				this.LatestEntityID = 0;
+				this.EntityTemplates.Clear();
 			} );
 		}
 
@@ -63,7 +71,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal void Update() {
-			foreach( CustomEntity ent in this.EntitiesByIds.Values.ToArray() ) {
+			foreach( CustomEntity ent in this.EntitiesByIndexes.Values.ToArray() ) {
 				ent.Update();
 			}
 		}
@@ -72,7 +80,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void DrawAll( SpriteBatch sb ) {
-			foreach( CustomEntity ent in this.EntitiesByIds.Values ) {
+			foreach( CustomEntity ent in this.EntitiesByIndexes.Values ) {
 				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
 				if( draw_comp != null ) {
 					draw_comp.Draw( sb, ent );

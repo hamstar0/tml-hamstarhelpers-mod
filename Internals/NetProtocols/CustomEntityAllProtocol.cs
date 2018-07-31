@@ -14,7 +14,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public override void SetServerDefaults() {
-			this.Entities = CustomEntityManager.Instance.EntitiesByIds.Where(
+			this.Entities = CustomEntityManager.Instance.EntitiesByIndexes.Where(
 				kv => kv.Value.GetComponentByType<PeriodicSyncEntityComponent>() != null
 			).ToDictionary( kv => kv.Key, kv => kv.Value );
 		}

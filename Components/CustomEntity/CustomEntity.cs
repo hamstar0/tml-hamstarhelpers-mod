@@ -1,15 +1,20 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntity : PacketProtocolData {
+		[JsonIgnore]
+		public int ID;
+
 		public CustomEntityCore Core;
-		public IList<CustomEntityComponent> ComponentsInOrder;
+		public IList<CustomEntityComponent> Components;
 
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
 
@@ -17,37 +22,55 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public CustomEntity( string name, IList<CustomEntityComponent> components ) {
+		protected CustomEntity( int id, string name, IList<CustomEntityComponent> components ) {
+			this.ID = id;
 			this.Core = new CustomEntityCore( name );
-			this.ComponentsInOrder = components;
+			this.Components = components;
 
 			for( int i=0; i<components.Count; i++ ) {
-				bool success;
-				var comp = components[i].Clone( out success );
+				CustomEntityComponent comp = components[i].Clone();
 
-				if( success ) {
-					this.ComponentsInOrder[i] = comp;
+				if( comp != null ) {
+					this.Components[i] = comp;
 				}
 			}
 		}
 
-		
-		internal void SetComponents( IList<CustomEntityComponent> components ) {
-			this.ComponentsInOrder = components;
+		public void CopyFrom( CustomEntity copy ) {
+			this.ID = copy.ID;
+			this.Core = copy.Core.Clone();
+			this.Components = copy.Components.Select( (component) => {
+				var clone = component.Clone();
+				return clone == null ? component : clone;
+			} ).ToList();
+
 			this.ComponentsByTypeName.Clear();
+		}
+
+
+		internal CustomEntity Clone() {
+			var copy = (CustomEntity)this.MemberwiseClone();
+
+			copy.Core = copy.Core.Clone();
+			copy.Components = copy.Components.Select( ( component ) => {
+				var clone = component.Clone();
+				return clone == null ? component : clone;
+			} ).ToList();
+
+			return copy;
 		}
 
 
 		////////////////
 
 		public T GetComponentByType<T>() where T : CustomEntityComponent {
-			int comp_count = this.ComponentsInOrder.Count;
+			int comp_count = this.Components.Count;
 
 			if( this.ComponentsByTypeName.Count != comp_count ) {
 				this.ComponentsByTypeName.Clear();
 
 				for( int i = 0; i < comp_count; i++ ) {
-					Type comp_type = this.ComponentsInOrder[i].GetType();
+					Type comp_type = this.Components[i].GetType();
 					do {
 						string comp_name = comp_type.Name;
 
@@ -63,7 +86,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !this.ComponentsByTypeName.TryGetValue( typeof(T).Name, out idx ) ) {
 				return null;
 			}
-			return (T)this.ComponentsInOrder[ idx ];
+			return (T)this.Components[ idx ];
 		}
 
 
@@ -83,10 +106,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void Update() {
-			int prop_count = this.ComponentsInOrder.Count;
+			int prop_count = this.Components.Count;
 			
 			for( int i=0; i<prop_count; i++ ) {
-				this.ComponentsInOrder[ i ].Update( this );
+				this.Components[ i ].Update( this );
 			}
 		}
 	}
