@@ -20,7 +20,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				if( p.DeclaringType.Name != "Entity" ) { return true; }
 
 				switch( p.PropertyName ) {
-				case "whoAmI":
+				//case "whoAmI":
 				case "lavaWet":
 				case "wetCount":
 				case "wet":
@@ -117,20 +117,20 @@ namespace HamstarHelpers.Components.CustomEntity {
 		protected override void ReadStream( BinaryReader reader ) {
 			CustomEntityCore core = this.Core;
 
-			this.ID = reader.ReadUInt16();
+			this.ID = (ushort)reader.ReadUInt16();
 
-			core.whoAmI = reader.ReadUInt16();
-			core.DisplayName = reader.ReadString();
+			core.whoAmI = (ushort)reader.ReadUInt16();
+			core.DisplayName = (string)reader.ReadString();
 			core.position = new Vector2 {
-				X = reader.ReadSingle(),
-				Y = reader.ReadSingle()
+				X = (float)reader.ReadSingle(),
+				Y = (float)reader.ReadSingle()
 			};
-			core.direction = reader.ReadInt16();
-			core.width = reader.ReadUInt16();
-			core.height = reader.ReadUInt16();
+			core.direction = (short)reader.ReadInt16();
+			core.width = (ushort)reader.ReadUInt16();
+			core.height = (ushort)reader.ReadUInt16();
 			core.velocity = new Vector2 {
-				X = reader.ReadSingle(),
-				Y = reader.ReadSingle()
+				X = (float)reader.ReadSingle(),
+				Y = (float)reader.ReadSingle()
 			};
 
 			CustomEntity new_ent = CustomEntityManager.Instance.CreateEntityFromTemplate( this.ID );

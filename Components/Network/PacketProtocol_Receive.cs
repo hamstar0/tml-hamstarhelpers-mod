@@ -13,6 +13,7 @@ namespace HamstarHelpers.Components.Network {
 			this.ReceiveWithClient();
 		}
 
+
 		private void ReceiveWithServerBase( BinaryReader reader, int from_who ) {
 			this.ReceiveWithEitherBase( reader, from_who );
 
@@ -81,6 +82,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 		}
 
+
 		private void ReceiveRequestWithServerBase( int from_who ) {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 
@@ -103,6 +105,7 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 
+
 		////////////////
 
 		/// <summary>
@@ -111,6 +114,7 @@ namespace HamstarHelpers.Components.Network {
 		protected virtual void ReceiveWithClient() {
 			throw new NotImplementedException( "No ReceiveWithClient" );
 		}
+
 		/// <summary>
 		/// Runs when data received on server (class's own fields).
 		/// </summary>
@@ -128,6 +132,7 @@ namespace HamstarHelpers.Components.Network {
 		protected virtual bool ReceiveRequestWithClient() {
 			return false;
 		}
+
 		/// <summary>
 		/// Runs when a request is received for the server to send data to the client. Expects
 		/// `SetServerDefaults()` to be implemented.

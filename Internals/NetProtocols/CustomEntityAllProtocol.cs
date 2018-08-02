@@ -8,20 +8,20 @@ using System.Linq;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityAllProtocol : PacketProtocol {
-		public IDictionary<int, CustomEntity> Entities;
+		public CustomEntity[] Entities;
 
 
 		////////////////
 
 		public override void SetServerDefaults() {
-			this.Entities = CustomEntityManager.Instance.EntitiesByIndexes.Where(
-				kv => kv.Value.GetComponentByType<PeriodicSyncEntityComponent>() != null
-			).ToDictionary( kv => kv.Key, kv => kv.Value );
+			this.Entities = CustomEntityManager.Instance.EntitiesByIndexes.Values.Where(
+				ent => ent.GetComponentByType<PeriodicSyncEntityComponent>() != null
+			).ToArray();
 		}
 
 		protected override void ReceiveWithClient() {
-			foreach( var kv in this.Entities ) {
-				CustomEntityManager.Instance.Set( kv.Key, kv.Value );
+			foreach( CustomEntity ent in this.Entities ) {
+				CustomEntityManager.Instance.Set( ent.Core.whoAmI, ent );
 			}
 
 			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
