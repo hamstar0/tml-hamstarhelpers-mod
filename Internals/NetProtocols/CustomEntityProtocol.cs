@@ -23,6 +23,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
+		private CustomEntityProtocol() { }
+
 		private CustomEntityProtocol( CustomEntity ent ) {
 			this.Entity = ent;
 		}

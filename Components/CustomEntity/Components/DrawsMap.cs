@@ -27,17 +27,34 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public DrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale ) {
-			var src_mod = ModLoader.GetMod( src_mod_name );
+		public DrawsOnMapEntityComponent() { }
 
+		public DrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale ) {
 			this.ModName = src_mod_name;
 			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
 			this.Scale = scale;
 
-			if( !Main.dedServ ) {
-				this.Texture = src_mod.GetTexture( rel_texture_path );
+			this.ConfirmLoad();
+		}
+
+		////////////////
+
+		protected override void ConfirmLoad() {
+			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 || this.Scale == 0 ) {
+				this.IsInitialized = false;
+				return;
 			}
+
+			var src_mod = ModLoader.GetMod( this.ModName );
+
+			if( this.Texture == null ) {
+				if( !Main.dedServ ) {
+					this.Texture = src_mod.GetTexture( this.TexturePath );
+				}
+			}
+
+			base.ConfirmLoad();
 		}
 
 

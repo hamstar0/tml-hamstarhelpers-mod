@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
@@ -26,7 +27,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
+				var protocol = (PacketProtocol)Activator.CreateInstance( protocol_type, true );
 
 				if( is_request ) {
 					protocol.ReceiveRequestWithClientBase();

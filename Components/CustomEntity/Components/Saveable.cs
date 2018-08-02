@@ -38,6 +38,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			}
 		}
 
+
 		////////////////
 
 		protected class MyStaticInitializer : StaticInitializer {
@@ -97,13 +98,18 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		////////////////
-		
+
+		public SaveableEntityComponent() { }
+
 		public SaveableEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
+			
+			this.ConfirmLoad();
 		}
 
-		////////////////
 
+		////////////////
+		
 		public override CustomEntityComponent Clone() {
 			return (SaveableEntityComponent)this.MemberwiseClone();
 		}

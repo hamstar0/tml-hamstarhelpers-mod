@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -7,20 +8,6 @@ using System.Reflection;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		private void ReceiveWithClientBase( BinaryReader reader, int from_who ) {
-			this.ReceiveWithEitherBase( reader, from_who );
-
-			this.ReceiveWithClient();
-		}
-
-
-		private void ReceiveWithServerBase( BinaryReader reader, int from_who ) {
-			this.ReceiveWithEitherBase( reader, from_who );
-
-			this.ReceiveWithServer( from_who );
-		}
-
-
 		private void ReceiveWithEitherBase( BinaryReader reader, int from_who ) {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			Type mytype = this.GetType();
@@ -56,6 +43,19 @@ namespace HamstarHelpers.Components.Network {
 				}
 				my_field.SetValue( this, val );
 			}
+		}
+
+
+		private void ReceiveWithClientBase( BinaryReader reader, int from_who ) {
+			this.ReceiveWithEitherBase( reader, from_who );
+
+			this.ReceiveWithClient();
+		}
+
+		private void ReceiveWithServerBase( BinaryReader reader, int from_who ) {
+			this.ReceiveWithEitherBase( reader, from_who );
+
+			this.ReceiveWithServer( from_who );
 		}
 
 
@@ -102,45 +102,6 @@ namespace HamstarHelpers.Components.Network {
 			if( !skip_send ) {
 				this.SendToClient( from_who, -1 );
 			}
-		}
-
-
-
-		////////////////
-
-		/// <summary>
-		/// Runs when data received on client (class's own fields).
-		/// </summary>
-		protected virtual void ReceiveWithClient() {
-			throw new NotImplementedException( "No ReceiveWithClient" );
-		}
-
-		/// <summary>
-		/// Runs when data received on server (class's own fields).
-		/// </summary>
-		/// <param name="from_who">Main.player index of the player (client) sending us our data.</param>
-		protected virtual void ReceiveWithServer( int from_who ) {
-			throw new NotImplementedException( "No ReceiveWithServer" );
-		}
-
-
-		/// <summary>
-		/// Runs when a request is received for the client to send data to the server. Expects
-		/// `SetClientDefaults()` to be implemented.
-		/// </summary>
-		/// <returns>True to indicate the request is being handled manually.</returns>
-		protected virtual bool ReceiveRequestWithClient() {
-			return false;
-		}
-
-		/// <summary>
-		/// Runs when a request is received for the server to send data to the client. Expects
-		/// `SetServerDefaults()` to be implemented.
-		/// </summary>
-		/// <param name="from_who">Main.player index of player (client) sending this request.</param>
-		/// <returns>True to indicate the request is being handled manually.</returns>
-		protected virtual bool ReceiveRequestWithServer( int from_who ) {
-			return false;
 		}
 	}
 }

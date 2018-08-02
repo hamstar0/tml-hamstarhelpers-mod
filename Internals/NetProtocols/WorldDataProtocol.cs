@@ -12,7 +12,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override void SetServerDefaults() {
+		private WorldDataProtocol() { }
+
+		protected override void SetServerDefaults() {
 			var mymod = HamstarHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
@@ -20,6 +22,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.HasCorrectWorldId = myworld.HasCorrectID;
 			this.ObsoleteWorldId = myworld.ObsoleteID;
 		}
+
+
+		////////////////
 
 		protected override void ReceiveWithClient() {
 			var mymod = HamstarHelpersMod.Instance;

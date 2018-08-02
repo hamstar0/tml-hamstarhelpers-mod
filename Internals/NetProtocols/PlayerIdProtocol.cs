@@ -11,11 +11,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public PlayerIdProtocol() { }
+		private PlayerIdProtocol() { }
 
 		////////////////
 
-		public override void SetClientDefaults() {
+		protected override void SetClientDefaults() {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
 			this.PrivateUID = myplayer.Logic.PrivateUID;

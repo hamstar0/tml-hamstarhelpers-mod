@@ -7,8 +7,11 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class DataDumpProtocol : PacketProtocol {
-		public override void SetServerDefaults() { }
+		private DataDumpProtocol() { }
 
+		protected override void SetServerDefaults() { }
+
+		////////////////
 
 		protected override bool ReceiveRequestWithServer( int from_who ) {
 			bool success;

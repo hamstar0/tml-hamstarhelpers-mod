@@ -13,6 +13,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public bool IsOnRail;
 
 
+		////////////////
+
+		public RailBoundEntityComponent() {
+			this.ConfirmLoad();
+		}
+
 
 		////////////////
 

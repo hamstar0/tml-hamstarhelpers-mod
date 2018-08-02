@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using Microsoft.Xna.Framework;
@@ -141,6 +141,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			this.CopyFrom( new_ent );
 		}
+
 
 		protected override void WriteStream( BinaryWriter writer ) {
 			CustomEntityCore core = this.Core;

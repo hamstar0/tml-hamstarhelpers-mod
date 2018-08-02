@@ -5,6 +5,13 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
+		public RespectsTerrainEntityComponent() {
+			this.ConfirmLoad();
+		}
+
+
+		////////////////
+
 		private void UpdateMe( CustomEntity ent ) {
 			var core = ent.Core;
 			bool respects_gravity = ent.GetComponentByType<RespectsGravityEntityComponent>() != null;

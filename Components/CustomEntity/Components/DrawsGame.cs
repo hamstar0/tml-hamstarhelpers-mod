@@ -35,16 +35,33 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public DrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
-			var src_mod = ModLoader.GetMod( src_mod_name );
+		public DrawsInGameEntityComponent() { }
 
+		public DrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
 			this.ModName = src_mod_name;
 			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
+			
+			this.ConfirmLoad();
+		}
 
-			if( !Main.dedServ ) {
-				this.Texture = src_mod.GetTexture( rel_texture_path );
+		////////////////
+
+		protected override void ConfirmLoad() {
+			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 ) {
+				this.IsInitialized = false;
+				return;
 			}
+
+			var src_mod = ModLoader.GetMod( this.ModName );
+
+			if( this.Texture == null ) {
+				if( !Main.dedServ ) {
+					this.Texture = src_mod.GetTexture( this.TexturePath );
+				}
+			}
+
+			base.ConfirmLoad();
 		}
 
 

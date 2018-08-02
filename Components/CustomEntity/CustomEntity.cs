@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using Newtonsoft.Json;
@@ -31,7 +32,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		[JsonConstructor]
-		private CustomEntity() { }
+		internal CustomEntity() { }
 
 		internal CustomEntity( int id, string name, int width, int height, IList<CustomEntityComponent> components ) {
 			this.ID = id;
@@ -52,6 +53,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.Core = core;
 			this.Components = components;
 		}
+
+		////////////////
 
 		public void CopyFrom( CustomEntity copy ) {
 			this.ID = copy.ID;

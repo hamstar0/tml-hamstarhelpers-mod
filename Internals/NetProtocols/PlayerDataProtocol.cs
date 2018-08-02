@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public PlayerDataProtocol() { }
+		private PlayerDataProtocol() { }
 
 		private PlayerDataProtocol( int player_who, ISet<int> perma_buff_ids, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			this.PlayerWho = player_who;
@@ -37,8 +37,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		////////////////
-		
-		public override void SetServerDefaults() { }
+
+		protected override void SetServerDefaults() { }
 
 		////////////////
 

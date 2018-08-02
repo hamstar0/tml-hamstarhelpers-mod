@@ -10,15 +10,20 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 		////////////////
-
+		
+		[PacketProtocolIgnore]
 		public override bool IsVerbose { get { return false; } }
 
 
-		public override void SetClientDefaults() {
+		////////////////
+
+		private PingProtocol() { }
+
+		protected override void SetClientDefaults() {
 			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 		}
 
-		public override void SetServerDefaults() { }
+		protected override void SetServerDefaults() { }
 
 
 		////////////////

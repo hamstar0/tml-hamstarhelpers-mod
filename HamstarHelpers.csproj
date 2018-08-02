@@ -76,7 +76,11 @@
     <Compile Include="Components\CustomEntity\Components\PeriodicSync.cs" />
     <Compile Include="Components\CustomEntity\Components\RespectsGravity.cs" />
     <Compile Include="Components\CustomEntity\Components\RespectsTerrain.cs" />
-    <Compile Include="Components\Network\PacketProtocolData.cs" />
+    <Compile Include="Components\Network\Data\PacketProtocolData_Read.cs" />
+    <Compile Include="Components\Network\Data\PacketProtocolData_Write.cs" />
+    <Compile Include="Components\Network\Data\PacketProtocolData.cs" />
+    <Compile Include="Components\Network\PacketProtocol_ReceiveAPI.cs" />
+    <Compile Include="Components\Network\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
     <Compile Include="Components\UI\Elements\UIDialog.cs" />

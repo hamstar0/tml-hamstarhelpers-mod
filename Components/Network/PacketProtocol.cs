@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -45,6 +45,10 @@ namespace HamstarHelpers.Components.Network {
 			IDictionary<int, Type> protocol_type_map = new Dictionary<int, Type>();
 
 			foreach( Type subclass in protocol_types ) {
+				if( subclass.GetConstructor( BindingFlags.NonPublic, null, Type.EmptyTypes, null ) == null ) {
+					throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
+				}
+
 				if( HamstarHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					string name = subclass.Namespace + "." + subclass.Name;
 					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + name );
@@ -70,11 +74,12 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Indicates whether send packets will be logged if the config specifies to do so. Defaults to true.
 		/// </summary>
+		[PacketProtocolIgnore]
 		public virtual bool IsVerbose { get { return true; } }
 
 
 		////////////////
-
+		
 		/// <summary>
 		/// Returns qualified name of current packet class.
 		/// </summary>
@@ -89,14 +94,14 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Overridden for initializing the class to create a reply in a request to the client.
 		/// </summary>
-		public virtual void SetClientDefaults() {
+		protected virtual void SetClientDefaults() {
 			throw new NotImplementedException( "No SetClientDefaults" );
 		}
 
 		/// <summary>
 		/// Overridden for initializing the class to create a reply in a request to the server.
 		/// </summary>
-		public virtual void SetServerDefaults() {
+		protected virtual void SetServerDefaults() {
 			throw new NotImplementedException( "No SetServerDefaults" );
 		}
 	}
