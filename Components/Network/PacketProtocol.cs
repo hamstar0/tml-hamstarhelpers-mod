@@ -45,7 +45,7 @@ namespace HamstarHelpers.Components.Network {
 			IDictionary<int, Type> protocol_type_map = new Dictionary<int, Type>();
 
 			foreach( Type subclass in protocol_types ) {
-				if( subclass.GetConstructor( BindingFlags.NonPublic, null, Type.EmptyTypes, null ) == null ) {
+				if( subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null, Type.EmptyTypes, null ) == null ) {
 					throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
 				}
 
