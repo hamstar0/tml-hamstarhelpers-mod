@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
@@ -9,12 +10,13 @@ using Terraria;
 namespace HamstarHelpers.Internals.Logic {
 	internal class PlayerLogicPromiseValidator : PromiseValidator {
 		internal readonly static object MyValidatorKey;
-		internal readonly static PlayerLogicPromiseValidator ConnectValidator;
+		internal readonly static PlayerLogicPromiseValidator ServerConnectValidator;
 
 		////////////////
 
 		static PlayerLogicPromiseValidator() {
-			PlayerLogicPromiseValidator.ConnectValidator = new PlayerLogicPromiseValidator();
+			PlayerLogicPromiseValidator.MyValidatorKey = new object();
+			PlayerLogicPromiseValidator.ServerConnectValidator = new PlayerLogicPromiseValidator();
 		}
 
 		////////////////
@@ -76,8 +78,8 @@ namespace HamstarHelpers.Internals.Logic {
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
 
-			PlayerLogicPromiseValidator.ConnectValidator.MyPlayer = player;
-			Promises.TriggerValidatedPromise( PlayerLogicPromiseValidator.ConnectValidator, PlayerLogicPromiseValidator.MyValidatorKey );
+			PlayerLogicPromiseValidator.ServerConnectValidator.MyPlayer = player;
+			Promises.TriggerValidatedPromise( PlayerLogicPromiseValidator.ServerConnectValidator, PlayerLogicPromiseValidator.MyValidatorKey );
 		}
 
 

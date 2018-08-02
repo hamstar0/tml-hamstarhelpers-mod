@@ -4,7 +4,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsGravityEntityComponent : CustomEntityComponent {
-		public override void Update( CustomEntity ent ) {
+		private void UpdateMe( CustomEntity ent ) {
 			Entity core = ent.Core;
 			float gravity = 0.1f;
 			float max_fall_speed = 7f;
@@ -39,6 +39,16 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( (double)core.velocity.X < 0.1 && (double)core.velocity.X > -0.1 ) {
 				core.velocity.X = 0f;
 			}
+		}
+
+		public override void UpdateSingle( CustomEntity ent ) {
+			this.UpdateMe( ent );
+		}
+		public override void UpdateClient( CustomEntity ent ) {
+			this.UpdateMe( ent );
+		}
+		public override void UpdateServer( CustomEntity ent ) {
+			this.UpdateMe( ent );
 		}
 	}
 }

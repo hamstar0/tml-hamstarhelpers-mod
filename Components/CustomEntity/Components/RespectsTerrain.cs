@@ -5,7 +5,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
-		public override void Update( CustomEntity ent ) {
+		private void UpdateMe( CustomEntity ent ) {
 			var core = ent.Core;
 			bool respects_gravity = ent.GetComponentByType<RespectsGravityEntityComponent>() != null;
 			Vector2 wet_velocity = core.velocity * 0.5f;
@@ -24,6 +24,16 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			} else {
 				core.position += core.velocity;
 			}
+		}
+
+		public override void UpdateSingle( CustomEntity ent ) {
+			this.UpdateMe( ent );
+		}
+		public override void UpdateClient( CustomEntity ent ) {
+			this.UpdateMe( ent );
+		}
+		public override void UpdateServer( CustomEntity ent ) {
+			this.UpdateMe( ent );
 		}
 
 

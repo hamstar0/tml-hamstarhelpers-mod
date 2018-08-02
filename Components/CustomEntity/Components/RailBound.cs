@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public override void Update( CustomEntity ent ) {
+		private void UpdateMe( CustomEntity ent ) {
 			Entity core = ent.Core;
 			bool is_on_rail = false;
 			int x_beg = (int)core.position.X / 16;
@@ -56,6 +56,16 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			}
 
 			this.IsOnRail = is_on_rail;
+		}
+
+		public override void UpdateSingle( CustomEntity ent ) {
+			this.UpdateMe( ent );
+		}
+		public override void UpdateClient( CustomEntity ent ) {
+			this.UpdateMe( ent );
+		}
+		public override void UpdateServer( CustomEntity ent ) {
+			this.UpdateMe( ent );
 		}
 
 		////////////////

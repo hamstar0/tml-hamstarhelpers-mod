@@ -11,13 +11,14 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	internal class PlayerPromiseValidator : PromiseValidator {
-		internal readonly static object MyValidatorKey = new object();
+		internal readonly static object MyValidatorKey;
 		internal readonly static PlayerPromiseValidator LoadValidator;
 		internal readonly static PlayerPromiseValidator SaveValidator;
 
 		////////////////
 
 		static PlayerPromiseValidator() {
+			PlayerPromiseValidator.MyValidatorKey = new object();
 			PlayerPromiseValidator.LoadValidator = new PlayerPromiseValidator();
 			PlayerPromiseValidator.SaveValidator = new PlayerPromiseValidator();
 		}

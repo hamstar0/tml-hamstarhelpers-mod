@@ -6,10 +6,17 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	abstract public class IsClickableEntityComponent : CustomEntityComponent {
-		public override void Update( CustomEntity ent ) {
+		private void UpdateMe( CustomEntity ent ) {
 			if( this.CheckMouseHover( ent ) ) {
 				this.OnMouseHover( ent );
 			}
+		}
+
+		public override void UpdateSingle( CustomEntity ent ) {
+			this.UpdateMe( ent );
+		}
+		public override void UpdateClient( CustomEntity ent ) {
+			this.UpdateMe( ent );
 		}
 
 		////////////////
@@ -20,8 +27,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		private bool CheckMouseHover( CustomEntity ent ) {
-			if( Main.netMode == 2 ) { throw new Exception( "Server cannot OnMouseClick." ); }
-
 			Entity core = ent.Core;
 			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
 			Rectangle box = core.Hitbox;

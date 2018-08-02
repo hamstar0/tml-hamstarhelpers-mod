@@ -13,18 +13,18 @@ using System.Linq;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class SaveableEntityComponent : CustomEntityComponent {
+		internal readonly static object MyValidatorKey;
 		public readonly static PromiseValidator LoadAllValidator;
-		internal readonly static object LoadAllValidatorKey;
 
-		private readonly static object IsAllLoadedKey = new object();
+		private readonly static object LoadAllDataKey = new object();
 
 
 		////////////////
 
 		static SaveableEntityComponent() {
-			SaveableEntityComponent.LoadAllValidatorKey = new object();
-			SaveableEntityComponent.LoadAllValidator = new PromiseValidator( SaveableEntityComponent.LoadAllValidatorKey );
-			SaveableEntityComponent.IsAllLoadedKey = new object();
+			SaveableEntityComponent.MyValidatorKey = new object();
+			SaveableEntityComponent.LoadAllValidator = new PromiseValidator( SaveableEntityComponent.MyValidatorKey );
+			SaveableEntityComponent.LoadAllDataKey = new object();
 		}
 
 
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public static bool IsLoaded {
 			get {
 				bool success;
-				object raw_output = DataStore.Get( SaveableEntityComponent.IsAllLoadedKey, out success );
+				object raw_output = DataStore.Get( SaveableEntityComponent.LoadAllDataKey, out success );
 				return success && (bool)raw_output;
 			}
 		}
@@ -63,9 +63,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 						LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - " + e.ToString() );
 					}
 
-					DataStore.Set( SaveableEntityComponent.IsAllLoadedKey, true );
+					DataStore.Set( SaveableEntityComponent.LoadAllDataKey, true );
 
-					Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.LoadAllValidatorKey );
+					Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
 
 					return true;
 				} );
@@ -78,11 +78,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				} );
 
 				Promises.AddPostWorldUnloadEachPromise( () => {
-					DataStore.Remove( SaveableEntityComponent.IsAllLoadedKey );
+					DataStore.Remove( SaveableEntityComponent.LoadAllDataKey );
 				} );
 
-				Promises.AddValidatedPromise( PlayerLogicPromiseValidator.ConnectValidator, () => {
-					PacketProtocol.QuickSendToClient<CustomEntityAllProtocol>( PlayerLogicPromiseValidator.ConnectValidator.MyPlayer.whoAmI, -1 );
+				Promises.AddValidatedPromise( PlayerLogicPromiseValidator.ServerConnectValidator, () => {
+					PacketProtocol.QuickSendToClient<CustomEntityAllProtocol>( PlayerLogicPromiseValidator.ServerConnectValidator.MyPlayer.whoAmI, -1 );
 					return true;
 				} );
 			}

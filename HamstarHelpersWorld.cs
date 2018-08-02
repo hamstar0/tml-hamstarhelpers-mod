@@ -12,7 +12,6 @@ using Terraria.ModLoader.IO;
 namespace HamstarHelpers {
 	class HamstarHelpersWorld : ModWorld {
 		private readonly static object MyValidatorKey;
-
 		internal readonly static PromiseValidator LoadValidator;
 		internal readonly static PromiseValidator SaveValidator;
 

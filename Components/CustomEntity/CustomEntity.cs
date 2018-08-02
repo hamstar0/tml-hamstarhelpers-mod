@@ -128,9 +128,25 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal void Update() {
 			int prop_count = this.Components.Count;
-			
-			for( int i=0; i<prop_count; i++ ) {
-				this.Components[ i ].Update( this );
+
+			switch( Main.netMode ) {
+			case 0:
+				if( !Main.dedServ ) {
+					for( int i = 0; i < prop_count; i++ ) {
+						this.Components[i].UpdateSingle( this );
+					}
+				}
+				break;
+			case 1:
+				for( int i = 0; i < prop_count; i++ ) {
+					this.Components[i].UpdateClient( this );
+				}
+				break;
+			case 2:
+				for( int i = 0; i < prop_count; i++ ) {
+					this.Components[i].UpdateServer( this );
+				}
+				break;
 			}
 		}
 	}

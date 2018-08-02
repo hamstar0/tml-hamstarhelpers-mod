@@ -9,10 +9,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return (CustomEntityComponent)null;
 		}
 
-		public virtual void Update( CustomEntity ent ) { }
+		public virtual void UpdateSingle( CustomEntity ent ) { }
+		public virtual void UpdateClient( CustomEntity ent ) { }
+		public virtual void UpdateServer( CustomEntity ent ) { }
 
 		////////////////
-		
+
 		public class StaticInitializer {
 			protected virtual void StaticInitialize() { }
 			internal void StaticInitializationWrapper() {

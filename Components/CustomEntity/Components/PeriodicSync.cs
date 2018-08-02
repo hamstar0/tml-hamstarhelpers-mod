@@ -15,9 +15,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public override void Update( CustomEntity ent ) {
-			if( Main.netMode == 0 ) { return; }
-
+		public override void UpdateServer( CustomEntity ent ) {
 			if( this.LastSynced-- <= 0 ) {
 				this.LastSynced = 60 * 5;
 
