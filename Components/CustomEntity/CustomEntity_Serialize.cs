@@ -65,19 +65,25 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
 			IEnumerable<Type> all_comp_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
-			IDictionary<string, Type> all_comp_type_map = all_comp_types.ToDictionary<Type, string, Type>( t => t.Name, t => t );
+			IDictionary<string, Type> all_comp_type_map = all_comp_types.ToDictionary( t => t.Name, t => t );
 
 			JObject jo = JObject.Load( reader );
 
 			CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
 			IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
+			int i;
 
 			string[] comp_names = jo["ComponentNames"].ToObject<string[]>();
-			Type[] comp_types = comp_names
-				.Select( str => all_comp_type_map[str] )
-				.ToArray();
+			Type[] comp_types = new Type[ comp_names.Length ];
+
+			for( i=0; i<comp_names.Length; i++ ) {
+				if( !all_comp_type_map.ContainsKey( comp_names[i] ) ) {
+					return null;
+				}
+				comp_types[i] = all_comp_type_map[ comp_names[i] ];
+			}
 			
-			int i = 0;
+			i = 0;
 			foreach( JObject obj in jo["Components"] ) {
 				Type comp_type = comp_types[i];
 				object comp = obj.ToObject( comp_type, serializer );

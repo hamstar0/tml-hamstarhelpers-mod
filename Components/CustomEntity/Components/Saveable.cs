@@ -132,7 +132,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			if( success ) {
 				foreach( var ent in ents ) {
-					CustomEntityManager.Instance.Add( ent );
+					if( ent != null ) {
+						CustomEntityManager.Instance.Add( ent );
+					}
 				}
 			}
 

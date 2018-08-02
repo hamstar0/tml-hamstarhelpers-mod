@@ -29,14 +29,10 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 						throw new Exception( "POST request unsuccessful (url: "+url+")" );
 					}
 				} catch( Exception e ) {
-					if( on_error != null ) {
-						on_error( e, output );
-					}
+					on_error?.Invoke( e, output );
 				}
 
-				if( on_completion != null ) {
-					on_completion();
-				}
+				on_completion?.Invoke();
 			} );
 		}
 
@@ -88,14 +84,10 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 						throw new Exception( "GET request unsuccessful (url: " + url + ")" );
 					}
 				} catch( Exception e ) {
-					if( on_error != null ) {
-						on_error( e, output );
-					}
+					on_error?.Invoke( e, output );
 				}
 
-				if( on_completion != null ) {
-					on_completion();
-				}
+				on_completion?.Invoke();
 			} );
 		}
 
