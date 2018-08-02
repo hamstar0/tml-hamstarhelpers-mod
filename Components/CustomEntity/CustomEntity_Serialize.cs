@@ -1,7 +1,9 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			IList<JsonProperty> properties = base.CreateProperties( type, member_serialization );
 			
 			properties = properties.Where( (p) => {
-				if( p.DeclaringType.Name != "CustomEntityCore" ) { return true; }
+				if( p.DeclaringType.Name != "Entity" ) { return true; }
 
 				switch( p.PropertyName ) {
 				case "whoAmI":
@@ -51,27 +53,61 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 
-	
+	internal class CustomEntityConverter : JsonConverter {
+		public override bool CanWrite {
+			get { return false; }
+		}
+
+		public override bool CanConvert( Type obj_type ) {
+			return obj_type == typeof( CustomEntity );
+		}
+
+
+		public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
+			IEnumerable<Type> all_comp_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
+			IDictionary<string, Type> all_comp_type_map = all_comp_types.ToDictionary<Type, string, Type>( t => t.Name, t => t );
+
+			JObject jo = JObject.Load( reader );
+
+			CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
+			IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
+
+			string[] comp_names = jo["ComponentNames"].ToObject<string[]>();
+			Type[] comp_types = comp_names
+				.Select( str => all_comp_type_map[str] )
+				.ToArray();
+			
+			int i = 0;
+			foreach( JObject obj in jo["Components"] ) {
+				Type comp_type = comp_types[i];
+				object comp = obj.ToObject( comp_type, serializer );
+
+				components.Add( (CustomEntityComponent)comp );
+				i++;
+			}
+
+			return new CustomEntity( core, components );
+		}
+
+
+		public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
+			throw new NotImplementedException();
+		}
+	}
+
+
+
+
 	public partial class CustomEntity : PacketProtocolData {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
-			TypeNameHandling = TypeNameHandling.Auto,
-			ContractResolver = new CustomEntityContractResolver()
+			TypeNameHandling = TypeNameHandling.None,
+			ContractResolver = new CustomEntityContractResolver(),
+			Converters = new List<JsonConverter> { new CustomEntityConverter() }
 		};
 
 
 		////////////////
-
-		internal static CustomEntity Deserialize( string data ) {
-			return JsonConvert.DeserializeObject<CustomEntity>( data, CustomEntity.SerializerSettings );
-		}
-
-		internal static string Serialize( CustomEntity ent ) {
-			return JsonConvert.SerializeObject( ent, CustomEntity.SerializerSettings );
-		}
-
-
-		////////////////
-
+		
 		protected override void ReadStream( BinaryReader reader ) {
 			CustomEntityCore core = this.Core;
 

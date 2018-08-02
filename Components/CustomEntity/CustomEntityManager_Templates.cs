@@ -27,5 +27,30 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			return val.Clone();
 		}
+
+
+		////////////////
+
+		public int GetTemplateID( IList<CustomEntityComponent> components ) {
+			int count = components.Count;
+
+			foreach( var kv in this.EntityTemplates ) {
+				int other_count = kv.Value.Components.Count;
+				bool found = true;
+
+				for( int i=0; i<count; i++ ) {
+					if( i > other_count || components[i] != kv.Value.Components[i] ) {
+						found = false;
+						break;
+					}
+				}
+
+				if( found ) {
+					return kv.Key;
+				}
+			}
+
+			return -1;
+		}
 	}
 }
