@@ -35,7 +35,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public DrawsInGameEntityComponent() { }
+		private DrawsInGameEntityComponent() { }
 
 		public DrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
 			this.ModName = src_mod_name;
@@ -55,8 +55,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			var src_mod = ModLoader.GetMod( this.ModName );
 
-			if( this.Texture == null ) {
-				if( !Main.dedServ ) {
+			if( !Main.dedServ ) {
+				if( this.Texture == null ) {
 					this.Texture = src_mod.GetTexture( this.TexturePath );
 				}
 			}

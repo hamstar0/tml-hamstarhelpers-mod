@@ -21,7 +21,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Type base_type = typeof( CustomEntityComponent );
 			
 			foreach( CustomEntityComponent component in ent.Components ) {
-				if( !component.IsInitialized ) { throw new NotImplementedException(); }
+				if( !component.IsInitialized ) {
+					throw new NotImplementedException( component.GetType().Name+" is not initialized." );
+				}
 
 				comp_type = component.GetType();
 				do {

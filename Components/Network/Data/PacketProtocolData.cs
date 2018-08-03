@@ -32,7 +32,7 @@ namespace HamstarHelpers.Components.Network.Data {
 		/// </summary>
 		/// <param name="reader">Binary data reader.</param>
 		protected virtual void ReadStream( BinaryReader reader ) {
-			PacketProtocol.ReadStreamIntoContainer( reader, this );
+			PacketProtocolData.ReadStreamIntoContainer( reader, this );
 		}
 
 
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Components.Network.Data {
 		/// </summary>
 		/// <param name="writer">Binary data writer.</param>
 		protected virtual void WriteStream( BinaryWriter writer ) {
-			PacketProtocol.WriteStreamIntoContainer( writer, this );
+			PacketProtocolData.WriteStreamIntoContainer( writer, this );
 		}
 	}
 }

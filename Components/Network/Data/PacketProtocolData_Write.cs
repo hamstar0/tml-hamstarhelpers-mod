@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,10 +15,14 @@ namespace HamstarHelpers.Components.Network.Data {
 					continue;
 				}
 
-				object raw_val = field.GetValue( data );
+				object raw_field_val = field.GetValue( data );
 				Type field_type = field.FieldType;
 
-				PacketProtocol.WriteStreamValue( writer, field_type, raw_val );
+				if( field_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+					( (PacketProtocolData)raw_field_val ).WriteStream( writer );
+				} else {
+					PacketProtocolData.WriteStreamValue( writer, field_type, raw_field_val );
+				}
 			}
 		}
 
@@ -102,28 +106,30 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		private static void WriteStreamObjectValue( BinaryWriter writer, Type field_type, object raw_val ) {
-			if( typeof( PacketProtocolData ).IsAssignableFrom( field_type ) ) {
-				PacketProtocol.WriteStreamIntoContainer( writer, (PacketProtocolData)raw_val );
-			} else if( typeof( ICollection ).IsAssignableFrom( field_type ) ) {
-				var collection = (ICollection)raw_val;
-				Type[] inner_types = collection.GetType().GetGenericArguments();
-				Type inner_type;
+			if( field_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+				PacketProtocolData.WriteStreamIntoContainer( writer, (PacketProtocolData)raw_val );
 
+			} else if( field_type.GetInterface( "IEnumerable" ) != null ) {
+				Type[] inner_types = raw_val.GetType().GetGenericArguments();
+				Type inner_type;
+				
 				if( inner_types.Length == 0 ) {
 					inner_type = raw_val.GetType().GetElementType();
 				} else {
 					inner_type = inner_types.Single();
 				}
 
-				writer.Write( (ushort)collection.Count );
+				var collection = (IEnumerable<object>)raw_val;
+
+				writer.Write( (ushort)collection.Count() );
 
 				if( inner_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					foreach( object item in collection ) {
-						PacketProtocol.WriteStreamIntoContainer( writer, (PacketProtocolData)item );
+						PacketProtocolData.WriteStreamIntoContainer( writer, (PacketProtocolData)item );
 					}
 				} else {
 					foreach( object item in collection ) {
-						PacketProtocol.WriteStreamValue( writer, inner_type, item );
+						PacketProtocolData.WriteStreamValue( writer, inner_type, item );
 					}
 				}
 			} else {

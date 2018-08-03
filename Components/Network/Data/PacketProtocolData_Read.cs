@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -15,12 +14,15 @@ namespace HamstarHelpers.Components.Network.Data {
 					continue;
 				}
 
-				var data_type = field.FieldType;
+				Type data_type = field.FieldType;
 
-				if( typeof( PacketProtocolData ).IsAssignableFrom( data_type ) ) {
-					PacketProtocol.ReadStreamIntoContainer( reader, (PacketProtocolData)field.GetValue( data ) );
+				if( data_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+					var field_value = (PacketProtocolData)field.GetValue( data );
+
+					field_value.ReadStream( reader );
+
 				} else {
-					var field_data = PacketProtocol.ReadStreamValue( reader, data_type );
+					var field_data = PacketProtocolData.ReadStreamValue( reader, data_type );
 					field.SetValue( data, field_data );
 				}
 			}
@@ -89,13 +91,19 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		private static object ReadStreamObjectValue( BinaryReader reader, Type data_type ) {
-			if( typeof( PacketProtocolData ).IsAssignableFrom( data_type ) ) {
-				var item = (PacketProtocolData)Activator.CreateInstance( data_type );
+//LogHelpers.Log( "ReadStreamObjectValue type:"+data_type.Name+" "
+//	+(data_type.GetElementType()==null?"?!":data_type.GetElementType().Name)+" "
+//	+(data_type.DeclaringType==null?"??":data_type.DeclaringType.Name)+" "
+//	+data_type.IsSubclassOf( typeof( PacketProtocolData ) ) + " "
+//	+(data_type.GetInterface( "ICollection" )!=null) + " "
+//	+(data_type.GetInterface( "IEnumerable" )!=null) );
+			if( data_type.IsSubclassOf( typeof(PacketProtocolData) ) ) {
+				var item = (PacketProtocolData)Activator.CreateInstance( data_type, true );
 
-				PacketProtocol.ReadStreamIntoContainer( reader, item );
-
+				item.ReadStream( reader );
+				
 				return item;
-			} else if( typeof( ICollection ).IsAssignableFrom( data_type ) ) {
+			} else if( data_type.GetInterface( "IEnumerable" ) != null ) {
 				ushort length = reader.ReadUInt16();
 				Type[] inner_types = data_type.GetGenericArguments();
 				Type inner_type;
@@ -110,17 +118,18 @@ namespace HamstarHelpers.Components.Network.Data {
 
 				if( inner_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					for( int i = 0; i < length; i++ ) {
-						var item = (PacketProtocolData)Activator.CreateInstance( inner_type );
-						PacketProtocol.ReadStreamIntoContainer( reader, item );
+						var item = (PacketProtocolData)Activator.CreateInstance( inner_type, true );
+
+						item.ReadStream( reader );
 						arr.SetValue( item, i );
 					}
 				} else {
 					for( int i = 0; i < length; i++ ) {
-						object item = PacketProtocol.ReadStreamValue( reader, inner_type );
+						object item = PacketProtocolData.ReadStreamValue( reader, inner_type );
 						arr.SetValue( item, i );
 					}
 				}
-
+				
 				if( data_type.IsArray ) {
 					return arr;
 				} else {

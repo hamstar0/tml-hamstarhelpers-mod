@@ -99,7 +99,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public SaveableEntityComponent() { }
+		private SaveableEntityComponent() { }
 
 		public SaveableEntityComponent( bool as_json ) {
 			this.AsJson = as_json;

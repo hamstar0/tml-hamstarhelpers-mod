@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
+				var protocol = (PacketProtocol)Activator.CreateInstance( protocol_type, true );
 
 				if( is_request ) {
 					protocol.ReceiveRequestWithServerBase( player_who );
