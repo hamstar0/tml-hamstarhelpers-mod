@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
 		private void DrawMiniMapForAll( SpriteBatch sb ) {
-			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<DrawsOnMapEntityComponent>();
+			ISet<CustomEntity> ents = CustomEntityManager.GetByComponentType<DrawsOnMapEntityComponent>();
 
 			foreach( var ent in ents ) {
 				var map_comp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
@@ -25,11 +25,11 @@ namespace HamstarHelpers {
 
 
 		private void DrawFullMapForAll( SpriteBatch sb ) {
-			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<DrawsOnMapEntityComponent>();
+			ISet<CustomEntity> ents = CustomEntityManager.GetByComponentType<DrawsOnMapEntityComponent>();
 
 			foreach( var ent in ents ) {
 				var map_comp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
-				
+
 				map_comp.DrawFullscreenMap( sb, ent );
 			}
 		}

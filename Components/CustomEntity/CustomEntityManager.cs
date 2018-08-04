@@ -12,14 +12,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public static CustomEntityManager Instance { get { return HamstarHelpersMod.Instance.CustomEntMngr; } }
-
-
-
-		////////////////
-
-		private int LatestEntityID = 0;
-		private readonly IDictionary<int, CustomEntity> EntityTemplates = new Dictionary<int, CustomEntity>();
+		internal CustomEntityTemplates Templates;
 
 		internal readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
 		internal readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
@@ -29,6 +22,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal CustomEntityManager() {
+			this.Templates = new CustomEntityTemplates();
+
 			Main.OnTick += CustomEntityManager._Update;
 
 			// Initialize components
@@ -38,7 +33,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				Type[] nested_types = component_type.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
 
 				foreach( var nested_type in nested_types ) {
-					if( nested_type.IsSubclassOf(typeof(CustomEntityComponent.StaticInitializer)) ) {
+					if( nested_type.IsSubclassOf( typeof( CustomEntityComponent.StaticInitializer ) ) ) {
 						var static_init = (CustomEntityComponent.StaticInitializer)Activator.CreateInstance( nested_type );
 						static_init.StaticInitializationWrapper();
 					}
@@ -48,11 +43,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Promises.AddPostWorldUnloadEachPromise( () => {
 				this.EntitiesByIndexes.Clear();
 				this.EntitiesByComponentType.Clear();
-			} );
-
-			Promises.AddModUnloadPromise( () => {
-				this.LatestEntityID = 0;
-				this.EntityTemplates.Clear();
 			} );
 		}
 

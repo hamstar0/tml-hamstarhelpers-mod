@@ -32,10 +32,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void ReceiveWithClient() {
-			var ent = CustomEntityManager.Instance.Get( this.Entity.Core.whoAmI );
+			var ent = CustomEntityManager.Get( this.Entity.Core.whoAmI );
 
 			if( ent == null ) {
-				CustomEntityManager.Instance.Set( this.Entity.Core.whoAmI, this.Entity );
+				CustomEntityManager.Set( this.Entity.Core.whoAmI, this.Entity );
 			} else {
 				ent.CopyFrom( this.Entity );
 			}

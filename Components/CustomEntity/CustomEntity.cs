@@ -37,20 +37,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.ID = id;
 			this.Core = new CustomEntityCore( name, width, height );
 			this.Components = components;
-
-			for( int i=0; i<components.Count; i++ ) {
-				CustomEntityComponent comp = components[i].Clone();
-
-				if( comp != null ) {
-					this.Components[i] = comp;
-				}
-			}
+			//this.Components = components.Select( c => c.Clone() ?? c ).ToList();
 		}
 
 		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.ID = CustomEntityManager.Instance.GetTemplateID( components );
+			this.ID = CustomEntityTemplates.GetTemplateID( components );
+			//if( this.ID == -1 ) {
+			//	throw new NotImplementedException( "No custom entity ID found to match to new entity called "+core.DisplayName
+			//		+ ". Components: "+string.Join(", ", components.Select(c=>c.GetType().Name)) );
+			//}
+
 			this.Core = core;
 			this.Components = components;
+			//this.Components = components.Select( c => c.Clone() ?? c ).ToList();
 		}
 
 		////////////////
@@ -58,7 +57,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public void CopyFrom( CustomEntity copy ) {
 			this.ID = copy.ID;
 			this.Core = copy.Core.Clone();
-			this.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
+			this.Components = copy.Components;
+			//this.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
 
 			this.ComponentsByTypeName.Clear();
 			this.AllComponentsByTypeName.Clear();
@@ -69,7 +69,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 			var copy = (CustomEntity)this.MemberwiseClone();
 
 			copy.Core = copy.Core.Clone();
-			copy.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
+			//copy.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
+
+			copy.ComponentsByTypeName.Clear();
+			copy.AllComponentsByTypeName.Clear();
 
 			return copy;
 		}
@@ -106,10 +109,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			int idx;
 
-			if( !this.AllComponentsByTypeName.TryGetValue( typeof(T).Name, out idx ) ) {
+			if( !this.AllComponentsByTypeName.TryGetValue( typeof( T ).Name, out idx ) ) {
 				return null;
 			}
-			return (T)this.Components[ idx ];
+			return (T)this.Components[idx];
 		}
 
 

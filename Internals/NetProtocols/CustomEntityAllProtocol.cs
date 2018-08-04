@@ -16,7 +16,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		private CustomEntityAllProtocol() { }
 		
 		protected override void SetServerDefaults() {
-			this.Entities = CustomEntityManager.Instance.EntitiesByIndexes.Values.Where(
+			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+
+			this.Entities = mngr.EntitiesByIndexes.Values.Where(
 				ent => ent.GetComponentByType<PeriodicSyncEntityComponent>() != null
 			).ToArray();
 		}
@@ -26,9 +28,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithClient() {
 			foreach( CustomEntity ent in this.Entities ) {
-				CustomEntityManager.Instance.Set( ent.Core.whoAmI, ent );
+				CustomEntityManager.Set( ent.Core.whoAmI, ent );
 			}
 
+LogHelpers.Log("Loaded? "+string.Join(", ",CustomEntityManager.GetByComponentType<SaveableEntityComponent>().Select(c=>c.Core.DisplayName)));
 			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
 		}
 	}

@@ -48,12 +48,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
     <Reference Include="Terraria.Libraries.ReLogic.ReLogic">
       <HintPath>..\..\..\Reference\Terraria.Libraries.ReLogic.ReLogic.dll</HintPath>
     </Reference>
@@ -66,7 +66,7 @@
     <Compile Include="Components\CustomEntity\Components\DrawsGame.cs" />
     <Compile Include="Components\CustomEntity\Components\Saveable.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityCore.cs" />
-    <Compile Include="Components\CustomEntity\CustomEntityManager_Templates.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntityTemplates.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager_Access.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity_Serialize.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager.cs" />

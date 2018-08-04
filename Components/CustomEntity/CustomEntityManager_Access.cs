@@ -7,97 +7,109 @@ using System.Linq;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public CustomEntity Get( int idx ) {
+		public static CustomEntity Get( int idx ) {
+			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+
 			CustomEntity ent = null;
-			this.EntitiesByIndexes.TryGetValue( idx, out ent );
+			mngr.EntitiesByIndexes.TryGetValue( idx, out ent );
 			return ent;
 		}
 
 
-		public void Set( int idx, CustomEntity ent ) {
-			if( ent == null ) { throw new HamstarException("Null ent not allowed."); }
+		public static void Set( int idx, CustomEntity ent ) {
+			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
+
+			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
 
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
-			
+
 			foreach( CustomEntityComponent component in ent.Components ) {
 				if( !component.IsInitialized ) {
-					throw new NotImplementedException( component.GetType().Name+" is not initialized." );
+					throw new NotImplementedException( component.GetType().Name + " is not initialized." );
 				}
 
 				comp_type = component.GetType();
 				do {
-					if( !this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-						this.EntitiesByComponentType[comp_type] = new HashSet<int>();
+					if( !mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+						mngr.EntitiesByComponentType[comp_type] = new HashSet<int>();
 					}
-					this.EntitiesByComponentType[comp_type].Add( idx );
+					mngr.EntitiesByComponentType[comp_type].Add( idx );
 
 					comp_type = comp_type.BaseType;
 				} while( comp_type != base_type );
 			}
 
 			ent.Core.whoAmI = idx;
-			this.EntitiesByIndexes[ idx ] = ent;
+			mngr.EntitiesByIndexes[idx] = ent;
 		}
 
 
 		////////////////
 
-		public int Add( CustomEntity ent ) {
+		public static int Add( CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 
-			int idx = this.EntitiesByIndexes.Count;
-			
-			this.Set( idx, ent );
+			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+
+			int idx = mngr.EntitiesByIndexes.Count;
+
+			CustomEntityManager.Set( idx, ent );
 
 			return idx;
 		}
 
 
-		public void Remove( CustomEntity ent ) {
+		public static void Remove( CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 
-			this.Remove( ent.Core.whoAmI );
+			CustomEntityManager.Remove( ent.Core.whoAmI );
 		}
 
-		public void Remove( int idx ) {
-			if( !this.EntitiesByIndexes.ContainsKey( idx ) ) { return; }
+		public static void Remove( int idx ) {
+			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+
+			if( !mngr.EntitiesByIndexes.ContainsKey( idx ) ) { return; }
 
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
 
-			IList<CustomEntityComponent> ent_components = this.EntitiesByIndexes[ idx ].Components;
+			IList<CustomEntityComponent> ent_components = mngr.EntitiesByIndexes[idx].Components;
 
 			foreach( CustomEntityComponent component in ent_components ) {
 				comp_type = component.GetType();
 				do {
-					if( this.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-						this.EntitiesByComponentType[comp_type].Remove( idx );
+					if( mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+						mngr.EntitiesByComponentType[comp_type].Remove( idx );
 					}
 
 					comp_type = comp_type.BaseType;
 				} while( comp_type != base_type );
 			}
 
-			this.EntitiesByIndexes.Remove( idx );
+			mngr.EntitiesByIndexes.Remove( idx );
 		}
 
 
-		public void Clear() {
-			this.EntitiesByIndexes.Clear();
-			this.EntitiesByComponentType.Clear();
+		public static void Clear() {
+			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+
+			mngr.EntitiesByIndexes.Clear();
+			mngr.EntitiesByComponentType.Clear();
 		}
 
 
 
 		////////////////
-		
-		public ISet<CustomEntity> GetByComponentType<T>() where T : CustomEntityComponent {
+
+		public static ISet<CustomEntity> GetByComponentType<T>() where T : CustomEntityComponent {
+			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+
 			ISet<int> ent_idxs = new HashSet<int>();
 			Type curr_type = typeof( T );
-			
-			if( !this.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
-				foreach( var kv in this.EntitiesByComponentType ) {
+
+			if( !mngr.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
+				foreach( var kv in mngr.EntitiesByComponentType ) {
 					if( kv.Key.IsSubclassOf( curr_type ) ) {
 						ent_idxs.UnionWith( kv.Value );
 					}
@@ -107,9 +119,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 					return new HashSet<CustomEntity>();
 				}
 			}
-			
+
 			return new HashSet<CustomEntity>(
-				ent_idxs.Select( i => (CustomEntity)this.EntitiesByIndexes[i] )
+				ent_idxs.Select( i => (CustomEntity)mngr.EntitiesByIndexes[i] )
 			);
 		}
 	}

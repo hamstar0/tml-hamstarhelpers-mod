@@ -103,13 +103,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		public SaveableEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
-			
+
 			this.ConfirmLoad();
 		}
 
 
 		////////////////
-		
+
 		public override CustomEntityComponent Clone() {
 			return (SaveableEntityComponent)this.MemberwiseClone();
 		}
@@ -132,14 +132,19 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( this.AsJson ) {
 				ents = DataFileHelpers.LoadJson<HashSet<CustomEntity>>( mymod, file_name, CustomEntity.SerializerSettings, out success );
 			} else {
-				ents = DataFileHelpers.LoadBinary<HashSet<CustomEntity>>( mymod, file_name+".dat", false, CustomEntity.SerializerSettings );
+				ents = DataFileHelpers.LoadBinary<HashSet<CustomEntity>>( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings );
 				success = ents != null;
 			}
 
 			if( success ) {
 				foreach( var ent in ents ) {
 					if( ent != null ) {
-						CustomEntityManager.Instance.Add( ent );
+						CustomEntityTemplates.AddEntityTemplate( ent );
+					}
+				}
+				foreach( var ent in ents ) {
+					if( ent != null ) {
+						CustomEntityManager.Add( ent );
 					}
 				}
 			}
@@ -152,7 +157,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = HamstarHelpersMod.Instance;
 			string file_name = this.GetFileNameBase();
 
-			ISet<CustomEntity> ents = CustomEntityManager.Instance.GetByComponentType<SaveableEntityComponent>();
+			ISet<CustomEntity> ents = CustomEntityManager.GetByComponentType<SaveableEntityComponent>();
 			ents = new HashSet<CustomEntity>(
 				ents.Where(
 					ent => ent.GetComponentByType<SaveableEntityComponent>().AsJson == this.AsJson

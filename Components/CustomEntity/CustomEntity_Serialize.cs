@@ -4,7 +4,6 @@ using HamstarHelpers.Helpers.DotNetHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,47 +11,6 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	internal class CustomEntityContractResolver : DefaultContractResolver {
-		protected override IList<JsonProperty> CreateProperties( Type type, MemberSerialization member_serialization ) {
-			IList<JsonProperty> properties = base.CreateProperties( type, member_serialization );
-			
-			properties = properties.Where( (p) => {
-				if( p.DeclaringType.Name != "Entity" ) { return true; }
-
-				switch( p.PropertyName ) {
-				//case "whoAmI":
-				case "lavaWet":
-				case "wetCount":
-				case "wet":
-				case "honeyWet":
-				case "oldVelocity":
-				case "oldPosition":
-				case "velocity":
-				case "active":
-				case "oldDirection":
-				case "BottomRight":
-				case "BottomLeft":
-				case "Bottom":
-				case "TopRight":
-				case "TopLeft":
-				case "Top":
-				case "Right":
-				case "Left":
-				case "Hitbox":
-				case "Size":
-				case "Center":
-					return false;
-				}
-
-				return true;
-			} ).ToList();
-			
-			return properties;
-		}
-	}
-
-
-
 	internal class CustomEntityConverter : JsonConverter {
 		public override bool CanWrite {
 			get { return false; }
@@ -107,7 +65,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntity : PacketProtocolData {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
 			TypeNameHandling = TypeNameHandling.None,
-			ContractResolver = new CustomEntityContractResolver(),
+			ContractResolver = new CustomEntityCoreContractResolver(),
 			Converters = new List<JsonConverter> { new CustomEntityConverter() }
 		};
 
@@ -134,7 +92,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 				Y = (float)reader.ReadSingle()
 			};
 
-			CustomEntity new_ent = CustomEntityManager.Instance.CreateEntityFromTemplate( this.ID );
+			CustomEntity new_ent = CustomEntityTemplates.CreateEntityFromTemplate( this.ID );
+LogHelpers.Log( "READ id: "+this.ID+", who: "+core.whoAmI+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
 
 			for( int i = 0; i < new_ent.Components.Count; i++ ) {
 				new_ent.Components[i].ReadStreamForwarded( reader );
@@ -148,6 +108,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityCore core = this.Core;
 
 			writer.Write( (ushort)this.ID );
+LogHelpers.Log( "WRITE id: "+this.ID+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
 
 			writer.Write( (ushort)core.whoAmI );
 			writer.Write( (string)core.DisplayName );
