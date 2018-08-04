@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using Newtonsoft.Json;

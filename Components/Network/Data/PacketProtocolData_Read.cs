@@ -1,119 +1,128 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 
 
 namespace HamstarHelpers.Components.Network.Data {
 	public partial class PacketProtocolData {
-		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData data ) {
-			foreach( FieldInfo field in data.OrderedFields ) {
+		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData field_container ) {
+			foreach( FieldInfo field in field_container.OrderedFields ) {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
 					continue;
 				}
+				
+				Type field_type = field.FieldType;
+				
+//LogHelpers.Log( "READ "+ field_container.GetType().Name + " FIELD " + field );
+				object field_data = PacketProtocolData.ReadStreamValue( reader, field_type );
 
-				Type data_type = field.FieldType;
-
-				if( data_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-					var field_value = (PacketProtocolData)field.GetValue( data );
-
-					field_value.ReadStream( reader );
-
-				} else {
-					var field_data = PacketProtocolData.ReadStreamValue( reader, data_type );
-					field.SetValue( data, field_data );
-				}
+				field.SetValue( field_container, field_data );
 			}
 		}
 
 
 		////////////////
 
-		private static object ReadStreamValue( BinaryReader reader, Type data_type ) {
-			bool has_read;
-			object value = PacketProtocolData.ReadStreamPrimitiveValue( reader, data_type, out has_read );
+		private static object ReadStreamValue( BinaryReader reader, Type field_type ) {
+			object raw_val;
 
-			if( has_read ) { return value; }
-
-			return PacketProtocolData.ReadStreamObjectValue( reader, data_type );
-		}
-
-
-		private static object ReadStreamPrimitiveValue( BinaryReader reader, Type data_type, out bool is_read ) {
-			is_read = true;
-
-			switch( Type.GetTypeCode( data_type ) ) {
+			switch( Type.GetTypeCode( field_type ) ) {
 			case TypeCode.String:
-				return reader.ReadString();
+				raw_val = reader.ReadString();
+				break;
 			case TypeCode.Single:
-				return reader.ReadSingle();
+				raw_val = reader.ReadSingle();
+				break;
 			case TypeCode.UInt64:
-				return reader.ReadUInt64();
+				raw_val = reader.ReadUInt64();
+				break;
 			case TypeCode.Int64:
-				return reader.ReadInt64();
+				raw_val = reader.ReadInt64();
+				break;
 			case TypeCode.UInt32:
-				return reader.ReadUInt32();
+				raw_val = reader.ReadUInt32();
+				break;
 			case TypeCode.Int32:
-				return reader.ReadInt32();
+				raw_val = reader.ReadInt32();
+				break;
 			case TypeCode.UInt16:
-				return reader.ReadUInt16();
+				raw_val = reader.ReadUInt16();
+				break;
 			case TypeCode.Int16:
-				return reader.ReadInt16();
+				raw_val = reader.ReadInt16();
+				break;
 			case TypeCode.Double:
-				return reader.ReadDouble();
+				raw_val = reader.ReadDouble();
+				break;
 			case TypeCode.Char:
-				if( data_type.IsArray ) {
-					int count = reader.ReadInt32();
-					return reader.ReadChars( count );
-				} else {
-					return reader.ReadChar();
-				}
+				raw_val = reader.ReadChar();
+				break;
 			case TypeCode.SByte:
-				return reader.ReadSByte();
+				raw_val = reader.ReadSByte();
+				break;
 			case TypeCode.Byte:
-				if( data_type.IsArray ) {
-					int count = reader.ReadInt32();
-					return reader.ReadBytes( count );
-				} else {
-					return reader.ReadByte();
-				}
+				raw_val = reader.ReadByte();
+				break;
 			case TypeCode.Boolean:
-				return reader.ReadBoolean();
+				raw_val = reader.ReadBoolean();
+				break;
 			case TypeCode.Decimal:
-				return reader.ReadDecimal();
+				raw_val = reader.ReadDecimal();
+				break;
+			case TypeCode.Object:
+				raw_val = PacketProtocolData.ReadStreamObjectValue( reader, field_type );
+				break;
 			default:
-				is_read = false;
-				return null;
+				raw_val = null;
+				break;
 			}
+			
+//LogHelpers.Log( " ReadStreamValue "+Type.GetTypeCode( field_type )+" - "+field_type+": "+raw_val );
+			return raw_val;
 		}
 
 
-		private static object ReadStreamObjectValue( BinaryReader reader, Type data_type ) {
-//LogHelpers.Log( "ReadStreamObjectValue type:"+data_type.Name+" "
-//	+(data_type.GetElementType()==null?"?!":data_type.GetElementType().Name)+" "
-//	+(data_type.DeclaringType==null?"??":data_type.DeclaringType.Name)+" "
-//	+data_type.IsSubclassOf( typeof( PacketProtocolData ) ) + " "
-//	+(data_type.GetInterface( "ICollection" )!=null) + " "
-//	+(data_type.GetInterface( "IEnumerable" )!=null) );
-			if( data_type.IsSubclassOf( typeof(PacketProtocolData) ) ) {
-				var item = (PacketProtocolData)Activator.CreateInstance( data_type, true );
+		private static object ReadStreamObjectValue( BinaryReader reader, Type field_type ) {
+			bool is_enumerable = false, is_dictionary = false;
+			string[] data_type_name_chunks = null;
+
+			if( field_type.IsInterface ) {
+				data_type_name_chunks = field_type.Name.Split( new char[] { '`' }, 2 );
+
+				switch( data_type_name_chunks[0] ) {
+				case "ISet":
+				case "IList":
+					is_enumerable = true;
+					break;
+				case "IDictionary":
+					is_dictionary = true;
+					break;
+				}
+			}
+
+			if( field_type.IsSubclassOf( typeof(PacketProtocolData) ) ) {
+				var item = (PacketProtocolData)Activator.CreateInstance( field_type, true );
 
 				item.ReadStream( reader );
 				
 				return item;
-			} else if( data_type.GetInterface( "IEnumerable" ) != null ) {
+
+			} else if( ( is_enumerable || typeof( IEnumerable ).IsAssignableFrom( field_type ) )
+					&& ( !is_dictionary && !typeof( IDictionary ).IsAssignableFrom( field_type ) ) ) {
 				ushort length = reader.ReadUInt16();
-				Type[] inner_types = data_type.GetGenericArguments();
+				Type[] inner_types = field_type.GetGenericArguments();
 				Type inner_type;
-
+				
 				if( inner_types.Length == 0 ) {
-					inner_type = data_type.GetElementType();
+					inner_type = field_type.GetElementType();
 				} else {
-					inner_type = inner_types.Single();
+					inner_type = inner_types[0];
 				}
-
+				
 				Array arr = Array.CreateInstance( inner_type, length );
 
 				if( inner_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
@@ -129,17 +138,31 @@ namespace HamstarHelpers.Components.Network.Data {
 						arr.SetValue( item, i );
 					}
 				}
+
+				if( field_type.IsInterface ) {
+					switch( data_type_name_chunks[0] ) {
+					case "ISet":
+						field_type = typeof( HashSet<> ).MakeGenericType( inner_type );
+						break;
+					case "IList":
+						field_type = typeof( List<> ).MakeGenericType( inner_type );
+						break;
+					}
+				}
 				
-				if( data_type.IsArray ) {
+//LogHelpers.Log( "  1 field_type: "+field_type+ " (IsArray? " + field_type.IsArray+"), arr: "+arr+", dict? "+typeof(IDictionary).IsAssignableFrom(field_type) );
+				if( field_type.IsArray ) {
 					return arr;
 				} else {
-					return Activator.CreateInstance( data_type, arr );
+					return Activator.CreateInstance( field_type, new object[] { arr } );
 				}
+
 			} else {
 				string raw_json = reader.ReadString();
 
-				var json_val = JsonConvert.DeserializeObject( raw_json, data_type );
-
+				var json_val = JsonConvert.DeserializeObject( raw_json, field_type );
+//LogHelpers.Log( "  2 field_type: "+field_type+ " , raw_json: " + raw_json+ ", json_val: "+JsonConvert.SerializeObject(json_val) );
+				
 				return json_val;
 			}
 		}

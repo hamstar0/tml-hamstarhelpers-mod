@@ -9,7 +9,7 @@ using System.Reflection;
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private void ReceiveWithEitherBase( BinaryReader reader, int from_who ) {
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			var mymod = HamstarHelpersMod.Instance;
 			Type mytype = this.GetType();
 
 			try {

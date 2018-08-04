@@ -42,10 +42,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void ReadStreamForwarded( BinaryReader reader ) {
-			this.ReadStream( reader );
+			base.ReadStream( reader );
 		}
 		internal void WriteStreamForwarded( BinaryWriter writer ) {
-			this.WriteStream( writer );
+			base.WriteStream( writer );
 		}
 	}
 

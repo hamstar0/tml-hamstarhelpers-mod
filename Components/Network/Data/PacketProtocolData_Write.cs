@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,38 +10,24 @@ using System.Reflection;
 
 namespace HamstarHelpers.Components.Network.Data {
 	public partial class PacketProtocolData {
-		private static void WriteStreamIntoContainer( BinaryWriter writer, PacketProtocolData data ) {
+		private static void WriteStreamFromContainer( BinaryWriter writer, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
 					continue;
 				}
 
 				object raw_field_val = field.GetValue( data );
-				Type field_type = field.FieldType;
-
-				if( field_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-					( (PacketProtocolData)raw_field_val ).WriteStream( writer );
-				} else {
-					PacketProtocolData.WriteStreamValue( writer, field_type, raw_field_val );
-				}
+//LogHelpers.Log( "WRITE "+ data.GetType().Name+ " FIELD " + field + " VALUE "+(raw_field_val??"null"));
+				//Type raw_field_type = raw_field_val.GetType();
+				
+				PacketProtocolData.WriteStreamValue( writer, field.FieldType, raw_field_val );
 			}
 		}
 
 
 		////////////////
-
+		
 		private static void WriteStreamValue( BinaryWriter writer, Type field_type, object raw_val ) {
-			if( PacketProtocolData.WriteStreamPrimitiveValue(writer, field_type, raw_val) ) {
-				return;
-			}
-
-			PacketProtocolData.WriteStreamObjectValue( writer, field_type, raw_val );
-		}
-
-
-		private static bool WriteStreamPrimitiveValue( BinaryWriter writer, Type field_type, object raw_val ) {
-			bool has_written = true;
-
 			switch( Type.GetTypeCode( field_type ) ) {
 			case TypeCode.String:
 				writer.Write( (String)raw_val );
@@ -70,25 +57,13 @@ namespace HamstarHelpers.Components.Network.Data {
 				writer.Write( (Double)raw_val );
 				break;
 			case TypeCode.Char:
-				if( field_type.IsArray ) {
-					var val = (Char[])raw_val;
-					writer.Write( (Int32)val.Length );
-					writer.Write( val );
-				} else {
-					writer.Write( (Char)raw_val );
-				}
+				writer.Write( (Char)raw_val );
 				break;
 			case TypeCode.SByte:
 				writer.Write( (SByte)raw_val );
 				break;
 			case TypeCode.Byte:
-				if( field_type.IsArray ) {
-					var val = (Byte[])raw_val;
-					writer.Write( (Int32)val.Length );
-					writer.Write( val );
-				} else {
-					writer.Write( (Byte)raw_val );
-				}
+				writer.Write( (Byte)raw_val );
 				break;
 			case TypeCode.Boolean:
 				writer.Write( (Boolean)raw_val );
@@ -96,45 +71,63 @@ namespace HamstarHelpers.Components.Network.Data {
 			case TypeCode.Decimal:
 				writer.Write( (Decimal)raw_val );
 				break;
-			default:
-				has_written = false;
+			case TypeCode.Object:
+				PacketProtocolData.WriteStreamObjectValue( writer, field_type, raw_val );
 				break;
 			}
-
-			return has_written;
+//LogHelpers.Log( " WriteStreamValue "+Type.GetTypeCode( field_type ).ToString()+" - "+field_type+": "+raw_val );
 		}
 
 
 		private static void WriteStreamObjectValue( BinaryWriter writer, Type field_type, object raw_val ) {
-			if( field_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-				PacketProtocolData.WriteStreamIntoContainer( writer, (PacketProtocolData)raw_val );
+			bool is_enumerable = false, is_dictionary = false;
+			string[] data_type_name_chunks = null;
 
-			} else if( field_type.GetInterface( "IEnumerable" ) != null ) {
-				Type[] inner_types = raw_val.GetType().GetGenericArguments();
+			if( field_type.IsInterface ) {
+				data_type_name_chunks = field_type.Name.Split( new char[] { '`' }, 2 );
+
+				switch( data_type_name_chunks[0] ) {
+				case "ISet":
+				case "IList":
+					is_enumerable = true;
+					break;
+				case "IDictionary":
+					is_dictionary = true;
+					break;
+				}
+			}
+
+			if( field_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+				((PacketProtocolData)raw_val).WriteStream( writer );
+
+			} else if( ( is_enumerable || typeof( IEnumerable ).IsAssignableFrom( field_type ) )
+					&& ( !is_dictionary && !typeof( IDictionary ).IsAssignableFrom( field_type ) ) ) {
+				Type[] inner_types = field_type.GetGenericArguments();
 				Type inner_type;
 				
 				if( inner_types.Length == 0 ) {
-					inner_type = raw_val.GetType().GetElementType();
+					inner_type = field_type.GetElementType();
 				} else {
-					inner_type = inner_types.Single();
+					inner_type = inner_types[0];
 				}
 
-				var collection = (IEnumerable<object>)raw_val;
-
+				IEnumerable<object> collection = ((IEnumerable)raw_val).Cast<object>();
+				
 				writer.Write( (ushort)collection.Count() );
 
 				if( inner_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					foreach( object item in collection ) {
-						PacketProtocolData.WriteStreamIntoContainer( writer, (PacketProtocolData)item );
+						((PacketProtocolData)item).WriteStream( writer );
 					}
 				} else {
 					foreach( object item in collection ) {
 						PacketProtocolData.WriteStreamValue( writer, inner_type, item );
 					}
 				}
+
 			} else {
 				string json_enc_val = JsonConvert.SerializeObject( raw_val );
-				writer.Write( (String)json_enc_val );
+				writer.Write( (string)json_enc_val );
 			}
 		}
 	}

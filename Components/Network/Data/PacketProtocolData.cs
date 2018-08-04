@@ -43,7 +43,7 @@ namespace HamstarHelpers.Components.Network.Data {
 		/// </summary>
 		/// <param name="writer">Binary data writer.</param>
 		protected virtual void WriteStream( BinaryWriter writer ) {
-			PacketProtocolData.WriteStreamIntoContainer( writer, this );
+			PacketProtocolData.WriteStreamFromContainer( writer, this );
 		}
 	}
 }

@@ -115,7 +115,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 		
 		protected override void ReadStream( BinaryReader reader ) {
-			CustomEntityCore core = this.Core;
+			var core = new CustomEntityCore( "", 1, 1 );
+			this.Core = core;
 
 			this.ID = (ushort)reader.ReadUInt16();
 
