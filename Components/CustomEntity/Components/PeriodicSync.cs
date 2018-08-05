@@ -1,8 +1,14 @@
-﻿using Terraria;
+﻿using HamstarHelpers.Services.Promises;
+using Terraria.Utilities;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PeriodicSyncEntityComponent : CustomEntityComponent {
+		private static UnifiedRandom MyRand = new UnifiedRandom();
+
+
+		////////////////
+
 		private int LastSynced;
 
 
@@ -10,7 +16,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public PeriodicSyncEntityComponent() {
-			this.LastSynced = Main.rand.Next( 60 * 10 );
+			this.LastSynced = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );
 
 			this.ConfirmLoad();
 		}
@@ -19,9 +25,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		public override void UpdateServer( CustomEntity ent ) {
 			if( this.LastSynced-- <= 0 ) {
-				this.LastSynced = 60 * 10;
+				this.LastSynced = 60 * 30;
 
-				ent.Sync();
+				ent.SyncTo();
 			}
 		}
 	}

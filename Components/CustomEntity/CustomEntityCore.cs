@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -55,14 +56,23 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public CustomEntityCore( string name, int width, int height ) {
+		internal CustomEntityCore() { }
+
+		internal CustomEntityCore( string name, Vector2 position, int width, int height ) {
 			this.DisplayName = name;
+			this.position = position;
 			this.width = width;
 			this.height = height;
 		}
 
-		internal CustomEntityCore Clone() {
-			return (CustomEntityCore)this.MemberwiseClone();
+		internal void CopyFrom( CustomEntityCore copy ) {
+			this.whoAmI = copy.whoAmI;
+			this.DisplayName = copy.DisplayName;
+			this.position = copy.position;
+			this.velocity = copy.velocity;
+			this.width = copy.width;
+			this.height = copy.height;
+			this.direction = copy.direction;
 		}
 	}
 }

@@ -73,34 +73,30 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 		
 		protected override void ReadStream( BinaryReader reader ) {
-			var core = new CustomEntityCore( "", 1, 1 );
-			this.Core = core;
+			CustomEntity new_ent = CustomEntityTemplates.CreateFromTemplateByID( (ushort)reader.ReadUInt16() );
 
-			this.ID = (ushort)reader.ReadUInt16();
-
-			core.whoAmI = (ushort)reader.ReadUInt16();
-			core.DisplayName = (string)reader.ReadString();
-			core.position = new Vector2 {
+			new_ent.Core.whoAmI = (ushort)reader.ReadUInt16();
+			new_ent.Core.DisplayName = (string)reader.ReadString();
+			new_ent.Core.position = new Vector2 {
 				X = (float)reader.ReadSingle(),
 				Y = (float)reader.ReadSingle()
 			};
-			core.direction = (short)reader.ReadInt16();
-			core.width = (ushort)reader.ReadUInt16();
-			core.height = (ushort)reader.ReadUInt16();
-			core.velocity = new Vector2 {
+			new_ent.Core.direction = (short)reader.ReadInt16();
+			new_ent.Core.width = (ushort)reader.ReadUInt16();
+			new_ent.Core.height = (ushort)reader.ReadUInt16();
+			new_ent.Core.velocity = new Vector2 {
 				X = (float)reader.ReadSingle(),
 				Y = (float)reader.ReadSingle()
 			};
-
-			CustomEntity new_ent = CustomEntityTemplates.CreateEntityFromTemplate( this.ID );
-LogHelpers.Log( "READ id: "+this.ID+", who: "+core.whoAmI+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
-LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
+			
+//LogHelpers.Log( "READ id: "+this.ID+", name: "+core.DisplayName+", who: "+core.whoAmI+", total templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+//LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
 
 			for( int i = 0; i < new_ent.Components.Count; i++ ) {
 				new_ent.Components[i].ReadStreamForwarded( reader );
 			}
-
-			this.CopyFrom( new_ent );
+			
+			this.CopyChangesFrom( new_ent );
 		}
 
 
@@ -108,8 +104,8 @@ LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component
 			CustomEntityCore core = this.Core;
 
 			writer.Write( (ushort)this.ID );
-LogHelpers.Log( "WRITE id: "+this.ID+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
-LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
+//LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+//LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
 
 			writer.Write( (ushort)core.whoAmI );
 			writer.Write( (string)core.DisplayName );

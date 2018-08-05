@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 
 
@@ -172,7 +173,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			core.velocity.X = slope_dodge.Z;
 			core.velocity.Y = slope_dodge.W;
 
-			Collision.StepConveyorBelt( core, 1f );
+			try {
+				Collision.StepConveyorBelt( core, 1f );
+			} catch( Exception ) { }
 		}
 	}
 }

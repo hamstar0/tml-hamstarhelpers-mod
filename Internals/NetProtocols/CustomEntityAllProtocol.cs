@@ -31,7 +31,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				CustomEntityManager.Set( ent.Core.whoAmI, ent );
 			}
 
-LogHelpers.Log("Loaded? "+string.Join(", ",CustomEntityManager.GetByComponentType<SaveableEntityComponent>().Select(c=>c.Core.DisplayName)));
+			SaveableEntityComponent.PostLoadAll();
+
 			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
 		}
 	}

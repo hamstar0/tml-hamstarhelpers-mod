@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.Network;
-
+using HamstarHelpers.Helpers.DebugHelpers;
+using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityProtocol : PacketProtocol {
@@ -31,13 +32,24 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
+		protected override void ReceiveWithServer( int from_who ) {
+			var ent = CustomEntityManager.Get( this.Entity.Core.whoAmI );
+			
+			if( ent == null ) {
+				LogHelpers.Log( "HamstarHelpers.CustomEntityProtocol.ReceiveWithServer - Could not find existing entity for " + this.Entity.ToString() );
+				return;
+			}
+			
+			ent.SyncFrom( this.Entity );
+		}
+
 		protected override void ReceiveWithClient() {
 			var ent = CustomEntityManager.Get( this.Entity.Core.whoAmI );
 
 			if( ent == null ) {
 				CustomEntityManager.Set( this.Entity.Core.whoAmI, this.Entity );
 			} else {
-				ent.CopyFrom( this.Entity );
+				ent.SyncFrom( this.Entity );
 			}
 		}
 	}

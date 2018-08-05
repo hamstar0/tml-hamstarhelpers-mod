@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,50 +32,41 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		[JsonConstructor]
-		internal CustomEntity() { }
+		internal CustomEntity() {
+			this.ID = -1;
+		}
 
-		internal CustomEntity( int id, string name, int width, int height, IList<CustomEntityComponent> components ) {
+		internal CustomEntity( int id, string name, Vector2 position, int width, int height, IList<CustomEntityComponent> components ) {
 			this.ID = id;
-			this.Core = new CustomEntityCore( name, width, height );
-			this.Components = components;
-			//this.Components = components.Select( c => c.Clone() ?? c ).ToList();
+			this.Core = new CustomEntityCore( name, position, width, height );
+			this.Components = components.Select( c => c.Clone() ?? c ).ToList();
 		}
 
 		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.ID = CustomEntityTemplates.GetTemplateID( components );
-			//if( this.ID == -1 ) {
-			//	throw new NotImplementedException( "No custom entity ID found to match to new entity called "+core.DisplayName
-			//		+ ". Components: "+string.Join(", ", components.Select(c=>c.GetType().Name)) );
-			//}
+			this.ID = CustomEntityTemplates.GetID( components );
+			if( this.ID == -1 ) {
+				throw new NotImplementedException( "No custom entity ID found to match to new entity called " + core.DisplayName
+					+ ". Components: " + string.Join( ", ", components.Select( c => c.GetType().Name ) ) );
+			}
 
 			this.Core = core;
 			this.Components = components;
-			//this.Components = components.Select( c => c.Clone() ?? c ).ToList();
+			this.Components = components.Select( c => c.Clone() ?? c ).ToList();
 		}
 
 		////////////////
 
-		public void CopyFrom( CustomEntity copy ) {
+		public void CopyChangesFrom( CustomEntity copy ) {	// TODO: Actually copy changes only!
+			if( this.ID == -1 ) {
+				this.Core = new CustomEntityCore();
+			}
+
 			this.ID = copy.ID;
-			this.Core = copy.Core.Clone();
-			this.Components = copy.Components;
-			//this.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
+			this.Core.CopyFrom( copy.Core );
+			this.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
 
 			this.ComponentsByTypeName.Clear();
 			this.AllComponentsByTypeName.Clear();
-		}
-
-
-		internal CustomEntity Clone() {
-			var copy = (CustomEntity)this.MemberwiseClone();
-
-			copy.Core = copy.Core.Clone();
-			//copy.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
-
-			copy.ComponentsByTypeName.Clear();
-			copy.AllComponentsByTypeName.Clear();
-
-			return copy;
 		}
 
 
@@ -118,7 +110,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public void Sync() {
+		public void SyncTo() {
 			if( Main.netMode == 2 ) {
 				CustomEntityProtocol.SendToClients( this );
 			} else if( Main.netMode == 1 ) {
@@ -126,6 +118,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 			} else {
 				throw new Exception( "Multiplayer only." );
 			}
+		}
+
+
+		internal void SyncFrom( CustomEntity ent ) {
+			this.CopyChangesFrom( ent );
 		}
 
 
@@ -153,6 +150,28 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 				break;
 			}
+		}
+
+
+		////////////////
+
+		public override string ToString() {
+			string basename = "";
+			string typeid = "type "+this.ID;
+			string who = "";
+
+			if( this.Core == null ) {
+				basename = "Undefined entity";
+			} else {
+				basename = this.Core.DisplayName;
+				who = ", who " + this.Core.whoAmI;
+			}
+
+			if( this.Components != null ) {
+				typeid = typeid + ":"+this.Components.Count();
+			}
+
+			return basename + " ("+ typeid + who + ")";
 		}
 	}
 }

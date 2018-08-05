@@ -51,11 +51,11 @@
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
     <Reference Include="Terraria.Libraries.ReLogic.ReLogic">
       <HintPath>..\..\..\Reference\Terraria.Libraries.ReLogic.ReLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="tModLoaderServerDebug">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServerDebug.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +264,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\"</PostBuildEvent>
+    <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServerDebug.exe" -build "$(ProjectDir)\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

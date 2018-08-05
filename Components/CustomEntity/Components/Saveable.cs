@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		internal readonly static object MyValidatorKey;
 		public readonly static PromiseValidator LoadAllValidator;
 
-		private readonly static object LoadAllDataKey = new object();
+		internal readonly static object LoadAllDataKey = new object();
 
 
 		////////////////
@@ -25,6 +25,16 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			SaveableEntityComponent.MyValidatorKey = new object();
 			SaveableEntityComponent.LoadAllValidator = new PromiseValidator( SaveableEntityComponent.MyValidatorKey );
 			SaveableEntityComponent.LoadAllDataKey = new object();
+		}
+
+		internal static void PostLoadAll() {
+			DataStore.Set( SaveableEntityComponent.LoadAllDataKey, true );
+
+			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
+		}
+
+		internal static void PostUnloadAll() {
+			DataStore.Remove( SaveableEntityComponent.LoadAllDataKey );
 		}
 
 
@@ -64,9 +74,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 						LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - " + e.ToString() );
 					}
 
-					DataStore.Set( SaveableEntityComponent.LoadAllDataKey, true );
-
-					Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
+					SaveableEntityComponent.PostLoadAll();
 
 					return true;
 				} );
@@ -79,7 +87,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				} );
 
 				Promises.AddPostWorldUnloadEachPromise( () => {
-					DataStore.Remove( SaveableEntityComponent.LoadAllDataKey );
+					SaveableEntityComponent.PostUnloadAll();
 				} );
 
 				Promises.AddValidatedPromise( PlayerLogicPromiseValidator.ServerConnectValidator, () => {
@@ -139,7 +147,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( success ) {
 				foreach( var ent in ents ) {
 					if( ent != null ) {
-						CustomEntityTemplates.AddEntityTemplate( ent );
+						CustomEntityTemplates.Add( ent );
 					}
 				}
 				foreach( var ent in ents ) {
