@@ -88,7 +88,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 				X = (float)reader.ReadSingle(),
 				Y = (float)reader.ReadSingle()
 			};
-			
 //LogHelpers.Log( "READ id: "+this.ID+", name: "+core.DisplayName+", who: "+core.whoAmI+", total templates: "+ CustomEntityTemplates.TotalEntityTemplates());
 //LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
 
@@ -96,6 +95,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				new_ent.Components[i].ReadStreamForwarded( reader );
 			}
 			
+//LogHelpers.Log( "READ "+new_ent.ToString()+" pos:"+new_ent.Core.position );
 			this.CopyChangesFrom( new_ent );
 		}
 
@@ -120,6 +120,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			for( int i=0; i<this.Components.Count; i++ ) {
 				this.Components[i].WriteStreamForwarded( writer );
 			}
+//LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
 		}
 	}
 }

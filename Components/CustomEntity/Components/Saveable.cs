@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
@@ -22,14 +23,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		static SaveableEntityComponent() {
+			SaveableEntityComponent.LoadAllDataKey = new object();
 			SaveableEntityComponent.MyValidatorKey = new object();
 			SaveableEntityComponent.LoadAllValidator = new PromiseValidator( SaveableEntityComponent.MyValidatorKey );
-			SaveableEntityComponent.LoadAllDataKey = new object();
 		}
 
 		internal static void PostLoadAll() {
 			DataStore.Set( SaveableEntityComponent.LoadAllDataKey, true );
-
+			
 			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
 		}
 
@@ -73,7 +74,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					} catch( Exception e ) {
 						LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - " + e.ToString() );
 					}
-
+					
 					SaveableEntityComponent.PostLoadAll();
 
 					return true;
@@ -88,6 +89,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 				Promises.AddPostWorldUnloadEachPromise( () => {
 					SaveableEntityComponent.PostUnloadAll();
+					DataStore.Remove( SaveableEntityComponent.LoadAllDataKey );
 				} );
 
 				Promises.AddValidatedPromise( PlayerLogicPromiseValidator.ServerConnectValidator, () => {
@@ -107,7 +109,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private SaveableEntityComponent() { }
+		private SaveableEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		public SaveableEntityComponent( bool as_json ) {
 			this.AsJson = as_json;

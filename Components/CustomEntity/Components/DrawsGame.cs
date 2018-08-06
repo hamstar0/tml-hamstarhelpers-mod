@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
@@ -35,8 +36,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private DrawsInGameEntityComponent() { }
-
+		private DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
+		
 		public DrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
 			this.ModName = src_mod_name;
 			this.TexturePath = rel_texture_path;

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -6,6 +7,8 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
+		private RespectsTerrainEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
+
 		public RespectsTerrainEntityComponent() {
 			this.ConfirmLoad();
 		}

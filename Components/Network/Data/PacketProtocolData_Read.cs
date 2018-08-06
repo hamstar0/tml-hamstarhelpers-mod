@@ -8,7 +8,10 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Components.Network.Data {
-	public partial class PacketProtocolData {
+	/// <summary>
+	/// Provides a way to automatically ensure order of fields for transmission.
+	/// </summary>
+	public abstract partial class PacketProtocolData {
 		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData field_container ) {
 			foreach( FieldInfo field in field_container.OrderedFields ) {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
@@ -105,7 +108,9 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 
 			if( field_type.IsSubclassOf( typeof(PacketProtocolData) ) ) {
-				var item = (PacketProtocolData)Activator.CreateInstance( field_type, true );
+				//var item = (PacketProtocolData)Activator.CreateInstance( field_type, true );
+				var item = (PacketProtocolData)Activator.CreateInstance( field_type, BindingFlags.NonPublic | BindingFlags.Instance,
+					null, new object[] { HamstarHelpersMod.Instance.PacketProtocolCtorLock }, null );
 
 				item.ReadStream( reader );
 				

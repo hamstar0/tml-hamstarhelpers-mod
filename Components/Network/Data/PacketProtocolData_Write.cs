@@ -9,7 +9,10 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Components.Network.Data {
-	public partial class PacketProtocolData {
+	/// <summary>
+	/// Provides a way to automatically ensure order of fields for transmission.
+	/// </summary>
+	public abstract partial class PacketProtocolData {
 		private static void WriteStreamFromContainer( BinaryWriter writer, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {

@@ -1,4 +1,6 @@
-﻿using HamstarHelpers.Services.Promises;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Services.Promises;
+using Terraria;
 using Terraria.Utilities;
 
 
@@ -15,6 +17,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
+		private PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : this() { }
+
 		public PeriodicSyncEntityComponent() {
 			this.LastSynced = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );
 
@@ -27,6 +31,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( this.LastSynced-- <= 0 ) {
 				this.LastSynced = 60 * 30;
 
+Main.NewText( "SYNC "+Main.netMode );
 				ent.SyncTo();
 			}
 		}

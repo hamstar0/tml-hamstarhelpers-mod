@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private DrawsOnMapEntityComponent() { }
+		private DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		public DrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale ) {
 			this.ModName = src_mod_name;

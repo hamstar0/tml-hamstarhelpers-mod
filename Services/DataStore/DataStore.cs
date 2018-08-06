@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Services.DataStore {
@@ -20,7 +21,7 @@ namespace HamstarHelpers.Services.DataStore {
 			lock( DataStore.MyLock ) {
 				success = HamstarHelpersMod.Instance.DataStore.Data.TryGetValue( key, out val );
 			}
-
+			
 			return val;
 		}
 

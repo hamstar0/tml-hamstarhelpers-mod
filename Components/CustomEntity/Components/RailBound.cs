@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
@@ -14,6 +15,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		////////////////
+
+		private RailBoundEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		public RailBoundEntityComponent() {
 			this.ConfirmLoad();

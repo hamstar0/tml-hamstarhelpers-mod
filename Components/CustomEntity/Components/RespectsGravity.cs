@@ -1,9 +1,12 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsGravityEntityComponent : CustomEntityComponent {
+		private RespectsGravityEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
+
 		public RespectsGravityEntityComponent() {
 			this.ConfirmLoad();
 		}

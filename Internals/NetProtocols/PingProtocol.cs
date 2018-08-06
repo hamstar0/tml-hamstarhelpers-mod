@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -17,7 +18,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private PingProtocol() { }
+		private PingProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+
+		////////////////
 
 		protected override void SetClientDefaults() {
 			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;

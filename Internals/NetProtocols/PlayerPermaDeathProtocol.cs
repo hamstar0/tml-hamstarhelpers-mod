@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using Terraria;
 
@@ -24,7 +25,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private PlayerPermaDeathProtocol() { }
+		private PlayerPermaDeathProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		private PlayerPermaDeathProtocol( int player_who, string msg ) {
 			this.PlayerWho = player_who;

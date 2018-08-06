@@ -2,19 +2,17 @@
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Components.CustomEntity;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Internals.ControlPanel.Inbox;
+using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Timers;
-using HamstarHelpers.Internals.WebRequests;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
@@ -26,8 +24,11 @@ using HamstarHelpers.Helpers.ItemHelpers;
 using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.ProjectileHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
-using HamstarHelpers.Components.CustomEntity;
-using HamstarHelpers.Services.DataStore;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
@@ -42,16 +43,14 @@ namespace HamstarHelpers {
 
 		internal JsonConfig<HamstarHelpersConfigData> ConfigJson;
 		public HamstarHelpersConfigData Config { get { return ConfigJson.Data; } }
-
-		internal IDictionary<int, Type> OldPacketProtocols = new Dictionary<int, Type>();
-		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
-
-
+		
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;
 		internal MenuUIManager MenuUIMngr;
 		internal MenuItemManager MenuItemMngr;
 		internal CustomEntityManager CustomEntMngr;
+		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
+		internal PacketProtocolDataConstructorLock PacketProtocolCtorLock = new PacketProtocolDataConstructorLock();
 
 		// Services
 		internal Promises Promises;

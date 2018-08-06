@@ -8,6 +8,13 @@ using System.Text;
 
 
 namespace HamstarHelpers.Components.Network {
+	/*/// <summary>
+	/// Sets a non-public field to not be ignored by a protocol.
+	/// </summary>
+	public class PacketProtocolNonPublicAttribute : Attribute { }*/		//TODO
+
+
+
 	/// <summary>
 	/// Sets a field to be ignored by a protocol.
 	/// </summary>
@@ -45,7 +52,9 @@ namespace HamstarHelpers.Components.Network {
 			IDictionary<int, Type> protocol_type_map = new Dictionary<int, Type>();
 
 			foreach( Type subclass in protocol_types ) {
-				if( subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null, Type.EmptyTypes, null ) == null ) {
+				ConstructorInfo ctor_info = subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+					new Type[] { typeof(PacketProtocolDataConstructorLock) }, null );
+				if( ctor_info == null ) {
 					throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
 				}
 

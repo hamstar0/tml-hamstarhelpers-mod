@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Services.DataDumper;
@@ -7,7 +8,9 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class DataDumpProtocol : PacketProtocol {
-		private DataDumpProtocol() { }
+		private DataDumpProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+
+		////////////////
 
 		protected override void SetServerDefaults() { }
 

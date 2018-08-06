@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -27,7 +28,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private PlayerDataProtocol() { }
+		private PlayerDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+
+		////////////////
 
 		private PlayerDataProtocol( int player_who, ISet<int> perma_buff_ids, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			this.PlayerWho = player_who;

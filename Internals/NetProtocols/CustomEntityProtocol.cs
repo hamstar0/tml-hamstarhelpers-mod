@@ -1,7 +1,8 @@
 ﻿using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
-using Terraria;
+
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityProtocol : PacketProtocol {
@@ -24,8 +25,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private CustomEntityProtocol() { }
-
+		private CustomEntityProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+		
 		private CustomEntityProtocol( CustomEntity ent ) {
 			this.Entity = ent;
 		}

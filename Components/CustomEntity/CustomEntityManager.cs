@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -61,6 +62,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal void Update() {
+			if( !LoadHelpers.IsWorldBeingPlayed() ) { return; }
+
 			foreach( CustomEntity ent in this.EntitiesByIndexes.Values.ToArray() ) {
 				ent.Update();
 			}

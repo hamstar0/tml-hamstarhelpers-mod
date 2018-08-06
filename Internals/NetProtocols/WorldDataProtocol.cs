@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.WorldHelpers;
 using Terraria;
 
@@ -12,7 +13,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private WorldDataProtocol() { }
+		private WorldDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+
+		////////////////
 
 		protected override void SetServerDefaults() {
 			var mymod = HamstarHelpersMod.Instance;
