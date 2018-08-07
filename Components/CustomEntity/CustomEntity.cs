@@ -31,15 +31,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		private CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : this() { }
+
 		[JsonConstructor]
 		internal CustomEntity() {
 			this.ID = -1;
 		}
 
+
 		internal CustomEntity( int id, string name, Vector2 position, int width, int height, IList<CustomEntityComponent> components ) {
 			this.ID = id;
 			this.Core = new CustomEntityCore( name, position, width, height );
-			this.Components = components.Select( c => c.Clone() ?? c ).ToList();
+			this.Components = components.Select( c => c.InternalClone() ).ToList();
 		}
 
 		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {
@@ -50,8 +53,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			this.Core = core;
-			this.Components = components;
-			this.Components = components.Select( c => c.Clone() ?? c ).ToList();
+			this.Components = components.Select( c => c.InternalClone() ).ToList();
 		}
 
 		////////////////
@@ -63,7 +65,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			this.ID = copy.ID;
 			this.Core.CopyFrom( copy.Core );
-			this.Components = copy.Components.Select( c => c.Clone() ?? c ).ToList();
+			this.Components = copy.Components.Select( c => c.InternalClone() ).ToList();
 
 			this.ComponentsByTypeName.Clear();
 			this.AllComponentsByTypeName.Clear();
@@ -101,10 +103,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			int idx;
 
-			if( !this.AllComponentsByTypeName.TryGetValue( typeof( T ).Name, out idx ) ) {
+			if( !this.AllComponentsByTypeName.TryGetValue( typeof(T).Name, out idx ) ) {
 				return null;
 			}
-			return (T)this.Components[idx];
+			return (T)this.Components[ idx ];
 		}
 
 

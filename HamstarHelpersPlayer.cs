@@ -100,6 +100,7 @@ namespace HamstarHelpers {
 
 		public override void ProcessTriggers( TriggersSet triggers_set ) {
 			var mymod = (HamstarHelpersMod)this.mod;
+			bool success;
 
 			if( mymod.ControlPanelHotkey.JustPressed ) {
 				if( mymod.Config.DisableControlPanelHotkey ) {
@@ -114,7 +115,7 @@ namespace HamstarHelpers {
 			}
 
 			if( mymod.DataDumpHotkey.JustPressed ) {
-				string file_name = DataDumper.DumpToFile();
+				string file_name = DataDumper.DumpToFile( out success );
 				Main.NewText( "Dumped latest debug data to log file "+file_name, Color.Azure );
 			}
 		}

@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -44,6 +45,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Promises.AddPostWorldUnloadEachPromise( () => {
 				this.EntitiesByIndexes.Clear();
 				this.EntitiesByComponentType.Clear();
+			} );
+
+			DataDumper.SetDumpSource( "CustomEntityList", () => {
+				return string.Join( "\n  ", this.EntitiesByIndexes.OrderBy( kv => kv.Key )
+					.Select( kv => kv.Key+": "+kv.Value.ToString() )
+				);
 			} );
 		}
 

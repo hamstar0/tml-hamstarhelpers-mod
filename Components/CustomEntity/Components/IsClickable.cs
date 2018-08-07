@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 
 

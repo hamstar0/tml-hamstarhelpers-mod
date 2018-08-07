@@ -13,7 +13,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		////////////////
-		
+
 		private void UpdateMe( CustomEntity ent ) {
 			Entity core = ent.Core;
 			float gravity = 0.1f;

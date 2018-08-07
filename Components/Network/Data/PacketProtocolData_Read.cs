@@ -108,9 +108,7 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 
 			if( field_type.IsSubclassOf( typeof(PacketProtocolData) ) ) {
-				//var item = (PacketProtocolData)Activator.CreateInstance( field_type, true );
-				var item = (PacketProtocolData)Activator.CreateInstance( field_type, BindingFlags.NonPublic | BindingFlags.Instance,
-					null, new object[] { HamstarHelpersMod.Instance.PacketProtocolCtorLock }, null );
+				PacketProtocolData item = PacketProtocolData.CreateData( field_type );
 
 				item.ReadStream( reader );
 				

@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using System;
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Services.DataDumper {
 			string now_seconds_decimal = ( now_seconds - (int)now_seconds ).ToString( "N2" );
 			string now = now_seconds_whole + "." + ( now_seconds_decimal.Length > 2 ? now_seconds_decimal.Substring( 2 ) : now_seconds_decimal );
 
-			return prefix + "_"+netmode +"_"+now + "_dump.json";
+			return prefix + "_"+netmode +"_"+now + "_dump.txt";
 		}
 
 
@@ -75,8 +75,8 @@ namespace HamstarHelpers.Services.DataDumper {
 
 		////////////////
 
-		public static string DumpToFile() {
-			IDictionary<string, string> data;
+		public static string DumpToFile( out bool success ) {
+			string data;
 			IDictionary<string, Func<string>> dumpables = DataDumper.GetDumpables();
 
 			Func<KeyValuePair<string, Func<string>>, string> getKey = ( kv ) => {
@@ -85,20 +85,25 @@ namespace HamstarHelpers.Services.DataDumper {
 			};
 
 			lock( DataDumper.MyLock ) {
-				data = dumpables.ToDictionary( kv => kv.Key, getKey );
+				data = string.Join( "\n", dumpables
+					.ToDictionary( kv => kv.Key, getKey )
+					.Select( kv=>kv.Key+":\n"+kv.Value )
+				);
 			}
 			
 			string file_name = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
 			string rel_path = "Logs" + Path.DirectorySeparatorChar + "Dumps";
-			var json_file = new JsonConfig<IDictionary<string, string>>( file_name, rel_path, data );
+			string full_path = Main.SavePath + Path.DirectorySeparatorChar + rel_path + Path.DirectorySeparatorChar + file_name;
+			
+			success = FileHelpers.SaveTextFile( data, full_path, false, false );
 
-			json_file.SaveFile();
-
-			// Allow admins to dump on behalf of server, also
-			if( Main.netMode == 1 ) {
-				bool success;
-				if( UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out success ) ) {
-					PacketProtocol.QuickRequestToServer<DataDumpProtocol>();
+			if( success ) {
+				// Allow admins to dump on behalf of server, also
+				if( Main.netMode == 1 ) {
+					bool priv_success;
+					if( UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out priv_success ) ) {
+						PacketProtocol.QuickRequestToServer<DataDumpProtocol>();
+					}
 				}
 			}
 

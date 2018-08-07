@@ -27,8 +27,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.IsInitialized = true;
 		}
 
-		public virtual CustomEntityComponent Clone() {
-			return (CustomEntityComponent)null;
+		internal CustomEntityComponent InternalClone() {
+			return this.Clone();
+		}
+
+		protected virtual CustomEntityComponent Clone() {
+			return (CustomEntityComponent)this.MemberwiseClone();
 		}
 
 

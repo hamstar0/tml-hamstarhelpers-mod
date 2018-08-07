@@ -17,6 +17,15 @@ namespace HamstarHelpers.Components.Network.Data {
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
 	public abstract partial class PacketProtocolData {
+		internal static PacketProtocolData CreateData( Type protocol_type ) {
+			//var item = (PacketProtocolData)Activator.CreateInstance( field_type, true );
+			return (PacketProtocolData)Activator.CreateInstance( protocol_type, BindingFlags.NonPublic | BindingFlags.Instance,
+				null, new object[] { HamstarHelpersMod.Instance.PacketProtocolCtorLock }, null );
+		}
+
+
+		////////////////
+
 		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
 
 		internal IOrderedEnumerable<FieldInfo> OrderedFields {

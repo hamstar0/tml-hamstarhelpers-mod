@@ -105,6 +105,8 @@
     <Compile Include="HamstarHelpersMod_Draw.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\DotNetHelpers\FileHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\FileHelpers_Binary.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers_Rarity.cs" />
     <Compile Include="Helpers\MiscHelpers\PaintHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerModHelpers.cs" />
@@ -135,7 +137,7 @@
     <Compile Include="Helpers\DotNetHelpers\SystemHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\SteamHelpers.cs" />
     <Compile Include="Helpers\EntityHelpers\EntityHelpers.cs" />
-    <Compile Include="Helpers\DotNetHelpers\FileHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\FileHelpers_Text.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />

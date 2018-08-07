@@ -120,12 +120,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public override CustomEntityComponent Clone() {
-			return (SaveableEntityComponent)this.MemberwiseClone();
-		}
-
-		////////////////
-
 		public string GetFileNameBase() {
 			return "world_" + WorldHelpers.GetUniqueIdWithSeed() + "_ents";
 		}

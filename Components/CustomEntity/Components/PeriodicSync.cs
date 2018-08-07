@@ -30,8 +30,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public override void UpdateServer( CustomEntity ent ) {
 			if( this.LastSynced-- <= 0 ) {
 				this.LastSynced = 60 * 30;
-
-Main.NewText( "SYNC "+Main.netMode );
+				
 				ent.SyncTo();
 			}
 		}

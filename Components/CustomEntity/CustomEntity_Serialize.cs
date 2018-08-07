@@ -90,7 +90,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			};
 //LogHelpers.Log( "READ id: "+this.ID+", name: "+core.DisplayName+", who: "+core.whoAmI+", total templates: "+ CustomEntityTemplates.TotalEntityTemplates());
 //LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
-
+			
 			for( int i = 0; i < new_ent.Components.Count; i++ ) {
 				new_ent.Components[i].ReadStreamForwarded( reader );
 			}
