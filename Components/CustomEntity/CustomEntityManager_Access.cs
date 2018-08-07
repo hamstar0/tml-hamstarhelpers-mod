@@ -7,16 +7,16 @@ using System.Linq;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public static CustomEntity Get( int idx ) {
+		public static CustomEntity GetEntityByWho( int who ) {
 			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
 
 			CustomEntity ent = null;
-			mngr.EntitiesByIndexes.TryGetValue( idx, out ent );
+			mngr.EntitiesByIndexes.TryGetValue( who, out ent );
 			return ent;
 		}
 
 
-		public static void Set( int idx, CustomEntity ent ) {
+		public static void SetEntityByWho( int who, CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 
 			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
@@ -34,64 +34,64 @@ namespace HamstarHelpers.Components.CustomEntity {
 					if( !mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
 						mngr.EntitiesByComponentType[comp_type] = new HashSet<int>();
 					}
-					mngr.EntitiesByComponentType[comp_type].Add( idx );
+					mngr.EntitiesByComponentType[comp_type].Add( who );
 
 					comp_type = comp_type.BaseType;
 				} while( comp_type != base_type );
 			}
 
-			ent.Core.whoAmI = idx;
-			mngr.EntitiesByIndexes[idx] = ent;
+			ent.Core.whoAmI = who;
+			mngr.EntitiesByIndexes[who] = ent;
 		}
 
 
 		////////////////
 
-		public static int Add( CustomEntity ent ) {
+		public static int AddEntity( CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 
 			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
 
 			int idx = mngr.EntitiesByIndexes.Count;
 
-			CustomEntityManager.Set( idx, ent );
+			CustomEntityManager.SetEntityByWho( idx, ent );
 
 			return idx;
 		}
 
 
-		public static void Remove( CustomEntity ent ) {
+		public static void RemoveEntity( CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 
-			CustomEntityManager.Remove( ent.Core.whoAmI );
+			CustomEntityManager.RemoveEntityByWho( ent.Core.whoAmI );
 		}
 
-		public static void Remove( int idx ) {
+		public static void RemoveEntityByWho( int who ) {
 			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
 
-			if( !mngr.EntitiesByIndexes.ContainsKey( idx ) ) { return; }
+			if( !mngr.EntitiesByIndexes.ContainsKey( who ) ) { return; }
 
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
 
-			IList<CustomEntityComponent> ent_components = mngr.EntitiesByIndexes[idx].Components;
+			IList<CustomEntityComponent> ent_components = mngr.EntitiesByIndexes[who].Components;
 
 			foreach( CustomEntityComponent component in ent_components ) {
 				comp_type = component.GetType();
 				do {
 					if( mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-						mngr.EntitiesByComponentType[comp_type].Remove( idx );
+						mngr.EntitiesByComponentType[comp_type].Remove( who );
 					}
 
 					comp_type = comp_type.BaseType;
 				} while( comp_type != base_type );
 			}
 
-			mngr.EntitiesByIndexes.Remove( idx );
+			mngr.EntitiesByIndexes.Remove( who );
 		}
 
 
-		public static void Clear() {
+		public static void ClearAllEntities() {
 			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
 
 			mngr.EntitiesByIndexes.Clear();
@@ -102,7 +102,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public static ISet<CustomEntity> GetByComponentType<T>() where T : CustomEntityComponent {
+		public static ISet<CustomEntity> GetEntitiesByComponent<T>() where T : CustomEntityComponent {
 			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
 
 			ISet<int> ent_idxs = new HashSet<int>();

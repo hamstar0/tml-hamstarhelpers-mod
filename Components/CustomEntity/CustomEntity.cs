@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.CustomEntity.Templates;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
-using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -38,23 +38,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.ID = -1;
 		}
 
-
-		internal CustomEntity( int id, string name, Vector2 position, int width, int height, IList<CustomEntityComponent> components ) {
-			this.ID = id;
-			this.Core = new CustomEntityCore( name, position, width, height );
-			this.Components = components.Select( c => c.InternalClone() ).ToList();
-		}
-
 		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.ID = CustomEntityTemplates.GetID( components );
+			this.ID = CustomEntityTemplateManager.GetID( components );
 			if( this.ID == -1 ) {
 				throw new NotImplementedException( "No custom entity ID found to match to new entity called " + core.DisplayName
 					+ ". Components: " + string.Join( ", ", components.Select( c => c.GetType().Name ) ) );
 			}
 
 			this.Core = core;
-			this.Components = components.Select( c => c.InternalClone() ).ToList();
+			this.Components = components;
 		}
+
 
 		////////////////
 
@@ -62,9 +56,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( this.ID == -1 ) {
 				this.Core = new CustomEntityCore();
 			}
-
 			this.ID = copy.ID;
+
 			this.Core.CopyFrom( copy.Core );
+
 			this.Components = copy.Components.Select( c => c.InternalClone() ).ToList();
 
 			this.ComponentsByTypeName.Clear();

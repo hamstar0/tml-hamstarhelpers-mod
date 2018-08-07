@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.CustomEntity.Components;
+using HamstarHelpers.Components.CustomEntity.Templates;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
@@ -14,7 +15,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		internal CustomEntityTemplates Templates;
+		internal CustomEntityTemplateManager TemplateMngr;
 
 		internal readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
 		internal readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
@@ -24,7 +25,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal CustomEntityManager() {
-			this.Templates = new CustomEntityTemplates();
+			this.TemplateMngr = new CustomEntityTemplateManager();
 
 			Main.OnTick += CustomEntityManager._Update;
 

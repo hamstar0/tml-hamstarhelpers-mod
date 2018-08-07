@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithClient() {
 			foreach( CustomEntity ent in this.Entities ) {
-				CustomEntityManager.Set( ent.Core.whoAmI, ent );
+				CustomEntityManager.SetEntityByWho( ent.Core.whoAmI, ent );
 			}
 
 			SaveableEntityComponent.PostLoadAll();

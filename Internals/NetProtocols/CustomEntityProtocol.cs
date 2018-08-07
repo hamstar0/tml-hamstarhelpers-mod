@@ -34,7 +34,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void ReceiveWithServer( int from_who ) {
-			var ent = CustomEntityManager.Get( this.Entity.Core.whoAmI );
+			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 			
 			if( ent == null ) {
 				LogHelpers.Log( "HamstarHelpers.CustomEntityProtocol.ReceiveWithServer - Could not find existing entity for " + this.Entity.ToString() );
@@ -45,10 +45,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		protected override void ReceiveWithClient() {
-			var ent = CustomEntityManager.Get( this.Entity.Core.whoAmI );
+			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 
 			if( ent == null ) {
-				CustomEntityManager.Set( this.Entity.Core.whoAmI, this.Entity );
+				CustomEntityManager.SetEntityByWho( this.Entity.Core.whoAmI, this.Entity );
 			} else {
 				ent.SyncFrom( this.Entity );
 			}

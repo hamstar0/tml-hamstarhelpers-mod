@@ -58,11 +58,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal CustomEntityCore() { }
 
-		internal CustomEntityCore( string name, Vector2 position, int width, int height ) {
+		internal CustomEntityCore( string name, int width, int height, Vector2 position, int direction ) {
 			this.DisplayName = name;
 			this.position = position;
 			this.width = width;
 			this.height = height;
+			this.direction = direction;
 		}
 
 		internal void CopyFrom( CustomEntityCore copy ) {

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.CustomEntity.Templates;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.MiscHelpers;
@@ -143,12 +144,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( success ) {
 				foreach( var ent in ents ) {
 					if( ent != null ) {
-						CustomEntityTemplates.Add( ent );
+						CustomEntityTemplateManager.Add( new CustomEntityTemplate(ent) );
 					}
 				}
 				foreach( var ent in ents ) {
 					if( ent != null ) {
-						CustomEntityManager.Add( ent );
+						CustomEntityManager.AddEntity( ent );
 					}
 				}
 			}
@@ -161,7 +162,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = HamstarHelpersMod.Instance;
 			string file_name = this.GetFileNameBase();
 
-			ISet<CustomEntity> ents = CustomEntityManager.GetByComponentType<SaveableEntityComponent>();
+			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>();
 			ents = new HashSet<CustomEntity>(
 				ents.Where(
 					ent => ent.GetComponentByType<SaveableEntityComponent>().AsJson == this.AsJson

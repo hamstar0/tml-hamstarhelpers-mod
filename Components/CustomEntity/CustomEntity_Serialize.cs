@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.CustomEntity.Templates;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using Microsoft.Xna.Framework;
@@ -73,7 +74,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 		
 		protected override void ReadStream( BinaryReader reader ) {
-			CustomEntity new_ent = CustomEntityTemplates.CreateFromTemplateByID( (ushort)reader.ReadUInt16() );
+			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( (ushort)reader.ReadUInt16() );
 
 			new_ent.Core.whoAmI = (ushort)reader.ReadUInt16();
 			new_ent.Core.DisplayName = (string)reader.ReadString();
