@@ -27,7 +27,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public override void UpdateClient( CustomEntity ent ) {
+		public void UpdateMe( CustomEntity ent ) {
 			if( this.LastSynced-- <= 0 ) {
 				this.LastSynced = 60 * 15;
 
@@ -36,11 +36,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		}
 
 		public override void UpdateServer( CustomEntity ent ) {
-			if( this.LastSynced-- <= 0 ) {
-				this.LastSynced = 60 * 15;
-				
-				ent.SyncTo();
-			}
+			this.UpdateMe( ent );
 		}
 	}
 }
