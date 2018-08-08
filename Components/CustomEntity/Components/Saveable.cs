@@ -11,6 +11,7 @@ using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
@@ -175,6 +176,23 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				} else {
 					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings, ents );
 				}
+			}
+		}
+
+
+		////////////////
+
+		protected virtual void OnLoadSingle( CustomEntity ent ) { }
+		protected virtual void OnLoadClient( CustomEntity ent ) { }
+		protected virtual void OnLoadServer( CustomEntity ent ) { }
+
+		internal void InternalOnLoad( CustomEntity ent ) {
+			if( Main.netMode == 0 ) {
+				this.OnLoadSingle( ent );
+			} else if( Main.netMode == 1 ) {
+				this.OnLoadClient( ent );
+			} else {
+				this.OnLoadServer( ent );
 			}
 		}
 	}

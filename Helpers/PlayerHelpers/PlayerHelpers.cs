@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Internals.NetProtocols;
+using HamstarHelpers.Services.DataStore;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Services.DataStore;
 using System.Collections.Generic;
 
 
@@ -262,7 +262,16 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			player.downedDD2EventAnyDifficulty = false;
 			player.taxMoney = 0;
 
-			Terraria.ModLoader.PlayerHooks.SetStartInventory( player );
+			PlayerHooks.SetStartInventory( player );
+		}
+
+
+		public static void LockdownPlayerPerTick( Player player ) {
+			player.noItems = true;
+			player.noBuilding = true;
+			player.stoned = true;
+			player.immune = true;
+			player.immuneTime = 2;
 		}
 
 

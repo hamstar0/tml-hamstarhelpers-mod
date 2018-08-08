@@ -64,8 +64,12 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 
-		public static void ClearValidatedPromise( PromiseValidator validator ) {
+		public static void ClearValidatedPromise( PromiseValidator validator, object validator_key ) {
 			var mymod = HamstarHelpersMod.Instance;
+
+			if( validator.ValidatorKey != validator_key ) {
+				throw new Exception( "Validation failed." );
+			}
 
 			mymod.Promises.ValidatedPromiseConditionsMet.Remove( validator );
 

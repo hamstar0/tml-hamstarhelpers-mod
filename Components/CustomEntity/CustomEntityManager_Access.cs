@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.CustomEntity.Components;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			ent.Core.whoAmI = who;
 			mngr.EntitiesByIndexes[who] = ent;
+
+			var save_comp = ent.GetComponentByType<SaveableEntityComponent>();
+			if( save_comp != null ) {
+				save_comp.InternalOnLoad( ent );
+			}
 		}
 
 

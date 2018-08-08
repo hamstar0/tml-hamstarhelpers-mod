@@ -29,6 +29,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			Entity core = ent.Core;
 			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
 			Rectangle box = core.Hitbox;
+
 			if( !box.Intersects( world_scr_rect ) ) {
 				return false;
 			}
