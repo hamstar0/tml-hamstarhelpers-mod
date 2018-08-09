@@ -1,5 +1,6 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using Terraria;
 
 
@@ -11,11 +12,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public PlayerIdProtocol() { }
+		private PlayerIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		////////////////
 
-		public override void SetClientDefaults() {
+		protected override void SetClientDefaults() {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
 			this.PrivateUID = myplayer.Logic.PrivateUID;

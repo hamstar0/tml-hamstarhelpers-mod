@@ -1,9 +1,27 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public class ReflectionHelpers {
+		public static IEnumerable<Type> GetAllAvailableSubTypes( Type parent_type ) {
+			var mod_types = ModLoader.LoadedMods.Select( mod => mod.GetType() );
+			var assemblies = mod_types.Select( mod_type => mod_type.Assembly );
+			var subclasses = from assembly in assemblies
+							 from type in assembly.GetTypes()
+							 where type.IsSubclassOf( parent_type ) && !type.IsAbstract
+							 select type;
+
+			return subclasses;
+		}
+
+
+		////////////////
+
 		public static object GetField( Object obj, string field_name, out bool success ) {
 			success = false;
 			Type objtype = obj.GetType();

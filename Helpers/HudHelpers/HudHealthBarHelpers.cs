@@ -5,7 +5,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.HudHelpers {
+namespace HamstarHelpers.Helpers.HudHelpers {
 	public static class HudHealthBarHelpers {
 		public static Color GetHealthBarColor( int hp, int max_hp, float alpha ) {
 			if( hp <= 0 ) { return Color.Black; }
@@ -103,24 +103,6 @@ namespace HamstarHelpers.HudHelpers {
 			pos = new Vector2( offset_x, offset_y );
 			rect = new Rectangle?( new Rectangle( 0, 0, ratio_large, Main.hbTexture1.Height ) );
 			sb.Draw( Main.hbTexture1, pos, rect, color, 0f, new Vector2( 0f, 0f ), scale, SpriteEffects.None, depth );
-		}
-	}
-
-
-
-	[System.Obsolete( "use HudHelpers.HudHealthBarHelpers", true )]
-	public static class HealthBarHelpers {
-		public static Color GetHealthBarColor( int hp, int max_hp, float alpha ) {
-			return HudHealthBarHelpers.GetHealthBarColor( hp, max_hp, alpha );
-		}
-		public static Vector2 MeasureHealthText( string text ) {
-			return HudHealthBarHelpers.MeasureHealthText( text );
-		}
-		public static void DrawHealthText( SpriteBatch sb, float x, float y, int hp, Color color ) {
-			HudHealthBarHelpers.DrawHealthText( sb, x, y, hp, color );
-		}
-		public static void DrawHealthBar( SpriteBatch sb, float x, float y, int hp, int max_hp, Color color, float scale = 1f ) {
-			HudHealthBarHelpers.DrawHealthBar( sb, x, y, hp, max_hp, color, scale );
 		}
 	}
 }

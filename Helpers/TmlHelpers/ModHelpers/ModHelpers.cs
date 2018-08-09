@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 	public static class ModHelpers {
 		public static IEnumerable<Mod> GetAllMods() {
 			var self = HamstarHelpersMod.Instance.ModMetaDataManager;

@@ -2,26 +2,39 @@
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Components.CustomEntity;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Internals.ControlPanel.Inbox;
-using HamstarHelpers.MiscHelpers;
+using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Timers;
-using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.DataStore;
+using HamstarHelpers.Helpers.MiscHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Helpers.WorldHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.NetHelpers;
+using HamstarHelpers.Helpers.BuffHelpers;
+using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.NPCHelpers;
+using HamstarHelpers.Helpers.ProjectileHelpers;
+using HamstarHelpers.Helpers.RecipeHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Internals.ControlPanel;
-using HamstarHelpers.Services.Promises;
 
 
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
-			DebugHelpers.LogHelpers.Log( "UNHANDLED crash? "+e.IsTerminating+" \nSender: "+sender.ToString()+" \nMessage: "+e.ExceptionObject.ToString() );
+			LogHelpers.Log( "UNHANDLED crash? "+e.IsTerminating+" \nSender: "+sender.ToString()+" \nMessage: "+e.ExceptionObject.ToString() );
 		}
 
 
@@ -30,46 +43,45 @@ namespace HamstarHelpers {
 
 		internal JsonConfig<HamstarHelpersConfigData> ConfigJson;
 		public HamstarHelpersConfigData Config { get { return ConfigJson.Data; } }
-
-		internal IDictionary<int, Type> OldPacketProtocols = new Dictionary<int, Type>();
-		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
-
-
+		
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;
 		internal MenuUIManager MenuUIMngr;
-		internal Utilities.Menu.OldMenuItemManager OldMenuItemMngr;
+		internal MenuItemManager MenuItemMngr;
+		internal CustomEntityManager CustomEntMngr;
+		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
+		internal PacketProtocolDataConstructorLock PacketProtocolCtorLock = new PacketProtocolDataConstructorLock();
 
 		// Services
+		internal Promises Promises;
 		internal Timers Timers;
 		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
-		internal Promises Promises;
+		internal DataStore DataStore;
 
 		// Helpers
-		internal DebugHelpers.LogHelpers LogHelpers;
-		internal TmlHelpers.ModMetaDataManager ModMetaDataManager;
-		internal NetHelpers.NetHelpers NetHelpers;
-		internal BuffHelpers.BuffHelpers BuffHelpers;
-		internal ItemHelpers.ItemIdentityHelpers ItemIdentityHelpers;
-		internal NPCHelpers.NPCIdentityHelpers NPCIdentityHelpers;
-		internal ProjectileHelpers.ProjectileIdentityHelpers ProjectileIdentityHelpers;
-		internal BuffHelpers.BuffIdentityHelpers BuffIdentityHelpers;
-		internal NPCHelpers.NPCBannerHelpers NPCBannerHelpers;
-		internal RecipeHelpers.RecipeHelpers RecipeHelpers;
-		internal TmlHelpers.LoadHelpers LoadHelpers;
-		internal TmlHelpers.TmlPlayerHelpers TmlPlayerHelpers;
-		internal WorldHelpers.WorldHelpers WorldHelpers;
-		internal TmlHelpers.ModHelpers.ModLockHelpers ModLockHelpers;
+		internal LogHelpers LogHelpers;
+		internal ModMetaDataManager ModMetaDataManager;
+		internal NetHelpers NetHelpers;
+		internal BuffHelpers BuffHelpers;
+		internal ItemIdentityHelpers ItemIdentityHelpers;
+		internal NPCIdentityHelpers NPCIdentityHelpers;
+		internal ProjectileIdentityHelpers ProjectileIdentityHelpers;
+		internal BuffIdentityHelpers BuffIdentityHelpers;
+		internal NPCBannerHelpers NPCBannerHelpers;
+		internal RecipeHelpers RecipeHelpers;
+		internal LoadHelpers LoadHelpers;
+		internal TmlPlayerHelpers TmlPlayerHelpers;
+		internal WorldHelpers WorldHelpers;
+		internal ModLockHelpers ModLockHelpers;
 		internal MusicHelpers MusicHelpers;
 
 		// Internals
 		internal InboxControl Inbox;
 		internal ModVersionGet ModVersionGet;
 		internal ServerBrowserReporter ServerBrowser;
-		internal MenuItemManager MenuItemMngr;
-		public UIControlPanel ControlPanel = null;
+		internal UIControlPanel ControlPanel;
 
 
 		public bool HasSetupContent { get; private set; }
@@ -77,7 +89,8 @@ namespace HamstarHelpers {
 		public bool HasAddedRecipes { get; private set; }
 
 		public ModHotKey ControlPanelHotkey = null;
-		
+		public ModHotKey DataDumpHotkey = null;
+
 		private int LastSeenCPScreenWidth = -1;
 		private int LastSeenCPScreenHeight = -1;
 
@@ -115,24 +128,25 @@ namespace HamstarHelpers {
 				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
 			}
 
-			this.LoadHelpers = new TmlHelpers.LoadHelpers();
+			this.DataStore = new DataStore();
+			this.LoadHelpers = new LoadHelpers();
 			this.Promises = new Promises();
 
 			this.Timers = new Timers();
-			this.LogHelpers = new DebugHelpers.LogHelpers();
-			this.ModMetaDataManager = new TmlHelpers.ModMetaDataManager();
-			this.BuffHelpers = new BuffHelpers.BuffHelpers();
-			this.NetHelpers = new NetHelpers.NetHelpers();
-			this.ItemIdentityHelpers = new ItemHelpers.ItemIdentityHelpers();
-			this.NPCIdentityHelpers = new NPCHelpers.NPCIdentityHelpers();
-			this.ProjectileIdentityHelpers = new ProjectileHelpers.ProjectileIdentityHelpers();
-			this.BuffIdentityHelpers = new BuffHelpers.BuffIdentityHelpers();
-			this.NPCBannerHelpers = new NPCHelpers.NPCBannerHelpers();
-			this.RecipeHelpers = new RecipeHelpers.RecipeHelpers();
-			this.TmlPlayerHelpers = new TmlHelpers.TmlPlayerHelpers();
-			this.WorldHelpers = new WorldHelpers.WorldHelpers();
+			this.LogHelpers = new LogHelpers();
+			this.ModMetaDataManager = new ModMetaDataManager();
+			this.BuffHelpers = new BuffHelpers();
+			this.NetHelpers = new NetHelpers();
+			this.ItemIdentityHelpers = new ItemIdentityHelpers();
+			this.NPCIdentityHelpers = new NPCIdentityHelpers();
+			this.ProjectileIdentityHelpers = new ProjectileIdentityHelpers();
+			this.BuffIdentityHelpers = new BuffIdentityHelpers();
+			this.NPCBannerHelpers = new NPCBannerHelpers();
+			this.RecipeHelpers = new RecipeHelpers();
+			this.TmlPlayerHelpers = new TmlPlayerHelpers();
+			this.WorldHelpers = new WorldHelpers();
 			this.ControlPanel = new UIControlPanel();
-			this.ModLockHelpers = new TmlHelpers.ModHelpers.ModLockHelpers();
+			this.ModLockHelpers = new ModLockHelpers();
 			this.EntityGroups = new EntityGroups();
 			this.PlayerMessages = new PlayerMessages();
 			this.Inbox = new InboxControl();
@@ -140,16 +154,12 @@ namespace HamstarHelpers {
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuUIMngr = new MenuUIManager();
-			this.OldMenuItemMngr = new Utilities.Menu.OldMenuItemManager();
 			this.MusicHelpers = new MusicHelpers();
-
-#pragma warning disable 612, 618
-			TmlHelpers.AltNPCInfo.DataInitialize();
-			TmlHelpers.AltProjectileInfo.DataInitialize();
-#pragma warning restore 612, 618
+			this.CustomEntMngr = new CustomEntityManager();
 
 			if( !this.Config.DisableControlPanelHotkey ) {
-				this.ControlPanelHotkey = this.RegisterHotKey( "Mod Helpers Control Panel", "O" );
+				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
+				this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
 			}
 
 			this.LoadModData();
@@ -202,14 +212,17 @@ namespace HamstarHelpers {
 			this.AnimatedColors = null;
 			this.PlayerMessages = null;
 			this.Inbox = null;
-			this.ControlPanelHotkey = null;
 			this.ControlPanel = null;
 			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
 			this.MenuUIMngr = null;
-			this.OldMenuItemMngr = null;
 			this.MusicHelpers = null;
+			this.CustomEntMngr = null;
 			this.Promises = null;
+			this.DataStore = null;
+
+			this.ControlPanelHotkey = null;
+			this.DataDumpHotkey = null;
 
 			HamstarHelpersMod.Instance = null;
 		}
@@ -217,12 +230,12 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostSetupContent() {
-			this.OldPacketProtocols = Utilities.Network.OldPacketProtocol.GetProtocols();
-			this.PacketProtocols = PacketProtocol.GetProtocols();
+			this.PacketProtocols = PacketProtocol.GetProtocolTypes();
 
 			this.Promises.OnPostSetupContent();
 			this.MenuUIMngr.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
+			this.ModVersionGet.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
 				UIControlPanel.OnPostSetupContent( this );
@@ -247,7 +260,7 @@ namespace HamstarHelpers {
 		public override void AddRecipeGroups() {
 			NPCBannerHelpers.InitializeBanners();
 
-			foreach( var kv in HamstarHelpers.RecipeHelpers.RecipeHelpers.Groups ) {
+			foreach( var kv in RecipeHelpers.Groups ) {
 				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
 

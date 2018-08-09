@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Services.Messages;
+﻿using HamstarHelpers.Helpers.UIHelpers;
+using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Promises;
-using HamstarHelpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -89,7 +89,7 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 		internal void Draw( SpriteBatch sb ) {
 			int unread = InboxMessages.CountUnreadMessages();
 			var rect = new Rectangle( (int)this.IconPos.X, (int)this.IconPos.Y, this.Icon.Width, this.Icon.Height );
-			bool is_hover = UIHelpers.UIHelpers.MouseInRectangle( rect );
+			bool is_hover = UIHelpers.MouseInRectangle( rect );
 			Vector2 mouse_pos = new Vector2( Main.mouseX + 16, Main.mouseY );
 
 			if( Main.mouseLeft && is_hover ) {
@@ -128,9 +128,9 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 			bool has_right = this.MessageScrollPos < (this.Messages.Current - 1);
 			
 			if( has_left ) {
-				var l_arrow_rect = new Rectangle( (int)this.IconAreaPos.X - 1, (int)this.IconAreaPos.Y, this.ArrowLeft.Width, this.ArrowLeft.Height );
+				var l_arrow_rect = new Rectangle( (int)this.IconAreaPos.X - 1, (int)this.IconAreaPos.Y - 2, this.ArrowLeft.Width, this.ArrowLeft.Height );
 
-				if( Main.mouseLeft && UIHelpers.UIHelpers.MouseInRectangle( l_arrow_rect ) ) {
+				if( Main.mouseLeft && UIHelpers.MouseInRectangle( l_arrow_rect ) ) {
 					if( !this.IsLeftArrowClicked ) {
 						this.IsLeftArrowClicked = true;
 						if( this.ReadOldMessage( this.MessageScrollPos - 1 ) ) {
@@ -147,9 +147,9 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 			}
 			if( has_right ) {
 				var r_arrow_rect = new Rectangle( (int)( ( this.IconAreaPos.X + this.Icon.Width + 1 ) - this.ArrowRight.Width ),
-					(int)this.IconAreaPos.Y, this.ArrowRight.Width, this.ArrowRight.Height );
+					(int)this.IconAreaPos.Y - 2, this.ArrowRight.Width, this.ArrowRight.Height );
 
-				if( Main.mouseLeft && UIHelpers.UIHelpers.MouseInRectangle( r_arrow_rect ) ) {
+				if( Main.mouseLeft && UIHelpers.MouseInRectangle( r_arrow_rect ) ) {
 					if( !this.IsRightArrowClicked ) {
 						this.IsRightArrowClicked = true;
 						if( this.ReadOldMessage( this.MessageScrollPos + 1 ) ) {

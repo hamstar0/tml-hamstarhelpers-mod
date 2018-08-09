@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
 using Terraria;
@@ -10,9 +11,12 @@ namespace HamstarHelpers {
 		public static string GithubUserName { get { return "hamstar0"; } }
 		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
+		////////////////
+
 		public static string ConfigFileRelativePath {
 			get { return JsonConfig<HamstarHelpersConfigData>.ConfigSubfolder + Path.DirectorySeparatorChar + HamstarHelpersConfigData.ConfigFileName; }
 		}
+
 		public static void ReloadConfigFromFile() {
 			if( Main.netMode != 0 ) {
 				throw new Exception( "Cannot reload configs outside of single player." );
@@ -23,6 +27,7 @@ namespace HamstarHelpers {
 				}
 			}
 		}
+
 		public static void ResetConfigFromDefaults() {
 			if( Main.netMode != 0 ) {
 				throw new Exception( "Cannot reset to default configs outside of single player." );

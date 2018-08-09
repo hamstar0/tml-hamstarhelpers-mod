@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
 using System;
 using System.Collections.Generic;
 using Terraria;

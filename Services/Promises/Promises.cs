@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 
@@ -97,51 +97,6 @@ namespace HamstarHelpers.Services.Promises {
 				action();
 			}
 			mymod.Promises.PostWorldUnloadEachPromises.Add( action );
-		}
-
-
-		////////////////
-
-		public static void AddCustomPromise( string name, Func<bool> action ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			if( mymod.Promises.CustomPromiseConditionsMet.Contains(name) ) {
-				if( !action() ) {
-					return;
-				}
-			}
-
-			if( !mymod.Promises.CustomPromise.ContainsKey(name) ) {
-				mymod.Promises.CustomPromise[ name ] = new List<Func<bool>>();
-			}
-			mymod.Promises.CustomPromise[ name ].Add( action );
-		}
-
-		public static void TriggerCustomPromise( string name ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			mymod.Promises.CustomPromiseConditionsMet.Add( name );
-
-			if( mymod.Promises.CustomPromise.ContainsKey(name) ) {
-				var func_list = mymod.Promises.CustomPromise[ name ];
-
-				for( int i=0; i<func_list.Count; i++ ) {
-					if( !func_list[i]() ) {
-						func_list.RemoveAt( i );
-						i--;
-					}
-				}
-			}
-		}
-
-		public static void ClearCustomPromise( string name ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			mymod.Promises.CustomPromiseConditionsMet.Remove( name );
-
-			if( mymod.Promises.CustomPromise.ContainsKey( name ) ) {
-				mymod.Promises.CustomPromise.Remove( name );
-			}
 		}
 	}
 }

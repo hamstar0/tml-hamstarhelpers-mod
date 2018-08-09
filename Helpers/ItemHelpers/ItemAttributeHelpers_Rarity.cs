@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public static partial class ItemAttributeHelpers {
 		public const int HighestVanillaRarity = 11;
 		public const int JunkRarity = -1;
@@ -74,59 +72,5 @@ namespace HamstarHelpers.ItemHelpers {
 				{ 11, "End Game" }
 			}
 		);
-
-
-		////////////////
-
-		[Obsolete( "use ItemAttributeHelpers.RarityColor", false)]
-		public static Color GetRarityColor( int rarity ) {
-			switch( rarity ) {
-			case -2:
-				return Colors.RarityAmber;
-				//return new Color( 255, 175, 0 );
-			case -1:
-				return Colors.RarityTrash;
-				//return new Color( 130, 130, 130 );
-			case 0:
-				return Colors.RarityNormal;
-				//return Colors.RarityNormal;
-			case 1:
-				return Colors.RarityBlue;
-				//return new Color( 150, 150, 255 );
-			case 2:
-				return Colors.RarityGreen;
-				//return new Color( 150, 255, 150 );
-			case 3:
-				return Colors.RarityOrange;
-				//return new Color( 255, 200, 150 );
-			case 4:
-				return Colors.RarityRed;
-				//return new Color( 255, 150, 150 );
-			case 5:
-				return Colors.RarityPink;
-				//return new Color( 255, 150, 255 );
-			case 6:
-				return Colors.RarityPurple;
-				//return new Color( 210, 160, 255 );
-			case 7:
-				return Colors.RarityLime;
-				//return new Color( 150, 255, 10 );
-			case 8:
-				return Colors.RarityYellow;
-				//return new Color( 255, 255, 10 );
-			case 9:
-				return Colors.RarityCyan;
-				//return new Color( 5, 200, 255 );
-			case 10:
-				return new Color( 255, 40, 100 );
-			case 11:
-				return new Color( 180, 40, 255 );
-			case -11:
-			case -12:
-				return new Color( 255, 175, 0 );
-			default:
-				return new Color( Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor );
-			}
-		}
 	}
 }

@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.BuffHelpers {
+namespace HamstarHelpers.Helpers.BuffHelpers {
 	public class BuffIdentityHelpers {
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get { return HamstarHelpersMod.Instance.BuffIdentityHelpers._NamesToIds; }

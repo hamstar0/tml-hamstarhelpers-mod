@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
 using System.Collections.Generic;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCHelpers {
 	public partial class NPCIdentityHelpers {
 		public static readonly ReadOnlySet<int> VanillaBloodMoonTypes;
 		public static readonly ReadOnlySet<int> VanillaGoblinArmyTypes;

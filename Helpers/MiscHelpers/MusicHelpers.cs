@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader.Audio;
 
 
-namespace HamstarHelpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.MiscHelpers {
 	public class MusicHelpers {
 		public static void SetVolumeScale( float scale ) {
 			HamstarHelpersMod.Instance.MusicHelpers.Scale = scale;
@@ -18,16 +18,23 @@ namespace HamstarHelpers.MiscHelpers {
 		////////////////
 
 		internal MusicHelpers() {
-			Main.OnTick += this.UpdateMusic;
+			Main.OnTick += MusicHelpers._Update;
 		}
 
 		~MusicHelpers() {
-			Main.OnTick -= this.UpdateMusic;
+			Main.OnTick -= MusicHelpers._Update;
 		}
 
 		////////////////
 
-		internal void UpdateMusic() {
+		private static void _Update() { // <- Just in case references are doing something funky...
+			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			if( mymod == null ) { return; }
+
+			mymod.MusicHelpers.Update();
+		}
+
+		internal void Update() {
 			if( this.Scale == 1f ) { return; }
 
 			Music music = Main.music[Main.curMusic];

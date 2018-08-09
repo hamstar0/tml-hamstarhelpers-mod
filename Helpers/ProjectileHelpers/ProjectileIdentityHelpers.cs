@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.ProjectileHelpers {
+namespace HamstarHelpers.Helpers.ProjectileHelpers {
 	public class ProjectileIdentityHelpers {
 		public static string GetQualifiedName( Projectile proj ) {
 			return ProjectileIdentityHelpers.GetQualifiedName( proj.type );

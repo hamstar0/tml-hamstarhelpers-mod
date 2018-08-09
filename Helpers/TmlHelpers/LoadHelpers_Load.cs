@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 
 
-namespace HamstarHelpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers {
 	public partial class LoadHelpers {
 		internal int StartupDelay = 0;
 

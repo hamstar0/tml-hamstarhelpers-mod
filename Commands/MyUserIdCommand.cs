@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.PlayerHelpers;
+﻿using HamstarHelpers.Helpers.PlayerHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -12,7 +12,7 @@ namespace HamstarHelpers.Commands {
 			}
 		}
 		public override string Command { get { return "mhmyuserid"; } }
-		public override string Usage { get { return "/"+this.Command; } }
+		public override string Usage { get { return "/" + this.Command; } }
 		public override string Description { get { return "Displays your user id."; } }
 
 

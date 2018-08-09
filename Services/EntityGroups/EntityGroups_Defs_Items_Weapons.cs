@@ -1,5 +1,6 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.RecipeHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -109,7 +110,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return true;
 				}
 
-				var has = RecipeHelpers.RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.SpellTome }, 1 );
+				var has = RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.SpellTome }, 1 );
 				if( has ) { return true; }
 
 				string name = ItemIdentityHelpers.GetQualifiedName( item );

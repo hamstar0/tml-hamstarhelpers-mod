@@ -13,7 +13,6 @@ namespace HamstarHelpers.Internals.Logic {
 				SimpleMessage.UpdateMessage();
 				mymod.PlayerMessages.Update();
 				this.DialogManager.Update( mymod );
-				this.OldDialogManager.Update( mymod );
 			}
 
 			foreach( int buff_id in this.PermaBuffsById ) {
@@ -25,8 +24,8 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void PreUpdateSingle( HamstarHelpersMod mymod, Player player ) {
-			this.PreUpdatePlayer( mymod, player );
+		public void PreUpdateSingle( HamstarHelpersMod mymod ) {
+			this.PreUpdatePlayer( mymod, Main.LocalPlayer );
 		}
 
 		public void PreUpdateClient( HamstarHelpersMod mymod, Player player ) {

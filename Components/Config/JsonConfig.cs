@@ -2,7 +2,8 @@
 using Terraria;
 using Newtonsoft.Json;
 using System;
-using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Helpers.DebugHelpers;
+
 
 namespace HamstarHelpers.Components.Config {
 	public class JsonConfig {
@@ -19,31 +20,43 @@ namespace HamstarHelpers.Components.Config {
 
 
 	public partial class JsonConfig<T> : JsonConfig {
-		public static string Serialize( T data ) {
+		public static string Serialize( T data, JsonSerializerSettings json_settings ) {
 			lock( JsonConfig.MyLock ) {
-				return JsonConvert.SerializeObject( data, Formatting.Indented );
+				return JsonConvert.SerializeObject( data, Formatting.Indented, json_settings );
 			}
+		}
+		public static T Deserialize( string data, JsonSerializerSettings json_settings ) {
+			lock( JsonConfig.MyLock ) {
+				return JsonConvert.DeserializeObject<T>( data, json_settings );
+			}
+		}
+
+		public static string Serialize( T data ) {
+			return JsonConfig<T>.Serialize( data, new JsonSerializerSettings() );
 		}
 		public static T Deserialize( string data ) {
-			lock( JsonConfig.MyLock ) {
-				return JsonConvert.DeserializeObject<T>( data );
-			}
+			return JsonConfig<T>.Deserialize( data, new JsonSerializerSettings() );
 		}
+
 
 
 		////////////////
-		
+
 		public string FileName { get; private set; }
 		public string PathName { get; private set; }
 		public T Data { get; private set; }
 
+		private JsonSerializerSettings JsonSettings;
+
+
 
 		////////////////
 
-		public JsonConfig( string file_name, string relative_path ) {
+		public JsonConfig( string file_name, string relative_path, JsonSerializerSettings json_settings ) {
 			this.FileName = file_name;
 			this.PathName = relative_path;
 			this.Data = (T)Activator.CreateInstance( typeof( T ) );
+			this.JsonSettings = json_settings;
 
 			lock( JsonConfig.MyFileLock ) {
 				Directory.CreateDirectory( Main.SavePath );
@@ -51,39 +64,41 @@ namespace HamstarHelpers.Components.Config {
 			}
 		}
 
-		public JsonConfig( string file_name, string relative_path, T defaults_copy_only ) {
+		public JsonConfig( string file_name, string relative_path, T defaults_copy_only, JsonSerializerSettings json_settings ) {
 			this.FileName = file_name;
 			this.PathName = relative_path;
 			this.Data = defaults_copy_only;
+			this.JsonSettings = json_settings;
 
 			lock( JsonConfig.MyFileLock ) {
 				Directory.CreateDirectory( Main.SavePath );
 				Directory.CreateDirectory( this.GetPathOnly() );
 			}
 		}
+
+		public JsonConfig( string file_name, string relative_path ) :
+			this( file_name, relative_path, new JsonSerializerSettings() ) { }
+
+		public JsonConfig( string file_name, string relative_path, T defaults_copy_only ) :
+			this( file_name, relative_path, defaults_copy_only, new JsonSerializerSettings() ) { }
 
 
 		////////////////
 
 		public string SerializeMe() {
-			return JsonConfig<T>.Serialize( this.Data );
+			return JsonConfig<T>.Serialize( this.Data, this.JsonSettings );
 		}
 
 		public void DeserializeMe( string str_data, out bool success ) {
 			success = false;
 			try {
-				T data = JsonConfig<T>.Deserialize( str_data );
+				T data = JsonConfig<T>.Deserialize( str_data, this.JsonSettings );
 
 				this.Data = data;
 				success = true;
 			} catch( Exception e ) {
-				LogHelpers.Log( "JsonConfig.DeserializeMe - "+e.Message );
+				LogHelpers.Log( "JsonConfig.DeserializeMe - " + e.Message );
 			}
-		}
-		[Obsolete( "use JsonConfig.DeserializeMe(string, out bool)", true )]
-		public void DeserializeMe( string str_data ) {
-			bool _;
-			this.DeserializeMe( str_data, out _ );
 		}
 
 		public void SetData( T data ) {
@@ -115,6 +130,7 @@ namespace HamstarHelpers.Components.Config {
 			}
 		}
 
+		////////////////
 
 		public bool LoadFile() {
 			string path = this.GetFullPath();

@@ -1,19 +1,32 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.Network {
-	public abstract partial class PacketProtocol {
-		protected static readonly object MyLock = new object();
+	/*/// <summary>
+	/// Sets a non-public field to not be ignored by a protocol.
+	/// </summary>
+	public class PacketProtocolNonPublicAttribute : Attribute { }*/		//TODO
 
 
-		////////////////
 
+	/// <summary>
+	/// Sets a field to be ignored by a protocol.
+	/// </summary>
+	public class PacketProtocolIgnoreAttribute : Attribute { }
+
+
+
+
+	/// <summary>
+	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
+	/// </summary>
+	public abstract partial class PacketProtocol : PacketProtocolData {
 		/// <summary>
 		/// Gets a random integer as a code representing a given protocol (by name) to identify its
 		/// network packets.
@@ -30,22 +43,21 @@ namespace HamstarHelpers.Components.Network {
 				pos = pos >= 24 ? 0 : pos + 8;
 			}
 
-			return Math.Abs(code);
+			return code;
 		}
 
 
-		internal static IDictionary<int, Type> GetProtocols() {
-			IDictionary<int, Type> protocols = new Dictionary<int, Type>();
+		internal static IDictionary<int, Type> GetProtocolTypes() {
+			IEnumerable<Type> protocol_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( PacketProtocol ) );
+			IDictionary<int, Type> protocol_type_map = new Dictionary<int, Type>();
 
-			//var subclasses = from assembly in AppDomain.CurrentDomain.GetAssemblies()
-			var mod_types = ModLoader.LoadedMods.Select( mod => mod.GetType() );
-			var assemblies = mod_types.Select( mod_type => mod_type.Assembly );
-			var subclasses = from assembly in assemblies
-							 from type in assembly.GetTypes()
-							 where type.IsSubclassOf( typeof( PacketProtocol ) ) && !type.IsAbstract
-							 select type;
+			foreach( Type subclass in protocol_types ) {
+				ConstructorInfo ctor_info = subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+					new Type[] { typeof(PacketProtocolDataConstructorLock) }, null );
+				if( ctor_info == null ) {
+					throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
+				}
 
-			foreach( Type subclass in subclasses ) {
 				if( HamstarHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					string name = subclass.Namespace + "." + subclass.Name;
 					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + name );
@@ -55,13 +67,13 @@ namespace HamstarHelpers.Components.Network {
 					string name = subclass.Namespace + "." + subclass.Name;
 					int code = PacketProtocol.GetPacketCode( name );
 
-					protocols[ code ] = subclass;
+					protocol_type_map[ code ] = subclass;
 				} catch( Exception e ) {
 					LogHelpers.Log( subclass.Name + " - " + e.Message );
 				}
 			}
 
-			return protocols;
+			return protocol_type_map;
 		}
 
 
@@ -71,28 +83,15 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Indicates whether send packets will be logged if the config specifies to do so. Defaults to true.
 		/// </summary>
+		[PacketProtocolIgnore]
 		public virtual bool IsVerbose { get { return true; } }
 
-		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
-		private IOrderedEnumerable<FieldInfo> OrderedFields {
-			get {
-				if( this._OrderedFields == null ) {
-					Type mytype = this.GetType();
-					FieldInfo[] fields = mytype.GetFields( BindingFlags.Public | BindingFlags.Instance );
-					this._OrderedFields = fields.OrderByDescending( x => x.Name );  //Where( f => f.FieldType.IsPrimitive )
-				}
-				return this._OrderedFields;
-			}
-		}
-
 
 		////////////////
-
-		public PacketProtocol() { }
-
-
-		////////////////
-
+		
+		/// <summary>
+		/// Returns qualified name of current packet class.
+		/// </summary>
 		public string GetPacketName() {
 			var mytype = this.GetType();
 			return mytype.Namespace + "." + mytype.Name;
@@ -101,11 +100,17 @@ namespace HamstarHelpers.Components.Network {
 
 		////////////////
 
-		public virtual void SetClientDefaults() {
+		/// <summary>
+		/// Overridden for initializing the class to create a reply in a request to the client.
+		/// </summary>
+		protected virtual void SetClientDefaults() {
 			throw new NotImplementedException( "No SetClientDefaults" );
 		}
 
-		public virtual void SetServerDefaults() {
+		/// <summary>
+		/// Overridden for initializing the class to create a reply in a request to the server.
+		/// </summary>
+		protected virtual void SetServerDefaults() {
 			throw new NotImplementedException( "No SetServerDefaults" );
 		}
 	}

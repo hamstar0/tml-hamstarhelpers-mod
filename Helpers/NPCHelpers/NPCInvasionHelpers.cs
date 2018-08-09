@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameContent.Events;
 
 
-namespace HamstarHelpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCHelpers {
 	public enum VanillaInvasionType {
 		None = 1,
 		Goblins = 2,
@@ -36,23 +36,6 @@ namespace HamstarHelpers.NPCHelpers {
 			default:
 				return VanillaInvasionType.None;
 			}
-		}
-
-
-		[System.Obsolete( "use NPCInvasionHelpers.GetCurrentEventTypes", true )]
-		public static VanillaInvasionType GetCurrentInvasionType() {
-			VanillaInvasionType inv_type = NPCInvasionHelpers.GetInvasionType( Main.invasionType );
-
-			if( inv_type == VanillaInvasionType.None ) {
-				if( Main.snowMoon ) { return VanillaInvasionType.FrostMoon; }
-				if( Main.pumpkinMoon ) { return VanillaInvasionType.PumpkinMoon; }
-				if( Main.eclipse ) { return VanillaInvasionType.SolarEclipse; }
-				if( Main.slimeRain ) { return VanillaInvasionType.SlimeRain; }
-				if( NPC.LunarApocalypseIsUp ) { return VanillaInvasionType.LunarApocalypse; }
-				if( Main.bloodMoon ) { return VanillaInvasionType.BloodMoon; }
-				if( Sandstorm.Happening ) { return VanillaInvasionType.Sandstorm; }
-			}
-			return inv_type;
 		}
 
 

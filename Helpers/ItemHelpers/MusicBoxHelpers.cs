@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public static class MusicBoxHelpers {
 		public static ISet<int> GetVanillaMusicBoxItemIds() {
 			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,
@@ -134,32 +133,6 @@ namespace HamstarHelpers.ItemHelpers {
 			default:
 				return 0;
 			}
-		}
-	}
-
-
-
-	public static class ItemMusicBoxHelpers {
-		[Obsolete( "use MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
-		public static int GetMusicTypeOfMusicBox( int item_type ) {
-			return MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
-		}
-		[Obsolete( "use MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox", true )]
-		public static int GetMusicTypeOfVanillaMusicBox( int item_type ) {
-			return MusicBoxHelpers.GetMusicTypeOfVanillaMusicBox( item_type );
-		}
-
-		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
-		public static ISet<int> GetMusicBoxes() {
-			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
-		}
-		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
-		public static ISet<int> GetVanillaMusicBoxItemIds() {
-			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
-		}
-		[Obsolete( "use MusicBoxHelpers.GetVanillaMusicBoxItemIds", true )]
-		public static ISet<int> GetVanillaMusicBoxes() {
-			return MusicBoxHelpers.GetVanillaMusicBoxItemIds();
 		}
 	}
 }

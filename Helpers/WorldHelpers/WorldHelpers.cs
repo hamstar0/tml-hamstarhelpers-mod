@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.DotNetHelpers;
-using HamstarHelpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.WorldHelpers {
+namespace HamstarHelpers.Helpers.WorldHelpers {
 	public partial class WorldHelpers {
 		public static string GetUniqueIdWithSeed() {
 			return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID + "." + Main.ActiveWorldFileData.Seed;

@@ -1,11 +1,10 @@
-﻿using HamstarHelpers.DotNetHelpers.DataStructures;
-using HamstarHelpers.Helpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCHelpers {
 	public partial class NPCIdentityHelpers {
 		public static string GetUniqueId( NPC npc ) {
 			string id = npc.TypeName;
@@ -61,14 +60,6 @@ namespace HamstarHelpers.NPCHelpers {
 			}
 
 			this._NamesToIds = new ReadOnlyDictionaryOfSets<string, int>( dict );
-		}
-
-
-		////////////////
-
-		[System.Obsolete( "use NPCHelpers.LooselyAssessThreat", true )]
-		public static float LooselyAssessThreat( NPC npc ) {
-			return NPCHelpers.LooselyAssessThreat( npc );
 		}
 	}
 }

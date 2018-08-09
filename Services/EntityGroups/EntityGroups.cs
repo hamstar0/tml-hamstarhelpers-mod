@@ -1,5 +1,6 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.DotNetHelpers.DataStructures;
+﻿using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,18 @@ using Terraria.Utilities;
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
 		private static object MyLock = new object();
+
+		private readonly static object MyValidatorKey;
+		public readonly static PromiseValidator LoadedAllValidator;
+
+
+		////////////////
+
+		static EntityGroups() {
+			EntityGroups.MyValidatorKey = new object();
+			EntityGroups.LoadedAllValidator = new PromiseValidator( EntityGroups.MyValidatorKey );
+		}
+
 
 
 		////////////////
@@ -61,7 +74,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				this.GetNPCPool();
 				this.GetProjPool();
 				
-				ThreadPool.QueueUserWorkItem( _ => {
+				ThreadPool.QueueUserWorkItem( (_) => {
 					try {
 						lock( EntityGroups.MyLock ) {
 							IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineItemGroups();
@@ -84,7 +97,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 							this.ProjPool = null;
 						}
 						
-						Promises.Promises.TriggerCustomPromise( "EntityGroupsLoaded" );
+						Promises.Promises.TriggerValidatedPromise( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
 					} catch( Exception e ) {
 						LogHelpers.Log( "EntityGroups - Initialization failed: "+e.ToString() );
 					}

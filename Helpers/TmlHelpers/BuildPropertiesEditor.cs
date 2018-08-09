@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Reflection;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers {
 	public class BuildPropertiesEditor {
 			public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
 			IEnumerable<Type> class_types;

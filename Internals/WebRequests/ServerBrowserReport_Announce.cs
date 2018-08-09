@@ -1,6 +1,7 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.DotNetHelpers;
-using HamstarHelpers.MiscHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.MiscHelpers;
+using HamstarHelpers.Helpers.NetHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,14 +28,14 @@ namespace HamstarHelpers.Internals.WebRequests {
 			}
 
 			if( Main.netMode == 1 ) {
-				if( NetHelpers.NetHelpers.GetServerPing() == -1 ) {
+				if( NetHelpers.GetServerPing() == -1 ) {
 					return false;
 				}
 			}
 
 			string ip;
 			try {
-				ip = NetHelpers.NetHelpers.GetPublicIP();
+				ip = NetHelpers.GetPublicIP();
 			} catch( Exception ) {
 				LogHelpers.Log( "CanAddToBrowser - Invalid public IP" );
 				return false;
@@ -101,7 +102,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			try {
 				var server_data = new ServerBrowserEntry();
-				server_data.ServerIP = NetHelpers.NetHelpers.GetPublicIP();
+				server_data.ServerIP = NetHelpers.GetPublicIP();
 				server_data.Port = port;
 				server_data.IsPassworded = Netplay.ServerPassword != "";
 				server_data.Motd = Main.motd;
@@ -131,7 +132,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 					LogHelpers.Log( "Server browser returned error: " + e.ToString() );
 				};
 
-				NetHelpers.NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, on_response, on_error );
+				NetHelpers.MakePostRequestAsync( ServerBrowserReporter.URL, json_bytes, on_response, on_error );
 
 				ServerBrowserReporter.LastSendTimestamp = SystemHelpers.TimeStampInSeconds();
 			} catch( Exception e ) {

@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using Terraria;
 
@@ -16,6 +16,7 @@ namespace HamstarHelpers {
 		
 		public bool DebugModeNetInfo = false;
 		public bool DebugModeUnhandledExceptionLogging = true;
+		public bool DebugModeHighlightEntities = false;
 
 		public bool UseCustomLogging = false;
 		public bool UseCustomLoggingPerNetMode = false;
@@ -47,16 +48,6 @@ namespace HamstarHelpers {
 		public bool IsCheckingModVersions = true;
 
 		public string PrivilegedUserId = "";
-
-
-
-		////////////////
-
-		public string _OLD_CONFIGS_BELOW_ = "";
-
-		public bool UseCustomModeLogging = false;
-		public int ServerBrowserAutoRefreshSeconds = 60 * 10;
-		public bool IsServerPromptingForBrowser = true;
 
 
 

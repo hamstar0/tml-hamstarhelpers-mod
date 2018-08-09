@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.NPCHelpers;
+﻿using HamstarHelpers.Helpers.NPCHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Reflection;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.ItemHelpers {
 	public partial class ItemIdentityHelpers {
 		public static IDictionary<string, Tuple<string, ISet<int>>> GetCommonItemGroups() {
 			IEnumerable<FieldInfo> item_grp_fields = typeof( ItemIdentityHelpers ).GetFields( BindingFlags.Static | BindingFlags.Public );

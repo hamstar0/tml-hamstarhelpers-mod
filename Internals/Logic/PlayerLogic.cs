@@ -1,11 +1,36 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
+using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
+	internal class PlayerLogicPromiseValidator : PromiseValidator {
+		internal readonly static object MyValidatorKey;
+		internal readonly static PlayerLogicPromiseValidator ServerConnectValidator;
+
+		////////////////
+
+		static PlayerLogicPromiseValidator() {
+			PlayerLogicPromiseValidator.MyValidatorKey = new object();
+			PlayerLogicPromiseValidator.ServerConnectValidator = new PlayerLogicPromiseValidator();
+		}
+
+		////////////////
+
+		public Player MyPlayer;
+
+		////////////////
+
+		public PlayerLogicPromiseValidator() : base( PlayerLogicPromiseValidator.MyValidatorKey ) { }
+	}
+
+
+
+
 	partial class PlayerLogic {
 		public string PrivateUID { get; private set; }
 		public bool HasUID { get; private set; }
@@ -17,7 +42,6 @@ namespace HamstarHelpers.Internals.Logic {
 		private uint TestPing = 0;
 
 		public DialogManager DialogManager = new DialogManager();
-		internal UIHelpers.Elements.OldDialogManager OldDialogManager = new UIHelpers.Elements.OldDialogManager();
 
 		public bool HasSyncedModSettings { get; private set; }
 		public bool HasSyncedModData { get; private set; }
@@ -53,6 +77,9 @@ namespace HamstarHelpers.Internals.Logic {
 		public void OnEnterWorldServer( HamstarHelpersMod mymod, Player player ) {
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
+
+			PlayerLogicPromiseValidator.ServerConnectValidator.MyPlayer = player;
+			Promises.TriggerValidatedPromise( PlayerLogicPromiseValidator.ServerConnectValidator, PlayerLogicPromiseValidator.MyValidatorKey );
 		}
 
 

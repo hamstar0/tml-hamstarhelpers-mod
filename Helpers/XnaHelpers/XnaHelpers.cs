@@ -2,7 +2,7 @@
 using System;
 
 
-namespace HamstarHelpers.XnaHelpers {
+namespace HamstarHelpers.Helpers.XnaHelpers {
 	public static class XnaHelpers {
 		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
 			int i, j;

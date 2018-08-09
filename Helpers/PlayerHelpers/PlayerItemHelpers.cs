@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.ItemHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerItemHelpers {
 		public const int VanillaInventorySize = 58;
 		public const int VanillaInventoryHotbarSize = 10;

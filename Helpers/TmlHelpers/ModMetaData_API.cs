@@ -3,7 +3,7 @@ using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers {
 	public partial class ModMetaDataManager {
 		public static bool HasGithub( Mod mod ) {
 			var self = HamstarHelpersMod.Instance.ModMetaDataManager;

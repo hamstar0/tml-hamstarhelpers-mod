@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.WorldHelpers {
+namespace HamstarHelpers.Helpers.WorldHelpers {
 	public partial class WorldHelpers {
 		[Obsolete( "Recommend using WorldHelpers.GetUniqueIdWithSeed()", false)]
 		public static string GetUniqueId() {

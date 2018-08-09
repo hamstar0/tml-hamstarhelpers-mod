@@ -1,3 +1,5 @@
+(Formerly Hamstar's Helpers)
+
 Supplies assorted helper functions and classes, and provides a handy in-game mod control panel UI for listing mods, reporting bugs, editing configs, and other customizations.
 
 Now offers per-world mod locking and can automatically list your server(s) with the Server Browser mod!

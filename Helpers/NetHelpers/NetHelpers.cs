@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.Timers;
 using System;
 using System.Net;
 using Terraria;
 
 
-namespace HamstarHelpers.NetHelpers {
+namespace HamstarHelpers.Helpers.NetHelpers {
 	public partial class NetHelpers {
 		public static string GetPublicIP() {
 			var mymod = HamstarHelpersMod.Instance;

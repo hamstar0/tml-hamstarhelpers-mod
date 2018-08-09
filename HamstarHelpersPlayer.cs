@@ -1,4 +1,7 @@
-﻿using HamstarHelpers.Internals.Logic;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Services.DataDumper;
+using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
@@ -7,6 +10,31 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
+	internal class PlayerPromiseValidator : PromiseValidator {
+		internal readonly static object MyValidatorKey;
+		internal readonly static PlayerPromiseValidator LoadValidator;
+		internal readonly static PlayerPromiseValidator SaveValidator;
+
+		////////////////
+
+		static PlayerPromiseValidator() {
+			PlayerPromiseValidator.MyValidatorKey = new object();
+			PlayerPromiseValidator.LoadValidator = new PlayerPromiseValidator();
+			PlayerPromiseValidator.SaveValidator = new PlayerPromiseValidator();
+		}
+
+		////////////////
+
+		public Player MyPlayer = null;
+
+		////////////////
+
+		public PlayerPromiseValidator() : base( PlayerPromiseValidator.MyValidatorKey ) { }
+	}
+
+
+
+
 	class HamstarHelpersPlayer : ModPlayer {
 		public override bool CloneNewInstances { get { return false; } }
 		
@@ -28,6 +56,9 @@ namespace HamstarHelpers {
 		}
 
 		public override void OnEnterWorld( Player player ) {
+			if( player.whoAmI == Main.myPlayer ) { return; }
+			if( this.player.whoAmI == Main.myPlayer ) { return; }
+
 			var mymod = (HamstarHelpersMod)this.mod;
 
 			if( Main.netMode == 0 ) {
@@ -42,9 +73,15 @@ namespace HamstarHelpers {
 
 		public override void Load( TagCompound tags ) {
 			this.Logic.Load( tags );
+
+			PlayerPromiseValidator.LoadValidator.MyPlayer = this.player;
+			Promises.TriggerValidatedPromise( PlayerPromiseValidator.LoadValidator, PlayerPromiseValidator.MyValidatorKey );
 		}
 
 		public override TagCompound Save() {
+			PlayerPromiseValidator.SaveValidator.MyPlayer = this.player;
+			Promises.TriggerValidatedPromise( PlayerPromiseValidator.SaveValidator, PlayerPromiseValidator.MyValidatorKey );
+
 			return this.Logic.Save();
 		}
 
@@ -57,7 +94,7 @@ namespace HamstarHelpers {
 			} else if( Main.netMode == 1 ) {
 				this.Logic.PreUpdateClient( (HamstarHelpersMod)this.mod, this.player );
 			} else {
-				this.Logic.PreUpdateSingle( (HamstarHelpersMod)this.mod, this.player );
+				this.Logic.PreUpdateSingle( (HamstarHelpersMod)this.mod );
 			}
 		}
 
@@ -66,13 +103,23 @@ namespace HamstarHelpers {
 
 		public override void ProcessTriggers( TriggersSet triggers_set ) {
 			var mymod = (HamstarHelpersMod)this.mod;
+			bool success;
 
 			if( mymod.ControlPanelHotkey.JustPressed ) {
 				if( mymod.Config.DisableControlPanelHotkey ) {
 					Main.NewText( "Control panel hotkey disabled.", Color.Red );
 				} else {
-					mymod.ControlPanel.Open();
+					if( mymod.ControlPanel.IsOpen ) {
+						mymod.ControlPanel.Open();
+					} else {
+						mymod.ControlPanel.Close();
+					}
 				}
+			}
+
+			if( mymod.DataDumpHotkey.JustPressed ) {
+				string file_name = DataDumper.DumpToFile( out success );
+				Main.NewText( "Dumped latest debug data to log file "+file_name, Color.Azure );
 			}
 		}
 	}

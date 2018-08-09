@@ -9,6 +9,10 @@ namespace HamstarHelpers.Components.Config {
 		public virtual void OnLoad( bool success ) { }
 		public virtual void OnSave() { }
 
+		public ConfigurationDataBase Clone() {
+			return (ConfigurationDataBase)this.MemberwiseClone();
+		}
+
 		public override string ToString() {
 			return JsonConvert.SerializeObject( this );
 		}

@@ -5,21 +5,12 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using HamstarHelpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.UIHelpers;
+
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public class UIWebUrl : UIElement {
-		[System.Obsolete( "use UITheme.UrlColor", true )]
-		public static Color DefaultColor = new Color( 80, 80, 255 );
-		[System.Obsolete( "use UITheme.UrlLitColor", true )]
-		public static Color DefaultLitColor = new Color( 128, 128, 255 );
-		[System.Obsolete( "use UITheme.UrlVisitColor", true )]
-		public static Color DefaultVisitColor = new Color( 192, 0, 255 );
-
-
-
-		////////////////
-
 		public UITheme Theme { get; private set; }
 		public UIText TextElem { get; private set; }
 		public UIText LineElem { get; private set; }
@@ -29,11 +20,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 
 		////////////////
-
-		[System.Obsolete( "use other constructor", true )]
-		public UIWebUrl( string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false )
-				: this( new UITheme(), label, url, hover_url, scale, large ) { }
-
+		
 		public UIWebUrl( UITheme theme, string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false ) : base() {
 			this.Theme = theme;
 
@@ -98,7 +85,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( !string.IsNullOrEmpty(this.Url) ) {
-				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
+				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
 			}
 		}
 	}

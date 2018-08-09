@@ -14,56 +14,96 @@ Future?
 
 
 
-v2.0.0
+
+v2.1.0
 -	Add mod browser support links
 -	Add mod browser tags
+	-	Implement form for submitting tag data
+	-	Implement fetching mod tag data	
+	-	Implement mod browser list draw hooking
+	-	Define component
 	-	@Tags
-		-	Challenge
-		-	Core Gameplay Mechanics
-		-	Meta Game Mechanics
+		-	Core Game Mechanics
+		-	Combat Mechanics
+		-	Movement Mechanics
+		-	Building Mechanics
+		-	Mining Mechanics
 		-	Quests
 		-	Discrete Game Mode(s)
 		-	Story or Lore
 		-	Traveling
 		-	Player Stats
 		-	NPC Stats
-		-	Combat Special Abilities
-		-	Movement Special Abilities
+		-	Player Class(es)
 		-	Building & Creativity
 		-	Informational
 		-	Specialized
-		-	Cheat
-		-	Vanilla Balanced
-		-	Gameplay Balance Affecting
-		-	Convenience
+		-	Replaces Game Element(s)
+		-	Visuals
+		-	Special FX
+		-	Affects World
 		-	Esoteric
+		-	Minimalistic
+		-	Challenge
+		-	Makes Game Easier
+		-	Adds Convenience
+		-	Vanilla Balanced
+		-	Loosely Balanced
+		-	Cheaty
 		-	Theme: Dark
 		-	Theme: Silly
 		-	Theme: Fantasy
-		-	Theme: Steampunk
+		-	Theme: Military
+		-	Theme: Futuristic
 		-	Theme: Mixed
 		-	Content: Music
-		-	Content: Fancy Art
-		-	Content: Tools
-		-	Content: Weapons
+		-	Content: Rich Art
+		-	Content: Sounds
+		-	Content: Item Collections
 		-	Content: Hostile NPCs
 		-	Content: Town NPCs
-		-	Content: Friendly NPCs
+		-	Content: Critters
 		-	Content: Bosses
 		-	Content: Invasions
 		-	Content: Building Blocks
+		-	Content: Wiring
+		-	Content: Decorative
 		-	Content: Fishing
 		-	Content: Buffs & Potions
 		-	Content: Accessories
 		-	Content: Biomes
+		-	Content: Vanity
+		-	Content: Ores
+		-	Where: Surface
+		-	Where: Underground
+		-	Where: Ocean
+		-	Where: Dungeon
+		-	Where: Jungle
+		-	Where: Hell
+		-	Where: Evil Biome
+		-	Where: Hallow Biome
+		-	When: Pre-Hard Mode
+		-	When: Hard Mode
+		-	When: Post-Plantera
+		-	When: Post-Moon Lord
 		-	Multiplayer Compatible
 		-	PvP
-		-	Team-based
-		-	Affects World
-		-	Special FX
+		-	Teams
 		-	Open Source
-		-	Team-Built
+		-	Made By Team
+		-	Unmaintained
+		-	Unfinished
+		-	Buggy
+		-	Non-functional
+		-	Simplistic
+		-	Shows Effort
+		-	Polished
 
+v2
+-	Implement entity component sync
+	-	On receive, rebuild each component from stream
+	-	Map component loadouts to keys (hash codes), shared between client and server
+v1.5.0
 -	Set UI elements to be 'Components'
 -	Implement entity groups
 	-	Implement arbitrary code filters

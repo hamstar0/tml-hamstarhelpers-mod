@@ -3,7 +3,7 @@ using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers {
 	public partial class ModMetaDataManager {
 		private static PropertyInfo GetGithubUserNameProp( Mod mod ) {
 			return mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );

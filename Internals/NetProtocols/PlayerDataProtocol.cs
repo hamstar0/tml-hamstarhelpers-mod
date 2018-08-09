@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Components.Network;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -27,7 +28,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public PlayerDataProtocol() { }
+		private PlayerDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+
+		////////////////
 
 		private PlayerDataProtocol( int player_who, ISet<int> perma_buff_ids, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			this.PlayerWho = player_who;
@@ -37,8 +40,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		////////////////
-		
-		public override void SetServerDefaults() { }
+
+		protected override void SetServerDefaults() { }
 
 		////////////////
 
@@ -56,7 +59,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
-				LogHelpers.Log( "HamstarHelpers - PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+				LogHelpers.Log( "HamstarHelpers.PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
 				return;
 			}
 

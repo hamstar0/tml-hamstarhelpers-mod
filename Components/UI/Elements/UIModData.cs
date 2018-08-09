@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.AnimatedColor;
-using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -165,11 +165,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		[Obsolete( "use UIModData.CheckForNewVersionAsync", true )]
-		public void CheckForNewVersion() {
-			this.CheckForNewVersionAsync();
-		}
-
 		public void CheckForNewVersionAsync() {
 			Action<Version> on_success = delegate ( Version vers ) {
 				this.LatestAvailableVersion = vers;
@@ -229,7 +224,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 				Vector2 pos = inner_dim.Position();
 				pos.X += 128f;
 			
-				sb.DrawString( Main.fontDeathText, "Update Needed!", pos, color, 0f, default( Vector2 ), 1f, SpriteEffects.None, 1f );
+				sb.DrawString( Main.fontDeathText, this.LatestAvailableVersion.ToString()+" Available", pos, color, 0f, default( Vector2 ), 1f, SpriteEffects.None, 1f );
 			}
 		}
 

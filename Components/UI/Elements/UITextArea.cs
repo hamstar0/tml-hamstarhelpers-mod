@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.UIHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -92,7 +93,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 					this.SetText( new_text );
 				}
 
-				if( UIHelpers.UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.UIHelpers.JustPressedKey(Keys.Enter) ) {
+				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
 					this.Unfocus();
 				}
 			}

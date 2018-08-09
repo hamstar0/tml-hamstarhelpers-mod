@@ -1,11 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.DebugHelpers;
+using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
 
 
 namespace HamstarHelpers.Components.Network {
-	public abstract partial class PacketProtocol {
+	public abstract partial class PacketProtocol : PacketProtocolData {
 		internal static void HandlePacketOnClient( int protocol_code, BinaryReader reader, int player_who ) {
 			var mymod = HamstarHelpersMod.Instance;
 			bool is_request;
@@ -26,12 +27,12 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateData( protocol_type );
 
 				if( is_request ) {
-					protocol.ReceiveBaseRequestOnClient();
+					protocol.ReceiveRequestWithClientBase();
 				} else {
-					protocol.ReceiveBaseOnClient( reader, player_who );
+					protocol.ReceiveWithClientBase( reader, player_who );
 				}
 			} catch( Exception e ) {
 				throw new HamstarException( protocol_type.Name + " - " + e.ToString() );
@@ -60,12 +61,12 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)Activator.CreateInstance( protocol_type );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateData( protocol_type );
 
 				if( is_request ) {
-					protocol.ReceiveBaseRequestOnServer( player_who );
+					protocol.ReceiveRequestWithServerBase( player_who );
 				} else {
-					protocol.ReceiveBaseOnServer( reader, player_who );
+					protocol.ReceiveWithServerBase( reader, player_who );
 
 					if( is_synced_to_clients ) {
 						protocol.SendToClient( -1, player_who );

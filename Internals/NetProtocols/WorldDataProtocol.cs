@@ -1,4 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.WorldHelpers;
 using Terraria;
 
 
@@ -11,14 +13,21 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override void SetServerDefaults() {
+		private WorldDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+
+		////////////////
+
+		protected override void SetServerDefaults() {
 			var mymod = HamstarHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
-			this.HalfDays = WorldHelpers.WorldHelpers.GetElapsedHalfDays();
+			this.HalfDays = WorldHelpers.GetElapsedHalfDays();
 			this.HasCorrectWorldId = myworld.HasCorrectID;
 			this.ObsoleteWorldId = myworld.ObsoleteID;
 		}
+
+
+		////////////////
 
 		protected override void ReceiveWithClient() {
 			var mymod = HamstarHelpersMod.Instance;

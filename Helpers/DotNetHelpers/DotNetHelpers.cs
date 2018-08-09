@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public static class DotNetHelpers {
 		public const double RadDeg = Math.PI / 180d;
 

@@ -1,17 +1,25 @@
-﻿using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Internals.NetProtocols;
+using HamstarHelpers.Services.DataStore;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using HamstarHelpers.DotNetHelpers;
+using System.Collections.Generic;
 
 
-namespace HamstarHelpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;
 		public const int InventoryMainSize = 40;
+
+
+		////////////////
+
+		private static object SpawnPointKey = new object();
+
 
 
 		////////////////
@@ -64,6 +72,46 @@ namespace HamstarHelpers.PlayerHelpers {
 			}
 
 			return pos;
+		}
+
+
+		public static void SetSpawnPoint( Player player, int tile_x, int tile_y ) {
+			bool success;
+			var spawn_map = (IDictionary<string, IDictionary<int, int>>)DataStore.Get( PlayerHelpers.SpawnPointKey, out success );
+
+			player.SpawnX = tile_x;
+			player.SpawnY = tile_y;
+
+			if( !success ) {
+				spawn_map = new Dictionary<string, IDictionary<int, int>>();
+
+				for( int i = 0; i < 200; i++ ) {
+					string key1 = player.spN[i];
+					int key2 = player.spI[i];
+
+					if( key1 == null ) {
+						break;
+					}
+
+					if( !spawn_map.ContainsKey( key1 ) ) {
+						spawn_map[ key1 ] = new Dictionary<int, int>();
+					}
+					spawn_map[key1][key2] = i;
+				}
+
+				DataStore.Set( PlayerHelpers.SpawnPointKey, spawn_map );
+			}
+
+			if( spawn_map.ContainsKey( Main.worldName ) && spawn_map[ Main.worldName ].ContainsKey( Main.worldID ) ) {
+				int idx = spawn_map[Main.worldName][Main.worldID];
+
+				player.spX[idx] = tile_x;
+				player.spY[idx] = tile_y;
+			} else {
+				player.ChangeSpawn( tile_x, tile_y );
+
+				DataStore.Remove( PlayerHelpers.SpawnPointKey );	// <- Force rebuild
+			}
 		}
 
 
@@ -157,7 +205,7 @@ namespace HamstarHelpers.PlayerHelpers {
 
 		public static void KillWithPermadeath( Player player, string death_msg ) {
 			if( Main.netMode != 0 ) {
-				var protocol = new PlayerPermaDeathProtocol( player.whoAmI, death_msg );
+				PlayerPermaDeathProtocol.SendToAll( player.whoAmI, death_msg );
 			} else {
 				PlayerHelpers.ApplyPermaDeath( player, death_msg );
 			}
@@ -215,6 +263,58 @@ namespace HamstarHelpers.PlayerHelpers {
 			player.taxMoney = 0;
 
 			PlayerHooks.SetStartInventory( player );
+		}
+
+
+		public static void LockdownPlayerPerTick( Player player ) {
+			player.noItems = true;
+			player.noBuilding = true;
+			player.stoned = true;
+			player.immune = true;
+			player.immuneTime = 2;
+		}
+
+
+		public static void ModdedExtensionsReset( Player player ) {
+			var wingmod = ModLoader.GetMod( "Wing Slot" );
+
+			if( wingmod != null ) {
+				bool success;
+				ModPlayer mywingplayer = player.GetModPlayer( wingmod, "WingSlotPlayer" );
+
+				object wing_equip_slot = ReflectionHelpers.GetField( mywingplayer, "EquipSlot", out success );
+
+				if( success && wing_equip_slot != null ) {
+					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_equip_slot, "Item", out success );
+
+					if( success && wing_item != null && !wing_item.IsAir ) {
+						ReflectionHelpers.SetProperty( wing_equip_slot, "Item", new Item(), out success );
+						ReflectionHelpers.SetField( mywingplayer, "EquipSlot", wing_equip_slot, out success );
+					}
+				}
+				
+				object wing_vanity_slot = ReflectionHelpers.GetField( mywingplayer, "VanitySlot", out success );
+
+				if( success && wing_vanity_slot != null ) {
+					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_vanity_slot, "Item", out success );
+
+					if( success && wing_item != null && !wing_item.IsAir ) {
+						ReflectionHelpers.SetProperty( wing_vanity_slot, "Item", new Item(), out success );
+						ReflectionHelpers.SetField( mywingplayer, "VanitySlot", wing_vanity_slot, out success );
+					}
+				}
+
+				object wing_dye_slot = ReflectionHelpers.GetField( mywingplayer, "DyeSlot", out success );
+
+				if( success && wing_dye_slot != null ) {
+					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_dye_slot, "Item", out success );
+
+					if( success && wing_item != null && !wing_item.IsAir ) {
+						ReflectionHelpers.SetProperty( wing_dye_slot, "Item", new Item(), out success );
+						ReflectionHelpers.SetField( mywingplayer, "DyeSlot", wing_dye_slot, out success );
+					}
+				}
+			}
 		}
 	}
 }

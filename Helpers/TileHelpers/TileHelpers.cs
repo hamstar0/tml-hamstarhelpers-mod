@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.TileHelpers {
+namespace HamstarHelpers.Helpers.TileHelpers {
 	public static partial class TileHelpers {
 		public static bool IsAir( Tile tile ) {
 			return tile == null || (!tile.active() && tile.wall == 0) /*|| tile.type == 0*/;

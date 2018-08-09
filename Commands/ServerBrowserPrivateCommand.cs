@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
 
@@ -25,7 +23,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			var mymod = (HamstarHelpersMod)this.mod;
-			if( !mymod.Config.IsServerPromptingUsersBeforeListingOnBrowser && (caller.CommandType & CommandType.Console) == 0 ) {
+			if( !mymod.Config.IsServerPromptingUsersBeforeListingOnBrowser && ( caller.CommandType & CommandType.Console ) == 0 ) {
 				caller.Reply( "Cannot set server private; grace period has expired. Set \"IsServerHiddenFromBrowser: true\" in config file, then restart server." );
 				return;
 			}

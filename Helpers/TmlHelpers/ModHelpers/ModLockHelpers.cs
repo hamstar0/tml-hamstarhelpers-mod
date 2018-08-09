@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 	public class ModLockHelpers {
 		public static bool IsWorldLocked() {
 			var mymod = HamstarHelpersMod.Instance;
@@ -90,18 +90,6 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 			this.MismatchBroadcastMade = false;
 
 			Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
-		}
-
-		internal void OnWorldLoad( HamstarHelpersMod mymod, HamstarHelpersWorld modworld ) {
-			this.IsInitialized = true;
-			this.MismatchBroadcastMade = false;
-			this.ScanMods( modworld );
-			this.ExitDuration = 60 * 20;
-		}
-
-		private void OnWorldExit() {
-			this.MismatchBroadcastMade = false;
-			this.ExitDuration = 60 * 20;
 		}
 
 
@@ -189,6 +177,20 @@ namespace HamstarHelpers.TmlHelpers.ModHelpers {
 				}
 				i++;
 			}
+		}
+
+		////////////////
+
+		internal void PostLoad( HamstarHelpersMod mymod, HamstarHelpersWorld modworld ) {
+			this.IsInitialized = true;
+			this.MismatchBroadcastMade = false;
+			this.ScanMods( modworld );
+			this.ExitDuration = 60 * 20;
+		}
+
+		private void OnWorldExit() {
+			this.MismatchBroadcastMade = false;
+			this.ExitDuration = 60 * 20;
 		}
 
 

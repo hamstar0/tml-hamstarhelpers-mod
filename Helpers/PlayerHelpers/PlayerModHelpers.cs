@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static class PlayerModHelpers {
 		private static void RemoveWingSlotProperty( ModPlayer mywingplayer, string prop_name ) {
 			bool success;

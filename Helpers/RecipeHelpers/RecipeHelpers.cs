@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.ItemHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.RecipeHelpers {
+namespace HamstarHelpers.Helpers.RecipeHelpers {
 	public partial class RecipeHelpers {
 		public static bool ItemHasIngredients( Item item, ISet<int> ingredients, int min_stack ) {
 			for( int i=0; i<Main.recipe.Length; i++ ) {

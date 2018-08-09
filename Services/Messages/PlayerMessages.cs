@@ -105,14 +105,4 @@ namespace HamstarHelpers.Services.Messages {
 			}
 		}
 	}
-
-
-
-
-	[System.Obsolete( "use PlayerMessages", true )]
-	public class PlayerMessage {
-		public static void AddPlayerLabel( Player player, string text, Color color, int duration, bool evaporates ) {
-			PlayerMessages.AddPlayerLabel( player, text, color, duration, evaporates );
-		}
-	}
 }

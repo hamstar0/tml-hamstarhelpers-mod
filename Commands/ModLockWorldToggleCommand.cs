@@ -1,5 +1,6 @@
-﻿using HamstarHelpers.DebugHelpers;
-using HamstarHelpers.TmlHelpers.ModHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Helpers.UserHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -30,7 +31,7 @@ namespace HamstarHelpers.Commands {
 
 			if( Main.netMode == 2 && caller.CommandType != CommandType.Console ) {
 				bool success;
-				bool has_priv = UserHelpers.UserHelpers.HasBasicServerPrivilege( caller.Player, out success );
+				bool has_priv = UserHelpers.HasBasicServerPrivilege( caller.Player, out success );
 
 				if( !success ) {
 					caller.Reply( "Could not validate.", Color.Yellow );

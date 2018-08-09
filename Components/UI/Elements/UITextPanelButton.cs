@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 

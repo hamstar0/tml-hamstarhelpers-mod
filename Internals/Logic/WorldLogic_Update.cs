@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Internals.ControlPanel;
-using HamstarHelpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -25,6 +25,8 @@ namespace HamstarHelpers.Internals.Logic {
 			UIControlPanel.UpdateModList( mymod );
 		}
 
+		////
+
 
 		////
 		
@@ -47,11 +49,6 @@ namespace HamstarHelpers.Internals.Logic {
 		
 		private void UpdateSafelyLoaded( HamstarHelpersMod mymod ) {
 			mymod.ModLockHelpers.Update();
-
-#pragma warning disable 612, 618
-			AltProjectileInfo.UpdateAll();
-			AltNPCInfo.UpdateAll();
-#pragma warning restore 612, 618
 		}
 	}
 }

@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.NetHelpers {
+namespace HamstarHelpers.Helpers.NetHelpers {
 	public partial class NetHelpers {
 		public static int GetServerPing() {
 			if( Main.netMode != 1 ) {

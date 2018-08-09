@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static class PlayerMovementHelpers {
 		public static bool IsRelaxed( Player player, bool not_mounted = true, bool not_grappled = true,
 				bool not_pulleyed = true, bool not_frozen = true, bool not_inverted = true ) {

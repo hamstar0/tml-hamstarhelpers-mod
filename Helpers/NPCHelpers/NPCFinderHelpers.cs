@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCHelpers {
 	public static class NPCFinderHelpers {
 		public static int FindNpcTypeByUniqueId( string uid ) {
 			NPC npc = new NPC();
