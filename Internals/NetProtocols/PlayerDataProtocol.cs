@@ -54,12 +54,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithClient() {
 			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
-				throw new HamstarException( "HamstarHelpers - PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
+				throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
 			}
 
 			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
-				LogHelpers.Log( "HamstarHelpers.PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+				LogHelpers.Log( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
 				return;
 			}
 

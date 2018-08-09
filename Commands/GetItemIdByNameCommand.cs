@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Commands {
 	public class GetItemIdByNameCommand : ModCommand {
 		public override CommandType Type { get { return CommandType.Chat; } }
-		public override string Command { get { return "mhgetitemid"; } }
+		public override string Command { get { return "mh-get-item-id"; } }
 		public override string Usage { get { return "/"+this.Command+" \"Gold Pickaxe\""; } }
 		public override string Description { get { return "Gets an item's id by name. Must be wrapped with quotes."; } }
 

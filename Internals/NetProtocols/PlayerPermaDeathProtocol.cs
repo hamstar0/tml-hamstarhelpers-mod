@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using Terraria;
 
@@ -43,7 +44,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void ReceiveWithClient() {
 			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
-				LogHelpers.Log( "HamstarHelpers.PlayerPermaDeathProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+				LogHelpers.Log( "ModHelpers.PlayerPermaDeathProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
 				return;
 			}
 

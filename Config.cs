@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(1, 6, 6); } }
+		public static Version ConfigVersion { get { return new Version(2, 0, 0); } }
 		public static string ConfigFileName { get { return "Mod Helpers Config.json"; } }
 
 
@@ -62,9 +62,6 @@ namespace HamstarHelpers {
 			if( vers_since >= HamstarHelpersConfigData.ConfigVersion ) {
 				return false;
 			}
-			if( vers_since < new Version( 1, 4, 2, 1 ) ) {
-				this.UseCustomLoggingPerNetMode = this.UseCustomModeLogging;
-			}
 
 			this.VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
 
@@ -73,10 +70,6 @@ namespace HamstarHelpers {
 
 
 		////////////////
-
-		internal HamstarHelpersConfigData Clone() {
-			return (HamstarHelpersConfigData)this.MemberwiseClone();
-		}
 		
 		internal void LoadFromNetwork( HamstarHelpersMod mymod, HamstarHelpersConfigData config ) {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();

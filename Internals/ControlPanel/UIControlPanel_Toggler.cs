@@ -20,7 +20,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return new Vector2( x, y );
 			}
 		}
-		private static Version AlertVersion = new Version( 1, 3, 0 );
+		private static Version AlertVersion = new Version( 2, 0, 0 );
 
 
 

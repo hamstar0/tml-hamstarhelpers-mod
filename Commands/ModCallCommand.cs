@@ -17,7 +17,7 @@ namespace HamstarHelpers.Commands {
 				return CommandType.Console | CommandType.World;
 			}
 		}
-		public override string Command { get { return "mhmodcall"; } }
+		public override string Command { get { return "mh-mod-call"; } }
 		public override string Usage { get { return "/" + this.Command + " MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped strings needs spaces\" anotherparametc"; } }
 		public override string Description {
 			get {

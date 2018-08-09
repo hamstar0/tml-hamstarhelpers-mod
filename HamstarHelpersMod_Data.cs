@@ -8,6 +8,7 @@ namespace HamstarHelpers {
 
 
 
+
 	partial class HamstarHelpersMod {
 		internal HamstarHelpersData Data = new HamstarHelpersData();
 

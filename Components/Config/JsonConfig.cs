@@ -46,7 +46,7 @@ namespace HamstarHelpers.Components.Config {
 		public string PathName { get; private set; }
 		public T Data { get; private set; }
 
-		private JsonSerializerSettings JsonSettings;
+		private JsonSerializerSettings JsonSettings = null;
 
 
 

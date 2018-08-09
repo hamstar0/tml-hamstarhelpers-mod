@@ -106,12 +106,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			Action<Exception, string> on_fail = ( e, output ) => {
 				if( e is JsonReaderException ) {
-					LogHelpers.Log( "RetrieveLatestKnownVersions - Bad JSON: "+
+					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - Bad JSON: " +
 						(output.Length > 256 ? output.Substring(0, 256) : output) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Log( "RetrieveLatestKnownVersions - " + e.Message );
+					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - " + e.Message );
 				} else {
-					LogHelpers.Log( "RetrieveLatestKnownVersions - " + e.ToString() );
+					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - " + e.ToString() );
 				}
 			};
 

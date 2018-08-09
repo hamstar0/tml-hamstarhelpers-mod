@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 
@@ -9,7 +11,7 @@ namespace HamstarHelpers.Commands {
 				return CommandType.Console | CommandType.World;
 			}
 		}
-		public override string Command { get { return "mhprivateserver"; } }
+		public override string Command { get { return "mh-private-server"; } }
 		public override string Usage { get { return "/" + this.Command; } }
 		public override string Description { get { return "Sets current server to not be listed on the server browser."; } }
 

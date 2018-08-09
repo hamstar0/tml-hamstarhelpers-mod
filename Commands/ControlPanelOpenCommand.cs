@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Commands {
 	public class ControlPanelOpenCommand : ModCommand {
 		public override CommandType Type { get { return CommandType.Chat; } }
-		public override string Command { get { return "mhcpopen"; } }
+		public override string Command { get { return "mh-cp-open"; } }
 		public override string Usage { get { return "/"+this.Command; } }
 		public override string Description { get { return "Opens the Mod Helpers mod Control Panel."; } }
 

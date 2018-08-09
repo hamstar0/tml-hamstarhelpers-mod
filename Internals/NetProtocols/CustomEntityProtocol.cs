@@ -37,7 +37,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 			
 			if( ent == null ) {
-				LogHelpers.Log( "HamstarHelpers.CustomEntityProtocol.ReceiveWithServer - Could not find existing entity for " + this.Entity.ToString() );
+				LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithServer - Could not find existing entity for " + this.Entity.ToString() );
 				return;
 			}
 			

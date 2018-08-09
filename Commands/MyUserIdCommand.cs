@@ -11,7 +11,7 @@ namespace HamstarHelpers.Commands {
 				return CommandType.Chat;
 			}
 		}
-		public override string Command { get { return "mhmyuserid"; } }
+		public override string Command { get { return "mh-my-userid"; } }
 		public override string Usage { get { return "/" + this.Command; } }
 		public override string Description { get { return "Displays your user id."; } }
 
