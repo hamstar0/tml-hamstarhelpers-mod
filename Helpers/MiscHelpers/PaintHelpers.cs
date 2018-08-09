@@ -12,7 +12,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 
 		////////////////
-
+		
 		public static byte GetNearestPaintType( Color color ) {
 			int color_code = (((int)color.R >> 3) << 3) + (((int)color.G >> 3) << 11) + (((int)color.B >> 3) << 19 );
 
