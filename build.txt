@@ -2,6 +2,5 @@ author = hamstar
 version = 2.0.2
 displayName = Mod Helpers
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
-includePDB = true
 languageVersion = 6
 homepage = https://forums.terraria.org/index.php?threads/mod-helpers-a-modders-mod-for-mods-and-modding.63670/
