@@ -62,6 +62,8 @@ namespace HamstarHelpers.Services.Promises {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
+			if( !Timers.Timers.MainOnTickGo ) { return; }
+
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null ) { return; }
 

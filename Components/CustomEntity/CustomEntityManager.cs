@@ -5,6 +5,7 @@ using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
+			if( !Timers.MainOnTickGo ) { return; }
+
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null || mymod.CustomEntMngr == null ) { return; }
 
