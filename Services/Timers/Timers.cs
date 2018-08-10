@@ -80,6 +80,10 @@ namespace HamstarHelpers.Services.Timers {
 
 			Promises.Promises.AddWorldUnloadEachPromise( () => {
 				lock( Timers.MyLock ) {
+					foreach( var kv in this.Running ) {
+						LogHelpers.Log( "Aborted timer " + kv.Key );
+					}
+
 					this.Running.Clear();
 					this.Elapsed.Clear();
 					this.Expired.Clear();

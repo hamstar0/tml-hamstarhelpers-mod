@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
+using System.Text;
 using Terraria.Social;
 using Terraria.Utilities;
 
@@ -14,14 +15,17 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			if( is_cloud ) {
 				if( SocialAPI.Cloud != null ) { return false; }
 
-				using( Stream mem_stream = (Stream)new MemoryStream() ) {
-					FileHelpers.ToStream( data, mem_stream );
+				File.WriteAllText( full_path, data );
+
+				using( var mem_stream = (Stream)new MemoryStream() ) {
+					byte[] bytes = Encoding.ASCII.GetBytes( data );
+
+					mem_stream.Write( bytes, 0, data.Length );
+
 					SocialAPI.Cloud.Write( full_path, ( (MemoryStream)mem_stream ).ToArray() );
 				}
 			} else {
-				using( Stream file_stream = (Stream)new FileStream( full_path, FileMode.Create, FileAccess.Write ) ) {
-					FileHelpers.ToStream( data, file_stream );
-				}
+				File.WriteAllText( full_path, data );
 			}
 
 			return true;
@@ -33,14 +37,19 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 				return null;
 			}
 
+			//return File.ReadAllText( full_path );
 			byte[] buf = FileUtilities.ReadAllBytes( full_path, is_cloud );
+
 			if( buf.Length < 1 || buf[0] != 0x1F || buf[1] != 0x8B ) {
 				return null;
 			}
 
-			using( var mem_stream = new MemoryStream( buf ) ) {
-				return FileHelpers.FromStream( mem_stream );
-			}
+			return Encoding.Default.GetString( buf );
+			/*using( Stream file_stream = (Stream)new FileStream( full_path, FileMode.Open ) ) {
+				using( StreamReader file_reader = new StreamReader( file_stream ) ) {
+					return file_reader.ReadToEnd();
+				}
+			}*/
 		}
 	}
 }
