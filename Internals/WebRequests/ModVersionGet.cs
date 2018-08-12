@@ -128,9 +128,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		internal void OnPostSetupContent() {
-			ModVersionGet.CacheAllModVersionsAsync( () => {
-				LogHelpers.Log( "Mod versions successfully retrieved and cached." );
-			} );
+			if( HamstarHelpersMod.Instance.Config.IsCheckingModVersions ) {
+				ModVersionGet.CacheAllModVersionsAsync( () => {
+					LogHelpers.Log( "Mod versions successfully retrieved and cached." );
+				} );
+			}
 		}
 	}
 }

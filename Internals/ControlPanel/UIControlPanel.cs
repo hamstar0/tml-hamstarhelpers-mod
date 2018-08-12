@@ -105,7 +105,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public void LoadModListAsync() {
-			//Task.Run( () => {
 			ThreadPool.QueueUserWorkItem( _ => {
 				this.IsPopulatingList = true;
 
@@ -113,6 +112,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 					this.ModDataList.Clear();
 				}
 
+				var mymod = HamstarHelpersMod.Instance;
 				int i = 1;
 
 				foreach( var mod in ModHelpers.GetAllMods() ) {
@@ -122,8 +122,9 @@ namespace HamstarHelpers.Internals.ControlPanel {
 						this.ModDataList.Add( moditem );
 					}
 
-					//if( ModMetaDataManager.HasGithub( moditem.Mod ) ) {
-					moditem.CheckForNewVersionAsync();
+					if( mymod.Config.IsCheckingModVersions ) {
+						moditem.CheckForNewVersionAsync();
+					}
 				}
 
 				this.ModListUpdateRequired = true;
