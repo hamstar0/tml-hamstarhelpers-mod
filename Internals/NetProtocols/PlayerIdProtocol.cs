@@ -6,8 +6,8 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerIdProtocol : PacketProtocol {
-		public bool HasUID = false;
-		public string PrivateUID = "";
+		public bool ClientHasUID = false;
+		public string ClientPrivateUID = "";
 
 
 		////////////////
@@ -19,8 +19,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void SetClientDefaults() {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
-			this.PrivateUID = myplayer.Logic.PrivateUID;
-			this.HasUID = myplayer.Logic.HasUID;
+			this.ClientPrivateUID = myplayer.Logic.PrivateUID;
+			this.ClientHasUID = myplayer.Logic.HasUID;
 		}
 
 		////////////////
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			Player player = Main.player[from_who];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 			
-			myplayer.Logic.NetReceiveIdServer( this.HasUID, this.PrivateUID );
+			myplayer.Logic.NetReceiveIdServer( this.ClientHasUID, this.ClientPrivateUID );
 		}
 	}
 }

@@ -32,6 +32,7 @@ using Terraria.ModLoader;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Helpers.PlayerHelpers;
 
+
 namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
@@ -166,21 +167,21 @@ namespace HamstarHelpers {
 			this.LoadModData();
 
 			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
-				return "UniqueIdWithSeed: "+WorldHelpers.GetUniqueIdWithSeed();
+				return "  "+WorldHelpers.GetUniqueIdWithSeed();
 			} );
 
 			DataDumper.SetDumpSource( "PlayerUid", () => {
 				if( Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length ) {
-					return "PlayerUid: Unobtainable";
+					return "  Unobtainable";
 				}
 
 				bool success;
 				string uid = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer, out success );
 				if( !success ) {
-					return "PlayerUid: UID unobtainable";
+					return "  UID unobtainable";
 				}
 
-				return "PlayerUid: " + uid;
+				return "  " + uid;
 			} );
 		}
 

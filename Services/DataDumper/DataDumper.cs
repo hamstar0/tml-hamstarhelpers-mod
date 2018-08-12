@@ -85,9 +85,9 @@ namespace HamstarHelpers.Services.DataDumper {
 			};
 
 			lock( DataDumper.MyLock ) {
-				data = string.Join( "\n", dumpables
+				data = string.Join( "\r\n", dumpables
 					.ToDictionary( kv => kv.Key, getKey )
-					.Select( kv=>kv.Key+":\n"+kv.Value )
+					.Select( kv=>kv.Key+":\r\n"+kv.Value )
 				);
 			}
 			
@@ -101,7 +101,8 @@ namespace HamstarHelpers.Services.DataDumper {
 				// Allow admins to dump on behalf of server, also
 				if( Main.netMode == 1 ) {
 					bool priv_success;
-					if( UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out priv_success ) ) {
+
+					if( HamstarHelpersMod.Instance.Config.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out priv_success ) ) {
 						PacketProtocol.QuickRequestToServer<DataDumpProtocol>();
 					}
 				}

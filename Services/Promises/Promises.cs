@@ -1,102 +1,103 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
+using Terraria;
 
 
 namespace HamstarHelpers.Services.Promises {
 	public partial class Promises {
-		public static void AddPostModLoadPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+		private static object PostModLoadLock = new object();
+		private static object ModUnloadLock = new object();
+		private static object WorldLoadOnceLock = new object();
+		private static object WorldLoadEachLock = new object();
+		private static object PostWorldLoadOnceLock = new object();
+		private static object PostWorldLoadEachLock = new object();
+		private static object WorldUnloadOnceLock = new object();
+		private static object WorldUnloadEachLock = new object();
+		private static object PostWorldUnloadOnceLock = new object();
+		private static object PostWorldUnloadEachLock = new object();
+		private static object ValidatedPromiseLock = new object();
 
-			if( mymod.Promises.PostModLoadPromiseConditionsMet ) {
-				action();
-			} else {
-				mymod.Promises.PostModLoadPromises.Add( action );
-			}
-		}
-
-		public static void AddModUnloadPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			mymod.Promises.ModUnloadPromises.Add( action );
-		}
 
 		////////////////
 
-		public static void AddWorldLoadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
-			
-			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
-				action();
-			} else {
-				mymod.Promises.WorldLoadOncePromises.Add( action );
-			}
-		}
-		
-		public static void AddWorldLoadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+		internal IList<Action> PostModLoadPromises = new List<Action>();
+		internal IList<Action> ModUnloadPromises = new List<Action>();
+		internal IList<Action> WorldLoadOncePromises = new List<Action>();
+		internal IList<Action> WorldLoadEachPromises = new List<Action>();
+		internal IList<Action> PostWorldLoadOncePromises = new List<Action>();
+		internal IList<Action> PostWorldLoadEachPromises = new List<Action>();
+		internal IList<Action> WorldUnloadOncePromises = new List<Action>();
+		internal IList<Action> WorldUnloadEachPromises = new List<Action>();
+		internal IList<Action> PostWorldUnloadOncePromises = new List<Action>();
+		internal IList<Action> PostWorldUnloadEachPromises = new List<Action>();
 
-			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
-				action();
-			}
-			mymod.Promises.WorldLoadEachPromises.Add( action );
-		}
+		internal bool PostModLoadPromiseConditionsMet = false;
+		internal bool WorldLoadPromiseConditionsMet = false;
+		internal bool WorldUnloadPromiseConditionsMet = false;
+		internal bool PostWorldUnloadPromiseConditionsMet = false;
 
-		public static void AddPostWorldLoadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+		internal IDictionary<PromiseValidator, List<Func<PromiseArguments, bool>>> ValidatedPromise = new Dictionary<PromiseValidator, List<Func<PromiseArguments, bool>>>();
+		internal ISet<PromiseValidator> ValidatedPromiseConditionsMet = new HashSet<PromiseValidator>();
+		private IDictionary<PromiseValidator, PromiseArguments> ValidatedPromiseArgs = new Dictionary<PromiseValidator, PromiseArguments>();
 
-			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
-				action();
-			}
-			mymod.Promises.PostWorldLoadOncePromises.Add( action );
-		}
-
-		public static void AddPostWorldLoadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
-				action();
-			}
-			mymod.Promises.PostWorldLoadEachPromises.Add( action );
-		}
 
 		////////////////
 
-		public static void AddWorldUnloadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			if( mymod.Promises.WorldUnloadPromiseConditionsMet ) {
-				action();
-			}
-			mymod.Promises.WorldUnloadOncePromises.Add( action );
+		internal Promises() {
+			Main.OnTick += Promises._Update;
 		}
 
-		public static void AddWorldUnloadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+		~Promises() {
+			try {
+				Main.OnTick -= Promises._Update;
 
-			if( mymod.Promises.WorldUnloadPromiseConditionsMet ) {
-				action();
-			}
-			mymod.Promises.WorldUnloadEachPromises.Add( action );
+				if( this.WorldLoadPromiseConditionsMet && !this.WorldUnloadPromiseConditionsMet ) {
+					this.FulfillWorldUnloadPromises();
+					this.FulfillPostWorldUnloadPromises();
+				}
+			} catch { }
 		}
 
 
-		public static void AddPostWorldUnloadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
-
-			if( mymod.Promises.PostWorldUnloadPromiseConditionsMet ) {
-				action();
-			}
-			mymod.Promises.PostWorldUnloadOncePromises.Add( action );
+		internal void OnPostSetupContent() {
+			Promises.AddWorldLoadEachPromise( () => {
+				this.WorldUnloadPromiseConditionsMet = false;
+				this.PostWorldUnloadPromiseConditionsMet = false;
+			} );
 		}
 
-		public static void AddPostWorldUnloadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
 
-			if( mymod.Promises.PostWorldUnloadPromiseConditionsMet ) {
-				action();
+		////////////////
+
+		internal void PreSaveAndExit() {
+			this.FulfillWorldUnloadPromises();
+		}
+
+
+		////////////////
+
+		private static void _Update() { // <- Just in case references are doing something funky...
+			if( !Timers.Timers.MainOnTickGo ) { return; }
+
+			var mymod = HamstarHelpersMod.Instance;
+			if( mymod == null ) { return; }
+
+			mymod.Promises.Update();
+		}
+
+		private void Update() {
+			if( Main.netMode != 2 ) {
+				if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
+					this.WorldLoadPromiseConditionsMet = false; // Does this work?
+				}
 			}
-			mymod.Promises.PostWorldUnloadEachPromises.Add( action );
+
+			if( this.WorldUnloadPromiseConditionsMet ) {
+				if( Main.gameMenu && Main.menuMode == 0 ) {
+					this.FulfillPostWorldUnloadPromises();
+				}
+			}
 		}
 	}
 }

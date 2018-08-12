@@ -33,7 +33,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		internal static void PostLoadAll() {
 			DataStore.Set( SaveableEntityComponent.LoadAllDataKey, true );
 			
-			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
+			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey, null );
 		}
 
 		internal static void PostUnloadAll() {
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				var wld_save_json = new SaveableEntityComponent( true );
 				var wld_save_nojson = new SaveableEntityComponent( false );
 
-				Promises.AddValidatedPromise( HamstarHelpersWorld.LoadValidator, () => {
+				Promises.AddValidatedPromise<PromiseArguments>( HamstarHelpersWorld.LoadValidator, (_) => {
 					try {
 						if( !wld_save_json.LoadAll() ) {
 							if( mymod.Config.DebugModeNetInfo ) {
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					return true;
 				} );
 
-				Promises.AddValidatedPromise( HamstarHelpersWorld.SaveValidator, () => {
+				Promises.AddValidatedPromise<PromiseArguments>( HamstarHelpersWorld.SaveValidator, (_) => {
 					wld_save_json.SaveAll();
 					wld_save_nojson.SaveAll();
 
@@ -94,8 +94,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					DataStore.Remove( SaveableEntityComponent.LoadAllDataKey );
 				} );
 
-				Promises.AddValidatedPromise( PlayerLogicPromiseValidator.ServerConnectValidator, () => {
-					PacketProtocol.QuickSendToClient<CustomEntityAllProtocol>( PlayerLogicPromiseValidator.ServerConnectValidator.MyPlayer.whoAmI, -1 );
+				Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ServerConnectValidator, ( args ) => {
+					PacketProtocol.QuickSendToClient<CustomEntityAllProtocol>( args.Who, -1 );
 					return true;
 				} );
 			}

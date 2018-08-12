@@ -8,30 +8,29 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
-	internal class PlayerLogicPromiseValidator : PromiseValidator {
-		internal readonly static object MyValidatorKey;
-		internal readonly static PlayerLogicPromiseValidator ServerConnectValidator;
-
-		////////////////
-
-		static PlayerLogicPromiseValidator() {
-			PlayerLogicPromiseValidator.MyValidatorKey = new object();
-			PlayerLogicPromiseValidator.ServerConnectValidator = new PlayerLogicPromiseValidator();
-		}
-
-		////////////////
-
-		public Player MyPlayer;
-
-		////////////////
-
-		public PlayerLogicPromiseValidator() : base( PlayerLogicPromiseValidator.MyValidatorKey ) { }
+	class PlayerLogicPromiseArguments : PromiseArguments {
+		public int Who;
 	}
 
 
 
 
 	partial class PlayerLogic {
+		internal readonly static object MyValidatorKey;
+		internal readonly static PromiseValidator ServerConnectValidator;
+
+
+		////////////////
+
+		static PlayerLogic() {
+			PlayerLogic.MyValidatorKey = new object();
+			PlayerLogic.ServerConnectValidator = new PromiseValidator( PlayerLogic.MyValidatorKey );
+		}
+
+
+
+		////////////////
+
 		public string PrivateUID { get; private set; }
 		public bool HasUID { get; private set; }
 
@@ -65,6 +64,8 @@ namespace HamstarHelpers.Internals.Logic {
 		public void OnEnterWorldClient( HamstarHelpersMod mymod, Player player ) {
 			if( this.HasUID ) {
 				PacketProtocol.QuickSendToServer<PlayerIdProtocol>();
+			} else {
+				LogHelpers.Log( "ModHelpers.PlayerLogic.OnEnterWorldClient - No UID for "+player.name+" ("+player.whoAmI+") to send to server" );
 			}
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			
@@ -78,8 +79,9 @@ namespace HamstarHelpers.Internals.Logic {
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
 
-			PlayerLogicPromiseValidator.ServerConnectValidator.MyPlayer = player;
-			Promises.TriggerValidatedPromise( PlayerLogicPromiseValidator.ServerConnectValidator, PlayerLogicPromiseValidator.MyValidatorKey );
+			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
+
+			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
 		}
 
 

@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			SaveableEntityComponent.PostLoadAll();
 
-			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey );
+			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey, null );
 		}
 	}
 }

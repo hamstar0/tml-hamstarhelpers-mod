@@ -186,9 +186,10 @@
     <Compile Include="Services\Messages\InboxMessages.cs" />
     <Compile Include="Services\Messages\PlayerMessages.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
-    <Compile Include="Services\Promises\Promises_Custom.cs" />
+    <Compile Include="Services\Promises\Promises_Fulfills.cs" />
+    <Compile Include="Services\Promises\Promises_CustomAPI.cs" />
+    <Compile Include="Services\Promises\Promises_ContextAPI.cs" />
     <Compile Include="Services\Promises\Promises.cs" />
-    <Compile Include="Services\Promises\Promises_Load.cs" />
     <Compile Include="Services\Timers\Timers.cs" />
     <Compile Include="Internals\WebRequests\GithubModIssueReports.cs" />
     <Compile Include="Internals\WebRequests\ModVersionGet.cs" />

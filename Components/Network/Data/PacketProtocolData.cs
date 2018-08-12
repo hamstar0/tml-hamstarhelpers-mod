@@ -18,9 +18,11 @@ namespace HamstarHelpers.Components.Network.Data {
 	/// </summary>
 	public abstract partial class PacketProtocolData {
 		internal static PacketProtocolData CreateData( Type protocol_type ) {
-			//var item = (PacketProtocolData)Activator.CreateInstance( field_type, true );
 			return (PacketProtocolData)Activator.CreateInstance( protocol_type, BindingFlags.NonPublic | BindingFlags.Instance,
-				null, new object[] { HamstarHelpersMod.Instance.PacketProtocolCtorLock }, null );
+				null,
+				new object[] { HamstarHelpersMod.Instance.PacketProtocolCtorLock },
+				null
+			);
 		}
 
 

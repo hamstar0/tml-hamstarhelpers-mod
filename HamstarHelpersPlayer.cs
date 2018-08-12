@@ -3,6 +3,7 @@ using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
@@ -10,43 +11,51 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	internal class PlayerPromiseValidator : PromiseValidator {
-		internal readonly static object MyValidatorKey;
-		internal readonly static PlayerPromiseValidator LoadValidator;
-		internal readonly static PlayerPromiseValidator SaveValidator;
-
-		////////////////
-
-		static PlayerPromiseValidator() {
-			PlayerPromiseValidator.MyValidatorKey = new object();
-			PlayerPromiseValidator.LoadValidator = new PlayerPromiseValidator();
-			PlayerPromiseValidator.SaveValidator = new PlayerPromiseValidator();
-		}
-
-		////////////////
-
-		public Player MyPlayer = null;
-
-		////////////////
-
-		public PlayerPromiseValidator() : base( PlayerPromiseValidator.MyValidatorKey ) { }
+	class PlayerPromiseArguments : PromiseArguments {
+		public int Who;
 	}
 
 
 
-
 	class HamstarHelpersPlayer : ModPlayer {
-		public override bool CloneNewInstances { get { return false; } }
-		
-		public PlayerLogic Logic { get; private set; }
+		internal readonly static object MyValidatorKey;
+		internal readonly static PromiseValidator LoadValidator;
+		internal readonly static PromiseValidator SaveValidator;
 
 
 		////////////////
 
+		static HamstarHelpersPlayer() {
+			HamstarHelpersPlayer.MyValidatorKey = new object();
+			HamstarHelpersPlayer.LoadValidator = new PromiseValidator( HamstarHelpersPlayer.MyValidatorKey );
+			HamstarHelpersPlayer.SaveValidator = new PromiseValidator( HamstarHelpersPlayer.MyValidatorKey );
+		}
+
+
+
+		////////////////
+
+		public PlayerLogic Logic { get; private set; }
+//private readonly string MYUID = Guid.NewGuid().ToString();
+
+
+		////////////////
+
+		public override bool CloneNewInstances { get { return false; } }
+		
 		public override void Initialize() {
 			this.Logic = new PlayerLogic();
+//LogHelpers.Log( "CHECK "+this.MYUID+" Logic UID: "+this.Logic.PrivateUID+" "+this.Logic.HasUID );
 		}
-		
+
+		public override void clientClone( ModPlayer client_clone ) {
+			var clone = (HamstarHelpersPlayer)client_clone;
+			clone.Logic = this.Logic;
+		}
+
+
+		////////////////
+
 		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
 			if( Main.netMode == 2 ) {
 				if( to_who == -1 && from_who == this.player.whoAmI ) {
@@ -73,14 +82,17 @@ namespace HamstarHelpers {
 
 		public override void Load( TagCompound tags ) {
 			this.Logic.Load( tags );
+//LogHelpers.Log( "LOAD "+this.MYUID+" Logic UID: "+this.Logic.PrivateUID+" "+this.Logic.HasUID );
 
-			PlayerPromiseValidator.LoadValidator.MyPlayer = this.player;
-			Promises.TriggerValidatedPromise( PlayerPromiseValidator.LoadValidator, PlayerPromiseValidator.MyValidatorKey );
+			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
+
+			Promises.TriggerValidatedPromise( HamstarHelpersPlayer.LoadValidator, HamstarHelpersPlayer.MyValidatorKey, args );
 		}
 
 		public override TagCompound Save() {
-			PlayerPromiseValidator.SaveValidator.MyPlayer = this.player;
-			Promises.TriggerValidatedPromise( PlayerPromiseValidator.SaveValidator, PlayerPromiseValidator.MyValidatorKey );
+			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
+
+			Promises.TriggerValidatedPromise( HamstarHelpersPlayer.SaveValidator, HamstarHelpersPlayer.MyValidatorKey, args );
 
 			return this.Logic.Save();
 		}

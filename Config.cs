@@ -1,22 +1,23 @@
-﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Components.Config;
 using System;
 using Terraria;
 
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(2, 0, 0); } }
+		public static Version ConfigVersion { get { return new Version(2, 0, 2, 2); } }
 		public static string ConfigFileName { get { return "Mod Helpers Config.json"; } }
 
 
 		////////////////
 
 		public string VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
-		
+
 		public bool DebugModeNetInfo = false;
 		public bool DebugModeUnhandledExceptionLogging = true;
 		public bool DebugModeHighlightEntities = false;
+		public bool DebugModeDumpAlsoServer = false;
 
 		public bool UseCustomLogging = false;
 		public bool UseCustomLoggingPerNetMode = false;
