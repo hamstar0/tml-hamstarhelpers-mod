@@ -41,13 +41,13 @@ namespace HamstarHelpers.Services.Promises {
 		internal ISet<PromiseValidator> ValidatedPromiseConditionsMet = new HashSet<PromiseValidator>();
 		private IDictionary<PromiseValidator, PromiseArguments> ValidatedPromiseArgs = new Dictionary<PromiseValidator, PromiseArguments>();
 
-		private Func<int> OnTickGet;
+		private Func<bool> OnTickGet;
 
 
 		////////////////
 
 		internal Promises() {
-			this.OnTickGet = Timers.Timers.MainOnTickGoGet();
+			this.OnTickGet = Timers.Timers.MainOnTickGet();
 			Main.OnTick += Promises._Update;
 		}
 
@@ -83,10 +83,8 @@ namespace HamstarHelpers.Services.Promises {
 		private static void _Update() { // <- Just in case references are doing something funky...
 			var mymod = HamstarHelpersMod.Instance;
 			if( mymod == null ) { return; }
-
-			int ticks = mymod.Promises.OnTickGet();
-
-			for( int i = 0; i < ticks; i++ ) {
+			
+			if( mymod.Promises.OnTickGet() ) {
 				mymod.Promises.Update();
 			}
 		}

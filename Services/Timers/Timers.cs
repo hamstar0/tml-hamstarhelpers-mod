@@ -10,18 +10,23 @@ namespace HamstarHelpers.Services.Timers {
 		private readonly static object MyLock = new object();
 		
 
-		public static Func<int> MainOnTickGoGet() {
+		public static Func<bool> MainOnTickGet() {
 			long then = 0;
+			int ticks = 0;
 
 			return () => {
 				long now = DateTime.Now.Ticks;
 
-				int go = (int)( ( now - then ) / ( 10000000 / 90 ) );
+				ticks += (int)( ( now - then ) / ( 10000000 / 90 ) );
 				long then_rem = ( now - then ) % ( 10000000 / 90 );
 
 				then = now - then_rem;
-
-				return go;
+				
+				if( ticks > 0 ) {
+					ticks--;
+					return true;
+				}
+				return false;
 			};
 		}
 
@@ -84,14 +89,14 @@ namespace HamstarHelpers.Services.Timers {
 
 		private ISet<string> Expired = new HashSet<string>();
 
-		private readonly Func<int> OnTickGet;
+		private readonly Func<bool> OnTickGet;
 
 
 
 		////////////////
 
 		internal Timers() {
-			this.OnTickGet = Timers.MainOnTickGoGet();
+			this.OnTickGet = Timers.MainOnTickGet();
 			Main.OnTick += Timers._RunTimers;
 
 			Promises.Promises.AddWorldUnloadEachPromise( () => {
@@ -120,10 +125,8 @@ namespace HamstarHelpers.Services.Timers {
 		private static void _RunTimers() {  // <- Just in case references are doing something funky...
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null ) { return; }
-			
-			int ticks = mymod.Timers.OnTickGet();
 
-			for( int i = 0; i < ticks; i++ ) {
+			if( mymod.Timers.OnTickGet() ) {
 				mymod.Timers.RunEachTimer();
 			}
 		}
