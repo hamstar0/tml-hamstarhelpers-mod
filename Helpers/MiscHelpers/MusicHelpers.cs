@@ -15,10 +15,13 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		private float Scale = 1f;
 
+		private Func<int> OnTickGet;
+
 
 		////////////////
 
 		internal MusicHelpers() {
+			this.OnTickGet = Timers.MainOnTickGoGet();
 			Main.OnTick += MusicHelpers._Update;
 		}
 
@@ -29,12 +32,14 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
-			if( !Timers.MainOnTickGo ) { return; }
-
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
-			mymod.MusicHelpers.Update();
+			int ticks = mymod.MusicHelpers.OnTickGet();
+
+			for( int i=0; i<ticks; i++ ) {
+				mymod.MusicHelpers.Update();
+			}
 		}
 
 		internal void Update() {

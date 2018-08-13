@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Terraria;
 
 
 namespace HamstarHelpers.Components.Network.Data {
@@ -16,6 +17,11 @@ namespace HamstarHelpers.Components.Network.Data {
 		private static void WriteStreamFromContainer( BinaryWriter writer, PacketProtocolData data ) {
 			foreach( FieldInfo field in data.OrderedFields ) {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
+					continue;
+				}
+				if( Main.netMode == 1 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
+					continue;
+				} else if( Main.netMode == 2 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {
 					continue;
 				}
 

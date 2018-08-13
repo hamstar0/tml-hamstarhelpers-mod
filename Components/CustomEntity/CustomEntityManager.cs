@@ -21,6 +21,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
 		internal readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
 
+		private Func<int> OnTickGet;
+
 
 
 		////////////////
@@ -28,6 +30,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal CustomEntityManager() {
 			this.TemplateMngr = new CustomEntityTemplateManager();
 
+			this.OnTickGet = Timers.MainOnTickGoGet();
 			Main.OnTick += CustomEntityManager._Update;
 
 			// Initialize components
@@ -64,12 +67,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
-			if( !Timers.MainOnTickGo ) { return; }
-
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null || mymod.CustomEntMngr == null ) { return; }
 
-			mymod.CustomEntMngr.Update();
+			int ticks = mymod.CustomEntMngr.OnTickGet();
+
+			for( int i = 0; i < ticks; i++ ) {
+				mymod.CustomEntMngr.Update();
+			}
 		}
 
 		internal void Update() {

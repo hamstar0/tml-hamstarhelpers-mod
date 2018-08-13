@@ -13,12 +13,28 @@ namespace HamstarHelpers.Components.Network {
 	/// </summary>
 	public class PacketProtocolNonPublicAttribute : Attribute { }*/		//TODO
 
-
-
+	
+	
 	/// <summary>
 	/// Sets a field to be ignored by a protocol.
 	/// </summary>
 	public class PacketProtocolIgnoreAttribute : Attribute { }
+	/// <summary>
+	/// Sets a field to be not read by clients in a protocol.
+	/// </summary>
+	public class PacketProtocolReadIgnoreClientAttribute : Attribute { }
+	/// <summary>
+	/// Sets a field to be not read by server in a protocol.
+	/// </summary>
+	public class PacketProtocolReadIgnoreServerAttribute : Attribute { }
+	/// <summary>
+	/// Sets a field to be not written by clients in a protocol.
+	/// </summary>
+	public class PacketProtocolWriteIgnoreClientAttribute : Attribute { }
+	/// <summary>
+	/// Sets a field to be not written by server in a protocol.
+	/// </summary>
+	public class PacketProtocolWriteIgnoreServerAttribute : Attribute { }
 
 
 

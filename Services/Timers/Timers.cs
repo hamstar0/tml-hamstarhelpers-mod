@@ -9,9 +9,24 @@ namespace HamstarHelpers.Services.Timers {
 	public class Timers {
 		private readonly static object MyLock = new object();
 		
-		public static bool MainOnTickGo { get; private set; }
+
+		public static Func<int> MainOnTickGoGet() {
+			long then = 0;
+
+			return () => {
+				long now = DateTime.Now.Ticks;
+
+				int go = (int)( ( now - then ) / ( 10000000 / 90 ) );
+				long then_rem = ( now - then ) % ( 10000000 / 90 );
+
+				then = now - then_rem;
+
+				return go;
+			};
+		}
 
 
+		////////////////
 
 		public static void SetTimer( string name, int tick_duration, Func<bool> action ) {
 			var timers = HamstarHelpersMod.Instance.Timers;
@@ -69,13 +84,14 @@ namespace HamstarHelpers.Services.Timers {
 
 		private ISet<string> Expired = new HashSet<string>();
 
-		private long PreviousTicks = 0;
+		private readonly Func<int> OnTickGet;
 
 
 
 		////////////////
 
 		internal Timers() {
+			this.OnTickGet = Timers.MainOnTickGoGet();
 			Main.OnTick += Timers._RunTimers;
 
 			Promises.Promises.AddWorldUnloadEachPromise( () => {
@@ -105,28 +121,14 @@ namespace HamstarHelpers.Services.Timers {
 			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
 			if( mymod == null ) { return; }
 			
-			mymod.Timers.RunTimers();
-		}
-		
-//private int Ticks = 0;
-//private long TickStop = 0;
-		internal void RunTimers() {
-			long now = DateTime.Now.Ticks;
+			int ticks = mymod.Timers.OnTickGet();
 
-			Timers.MainOnTickGo = ( now - this.PreviousTicks ) < ( 10000000 / 90 );
-
-			if( Timers.MainOnTickGo ) {
-				return;
+			for( int i = 0; i < ticks; i++ ) {
+				mymod.Timers.RunEachTimer();
 			}
-//this.Ticks++;
-//var span2 = new TimeSpan( now - this.TickStop );
-//if( span2.TotalMilliseconds > 1000 ) {
-//	DebugHelpers.Print("ticks", "fps: "+(this.Ticks), 20);
-//	this.TickStop = now;
-//	this.Ticks = 0;
-//}
-			this.PreviousTicks = now;
+		}
 
+		private void RunEachTimer() {
 			foreach( string name in this.Running.Keys.ToArray() ) {
 				int duration = this.Running[ name ].Value;
 
