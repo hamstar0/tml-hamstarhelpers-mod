@@ -75,14 +75,15 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
-		public static void AddSafePostWorldLoadEachPromise( Action action ) {
+		public static void AddSafeWorldLoadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
 			if( mymod.Promises.SafeWorldLoadPromiseConditionsMet ) {
 				action();
-			}
-			lock( Promises.SafeWorldLoadOnceLock ) {
-				mymod.Promises.SafeWorldLoadOncePromises.Add( action );
+			} else {
+				lock( Promises.SafeWorldLoadOnceLock ) {
+					mymod.Promises.SafeWorldLoadOncePromises.Add( action );
+				}
 			}
 		}
 

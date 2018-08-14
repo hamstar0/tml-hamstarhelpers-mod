@@ -73,7 +73,9 @@ namespace HamstarHelpers {
 			if( Main.netMode == 0 ) {
 				this.Logic.OnEnterWorldSingle( mymod, player );
 			} else if( Main.netMode == 1 ) {
-				this.Logic.OnEnterWorldClient( mymod, player );
+				Promises.AddSafeWorldLoadOncePromise( () => {
+					this.Logic.OnEnterWorldClient( HamstarHelpersMod.Instance, player );
+				} );
 			}
 		}
 
