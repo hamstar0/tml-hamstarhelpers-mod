@@ -52,46 +52,34 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ItemGroups {
 			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._ItemGroups;
-				}
+				return HamstarHelpersMod.Instance.EntityGroups._ItemGroups;
 			}
 		}
 		public static IReadOnlyDictionary<string, ReadOnlySet<int>> NPCGroups {
 			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._NPCGroups;
-				}
+				return HamstarHelpersMod.Instance.EntityGroups._NPCGroups;
 			}
 		}
 		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ProjectileGroups {
 			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._ProjGroups;
-				}
+				return HamstarHelpersMod.Instance.EntityGroups._ProjGroups;
 			}
 		}
 
 
 		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerItem {
 			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._GroupsPerItem;
-				}
+				return HamstarHelpersMod.Instance.EntityGroups._GroupsPerItem;
 			}
 		}
 		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerNPC {
 			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._GroupsPerNPC;
-				}
+				return HamstarHelpersMod.Instance.EntityGroups._GroupsPerNPC;
 			}
 		}
 		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerProj {
 			get {
-				lock( EntityGroups.MyLock ) {
-					return HamstarHelpersMod.Instance.EntityGroups._GroupsPerProj;
-				}
+				return HamstarHelpersMod.Instance.EntityGroups._GroupsPerProj;
 			}
 		}
 	}
