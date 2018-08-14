@@ -118,5 +118,29 @@ namespace HamstarHelpers.Services.Promises {
 				promise();
 			}
 		}
+
+
+		internal void FulfillSafeWorldLoadPromises() {
+			if( this.SafeWorldLoadPromiseConditionsMet ) { return; }
+			this.SafeWorldLoadPromiseConditionsMet = true;
+
+			Action[] safe_world_unload_once_promises;
+			Action[] safe_world_unload_each_promises;
+
+			lock( Promises.SafeWorldUnloadOnceLock ) {
+				safe_world_unload_once_promises = this.SafeWorldUnloadOncePromise.ToArray();
+				this.SafeWorldUnloadOncePromise.Clear();
+			}
+			lock( Promises.SafeWorldUnloadEachLock ) {
+				safe_world_unload_each_promises = this.SafeWorldUnloadEachPromise.ToArray();
+			}
+
+			foreach( Action promise in safe_world_unload_once_promises ) {
+				promise();
+			}
+			foreach( Action promise in safe_world_unload_each_promises ) {
+				promise();
+			}
+		}
 	}
 }

@@ -19,6 +19,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public int FrameCount;
 		[PacketProtocolIgnore]
 		public float Scale;
+		[PacketProtocolIgnore]
+		public bool Zooms;
 
 		[PacketProtocolIgnore]
 		[JsonIgnore]
@@ -30,11 +32,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
 
-		public DrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale ) {
+		public DrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
 			this.ModName = src_mod_name;
 			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
 			this.Scale = scale;
+			this.Zooms = zooms;
 
 			this.ConfirmLoad();
 		}
@@ -65,7 +68,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( !this.PreDrawMiniMap( sb, ent ) ) { return; }
 
 			Entity core = ent.Core;
-			float scale = Main.mapMinimapScale * this.Scale;
+			float scale = (this.Zooms ? Main.mapMinimapScale : 1f) * this.Scale;
 
 			var rect = new Rectangle( (int)core.position.X, (int)core.position.Y, this.Texture.Width, this.Texture.Height );
 			Vector2? mini_map_pos = HudMapHelpers.GetMiniMapPosition( rect );
@@ -81,7 +84,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( !this.PreDrawOverlayMap( sb, ent ) ) { return; }
 
 			Entity core = ent.Core;
-			float scale = Main.mapOverlayScale * this.Scale;
+			float scale = (this.Zooms ? Main.mapOverlayScale : 1f) * this.Scale;
 
 			var rect = new Rectangle( (int)core.position.X, (int)core.position.Y, this.Texture.Width, this.Texture.Height );
 			Vector2? over_map_pos = HudMapHelpers.GetOverlayMapPosition( rect );
@@ -97,7 +100,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( !this.PreDrawFullscreenMap( sb, ent) ) { return; }
 
 			Entity core = ent.Core;
-			float scale = Main.mapFullscreenScale * this.Scale;
+			float scale = (this.Zooms ? Main.mapFullscreenScale : 1f) * this.Scale;
 
 			var rect = new Rectangle( (int)core.position.X, (int)core.position.Y, this.Texture.Width, this.Texture.Height );
 			Vector2 pos = HudMapHelpers.GetFullMapPosition( rect );

@@ -63,6 +63,27 @@ namespace HamstarHelpers.Services.DataDumper {
 			return prefix + "_"+netmode +"_"+now + "_dump.txt";
 		}
 
+		public static string GetRelativePath() {
+			return "Logs" + Path.DirectorySeparatorChar + "Dumps";
+		}
+
+
+		////////////////
+
+		private static void PrepareDir() {
+			string full_dir = Main.SavePath + Path.DirectorySeparatorChar + DataDumper.GetRelativePath();
+
+			try {
+				Directory.CreateDirectory( Main.SavePath );
+				Directory.CreateDirectory( Main.SavePath + Path.DirectorySeparatorChar + "Logs" );
+				Directory.CreateDirectory( full_dir );
+			} catch( IOException e ) {
+				throw new IOException( "Failed to prepare directory: " + full_dir, e );
+			}
+		}
+
+
+		////////////////
 
 		public static void SetDumpSource( string name, Func<string> dump ) {
 			var dumpables = DataDumper.GetDumpables();
@@ -92,9 +113,10 @@ namespace HamstarHelpers.Services.DataDumper {
 			}
 			
 			string file_name = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
-			string rel_path = "Logs" + Path.DirectorySeparatorChar + "Dumps";
-			string full_path = Main.SavePath + Path.DirectorySeparatorChar + rel_path + Path.DirectorySeparatorChar + file_name;
-			
+			string rel_path = DataDumper.GetRelativePath();
+			string full_folder = Main.SavePath + Path.DirectorySeparatorChar + rel_path;
+			string full_path = full_folder + Path.DirectorySeparatorChar + file_name;
+
 			success = FileHelpers.SaveTextFile( data, full_path, false, false );
 
 			if( success ) {

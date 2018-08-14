@@ -16,6 +16,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 			if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 				this.UpdateSafelyLoaded( mymod );
+				mymod.Promises.FulfillSafeWorldLoadPromises();
 			}
 		}
 
@@ -24,8 +25,6 @@ namespace HamstarHelpers.Internals.Logic {
 
 			UIControlPanel.UpdateModList( mymod );
 		}
-
-		////
 
 
 		////
