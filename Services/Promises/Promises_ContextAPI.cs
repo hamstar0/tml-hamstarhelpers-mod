@@ -75,6 +75,17 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
+		public static void AddSafePostWorldLoadEachPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.Promises.SafeWorldLoadPromiseConditionsMet ) {
+				action();
+			}
+			lock( Promises.SafeWorldLoadOnceLock ) {
+				mymod.Promises.SafeWorldLoadOncePromises.Add( action );
+			}
+		}
+
 
 		////////////////
 
@@ -119,6 +130,17 @@ namespace HamstarHelpers.Services.Promises {
 			}
 			lock( Promises.PostWorldUnloadEachLock ) {
 				mymod.Promises.PostWorldUnloadEachPromises.Add( action );
+			}
+		}
+
+		public static void AddSafeWorldLoadEachPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+
+			if( mymod.Promises.SafeWorldLoadPromiseConditionsMet ) {
+				action();
+			}
+			lock( Promises.SafeWorldLoadEachLock ) {
+				mymod.Promises.SafeWorldLoadEachPromises.Add( action );
 			}
 		}
 	}

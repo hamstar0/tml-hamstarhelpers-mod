@@ -16,8 +16,8 @@ namespace HamstarHelpers.Services.Promises {
 		private static object WorldUnloadEachLock = new object();
 		private static object PostWorldUnloadOnceLock = new object();
 		private static object PostWorldUnloadEachLock = new object();
-		private static object SafeWorldUnloadOnceLock = new object();
-		private static object SafeWorldUnloadEachLock = new object();
+		private static object SafeWorldLoadOnceLock = new object();
+		private static object SafeWorldLoadEachLock = new object();
 		private static object ValidatedPromiseLock = new object();
 
 
@@ -33,8 +33,8 @@ namespace HamstarHelpers.Services.Promises {
 		private IList<Action> WorldUnloadEachPromises = new List<Action>();
 		private IList<Action> PostWorldUnloadOncePromises = new List<Action>();
 		private IList<Action> PostWorldUnloadEachPromises = new List<Action>();
-		private IList<Action> SafeWorldUnloadOncePromise = new List<Action>();
-		private IList<Action> SafeWorldUnloadEachPromise = new List<Action>();
+		private IList<Action> SafeWorldLoadOncePromises = new List<Action>();
+		private IList<Action> SafeWorldLoadEachPromises = new List<Action>();
 
 		private bool PostModLoadPromiseConditionsMet = false;
 		private bool WorldLoadPromiseConditionsMet = false;
@@ -98,7 +98,8 @@ namespace HamstarHelpers.Services.Promises {
 		private void Update() {
 			if( Main.netMode != 2 ) {
 				if( this.WorldLoadPromiseConditionsMet && Main.gameMenu ) {
-					this.WorldLoadPromiseConditionsMet = false; // Does this work?
+					this.WorldLoadPromiseConditionsMet = false;
+					this.SafeWorldLoadPromiseConditionsMet = false;
 				}
 			}
 

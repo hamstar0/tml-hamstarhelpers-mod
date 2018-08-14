@@ -127,12 +127,12 @@ namespace HamstarHelpers.Services.Promises {
 			Action[] safe_world_unload_once_promises;
 			Action[] safe_world_unload_each_promises;
 
-			lock( Promises.SafeWorldUnloadOnceLock ) {
-				safe_world_unload_once_promises = this.SafeWorldUnloadOncePromise.ToArray();
-				this.SafeWorldUnloadOncePromise.Clear();
+			lock( Promises.SafeWorldLoadOnceLock ) {
+				safe_world_unload_once_promises = this.SafeWorldLoadOncePromises.ToArray();
+				this.SafeWorldLoadOncePromises.Clear();
 			}
-			lock( Promises.SafeWorldUnloadEachLock ) {
-				safe_world_unload_each_promises = this.SafeWorldUnloadEachPromise.ToArray();
+			lock( Promises.SafeWorldLoadEachLock ) {
+				safe_world_unload_each_promises = this.SafeWorldLoadEachPromises.ToArray();
 			}
 
 			foreach( Action promise in safe_world_unload_once_promises ) {
