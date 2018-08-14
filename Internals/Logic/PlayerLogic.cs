@@ -103,6 +103,8 @@ namespace HamstarHelpers.Internals.Logic {
 		private void FinishSync() {
 			if( this.IsFinishedSyncing ) { return; }
 			this.IsFinishedSyncing = true;
+
+			HamstarHelpersMod.Instance.Promises.FulfillCurrentPlayerLoadPromises();
 		}
 	}
 }

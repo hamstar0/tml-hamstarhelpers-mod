@@ -36,7 +36,6 @@ namespace HamstarHelpers {
 		////////////////
 
 		public PlayerLogic Logic { get; private set; }
-//private readonly string MYUID = Guid.NewGuid().ToString();
 
 
 		////////////////
@@ -45,7 +44,6 @@ namespace HamstarHelpers {
 		
 		public override void Initialize() {
 			this.Logic = new PlayerLogic();
-//LogHelpers.Log( "CHECK "+this.MYUID+" Logic UID: "+this.Logic.PrivateUID+" "+this.Logic.HasUID );
 		}
 
 		public override void clientClone( ModPlayer client_clone ) {

@@ -19,6 +19,8 @@ namespace HamstarHelpers.Services.Promises {
 		private static object SafeWorldLoadOnceLock = new object();
 		private static object SafeWorldLoadEachLock = new object();
 		private static object ValidatedPromiseLock = new object();
+		private static object CurrentPlayerLoadOnceLock = new object();
+		private static object CurrentPlayerLoadEachLock = new object();
 
 
 		////////////////
@@ -35,12 +37,15 @@ namespace HamstarHelpers.Services.Promises {
 		private IList<Action> PostWorldUnloadEachPromises = new List<Action>();
 		private IList<Action> SafeWorldLoadOncePromises = new List<Action>();
 		private IList<Action> SafeWorldLoadEachPromises = new List<Action>();
+		private IList<Action> CurrentPlayerLoadOncePromises = new List<Action>();
+		private IList<Action> CurrentPlayerLoadEachPromises = new List<Action>();
 
 		private bool PostModLoadPromiseConditionsMet = false;
 		private bool WorldLoadPromiseConditionsMet = false;
 		private bool WorldUnloadPromiseConditionsMet = false;
 		private bool PostWorldUnloadPromiseConditionsMet = false;
 		private bool SafeWorldLoadPromiseConditionsMet = false;
+		private bool CurrentPlayerLoadPromiseConditionsMet = false;
 
 		private IDictionary<PromiseValidator, List<Func<PromiseArguments, bool>>> ValidatedPromise = new Dictionary<PromiseValidator, List<Func<PromiseArguments, bool>>>();
 		private ISet<PromiseValidator> ValidatedPromiseConditionsMet = new HashSet<PromiseValidator>();

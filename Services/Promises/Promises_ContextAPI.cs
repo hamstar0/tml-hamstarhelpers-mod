@@ -1,5 +1,7 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
+using Terraria;
 
 
 namespace HamstarHelpers.Services.Promises {
@@ -87,6 +89,23 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
+		public static void AddCurrentPlayerLoadOncePromise( Action action ) {
+			if( Main.dedServ || Main.netMode == 2 ) {
+				throw new HamstarException( "Not for servers." );
+			}
+
+			var mymod = HamstarHelpersMod.Instance;
+			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+			
+			if( mymod.Promises.CurrentPlayerLoadPromiseConditionsMet ) {
+				action();
+			} else {
+				lock( Promises.CurrentPlayerLoadOnceLock ) {
+					mymod.Promises.CurrentPlayerLoadOncePromises.Add( action );
+				}
+			}
+		}
+
 
 		////////////////
 
@@ -142,6 +161,22 @@ namespace HamstarHelpers.Services.Promises {
 			}
 			lock( Promises.SafeWorldLoadEachLock ) {
 				mymod.Promises.SafeWorldLoadEachPromises.Add( action );
+			}
+		}
+
+		public static void AddCurrentPlayerLoadEachPromise( Action action ) {
+			if( Main.dedServ || Main.netMode == 2 ) {
+				throw new HamstarException( "Not for servers." );
+			}
+
+			var mymod = HamstarHelpersMod.Instance;
+			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+
+			if( mymod.Promises.CurrentPlayerLoadPromiseConditionsMet ) {
+				action();
+			}
+			lock( Promises.CurrentPlayerLoadEachLock ) {
+				mymod.Promises.CurrentPlayerLoadEachPromises.Add( action );
 			}
 		}
 	}

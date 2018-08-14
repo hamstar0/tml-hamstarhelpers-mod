@@ -73,6 +73,7 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
+
 		internal void FulfillWorldUnloadPromises() {
 			if( this.WorldUnloadPromiseConditionsMet ) { return; }
 			this.WorldUnloadPromiseConditionsMet = true;
@@ -95,6 +96,7 @@ namespace HamstarHelpers.Services.Promises {
 				promise();
 			}
 		}
+
 
 		internal void FulfillPostWorldUnloadPromises() {
 			if( this.PostWorldUnloadPromiseConditionsMet ) { return; }
@@ -124,21 +126,45 @@ namespace HamstarHelpers.Services.Promises {
 			if( this.SafeWorldLoadPromiseConditionsMet ) { return; }
 			this.SafeWorldLoadPromiseConditionsMet = true;
 
-			Action[] safe_world_unload_once_promises;
-			Action[] safe_world_unload_each_promises;
+			Action[] safe_world_load_once_promises;
+			Action[] safe_world_load_each_promises;
 
 			lock( Promises.SafeWorldLoadOnceLock ) {
-				safe_world_unload_once_promises = this.SafeWorldLoadOncePromises.ToArray();
+				safe_world_load_once_promises = this.SafeWorldLoadOncePromises.ToArray();
 				this.SafeWorldLoadOncePromises.Clear();
 			}
 			lock( Promises.SafeWorldLoadEachLock ) {
-				safe_world_unload_each_promises = this.SafeWorldLoadEachPromises.ToArray();
+				safe_world_load_each_promises = this.SafeWorldLoadEachPromises.ToArray();
 			}
 
-			foreach( Action promise in safe_world_unload_once_promises ) {
+			foreach( Action promise in safe_world_load_once_promises ) {
 				promise();
 			}
-			foreach( Action promise in safe_world_unload_each_promises ) {
+			foreach( Action promise in safe_world_load_each_promises ) {
+				promise();
+			}
+		}
+		
+
+		internal void FulfillCurrentPlayerLoadPromises() {
+			if( this.CurrentPlayerLoadPromiseConditionsMet ) { return; }
+			this.CurrentPlayerLoadPromiseConditionsMet = true;
+
+			Action[] current_player_load_once_promises;
+			Action[] current_player_load_each_promises;
+
+			lock( Promises.CurrentPlayerLoadOnceLock ) {
+				current_player_load_once_promises = this.CurrentPlayerLoadOncePromises.ToArray();
+				this.CurrentPlayerLoadOncePromises.Clear();
+			}
+			lock( Promises.CurrentPlayerLoadEachLock ) {
+				current_player_load_each_promises = this.CurrentPlayerLoadEachPromises.ToArray();
+			}
+
+			foreach( Action promise in current_player_load_once_promises ) {
+				promise();
+			}
+			foreach( Action promise in current_player_load_each_promises ) {
 				promise();
 			}
 		}
