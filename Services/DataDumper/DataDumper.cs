@@ -117,6 +117,7 @@ namespace HamstarHelpers.Services.DataDumper {
 			string full_folder = Main.SavePath + Path.DirectorySeparatorChar + rel_path;
 			string full_path = full_folder + Path.DirectorySeparatorChar + file_name;
 
+			DataDumper.PrepareDir();
 			success = FileHelpers.SaveTextFile( data, full_path, false, false );
 
 			if( success ) {
