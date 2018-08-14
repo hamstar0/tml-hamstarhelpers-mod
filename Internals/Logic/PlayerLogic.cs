@@ -50,7 +50,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 		
-		public void OnEnterWorldSingle( HamstarHelpersMod mymod, Player player ) {
+		public void OnSingleConnect( HamstarHelpersMod mymod, Player player ) {
 			if( !mymod.ConfigJson.LoadFile() ) {
 				mymod.ConfigJson.SaveFile();
 			}
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnEnterWorldClient( HamstarHelpersMod mymod, Player player ) {
+		public void OnCurrentClientConnect( HamstarHelpersMod mymod, Player player ) {
 			if( this.HasUID ) {
 				PacketProtocol.QuickSendToServer<PlayerIdProtocol>();
 			} else {
@@ -75,7 +75,7 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnEnterWorldServer( HamstarHelpersMod mymod, Player player ) {
+		public void OnServerConnect( HamstarHelpersMod mymod, Player player ) {
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
 
