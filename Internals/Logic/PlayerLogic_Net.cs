@@ -76,7 +76,9 @@ namespace HamstarHelpers.Internals.Logic {
 			if( this.IsSynced ) { return; }
 			this.IsSynced = true;
 
-			HamstarHelpersMod.Instance.Promises.FulfillCurrentPlayerLoadPromises();
+			Promises.AddWorldInPlayOncePromise( () => {
+				HamstarHelpersMod.Instance.Promises.FulfillCurrentPlayerLoadPromises();
+			} );
 		}
 
 

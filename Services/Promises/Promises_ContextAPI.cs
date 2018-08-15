@@ -77,6 +77,18 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
+		public static void AddWorldInPlayOncePromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+			
+			if( mymod.Promises.WorldInPlayPromiseConditionsMet ) {
+				action();
+			} else {
+				lock( Promises.WorldInPlayOnceLock ) {
+					mymod.Promises.WorldInPlayOncePromises.Add( action );
+				}
+			}
+		}
+
 		public static void AddSafeWorldLoadOncePromise( Action action ) {
 			var mymod = HamstarHelpersMod.Instance;
 
@@ -95,7 +107,6 @@ namespace HamstarHelpers.Services.Promises {
 			}
 
 			var mymod = HamstarHelpersMod.Instance;
-			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 			
 			if( mymod.Promises.CurrentPlayerLoadPromiseConditionsMet ) {
 				action();
@@ -150,6 +161,17 @@ namespace HamstarHelpers.Services.Promises {
 			}
 			lock( Promises.PostWorldUnloadEachLock ) {
 				mymod.Promises.PostWorldUnloadEachPromises.Add( action );
+			}
+		}
+
+		public static void AddWorldInPlayEachPromise( Action action ) {
+			var mymod = HamstarHelpersMod.Instance;
+			
+			if( mymod.Promises.WorldInPlayPromiseConditionsMet ) {
+				action();
+			}
+			lock( Promises.WorldInPlayEachLock ) {
+				mymod.Promises.WorldInPlayEachPromises.Add( action );
 			}
 		}
 

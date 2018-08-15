@@ -16,12 +16,14 @@ namespace HamstarHelpers.Services.Promises {
 		private static object WorldUnloadEachLock = new object();
 		private static object PostWorldUnloadOnceLock = new object();
 		private static object PostWorldUnloadEachLock = new object();
+		private static object WorldInPlayOnceLock = new object();
+		private static object WorldInPlayEachLock = new object();
 		private static object SafeWorldLoadOnceLock = new object();
 		private static object SafeWorldLoadEachLock = new object();
-		private static object ValidatedPromiseLock = new object();
 		private static object CurrentPlayerLoadOnceLock = new object();
 		private static object CurrentPlayerLoadEachLock = new object();
-
+		 private static object ValidatedPromiseLock = new object();
+		
 
 		////////////////
 
@@ -35,15 +37,18 @@ namespace HamstarHelpers.Services.Promises {
 		private IList<Action> WorldUnloadEachPromises = new List<Action>();
 		private IList<Action> PostWorldUnloadOncePromises = new List<Action>();
 		private IList<Action> PostWorldUnloadEachPromises = new List<Action>();
+		private IList<Action> WorldInPlayOncePromises = new List<Action>();
+		private IList<Action> WorldInPlayEachPromises = new List<Action>();
 		private IList<Action> SafeWorldLoadOncePromises = new List<Action>();
 		private IList<Action> SafeWorldLoadEachPromises = new List<Action>();
 		private IList<Action> CurrentPlayerLoadOncePromises = new List<Action>();
 		private IList<Action> CurrentPlayerLoadEachPromises = new List<Action>();
-
+		
 		private bool PostModLoadPromiseConditionsMet = false;
 		private bool WorldLoadPromiseConditionsMet = false;
 		private bool WorldUnloadPromiseConditionsMet = false;
 		private bool PostWorldUnloadPromiseConditionsMet = false;
+		private bool WorldInPlayPromiseConditionsMet = false;
 		private bool SafeWorldLoadPromiseConditionsMet = false;
 		private bool CurrentPlayerLoadPromiseConditionsMet = false;
 		

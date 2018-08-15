@@ -122,6 +122,30 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 
+		internal void FulfillWorldInPlayPromises() {
+			if( this.WorldInPlayPromiseConditionsMet ) { return; }
+			this.WorldInPlayPromiseConditionsMet = true;
+
+			Action[] in_play_once_promises;
+			Action[] in_play_each_promises;
+
+			lock( Promises.WorldInPlayOnceLock ) {
+				in_play_once_promises = this.WorldInPlayOncePromises.ToArray();
+				this.WorldInPlayOncePromises.Clear();
+			}
+			lock( Promises.WorldInPlayEachLock ) {
+				in_play_each_promises = this.WorldInPlayEachPromises.ToArray();
+			}
+
+			foreach( Action promise in in_play_once_promises ) {
+				promise();
+			}
+			foreach( Action promise in in_play_each_promises ) {
+				promise();
+			}
+		}
+
+
 		internal void FulfillSafeWorldLoadPromises() {
 			if( this.SafeWorldLoadPromiseConditionsMet ) { return; }
 			this.SafeWorldLoadPromiseConditionsMet = true;
