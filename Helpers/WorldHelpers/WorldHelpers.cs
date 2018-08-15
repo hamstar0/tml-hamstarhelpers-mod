@@ -97,14 +97,14 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			if( tags.ContainsKey( "world_id" ) ) {
-				this.HalfDaysElapsed = tags.GetInt( "half_days_elapsed_" + myworld.ObsoleteID );
+				this.HalfDaysElapsed = tags.GetInt( "half_days_elapsed_" + myworld.ObsoletedID );
 			}
 		}
 
 		internal void Save( HamstarHelpersMod mymod, TagCompound tags ) {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
-			tags.Set( "half_days_elapsed_" + myworld.ObsoleteID, (int)this.HalfDaysElapsed );
+			tags.Set( "half_days_elapsed_" + myworld.ObsoletedID, (int)this.HalfDaysElapsed );
 		}
 
 		////////////////
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 			this.HalfDaysElapsed = half_days;
 
-			myworld.ObsoleteID = world_id;
+			myworld.ObsoletedID = world_id;
 		}
 
 

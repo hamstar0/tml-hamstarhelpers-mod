@@ -32,8 +32,8 @@ namespace HamstarHelpers {
 
 		public string ObsoleteID2 { get; private set; }
 		
-		internal string ObsoleteID;
-		public bool HasCorrectID { get; internal set; }  // Workaround for tml bug?
+		internal string ObsoletedID;
+		public bool HasObsoletedID { get; internal set; }  // Workaround for tml bug?
 
 		internal WorldLogic WorldLogic { get; private set; }
 		
@@ -45,8 +45,8 @@ namespace HamstarHelpers {
 			var mymod = (HamstarHelpersMod)this.mod;
 
 			this.ObsoleteID2 = WorldHelpers.GetUniqueId();
-			this.ObsoleteID = Guid.NewGuid().ToString( "D" );
-			this.HasCorrectID = false;  // 'Load()' decides if no pre-existing one is found
+			this.ObsoletedID = Guid.NewGuid().ToString( "D" );
+			this.HasObsoletedID = false;  // 'Load()' decides if no pre-existing one is found
 
 			this.WorldLogic = new WorldLogic( mymod );
 
@@ -57,7 +57,7 @@ namespace HamstarHelpers {
 
 
 		internal void OnWorldExit() {
-			this.HasCorrectID = false;
+			this.HasObsoletedID = false;
 		}
 
 		////////////////
@@ -66,7 +66,7 @@ namespace HamstarHelpers {
 			var mymod = (HamstarHelpersMod)this.mod;
 
 			if( tags.ContainsKey( "world_id" ) ) {
-				this.ObsoleteID = tags.GetString( "world_id" );
+				this.ObsoletedID = tags.GetString( "world_id" );
 			}
 
 			//mymod.UserHelpers.Load( mymod, tags );
@@ -79,14 +79,14 @@ namespace HamstarHelpers {
 			
 			Promises.TriggerValidatedPromise( HamstarHelpersWorld.LoadValidator, HamstarHelpersWorld.MyValidatorKey, null );
 
-			this.HasCorrectID = true;
+			this.HasObsoletedID = true;
 		}
 
 		public override TagCompound Save() {
 			var mymod = (HamstarHelpersMod)this.mod;
 			TagCompound tags = new TagCompound();
 
-			tags.Set( "world_id", this.ObsoleteID );
+			tags.Set( "world_id", this.ObsoletedID );
 
 			//mymod.UserHelpers.Save( mymod, tags );
 			mymod.ModLockHelpers.Save( mymod, tags );

@@ -3,7 +3,6 @@ using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
@@ -73,11 +72,7 @@ namespace HamstarHelpers {
 			if( Main.netMode == 0 ) {
 				this.Logic.OnSingleConnect( mymod, player );
 			} else if( Main.netMode == 1 ) {
-				int who = player.whoAmI;
-
-				Promises.AddSafeWorldLoadOncePromise( () => {
-					this.Logic.OnCurrentClientConnect( HamstarHelpersMod.Instance, Main.player[who] );
-				} );
+				this.Logic.OnCurrentClientConnect( mymod, this.player );
 			}
 		}
 

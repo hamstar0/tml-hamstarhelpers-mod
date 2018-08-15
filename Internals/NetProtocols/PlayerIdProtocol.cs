@@ -14,6 +14,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private PlayerIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
 
+
 		////////////////
 
 		protected override void SetClientDefaults() {
@@ -23,10 +24,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.ClientHasUID = myplayer.Logic.HasUID;
 		}
 
+
 		////////////////
 
 		protected override void ReceiveWithServer( int from_who ) {
-			Player player = Main.player[from_who];
+			Player player = Main.player[ from_who ];
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveIdServer( this.ClientHasUID, this.ClientPrivateUID );

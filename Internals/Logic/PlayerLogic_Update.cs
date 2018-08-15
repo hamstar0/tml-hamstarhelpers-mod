@@ -48,7 +48,7 @@ namespace HamstarHelpers.Internals.Logic {
 				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			}
 			if( player.whoAmI != 255 ) {
-				mymod.LoadHelpers.HasServerBegunHavingPlayers = true;
+				mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish = true;	// Weird hack?
 			}
 
 			foreach( int buff_id in this.PermaBuffsById ) {

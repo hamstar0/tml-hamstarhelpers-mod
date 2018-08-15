@@ -14,32 +14,33 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			return true;
 		}
 
-
+		
 		public static bool IsWorldLoaded() {
 			if( !LoadHelpers.IsModLoaded() ) { return false; }
 
 			var mymod = HamstarHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
-			if( !myworld.HasCorrectID ) { return false; }
+			if( !myworld.HasObsoletedID ) { return false; }
 
 			return true;
 		}
 
 
 		public static bool IsWorldBeingPlayed() {
-			if( !LoadHelpers.IsWorldLoaded() ) { return false; }
-
 			var mymod = HamstarHelpersMod.Instance;
 
-			if( Main.netMode == 0 || Main.netMode == 1 ) {  // Client or single
-				if( !mymod.LoadHelpers.IsClientPlaying ) {
+			if( Main.netMode != 2 && !Main.dedServ ) {
+				if( !mymod.LoadHelpers.IsClientPlaying_Hackish ) {
 					return false;
 				}
 
 				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-				return myplayer.Logic.IsSynced();
-			} else {  // Server
-				if( !mymod.LoadHelpers.HasServerBegunHavingPlayers ) {
+				return myplayer.Logic.IsSynced;
+			} else {
+				if( !LoadHelpers.IsWorldLoaded() ) {
+					return false;
+				}
+				if( !mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish ) {
 					return false;
 				}
 

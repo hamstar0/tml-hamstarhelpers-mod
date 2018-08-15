@@ -46,7 +46,7 @@ namespace HamstarHelpers.Services.Promises {
 		private bool PostWorldUnloadPromiseConditionsMet = false;
 		private bool SafeWorldLoadPromiseConditionsMet = false;
 		private bool CurrentPlayerLoadPromiseConditionsMet = false;
-
+		
 		private IDictionary<PromiseValidator, List<Func<PromiseArguments, bool>>> ValidatedPromise = new Dictionary<PromiseValidator, List<Func<PromiseArguments, bool>>>();
 		private ISet<PromiseValidator> ValidatedPromiseConditionsMet = new HashSet<PromiseValidator>();
 		private IDictionary<PromiseValidator, PromiseArguments> ValidatedPromiseArgs = new Dictionary<PromiseValidator, PromiseArguments>();

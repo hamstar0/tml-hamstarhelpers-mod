@@ -13,7 +13,7 @@ namespace HamstarHelpers {
 	partial class HamstarHelpersMod : Mod {
 		public override void PostDrawInterface( SpriteBatch sb ) {
 			if( this.LoadHelpers != null ) {
-				this.LoadHelpers.IsClientPlaying = true;  // Ugh!
+				this.LoadHelpers.IsClientPlaying_Hackish = true;  // Ugh!
 			}
 
 			try {

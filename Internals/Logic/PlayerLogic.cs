@@ -1,20 +1,13 @@
-﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.UI;
+﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Promises;
+using System;
 using System.Collections.Generic;
-using Terraria;
+using System.Linq;
+using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Internals.Logic {
-	class PlayerLogicPromiseArguments : PromiseArguments {
-		public int Who;
-	}
-
-
-
-
 	partial class PlayerLogic {
 		internal readonly static object MyValidatorKey;
 		internal readonly static PromiseValidator ServerConnectValidator;
@@ -44,67 +37,43 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public bool HasSyncedModSettings { get; private set; }
 		public bool HasSyncedModData { get; private set; }
-		private bool IsFinishedSyncing = false;
+		public bool IsSynced { get; private set; }
 
 
 
 		////////////////
-		
-		public void OnSingleConnect( HamstarHelpersMod mymod, Player player ) {
-			if( !mymod.ConfigJson.LoadFile() ) {
-				mymod.ConfigJson.SaveFile();
-			}
 
-			this.FinishModSettingsSync();
-			this.FinishWorldDataSync();
-
-			mymod.ControlPanel.LoadModListAsync();
-		}
-
-		public void OnCurrentClientConnect( HamstarHelpersMod mymod, Player player ) {
-			if( this.HasUID ) {
-				PacketProtocol.QuickSendToServer<PlayerIdProtocol>();
-			} else {
-				LogHelpers.Log( "ModHelpers.PlayerLogic.OnEnterWorldClient - No UID for "+player.name+" ("+player.whoAmI+") to send to server" );
-			}
-			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
-			
-			PacketProtocol.QuickRequestToServer<ModSettingsProtocol>();
-			PacketProtocol.QuickRequestToServer<WorldDataProtocol>();
-
-			mymod.ControlPanel.LoadModListAsync();
-		}
-
-		public void OnServerConnect( HamstarHelpersMod mymod, Player player ) {
-			this.FinishModSettingsSync();
-			this.FinishWorldDataSync();
-
-			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
-
-			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
+		public PlayerLogic() {
+			this.PrivateUID = Guid.NewGuid().ToString( "D" );
+			this.HasUID = false;
+			this.HasSyncedModSettings = false;
+			this.HasSyncedModData = false;
+			this.IsSynced = false;
 		}
 
 
 		////////////////
 
-		public bool IsSynced() {
-			return this.HasSyncedModSettings && this.HasSyncedModData;
+		public void Load( TagCompound tags ) {
+			if( tags.ContainsKey( "uid" ) ) {
+				this.PrivateUID = tags.GetString( "uid" );
+			}
+			if( tags.ContainsKey( "perma_buffs" ) ) {
+				var perma_buffs = tags.GetList<int>( "perma_buffs" );
+				this.PermaBuffsById = new HashSet<int>( perma_buffs.ToArray() );
+			}
+
+			this.HasUID = true;
 		}
 
-		public void FinishModSettingsSync() {
-			this.HasSyncedModSettings = true;
-			if( this.IsSynced() ) { this.FinishSync(); }
-		}
-		public void FinishWorldDataSync() {
-			this.HasSyncedModData = true;
-			if( this.IsSynced() ) { this.FinishSync(); }
-		}
+		public TagCompound Save() {
+			var perma_buffs = this.PermaBuffsById.ToArray();
 
-		private void FinishSync() {
-			if( this.IsFinishedSyncing ) { return; }
-			this.IsFinishedSyncing = true;
-
-			HamstarHelpersMod.Instance.Promises.FulfillCurrentPlayerLoadPromises();
+			var tags = new TagCompound {
+				{ "uid", this.PrivateUID },
+				{ "perma_buffs", perma_buffs }
+			};
+			return tags;
 		}
 	}
 }

@@ -7,13 +7,14 @@ using Terraria;
 namespace HamstarHelpers.Internals.NetProtocols {
 	class WorldDataProtocol : PacketProtocol {
 		public int HalfDays;
-		public bool HasCorrectWorldId;
-		public string ObsoleteWorldId;
+		public bool HasObsoletedWorldId;
+		public string ObsoletedWorldId;
 
 
 		////////////////
 
 		private WorldDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+
 
 		////////////////
 
@@ -22,8 +23,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			this.HalfDays = WorldHelpers.GetElapsedHalfDays();
-			this.HasCorrectWorldId = myworld.HasCorrectID;
-			this.ObsoleteWorldId = myworld.ObsoleteID;
+			this.HasObsoletedWorldId = myworld.HasObsoletedID;
+			this.ObsoletedWorldId = myworld.ObsoletedID;
 		}
 
 
@@ -34,9 +35,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
-			myworld.HasCorrectID = this.HasCorrectWorldId;
-			myworld.ObsoleteID = this.ObsoleteWorldId;
-			HamstarHelpersMod.Instance.WorldHelpers.LoadFromData( HamstarHelpersMod.Instance, this.HalfDays, this.ObsoleteWorldId );
+			myworld.HasObsoletedID = this.HasObsoletedWorldId;
+			myworld.ObsoletedID = this.ObsoletedWorldId;
+
+			mymod.WorldHelpers.LoadFromData( mymod, this.HalfDays, this.ObsoletedWorldId );
 
 			myplayer.Logic.FinishWorldDataSync();
 		}

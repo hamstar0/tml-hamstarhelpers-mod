@@ -161,6 +161,7 @@
     <Compile Include="Helpers\UIHelpers\UIHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldFileHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers.cs" />
+    <Compile Include="Internals\Logic\PlayerLogic_Net.cs" />
     <Compile Include="Internals\Logic\PlayerLogic_Update.cs" />
     <Compile Include="Internals\NetProtocols\CustomEntityAllProtocol.cs" />
     <Compile Include="Internals\NetProtocols\CustomEntityProtocol.cs" />
@@ -197,7 +198,6 @@
     <Compile Include="Internals\WebRequests\ServerBrowserReport_ProofOfWork.cs" />
     <Compile Include="Internals\WebRequests\ServerBrowserReport_AutoUpdate.cs" />
     <Compile Include="Internals\WebRequests\ServerBrowserReport.cs" />
-    <Compile Include="Internals\Logic\PlayerLogic_Data.cs" />
     <Compile Include="Internals\Logic\PlayerLogic_TmlHelpers.cs" />
     <Compile Include="Internals\Logic\PlayerLogic.cs" />
     <Compile Include="Internals\Logic\WorldLogic_Update.cs" />

@@ -131,8 +131,8 @@ namespace HamstarHelpers {
 			}
 
 			this.DataStore = new DataStore();
-			this.LoadHelpers = new LoadHelpers();
 			this.Promises = new Promises();
+			this.LoadHelpers = new LoadHelpers();
 
 			this.Timers = new Timers();
 			this.LogHelpers = new LogHelpers();
