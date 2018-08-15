@@ -111,8 +111,8 @@
     <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers_Rarity.cs" />
     <Compile Include="Helpers\MiscHelpers\PaintHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerModHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\LoadHelpers_API.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers.cs" />
-    <Compile Include="Helpers\TmlHelpers\LoadHelpers_Load.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData_API.cs" />
     <Compile Include="Helpers\UserHelpers\UserHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers_Obsolete.cs" />
