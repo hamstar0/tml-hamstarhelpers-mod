@@ -10,7 +10,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers {
-	partial class HamstarHelpersMod : Mod {
+	partial class ModHelpersMod : Mod {
 		public override void PostDrawInterface( SpriteBatch sb ) {
 			if( this.LoadHelpers != null ) {
 				this.LoadHelpers.IsClientPlaying_Hackish = true;  // Ugh!
@@ -21,7 +21,7 @@ namespace HamstarHelpers {
 					this.DrawMiniMapForAll( sb );
 				}
 			} catch( Exception e ) {
-				ErrorLogger.Log( "HamstarHelpersMod.PostDrawInterface - " + e.ToString() );
+				ErrorLogger.Log( "ModHelpersMod.PostDrawInterface - " + e.ToString() );
 				throw e;
 			}
 		}
@@ -30,7 +30,7 @@ namespace HamstarHelpers {
 			try {
 				this.DrawFullMapForAll( Main.spriteBatch );
 			} catch( Exception e ) {
-				ErrorLogger.Log( "HamstarHelpersMod.PostDrawFullscreenMap: " + e.ToString() );
+				ErrorLogger.Log( "ModHelpersMod.PostDrawFullscreenMap: " + e.ToString() );
 				throw e;
 			}
 		}

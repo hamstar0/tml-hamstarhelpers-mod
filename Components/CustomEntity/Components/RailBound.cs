@@ -81,7 +81,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.IsOnRail = is_on_rail;
 
 			if( this.IsOnRail ) {
-				if( HamstarHelpersMod.Instance.Config.DebugModeHighlightEntities ) {
+				if( ModHelpersMod.Instance.Config.DebugModeHighlightEntities ) {
 					int idx = Dust.NewDust( new Vector2( i * 16 + 8, j * 16 + 8 ), 0, 0, 1,
 						Main.rand.NextFloat() * 0.2f - 0.1f,
 						Main.rand.NextFloat() * 0.2f - 0.1f );

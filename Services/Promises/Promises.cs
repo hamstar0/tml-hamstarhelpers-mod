@@ -20,8 +20,6 @@ namespace HamstarHelpers.Services.Promises {
 		private static object WorldInPlayEachLock = new object();
 		private static object SafeWorldLoadOnceLock = new object();
 		private static object SafeWorldLoadEachLock = new object();
-		private static object CurrentPlayerLoadOnceLock = new object();
-		private static object CurrentPlayerLoadEachLock = new object();
 		 private static object ValidatedPromiseLock = new object();
 		
 
@@ -41,8 +39,6 @@ namespace HamstarHelpers.Services.Promises {
 		private IList<Action> WorldInPlayEachPromises = new List<Action>();
 		private IList<Action> SafeWorldLoadOncePromises = new List<Action>();
 		private IList<Action> SafeWorldLoadEachPromises = new List<Action>();
-		private IList<Action> CurrentPlayerLoadOncePromises = new List<Action>();
-		private IList<Action> CurrentPlayerLoadEachPromises = new List<Action>();
 		
 		private bool PostModLoadPromiseConditionsMet = false;
 		private bool WorldLoadPromiseConditionsMet = false;
@@ -50,7 +46,6 @@ namespace HamstarHelpers.Services.Promises {
 		private bool PostWorldUnloadPromiseConditionsMet = false;
 		private bool WorldInPlayPromiseConditionsMet = false;
 		private bool SafeWorldLoadPromiseConditionsMet = false;
-		private bool CurrentPlayerLoadPromiseConditionsMet = false;
 		
 		private IDictionary<PromiseValidator, List<Func<PromiseArguments, bool>>> ValidatedPromise = new Dictionary<PromiseValidator, List<Func<PromiseArguments, bool>>>();
 		private ISet<PromiseValidator> ValidatedPromiseConditionsMet = new HashSet<PromiseValidator>();
@@ -97,7 +92,7 @@ namespace HamstarHelpers.Services.Promises {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			if( mymod == null ) { return; }
 			
 			if( mymod.Promises.OnTickGet() ) {	// <- Throttles to 60fps

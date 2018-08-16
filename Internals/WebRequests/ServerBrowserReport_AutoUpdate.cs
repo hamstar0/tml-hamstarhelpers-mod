@@ -10,13 +10,13 @@ using Terraria;
 namespace HamstarHelpers.Internals.WebRequests {
 	partial class ServerBrowserReporter {
 		public static bool CanPromptForBrowserAdd() {
-			return HamstarHelpersMod.Instance.Config.IsServerPromptingUsersBeforeListingOnBrowser
-				&& !HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser;
+			return ModHelpersMod.Instance.Config.IsServerPromptingUsersBeforeListingOnBrowser
+				&& !ModHelpersMod.Instance.Config.IsServerHiddenFromBrowser;
 		}
 
 
 		public static void EndPrompts() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			mymod.Config.IsServerPromptingUsersBeforeListingOnBrowser = false;
 			mymod.ConfigJson.SaveFile();

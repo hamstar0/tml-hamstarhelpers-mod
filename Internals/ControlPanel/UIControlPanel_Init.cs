@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public static void OnPostSetupContent( HamstarHelpersMod mymod ) {
+		public static void OnPostSetupContent( ModHelpersMod mymod ) {
 			if( !Main.dedServ ) {
 				UIControlPanel.ControlPanelIcon = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIcon" );
 				UIControlPanel.ControlPanelIconLit = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIconLit" );
@@ -37,7 +37,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private void InitializeComponents() {
 			UIControlPanel self = this;
 			ControlPanelLogic logic = this.Logic;
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			float top = 0;
 			
 			this.OuterContainer = new UIElement();
@@ -183,7 +183,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			}
 			this.ApplyConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 				if( !self.ApplyConfigButton.IsEnabled ) { return; }
-				self.ApplyConfigChanges( HamstarHelpersMod.Instance );
+				self.ApplyConfigChanges( ModHelpersMod.Instance );
 			};
 			this.InnerContainer.Append( this.ApplyConfigButton );
 
@@ -198,7 +198,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			}
 			this.ModLockButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
 				if( !self.ModLockButton.IsEnabled ) { return; }
-				self.ToggleModLock( HamstarHelpersMod.Instance );
+				self.ToggleModLock( ModHelpersMod.Instance );
 				Main.PlaySound( SoundID.Unlock );
 			};
 			this.InnerContainer.Append( this.ModLockButton );
@@ -272,7 +272,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public void RefreshModLockButton( HamstarHelpersMod mymod ) {
+		public void RefreshModLockButton( ModHelpersMod mymod ) {
 			bool are_mods_locked = ModLockHelpers.IsWorldLocked();
 			string status = are_mods_locked ? ": ON" : ": OFF";
 			bool is_enabled = true;
@@ -313,7 +313,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public void UpdateElements( HamstarHelpersMod mymod ) {
+		public void UpdateElements( ModHelpersMod mymod ) {
 			if( !mymod.Config.WorldModLockEnable ) {
 				if( this.ModLockButton.IsEnabled ) {
 					this.RefreshModLockButton( mymod );

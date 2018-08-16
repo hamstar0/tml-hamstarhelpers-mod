@@ -20,8 +20,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 		}
 
 		internal static void LoadTextures() {
-			UICheckbox.CheckboxTexture = HamstarHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_box" );
-			UICheckbox.CheckmarkTexture = HamstarHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_mark" );
+			UICheckbox.CheckboxTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_box" );
+			UICheckbox.CheckmarkTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_mark" );
 		}
 
 

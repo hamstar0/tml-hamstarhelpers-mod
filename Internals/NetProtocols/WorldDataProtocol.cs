@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void SetServerDefaults() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			this.HalfDays = WorldHelpers.GetElapsedHalfDays();
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void ReceiveWithClient() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 

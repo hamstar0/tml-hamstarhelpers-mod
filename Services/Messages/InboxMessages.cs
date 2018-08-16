@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.Messages {
 	public class InboxMessages {
 		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
 			Promises.Promises.AddPostWorldLoadOncePromise( () => {
-				InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+				InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 				int idx = inbox.Order.IndexOf( which );
 
 				inbox.Messages[which] = msg;
@@ -42,14 +42,14 @@ namespace HamstarHelpers.Services.Messages {
 
 
 		public static int CountUnreadMessages() {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 
 			return inbox.Messages.Count - inbox.Current;
 		}
 
 
 		public static string DequeueMessage() {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 			
 			if( inbox.Current >= inbox.Order.Count ) {
 				return null;
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Services.Messages {
 
 
 		public static string GetMessageAt( int idx, out bool is_unread ) {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 			is_unread = false;
 
 			if( idx < 0 || idx >= inbox.Order.Count ) {
@@ -84,7 +84,7 @@ namespace HamstarHelpers.Services.Messages {
 
 
 		public static string ReadMessage( string which ) {
-			InboxMessages inbox = HamstarHelpersMod.Instance.Inbox.Messages;
+			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 
 			int idx = inbox.Order.IndexOf( which );
 			if( idx == -1 ) { return null; }
@@ -141,7 +141,7 @@ namespace HamstarHelpers.Services.Messages {
 
 		internal bool LoadFromFile() {
 			bool success;
-			var data = DataFileHelpers.LoadJson<InboxMessageData>( HamstarHelpersMod.Instance, "Inbox", out success );
+			var data = DataFileHelpers.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", out success );
 
 			if( success ) {
 				this.Data = data;
@@ -154,7 +154,7 @@ namespace HamstarHelpers.Services.Messages {
 		}
 
 		internal void SaveToFile() {
-			DataFileHelpers.SaveAsJson<InboxMessageData>( HamstarHelpersMod.Instance, "Inbox", this.Data );
+			DataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", this.Data );
 		}
 	}
 }

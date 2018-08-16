@@ -11,7 +11,7 @@ namespace HamstarHelpers.Services.DataStore {
 
 		public static bool Has( object key ) {
 			lock( DataStore.MyLock ) {
-				return HamstarHelpersMod.Instance.DataStore.Data.ContainsKey( key );
+				return ModHelpersMod.Instance.DataStore.Data.ContainsKey( key );
 			}
 		}
 
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Services.DataStore {
 			object val = null;
 
 			lock( DataStore.MyLock ) {
-				success = HamstarHelpersMod.Instance.DataStore.Data.TryGetValue( key, out val );
+				success = ModHelpersMod.Instance.DataStore.Data.TryGetValue( key, out val );
 			}
 			
 			return val;
@@ -27,12 +27,12 @@ namespace HamstarHelpers.Services.DataStore {
 
 		public static void Set( object key, object val ) {
 			lock( DataStore.MyLock ) {
-				HamstarHelpersMod.Instance.DataStore.Data[ key ] = val;
+				ModHelpersMod.Instance.DataStore.Data[ key ] = val;
 			}
 		}
 
 		public static bool Remove( object key ) {
-			return HamstarHelpersMod.Instance.DataStore.Data.Remove( key );
+			return ModHelpersMod.Instance.DataStore.Data.Remove( key );
 		}
 
 

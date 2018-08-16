@@ -8,7 +8,7 @@ using System.Linq;
 namespace HamstarHelpers.Components.CustomEntity.Templates {
 	public class CustomEntityTemplateManager {
 		public static CustomEntity CreateEntityByID( int id ) {
-			CustomEntityTemplateManager templates = HamstarHelpersMod.Instance.CustomEntMngr.TemplateMngr;
+			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 			CustomEntityTemplate template = null;
 
 			if( !templates.Templates.TryGetValue( id, out template ) ) {
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 		////////////////
 		
 		public static int Add( string name, int width, int height, IList<CustomEntityComponent> components ) {
-			CustomEntityTemplateManager templates = HamstarHelpersMod.Instance.CustomEntMngr.TemplateMngr;
+			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 
 			var template = new CustomEntityTemplate( name, width, height, components );
 
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 		}
 
 		internal static int Add( CustomEntityTemplate template ) {
-			CustomEntityTemplateManager templates = HamstarHelpersMod.Instance.CustomEntMngr.TemplateMngr;
+			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 
 			int id = templates.LatestEntityID++;
 
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 		////////////////
 
 		internal static void Clear() {
-			CustomEntityTemplateManager templates = HamstarHelpersMod.Instance.CustomEntMngr.TemplateMngr;
+			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 
 			templates.Templates.Clear();
 		}
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 		////////////////
 
 		public static int Count() {
-			CustomEntityTemplateManager templates = HamstarHelpersMod.Instance.CustomEntMngr.TemplateMngr;
+			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 
 			return templates.LatestEntityID;
 		}
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 		////////////////
 
 		public static int GetID( IList<CustomEntityComponent> components ) {
-			CustomEntityTemplateManager templates = HamstarHelpersMod.Instance.CustomEntMngr.TemplateMngr;
+			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 			int count = components.Count;
 
 			foreach( var kv in templates.Templates ) {

@@ -34,20 +34,20 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 		////////////////
 
 		public static ReadOnlySet<int> GetBannerItemTypes() {
-			var npc_banner_helpers = HamstarHelpersMod.Instance.NPCBannerHelpers;
+			var npc_banner_helpers = ModHelpersMod.Instance.NPCBannerHelpers;
 
 			return new ReadOnlySet<int>( npc_banner_helpers.BannerItemTypes );
 		}
 
 		public static int GetBannerItemTypeOfNpcType( int npc_type ) {
-			var npc_banner_helpers = HamstarHelpersMod.Instance.NPCBannerHelpers;
+			var npc_banner_helpers = ModHelpersMod.Instance.NPCBannerHelpers;
 
 			if( !npc_banner_helpers.NpcTypesToBannerItemTypes.ContainsKey(npc_type) ) { return -1; }
 			return npc_banner_helpers.NpcTypesToBannerItemTypes[ npc_type ];
 		}
 
 		public static ReadOnlySet<int> GetNpcTypesOfBannerItemType( int item_type ) {
-			var npc_banner_helpers = HamstarHelpersMod.Instance.NPCBannerHelpers;
+			var npc_banner_helpers = ModHelpersMod.Instance.NPCBannerHelpers;
 
 			if( !npc_banner_helpers.BannerItemTypesToNpcTypes.ContainsKey( item_type ) ) { return new ReadOnlySet<int>( new HashSet<int>() ); }
 			return new ReadOnlySet<int>( npc_banner_helpers.BannerItemTypesToNpcTypes[ item_type ] );

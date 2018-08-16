@@ -34,7 +34,7 @@ using HamstarHelpers.Helpers.PlayerHelpers;
 
 
 namespace HamstarHelpers {
-	partial class HamstarHelpersMod : Mod {
+	partial class ModHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
 			LogHelpers.Log( "UNHANDLED crash? "+e.IsTerminating+" \nSender: "+sender.ToString()+" \nMessage: "+e.ExceptionObject.ToString() );
 		}
@@ -103,7 +103,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public HamstarHelpersMod() {
+		public ModHelpersMod() {
 			this.HasSetupContent = false;
 			this.HasAddedRecipeGroups = false;
 			this.HasAddedRecipes = false;
@@ -121,13 +121,13 @@ namespace HamstarHelpers {
 		}
 
 		public override void Load() {
-			HamstarHelpersMod.Instance = this;
+			ModHelpersMod.Instance = this;
 
 			this.LoadConfigs();
 
 			if( !this.HasUnhandledExceptionLogger && this.Config.DebugModeUnhandledExceptionLogging ) {
 				this.HasUnhandledExceptionLogger = true;
-				AppDomain.CurrentDomain.UnhandledException += HamstarHelpersMod.UnhandledLogger;
+				AppDomain.CurrentDomain.UnhandledException += ModHelpersMod.UnhandledLogger;
 			}
 
 			this.DataStore = new DataStore();
@@ -205,7 +205,7 @@ namespace HamstarHelpers {
 			try {
 				if( this.HasUnhandledExceptionLogger ) {
 					this.HasUnhandledExceptionLogger = false;
-					AppDomain.CurrentDomain.UnhandledException -= HamstarHelpersMod.UnhandledLogger;
+					AppDomain.CurrentDomain.UnhandledException -= ModHelpersMod.UnhandledLogger;
 				}
 			} catch { }
 
@@ -244,7 +244,7 @@ namespace HamstarHelpers {
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;
 
-			HamstarHelpersMod.Instance = null;
+			ModHelpersMod.Instance = null;
 		}
 
 		////////////////

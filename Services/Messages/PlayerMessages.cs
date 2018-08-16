@@ -27,7 +27,7 @@ namespace HamstarHelpers.Services.Messages {
 		////////////////
 
 		public static void AddPlayerLabel( Player player, string text, Color color, int duration, bool evaporates, bool following=true ) {
-			var pm = HamstarHelpersMod.Instance.PlayerMessages;
+			var pm = ModHelpersMod.Instance.PlayerMessages;
 
 			if( !pm.PlayerTexts.ContainsKey(player.whoAmI) ) {
 				pm.PlayerTexts[ player.whoAmI ] = new List<PlayerLabelText>();

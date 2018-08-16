@@ -12,11 +12,11 @@ namespace HamstarHelpers.Helpers.UserHelpers {
 
 			success = false;
 
-			if( string.IsNullOrEmpty( HamstarHelpersMod.Instance.Config.PrivilegedUserId ) ) {
+			if( string.IsNullOrEmpty( ModHelpersMod.Instance.Config.PrivilegedUserId ) ) {
 				return false;
 			}
 
-			return HamstarHelpersMod.Instance.Config.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId( player, out success );
+			return ModHelpersMod.Instance.Config.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId( player, out success );
 		}
 	}
 }

@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Services.AnimatedColor {
 	public class AnimatedColors {
-		public static AnimatedColors Alert { get { return HamstarHelpersMod.Instance.AnimatedColors.Alert; } }
-		public static AnimatedColors Strobe { get { return HamstarHelpersMod.Instance.AnimatedColors.Strobe; } }
-		public static AnimatedColors Fire { get { return HamstarHelpersMod.Instance.AnimatedColors.Fire; } }
-		public static AnimatedColors Water { get { return HamstarHelpersMod.Instance.AnimatedColors.Water; } }
-		public static AnimatedColors Air { get { return HamstarHelpersMod.Instance.AnimatedColors.Air; } }
+		public static AnimatedColors Alert { get { return ModHelpersMod.Instance.AnimatedColors.Alert; } }
+		public static AnimatedColors Strobe { get { return ModHelpersMod.Instance.AnimatedColors.Strobe; } }
+		public static AnimatedColors Fire { get { return ModHelpersMod.Instance.AnimatedColors.Fire; } }
+		public static AnimatedColors Water { get { return ModHelpersMod.Instance.AnimatedColors.Water; } }
+		public static AnimatedColors Air { get { return ModHelpersMod.Instance.AnimatedColors.Air; } }
 
 
 		////////////////
 
 		public static AnimatedColors Create( int duration_per_color, Color[] colors ) {
-			return AnimatedColors.Create( HamstarHelpersMod.Instance.AnimatedColors, duration_per_color, colors );
+			return AnimatedColors.Create( ModHelpersMod.Instance.AnimatedColors, duration_per_color, colors );
 		}
 
 		internal static AnimatedColors Create( AnimatedColorsManager mngr, int duration_per_color, Color[] colors ) {

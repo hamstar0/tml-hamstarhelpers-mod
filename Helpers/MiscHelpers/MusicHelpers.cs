@@ -7,7 +7,7 @@ using Terraria.ModLoader.Audio;
 namespace HamstarHelpers.Helpers.MiscHelpers {
 	public class MusicHelpers {
 		public static void SetVolumeScale( float scale ) {
-			HamstarHelpersMod.Instance.MusicHelpers.Scale = scale;
+			ModHelpersMod.Instance.MusicHelpers.Scale = scale;
 		}
 
 
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null ) { return; }
 			
 			if( mymod.MusicHelpers.OnTickGet() ) {

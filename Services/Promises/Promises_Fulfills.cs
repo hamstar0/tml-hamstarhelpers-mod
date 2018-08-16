@@ -74,54 +74,6 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 
-		internal void FulfillWorldUnloadPromises() {
-			if( this.WorldUnloadPromiseConditionsMet ) { return; }
-			this.WorldUnloadPromiseConditionsMet = true;
-
-			Action[] world_unload_once_promises;
-			Action[] world_unload_each_promises;
-
-			lock( Promises.WorldUnloadOnceLock ) {
-				world_unload_once_promises = this.WorldUnloadOncePromises.ToArray();
-				this.WorldUnloadOncePromises.Clear();
-			}
-			lock( Promises.WorldUnloadEachLock ) {
-				world_unload_each_promises = this.WorldUnloadEachPromises.ToArray();
-			}
-
-			foreach( Action promise in world_unload_once_promises ) {
-				promise();
-			}
-			foreach( Action promise in world_unload_each_promises ) {
-				promise();
-			}
-		}
-
-
-		internal void FulfillPostWorldUnloadPromises() {
-			if( this.PostWorldUnloadPromiseConditionsMet ) { return; }
-			this.PostWorldUnloadPromiseConditionsMet = true;
-
-			Action[] post_world_unload_once_promises;
-			Action[] post_world_unload_each_promises;
-
-			lock( Promises.PostWorldUnloadOnceLock ) {
-				post_world_unload_once_promises = this.PostWorldUnloadOncePromises.ToArray();
-				this.PostWorldUnloadOncePromises.Clear();
-			}
-			lock( Promises.PostWorldUnloadEachLock ) {
-				post_world_unload_each_promises = this.PostWorldUnloadEachPromises.ToArray();
-			}
-			
-			foreach( Action promise in post_world_unload_once_promises ) {
-				promise();
-			}
-			foreach( Action promise in post_world_unload_each_promises ) {
-				promise();
-			}
-		}
-
-
 		internal void FulfillWorldInPlayPromises() {
 			if( this.WorldInPlayPromiseConditionsMet ) { return; }
 			this.WorldInPlayPromiseConditionsMet = true;
@@ -168,27 +120,51 @@ namespace HamstarHelpers.Services.Promises {
 				promise();
 			}
 		}
-		
 
-		internal void FulfillCurrentPlayerLoadPromises() {
-			if( this.CurrentPlayerLoadPromiseConditionsMet ) { return; }
-			this.CurrentPlayerLoadPromiseConditionsMet = true;
 
-			Action[] current_player_load_once_promises;
-			Action[] current_player_load_each_promises;
+		internal void FulfillWorldUnloadPromises() {
+			if( this.WorldUnloadPromiseConditionsMet ) { return; }
+			this.WorldUnloadPromiseConditionsMet = true;
 
-			lock( Promises.CurrentPlayerLoadOnceLock ) {
-				current_player_load_once_promises = this.CurrentPlayerLoadOncePromises.ToArray();
-				this.CurrentPlayerLoadOncePromises.Clear();
+			Action[] world_unload_once_promises;
+			Action[] world_unload_each_promises;
+
+			lock( Promises.WorldUnloadOnceLock ) {
+				world_unload_once_promises = this.WorldUnloadOncePromises.ToArray();
+				this.WorldUnloadOncePromises.Clear();
 			}
-			lock( Promises.CurrentPlayerLoadEachLock ) {
-				current_player_load_each_promises = this.CurrentPlayerLoadEachPromises.ToArray();
+			lock( Promises.WorldUnloadEachLock ) {
+				world_unload_each_promises = this.WorldUnloadEachPromises.ToArray();
 			}
 
-			foreach( Action promise in current_player_load_once_promises ) {
+			foreach( Action promise in world_unload_once_promises ) {
 				promise();
 			}
-			foreach( Action promise in current_player_load_each_promises ) {
+			foreach( Action promise in world_unload_each_promises ) {
+				promise();
+			}
+		}
+
+
+		internal void FulfillPostWorldUnloadPromises() {
+			if( this.PostWorldUnloadPromiseConditionsMet ) { return; }
+			this.PostWorldUnloadPromiseConditionsMet = true;
+
+			Action[] post_world_unload_once_promises;
+			Action[] post_world_unload_each_promises;
+
+			lock( Promises.PostWorldUnloadOnceLock ) {
+				post_world_unload_once_promises = this.PostWorldUnloadOncePromises.ToArray();
+				this.PostWorldUnloadOncePromises.Clear();
+			}
+			lock( Promises.PostWorldUnloadEachLock ) {
+				post_world_unload_each_promises = this.PostWorldUnloadEachPromises.ToArray();
+			}
+
+			foreach( Action promise in post_world_unload_once_promises ) {
+				promise();
+			}
+			foreach( Action promise in post_world_unload_each_promises ) {
 				promise();
 			}
 		}

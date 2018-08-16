@@ -6,7 +6,7 @@ using Terraria;
 namespace HamstarHelpers.Helpers.BuffHelpers {
 	public class BuffIdentityHelpers {
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
-			get { return HamstarHelpersMod.Instance.BuffIdentityHelpers._NamesToIds; }
+			get { return ModHelpersMod.Instance.BuffIdentityHelpers._NamesToIds; }
 		}
 
 

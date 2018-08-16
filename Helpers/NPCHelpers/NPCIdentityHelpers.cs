@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get {
-				return HamstarHelpersMod.Instance.NPCIdentityHelpers._NamesToIds;
+				return ModHelpersMod.Instance.NPCIdentityHelpers._NamesToIds;
 			}
 		}
 

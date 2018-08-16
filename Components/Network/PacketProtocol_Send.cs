@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private void SendRequestToClient( int to_who, int ignore_who ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetServerPacket( true );
 
 			packet.Send( to_who, ignore_who );
@@ -21,10 +21,10 @@ namespace HamstarHelpers.Components.Network {
 
 
 		private void SendRequestToServer() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetClientPacket( true, false );
 
-			packet.Send( -1, -1 );
+			packet.Send();
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new Exception("Not a client.");
 			}
 
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetClientPacket( false, sync_to_clients );
 			
 			try {
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new Exception( "Not server." );
 			}
 
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetServerPacket( false );
 
 			try {

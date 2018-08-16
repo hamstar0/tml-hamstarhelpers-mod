@@ -43,11 +43,11 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		////////////////
 
 		public static int GetElapsedPlayTime() {
-			return (int)(HamstarHelpersMod.Instance.WorldHelpers.TicksElapsed / 60);
+			return (int)(ModHelpersMod.Instance.WorldHelpers.TicksElapsed / 60);
 		}
 
 		public static int GetElapsedHalfDays() {
-			return HamstarHelpersMod.Instance.WorldHelpers.HalfDaysElapsed;
+			return ModHelpersMod.Instance.WorldHelpers.HalfDaysElapsed;
 		}
 
 		public static double GetDayOrNightPercentDone() {
@@ -72,11 +72,11 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		////////////////
 		
 		public static void AddDayHook( string name, Action callback ) {
-			HamstarHelpersMod.Instance.WorldHelpers.DayHooks[name] = callback;
+			ModHelpersMod.Instance.WorldHelpers.DayHooks[name] = callback;
 		}
 
 		public static void AddNightHook( string name, Action callback ) {
-			HamstarHelpersMod.Instance.WorldHelpers.NightHooks[name] = callback;
+			ModHelpersMod.Instance.WorldHelpers.NightHooks[name] = callback;
 		}
 
 
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 
-		internal void Load( HamstarHelpersMod mymod, TagCompound tags ) {
+		internal void Load( ModHelpersMod mymod, TagCompound tags ) {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			if( tags.ContainsKey( "world_id" ) ) {
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 			}
 		}
 
-		internal void Save( HamstarHelpersMod mymod, TagCompound tags ) {
+		internal void Save( ModHelpersMod mymod, TagCompound tags ) {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			tags.Set( "half_days_elapsed_" + myworld.ObsoletedID, (int)this.HalfDaysElapsed );
@@ -109,7 +109,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 		
-		internal void LoadFromData( HamstarHelpersMod mymod, int half_days, string world_id ) {
+		internal void LoadFromData( ModHelpersMod mymod, int half_days, string world_id ) {
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
 			this.HalfDaysElapsed = half_days;
@@ -120,7 +120,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 
-		internal void Update( HamstarHelpersMod mymod ) {
+		internal void Update( ModHelpersMod mymod ) {
 			if( !LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 				this.IsDay = Main.dayTime;
 			} else {

@@ -24,7 +24,7 @@ namespace HamstarHelpers.Commands {
 				return;
 			}
 
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 			if( !mymod.Config.IsServerPromptingUsersBeforeListingOnBrowser && ( caller.CommandType & CommandType.Console ) == 0 ) {
 				caller.Reply( "Cannot set server private; grace period has expired. Set \"IsServerHiddenFromBrowser: true\" in config file, then restart server." );
 				return;

@@ -10,7 +10,7 @@ using Terraria;
 namespace HamstarHelpers.Components.UI.Menu {
 	public class MenuItem {
 		public static void AddMenuItem( string text, int offset_y, int menu_context, Action my_action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			var item = new MenuItem( text, offset_y, menu_context, my_action );
 			string key = text + "." + offset_y + "." + menu_context;
 			
@@ -191,7 +191,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 		////////////////
 
 		private static void _Draw( GameTime game_time ) {	// <- Just in case references are doing something funky...
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
 			mymod.MenuItemMngr.Draw( game_time );

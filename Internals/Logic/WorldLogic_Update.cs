@@ -4,7 +4,7 @@ using HamstarHelpers.Helpers.TmlHelpers;
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class WorldLogic {
-		private void PreUpdateShared( HamstarHelpersMod mymod ) {
+		private void PreUpdateShared( ModHelpersMod mymod ) {
 			if( LoadHelpers.IsWorldLoaded() ) {
 				mymod.Promises.FulfillWorldLoadPromises();
 			}
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 		}
 
-		private void PreUpdateLocal( HamstarHelpersMod mymod ) {
+		private void PreUpdateLocal( ModHelpersMod mymod ) {
 			mymod.AnimatedColors.Update();
 
 			UIControlPanel.UpdateModList( mymod );
@@ -30,24 +30,24 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////
 		
-		public void PreUpdateSingle( HamstarHelpersMod mymod ) {
+		public void PreUpdateSingle( ModHelpersMod mymod ) {
 			this.PreUpdateShared( mymod );
 			this.PreUpdateLocal( mymod );
 		}
 
-		public void PreUpdateClient( HamstarHelpersMod mymod ) {
+		public void PreUpdateClient( ModHelpersMod mymod ) {
 			this.PreUpdateShared( mymod );
 			this.PreUpdateLocal( mymod );
 		}
 		
-		public void PreUpdateServer( HamstarHelpersMod mymod ) {
+		public void PreUpdateServer( ModHelpersMod mymod ) {
 			this.PreUpdateShared( mymod );
 		}
 
 
 		////////////////
 		
-		private void UpdateSafelyLoaded( HamstarHelpersMod mymod ) {
+		private void UpdateSafelyLoaded( ModHelpersMod mymod ) {
 			mymod.ModLockHelpers.Update();
 		}
 	}

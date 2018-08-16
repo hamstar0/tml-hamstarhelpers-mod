@@ -72,7 +72,7 @@ namespace HamstarHelpers {
 
 		////////////////
 		
-		internal void LoadFromNetwork( HamstarHelpersMod mymod, HamstarHelpersConfigData config ) {
+		internal void LoadFromNetwork( ModHelpersMod mymod, HamstarHelpersConfigData config ) {
 			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
 
 			mymod.ConfigJson.SetData( config );

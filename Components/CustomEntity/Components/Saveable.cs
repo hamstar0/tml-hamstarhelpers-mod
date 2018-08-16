@@ -56,7 +56,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		protected class MyStaticInitializer : StaticInitializer {
 			protected override void StaticInitialize() {
-				var mymod = HamstarHelpersMod.Instance;
+				var mymod = ModHelpersMod.Instance;
 				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 				var wld_save_json = new SaveableEntityComponent( true );
 				var wld_save_nojson = new SaveableEntityComponent( false );
@@ -130,7 +130,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		private bool LoadAll() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			string file_name = this.GetFileNameBase();
 			bool success;
 			ISet<CustomEntity> ents;
@@ -160,7 +160,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		private void SaveAll() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			string file_name = this.GetFileNameBase();
 
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>();

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	partial class HamstarHelpersMod : Mod {
+	partial class ModHelpersMod : Mod {
 		private void DrawMiniMapForAll( SpriteBatch sb ) {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<DrawsOnMapEntityComponent>();
 

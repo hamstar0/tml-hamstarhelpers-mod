@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	partial class HamstarHelpersMod : Mod {
+	partial class ModHelpersMod : Mod {
 		public static string GithubUserName { get { return "hamstar0"; } }
 		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
@@ -21,9 +21,9 @@ namespace HamstarHelpers {
 			if( Main.netMode != 0 ) {
 				throw new Exception( "Cannot reload configs outside of single player." );
 			}
-			if( HamstarHelpersMod.Instance != null ) {
-				if( !HamstarHelpersMod.Instance.ConfigJson.LoadFile() ) {
-					HamstarHelpersMod.Instance.ConfigJson.SaveFile();
+			if( ModHelpersMod.Instance != null ) {
+				if( !ModHelpersMod.Instance.ConfigJson.LoadFile() ) {
+					ModHelpersMod.Instance.ConfigJson.SaveFile();
 				}
 			}
 		}
@@ -36,8 +36,8 @@ namespace HamstarHelpers {
 			var config_data = new HamstarHelpersConfigData();
 			//config_data.SetDefaults();
 
-			HamstarHelpersMod.Instance.ConfigJson.SetData( config_data );
-			HamstarHelpersMod.Instance.ConfigJson.SaveFile();
+			ModHelpersMod.Instance.ConfigJson.SetData( config_data );
+			ModHelpersMod.Instance.ConfigJson.SaveFile();
 		}
 	}
 }

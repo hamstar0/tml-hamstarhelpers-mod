@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
-		private void PreUpdatePlayer( HamstarHelpersMod mymod, Player player ) {
+		private void PreUpdatePlayer( ModHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 
@@ -24,11 +24,11 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void PreUpdateSingle( HamstarHelpersMod mymod ) {
+		public void PreUpdateSingle( ModHelpersMod mymod ) {
 			this.PreUpdatePlayer( mymod, Main.LocalPlayer );
 		}
 
-		public void PreUpdateClient( HamstarHelpersMod mymod, Player player ) {
+		public void PreUpdateClient( ModHelpersMod mymod, Player player ) {
 			this.PreUpdatePlayer( mymod, player );
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 		}
 
-		public void PreUpdateServer( HamstarHelpersMod mymod, Player player ) {
+		public void PreUpdateServer( ModHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			}

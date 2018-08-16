@@ -53,7 +53,11 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
-			t.SetServerDefaults();
+			try {
+				t.SetServerDefaults( to_who );
+			} catch( NotImplementedException ) {
+				t.SetServerDefaults();
+			}
 
 			t.SendToClient( to_who, ignore_who );
 		}

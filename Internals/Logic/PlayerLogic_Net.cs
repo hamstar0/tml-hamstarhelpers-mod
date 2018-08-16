@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 
 	partial class PlayerLogic {
-		public void OnSingleConnect( HamstarHelpersMod mymod, Player player ) {
+		public void OnSingleConnect( ModHelpersMod mymod, Player player ) {
 			if( !this.HasUID ) {
 				throw new HamstarException( "!ModHelpers.PlayerLogic.OnSingleConnect - No UID for " + player.name + " (" + player.whoAmI + ")" );
 			}
@@ -31,11 +31,11 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnCurrentClientConnect( HamstarHelpersMod mymod, Player player ) {
+		public void OnCurrentClientConnect( ModHelpersMod mymod, Player player ) {
 			if( !this.HasUID ) {
 				throw new HamstarException( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 			}
-
+			
 			// Send
 			PacketProtocol.QuickSendToServer<PlayerIdProtocol>();
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnServerConnect( HamstarHelpersMod mymod, Player player ) {
+		public void OnServerConnect( ModHelpersMod mymod, Player player ) {
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
 
@@ -75,10 +75,6 @@ namespace HamstarHelpers.Internals.Logic {
 		private void FinishSync() {
 			if( this.IsSynced ) { return; }
 			this.IsSynced = true;
-
-			Promises.AddWorldInPlayOncePromise( () => {
-				HamstarHelpersMod.Instance.Promises.FulfillCurrentPlayerLoadPromises();
-			} );
 		}
 
 

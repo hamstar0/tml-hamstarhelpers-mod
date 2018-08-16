@@ -1,13 +1,11 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
-using Terraria;
 
 
 namespace HamstarHelpers.Services.Promises {
 	public partial class Promises {
 		public static void AddPostModLoadPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.PostModLoadPromiseConditionsMet ) {
 				action();
@@ -19,7 +17,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddModUnloadPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			lock( Promises.ModUnloadLock ) {
 				mymod.Promises.ModUnloadPromises.Add( action );
@@ -30,7 +28,7 @@ namespace HamstarHelpers.Services.Promises {
 		////////////////
 
 		public static void AddWorldLoadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
@@ -42,7 +40,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddPostWorldLoadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
@@ -54,7 +52,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddWorldUnloadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.WorldUnloadPromiseConditionsMet ) {
 				action();
@@ -66,7 +64,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddPostWorldUnloadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.PostWorldUnloadPromiseConditionsMet ) {
 				action();
@@ -78,7 +76,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddWorldInPlayOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			
 			if( mymod.Promises.WorldInPlayPromiseConditionsMet ) {
 				action();
@@ -90,7 +88,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddSafeWorldLoadOncePromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.SafeWorldLoadPromiseConditionsMet ) {
 				action();
@@ -101,27 +99,11 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
-		public static void AddCurrentPlayerLoadOncePromise( Action action ) {
-			if( Main.dedServ || Main.netMode == 2 ) {
-				throw new HamstarException( "Not for servers." );
-			}
-
-			var mymod = HamstarHelpersMod.Instance;
-			
-			if( mymod.Promises.CurrentPlayerLoadPromiseConditionsMet ) {
-				action();
-			} else {
-				lock( Promises.CurrentPlayerLoadOnceLock ) {
-					mymod.Promises.CurrentPlayerLoadOncePromises.Add( action );
-				}
-			}
-		}
-
 
 		////////////////
 
 		public static void AddWorldLoadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
@@ -132,7 +114,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddPostWorldLoadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
@@ -143,7 +125,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddWorldUnloadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.WorldUnloadPromiseConditionsMet ) {
 				action();
@@ -154,7 +136,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddPostWorldUnloadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.PostWorldUnloadPromiseConditionsMet ) {
 				action();
@@ -165,7 +147,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddWorldInPlayEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			
 			if( mymod.Promises.WorldInPlayPromiseConditionsMet ) {
 				action();
@@ -176,29 +158,13 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 		public static void AddSafeWorldLoadEachPromise( Action action ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.SafeWorldLoadPromiseConditionsMet ) {
 				action();
 			}
 			lock( Promises.SafeWorldLoadEachLock ) {
 				mymod.Promises.SafeWorldLoadEachPromises.Add( action );
-			}
-		}
-
-		public static void AddCurrentPlayerLoadEachPromise( Action action ) {
-			if( Main.dedServ || Main.netMode == 2 ) {
-				throw new HamstarException( "Not for servers." );
-			}
-
-			var mymod = HamstarHelpersMod.Instance;
-			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
-
-			if( mymod.Promises.CurrentPlayerLoadPromiseConditionsMet ) {
-				action();
-			}
-			lock( Promises.CurrentPlayerLoadEachLock ) {
-				mymod.Promises.CurrentPlayerLoadEachPromises.Add( action );
 			}
 		}
 	}

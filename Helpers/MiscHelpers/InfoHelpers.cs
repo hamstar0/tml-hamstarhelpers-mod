@@ -191,7 +191,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				throw new Exception("Server-side only.");
 			}
 
-			return HamstarHelpersMod.Instance.ServerBrowser.AveragePing;
+			return ModHelpersMod.Instance.ServerBrowser.AveragePing;
 		}
 
 

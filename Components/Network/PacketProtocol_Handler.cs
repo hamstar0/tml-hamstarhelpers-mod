@@ -8,7 +8,7 @@ using System.IO;
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		internal static void HandlePacketOnClient( int protocol_code, BinaryReader reader, int player_who ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			bool is_request;
 
 			try {
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Components.Network {
 
 
 		internal static void HandlePacketOnServer( int protocol_code, BinaryReader reader, int player_who ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			bool is_request, is_synced_to_clients;
 
 			try {

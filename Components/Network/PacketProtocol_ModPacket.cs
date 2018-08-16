@@ -11,7 +11,7 @@ namespace HamstarHelpers.Components.Network {
 			if( Main.netMode != 1 ) { throw new Exception("Not a client"); }
 
 			string name = this.GetPacketName();
-			var packet = HamstarHelpersMod.Instance.GetPacket();
+			var packet = ModHelpersMod.Instance.GetPacket();
 
 			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
 			packet.Write( is_request );
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Components.Network {
 			if( Main.netMode != 2 ) { throw new Exception( "Not a server" ); }
 
 			string name = this.GetPacketName();
-			var packet = HamstarHelpersMod.Instance.GetPacket();
+			var packet = ModHelpersMod.Instance.GetPacket();
 
 			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
 			packet.Write( is_request );

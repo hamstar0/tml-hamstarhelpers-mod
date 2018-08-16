@@ -5,15 +5,16 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 	public static class ModHelpers {
 		public static IEnumerable<Mod> GetAllMods() {
-			var self = HamstarHelpersMod.Instance.ModMetaDataManager;
+			var mymod = ModHelpersMod.Instance;
+			var self = mymod.ModMetaDataManager;
 			var mods = new LinkedList<Mod>();
 			var mod_set = new HashSet<string>();
 
-			mods.AddLast( HamstarHelpersMod.Instance );
-			mod_set.Add( HamstarHelpersMod.Instance.Name );
+			mods.AddLast( mymod );
+			mod_set.Add( mymod.Name );
 
 			foreach( var kv in self.ConfigMods ) {
-				if( kv.Key == HamstarHelpersMod.Instance.Name || kv.Value.File == null ) { continue; }
+				if( kv.Key == mymod.Name || kv.Value.File == null ) { continue; }
 				mods.AddLast( kv.Value );
 				mod_set.Add( kv.Value.Name );
 			}

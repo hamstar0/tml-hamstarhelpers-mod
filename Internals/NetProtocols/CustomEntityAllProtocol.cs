@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void SetServerDefaults() {
-			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			this.Entities = mngr.EntitiesByIndexes.Values.Where(
 				ent => ent.GetComponentByType<PeriodicSyncEntityComponent>() != null

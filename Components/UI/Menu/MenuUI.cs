@@ -14,7 +14,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Components.UI.Menu {
 	public class MenuUI {
 		public static void AddMenuLoader( string ui_class_name, string elem_name, Action<UIState> on_load, Action<UIState> on_unload ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( !mymod.MenuUIMngr.Loaders.ContainsKey( ui_class_name ) ) {
 				mymod.MenuUIMngr.Loaders[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
@@ -110,7 +110,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 		////////////////
 
 		private static void _Update( GameTime gametime ) {   // <- Just in case references are doing something funky...
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
 			if( mymod.MenuUIMngr == null ) { return; }

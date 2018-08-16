@@ -9,7 +9,7 @@ using System.Reflection;
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private void ReceiveWithEitherBase( BinaryReader reader, int from_who ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			Type mytype = this.GetType();
 
 			try {
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Components.Network {
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string name = mytype.Namespace + "." + mytype.Name;
 				string json_str = JsonConvert.SerializeObject( this );
-				LogHelpers.Log( "<" + name + " ReceiveBaseEither: " + json_str );
+				LogHelpers.Log( "<" + name + " ReceiveWithEitherBase: " + json_str );
 			}
 
 			foreach( FieldInfo my_field in mytype.GetFields() ) {
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Components.Network {
 		////////
 
 		private void ReceiveRequestWithClientBase() {
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
@@ -84,15 +84,19 @@ namespace HamstarHelpers.Components.Network {
 
 
 		private void ReceiveRequestWithServerBase( int from_who ) {
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
 				string name = mytype.Namespace + "." + mytype.Name;
 				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnServer..." );
 			}
-			
-			this.SetServerDefaults();
+
+			try {
+				this.SetServerDefaults( from_who );
+			} catch( NotImplementedException ) {
+				this.SetServerDefaults();
+			}
 
 			bool skip_send = false;
 			var method_info = this.GetType().GetMethod( "ReceiveRequestOnServer" );

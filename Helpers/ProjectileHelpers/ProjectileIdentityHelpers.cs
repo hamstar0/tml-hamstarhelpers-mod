@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.ProjectileHelpers {
 		////////////////
 
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
-			get { return HamstarHelpersMod.Instance.ProjectileIdentityHelpers._NamesToIds; }
+			get { return ModHelpersMod.Instance.ProjectileIdentityHelpers._NamesToIds; }
 		}
 
 

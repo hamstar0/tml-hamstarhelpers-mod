@@ -14,7 +14,7 @@ namespace HamstarHelpers.Commands {
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 
 			if( args.Length == 0 ) {
 				throw new UsageException("No arguments supplied.");

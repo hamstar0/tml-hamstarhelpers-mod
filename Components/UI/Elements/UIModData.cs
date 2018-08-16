@@ -51,7 +51,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.HasIconLoaded = false;
 			this.LatestAvailableVersion = default( Version );
 
-			if( HamstarHelpersMod.Instance.Config.IsCheckingModVersions ) {
+			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
 				BuildPropertiesEditor props = modfile != null ?
 					BuildPropertiesEditor.GetBuildPropertiesForModFile( modfile ) :
 					(BuildPropertiesEditor)null;
@@ -170,7 +170,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 				this.LatestAvailableVersion = vers;
 			};
 			Action<Exception> on_fail = delegate ( Exception e ) {
-				if( HamstarHelpersMod.Instance.Config.DebugModeNetInfo ) {
+				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName + "': " + e.ToString() );
 				}
 			};
@@ -182,7 +182,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 
 		public override int CompareTo( object obj ) {
-			if( this.Mod.Name == HamstarHelpersMod.Instance.Name ) {
+			if( this.Mod.Name == ModHelpersMod.Instance.Name ) {
 				return -1;
 			}
 

@@ -14,7 +14,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 		public static void Log( string msg ) {
 			try {
-				HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+				ModHelpersMod mymod = ModHelpersMod.Instance;
 				var log_helpers = mymod.LogHelpers;
 
 				double now_seconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds - log_helpers.StartTime;

@@ -8,7 +8,7 @@ using Terraria;
 namespace HamstarHelpers.Helpers.NetHelpers {
 	public partial class NetHelpers {
 		public static string GetPublicIP() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			if( mymod.NetHelpers.PublicIP == null ) {
 				throw new Exception( "Public IP not yet acquired." );
 			}

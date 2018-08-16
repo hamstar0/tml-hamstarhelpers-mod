@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 		
 		private Vector2 IconAreaPos {
 			get {
-				var config = HamstarHelpersMod.Instance.Config;
+				var config = ModHelpersMod.Instance.Config;
 				return new Vector2( config.InboxIconPosX, config.InboxIconPosY );
 			}
 		}
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Internals.ControlPanel.Inbox {
 		internal InboxControl() {
 			if( Main.netMode == 2 ) { return; }
 
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			this.Icon = mymod.GetTexture( "Internals/ControlPanel/Inbox/MiniIcon" );
 			this.IconLit = mymod.GetTexture( "Internals/ControlPanel/Inbox/MiniIconLit2" );

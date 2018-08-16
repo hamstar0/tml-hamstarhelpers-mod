@@ -34,7 +34,7 @@ namespace HamstarHelpers.Services.Timers {
 		////////////////
 
 		public static void SetTimer( string name, int tick_duration, Func<bool> action ) {
-			var timers = HamstarHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance.Timers;
 
 			lock( Timers.MyLock ) {
 				timers.Running[name] = new KeyValuePair<Func<bool>, int>( action, tick_duration );
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Services.Timers {
 
 
 		public static int GetTimerTickDuration( string name ) {
-			var timers = HamstarHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance.Timers;
 
 			lock( Timers.MyLock ) {
 				if( timers.Running.ContainsKey( name ) ) {
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Services.Timers {
 
 
 		public static void UnsetTimer( string name ) {
-			var timers = HamstarHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance.Timers;
 
 			lock( Timers.MyLock ) {
 				if( timers.Running.ContainsKey( name ) ) {
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Services.Timers {
 
 
 		public static void ResetAll() {
-			var timers = HamstarHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance.Timers;
 
 			lock( Timers.MyLock ) {
 				timers.Running = new Dictionary<string, KeyValuePair<Func<bool>, int>>();
@@ -123,7 +123,7 @@ namespace HamstarHelpers.Services.Timers {
 		////////////////
 
 		private static void _RunTimers() {  // <- Just in case references are doing something funky...
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
 			if( mymod.Timers.OnTickGet() ) {

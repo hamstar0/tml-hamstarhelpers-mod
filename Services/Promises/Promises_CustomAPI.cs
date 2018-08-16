@@ -22,7 +22,7 @@ namespace HamstarHelpers.Services.Promises {
 
 	public partial class Promises {
 		public static int CountValidatedPromises( PromiseValidator validator ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			lock( validator ) {
 				if( !mymod.Promises.ValidatedPromise.ContainsKey( validator ) ) {
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Services.Promises {
 		////////////////
 
 		public static void AddValidatedPromise<T>( PromiseValidator validator, Func<T, bool> action ) where T : PromiseArguments {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			bool conditions_met;
 			T args;
 			
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Services.Promises {
 		////////////////
 
 		public static void TriggerValidatedPromise( PromiseValidator validator, object validator_key, PromiseArguments args ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			bool is_validated, is_each;
 
 			if( validator.ValidatorKey != validator_key ) {
@@ -111,7 +111,7 @@ namespace HamstarHelpers.Services.Promises {
 		////////////////
 
 		public static void ClearValidatedPromise( PromiseValidator validator, object validator_key ) {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( validator.ValidatorKey != validator_key ) {
 				throw new Exception( "Validation failed." );

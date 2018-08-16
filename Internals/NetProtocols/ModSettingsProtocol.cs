@@ -14,14 +14,14 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void SetServerDefaults() {
-			this.Data = (HamstarHelpersConfigData)HamstarHelpersMod.Instance.Config.Clone();
+			this.Data = (HamstarHelpersConfigData)ModHelpersMod.Instance.Config.Clone();
 			this.Data.PrivilegedUserId = "";
 		}
 
 		////////////////
 
 		protected override void ReceiveWithClient() {
-			HamstarHelpersMod.Instance.Config.LoadFromNetwork( HamstarHelpersMod.Instance, this.Data );
+			ModHelpersMod.Instance.Config.LoadFromNetwork( ModHelpersMod.Instance, this.Data );
 		}
 	}
 }

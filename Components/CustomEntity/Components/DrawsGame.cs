@@ -88,7 +88,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, default(Vector2), scale, dir, 1f );
 
-			if( HamstarHelpersMod.Instance.Config.DebugModeHighlightEntities ) {
+			if( ModHelpersMod.Instance.Config.DebugModeHighlightEntities ) {
 				var rect = new Rectangle( (int)( core.position.X - Main.screenPosition.X ), (int)( core.position.Y - Main.screenPosition.Y ), core.width, core.height );
 				HudHelpers.DrawBorderedRect( sb, null, Color.Red, rect, 1 );
 			}

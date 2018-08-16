@@ -9,7 +9,7 @@ using System.Linq;
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
 		public static CustomEntity GetEntityByWho( int who ) {
-			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			CustomEntity ent = null;
 			mngr.EntitiesByIndexes.TryGetValue( who, out ent );
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public static void SetEntityByWho( int who, CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 
-			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public static int AddEntity( CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 
-			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			int idx = mngr.EntitiesByIndexes.Count;
 
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		public static void RemoveEntityByWho( int who ) {
-			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			if( !mngr.EntitiesByIndexes.ContainsKey( who ) ) { return; }
 
@@ -98,7 +98,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		public static void ClearAllEntities() {
-			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			mngr.EntitiesByIndexes.Clear();
 			mngr.EntitiesByComponentType.Clear();
@@ -109,7 +109,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		public static ISet<CustomEntity> GetEntitiesByComponent<T>() where T : CustomEntityComponent {
-			CustomEntityManager mngr = HamstarHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			ISet<int> ent_idxs = new HashSet<int>();
 			Type curr_type = typeof( T );

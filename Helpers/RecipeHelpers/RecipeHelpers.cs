@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 		public static IDictionary<string, RecipeGroup> Groups {
 			get {
-				var mymod = HamstarHelpersMod.Instance;
+				var mymod = ModHelpersMod.Instance;
 
 				if( mymod.RecipeHelpers._Groups == null ) {
 					mymod.RecipeHelpers._Groups = RecipeHelpers.CreateRecipeGroups();

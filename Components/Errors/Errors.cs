@@ -12,7 +12,7 @@ namespace HamstarHelpers.Components.Errors {
 
 	public class HamstarException : Exception {
 		public HamstarException( string msg ) : base( msg ) {
-			var msg_count = HamstarHelpersMod.Instance.ExceptionMngr.MsgCount;
+			var msg_count = ModHelpersMod.Instance.ExceptionMngr.MsgCount;
 			int count = 0;
 
 			if( msg_count.TryGetValue(msg, out count) ) {

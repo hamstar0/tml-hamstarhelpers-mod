@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 				throw new Exception("Only clients can gauge ping.");
 			}
 			
-			return HamstarHelpersMod.Instance.NetHelpers.CurrentPing;
+			return ModHelpersMod.Instance.NetHelpers.CurrentPing;
 		}
 
 

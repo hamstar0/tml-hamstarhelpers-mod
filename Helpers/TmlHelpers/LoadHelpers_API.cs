@@ -5,7 +5,7 @@ using Terraria;
 namespace HamstarHelpers.Helpers.TmlHelpers {
 	public partial class LoadHelpers {
 		public static bool IsModLoaded() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( !mymod.HasSetupContent ) { return false; }
 			if( !mymod.HasAddedRecipeGroups ) { return false; }
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		public static bool IsWorldLoaded() {
 			if( !LoadHelpers.IsModLoaded() ) { return false; }
 
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
 			if( !myworld.HasObsoletedID ) { return false; }
 
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 
 		public static bool IsWorldBeingPlayed() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( Main.netMode != 2 && !Main.dedServ ) {
 				if( !mymod.LoadHelpers.IsClientPlaying_Hackish ) {
@@ -50,7 +50,15 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 
 		public static bool IsWorldSafelyBeingPlayed() {
-			return HamstarHelpersMod.Instance.LoadHelpers.StartupDelay >= ( 60 * 2 );
+			return ModHelpersMod.Instance.LoadHelpers.StartupDelay >= ( 60 * 2 );
+		}
+
+
+		public static bool IsPlayerLoaded( Player player ) {
+			var mymod = ModHelpersMod.Instance;
+			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+
+			return myplayer.Logic.HasUID;
 		}
 	}
 }

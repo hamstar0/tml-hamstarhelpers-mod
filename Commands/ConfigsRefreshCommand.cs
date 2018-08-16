@@ -12,7 +12,7 @@ namespace HamstarHelpers.Commands {
 				throw new UsageException( "Cannot refresh configs in multiplayer.", Color.Red );
 			}
 
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			foreach( var kv in mymod.ModMetaDataManager.ConfigMods ) {
 				ModMetaDataManager.ReloadConfigFromFile( kv.Value );
@@ -36,7 +36,7 @@ namespace HamstarHelpers.Commands {
 				throw new UsageException( "Not single player.", Color.Red );
 			}
 
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			ConfigsRefreshCommand.RefreshConfigs();
 

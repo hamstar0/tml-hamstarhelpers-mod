@@ -25,7 +25,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public void ApplyConfigChanges( HamstarHelpersMod mymod ) {
+		public void ApplyConfigChanges( ModHelpersMod mymod ) {
 			ConfigsRefreshCommand.RefreshConfigs();
 
 			string mod_names = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );

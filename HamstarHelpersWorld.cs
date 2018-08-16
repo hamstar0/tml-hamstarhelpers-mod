@@ -42,7 +42,7 @@ namespace HamstarHelpers {
 		////////////////
 		
 		public override void Initialize() {
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 
 			this.ObsoleteID2 = WorldHelpers.GetUniqueId();
 			this.ObsoletedID = Guid.NewGuid().ToString( "D" );
@@ -63,7 +63,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void Load( TagCompound tags ) {
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 
 			if( tags.ContainsKey( "world_id" ) ) {
 				this.ObsoletedID = tags.GetString( "world_id" );
@@ -83,7 +83,7 @@ namespace HamstarHelpers {
 		}
 
 		public override TagCompound Save() {
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 			TagCompound tags = new TagCompound();
 
 			tags.Set( "world_id", this.ObsoletedID );
@@ -102,7 +102,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreUpdate() {
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 			
 			if( this.WorldLogic != null ) {
 				if( Main.netMode == 0 ) { // Single
@@ -118,7 +118,7 @@ namespace HamstarHelpers {
 
 		public override void PostDrawTiles() {
 			Player player = Main.LocalPlayer;
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>( mymod );
 
 			try {

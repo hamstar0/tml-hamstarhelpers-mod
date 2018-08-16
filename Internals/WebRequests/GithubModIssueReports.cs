@@ -28,7 +28,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
 
-			int max_lines = HamstarHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
+			int max_lines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
 
 			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
 			string body_info = string.Join( "\n \n", InfoHelpers.GetGameData( mods ).ToArray() );

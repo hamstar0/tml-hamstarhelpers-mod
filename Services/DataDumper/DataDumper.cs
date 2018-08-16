@@ -125,7 +125,7 @@ namespace HamstarHelpers.Services.DataDumper {
 				if( Main.netMode == 1 ) {
 					bool priv_success;
 
-					if( HamstarHelpersMod.Instance.Config.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out priv_success ) ) {
+					if( ModHelpersMod.Instance.Config.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer, out priv_success ) ) {
 						PacketProtocol.QuickRequestToServer<DataDumpProtocol>();
 					}
 				}

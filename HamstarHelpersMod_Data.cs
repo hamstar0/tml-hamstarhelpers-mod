@@ -9,7 +9,7 @@ namespace HamstarHelpers {
 
 
 
-	partial class HamstarHelpersMod {
+	partial class ModHelpersMod {
 		internal HamstarHelpersData Data = new HamstarHelpersData();
 
 

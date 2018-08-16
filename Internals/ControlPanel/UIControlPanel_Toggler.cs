@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		private static Vector2 TogglerPosition {
 			get {
-				var config = HamstarHelpersMod.Instance.Config;
+				var config = ModHelpersMod.Instance.Config;
 				int x = config.ControlPanelIconX < 0 ? Main.screenWidth + config.ControlPanelIconX : config.ControlPanelIconX;
 				int y = config.ControlPanelIconY < 0 ? Main.screenHeight + config.ControlPanelIconY : config.ControlPanelIconY;
 
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		}
 
 		public bool IsTogglerUpdateAlertShown() {
-			var mymod = HamstarHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			var ver = new Version( mymod.Data.ControlPanelNewSince );
 
 			if( ver < UIControlPanel.AlertVersion ) {
@@ -158,7 +158,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 							} else if( this.CanOpen() ) {
 								this.Open();
 
-								var mymod = HamstarHelpersMod.Instance;
+								var mymod = ModHelpersMod.Instance;
 								mymod.Data.ControlPanelNewSince = UIControlPanel.AlertVersion.ToString();
 							}
 						}

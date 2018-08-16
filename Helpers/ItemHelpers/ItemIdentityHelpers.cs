@@ -165,7 +165,7 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get {
-				return HamstarHelpersMod.Instance.ItemIdentityHelpers._NamesToIds;
+				return ModHelpersMod.Instance.ItemIdentityHelpers._NamesToIds;
 			}
 		}
 		

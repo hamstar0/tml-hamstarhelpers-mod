@@ -25,7 +25,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> on_success, Action<Exception> on_fail ) {
 			Action check = delegate () {
-				var mymod = HamstarHelpersMod.Instance;
+				var mymod = ModHelpersMod.Instance;
 
 				try {
 					if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		internal static void CacheAllModVersionsAsync( Action on_success ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				lock( ModVersionGet.MyLock ) {
-					var mymod = HamstarHelpersMod.Instance;
+					var mymod = ModHelpersMod.Instance;
 
 					if( mymod.ModVersionGet.ModVersions == null ) {
 						ModVersionGet.RetrieveAllModVersionsAsync( ( versions, found ) => {
@@ -128,7 +128,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		internal void OnPostSetupContent() {
-			if( HamstarHelpersMod.Instance.Config.IsCheckingModVersions ) {
+			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
 				ModVersionGet.CacheAllModVersionsAsync( () => {
 					LogHelpers.Log( "Mod versions successfully retrieved and cached." );
 				} );

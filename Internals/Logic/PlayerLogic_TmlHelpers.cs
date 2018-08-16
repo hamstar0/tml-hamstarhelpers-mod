@@ -12,7 +12,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void UpdateTml( HamstarHelpersMod mymod, Player player ) {
+		public void UpdateTml( ModHelpersMod mymod, Player player ) {
 			this.CheckBuffHooks( player );
 			this.CheckArmorEquipHooks( player );
 		}

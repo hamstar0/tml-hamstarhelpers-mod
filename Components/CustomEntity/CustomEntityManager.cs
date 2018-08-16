@@ -67,7 +67,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.CustomEntMngr == null ) { return; }
 
 			if( mymod.CustomEntMngr.OnTickGet() ) {

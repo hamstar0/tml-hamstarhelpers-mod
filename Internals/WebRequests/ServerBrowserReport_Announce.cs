@@ -20,10 +20,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 				return false;
 			}
 
-			if( HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
+			if( ModHelpersMod.Instance.Config.IsServerHiddenFromBrowser ) {
 				return false;
 			}
-			if( HamstarHelpersMod.Instance.Config.IsServerHiddenFromBrowserUnlessPortForwardedViaUPNP && !Netplay.UseUPNP ) {
+			if( ModHelpersMod.Instance.Config.IsServerHiddenFromBrowserUnlessPortForwardedViaUPNP && !Netplay.UseUPNP ) {
 				return false;
 			}
 
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		public static void AnnounceServer() {
-			HamstarHelpersMod mymod = HamstarHelpersMod.Instance;
+			ModHelpersMod mymod = ModHelpersMod.Instance;
 			Version vers = mymod.Version;
 
 			int port = Netplay.ListenPort;
@@ -173,7 +173,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				client_data.Port = Netplay.ListenPort;
 				client_data.Ping = NetHelpers.NetHelpers.GetServerPing();
 				client_data.IsPassworded = !string.IsNullOrEmpty( Netplay.ServerPassword );
-				client_data.HelpersVersion = HamstarHelpersMod.Instance.Version.ToString();
+				client_data.HelpersVersion = ModHelpersMod.Instance.Version.ToString();
 			
 				string json_str = JsonConvert.SerializeObject( client_data, Formatting.None );
 				byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );

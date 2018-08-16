@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 
-		public static void UpdateModList( HamstarHelpersMod mymod ) {
+		public static void UpdateModList( ModHelpersMod mymod ) {
 			var ctrl_panel = mymod.ControlPanel;
 
 			if( ctrl_panel == null || !ctrl_panel.ModListUpdateRequired || !ctrl_panel.IsOpen ) {
@@ -112,7 +112,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 					this.ModDataList.Clear();
 				}
 
-				var mymod = HamstarHelpersMod.Instance;
+				var mymod = ModHelpersMod.Instance;
 				int i = 1;
 
 				foreach( var mod in ModHelpers.GetAllMods() ) {
@@ -167,7 +167,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return;
 			}
 
-			this.UpdateElements( HamstarHelpersMod.Instance );
+			this.UpdateElements( ModHelpersMod.Instance );
 		}
 
 
@@ -265,13 +265,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		private void ApplyConfigChanges( HamstarHelpersMod mymod ) {
+		private void ApplyConfigChanges( ModHelpersMod mymod ) {
 			this.Logic.ApplyConfigChanges( mymod );
 
 			this.SetDialogToClose = true;
 		}
 
-		private void ToggleModLock( HamstarHelpersMod mymod ) {
+		private void ToggleModLock( ModHelpersMod mymod ) {
 			if( !ModLockHelpers.IsWorldLocked() ) {
 				ModLockHelpers.LockWorld();
 			} else {

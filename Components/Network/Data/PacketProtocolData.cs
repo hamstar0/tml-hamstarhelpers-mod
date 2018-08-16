@@ -20,7 +20,7 @@ namespace HamstarHelpers.Components.Network.Data {
 		internal static PacketProtocolData CreateData( Type protocol_type ) {
 			return (PacketProtocolData)Activator.CreateInstance( protocol_type, BindingFlags.NonPublic | BindingFlags.Instance,
 				null,
-				new object[] { HamstarHelpersMod.Instance.PacketProtocolCtorLock },
+				new object[] { ModHelpersMod.Instance.PacketProtocolCtorLock },
 				null
 			);
 		}

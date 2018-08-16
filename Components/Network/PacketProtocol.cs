@@ -74,7 +74,7 @@ namespace HamstarHelpers.Components.Network {
 					throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
 				}
 
-				if( HamstarHelpersMod.Instance.Config.DebugModeNetInfo ) {
+				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					string name = subclass.Namespace + "." + subclass.Name;
 					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + name );
 				}
@@ -126,8 +126,13 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Overridden for initializing the class to create a reply in a request to the server.
 		/// </summary>
+		protected virtual void SetServerDefaults( int to_who ) {
+			throw new NotImplementedException( "No SetServerDefaults(int)" );
+		}
+
+		[Obsolete( "use SetServerDefaults( int for_who )", false )]
 		protected virtual void SetServerDefaults() {
-			throw new NotImplementedException( "No SetServerDefaults" );
+			throw new NotImplementedException( "No SetServerDefaults(int)" );
 		}
 	}
 }

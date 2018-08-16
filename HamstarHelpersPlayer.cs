@@ -57,7 +57,7 @@ namespace HamstarHelpers {
 			if( Main.netMode == 2 ) {
 				if( to_who == -1 && from_who == this.player.whoAmI ) {
 					Promises.AddSafeWorldLoadOncePromise( () => {
-						this.Logic.OnServerConnect( HamstarHelpersMod.Instance, Main.player[from_who] );
+						this.Logic.OnServerConnect( ModHelpersMod.Instance, Main.player[from_who] );
 					} );
 				}
 			}
@@ -67,7 +67,7 @@ namespace HamstarHelpers {
 			if( player.whoAmI != Main.myPlayer ) { return; }
 			if( this.player.whoAmI != Main.myPlayer ) { return; }
 
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 
 			if( Main.netMode == 0 ) {
 				this.Logic.OnSingleConnect( mymod, player );
@@ -101,11 +101,11 @@ namespace HamstarHelpers {
 
 		public override void PreUpdate() {
 			if( Main.netMode == 2 ) {
-				this.Logic.PreUpdateServer( (HamstarHelpersMod)this.mod, this.player );
+				this.Logic.PreUpdateServer( (ModHelpersMod)this.mod, this.player );
 			} else if( Main.netMode == 1 ) {
-				this.Logic.PreUpdateClient( (HamstarHelpersMod)this.mod, this.player );
+				this.Logic.PreUpdateClient( (ModHelpersMod)this.mod, this.player );
 			} else {
-				this.Logic.PreUpdateSingle( (HamstarHelpersMod)this.mod );
+				this.Logic.PreUpdateSingle( (ModHelpersMod)this.mod );
 			}
 		}
 
@@ -113,7 +113,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void ProcessTriggers( TriggersSet triggers_set ) {
-			var mymod = (HamstarHelpersMod)this.mod;
+			var mymod = (ModHelpersMod)this.mod;
 			bool success;
 
 			if( mymod.ControlPanelHotkey.JustPressed ) {
