@@ -18,7 +18,8 @@ namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
 		public void OnSingleConnect( ModHelpersMod mymod, Player player ) {
 			if( !this.HasUID ) {
-				throw new HamstarException( "!ModHelpers.PlayerLogic.OnSingleConnect - No UID for " + player.name + " (" + player.whoAmI + ")" );
+				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnSingleConnect - No UID for " + player.name + " (" + player.whoAmI + ")" );
+				this.HasUID = true; // Ugly failsafe
 			}
 
 			if( !mymod.ConfigJson.LoadFile() ) {
@@ -33,7 +34,8 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void OnCurrentClientConnect( ModHelpersMod mymod, Player player ) {
 			if( !this.HasUID ) {
-				throw new HamstarException( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
+				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
+				this.HasUID = true;	// Ugly failsafe
 			}
 			
 			// Send

@@ -55,12 +55,16 @@ namespace HamstarHelpers.Internals.Logic {
 		////////////////
 
 		public void Load( TagCompound tags ) {
-			if( tags.ContainsKey( "uid" ) ) {
-				this.PrivateUID = tags.GetString( "uid" );
-			}
-			if( tags.ContainsKey( "perma_buffs" ) ) {
-				var perma_buffs = tags.GetList<int>( "perma_buffs" );
-				this.PermaBuffsById = new HashSet<int>( perma_buffs.ToArray() );
+			try {
+				if( tags.ContainsKey( "uid" ) ) {
+					this.PrivateUID = tags.GetString( "uid" );
+				}
+				if( tags.ContainsKey( "perma_buffs" ) ) {
+					var perma_buffs = tags.GetList<int>( "perma_buffs" );
+					this.PermaBuffsById = new HashSet<int>( perma_buffs );
+				}
+			} catch( Exception e ) {
+				LogHelpers.Log( "!ModHelpers.PlayerLogic.Load - "+e.ToString() );
 			}
 
 			this.HasUID = true;
