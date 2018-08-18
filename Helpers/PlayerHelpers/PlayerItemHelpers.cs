@@ -55,18 +55,26 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			return removed;
 		}
 
-
+		
 		public static void DropInventoryItem( Player player, int slot ) {
+			int _;
+			PlayerItemHelpers.DropInventoryItem( player, slot, 100, out _ );
+		}
+
+		public static void DropInventoryItem( Player player, int slot, int no_grab_delay, out int idx ) {
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
 
 			Item item = player.inventory[ slot ];
+			idx = -1;
 
 			if( item != null && !item.IsAir ) {
-				int idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
+				idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
 
 				item.position = Main.item[idx].position;
+				item.noGrabDelay = no_grab_delay;
+
 				Main.item[idx] = item;
 
 				if( Main.netMode == 1 ) {   // Client
