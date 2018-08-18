@@ -108,6 +108,20 @@ namespace HamstarHelpers.Services.Promises {
 		}
 
 
+		public static void UntriggerValidatedPromise( PromiseValidator validator, object validator_key ) {
+			var mymod = ModHelpersMod.Instance;
+
+			if( validator.ValidatorKey != validator_key ) {
+				throw new Exception( "Validation failed." );
+			}
+
+			lock( validator ) {
+				mymod.Promises.ValidatedPromiseConditionsMet.Remove( validator );
+				mymod.Promises.ValidatedPromiseArgs.Remove( validator );
+			}
+		}
+
+
 		////////////////
 
 		public static void ClearValidatedPromise( PromiseValidator validator, object validator_key ) {
