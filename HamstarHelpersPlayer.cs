@@ -132,6 +132,8 @@ namespace HamstarHelpers {
 				string file_name = DataDumper.DumpToFile( out success );
 				Main.NewText( "Dumped latest debug data to log file "+file_name, Color.Azure );
 			}
+
+			mymod.CustomHotkeys.ProcessTriggers( triggers_set );
 		}
 	}
 }

@@ -103,17 +103,23 @@ namespace HamstarHelpers.Components.UI.Elements {
 			// Mod icon
 
 			if( modfile != null && modfile.HasFile( "icon.png" ) ) {
-				var stream = new MemoryStream( modfile.GetFile( "icon.png" ) );
-				var icon_tex = Texture2D.FromStream( Main.graphics.GraphicsDevice, stream );
+				if( !Main.dedServ ) {   //...?
+					try {
+						var stream = new MemoryStream( modfile.GetFile( "icon.png" ) );
+						var icon_tex = Texture2D.FromStream( Main.graphics.GraphicsDevice, stream );
 
-				if( icon_tex.Width == 80 && icon_tex.Height == 80 ) {
-					this.IconElem = new UIImage( icon_tex );
-					this.IconElem.Top.Set( -4f, 0f );
-					this.IconElem.Left.Set( -4f, 0f );
-					this.IconElem.MarginTop = -8f;
-					this.IconElem.MarginLeft = -4f;
-					this.IconElem.ImageScale = 0.7f;
-					this.Append( this.IconElem );
+						if( icon_tex.Width == 80 && icon_tex.Height == 80 ) {
+							this.IconElem = new UIImage( icon_tex );
+							this.IconElem.Top.Set( -4f, 0f );
+							this.IconElem.Left.Set( -4f, 0f );
+							this.IconElem.MarginTop = -8f;
+							this.IconElem.MarginLeft = -4f;
+							this.IconElem.ImageScale = 0.7f;
+							this.Append( this.IconElem );
+						}
+					} catch( Exception e ) {
+						LogHelpers.Log( "!ModHelpers.Components.UI.Elements.UIModData.CTor - " + e.ToString() );
+					}
 				}
 			}
 

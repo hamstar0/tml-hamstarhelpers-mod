@@ -97,7 +97,8 @@ namespace HamstarHelpers.Services.Timers {
 
 		internal Timers() {
 			this.OnTickGet = Timers.MainOnTickGet();
-			Main.OnTick += Timers._RunTimers;
+			Main.OnTick += Timers._Update;
+TICKSTART = DateTime.Now.Ticks;
 
 			Promises.Promises.AddWorldUnloadEachPromise( () => {
 				lock( Timers.MyLock ) {
@@ -115,23 +116,32 @@ namespace HamstarHelpers.Services.Timers {
 		~Timers() {
 		//internal void Unload() {
 			try {
-				Main.OnTick -= Timers._RunTimers;
+				Main.OnTick -= Timers._Update;
 			} catch { }
 		}
 
 
 		////////////////
-
-		private static void _RunTimers() {  // <- Just in case references are doing something funky...
+		
+private static long TICKSTART=0;
+private static int TICKCOUNT=0;
+		private static void _Update() {  // <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
 			if( mymod.Timers.OnTickGet() ) {
-				mymod.Timers.RunEachTimer();
+long NOW = DateTime.Now.Ticks;
+TICKCOUNT++;
+if( (NOW - TICKSTART) > 10000000 ) { 
+	DebugHelpers.Print("blah", ""+TICKCOUNT,20);
+	TICKSTART = NOW;
+	TICKCOUNT = 0;
+}
+				mymod.Timers.Update();
 			}
 		}
 
-		private void RunEachTimer() {
+		private void Update() {
 			foreach( string name in this.Running.Keys.ToArray() ) {
 				int duration = this.Running[ name ].Value;
 

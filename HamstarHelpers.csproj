@@ -172,6 +172,7 @@
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="Internals\NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
+    <Compile Include="Services\CustomHotkeys\CustomHotkeys.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_API.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_Compute.cs" />

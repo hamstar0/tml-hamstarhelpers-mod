@@ -31,7 +31,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Helpers.PlayerHelpers;
-
+using HamstarHelpers.Services.CustomHotkeys;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
@@ -61,6 +61,7 @@ namespace HamstarHelpers {
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
 		internal DataStore DataStore;
+		internal CustomHotkeys CustomHotkeys;
 
 		// Helpers
 		internal LogHelpers LogHelpers;
@@ -158,11 +159,12 @@ namespace HamstarHelpers {
 			this.MenuUIMngr = new MenuUIManager();
 			this.MusicHelpers = new MusicHelpers();
 			this.CustomEntMngr = new CustomEntityManager();
+			this.CustomHotkeys = new CustomHotkeys();
 
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
-				this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
 			}
+			this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
 
 			this.LoadModData();
 
@@ -240,6 +242,7 @@ namespace HamstarHelpers {
 			this.CustomEntMngr = null;
 			this.Promises = null;
 			this.DataStore = null;
+			this.CustomHotkeys = null;
 
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;

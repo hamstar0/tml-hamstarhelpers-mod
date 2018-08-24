@@ -69,7 +69,12 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 			(ISet<int>)( new HashSet<int>( new int[] { ItemID.MagicMirror, ItemID.IceMirror } ) )
 		);
 
-		
+		public static Tuple<string, ISet<int>> WarpPotions = Tuple.Create(
+			"Warp Mirrors",
+			(ISet<int>)( new HashSet<int>( new int[] { ItemID.RecallPotion, ItemID.WormholePotion } ) )
+		);
+
+
 		public static Tuple<string, ISet<int>> VanillaAnimals = Tuple.Create(
 			"Live Animal (vanilla)",
 			(ISet<int>)( new HashSet<int>( new int[] {
