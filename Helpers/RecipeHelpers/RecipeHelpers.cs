@@ -8,12 +8,12 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.RecipeHelpers {
 	public partial class RecipeHelpers {
-		public static bool ItemHasIngredients( Item item, ISet<int> ingredients, int min_stack ) {
-			for( int i=0; i<Main.recipe.Length; i++ ) {
+		public static bool ItemHasIngredients( int item_type, ISet<int> ingredients, int min_stack ) {
+			for( int i = 0; i < Main.recipe.Length; i++ ) {
 				Recipe recipe = Main.recipe[i];
-				if( recipe.createItem.type != item.type ) { continue; }
-				
-				for( int j=0; j<recipe.requiredItem.Length; j++ ) {
+				if( recipe.createItem.type != item_type ) { continue; }
+
+				for( int j = 0; j < recipe.requiredItem.Length; j++ ) {
 					Item reqitem = recipe.requiredItem[j];
 					if( reqitem.stack < min_stack ) { continue; }
 					if( ingredients.Contains( reqitem.type ) ) {
@@ -22,6 +22,11 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 				}
 			}
 			return false;
+		}
+
+		[Obsolete( "use ItemHasIngredients(int, ISet<int>, int)" )]
+		public static bool ItemHasIngredients( Item item, ISet<int> ingredients, int min_stack ) {
+			return RecipeHelpers.ItemHasIngredients( item.type, ingredients, min_stack );
 		}
 
 

@@ -110,7 +110,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return true;
 				}
 
-				var has = RecipeHelpers.ItemHasIngredients( item, new HashSet<int> { ItemID.SpellTome }, 1 );
+				var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.SpellTome }, 1 );
 				if( has ) { return true; }
 
 				string name = ItemIdentityHelpers.GetQualifiedName( item );
