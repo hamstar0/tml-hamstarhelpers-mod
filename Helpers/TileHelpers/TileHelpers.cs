@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
@@ -50,6 +51,25 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 				tile.type == 211 || // Chlorophyte Ore
 				tile.type == 404 || // Desert Fossil
 				(!Main.hardMode && tile.type == 58);    // Hellstone Ore
+		}
+
+
+		public static bool PlaceTile( int x, int y, int tile_type, int place_style=0, bool muted=false, bool forced=false, int plr_who=-1 ) {
+			if( WorldGen.PlaceTile( x, y, tile_type, muted, forced, plr_who, place_style ) ) {
+				return false;
+			}
+
+			NetMessage.SendData( MessageID.TileChange, -1, -1, null, 1, (float)x, (float)y, (float)tile_type, place_style, 0, 0 );
+
+			if( Main.netMode == 1 ) {
+				if( tile_type == TileID.Chairs ) {
+					NetMessage.SendTileSquare( -1, x - 1, y - 1, 3, TileChangeType.None );
+				} else if( tile_type == TileID.Beds || tile_type == TileID.Bathtubs ) {
+					NetMessage.SendTileSquare( -1, x, y, 5, TileChangeType.None );
+				}
+			}
+
+			return true;
 		}
 	}
 }

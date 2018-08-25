@@ -11,19 +11,23 @@ namespace HamstarHelpers.Services.Timers {
 		
 
 		public static Func<bool> MainOnTickGet() {
-			long then = 0;
-			int ticks = 0;
+			long then = DateTime.Now.Ticks;
+			int frames = 0, sub_frames;
+int FRAMES=0;
 
 			return () => {
 				long now = DateTime.Now.Ticks;
+				int span = (int)( now - then );
 
-				ticks += (int)( ( now - then ) / ( 10000000 / 90 ) );
-				long then_rem = ( now - then ) % ( 10000000 / 90 );
+				frames += span / (10000000 / 90);
+				sub_frames = span % (10000000 / 90);
 
-				then = now - then_rem;
+				then = now - sub_frames;
+DebugHelpers.Print("blahh", "frames: "+FRAMES, 20);
 				
-				if( ticks > 0 ) {
-					ticks--;
+				if( frames > 0 ) {
+FRAMES+=frames;
+					frames = 0;//frames--;
 					return true;
 				}
 				return false;

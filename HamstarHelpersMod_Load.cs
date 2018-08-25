@@ -130,7 +130,7 @@ namespace HamstarHelpers {
 				this.HasUnhandledExceptionLogger = true;
 				AppDomain.CurrentDomain.UnhandledException += ModHelpersMod.UnhandledLogger;
 			}
-
+			
 			this.DataStore = new DataStore();
 			this.Promises = new Promises();
 			this.LoadHelpers = new LoadHelpers();
