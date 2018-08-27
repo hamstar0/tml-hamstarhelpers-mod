@@ -62,19 +62,21 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				var wld_save_nojson = new SaveableEntityComponent( false );
 
 				Promises.AddValidatedPromise<PromiseArguments>( HamstarHelpersWorld.LoadValidator, (_) => {
-					try {
-						if( !wld_save_json.LoadAll() ) {
-							if( mymod.Config.DebugModeNetInfo ) {
-								LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - Load (json) failed." );
+					if( !ModHelpersMod.Instance.Config.DebugModeResetCustomEntities ) {
+						try {
+							if( !wld_save_json.LoadAll() ) {
+								if( mymod.Config.DebugModeNetInfo ) {
+									LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - Load (json) failed." );
+								}
 							}
-						}
-						if( !wld_save_nojson.LoadAll() ) {
-							if( mymod.Config.DebugModeNetInfo ) {
-								LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - Load (no json) failed." );
+							if( !wld_save_nojson.LoadAll() ) {
+								if( mymod.Config.DebugModeNetInfo ) {
+									LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - Load (no json) failed." );
+								}
 							}
+						} catch( Exception e ) {
+							LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - " + e.ToString() );
 						}
-					} catch( Exception e ) {
-						LogHelpers.Log( "HamstarHelpers.SaveableEntityComponent.StaticInitialize - " + e.ToString() );
 					}
 					
 					SaveableEntityComponent.PostLoadAll();

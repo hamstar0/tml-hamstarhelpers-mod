@@ -13,7 +13,7 @@ namespace HamstarHelpers.Services.Timers {
 		public static Func<bool> MainOnTickGet() {
 			long then = DateTime.Now.Ticks;
 			int frames = 0, sub_frames;
-int FRAMES=0;
+//int FRAMES=0;
 
 			return () => {
 				long now = DateTime.Now.Ticks;
@@ -23,10 +23,10 @@ int FRAMES=0;
 				sub_frames = span % (10000000 / 90);
 
 				then = now - sub_frames;
-DebugHelpers.Print("blahh", "frames: "+FRAMES, 20);
+//DebugHelpers.Print("blahh", "frames: "+FRAMES, 20);
 				
 				if( frames > 0 ) {
-FRAMES+=frames;
+//FRAMES+=frames;
 					frames = 0;//frames--;
 					return true;
 				}
@@ -102,7 +102,7 @@ FRAMES+=frames;
 		internal Timers() {
 			this.OnTickGet = Timers.MainOnTickGet();
 			Main.OnTick += Timers._Update;
-TICKSTART = DateTime.Now.Ticks;
+//TICKSTART = DateTime.Now.Ticks;
 
 			Promises.Promises.AddWorldUnloadEachPromise( () => {
 				lock( Timers.MyLock ) {
@@ -127,20 +127,20 @@ TICKSTART = DateTime.Now.Ticks;
 
 		////////////////
 		
-private static long TICKSTART=0;
-private static int TICKCOUNT=0;
+//private static long TICKSTART=0;
+//private static int TICKCOUNT=0;
 		private static void _Update() {  // <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null ) { return; }
 
 			if( mymod.Timers.OnTickGet() ) {
-long NOW = DateTime.Now.Ticks;
-TICKCOUNT++;
-if( (NOW - TICKSTART) > 10000000 ) { 
-	DebugHelpers.Print("blah", ""+TICKCOUNT,20);
-	TICKSTART = NOW;
-	TICKCOUNT = 0;
-}
+//long NOW = DateTime.Now.Ticks;
+//TICKCOUNT++;
+//if( (NOW - TICKSTART) > 10000000 ) { 
+//	DebugHelpers.Print("blah", ""+TICKCOUNT,20);
+//	TICKSTART = NOW;
+//	TICKCOUNT = 0;
+//}
 				mymod.Timers.Update();
 			}
 		}

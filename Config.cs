@@ -18,6 +18,7 @@ namespace HamstarHelpers {
 		public bool DebugModeUnhandledExceptionLogging = true;
 		public bool DebugModeHighlightEntities = false;
 		public bool DebugModeDumpAlsoServer = false;
+		public bool DebugModeResetCustomEntities = false;
 
 		public bool UseCustomLogging = false;
 		public bool UseCustomLoggingPerNetMode = false;

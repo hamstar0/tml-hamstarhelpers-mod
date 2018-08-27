@@ -55,7 +55,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 
 		public static bool PlaceTile( int x, int y, int tile_type, int place_style=0, bool muted=false, bool forced=false, int plr_who=-1 ) {
-			if( WorldGen.PlaceTile( x, y, tile_type, muted, forced, plr_who, place_style ) ) {
+			if( !WorldGen.PlaceTile( x, y, tile_type, muted, forced, plr_who, place_style ) ) {
 				return false;
 			}
 

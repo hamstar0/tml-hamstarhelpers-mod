@@ -34,7 +34,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			if( Main.netMode == 0 ) { return; }
 				
 			Action alert_privacy = delegate {
-				string msg = "Mod Helpers would like to list your servers in the Server Browser mod. Type '/hhprivateserver' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
+				string msg = "Mod Helpers would like to list your servers in the Server Browser mod. Type '/mh-private-server' in the chat or server console to cancel this. Otherwise, do nothing for 60 seconds.";
 
 				Main.NewText( msg, Color.Yellow );
 				Console.WriteLine( msg );

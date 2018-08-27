@@ -18,17 +18,27 @@ namespace HamstarHelpers.Components.Network.Data {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
 					continue;
 				}
-				if( Main.netMode == 1 && Attribute.IsDefined( field, typeof( PacketProtocolReadIgnoreClientAttribute ) ) ) {
-					continue;
-				} else if( Main.netMode == 2 && Attribute.IsDefined( field, typeof( PacketProtocolReadIgnoreServerAttribute ) ) ) {
-					continue;
-				}
 				
 				Type field_type = field.FieldType;
 				
-//LogHelpers.Log( "READ "+ field_container.GetType().Name + " FIELD " + field );
 				object field_data = PacketProtocolData.ReadStreamValue( reader, field_type );
+//LogHelpers.Log( "READ "+ field_container.GetType().Name + " FIELD " + field + " VALUE " + field_data );
 
+				if( Main.netMode == 1 ) {
+					if( Attribute.IsDefined( field, typeof( PacketProtocolReadIgnoreClientAttribute ) ) ) {
+						continue;
+					}
+					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {
+						continue;
+					}
+				} else if( Main.netMode == 2 ) {
+					if( Attribute.IsDefined( field, typeof( PacketProtocolReadIgnoreServerAttribute ) ) ) {
+						continue;
+					}
+					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
+						continue;
+					}
+				}
 				field.SetValue( field_container, field_data );
 			}
 		}
@@ -90,7 +100,6 @@ namespace HamstarHelpers.Components.Network.Data {
 				break;
 			}
 			
-//LogHelpers.Log( " ReadStreamValue "+Type.GetTypeCode( field_type )+" - "+field_type+": "+raw_val );
 			return raw_val;
 		}
 
@@ -159,7 +168,6 @@ namespace HamstarHelpers.Components.Network.Data {
 					}
 				}
 				
-//LogHelpers.Log( "  1 field_type: "+field_type+ " (IsArray? " + field_type.IsArray+"), arr: "+arr+", dict? "+typeof(IDictionary).IsAssignableFrom(field_type) );
 				if( field_type.IsArray ) {
 					return arr;
 				} else {
@@ -170,7 +178,6 @@ namespace HamstarHelpers.Components.Network.Data {
 				string raw_json = reader.ReadString();
 
 				var json_val = JsonConvert.DeserializeObject( raw_json, field_type );
-//LogHelpers.Log( "  2 field_type: "+field_type+ " , raw_json: " + raw_json+ ", json_val: "+JsonConvert.SerializeObject(json_val) );
 				
 				return json_val;
 			}

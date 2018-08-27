@@ -27,7 +27,6 @@ namespace HamstarHelpers.Components.Network.Data {
 
 				object raw_field_val = field.GetValue( data );
 //LogHelpers.Log( "WRITE "+ data.GetType().Name+ " FIELD " + field + " VALUE "+(raw_field_val??"null"));
-				//Type raw_field_type = raw_field_val.GetType();
 				
 				PacketProtocolData.WriteStreamValue( writer, field.FieldType, raw_field_val );
 			}

@@ -72,9 +72,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
-		
+
 		protected override void ReadStream( BinaryReader reader ) {
-			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( (ushort)reader.ReadUInt16() );
+			int id = (int)(ushort)reader.ReadUInt16();
+			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( id );
 
 			new_ent.Core.whoAmI = (ushort)reader.ReadUInt16();
 			new_ent.Core.DisplayName = (string)reader.ReadString();

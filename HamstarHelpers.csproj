@@ -104,8 +104,9 @@
     <Compile Include="HamstarHelpersMod_DrawMap.cs" />
     <Compile Include="HamstarHelpersMod_Meta.cs" />
     <Compile Include="HamstarHelpersMod_Draw.cs" />
-    <Compile Include="Helpers\DebugHelpers\DebugHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\DebugHelpers\DebugHelpers_Rect.cs" />
+    <Compile Include="Helpers\DebugHelpers\DebugHelpers_Print.cs" />
     <Compile Include="Helpers\DotNetHelpers\FileHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\FileHelpers_Binary.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemAttributeHelpers_Rarity.cs" />

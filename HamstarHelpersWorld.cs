@@ -132,6 +132,8 @@ namespace HamstarHelpers {
 
 					mymod.CustomEntMngr.DrawAll( Main.spriteBatch );
 
+					DebugHelpers.DrawAllRects( Main.spriteBatch );
+
 					Main.spriteBatch.End();
 				}
 			} catch( Exception e ) {
