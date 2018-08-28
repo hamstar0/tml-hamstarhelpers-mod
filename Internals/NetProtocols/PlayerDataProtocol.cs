@@ -41,13 +41,13 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void SetServerDefaults() { }
+		protected override void SetServerDefaults( int from_who ) { }
 
 		////////////////
 
 		protected override void ReceiveWithServer( int from_who ) {
 			Player player = Main.player[ from_who ];
-			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveDataServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				return;
 			}
 
-			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
 			myplayer.Logic.NetReceiveDataClient( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}

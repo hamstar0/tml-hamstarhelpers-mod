@@ -20,14 +20,6 @@ namespace HamstarHelpers.Components.Network {
 	/// </summary>
 	public class PacketProtocolIgnoreAttribute : Attribute { }
 	/// <summary>
-	/// Sets a field to be not read by clients in a protocol.
-	/// </summary>
-	public class PacketProtocolReadIgnoreClientAttribute : Attribute { }
-	/// <summary>
-	/// Sets a field to be not read by server in a protocol.
-	/// </summary>
-	public class PacketProtocolReadIgnoreServerAttribute : Attribute { }
-	/// <summary>
 	/// Sets a field to be not written by clients in a protocol.
 	/// </summary>
 	public class PacketProtocolWriteIgnoreClientAttribute : Attribute { }
@@ -35,6 +27,11 @@ namespace HamstarHelpers.Components.Network {
 	/// Sets a field to be not written by server in a protocol.
 	/// </summary>
 	public class PacketProtocolWriteIgnoreServerAttribute : Attribute { }
+
+	[Obsolete( "use PacketProtocolWriteIgnoreServerAttribute", true )]
+	public class PacketProtocolReadIgnoreClientAttribute : Attribute { }
+	[Obsolete( "use PacketProtocolWriteIgnoreServerAttribute", true )]
+	public class PacketProtocolReadIgnoreServerAttribute : Attribute { }
 
 
 

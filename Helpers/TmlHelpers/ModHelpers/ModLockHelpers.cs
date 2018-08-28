@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		public static bool IsWorldLocked() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLockHelpers;
-			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			return modlock.WorldModLocks.ContainsKey( modworld.ObsoleteID2 );
 		}
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		public static void LockWorld() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLockHelpers;
-			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			IEnumerable<Mod> all_mods = ModHelpers.GetAllMods();
 			ISet<string> mod_names = new HashSet<string>();
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		public static void UnlockWorld() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLockHelpers;
-			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			modlock.WorldModLocks.Remove( modworld.ObsoleteID2 );
 			modlock.MismatchBroadcastMade = false;
@@ -94,7 +94,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		internal void PostLoad( ModHelpersMod mymod, HamstarHelpersWorld modworld ) {
+		internal void PostLoad( ModHelpersMod mymod, ModHelpersWorld modworld ) {
 			this.IsInitialized = true;
 			this.MismatchBroadcastMade = false;
 			this.ScanMods( modworld );
@@ -109,7 +109,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		private void ScanMods( HamstarHelpersWorld modworld ) {
+		private void ScanMods( ModHelpersWorld modworld ) {
 			this.FoundModNames = new HashSet<string>();
 			this.MissingModNames = new HashSet<string>();
 			this.ExtraModNames = new HashSet<string>();
@@ -150,7 +150,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		////////////////
 
 		internal void Load( ModHelpersMod mymod, TagCompound tags ) {
-			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			if( tags.ContainsKey( "world_mod_lock_count" ) ) {
 				int world_count = tags.GetInt( "world_mod_lock_count" );
@@ -171,7 +171,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		}
 
 		internal void Save( ModHelpersMod mymod, TagCompound tags ) {
-			var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			tags.Set( "world_mod_lock_count", this.WorldModLocks.Count );
 
@@ -202,7 +202,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 //if( (this.ExitDuration % 60) == 0 ) {LogHelpers.Log( "bye? IsInitialized:"+this.IsInitialized+" IsMismatched:"+this.IsMismatched+"," + ( this.ExitDuration / 60) );}
 			
 			if( Main.netMode == 2 && !this.MismatchBroadcastMade ) {
-				var modworld = ModHelpersMod.Instance.GetModWorld<HamstarHelpersWorld>();
+				var modworld = ModHelpersMod.Instance.GetModWorld<ModHelpersWorld>();
 
 				if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 					this.MismatchBroadcastMade = true;

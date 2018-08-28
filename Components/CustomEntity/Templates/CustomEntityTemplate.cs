@@ -10,9 +10,9 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 		public int Height;
 		public IList<CustomEntityComponent> Components;
 
-		
+
 		////////////////
-		
+
 		internal CustomEntityTemplate( string name, int width, int height, IList<CustomEntityComponent> components ) {
 			this.DisplayName = name;
 			this.Width = width;
@@ -21,6 +21,6 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 		}
 
 		internal CustomEntityTemplate( CustomEntity ent )
-			: this( ent.Core.DisplayName, ent.Core.width, ent.Core.height, ent.Components.Select( c=>c.InternalClone() ).ToList() ) { }
+			: this( ent.Core.DisplayName, ent.Core.width, ent.Core.height, ent.Components.Select( c => c.InternalClone() ).ToList() ) { }
 	}
 }

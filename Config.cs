@@ -6,19 +6,18 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static Version ConfigVersion { get { return new Version(2, 0, 4); } }
 		public static string ConfigFileName { get { return "Mod Helpers Config.json"; } }
 
 
 		////////////////
 
-		public string VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
+		public string VersionSinceUpdate = new Version(0,0,0,0).ToString();
 
 		public bool DebugModeNetInfo = false;
 		public bool DebugModeUnhandledExceptionLogging = true;
-		public bool DebugModeHighlightEntities = false;
 		public bool DebugModeDumpAlsoServer = false;
 		public bool DebugModeResetCustomEntities = false;
+		public bool DebugModeCustomEntityInfo = false;
 
 		public bool UseCustomLogging = false;
 		public bool UseCustomLoggingPerNetMode = false;
@@ -55,17 +54,17 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public bool UpdateToLatestVersion() {
+		internal bool UpdateToLatestVersion( ModHelpersMod mymod ) {
 			var new_config = new HamstarHelpersConfigData();
 			var vers_since = this.VersionSinceUpdate != "" ?
 				new Version( this.VersionSinceUpdate ) :
 				new Version();
-
-			if( vers_since >= HamstarHelpersConfigData.ConfigVersion ) {
+			
+			if( vers_since >= mymod.Version ) {
 				return false;
 			}
 
-			this.VersionSinceUpdate = HamstarHelpersConfigData.ConfigVersion.ToString();
+			this.VersionSinceUpdate = mymod.Version.ToString();
 
 			return true;
 		}
@@ -74,7 +73,7 @@ namespace HamstarHelpers {
 		////////////////
 		
 		internal void LoadFromNetwork( ModHelpersMod mymod, HamstarHelpersConfigData config ) {
-			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 
 			mymod.ConfigJson.SetData( config );
 

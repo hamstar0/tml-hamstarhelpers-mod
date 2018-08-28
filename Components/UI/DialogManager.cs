@@ -7,7 +7,7 @@ namespace HamstarHelpers.Components.UI {
 		public static DialogManager Instance {
 			get {
 				try {
-					var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+					var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 					return myplayer.Logic.DialogManager;
 				} catch { }
 				return null;

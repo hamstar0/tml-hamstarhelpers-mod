@@ -35,7 +35,7 @@ namespace HamstarHelpers.Components.Network {
 					protocol.ReceiveWithClientBase( reader, player_who );
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( protocol_type.Name + " - " + e.ToString() );
+				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - "+protocol_type.Name + " - " + e.ToString() );
 			}
 		}
 

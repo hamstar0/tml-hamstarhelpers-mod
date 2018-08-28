@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
@@ -39,7 +40,7 @@ namespace HamstarHelpers.Components.Network {
 		/// </summary>
 		protected void SendToServer( bool sync_to_clients ) {
 			if( Main.netMode != 1 ) {
-				throw new Exception("Not a client.");
+				throw new HamstarException( "Not a client.");
 			}
 
 			var mymod = ModHelpersMod.Instance;
@@ -66,7 +67,7 @@ namespace HamstarHelpers.Components.Network {
 		/// </summary>
 		protected void SendToClient( int to_who, int ignore_who ) {
 			if( Main.netMode != 2 ) {
-				throw new Exception( "Not server." );
+				throw new HamstarException( "Not server." );
 			}
 
 			var mymod = ModHelpersMod.Instance;

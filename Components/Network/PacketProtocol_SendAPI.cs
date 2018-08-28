@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using Terraria;
@@ -13,7 +14,7 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickSendToServer<T>()
 				where T : PacketProtocol {   //, new()
 			if( Main.netMode != 1 ) {
-				throw new Exception( "Can only send as client." );
+				throw new HamstarException( "Can only send as client." );
 			}
 
 			//T t = new T();
@@ -31,7 +32,7 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickSyncToServerAndClients<T>()
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 1 ) {
-				throw new Exception( "Can only sync as a client." );
+				throw new HamstarException( "Can only sync as a client." );
 			}
 
 			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
@@ -49,7 +50,7 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickSendToClient<T>( int to_who, int ignore_who )
 				where T : PacketProtocol {	//, new()
 			if( Main.netMode != 2 ) {
-				throw new Exception( "Can only send as client." );
+				throw new HamstarException( "Can only send as client." );
 			}
 
 			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
@@ -73,7 +74,7 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickRequestToClient<T>( int to_who, int ignore_who )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 2 ) {
-				throw new Exception( "Not server." );
+				throw new HamstarException( "Not server." );
 			}
 
 			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
@@ -88,7 +89,7 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickRequestToServer<T>()
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 1 ) {
-				throw new Exception( "Not a client." );
+				throw new HamstarException( "Not a client." );
 			}
 
 			T t = (T)PacketProtocolData.CreateData( typeof( T ) );

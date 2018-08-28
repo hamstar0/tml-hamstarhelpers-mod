@@ -19,7 +19,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			if( !LoadHelpers.IsModLoaded() ) { return false; }
 
 			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 			if( !myworld.HasObsoletedID ) { return false; }
 
 			return true;
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 					return false;
 				}
 
-				var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+				var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 				return myplayer.Logic.IsSynced;
 			} else {
 				if( !LoadHelpers.IsWorldLoaded() ) {
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 		public static bool IsPlayerLoaded( Player player ) {
 			var mymod = ModHelpersMod.Instance;
-			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
 			return myplayer.Logic.HasUID;
 		}

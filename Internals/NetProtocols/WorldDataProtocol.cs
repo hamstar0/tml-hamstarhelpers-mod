@@ -18,9 +18,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void SetServerDefaults() {
+		protected override void SetServerDefaults( int from_who ) {
 			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			this.HalfDays = WorldHelpers.GetElapsedHalfDays();
 			this.HasObsoletedWorldId = myworld.HasObsoletedID;
@@ -32,8 +32,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithClient() {
 			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
-			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+			var myworld = mymod.GetModWorld<ModHelpersWorld>();
+			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 
 			myworld.HasObsoletedID = this.HasObsoletedWorldId;
 			myworld.ObsoletedID = this.ObsoletedWorldId;

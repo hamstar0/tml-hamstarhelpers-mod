@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void SetClientDefaults() {
-			var myplayer = Main.LocalPlayer.GetModPlayer<HamstarHelpersPlayer>();
+			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 
 			this.ClientPrivateUID = myplayer.Logic.PrivateUID;
 			this.ClientHasUID = myplayer.Logic.HasUID;
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithServer( int from_who ) {
 			Player player = Main.player[ from_who ];
-			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveIdServer( this.ClientHasUID, this.ClientPrivateUID );
 		}

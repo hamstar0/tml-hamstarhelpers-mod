@@ -118,7 +118,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 							this.Append( this.IconElem );
 						}
 					} catch( Exception e ) {
-						LogHelpers.Log( "!ModHelpers.Components.UI.Elements.UIModData.CTor - " + e.ToString() );
+						LogHelpers.Log( "!ModHelpers.UIModData.CTor - " + e.ToString() );
 					}
 				}
 			}

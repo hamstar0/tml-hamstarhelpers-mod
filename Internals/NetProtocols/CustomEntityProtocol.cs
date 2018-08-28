@@ -23,6 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public CustomEntity Entity;
 
 
+
 		////////////////
 
 		private CustomEntityProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
@@ -37,10 +38,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 			
 			if( ent == null ) {
-				LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithServer - Could not find existing entity for " + this.Entity.ToString() );
+				LogHelpers.Log( "!ModHelpers.CustomEntityProtocol.ReceiveWithServer - Could not find existing entity for " + this.Entity.ToString() );
 				return;
 			}
 			
+//LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithServer - "+ent.ToString()+" behav:"+ent.GetComponentByName( "TrainBehaviorEntityComponent" )?.ToString() );
 			ent.SyncFrom( this.Entity );
 		}
 

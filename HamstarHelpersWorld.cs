@@ -10,7 +10,7 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	class HamstarHelpersWorld : ModWorld {
+	class ModHelpersWorld : ModWorld {
 		private readonly static object MyValidatorKey;
 		internal readonly static PromiseValidator LoadValidator;
 		internal readonly static PromiseValidator SaveValidator;
@@ -20,10 +20,10 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		static HamstarHelpersWorld() {
-			HamstarHelpersWorld.MyValidatorKey = new object();
-			HamstarHelpersWorld.LoadValidator = new PromiseValidator( HamstarHelpersWorld.MyValidatorKey );
-			HamstarHelpersWorld.SaveValidator = new PromiseValidator( HamstarHelpersWorld.MyValidatorKey );
+		static ModHelpersWorld() {
+			ModHelpersWorld.MyValidatorKey = new object();
+			ModHelpersWorld.LoadValidator = new PromiseValidator( ModHelpersWorld.MyValidatorKey );
+			ModHelpersWorld.SaveValidator = new PromiseValidator( ModHelpersWorld.MyValidatorKey );
 		}
 
 
@@ -77,7 +77,7 @@ namespace HamstarHelpers {
 			mymod.ModLockHelpers.PostLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 			
-			Promises.TriggerValidatedPromise( HamstarHelpersWorld.LoadValidator, HamstarHelpersWorld.MyValidatorKey, null );
+			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			this.HasObsoletedID = true;
 		}
@@ -92,8 +92,8 @@ namespace HamstarHelpers {
 			mymod.ModLockHelpers.Save( mymod, tags );
 
 			this.WorldLogic.SaveForWorld( mymod, tags );
-
-			Promises.TriggerValidatedPromise( HamstarHelpersWorld.SaveValidator, HamstarHelpersWorld.MyValidatorKey, null );
+			
+			Promises.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			return tags;
 		}
@@ -119,10 +119,10 @@ namespace HamstarHelpers {
 		public override void PostDrawTiles() {
 			Player player = Main.LocalPlayer;
 			var mymod = (ModHelpersMod)this.mod;
-			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>( mymod );
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>( mymod );
 
 			try {
-				lock( HamstarHelpersWorld.MyLock ) {
+				lock( ModHelpersWorld.MyLock ) {
 					//Main.spriteBatch.Begin();
 					RasterizerState rasterizer = Main.gameMenu ||
 						(double)player.gravDir == 1.0 ?
@@ -137,7 +137,7 @@ namespace HamstarHelpers {
 					Main.spriteBatch.End();
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( "HamstarHelpers.HamstarHelpersWorld.PostDrawTiles - " + e.ToString() );
+				LogHelpers.Log( "!ModHelpers.ModHelpersWorld.PostDrawTiles - " + e.ToString() );
 			}
 		}
 	}

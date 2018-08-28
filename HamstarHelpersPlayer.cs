@@ -16,7 +16,7 @@ namespace HamstarHelpers {
 
 
 
-	class HamstarHelpersPlayer : ModPlayer {
+	class ModHelpersPlayer : ModPlayer {
 		internal readonly static object MyValidatorKey;
 		internal readonly static PromiseValidator LoadValidator;
 		internal readonly static PromiseValidator SaveValidator;
@@ -24,10 +24,10 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		static HamstarHelpersPlayer() {
-			HamstarHelpersPlayer.MyValidatorKey = new object();
-			HamstarHelpersPlayer.LoadValidator = new PromiseValidator( HamstarHelpersPlayer.MyValidatorKey );
-			HamstarHelpersPlayer.SaveValidator = new PromiseValidator( HamstarHelpersPlayer.MyValidatorKey );
+		static ModHelpersPlayer() {
+			ModHelpersPlayer.MyValidatorKey = new object();
+			ModHelpersPlayer.LoadValidator = new PromiseValidator( ModHelpersPlayer.MyValidatorKey );
+			ModHelpersPlayer.SaveValidator = new PromiseValidator( ModHelpersPlayer.MyValidatorKey );
 		}
 
 
@@ -46,7 +46,7 @@ namespace HamstarHelpers {
 		}
 
 		public override void clientClone( ModPlayer client_clone ) {
-			var clone = (HamstarHelpersPlayer)client_clone;
+			var clone = (ModHelpersPlayer)client_clone;
 			clone.Logic = this.Logic;
 		}
 
@@ -85,13 +85,13 @@ namespace HamstarHelpers {
 
 			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
 
-			Promises.TriggerValidatedPromise( HamstarHelpersPlayer.LoadValidator, HamstarHelpersPlayer.MyValidatorKey, args );
+			Promises.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
 		}
 
 		public override TagCompound Save() {
 			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
 
-			Promises.TriggerValidatedPromise( HamstarHelpersPlayer.SaveValidator, HamstarHelpersPlayer.MyValidatorKey, args );
+			Promises.TriggerValidatedPromise( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
 
 			return this.Logic.Save();
 		}

@@ -8,7 +8,7 @@ namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
 		private void PreUpdatePlayer( ModHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
-				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+				var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 				SimpleMessage.UpdateMessage();
 				mymod.PlayerMessages.Update();
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.PreUpdatePlayer( mymod, player );
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
-				var myworld = mymod.GetModWorld<HamstarHelpersWorld>();
+				var myworld = mymod.GetModWorld<ModHelpersWorld>();
 				myworld.WorldLogic.PreUpdateClient( mymod );
 			}
 
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void PreUpdateServer( ModHelpersMod mymod, Player player ) {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
-				var modworld = mymod.GetModWorld<HamstarHelpersWorld>();
+				var modworld = mymod.GetModWorld<ModHelpersWorld>();
 			}
 			if( player.whoAmI != 255 ) {
 				mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish = true;	// Weird hack?

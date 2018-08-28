@@ -1,6 +1,9 @@
 ﻿using HamstarHelpers.Components.CustomEntity.Templates;
+using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using Newtonsoft.Json;
 using System;
@@ -12,7 +15,12 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntity : PacketProtocolData {
 		[JsonIgnore]
-		public int ID { get; internal set; }
+		public int TypeID { get; internal set; }
+
+		[PacketProtocolIgnore]
+		public string OwnerPlayerUID = "";
+		[JsonIgnore]
+		public int OwnerPlayerWho = -1;
 
 		public CustomEntityCore Core;
 		public IList<CustomEntityComponent> Components = new List<CustomEntityComponent>();
@@ -35,28 +43,76 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		[JsonConstructor]
 		internal CustomEntity() {
-			this.ID = -1;
+			this.TypeID = -1;
 		}
 
 		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.ID = CustomEntityTemplateManager.GetID( components );
-			if( this.ID == -1 ) {
-				throw new NotImplementedException( "No custom entity ID found to match to new entity called " + core.DisplayName
-					+ ". Components: " + string.Join( ", ", components.Select( c => c.GetType().Name ) ) );
+			this.Initialize( "", -1, core, components );
+		}
+
+		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) {
+			bool is_nothing_overlooked;
+			Player owner = PlayerIdentityHelpers.GetPlayerById( owner_uid, out is_nothing_overlooked );
+			if( owner == null && !is_nothing_overlooked ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.CTor_3 - Could not verify if entity's owner is present or absent." );
 			}
 
+			int owner_who = owner == null ? -1 : owner.whoAmI;
+
+			this.Initialize( owner_uid, owner_who, core, components );
+		}
+
+		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) {
+			bool success;
+			string uid = PlayerIdentityHelpers.GetUniqueId( owner, out success );
+			if( !success ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.CTor_4 - Entity owner's UID not found." );
+			}
+
+			this.Initialize( uid, owner.whoAmI, core, components );
+		}
+
+		////////////////
+		
+		private void Initialize( string owner_uid, int owner_who, CustomEntityCore core, IList<CustomEntityComponent> components ) {
+			this.TypeID = CustomEntityTemplateManager.GetID( components );
+			if( this.TypeID == -1 ) {
+				string comp_str = string.Join( ", ", components.Select( c => c.GetType().Name ) );
+				throw new NotImplementedException( "!ModHelpers.CustomEntity.Initialize - No custom entity ID found to match to new entity called "
+					+ core.DisplayName + ". Components: " + comp_str );
+			}
+
+			this.OwnerPlayerUID = owner_uid;
+			this.OwnerPlayerWho = owner_who;
 			this.Core = core;
 			this.Components = components;
+		}
+
+		public void RefreshOwnerWho() {
+			if( !string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
+				this.OwnerPlayerWho = -1;
+				return;
+			}
+
+			bool is_nothing_overlooked;
+			Player owner = PlayerIdentityHelpers.GetPlayerById( this.OwnerPlayerUID, out is_nothing_overlooked );
+			if( owner == null && !is_nothing_overlooked ) {
+				throw new HamstarException( "Could not verify if entity's owner is present or absent." );
+			}
+
+			this.OwnerPlayerWho = owner == null ? -1 : owner.whoAmI;
 		}
 
 
 		////////////////
 
 		public void CopyChangesFrom( CustomEntity copy ) {	// TODO: Actually copy changes only!
-			if( this.ID == -1 ) {
+			if( this.TypeID == -1 ) {
 				this.Core = new CustomEntityCore();
 			}
-			this.ID = copy.ID;
+			this.TypeID = copy.TypeID;
+			//this.OwnerPlayerWho = copy.OwnerPlayerWho;
+			//this.OwnerPlayerUID = copy.OwnerPlayerUID;
 
 			this.Core.CopyFrom( copy.Core );
 
@@ -90,6 +146,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 		}
 
+		////////////////
 
 		public T GetComponentByType<T>() where T : CustomEntityComponent {
 			if( this.ComponentsByTypeName.Count != this.Components.Count ) {
@@ -104,6 +161,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return (T)this.Components[ idx ];
 		}
 
+		public CustomEntityComponent GetComponentByName( string name ) {
+			if( this.ComponentsByTypeName.Count != this.Components.Count ) {
+				this.RefreshComponentTypeNames();
+			}
+
+			int idx;
+
+			if( !this.AllComponentsByTypeName.TryGetValue( name, out idx ) ) {
+				return null;
+			}
+			return this.Components[idx];
+		}
+
 
 		////////////////
 
@@ -113,12 +183,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 			} else if( Main.netMode == 1 ) {
 				CustomEntityProtocol.SyncToAll( this );
 			} else {
-				throw new Exception( "Multiplayer only." );
+				throw new HamstarException( "!ModHelpers.CustomEntity.SyncTo - Multiplayer only." );
 			}
 		}
 
 
 		internal void SyncFrom( CustomEntity ent ) {
+			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				LogHelpers.Log( "ModHelpers.CustomEntity.SyncFrom - Syned from " + ent.ToString() + " for "+ this.ToString() );
+			}
+
 			this.CopyChangesFrom( ent );
 		}
 
@@ -154,8 +228,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		public override string ToString() {
 			string basename = "";
-			string typeid = "type "+this.ID;
+			string typeid = "type "+this.TypeID;
 			string who = "";
+			string owner = "";
 
 			if( this.Core == null ) {
 				basename = "Undefined entity";
@@ -164,11 +239,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 				who = ", who " + this.Core.whoAmI;
 			}
 
+			if( this.OwnerPlayerUID != "" ) {
+				owner = ", owner: "+this.OwnerPlayerUID.Substring( 0, 8 )+"...";
+			} else {
+				owner = ", no owner";
+			}
+
 			if( this.Components != null ) {
 				typeid = typeid + ":"+this.Components.Count();
 			}
 
-			return basename + " ("+ typeid + who + ")";
+			return basename + " ("+ typeid + who + owner + ")";
 		}
 	}
 }

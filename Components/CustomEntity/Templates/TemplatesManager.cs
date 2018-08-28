@@ -1,13 +1,26 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Templates {
 	public class CustomEntityTemplateManager {
-		public static CustomEntity CreateEntityByID( int id ) {
+		public static CustomEntity CreateEntityByID( int id, Player owner ) {
+			string uid = "";
+
+			if( owner != null ) {
+				bool success;
+				uid = PlayerIdentityHelpers.GetUniqueId( owner, out success );
+				if( !success ) {
+					throw new HamstarException( "!ModHelpers.CustomEntityTemplateManager - No player UID." );
+				}
+			}
+
 			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 			CustomEntityTemplate template = null;
 
@@ -18,7 +31,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 			var core = new CustomEntityCore( template.DisplayName, template.Width, template.Height, default(Vector2), 0 );
 			var components = template.Components.Select( c => c.InternalClone() ).ToList();
 
-			return new CustomEntity( core, components );
+			return new CustomEntity( uid, core, components );
 		}
 
 
@@ -37,7 +50,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 
 			int id = templates.LatestEntityID++;
 
-			templates.Templates[id] = template;
+			templates.Templates[ id ] = template;
 
 			return id;
 		}

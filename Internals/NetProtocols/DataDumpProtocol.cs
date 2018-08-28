@@ -12,7 +12,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void SetServerDefaults() { }
+		protected override void SetServerDefaults( int from_who ) { }
 
 		////////////////
 

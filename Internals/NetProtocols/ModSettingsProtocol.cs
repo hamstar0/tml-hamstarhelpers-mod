@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void SetServerDefaults() {
+		protected override void SetServerDefaults( int from_who ) {
 			this.Data = (HamstarHelpersConfigData)ModHelpersMod.Instance.Config.Clone();
 			this.Data.PrivilegedUserId = "";
 		}

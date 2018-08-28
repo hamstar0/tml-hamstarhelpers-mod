@@ -193,8 +193,8 @@ namespace HamstarHelpers {
 				this.ConfigJson.SaveFile();
 			}
 
-			if( this.Config.UpdateToLatestVersion() ) {
-				ErrorLogger.Log( "Mod Helpers updated to " + HamstarHelpersConfigData.ConfigVersion.ToString() );
+			if( this.Config.UpdateToLatestVersion( this ) ) {
+				ErrorLogger.Log( "Mod Helpers updated to " + this.Version.ToString() );
 				this.ConfigJson.SaveFile();
 			}
 		}
@@ -327,7 +327,7 @@ namespace HamstarHelpers {
 		////////////////
 		
 		private void OnWorldExit() {
-			var myworld = this.GetModWorld<HamstarHelpersWorld>();
+			var myworld = this.GetModWorld<ModHelpersWorld>();
 			myworld.OnWorldExit();
 		}
 	}

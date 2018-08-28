@@ -9,13 +9,39 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		public const int InventoryMainSize = 40;
 
 
+
 		////////////////
 
 		public static string GetUniqueId( Player player, out bool success ) {
-			var myplayer = player.GetModPlayer<HamstarHelpersPlayer>();
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
 			success = myplayer.Logic.HasUID;
 			return myplayer.Logic.PrivateUID;
+		}
+
+		public static Player GetPlayerById( string uid, out bool is_nothing_overlooked ) {
+			Player plr = null;
+			int len = Main.player.Length;
+			is_nothing_overlooked = true;
+
+			for( int i=0; i<len; i++ ) {
+				plr = Main.player[ i ];
+				if( plr == null || !plr.active ) { continue; }
+
+				bool mysuccess;
+				string myuid = PlayerIdentityHelpers.GetUniqueId( plr, out mysuccess );
+				if( !mysuccess ) {
+					is_nothing_overlooked = false;
+					continue;
+				}
+
+				if( myuid == uid ) {
+					is_nothing_overlooked = true;
+					break;
+				}
+			}
+
+			return plr;
 		}
 
 

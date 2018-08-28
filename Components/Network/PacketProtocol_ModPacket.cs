@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using Terraria;
@@ -22,7 +23,7 @@ namespace HamstarHelpers.Components.Network {
 
 
 		private ModPacket GetServerPacket( bool is_request ) {
-			if( Main.netMode != 2 ) { throw new Exception( "Not a server" ); }
+			if( Main.netMode != 2 ) { throw new HamstarException( "Not a server" ); }
 
 			string name = this.GetPacketName();
 			var packet = ModHelpersMod.Instance.GetPacket();

@@ -20,25 +20,19 @@ namespace HamstarHelpers.Components.Network.Data {
 				}
 				
 				Type field_type = field.FieldType;
-				
 				object field_data = PacketProtocolData.ReadStreamValue( reader, field_type );
-//LogHelpers.Log( "READ "+ field_container.GetType().Name + " FIELD " + field + " VALUE " + field_data );
 
 				if( Main.netMode == 1 ) {
-					if( Attribute.IsDefined( field, typeof( PacketProtocolReadIgnoreClientAttribute ) ) ) {
-						continue;
-					}
 					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {
 						continue;
 					}
 				} else if( Main.netMode == 2 ) {
-					if( Attribute.IsDefined( field, typeof( PacketProtocolReadIgnoreServerAttribute ) ) ) {
-						continue;
-					}
 					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
 						continue;
 					}
 				}
+
+//LogHelpers.Log( "READ "+ field_container.GetType().Name + " FIELD " + field + " VALUE " + field_data );
 				field.SetValue( field_container, field_data );
 			}
 		}

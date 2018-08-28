@@ -19,7 +19,7 @@ namespace HamstarHelpers.Components.Config {
 
 
 
-	public partial class JsonConfig<T> : JsonConfig {
+	public partial class JsonConfig<T> : JsonConfig where T : class {
 		public static string Serialize( T data, JsonSerializerSettings json_settings ) {
 			lock( JsonConfig.MyLock ) {
 				return JsonConvert.SerializeObject( data, Formatting.Indented, json_settings );
@@ -52,18 +52,6 @@ namespace HamstarHelpers.Components.Config {
 
 		////////////////
 
-		public JsonConfig( string file_name, string relative_path, JsonSerializerSettings json_settings ) {
-			this.FileName = file_name;
-			this.PathName = relative_path;
-			this.Data = (T)Activator.CreateInstance( typeof( T ) );
-			this.JsonSettings = json_settings;
-
-			lock( JsonConfig.MyFileLock ) {
-				Directory.CreateDirectory( Main.SavePath );
-				Directory.CreateDirectory( this.GetPathOnly() );
-			}
-		}
-
 		public JsonConfig( string file_name, string relative_path, T defaults_copy_only, JsonSerializerSettings json_settings ) {
 			this.FileName = file_name;
 			this.PathName = relative_path;
@@ -75,6 +63,9 @@ namespace HamstarHelpers.Components.Config {
 				Directory.CreateDirectory( this.GetPathOnly() );
 			}
 		}
+
+		public JsonConfig( string file_name, string relative_path, JsonSerializerSettings json_settings ) :
+			this( file_name, relative_path, (T)Activator.CreateInstance( typeof(T) ), json_settings ) { }
 
 		public JsonConfig( string file_name, string relative_path ) :
 			this( file_name, relative_path, new JsonSerializerSettings() ) { }
@@ -90,14 +81,16 @@ namespace HamstarHelpers.Components.Config {
 		}
 
 		public void DeserializeMe( string str_data, out bool success ) {
+			T data = null;
 			success = false;
+
 			try {
-				T data = JsonConfig<T>.Deserialize( str_data, this.JsonSettings );
+				data = JsonConfig<T>.Deserialize( str_data, this.JsonSettings );
 
 				this.Data = data;
 				success = true;
 			} catch( Exception e ) {
-				LogHelpers.Log( "JsonConfig.DeserializeMe - " + e.Message );
+				LogHelpers.Log( "!ModHelpers.JsonConfig.DeserializeMe - Error for "+this.FileName+" (no input? "+(str_data==null)+", no output? "+(data==null)+"): " + e.ToString() );
 			}
 		}
 

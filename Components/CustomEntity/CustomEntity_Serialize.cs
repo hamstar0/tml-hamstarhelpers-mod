@@ -28,30 +28,37 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			JObject jo = JObject.Load( reader );
 
-			CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
-			IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
-			int i;
+			try {
+				string player_uid = jo["OwnerPlayerUID"].ToObject<String>();
+				CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
+				string[] comp_names = jo["ComponentNames"].ToObject<string[]>();
+				JToken raw_components = jo["Components"];
 
-			string[] comp_names = jo["ComponentNames"].ToObject<string[]>();
-			Type[] comp_types = new Type[ comp_names.Length ];
+				IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
+				Type[] comp_types = new Type[comp_names.Length];
+				int i;
 
-			for( i=0; i<comp_names.Length; i++ ) {
-				if( !all_comp_type_map.ContainsKey( comp_names[i] ) ) {
-					return null;
+				for( i = 0; i < comp_names.Length; i++ ) {
+					if( !all_comp_type_map.ContainsKey( comp_names[i] ) ) {
+						return null;
+					}
+					comp_types[i] = all_comp_type_map[comp_names[i]];
 				}
-				comp_types[i] = all_comp_type_map[ comp_names[i] ];
-			}
-			
-			i = 0;
-			foreach( JObject obj in jo["Components"] ) {
-				Type comp_type = comp_types[i];
-				object comp = obj.ToObject( comp_type, serializer );
 
-				components.Add( (CustomEntityComponent)comp );
-				i++;
-			}
+				i = 0;
+				foreach( JObject obj in raw_components ) {
+					Type comp_type = comp_types[i];
+					object comp = obj.ToObject( comp_type, serializer );
 
-			return new CustomEntity( core, components );
+					components.Add( (CustomEntityComponent)comp );
+					i++;
+				}
+
+				return new CustomEntity( player_uid, core, components );
+			} catch( Exception e ) {
+				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - "+e.Message );
+				return null;
+			}
 		}
 
 
@@ -75,7 +82,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected override void ReadStream( BinaryReader reader ) {
 			int id = (int)(ushort)reader.ReadUInt16();
-			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( id );
+			byte owner_who = reader.ReadByte();
+
+			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( id, null );
+
+			new_ent.OwnerPlayerWho = owner_who == 255 ? -1 : owner_who;
 
 			new_ent.Core.whoAmI = (ushort)reader.ReadUInt16();
 			new_ent.Core.DisplayName = (string)reader.ReadString();
@@ -103,11 +114,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		protected override void WriteStream( BinaryWriter writer ) {
-			CustomEntityCore core = this.Core;
+			this.RefreshOwnerWho();
 
-			writer.Write( (ushort)this.ID );
-//LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
-//LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
+			CustomEntityCore core = this.Core;
+			int owner_who = this.OwnerPlayerWho == -1 ? 255 : this.OwnerPlayerWho;
+
+			writer.Write( (ushort)this.TypeID );
+			writer.Write( (byte)(this.OwnerPlayerWho == -1 ? 255 : this.OwnerPlayerWho) );
+			//LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+			//LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
 
 			writer.Write( (ushort)core.whoAmI );
 			writer.Write( (string)core.DisplayName );

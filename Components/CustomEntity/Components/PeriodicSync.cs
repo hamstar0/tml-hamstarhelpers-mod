@@ -1,6 +1,4 @@
 ﻿using HamstarHelpers.Components.Network.Data;
-using HamstarHelpers.Services.Promises;
-using Terraria;
 using Terraria.Utilities;
 
 
@@ -25,12 +23,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.ConfirmLoad();
 		}
 
+
 		////////////////
 
 		public void UpdateMe( CustomEntity ent ) {
 			if( this.LastSynced-- <= 0 ) {
 				this.LastSynced = 60 * 15;
-
+				
 				ent.SyncTo();
 			}
 		}

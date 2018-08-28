@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 		}
 
-		protected override void SetServerDefaults() { }
+		protected override void SetServerDefaults( int from_who ) { }
 
 
 		////////////////
