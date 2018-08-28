@@ -21,15 +21,19 @@ namespace HamstarHelpers.Services.EntityGroups {
 				
 				for( int i = 1; i < pool.Count; i++ ) {
 					try {
-						if( matcher( pool[i] ) ) {
-							grp.Add( i );
+						lock( EntityGroups.MyLock ) {
+							if( matcher( pool[i] ) ) {
+								grp.Add( i );
+							}
 						}
 					} catch( Exception ) {
 						LogHelpers.Log( "EntityGroups.ComputeGroups - Compute fail for '" + grp_name+"' with ent ("+i+") "+(pool[i]==null?"null":pool[i].ToString()) );
 					}
 				}
-				
-				groups[ grp_name ] = new ReadOnlySet<int>( grp );
+
+				lock( EntityGroups.MyLock ) {
+					groups[ grp_name ] = new ReadOnlySet<int>( grp );
+				}
 
 				foreach( int idx in grp ) {
 					if( !raw_groups_per_ent.ContainsKey( idx ) ) {
@@ -39,8 +43,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 				}
 			}
 
-			foreach( var kv in raw_groups_per_ent ) {
-				groups_per_ent[ kv.Key ] = new ReadOnlySet<string>( kv.Value );
+			lock( EntityGroups.MyLock ) {
+				foreach( var kv in raw_groups_per_ent ) {
+					groups_per_ent[ kv.Key ] = new ReadOnlySet<string>( kv.Value );
+				}
 			}
 		}
 	}

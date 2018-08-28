@@ -59,13 +59,15 @@ namespace HamstarHelpers.Services.EntityGroups {
 		////////////////
 
 		internal EntityGroups() {
-			this._ItemGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawItemGroups );
-			this._NPCGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawNPCGroups );
-			this._ProjGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawProjGroups );
+			lock( EntityGroups.MyLock ) {
+				this._ItemGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawItemGroups );
+				this._NPCGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawNPCGroups );
+				this._ProjGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawProjGroups );
 
-			this._GroupsPerItem = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerItem );
-			this._GroupsPerNPC = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerNPC );
-			this._GroupsPerProj = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerProj );
+				this._GroupsPerItem = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerItem );
+				this._GroupsPerNPC = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerNPC );
+				this._GroupsPerProj = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerProj );
+			}
 			
 			Promises.Promises.AddPostModLoadPromise( () => {
 				if( !this.IsEnabled ) { return; }
@@ -76,19 +78,25 @@ namespace HamstarHelpers.Services.EntityGroups {
 				
 				ThreadPool.QueueUserWorkItem( (_) => {
 					try {
+						IList<KeyValuePair<string, Func<Item, bool>>> item_matchers;
+						IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers;
+						IList<KeyValuePair<string, Func<Projectile, bool>>> proj_matchers;
+
 						lock( EntityGroups.MyLock ) {
-							IList<KeyValuePair<string, Func<Item, bool>>> item_matchers = this.DefineItemGroups();
-							IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers = this.DefineNPCGroups();
-							IList<KeyValuePair<string, Func<Projectile, bool>>> proj_matchers = this.DefineProjectileGroups();
+							item_matchers = this.DefineItemGroups();
+							npc_matchers = this.DefineNPCGroups();
+							proj_matchers = this.DefineProjectileGroups();
+						}
 
-							this.ComputeGroups<Item>( item_matchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
-							this.ComputeGroups<NPC>( npc_matchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
-							this.ComputeGroups<Projectile>( proj_matchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+						this.ComputeGroups<Item>( item_matchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						this.ComputeGroups<NPC>( npc_matchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						this.ComputeGroups<Projectile>( proj_matchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
 
-							this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
-							this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
-							this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
 
+						lock( EntityGroups.MyLock ) {
 							this.CustomItemMatchers = null;
 							this.CustomNPCMatchers = null;
 							this.CustomProjMatchers = null;
@@ -103,6 +111,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 				} );
 			} );
+		}
+
+		~EntityGroups() {
+			lock( EntityGroups.MyLock ) { }
 		}
 
 

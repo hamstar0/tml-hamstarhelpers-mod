@@ -80,9 +80,39 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		protected override void WriteStream( BinaryWriter writer ) {
+LogHelpers.Log( "NANITHEFUCK 0 "+ this.OwnerPlayerWho );
+			this.RefreshOwnerWho();
+
+			CustomEntityCore core = this.Core;
+			int owner_who = this.OwnerPlayerWho == -1 ? 255 : this.OwnerPlayerWho;
+LogHelpers.Log( "NANITHEFUCK 1 "+owner_who);
+
+			writer.Write( (ushort)this.TypeID );
+			writer.Write( (byte)owner_who );
+//LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+//LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
+
+			writer.Write( (ushort)core.whoAmI );
+			writer.Write( (string)core.DisplayName );
+			writer.Write( (float)core.position.X );
+			writer.Write( (float)core.position.Y );
+			writer.Write( (short)core.direction );
+			writer.Write( (ushort)core.width );
+			writer.Write( (ushort)core.height );
+			writer.Write( (float)core.velocity.X );
+			writer.Write( (float)core.velocity.Y );
+
+			for( int i=0; i<this.Components.Count; i++ ) {
+				this.Components[i].WriteStreamForwarded( writer );
+			}
+//LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
+		}
+
 		protected override void ReadStream( BinaryReader reader ) {
 			int id = (int)(ushort)reader.ReadUInt16();
 			byte owner_who = reader.ReadByte();
+LogHelpers.Log( "NANITHEFUCK 2 "+owner_who);
 
 			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( id, null );
 
@@ -110,34 +140,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 			
 //LogHelpers.Log( "READ "+new_ent.ToString()+" pos:"+new_ent.Core.position );
 			this.CopyChangesFrom( new_ent );
-		}
-
-
-		protected override void WriteStream( BinaryWriter writer ) {
-			this.RefreshOwnerWho();
-
-			CustomEntityCore core = this.Core;
-			int owner_who = this.OwnerPlayerWho == -1 ? 255 : this.OwnerPlayerWho;
-
-			writer.Write( (ushort)this.TypeID );
-			writer.Write( (byte)(this.OwnerPlayerWho == -1 ? 255 : this.OwnerPlayerWho) );
-			//LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
-			//LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
-
-			writer.Write( (ushort)core.whoAmI );
-			writer.Write( (string)core.DisplayName );
-			writer.Write( (float)core.position.X );
-			writer.Write( (float)core.position.Y );
-			writer.Write( (short)core.direction );
-			writer.Write( (ushort)core.width );
-			writer.Write( (ushort)core.height );
-			writer.Write( (float)core.velocity.X );
-			writer.Write( (float)core.velocity.Y );
-
-			for( int i=0; i<this.Components.Count; i++ ) {
-				this.Components[i].WriteStreamForwarded( writer );
-			}
-//LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
 		}
 	}
 }

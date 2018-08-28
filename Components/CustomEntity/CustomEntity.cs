@@ -97,7 +97,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			bool is_nothing_overlooked;
 			Player owner = PlayerIdentityHelpers.GetPlayerById( this.OwnerPlayerUID, out is_nothing_overlooked );
 			if( owner == null && !is_nothing_overlooked ) {
-				throw new HamstarException( "Could not verify if entity's owner is present or absent." );
+				throw new HamstarException( "!ModHelpers.CustomEntity.RefreshOwnerWho - Could not verify if entity's owner is present or absent." );
 			}
 
 			this.OwnerPlayerWho = owner == null ? -1 : owner.whoAmI;
@@ -230,7 +230,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			string basename = "";
 			string typeid = "type "+this.TypeID;
 			string who = "";
-			string owner = "";
+			string owner = ", owner:";
 
 			if( this.Core == null ) {
 				basename = "Undefined entity";
@@ -240,9 +240,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( this.OwnerPlayerUID != "" ) {
-				owner = ", owner: "+this.OwnerPlayerUID.Substring( 0, 8 )+"...";
-			} else {
-				owner = ", no owner";
+				owner += " "+this.OwnerPlayerUID.Substring( 0, 8 )+"...";
+			}
+			if( this.OwnerPlayerWho != -1 ) {
+				owner += " ('" + Main.player[this.OwnerPlayerWho].name + "':" + this.OwnerPlayerWho;
+			}
+			if( this.OwnerPlayerUID == "" && this.OwnerPlayerWho == -1 ) {
+				owner += " none";
 			}
 
 			if( this.Components != null ) {

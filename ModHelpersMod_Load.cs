@@ -33,6 +33,7 @@ using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.CustomHotkeys;
 
+
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {

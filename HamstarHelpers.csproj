@@ -102,9 +102,8 @@
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
-    <Compile Include="HamstarHelpersMod_DrawMap.cs" />
-    <Compile Include="HamstarHelpersMod_Meta.cs" />
-    <Compile Include="HamstarHelpersMod_Draw.cs" />
+    <Compile Include="ModHelpersMod_Data.cs" />
+    <Compile Include="ModHelpersMod_Draw.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Obsolete.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Rect.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Print.cs" />
@@ -119,8 +118,6 @@
     <Compile Include="Helpers\UserHelpers\UserHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldHelpers_Obsolete.cs" />
     <Compile Include="Internals\ControlPanel\Inbox\InboxControl.cs" />
-    <Compile Include="HamstarHelpersMod_Data.cs" />
-    <Compile Include="HamstarHelpersMod_Load.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffHelpers.cs" />
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
@@ -173,6 +170,11 @@
     <Compile Include="Internals\NetProtocols\PlayerIdProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="Internals\NetProtocols\WorldDataProtocol.cs" />
+    <Compile Include="ModHelpersMod_DrawMap.cs" />
+    <Compile Include="ModHelpersMod_Load.cs" />
+    <Compile Include="ModHelpersMod_Meta.cs" />
+    <Compile Include="ModHelpersPlayer.cs" />
+    <Compile Include="ModHelpersWorld.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
     <Compile Include="Services\CustomHotkeys\CustomHotkeys.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups.cs" />
@@ -205,13 +207,11 @@
     <Compile Include="Internals\Logic\PlayerLogic.cs" />
     <Compile Include="Internals\Logic\WorldLogic_Update.cs" />
     <Compile Include="Internals\Logic\WorldLogic_Data.cs" />
-    <Compile Include="HamstarHelpersWorld.cs" />
     <Compile Include="Helpers\HudHelpers\HudHealthBarHelpers.cs" />
-    <Compile Include="HamstarHelpersPlayer.cs" />
     <Compile Include="Helpers\ItemHelpers\MusicBoxHelpers.cs" />
     <Compile Include="Services\DataDumper\DataDumper.cs" />
     <Compile Include="Helpers\DustHelpers\DustHelpers.cs" />
-    <Compile Include="HamstarHelpersMod.cs" />
+    <Compile Include="ModHelpersMod.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemFinderHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers\ItemHelpers.cs" />
     <Compile Include="Internals\NetProtocols\ModSettingsProtocol.cs" />
