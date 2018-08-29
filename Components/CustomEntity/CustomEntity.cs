@@ -89,14 +89,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		public void RefreshOwnerWho() {
-			if( !string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
+			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
 				this.OwnerPlayerWho = -1;
 				return;
 			}
 
 			bool is_nothing_overlooked;
 			Player owner = PlayerIdentityHelpers.GetPlayerById( this.OwnerPlayerUID, out is_nothing_overlooked );
-			if( owner == null && !is_nothing_overlooked ) {
+			if( !is_nothing_overlooked ) {
 				throw new HamstarException( "!ModHelpers.CustomEntity.RefreshOwnerWho - Could not verify if entity's owner is present or absent." );
 			}
 
@@ -111,7 +111,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				this.Core = new CustomEntityCore();
 			}
 			this.TypeID = copy.TypeID;
-			//this.OwnerPlayerWho = copy.OwnerPlayerWho;
+			this.OwnerPlayerWho = copy.OwnerPlayerWho;
 			//this.OwnerPlayerUID = copy.OwnerPlayerUID;
 
 			this.Core.CopyFrom( copy.Core );
@@ -243,7 +243,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				owner += " "+this.OwnerPlayerUID.Substring( 0, 8 )+"...";
 			}
 			if( this.OwnerPlayerWho != -1 ) {
-				owner += " ('" + Main.player[this.OwnerPlayerWho].name + "':" + this.OwnerPlayerWho;
+				owner += " '" + Main.player[this.OwnerPlayerWho].name + "':" + this.OwnerPlayerWho;
 			}
 			if( this.OwnerPlayerUID == "" && this.OwnerPlayerWho == -1 ) {
 				owner += " none";

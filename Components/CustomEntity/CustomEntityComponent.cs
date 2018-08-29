@@ -14,11 +14,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 		}
 
+
+
 		////////////////
 
 		[JsonIgnore]
 		[PacketProtocolIgnore]
 		public bool IsInitialized { get; protected set; }
+
 
 
 		////////////////

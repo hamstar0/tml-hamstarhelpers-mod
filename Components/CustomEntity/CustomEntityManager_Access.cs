@@ -25,6 +25,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
 
+			// Map entity to each of its components
 			foreach( CustomEntityComponent component in ent.Components ) {
 				if( !component.IsInitialized ) {
 					throw new NotImplementedException( component.GetType().Name + " is not initialized." );
@@ -33,17 +34,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 				comp_type = component.GetType();
 				do {
 					if( !mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-						mngr.EntitiesByComponentType[comp_type] = new HashSet<int>();
+						mngr.EntitiesByComponentType[ comp_type ] = new HashSet<int>();
 					}
-					mngr.EntitiesByComponentType[comp_type].Add( who );
+
+					mngr.EntitiesByComponentType[ comp_type ].Add( who );
 
 					comp_type = comp_type.BaseType;
 				} while( comp_type != base_type );
 			}
 
 			ent.Core.whoAmI = who;
-			mngr.EntitiesByIndexes[who] = ent;
-
+			mngr.EntitiesByIndexes[ who ] = ent;
+			
 			var save_comp = ent.GetComponentByType<SaveableEntityComponent>();
 			if( save_comp != null ) {
 				save_comp.InternalOnLoad( ent );

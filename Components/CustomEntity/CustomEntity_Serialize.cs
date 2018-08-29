@@ -81,12 +81,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected override void WriteStream( BinaryWriter writer ) {
-LogHelpers.Log( "NANITHEFUCK 0 "+ this.OwnerPlayerWho );
 			this.RefreshOwnerWho();
 
 			CustomEntityCore core = this.Core;
-			int owner_who = this.OwnerPlayerWho == -1 ? 255 : this.OwnerPlayerWho;
-LogHelpers.Log( "NANITHEFUCK 1 "+owner_who);
+			byte owner_who = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;
 
 			writer.Write( (ushort)this.TypeID );
 			writer.Write( (byte)owner_who );
@@ -109,14 +107,14 @@ LogHelpers.Log( "NANITHEFUCK 1 "+owner_who);
 //LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
 		}
 
+
 		protected override void ReadStream( BinaryReader reader ) {
 			int id = (int)(ushort)reader.ReadUInt16();
 			byte owner_who = reader.ReadByte();
-LogHelpers.Log( "NANITHEFUCK 2 "+owner_who);
 
 			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( id, null );
 
-			new_ent.OwnerPlayerWho = owner_who == 255 ? -1 : owner_who;
+			new_ent.OwnerPlayerWho = owner_who == (byte)255 ? (int)-1 : (int)owner_who;
 
 			new_ent.Core.whoAmI = (ushort)reader.ReadUInt16();
 			new_ent.Core.DisplayName = (string)reader.ReadString();

@@ -36,23 +36,36 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithServer( int from_who ) {
 			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
-			
+
+			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				if( ent != null ) {
+					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithServer - Syncing entity " + ent.ToString() + "..." );
+				}
+			}
+
 			if( ent == null ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntityProtocol.ReceiveWithServer - Could not find existing entity for " + this.Entity.ToString() );
+				LogHelpers.Log( "!ModHelpers.CustomEntityProtocol.ReceiveWithServer - No existing entity to sync " + this.Entity.ToString() );
 				return;
 			}
 			
-//LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithServer - "+ent.ToString()+" behav:"+ent.GetComponentByName( "TrainBehaviorEntityComponent" )?.ToString() );
 			ent.SyncFrom( this.Entity );
 		}
 
 		protected override void ReceiveWithClient() {
-			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
+			var existing_ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 
-			if( ent == null ) {
+			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				if( existing_ent == null ) {
+					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithClient - New entity " + this.Entity.ToString() );
+				} else {
+					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithClient - Entity update for " + existing_ent.ToString() + " from "+ this.Entity.ToString() );
+				}
+			}
+
+			if( existing_ent == null ) {
 				CustomEntityManager.SetEntityByWho( this.Entity.Core.whoAmI, this.Entity );
 			} else {
-				ent.SyncFrom( this.Entity );
+				existing_ent.SyncFrom( this.Entity );
 			}
 		}
 	}
