@@ -89,11 +89,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		public void RefreshOwnerWho() {
+			if( Main.netMode == 1 ) {
+				throw new HamstarException( "No client." );
+			}
+
 			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
 				this.OwnerPlayerWho = -1;
 				return;
 			}
-
+			
 			bool is_nothing_overlooked;
 			Player owner = PlayerIdentityHelpers.GetPlayerById( this.OwnerPlayerUID, out is_nothing_overlooked );
 			if( !is_nothing_overlooked ) {
@@ -190,7 +194,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal void SyncFrom( CustomEntity ent ) {
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.SyncFrom - Syned from " + ent.ToString() + " for "+ this.ToString() );
+				LogHelpers.Log( "ModHelpers.CustomEntity.SyncFrom - Synced from " + ent.ToString() + " for "+ this.ToString() );
 			}
 
 			this.CopyChangesFrom( ent );

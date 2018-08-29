@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	internal class CustomEntityConverter : JsonConverter {
@@ -81,7 +81,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected override void WriteStream( BinaryWriter writer ) {
-			this.RefreshOwnerWho();
+			if( Main.netMode != 1 ) {
+				this.RefreshOwnerWho();
+			}
 
 			CustomEntityCore core = this.Core;
 			byte owner_who = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;

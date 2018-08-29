@@ -18,6 +18,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private CustomEntityAllProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
 
+
 		////////////////
 
 		protected override void SetServerDefaults( int from_who ) {
@@ -25,9 +26,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			this.Entities = ents.ToArray();
 
-			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 				LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.SetServerDefaults - Sending " + string.Join(",\n   ", this.Entities.Select(e=>e.ToString())) );
-			}
+			}*/
 		}
 
 
@@ -37,9 +38,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			CustomEntityManager.ClearAllEntities();
 
 			foreach( CustomEntity ent in this.Entities ) {
-				if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 					LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.ReceiveWithClient - New entity " + ent.ToString() );
-				}
+				}*/
 
 				CustomEntityManager.SetEntityByWho( ent.Core.whoAmI, ent );
 			}

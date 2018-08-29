@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Services.Promises;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -54,12 +55,31 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 		}
 
 
+		public static void LogOnce( string msg ) {
+			var log_helpers = ModHelpersMod.Instance.LogHelpers;
+			bool is_shown = false;
+
+			lock( LogHelpers.MyLock ) {
+				if( !log_helpers.UniqueMessages.Contains( msg ) ) {
+					log_helpers.UniqueMessages.Add( msg );
+					is_shown = true;
+				}
+			}
+
+			if( is_shown ) {
+				LogHelpers.Log( "~" + msg );
+			}
+		}
+
+
 
 		////////////////
 
 		private int LoggedMessages;
 		private DateTime StartTimeBase;
 		private double StartTime;
+
+		private ISet<string> UniqueMessages = new HashSet<string>();
 
 
 		////////////////

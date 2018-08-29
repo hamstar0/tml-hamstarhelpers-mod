@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -54,18 +55,18 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		}
 
 
-		public static bool PlaceTile( int x, int y, int tile_type, int place_style=0, bool muted=false, bool forced=false, int plr_who=-1 ) {
-			if( !WorldGen.PlaceTile( x, y, tile_type, muted, forced, plr_who, place_style ) ) {
+		public static bool PlaceTile( int tile_x, int tile_y, int tile_type, int place_style=0, bool muted=false, bool forced=false, int plr_who=-1 ) {
+			if( !WorldGen.PlaceTile( tile_x, tile_y, tile_type, muted, forced, plr_who, place_style ) ) {
 				return false;
 			}
 
-			NetMessage.SendData( MessageID.TileChange, -1, -1, null, 1, (float)x, (float)y, (float)tile_type, place_style, 0, 0 );
+			NetMessage.SendData( MessageID.TileChange, -1, -1, null, 1, (float)tile_x, (float)tile_y, (float)tile_type, place_style, 0, 0 );
 
 			if( Main.netMode == 1 ) {
 				if( tile_type == TileID.Chairs ) {
-					NetMessage.SendTileSquare( -1, x - 1, y - 1, 3, TileChangeType.None );
+					NetMessage.SendTileSquare( -1, tile_x - 1, tile_y - 1, 3, TileChangeType.None );
 				} else if( tile_type == TileID.Beds || tile_type == TileID.Bathtubs ) {
-					NetMessage.SendTileSquare( -1, x, y, 5, TileChangeType.None );
+					NetMessage.SendTileSquare( -1, tile_x, tile_y, 5, TileChangeType.None );
 				}
 			}
 
