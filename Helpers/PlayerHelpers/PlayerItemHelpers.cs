@@ -74,9 +74,12 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
-			
+
 			int idx = Item.NewItem( player.position, inv_item.width, inv_item.height, inv_item.type, inv_item.stack, false, inv_item.prefix, false, false );
-			Item wld_item = Main.item[ idx ];
+			Item wld_item = inv_item.Clone();	//Main.item[ idx ];
+			if( wld_item == null || wld_item.IsAir ) {
+				return -1;
+			}
 
 			wld_item.netDefaults( inv_item.netID );
 			wld_item.Prefix( (int)inv_item.prefix );
@@ -84,19 +87,10 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			wld_item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
 			wld_item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
 			wld_item.newAndShiny = false;
-			//wld_item.modItem = inv_item.modItem;
-			//wld_item.globalItems = inv_item.globalItems;
 
 			if( Main.netMode == 0 ) {
 				wld_item.noGrabDelay = no_grab_delay;
 			}
-
-			Type item_type = typeof( Item );
-			PropertyInfo mod_item_prop = item_type.GetProperty( "modItem", BindingFlags.NonPublic | BindingFlags.Instance );
-			FieldInfo global_item_field = item_type.GetField( "modItem", BindingFlags.NonPublic | BindingFlags.Instance );
-
-			mod_item_prop.SetValue( wld_item, inv_item.modItem );
-			global_item_field.SetValue( wld_item, global_item_field.GetValue( inv_item ) );
 
 			if( Main.netMode == 1 ) {   // Client
 				NetMessage.SendData( 21, -1, -1, null, idx, 0f, 0f, 0f, 0, 0, 0 );
