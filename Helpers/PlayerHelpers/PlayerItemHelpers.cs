@@ -74,7 +74,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
-
+			
 			int idx = Item.NewItem( player.position, inv_item.width, inv_item.height, inv_item.type, inv_item.stack, false, inv_item.prefix, false, false );
 			Item wld_item = Main.item[ idx ];
 
@@ -83,10 +83,13 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			wld_item.stack = inv_item.stack;
 			wld_item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
 			wld_item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
-			wld_item.noGrabDelay = no_grab_delay;
 			wld_item.newAndShiny = false;
 			//wld_item.modItem = inv_item.modItem;
 			//wld_item.globalItems = inv_item.globalItems;
+
+			if( Main.netMode == 0 ) {
+				wld_item.noGrabDelay = no_grab_delay;
+			}
 
 			Type item_type = typeof( Item );
 			PropertyInfo mod_item_prop = item_type.GetProperty( "modItem", BindingFlags.NonPublic | BindingFlags.Instance );
@@ -96,12 +99,13 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			global_item_field.SetValue( wld_item, global_item_field.GetValue( inv_item ) );
 
 			if( Main.netMode == 1 ) {   // Client
-				NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
+				NetMessage.SendData( 21, -1, -1, null, idx, 0f, 0f, 0f, 0, 0, 0 );
 			}
-
-			player.inventory[ slot ] = new Item();
+			
+			player.inventory[ slot ].TurnToAir();
 
 			return idx;
+			//player.QuickSpawnClonedItem( player.inventory[slot], player.inventory[slot].stack );
 		}
 
 		public static void DropEquippedMiscItem( Player player, int slot ) {
