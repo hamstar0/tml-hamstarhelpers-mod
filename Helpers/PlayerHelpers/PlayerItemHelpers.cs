@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 
 
@@ -60,29 +61,47 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			int _;
 			PlayerItemHelpers.DropInventoryItem( player, slot, 100, out _ );
 		}
-
 		public static void DropInventoryItem( Player player, int slot, int no_grab_delay, out int idx ) {
+			idx = PlayerItemHelpers.DropInventoryItem( player, slot, no_grab_delay );
+		}
+
+		public static int DropInventoryItem( Player player, int slot, int no_grab_delay ) {
+			Item inv_item = player.inventory[ slot ];
+			if( inv_item == null || inv_item.IsAir ) {
+				return -1;
+			}
+
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
 
-			Item item = player.inventory[ slot ];
-			idx = -1;
+			int idx = Item.NewItem( player.position, inv_item.width, inv_item.height, inv_item.type, inv_item.stack, false, inv_item.prefix, false, false );
+			Item wld_item = Main.item[ idx ];
 
-			if( item != null && !item.IsAir ) {
-				idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
+			wld_item.netDefaults( inv_item.netID );
+			wld_item.Prefix( (int)inv_item.prefix );
+			wld_item.stack = inv_item.stack;
+			wld_item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
+			wld_item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
+			wld_item.noGrabDelay = no_grab_delay;
+			wld_item.newAndShiny = false;
+			//wld_item.modItem = inv_item.modItem;
+			//wld_item.globalItems = inv_item.globalItems;
 
-				item.position = Main.item[idx].position;
-				item.noGrabDelay = no_grab_delay;
+			Type item_type = typeof( Item );
+			PropertyInfo mod_item_prop = item_type.GetProperty( "modItem", BindingFlags.NonPublic | BindingFlags.Instance );
+			FieldInfo global_item_field = item_type.GetField( "modItem", BindingFlags.NonPublic | BindingFlags.Instance );
 
-				Main.item[idx] = item;
+			mod_item_prop.SetValue( wld_item, inv_item.modItem );
+			global_item_field.SetValue( wld_item, global_item_field.GetValue( inv_item ) );
 
-				if( Main.netMode == 1 ) {   // Client
-					NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
-				}
-
-				player.inventory[slot] = new Item();
+			if( Main.netMode == 1 ) {   // Client
+				NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
 			}
+
+			player.inventory[ slot ] = new Item();
+
+			return idx;
 		}
 
 		public static void DropEquippedMiscItem( Player player, int slot ) {
