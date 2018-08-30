@@ -55,6 +55,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			if( Main.netMode <= 1 ) {
 				player.Teleport( pos, style );
 			} else {
+				style = style == -1 ? 1 : style;
 				NetMessage.SendData( 65, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, style, 0, 0 );
 			}
 		}
