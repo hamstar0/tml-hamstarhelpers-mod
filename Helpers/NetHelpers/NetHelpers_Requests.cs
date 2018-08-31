@@ -81,7 +81,6 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 						on_response( output );
 					} else {
 						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output??"" );
-						return;
 					}
 				} catch( Exception e ) {
 					on_error?.Invoke( e, output??"" );
