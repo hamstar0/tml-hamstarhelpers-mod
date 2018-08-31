@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
-
+using Terraria.ID;
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerItemHelpers {
@@ -66,37 +66,34 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		}
 
 		public static int DropInventoryItem( Player player, int slot, int no_grab_delay ) {
-			Item inv_item = player.inventory[ slot ];
-			if( inv_item == null || inv_item.IsAir ) {
+			Item item = player.inventory[ slot ];
+			if( item == null || item.IsAir ) {
 				return -1;
 			}
 
+			int idx = Item.NewItem( (int)player.position.X, (int)player.position.Y, player.width, player.height, item.type, item.stack, false, -1, false, false );
+
+			Main.item[ idx ] = item;
+
+			player.inventory[ slot ] = new Item();
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
 
-			int idx = Item.NewItem( player.position, inv_item.width, inv_item.height, inv_item.type, inv_item.stack, false, inv_item.prefix, false, false );
-			Item wld_item = inv_item.Clone();	//Main.item[ idx ];
-			if( wld_item == null || wld_item.IsAir ) {
-				return -1;
-			}
-
-			wld_item.netDefaults( inv_item.netID );
-			wld_item.Prefix( (int)inv_item.prefix );
-			wld_item.stack = inv_item.stack;
-			wld_item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
-			wld_item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
-			wld_item.newAndShiny = false;
+			item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
+			item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
+			item.favorited = false;
+			item.newAndShiny = false;
 
 			if( Main.netMode == 0 ) {
-				wld_item.noGrabDelay = no_grab_delay;
+				item.noGrabDelay = no_grab_delay;
 			}
 
+			Recipe.FindRecipes();
+
 			if( Main.netMode == 1 ) {   // Client
-				NetMessage.SendData( 21, -1, -1, null, idx, 0f, 0f, 0f, 0, 0, 0 );
+				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 0f/*1f*/, 0f, 0f, 0, 0, 0 );
 			}
-			
-			player.inventory[ slot ].TurnToAir();
 
 			return idx;
 			//player.QuickSpawnClonedItem( player.inventory[slot], player.inventory[slot].stack );
