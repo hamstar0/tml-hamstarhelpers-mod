@@ -1,4 +1,6 @@
-﻿using HamstarHelpers.Helpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Internals.NetProtocols;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -72,27 +74,36 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			}
 
 			int idx = Item.NewItem( (int)player.position.X, (int)player.position.Y, player.width, player.height, item.type, item.stack, false, -1, false, false );
+			Item proto_new_item = Main.item[idx];
+
+			item.position.X = proto_new_item.position.X;
+			item.position.Y = proto_new_item.position.Y;
 
 			Main.item[ idx ] = item;
 
 			player.inventory[ slot ] = new Item();
+
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
-
+			
 			item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
 			item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
+			item.noGrabDelay = no_grab_delay;
 			item.favorited = false;
 			item.newAndShiny = false;
+			item.owner = player.whoAmI;
 
-			if( Main.netMode == 0 ) {
-				item.noGrabDelay = no_grab_delay;
+			if( Main.netMode != 0 && no_grab_delay > 0 ) {
+				item.ownIgnore = player.whoAmI;
+				item.ownTime = no_grab_delay;
 			}
 
 			Recipe.FindRecipes();
 
 			if( Main.netMode == 1 ) {   // Client
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 0f/*1f*/, 0f, 0f, 0, 0, 0 );
+				ItemNoGrabProtocol.SendToServer( idx, no_grab_delay );
 			}
 
 			return idx;

@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using System.Collections.Generic;
-
+using Terraria.ID;
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerHelpers {
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				player.Teleport( pos, style );
 			} else {
 				style = style == -1 ? 1 : style;
-				NetMessage.SendData( 65, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, style, 0, 0 );
+				NetMessage.SendData( MessageID.Teleport, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, style, 0, 0 );
 			}
 		}
 
