@@ -80,11 +80,11 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 					if( success ) {
 						on_response( output );
 					} else {
-						output = null;
-						throw new Exception( "GET request unsuccessful (url: " + url + ")" );
+						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output??"" );
+						return;
 					}
 				} catch( Exception e ) {
-					on_error?.Invoke( e, output );
+					on_error?.Invoke( e, output??"" );
 				}
 
 				on_completion?.Invoke();
@@ -97,9 +97,16 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 			request.Method = "GET";
 			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
 
-			HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
+			HttpWebResponse resp = null;
+			try {
+				resp = (HttpWebResponse)request.GetResponse();
+			} catch( WebException e ) {
+				success = false;
+				return "";
+			}
+ 
 			int status_code = (int)resp.StatusCode;
-			string resp_data;
+			string resp_data = "";
 
 			success = status_code >= 200 && status_code < 300;
 

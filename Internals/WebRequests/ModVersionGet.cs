@@ -109,9 +109,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - Bad JSON: " +
 						(output.Length > 256 ? output.Substring(0, 256) : output) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - " + e.Message );
+					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - " + (output ?? "") + " - " + e.Message );
 				} else {
-					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - " + e.ToString() );
+					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - " + (output ?? "") + " - " + e.ToString() );
 				}
 			};
 
