@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -66,11 +67,39 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 
 
 		////////////////
-		
+
+		[Obsolete( "use MakeGetRequestAsync(string, Func<string, Tuple<object, bool>>, Action<Exception, string>, Action<object, bool>)" )]
 		public static void MakeGetRequestAsync( string url, Action<string> on_response, Action<Exception, string> on_error, Action on_completion = null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success;
 				string output = null;
+
+				try {
+					output = NetHelpers.MakeGetRequest( url, out success );
+
+					if( success ) {
+						on_response( output );
+					} else {
+						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
+					}
+				} catch( Exception e ) {
+					on_error?.Invoke( e, output ?? "" );
+				}
+
+				on_completion?.Invoke();
+			} );
+		}
+
+		public static void MakeGetRequestAsync<T>( string url,
+				Func<string, Tuple<T, bool>> on_response,
+				Action<Exception, string> on_error,
+				Action<T, bool> on_completion = null ) {
+
+			ThreadPool.QueueUserWorkItem( _ => {
+				bool success = false;
+				string output = null;
+
+				Tuple<T, bool> response_val = null;
 
 				try {
 					//lock( NetHelpers.RequestMutex ) {
@@ -78,7 +107,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 					//}
 
 					if( success ) {
-						on_response( output );
+						response_val = on_response( output );
 					} else {
 						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output??"" );
 					}
@@ -86,10 +115,11 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 					on_error?.Invoke( e, output??"" );
 				}
 
-				on_completion?.Invoke();
+				on_completion?.Invoke( response_val.Item1, (success && response_val.Item2) );
 			} );
 		}
 
+		////
 		
 		public static string MakeGetRequest( string url, out bool success ) {
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );

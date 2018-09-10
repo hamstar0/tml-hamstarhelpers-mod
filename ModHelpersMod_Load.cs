@@ -32,7 +32,7 @@ using Terraria.ModLoader;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.CustomHotkeys;
-
+using HamstarHelpers.Internals.Menus;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
@@ -257,11 +257,11 @@ namespace HamstarHelpers {
 			this.PacketProtocols = PacketProtocol.GetProtocolTypes();
 
 			this.Promises.OnPostSetupContent();
-			this.MenuUIMngr.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
 			this.ModVersionGet.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
+				Menus.OnPostSetupContent();
 				UIControlPanel.OnPostSetupContent( this );
 			}
 

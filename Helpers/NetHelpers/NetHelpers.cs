@@ -51,8 +51,10 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 		
 
 		private void LoadIPAsync() {
-			Action<string> on_success = delegate ( string output ) {
-				if( this.PublicIP != null ) { return; }
+			Func<string, Tuple<object, bool>> on_response = ( string output ) => {
+				if( this.PublicIP != null ) {
+					return null;
+				}
 
 				string[] a = output.Split( ':' );
 				string a2 = a[1].Substring( 1 );
@@ -60,7 +62,10 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 				string a4 = a3[0];
 
 				this.PublicIP = a4;
+
+				return Tuple.Create( (object)null, true );
 			};
+
 			Action<Exception, string> on_fail = delegate ( Exception e, string output ) {
 				if( e is WebException ) {
 					LogHelpers.Log( "Could not acquire IP: " + e.Message );
@@ -69,7 +74,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 				}
 			};
 
-			NetHelpers.MakeGetRequestAsync( "http://checkip.dyndns.org/", on_success, on_fail );
+			NetHelpers.MakeGetRequestAsync<object>( "http://checkip.dyndns.org/", on_response, on_fail );
 			//NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", on_success, on_fail );
 			//using( WebClient web_client = new WebClient() ) {
 			//	this.PublicIP = web_client.DownloadString( "http://ifconfig.me/ip" );

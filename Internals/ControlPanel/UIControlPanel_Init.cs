@@ -24,10 +24,10 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public static void OnPostSetupContent( ModHelpersMod mymod ) {
-			if( !Main.dedServ ) {
-				UIControlPanel.ControlPanelIcon = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIcon" );
-				UIControlPanel.ControlPanelIconLit = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIconLit" );
-			}
+			if( Main.dedServ ) { return; }
+
+			UIControlPanel.ControlPanelIcon = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIcon" );
+			UIControlPanel.ControlPanelIconLit = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIconLit" );
 		}
 
 

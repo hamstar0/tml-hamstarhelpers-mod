@@ -175,9 +175,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 			Action<Version> on_success = delegate ( Version vers ) {
 				this.LatestAvailableVersion = vers;
 			};
-			Action<Exception> on_fail = delegate ( Exception e ) {
+			Action<string> on_fail = delegate ( string reason ) {
 				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
-					LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName + "': " + e.ToString() );
+					LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName + "': " + reason );
 				}
 			};
 

@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	public class ModVersionGet {
+	class ModVersionGet {
 		private readonly static object MyLock = new object();
 		
 		public static string ModVersionUrl { get {
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		
 		////////////////
 
-		public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> on_success, Action<Exception> on_fail ) {
+		public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> on_success, Action<string> on_fail ) {
 			Action check = delegate () {
 				var mymod = ModHelpersMod.Instance;
 
@@ -31,11 +31,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 					if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
 						on_success( mymod.ModVersionGet.ModVersions[mod.Name] );
 					} else {
-						var ke = new KeyNotFoundException( "GetLatestKnownVersion - Unrecognized mod " + mod.Name + " (not found on mod browser)" );
-						on_fail( ke );
+						on_fail( "GetLatestKnownVersion - Unrecognized mod " + mod.Name + " (not found on mod browser)" );
 					}
 				} catch( Exception e ) {
-					on_fail( e );
+					on_fail( e.ToString() );
 				}
 			};
 
@@ -50,9 +49,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 					if( mymod.ModVersionGet.ModVersions == null ) {
 						ModVersionGet.RetrieveAllModVersionsAsync( ( versions, found ) => {
-							if( found ) {
-								mymod.ModVersionGet.ModVersions = versions;
-							}
+							//if( found ) {
+							//	mymod.ModVersionGet.ModVersions = versions;
+							//}
+							mymod.ModVersionGet.ModVersions = versions;
 							on_success();
 						} );
 					} else {
@@ -69,9 +69,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, Version>, bool> on_success ) {
-			Action<string> on_response = delegate ( string output ) {
-				IDictionary<string, Version> mod_versions = new Dictionary<string, Version>();
+			Func<string, Tuple<IDictionary<string, Version>, bool>> on_response = ( string output ) => {
 				bool found = false;
+				IDictionary<string, Version> mod_versions = new Dictionary<string, Version>();
 
 				JObject resp_json = JObject.Parse( output );
 
@@ -100,8 +100,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 					found = true;
 				}
-
-				on_success( mod_versions, found );
+				
+				return Tuple.Create( mod_versions, found );
 			};
 
 			Action<Exception, string> on_fail = ( e, output ) => {
@@ -115,7 +115,15 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			NetHelpers.MakeGetRequestAsync( ModVersionGet.ModVersionUrl, on_response, on_fail );
+			Action<IDictionary<string, Version>, bool> on_completion = ( response_val, success ) => {
+				if( response_val == null ) {
+					response_val = new Dictionary<string, Version>();
+				}
+
+				on_success( response_val, success );
+			};
+
+			NetHelpers.MakeGetRequestAsync( ModVersionGet.ModVersionUrl, on_response, on_fail, on_completion );
 		}
 
 

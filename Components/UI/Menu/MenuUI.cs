@@ -1,10 +1,7 @@
-﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -22,6 +19,33 @@ namespace HamstarHelpers.Components.UI.Menu {
 			}
 			mymod.MenuUIMngr.Loaders[ ui_class_name ][ elem_name ] = on_load;
 			mymod.MenuUIMngr.Unloaders[ ui_class_name ][ elem_name ] = on_unload;
+		}
+
+
+		public static void AddMenuLoader( string ui_class_name, string elem_name, UIElement myelem ) {
+			Func<UIState, UIElement> get_top_row = delegate ( UIState ui ) {
+				Type ui_type = ui.GetType();
+				FieldInfo ui_container_field = ui_type.GetField( "uIPanel", BindingFlags.Instance | BindingFlags.NonPublic );
+				UIPanel ui_container = (UIPanel)ui_container_field.GetValue( ui );
+
+				Type ui_container_type = ui_container.GetType();
+				FieldInfo ui_container_elems_field = ui_container_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
+				List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_container );
+
+				return (UIElement)ui_container_elems[2];
+			};
+
+			Action<UIState> on_load = delegate ( UIState ui ) {
+				UIElement elem = get_top_row( ui );
+				elem.Append( myelem );
+			};
+
+			Action<UIState> on_unload = delegate ( UIState ui ) {
+				UIElement elem = get_top_row( ui );
+				elem.RemoveChild( myelem );
+			};
+
+			MenuUI.AddMenuLoader( ui_class_name, elem_name, on_load, on_unload );
 		}
 	}
 
@@ -62,48 +86,6 @@ namespace HamstarHelpers.Components.UI.Menu {
 					unloader( ui );
 				}
 			}
-		}
-		
-
-		public void OnPostSetupContent() {
-			if( Main.dedServ ) { return; }
-
-			var button = new UITextPanelButton( UITheme.Vanilla, "Open Mod Config Folder" );
-			button.Top.Set( 11f, 0f );
-			button.Left.Set( -104f, 0.5f );
-			button.Width.Set( 208f, 0f );
-			button.Height.Set( 20f, 0f );
-			button.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				string fullpath = Main.SavePath + Path.DirectorySeparatorChar + HamstarHelpersConfigData.RelativePath;
-
-				try {
-					Process.Start( fullpath );
-				} catch( Exception ) { }
-			};
-
-			Func<UIState, UIElement> get_top_row = delegate ( UIState ui ) {
-				Type ui_type = ui.GetType();
-				FieldInfo ui_container_field = ui_type.GetField( "uIPanel", BindingFlags.Instance | BindingFlags.NonPublic );
-				UIPanel ui_container = (UIPanel)ui_container_field.GetValue( ui );
-				
-				Type ui_container_type = ui_container.GetType();
-				FieldInfo ui_container_elems_field = ui_container_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
-				List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_container );
-
-				return (UIElement)ui_container_elems[2];
-			};
-
-			Action<UIState> on_load = delegate ( UIState ui ) {
-				UIElement elem = get_top_row( ui );
-				elem.Append( button );
-			};
-
-			Action<UIState> on_unload = delegate ( UIState ui ) {
-				UIElement elem = get_top_row( ui );
-				elem.RemoveChild( button );
-			};
-
-			MenuUI.AddMenuLoader( "UIMods", "ModHelpers: Mod Menu Config Folder Button", on_load, on_unload );
 		}
 
 
