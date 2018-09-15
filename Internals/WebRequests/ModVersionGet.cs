@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	class ModVersionGet {
+	class GetModVersion {
 		private readonly static object MyLock = new object();
 		
 		public static string ModVersionUrl { get {
@@ -28,8 +28,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 				var mymod = ModHelpersMod.Instance;
 
 				try {
-					if( mymod.ModVersionGet.ModVersions.ContainsKey( mod.Name ) ) {
-						on_success( mymod.ModVersionGet.ModVersions[mod.Name] );
+					if( mymod.GetModVersion.ModVersions.ContainsKey( mod.Name ) ) {
+						on_success( mymod.GetModVersion.ModVersions[mod.Name] );
 					} else {
 						on_fail( "GetLatestKnownVersion - Unrecognized mod " + mod.Name + " (not found on mod browser)" );
 					}
@@ -38,21 +38,21 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			ModVersionGet.CacheAllModVersionsAsync( check );
+			GetModVersion.CacheAllModVersionsAsync( check );
 		}
 
 
 		internal static void CacheAllModVersionsAsync( Action on_success ) {
 			ThreadPool.QueueUserWorkItem( _ => {
-				lock( ModVersionGet.MyLock ) {
+				lock( GetModVersion.MyLock ) {
 					var mymod = ModHelpersMod.Instance;
 
-					if( mymod.ModVersionGet.ModVersions == null ) {
-						ModVersionGet.RetrieveAllModVersionsAsync( ( versions, found ) => {
+					if( mymod.GetModVersion.ModVersions == null ) {
+						GetModVersion.RetrieveAllModVersionsAsync( ( versions, found ) => {
 							//if( found ) {
 							//	mymod.ModVersionGet.ModVersions = versions;
 							//}
-							mymod.ModVersionGet.ModVersions = versions;
+							mymod.GetModVersion.ModVersions = versions;
 							on_success();
 						} );
 					} else {
@@ -123,7 +123,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				on_success( response_val, success );
 			};
 
-			NetHelpers.MakeGetRequestAsync( ModVersionGet.ModVersionUrl, on_response, on_fail, on_completion );
+			NetHelpers.MakeGetRequestAsync( GetModVersion.ModVersionUrl, on_response, on_fail, on_completion );
 		}
 
 
@@ -137,7 +137,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		internal void OnPostSetupContent() {
 			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
-				ModVersionGet.CacheAllModVersionsAsync( () => {
+				GetModVersion.CacheAllModVersionsAsync( () => {
 					LogHelpers.Log( "Mod versions successfully retrieved and cached." );
 				} );
 			}

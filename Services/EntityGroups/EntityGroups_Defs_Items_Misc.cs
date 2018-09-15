@@ -84,41 +84,43 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return true;
 				}
 
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.VilePowder }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DemoniteOre }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DemoniteBar }, 1 ) ) {
-					return true;
-				}
+				if( item.type <= ItemIdentityHelpers.HighestItemID ) {
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.VilePowder }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DemoniteOre }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DemoniteBar }, 1 ) ) {
+						return true;
+					}
 
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.ShadowScale }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CursedFlames }, 1 ) ) {
-					return true;
-				}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.ShadowScale }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CursedFlames }, 1 ) ) {
+						return true;
+					}
 
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Ebonwood }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.PurpleIceBlock }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.EbonstoneBlock }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.EbonstoneBrick }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DemoniteBrick }, 1 ) ) {
-					return true;
-				}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Ebonwood }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.PurpleIceBlock }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.EbonstoneBlock }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.EbonstoneBrick }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DemoniteBrick }, 1 ) ) {
+						return true;
+					}
 
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CorruptSeeds }, 1 ) ) {
-					return true;
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CorruptSeeds }, 1 ) ) {
+						return true;
+					}
 				}
 
 				return false;
@@ -178,44 +180,46 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return true;
 				}
 
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.ViciousPowder }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Vertebrae }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimtaneOre }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimtaneBar }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Ichor }, 1 ) ) {
-					return true;
-				}
-				
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.TissueSample }, 1 ) ) {
-					return true;
-				}
-				
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Shadewood }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.RedIceBlock }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimstoneBlock }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimtaneBrick }, 1 ) ) {
-					return true;
-				}
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.FleshBlock }, 1 ) ) {
-					return true;
-				}
+				if( item.type <= ItemIdentityHelpers.HighestItemID ) {
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.ViciousPowder }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Vertebrae }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimtaneOre }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimtaneBar }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Ichor }, 1 ) ) {
+						return true;
+					}
 
-				if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimsonSeeds }, 1 ) ) {
-					return true;
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.TissueSample }, 1 ) ) {
+						return true;
+					}
+
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Shadewood }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.RedIceBlock }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimstoneBlock }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimtaneBrick }, 1 ) ) {
+						return true;
+					}
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.FleshBlock }, 1 ) ) {
+						return true;
+					}
+
+					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimsonSeeds }, 1 ) ) {
+						return true;
+					}
 				}
 
 				return false;

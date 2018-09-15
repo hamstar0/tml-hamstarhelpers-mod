@@ -34,6 +34,7 @@ using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.CustomHotkeys;
 using HamstarHelpers.Internals.Menus;
 
+
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
@@ -83,7 +84,8 @@ namespace HamstarHelpers {
 
 		// Internals
 		internal InboxControl Inbox;
-		internal ModVersionGet ModVersionGet;
+		internal GetModTags GetModTags;
+		internal GetModVersion GetModVersion; 
 		internal ServerBrowserReporter ServerBrowser;
 		internal UIControlPanel ControlPanel;
 
@@ -154,7 +156,8 @@ namespace HamstarHelpers {
 			this.EntityGroups = new EntityGroups();
 			this.PlayerMessages = new PlayerMessages();
 			this.Inbox = new InboxControl();
-			this.ModVersionGet = new ModVersionGet();
+			this.GetModVersion = new GetModVersion();
+			this.GetModTags = new GetModTags();
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuUIMngr = new MenuUIManager();
@@ -228,7 +231,8 @@ namespace HamstarHelpers {
 			this.RecipeHelpers = null;
 			this.TmlPlayerHelpers = null;
 			this.LoadHelpers = null;
-			this.ModVersionGet = null;
+			this.GetModVersion = null;
+			this.GetModTags = null;
 			this.WorldHelpers = null;
 			this.ModLockHelpers = null;
 			this.EntityGroups = null;
@@ -258,7 +262,8 @@ namespace HamstarHelpers {
 
 			this.Promises.OnPostSetupContent();
 			this.ModMetaDataManager.OnPostSetupContent();
-			this.ModVersionGet.OnPostSetupContent();
+			this.GetModVersion.OnPostSetupContent();
+			this.GetModTags.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
 				Menus.OnPostSetupContent();

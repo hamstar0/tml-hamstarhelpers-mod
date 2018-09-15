@@ -1,65 +1,11 @@
-﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
-	internal class UIMenuTextPanelButton : UITextPanelButton {
-		public const int ColumnHeightTall = 31;
-		public const int ColumnHeightShort = 8;
-		public const int ColumnsInMid = 5;
-
-		public int Column;
-		public int Row;
-
-
-		////////////////
-		
-		public UIMenuTextPanelButton( int pos, string label, float scale=1f, bool large=false )
-				: base( UITheme.Vanilla, label, scale, large ) {
-			int col_tall = UIMenuTextPanelButton.ColumnHeightTall;
-			int col_short = UIMenuTextPanelButton.ColumnHeightShort;
-			int cols_in_mid = UIMenuTextPanelButton.ColumnsInMid;
-
-			if( pos < col_tall ) {
-				this.Column = 0;
-				this.Row = pos;
-			} else if( pos > ( col_tall + ( col_short * cols_in_mid ) ) ) {
-				this.Column = 7;
-				this.Row = pos - ( col_tall + ( col_short * cols_in_mid ) );
-			} else {
-				this.Column = 1 + (( pos - col_tall ) / col_short );
-				this.Row = ( pos - col_tall ) % col_short;
-			}
-			
-			this.RecalculatePos();
-		}
-
-		////////////////
-
-		private void RecalculatePos() {
-			float width = this.Width.Pixels;
-			float left = (( ( Main.screenWidth / 2 ) - 296 ) - (width - 8)) + ( (width - 2) * this.Column );
-			float top = (16 * this.Row) + 48;
-
-			this.Left.Set( left, 0f );
-			this.Top.Set( top, 0f );
-		}
-
-		public override void Recalculate() {
-			this.RecalculatePos();
-			base.Recalculate();
-		}
-	}
-
-
-
-
 	class ModPackBrowser {
 		public static IDictionary<string, string> Tags = new Dictionary<string, string> {
 			{ "Core Game Mechanics", "Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc." },
@@ -146,7 +92,6 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		public static void Initialize() {
 			var buttons = new UIElement();
-			int col_height = 35;
 			
 			var hover_text = new UIText( "" );
 			hover_text.Width.Set( 0, 0 );
@@ -157,23 +102,9 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
 
-				var button = new UIMenuTextPanelButton( i, tag_text, 0.6f );
-				button.Width.Set( 120f, 0f );
-				button.Height.Set( 16f, 0f );
+				var button = new UIModTagButton( i, tag_text, tag_desc, hover_text, 0.6f );
 				button.OnClick += (UIMouseEvent evt, UIElement listeningElement) => {
-					LogHelpers.Log( "1" );
-				};
-				button.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-					hover_text.SetText( tag_desc );
-					hover_text.Left.Set( Main.mouseX, 0f );
-					hover_text.Top.Set( Main.mouseY, 0f );
-					hover_text.Recalculate();
-				};
-				button.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-					if( hover_text.Text == tag_desc ) {
-						hover_text.SetText( "" );
-						hover_text.Recalculate();
-					}
+					button.ToggleTag();
 				};
 
 				MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags "+i, button, false );

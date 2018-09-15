@@ -20,7 +20,8 @@ v3.0.0
 -	Add support links
 -	Mod version update indications in mods list
 -	Mod incompatibilies (custom Mod properties, akin to github + config properties)
--	Mod pack browser
+-	Mod browser filters
+	-	Fix hover text screen clipping
 	-	@Finish google script (set repeat tags to be added to a separate database)
 	-	@Include mod author lists
 	-	Store mod tags into a JSON database
@@ -28,10 +29,11 @@ v3.0.0
 		-	Define new menu
 		-	Define menu button (similar to Mods menu 'Open Configs' button)
 	-	Implement request for tag info on mod load
-	-	Implement mod info tag form + display
-		-	Submit tags on info page leave, if any set
-		-	Define tag columns
 
+	-	Implement toggle behavior for buttons
+	-	Implement disable behavior for buttons
+	-	Implement mod info tag display
+		-	Define tag columns
 		-	Draw tag toggle buttons
 	-	@Make basic google script to receive mod data
 v2

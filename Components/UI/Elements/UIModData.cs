@@ -181,7 +181,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 				}
 			};
 
-			ModVersionGet.GetLatestKnownVersionAsync( this.Mod, on_success, on_fail );
+			GetModVersion.GetLatestKnownVersionAsync( this.Mod, on_success, on_fail );
 		}
 
 
