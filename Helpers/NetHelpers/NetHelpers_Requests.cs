@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -93,13 +94,13 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 		public static void MakeGetRequestAsync<T>( string url,
 				Func<string, Tuple<T, bool>> on_response,
 				Action<Exception, string> on_error,
-				Action<T, bool> on_completion = null ) {
+				Action<T, bool> on_completion = null ) where T : class {
 
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success = false;
 				string output = null;
 
-				Tuple<T, bool> response_val = null;
+				Tuple<T, bool> response_val = Tuple.Create( (T)null, false );
 
 				try {
 					//lock( NetHelpers.RequestMutex ) {
@@ -114,7 +115,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 				} catch( Exception e ) {
 					on_error?.Invoke( e, output??"" );
 				}
-
+				
 				on_completion?.Invoke( response_val.Item1, (success && response_val.Item2) );
 			} );
 		}

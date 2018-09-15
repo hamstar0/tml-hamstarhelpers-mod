@@ -5,9 +5,11 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public class UITextPanelButton : UITextPanel<string> {
-		private UITheme Theme;
+		private readonly UITheme Theme;
 
 		public bool IsEnabled { get; private set; }
+
+		//public string HoverText = "";
 
 
 		////////////////
@@ -56,5 +58,18 @@ namespace HamstarHelpers.Components.UI.Elements {
 				this.Theme.ApplyButtonDisable( this );
 			}
 		}
+
+
+		////////////////
+
+		/*private void DrawHoverTextIfHover( GameTime game_time ) {
+			if( string.IsNullOrEmpty( this.HoverText ) ) { return; }
+
+			if( this.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
+				var pos = new Vector2( Main.mouseX, Main.mouseY );
+
+				Main.spriteBatch.DrawString( Main.fontMouseText, this.HoverText, pos, Color.White );
+			}
+		}*/
 	}
 }

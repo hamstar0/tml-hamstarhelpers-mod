@@ -76,7 +76,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				this.GetNPCPool();
 				this.GetProjPool();
 				
-				ThreadPool.QueueUserWorkItem( (_) => {
+				ThreadPool.QueueUserWorkItem( _ => {
 					try {
 						IList<KeyValuePair<string, Func<Item, bool>>> item_matchers;
 						IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers;

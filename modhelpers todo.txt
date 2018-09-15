@@ -30,8 +30,9 @@ v3.0.0
 	-	Implement request for tag info on mod load
 	-	Implement mod info tag form + display
 		-	Submit tags on info page leave, if any set
-		-	Draw tag toggle buttons
+		-	Define tag columns
 
+		-	Draw tag toggle buttons
 	-	@Make basic google script to receive mod data
 v2
 -	Implement entity component sync

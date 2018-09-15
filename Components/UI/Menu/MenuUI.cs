@@ -22,30 +22,64 @@ namespace HamstarHelpers.Components.UI.Menu {
 		}
 
 
-		public static void AddMenuLoader( string ui_class_name, string elem_name, UIElement myelem ) {
-			Func<UIState, UIElement> get_top_row = delegate ( UIState ui ) {
-				Type ui_type = ui.GetType();
-				FieldInfo ui_container_field = ui_type.GetField( "uIPanel", BindingFlags.Instance | BindingFlags.NonPublic );
-				UIPanel ui_container = (UIPanel)ui_container_field.GetValue( ui );
+		public static void AddMenuLoader( string ui_class_name, string elem_name, UIElement myelem, bool inner=true ) {
+			bool myinner = inner;
 
-				Type ui_container_type = ui_container.GetType();
-				FieldInfo ui_container_elems_field = ui_container_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
-				List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_container );
+			Func<UIState, UIElement> get_insert_point = ( UIState ui ) => {
+				if( myinner ) {
+					UIElement ui_outer_container = MenuUI.GetMenuContainerOuter( ui );
+					UIElement ui_inner_container = MenuUI.GetMenuContainerInner( ui_outer_container );
 
-				return (UIElement)ui_container_elems[2];
+					return MenuUI.GetMenuContainerInsertPoint( ui_inner_container );
+				} else {
+					return ui;//ui_outer_container;
+				}
 			};
 
-			Action<UIState> on_load = delegate ( UIState ui ) {
-				UIElement elem = get_top_row( ui );
+			Action<UIState> on_load = ( UIState ui ) => {
+				UIElement elem = get_insert_point( ui );
 				elem.Append( myelem );
 			};
 
-			Action<UIState> on_unload = delegate ( UIState ui ) {
-				UIElement elem = get_top_row( ui );
+			Action<UIState> on_unload = ( UIState ui ) => {
+				UIElement elem = get_insert_point( ui );
 				elem.RemoveChild( myelem );
 			};
 
 			MenuUI.AddMenuLoader( ui_class_name, elem_name, on_load, on_unload );
+		}
+
+
+		////////////////
+		
+		private static UIElement GetMenuContainerOuter( UIState ui ) {
+			Type ui_type = ui.GetType();
+			FieldInfo ui_outer_box_field = ui_type.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );
+			UIElement ui_outer_box = (UIElement)ui_outer_box_field.GetValue( ui );
+
+			return ui_outer_box;
+		}
+
+		private static UIElement GetMenuContainerInner( UIElement ui_outer_box ) {
+			Type ui_outer_box_type = ui_outer_box.GetType();
+			FieldInfo ui_outer_box_elems_field = ui_outer_box_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
+			List<UIElement> ui_outer_box_elems = (List<UIElement>)ui_outer_box_elems_field.GetValue( ui_outer_box );
+
+			return ui_outer_box_elems[0];
+		}
+
+		private static UIElement GetMenuContainerInsertPoint( UIElement ui_container ) {
+			Type ui_container_type = ui_container.GetType();
+			FieldInfo ui_container_elems_field = ui_container_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
+			List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_container );
+			
+			for( int i=0; i<ui_container_elems.Count; i++ ) {
+				if( ui_container_elems[i] is UIElement && !(ui_container_elems[i] is UIList) && !(ui_container_elems[i] is UIScrollbar) ) {
+					return ui_container_elems[i];
+				}
+			}
+
+			return null;
 		}
 	}
 
@@ -56,7 +90,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 		internal IDictionary<string, IDictionary<string, Action<UIState>>> Loaders = new Dictionary<string, IDictionary<string, Action<UIState>>>();
 		internal IDictionary<string, IDictionary<string, Action<UIState>>> Unloaders = new Dictionary<string, IDictionary<string, Action<UIState>>>();
 
-		private IDictionary<string, UIState> CachedMenus = new Dictionary<string, UIState>();
+		private readonly IDictionary<string, UIState> CachedMenus = new Dictionary<string, UIState>();
 
 
 		////////////////
