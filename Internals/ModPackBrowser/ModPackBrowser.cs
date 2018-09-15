@@ -10,30 +10,49 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UIMenuTextPanelButton : UITextPanelButton {
-		public bool IsLeft;
+		public const int ColumnHeightTall = 31;
+		public const int ColumnHeightShort = 8;
+		public const int ColumnsInMid = 5;
+
+		public int Column;
+		public int Row;
 
 
 		////////////////
 		
-		public UIMenuTextPanelButton( bool is_left, string label, float scale=1f, bool large=false )
+		public UIMenuTextPanelButton( int pos, string label, float scale=1f, bool large=false )
 				: base( UITheme.Vanilla, label, scale, large ) {
-			this.IsLeft = is_left;
-			this.RecalculateLeft();
+			int col_tall = UIMenuTextPanelButton.ColumnHeightTall;
+			int col_short = UIMenuTextPanelButton.ColumnHeightShort;
+			int cols_in_mid = UIMenuTextPanelButton.ColumnsInMid;
+
+			if( pos < col_tall ) {
+				this.Column = 0;
+				this.Row = pos;
+			} else if( pos > ( col_tall + ( col_short * cols_in_mid ) ) ) {
+				this.Column = 7;
+				this.Row = pos - ( col_tall + ( col_short * cols_in_mid ) );
+			} else {
+				this.Column = 1 + (( pos - col_tall ) / col_short );
+				this.Row = ( pos - col_tall ) % col_short;
+			}
+			
+			this.RecalculatePos();
 		}
 
 		////////////////
 
-		private void RecalculateLeft() {
+		private void RecalculatePos() {
 			float width = this.Width.Pixels;
-			float left = this.IsLeft ?
-				( Main.screenWidth / 2 ) - ( 300 + width ) :
-				( Main.screenWidth / 2 ) + 300;
+			float left = (( ( Main.screenWidth / 2 ) - 296 ) - (width - 8)) + ( (width - 2) * this.Column );
+			float top = (16 * this.Row) + 48;
 
 			this.Left.Set( left, 0f );
+			this.Top.Set( top, 0f );
 		}
 
 		public override void Recalculate() {
-			this.RecalculateLeft();
+			this.RecalculatePos();
 			base.Recalculate();
 		}
 	}
@@ -53,13 +72,13 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			{ "Game Mode(s)", "New game rules; added end goals, progression, setting, session, etc." },
 			{ "Story or Lore", "Implements elements of story telling or universe lore." },
 			{ "Traveling", "Adds fast travel options, adds new minecarts, rewards for distance traveled, etc." },
-			{ "Player Class(es)", "Adds new player 'classes', usually implementing custom damage types or special forms of attack/defense." },
+			{ "Player Class(es)", "Adds new player 'classes', usually via. custom damage types or special forms of attack/defense." },
 			{ "Player Stats", "Modifies player attack, defense, and other intrinsic elements." },
 			{ "NPC Stats", "Modifies NPC attack, defense, and other intrinsic elements." },
 			{ "NPC Behavior", "Modifies NPC AIs for new or tweaked behaviors." },
 			{ "Informational", "Adds informational items (time, weather, etc.), reports game statistics, gives specific information, etc." },
 			{ "Specialized", "Focuses on a specific, well-defined function." },
-			{ "Replaces Game Element(s)", "Primarily meant as an alternative to something the game already provides." },
+			{ "Replacements", "Primarily meant as an alternative to something the game already provides." },
 			{ "Visuals", "Implements new or improved sprites, adds new background details, etc." },
 			{ "Special FX", "Adds gore effects, adds motion blurs, improves particle effects, etc." },
 			{ "Affects World", "Generates new set pieces, alters biome shapes, populates areas with new types of growth, etc." },
@@ -75,22 +94,22 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			{ "Theme: Fantasy", "Elements of ancient mythologies, swords & sorcery, and maybe a hobbit or 2." },
 			{ "Theme: Military", "Guns and stuff." },
 			{ "Theme: Futuristic", "Robots, lasers, flying machines, etc." },
-			{ "Theme: Mixed", "Mashup of genres, but not purely in a silly way." },
+			//{ "Theme: Mixed", "Mashup of genres, but not purely in a silly way." },
 			{ "Content: Music", "Adds new music." },
 			{ "Content: Rich Art", "Adds extensive or detailed art for new or existing game entities." },
 			{ "Content: Sounds", "Adds new sound effects or ambience." },
-			{ "Content: Item Collections", "Adds discrete (often themed) sets of items." },
+			{ "Content: Item Sets", "Adds discrete (often themed) sets of items." },
 			{ "Content: Weapons", "" },
 			{ "Content: Hostile NPCs", "" },
 			{ "Content: Town NPCs", "" },
 			{ "Content: Critters", "Adds (passive) biome fauna." },
 			{ "Content: Bosses", "" },
 			{ "Content: Invasions", "" },
-			{ "Content: Building Blocks", "" },
+			{ "Content: Blocks", "" },
 			{ "Content: Wiring", "Adds tools and toys for use for wiring." },
 			{ "Content: Decorative", "Adds decorative objects (e.g. furniture for houses)." },
 			{ "Content: Fishing", "Adds tools or mechanics for fishing." },
-			{ "Content: Buffs & Potions", "" },
+			{ "Content: Buffs & Pots.", "" },
 			{ "Content: Accessories", "" },
 			{ "Content: Biomes", "" },
 			{ "Content: Vanity", "" },
@@ -106,12 +125,12 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			{ "When: Pre-Hard Mode", "" },
 			{ "When: Hard Mode", "" },
 			{ "When: Post-Plantera", "" },
-			{ "When: Post-Moon Lord", "" },
+			{ "When: Post-Moonlord", "" },
 			{ "Multiplayer Compatible", "" },
 			{ "PvP", "" },
 			{ "Teams", "" },
 			{ "Open Source", "" },
-			{ "Made By Team", "" },
+			//{ "Made By Team", "" },
 			{ "Unmaintained", "" },
 			{ "Unfinished", "" },
 			{ "Non-functional", "" },
@@ -137,14 +156,9 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			foreach( var kv in ModPackBrowser.Tags ) {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
-				bool is_left = i <= col_height;
-				float top = (16 * ( i % col_height ) ) - 240;
-				float left = is_left ? 0f : Main.screenWidth - 128f;
 
-				var button = new UIMenuTextPanelButton( is_left, tag_text, 0.65f );
-				button.Top.Set( top, 0f );
-				//button.Left.Set( left, 0f );
-				button.Width.Set( 128f, 0f );
+				var button = new UIMenuTextPanelButton( i, tag_text, 0.6f );
+				button.Width.Set( 120f, 0f );
 				button.Height.Set( 16f, 0f );
 				button.OnClick += (UIMouseEvent evt, UIElement listeningElement) => {
 					LogHelpers.Log( "1" );
