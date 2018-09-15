@@ -84,7 +84,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return true;
 				}
 
-				if( item.type <= ItemIdentityHelpers.HighestItemID ) {
+				if( item.type <= ItemID.Count ) {
 					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.VilePowder }, 1 ) ) {
 						return true;
 					}
@@ -180,7 +180,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return true;
 				}
 
-				if( item.type <= ItemIdentityHelpers.HighestItemID ) {
+				if( item.type <= ItemID.Count ) {
 					if( RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.ViciousPowder }, 1 ) ) {
 						return true;
 					}

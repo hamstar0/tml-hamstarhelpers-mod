@@ -7,10 +7,6 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.ItemHelpers {
 	public partial class ItemIdentityHelpers {
-		public const int HighestItemID = 3929;//3930?
-
-
-
 		public static string GetUniqueId( Item item ) {
 			if( item.modItem != null ) {
 				return item.modItem.mod.Name + " " + item.Name;

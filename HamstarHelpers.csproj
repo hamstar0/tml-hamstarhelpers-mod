@@ -103,12 +103,13 @@
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
-    <Compile Include="Internals\ModPackBrowser\UIModTagButton.cs" />
-    <Compile Include="Internals\ModPackBrowser\ModPackBrowser.cs" />
+    <Compile Include="Internals\ModTags\UIModTagButton.cs" />
+    <Compile Include="Internals\ModTags\ModTags.cs" />
     <Compile Include="Internals\NetProtocols\ItemNoGrabProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="Internals\WebRequests\GetModTags.cs" />
+    <Compile Include="Internals\WebRequests\GetModVersion.cs" />
     <Compile Include="ModHelpersMod_Data.cs" />
     <Compile Include="ModHelpersMod_Draw.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Obsolete.cs" />
@@ -202,7 +203,6 @@
     <Compile Include="Services\Promises\Promises.cs" />
     <Compile Include="Services\Timers\Timers.cs" />
     <Compile Include="Internals\WebRequests\GithubModIssueReports.cs" />
-    <Compile Include="Internals\WebRequests\ModVersionGet.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
     <Compile Include="Internals\WebRequests\ServerBrowserReport_Announce.cs" />
     <Compile Include="Internals\WebRequests\ServerBrowserReport_ProofOfWork.cs" />

@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.Menus {
 			if( Main.dedServ ) { return; }
 
 			Promises.AddPostModLoadPromise( Menus.InitializeOpenConfigButton );
-			Promises.AddPostModLoadPromise( ModPackBrowser.ModPackBrowser.Initialize );
+			Promises.AddPostModLoadPromise( ModPackBrowser.ModTags.Initialize );
 		}
 
 

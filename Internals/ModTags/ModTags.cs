@@ -6,7 +6,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
-	class ModPackBrowser {
+	class ModTags {
 		public static IDictionary<string, string> Tags = new Dictionary<string, string> {
 			{ "Core Game Mechanics", "Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc." },
 			{ "Combat Mechanics", "Adds weapon reloading, dual-wielding, changes mob behaviors, etc." },
@@ -98,7 +98,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			hover_text.Height.Set( 0, 0 );
 
 			int i = 0;
-			foreach( var kv in ModPackBrowser.Tags ) {
+			foreach( var kv in ModTags.Tags ) {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
 
