@@ -51,7 +51,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 
 		////////////////
-		
+
 		private static UIElement GetMenuContainerOuter( UIState ui ) {
 			Type ui_type = ui.GetType();
 			FieldInfo ui_outer_box_field = ui_type.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );
@@ -139,15 +139,13 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 			string ui_name = ui.GetType().Name;
 			if( !this.Loaders.ContainsKey( ui_name ) ) { return; }
-
-			if( this.Loaders.ContainsKey( ui_name ) ) {
-				foreach( Action<UIState> loader in this.Loaders[ui_name].Values ) {
-					loader( ui );
-				}
-
-				this.CachedMenus[ ui_name ] = ui;
-				this.Loaders.Remove( ui_name );
+			
+			foreach( Action<UIState> loader in this.Loaders[ ui_name ].Values ) {
+				loader( ui );
 			}
+
+			this.CachedMenus[ ui_name ] = ui;
+			this.Loaders.Remove( ui_name );
 		}
 	}
 }

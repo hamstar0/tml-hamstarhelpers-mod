@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.NetHelpers;
+using HamstarHelpers.Services.Promises;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,23 +8,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	class GetModVersion {
-		private readonly static object MyLock = new object();
-		
-		public static string ModVersionUrl { get {
-				//return "://script.googleusercontent.com/macros/echo?user_content_key=Owhg1llbbzrzST1eMJvfeO2IxGCHpigWMQZOsv1llpGT7ySYkY8EIxaJk0AVD_8Aegr6CiO9znq24nrES8NyTgg99q5WPQbwm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBSjTGNl2m1Kws9l1N8jgtgHBs4_KqXHF12fqfuynNZuDJVLqqr8NLJ1-kzKtsTLVrxy_u9Yn2NR&lib=MLDmsgwwdl8rHsa0qIkfykg_ahli_ZfP5";
-				return "https://script.google.com/macros/s/AKfycbyddPh79y6SwgYqOG-P7Pw0iCbi2tBgVCRvUfP9fJT_xrbHFzo/exec";
-		} }
+	class ModVersionPromiseArguments : PromiseArguments {
+		public bool Found;
+		public IDictionary<string, Version> Versions;
+	}
 
+
+
+
+	class GetModVersion {
+		public static string ModVersionUrl => "https://script.google.com/macros/s/AKfycbyddPh79y6SwgYqOG-P7Pw0iCbi2tBgVCRvUfP9fJT_xrbHFzo/exec";
+		//return "://script.googleusercontent.com/macros/echo?user_content_key=Owhg1llbbzrzST1eMJvfeO2IxGCHpigWMQZOsv1llpGT7ySYkY8EIxaJk0AVD_8Aegr6CiO9znq24nrES8NyTgg99q5WPQbwm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBSjTGNl2m1Kws9l1N8jgtgHBs4_KqXHF12fqfuynNZuDJVLqqr8NLJ1-kzKtsTLVrxy_u9Yn2NR&lib=MLDmsgwwdl8rHsa0qIkfykg_ahli_ZfP5";
 
 		
 		////////////////
 
-		public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> on_success, Action<string> on_fail ) {
+		private readonly static object MyLock = new object();
+
+		internal readonly static object MyValidatorKey;
+		public readonly static PromiseValidator MyValidator;
+
+		////////////////
+
+		static GetModVersion() {
+			GetModVersion.MyValidatorKey = new object();
+			GetModVersion.MyValidator = new PromiseValidator( GetModVersion.MyValidatorKey );
+		}
+
+
+
+
+		////////////////
+
+		/*public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> on_success, Action<string> on_fail ) {
 			Action check = delegate () {
 				var mymod = ModHelpersMod.Instance;
 
@@ -39,25 +59,23 @@ namespace HamstarHelpers.Internals.WebRequests {
 			};
 
 			GetModVersion.CacheAllModVersionsAsync( check );
-		}
+		}*/
 
 
-		internal static void CacheAllModVersionsAsync( Action on_success ) {
+		internal static void CacheAllModVersionsAsync() {
 			ThreadPool.QueueUserWorkItem( _ => {
 				lock( GetModVersion.MyLock ) {
 					var mymod = ModHelpersMod.Instance;
+					var args = new ModVersionPromiseArguments {
+						Found = false
+					};
+					
+					GetModVersion.RetrieveAllModVersionsAsync( ( versions, found ) => {
+						args.Versions = versions;
+						args.Found = found;
 
-					if( mymod.GetModVersion.ModVersions == null ) {
-						GetModVersion.RetrieveAllModVersionsAsync( ( versions, found ) => {
-							//if( found ) {
-							//	mymod.ModVersionGet.ModVersions = versions;
-							//}
-							mymod.GetModVersion.ModVersions = versions;
-							on_success();
-						} );
-					} else {
-						on_success();
-					}
+						Promises.TriggerValidatedPromise( GetModVersion.MyValidator, GetModVersion.MyValidatorKey, args );
+					} );
 				}
 			} );
 
@@ -129,17 +147,13 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 		////////////////
-
-		private IDictionary<string, Version> ModVersions = null;
-
-
-		////////////////
-
+		
 		internal void OnPostSetupContent() {
 			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
-				GetModVersion.CacheAllModVersionsAsync( () => {
+				GetModVersion.CacheAllModVersionsAsync();
+				/*GetModVersion.CacheAllModVersionsAsync( () => {
 					LogHelpers.Log( "Mod versions successfully retrieved and cached." );
-				} );
+				} );*/
 			}
 		}
 	}

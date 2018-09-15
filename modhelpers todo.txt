@@ -24,12 +24,12 @@ v3.0.0
 	-	Fix hover text screen clipping
 	-	@Finish google script (set repeat tags to be added to a separate database)
 	-	@Include mod author lists
-	-	Store mod tags into a JSON database
-	-	Implement mod pack browser
-		-	Define new menu
-		-	Define menu button (similar to Mods menu 'Open Configs' button)
-	-	Implement request for tag info on mod load
+	-	Implement filtering
+	-	Implement submitting tags
+	-	Add submit + update button
+	-	Apply loaded tags for mods that have them
 
+	-	Implement request for tag info on mod load
 	-	Implement toggle behavior for buttons
 	-	Implement disable behavior for buttons
 	-	Implement mod info tag display

@@ -13,6 +13,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
+using HamstarHelpers.Services.Promises;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
@@ -172,7 +173,18 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 
 		public void CheckForNewVersionAsync() {
-			Action<Version> on_success = delegate ( Version vers ) {
+			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.MyValidator, ( args ) => {
+				if( args.Found ) {
+					this.LatestAvailableVersion = args.Versions[ this.Mod.Name ];
+				} else {
+					if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
+						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName ); //+ "': " + reason );
+					}
+				}
+				return false;
+			} );
+
+			/*Action<Version> on_success = delegate ( Version vers ) {
 				this.LatestAvailableVersion = vers;
 			};
 			Action<string> on_fail = delegate ( string reason ) {
@@ -181,7 +193,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 				}
 			};
 
-			GetModVersion.GetLatestKnownVersionAsync( this.Mod, on_success, on_fail );
+			GetModVersion.GetLatestKnownVersionAsync( this.Mod, on_success, on_fail );*/
 		}
 
 

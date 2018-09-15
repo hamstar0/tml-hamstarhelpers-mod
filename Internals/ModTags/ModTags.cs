@@ -1,7 +1,10 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 
@@ -112,7 +115,26 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				i++;
 			}
 
+			var subup_button = new UISubmitUpdateButton();
+
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Submit+Update", subup_button, false );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", hover_text, false );
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", (ui) => {
+				Type mytype = ui.GetType();
+				FieldInfo myfield = mytype.GetField( "mod", BindingFlags.NonPublic | BindingFlags.Instance );
+				if( myfield == null ) {
+					LogHelpers.Log( "No 'mod' field in "+mytype );
+					return;
+				}
+
+				var modfile = (TmodFile)myfield.GetValue( ui );
+				if( modfile == null ) {
+					LogHelpers.Log( "Empty 'mod' field" );
+					return;
+				}
+
+				subup_button.SetMod( modfile.name );
+			}, _ => { } );
 		}
 	}
 }

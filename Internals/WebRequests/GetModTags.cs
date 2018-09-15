@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.NetHelpers;
+using HamstarHelpers.Services.Promises;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,54 +8,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	class ModTagsPromiseArguments : PromiseArguments {
+		public bool Found;
+		internal IDictionary<string, ISet<string>> TagMods = null;
+		internal IDictionary<string, ISet<string>> ModTags = null;
+
+
+		////////////////
+
+		internal void SetTagMods( IDictionary<string, ISet<string>> tagmods ) {
+			this.TagMods = tagmods;
+			this.ModTags = new Dictionary<string, ISet<string>>();
+
+			foreach( var kv in tagmods ) {
+				string tagname = kv.Key;
+				ISet<string> modnames = kv.Value;
+
+				foreach( string modname in modnames ) {
+					if( !this.ModTags.ContainsKey( modname ) ) {
+						this.ModTags[modname] = new HashSet<string>();
+					}
+					this.ModTags[modname].Add( tagname );
+				}
+			}
+			LogHelpers.Log( "tag mods: " + string.Join( ",", tagmods.Select( kv => kv.Key + ":" + kv.Value ) ) );
+		}
+	}
+
+
+
+
 	class GetModTags {
 		private readonly static object MyLock = new object();
-		
+
+		internal readonly static object MyValidatorKey;
+		public readonly static PromiseValidator MyValidator;
+
+		////////////////
+
 		public static string ModTagsUrl => "https://script.google.com/macros/s/AKfycbwSuU6XJ6uSh0RNWjkzJUmVW6wRkNighHlfKGPf4pUdcu0J2tys/exec";
+
+		////////////////
+
+		static GetModTags() {
+			GetModTags.MyValidatorKey = new object();
+			GetModTags.MyValidator = new PromiseValidator( GetModTags.MyValidatorKey );
+		}
+
+
 
 
 		
 		////////////////
-
-		public static void GetLatestTagsAsync( Mod mod, Action<ISet<string>> on_success, Action<string> on_fail ) {
-			Action check = delegate () {
-				var mymod = ModHelpersMod.Instance;
-
-				try {
-					if( mymod.GetModTags.TagMods.ContainsKey( mod.Name ) ) {
-						on_success( mymod.GetModTags.TagMods[mod.Name] );
-					} else {
-						on_fail( "GetLatestTagsAsync - Unrecognized mod " + mod.Name + " (not found on mod browser)" );
-					}
-				} catch( Exception e ) {
-					on_fail( e.ToString() );
-				}
-			};
-
-			GetModTags.CacheAllTagsModsAsync( check );
-		}
-
-
-		internal static void CacheAllTagsModsAsync( Action on_success ) {
+		
+		internal static void CacheAllModTagsAsync() {
 			ThreadPool.QueueUserWorkItem( _ => {
 				lock( GetModTags.MyLock ) {
 					var mymod = ModHelpersMod.Instance;
+					var args = new ModTagsPromiseArguments {
+						Found = false
+					};
 
-					if( mymod.GetModTags.TagMods == null ) {
-						GetModTags.RetrieveAllTagModsAsync( ( tags, found ) => {
-							//if( found ) {
-							//	mymod.TagModsGet.TagMods = tags;
-							//}
-							mymod.GetModTags.SetTagMods( tags );
-							on_success();
-						} );
-					} else {
-						on_success();
-					}
+					GetModTags.RetrieveAllTagModsAsync( ( tags, found ) => {
+						if( found ) {
+							args.SetTagMods( tags );
+						}
+						args.Found = found;
+
+						Promises.TriggerValidatedPromise( GetModVersion.MyValidator, GetModVersion.MyValidatorKey, args );
+					} );
 				}
 			} );
 		}
@@ -120,39 +145,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 		////////////////
-
-		private IDictionary<string, ISet<string>> TagMods = null;
-		private IDictionary<string, ISet<string>> ModTags = null;
-
-
-		////////////////
-
+		
 		internal void OnPostSetupContent() {
 			if( ModHelpersMod.Instance.Config.IsCheckingModTags ) {
-				GetModTags.CacheAllTagsModsAsync( () => {
-					LogHelpers.Log( "Mod tags successfully retrieved and cached." );
-				} );
+				GetModTags.CacheAllModTagsAsync();
 			}
-		}
-
-
-
-		private void SetTagMods( IDictionary<string, ISet<string>> tagmods ) {
-			this.TagMods = tagmods;
-			this.ModTags = new Dictionary<string, ISet<string>>();
-
-			foreach( var kv in tagmods ) {
-				string tagname = kv.Key;
-				ISet<string> modnames = kv.Value;
-
-				foreach( string modname in modnames ) {
-					if( !this.ModTags.ContainsKey(modname) ) {
-						this.ModTags[ modname ] = new HashSet<string>();
-					}
-					this.ModTags[modname].Add( tagname );
-				}
-			}
-LogHelpers.Log( "tag mods: "+string.Join(",", tagmods.Select(kv=>kv.Key+":"+kv.Value)));
 		}
 	}
 }

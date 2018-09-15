@@ -103,6 +103,7 @@
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
+    <Compile Include="Internals\ModTags\UISubmitUpdateButton.cs" />
     <Compile Include="Internals\ModTags\UIModTagButton.cs" />
     <Compile Include="Internals\ModTags\ModTags.cs" />
     <Compile Include="Internals\NetProtocols\ItemNoGrabProtocol.cs" />
