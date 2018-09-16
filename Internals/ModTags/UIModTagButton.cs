@@ -4,7 +4,6 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
@@ -14,6 +13,9 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public const int ColumnHeightShort = 7;
 		public const int ColumnsInMid = 5;
 
+
+		private readonly ModTagUI ModTagUI;
+
 		public int Column;
 		public int Row;
 
@@ -22,8 +24,9 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 		
-		public UIModTagButton( int pos, string label, string desc, bool has_tag, UIText hover_elem, float scale =1f, bool large=false )
+		public UIModTagButton( ModTagUI modtagui, int pos, string label, string desc, bool has_tag, float scale =1f, bool large=false )
 				: base( UITheme.Vanilla, label, scale, large ) {
+			this.ModTagUI = modtagui;
 			this.HasTag = has_tag;
 
 			this.UpdateColor();
@@ -46,16 +49,16 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			this.Width.Set( 120f, 0f );
 			this.Height.Set( 16f, 0f );
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				hover_elem.SetText( desc );
-				hover_elem.Left.Set( Main.mouseX, 0f );
-				hover_elem.Top.Set( Main.mouseY, 0f );
-				hover_elem.Recalculate();
+				this.ModTagUI.HoverElement.SetText( desc );
+				this.ModTagUI.HoverElement.Left.Set( Main.mouseX, 0f );
+				this.ModTagUI.HoverElement.Top.Set( Main.mouseY, 0f );
+				this.ModTagUI.HoverElement.Recalculate();
 				this.UpdateColor();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( hover_elem.Text == desc ) {
-					hover_elem.SetText( "" );
-					hover_elem.Recalculate();
+				if( this.ModTagUI.HoverElement.Text == desc ) {
+					this.ModTagUI.HoverElement.SetText( "" );
+					this.ModTagUI.HoverElement.Recalculate();
 				}
 				this.UpdateColor();
 			};

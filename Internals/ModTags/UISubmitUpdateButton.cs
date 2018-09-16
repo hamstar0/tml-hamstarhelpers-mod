@@ -1,14 +1,20 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Promises;
+using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UISubmitUpdateButton : UITextPanelButton {
-		public UISubmitUpdateButton() : base( UITheme.Vanilla, "", 1.5f, false ) {
+		private readonly ModTagUI ModTagUI;
+
+
+
+		public UISubmitUpdateButton( ModTagUI modtagui )
+				: base( UITheme.Vanilla, "", 1.5f, false ) {
+			this.ModTagUI = modtagui;
+
 			this.Width.Set( 256f, 0f );
 			this.Height.Set( 40f, 0f );
 
@@ -35,16 +41,31 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		public void SetMod( string modname ) {
-			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
-				if( args.Found && args.ModTags.ContainsKey( modname ) ) {
-					this.SetText( "Update mod tags" );
-				} else {
-					this.SetText( "Submit mod tags" );
-					this.Disable();
+		public void SetTagUpdateMode() {
+			this.SetText( "Update mod tags" );
+		}
+
+		public void SetTagSubmitMode() {
+			this.SetText( "Submit mod tags" );
+			this.Disable();
+		}
+
+		////////////////
+
+		public void UpdateEnableState( IDictionary<string, UIModTagButton> buttons ) {
+			int tag_count = 0;
+
+			foreach( var kv in buttons ) {
+				if( kv.Value.HasTag ) {
+					tag_count++;
 				}
-				return false;
-			} );
+			}
+
+			if( tag_count >= 3 ) {
+				this.Enable();
+			} else {
+				this.Disable();
+			}
 		}
 	}
 }
