@@ -36,11 +36,12 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		public void SetMod( string modname ) {
-			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.MyValidator, ( args ) => {
+			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				if( args.Found && args.ModTags.ContainsKey( modname ) ) {
 					this.SetText( "Update mod tags" );
 				} else {
 					this.SetText( "Submit mod tags" );
+					this.Disable();
 				}
 				return false;
 			} );

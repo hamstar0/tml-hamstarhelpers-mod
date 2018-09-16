@@ -27,8 +27,8 @@ v3.0.0
 	-	Implement filtering
 	-	Implement submitting tags
 	-	Add submit + update button
-	-	Apply loaded tags for mods that have them
 
+	-	Apply loaded tags for mods that have them
 	-	Implement request for tag info on mod load
 	-	Implement toggle behavior for buttons
 	-	Implement disable behavior for buttons

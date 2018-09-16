@@ -28,14 +28,14 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		private readonly static object MyLock = new object();
 
-		internal readonly static object MyValidatorKey;
-		public readonly static PromiseValidator MyValidator;
+		internal readonly static object PromiseValidatorKey;
+		public readonly static PromiseValidator ModVersionPromiseValidator;
 
 		////////////////
 
 		static GetModVersion() {
-			GetModVersion.MyValidatorKey = new object();
-			GetModVersion.MyValidator = new PromiseValidator( GetModVersion.MyValidatorKey );
+			GetModVersion.PromiseValidatorKey = new object();
+			GetModVersion.ModVersionPromiseValidator = new PromiseValidator( GetModVersion.PromiseValidatorKey );
 		}
 
 
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 						args.Versions = versions;
 						args.Found = found;
 
-						Promises.TriggerValidatedPromise( GetModVersion.MyValidator, GetModVersion.MyValidatorKey, args );
+						Promises.TriggerValidatedPromise( GetModVersion.ModVersionPromiseValidator, GetModVersion.PromiseValidatorKey, args );
 					} );
 				}
 			} );

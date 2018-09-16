@@ -10,8 +10,8 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UIModTagButton : UITextPanelButton {
-		public const int ColumnHeightTall = 31;
-		public const int ColumnHeightShort = 8;
+		public const int ColumnHeightTall = 27;
+		public const int ColumnHeightShort = 7;
 		public const int ColumnsInMid = 5;
 
 		public int Column;
@@ -22,9 +22,9 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 		
-		public UIModTagButton( int pos, string label, string desc, UIText hover_elem, float scale =1f, bool large=false )
+		public UIModTagButton( int pos, string label, string desc, bool has_tag, UIText hover_elem, float scale =1f, bool large=false )
 				: base( UITheme.Vanilla, label, scale, large ) {
-			this.HasTag = false;
+			this.HasTag = has_tag;
 
 			this.UpdateColor();
 
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		private void RecalculatePos() {
 			float width = this.Width.Pixels;
 			float left = (( ( Main.screenWidth / 2 ) - 296 ) - (width - 8)) + ( (width - 2) * this.Column );
-			float top = (16 * this.Row) + 48;
+			float top = (16 * this.Row) + 64;
 
 			this.Left.Set( left, 0f );
 			this.Top.Set( top, 0f );

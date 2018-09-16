@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -42,6 +43,8 @@ namespace HamstarHelpers.Components.UI.Menu {
 			};
 
 			Action<UIState> on_unload = ( UIState ui ) => {
+				myelem.Remove();
+
 				UIElement elem = get_insert_point( ui );
 				elem.RemoveChild( myelem );
 			};
@@ -90,7 +93,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 		internal IDictionary<string, IDictionary<string, Action<UIState>>> Loaders = new Dictionary<string, IDictionary<string, Action<UIState>>>();
 		internal IDictionary<string, IDictionary<string, Action<UIState>>> Unloaders = new Dictionary<string, IDictionary<string, Action<UIState>>>();
 
-		private readonly IDictionary<string, UIState> CachedMenus = new Dictionary<string, UIState>();
+		private Tuple<string, UIState> CurrentMenu = null;
 
 
 		////////////////
@@ -112,14 +115,14 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 
 		private void Unload() {
-			foreach( var kv in this.CachedMenus ) {
-				string ui_name = kv.Key;
-				UIState ui = kv.Value;
-
-				foreach( Action<UIState> unloader in this.Unloaders[ ui_name ].Values ) {
-					unloader( ui );
+			if( this.CurrentMenu != null ) {
+				foreach( Action<UIState> unloader in this.Unloaders[ this.CurrentMenu.Item1 ].Values ) {
+					unloader( this.CurrentMenu.Item2 );
 				}
 			}
+			
+			this.Loaders.Clear();
+			this.Unloaders.Clear();
 		}
 
 
@@ -135,17 +138,37 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		private void Update() {
 			UIState ui = Main.MenuUI.CurrentState;
-			if( ui == null ) { return; }
 
-			string ui_name = ui.GetType().Name;
-			if( !this.Loaders.ContainsKey( ui_name ) ) { return; }
-			
-			foreach( Action<UIState> loader in this.Loaders[ ui_name ].Values ) {
-				loader( ui );
+			string prev_ui_name = this.CurrentMenu?.Item1;
+			string curr_ui_name = ui?.GetType().Name;
+
+			if( prev_ui_name == curr_ui_name ) {
+				return;
 			}
 
-			this.CachedMenus[ ui_name ] = ui;
-			this.Loaders.Remove( ui_name );
+			if( prev_ui_name != null && this.Unloaders.ContainsKey(prev_ui_name) ) {
+				var unloaders = this.Unloaders[ prev_ui_name ].Values;
+				
+				foreach( Action<UIState> unloader in unloaders ) {
+					unloader( this.CurrentMenu.Item2 );
+				}
+				this.Unloaders.Remove( prev_ui_name );
+			}
+			
+			if( ui == null ) {
+				this.CurrentMenu = null;
+				return;
+			}
+
+			if( this.Loaders.ContainsKey( curr_ui_name ) ) {
+				KeyValuePair<string, Action<UIState>>[] loaders = this.Loaders[curr_ui_name].ToArray();
+
+				foreach( var kv in loaders ) {
+					kv.Value( ui );
+				}
+			}
+
+			this.CurrentMenu = Tuple.Create( curr_ui_name, ui );
 		}
 	}
 }

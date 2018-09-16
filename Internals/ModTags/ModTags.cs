@@ -1,5 +1,7 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -94,47 +96,69 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		public static void Initialize() {
-			var buttons = new UIElement();
-			
-			var hover_text = new UIText( "" );
-			hover_text.Width.Set( 0, 0 );
-			hover_text.Height.Set( 0, 0 );
-
-			int i = 0;
-			foreach( var kv in ModTags.Tags ) {
-				string tag_text = kv.Key;
-				string tag_desc = kv.Value;
-
-				var button = new UIModTagButton( i, tag_text, tag_desc, hover_text, 0.6f );
-				button.OnClick += (UIMouseEvent evt, UIElement listeningElement) => {
-					button.ToggleTag();
-				};
-
-				MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags "+i, button, false );
-				
-				i++;
-			}
+			var hover_elem = new UIText( "" );
+			hover_elem.Width.Set( 0, 0 );
+			hover_elem.Height.Set( 0, 0 );
 
 			var subup_button = new UISubmitUpdateButton();
 
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Submit+Update", subup_button, false );
-			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", hover_text, false );
-			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", (ui) => {
-				Type mytype = ui.GetType();
-				FieldInfo myfield = mytype.GetField( "mod", BindingFlags.NonPublic | BindingFlags.Instance );
-				if( myfield == null ) {
-					LogHelpers.Log( "No 'mod' field in "+mytype );
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", hover_elem, false );
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ( ui ) => {
+				Type ui_type = ui.GetType();
+				FieldInfo ui_localmod_field = ui_type.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
+				if( ui_localmod_field == null ) {
+					LogHelpers.Log( "No 'localMod' field in " + ui_type );
+					return;
+				}
+				
+				object localmod = ui_localmod_field.GetValue( ui );
+				Type localmod_type = localmod.GetType();
+				FieldInfo localmod_modfile_field = localmod_type.GetField( "modFile", BindingFlags.Public | BindingFlags.Instance );
+				if( localmod_modfile_field == null ) {
+					LogHelpers.Log( "No 'modFile' field in " + localmod_type );
 					return;
 				}
 
-				var modfile = (TmodFile)myfield.GetValue( ui );
+				var modfile = (TmodFile)localmod_modfile_field.GetValue( localmod );
 				if( modfile == null ) {
 					LogHelpers.Log( "Empty 'mod' field" );
 					return;
 				}
 
 				subup_button.SetMod( modfile.name );
+
+				Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+					if( args.Found ) {
+						ModTags.InitializeButtons( args.ModTags[modfile.name], hover_elem );
+					} else {
+						ModTags.InitializeButtons( new HashSet<string>(), hover_elem );
+					}
+					return false;
+				} );
 			}, _ => { } );
+		}
+
+
+		private static void InitializeButtons( ISet<string> modtags, UIText hover_elem ) {
+			var buttons = new Dictionary<string, UIModTagButton>();
+
+			int i = 0;
+			foreach( var kv in ModTags.Tags ) {
+				string tag_text = kv.Key;
+				string tag_desc = kv.Value;
+				bool has_tag = modtags.Contains( tag_text );
+
+				var button = new UIModTagButton( i, tag_text, tag_desc, has_tag, hover_elem, 0.6f );
+				button.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
+					button.ToggleTag();
+				};
+
+				MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags " + i, button, false );
+				buttons[tag_text] = button;
+
+				i++;
+			}
 		}
 	}
 }

@@ -44,8 +44,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 	class GetModTags {
 		private readonly static object MyLock = new object();
 
-		internal readonly static object MyValidatorKey;
-		public readonly static PromiseValidator MyValidator;
+		internal readonly static object PromiseValidatorKey;
+		public readonly static PromiseValidator TagsReceivedPromiseValidator;
 
 		////////////////
 
@@ -54,8 +54,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		static GetModTags() {
-			GetModTags.MyValidatorKey = new object();
-			GetModTags.MyValidator = new PromiseValidator( GetModTags.MyValidatorKey );
+			GetModTags.PromiseValidatorKey = new object();
+			GetModTags.TagsReceivedPromiseValidator = new PromiseValidator( GetModTags.PromiseValidatorKey );
 		}
 
 
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 						}
 						args.Found = found;
 
-						Promises.TriggerValidatedPromise( GetModVersion.MyValidator, GetModVersion.MyValidatorKey, args );
+						Promises.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
 					} );
 				}
 			} );

@@ -173,7 +173,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 
 		public void CheckForNewVersionAsync() {
-			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.MyValidator, ( args ) => {
+			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
 				if( args.Found ) {
 					this.LatestAvailableVersion = args.Versions[ this.Mod.Name ];
 				} else {
