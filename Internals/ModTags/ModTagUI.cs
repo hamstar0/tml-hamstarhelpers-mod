@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 			return modfile.name;
 		}
-		
+
 		////////////////
 
 		public static void Initialize() {
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public UISubmitUpdateButton SubUpButton;
 		public IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
 
-		
+
 		////////////////
 
 		private ModTagUI() {
@@ -85,9 +85,11 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 						new HashSet<string>();
 				}
 
-				this.InitializeButtons( modtags );
+				bool mod_has_tags = modtags.Count > 0;
 
-				if( modtags.Count > 0 ) {
+				this.InitializeButtons( mod_has_tags, modtags );
+
+				if( mod_has_tags ) {
 					this.SubUpButton.SetTagUpdateMode();
 				} else {
 					this.SubUpButton.SetTagSubmitMode();
@@ -98,16 +100,21 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		}
 
 
-		private void InitializeButtons( ISet<string> modtags ) {
+		private void InitializeButtons( bool mod_has_tags, ISet<string> modtags ) {
 			var buttons = new Dictionary<string, UIModTagButton>();
 
 			int i = 0;
 			foreach( var kv in ModTagUI.Tags ) {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
-				bool has_tag = modtags.Contains( tag_text );
+				bool mod_has_curr_tag = modtags.Contains( tag_text );
 
-				var button = new UIModTagButton( this, i, tag_text, tag_desc, has_tag, 0.6f );
+				var button = new UIModTagButton( this, mod_has_curr_tag, i, tag_text, tag_desc, 0.6f );
+
+				if( mod_has_tags ) {
+					button.Disable();
+				}
+
 				button.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
 					if( !button.IsEnabled ) { return; }
 
@@ -119,6 +126,15 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				buttons[tag_text] = button;
 
 				i++;
+			}
+		}
+
+
+		////////////////
+
+		public void EnableButtons() {
+			foreach( var kv in this.TagButtons ) {
+				kv.Value.Enable();
 			}
 		}
 	}

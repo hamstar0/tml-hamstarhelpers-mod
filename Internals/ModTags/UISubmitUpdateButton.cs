@@ -3,7 +3,7 @@ using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System.Collections.Generic;
 using Terraria;
-
+using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UISubmitUpdateButton : UITextPanelButton {
@@ -41,6 +41,19 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
+		public override void Click( UIMouseEvent evt ) {
+			if( !this.IsEnabled ) { return; }
+
+			if( this.Text == "Update mod tags" ) {
+				this.SetTagSubmitMode();
+			} else {
+				this.SubmitTags();
+			}
+		}
+
+
+		////////////////
+
 		public void SetTagUpdateMode() {
 			this.SetText( "Update mod tags" );
 		}
@@ -48,6 +61,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public void SetTagSubmitMode() {
 			this.SetText( "Submit mod tags" );
 			this.Disable();
+
+			this.ModTagUI.EnableButtons();
 		}
 
 		////////////////
@@ -66,6 +81,13 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			} else {
 				this.Disable();
 			}
+		}
+
+
+		////////////////
+
+		private void SubmitTags() {
+
 		}
 	}
 }

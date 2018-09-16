@@ -24,7 +24,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 		
-		public UIModTagButton( ModTagUI modtagui, int pos, string label, string desc, bool has_tag, float scale =1f, bool large=false )
+		public UIModTagButton( ModTagUI modtagui, bool has_tag, int pos, string label, string desc, float scale =1f, bool large=false )
 				: base( UITheme.Vanilla, label, scale, large ) {
 			this.ModTagUI = modtagui;
 			this.HasTag = has_tag;

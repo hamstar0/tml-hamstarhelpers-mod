@@ -28,8 +28,9 @@ v3.0.0
 	-	Implement submitting tags
 	-	Add submit + update button
 		-	Implement submit
-		-	Implement update unlock
+		-	@Test loading mod data
 
+		-	Implement update unlock
 		-	Define button (sets mode based on tags being set or not)
 	-	Apply loaded tags for mods that have them
 	-	Implement request for tag info on mod load
