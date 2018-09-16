@@ -103,10 +103,10 @@
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
-    <Compile Include="Internals\ModTags\ModTags_Defs.cs" />
+    <Compile Include="Internals\ModTags\ModTagUI_Defs.cs" />
     <Compile Include="Internals\ModTags\UISubmitUpdateButton.cs" />
     <Compile Include="Internals\ModTags\UIModTagButton.cs" />
-    <Compile Include="Internals\ModTags\ModTags.cs" />
+    <Compile Include="Internals\ModTags\ModTagUI.cs" />
     <Compile Include="Internals\NetProtocols\ItemNoGrabProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
