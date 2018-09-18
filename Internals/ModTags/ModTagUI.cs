@@ -77,14 +77,9 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		private void InitializeUI( string modname ) {
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
-				ISet<string> modtags = null;
-
-				if( args.Found ) {
-					modtags = args.ModTags.ContainsKey( modname ) ?
-						args.ModTags[modname] :
-						new HashSet<string>();
-				}
-
+				ISet<string> modtags = args.Found && args.ModTags.ContainsKey( modname ) ?
+					args.ModTags[ modname ] :
+					new HashSet<string>();
 				bool mod_has_tags = modtags.Count > 0;
 
 				this.InitializeButtons( mod_has_tags, modtags );

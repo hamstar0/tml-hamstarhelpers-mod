@@ -34,7 +34,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 					this.ModTags[modname].Add( tagname );
 				}
 			}
-			LogHelpers.Log( "tag mods: " + string.Join( ",", tagmods.Select( kv => kv.Key + ":" + kv.Value ) ) );
+//LogHelpers.Log( "tag mods: " + string.Join( ",", tagmods.Select( kv => kv.Key + ":" + kv.Value ) ) );
 		}
 	}
 
@@ -86,8 +86,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-		private static void RetrieveAllTagModsAsync( Action<IDictionary<string, ISet<string>>, bool> on_success ) {
-			Func<string, Tuple<IDictionary<string, ISet<string>>, bool>> on_response = ( string output ) => {
+		private static void RetrieveAllTagModsAsync( Action<IDictionary<string, ISet<string>>, bool> on_completion ) {
+			Func<string, Tuple<IDictionary<string, ISet<string>>, bool>> on_get_response = ( string output ) => {
 				bool found = false;
 				IDictionary<string, ISet<string>> tag_mod_set = new Dictionary<string, ISet<string>>();
 
@@ -120,7 +120,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				return Tuple.Create( tag_mod_set, found );
 			};
 
-			Action<Exception, string> on_fail = ( e, output ) => {
+			Action<Exception, string> on_get_fail = ( e, output ) => {
 				if( e is JsonReaderException ) {
 					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - Bad JSON: " +
 						(output.Length > 256 ? output.Substring(0, 256) : output) );
@@ -131,15 +131,15 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			Action<IDictionary<string, ISet<string>>, bool> on_completion = ( response_val, success ) => {
+			Action<IDictionary<string, ISet<string>>, bool> on_get_completion = ( response_val, found ) => {
 				if( response_val == null ) {
 					response_val = new Dictionary<string, ISet<string>>();
 				}
 
-				on_success( response_val, success );
+				on_completion( response_val, found );
 			};
 
-			NetHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, on_response, on_fail, on_completion );
+			NetHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, on_get_response, on_get_fail, on_get_completion );
 		}
 
 

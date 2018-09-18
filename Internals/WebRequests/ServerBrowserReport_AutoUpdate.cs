@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			if( Main.netMode == 1 ) {
 				if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 					//	3 seconds
-					Timers.SetTimer( "server_browser_intro", 60 * 3, delegate {
+					Timers.SetTimer( "ModHelpersServerBrowserIntro", 60 * 3, delegate {
 						alert_privacy();
 						return false;
 					} );
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			if( ServerBrowserReporter.CanAnnounceServer() ) {
 				if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
-					Timers.SetTimer( "server_browser_report", 60 * 60, delegate {   // 1 minute, no repeat
+					Timers.SetTimer( "ModHelpersServerBrowserReport", 60 * 60, delegate {   // 1 minute, no repeat
 						if( ServerBrowserReporter.CanPromptForBrowserAdd() ) {
 							ServerBrowserReporter.EndPrompts();
 						}
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				ServerBrowserReporter.AnnounceServer();
 			}
 			
-			Timers.SetTimer( "server_browser_report", (60 * 10) * 60, delegate {  // 10 minutes
+			Timers.SetTimer( "ModHelpersServerBrowserReport", (60 * 10) * 60, delegate {  // 10 minutes
 				if( ServerBrowserReporter.CanAnnounceServer() ) {
 					if( !ServerBrowserReporter.IsHammering() ) {
 						ServerBrowserReporter.AnnounceServer();

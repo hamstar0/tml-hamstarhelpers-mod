@@ -2,7 +2,9 @@
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
@@ -66,14 +68,37 @@ namespace HamstarHelpers {
 		public override void OnEnterWorld( Player player ) {
 			if( player.whoAmI != Main.myPlayer ) { return; }
 			if( this.player.whoAmI != Main.myPlayer ) { return; }
-			
-			var mymod = (ModHelpersMod)this.mod;
 
-			if( Main.netMode == 0 ) {
-				this.Logic.OnSingleConnect( mymod, player );
-			} else if( Main.netMode == 1 ) {
-				this.Logic.OnCurrentClientConnect( mymod, this.player );
-			}
+			bool has_entered_world = false;
+			Action run = () => {
+				var mymod = (ModHelpersMod)this.mod;
+
+				if( Main.netMode == 0 ) {
+					this.Logic.OnSingleConnect( mymod, this.player );
+				} else if( Main.netMode == 1 ) {
+					this.Logic.OnCurrentClientConnect( mymod, this.player );
+				}
+			};
+
+			Promises.AddValidatedPromise<PlayerPromiseArguments>( ModHelpersPlayer.LoadValidator, ( args ) => {
+				if( args.Who != this.player.whoAmI ) { return false; }
+
+				run();
+
+				has_entered_world = true;
+				return false;
+			} );
+
+			Timers.SetTimer( "ModHelpersOnEnterWorldFailsafe", 2 * 60, () => {
+				if( has_entered_world ) { return false; }
+
+				Main.NewText( "Warning: Player ID failed to load. Some mods might fail to load properly.", Color.Red );
+				Main.NewText( "To fix, try restarting game or reloading mods. If this happens again, please report this issue.", Color.DarkGray );
+
+				run();	// Run anyway
+
+				return false;
+			} );
 		}
 
 
@@ -82,7 +107,7 @@ namespace HamstarHelpers {
 		public override void Load( TagCompound tags ) {
 			this.Logic.Load( tags );
 //LogHelpers.Log( "LOAD "+this.MYUID+" Logic UID: "+this.Logic.PrivateUID+" "+this.Logic.HasUID );
-
+			
 			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
 
 			Promises.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );

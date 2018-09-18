@@ -29,6 +29,7 @@ v3.0.0
 	-	Add submit + update button
 		-	Implement submit
 		-	@Test loading mod data
+		-	@Refactor Server Browser
 
 		-	Implement update unlock
 		-	Define button (sets mode based on tags being set or not)
