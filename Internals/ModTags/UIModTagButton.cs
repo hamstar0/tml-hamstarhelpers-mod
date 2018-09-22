@@ -2,15 +2,14 @@
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UIModTagButton : UITextPanelButton {
-		public const int ColumnHeightTall = 27;
-		public const int ColumnHeightShort = 7;
+		public const int ColumnHeightTall = 31;
+		public const int ColumnHeightShort = 8;
 		public const int ColumnsInMid = 5;
 
 
@@ -24,8 +23,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 		
-		public UIModTagButton( ModTagUI modtagui, bool has_tag, int pos, string label, string desc, float scale =1f, bool large=false )
-				: base( UITheme.Vanilla, label, scale, large ) {
+		public UIModTagButton( ModTagUI modtagui, bool has_tag, int pos, string label, string desc, float scale=1f )
+				: base( UITheme.Vanilla, label, scale, false ) {
 			this.ModTagUI = modtagui;
 			this.HasTag = has_tag;
 
@@ -70,8 +69,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		private void RecalculatePos() {
 			float width = this.Width.Pixels;
-			float left = (( ( Main.screenWidth / 2 ) - 296 ) - (width - 8)) + ( (width - 2) * this.Column );
-			float top = (16 * this.Row) + 64;
+			float left = (( (Main.screenWidth / 2) - 296 ) - (width - 8)) + ( (width - 2) * this.Column );
+			float top = (16 * this.Row) + 48;
 
 			this.Left.Set( left, 0f );
 			this.Top.Set( top, 0f );
@@ -80,13 +79,6 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public override void Recalculate() {
 			this.RecalculatePos();
 			base.Recalculate();
-		}
-
-
-		////////////////
-
-		public override void Draw( SpriteBatch spriteBatch ) {
-			base.Draw( spriteBatch );
 		}
 
 

@@ -52,6 +52,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
 
 
+
 		////////////////
 
 		private ModTagUI() {
@@ -65,40 +66,21 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				string modname = ModTagUI.GetModNameFromUI( ui );
 				if( modname == null ) { return; }
 
-				this.InitializeUI( modname );
+				this.SetCurrentMod( modname );
 			};
 
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Submit+Update", this.SubUpButton, false );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", this.HoverElement, false );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ui_load, _ => { } );
+
+			this.InitializeButtons( false, new HashSet<string>( ModTagUI.Tags.Keys ) );
 		}
 
 		////////////////
 
-		private void InitializeUI( string modname ) {
-			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
-				ISet<string> modtags = args.Found && args.ModTags.ContainsKey( modname ) ?
-					args.ModTags[ modname ] :
-					new HashSet<string>();
-				bool mod_has_tags = modtags.Count > 0;
-
-				this.InitializeButtons( mod_has_tags, modtags );
-
-				if( mod_has_tags ) {
-					this.SubUpButton.SetTagUpdateMode();
-				} else {
-					this.SubUpButton.SetTagSubmitMode();
-				}
-
-				return false;
-			} );
-		}
-
-
 		private void InitializeButtons( bool mod_has_tags, ISet<string> modtags ) {
-			var buttons = new Dictionary<string, UIModTagButton>();
-
 			int i = 0;
+
 			foreach( var kv in ModTagUI.Tags ) {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
@@ -114,11 +96,11 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 					if( !button.IsEnabled ) { return; }
 
 					button.ToggleTag();
-					this.SubUpButton.UpdateEnableState( buttons );
+					this.SubUpButton.UpdateEnableState( this.TagButtons );
 				};
 
 				MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags " + i, button, false );
-				buttons[tag_text] = button;
+				this.TagButtons[tag_text] = button;
 
 				i++;
 			}
@@ -131,6 +113,25 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			foreach( var kv in this.TagButtons ) {
 				kv.Value.Enable();
 			}
+		}
+
+
+		////////////////
+
+		private void SetCurrentMod( string modname ) {
+			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+				ISet<string> modtags = args.Found && args.ModTags.ContainsKey( modname ) ?
+						args.ModTags[ modname ] :
+						new HashSet<string>();
+
+				if( modtags.Count > 0 ) {
+					this.SubUpButton.SetTagUpdateMode();
+				} else {
+					this.SubUpButton.SetTagSubmitMode();
+				}
+
+				return false;
+			} );
 		}
 	}
 }

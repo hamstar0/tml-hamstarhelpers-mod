@@ -33,7 +33,7 @@ namespace HamstarHelpers.Internals.Menus {
 				} catch( Exception ) { }
 			};
 
-			MenuUI.AddMenuLoader( "UIMods", "ModHelpers: Mod Menu Config Folder Button", button );
+			MenuUI.AddMenuLoader( "UIMods", "ModHelpers: Mod Menu Config Folder Button", button, true );
 		}
 	}
 }

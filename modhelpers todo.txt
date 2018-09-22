@@ -16,7 +16,7 @@ Future?
 
 
 v3.0.0
--	@Remake Server Browser backend using Google Cloud stuff (free trial)
+-	@Remake Server Browser backend (using Google Cloud stuff (free trial)?)
 -	Add support links
 -	Mod version update indications in mods list
 -	Mod incompatibilies (custom Mod properties, akin to github + config properties)
@@ -26,10 +26,10 @@ v3.0.0
 	-	@Include mod author lists
 	-	Implement filtering
 	-	Implement submitting tags
+	-	Adjust for Overhaul links (OverhaulMod.mainMenuDataOffset)
 	-	Add submit + update button
 		-	Implement submit
 		-	@Test loading mod data
-		-	@Refactor Server Browser
 
 		-	Implement update unlock
 		-	Define button (sets mode based on tags being set or not)

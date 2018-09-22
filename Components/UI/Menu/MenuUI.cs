@@ -16,14 +16,16 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 			if( !mymod.MenuUIMngr.Loaders.ContainsKey( ui_class_name ) ) {
 				mymod.MenuUIMngr.Loaders[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
-				mymod.MenuUIMngr.Unloaders[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
+			}
+			if( !mymod.MenuUIMngr.Unloaders.ContainsKey( ui_class_name ) ) {
+				mymod.MenuUIMngr.Unloaders[ui_class_name] = new Dictionary<string, Action<UIState>>();
 			}
 			mymod.MenuUIMngr.Loaders[ ui_class_name ][ elem_name ] = on_load;
 			mymod.MenuUIMngr.Unloaders[ ui_class_name ][ elem_name ] = on_unload;
 		}
 
 
-		public static void AddMenuLoader( string ui_class_name, string elem_name, UIElement myelem, bool inner=true ) {
+		public static void AddMenuLoader( string ui_class_name, string elem_name, UIElement myelem, bool inner ) {
 			bool myinner = inner;
 
 			Func<UIState, UIElement> get_insert_point = ( UIState ui ) => {
@@ -36,7 +38,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 					return ui;//ui_outer_container;
 				}
 			};
-
+			
 			Action<UIState> on_load = ( UIState ui ) => {
 				UIElement elem = get_insert_point( ui );
 				elem.Append( myelem );
@@ -146,13 +148,21 @@ namespace HamstarHelpers.Components.UI.Menu {
 				return;
 			}
 
+			this.LoadUI( ui );
+		}
+
+
+		private void LoadUI( UIState ui ) {
+			string prev_ui_name = this.CurrentMenu?.Item1;
+			string curr_ui_name = ui?.GetType().Name;
+
 			if( prev_ui_name != null && this.Unloaders.ContainsKey(prev_ui_name) ) {
 				var unloaders = this.Unloaders[ prev_ui_name ].Values;
 				
 				foreach( Action<UIState> unloader in unloaders ) {
 					unloader( this.CurrentMenu.Item2 );
 				}
-				this.Unloaders.Remove( prev_ui_name );
+				//this.Unloaders.Remove( prev_ui_name );
 			}
 			
 			if( ui == null ) {

@@ -1,13 +1,5 @@
-﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Promises;
-using System;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System.Collections.Generic;
-using System.Reflection;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader.IO;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModPackBrowser {

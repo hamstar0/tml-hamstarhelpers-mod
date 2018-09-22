@@ -49,7 +49,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 
-		public static string ModTagsUrl => "https://script.google.com/macros/s/AKfycbwSuU6XJ6uSh0RNWjkzJUmVW6wRkNighHlfKGPf4pUdcu0J2tys/exec";
+		public static string ModTagsUrl => "http://hamstar.pw/hamstarhelpers/mod_info/";
+			//"https://script.google.com/macros/s/AKfycbwSuU6XJ6uSh0RNWjkzJUmVW6wRkNighHlfKGPf4pUdcu0J2tys/exec";
 
 		////////////////
 
@@ -71,13 +72,13 @@ namespace HamstarHelpers.Internals.WebRequests {
 					var args = new ModTagsPromiseArguments {
 						Found = false
 					};
-
+					
 					GetModTags.RetrieveAllTagModsAsync( ( tags, found ) => {
 						if( found ) {
 							args.SetTagMods( tags );
 						}
 						args.Found = found;
-
+						
 						Promises.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
 					} );
 				}
