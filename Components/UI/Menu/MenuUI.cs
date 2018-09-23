@@ -18,7 +18,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 				mymod.MenuUIMngr.Loaders[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
 			}
 			if( !mymod.MenuUIMngr.Unloaders.ContainsKey( ui_class_name ) ) {
-				mymod.MenuUIMngr.Unloaders[ui_class_name] = new Dictionary<string, Action<UIState>>();
+				mymod.MenuUIMngr.Unloaders[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
 			}
 			mymod.MenuUIMngr.Loaders[ ui_class_name ][ elem_name ] = on_load;
 			mymod.MenuUIMngr.Unloaders[ ui_class_name ][ elem_name ] = on_unload;

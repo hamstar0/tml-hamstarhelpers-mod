@@ -23,12 +23,14 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 		
-		public UIModTagButton( ModTagUI modtagui, bool has_tag, int pos, string label, string desc, float scale=1f )
+		public UIModTagButton( ModTagUI modtagui, bool is_read_only, bool has_tag, int pos, string label, string desc, float scale=1f )
 				: base( UITheme.Vanilla, label, scale, false ) {
 			this.ModTagUI = modtagui;
 			this.HasTag = has_tag;
-
-			this.UpdateColor();
+			
+			if( is_read_only ) {
+				this.Disable();
+			}
 
 			int col_tall = UIModTagButton.ColumnHeightTall;
 			int col_short = UIModTagButton.ColumnHeightShort;
@@ -47,6 +49,12 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 			this.Width.Set( 120f, 0f );
 			this.Height.Set( 16f, 0f );
+
+			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
+				if( !this.IsEnabled ) { return; }
+
+				this.ToggleTag();
+			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				this.ModTagUI.HoverElement.SetText( desc );
 				this.ModTagUI.HoverElement.Left.Set( Main.mouseX, 0f );
@@ -63,6 +71,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			};
 
 			this.RecalculatePos();
+			this.UpdateColor();
 		}
 
 		////////////////
@@ -84,11 +93,31 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
+		public void EnableTag() {
+			if( this.HasTag ) { return; }
+			this.HasTag = true;
+
+			this.UpdateColor();
+			this.ModTagUI.SubUpButton.UpdateEnableState();
+		}
+
+		public void DisableTag() {
+			if( !this.HasTag ) { return; }
+			this.HasTag = false;
+			
+			this.UpdateColor();
+			this.ModTagUI.SubUpButton.UpdateEnableState();
+		}
+
 		public void ToggleTag() {
 			this.HasTag = !this.HasTag;
 
 			this.UpdateColor();
+			this.ModTagUI.SubUpButton.UpdateEnableState();
 		}
+
+
+		////////////////
 
 		private void UpdateColor() {
 			this.TextColor = this.HasTag ?

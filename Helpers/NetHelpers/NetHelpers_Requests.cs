@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -110,10 +109,10 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 					if( success ) {
 						response_val = on_response( output );
 					} else {
-						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output??"" );
+						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
 					}
 				} catch( Exception e ) {
-					on_error?.Invoke( e, output??"" );
+					on_error?.Invoke( e, output ?? "" );
 				}
 				
 				on_completion?.Invoke( response_val.Item1, (success && response_val.Item2) );
@@ -131,6 +130,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 			try {
 				resp = (HttpWebResponse)request.GetResponse();
 			} catch( WebException e ) {
+LogHelpers.Log( "? "+e.ToString() );
 				success = false;
 				return "";
 			}

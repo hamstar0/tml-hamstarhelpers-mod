@@ -73,7 +73,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", this.HoverElement, false );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ui_load, _ => { } );
 
-			this.InitializeButtons( false, new HashSet<string>( ModTagUI.Tags.Keys ) );
+			this.InitializeButtons( false, new HashSet<string>() );
 		}
 
 		////////////////
@@ -86,21 +86,10 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				string tag_desc = kv.Value;
 				bool mod_has_curr_tag = modtags.Contains( tag_text );
 
-				var button = new UIModTagButton( this, mod_has_curr_tag, i, tag_text, tag_desc, 0.6f );
-
-				if( mod_has_tags ) {
-					button.Disable();
-				}
-
-				button.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
-					if( !button.IsEnabled ) { return; }
-
-					button.ToggleTag();
-					this.SubUpButton.UpdateEnableState( this.TagButtons );
-				};
+				var button = new UIModTagButton( this, mod_has_tags, mod_has_curr_tag, i, tag_text, tag_desc, 0.6f );
 
 				MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags " + i, button, false );
-				this.TagButtons[tag_text] = button;
+				this.TagButtons[ tag_text ] = button;
 
 				i++;
 			}
@@ -124,10 +113,17 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 						args.ModTags[ modname ] :
 						new HashSet<string>();
 
+//LogHelpers.Log( "SetCurrentMod modname: " + modname+", modtags: " + string.Join(",", modtags) );
 				if( modtags.Count > 0 ) {
 					this.SubUpButton.SetTagUpdateMode();
 				} else {
 					this.SubUpButton.SetTagSubmitMode();
+				}
+
+				foreach( var kv in this.TagButtons ) {
+					if( !modtags.Contains(kv.Key) ) { continue; }
+
+					kv.Value.EnableTag();
 				}
 
 				return false;

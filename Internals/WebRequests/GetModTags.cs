@@ -13,25 +13,25 @@ using System.Threading;
 namespace HamstarHelpers.Internals.WebRequests {
 	class ModTagsPromiseArguments : PromiseArguments {
 		public bool Found;
-		internal IDictionary<string, ISet<string>> TagMods = null;
 		internal IDictionary<string, ISet<string>> ModTags = null;
+		internal IDictionary<string, ISet<string>> TagMods = null;
 
 
 		////////////////
 
-		internal void SetTagMods( IDictionary<string, ISet<string>> tagmods ) {
-			this.TagMods = tagmods;
-			this.ModTags = new Dictionary<string, ISet<string>>();
+		internal void SetTagMods( IDictionary<string, ISet<string>> mod_tags ) {
+			this.ModTags = mod_tags;
+			this.TagMods = new Dictionary<string, ISet<string>>();
 
-			foreach( var kv in tagmods ) {
-				string tagname = kv.Key;
-				ISet<string> modnames = kv.Value;
+			foreach( var kv in mod_tags ) {
+				string mod_name = kv.Key;
+				ISet<string> tags = kv.Value;
 
-				foreach( string modname in modnames ) {
-					if( !this.ModTags.ContainsKey( modname ) ) {
-						this.ModTags[modname] = new HashSet<string>();
+				foreach( string tag in tags ) {
+					if( !this.TagMods.ContainsKey( tag ) ) {
+						this.TagMods[tag] = new HashSet<string>();
 					}
-					this.ModTags[modname].Add( tagname );
+					this.TagMods[tag].Add( mod_name );
 				}
 			}
 //LogHelpers.Log( "tag mods: " + string.Join( ",", tagmods.Select( kv => kv.Key + ":" + kv.Value ) ) );
@@ -73,9 +73,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 						Found = false
 					};
 					
-					GetModTags.RetrieveAllTagModsAsync( ( tags, found ) => {
+					GetModTags.RetrieveAllTagModsAsync( ( mod_tags, found ) => {
 						if( found ) {
-							args.SetTagMods( tags );
+							args.SetTagMods( mod_tags );
 						}
 						args.Found = found;
 						
@@ -90,35 +90,35 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private static void RetrieveAllTagModsAsync( Action<IDictionary<string, ISet<string>>, bool> on_completion ) {
 			Func<string, Tuple<IDictionary<string, ISet<string>>, bool>> on_get_response = ( string output ) => {
 				bool found = false;
-				IDictionary<string, ISet<string>> tag_mod_set = new Dictionary<string, ISet<string>>();
+				IDictionary<string, ISet<string>> mod_tag_set = new Dictionary<string, ISet<string>>();
 
 				JObject resp_json = JObject.Parse( output );
 
 				if( resp_json.Count > 0 ) {
-					JToken mod_list_token = resp_json.SelectToken( "modlist" );
-					if( mod_list_token == null ) {
-						throw new NullReferenceException( "No modlist" );
+					JToken tag_list_token = resp_json.SelectToken( "modlist" );
+					if( tag_list_token == null ) {
+						throw new NullReferenceException( "No modlist: " + string.Join(",", resp_json.Properties()) );
 					}
 
-					JToken[] mod_list = mod_list_token.ToArray();
+					JToken[] tag_list = tag_list_token.ToArray();
 
-					foreach( JToken mod_entry in mod_list ) {
-						JToken tag_name_token = mod_entry.SelectToken( "name" );
-						JToken tag_mods_raw_token = mod_entry.SelectToken( "tags" );
-						if( tag_name_token == null || tag_mods_raw_token == null ) {
+					foreach( JToken tag_entry in tag_list ) {
+						JToken mod_name_token = tag_entry.SelectToken( "ModName" );
+						JToken mod_tags_token = tag_entry.SelectToken( "ModTags" );
+						if( mod_name_token == null || mod_tags_token == null ) {
 							continue;
 						}
 
-						string tag_name = tag_name_token.ToObject<string>();
-						string tag_mods_raw = tag_mods_raw_token.ToObject<string>();
-						string[] tag_mods = tag_mods_raw.Substring( 1 ).Split( ',' );
+						string mod_name = mod_name_token.ToObject<string>();
+						string mod_tags_raw = mod_tags_token.ToObject<string>();
+						string[] mod_tags = mod_tags_raw.Split( ',' );
 
-						tag_mod_set[ tag_name ] = new HashSet<string>( tag_mods );
+						mod_tag_set[ mod_name ] = new HashSet<string>( mod_tags );
 					}
 					found = true;
 				}
 				
-				return Tuple.Create( tag_mod_set, found );
+				return Tuple.Create( mod_tag_set, found );
 			};
 
 			Action<Exception, string> on_get_fail = ( e, output ) => {
@@ -126,9 +126,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - Bad JSON: " +
 						(output.Length > 256 ? output.Substring(0, 256) : output) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - " + (output ?? "") + " - " + e.Message );
+					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - " + (output ?? "..." ) + " - " + e.Message );
 				} else {
-					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - " + (output ?? "") + " - " + e.ToString() );
+					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - " + (output ?? "...") + " - " + e.ToString() );
 				}
 			};
 

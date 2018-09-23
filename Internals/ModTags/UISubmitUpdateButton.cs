@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.UI;
+
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UISubmitUpdateButton : UITextPanelButton {
@@ -11,8 +11,9 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 
 
-		public UISubmitUpdateButton( ModTagUI modtagui )
-				: base( UITheme.Vanilla, "", 1.5f, false ) {
+		////////////////
+
+		public UISubmitUpdateButton( ModTagUI modtagui ) : base( UITheme.Vanilla, "", 1.5f, false ) {
 			this.ModTagUI = modtagui;
 
 			this.Width.Set( 256f, 0f );
@@ -67,10 +68,10 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		public void UpdateEnableState( IDictionary<string, UIModTagButton> buttons ) {
+		public void UpdateEnableState() {
 			int tag_count = 0;
 
-			foreach( var kv in buttons ) {
+			foreach( var kv in this.ModTagUI.TagButtons ) {
 				if( kv.Value.HasTag ) {
 					tag_count++;
 				}
@@ -87,7 +88,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		private void SubmitTags() {
-
+			//TODO
 		}
 	}
 }
