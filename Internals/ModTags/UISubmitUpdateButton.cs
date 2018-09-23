@@ -57,18 +57,25 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		public void SetTagUpdateMode() {
 			this.SetText( "Update mod tags" );
+
+			this.UpdateEnableState();
 		}
 
 		public void SetTagSubmitMode() {
 			this.SetText( "Submit mod tags" );
 			this.Disable();
-
+			
 			this.ModTagUI.EnableButtons();
 		}
 
 		////////////////
 
 		public void UpdateEnableState() {
+			if( this.Text == "Update mod tags" ) {
+				this.Enable();
+				return;
+			}
+
 			int tag_count = 0;
 
 			foreach( var kv in this.ModTagUI.TagButtons ) {

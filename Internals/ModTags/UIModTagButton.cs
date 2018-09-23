@@ -21,6 +21,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public bool HasTag { get; private set; }
 
 
+
 		////////////////
 		
 		public UIModTagButton( ModTagUI modtagui, bool is_read_only, bool has_tag, int pos, string label, string desc, float scale=1f )
@@ -74,6 +75,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			this.UpdateColor();
 		}
 
+
 		////////////////
 
 		private void RecalculatePos() {
@@ -97,32 +99,42 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			if( this.HasTag ) { return; }
 			this.HasTag = true;
 
-			this.UpdateColor();
 			this.ModTagUI.SubUpButton.UpdateEnableState();
+			this.UpdateColor();
 		}
 
 		public void DisableTag() {
 			if( !this.HasTag ) { return; }
 			this.HasTag = false;
 			
-			this.UpdateColor();
 			this.ModTagUI.SubUpButton.UpdateEnableState();
+			this.UpdateColor();
 		}
 
 		public void ToggleTag() {
 			this.HasTag = !this.HasTag;
 
-			this.UpdateColor();
 			this.ModTagUI.SubUpButton.UpdateEnableState();
+			this.UpdateColor();
 		}
 
 
 		////////////////
 
+		public override void RefreshTheme() {
+			base.RefreshTheme();
+
+			if( this.HasTag ) {
+				this.TextColor = Color.LimeGreen;
+			}
+		}
+
 		private void UpdateColor() {
-			this.TextColor = this.HasTag ?
-				Color.LimeGreen :
-				Color.DarkGray;
+			if( this.HasTag ) {
+				this.TextColor = Color.LimeGreen;
+			} else {
+				this.RefreshTheme();
+			}
 		}
 	}
 }

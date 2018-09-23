@@ -29,8 +29,8 @@ v3.0.0
 	-	Adjust for Overhaul links (OverhaulMod.mainMenuDataOffset)
 	-	Add submit + update button
 		-	Implement submit
-		-	@Test loading mod data
 
+		-	@Test loading mod data
 		-	Implement update unlock
 		-	Define button (sets mode based on tags being set or not)
 	-	Apply loaded tags for mods that have them

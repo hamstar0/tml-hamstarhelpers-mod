@@ -112,18 +112,23 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				ISet<string> modtags = args.Found && args.ModTags.ContainsKey( modname ) ?
 						args.ModTags[ modname ] :
 						new HashSet<string>();
+				bool has_tags = modtags.Count > 0;
 
 //LogHelpers.Log( "SetCurrentMod modname: " + modname+", modtags: " + string.Join(",", modtags) );
-				if( modtags.Count > 0 ) {
+				if( has_tags ) {
 					this.SubUpButton.SetTagUpdateMode();
 				} else {
 					this.SubUpButton.SetTagSubmitMode();
 				}
-
+				
 				foreach( var kv in this.TagButtons ) {
-					if( !modtags.Contains(kv.Key) ) { continue; }
+					if( has_tags ) {
+						kv.Value.Disable();
+					}
 
-					kv.Value.EnableTag();
+					if( modtags.Contains( kv.Key ) ) {
+						kv.Value.EnableTag();
+					}
 				}
 
 				return false;
