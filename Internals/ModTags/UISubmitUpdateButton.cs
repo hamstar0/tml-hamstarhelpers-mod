@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		public UISubmitUpdateButton( ModTagUI modtagui ) : base( UITheme.Vanilla, "", 1.5f, false ) {
+		public UISubmitUpdateButton( ModTagUI modtagui ) : base( UITheme.Vanilla, "", 0.65f, true ) {
 			this.ModTagUI = modtagui;
 
 			this.Width.Set( 256f, 0f );
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		private void RecalculatePos() {
 			this.Left.Set( (Main.screenWidth / 2) - 128, 0f );
-			this.Top.Set( 4f, 0f );
+			this.Top.Set( 2f, 0f );
 		}
 
 		public override void Recalculate() {

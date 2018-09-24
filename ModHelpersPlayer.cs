@@ -70,18 +70,20 @@ namespace HamstarHelpers {
 			if( this.player.whoAmI != Main.myPlayer ) { return; }
 
 			bool has_entered_world = false;
+			int who = player.whoAmI;
+
 			Action run = () => {
 				var mymod = (ModHelpersMod)this.mod;
 
 				if( Main.netMode == 0 ) {
-					this.Logic.OnSingleConnect( mymod, this.player );
+					this.Logic.OnSingleConnect( mymod, Main.player[who] );
 				} else if( Main.netMode == 1 ) {
-					this.Logic.OnCurrentClientConnect( mymod, this.player );
+					this.Logic.OnClientConnect( mymod, Main.player[who] );
 				}
 			};
 
 			Promises.AddValidatedPromise<PlayerPromiseArguments>( ModHelpersPlayer.LoadValidator, ( args ) => {
-				if( args.Who != this.player.whoAmI ) { return false; }
+				if( args.Who != who ) { return false; }
 
 				run();
 
@@ -90,13 +92,12 @@ namespace HamstarHelpers {
 			} );
 
 			Timers.SetTimer( "ModHelpersOnEnterWorldFailsafe", 2 * 60, () => {
-				if( has_entered_world ) { return false; }
+				if( !has_entered_world ) {
+					Main.NewText( "Warning: Player ID failed to load. Some mods might fail to load properly.", Color.Red );
+					Main.NewText( "To fix, try restarting game or reloading mods. If this happens again, please report this issue.", Color.DarkGray );
 
-				Main.NewText( "Warning: Player ID failed to load. Some mods might fail to load properly.", Color.Red );
-				Main.NewText( "To fix, try restarting game or reloading mods. If this happens again, please report this issue.", Color.DarkGray );
-
-				run();	// Run anyway
-
+					run();  // Run anyway
+				}
 				return false;
 			} );
 		}
@@ -106,7 +107,6 @@ namespace HamstarHelpers {
 
 		public override void Load( TagCompound tags ) {
 			this.Logic.Load( tags );
-//LogHelpers.Log( "LOAD "+this.MYUID+" Logic UID: "+this.Logic.PrivateUID+" "+this.Logic.HasUID );
 			
 			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
 

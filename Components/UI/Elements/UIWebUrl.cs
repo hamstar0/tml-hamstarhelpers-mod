@@ -11,7 +11,7 @@ using HamstarHelpers.Helpers.UIHelpers;
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public class UIWebUrl : UIElement {
-		public UITheme Theme { get; private set; }
+		public UITheme Theme { get; protected set; }
 		public UIText TextElem { get; private set; }
 		public UIText LineElem { get; private set; }
 

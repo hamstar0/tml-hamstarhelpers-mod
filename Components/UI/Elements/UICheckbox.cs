@@ -48,7 +48,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public UICheckbox( string label, string title, bool is_clickable = true, float text_scale = 1, bool large = false ) : base( label, text_scale, large ) {
+		public UICheckbox( string label, string title, bool is_clickable = true, float text_scale = 1, bool large = false )
+				: base( label, text_scale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
 				UICheckbox.LoadTextures();
 			}

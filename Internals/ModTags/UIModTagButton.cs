@@ -1,7 +1,9 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 
@@ -28,6 +30,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				: base( UITheme.Vanilla, label, scale, false ) {
 			this.ModTagUI = modtagui;
 			this.HasTag = has_tag;
+
+			this.DrawPanel = false;
 			
 			if( is_read_only ) {
 				this.Disable();
@@ -81,7 +85,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		private void RecalculatePos() {
 			float width = this.Width.Pixels;
 			float left = (( (Main.screenWidth / 2) - 296 ) - (width - 8)) + ( (width - 2) * this.Column );
-			float top = (16 * this.Row) + 48;
+			float top = (16 * this.Row) + 40;
 
 			this.Left.Set( left, 0f );
 			this.Top.Set( top, 0f );
@@ -135,6 +139,31 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			} else {
 				this.RefreshTheme();
 			}
+		}
+
+
+		////////////////
+
+		public override void Draw( SpriteBatch sb ) {
+			Color edge_color = !this.IsEnabled ?
+				this.Theme.ButtonEdgeDisabledColor :
+				this.IsMouseHovering ?
+					this.Theme.ButtonEdgeLitColor :
+					this.Theme.ButtonEdgeColor;
+			Color bg_color = !this.IsEnabled ?
+				this.Theme.ButtonBgDisabledColor :
+				this.IsMouseHovering ?
+					this.Theme.ButtonBgLitColor :
+					this.Theme.ButtonBgColor;
+			Rectangle rect = this.GetOuterDimensions().ToRectangle();
+			rect.X += 4;
+			rect.Y += 4;
+			rect.Width -= 4;
+			rect.Height -= 5;
+
+			HudHelpers.DrawBorderedRect( sb, bg_color, edge_color, rect, 2 );
+
+			base.Draw( sb );
 		}
 	}
 }

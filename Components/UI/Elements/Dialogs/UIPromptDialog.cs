@@ -16,7 +16,8 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 
 		////////////////
 
-		public UIPromptDialog( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null ) : base( theme, width, height ) {
+		public UIPromptDialog( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null )
+				: base( theme, width, height ) {
 			this.TitleText = title;
 			this.ConfirmAction = confirm;
 			this.CancelAction = cancel;

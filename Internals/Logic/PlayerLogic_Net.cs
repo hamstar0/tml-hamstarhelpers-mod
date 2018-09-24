@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnCurrentClientConnect( ModHelpersMod mymod, Player player ) {
+		public void OnClientConnect( ModHelpersMod mymod, Player player ) {
 			if( !this.HasUID ) {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 				this.HasUID = true;	// Ugly failsafe

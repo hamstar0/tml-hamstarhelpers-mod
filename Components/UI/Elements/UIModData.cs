@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Services.AnimatedColor;
+using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,7 +14,6 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
-using HamstarHelpers.Services.Promises;
 
 
 namespace HamstarHelpers.Components.UI.Elements {

@@ -17,6 +17,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		public UITheme Theme { get; protected set; }
+		
 		public string Text { get; private set; }
 		public string DisplayText { get; private set; }
 		public string Hint { get; private set; }
@@ -32,8 +34,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public bool HasFocus { get; private set; }
 		public bool IsEnabled { get; private set; }
-
-		private UITheme Theme;
 
 
 		////////////////

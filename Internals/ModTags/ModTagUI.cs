@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -59,6 +60,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			this.HoverElement = new UIText( "" );
 			this.HoverElement.Width.Set( 0, 0 );
 			this.HoverElement.Height.Set( 0, 0 );
+			this.HoverElement.TextColor = Color.Aquamarine;
 
 			this.SubUpButton = new UISubmitUpdateButton( this );
 
@@ -69,11 +71,10 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				this.SetCurrentMod( modname );
 			};
 
-			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Submit+Update", this.SubUpButton, false );
-			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", this.HoverElement, false );
-			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ui_load, _ => { } );
-
 			this.InitializeButtons( false, new HashSet<string>() );
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Submit+Update", this.SubUpButton, false );
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ui_load, _ => { } );
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", this.HoverElement, false );
 		}
 
 		////////////////

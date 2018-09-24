@@ -5,7 +5,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public class UITextPanelButton : UITextPanel<string> {
-		private readonly UITheme Theme;
+		public UITheme Theme { get; protected set; }
 
 		public bool IsEnabled { get; private set; }
 

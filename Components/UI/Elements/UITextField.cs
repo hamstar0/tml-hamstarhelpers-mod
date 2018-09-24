@@ -23,7 +23,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public delegate void EventHandler( Object sender, EventArgs e );
 
 
-		private UITheme Theme;
+		public UITheme Theme { get; protected set; }
 
 		public event EventHandler OnTextChange;
 		public Color TextColor;

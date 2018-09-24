@@ -12,8 +12,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public bool IsOpen { get; private set; }
 
-		protected UserInterface Backend = null;
 		protected UITheme Theme;
+
+		protected UserInterface Backend = null;
 
 		protected UIElement OuterContainer = null;
 		protected UIPanel InnerContainer = null;
