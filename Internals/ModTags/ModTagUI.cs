@@ -6,7 +6,9 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
@@ -52,6 +54,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public UISubmitUpdateButton SubUpButton;
 		public IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
 
+		public string ModName = "";
+
 
 
 		////////////////
@@ -71,7 +75,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				this.SetCurrentMod( modname );
 			};
 
-			this.InitializeButtons( false, new HashSet<string>() );
+			this.InitializeTagButtons( false, new HashSet<string>() );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Submit+Update", this.SubUpButton, false );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ui_load, _ => { } );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", this.HoverElement, false );
@@ -79,7 +83,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		private void InitializeButtons( bool mod_has_tags, ISet<string> modtags ) {
+		private void InitializeTagButtons( bool mod_has_tags, ISet<string> modtags ) {
 			int i = 0;
 
 			foreach( var kv in ModTagUI.Tags ) {
@@ -99,6 +103,20 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
+		public ISet<string> GetTags() {
+			ISet<string> tags = new HashSet<string>();
+
+			foreach( var kv in this.TagButtons ) {
+				if( !kv.Value.IsTagEnabled ) { continue; }
+				tags.Add( kv.Key );
+			}
+
+			return tags;
+		}
+
+
+		////////////////
+
 		public void EnableButtons() {
 			foreach( var kv in this.TagButtons ) {
 				kv.Value.Enable();
@@ -109,6 +127,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		private void SetCurrentMod( string modname ) {
+			this.ModName = modname;
+
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				ISet<string> modtags = args.Found && args.ModTags.ContainsKey( modname ) ?
 						args.ModTags[ modname ] :
@@ -134,6 +154,28 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 				return false;
 			} );
+		}
+
+
+		////////////////
+
+		internal void SubmitTags() {
+			if( this.ModName == "" ) {
+				throw new Exception( "Invalid mod name." );
+			}
+
+			Action<string> on_success = delegate ( string output ) {
+				ErrorLogger.Log( "Mod info submit result: " + output );
+			};
+			Action<Exception, string> on_fail = ( e, output ) => {
+				Main.NewText( "Mod info submit error: " + e.Message, Color.Red );
+				LogHelpers.Log( e.ToString() );
+			};
+
+			PostModInfo.SubmitModInfo( this.ModName, this.GetTags(), on_success, on_fail );
+
+			this.SubUpButton.IsLocked = true;
+			this.SubUpButton.Disable();
 		}
 	}
 }

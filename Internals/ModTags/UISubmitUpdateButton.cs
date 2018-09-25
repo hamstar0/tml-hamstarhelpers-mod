@@ -9,6 +9,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UISubmitUpdateButton : UITextPanelButton {
 		private readonly ModTagUI ModTagUI;
 
+		public bool IsLocked = false;
+
 
 
 		////////////////
@@ -45,10 +47,10 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public override void Click( UIMouseEvent evt ) {
 			if( !this.IsEnabled ) { return; }
 
-			if( this.Text == "Update mod tags" ) {
+			if( this.Text == "Modify mod tags" ) {
 				this.SetTagSubmitMode();
 			} else {
-				this.SubmitTags();
+				this.ModTagUI.SubmitTags();
 			}
 		}
 
@@ -56,7 +58,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		public void SetTagUpdateMode() {
-			this.SetText( "Update mod tags" );
+			this.SetText( "Modify mod tags" );
 
 			this.UpdateEnableState();
 		}
@@ -71,31 +73,26 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		public void UpdateEnableState() {
-			if( this.Text == "Update mod tags" ) {
-				this.Enable();
+			if( this.IsLocked ) {
+				this.Disable();
 				return;
 			}
 
-			int tag_count = 0;
-
-			foreach( var kv in this.ModTagUI.TagButtons ) {
-				if( kv.Value.HasTag ) {
-					tag_count++;
-				}
+			if( string.IsNullOrEmpty(this.ModTagUI.ModName) ) {
+				this.Disable();
+				return;
 			}
 
-			if( tag_count >= 3 ) {
+			if( this.Text == "Modify mod tags" ) {
+				this.Enable();
+				return;
+			}
+			
+			if( this.ModTagUI.GetTags().Count >= 3 ) {
 				this.Enable();
 			} else {
 				this.Disable();
 			}
-		}
-
-
-		////////////////
-
-		private void SubmitTags() {
-			//TODO
 		}
 	}
 }

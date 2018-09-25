@@ -46,7 +46,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				LogHelpers.Log( e.ToString() );
 			};
 
-			GithubModIssueReports.ReportIssue( mod, issue_title, issue_body, on_success, on_fail, on_completion );
+			PostGithubModIssueReports.ReportIssue( mod, issue_title, issue_body, on_success, on_fail, on_completion );
 		}
 	}
 }

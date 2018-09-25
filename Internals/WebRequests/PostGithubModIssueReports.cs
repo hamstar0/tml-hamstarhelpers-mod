@@ -22,7 +22,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-	class GithubModIssueReports {
+	class PostGithubModIssueReports {
 		public static void ReportIssue( Mod mod, string issue_title, string issue_body, Action<string> on_success, Action<Exception, string> on_error, Action on_completion=null ) {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );

@@ -56,7 +56,7 @@ namespace HamstarHelpers.Commands {
 				caller.Reply( e.Message, Color.Red );
 			};
 
-			GithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body, on_success, on_fail );
+			PostGithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body, on_success, on_fail );
 		}
 	}
 }

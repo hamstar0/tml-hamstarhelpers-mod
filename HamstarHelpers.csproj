@@ -112,6 +112,7 @@
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="Internals\WebRequests\GetModTags.cs" />
     <Compile Include="Internals\WebRequests\GetModVersion.cs" />
+    <Compile Include="Internals\WebRequests\PostModInfo.cs" />
     <Compile Include="ModHelpersMod_Data.cs" />
     <Compile Include="ModHelpersMod_Draw.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Obsolete.cs" />
@@ -204,7 +205,7 @@
     <Compile Include="Services\Promises\Promises_ContextAPI.cs" />
     <Compile Include="Services\Promises\Promises.cs" />
     <Compile Include="Services\Timers\Timers.cs" />
-    <Compile Include="Internals\WebRequests\GithubModIssueReports.cs" />
+    <Compile Include="Internals\WebRequests\PostGithubModIssueReports.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
     <Compile Include="Internals\WebRequests\ServerBrowserReport_Announce.cs" />
     <Compile Include="Internals\WebRequests\ServerBrowserReport_ProofOfWork.cs" />

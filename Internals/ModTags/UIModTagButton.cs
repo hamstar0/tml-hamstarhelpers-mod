@@ -20,16 +20,16 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public int Column;
 		public int Row;
 
-		public bool HasTag { get; private set; }
+		public bool IsTagEnabled { get; private set; }
 
 
 
 		////////////////
 		
-		public UIModTagButton( ModTagUI modtagui, bool is_read_only, bool has_tag, int pos, string label, string desc, float scale=1f )
+		public UIModTagButton( ModTagUI modtagui, bool is_read_only, bool is_tag_set, int pos, string label, string desc, float scale=1f )
 				: base( UITheme.Vanilla, label, scale, false ) {
 			this.ModTagUI = modtagui;
-			this.HasTag = has_tag;
+			this.IsTagEnabled = is_tag_set;
 
 			this.DrawPanel = false;
 			
@@ -62,8 +62,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				this.ModTagUI.HoverElement.SetText( desc );
-				this.ModTagUI.HoverElement.Left.Set( Main.mouseX, 0f );
-				this.ModTagUI.HoverElement.Top.Set( Main.mouseY, 0f );
+				this.ModTagUI.HoverElement.Left.Set( Main.mouseX, 8f );
+				this.ModTagUI.HoverElement.Top.Set( Main.mouseY, 8f );
 				this.ModTagUI.HoverElement.Recalculate();
 				this.UpdateColor();
 			};
@@ -100,23 +100,23 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		public void EnableTag() {
-			if( this.HasTag ) { return; }
-			this.HasTag = true;
+			if( this.IsTagEnabled ) { return; }
+			this.IsTagEnabled = true;
 
 			this.ModTagUI.SubUpButton.UpdateEnableState();
 			this.UpdateColor();
 		}
 
 		public void DisableTag() {
-			if( !this.HasTag ) { return; }
-			this.HasTag = false;
+			if( !this.IsTagEnabled ) { return; }
+			this.IsTagEnabled = false;
 			
 			this.ModTagUI.SubUpButton.UpdateEnableState();
 			this.UpdateColor();
 		}
 
 		public void ToggleTag() {
-			this.HasTag = !this.HasTag;
+			this.IsTagEnabled = !this.IsTagEnabled;
 
 			this.ModTagUI.SubUpButton.UpdateEnableState();
 			this.UpdateColor();
@@ -128,13 +128,13 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public override void RefreshTheme() {
 			base.RefreshTheme();
 
-			if( this.HasTag ) {
+			if( this.IsTagEnabled ) {
 				this.TextColor = Color.LimeGreen;
 			}
 		}
 
 		private void UpdateColor() {
-			if( this.HasTag ) {
+			if( this.IsTagEnabled ) {
 				this.TextColor = Color.LimeGreen;
 			} else {
 				this.RefreshTheme();
@@ -144,24 +144,65 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		public override void Draw( SpriteBatch sb ) {
-			Color edge_color = !this.IsEnabled ?
-				this.Theme.ButtonEdgeDisabledColor :
-				this.IsMouseHovering ?
-					this.Theme.ButtonEdgeLitColor :
-					this.Theme.ButtonEdgeColor;
+		public Color GetBgColor() {
 			Color bg_color = !this.IsEnabled ?
 				this.Theme.ButtonBgDisabledColor :
 				this.IsMouseHovering ?
 					this.Theme.ButtonBgLitColor :
 					this.Theme.ButtonBgColor;
+			byte a = bg_color.A;
+			
+			if( this.Text.Contains("Mechanics:") ) {
+				bg_color = Color.Lerp( bg_color, Color.Gold, 0.4f );
+			} else if( this.Text.Contains("Theme:") ) {
+				bg_color = Color.Lerp( bg_color, Color.DarkTurquoise, 0.4f );
+			} else if( this.Text.Contains( "Content:" ) ) {
+				bg_color = Color.Lerp( bg_color, Color.DarkRed, 0.4f );
+			} else if( this.Text.Contains( "Where:" ) ) {
+				bg_color = Color.Lerp( bg_color, Color.Green, 0.4f );
+			} else if( this.Text.Contains( "When:" ) ) {
+				bg_color = Color.Lerp( bg_color, Color.DarkViolet, 0.4f );
+			}
+			bg_color.A = a;
+
+			return bg_color;
+		}
+
+		public Color GetEdgeColor() {
+			Color edge_color = !this.IsEnabled ?
+				this.Theme.ButtonEdgeDisabledColor :
+				this.IsMouseHovering ?
+					this.Theme.ButtonEdgeLitColor :
+					this.Theme.ButtonEdgeColor;
+			byte a = edge_color.A;
+			
+			if( this.Text.Contains( "Mechanics:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.Goldenrod, 0.35f );
+			} else if( this.Text.Contains( "Theme:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.Aquamarine, 0.25f );
+			} else if( this.Text.Contains( "Content:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.Red, 0.25f );
+			} else if( this.Text.Contains( "Where:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.Green, 0.25f );
+			} else if( this.Text.Contains( "When:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.Purple, 0.25f );
+			}
+			edge_color.A = a;
+
+			return edge_color;
+		}
+
+
+		////////////////
+
+		public override void Draw( SpriteBatch sb ) {
 			Rectangle rect = this.GetOuterDimensions().ToRectangle();
 			rect.X += 4;
 			rect.Y += 4;
 			rect.Width -= 4;
 			rect.Height -= 5;
 
-			HudHelpers.DrawBorderedRect( sb, bg_color, edge_color, rect, 2 );
+			HudHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
 
 			base.Draw( sb );
 		}
