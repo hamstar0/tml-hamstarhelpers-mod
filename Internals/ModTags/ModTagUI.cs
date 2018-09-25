@@ -56,6 +56,8 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		public string ModName = "";
 
+		private Vector2 OldOverhaulLogoPos;
+
 
 
 		////////////////
@@ -68,35 +70,84 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 			this.SubUpButton = new UISubmitUpdateButton( this );
 
-			Action<UIState> ui_load = ( ui ) => {
-				string modname = ModTagUI.GetModNameFromUI( ui );
-				if( modname == null ) { return; }
-
-				this.SetCurrentMod( modname );
-			};
-
-			this.InitializeTagButtons( false, new HashSet<string>() );
+			this.InitializeTagButtons();
+			this.InitializeUI();
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Submit+Update", this.SubUpButton, false );
-			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ui_load, _ => { } );
 			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags Hover", this.HoverElement, false );
 		}
 
 		////////////////
 
-		private void InitializeTagButtons( bool mod_has_tags, ISet<string> modtags ) {
+		private void InitializeUI() {
+			Action<UIState> ui_load = ui => {
+				string modname = ModTagUI.GetModNameFromUI( ui );
+				if( modname == null ) { return; }
+
+				this.SetCurrentMod( modname );
+				this.RecalculateMenuObjects();
+			};
+			Action<UIState> ui_unload = ui => {
+				this.ResetMenuObjects();
+			};
+
+			MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Load", ui_load, ui_unload );
+		}
+
+		private void InitializeTagButtons() {
 			int i = 0;
 
 			foreach( var kv in ModTagUI.Tags ) {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
-				bool mod_has_curr_tag = modtags.Contains( tag_text );
 
-				var button = new UIModTagButton( this, mod_has_tags, mod_has_curr_tag, i, tag_text, tag_desc, 0.6f );
+				var button = new UIModTagButton( this, false, false, i, tag_text, tag_desc, 0.6f );
 
 				MenuUI.AddMenuLoader( "UIModInfo", "ModHelpers: Mod Info Tags " + i, button, false );
 				this.TagButtons[ tag_text ] = button;
 
 				i++;
+			}
+		}
+
+
+		////////////////
+
+		public void EnableButtons() {
+			foreach( var kv in this.TagButtons ) {
+				kv.Value.Enable();
+			}
+		}
+
+
+		////////////////
+
+		public void RecalculateMenuObjects() {
+			Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
+
+			if( oh_mod != null ) {
+				Type oh_mod_type = oh_mod.GetType();
+				var oh_logo_pos_field = oh_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static );
+
+				if( oh_logo_pos_field != null ) {
+					if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
+						this.OldOverhaulLogoPos = (Vector2)oh_logo_pos_field.GetValue( oh_mod );
+					}
+
+					oh_logo_pos_field.SetValue( oh_mod, new Vector2( -256, -256 ) );
+				}
+			}
+		}
+
+		public void ResetMenuObjects() {
+			Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
+
+			if( oh_mod != null ) {
+				Type overhaul_mod_type = oh_mod.GetType();
+				var menu_data_pos_field = overhaul_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.Static );
+
+				if( menu_data_pos_field != null ) {
+					menu_data_pos_field.SetValue( oh_mod, this.OldOverhaulLogoPos );
+				}
 			}
 		}
 
@@ -112,15 +163,6 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			}
 
 			return tags;
-		}
-
-
-		////////////////
-
-		public void EnableButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Enable();
-			}
 		}
 
 

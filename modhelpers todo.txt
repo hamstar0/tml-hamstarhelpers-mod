@@ -20,16 +20,15 @@ v3.0.0
 -	Add support links
 -	Mod version update indications in mods list
 -	Mod incompatibilies (custom Mod properties, akin to github + config properties)
--	Mod browser filters
-	-	Fix hover text screen clipping
-	-	@Finish google script (set repeat tags to be added to a separate database)
+-	Mod browser tag filtering
 	-	@Include mod author lists
 	-	Implement filtering
-	-	Implement submitting tags
+-	Mod info tag input
+	-	Fix hover text screen clipping
+
 	-	Adjust for Overhaul links (OverhaulMod.mainMenuDataOffset)
 	-	Add submit + update button
 		-	Implement submit
-
 		-	@Test loading mod data
 		-	Implement update unlock
 		-	Define button (sets mode based on tags being set or not)

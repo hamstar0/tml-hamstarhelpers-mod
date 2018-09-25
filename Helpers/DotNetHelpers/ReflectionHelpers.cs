@@ -22,6 +22,17 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////////////////
 
+		public static object GetField( Object obj, string field_name, BindingFlags flags, out bool success ) {
+			success = false;
+			Type objtype = obj.GetType();
+			FieldInfo field = objtype.GetField( field_name, flags );
+
+			if( field == null ) { return null; }
+
+			success = true;
+			return field.GetValue( obj );
+		}
+
 		public static object GetField( Object obj, string field_name, out bool success ) {
 			success = false;
 			Type objtype = obj.GetType();
@@ -32,6 +43,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			success = true;
 			return field.GetValue( obj );
 		}
+
 
 		public static void SetField( Object obj, string field_name, object value, out bool success ) {
 			success = false;
