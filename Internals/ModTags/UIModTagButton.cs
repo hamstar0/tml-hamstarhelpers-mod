@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public const int ColumnsInMid = 5;
 
 
-		private readonly ModTagUI ModTagUI;
+		private readonly ModTagsUI ModTagUI;
 
 		public int Column;
 		public int Row;
@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 		
-		public UIModTagButton( ModTagUI modtagui, bool is_read_only, bool is_tag_set, int pos, string label, string desc, float scale=1f )
+		public UIModTagButton( ModTagsUI modtagui, bool is_read_only, bool is_tag_set, int pos, string label, string desc, float scale=1f )
 				: base( UITheme.Vanilla, label, scale, false ) {
 			this.ModTagUI = modtagui;
 			this.IsTagEnabled = is_tag_set;
@@ -103,22 +103,22 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			if( this.IsTagEnabled ) { return; }
 			this.IsTagEnabled = true;
 
-			this.ModTagUI.SubUpButton.UpdateEnableState();
+			this.ModTagUI.OnTagChange();
 			this.UpdateColor();
 		}
 
 		public void DisableTag() {
 			if( !this.IsTagEnabled ) { return; }
 			this.IsTagEnabled = false;
-			
-			this.ModTagUI.SubUpButton.UpdateEnableState();
+
+			this.ModTagUI.OnTagChange();
 			this.UpdateColor();
 		}
 
 		public void ToggleTag() {
 			this.IsTagEnabled = !this.IsTagEnabled;
 
-			this.ModTagUI.SubUpButton.UpdateEnableState();
+			this.ModTagUI.OnTagChange();
 			this.UpdateColor();
 		}
 

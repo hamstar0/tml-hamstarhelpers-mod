@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModPackBrowser {
 	internal class UISubmitUpdateButton : UITextPanelButton {
-		private readonly ModTagUI ModTagUI;
+		private readonly ModInfoUI ModTagUI;
 
 		public bool IsLocked = false;
 
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		public UISubmitUpdateButton( ModTagUI modtagui ) : base( UITheme.Vanilla, "", 0.65f, true ) {
+		public UISubmitUpdateButton( ModInfoUI modtagui ) : base( UITheme.Vanilla, "", 0.65f, true ) {
 			this.ModTagUI = modtagui;
 
 			this.Width.Set( 256f, 0f );
