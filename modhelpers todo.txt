@@ -23,9 +23,8 @@ v3.0.0
 -	Mod browser tag filtering
 	-	@Include mod author lists
 	-	Implement filtering
--	Mod info tag input
-	-	Fix hover text screen clipping
 
+-	Mod info tag input
 	-	Adjust for Overhaul links (OverhaulMod.mainMenuDataOffset)
 	-	Add submit + update button
 		-	Implement submit

@@ -56,7 +56,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		public string ModName = "";
 
-		private Vector2 OldOverhaulLogoPos;
+		private Vector2 OldOverhaulLogoPos = default(Vector2);
 
 
 
@@ -122,31 +122,35 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		////////////////
 
 		public void RecalculateMenuObjects() {
-			Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
+			if( Main.screenWidth < 920 || Main.screenHeight < 768 ) {
+				Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
 
-			if( oh_mod != null ) {
-				Type oh_mod_type = oh_mod.GetType();
-				var oh_logo_pos_field = oh_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static );
+				if( oh_mod != null ) {
+					Type oh_mod_type = oh_mod.GetType();
+					var oh_logo_pos_field = oh_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static );
 
-				if( oh_logo_pos_field != null ) {
-					if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
-						this.OldOverhaulLogoPos = (Vector2)oh_logo_pos_field.GetValue( oh_mod );
+					if( oh_logo_pos_field != null ) {
+						if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
+							this.OldOverhaulLogoPos = (Vector2)oh_logo_pos_field.GetValue( oh_mod );
+						}
+
+						oh_logo_pos_field.SetValue( oh_mod, new Vector2( -256, -256 ) );
 					}
-
-					oh_logo_pos_field.SetValue( oh_mod, new Vector2( -256, -256 ) );
 				}
 			}
 		}
 
 		public void ResetMenuObjects() {
-			Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
+			if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
+				Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
 
-			if( oh_mod != null ) {
-				Type overhaul_mod_type = oh_mod.GetType();
-				var menu_data_pos_field = overhaul_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.Static );
+				if( oh_mod != null ) {
+					Type overhaul_mod_type = oh_mod.GetType();
+					var menu_data_pos_field = overhaul_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.Static );
 
-				if( menu_data_pos_field != null ) {
-					menu_data_pos_field.SetValue( oh_mod, this.OldOverhaulLogoPos );
+					if( menu_data_pos_field != null ) {
+						menu_data_pos_field.SetValue( oh_mod, this.OldOverhaulLogoPos );
+					}
 				}
 			}
 		}
