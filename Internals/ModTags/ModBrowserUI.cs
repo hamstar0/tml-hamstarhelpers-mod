@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.UI;
 
@@ -22,15 +21,13 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private ModBrowserUI() {
-			this.InitializeTagButtons( true );
-			this.InitializeUI();
+		private ModBrowserUI() : base(true) {
 			this.InitializeHoverText();
 		}
 
 		////////////////
 
-		private void InitializeUI() {
+		protected override void InitializeUI() {
 			Action<UIState> ui_load = ui => {
 				this.RecalculateMenuObjects();
 				this.EnableTagButtons();
@@ -47,12 +44,6 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		public override void OnTagStateChange( UIModTagButton tag_button ) {
 			this.FilterMods();
-		}
-
-
-
-		public void FilterMods() {
-			this
 		}
 	}
 }

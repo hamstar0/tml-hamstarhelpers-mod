@@ -88,7 +88,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				return;
 			}
 			
-			if( this.ModTagUI.GetSelectedTags().Count >= 3 ) {
+			if( this.ModTagUI.GetTagsOfState(1).Count >= 3 ) {
 				this.Enable();
 			} else {
 				this.Disable();

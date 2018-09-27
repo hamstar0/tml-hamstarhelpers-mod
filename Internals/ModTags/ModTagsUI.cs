@@ -17,10 +17,10 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
-		public UIText HoverElement;
+		internal IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
+		internal UIText HoverElement;
 
-		public UIState MyUI = null;
+		protected UIState MyUI = null;
 
 		protected Vector2 OldOverhaulLogoPos = default( Vector2 );
 
@@ -28,12 +28,19 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public ModTagsUI() {
+		public ModTagsUI( bool can_disable_tags ) {
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Tag Hover",
 				ui => { this.MyUI = ui; },
 				ui => { this.MyUI = null; }
 			);
+
+			this.InitializeTagButtons( can_disable_tags );
+			this.InitializeUI();
 		}
+
+		////////////////
+
+		protected abstract void InitializeUI();
 
 		protected void InitializeHoverText() {
 			this.HoverElement = new UIText( "" );
@@ -100,16 +107,16 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public abstract void OnTagStateChange( UIState ui, UIModTagButton tag_button );
+		public abstract void OnTagStateChange( UIModTagButton tag_button );
 
-		public ISet<string> GetSelectedTags() {
+		public ISet<string> GetTagsOfState( int state ) {
 			ISet<string> tags = new HashSet<string>();
 
 			foreach( var kv in this.TagButtons ) {
-				if( kv.Value.TagState != 1 ) { continue; }
-				tags.Add( kv.Key );
+				if( kv.Value.TagState == state ) {
+					tags.Add( kv.Key );
+				}
 			}
-
 			return tags;
 		}
 

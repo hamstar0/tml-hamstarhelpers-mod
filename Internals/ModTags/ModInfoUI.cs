@@ -62,18 +62,16 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private ModInfoUI() {
+		private ModInfoUI() : base(false) {
 			this.SubUpButton = new UISubmitUpdateButton( this );
-
-			this.InitializeTagButtons( false );
-			this.InitializeUI();
+			
 			MenuUI.AddMenuLoader( this.UIName, this.BaseContextName+" Tag Submit + Update", this.SubUpButton, false );
 			this.InitializeHoverText();
 		}
 
 		////////////////
 
-		private void InitializeUI() {
+		protected override void InitializeUI() {
 			Action<UIState> ui_load = ui => {
 				string modname = ModInfoUI.GetModNameFromUI( ui );
 				if( modname == null ) { return; }
@@ -120,7 +118,7 @@ namespace HamstarHelpers.Internals.ModTags {
 					}
 
 					if( modtags.Contains( kv.Key ) ) {
-						kv.Value.SetTagState( ui, 1 );
+						kv.Value.SetTagState( 1 );
 					}
 				}
 
@@ -144,7 +142,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				LogHelpers.Log( e.ToString() );
 			};
 
-			PostModInfo.SubmitModInfo( this.ModName, this.GetSelectedTags(), on_success, on_fail );
+			PostModInfo.SubmitModInfo( this.ModName, this.GetTagsOfState(1), on_success, on_fail );
 
 			this.SubUpButton.IsLocked = true;
 			this.SubUpButton.Disable();

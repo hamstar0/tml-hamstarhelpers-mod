@@ -59,11 +59,11 @@ namespace HamstarHelpers.Internals.ModTags {
 			
 			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( !this.IsEnabled ) { return; }
-				this.ToggleEnableTag( this.ModTagUI.MyUI );
+				this.ToggleEnableTag();
 			};
 			this.OnRightClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( !this.IsEnabled || !this.CanDisableTags ) { return; }
-				this.ToggleDisableTag( this.ModTagUI.MyUI );
+				this.ToggleDisableTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				this.ModTagUI.HoverElement.SetText( desc );
@@ -105,25 +105,25 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public void SetTagState( UIState ui, int state ) {
+		public void SetTagState( int state ) {
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.ModTagUI.OnTagStateChange( ui, this );
+			this.ModTagUI.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
-		public void ToggleEnableTag( UIState ui ) {
+		public void ToggleEnableTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.ModTagUI.OnTagStateChange( ui, this );
+			this.ModTagUI.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
-		public void ToggleDisableTag( UIState ui ) {
+		public void ToggleDisableTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.ModTagUI.OnTagStateChange( ui, this );
+			this.ModTagUI.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
