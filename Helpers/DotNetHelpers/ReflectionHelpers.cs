@@ -144,5 +144,17 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			}
 			return null;
 		}
+
+		public static object RunMethod( Object obj, string method_name, BindingFlags flags, object[] args, out bool success ) {
+			success = false;
+			Type objtype = obj.GetType();
+			MethodInfo method = objtype.GetMethod( method_name, flags );
+
+			if( method != null ) {
+				success = true;
+				return method.Invoke( obj, args );
+			}
+			return null;
+		}
 	}
 }

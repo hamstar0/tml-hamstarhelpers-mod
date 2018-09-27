@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.ModTags {
 		////////////////
 
 		public ModTagsUI( bool can_disable_tags ) {
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Tag Hover",
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Set UI",
 				ui => { this.MyUI = ui; },
 				ui => { this.MyUI = null; }
 			);
