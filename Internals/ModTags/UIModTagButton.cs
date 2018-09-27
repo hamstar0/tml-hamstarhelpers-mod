@@ -8,34 +8,36 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModPackBrowser {
+namespace HamstarHelpers.Internals.ModTags {
 	internal class UIModTagButton : UITextPanelButton {
 		public const int ColumnHeightTall = 31;
 		public const int ColumnHeightShort = 8;
 		public const int ColumnsInMid = 5;
 
+		
+
+		////////////////
+
+		public int TagState { get; private set; }
+
+		////////////////
 
 		private readonly ModTagsUI ModTagUI;
+		private bool CanDisableTags;
 
 		public int Column;
 		public int Row;
-
-		public bool IsTagEnabled { get; private set; }
 
 
 
 		////////////////
 		
-		public UIModTagButton( ModTagsUI modtagui, bool is_read_only, bool is_tag_set, int pos, string label, string desc, float scale=1f )
-				: base( UITheme.Vanilla, label, scale, false ) {
+		public UIModTagButton( ModTagsUI modtagui, int pos, string label, string desc, bool can_disable_tags )
+				: base( UITheme.Vanilla, label, 0.6f, false ) {
+			this.TagState = 0;
 			this.ModTagUI = modtagui;
-			this.IsTagEnabled = is_tag_set;
-
+			this.CanDisableTags = can_disable_tags;
 			this.DrawPanel = false;
-			
-			if( is_read_only ) {
-				this.Disable();
-			}
 
 			int col_tall = UIModTagButton.ColumnHeightTall;
 			int col_short = UIModTagButton.ColumnHeightShort;
@@ -54,29 +56,33 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 			this.Width.Set( 120f, 0f );
 			this.Height.Set( 16f, 0f );
-
+			
 			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( !this.IsEnabled ) { return; }
-
-				this.ToggleTag();
+				this.ToggleEnableTag( this.ModTagUI.MyUI );
+			};
+			this.OnRightClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
+				if( !this.IsEnabled || !this.CanDisableTags ) { return; }
+				this.ToggleDisableTag( this.ModTagUI.MyUI );
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				this.ModTagUI.HoverElement.SetText( desc );
 				this.ModTagUI.HoverElement.Left.Set( Main.mouseX, 8f );
 				this.ModTagUI.HoverElement.Top.Set( Main.mouseY, 8f );
 				this.ModTagUI.HoverElement.Recalculate();
-				this.UpdateColor();
+				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.ModTagUI.HoverElement.Text == desc ) {
 					this.ModTagUI.HoverElement.SetText( "" );
 					this.ModTagUI.HoverElement.Recalculate();
 				}
-				this.UpdateColor();
+				this.RefreshTheme();
 			};
 
+			this.Disable();
 			this.RecalculatePos();
-			this.UpdateColor();
+			this.RefreshTheme();
 		}
 
 
@@ -99,27 +105,26 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		public void EnableTag() {
-			if( this.IsTagEnabled ) { return; }
-			this.IsTagEnabled = true;
+		public void SetTagState( UIState ui, int state ) {
+			if( this.TagState == state ) { return; }
+			this.TagState = state;
 
-			this.ModTagUI.OnTagChange();
-			this.UpdateColor();
+			this.ModTagUI.OnTagStateChange( ui, this );
+			this.RefreshTheme();
 		}
 
-		public void DisableTag() {
-			if( !this.IsTagEnabled ) { return; }
-			this.IsTagEnabled = false;
+		public void ToggleEnableTag( UIState ui ) {
+			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.ModTagUI.OnTagChange();
-			this.UpdateColor();
+			this.ModTagUI.OnTagStateChange( ui, this );
+			this.RefreshTheme();
 		}
 
-		public void ToggleTag() {
-			this.IsTagEnabled = !this.IsTagEnabled;
+		public void ToggleDisableTag( UIState ui ) {
+			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.ModTagUI.OnTagChange();
-			this.UpdateColor();
+			this.ModTagUI.OnTagStateChange( ui, this );
+			this.RefreshTheme();
 		}
 
 
@@ -128,16 +133,10 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 		public override void RefreshTheme() {
 			base.RefreshTheme();
 
-			if( this.IsTagEnabled ) {
+			if( this.TagState > 0 ) {
 				this.TextColor = Color.LimeGreen;
-			}
-		}
-
-		private void UpdateColor() {
-			if( this.IsTagEnabled ) {
-				this.TextColor = Color.LimeGreen;
-			} else {
-				this.RefreshTheme();
+			} else if( this.TagState < 0 ) {
+				this.TextColor = Color.Red;
 			}
 		}
 

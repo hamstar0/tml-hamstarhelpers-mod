@@ -14,16 +14,20 @@ Future?
 
 
 
-
-v3.0.0
--	@Remake Server Browser backend (using Google Cloud stuff (free trial)?)
+v3.0
+-	@Remake Server Browser backend
 -	Add support links
+-	Implement caching mod tag data on server
 -	Mod version update indications in mods list
--	Mod incompatibilies (custom Mod properties, akin to github + config properties)
+-	Mod conflicts (custom Mod properties)
+-	Mod favorites (custom Mod properties)
+-	@Test mod info submit and mod data filtering
 -	Mod browser tag filtering
 	-	@Include mod author lists
 	-	Implement filtering
 
+	-	Implement disabling tags via right-click
+	-	Add tags to mod browser
 -	Mod info tag input
 	-	Adjust for Overhaul links (OverhaulMod.mainMenuDataOffset)
 	-	Add submit + update button

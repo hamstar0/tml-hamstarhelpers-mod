@@ -7,13 +7,20 @@ using System.Reflection;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModPackBrowser {
+namespace HamstarHelpers.Internals.ModTags {
 	abstract partial class ModTagsUI {
-		public IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
+		protected abstract string UIName { get; }
+		protected abstract string BaseContextName { get; }
 
+		////////////////
+
+		public IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
 		public UIText HoverElement;
+
+		public UIState MyUI = null;
 
 		protected Vector2 OldOverhaulLogoPos = default( Vector2 );
 
@@ -21,25 +28,32 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		protected void InitializeHoverText( string ui_name, string base_context_name ) {
+		public ModTagsUI() {
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Tag Hover",
+				ui => { this.MyUI = ui; },
+				ui => { this.MyUI = null; }
+			);
+		}
+
+		protected void InitializeHoverText() {
 			this.HoverElement = new UIText( "" );
 			this.HoverElement.Width.Set( 0, 0 );
 			this.HoverElement.Height.Set( 0, 0 );
 			this.HoverElement.TextColor = Color.Aquamarine;
 
-			MenuUI.AddMenuLoader( ui_name, "ModHelpers: " + base_context_name + " Tag Hover", this.HoverElement, false );
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Tag Hover", this.HoverElement, false );
 		}
 
-		protected void InitializeTagButtons( string ui_name, string base_context_name ) {
+		protected void InitializeTagButtons( bool can_disable_tags ) {
 			int i = 0;
 
 			foreach( var kv in ModTagsUI.Tags ) {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
 
-				var button = new UIModTagButton( this, false, false, i, tag_text, tag_desc, 0.6f );
+				var button = new UIModTagButton( this, i, tag_text, tag_desc, can_disable_tags );
 
-				MenuUI.AddMenuLoader( ui_name, "ModHelpers: " + base_context_name + " Tag " + i, button, false );
+				MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Tag " + i, button, false );
 				this.TagButtons[tag_text] = button;
 
 				i++;
@@ -86,6 +100,26 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		////////////////
 
-		public abstract void OnTagChange();
+		public abstract void OnTagStateChange( UIState ui, UIModTagButton tag_button );
+
+		public ISet<string> GetSelectedTags() {
+			ISet<string> tags = new HashSet<string>();
+
+			foreach( var kv in this.TagButtons ) {
+				if( kv.Value.TagState != 1 ) { continue; }
+				tags.Add( kv.Key );
+			}
+
+			return tags;
+		}
+
+
+		////////////////
+
+		public void EnableTagButtons() {
+			foreach( var kv in this.TagButtons ) {
+				kv.Value.Enable();
+			}
+		}
 	}
 }

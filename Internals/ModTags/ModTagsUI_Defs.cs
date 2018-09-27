@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Internals.ModPackBrowser {
+namespace HamstarHelpers.Internals.ModTags {
 	abstract partial class ModTagsUI {
 		public static IDictionary<string, string> Tags = new Dictionary<string, string> {
 			{ "Mechanics: Core Game",	"Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc." },

@@ -8,6 +8,30 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.RecipeHelpers {
 	public partial class RecipeHelpers {
+		public static IList<Recipe> GetRecipesOfItem( int item_type ) {
+			var mymod = ModHelpersMod.Instance;
+
+			if( mymod.RecipeHelpers.RecipesByItem.Count > 0 ) {
+				if( mymod.RecipeHelpers.RecipesByItem.ContainsKey(item_type) ) {
+					return mymod.RecipeHelpers.RecipesByItem[ item_type ];
+				}
+				return new List<Recipe>();
+			}
+
+			for( int i = 0; i < Main.recipe.Length; i++ ) {
+				Recipe recipe = Main.recipe[i];
+				int recipe_item_type = recipe.createItem.type;
+
+				if( !mymod.RecipeHelpers.RecipesByItem.ContainsKey(recipe_item_type) ) {
+					mymod.RecipeHelpers.RecipesByItem[ recipe_item_type ] = new List<Recipe>();
+				}
+				mymod.RecipeHelpers.RecipesByItem[ recipe_item_type ].Add( recipe );
+			}
+
+			return RecipeHelpers.GetRecipesOfItem( item_type );
+		}
+
+
 		public static bool ItemHasIngredients( int item_type, ISet<int> ingredients, int min_stack ) {
 			for( int i = 0; i < Main.recipe.Length; i++ ) {
 				Recipe recipe = Main.recipe[i];
@@ -62,5 +86,8 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 
 		private IDictionary<string, RecipeGroup> _Groups = null;
+
+
+		private IDictionary<int, IList<Recipe>> RecipesByItem = new Dictionary<int, IList<Recipe>>();
 	}
 }

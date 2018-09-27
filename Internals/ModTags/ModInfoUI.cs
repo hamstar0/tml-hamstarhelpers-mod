@@ -7,13 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModPackBrowser {
+namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoUI : ModTagsUI {
 		public static string GetModNameFromUI( UIState ui ) {
 			Type ui_type = ui.GetType();
@@ -22,7 +21,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				LogHelpers.Log( "No 'localMod' field in " + ui_type );
 				return null;
 			}
-
+			
 			object localmod = ui_localmod_field.GetValue( ui );
 			Type localmod_type = localmod.GetType();
 			FieldInfo localmod_modfile_field = localmod_type.GetField( "modFile", BindingFlags.Public | BindingFlags.Instance );
@@ -54,70 +53,52 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 
 		public string ModName = "";
 
+		////////////////
+
+		protected override string UIName => "UIModInfo";
+		protected override string BaseContextName => "Mod Info";
+
 
 
 		////////////////
 
 		private ModInfoUI() {
-			string base_context_name = "Mod Info";
-			string ui_name = "UIModInfo";
-
 			this.SubUpButton = new UISubmitUpdateButton( this );
 
-			this.InitializeTagButtons( ui_name, base_context_name );
-			this.InitializeUI( ui_name, base_context_name );
-			MenuUI.AddMenuLoader( ui_name, base_context_name+" Tag Submit + Update", this.SubUpButton, false );
-			this.InitializeHoverText( ui_name, base_context_name );
+			this.InitializeTagButtons( false );
+			this.InitializeUI();
+			MenuUI.AddMenuLoader( this.UIName, this.BaseContextName+" Tag Submit + Update", this.SubUpButton, false );
+			this.InitializeHoverText();
 		}
 
 		////////////////
 
-		private void InitializeUI( string ui_name, string base_context_name ) {
+		private void InitializeUI() {
 			Action<UIState> ui_load = ui => {
 				string modname = ModInfoUI.GetModNameFromUI( ui );
 				if( modname == null ) { return; }
 
-				this.SetCurrentMod( modname );
+				this.SetCurrentMod( ui, modname );
 				this.RecalculateMenuObjects();
 			};
 			Action<UIState> ui_unload = ui => {
 				this.ResetMenuObjects();
 			};
 
-			MenuUI.AddMenuLoader( ui_name, "ModHelpers: "+base_context_name+" Load", ui_load, ui_unload );
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.BaseContextName+" Load", ui_load, ui_unload );
 		}
 
 
 		////////////////
 
-		public void EnableButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Enable();
-			}
-		}
-
-
-		////////////////
-
-		public ISet<string> GetTags() {
-			ISet<string> tags = new HashSet<string>();
-
-			foreach( var kv in this.TagButtons ) {
-				if( !kv.Value.IsTagEnabled ) { continue; }
-				tags.Add( kv.Key );
-			}
-
-			return tags;
-		}
-
-		public override void OnTagChange() {
+		public override void OnTagStateChange( UIModTagButton tag_button ) {
 			this.SubUpButton.UpdateEnableState();
 		}
 
 
 		////////////////
 
-		private void SetCurrentMod( string modname ) {
+		private void SetCurrentMod( UIState ui, string modname ) {
 			this.ModName = modname;
 
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
@@ -139,7 +120,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 					}
 
 					if( modtags.Contains( kv.Key ) ) {
-						kv.Value.EnableTag();
+						kv.Value.SetTagState( ui, 1 );
 					}
 				}
 
@@ -163,7 +144,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				LogHelpers.Log( e.ToString() );
 			};
 
-			PostModInfo.SubmitModInfo( this.ModName, this.GetTags(), on_success, on_fail );
+			PostModInfo.SubmitModInfo( this.ModName, this.GetSelectedTags(), on_success, on_fail );
 
 			this.SubUpButton.IsLocked = true;
 			this.SubUpButton.Disable();

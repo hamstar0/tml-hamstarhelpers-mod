@@ -111,12 +111,6 @@ namespace HamstarHelpers {
 			this.HasSetupContent = false;
 			this.HasAddedRecipeGroups = false;
 			this.HasAddedRecipes = false;
-			
-			this.Properties = new ModProperties() {
-				Autoload = true,
-				AutoloadGores = true,
-				AutoloadSounds = true
-			};
 
 			this.ExceptionMngr = new HamstarExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();

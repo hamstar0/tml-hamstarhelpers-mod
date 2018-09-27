@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModPackBrowser {
+namespace HamstarHelpers.Internals.ModTags {
 	internal class UISubmitUpdateButton : UITextPanelButton {
 		private readonly ModInfoUI ModTagUI;
 
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 			this.SetText( "Submit mod tags" );
 			this.Disable();
 			
-			this.ModTagUI.EnableButtons();
+			this.ModTagUI.EnableTagButtons();
 		}
 
 		////////////////
@@ -88,7 +88,7 @@ namespace HamstarHelpers.Internals.ModPackBrowser {
 				return;
 			}
 			
-			if( this.ModTagUI.GetTags().Count >= 3 ) {
+			if( this.ModTagUI.GetSelectedTags().Count >= 3 ) {
 				this.Enable();
 			} else {
 				this.Disable();
