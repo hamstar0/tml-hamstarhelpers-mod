@@ -11,24 +11,31 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Menu {
 	public class MenuUI {
-		public static void AddMenuLoader( string ui_class_name, string elem_name, Action<UIState> on_load, Action<UIState> on_unload ) {
+		public static void AddMenuLoader( string ui_class_name, string elem_name, Action<UIState> on_show, Action<UIState> on_hide ) {
 			var mymod = ModHelpersMod.Instance;
 
-			if( !mymod.MenuUIMngr.Loaders.ContainsKey( ui_class_name ) ) {
-				mymod.MenuUIMngr.Loaders[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
+			if( !mymod.MenuUIMngr.Show.ContainsKey( ui_class_name ) ) {
+				mymod.MenuUIMngr.Show[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
 			}
-			if( !mymod.MenuUIMngr.Unloaders.ContainsKey( ui_class_name ) ) {
-				mymod.MenuUIMngr.Unloaders[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
+			if( !mymod.MenuUIMngr.Hide.ContainsKey( ui_class_name ) ) {
+				mymod.MenuUIMngr.Hide[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
 			}
-			mymod.MenuUIMngr.Loaders[ ui_class_name ][ elem_name ] = on_load;
-			mymod.MenuUIMngr.Unloaders[ ui_class_name ][ elem_name ] = on_unload;
+			mymod.MenuUIMngr.Show[ ui_class_name ][ elem_name ] = on_show;
+			mymod.MenuUIMngr.Hide[ ui_class_name ][ elem_name ] = on_hide;
+
+			UIState ui = Main.MenuUI.CurrentState;
+			string curr_ui_name = ui?.GetType().Name;
+
+			if( ui_class_name == curr_ui_name ) {
+				on_show( ui );
+			}
 		}
 
 
 		public static void AddMenuLoader( string ui_class_name, string elem_name, UIElement myelem, bool inner ) {
 			bool myinner = inner;
 
-			Func<UIState, UIElement> get_insert_point = ( UIState ui ) => {
+			Func<UIState, UIElement> get_insert_elem = ( UIState ui ) => {
 				if( myinner ) {
 					UIElement ui_outer_container = MenuUI.GetMenuContainerOuter( ui );
 					UIElement ui_inner_container = MenuUI.GetMenuContainerInner( ui_outer_container );
@@ -39,25 +46,26 @@ namespace HamstarHelpers.Components.UI.Menu {
 				}
 			};
 			
-			Action<UIState> on_load = ( UIState ui ) => {
-				UIElement elem = get_insert_point( ui );
+			Action<UIState> on_show = ( UIState ui ) => {
+				UIElement elem = get_insert_elem( ui );
 				elem.Append( myelem );
 			};
 
-			Action<UIState> on_unload = ( UIState ui ) => {
+			Action<UIState> on_hide = ( UIState ui ) => {
 				myelem.Remove();
 
-				UIElement elem = get_insert_point( ui );
+				UIElement elem = get_insert_elem( ui );
 				elem.RemoveChild( myelem );
+LogHelpers.Log("hide "+ myelem + " "+ui);
 			};
 
-			MenuUI.AddMenuLoader( ui_class_name, elem_name, on_load, on_unload );
+			MenuUI.AddMenuLoader( ui_class_name, elem_name, on_show, on_hide );
 		}
 
 
 		////////////////
 
-		private static UIElement GetMenuContainerOuter( UIState ui ) {
+		public static UIElement GetMenuContainerOuter( UIState ui ) {
 			Type ui_type = ui.GetType();
 			FieldInfo ui_outer_box_field = ui_type.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );
 			UIElement ui_outer_box = (UIElement)ui_outer_box_field.GetValue( ui );
@@ -65,7 +73,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 			return ui_outer_box;
 		}
 
-		private static UIElement GetMenuContainerInner( UIElement ui_outer_box ) {
+		public static UIElement GetMenuContainerInner( UIElement ui_outer_box ) {
 			Type ui_outer_box_type = ui_outer_box.GetType();
 			FieldInfo ui_outer_box_elems_field = ui_outer_box_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
 			List<UIElement> ui_outer_box_elems = (List<UIElement>)ui_outer_box_elems_field.GetValue( ui_outer_box );
@@ -73,10 +81,10 @@ namespace HamstarHelpers.Components.UI.Menu {
 			return ui_outer_box_elems[0];
 		}
 
-		private static UIElement GetMenuContainerInsertPoint( UIElement ui_container ) {
-			Type ui_container_type = ui_container.GetType();
+		public static UIElement GetMenuContainerInsertPoint( UIElement ui_inner_container ) {
+			Type ui_container_type = ui_inner_container.GetType();
 			FieldInfo ui_container_elems_field = ui_container_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
-			List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_container );
+			List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_inner_container );
 			
 			for( int i=0; i<ui_container_elems.Count; i++ ) {
 				if( ui_container_elems[i] is UIElement && !(ui_container_elems[i] is UIList) && !(ui_container_elems[i] is UIScrollbar) ) {
@@ -86,16 +94,22 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 			return null;
 		}
+
+		public static UIElement GetMenuContainerInsertPoint( UIState ui ) {
+			var ui_outer_container = MenuUI.GetMenuContainerOuter( ui );
+			var ui_inner_container = MenuUI.GetMenuContainerInner( ui_outer_container );
+			return MenuUI.GetMenuContainerInsertPoint( ui_inner_container );
+		}
 	}
 
 
 
 
 	class MenuUIManager {
-		internal IDictionary<string, IDictionary<string, Action<UIState>>> Loaders = new Dictionary<string, IDictionary<string, Action<UIState>>>();
-		internal IDictionary<string, IDictionary<string, Action<UIState>>> Unloaders = new Dictionary<string, IDictionary<string, Action<UIState>>>();
+		internal IDictionary<string, IDictionary<string, Action<UIState>>> Show = new Dictionary<string, IDictionary<string, Action<UIState>>>();
+		internal IDictionary<string, IDictionary<string, Action<UIState>>> Hide = new Dictionary<string, IDictionary<string, Action<UIState>>>();
 
-		private Tuple<string, UIState> CurrentMenu = null;
+		private Tuple<string, UIState> CurrentMenuUI = null;
 
 
 		////////////////
@@ -110,21 +124,23 @@ namespace HamstarHelpers.Components.UI.Menu {
 			if( Main.dedServ ) { return; }
 
 			try {
-				this.Unload();
 				Main.OnPostDraw -= MenuUIManager._Update;
+				this.HideAll();
+
+				this.Show.Clear();
+				this.Hide.Clear();
 			} catch { }
 		}
 
 
-		private void Unload() {
-			if( this.CurrentMenu != null ) {
-				foreach( Action<UIState> unloader in this.Unloaders[ this.CurrentMenu.Item1 ].Values ) {
-					unloader( this.CurrentMenu.Item2 );
+		////////////////
+
+		private void HideAll() {
+			if( this.CurrentMenuUI != null ) {
+				foreach( Action<UIState> hide in this.Hide[ this.CurrentMenuUI.Item1 ].Values ) {
+					hide( this.CurrentMenuUI.Item2 );
 				}
 			}
-			
-			this.Loaders.Clear();
-			this.Unloaders.Clear();
 		}
 
 
@@ -141,7 +157,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 		private void Update() {
 			UIState ui = Main.MenuUI.CurrentState;
 
-			string prev_ui_name = this.CurrentMenu?.Item1;
+			string prev_ui_name = this.CurrentMenuUI?.Item1;
 			string curr_ui_name = ui?.GetType().Name;
 
 			if( prev_ui_name == curr_ui_name ) {
@@ -153,32 +169,32 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 
 		private void LoadUI( UIState ui ) {
-			string prev_ui_name = this.CurrentMenu?.Item1;
+			string prev_ui_name = this.CurrentMenuUI?.Item1;
 			string curr_ui_name = ui?.GetType().Name;
 
-			if( prev_ui_name != null && this.Unloaders.ContainsKey(prev_ui_name) ) {
-				var unloaders = this.Unloaders[ prev_ui_name ].Values;
+			if( prev_ui_name != null && this.Hide.ContainsKey(prev_ui_name) ) {
+				var hiders = this.Hide[ prev_ui_name ].Values;
 				
-				foreach( Action<UIState> unloader in unloaders ) {
-					unloader( this.CurrentMenu.Item2 );
+				foreach( Action<UIState> hide in hiders ) {
+					hide( this.CurrentMenuUI.Item2 );
 				}
 				//this.Unloaders.Remove( prev_ui_name );
 			}
 			
 			if( ui == null ) {
-				this.CurrentMenu = null;
+				this.CurrentMenuUI = null;
 				return;
 			}
 
-			if( this.Loaders.ContainsKey( curr_ui_name ) ) {
-				KeyValuePair<string, Action<UIState>>[] loaders = this.Loaders[curr_ui_name].ToArray();
+			if( this.Show.ContainsKey( curr_ui_name ) ) {
+				KeyValuePair<string, Action<UIState>>[] loaders = this.Show[curr_ui_name].ToArray();
 
 				foreach( var kv in loaders ) {
 					kv.Value( ui );
 				}
 			}
 
-			this.CurrentMenu = Tuple.Create( curr_ui_name, ui );
+			this.CurrentMenuUI = Tuple.Create( curr_ui_name, ui );
 		}
 	}
 }

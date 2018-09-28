@@ -15,19 +15,22 @@ namespace HamstarHelpers.Internals.ModTags {
 		////////////////
 
 		protected override string UIName => "UIModBrowser";
-		protected override string BaseContextName => "Mod Browser";
+		protected override string ContextName => "Mod Browser";
 
 
 
 		////////////////
 
-		private ModBrowserUI() : base(true) {
+		private ModBrowserUI() {
+			this.InitializeBase();
+			this.InitializeTagButtons( true );
+			this.InitializeContext();
 			this.InitializeHoverText();
 		}
 
 		////////////////
 
-		protected override void InitializeUI() {
+		protected override void InitializeContext() {
 			Action<UIState> ui_load = ui => {
 				this.RecalculateMenuObjects();
 				this.EnableTagButtons();
@@ -36,7 +39,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				this.ResetMenuObjects();
 			};
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.BaseContextName+" Load", ui_load, ui_unload );
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.ContextName+" Load", ui_load, ui_unload );
 		}
 
 

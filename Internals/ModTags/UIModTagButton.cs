@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.UI;
 
@@ -22,8 +23,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private readonly ModTagsUI ModTagUI;
-		private bool CanDisableTags;
+		private readonly ModTagsUI UIManager;
 
 		public int Column;
 		public int Row;
@@ -32,11 +32,10 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 		
-		public UIModTagButton( ModTagsUI modtagui, int pos, string label, string desc, bool can_disable_tags )
+		public UIModTagButton( ModTagsUI modtagui, int pos, string label, string desc, bool can_negate_tags )
 				: base( UITheme.Vanilla, label, 0.6f, false ) {
 			this.TagState = 0;
-			this.ModTagUI = modtagui;
-			this.CanDisableTags = can_disable_tags;
+			this.UIManager = modtagui;
 			this.DrawPanel = false;
 
 			int col_tall = UIModTagButton.ColumnHeightTall;
@@ -59,23 +58,23 @@ namespace HamstarHelpers.Internals.ModTags {
 			
 			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( !this.IsEnabled ) { return; }
-				this.ToggleEnableTag();
+				this.TogglePositiveTag();
 			};
 			this.OnRightClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( !this.IsEnabled || !this.CanDisableTags ) { return; }
-				this.ToggleDisableTag();
+				if( !this.IsEnabled || !can_negate_tags ) { return; }
+				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				this.ModTagUI.HoverElement.SetText( desc );
-				this.ModTagUI.HoverElement.Left.Set( Main.mouseX, 8f );
-				this.ModTagUI.HoverElement.Top.Set( Main.mouseY, 8f );
-				this.ModTagUI.HoverElement.Recalculate();
+				this.UIManager.HoverElement.SetText( desc );
+				this.UIManager.HoverElement.Left.Set( Main.mouseX, 8f );
+				this.UIManager.HoverElement.Top.Set( Main.mouseY, 8f );
+				this.UIManager.HoverElement.Recalculate();
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( this.ModTagUI.HoverElement.Text == desc ) {
-					this.ModTagUI.HoverElement.SetText( "" );
-					this.ModTagUI.HoverElement.Recalculate();
+				if( this.UIManager.HoverElement.Text == desc ) {
+					this.UIManager.HoverElement.SetText( "" );
+					this.UIManager.HoverElement.Recalculate();
 				}
 				this.RefreshTheme();
 			};
@@ -106,24 +105,25 @@ namespace HamstarHelpers.Internals.ModTags {
 		////////////////
 
 		public void SetTagState( int state ) {
+			if( state < -1 || state > 1 ) { throw new Exception( "Invalid state." ); }
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.ModTagUI.OnTagStateChange( this );
+			this.UIManager.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
-		public void ToggleEnableTag() {
+		public void TogglePositiveTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.ModTagUI.OnTagStateChange( this );
+			this.UIManager.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
-		public void ToggleDisableTag() {
+		public void ToggleNegativeTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.ModTagUI.OnTagStateChange( this );
+			this.UIManager.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 

@@ -1,7 +1,8 @@
-﻿using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI;
+using HamstarHelpers.Components.UI.Elements.Dialogs;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,11 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoUI : ModTagsUI {
+		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
+
+
+		////////////////
+
 		public static string GetModNameFromUI( UIState ui ) {
 			Type ui_type = ui.GetType();
 			FieldInfo ui_localmod_field = ui_type.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
@@ -39,7 +45,6 @@ namespace HamstarHelpers.Internals.ModTags {
 			return modfile.name;
 		}
 
-		////////////////
 
 		public static void Initialize() {
 			new ModInfoUI();
@@ -56,34 +61,18 @@ namespace HamstarHelpers.Internals.ModTags {
 		////////////////
 
 		protected override string UIName => "UIModInfo";
-		protected override string BaseContextName => "Mod Info";
+		protected override string ContextName => "Mod Info";
 
 
 
 		////////////////
 
-		private ModInfoUI() : base(false) {
-			this.SubUpButton = new UISubmitUpdateButton( this );
-			
-			MenuUI.AddMenuLoader( this.UIName, this.BaseContextName+" Tag Submit + Update", this.SubUpButton, false );
+		private ModInfoUI() {
+			this.InitializeBase();
+			this.InitializeTagButtons( false );
+			this.InitializeContext();
+			this.InitializeSubUpButton();
 			this.InitializeHoverText();
-		}
-
-		////////////////
-
-		protected override void InitializeUI() {
-			Action<UIState> ui_load = ui => {
-				string modname = ModInfoUI.GetModNameFromUI( ui );
-				if( modname == null ) { return; }
-
-				this.SetCurrentMod( ui, modname );
-				this.RecalculateMenuObjects();
-			};
-			Action<UIState> ui_unload = ui => {
-				this.ResetMenuObjects();
-			};
-
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.BaseContextName+" Load", ui_load, ui_unload );
 		}
 
 
@@ -96,56 +85,47 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private void SetCurrentMod( UIState ui, string modname ) {
-			this.ModName = modname;
-
-			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
-				ISet<string> modtags = args.Found && args.ModTags.ContainsKey( modname ) ?
-						args.ModTags[ modname ] :
-						new HashSet<string>();
-				bool has_tags = modtags.Count > 0;
-
-//LogHelpers.Log( "SetCurrentMod modname: " + modname+", modtags: " + string.Join(",", modtags) );
-				if( has_tags ) {
-					this.SubUpButton.SetTagUpdateMode();
-				} else {
-					this.SubUpButton.SetTagSubmitMode();
-				}
-				
-				foreach( var kv in this.TagButtons ) {
-					if( has_tags ) {
-						kv.Value.Disable();
-					}
-
-					if( modtags.Contains( kv.Key ) ) {
-						kv.Value.SetTagState( 1 );
-					}
-				}
-
-				return false;
-			} );
-		}
-
-
-		////////////////
-
 		internal void SubmitTags() {
 			if( this.ModName == "" ) {
 				throw new Exception( "Invalid mod name." );
 			}
 
+			var myui = this.MyUI;
+
 			Action<string> on_success = delegate ( string output ) {
+				var prompt = new UIPromptPanel( UITheme.Vanilla, 600, 100, output, ()=>{} );
+
+				myui.Append( prompt );
+				myui.Recalculate();
+
+				MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit + Update", _=>{}, ui => {
+					prompt.Remove();
+					this.SubUpButton.Lock();
+					ui.Recalculate();
+				} );
+
 				ErrorLogger.Log( "Mod info submit result: " + output );
 			};
+
 			Action<Exception, string> on_fail = ( e, output ) => {
+				var prompt = new UIPromptPanel( UITheme.Vanilla, 600, 100, "Error: "+output, ()=>{} );
+
+				myui.Append( prompt );
+				myui.Recalculate();
+
+				MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit + Update", _ => { }, ui => {
+					prompt.Remove();
+					this.SubUpButton.Unlock();
+					ui.Recalculate();
+				} );
+
 				Main.NewText( "Mod info submit error: " + e.Message, Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 
 			PostModInfo.SubmitModInfo( this.ModName, this.GetTagsOfState(1), on_success, on_fail );
 
-			this.SubUpButton.IsLocked = true;
-			this.SubUpButton.Disable();
+			this.SubUpButton.Lock();
 		}
 	}
 }

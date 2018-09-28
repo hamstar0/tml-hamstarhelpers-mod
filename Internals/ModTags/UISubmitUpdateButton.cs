@@ -7,16 +7,16 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags {
 	internal class UISubmitUpdateButton : UITextPanelButton {
-		private readonly ModInfoUI ModTagUI;
+		private readonly ModInfoUI UIManager;
 
-		public bool IsLocked = false;
+		public bool IsLocked { get; private set; }
 
 
 
 		////////////////
 
 		public UISubmitUpdateButton( ModInfoUI modtagui ) : base( UITheme.Vanilla, "", 0.65f, true ) {
-			this.ModTagUI = modtagui;
+			this.UIManager = modtagui;
 
 			this.Width.Set( 256f, 0f );
 			this.Height.Set( 40f, 0f );
@@ -50,24 +50,45 @@ namespace HamstarHelpers.Internals.ModTags {
 			if( this.Text == "Modify mod tags" ) {
 				this.SetTagSubmitMode();
 			} else {
-				this.ModTagUI.SubmitTags();
+				this.UIManager.SubmitTags();
 			}
 		}
 
 
 		////////////////
 
+		public void Lock() {
+			this.IsLocked = true;
+
+			this.UpdateEnableState();
+			this.UIManager.DisableTagButtons();
+		}
+
+		public void Unlock() {
+			this.IsLocked = false;
+
+			this.UpdateEnableState();
+			this.UIManager.EnableTagButtons();
+		}
+		
+
+		////////////////
+
 		public void SetTagUpdateMode() {
+			if( this.IsLocked ) { return; }
+
 			this.SetText( "Modify mod tags" );
 
 			this.UpdateEnableState();
 		}
 
 		public void SetTagSubmitMode() {
+			if( this.IsLocked ) { return; }
+
 			this.SetText( "Submit mod tags" );
 			this.Disable();
 			
-			this.ModTagUI.EnableTagButtons();
+			this.UIManager.EnableTagButtons();
 		}
 
 		////////////////
@@ -78,7 +99,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				return;
 			}
 
-			if( string.IsNullOrEmpty(this.ModTagUI.ModName) ) {
+			if( string.IsNullOrEmpty(this.UIManager.ModName) ) {
 				this.Disable();
 				return;
 			}
@@ -87,8 +108,13 @@ namespace HamstarHelpers.Internals.ModTags {
 				this.Enable();
 				return;
 			}
-			
-			if( this.ModTagUI.GetTagsOfState(1).Count >= 3 ) {
+
+			if( ModInfoUI.RecentTaggedMods.Contains( this.UIManager.ModName ) ) {
+				this.Disable();
+				return;
+			}
+
+			if( this.UIManager.GetTagsOfState(1).Count >= 2 ) {
 				this.Enable();
 			} else {
 				this.Disable();

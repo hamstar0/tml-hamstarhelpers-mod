@@ -22,10 +22,16 @@ v3.0
 -	Mod conflicts (custom Mod properties)
 -	Mod favorites (custom Mod properties)
 -	@Test mod info submit and mod data filtering
--	Mod browser tag filtering
-	-	@Include mod author lists
-	-	Implement filtering
+-	Implement tag manager (server-side)
+	-	Implement backend for page
+	-	Define page template for rendering a table of tag requests + confirm and cancel buttons
+	-	Add alert to confirm mod info submit
+-	Fix tag tooltips
 
+-	Change to min 2 tags per submit (not 3)
+-	Reset tags between mod changes
+-	Mod browser tag filtering
+	-	Implement filtering
 	-	Implement disabling tags via right-click
 	-	Add tags to mod browser
 -	Mod info tag input

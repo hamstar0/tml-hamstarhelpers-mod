@@ -88,6 +88,7 @@
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
     <Compile Include="Components\UI\Elements\UIDialog.cs" />
     <Compile Include="Components\UI\Elements\UIModData.cs" />
+    <Compile Include="Components\UI\Elements\UIPromptPanel.cs" />
     <Compile Include="Components\UI\Elements\UITextArea.cs" />
     <Compile Include="Components\UI\Elements\UITextField.cs" />
     <Compile Include="Components\UI\Elements\UITextPanelButton.cs" />
@@ -106,6 +107,8 @@
     <Compile Include="Internals\Menus\Menus.cs" />
     <Compile Include="Internals\ModTags\ModBrowserUI_Filter.cs" />
     <Compile Include="Internals\ModTags\ModBrowserUI.cs" />
+    <Compile Include="Internals\ModTags\ModInfoUI_Load.cs" />
+    <Compile Include="Internals\ModTags\ModTagsUI_Load.cs" />
     <Compile Include="Internals\ModTags\ModTagsUI_Defs.cs" />
     <Compile Include="Internals\ModTags\ModTagsUI.cs" />
     <Compile Include="Internals\ModTags\UISubmitUpdateButton.cs" />

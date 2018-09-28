@@ -13,7 +13,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ModTags {
 	abstract partial class ModTagsUI {
 		protected abstract string UIName { get; }
-		protected abstract string BaseContextName { get; }
+		protected abstract string ContextName { get; }
 
 		////////////////
 
@@ -24,48 +24,6 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		protected Vector2 OldOverhaulLogoPos = default( Vector2 );
 
-
-
-		////////////////
-
-		public ModTagsUI( bool can_disable_tags ) {
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Set UI",
-				ui => { this.MyUI = ui; },
-				ui => { this.MyUI = null; }
-			);
-
-			this.InitializeTagButtons( can_disable_tags );
-			this.InitializeUI();
-		}
-
-		////////////////
-
-		protected abstract void InitializeUI();
-
-		protected void InitializeHoverText() {
-			this.HoverElement = new UIText( "" );
-			this.HoverElement.Width.Set( 0, 0 );
-			this.HoverElement.Height.Set( 0, 0 );
-			this.HoverElement.TextColor = Color.Aquamarine;
-
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Tag Hover", this.HoverElement, false );
-		}
-
-		protected void InitializeTagButtons( bool can_disable_tags ) {
-			int i = 0;
-
-			foreach( var kv in ModTagsUI.Tags ) {
-				string tag_text = kv.Key;
-				string tag_desc = kv.Value;
-
-				var button = new UIModTagButton( this, i, tag_text, tag_desc, can_disable_tags );
-
-				MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.BaseContextName + " Tag " + i, button, false );
-				this.TagButtons[tag_text] = button;
-
-				i++;
-			}
-		}
 
 
 		////////////////
@@ -83,7 +41,7 @@ namespace HamstarHelpers.Internals.ModTags {
 							this.OldOverhaulLogoPos = (Vector2)oh_logo_pos_field.GetValue( oh_mod );
 						}
 
-						oh_logo_pos_field.SetValue( oh_mod, new Vector2( -256, -256 ) );
+						oh_logo_pos_field.SetValue( oh_mod, new Vector2( -384, -384 ) );
 					}
 				}
 			}
@@ -126,6 +84,12 @@ namespace HamstarHelpers.Internals.ModTags {
 		public void EnableTagButtons() {
 			foreach( var kv in this.TagButtons ) {
 				kv.Value.Enable();
+			}
+		}
+
+		public void DisableTagButtons() {
+			foreach( var kv in this.TagButtons ) {
+				kv.Value.Disable();
 			}
 		}
 	}
