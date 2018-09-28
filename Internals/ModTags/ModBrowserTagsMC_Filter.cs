@@ -8,7 +8,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModTagsBrowserUI : ModTagsUI {
+	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public void FilterMods() {
 			bool success;
 			IList<string> mod_names = new List<string>();
@@ -19,8 +19,8 @@ namespace HamstarHelpers.Internals.ModTags {
 			for( int i = 0; i < items_arr.Length; i++ ) {
 				object item = items_arr.GetValue( i );
 
-				string modname = (string)ReflectionHelpers.GetField( item, "mod", out success );    //UIModDownloadItem
-				mod_names.Add( modname );
+				string mod_name = (string)ReflectionHelpers.GetField( item, "mod", out success );    //UIModDownloadItem
+				mod_names.Add( mod_name );
 			}
 
 			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list ) => {

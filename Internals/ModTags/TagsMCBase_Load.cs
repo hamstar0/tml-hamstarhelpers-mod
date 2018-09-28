@@ -5,7 +5,7 @@ using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	abstract partial class ModTagsUI {
+	abstract partial class TagsMenuContextBase {
 		protected void InitializeBase() {
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Set UI",
 				ui => { this.MyUI = ui; },
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.ModTags {
 		protected void InitializeTagButtons( bool can_disable_tags ) {
 			int i = 0;
 
-			foreach( var kv in ModTagsUI.Tags ) {
+			foreach( var kv in TagsMenuContextBase.Tags ) {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
 

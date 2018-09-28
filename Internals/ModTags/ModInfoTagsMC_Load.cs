@@ -8,10 +8,10 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModTagsInfoUI : ModTagsUI {
+	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		protected override void InitializeContext() {
 			Action<UIState> ui_load = ui => {
-				string mod_name = ModTagsInfoUI.GetModNameFromUI( ui );
+				string mod_name = ModInfoTagsMenuContext.GetModNameFromUI( ui );
 				if( mod_name == null ) { return; }
 
 				this.ResetUIState( mod_name );
@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.ModTags {
 		////////////////
 
 		private void ResetUIState( string mod_name ) {
-			if( !ModTagsInfoUI.RecentTaggedMods.Contains( mod_name ) ) {
+			if( !ModInfoTagsMenuContext.RecentTaggedMods.Contains( mod_name ) ) {
 				if( this.SubUpButton.IsLocked ) {
 					this.SubUpButton.Unlock();
 				}

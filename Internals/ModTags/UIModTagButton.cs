@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private readonly ModTagsUI UIManager;
+		private readonly TagsMenuContextBase UIManager;
 
 		public int Column;
 		public int Row;
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 		
-		public UIModTagButton( ModTagsUI modtagui, int pos, string label, string desc, bool can_negate_tags )
+		public UIModTagButton( TagsMenuContextBase modtagui, int pos, string label, string desc, bool can_negate_tags )
 				: base( UITheme.Vanilla, label, 0.6f, false ) {
 			this.TagState = 0;
 			this.UIManager = modtagui;

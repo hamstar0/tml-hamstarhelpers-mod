@@ -11,7 +11,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	abstract partial class ModTagsUI {
+	abstract partial class TagsMenuContextBase {
 		protected abstract string UIName { get; }
 		protected abstract string ContextName { get; }
 
