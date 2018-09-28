@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -18,8 +17,7 @@ namespace HamstarHelpers.Internals.ModTags {
 		////////////////
 
 		internal IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
-		internal UIText HoverElement;
-
+		internal UIText HoverElement = null;
 		protected UIState MyUI = null;
 
 		protected Vector2 OldOverhaulLogoPos = default( Vector2 );
@@ -29,7 +27,7 @@ namespace HamstarHelpers.Internals.ModTags {
 		////////////////
 
 		protected void RecalculateMenuObjects() {
-			if( Main.screenWidth < ( 800 + 128 ) || Main.screenHeight < ( 640 + 128 ) ) {
+			if( Main.screenWidth < (800 + 128) || Main.screenHeight < (640 + 128) ) {
 				Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
 
 				if( oh_mod != null ) {

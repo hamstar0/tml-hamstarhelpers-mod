@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
@@ -24,6 +25,12 @@ namespace HamstarHelpers.Internals.ModTags {
 			};
 
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.ContextName+" Load", ui_load, ui_unload );
+		}
+
+		protected void InitializeInfoDisplay() {
+			this.InfoDisplay = new UITagInfoDisplay( UITheme.Vanilla, 600, 24 );
+
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.InfoDisplay, false );
 		}
 
 		protected void InitializeSubUpButton() {

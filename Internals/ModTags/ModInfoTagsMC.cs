@@ -54,7 +54,8 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 		
-		public UISubmitUpdateButton SubUpButton;
+		internal UISubmitUpdateButton SubUpButton;
+		public UITagInfoDisplay InfoDisplay; 
 
 		public string ModName = "";
 
@@ -71,6 +72,7 @@ namespace HamstarHelpers.Internals.ModTags {
 			this.InitializeBase();
 			this.InitializeTagButtons( false );
 			this.InitializeContext();
+			this.InitializeInfoDisplay();
 			this.InitializeSubUpButton();
 			this.InitializeHoverText();
 		}
@@ -90,34 +92,47 @@ namespace HamstarHelpers.Internals.ModTags {
 				throw new Exception( "Invalid mod name." );
 			}
 
-			var myui = this.MyUI;
-
 			Action<string> on_success = delegate ( string output ) {
-				var prompt = new UIPromptPanel( UITheme.Vanilla, 600, 100, output, ()=>{} );
+				if( this.MyUI != null ) {
+					var prompt = new UIPromptPanel( UITheme.Vanilla, 600, 100, output, () => { } );
+					prompt.Activate();
 
-				myui.Append( prompt );
-				myui.Recalculate();
+					MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag Submit Success", prompt, false );
 
-				MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit + Update", _=>{}, ui => {
-					prompt.Remove();
-					this.SubUpButton.Lock();
-					ui.Recalculate();
-				} );
+					/*this.MyUI.Append( prompt );
+					prompt.Activate();
+					this.MyUI.Recalculate();
+
+					MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit Success",
+						ui => { },
+						ui => {
+							prompt.Remove();
+							this.SubUpButton.Lock();
+							ui.Recalculate();
+						}
+					);*/
+				}
 
 				ErrorLogger.Log( "Mod info submit result: " + output );
 			};
 
 			Action<Exception, string> on_fail = ( e, output ) => {
-				var prompt = new UIPromptPanel( UITheme.Vanilla, 600, 100, "Error: "+output, ()=>{} );
+				if( this.MyUI != null ) {
+					var prompt = new UIPromptPanel( UITheme.Vanilla, 600, 100, "Error: " + output, () => { } );
 
-				myui.Append( prompt );
-				myui.Recalculate();
+					this.MyUI.Append( prompt );
+					prompt.Activate();
+					this.MyUI.Recalculate();
 
-				MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit + Update", _ => { }, ui => {
-					prompt.Remove();
-					this.SubUpButton.Unlock();
-					ui.Recalculate();
-				} );
+					MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit Error",
+						ui => { },
+						ui => {
+							prompt.Remove();
+							this.SubUpButton.Unlock();
+							ui.Recalculate();
+						}
+					);
+				}
 
 				Main.NewText( "Mod info submit error: " + e.Message, Color.Red );
 				LogHelpers.Log( e.ToString() );

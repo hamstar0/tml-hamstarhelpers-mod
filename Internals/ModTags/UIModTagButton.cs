@@ -66,8 +66,8 @@ namespace HamstarHelpers.Internals.ModTags {
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				this.UIManager.HoverElement.SetText( desc );
-				this.UIManager.HoverElement.Left.Set( Main.mouseX, 8f );
-				this.UIManager.HoverElement.Top.Set( Main.mouseY, 8f );
+				this.UIManager.HoverElement.Left.Set( Main.mouseX+8f, 0f );
+				this.UIManager.HoverElement.Top.Set( Main.mouseY+8f, 0f );
 				this.UIManager.HoverElement.Recalculate();
 				this.RefreshTheme();
 			};
