@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
 using System;
@@ -28,13 +28,13 @@ namespace HamstarHelpers.Internals.ModTags {
 		}
 
 		protected void InitializeInfoDisplay() {
-			this.InfoDisplay = new UITagInfoDisplay( UITheme.Vanilla, 600, 24 );
+			this.InfoDisplay = new UITagInfoDisplay( this );
 
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.InfoDisplay, false );
 		}
 
 		protected void InitializeSubUpButton() {
-			this.SubUpButton = new UISubmitUpdateButton( this );
+			this.SubUpButton = new UITagFinishButton( this );
 
 			MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit Or Update Button", this.SubUpButton, false );
 		}

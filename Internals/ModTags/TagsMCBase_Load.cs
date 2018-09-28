@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ModTags.UI;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 
@@ -34,7 +35,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				string tag_text = kv.Key;
 				string tag_desc = kv.Value;
 
-				var button = new UIModTagButton( this, i, tag_text, tag_desc, can_disable_tags );
+				var button = new UITagButton( this, i, tag_text, tag_desc, can_disable_tags );
 
 				MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag " + i, button, false );
 				this.TagButtons[tag_text] = button;

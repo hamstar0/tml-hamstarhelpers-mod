@@ -9,8 +9,8 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags {
-	internal class UIModTagButton : UITextPanelButton {
+namespace HamstarHelpers.Internals.ModTags.UI {
+	internal class UITagButton : UITextPanelButton {
 		public const int ColumnHeightTall = 31;
 		public const int ColumnHeightShort = 8;
 		public const int ColumnsInMid = 5;
@@ -32,15 +32,15 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 		
-		public UIModTagButton( TagsMenuContextBase modtagui, int pos, string label, string desc, bool can_negate_tags )
+		public UITagButton( TagsMenuContextBase modtagui, int pos, string label, string desc, bool can_negate_tags )
 				: base( UITheme.Vanilla, label, 0.6f, false ) {
 			this.TagState = 0;
 			this.UIManager = modtagui;
 			this.DrawPanel = false;
 
-			int col_tall = UIModTagButton.ColumnHeightTall;
-			int col_short = UIModTagButton.ColumnHeightShort;
-			int cols_in_mid = UIModTagButton.ColumnsInMid;
+			int col_tall = UITagButton.ColumnHeightTall;
+			int col_short = UITagButton.ColumnHeightShort;
+			int cols_in_mid = UITagButton.ColumnsInMid;
 
 			if( pos < col_tall ) {
 				this.Column = 0;

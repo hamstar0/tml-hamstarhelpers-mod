@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ModTags.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		internal IDictionary<string, UIModTagButton> TagButtons = new Dictionary<string, UIModTagButton>();
+		internal IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
 		internal UIText HoverElement = null;
 		protected UIState MyUI = null;
 
@@ -63,7 +64,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public abstract void OnTagStateChange( UIModTagButton tag_button );
+		public abstract void OnTagStateChange( UITagButton tag_button );
 
 		public ISet<string> GetTagsOfState( int state ) {
 			ISet<string> tags = new HashSet<string>();

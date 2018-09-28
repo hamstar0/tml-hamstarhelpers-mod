@@ -5,8 +5,8 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags {
-	internal class UISubmitUpdateButton : UITextPanelButton {
+namespace HamstarHelpers.Internals.ModTags.UI {
+	internal class UITagFinishButton : UITextPanelButton {
 		private readonly ModInfoTagsMenuContext UIManager;
 
 		public bool IsLocked { get; private set; }
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public UISubmitUpdateButton( ModInfoTagsMenuContext modtagui ) : base( UITheme.Vanilla, "", 0.65f, true ) {
+		public UITagFinishButton( ModInfoTagsMenuContext modtagui ) : base( UITheme.Vanilla, "", 0.65f, true ) {
 			this.UIManager = modtagui;
 
 			this.Width.Set( 256f, 0f );

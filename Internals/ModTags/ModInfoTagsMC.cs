@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.UI.Elements.Dialogs;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
@@ -54,7 +55,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 		
-		internal UISubmitUpdateButton SubUpButton;
+		internal UITagFinishButton SubUpButton;
 		public UITagInfoDisplay InfoDisplay; 
 
 		public string ModName = "";
@@ -80,7 +81,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public override void OnTagStateChange( UIModTagButton tag_button ) {
+		public override void OnTagStateChange( UITagButton tag_button ) {
 			this.SubUpButton.UpdateEnableState();
 		}
 

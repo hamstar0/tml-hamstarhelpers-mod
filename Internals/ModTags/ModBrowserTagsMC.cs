@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ModTags.UI;
 using System;
 using Terraria.UI;
 
@@ -45,7 +46,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public override void OnTagStateChange( UIModTagButton tag_button ) {
+		public override void OnTagStateChange( UITagButton tag_button ) {
 			this.FilterMods();
 		}
 	}
