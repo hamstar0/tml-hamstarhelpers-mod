@@ -16,8 +16,8 @@ namespace HamstarHelpers.Internals.Menus {
 
 			Promises.AddPostModLoadPromise( () => {
 				Menus.InitializeOpenConfigButton();
-				ModTags.ModInfoUI.Initialize();
-				ModTags.ModBrowserUI.Initialize();
+				ModTags.ModTagsInfoUI.Initialize();
+				ModTags.ModTagsBrowserUI.Initialize();
 			} );
 		}
 

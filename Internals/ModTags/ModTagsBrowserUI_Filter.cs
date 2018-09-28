@@ -8,7 +8,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModBrowserUI : ModTagsUI {
+	partial class ModTagsBrowserUI : ModTagsUI {
 		public void FilterMods() {
 			bool success;
 			IList<string> mod_names = new List<string>();

@@ -56,7 +56,6 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 				UIElement elem = get_insert_elem( ui );
 				elem.RemoveChild( myelem );
-LogHelpers.Log("hide "+ myelem + " "+ui);
 			};
 
 			MenuUI.AddMenuLoader( ui_class_name, elem_name, on_show, on_hide );

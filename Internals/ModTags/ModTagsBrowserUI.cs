@@ -5,9 +5,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModBrowserUI : ModTagsUI {
+	partial class ModTagsBrowserUI : ModTagsUI {
 		public static void Initialize() {
-			new ModBrowserUI();
+			new ModTagsBrowserUI();
 		}
 
 
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private ModBrowserUI() {
+		private ModTagsBrowserUI() {
 			this.InitializeBase();
 			this.InitializeTagButtons( true );
 			this.InitializeContext();

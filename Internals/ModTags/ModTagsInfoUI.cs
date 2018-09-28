@@ -14,7 +14,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModInfoUI : ModTagsUI {
+	partial class ModTagsInfoUI : ModTagsUI {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 
 
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 
 		public static void Initialize() {
-			new ModInfoUI();
+			new ModTagsInfoUI();
 		}
 
 
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private ModInfoUI() {
+		private ModTagsInfoUI() {
 			this.InitializeBase();
 			this.InitializeTagButtons( false );
 			this.InitializeContext();

@@ -8,13 +8,14 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModInfoUI : ModTagsUI {
+	partial class ModTagsInfoUI : ModTagsUI {
 		protected override void InitializeContext() {
 			Action<UIState> ui_load = ui => {
-				string modname = ModInfoUI.GetModNameFromUI( ui );
-				if( modname == null ) { return; }
+				string mod_name = ModTagsInfoUI.GetModNameFromUI( ui );
+				if( mod_name == null ) { return; }
 
-				this.SetCurrentMod( ui, modname );
+				this.ResetUIState( mod_name );
+				this.SetCurrentMod( ui, mod_name );
 				this.RecalculateMenuObjects();
 			};
 
@@ -34,8 +35,8 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private void SetCurrentMod( UIState ui, string modname ) {
-			if( !ModInfoUI.RecentTaggedMods.Contains(modname) ) {
+		private void ResetUIState( string mod_name ) {
+			if( !ModTagsInfoUI.RecentTaggedMods.Contains( mod_name ) ) {
 				if( this.SubUpButton.IsLocked ) {
 					this.SubUpButton.Unlock();
 				}
@@ -45,16 +46,18 @@ namespace HamstarHelpers.Internals.ModTags {
 				}
 			}
 
-			this.ModName = modname;
-
 			foreach( var kv in this.TagButtons ) {
 				kv.Value.Disable();
 				kv.Value.SetTagState( 0 );
 			}
+		}
+
+		private void SetCurrentMod( UIState ui, string mod_name ) {
+			this.ModName = mod_name;
 
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
-				ISet<string> net_modtags = args.Found && args.ModTags.ContainsKey( modname ) ?
-						args.ModTags[ modname ] :
+				ISet<string> net_modtags = args.Found && args.ModTags.ContainsKey( mod_name ) ?
+						args.ModTags[ mod_name ] :
 						new HashSet<string>();
 				bool has_net_tags = net_modtags.Count > 0;
 
