@@ -87,6 +87,7 @@
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
     <Compile Include="Components\UI\Elements\UIDialog.cs" />
+    <Compile Include="Components\UI\Elements\Menu\UIMenuPanel.cs" />
     <Compile Include="Components\UI\Elements\UIModData.cs" />
     <Compile Include="Components\UI\Elements\UIPromptPanel.cs" />
     <Compile Include="Components\UI\Elements\UITextArea.cs" />
@@ -111,7 +112,10 @@
     <Compile Include="Internals\ModTags\TagsMCBase_Load.cs" />
     <Compile Include="Internals\ModTags\TagsMCBase_Defs.cs" />
     <Compile Include="Internals\ModTags\TagsMCBase.cs" />
-    <Compile Include="Internals\ModTags\UI\UITagInfoDisplay.cs" />
+    <Compile Include="Components\UI\Elements\Menu\UIMenuButton.cs" />
+    <Compile Include="Internals\ModTags\ModInfoTagsMC_Submit.cs" />
+    <Compile Include="Internals\ModTags\UI\UITagResetButton.cs" />
+    <Compile Include="Internals\ModTags\UI\UIInfoDisplay.cs" />
     <Compile Include="Internals\ModTags\UI\UITagFinishButton.cs" />
     <Compile Include="Internals\ModTags\UI\UITagButton.cs" />
     <Compile Include="Internals\ModTags\ModInfoTagsMC.cs" />

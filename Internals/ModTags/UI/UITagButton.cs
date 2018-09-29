@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Elements;
+using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
@@ -10,7 +10,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.UI {
-	internal class UITagButton : UITextPanelButton {
+	internal class UITagButton : UIMenuButton {
+		public const float ColumnWidth = 120f;
+		public const float RowHeight = 16f;
 		public const int ColumnHeightTall = 31;
 		public const int ColumnHeightShort = 8;
 		public const int ColumnsInMid = 5;
@@ -33,7 +35,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		////////////////
 		
 		public UITagButton( TagsMenuContextBase modtagui, int pos, string label, string desc, bool can_negate_tags )
-				: base( UITheme.Vanilla, label, 0.6f, false ) {
+				: base( UITheme.Vanilla, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -296f, 40, 0.6f, false ) {
 			this.TagState = 0;
 			this.UIManager = modtagui;
 			this.DrawPanel = false;
@@ -52,9 +54,6 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				this.Column = 1 + (( pos - col_tall ) / col_short );
 				this.Row = ( pos - col_tall ) % col_short;
 			}
-
-			this.Width.Set( 120f, 0f );
-			this.Height.Set( 16f, 0f );
 			
 			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( !this.IsEnabled ) { return; }
@@ -87,18 +86,13 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		private void RecalculatePos() {
+		public override void RecalculatePos() {
 			float width = this.Width.Pixels;
-			float left = (( (Main.screenWidth / 2) - 296 ) - (width - 8)) + ( (width - 2) * this.Column );
-			float top = (16 * this.Row) + 40;
+			float left = (((Main.screenWidth / 2) + this.XCenterOffset) - (width - 8)) + ((width - 2) * this.Column);
+			float top = (UITagButton.RowHeight * this.Row) + this.YPos;
 
 			this.Left.Set( left, 0f );
 			this.Top.Set( top, 0f );
-		}
-
-		public override void Recalculate() {
-			this.RecalculatePos();
-			base.Recalculate();
 		}
 
 

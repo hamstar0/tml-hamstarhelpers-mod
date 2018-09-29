@@ -25,8 +25,8 @@ v3.0
 -	Implement tag manager (server-side)
 	-	Implement backend for page
 	-	Define page template for rendering a table of tag requests + confirm and cancel buttons
-	-	Add alert to confirm mod info submit
 
+	-	Add alert to confirm mod info submit
 -	Fix tag tooltips
 -	Change to min 2 tags per submit (not 3)
 -	Reset tags between mod changes

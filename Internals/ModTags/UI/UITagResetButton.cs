@@ -5,7 +5,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.UI {
-	partial class UITagFinishButton : UIMenuButton {
+	partial class UITagResetButton : UIMenuButton {
 		private readonly ModInfoTagsMenuContext UIManager;
 
 		public bool IsLocked { get; private set; }
@@ -14,8 +14,8 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagFinishButton( ModInfoTagsMenuContext modtagui )
-				: base( UITheme.Vanilla, "", 72f, 40f, -286f, 172f, 0.55f, true ) {
+		public UITagResetButton( ModInfoTagsMenuContext modtagui )
+				: base( UITheme.Vanilla, "Reset", 72f, 40f, 214f, 172f, 0.55f, true ) {
 			this.UIManager = modtagui;
 
 			this.RecalculatePos();
@@ -27,11 +27,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public override void Click( UIMouseEvent evt ) {
 			if( !this.IsEnabled ) { return; }
 
-			if( this.Text == "Modify" ) {
-				this.SetTagSubmitMode();
-			} else {
-				this.UIManager.SubmitTags();
-			}
+			this.UIManager.ResetTagButtons();
 		}
 
 
@@ -41,31 +37,14 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.IsLocked = true;
 
 			this.UpdateEnableState();
-			this.UIManager.DisableTagButtons();
 		}
 
 		public void Unlock() {
 			this.IsLocked = false;
 
 			this.UpdateEnableState();
-			this.UIManager.EnableTagButtons();
 		}
 		
-
-		////////////////
-
-		public void SetTagUpdateMode() {
-			this.SetText( "Modify" );
-
-			this.UpdateEnableState();
-		}
-
-		public void SetTagSubmitMode() {
-			this.SetText( "Submit" );
-			this.Disable();
-			
-			this.UIManager.EnableTagButtons();
-		}
 
 		////////////////
 
@@ -74,23 +53,13 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				this.Disable();
 				return;
 			}
-
-			if( string.IsNullOrEmpty(this.UIManager.ModName) ) {
-				this.Disable();
-				return;
-			}
-
-			if( this.Text == "Modify" ) {
-				this.Enable();
-				return;
-			}
-
+			
 			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( this.UIManager.ModName ) ) {
 				this.Disable();
 				return;
 			}
 
-			if( this.UIManager.GetTagsOfState(1).Count >= 2 ) {
+			if( this.UIManager.GetTagsOfState(1).Count > 0 ) {
 				this.Enable();
 			} else {
 				this.Disable();

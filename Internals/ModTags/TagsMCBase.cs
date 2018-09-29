@@ -12,8 +12,8 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags {
 	abstract partial class TagsMenuContextBase {
-		protected abstract string UIName { get; }
-		protected abstract string ContextName { get; }
+		public abstract string UIName { get; }
+		public abstract string ContextName { get; }
 
 		////////////////
 
@@ -89,6 +89,14 @@ namespace HamstarHelpers.Internals.ModTags {
 		public void DisableTagButtons() {
 			foreach( var kv in this.TagButtons ) {
 				kv.Value.Disable();
+			}
+		}
+
+		////////////////
+
+		public void ResetTagButtons() {
+			foreach( var kv in this.TagButtons ) {
+				kv.Value.SetTagState( 0 );
 			}
 		}
 	}

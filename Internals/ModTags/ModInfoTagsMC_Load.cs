@@ -24,19 +24,21 @@ namespace HamstarHelpers.Internals.ModTags {
 				this.ResetMenuObjects();
 			};
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.ContextName+" Load", ui_load, ui_unload );
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load", ui_load, ui_unload );
 		}
 
 		protected void InitializeInfoDisplay() {
-			this.InfoDisplay = new UITagInfoDisplay( this );
+			this.InfoDisplay = new UIInfoDisplay( this );
 
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.InfoDisplay, false );
 		}
 
-		protected void InitializeSubUpButton() {
-			this.SubUpButton = new UITagFinishButton( this );
+		protected void InitializeButtons() {
+			this.FinishButton = new UITagFinishButton( this );
+			this.ResetButton = new UITagResetButton( this );
 
-			MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Submit Or Update Button", this.SubUpButton, false );
+			MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Finish Button", this.FinishButton, false );
+			MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Reset Button", this.ResetButton, false );
 		}
 
 
@@ -44,12 +46,12 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		private void ResetUIState( string mod_name ) {
 			if( !ModInfoTagsMenuContext.RecentTaggedMods.Contains( mod_name ) ) {
-				if( this.SubUpButton.IsLocked ) {
-					this.SubUpButton.Unlock();
+				if( this.FinishButton.IsLocked ) {
+					this.FinishButton.Unlock();
 				}
 			} else {
-				if( !this.SubUpButton.IsLocked ) {
-					this.SubUpButton.Lock();
+				if( !this.FinishButton.IsLocked ) {
+					this.FinishButton.Lock();
 				}
 			}
 
@@ -70,9 +72,9 @@ namespace HamstarHelpers.Internals.ModTags {
 
 //LogHelpers.Log( "SetCurrentMod modname: " + modname+", modtags: " + string.Join(",", modtags) );
 				if( has_net_tags ) {
-					this.SubUpButton.SetTagUpdateMode();
+					this.FinishButton.SetTagUpdateMode();
 				} else {
-					this.SubUpButton.SetTagSubmitMode();
+					this.FinishButton.SetTagSubmitMode();
 				}
 				
 				foreach( var kv in this.TagButtons ) {
