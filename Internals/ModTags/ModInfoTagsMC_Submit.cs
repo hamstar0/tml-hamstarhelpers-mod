@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal void SubmitTags() {
-			if( this.ModName == "" ) {
+			if( this.CurrentModName == "" ) {
 				throw new Exception( "Invalid mod name." );
 			}
 
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				LogHelpers.Log( e.ToString() );
 			};
 
-			PostModInfo.SubmitModInfo( this.ModName, this.GetTagsOfState( 1 ), on_success, on_fail );
+			PostModInfo.SubmitModInfo( this.CurrentModName, this.GetTagsOfState( 1 ), on_success, on_fail );
 
 			this.FinishButton.Lock();
 			this.ResetButton.Lock();

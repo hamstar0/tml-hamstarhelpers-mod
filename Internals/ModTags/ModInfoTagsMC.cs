@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.ModTags {
 		internal UITagResetButton ResetButton;
 		public UIInfoDisplay InfoDisplay;
 
-		public string ModName = "";
+		public string CurrentModName = "";
 
 		////////////////
 

@@ -106,6 +106,7 @@
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
+    <Compile Include="Internals\ModTags\ModBrowserTagsMC_Load.cs" />
     <Compile Include="Internals\ModTags\ModBrowserTagsMC_Filter.cs" />
     <Compile Include="Internals\ModTags\ModBrowserTagsMC.cs" />
     <Compile Include="Internals\ModTags\ModInfoTagsMC_Load.cs" />

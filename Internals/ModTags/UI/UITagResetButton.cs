@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	partial class UITagResetButton : UIMenuButton {
-		private readonly ModInfoTagsMenuContext UIManager;
+		private readonly TagsMenuContextBase UIManager;
 
 		public bool IsLocked { get; private set; }
 
@@ -14,7 +14,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagResetButton( ModInfoTagsMenuContext modtagui )
+		public UITagResetButton( TagsMenuContextBase modtagui )
 				: base( UITheme.Vanilla, "Reset", 72f, 40f, 214f, 172f, 0.55f, true ) {
 			this.UIManager = modtagui;
 
@@ -53,18 +53,25 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				this.Disable();
 				return;
 			}
-			
-			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( this.UIManager.ModName ) ) {
-				this.Disable();
-				return;
+
+			var mod_info_context = this.UIManager as ModInfoTagsMenuContext;
+
+			if( mod_info_context != null ) {
+				if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( mod_info_context.CurrentModName ) ) {
+					this.Disable();
+					return;
+				}
 			}
 
 			if( this.UIManager.GetTagsOfState(1).Count > 0 ) {
-				if( this.UIManager.FinishButton.Text == "Modify" ) {
-					this.Disable();
-				} else {
-					this.Enable();
+				if( mod_info_context != null ) {
+					if( mod_info_context.FinishButton.Text == "Modify" ) {
+						this.Disable();
+						return;
+					}
 				}
+				
+				this.Enable();
 				return;
 			} else {
 				this.Disable();

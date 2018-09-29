@@ -1,8 +1,6 @@
-﻿using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.ModTags.UI;
-using System;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
@@ -12,6 +10,11 @@ namespace HamstarHelpers.Internals.ModTags {
 		}
 
 
+
+		////////////////
+
+		internal UITextPanelButton BlankButton;
+		internal UITagResetButton ResetButton;
 
 		////////////////
 
@@ -26,21 +29,8 @@ namespace HamstarHelpers.Internals.ModTags {
 			this.InitializeBase();
 			this.InitializeTagButtons( true );
 			this.InitializeContext();
+			this.InitializeButtons();
 			this.InitializeHoverText();
-		}
-
-		////////////////
-
-		protected override void InitializeContext() {
-			Action<UIState> ui_load = ui => {
-				this.RecalculateMenuObjects();
-				this.EnableTagButtons();
-			};
-			Action<UIState> ui_unload = ui => {
-				this.ResetMenuObjects();
-			};
-
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.ContextName+" Load", ui_load, ui_unload );
 		}
 
 
@@ -48,6 +38,8 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		public override void OnTagStateChange( UITagButton tag_button ) {
 			this.FilterMods();
+
+			this.ResetButton.UpdateEnableState();
 		}
 	}
 }

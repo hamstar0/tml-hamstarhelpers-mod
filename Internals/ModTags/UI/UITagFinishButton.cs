@@ -82,7 +82,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			if( string.IsNullOrEmpty(this.UIManager.ModName) ) {
+			if( string.IsNullOrEmpty(this.UIManager.CurrentModName) ) {
 				this.Disable();
 				return;
 			}
@@ -92,7 +92,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( this.UIManager.ModName ) ) {
+			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( this.UIManager.CurrentModName ) ) {
 				this.Disable();
 				return;
 			}
