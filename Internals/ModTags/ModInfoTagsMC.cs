@@ -77,6 +77,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		public override void OnTagStateChange( UITagButton tag_button ) {
 			this.FinishButton.UpdateEnableState();
+			this.ResetButton.UpdateEnableState();
 		}
 	}
 }

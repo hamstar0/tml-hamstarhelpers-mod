@@ -27,6 +27,7 @@ v3.0
 	-	Define page template for rendering a table of tag requests + confirm and cancel buttons
 
 	-	Add alert to confirm mod info submit
+-	Add reset tags button
 -	Fix tag tooltips
 -	Change to min 2 tags per submit (not 3)
 -	Reset tags between mod changes

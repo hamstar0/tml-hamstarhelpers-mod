@@ -28,7 +28,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			if( !this.IsEnabled ) { return; }
 
 			if( this.Text == "Modify" ) {
-				this.SetTagSubmitMode();
+				this.SetModeSubmit();
 			} else {
 				this.UIManager.SubmitTags();
 			}
@@ -49,22 +49,29 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 			this.UpdateEnableState();
 			this.UIManager.EnableTagButtons();
+			
+			if( this.UIManager.ResetButton.IsLocked ) {
+				this.UIManager.ResetButton.Unlock();
+			}
 		}
 		
 
 		////////////////
 
-		public void SetTagUpdateMode() {
+		public void SetModeReadOnly() {
 			this.SetText( "Modify" );
-
+			
 			this.UpdateEnableState();
+			this.UIManager.ResetButton.UpdateEnableState();
 		}
 
-		public void SetTagSubmitMode() {
+		public void SetModeSubmit() {
 			this.SetText( "Submit" );
-			this.Disable();
 			
 			this.UIManager.EnableTagButtons();
+
+			this.UpdateEnableState();
+			this.UIManager.ResetButton.UpdateEnableState();
 		}
 
 		////////////////
@@ -92,8 +99,10 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 			if( this.UIManager.GetTagsOfState(1).Count >= 2 ) {
 				this.Enable();
+				return;
 			} else {
 				this.Disable();
+				return;
 			}
 		}
 	}

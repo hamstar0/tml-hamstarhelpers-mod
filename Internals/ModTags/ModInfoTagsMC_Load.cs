@@ -13,7 +13,10 @@ namespace HamstarHelpers.Internals.ModTags {
 		protected override void InitializeContext() {
 			Action<UIState> ui_load = ui => {
 				string mod_name = ModInfoTagsMenuContext.GetModNameFromUI( ui );
-				if( mod_name == null ) { return; }
+				if( mod_name == null ) {
+					LogHelpers.Log( "No mod for menu context." );
+					return;
+				}
 
 				this.ResetUIState( mod_name );
 				this.SetCurrentMod( ui, mod_name );
@@ -27,11 +30,13 @@ namespace HamstarHelpers.Internals.ModTags {
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load", ui_load, ui_unload );
 		}
 
+
 		protected void InitializeInfoDisplay() {
 			this.InfoDisplay = new UIInfoDisplay( this );
 
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.InfoDisplay, false );
 		}
+
 
 		protected void InitializeButtons() {
 			this.FinishButton = new UITagFinishButton( this );
@@ -61,6 +66,7 @@ namespace HamstarHelpers.Internals.ModTags {
 			}
 		}
 
+
 		private void SetCurrentMod( UIState ui, string mod_name ) {
 			this.ModName = mod_name;
 
@@ -72,9 +78,10 @@ namespace HamstarHelpers.Internals.ModTags {
 
 //LogHelpers.Log( "SetCurrentMod modname: " + modname+", modtags: " + string.Join(",", modtags) );
 				if( has_net_tags ) {
-					this.FinishButton.SetTagUpdateMode();
+					this.FinishButton.SetModeReadOnly();
+					this.ResetButton.Disable();
 				} else {
-					this.FinishButton.SetTagSubmitMode();
+					this.FinishButton.SetModeSubmit();
 				}
 				
 				foreach( var kv in this.TagButtons ) {

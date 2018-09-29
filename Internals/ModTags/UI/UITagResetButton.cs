@@ -60,9 +60,15 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			}
 
 			if( this.UIManager.GetTagsOfState(1).Count > 0 ) {
-				this.Enable();
+				if( this.UIManager.FinishButton.Text == "Modify" ) {
+					this.Disable();
+				} else {
+					this.Enable();
+				}
+				return;
 			} else {
 				this.Disable();
+				return;
 			}
 		}
 	}
