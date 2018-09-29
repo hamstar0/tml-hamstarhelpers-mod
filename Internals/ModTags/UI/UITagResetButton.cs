@@ -19,6 +19,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.UIManager = modtagui;
 
 			this.RecalculatePos();
+			this.UpdateEnableState();
 		}
 
 

@@ -21,11 +21,10 @@ v3.0
 -	Mod version update indications in mods list
 -	Mod conflicts (custom Mod properties)
 -	Mod favorites (custom Mod properties)
--	@Test mod info submit and mod data filtering
+
 -	Implement tag manager (server-side)
 	-	Implement backend for page
 	-	Define page template for rendering a table of tag requests + confirm and cancel buttons
-
 	-	Add alert to confirm mod info submit
 -	Add reset tags button
 -	Fix tag tooltips
