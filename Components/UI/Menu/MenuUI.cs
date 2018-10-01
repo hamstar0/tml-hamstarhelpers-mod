@@ -99,31 +99,43 @@ namespace HamstarHelpers.Components.UI.Menu {
 			var ui_inner_container = MenuUI.GetMenuContainerInner( ui_outer_container );
 			return MenuUI.GetMenuContainerInsertPoint( ui_inner_container );
 		}
-	}
-
-
-
-
-	class MenuUIManager {
-		internal IDictionary<string, IDictionary<string, Action<UIState>>> Show = new Dictionary<string, IDictionary<string, Action<UIState>>>();
-		internal IDictionary<string, IDictionary<string, Action<UIState>>> Hide = new Dictionary<string, IDictionary<string, Action<UIState>>>();
-
-		private Tuple<string, UIState> CurrentMenuUI = null;
 
 
 		////////////////
 
-		public MenuUIManager() {
-			if( Main.dedServ ) { return; }
-
-			Main.OnPostDraw += MenuUIManager._Update;
+		public static UIState GetCurrentMenu() {
+			return ModHelpersMod.Instance.MenuUIMngr.CurrentMenuUI?.Item2;
 		}
 
-		~MenuUIManager() {
+		public static UIState GetPreviousMenu() {
+			return ModHelpersMod.Instance.MenuUIMngr.PreviousMenuUI?.Item2;
+		}
+
+
+
+		////////////////
+
+		private IDictionary<string, IDictionary<string, Action<UIState>>> Show = new Dictionary<string, IDictionary<string, Action<UIState>>>();
+		private IDictionary<string, IDictionary<string, Action<UIState>>> Hide = new Dictionary<string, IDictionary<string, Action<UIState>>>();
+
+		private Tuple<string, UIState> CurrentMenuUI = null;
+		private Tuple<string, UIState> PreviousMenuUI = null;
+		
+
+
+		////////////////
+		
+		public MenuUI() {
+			if( Main.dedServ ) { return; }
+
+			Main.OnPostDraw += MenuUI._Update;
+		}
+
+		~MenuUI() {
 			if( Main.dedServ ) { return; }
 
 			try {
-				Main.OnPostDraw -= MenuUIManager._Update;
+				Main.OnPostDraw -= MenuUI._Update;
 				this.HideAll();
 
 				this.Show.Clear();
@@ -170,6 +182,8 @@ namespace HamstarHelpers.Components.UI.Menu {
 		private void LoadUI( UIState ui ) {
 			string prev_ui_name = this.CurrentMenuUI?.Item1;
 			string curr_ui_name = ui?.GetType().Name;
+
+			this.PreviousMenuUI = this.CurrentMenuUI;
 
 			if( prev_ui_name != null && this.Hide.ContainsKey(prev_ui_name) ) {
 				var hiders = this.Hide[ prev_ui_name ].Values;

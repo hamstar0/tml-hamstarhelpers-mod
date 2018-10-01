@@ -115,7 +115,7 @@ namespace HamstarHelpers {
 			this.ExceptionMngr = new HamstarExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
 			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>( HamstarHelpersConfigData.ConfigFileName,
-				ConfigurationDataBase.RelativePath, new HamstarHelpersConfigData() );
+					ConfigurationDataBase.RelativePath, new HamstarHelpersConfigData() );
 		}
 
 		public override void Load() {

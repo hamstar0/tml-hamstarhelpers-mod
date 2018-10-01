@@ -12,11 +12,7 @@ namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		protected override void InitializeContext() {
 			Action<UIState> ui_load = ui => {
-				string mod_name = ModInfoTagsMenuContext.GetModNameFromUI( ui );
-				if( mod_name == null ) {
-					LogHelpers.Log( "No mod for menu context." );
-					return;
-				}
+				string mod_name = ModInfoTagsMenuContext.GetModName();
 
 				this.ResetUIState( mod_name );
 				this.SetCurrentMod( ui, mod_name );

@@ -63,7 +63,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 
 		////////////////
-
+		
 		public abstract void OnTagStateChange( UITagButton tag_button );
 
 		public ISet<string> GetTagsOfState( int state ) {
