@@ -8,7 +8,25 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
+	public static class MenuModGet {
+		public static object GetLocalMod( UIState ui ) {
+			Type ui_type = ui.GetType();
+			FieldInfo ui_localmod_field = ui_type.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
+			if( ui_localmod_field == null ) {
+				LogHelpers.Log( "No 'localMod' field in " + ui_type );
+				return null;
+			}
+
+			object localmod = ui_localmod_field.GetValue( ui );
+			if( localmod != null ) {
+				return MenuModGet.GetLocalModName( localmod );
+			}
+
+			LogHelpers.Log( "No mod loaded." );
+			return null;
+		}
+
+
 		public static string GetModName( UIState prev_ui, UIState curr_ui ) {
 			Type ui_type = curr_ui.GetType();
 			FieldInfo ui_localmod_field = ui_type.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
@@ -19,11 +37,11 @@ namespace HamstarHelpers.Internals.ModTags {
 
 			object localmod = ui_localmod_field.GetValue( curr_ui );
 			if( localmod != null ) {
-				return ModInfoTagsMenuContext.GetLocalModName( localmod );
+				return MenuModGet.GetLocalModName( localmod );
 			}
 
 			if( prev_ui?.GetType().Name == "UIModBrowser" ) {
-				return ModInfoTagsMenuContext.GetSelectedModBrowserMod( prev_ui );
+				return MenuModGet.GetSelectedModBrowserMod( prev_ui );
 			}
 
 			LogHelpers.Log( "No mod loaded." );

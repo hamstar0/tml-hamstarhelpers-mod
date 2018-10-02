@@ -25,7 +25,10 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private ModBrowserTagsMenuContext() : base( true ) { }
+		private ModBrowserTagsMenuContext() : base( true ) {
+			this.InitializeContext();
+			this.InitializeControls();
+		}
 
 
 		////////////////

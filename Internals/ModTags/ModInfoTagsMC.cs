@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
-
+		
 
 		////////////////
 
@@ -32,7 +32,10 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private ModInfoTagsMenuContext() : base(false) { }
+		private ModInfoTagsMenuContext() : base( false ) {
+			this.InitializeContext();
+			this.InitializeControls();
+		}
 
 
 		////////////////

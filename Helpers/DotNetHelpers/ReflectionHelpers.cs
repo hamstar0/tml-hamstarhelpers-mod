@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
-	public class ReflectionHelpers {
+	public partial class ReflectionHelpers {
 		public static Type GetClassTypeFrom( string assemble_name, string class_name ) {
 			return typeof( ModLoader ).Assembly.GetType( class_name );
 		}
@@ -26,39 +26,40 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 
 		////////////////
-
-		public static object GetField( Object instance, string field_name, out bool success ) {
-			success = false;
+		
+		public static bool GetField( Object instance, string field_name, out object field_val ) {
+			field_val = null;
 
 			Type objtype = instance.GetType();
 			FieldInfo field = objtype.GetField( field_name );
-			if( field == null ) { return null; }
-
-			success = true;
-			return field.GetValue( instance );
+			if( field == null ) { return false; }
+			
+			field_val = field.GetValue( instance );
+			return true;
 		}
 
-		public static object GetField( Object instance, string field_name, BindingFlags flags, out bool success ) {
-			success = false;
+		public static bool GetField( Object instance, string field_name, BindingFlags flags, out object field_val ) {
+			field_val = null;
 
 			Type objtype = instance.GetType();
 			FieldInfo field = objtype.GetField( field_name, flags );
-			if( field == null ) { return null; }
+			if( field == null ) { return false; }
 
-			success = true;
-			return field.GetValue( instance );
+			field_val = field.GetValue( instance );
+			return true;
 		}
 
-		public static object GetField( Type obj_type, Object instance, string field_name, BindingFlags flags, out bool success ) {
-			success = false;
+		public static bool GetField( Type obj_type, Object instance, string field_name, BindingFlags flags, out object field_val ) {
+			field_val = null;
 
 			FieldInfo field = obj_type.GetField( field_name, flags );
-			if( field == null ) { return null; }
+			if( field == null ) { return false; }
 
-			success = true;
-			return field.GetValue( instance );
+			field_val = field.GetValue( instance );
+			return true;
 		}
 
+		////
 
 		public static void SetField( Object obj, string field_name, object value, out bool success ) {
 			success = false;
@@ -84,39 +85,40 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 
 		////////////////
-
-		public static object GetProperty( Object instance, string prop_name, out bool success ) {
-			success = false;
+		
+		public static bool GetProperty( Object instance, string prop_name, out object prop_val ) {
+			prop_val = null;
 
 			Type objtype = instance.GetType();
 			PropertyInfo prop = objtype.GetProperty( prop_name );
-			if( prop == null ) { return null; }
+			if( prop == null ) { return false; }
 
-			success = true;
-			return prop.GetValue( instance );
+			prop_val = prop.GetValue( instance );
+			return true;
 		}
 
-		public static object GetProperty( Object instance, string prop_name, BindingFlags flags, out bool success ) {
-			success = false;
+		public static bool GetProperty( Object instance, string prop_name, BindingFlags flags, out object prop_val ) {
+			prop_val = null;
 
 			Type objtype = instance.GetType();
 			PropertyInfo prop = objtype.GetProperty( prop_name, flags );
-			if( prop == null ) { return null; }
+			if( prop == null ) { return false; }
 
-			success = true;
-			return prop.GetValue( instance );
+			prop_val = prop.GetValue( instance );
+			return true;
 		}
 
-		public static object GetProperty( Type obj_type, Object instance, string prop_name, BindingFlags flags, out bool success ) {
-			success = false;
-			
+		public static bool GetProperty( Type obj_type, Object instance, string prop_name, BindingFlags flags, out object prop_val ) {
+			prop_val = null;
+
 			PropertyInfo prop = obj_type.GetProperty( prop_name, flags );
-			if( prop == null ) { return null; }
+			if( prop == null ) { return false; }
 
-			success = true;
-			return prop.GetValue( instance );
+			prop_val = prop.GetValue( instance );
+			return true;
 		}
 
+		////
 
 		public static void SetProperty( Object obj, string prop_name, object value, out bool success ) {
 			success = false;
@@ -132,29 +134,27 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 
 		////////////////
-
-		public static object RunMethod( Object obj, string method_name, object[] args, out bool success ) {
-			success = false;
+		
+		public static bool RunMethod( Object obj, string method_name, object[] args, out object return_val ) {
+			return_val = false;
 			Type objtype = obj.GetType();
 			MethodInfo method = objtype.GetMethod( method_name );
 
 			if( method != null ) {
-				success = true;
-				return method.Invoke( obj, args );
+				return_val = method.Invoke( obj, args );
 			}
-			return null;
+			return method != null;
 		}
 
-		public static object RunMethod( Object obj, string method_name, BindingFlags flags, object[] args, out bool success ) {
-			success = false;
+		public static bool RunMethod( Object obj, string method_name, BindingFlags flags, object[] args, out object return_val ) {
+			return_val = false;
 			Type objtype = obj.GetType();
 			MethodInfo method = objtype.GetMethod( method_name, flags );
 
 			if( method != null ) {
-				success = true;
-				return method.Invoke( obj, args );
+				return_val = method.Invoke( obj, args );
 			}
-			return null;
+			return method != null;
 		}
 	}
 }

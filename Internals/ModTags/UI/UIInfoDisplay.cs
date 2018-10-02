@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
@@ -7,14 +8,14 @@ using Terraria.GameContent.UI.Elements;
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	internal class UIInfoDisplay : UIMenuPanel {
-		private readonly TagsMenuContextBase MenuContext;
+		private readonly MenuContextBase MenuContext;
 		private readonly UIText TextElem;
 
 
 
 		////////////////
 
-		public UIInfoDisplay( TagsMenuContextBase menu_context )
+		public UIInfoDisplay( MenuContextBase menu_context )
 				: base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
 			this.MenuContext = menu_context;
 

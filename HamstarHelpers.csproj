@@ -97,6 +97,8 @@
     <Compile Include="Components\UI\DialogManager.cs" />
     <Compile Include="Components\UI\Menu\MenuItem.cs" />
     <Compile Include="Components\UI\Menu\MenuUI.cs" />
+    <Compile Include="Components\UI\Menu\MenuContextBase.cs" />
+    <Compile Include="Components\UI\Menu\MenuContextBase_Load.cs" />
     <Compile Include="Components\UI\UITheme.cs" />
     <Compile Include="Components\UI\UITheme_Default.cs" />
     <Compile Include="Components\UI\UITheme_Vanilla.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
+    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Obsolete.cs" />
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
     <Compile Include="Internals\ModRecommendations\ModRecommendsMC.cs" />
@@ -112,7 +115,7 @@
     <Compile Include="Internals\ModTags\ModBrowserTagsMC_Load.cs" />
     <Compile Include="Internals\ModTags\ModBrowserTagsMC_Filter.cs" />
     <Compile Include="Internals\ModTags\ModBrowserTagsMC.cs" />
-    <Compile Include="Internals\ModTags\ModInfoTagsMC_GetMod.cs" />
+    <Compile Include="Components\UI\Menu\MenuModGet.cs" />
     <Compile Include="Internals\ModTags\ModInfoTagsMC_Load.cs" />
     <Compile Include="Internals\ModTags\TagsMCBase_Load.cs" />
     <Compile Include="Internals\ModTags\TagsMCBase_Defs.cs" />

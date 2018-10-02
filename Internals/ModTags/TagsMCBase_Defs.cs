@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	abstract partial class TagsMenuContextBase {
+	abstract partial class TagsMenuContextBase : MenuContextBase {
 		public static IDictionary<string, string> Tags = new Dictionary<string, string> {
 			{ "Core Game",				"Mechanics: Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc." },
 			{ "Combat",					"Mechanics: Adds weapon reloading, dual-wielding, changes mob behaviors, etc." },

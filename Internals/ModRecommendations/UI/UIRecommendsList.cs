@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 
@@ -32,6 +31,21 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 			this.Append( this.List );
 
 			this.Recalculate();
+		}
+
+
+		////////////////
+
+		public void Clear() {
+			this.List.Clear();
+		}
+
+		////////////////
+
+		public void AddModEntry( string mod_name, string why ) {
+			//var mod_entry = new UIPanel
+
+			//this.List.Append( mod_entry );
 		}
 	}
 }

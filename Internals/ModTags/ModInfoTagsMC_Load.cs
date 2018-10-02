@@ -10,9 +10,9 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
-		protected override void InitializeContext() {
+		private void InitializeContext() {
 			Action<UIState> ui_load = ui => {
-				string mod_name = ModInfoTagsMenuContext.GetModName( MenuUI.GetCurrentMenu(), ui );
+				string mod_name = MenuModGet.GetModName( MenuUI.GetCurrentMenu(), ui );
 				if( mod_name == null ) {
 					LogHelpers.Log( "Could not load mod tags." );
 					return;
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.ModTags {
 		}
 
 
-		protected override void InitializeControls() {
+		private void InitializeControls() {
 			this.FinishButton = new UITagFinishButton( this );
 			this.ResetButton = new UITagResetButton( this );
 
@@ -59,6 +59,7 @@ namespace HamstarHelpers.Internals.ModTags {
 			}
 		}
 
+		////////////////
 
 		private void SetCurrentMod( UIState ui, string mod_name ) {
 			this.CurrentModName = mod_name;
