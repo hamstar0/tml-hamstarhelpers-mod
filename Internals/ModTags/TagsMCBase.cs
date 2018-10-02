@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -17,12 +16,24 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		internal IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
-		internal UIText HoverElement = null;
 		protected UIState MyUI = null;
+
+		internal IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
+		internal UIInfoDisplay InfoDisplay;
 
 		protected Vector2 OldOverhaulLogoPos = default( Vector2 );
 
+
+
+		////////////////
+
+		protected TagsMenuContextBase( bool can_disable_tags ) {
+			this.InitializeBase();
+			this.InitializeTagButtons( can_disable_tags );
+			this.InitializeContext();
+			this.InitializeControls();
+			this.InitializeInfoDisplay();
+		}
 
 
 		////////////////

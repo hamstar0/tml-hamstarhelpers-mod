@@ -20,7 +20,6 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		internal UITagFinishButton FinishButton;
 		internal UITagResetButton ResetButton;
-		public UIInfoDisplay InfoDisplay;
 
 		public string CurrentModName = "";
 
@@ -33,14 +32,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private ModInfoTagsMenuContext() {
-			this.InitializeBase();
-			this.InitializeTagButtons( false );
-			this.InitializeContext();
-			this.InitializeInfoDisplay();
-			this.InitializeButtons();
-			this.InitializeHoverText();
-		}
+		private ModInfoTagsMenuContext() : base(false) { }
 
 
 		////////////////

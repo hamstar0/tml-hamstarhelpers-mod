@@ -1,13 +1,14 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	internal class UIInfoDisplay : UIMenuPanel {
 		private readonly TagsMenuContextBase UIManager;
-		private readonly UIText InfoDisplay;
+		private readonly UIText TextElem;
 
 
 
@@ -17,10 +18,10 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				: base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
 			this.UIManager = modtagui;
 
-			this.InfoDisplay = new UIText( "" );
-			this.InfoDisplay.Width.Set( 0f, 1f );
-			this.InfoDisplay.Height.Set( 0f, 1f );
-			this.Append( this.InfoDisplay );
+			this.TextElem = new UIText( "" );
+			this.TextElem.Width.Set( 0f, 1f );
+			this.TextElem.Height.Set( 0f, 1f );
+			this.Append( this.TextElem );
 
 			//this.RefreshTheme();
 			this.Recalculate();
@@ -28,9 +29,14 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 
 		////////////////
+		
+		public void SetText( string text, Color? color=null ) {
+			this.TextElem.TextColor = color??Color.White;
+			this.TextElem.SetText( text );
+		}
 
-		public void SetText( string text ) {
-			this.InfoDisplay.SetText( text );
+		public string GetText() {
+			return this.TextElem.Text;
 		}
 
 

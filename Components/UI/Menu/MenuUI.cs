@@ -15,13 +15,13 @@ namespace HamstarHelpers.Components.UI.Menu {
 			var mymod = ModHelpersMod.Instance;
 
 			if( !mymod.MenuUIMngr.Show.ContainsKey( ui_class_name ) ) {
-				mymod.MenuUIMngr.Show[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
+				mymod.MenuUIMngr.Show[ui_class_name] = new Dictionary<string, Action<UIState>>();
 			}
 			if( !mymod.MenuUIMngr.Hide.ContainsKey( ui_class_name ) ) {
-				mymod.MenuUIMngr.Hide[ ui_class_name ] = new Dictionary<string, Action<UIState>>();
+				mymod.MenuUIMngr.Hide[ui_class_name] = new Dictionary<string, Action<UIState>>();
 			}
-			mymod.MenuUIMngr.Show[ ui_class_name ][ elem_name ] = on_show;
-			mymod.MenuUIMngr.Hide[ ui_class_name ][ elem_name ] = on_hide;
+			mymod.MenuUIMngr.Show[ui_class_name][elem_name] = on_show;
+			mymod.MenuUIMngr.Hide[ui_class_name][elem_name] = on_hide;
 
 			UIState ui = Main.MenuUI.CurrentState;
 			string curr_ui_name = ui?.GetType().Name;
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 					return ui;//ui_outer_container;
 				}
 			};
-			
+
 			Action<UIState> on_show = ( UIState ui ) => {
 				UIElement elem = get_insert_elem( ui );
 				elem.Append( myelem );
@@ -84,9 +84,9 @@ namespace HamstarHelpers.Components.UI.Menu {
 			Type ui_container_type = ui_inner_container.GetType();
 			FieldInfo ui_container_elems_field = ui_container_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
 			List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_inner_container );
-			
-			for( int i=0; i<ui_container_elems.Count; i++ ) {
-				if( ui_container_elems[i] is UIElement && !(ui_container_elems[i] is UIList) && !(ui_container_elems[i] is UIScrollbar) ) {
+
+			for( int i = 0; i < ui_container_elems.Count; i++ ) {
+				if( ui_container_elems[i] is UIElement && !( ui_container_elems[i] is UIList ) && !( ui_container_elems[i] is UIScrollbar ) ) {
 					return ui_container_elems[i];
 				}
 			}
@@ -110,32 +110,32 @@ namespace HamstarHelpers.Components.UI.Menu {
 		public static UIState GetPreviousMenu() {
 			return ModHelpersMod.Instance.MenuUIMngr.PreviousMenuUI?.Item2;
 		}
+	}
 
 
 
-		////////////////
+	class MenuUIManager {
+		internal IDictionary<string, IDictionary<string, Action<UIState>>> Show = new Dictionary<string, IDictionary<string, Action<UIState>>>();
+		internal IDictionary<string, IDictionary<string, Action<UIState>>> Hide = new Dictionary<string, IDictionary<string, Action<UIState>>>();
 
-		private IDictionary<string, IDictionary<string, Action<UIState>>> Show = new Dictionary<string, IDictionary<string, Action<UIState>>>();
-		private IDictionary<string, IDictionary<string, Action<UIState>>> Hide = new Dictionary<string, IDictionary<string, Action<UIState>>>();
-
-		private Tuple<string, UIState> CurrentMenuUI = null;
-		private Tuple<string, UIState> PreviousMenuUI = null;
+		internal Tuple<string, UIState> CurrentMenuUI = null;
+		internal Tuple<string, UIState> PreviousMenuUI = null;
 		
 
 
 		////////////////
 		
-		public MenuUI() {
+		public MenuUIManager() {
 			if( Main.dedServ ) { return; }
 
-			Main.OnPostDraw += MenuUI._Update;
+			Main.OnPostDraw += MenuUIManager._Update;
 		}
 
-		~MenuUI() {
+		~MenuUIManager() {
 			if( Main.dedServ ) { return; }
 
 			try {
-				Main.OnPostDraw -= MenuUI._Update;
+				Main.OnPostDraw -= MenuUIManager._Update;
 				this.HideAll();
 
 				this.Show.Clear();

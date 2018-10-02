@@ -21,11 +21,13 @@ v3.0
 -	Mod version update indications in mods list
 -	Mod conflicts (custom Mod properties)
 -	Mod favorites (custom Mod properties)
+	-	Define favorites panel
 -	Further tag tweaks
+	-	Use display panel for mouse hovers on tags
+
 	-	Hide logo under tags lists
 	-	Shrink tag columns
 	-	Add theme tags: Nature, Sci-Fi (vs. Futuristic), Medieval
-
 	-	Reconsider tags: Specialized, Visuals, Content: Sounds, and all the Wheres
 	-	Rename Multiplayer Compat.
 -	Implement tag manager (server-side)

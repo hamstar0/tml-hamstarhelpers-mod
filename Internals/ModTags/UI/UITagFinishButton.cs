@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		////////////////
 
 		public UITagFinishButton( ModInfoTagsMenuContext modtagui )
-				: base( UITheme.Vanilla, "", 72f, 40f, -286f, 172f, 0.55f, true ) {
+				: base( UITheme.Vanilla, "", 72f, 40f, -300f, 172f, 0.55f, true ) {
 			this.UIManager = modtagui;
 
 			this.RecalculatePos();

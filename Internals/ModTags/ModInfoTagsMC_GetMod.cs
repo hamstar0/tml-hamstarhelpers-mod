@@ -1,19 +1,15 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Internals.ModTags.UI;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
+
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
-		public static string GetModName() {
-			UIState curr_ui = MenuUI.GetCurrentMenu();
-			UIState prev_ui = MenuUI.GetPreviousMenu();
-
+		public static string GetModName( UIState prev_ui, UIState curr_ui ) {
 			Type ui_type = curr_ui.GetType();
 			FieldInfo ui_localmod_field = ui_type.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
 			if( ui_localmod_field == null ) {

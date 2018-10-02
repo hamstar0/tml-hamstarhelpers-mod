@@ -1,16 +1,30 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.ModTags.UI;
-using Microsoft.Xna.Framework;
-using Terraria.GameContent.UI.Elements;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
 
 
 namespace HamstarHelpers.Internals.ModTags {
 	abstract partial class TagsMenuContextBase {
 		protected void InitializeBase() {
+			Texture2D old_logo1 = Main.logoTexture;
+			Texture2D old_logo2 = Main.logo2Texture;
+			
 			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Set UI",
-				ui => { this.MyUI = ui; },
-				ui => { this.MyUI = null; }
+				ui => {
+					Main.instance.LoadProjectile( ProjectileID.ShadowBeamHostile );
+
+					Main.logoTexture = Main.projectileTexture[ ProjectileID.ShadowBeamHostile ];
+					Main.logo2Texture = Main.projectileTexture[ ProjectileID.ShadowBeamHostile ];
+					this.MyUI = ui;
+				},
+				ui => {
+					Main.logoTexture = old_logo1;
+					Main.logo2Texture = old_logo2;
+					this.MyUI = null;
+				}
 			);
 		}
 
@@ -18,13 +32,13 @@ namespace HamstarHelpers.Internals.ModTags {
 		protected abstract void InitializeContext();
 
 
-		protected void InitializeHoverText() {
-			this.HoverElement = new UIText( "" );
-			this.HoverElement.Width.Set( 0, 0 );
-			this.HoverElement.Height.Set( 0, 0 );
-			this.HoverElement.TextColor = Color.Aquamarine;
+		protected abstract void InitializeControls();
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag Hover", this.HoverElement, false );
+
+		protected void InitializeInfoDisplay() {
+			this.InfoDisplay = new UIInfoDisplay( this );
+
+			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.InfoDisplay, false );
 		}
 
 

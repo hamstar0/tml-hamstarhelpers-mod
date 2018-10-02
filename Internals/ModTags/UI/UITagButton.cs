@@ -11,7 +11,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	internal class UITagButton : UIMenuButton {
-		public const float ColumnWidth = 120f;
+		public const float ColumnWidth = 110f;
 		public const float RowHeight = 16f;
 		public const int ColumnHeightTall = 31;
 		public const int ColumnHeightShort = 8;
@@ -21,24 +21,26 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public int TagState { get; private set; }
-
-		////////////////
-
 		private readonly TagsMenuContextBase UIManager;
 
 		public int Column;
 		public int Row;
 
+		////////////////
+
+		public string Desc { get; private set; }
+		public int TagState { get; private set; }
+
 
 
 		////////////////
-		
+
 		public UITagButton( TagsMenuContextBase modtagui, int pos, string label, string desc, bool can_negate_tags )
-				: base( UITheme.Vanilla, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -296f, 40, 0.6f, false ) {
+				: base( UITheme.Vanilla, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -308f, 40, 0.6f, false ) {
 			this.TagState = 0;
 			this.UIManager = modtagui;
 			this.DrawPanel = false;
+			this.Desc = desc;
 
 			int col_tall = UITagButton.ColumnHeightTall;
 			int col_short = UITagButton.ColumnHeightShort;
@@ -64,16 +66,16 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				this.UIManager.HoverElement.SetText( desc );
-				this.UIManager.HoverElement.Left.Set( Main.mouseX+8f, 0f );
-				this.UIManager.HoverElement.Top.Set( Main.mouseY+8f, 0f );
-				this.UIManager.HoverElement.Recalculate();
+				this.UIManager.InfoDisplay.SetText( desc );
+				this.UIManager.InfoDisplay.Left.Set( Main.mouseX+8f, 0f );
+				this.UIManager.InfoDisplay.Top.Set( Main.mouseY+8f, 0f );
+				this.UIManager.InfoDisplay.Recalculate();
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( this.UIManager.HoverElement.Text == desc ) {
-					this.UIManager.HoverElement.SetText( "" );
-					this.UIManager.HoverElement.Recalculate();
+				if( this.UIManager.InfoDisplay.GetText() == desc ) {
+					this.UIManager.InfoDisplay.SetText( "" );
+					this.UIManager.InfoDisplay.Recalculate();
 				}
 				this.RefreshTheme();
 			};
@@ -145,15 +147,17 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 					this.Theme.ButtonBgColor;
 			byte a = bg_color.A;
 			
-			if( this.Text.Contains("Mechanics:") ) {
-				bg_color = Color.Lerp( bg_color, Color.Gold, 0.4f );
-			} else if( this.Text.Contains("Theme:") ) {
+			if( this.Desc.Contains("Mechanics:") ) {
+				bg_color = Color.Lerp( bg_color, Color.Gold, 0.3f );
+			} else if( this.Desc.Contains("Theme:") ) {
 				bg_color = Color.Lerp( bg_color, Color.DarkTurquoise, 0.4f );
-			} else if( this.Text.Contains( "Content:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.DarkRed, 0.4f );
-			} else if( this.Text.Contains( "Where:" ) ) {
+			} else if( this.Desc.Contains( "Content:" ) ) {
+				bg_color = Color.Lerp( bg_color, Color.DarkRed, 0.3f );
+			//} else if( this.Desc.Contains( "Where:" ) ) {
+			//	bg_color = Color.Lerp( bg_color, Color.Green, 0.4f );
+			} else if( this.Desc.Contains( "When:" ) ) {
 				bg_color = Color.Lerp( bg_color, Color.Green, 0.4f );
-			} else if( this.Text.Contains( "When:" ) ) {
+			} else if( this.Desc.Contains( "State:" ) ) {
 				bg_color = Color.Lerp( bg_color, Color.DarkViolet, 0.4f );
 			}
 			bg_color.A = a;
@@ -169,16 +173,18 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 					this.Theme.ButtonEdgeColor;
 			byte a = edge_color.A;
 			
-			if( this.Text.Contains( "Mechanics:" ) ) {
+			if( this.Desc.Contains( "Mechanics:" ) ) {
 				edge_color = Color.Lerp( edge_color, Color.Goldenrod, 0.35f );
-			} else if( this.Text.Contains( "Theme:" ) ) {
+			} else if( this.Desc.Contains( "Theme:" ) ) {
 				edge_color = Color.Lerp( edge_color, Color.Aquamarine, 0.25f );
-			} else if( this.Text.Contains( "Content:" ) ) {
+			} else if( this.Desc.Contains( "Content:" ) ) {
 				edge_color = Color.Lerp( edge_color, Color.Red, 0.25f );
-			} else if( this.Text.Contains( "Where:" ) ) {
+			//} else if( this.Desc.Contains( "Where:" ) ) {
+			//	edge_color = Color.Lerp( edge_color, Color.Green, 0.25f );
+			} else if( this.Desc.Contains( "When:" ) ) {
 				edge_color = Color.Lerp( edge_color, Color.Green, 0.25f );
-			} else if( this.Text.Contains( "When:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.Purple, 0.25f );
+			} else if( this.Desc.Contains( "State:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.DarkViolet, 0.4f );
 			}
 			edge_color.A = a;
 
