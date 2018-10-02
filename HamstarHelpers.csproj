@@ -107,6 +107,8 @@
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
+    <Compile Include="Internals\ModRecommendations\ModRecommendsMC.cs" />
+    <Compile Include="Internals\ModRecommendations\UI\UIRecommendsList.cs" />
     <Compile Include="Internals\ModTags\ModBrowserTagsMC_Load.cs" />
     <Compile Include="Internals\ModTags\ModBrowserTagsMC_Filter.cs" />
     <Compile Include="Internals\ModTags\ModBrowserTagsMC.cs" />

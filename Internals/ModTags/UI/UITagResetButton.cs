@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	partial class UITagResetButton : UIMenuButton {
-		private readonly TagsMenuContextBase UIManager;
+		private readonly TagsMenuContextBase MenuContext;
 
 		public bool IsLocked { get; private set; }
 
@@ -14,9 +14,9 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagResetButton( TagsMenuContextBase modtagui )
+		public UITagResetButton( TagsMenuContextBase menu_context )
 				: base( UITheme.Vanilla, "Reset", 72f, 40f, 228f, 172f, 0.55f, true ) {
-			this.UIManager = modtagui;
+			this.MenuContext = menu_context;
 
 			this.RecalculatePos();
 			this.UpdateEnableState();
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public override void Click( UIMouseEvent evt ) {
 			if( !this.IsEnabled ) { return; }
 
-			this.UIManager.ResetTagButtons();
+			this.MenuContext.ResetTagButtons();
 		}
 
 
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			var mod_info_context = this.UIManager as ModInfoTagsMenuContext;
+			var mod_info_context = this.MenuContext as ModInfoTagsMenuContext;
 
 			if( mod_info_context != null ) {
 				if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( mod_info_context.CurrentModName ) ) {
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				}
 			}
 
-			if( this.UIManager.GetTagsOfState(1).Count > 0 ) {
+			if( this.MenuContext.GetTagsOfState(1).Count > 0 ) {
 				if( mod_info_context != null ) {
 					if( mod_info_context.FinishButton.Text == "Modify" ) {
 						this.Disable();

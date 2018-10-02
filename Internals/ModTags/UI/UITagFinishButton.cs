@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	partial class UITagFinishButton : UIMenuButton {
-		private readonly ModInfoTagsMenuContext UIManager;
+		private readonly ModInfoTagsMenuContext MenuContext;
 
 		public bool IsLocked { get; private set; }
 
@@ -14,9 +14,9 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagFinishButton( ModInfoTagsMenuContext modtagui )
+		public UITagFinishButton( ModInfoTagsMenuContext menu_context )
 				: base( UITheme.Vanilla, "", 72f, 40f, -300f, 172f, 0.55f, true ) {
-			this.UIManager = modtagui;
+			this.MenuContext = menu_context;
 
 			this.RecalculatePos();
 		}
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			if( this.Text == "Modify" ) {
 				this.SetModeSubmit();
 			} else {
-				this.UIManager.SubmitTags();
+				this.MenuContext.SubmitTags();
 			}
 		}
 
@@ -41,17 +41,17 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.IsLocked = true;
 
 			this.UpdateEnableState();
-			this.UIManager.DisableTagButtons();
+			this.MenuContext.DisableTagButtons();
 		}
 
 		public void Unlock() {
 			this.IsLocked = false;
 
 			this.UpdateEnableState();
-			this.UIManager.EnableTagButtons();
+			this.MenuContext.EnableTagButtons();
 			
-			if( this.UIManager.ResetButton.IsLocked ) {
-				this.UIManager.ResetButton.Unlock();
+			if( this.MenuContext.ResetButton.IsLocked ) {
+				this.MenuContext.ResetButton.Unlock();
 			}
 		}
 		
@@ -62,16 +62,16 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.SetText( "Modify" );
 			
 			this.UpdateEnableState();
-			this.UIManager.ResetButton.UpdateEnableState();
+			this.MenuContext.ResetButton.UpdateEnableState();
 		}
 
 		public void SetModeSubmit() {
 			this.SetText( "Submit" );
 			
-			this.UIManager.EnableTagButtons();
+			this.MenuContext.EnableTagButtons();
 
 			this.UpdateEnableState();
-			this.UIManager.ResetButton.UpdateEnableState();
+			this.MenuContext.ResetButton.UpdateEnableState();
 		}
 
 		////////////////
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			if( string.IsNullOrEmpty(this.UIManager.CurrentModName) ) {
+			if( string.IsNullOrEmpty(this.MenuContext.CurrentModName) ) {
 				this.Disable();
 				return;
 			}
@@ -92,12 +92,12 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( this.UIManager.CurrentModName ) ) {
+			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( this.MenuContext.CurrentModName ) ) {
 				this.Disable();
 				return;
 			}
 
-			if( this.UIManager.GetTagsOfState(1).Count >= 2 ) {
+			if( this.MenuContext.GetTagsOfState(1).Count >= 2 ) {
 				this.Enable();
 				return;
 			} else {

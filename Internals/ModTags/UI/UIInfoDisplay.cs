@@ -7,16 +7,16 @@ using Terraria.GameContent.UI.Elements;
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	internal class UIInfoDisplay : UIMenuPanel {
-		private readonly TagsMenuContextBase UIManager;
+		private readonly TagsMenuContextBase MenuContext;
 		private readonly UIText TextElem;
 
 
 
 		////////////////
 
-		public UIInfoDisplay( TagsMenuContextBase modtagui )
+		public UIInfoDisplay( TagsMenuContextBase menu_context )
 				: base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
-			this.UIManager = modtagui;
+			this.MenuContext = menu_context;
 
 			this.TextElem = new UIText( "" );
 			this.TextElem.Width.Set( 0f, 1f );

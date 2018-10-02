@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		private readonly TagsMenuContextBase UIManager;
+		private readonly TagsMenuContextBase MenuContext;
 
 		public int Column;
 		public int Row;
@@ -35,10 +35,10 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagButton( TagsMenuContextBase modtagui, int pos, string label, string desc, bool can_negate_tags )
+		public UITagButton( TagsMenuContextBase menu_context, int pos, string label, string desc, bool can_negate_tags )
 				: base( UITheme.Vanilla, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -308f, 40, 0.6f, false ) {
+			this.MenuContext = menu_context;
 			this.TagState = 0;
-			this.UIManager = modtagui;
 			this.DrawPanel = false;
 			this.Desc = desc;
 
@@ -66,16 +66,16 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				this.UIManager.InfoDisplay.SetText( desc );
-				this.UIManager.InfoDisplay.Left.Set( Main.mouseX+8f, 0f );
-				this.UIManager.InfoDisplay.Top.Set( Main.mouseY+8f, 0f );
-				this.UIManager.InfoDisplay.Recalculate();
+				this.MenuContext.InfoDisplay.SetText( desc );
+				this.MenuContext.InfoDisplay.Left.Set( Main.mouseX+8f, 0f );
+				this.MenuContext.InfoDisplay.Top.Set( Main.mouseY+8f, 0f );
+				this.MenuContext.InfoDisplay.Recalculate();
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( this.UIManager.InfoDisplay.GetText() == desc ) {
-					this.UIManager.InfoDisplay.SetText( "" );
-					this.UIManager.InfoDisplay.Recalculate();
+				if( this.MenuContext.InfoDisplay.GetText() == desc ) {
+					this.MenuContext.InfoDisplay.SetText( "" );
+					this.MenuContext.InfoDisplay.Recalculate();
 				}
 				this.RefreshTheme();
 			};
@@ -105,21 +105,21 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.UIManager.OnTagStateChange( this );
+			this.MenuContext.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void TogglePositiveTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.UIManager.OnTagStateChange( this );
+			this.MenuContext.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void ToggleNegativeTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.UIManager.OnTagStateChange( this );
+			this.MenuContext.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
