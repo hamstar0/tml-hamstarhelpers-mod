@@ -7,7 +7,7 @@ using Terraria.GameContent.UI.Elements;
 
 namespace HamstarHelpers.Internals.ModRecommendations.UI {
 	internal class UIRecommendsList : UIMenuPanel {
-		private readonly ModRecommendsMenuContext UIManager;
+		private readonly ModRecommendsMenuContext MenuContext;
 
 		private readonly UIText Label;
 		private readonly UIList List;
@@ -17,8 +17,8 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 		////////////////
 
 		public UIRecommendsList( ModRecommendsMenuContext mc )
-				: base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
-			this.UIManager = mc;
+				: base( UITheme.Vanilla, 160f, 400f, 300f, 160f ) {
+			this.MenuContext = mc;
 
 			this.Label = new UIText( "This mod recommends:" );
 			this.Label.Left.Set( ((float)Main.screenWidth * 0.5f) + 300f, 0f );

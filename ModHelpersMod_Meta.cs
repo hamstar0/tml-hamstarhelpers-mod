@@ -9,12 +9,14 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
-		public static string GithubUserName { get { return "hamstar0"; } }
-		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
 		public static IList<Tuple<string, string>> Recommendations = new List<Tuple<string, string>> {
-			Tuple.Create( "", "" ),
+			Tuple.Create( "ModdersToolkit", "Tons of experimenting and tinkering options." ),
 		};
+
+
+		public static string GithubUserName { get { return "hamstar0"; } }
+		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 
 
 		////////////////

@@ -24,7 +24,17 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			return success;
 		}
 
-		
+
+		[Obsolete( "use `bool SetField(...)`)", true )]
+		public static void SetField( Object obj, string field_name, object value, out bool success ) {
+			success = ReflectionHelpers.SetField( obj, field_name, value );
+		}
+		[Obsolete( "use `bool SetField(...)`)", true )]
+		public static void SetField( Object obj, string field_name, object value, BindingFlags flags, out bool success ) {
+			success = ReflectionHelpers.SetField( obj, field_name, value, flags );
+		}
+
+
 		[Obsolete( "use `bool GetProperty(..., out object prop_val)`)", true )]
 		public static object GetProperty( Object instance, string prop_name, out bool success ) {
 			object obj;
@@ -44,7 +54,13 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			return obj;
 		}
 
-		
+
+		[Obsolete( "use `bool SetProperty(...)`)", true )]
+		public static void SetProperty( Object obj, string prop_name, object value, out bool success ) {
+			success = ReflectionHelpers.SetProperty( obj, prop_name, value );
+		}
+
+
 		[Obsolete( "use `bool RunMethod(..., out object return_val)`)", true )]
 		public static object RunMethod( Object obj, string method_name, object[] args, out bool success ) {
 			object return_val;

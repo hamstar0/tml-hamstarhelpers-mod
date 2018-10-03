@@ -7,16 +7,15 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static class PlayerModHelpers {
 		private static void RemoveWingSlotProperty( ModPlayer mywingplayer, string prop_name ) {
-			bool success;
-			object wing_equip_slot = ReflectionHelpers.GetField( mywingplayer, prop_name, out success );
+			object wing_equip_slot;
 
-			if( success && wing_equip_slot != null ) {
-				Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_equip_slot, "Item", out success );
+			if( ReflectionHelpers.GetField( mywingplayer, prop_name, out wing_equip_slot ) && wing_equip_slot != null ) {
+				Item wing_item;
 
-				if( success ) {
+				if( ReflectionHelpers.GetProperty( wing_equip_slot, "Item", out wing_item ) ) {
 					if( wing_item != null && !wing_item.IsAir ) {
-						ReflectionHelpers.SetProperty( wing_equip_slot, "Item", new Item(), out success );
-						ReflectionHelpers.SetField( mywingplayer, prop_name, wing_equip_slot, out success );
+						ReflectionHelpers.SetProperty( wing_equip_slot, "Item", new Item() );
+						ReflectionHelpers.SetField( mywingplayer, prop_name, wing_equip_slot );
 					}
 				} else {
 					LogHelpers.Log( "Invalid Wing Mod item slot for " + prop_name );

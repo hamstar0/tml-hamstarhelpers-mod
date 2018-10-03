@@ -3,8 +3,13 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Internals.ModRecommendations.UI;
 using HamstarHelpers.Internals.ModTags;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 
@@ -33,7 +38,7 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 						return;
 					}
 
-					this.LoadLocalMod( ui, mod_name );
+					this.PopulateList( mod_name );
 				},
 				ui => { }
 			);
@@ -42,29 +47,84 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 
 		////////////////
 
-		private void LoadLocalMod( UIState ui, string mod_name ) {
+		private void PopulateList( string mod_name ) {
 			this.RecommendsList.Clear();
 
-			Mod mod = ModLoader.GetMod( mod_name );
-			if( mod == null ) {
-				return;
-			}
+			string err = null;
+			IList<Tuple<string, string>> recommends = this.GetRecommendsFromMod( mod_name )
+				?? this.GetRecommendsFromModData( mod_name, out err );
 
+			if( !string.IsNullOrEmpty(err) ) {
+				foreach( Tuple<string, string> rec in recommends ) {
+					this.RecommendsList.AddModEntry( rec.Item1, rec.Item2 );
+				}
+			}
+		}
+
+
+		////////////////
+		
+		private IList<Tuple<string, string>> GetRecommendsFromMod( string mod_name ) {
+			Mod mod = ModLoader.GetMod( mod_name );
 			object _data;
 
 			if( !ReflectionHelpers.GetField( mod, "Recommendations", out _data ) || _data == null ) {
 				if( !ReflectionHelpers.GetProperty( mod, "Recommendations", out _data ) || _data == null ) {
-					return;
+					return new List<Tuple<string, string>>();
 				}
 			}
-			IDictionary<string, string> recommends = (IDictionary<string, string>)_data;
 
-			foreach( var kv in recommends ) {
-				string other_mod_name = kv.Key;
-				string why = kv.Value;
+			return (IList<Tuple<string, string>>)_data;
+		}
 
-				this.RecommendsList.AddModEntry( other_mod_name, why );
+
+		public IList<Tuple<string, string>> GetRecommendsFromModData( string mod_name, out string err ) {
+			err = "";
+			object list;
+			TmodFile tmod = null;
+			string[] file_names = Directory.GetFiles( ModLoader.ModPath, "*.tmod", SearchOption.TopDirectoryOnly );
+			Type type = typeof( TmodFile );
+
+			foreach( string file_name in file_names ) {
+				if( Path.GetFileName( file_name ) != mod_name + ".tmod" ) { continue; }
+					
+				try {
+					tmod = (TmodFile)type.Assembly.CreateInstance(
+						type.FullName, false,
+						BindingFlags.Instance | BindingFlags.NonPublic,
+						null, new object[] { file_name }, null, null
+					);
+
+					object _;
+					ReflectionHelpers.RunMethod( tmod, "Read", new object[] { TmodFile.LoadedState.Code }, out _ );
+				} catch( Exception ) {
+					err = "Could not read mod file data for "+mod_name;
+					return null;
+				}
 			}
+
+			if( tmod == null ) {
+				err = "No " + mod_name + " mod found.";
+				return null;
+			}
+
+			var asm = Assembly.Load( tmod.GetMainAssembly(), null );
+			if( asm == null ) {
+				err = "Could not load assembly for mod " + mod_name;
+				return null;
+			}
+
+			Type mod_type = asm.GetTypes().SingleOrDefault( t => t.IsSubclassOf( typeof( Mod ) ) );
+			if( mod_type == null ) {
+				err = "Mod " +mod_name+" has no Mod subclass.";
+				return null;
+			}
+
+			if( !ReflectionHelpers.GetProperty( mod_type, null, "", out list ) ) {
+				return new List<Tuple<string, string>>();
+			}
+
+			return (IList<Tuple<string, string>>)list;
 		}
 	}
 }

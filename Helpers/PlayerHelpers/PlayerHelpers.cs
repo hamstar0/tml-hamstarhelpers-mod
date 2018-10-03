@@ -280,40 +280,40 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			var wingmod = ModLoader.GetMod( "Wing Slot" );
 
 			if( wingmod != null ) {
-				bool success;
-				ModPlayer mywingplayer = player.GetModPlayer( wingmod, "WingSlotPlayer" );
+				PlayerHelpers.WingModReset( wingmod, player );
+			}
+		}
 
-				object wing_equip_slot = ReflectionHelpers.GetField( mywingplayer, "EquipSlot", out success );
 
-				if( success && wing_equip_slot != null ) {
-					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_equip_slot, "Item", out success );
+		private static void WingModReset( Mod wingmod, Player player ) {
+			object _;
+			ModPlayer mywingplayer = player.GetModPlayer( wingmod, "WingSlotPlayer" );
+			Item wing_item;
 
-					if( success && wing_item != null && !wing_item.IsAir ) {
-						ReflectionHelpers.SetProperty( wing_equip_slot, "Item", new Item(), out success );
-						ReflectionHelpers.SetField( mywingplayer, "EquipSlot", wing_equip_slot, out success );
+			object wing_equip_slot;
+			if( ReflectionHelpers.GetField(mywingplayer, "EquipSlot", out wing_equip_slot) && wing_equip_slot != null ) {
+				if( ReflectionHelpers.GetProperty( wing_equip_slot, "Item", out wing_item ) ) {
+					if( wing_item != null && !wing_item.IsAir ) {
+						ReflectionHelpers.SetProperty( wing_equip_slot, "Item", new Item() );
+						ReflectionHelpers.SetField( mywingplayer, "EquipSlot", wing_equip_slot );
 					}
 				}
-				
-				object wing_vanity_slot = ReflectionHelpers.GetField( mywingplayer, "VanitySlot", out success );
+			}
 
-				if( success && wing_vanity_slot != null ) {
-					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_vanity_slot, "Item", out success );
-
-					if( success && wing_item != null && !wing_item.IsAir ) {
-						ReflectionHelpers.SetProperty( wing_vanity_slot, "Item", new Item(), out success );
-						ReflectionHelpers.SetField( mywingplayer, "VanitySlot", wing_vanity_slot, out success );
-					}
+			object wing_vanity_slot;
+			if( ReflectionHelpers.GetField(mywingplayer, "VanitySlot", out wing_vanity_slot) && wing_vanity_slot != null ) {
+				if( ReflectionHelpers.GetProperty( wing_vanity_slot, "Item", out wing_item ) && wing_item != null && !wing_item.IsAir ) {
+					ReflectionHelpers.SetProperty( wing_vanity_slot, "Item", new Item() );
+					ReflectionHelpers.SetField( mywingplayer, "VanitySlot", wing_vanity_slot );
 				}
+			}
 
-				object wing_dye_slot = ReflectionHelpers.GetField( mywingplayer, "DyeSlot", out success );
+			object wing_dye_slot;
 
-				if( success && wing_dye_slot != null ) {
-					Item wing_item = (Item)ReflectionHelpers.GetProperty( wing_dye_slot, "Item", out success );
-
-					if( success && wing_item != null && !wing_item.IsAir ) {
-						ReflectionHelpers.SetProperty( wing_dye_slot, "Item", new Item(), out success );
-						ReflectionHelpers.SetField( mywingplayer, "DyeSlot", wing_dye_slot, out success );
-					}
+			if( ReflectionHelpers.GetField(mywingplayer, "DyeSlot", out wing_dye_slot) && wing_dye_slot != null ) {
+				if( ReflectionHelpers.GetProperty( wing_dye_slot, "Item", out wing_item ) && wing_item != null && !wing_item.IsAir ) {
+					ReflectionHelpers.SetProperty( wing_dye_slot, "Item", new Item() );
+					ReflectionHelpers.SetField( mywingplayer, "DyeSlot", wing_dye_slot );
 				}
 			}
 		}

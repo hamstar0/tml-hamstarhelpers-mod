@@ -50,32 +50,29 @@ namespace HamstarHelpers.Internals.ModTags {
 
 
 		private static string GetSelectedModBrowserMod( UIState mod_browser ) {
-			bool success;
-
-			var mod_list_item = ReflectionHelpers.GetField( mod_browser, "selectedItem", out success );
-			if( !success ) {
+			object mod_list_item;
+			if( !ReflectionHelpers.GetField( mod_browser, "selectedItem", out mod_list_item ) ) {
 				LogHelpers.Log( "No selected mod list item." );
 				return null;
 			}
 
-			string mod_name = (string)ReflectionHelpers.GetField( mod_list_item, "mod", out success );
-			if( !success ) {
+			object raw_mod_name;
+			if( !ReflectionHelpers.GetField( mod_list_item, "mod", out raw_mod_name ) ) {
 				LogHelpers.Log( "Invalid mod data in mod browser listed entry." );
 				return null;
 			}
 
-			return mod_name;
+			return (string)raw_mod_name;
 		}
 
 		private static string GetLocalModName( object localmod ) {
-			bool success;
-			var modfile = (TmodFile)ReflectionHelpers.GetField( localmod, "modFile", out success );
-			if( !success ) {
+			object raw_mod_file;
+			if( !ReflectionHelpers.GetField( localmod, "modFile", out raw_mod_file ) ) {
 				LogHelpers.Log( "Empty 'mod' field" );
 				return null;
 			}
 
-			return modfile.name;
+			return ((TmodFile)raw_mod_file).name;
 		}
 	}
 }

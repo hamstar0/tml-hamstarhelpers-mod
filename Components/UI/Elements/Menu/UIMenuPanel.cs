@@ -26,6 +26,7 @@ namespace HamstarHelpers.Components.UI.Elements.Menu {
 			this.YPos = y;
 
 			this.RecalculatePos();
+			this.RefreshTheme();
 		}
 
 
@@ -39,6 +40,13 @@ namespace HamstarHelpers.Components.UI.Elements.Menu {
 		public override void Recalculate() {
 			this.RecalculatePos();
 			base.Recalculate();
+		}
+
+
+		////////////////
+
+		public virtual void RefreshTheme() {
+			this.Theme.ApplyPanel( this );
 		}
 	}
 }

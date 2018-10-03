@@ -10,17 +10,22 @@ using System.Reflection;
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public void FilterMods() {
-			bool success;
 			IList<string> mod_names = new List<string>();
 
-			object items = ReflectionHelpers.GetField( this.MyUI, "items", BindingFlags.Instance | BindingFlags.NonPublic, out success );
+			object items;
+			if( !ReflectionHelpers.GetField( this.MyUI, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
+				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui "+this.MyUI );
+			}
+
 			var items_arr = (Array)items.GetType().GetMethod( "ToArray" ).Invoke( items, new object[] { } );
 
 			for( int i = 0; i < items_arr.Length; i++ ) {
 				object item = items_arr.GetValue( i );
+				object raw_mod_name;
 
-				string mod_name = (string)ReflectionHelpers.GetField( item, "mod", out success );    //UIModDownloadItem
-				mod_names.Add( mod_name );
+				if( ReflectionHelpers.GetField( item, "mod", out raw_mod_name ) ) {
+					mod_names.Add( (string)raw_mod_name );
+				}
 			}
 
 			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list ) => {
@@ -28,7 +33,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				PropertyInfo special_filter_prop = ui_type.GetProperty( "SpecialModPackFilter", BindingFlags.Instance | BindingFlags.Public );
 				PropertyInfo filter_title_prop = ui_type.GetProperty( "SpecialModPackFilterTitle", BindingFlags.Instance | BindingFlags.NonPublic );
 
-				ReflectionHelpers.SetField( this.MyUI, "updateNeeded", true, BindingFlags.Instance | BindingFlags.NonPublic, out success );
+				ReflectionHelpers.SetField( this.MyUI, "updateNeeded", true, BindingFlags.Instance | BindingFlags.NonPublic );
 
 				if( is_filtered ) {
 					special_filter_prop.SetValue( this.MyUI, filtered_list );
