@@ -123,7 +123,7 @@
     <Compile Include="Components\UI\Elements\Menu\UIMenuButton.cs" />
     <Compile Include="Internals\ModTags\ModInfoTagsMC_Submit.cs" />
     <Compile Include="Internals\ModTags\UI\UITagResetButton.cs" />
-    <Compile Include="Internals\ModTags\UI\UIInfoDisplay.cs" />
+    <Compile Include="Components\UI\Menu\UI\UIInfoDisplay.cs" />
     <Compile Include="Internals\ModTags\UI\UITagFinishButton.cs" />
     <Compile Include="Internals\ModTags\UI\UITagButton.cs" />
     <Compile Include="Internals\ModTags\ModInfoTagsMC.cs" />

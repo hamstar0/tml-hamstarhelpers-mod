@@ -1,12 +1,10 @@
-﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 
 
-namespace HamstarHelpers.Internals.ModTags.UI {
+namespace HamstarHelpers.Components.UI.Menu.UI {
 	internal class UIInfoDisplay : UIMenuPanel {
 		private readonly MenuContextBase MenuContext;
 		private readonly UIText TextElem;
