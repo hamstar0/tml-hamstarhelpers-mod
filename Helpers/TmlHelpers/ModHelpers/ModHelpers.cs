@@ -1,15 +1,19 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
+using HamstarHelpers.Services.Menus;
+using HamstarHelpers.Services.Timers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Reflection;
 using System.Text;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
@@ -80,19 +84,48 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		public static void PromptModDownloads( string pack_title, IList<string> mod_names ) {
-			MenuModHelper.ApplyModBrowserFilter( pack_title, mod_names );
-
-			Type interface_type = typeof( ModLoader ).Assembly.GetType( "Interface" );
+		public static void PromptModDownloads( string pack_title, List<string> mod_names ) {
+			Type interface_type = Assembly.GetAssembly( typeof(ModLoader) ).GetType( "Terraria.ModLoader.Interface" );
 
 			int mod_browser_menu_mode;
-			if( !ReflectionHelpers.GetField<int>( interface_type, null, "modBrowserID", out mod_browser_menu_mode ) ) {
+			if( !ReflectionHelpers.GetField<int>( interface_type, null, "modBrowserID", BindingFlags.Static | BindingFlags.NonPublic, out mod_browser_menu_mode ) ) {
 				LogHelpers.Log( "Could not switch to mod browser menu context." );
 				return;
 			}
 
 			Main.PlaySound( SoundID.MenuTick );
 			Main.menuMode = mod_browser_menu_mode;
+
+			UIState mod_browser_ui;
+			if( !ReflectionHelpers.GetField<UIState>( interface_type, null, "modBrowser", BindingFlags.Static | BindingFlags.NonPublic, out mod_browser_ui ) ) {
+				LogHelpers.Log( "Could not acquire mod browser UI." );
+				return;
+			}
+
+			Timers.SetTimer( "ModHelpersModDownloadPrompt", 5, () => {
+				if( MenuContextService.GetCurrentMenu().GetType().Name != "UIModBrowser" ) {
+					return false;
+				}
+
+				bool is_loading;
+				if( !ReflectionHelpers.GetField<bool>( mod_browser_ui, "loading", out is_loading ) ) {
+					return false;
+				}
+
+				if( is_loading ) {
+					return true;
+				}
+
+				Timers.SetTimer( "", 60, () => {
+					if( MenuContextService.GetCurrentMenu().GetType().Name != "UIModBrowser" ) {
+						return false;
+					}
+
+					MenuModHelper.ApplyModBrowserFilter( pack_title, true, mod_names );
+					return false;
+				} );
+				return false;
+			} );
 
 			/*Assembly tml_asm = typeof( ModLoader ).Assembly;
 			Type interface_type = tml_asm.GetType( "Interface" );

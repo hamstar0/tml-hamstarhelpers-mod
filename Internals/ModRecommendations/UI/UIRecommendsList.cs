@@ -19,6 +19,7 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 		private readonly UIText Label;
 		private readonly UIList List;
 		private IDictionary<Rectangle, string> Descriptions = new Dictionary<Rectangle, string>();
+		private IList<string> ModNameList = new List<string>();
 
 
 
@@ -66,6 +67,13 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 
 		////////////////
 
+		public IList<string> GetModNames() {
+			return this.ModNameList;
+		}
+
+
+		////////////////
+
 		public void Clear() {
 			foreach( UIText elem in this.List._items ) {
 				string timer_name = "ModHelpersUIRecommendsList_" + elem.Text;
@@ -74,7 +82,8 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 					Timers.UnsetTimer( timer_name );
 				}
 			}
-			
+
+			this.ModNameList.Clear();
 			this.List.Clear();
 			this.Recalculate();
 		}
@@ -97,6 +106,7 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 				this.List.Add( mod_entry );
 				this.Recalculate();
 
+				this.ModNameList.Add( mod_name );
 				this.Descriptions[ mod_entry.GetOuterDimensions().ToRectangle() ] = why;
 			};
 

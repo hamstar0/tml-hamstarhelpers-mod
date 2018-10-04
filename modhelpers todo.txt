@@ -16,16 +16,17 @@ Future?
 
 v3.0
 -	Release!
--	@Create Discord + add links
--	@Remake Server Browser backend
 -	Add support links
+-	@Remake Server Browser backend
+-	@Create Discord server
 -	Implement caching mod tag data on server
 -	Mod version update indications in mods list
 -	Mod conflicts (custom Mod properties)
 	-	Add alerts to mod list against loaded mods with conflicts
 	-	Define list loading
 -	Mod favorites (custom Mod properties)
-	-	Implement mod download buttons
+	-	Fix 2x mod recommendations and slow mod download option
+	-	Implement mod download button
 
 	-	Show info for each mod
 	-	Load mod favorites from file

@@ -11,24 +11,26 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 	public static class MenuModHelper {
-		public static void ApplyModBrowserFilter( string filter_name, IList<string> mod_names ) {
-			Type interface_type = typeof( ModLoader ).Assembly.GetType( "Interface" );
+		public static void ApplyModBrowserFilter( string filter_name, bool is_filtered, List<string> mod_names ) {
+			Type interface_type = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
 
 			UIState mod_browser_ui;
 			if( !ReflectionHelpers.GetField<UIState>( interface_type, null, "modBrowser", BindingFlags.Static | BindingFlags.NonPublic, out mod_browser_ui ) ) {
 				LogHelpers.Log( "Could not acquire mod browser UI." );
 				return;
 			}
-			Type ui_type = mod_browser_ui.GetType();
 
+			Type ui_type = mod_browser_ui.GetType();
 			PropertyInfo special_filter_prop = ui_type.GetProperty( "SpecialModPackFilter", BindingFlags.Instance | BindingFlags.Public );
 			PropertyInfo filter_title_prop = ui_type.GetProperty( "SpecialModPackFilterTitle", BindingFlags.Instance | BindingFlags.NonPublic );
 
+			object _;
+			ReflectionHelpers.RunMethod<object>( mod_browser_ui, "Activate", new object[] { }, out _ );
 			ReflectionHelpers.SetField( mod_browser_ui, "updateNeeded", BindingFlags.Instance | BindingFlags.NonPublic, true );
-
-			if( !string.IsNullOrEmpty( filter_name ) ) {
+			
+			if( is_filtered ) {
 				special_filter_prop.SetValue( mod_browser_ui, mod_names );
-				filter_title_prop.SetValue( mod_browser_ui, filter_name ); //c/AA8888: <- ?
+				filter_title_prop.SetValue( mod_browser_ui, filter_name );
 			} else {
 				special_filter_prop.SetValue( mod_browser_ui, null );
 				filter_title_prop.SetValue( mod_browser_ui, "" );

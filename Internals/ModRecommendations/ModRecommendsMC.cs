@@ -1,4 +1,6 @@
-﻿using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI;
+using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
@@ -31,6 +33,7 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 		////////////////
 		
 		internal UIRecommendsList RecommendsList;
+		private UIMenuButton DownloadButton;
 
 
 
@@ -39,7 +42,13 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 		private ModRecommendsMenuContext() : base( false ) {
 			this.RecommendsList = new UIRecommendsList( this );
 
+			this.DownloadButton = new UIMenuButton( UITheme.Vanilla, "Download All", 112f, 24f, 300f, 160f );
+			this.DownloadButton.OnClick += ( evt, elem ) => {
+				ModHelpers.PromptModDownloads( "Recommended", (List<string>)this.RecommendsList.GetModNames() );
+			};
+
 			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.RecommendsList, false );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Download Button", this.DownloadButton, false );
 			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load Mods",
 				ui => {
 					string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenu(), ui );

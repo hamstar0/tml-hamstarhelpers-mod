@@ -18,19 +18,21 @@ namespace HamstarHelpers.Internals.ModTags {
 				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui " + this.MyUI );
 			}
 
-			var items_arr = (Array)items.GetType().GetMethod( "ToArray" ).Invoke( items, new object[] { } );
+			var items_arr = (Array)items.GetType()
+				.GetMethod( "ToArray" )
+				.Invoke( items, new object[] { } );
 
 			for( int i = 0; i < items_arr.Length; i++ ) {
 				object item = items_arr.GetValue( i );
-				object raw_mod_name;
+				string mod_name;
 
-				if( ReflectionHelpers.GetField( item, "mod", out raw_mod_name ) ) {
-					mod_names.Add( (string)raw_mod_name );
+				if( ReflectionHelpers.GetField<string>( item, "mod", out mod_name ) ) {
+					mod_names.Add( mod_name );
 				}
 			}
 
 			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list ) => {
-				MenuModHelper.ApplyModBrowserFilter( "Custom Tags", filtered_list );
+				MenuModHelper.ApplyModBrowserFilter( "Custom Tags", is_filtered, ( List<string>)filtered_list );
 			} );
 		}
 
