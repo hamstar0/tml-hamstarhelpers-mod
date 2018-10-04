@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ModTags {
 			};
 
 			Action<Exception, string> on_fail = ( e, output ) => {
-				MenuContextBase.InfoDisplay?.SetText( "Error: " + output, Color.Red );
+				MenuContextBase.InfoDisplay?.SetText( "Error: " + (string.IsNullOrEmpty(output)?e.Message:output), Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 

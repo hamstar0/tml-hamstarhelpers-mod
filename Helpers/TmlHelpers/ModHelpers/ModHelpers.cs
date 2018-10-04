@@ -1,8 +1,13 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.Menus;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -70,6 +75,44 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			}
 
 			return null;
+		}
+
+
+		////////////////
+
+		public static void PromptModDownloads( string pack_title, IList<string> mod_names ) {
+			MenuModHelper.ApplyModBrowserFilter( pack_title, mod_names );
+
+			Type interface_type = typeof( ModLoader ).Assembly.GetType( "Interface" );
+
+			int mod_browser_menu_mode;
+			if( !ReflectionHelpers.GetField<int>( interface_type, null, "modBrowserID", out mod_browser_menu_mode ) ) {
+				LogHelpers.Log( "Could not switch to mod browser menu context." );
+				return;
+			}
+
+			Main.PlaySound( SoundID.MenuTick );
+			Main.menuMode = mod_browser_menu_mode;
+
+			/*Assembly tml_asm = typeof( ModLoader ).Assembly;
+			Type interface_type = tml_asm.GetType( "Interface" );
+
+			Type ui_mod_dl_type = tml_asm.GetType( "UIModDownloadItem" );
+			object ui_mod_dl = Activator.CreateInstance( ui_mod_dl_type, "ModName", "0.0.0", "hamstar", "", ModSide.Both, "", "http://javid.ddns.net/tModLoader/download.php?Down=mods/HamstarHelpers.tmod", 0, 0, "", false, false, null );
+			//UIModDownloadItem modItem = new UIModDownloadItem( displayname, name, version, author, modreferences, modside, modIconURL, download, downloads, hot, timeStamp, update, updateIsDowngrade, installed );
+			items.Add( modItem );
+			
+			Interface.downloadMods.SetDownloading( pack_title );
+			Interface.downloadMods.SetModsToDownload( mod_filter, items );
+			Interface.modBrowser.updateNeeded = true;
+
+			int menu_mode;
+			if( !ReflectionHelpers.GetField<int>( interface_type, null, "downloadModsID", out menu_mode ) ) {
+				LogHelpers.Log( "Could not switch to downloads menu." );
+				return;
+			}
+			Main.PlaySound( SoundID.MenuTick );
+			Main.menuMode = menu_mode;*/
 		}
 	}
 }

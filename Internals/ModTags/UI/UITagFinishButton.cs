@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		////////////////
 
 		public UITagFinishButton( ModInfoTagsMenuContext menu_context )
-				: base( UITheme.Vanilla, "", 72f, 40f, -300f, 172f, 0.55f, true ) {
+				: base( UITheme.Vanilla, "", 88f, 28f, -298f, 172f, 0.36f, true ) {
 			this.MenuContext = menu_context;
 
 			this.RecalculatePos();
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public override void Click( UIMouseEvent evt ) {
 			if( !this.IsEnabled ) { return; }
 
-			if( this.Text == "Modify" ) {
+			if( this.Text == "Modify Tags" ) {
 				this.SetModeSubmit();
 			} else {
 				this.MenuContext.SubmitTags();
@@ -59,14 +59,14 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		////////////////
 
 		public void SetModeReadOnly() {
-			this.SetText( "Modify" );
+			this.SetText( "Modify Tags" );
 			
 			this.UpdateEnableState();
 			this.MenuContext.ResetButton.UpdateEnableState();
 		}
 
 		public void SetModeSubmit() {
-			this.SetText( "Submit" );
+			this.SetText( "Submit Tags" );
 			
 			this.MenuContext.EnableTagButtons();
 
@@ -87,7 +87,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			if( this.Text == "Modify" ) {
+			if( this.Text == "Modify Tags" ) {
 				this.Enable();
 				return;
 			}

@@ -72,19 +72,35 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		////
 
 		public static bool SetField( Object obj, string field_name, object value ) {
-			Type objtype = obj.GetType();
-			FieldInfo field = objtype.GetField( field_name );
+			Type obj_type = obj.GetType();
+			FieldInfo field = obj_type.GetField( field_name );
 			if( field == null ) { return false; }
 			
 			field.SetValue( obj, value );
 			return true;
 		}
 
-		public static bool SetField( Object obj, string field_name, object value, BindingFlags flags ) {
-			Type objtype = obj.GetType();
-			FieldInfo field = objtype.GetField( field_name, flags );
+		public static bool SetField( Object obj, string field_name, BindingFlags flags, object value ) {
+			Type obj_type = obj.GetType();
+			FieldInfo field = obj_type.GetField( field_name, flags );
 			if( field == null ) { return false; }
 			
+			field.SetValue( obj, value );
+			return true;
+		}
+
+		public static bool SetField( Type obj_type, Object obj, string field_name, object value ) {
+			FieldInfo field = obj_type.GetField( field_name );
+			if( field == null ) { return false; }
+
+			field.SetValue( obj, value );
+			return true;
+		}
+
+		public static bool SetField( Type obj_type, Object obj, string field_name, BindingFlags flags, object value ) {
+			FieldInfo field = obj_type.GetField( field_name, flags );
+			if( field == null ) { return false; }
+
 			field.SetValue( obj, value );
 			return true;
 		}

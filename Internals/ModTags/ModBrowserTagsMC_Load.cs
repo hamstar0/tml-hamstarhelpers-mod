@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 
 		protected void InitializeControls() {
-			this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 72f, 40f, -286f, 172f, 0.55f, true );
+			this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 88f, 28f, -298f, 172f, 0.36f, true );
 			this.ResetButton = new UITagResetButton( this );
 
 			this.BlankButton.Disable();

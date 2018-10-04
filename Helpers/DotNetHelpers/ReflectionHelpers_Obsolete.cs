@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		}
 		[Obsolete( "use `bool SetField(...)`)", true )]
 		public static void SetField( Object obj, string field_name, object value, BindingFlags flags, out bool success ) {
-			success = ReflectionHelpers.SetField( obj, field_name, value, flags );
+			success = ReflectionHelpers.SetField( obj, field_name, flags, value );
 		}
 
 

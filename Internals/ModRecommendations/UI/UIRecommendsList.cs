@@ -25,7 +25,7 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 		////////////////
 
 		public UIRecommendsList( ModRecommendsMenuContext mc )
-				: base( UITheme.Vanilla, 156f, 132f, 242f, 40f ) {
+				: base( UITheme.Vanilla, 160f, 132f, 240f, 40f ) {
 			this.MenuContext = mc;
 
 			this.Label = new UIText( "Recommendations:" );
@@ -92,7 +92,7 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 					mod_entry.Remove();
 				}
 
-				mod_entry = new UIText( name );
+				mod_entry = new UIText( name, 0.75f );
 
 				this.List.Add( mod_entry );
 				this.Recalculate();

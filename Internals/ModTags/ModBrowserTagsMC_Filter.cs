@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
 using System;
@@ -9,12 +10,12 @@ using System.Reflection;
 
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
-		public void FilterMods() {
+		internal void FilterMods() {
 			IList<string> mod_names = new List<string>();
 
 			object items;
 			if( !ReflectionHelpers.GetField( this.MyUI, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
-				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui "+this.MyUI );
+				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui " + this.MyUI );
 			}
 
 			var items_arr = (Array)items.GetType().GetMethod( "ToArray" ).Invoke( items, new object[] { } );
@@ -29,19 +30,7 @@ namespace HamstarHelpers.Internals.ModTags {
 			}
 
 			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list ) => {
-				Type ui_type = this.MyUI.GetType();
-				PropertyInfo special_filter_prop = ui_type.GetProperty( "SpecialModPackFilter", BindingFlags.Instance | BindingFlags.Public );
-				PropertyInfo filter_title_prop = ui_type.GetProperty( "SpecialModPackFilterTitle", BindingFlags.Instance | BindingFlags.NonPublic );
-
-				ReflectionHelpers.SetField( this.MyUI, "updateNeeded", true, BindingFlags.Instance | BindingFlags.NonPublic );
-
-				if( is_filtered ) {
-					special_filter_prop.SetValue( this.MyUI, filtered_list );
-					filter_title_prop.SetValue( this.MyUI, "Custom Tags" ); //c/AA8888: <- ?
-				} else {
-					special_filter_prop.SetValue( this.MyUI, null );
-					filter_title_prop.SetValue( this.MyUI, "" );
-				}
+				MenuModHelper.ApplyModBrowserFilter( "Custom Tags", filtered_list );
 			} );
 		}
 
