@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
@@ -66,16 +67,16 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				this.MenuContext.InfoDisplay.SetText( desc );
-				this.MenuContext.InfoDisplay.Left.Set( Main.mouseX+8f, 0f );
-				this.MenuContext.InfoDisplay.Top.Set( Main.mouseY+8f, 0f );
-				this.MenuContext.InfoDisplay.Recalculate();
+				MenuContextBase.InfoDisplay?.SetText( desc );
+				MenuContextBase.InfoDisplay?.Left.Set( Main.mouseX+8f, 0f );
+				MenuContextBase.InfoDisplay?.Top.Set( Main.mouseY+8f, 0f );
+				MenuContextBase.InfoDisplay?.Recalculate();
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( this.MenuContext.InfoDisplay.GetText() == desc ) {
-					this.MenuContext.InfoDisplay.SetText( "" );
-					this.MenuContext.InfoDisplay.Recalculate();
+				if( MenuContextBase.InfoDisplay?.GetText() == desc ) {
+					MenuContextBase.InfoDisplay?.SetText( "" );
+					MenuContextBase.InfoDisplay?.Recalculate();
 				}
 				this.RefreshTheme();
 			};

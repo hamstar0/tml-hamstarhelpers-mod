@@ -38,7 +38,8 @@ namespace HamstarHelpers.Services.Timers {
 		////////////////
 
 		public static void SetTimer( string name, int tick_duration, Func<bool> action ) {
-			var timers = ModHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance?.Timers;
+			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
 				timers.Running[name] = new KeyValuePair<Func<bool>, int>( action, tick_duration );
@@ -49,7 +50,8 @@ namespace HamstarHelpers.Services.Timers {
 
 
 		public static int GetTimerTickDuration( string name ) {
-			var timers = ModHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance?.Timers;
+			if( timers == null ) { return 0; }
 
 			lock( Timers.MyLock ) {
 				if( timers.Running.ContainsKey( name ) ) {
@@ -62,7 +64,8 @@ namespace HamstarHelpers.Services.Timers {
 
 
 		public static void UnsetTimer( string name ) {
-			var timers = ModHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance?.Timers;
+			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
 				if( timers.Running.ContainsKey( name ) ) {
@@ -75,7 +78,8 @@ namespace HamstarHelpers.Services.Timers {
 
 
 		public static void ResetAll() {
-			var timers = ModHelpersMod.Instance.Timers;
+			var timers = ModHelpersMod.Instance?.Timers;
+			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
 				timers.Running = new Dictionary<string, KeyValuePair<Func<bool>, int>>();

@@ -1,20 +1,30 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.Menus;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Internals.ModRecommendations.UI;
-using HamstarHelpers.Internals.ModTags;
+using HamstarHelpers.Services.Menus;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModRecommendations {
 	partial class ModRecommendsMenuContext : MenuContextBase {
+		public static void Initialize() {
+			new ModRecommendsMenuContext();
+		}
+
+
+
+		////////////////
+
 		public override string UIName => "UIModInfo";
 		public override string ContextName => "Mod Recommendations";
 
@@ -26,13 +36,13 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 
 		////////////////
 
-		protected ModRecommendsMenuContext() : base( false ) {
+		private ModRecommendsMenuContext() : base( false ) {
 			this.RecommendsList = new UIRecommendsList( this );
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.RecommendsList, false );
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load Mods",
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.RecommendsList, false );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load Mods",
 				ui => {
-					string mod_name = MenuModGet.GetModName( MenuUI.GetCurrentMenu(), ui );
+					string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenu(), ui );
 					if( mod_name == null ) {
 						LogHelpers.Log( "Could not load mod recommendations." );
 						return;
@@ -50,37 +60,38 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 		private void PopulateList( string mod_name ) {
 			this.RecommendsList.Clear();
 
-			string err = null;
-			IList<Tuple<string, string>> recommends = this.GetRecommendsFromMod( mod_name )
-				?? this.GetRecommendsFromModData( mod_name, out err );
+			string err = "";
+			IList<Tuple<string, string>> recommends =   this.GetRecommendsFromActiveMod( mod_name, ref err ) ??
+														this.GetRecommendsFromInactiveMod( mod_name, ref err );
 
-			if( !string.IsNullOrEmpty(err) ) {
+			if( string.IsNullOrEmpty(err) ) {
 				foreach( Tuple<string, string> rec in recommends ) {
 					this.RecommendsList.AddModEntry( rec.Item1, rec.Item2 );
 				}
+			} else {
+				LogHelpers.Log( "!ModHelpers.ModRecommendsMC.PopulateList - " + err );
 			}
 		}
 
 
 		////////////////
-		
-		private IList<Tuple<string, string>> GetRecommendsFromMod( string mod_name ) {
-			Mod mod = ModLoader.GetMod( mod_name );
-			object _data;
 
-			if( !ReflectionHelpers.GetField( mod, "Recommendations", out _data ) || _data == null ) {
-				if( !ReflectionHelpers.GetProperty( mod, "Recommendations", out _data ) || _data == null ) {
-					return new List<Tuple<string, string>>();
-				}
+		private IList<Tuple<string, string>> GetRecommendsFromActiveMod( string mod_name, ref string err ) {
+			Mod mod = ModLoader.GetMod( mod_name );
+			if( mod == null ) {
+				err = "No mod found by name " + mod_name;
+				return null;
+			}
+			
+			byte[] file_data = ModHelpers.UnsafeLoadFileFromMod( mod.File, "recommendations.txt" );
+			if( file_data == null ) {
+				return new List<Tuple<string, string>>();
 			}
 
-			return (IList<Tuple<string, string>>)_data;
+			return this.ParseRecommendations( file_data );
 		}
-
-
-		public IList<Tuple<string, string>> GetRecommendsFromModData( string mod_name, out string err ) {
-			err = "";
-			object list;
+		
+		public IList<Tuple<string, string>> GetRecommendsFromInactiveMod( string mod_name, ref string err ) {
 			TmodFile tmod = null;
 			string[] file_names = Directory.GetFiles( ModLoader.ModPath, "*.tmod", SearchOption.TopDirectoryOnly );
 			Type type = typeof( TmodFile );
@@ -108,7 +119,14 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 				return null;
 			}
 
-			var asm = Assembly.Load( tmod.GetMainAssembly(), null );
+			byte[] file_data = ModHelpers.UnsafeLoadFileFromMod( tmod, "recommendations.txt" );	// tmod.GetFile( "recommendations.txt" );
+			if( file_data == null ) {
+				return new List<Tuple<string, string>>();
+			}
+
+			return this.ParseRecommendations( file_data );
+
+			/*var asm = Assembly.Load( tmod.GetMainAssembly(), null );
 			if( asm == null ) {
 				err = "Could not load assembly for mod " + mod_name;
 				return null;
@@ -120,11 +138,36 @@ namespace HamstarHelpers.Internals.ModRecommendations {
 				return null;
 			}
 
-			if( !ReflectionHelpers.GetProperty( mod_type, null, "", out list ) ) {
+			if( !ReflectionHelpers.GetProperty( mod_type, null, "RecommendedMods", out list ) ) {
 				return new List<Tuple<string, string>>();
 			}
 
-			return (IList<Tuple<string, string>>)list;
+			return (IList<Tuple<string, string>>)list;*/
+		}
+
+
+		private IList<Tuple<string, string>> ParseRecommendations( byte[] file_data ) {
+			string data = Encoding.Default.GetString( file_data );
+			string[] lines = data.Substring(3).Trim().Split( '\n' ).ToArray();
+			IEnumerable<string[]> recommendations = lines.Select(
+				line => line.Split( '=' ).Select( s => s.Trim() ).ToArray()
+			);
+			
+			return recommendations.Where(
+				entry => entry.Length == 2
+			).Select(
+				entry => Tuple.Create(entry[0], entry[1])
+			).ToList();
+
+			/*object _data;
+
+			if( !ReflectionHelpers.GetField( mod, "RecommendedMods", out _data ) || _data == null ) {
+				if( !ReflectionHelpers.GetProperty( mod, "RecommendedMods", out _data ) || _data == null ) {
+					return new List<Tuple<string, string>>();
+				}
+			}
+
+			return (IList<Tuple<string, string>>)_data;*/
 		}
 	}
 }

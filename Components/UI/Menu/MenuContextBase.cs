@@ -10,13 +10,17 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Menu {
 	abstract partial class MenuContextBase {
+		internal static UIInfoDisplay InfoDisplay = null;
+
+
+		////////////////
+
 		public abstract string UIName { get; }
 		public abstract string ContextName { get; }
 
 		////////////////
 
 		protected UIState MyUI = null;
-		internal UIInfoDisplay InfoDisplay;
 
 		protected Vector2 OldOverhaulLogoPos = default( Vector2 );
 

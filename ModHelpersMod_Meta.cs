@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -9,12 +8,6 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
-
-		public static IList<Tuple<string, string>> Recommendations = new List<Tuple<string, string>> {
-			Tuple.Create( "ModdersToolkit", "Tons of experimenting and tinkering options." ),
-		};
-
-
 		public static string GithubUserName { get { return "hamstar0"; } }
 		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
 

@@ -20,9 +20,13 @@ v3.0
 -	Implement caching mod tag data on server
 -	Mod version update indications in mods list
 -	Mod conflicts (custom Mod properties)
+	-	Add alerts to mod list against loaded mods with conflicts
+	-	Define list loading
 -	Mod favorites (custom Mod properties)
-	-	Populate with mod info
+	-	Implement mod download buttons
 
+	-	Show info for each mod
+	-	Load mod favorites from file
 	-	Define favorites panel
 -	Further tag tweaks
 	-	Use display panel for mouse hovers on tags

@@ -130,7 +130,6 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 			try {
 				resp = (HttpWebResponse)request.GetResponse();
 			} catch( WebException e ) {
-LogHelpers.Log( "? "+e.ToString() );
 				success = false;
 				return "";
 			}

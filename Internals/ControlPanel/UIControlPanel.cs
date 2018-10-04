@@ -115,7 +115,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				var mymod = ModHelpersMod.Instance;
 				int i = 1;
 
-				foreach( var mod in ModHelpers.GetAllMods() ) {
+				foreach( var mod in ModHelpers.GetAllPlayableModsPreferredOrder() ) {
 					UIModData moditem = this.CreateModListItem( i++, mod );
 
 					lock( UIControlPanel.ModDataListLock ) {

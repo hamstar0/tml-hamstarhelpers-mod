@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Services.Menus;
 
 
 namespace HamstarHelpers.Internals.ModTags {
@@ -14,8 +15,8 @@ namespace HamstarHelpers.Internals.ModTags {
 
 				var button = new UITagButton( this, i, tag_text, tag_desc, this.CanDisableTags );
 
-				MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag " + i, button, false );
-				this.TagButtons[tag_text] = button;
+				MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag " + i, button, false );
+				this.TagButtons[ tag_text ] = button;
 
 				i++;
 			}

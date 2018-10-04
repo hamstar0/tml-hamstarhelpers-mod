@@ -1,7 +1,8 @@
-﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace HamstarHelpers.Internals.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		private void InitializeContext() {
 			Action<UIState> ui_load = ui => {
-				string mod_name = MenuModGet.GetModName( MenuUI.GetCurrentMenu(), ui );
+				string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenu(), ui );
 				if( mod_name == null ) {
 					LogHelpers.Log( "Could not load mod tags." );
 					return;
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				this.ResetMenuObjects();
 			};
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load", ui_load, ui_unload );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load", ui_load, ui_unload );
 		}
 
 
@@ -35,8 +36,8 @@ namespace HamstarHelpers.Internals.ModTags {
 			this.FinishButton = new UITagFinishButton( this );
 			this.ResetButton = new UITagResetButton( this );
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag Finish Button", this.FinishButton, false );
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag Reset Button", this.ResetButton, false );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag Finish Button", this.FinishButton, false );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag Reset Button", this.ResetButton, false );
 		}
 
 

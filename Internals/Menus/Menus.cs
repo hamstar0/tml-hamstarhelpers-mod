@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
 using System;
 using System.Diagnostics;
@@ -18,6 +19,7 @@ namespace HamstarHelpers.Internals.Menus {
 				Menus.InitializeOpenConfigButton();
 				ModTags.ModInfoTagsMenuContext.Initialize();
 				ModTags.ModBrowserTagsMenuContext.Initialize();
+				ModRecommendations.ModRecommendsMenuContext.Initialize();
 			} );
 		}
 
@@ -36,7 +38,7 @@ namespace HamstarHelpers.Internals.Menus {
 				} catch( Exception ) { }
 			};
 
-			MenuUI.AddMenuLoader( "UIMods", "ModHelpers: Mod Menu Config Folder Button", button, true );
+			MenuContextService.AddMenuLoader( "UIMods", "ModHelpers: Mod Menu Config Folder Button", button, true );
 		}
 	}
 }

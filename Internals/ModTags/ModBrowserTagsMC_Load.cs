@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Services.Menus;
 using System;
 using Terraria.UI;
 
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.ModTags {
 				this.ResetMenuObjects();
 			};
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: "+this.ContextName+" Load", ui_load, ui_unload );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: "+this.ContextName+" Load", ui_load, ui_unload );
 		}
 
 
@@ -28,8 +28,8 @@ namespace HamstarHelpers.Internals.ModTags {
 
 			this.BlankButton.Disable();
 
-			MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Blank Button", this.BlankButton, false );
-			MenuUI.AddMenuLoader( this.UIName, this.ContextName + " Tag Reset Button", this.ResetButton, false );
+			MenuContextService.AddMenuLoader( this.UIName, this.ContextName + " Tag Blank Button", this.BlankButton, false );
+			MenuContextService.AddMenuLoader( this.UIName, this.ContextName + " Tag Reset Button", this.ResetButton, false );
 		}
 	}
 }

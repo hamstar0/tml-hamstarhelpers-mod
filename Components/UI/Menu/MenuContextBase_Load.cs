@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.UI.Menu.UI;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Services.Menus;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +12,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 			Texture2D old_logo1 = Main.logoTexture;
 			Texture2D old_logo2 = Main.logo2Texture;
 			
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Set UI",
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Set UI",
 				ui => {
 					if( occludes_logo ) {
 						Main.instance.LoadProjectile( ProjectileID.ShadowBeamHostile );
@@ -33,9 +34,11 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 
 		protected void InitializeInfoDisplay() {
-			this.InfoDisplay = new UIInfoDisplay( this );
+			if( !MenuContextService.ContainsMenuLoader( this.UIName, "ModHelpers: Info Display" ) ) {
+				MenuContextBase.InfoDisplay = new UIInfoDisplay( this );
+			}
 
-			MenuUI.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.InfoDisplay, false );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: Info Display", MenuContextBase.InfoDisplay, false );
 		}
 	}
 }

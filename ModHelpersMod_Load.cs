@@ -33,7 +33,7 @@ using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.CustomHotkeys;
 using HamstarHelpers.Internals.Menus;
-
+using HamstarHelpers.Services.Menus;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
@@ -50,7 +50,7 @@ namespace HamstarHelpers {
 		
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;
-		internal MenuUIManager MenuUIMngr;
+		internal MenuContextServiceManager MenuContextMngr;
 		internal MenuItemManager MenuItemMngr;
 		internal CustomEntityManager CustomEntMngr;
 		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
@@ -154,7 +154,7 @@ namespace HamstarHelpers {
 			this.GetModTags = new GetModTags();
 			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
-			this.MenuUIMngr = new MenuUIManager();
+			this.MenuContextMngr = new MenuContextServiceManager();
 			this.MusicHelpers = new MusicHelpers();
 			this.CustomEntMngr = new CustomEntityManager();
 			this.CustomHotkeys = new CustomHotkeys();
@@ -236,7 +236,7 @@ namespace HamstarHelpers {
 			this.ControlPanel = null;
 			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
-			this.MenuUIMngr = null;
+			this.MenuContextMngr = null;
 			this.MusicHelpers = null;
 			this.CustomEntMngr = null;
 			this.Promises = null;

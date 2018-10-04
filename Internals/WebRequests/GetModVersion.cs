@@ -13,7 +13,7 @@ using System.Threading;
 namespace HamstarHelpers.Internals.WebRequests {
 	class ModVersionPromiseArguments : PromiseArguments {
 		public bool Found;
-		public IDictionary<string, Version> Versions;
+		public IDictionary<string, Tuple<string, Version>> Info;
 	}
 
 
@@ -70,8 +70,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 						Found = false
 					};
 					
-					GetModVersion.RetrieveAllModVersionsAsync( ( versions, found ) => {
-						args.Versions = versions;
+					GetModVersion.RetrieveAllModVersionsAsync( ( info, found ) => {
+						args.Info = info;
 						args.Found = found;
 
 						Promises.TriggerValidatedPromise( GetModVersion.ModVersionPromiseValidator, GetModVersion.PromiseValidatorKey, args );
@@ -86,10 +86,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, Version>, bool> on_success ) {
-			Func<string, Tuple<IDictionary<string, Version>, bool>> on_response = ( string output ) => {
+		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, Tuple<string, Version>>, bool> on_success ) {
+			Func<string, Tuple<IDictionary<string, Tuple<string, Version>>, bool>> on_response = ( string output ) => {
 				bool found = false;
-				IDictionary<string, Version> mod_versions = new Dictionary<string, Version>();
+				IDictionary<string, Tuple<string, Version>> mod_versions = new Dictionary<string, Tuple<string, Version>>();
 
 				JObject resp_json = JObject.Parse( output );
 
@@ -103,17 +103,20 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 					foreach( JToken mod_entry in mod_list ) {
 						JToken mod_name_token = mod_entry.SelectToken( "name" );
+						JToken mod_displayname_token = mod_entry.SelectToken( "displayname" );
 						JToken mod_vers_raw_token = mod_entry.SelectToken( "version" );
-						if( mod_name_token == null || mod_vers_raw_token == null ) {
+						
+						if( mod_name_token == null || mod_vers_raw_token == null || mod_displayname_token == null ) {
 							continue;
 						}
 
 						string mod_name = mod_name_token.ToObject<string>();
+						string mod_displayname = mod_displayname_token.ToObject<string>();
 						string mod_vers_raw = mod_vers_raw_token.ToObject<string>();
 
 						Version mod_vers = Version.Parse( mod_vers_raw.Substring( 1 ) );
 
-						mod_versions[ mod_name ] = mod_vers;
+						mod_versions[ mod_name ] = Tuple.Create( mod_displayname, mod_vers );
 					}
 
 					found = true;
@@ -133,9 +136,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			Action<IDictionary<string, Version>, bool> on_completion = ( response_val, success ) => {
+			Action<IDictionary<string, Tuple<string, Version>>, bool> on_completion = ( response_val, success ) => {
 				if( response_val == null ) {
-					response_val = new Dictionary<string, Version>();
+					response_val = new Dictionary<string, Tuple<string, Version>>();
 				}
 
 				on_success( response_val, success );

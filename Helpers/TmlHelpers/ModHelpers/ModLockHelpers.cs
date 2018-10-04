@@ -37,7 +37,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var modlock = mymod.ModLockHelpers;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			IEnumerable<Mod> all_mods = ModHelpers.GetAllMods();
+			IEnumerable<Mod> all_mods = ModHelpers.GetAllPlayableModsPreferredOrder();
 			ISet<string> mod_names = new HashSet<string>();
 
 			foreach( Mod mod in all_mods ) {
@@ -121,7 +121,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 			ISet<string> req_mod_names = this.WorldModLocks[ modworld.ObsoleteID2] ;
 			ISet<string> checked_mod_names = new HashSet<string>();
-			IEnumerable<Mod> all_mods = ModHelpers.GetAllMods();
+			IEnumerable<Mod> all_mods = ModHelpers.GetAllPlayableModsPreferredOrder();
 
 			foreach( Mod mod in all_mods ) {
 				if( !req_mod_names.Contains( mod.Name ) ) {
@@ -233,7 +233,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			if( !this.IsMismatched ) { return; }
 
 			int eta = this.ExitDuration / 60;
-			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
+			IEnumerable<Mod> mods = ModHelpers.GetAllPlayableModsPreferredOrder();
 
 			string warning = "World mod mismatch! Auto-exiting in " + eta;
 

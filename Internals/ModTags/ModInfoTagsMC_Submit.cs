@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
@@ -13,12 +14,12 @@ namespace HamstarHelpers.Internals.ModTags {
 			}
 
 			Action<string> on_success = delegate ( string output ) {
-				this.InfoDisplay.SetText( output, Color.LimeGreen );
+				MenuContextBase.InfoDisplay?.SetText( output, Color.LimeGreen );
 				ErrorLogger.Log( "Mod info submit result: " + output );
 			};
 
 			Action<Exception, string> on_fail = ( e, output ) => {
-				this.InfoDisplay.SetText( "Error: " + output, Color.Red );
+				MenuContextBase.InfoDisplay?.SetText( "Error: " + output, Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 

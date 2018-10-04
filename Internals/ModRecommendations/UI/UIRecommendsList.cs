@@ -1,8 +1,15 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
-using Terraria;
+using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.Timers;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.ModRecommendations.UI {
@@ -11,41 +18,110 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 
 		private readonly UIText Label;
 		private readonly UIList List;
+		private IDictionary<Rectangle, string> Descriptions = new Dictionary<Rectangle, string>();
 
 
 
 		////////////////
 
 		public UIRecommendsList( ModRecommendsMenuContext mc )
-				: base( UITheme.Vanilla, 160f, 400f, 300f, 160f ) {
+				: base( UITheme.Vanilla, 156f, 132f, 242f, 40f ) {
 			this.MenuContext = mc;
 
-			this.Label = new UIText( "This mod recommends:" );
-			this.Label.Left.Set( ((float)Main.screenWidth * 0.5f) + 300f, 0f );
-			this.Label.Top.Set( 160f, 0f );
+			this.Label = new UIText( "Recommendations:" );
+			this.Label.Left.Set( -6f, 0f );
+			this.Label.Top.Set( -6f, 0f );
 			this.Append( this.Label );
 
 			this.List = new UIList();
-			this.List.Left.Set( ((float)Main.screenWidth * 0.5f) + 300f, 0f );
-			this.List.Top.Set( 180f, 0f );
+			this.List.Left.Set( 0f, 0f );
+			this.List.Top.Set( 16f, 0f );
+			this.List.Width.Set( 0f, 1f );
+			this.List.Height.Set( this.Height.Pixels - 16f, 0f );
+			this.List.OnMouseOver += ( evt, elem ) => {
+				foreach( var kv in this.Descriptions ) {
+					Rectangle rect = kv.Key;
+					string desc = kv.Value;
+					
+					if( rect.Contains( (int)evt.MousePosition.X, (int)evt.MousePosition.Y ) ) {
+						MenuContextBase.InfoDisplay?.SetText( desc );
+						this.Recalculate();
+						break;
+					}
+				}
+			};
+			this.List.OnMouseOut += ( evt, elem ) => {
+				MenuContextBase.InfoDisplay?.SetText( "" );
+				this.Recalculate();
+			};
 			this.Append( this.List );
 
 			this.Recalculate();
+		}
+
+		~UIRecommendsList() {
+			this.Clear();
 		}
 
 
 		////////////////
 
 		public void Clear() {
+			foreach( UIText elem in this.List._items ) {
+				string timer_name = "ModHelpersUIRecommendsList_" + elem.Text;
+
+				if( Timers.GetTimerTickDuration( timer_name ) > 0 ) {
+					Timers.UnsetTimer( timer_name );
+				}
+			}
+			
 			this.List.Clear();
+			this.Recalculate();
 		}
 
 		////////////////
 
 		public void AddModEntry( string mod_name, string why ) {
-			//var mod_entry = new UIPanel
+			string timer_name = "ModHelpersUIRecommendsList_" + mod_name;
+			UIText mod_entry = null;
+			bool is_mod_loaded = false;
 
-			//this.List.Append( mod_entry );
+			Action<string> add_mod_entry = ( name ) => {
+				if( mod_entry != null ) {
+					this.List.RemoveChild( mod_entry );
+					mod_entry.Remove();
+				}
+
+				mod_entry = new UIText( name );
+
+				this.List.Add( mod_entry );
+				this.Recalculate();
+
+				this.Descriptions[ mod_entry.GetOuterDimensions().ToRectangle() ] = why;
+			};
+
+			string display_name = mod_name;
+			Mod mod = ModLoader.GetMod( mod_name );
+
+			if( mod != null ) {
+				is_mod_loaded = true;
+				display_name = mod.DisplayName;
+			}
+
+			add_mod_entry( display_name );
+
+			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
+				if( is_mod_loaded ) { return false; }
+
+				if( Timers.GetTimerTickDuration( timer_name ) > 0 ) {
+					Timers.UnsetTimer( timer_name );
+				}
+
+				if( args.Info.ContainsKey( mod_name ) ) {
+					add_mod_entry( args.Info[mod_name].Item1 );
+				}
+				return false;
+			} );
 		}
 	}
 }

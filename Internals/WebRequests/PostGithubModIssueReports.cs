@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			int max_lines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
 
-			IEnumerable<Mod> mods = ModHelpers.GetAllMods();
+			IEnumerable<Mod> mods = ModHelpers.GetAllPlayableModsPreferredOrder();
 			string body_info = string.Join( "\n \n", InfoHelpers.GetGameData( mods ).ToArray() );
 			string body_errors = string.Join( "\n", InfoHelpers.GetErrorLog( max_lines ).ToArray() );
 			

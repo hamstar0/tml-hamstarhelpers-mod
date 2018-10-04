@@ -7,8 +7,8 @@ using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags {
-	public static class MenuModGet {
+namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
+	public static class MenuModHelper {
 		public static object GetLocalMod( UIState ui ) {
 			Type ui_type = ui.GetType();
 			FieldInfo ui_localmod_field = ui_type.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 			object localmod = ui_localmod_field.GetValue( ui );
 			if( localmod != null ) {
-				return MenuModGet.GetLocalModName( localmod );
+				return MenuModHelper.GetLocalModName( localmod );
 			}
 
 			LogHelpers.Log( "No mod loaded." );
@@ -37,11 +37,11 @@ namespace HamstarHelpers.Internals.ModTags {
 
 			object localmod = ui_localmod_field.GetValue( curr_ui );
 			if( localmod != null ) {
-				return MenuModGet.GetLocalModName( localmod );
+				return MenuModHelper.GetLocalModName( localmod );
 			}
 
 			if( prev_ui?.GetType().Name == "UIModBrowser" ) {
-				return MenuModGet.GetSelectedModBrowserMod( prev_ui );
+				return MenuModHelper.GetSelectedModBrowserMod( prev_ui );
 			}
 
 			LogHelpers.Log( "No mod loaded." );
