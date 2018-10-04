@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.Menus.ModTags.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public static void Initialize() {
 			new ModBrowserTagsMenuContext();

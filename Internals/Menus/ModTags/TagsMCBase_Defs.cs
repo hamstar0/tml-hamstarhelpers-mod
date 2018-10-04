@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	abstract partial class TagsMenuContextBase : MenuContextBase {
 		public static IDictionary<string, string> Tags = new Dictionary<string, string> {
 			{ "Core Game",				"Mechanics: Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc." },

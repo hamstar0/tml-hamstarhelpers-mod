@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.Menus.ModTags.UI;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	abstract partial class TagsMenuContextBase : MenuContextBase {
 		internal IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
 

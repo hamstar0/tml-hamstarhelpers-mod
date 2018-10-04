@@ -13,7 +13,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Internals.ModRecommendations.UI {
+namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 	internal class UIRecommendsList : UIMenuPanel {
 		private readonly ModRecommendsMenuContext MenuContext;
 

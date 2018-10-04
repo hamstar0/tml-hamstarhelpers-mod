@@ -1,13 +1,13 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Menus;
 using System;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		protected void InitializeContext() {
 			Action<UIState> ui_load = ui => {

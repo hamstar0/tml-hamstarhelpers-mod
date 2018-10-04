@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		private void InitializeContext() {
 			Action<UIState> ui_load = ui => {

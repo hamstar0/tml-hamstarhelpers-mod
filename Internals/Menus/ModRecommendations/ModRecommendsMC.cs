@@ -5,7 +5,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
-using HamstarHelpers.Internals.ModRecommendations.UI;
+using HamstarHelpers.Internals.Menus.ModRecommendations.UI;
 using HamstarHelpers.Services.Menus;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Internals.ModRecommendations {
+namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 	partial class ModRecommendsMenuContext : MenuContextBase {
 		public static void Initialize() {
 			new ModRecommendsMenuContext();

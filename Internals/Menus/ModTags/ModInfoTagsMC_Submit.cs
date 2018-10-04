@@ -6,7 +6,7 @@ using System;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal void SubmitTags() {
 			if( this.CurrentModName == "" ) {

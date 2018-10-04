@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.Menus.ModTags.UI;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 		

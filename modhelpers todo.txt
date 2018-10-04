@@ -14,6 +14,10 @@ Future?
 
 
 
+v3.1
+-	Mod conflicts
+	-	Add alerts to mod list against loaded mods with conflicts
+	-	Define list loading
 v3.0
 -	Release!
 -	Add support links
@@ -21,11 +25,8 @@ v3.0
 -	@Create Discord server
 -	Implement caching mod tag data on server
 -	Mod version update indications in mods list
--	Mod conflicts (custom Mod properties)
-	-	Add alerts to mod list against loaded mods with conflicts
-	-	Define list loading
 
--	Mod favorites (custom Mod properties)
+-	Mod favorites
 	-	Fix 2x mod recommendations and slow mod download option
 	-	Implement mod download button
 	-	Show info for each mod

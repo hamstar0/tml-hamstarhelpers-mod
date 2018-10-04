@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		internal void FilterMods() {
 			IList<string> mod_names = new List<string>();
