@@ -8,6 +8,7 @@ using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
@@ -19,7 +20,7 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 		private readonly UIText Label;
 		private readonly UIList List;
 		private IDictionary<Rectangle, string> Descriptions = new Dictionary<Rectangle, string>();
-		private IList<string> ModNameList = new List<string>();
+		private ISet<string> ModNameList = new HashSet<string>();
 
 
 
@@ -68,7 +69,7 @@ namespace HamstarHelpers.Internals.ModRecommendations.UI {
 		////////////////
 
 		public IList<string> GetModNames() {
-			return this.ModNameList;
+			return this.ModNameList.ToList();
 		}
 
 

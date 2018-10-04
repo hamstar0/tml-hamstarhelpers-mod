@@ -24,10 +24,10 @@ v3.0
 -	Mod conflicts (custom Mod properties)
 	-	Add alerts to mod list against loaded mods with conflicts
 	-	Define list loading
+
 -	Mod favorites (custom Mod properties)
 	-	Fix 2x mod recommendations and slow mod download option
 	-	Implement mod download button
-
 	-	Show info for each mod
 	-	Load mod favorites from file
 	-	Define favorites panel

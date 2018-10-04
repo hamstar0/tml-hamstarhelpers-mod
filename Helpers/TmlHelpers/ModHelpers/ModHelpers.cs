@@ -115,15 +115,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				if( is_loading ) {
 					return true;
 				}
-
-				Timers.SetTimer( "", 60, () => {
-					if( MenuContextService.GetCurrentMenu().GetType().Name != "UIModBrowser" ) {
-						return false;
-					}
-
-					MenuModHelper.ApplyModBrowserFilter( pack_title, true, mod_names );
-					return false;
-				} );
+				
+				MenuModHelper.ApplyModBrowserFilter( pack_title, true, mod_names );
 				return false;
 			} );
 
