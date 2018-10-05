@@ -225,6 +225,7 @@
     <Compile Include="Services\Promises\Promises_CustomAPI.cs" />
     <Compile Include="Services\Promises\Promises_ContextAPI.cs" />
     <Compile Include="Services\Promises\Promises.cs" />
+    <Compile Include="Services\ServerInfo\ServerInfo.cs" />
     <Compile Include="Services\Timers\Timers.cs" />
     <Compile Include="Internals\WebRequests\PostGithubModIssueReports.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />

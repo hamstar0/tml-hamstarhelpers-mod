@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			if( this.EndTime == -1 ) {
 				this.SendToClient( from_who, -1 );
 			} else {
-				ModHelpersMod.Instance.ServerBrowser.UpdatePingAverage( (int)( this.EndTime - this.StartTime ) );
+				ModHelpersMod.Instance.ServerInfo.UpdatePingAverage( (int)( this.EndTime - this.StartTime ) );
 			}
 		}
 
