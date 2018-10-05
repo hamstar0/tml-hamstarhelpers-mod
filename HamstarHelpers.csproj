@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\MyUserIdCommand.cs" />
-    <Compile Include="Commands\ServerBrowserPrivateCommand.cs" />
     <Compile Include="Components\CustomEntity\Components\DrawsMap.cs" />
     <Compile Include="Components\CustomEntity\Components\IsClickable.cs" />
     <Compile Include="Components\CustomEntity\Components\DrawsGame.cs" />
@@ -229,10 +228,6 @@
     <Compile Include="Services\Timers\Timers.cs" />
     <Compile Include="Internals\WebRequests\PostGithubModIssueReports.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />
-    <Compile Include="Internals\WebRequests\ServerBrowserReport_Announce.cs" />
-    <Compile Include="Internals\WebRequests\ServerBrowserReport_ProofOfWork.cs" />
-    <Compile Include="Internals\WebRequests\ServerBrowserReport_AutoUpdate.cs" />
-    <Compile Include="Internals\WebRequests\ServerBrowserReport.cs" />
     <Compile Include="Internals\Logic\PlayerLogic_TmlHelpers.cs" />
     <Compile Include="Internals\Logic\PlayerLogic.cs" />
     <Compile Include="Internals\Logic\WorldLogic_Update.cs" />

@@ -35,6 +35,7 @@ using HamstarHelpers.Services.CustomHotkeys;
 using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Services.Menus;
 
+
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
@@ -85,8 +86,7 @@ namespace HamstarHelpers {
 		// Internals
 		internal InboxControl Inbox;
 		internal GetModTags GetModTags;
-		internal GetModVersion GetModVersion; 
-		internal ServerBrowserReporter ServerBrowser;
+		internal GetModVersion GetModVersion;
 		internal UIControlPanel ControlPanel;
 
 
@@ -152,7 +152,6 @@ namespace HamstarHelpers {
 			this.Inbox = new InboxControl();
 			this.GetModVersion = new GetModVersion();
 			this.GetModTags = new GetModTags();
-			this.ServerBrowser = new ServerBrowserReporter();
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuContextMngr = new MenuContextServiceManager();
 			this.MusicHelpers = new MusicHelpers();
@@ -234,7 +233,6 @@ namespace HamstarHelpers {
 			this.PlayerMessages = null;
 			this.Inbox = null;
 			this.ControlPanel = null;
-			this.ServerBrowser = null;
 			this.MenuItemMngr = null;
 			this.MenuContextMngr = null;
 			this.MusicHelpers = null;

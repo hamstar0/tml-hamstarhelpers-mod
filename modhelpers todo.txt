@@ -18,13 +18,17 @@ v3.1
 -	Mod conflicts
 	-	Add alerts to mod list against loaded mods with conflicts
 	-	Define list loading
+-	@Remake Server Browser backend
+	-	
+	-	Call from hostmonster to get dump (clears properties)
+	-	Store server info in flat timestamped properties
 v3.0
 -	Release!
 -	Add support links
--	@Remake Server Browser backend
 -	@Create Discord server
--	Implement caching mod tag data on server
+-	@Split off server browser into a Server Browser mod
 
+-	Implement caching mod tag data on server
 -	Mod version update indications in mods list
 -	Mod favorites
 	-	Fix 2x mod recommendations and slow mod download option

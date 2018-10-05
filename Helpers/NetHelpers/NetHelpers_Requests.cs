@@ -99,7 +99,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 				bool success = false;
 				string output = null;
 
-				Tuple<T, bool> response_val = Tuple.Create( (T)null, false );
+				var response_val = Tuple.Create( (T)null, false );
 
 				try {
 					//lock( NetHelpers.RequestMutex ) {
