@@ -24,8 +24,8 @@ v3.0
 -	@Remake Server Browser backend
 -	@Create Discord server
 -	Implement caching mod tag data on server
--	Mod version update indications in mods list
 
+-	Mod version update indications in mods list
 -	Mod favorites
 	-	Fix 2x mod recommendations and slow mod download option
 	-	Implement mod download button

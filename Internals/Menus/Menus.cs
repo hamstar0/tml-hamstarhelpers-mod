@@ -1,6 +1,9 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Internals.Menus.ModRecommendations;
+using HamstarHelpers.Internals.Menus.ModTags;
+using HamstarHelpers.Internals.Menus.ModUpdates;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
 using System;
@@ -17,9 +20,10 @@ namespace HamstarHelpers.Internals.Menus {
 
 			Promises.AddPostModLoadPromise( () => {
 				Menus.InitializeOpenConfigButton();
-				ModTags.ModInfoTagsMenuContext.Initialize();
-				ModTags.ModBrowserTagsMenuContext.Initialize();
-				ModRecommendations.ModRecommendsMenuContext.Initialize();
+				ModInfoTagsMenuContext.Initialize();
+				ModBrowserTagsMenuContext.Initialize();
+				ModRecommendsMenuContext.Initialize();
+				ModUpdatesMenuContext.Initialize();
 			} );
 		}
 

@@ -28,9 +28,11 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		////////////////
 
-		protected MenuContextBase( bool occludes_logo ) {
+		protected MenuContextBase( bool display_info, bool occludes_logo ) {
 			this.InitializeBase( occludes_logo );
-			this.InitializeInfoDisplay();
+			if( display_info ) {
+				this.InitializeInfoDisplay();
+			}
 		}
 
 

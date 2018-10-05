@@ -126,6 +126,7 @@
     <Compile Include="Internals\Menus\ModTags\UI\UITagFinishButton.cs" />
     <Compile Include="Internals\Menus\ModTags\UI\UITagButton.cs" />
     <Compile Include="Internals\Menus\ModTags\ModInfoTagsMC.cs" />
+    <Compile Include="Internals\Menus\ModUpdates\ModUpdatesMC.cs" />
     <Compile Include="Internals\NetProtocols\ItemNoGrabProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />

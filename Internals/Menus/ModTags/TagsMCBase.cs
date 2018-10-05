@@ -14,7 +14,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		protected TagsMenuContextBase( bool can_disable_tags ) : base( true ) {
+		protected TagsMenuContextBase( bool can_disable_tags ) : base( true, true ) {
 			this.CanDisableTags = can_disable_tags;
 
 			this.InitializeTagButtons();

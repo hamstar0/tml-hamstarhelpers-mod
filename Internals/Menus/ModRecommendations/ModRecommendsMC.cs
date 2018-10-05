@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 
 		////////////////
 
-		private ModRecommendsMenuContext() : base( false ) {
+		private ModRecommendsMenuContext() : base( true, false ) {
 			this.RecommendsList = new UIRecommendsList( this );
 
 			this.DownloadButton = new UIMenuButton( UITheme.Vanilla, "Download All", 112f, 24f, 300f, 160f );

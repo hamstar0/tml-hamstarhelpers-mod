@@ -26,7 +26,38 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 
 		////////////////
-		
+
+		public static bool Get<T>( Object instance, string prop_or_field_name, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( instance, prop_or_field_name, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( instance, prop_or_field_name, out val );
+			}
+			return true;
+		}
+
+		public static bool Get<T>( Object instance, string prop_or_field_name, BindingFlags flags, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( instance, prop_or_field_name, flags, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( instance, prop_or_field_name, flags, out val );
+			}
+			return true;
+		}
+
+		public static bool Get<T>( Type obj_type, Object instance, string prop_or_field_name, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( obj_type, instance, prop_or_field_name, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( obj_type, instance, prop_or_field_name, out val );
+			}
+			return true;
+		}
+
+		public static bool Get<T>( Type obj_type, Object instance, string prop_or_field_name, BindingFlags flags, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( obj_type, instance, prop_or_field_name, flags, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( obj_type, instance, prop_or_field_name, flags, out val );
+			}
+			return true;
+		}
+
+
+		////////////////
+
 		public static bool GetField<T>( Object instance, string field_name, out T field_val ) {
 			field_val = default( T );
 
@@ -111,8 +142,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static bool GetProperty<T>( Object instance, string prop_name, out T prop_val ) {
 			prop_val = default( T );
 
-			Type objtype = instance.GetType();
-			PropertyInfo prop = objtype.GetProperty( prop_name );
+			Type obj_type = instance.GetType();
+			PropertyInfo prop = obj_type.GetProperty( prop_name );
 			if( prop == null ) { return false; }
 
 			prop_val = (T)prop.GetValue( instance );
@@ -122,8 +153,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static bool GetProperty<T>( Object instance, string prop_name, BindingFlags flags, out T prop_val ) {
 			prop_val = default( T );
 
-			Type objtype = instance.GetType();
-			PropertyInfo prop = objtype.GetProperty( prop_name, flags );
+			Type obj_type = instance.GetType();
+			PropertyInfo prop = obj_type.GetProperty( prop_name, flags );
 			if( prop == null ) { return false; }
 
 			prop_val = (T)prop.GetValue( instance );
