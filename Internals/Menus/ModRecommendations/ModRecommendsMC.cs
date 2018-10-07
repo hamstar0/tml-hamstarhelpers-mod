@@ -2,7 +2,6 @@
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Internals.Menus.ModRecommendations.UI;
@@ -67,11 +66,16 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 
 		private void PopulateList( string mod_name ) {
+			string curr_mod_name = MenuModHelper.GetModName( MenuContextService.GetPreviousMenu(), this.MyUI ?? MenuContextService.GetCurrentMenu() );
+			if( mod_name != curr_mod_name ) {
+				return;
+			}
+
 			this.RecommendsList.Clear();
 
 			string err = "";
-			IList<Tuple<string, string>> recommends =   this.GetRecommendsFromActiveMod( mod_name, ref err ) ??
-														this.GetRecommendsFromInactiveMod( mod_name, ref err );
+			IList<Tuple<string, string>> recommends = this.GetRecommendsFromActiveMod( mod_name, ref err ) ??
+													  this.GetRecommendsFromInactiveMod( mod_name, ref err );
 
 			if( string.IsNullOrEmpty(err) ) {
 				foreach( Tuple<string, string> rec in recommends.Take( ModRecommendsMenuContext.Limit ) ) {

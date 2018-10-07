@@ -3,6 +3,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria.ModLoader;
 
 
@@ -23,7 +24,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				LogHelpers.Log( e.ToString() );
 			};
 
-			PostModInfo.SubmitModInfo( this.CurrentModName, this.GetTagsOfState( 1 ), on_success, on_fail );
+			ISet<string> new_tags = this.GetTagsOfState( 1 );
+
+			// Update snapshot of tags for the given mod (locally)
+			if( this.AllModTagsSnapshot != null ) {
+				this.AllModTagsSnapshot[this.CurrentModName] = new_tags;
+			}
+
+			PostModInfo.SubmitModInfo( this.CurrentModName, new_tags, on_success, on_fail );
 
 			this.FinishButton.Lock();
 			this.ResetButton.Lock();

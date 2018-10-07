@@ -66,6 +66,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.CurrentModName = mod_name;
 
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+				this.AllModTagsSnapshot = args.ModTags;
+
 				ISet<string> net_modtags = args.Found && args.ModTags.ContainsKey( mod_name ) ?
 						args.ModTags[ mod_name ] :
 						new HashSet<string>();

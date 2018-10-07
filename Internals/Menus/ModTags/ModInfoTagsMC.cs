@@ -23,6 +23,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		public string CurrentModName = "";
 
+		private IDictionary<string, ISet<string>> AllModTagsSnapshot = null;
+
 		////////////////
 
 		public override string UIName => "UIModInfo";
