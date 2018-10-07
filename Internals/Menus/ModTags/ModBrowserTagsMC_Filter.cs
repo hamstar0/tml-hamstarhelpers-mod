@@ -6,16 +6,19 @@ using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Terraria.ModLoader.UI;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		internal void FilterMods() {
 			IList<string> mod_names = new List<string>();
+			UIState my_uid = this.MyUI;
 
 			object items;
-			if( !ReflectionHelpers.GetField( this.MyUI, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
-				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui " + this.MyUI );
+			if( !ReflectionHelpers.GetField( my_uid, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
+				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui " + my_uid );
 			}
 
 			var items_arr = (Array)items.GetType()
@@ -32,6 +35,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			}
 
 			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list ) => {
+				ReflectionHelpers.SetField( my_uid, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
 				MenuModHelper.ApplyModBrowserFilter( "Custom Tags", is_filtered, ( List<string>)filtered_list );
 			} );
 		}

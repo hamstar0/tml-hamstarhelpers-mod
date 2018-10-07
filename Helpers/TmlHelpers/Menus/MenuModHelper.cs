@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.ModLoader.UI;
 using Terraria.UI;
 
 
@@ -28,7 +29,12 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 			object _;
 			ReflectionHelpers.RunMethod<object>( mod_browser_ui, "Activate", new object[] { }, out _ );
 			ReflectionHelpers.SetField( mod_browser_ui, "updateNeeded", BindingFlags.Instance | BindingFlags.NonPublic, true );
-			
+			ReflectionHelpers.SetField( mod_browser_ui, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
+
+			//UIElement filter_toggle;
+			//ReflectionHelpers.GetProperty<UIElement>( mod_browser_ui, "UpdateFilterToggle", out filter_toggle );
+			//ReflectionHelpers.SetProperty( filter_toggle, "CurrentState", 0 );
+
 			if( is_filtered ) {
 				special_filter_prop.SetValue( mod_browser_ui, mod_names );
 				filter_title_prop.SetValue( mod_browser_ui, filter_name );

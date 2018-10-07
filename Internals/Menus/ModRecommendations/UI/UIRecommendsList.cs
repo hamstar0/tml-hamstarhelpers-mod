@@ -114,8 +114,15 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 			string display_name = mod_name;
 			Mod mod = ModLoader.GetMod( mod_name );
+			string new_mod_name = mod_name;
+
+			while( mod == null && new_mod_name.Length > 0 ) {
+				new_mod_name = new_mod_name.Substring( 1 );
+				mod = ModLoader.GetMod( new_mod_name );
+			}
 
 			if( mod != null ) {
+				mod_name = new_mod_name;
 				is_mod_loaded = true;
 				display_name = mod.DisplayName;
 			}
@@ -128,10 +135,17 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 				if( Timers.GetTimerTickDuration( timer_name ) > 0 ) {
 					Timers.UnsetTimer( timer_name );
 				}
-
-				if( args.Info.ContainsKey( mod_name ) ) {
-					add_mod_entry( args.Info[mod_name].Item1 );
+				
+				for( new_mod_name = mod_name;
+					new_mod_name.Length > 0;
+					new_mod_name = new_mod_name.Substring( 1 )
+				) {
+					if( args.Info.ContainsKey( new_mod_name ) ) {
+						add_mod_entry( args.Info[ new_mod_name ].Item1 );
+						break;
+					}
 				}
+
 				return false;
 			} );
 		}
