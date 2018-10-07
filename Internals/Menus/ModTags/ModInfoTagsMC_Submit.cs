@@ -14,7 +14,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			}
 
 			Action<string> on_success = delegate ( string output ) {
-				MenuContextBase.InfoDisplay?.SetText( output, Color.LimeGreen );
+				MenuContextBase.InfoDisplay?.SetText( output, Color.Lime );
 				ErrorLogger.Log( "Mod info submit result: " + output );
 			};
 

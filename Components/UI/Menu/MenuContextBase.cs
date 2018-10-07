@@ -39,7 +39,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 		////////////////
 
 		protected void RecalculateMenuObjects() {
-			if( Main.screenWidth < (800 + 128) || Main.screenHeight < (640 + 128) ) {
+			if( Main.screenWidth < (800 + 128) ) {
 				Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
 
 				if( oh_mod != null ) {

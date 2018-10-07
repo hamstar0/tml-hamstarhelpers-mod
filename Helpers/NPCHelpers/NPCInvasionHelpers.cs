@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameContent.Events;
 
 
 namespace HamstarHelpers.Helpers.NPCHelpers {
-	public enum VanillaInvasionType {
+	public enum VanillaEventFlag {
 		None = 1,
 		Goblins = 2,
 		FrostLegion = 4,
@@ -22,40 +21,40 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 
 
 
-	public static class NPCInvasionHelpers {
-		public static VanillaInvasionType GetInvasionType( int which ) {
+	public static partial class NPCInvasionHelpers {
+		public static VanillaEventFlag GetEventTypeOfInvasionType( int which ) {
 			switch( which ) {
 			case 1:
-				return VanillaInvasionType.Goblins;
+				return VanillaEventFlag.Goblins;
 			case 2:
-				return VanillaInvasionType.FrostLegion;
+				return VanillaEventFlag.FrostLegion;
 			case 3:
-				return VanillaInvasionType.Pirates;
+				return VanillaEventFlag.Pirates;
 			case 4:
-				return VanillaInvasionType.Martians;
+				return VanillaEventFlag.Martians;
 			default:
-				return VanillaInvasionType.None;
+				return VanillaEventFlag.None;
 			}
 		}
 
+		
+		public static VanillaEventFlag GetCurrentEventTypeSet() {
+			int flags = 0;
+			int inv_type = (int)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
 
-		public static IList<VanillaInvasionType> GetCurrentEventTypes() {
-			var event_types = new List<VanillaInvasionType>();
-			var inv_type = NPCInvasionHelpers.GetInvasionType( Main.invasionType );
-
-			if( inv_type != VanillaInvasionType.None ) {
-				event_types.Add( inv_type );
+			if( (VanillaEventFlag)inv_type != VanillaEventFlag.None ) {
+				flags += inv_type;
 			}
 
-			if( Sandstorm.Happening ) { event_types.Add( VanillaInvasionType.Sandstorm ); }
-			if( Main.bloodMoon ) { event_types.Add( VanillaInvasionType.BloodMoon ); }
-			if( Main.slimeRain ) { event_types.Add( VanillaInvasionType.SlimeRain ); }
-			if( Main.eclipse ) { event_types.Add( VanillaInvasionType.SolarEclipse ); }
-			if( Main.snowMoon ) { event_types.Add( VanillaInvasionType.FrostMoon ); }
-			if( Main.pumpkinMoon ) { event_types.Add( VanillaInvasionType.PumpkinMoon ); }
-			if( NPC.LunarApocalypseIsUp ) { event_types.Add( VanillaInvasionType.LunarApocalypse ); }
+			if( Sandstorm.Happening ) { flags += (int)VanillaEventFlag.Sandstorm; }
+			if( Main.bloodMoon ) { flags += (int)VanillaEventFlag.BloodMoon; }
+			if( Main.slimeRain ) { flags += (int)VanillaEventFlag.SlimeRain; }
+			if( Main.eclipse ) { flags += (int)VanillaEventFlag.SolarEclipse; }
+			if( Main.snowMoon ) { flags += (int)VanillaEventFlag.FrostMoon; }
+			if( Main.pumpkinMoon ) { flags += (int)VanillaEventFlag.PumpkinMoon; }
+			if( NPC.LunarApocalypseIsUp ) { flags += (int)VanillaEventFlag.LunarApocalypse; }
 
-			return event_types;
+			return (VanillaEventFlag)flags;
 		}
 	}
 }

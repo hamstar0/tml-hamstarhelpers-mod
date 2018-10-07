@@ -53,29 +53,54 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 
 		public static IList<string> GetCurrentVanillaEvents() {
-			IList<VanillaInvasionType> list = NPCInvasionHelpers.GetCurrentEventTypes();
-			IList<string> out_list = new List<string>(
-				list.Select( event_type => {
-					switch( event_type ) {
-					case VanillaInvasionType.FrostLegion:
-						return "Frost Legion";
-					case VanillaInvasionType.BloodMoon:
-						return "Blood Moon";
-					case VanillaInvasionType.SlimeRain:
-						return "Slime Rain";
-					case VanillaInvasionType.SolarEclipse:
-						return "Solar Eclipse";
-					case VanillaInvasionType.PumpkinMoon:
-						return "Pumpkin Moon";
-					case VanillaInvasionType.FrostMoon:
-						return "Frost Moon";
-					case VanillaInvasionType.LunarApocalypse:
-						return "Lunar Apocalypse";
-					default:
-						return event_type.ToString();
-					}
-				} )
-			);
+			VanillaEventFlag flags = NPCInvasionHelpers.GetCurrentEventTypeSet();
+
+			IList<string> out_list = new List<string>();
+
+			if( ( flags & VanillaEventFlag.Goblins ) > 0 ) {
+				flags -= VanillaEventFlag.Goblins;
+				out_list.Add( "Goblins" );
+			}
+			if( ( flags & VanillaEventFlag.FrostLegion ) > 0 ) {
+				flags -= VanillaEventFlag.FrostLegion;
+				out_list.Add( "Frost Legion" );
+			}
+			if( ( flags & VanillaEventFlag.Pirates ) > 0 ) {
+				flags -= VanillaEventFlag.Pirates;
+				out_list.Add( "Pirates" );
+			}
+			if( ( flags & VanillaEventFlag.Martians ) > 0 ) {
+				flags -= VanillaEventFlag.Martians;
+				out_list.Add( "Martians" );
+			}
+			if( ( flags & VanillaEventFlag.BloodMoon ) > 0 ) {
+				flags -= VanillaEventFlag.BloodMoon;
+				out_list.Add( "Blood Moon" );
+			}
+			if( ( flags & VanillaEventFlag.SlimeRain ) > 0 ) {
+				flags -= VanillaEventFlag.SlimeRain;
+				out_list.Add( "Slime Rain" );
+			}
+			if( ( flags & VanillaEventFlag.Sandstorm ) > 0 ) {
+				flags -= VanillaEventFlag.Sandstorm;
+				out_list.Add( "Sandstorm" );
+			}
+			if( ( flags & VanillaEventFlag.SolarEclipse ) > 0 ) {
+				flags -= VanillaEventFlag.SolarEclipse;
+				out_list.Add( "Solar Eclipse" );
+			}
+			if( ( flags & VanillaEventFlag.PumpkinMoon ) > 0 ) {
+				flags -= VanillaEventFlag.PumpkinMoon;
+				out_list.Add( "Pumpkin Moon" );
+			}
+			if( ( flags & VanillaEventFlag.FrostMoon ) > 0 ) {
+				flags -= VanillaEventFlag.FrostMoon;
+				out_list.Add( "Frost Moon" );
+			}
+			if( ( flags & VanillaEventFlag.LunarApocalypse ) > 0 ) {
+				flags -= VanillaEventFlag.LunarApocalypse;
+				out_list.Add( "Lunar Apocalypse" );
+			}
 
 			if( out_list.Count == 0 ) {
 				out_list.Add( "Normal" );

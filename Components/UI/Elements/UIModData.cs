@@ -139,7 +139,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 							string msg = mod.DisplayName + " config file reset to defaults.";
 
 							ModMetaDataManager.ResetDefaultsConfig( mod );
-							Main.NewText( msg, Color.LimeGreen );
+							Main.NewText( msg, Color.Lime );
 							LogHelpers.Log( msg );
 						};
 					}

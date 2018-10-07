@@ -18,6 +18,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.CanDisableTags = can_disable_tags;
 
 			this.InitializeTagButtons();
+			this.InitializeLinks();
 		}
 
 

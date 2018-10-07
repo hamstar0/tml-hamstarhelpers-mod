@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		////////////////
 
 		public UITagResetButton( TagsMenuContextBase menu_context )
-				: base( UITheme.Vanilla, "Reset Tags", 72f, 28f, 200f, 172f, 0.36f, true ) {
+				: base( UITheme.Vanilla, "Reset Tags", 98f, 24f, -298f, 196f, 0.36f, true ) {
 			this.MenuContext = menu_context;
 
 			this.RecalculatePos();
