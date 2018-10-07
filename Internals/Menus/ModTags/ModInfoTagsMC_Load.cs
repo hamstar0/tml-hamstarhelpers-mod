@@ -73,7 +73,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 						new HashSet<string>();
 				bool has_net_tags = net_modtags.Count > 0;
 
-//LogHelpers.Log( "SetCurrentMod modname: " + modname+", modtags: " + string.Join(",", modtags) );
+//LogHelpers.Log( "SetCurrentMod modname: " + mod_name + ", modtags: " + string.Join(",", net_modtags ) );
 				if( has_net_tags ) {
 					this.FinishButton.SetModeReadOnly();
 					this.ResetButton.Disable();

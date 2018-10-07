@@ -39,9 +39,9 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 
 		private ModRecommendsMenuContext() : base( true, false ) {
-			this.RecommendsList = new UIRecommendsList( this );
+			this.RecommendsList = new UIRecommendsList( this, 198f, 132f, 202f, 40f );
 			
-			this.DownloadButton = new UIMenuButton( UITheme.Vanilla, "Download All", 206f, 26f, 194f, 172f );
+			this.DownloadButton = new UIMenuButton( UITheme.Vanilla, "Download All", 198f, 26f, 202f, 172f );
 			this.DownloadButton.OnClick += ( evt, elem ) => {
 				ModHelpers.PromptModDownloads( "Recommended", (List<string>)this.RecommendsList.GetModNames() );
 			};
@@ -74,12 +74,12 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 			this.RecommendsList.Clear();
 
 			string err = "";
-			IList<Tuple<string, string>> recommends = this.GetRecommendsFromActiveMod( mod_name, ref err ) ??
+			IList<Tuple<string, string>> recommends = this.GetRecommendsFromActiveMod( mod_name ) ??
 													  this.GetRecommendsFromInactiveMod( mod_name, ref err );
 
 			if( string.IsNullOrEmpty(err) ) {
-				foreach( Tuple<string, string> rec in recommends.Take( ModRecommendsMenuContext.Limit ) ) {
-					this.RecommendsList.AddModEntry( rec.Item1, rec.Item2 );
+				foreach( Tuple<string, string> recom in recommends.Take( ModRecommendsMenuContext.Limit ) ) {
+					this.RecommendsList.AddModEntry( recom.Item1, recom.Item2 );
 				}
 			} else {
 				LogHelpers.Log( "!ModHelpers.ModRecommendsMenuContext.PopulateList - " + err );

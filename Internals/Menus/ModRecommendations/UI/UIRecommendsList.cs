@@ -25,9 +25,9 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 
 		////////////////
-
-		public UIRecommendsList( ModRecommendsMenuContext mc )
-				: base( UITheme.Vanilla, 206f, 132f, 194f, 40f ) {
+		
+		public UIRecommendsList( ModRecommendsMenuContext mc, float width, float height, float x_center_offset, float y )
+				: base( UITheme.Vanilla, width, height, x_center_offset, y ) {
 			this.MenuContext = mc;
 
 			this.Label = new UIText( "Recommendations:" );

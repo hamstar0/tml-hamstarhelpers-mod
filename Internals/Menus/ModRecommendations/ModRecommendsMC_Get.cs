@@ -19,10 +19,9 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 	partial class ModRecommendsMenuContext : MenuContextBase {
-		private IList<Tuple<string, string>> GetRecommendsFromActiveMod( string mod_name, ref string err ) {
+		private IList<Tuple<string, string>> GetRecommendsFromActiveMod( string mod_name ) {
 			Mod mod = ModLoader.GetMod( mod_name );
 			if( mod == null ) {
-				err = "No mod found by name " + mod_name;
 				return null;
 			}
 			
@@ -91,7 +90,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 
 		private IList<Tuple<string, string>> ParseRecommendations( byte[] file_data ) {
 			string data = Encoding.Default.GetString( file_data );
-			string[] lines = data.Substring(3).Trim().Split( '\n' ).ToArray();
+			//string[] lines = data.Substring(3).Trim().Split( '\n' ).ToArray();
+			string[] lines = data.Trim().Split( '\n' ).ToArray();
 
 			IEnumerable<string[]> recommendations = lines.Select(
 				line => line.Split( '=' ).Select( s => s.Trim() ).ToArray()
