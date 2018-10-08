@@ -1,9 +1,11 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.UI;
@@ -78,6 +80,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					this.FinishButton.SetModeReadOnly();
 					this.ResetButton.Disable();
 				} else {
+					MenuContextBase.InfoDisplay.SetText( "No tags set for this mod. Why not add some?", Color.Gray );
 					this.FinishButton.SetModeSubmit();
 				}
 				
