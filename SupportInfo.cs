@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			var mymod = ModHelpersMod.Instance;
 			
 			float x_off = 312f;
-			float y = 4f;
+			float y = 12f;
 			float row_height = 28f;
 
 			////
@@ -46,12 +46,12 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.HeadTextUI.TextColor = Color.Lerp( Color.White, Color.Gold, 0.25f );
 			this.HeadTextUI.Recalculate();
 
-			y += 4;
-
 			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers  v"+mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f );
-			this.HeadUrlUI.Left.Set( -( x_off - 116f ), 1f );
+			this.HeadUrlUI.Left.Set( -( x_off - 114f ), 1f );
 			this.HeadUrlUI.Top.Set( y, 0f );
 			this.HeadUrlUI.Recalculate();
+
+			y += 4;
 
 			////
 			
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.ModderTextUI.Recalculate();
 
 			this.ModderUrlUI = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true );
-			this.ModderUrlUI.Left.Set( -(x_off - 164f), 1f );
+			this.ModderUrlUI.Left.Set( -(x_off - 166f), 1f );
 			this.ModderUrlUI.Top.Set( y + row_height, 0f );
 			this.ModderUrlUI.Recalculate();
 
@@ -79,19 +79,19 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			////
 
-			this.SupportText1UI = new UIText( "Support" );
+			this.SupportText1UI = new UIText( "Please" );
 			this.SupportText1UI.Left.Set( -x_off, 1f );
 			this.SupportText1UI.Top.Set( y + (row_height * 3), 0f );
 			this.SupportText1UI.Recalculate();
 			this.SupportText1UI.TextColor = Color.MediumSpringGreen;
 
-			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "hamstar's", "https://www.patreon.com/hamstar0", true, 1f );
-			this.SupportUrlUI.Left.Set( -(x_off - 70), 1f );
+			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f );
+			this.SupportUrlUI.Left.Set( -(x_off - 56), 1f );
 			this.SupportUrlUI.Top.Set( y + (row_height * 3), 0f );
 			this.SupportUrlUI.Recalculate();
 
-			this.SupportText2UI = new UIText( "mods!" );
-			this.SupportText2UI.Left.Set( -(x_off - 156), 1f );
+			this.SupportText2UI = new UIText( "hamstar's mods!" );
+			this.SupportText2UI.Left.Set( -(x_off - 124), 1f );
 			this.SupportText2UI.Top.Set( y + (row_height * 3), 0f );
 			this.SupportText2UI.Recalculate();
 			this.SupportText2UI.TextColor = Color.MediumSpringGreen;
