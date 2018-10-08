@@ -60,6 +60,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static bool GetField<T>( Object instance, string field_name, out T field_val ) {
 			field_val = default( T );
+			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
 			FieldInfo field = objtype.GetField( field_name );
@@ -71,6 +72,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static bool GetField<T>( Object instance, string field_name, BindingFlags flags, out T field_val ) {
 			field_val = default( T );
+			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
 			FieldInfo field = objtype.GetField( field_name, flags );
@@ -102,37 +104,45 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////
 
-		public static bool SetField( Object obj, string field_name, object value ) {
-			Type obj_type = obj.GetType();
+		public static bool SetField( Object instance, string field_name, object value ) {
+			if( instance == null ) { return false; }
+
+			Type obj_type = instance.GetType();
 			FieldInfo field = obj_type.GetField( field_name );
 			if( field == null ) { return false; }
 			
-			field.SetValue( obj, value );
+			field.SetValue( instance, value );
 			return true;
 		}
 
-		public static bool SetField( Object obj, string field_name, BindingFlags flags, object value ) {
-			Type obj_type = obj.GetType();
+		public static bool SetField( Object instance, string field_name, BindingFlags flags, object value ) {
+			if( instance == null ) { return false; }
+
+			Type obj_type = instance.GetType();
 			FieldInfo field = obj_type.GetField( field_name, flags );
 			if( field == null ) { return false; }
 			
-			field.SetValue( obj, value );
+			field.SetValue( instance, value );
 			return true;
 		}
 
-		public static bool SetField( Type obj_type, Object obj, string field_name, object value ) {
+		public static bool SetField( Type obj_type, Object instance, string field_name, object value ) {
+			if( instance == null ) { return false; }
+
 			FieldInfo field = obj_type.GetField( field_name );
 			if( field == null ) { return false; }
 
-			field.SetValue( obj, value );
+			field.SetValue( instance, value );
 			return true;
 		}
 
-		public static bool SetField( Type obj_type, Object obj, string field_name, BindingFlags flags, object value ) {
+		public static bool SetField( Type obj_type, Object instance, string field_name, BindingFlags flags, object value ) {
+			if( instance == null ) { return false; }
+
 			FieldInfo field = obj_type.GetField( field_name, flags );
 			if( field == null ) { return false; }
 
-			field.SetValue( obj, value );
+			field.SetValue( instance, value );
 			return true;
 		}
 
@@ -141,6 +151,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static bool GetProperty<T>( Object instance, string prop_name, out T prop_val ) {
 			prop_val = default( T );
+			if( instance == null ) { return false; }
 
 			Type obj_type = instance.GetType();
 			PropertyInfo prop = obj_type.GetProperty( prop_name );
@@ -152,6 +163,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static bool GetProperty<T>( Object instance, string prop_name, BindingFlags flags, out T prop_val ) {
 			prop_val = default( T );
+			if( instance == null ) { return false; }
 
 			Type obj_type = instance.GetType();
 			PropertyInfo prop = obj_type.GetProperty( prop_name, flags );
@@ -183,38 +195,42 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////
 
-		public static bool SetProperty( Object obj, string prop_name, object value ) {
-			Type objtype = obj.GetType();
+		public static bool SetProperty( Object instance, string prop_name, object value ) {
+			if( instance == null ) { return false; }
+
+			Type objtype = instance.GetType();
 			FieldInfo field = objtype.GetField( prop_name );
 			PropertyInfo prop = objtype.GetProperty( prop_name );
 			if( prop == null ) { return false; }
 			
-			prop.SetValue( obj, value );
+			prop.SetValue( instance, value );
 			return true;
 		}
 
 
 		////////////////
 		
-		public static bool RunMethod<T>( Object obj, string method_name, object[] args, out T return_val ) {
+		public static bool RunMethod<T>( Object instance, string method_name, object[] args, out T return_val ) {
 			return_val = default( T );
+			if( instance == null ) { return false; }
 
-			Type objtype = obj.GetType();
+			Type objtype = instance.GetType();
 			MethodInfo method = objtype.GetMethod( method_name );
 			if( method == null ) { return false; }
 
-			method.Invoke( obj, args );
+			method.Invoke( instance, args );
 			return true;
 		}
 
-		public static bool RunMethod<T>( Object obj, string method_name, BindingFlags flags, object[] args, out T return_val ) {
+		public static bool RunMethod<T>( Object instance, string method_name, BindingFlags flags, object[] args, out T return_val ) {
 			return_val = default( T );
+			if( instance == null ) { return false; }
 
-			Type objtype = obj.GetType();
+			Type objtype = instance.GetType();
 			MethodInfo method = objtype.GetMethod( method_name, flags );
 			if( method == null ) { return false; }
 
-			method.Invoke( obj, args );
+			method.Invoke( instance, args );
 			return true;
 		}
 	}
