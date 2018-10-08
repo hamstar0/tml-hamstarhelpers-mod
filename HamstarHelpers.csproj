@@ -128,6 +128,7 @@
     <Compile Include="Internals\Menus\ModTags\UI\UITagButton.cs" />
     <Compile Include="Internals\Menus\ModTags\ModInfoTagsMC.cs" />
     <Compile Include="Internals\Menus\ModUpdates\ModUpdatesMC.cs" />
+    <Compile Include="SupportInfo.cs" />
     <Compile Include="Internals\NetProtocols\ItemNoGrabProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerDataProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
@@ -296,7 +297,9 @@
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Internals\Menus\Support\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServerDebug.exe" -build "$(ProjectDir)\"</PostBuildEvent>

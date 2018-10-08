@@ -14,7 +14,7 @@ namespace HamstarHelpers.Components.UI.Menu.UI {
 		////////////////
 
 		public UIInfoDisplay( MenuContextBase menu_context )
-				: base( UITheme.Vanilla, 640f, 40f, -400f, 2f ) {
+				: base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
 			this.MenuContext = menu_context;
 
 			this.TextElem = new UIText( "" );

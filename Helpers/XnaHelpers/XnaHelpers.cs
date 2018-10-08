@@ -1,9 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
+using Microsoft.Xna.Framework;
 using System;
+using System.Reflection;
+using Terraria;
 
 
 namespace HamstarHelpers.Helpers.XnaHelpers {
-	public static class XnaHelpers {
+	public class XnaHelpers {
 		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
 			int i, j;
 
@@ -19,6 +22,31 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 					if( !scanner(i, j) ) { return; }
 				}
 			}
+		}
+
+
+		public static bool IsMainSpriteBatchBegun() {
+			if( ModHelpersMod.Instance?.XnaHelpers?.MainSpriteBatchBegun == null ) {
+				return false;
+			}
+			return (bool)ModHelpersMod.Instance.XnaHelpers.MainSpriteBatchBegun.GetValue( Main.spriteBatch );
+		}
+
+
+
+		////////////////
+
+		private FieldInfo MainSpriteBatchBegun = null;
+
+
+
+		////////////////
+
+		internal XnaHelpers() {
+			ReflectionHelpers.GetField( Main.spriteBatch, "_beginCalled",
+				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance,
+				out this.MainSpriteBatchBegun
+			);
 		}
 	}
 }

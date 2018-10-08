@@ -35,6 +35,9 @@ using HamstarHelpers.Services.CustomHotkeys;
 using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.ServerInfo;
+using HamstarHelpers.Internals.Menus.Support;
+using HamstarHelpers.Helpers.XnaHelpers;
+
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
@@ -89,6 +92,8 @@ namespace HamstarHelpers {
 		internal GetModTags GetModTags;
 		internal GetModVersion GetModVersion;
 		internal UIControlPanel ControlPanel;
+		internal SupportInfoDisplay SupportInfo;
+		internal XnaHelpers XnaHelpers;
 
 
 		public bool HasSetupContent { get; private set; }
@@ -158,7 +163,9 @@ namespace HamstarHelpers {
 			this.MusicHelpers = new MusicHelpers();
 			this.CustomEntMngr = new CustomEntityManager();
 			this.CustomHotkeys = new CustomHotkeys();
+			this.XnaHelpers = new XnaHelpers();
 			this.ServerInfo = new ServerInfo();
+			this.SupportInfo = new SupportInfoDisplay();
 
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
@@ -242,7 +249,9 @@ namespace HamstarHelpers {
 			this.Promises = null;
 			this.DataStore = null;
 			this.CustomHotkeys = null;
+			this.XnaHelpers = null;
 			this.ServerInfo = null;
+			this.SupportInfo = null;
 
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;

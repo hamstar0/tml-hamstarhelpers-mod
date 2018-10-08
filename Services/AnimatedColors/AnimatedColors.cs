@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
+using Terraria;
 
 
 namespace HamstarHelpers.Services.AnimatedColor {
@@ -9,6 +11,7 @@ namespace HamstarHelpers.Services.AnimatedColor {
 		public static AnimatedColors Fire { get { return ModHelpersMod.Instance.AnimatedColors.Fire; } }
 		public static AnimatedColors Water { get { return ModHelpersMod.Instance.AnimatedColors.Water; } }
 		public static AnimatedColors Air { get { return ModHelpersMod.Instance.AnimatedColors.Air; } }
+		public static AnimatedColors Ether { get { return ModHelpersMod.Instance.AnimatedColors.Ether; } }
 
 
 		////////////////
@@ -69,18 +72,46 @@ namespace HamstarHelpers.Services.AnimatedColor {
 		internal readonly AnimatedColors Fire;
 		internal readonly AnimatedColors Water;
 		internal readonly AnimatedColors Air;
+		internal readonly AnimatedColors Ether;
 
+		////
 
 		internal IList<AnimatedColors> Defs = new List<AnimatedColors>();
+		private Func<bool> OnTickGet;
 
+
+		////////////////
 
 		internal AnimatedColorsManager() {
+			var mymod = ModHelpersMod.Instance;
+
 			this.Alert = AnimatedColors.Create( this, 16, new Color[] { Color.Yellow, Color.Gray } );
 			this.Strobe = AnimatedColors.Create( this, 16, new Color[] { Color.Black, Color.White } );
 			this.Fire = AnimatedColors.Create( this, 16, new Color[] { Color.Red, Color.Yellow } );
 			this.Water = AnimatedColors.Create( this, 16, new Color[] { Color.Blue, Color.Turquoise } );
 			this.Air = AnimatedColors.Create( this, 16, new Color[] { Color.White, Color.Gray } );
+			this.Ether = AnimatedColors.Create( this, 16, new Color[] { Color.MediumSpringGreen, Color.Gray } );
+
+			this.OnTickGet = Services.Timers.Timers.MainOnTickGet();
+			Main.OnTick += AnimatedColorsManager._Update;
 		}
+
+		~AnimatedColorsManager() {
+			Main.OnTick -= AnimatedColorsManager._Update;
+		}
+
+
+		////////////////
+
+		private static void _Update() {
+			ModHelpersMod mymod = ModHelpersMod.Instance;
+			if( mymod == null ) { return; }
+
+			if( mymod.AnimatedColors.OnTickGet() ) {
+				mymod.AnimatedColors.Update();
+			}
+		}
+
 
 		internal void Update() {
 			foreach( var def in this.Defs ) {

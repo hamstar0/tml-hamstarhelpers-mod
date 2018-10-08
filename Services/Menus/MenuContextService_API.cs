@@ -9,6 +9,15 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Services.Menus {
 	public class MenuContextService {
+		public static bool ContainsMenuLoaders( string ui_class_name ) {
+			var mymod = ModHelpersMod.Instance;
+			if( mymod == null || mymod.MenuContextMngr == null ) { return false; }
+
+			return ModHelpersMod.Instance.MenuContextMngr.Show.ContainsKey( ui_class_name )
+				&& ModHelpersMod.Instance.MenuContextMngr.Show.Count > 0;
+		}
+
+
 		public static bool ContainsMenuLoader( string ui_class_name, string context ) {
 			var mymod = ModHelpersMod.Instance;
 

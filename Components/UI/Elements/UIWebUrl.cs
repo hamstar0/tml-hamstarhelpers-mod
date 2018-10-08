@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.UIHelpers;
+using HamstarHelpers.Helpers.DebugHelpers;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
@@ -18,11 +19,15 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public string Url { get; private set; }
 		public bool WillDrawOwnHoverUrl { get; private set; }
 
+		public bool IsVisited { get; private set; }
+
+
 
 		////////////////
 		
 		public UIWebUrl( UITheme theme, string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false ) : base() {
 			this.Theme = theme;
+			this.IsVisited = false;
 
 			this.WillDrawOwnHoverUrl = hover_url;
 			this.Url = url;
@@ -64,6 +69,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 					SystemHelpers.OpenUrl( this.Url );
 					//System.Diagnostics.Process.Start( this.Url );
 
+					this.IsVisited = true;
+
 					text_elem.TextColor = theme.UrlVisitColor;
 					line_elem.TextColor = theme.UrlVisitColor;
 				} catch( Exception e ) {
@@ -77,15 +84,35 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
-
-			if( this.TextElem.IsMouseHovering && this.WillDrawOwnHoverUrl ) {
-				this.DrawHoverEffects( sb );
+			
+			if( this.TextElem.IsMouseHovering || this.IsMouseHovering ) {
+				if( this.WillDrawOwnHoverUrl ) {
+					this.DrawHoverEffects( sb );
+				}
 			}
 		}
 
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( !string.IsNullOrEmpty(this.Url) ) {
 				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
+			}
+		}
+
+
+		////////////////
+
+		public virtual void RefreshTheme() {
+			if( this.IsVisited ) {
+				this.TextElem.TextColor = this.Theme.UrlVisitColor;
+				this.LineElem.TextColor = this.Theme.UrlVisitColor;
+			} else {
+				if( this.IsMouseHovering ) {
+					this.TextElem.TextColor = this.Theme.UrlLitColor;
+					this.LineElem.TextColor = this.Theme.UrlLitColor;
+				} else {
+					this.TextElem.TextColor = this.Theme.UrlColor;
+					this.LineElem.TextColor = this.Theme.UrlColor;
+				}
 			}
 		}
 	}
