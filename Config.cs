@@ -51,6 +51,8 @@ namespace HamstarHelpers {
 
 		public string PrivilegedUserId = "";
 
+		public bool HideTitleInfo = false;
+
 
 
 		////////////////

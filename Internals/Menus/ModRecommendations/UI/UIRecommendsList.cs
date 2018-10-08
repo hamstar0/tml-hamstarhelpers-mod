@@ -97,18 +97,19 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 			UIText mod_entry = null;
 			bool is_mod_loaded = false;
 
-			Action<string> add_mod_entry = ( name ) => {
+			Action<string, string> add_mod_entry = ( my_display_name, my_mod_name ) => {
 				if( mod_entry != null ) {
 					this.List.RemoveChild( mod_entry );
 					mod_entry.Remove();
+					this.ModNameList.Remove( my_mod_name );
 				}
 
-				mod_entry = new UIText( name, 0.75f );
+				mod_entry = new UIText( my_display_name, 0.75f );
 
 				this.List.Add( mod_entry );
 				this.Recalculate();
 
-				this.ModNameList.Add( mod_name );
+				this.ModNameList.Add( my_mod_name );
 				this.Descriptions[ mod_entry.GetOuterDimensions().ToRectangle() ] = why;
 			};
 
@@ -127,7 +128,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 				display_name = mod.DisplayName;
 			}
 
-			add_mod_entry( display_name );
+			add_mod_entry( display_name, mod_name );
 
 			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
 				if( is_mod_loaded ) { return false; }
@@ -141,7 +142,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 					new_mod_name = new_mod_name.Substring( 1 )
 				) {
 					if( args.Info.ContainsKey( new_mod_name ) ) {
-						add_mod_entry( args.Info[ new_mod_name ].Item1 );
+						add_mod_entry( args.Info[ new_mod_name ].Item1, new_mod_name );
 						break;
 					}
 				}

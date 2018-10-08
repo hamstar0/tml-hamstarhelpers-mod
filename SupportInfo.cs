@@ -155,6 +155,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		private static void _Draw( GameTime gt ) {
 			if( !Main.gameMenu ) { return; }
 			if( Main.spriteBatch == null ) { return; }
+
+			var mymod = ModHelpersMod.Instance;
+			if( mymod != null && mymod.Config != null && !mymod.Config.HideTitleInfo ) { return; }
+
 			if( Main.MenuUI.CurrentState != null ) {
 				Type ui_type = Main.MenuUI.CurrentState.GetType();
 
@@ -169,8 +173,8 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				Main.spriteBatch.Begin();
 			}
 
-			ModHelpersMod.Instance?.SupportInfo?.Update();
-			ModHelpersMod.Instance?.SupportInfo?.Draw( Main.spriteBatch );
+			mymod.SupportInfo?.Update();
+			mymod.SupportInfo?.Draw( Main.spriteBatch );
 
 			if( !is_begun ) {
 				Main.spriteBatch.End();

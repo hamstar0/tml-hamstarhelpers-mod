@@ -31,6 +31,11 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 			ReflectionHelpers.SetField( mod_browser_ui, "updateNeeded", BindingFlags.Instance | BindingFlags.NonPublic, true );
 			ReflectionHelpers.SetField( mod_browser_ui, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
 
+			UIElement input_text_ui;    //UIInputTextField
+			if( ReflectionHelpers.GetField<UIElement>( mod_browser_ui, "filterTextBox", BindingFlags.Instance | BindingFlags.NonPublic, out input_text_ui ) && input_text_ui != null ) {
+				ReflectionHelpers.SetField( input_text_ui, "currentString", BindingFlags.Instance | BindingFlags.NonPublic, (object)"" );
+			}
+
 			//UIElement filter_toggle;
 			//ReflectionHelpers.GetProperty<UIElement>( mod_browser_ui, "UpdateFilterToggle", out filter_toggle );
 			//ReflectionHelpers.SetProperty( filter_toggle, "CurrentState", 0 );
