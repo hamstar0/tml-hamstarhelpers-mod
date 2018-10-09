@@ -103,7 +103,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			}
 
 			Timers.SetTimer( "ModHelpersModDownloadPrompt", 5, () => {
-				if( MenuContextService.GetCurrentMenu().GetType().Name != "UIModBrowser" ) {
+				if( MenuContextService.GetCurrentMenu()?.GetType().Name != "UIModBrowser" ) {
 					return false;
 				}
 

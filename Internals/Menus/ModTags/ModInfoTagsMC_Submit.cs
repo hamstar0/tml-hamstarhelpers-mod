@@ -1,6 +1,8 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Services.Menus;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,8 +12,12 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal void SubmitTags() {
-			if( this.CurrentModName == "" ) {
-				throw new Exception( "Invalid mod name." );
+			if( string.IsNullOrEmpty( this.CurrentModName ) ) {
+				this.CurrentModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenu(), MenuContextService.GetCurrentMenu() )
+					?? "";
+				if( string.IsNullOrEmpty( this.CurrentModName ) ) {
+					throw new Exception( "Invalid mod name." );
+				}
 			}
 
 			Action<string> on_success = delegate ( string output ) {

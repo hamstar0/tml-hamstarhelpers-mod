@@ -12,6 +12,8 @@ namespace HamstarHelpers.Services.AnimatedColor {
 		public static AnimatedColors Water { get { return ModHelpersMod.Instance.AnimatedColors.Water; } }
 		public static AnimatedColors Air { get { return ModHelpersMod.Instance.AnimatedColors.Air; } }
 		public static AnimatedColors Ether { get { return ModHelpersMod.Instance.AnimatedColors.Ether; } }
+		public static AnimatedColors Disco { get { return ModHelpersMod.Instance.AnimatedColors.Disco; } }
+		public static AnimatedColors DiscoFast { get { return ModHelpersMod.Instance.AnimatedColors.DiscoFast; } }
 
 
 		////////////////
@@ -73,6 +75,8 @@ namespace HamstarHelpers.Services.AnimatedColor {
 		internal readonly AnimatedColors Water;
 		internal readonly AnimatedColors Air;
 		internal readonly AnimatedColors Ether;
+		internal readonly AnimatedColors Disco;
+		internal readonly AnimatedColors DiscoFast;
 
 		////
 
@@ -91,8 +95,13 @@ namespace HamstarHelpers.Services.AnimatedColor {
 			this.Water = AnimatedColors.Create( this, 16, new Color[] { Color.Blue, Color.Turquoise } );
 			this.Air = AnimatedColors.Create( this, 16, new Color[] { Color.White, Color.Gray } );
 			this.Ether = AnimatedColors.Create( this, 16, new Color[] { Color.MediumSpringGreen, Color.Gray } );
+			Color green = Color.Lime;	// The colors lie!
+			Color indigo = new Color( 147, 0, 255, 255 );
+			Color violet = new Color( 255, 139, 255, 255 );
+			this.Disco = AnimatedColors.Create( this, 56, new Color[] { Color.Red, Color.Orange, Color.Yellow, green, Color.Blue, indigo, violet } );
+			this.DiscoFast = AnimatedColors.Create( this, 8, new Color[] { Color.Red, Color.Orange, Color.Yellow, green, Color.Blue, indigo, violet } );
 
-			this.OnTickGet = Services.Timers.Timers.MainOnTickGet();
+			this.OnTickGet = Timers.Timers.MainOnTickGet();
 			Main.OnTick += AnimatedColorsManager._Update;
 		}
 

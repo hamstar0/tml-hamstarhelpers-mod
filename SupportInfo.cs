@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			
 			float x_off = 312f;
 			float y = 12f;
-			float row_height = 28f;
+			float row_height = 30f;
 
 			////
 
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.HeadTextUI.TextColor = Color.Lerp( Color.White, Color.Gold, 0.25f );
 			this.HeadTextUI.Recalculate();
 
-			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers  v"+mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f );
+			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v "+mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f );
 			this.HeadUrlUI.Left.Set( -( x_off - 114f ), 1f );
 			this.HeadUrlUI.Top.Set( y, 0f );
 			this.HeadUrlUI.Recalculate();
@@ -60,20 +60,20 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.ModderTextUI.Top.Set( y + row_height, 0f );
 			this.ModderTextUI.Recalculate();
 
-			this.ModderUrlUI = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true );
+			this.ModderUrlUI = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true, 1f );
 			this.ModderUrlUI.Left.Set( -(x_off - 166f), 1f );
 			this.ModderUrlUI.Top.Set( y + row_height, 0f );
 			this.ModderUrlUI.Recalculate();
 
 			////
 
-			this.RecomInfoTextUI = new UIText( "Discussion:" );
+			this.RecomInfoTextUI = new UIText( "Feedback? Confused? Bored?" );
 			this.RecomInfoTextUI.Left.Set( -x_off, 1f );
 			this.RecomInfoTextUI.Top.Set( y + ( row_height * 2 ), 0f );
 			this.RecomInfoTextUI.Recalculate();
 
-			this.RecomInfoUrlUI = new UIWebUrl( UITheme.Vanilla, "Discord", "https://discord.gg/a2AwYtj", true );
-			this.RecomInfoUrlUI.Left.Set( -( x_off - 96f ), 1f );
+			this.RecomInfoUrlUI = new UIWebUrl( UITheme.Vanilla, "Discord", "https://discord.gg/a2AwYtj", true, 1f );
+			this.RecomInfoUrlUI.Left.Set( -( x_off - 242f ), 1f );
 			this.RecomInfoUrlUI.Top.Set( y + ( row_height * 2 ), 0f );
 			this.RecomInfoUrlUI.Recalculate();
 
@@ -86,12 +86,12 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportText1UI.TextColor = Color.MediumSpringGreen;
 
 			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f );
-			this.SupportUrlUI.Left.Set( -(x_off - 56), 1f );
+			this.SupportUrlUI.Left.Set( -(x_off - 54), 1f );
 			this.SupportUrlUI.Top.Set( y + (row_height * 3), 0f );
 			this.SupportUrlUI.Recalculate();
 
-			this.SupportText2UI = new UIText( "hamstar's mods!" );
-			this.SupportText2UI.Left.Set( -(x_off - 124), 1f );
+			this.SupportText2UI = new UIText( "my mods!" );
+			this.SupportText2UI.Left.Set( -(x_off - 119), 1f );
 			this.SupportText2UI.Top.Set( y + (row_height * 3), 0f );
 			this.SupportText2UI.Recalculate();
 			this.SupportText2UI.TextColor = Color.MediumSpringGreen;
@@ -193,8 +193,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportUrlUI.Recalculate();
 			this.SupportText2UI.Recalculate();
 
-			this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.5f );
-			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( UITheme.Vanilla.UrlLitColor, AnimatedColors.Ether.CurrentColor, 0.5f );
+			this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.35f );
+			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( UITheme.Vanilla.UrlLitColor, AnimatedColors.Strobe.CurrentColor, 0.5f );
+			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( this.SupportUrlUI.Theme.UrlLitColor, AnimatedColors.DiscoFast.CurrentColor, 0.75f );
 			this.SupportUrlUI.RefreshTheme();
 
 			this.SupportText2UI.Draw( sb );

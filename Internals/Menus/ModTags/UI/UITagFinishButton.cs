@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 			if( this.Text == "Modify Tags" ) {
 				this.SetModeSubmit();
-			} else {
+			} else if( this.Text == "Submit Tags" ) {
 				this.MenuContext.SubmitTags();
 			}
 		}

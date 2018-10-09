@@ -101,7 +101,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 			if( ui_mod_item != null ) {
 //LogHelpers.Log( " name: "+name+", ui_mod_item: " + ui_mod_item.GetOuterDimensions().ToRectangle() );
-				var txt = new UIText( mod_info[ name ].Item2+" On Browser", 0.8f, true );
+				var txt = new UIText( mod_info[ name ].Item2+" On Mod Browser", 0.8f, true );
 				txt.Top.Set( 24f, 0f );
 				txt.Left.Set( -184f, 0.5f );
 				txt.TextColor = Color.Gold;

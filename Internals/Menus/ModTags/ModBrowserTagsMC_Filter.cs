@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.WebRequests;
@@ -45,6 +46,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		public void FilterModsAsync( IList<string> mod_names, Action<bool, IList<string>> callback ) {
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+				if( !args.Found ) {
+					MenuContextBase.InfoDisplay?.SetText( "Could not acquire mod data." );
+					callback( false, new List<string>() );
+					return false;
+				}
+
 				IList<string> filtered_list = new List<string>();
 				ISet<string> on_tags = this.GetTagsOfState( 1 );
 				ISet<string> off_tags = this.GetTagsOfState( -1 );
