@@ -15,7 +15,10 @@ namespace HamstarHelpers.Components.DataStructures {
 			get { return data[new Point16( x, y )]; }
 			set { data[new Point16( x, y )] = value; }
 		}
-		T IDictionary<Point16, T>.this[Point16 key] { get => data[key]; set => data[key] = value; }
+		T IDictionary<Point16, T>.this[Point16 key] {
+			get { return data[key]; }
+			set { data[key] = value; }
+		}
 		
 		public ICollection<Point16> Keys => data.Keys;
 		public ICollection<T> Values => data.Values;

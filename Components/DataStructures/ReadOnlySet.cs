@@ -8,28 +8,33 @@ namespace HamstarHelpers.Components.DataStructures {
 		private ISet<T> MySet;
 
 
-		public ReadOnlySet( ISet<T> myset ) => this.MySet = myset ?? throw new Exception("Base set not defined.");
+		public ReadOnlySet( ISet<T> myset ) {
+			if( myset == null ) {
+				throw new Exception( "Base set not defined." );
+			}
+			this.MySet = myset;
+		}
 
 		public int Count => this.MySet.Count;
 
 		public bool IsReadOnly => true;
 
-		void ICollection<T>.Add( T item ) => throw new NotImplementedException();
+		void ICollection<T>.Add( T item ) { throw new NotImplementedException(); }
 
-		public void Clear() => throw new NotImplementedException();
+		public void Clear() { throw new NotImplementedException(); }
 
 		public bool Contains( T item ) => this.MySet.Contains( item );
 
 		public void CopyTo( T[] array, int array_idx ) => this.MySet.CopyTo( array, array_idx );
 
-		public bool Remove( T item ) => throw new NotImplementedException();
+		public bool Remove( T item ) { throw new NotImplementedException(); }
 
 
-		public bool Add( T item ) => throw new NotImplementedException();
+		public bool Add( T item ) { throw new NotImplementedException(); }
 
-		public void ExceptWith( IEnumerable<T> other ) => throw new NotImplementedException();
+		public void ExceptWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
-		public void IntersectWith( IEnumerable<T> other ) => throw new NotImplementedException();
+		public void IntersectWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
 		public bool IsProperSubsetOf( IEnumerable<T> other ) => this.MySet.IsProperSubsetOf( other );
 
@@ -43,9 +48,9 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		public bool SetEquals( IEnumerable<T> other ) => this.MySet.SetEquals( other );
 
-		public void SymmetricExceptWith( IEnumerable<T> other ) => throw new NotImplementedException();
+		public void SymmetricExceptWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
-		public void UnionWith( IEnumerable<T> other ) => throw new NotImplementedException();
+		public void UnionWith( IEnumerable<T> other ) { throw new NotImplementedException(); }
 
 		IEnumerator<T> IEnumerable<T>.GetEnumerator() => this.MySet.GetEnumerator();
 
