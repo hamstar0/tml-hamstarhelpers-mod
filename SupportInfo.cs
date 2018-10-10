@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
@@ -102,19 +103,19 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.AuthorText1UI.Left.Set( -x_off, 1f );
 			this.AuthorText1UI.Top.Set( y + (row * row_height), 0f );
 			this.AuthorText1UI.Recalculate();
-			this.Elements.Add( this.AuthorText1UI );
+			this.Elements.Insert( 0, this.AuthorText1UI );
 
-			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f );
+			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other specialized mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f );
 			this.AuthorUrlUI.Left.Set( -( x_off - 62f ), 1f );
 			this.AuthorUrlUI.Top.Set( y + (row * row_height), 0f );
 			this.AuthorUrlUI.Recalculate();
 			this.Elements.Add( this.AuthorUrlUI );
 			
-			this.AuthorText2UI = new UIText( ", too!" );
-			this.AuthorText2UI.Left.Set( -( x_off - 152f ), 1f );
+			this.AuthorText2UI = new UIText( ", too." );
+			this.AuthorText2UI.Left.Set( -( x_off - 244f ), 1f );
 			this.AuthorText2UI.Top.Set( y + (row * row_height), 0f );
 			this.AuthorText2UI.Recalculate();
-			this.Elements.Add( this.AuthorText2UI );
+			this.Elements.Insert( 0, this.AuthorText2UI );
 
 			////
 
@@ -125,7 +126,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportText1UI.Top.Set( y + (row * row_height), 0f );
 			this.SupportText1UI.Recalculate();
 			this.SupportText1UI.TextColor = Color.MediumSpringGreen;
-			this.Elements.Add( this.SupportText1UI );
+			this.Elements.Insert( 0, this.SupportText1UI );
 
 			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f );
 			this.SupportUrlUI.Left.Set( -(x_off - 54), 1f );
@@ -138,7 +139,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportText2UI.Top.Set( y + (row * row_height), 0f );
 			this.SupportText2UI.Recalculate();
 			this.SupportText2UI.TextColor = Color.MediumSpringGreen;
-			this.Elements.Add( this.SupportText2UI );
+			this.Elements.Insert( 0, this.SupportText2UI );
 
 			Main.OnPostDraw += SupportInfoDisplay._Draw;
 		}
@@ -215,11 +216,11 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportUrlUI.RefreshTheme();
 
 			foreach( var elem in this.Elements ) {
-			//	if( elem is UIWebUrl ) { continue; }
-			//	elem.Draw( sb );
-			//}
-			//foreach( var elem in this.Elements ) {
-			//	if( !(elem is UIWebUrl) ) { continue; }
+				if( elem is UIWebUrl ) { continue; }
+				elem.Draw( sb );
+			}
+			foreach( var elem in this.Elements.Reverse() ) {
+				if( !( elem is UIWebUrl ) ) { continue; }
 				elem.Draw( sb );
 			}
 		}
