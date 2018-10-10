@@ -1,11 +1,7 @@
-﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Menus;
-using Microsoft.Xna.Framework;
-using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {

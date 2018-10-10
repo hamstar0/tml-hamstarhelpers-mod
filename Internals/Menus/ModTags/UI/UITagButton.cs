@@ -17,8 +17,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		public const int ColumnHeightTall = 31;
 		public const int ColumnHeightShort = 8;
 		public const int ColumnsInMid = 5;
+		public const int LastColumnPos = 7;
+		public const int LastColumnRowStart = 10;
 
-		
+
 
 		////////////////
 
@@ -46,13 +48,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			int col_tall = UITagButton.ColumnHeightTall;
 			int col_short = UITagButton.ColumnHeightShort;
 			int cols_in_mid = UITagButton.ColumnsInMid;
+			int last_col_pos = col_tall + ( col_short * cols_in_mid );
 
 			if( pos < col_tall ) {
 				this.Column = 0;
 				this.Row = pos;
-			} else if( pos > ( col_tall + ( col_short * cols_in_mid ) ) ) {
-				this.Column = 7;
-				this.Row = pos - ( col_tall + ( col_short * cols_in_mid ) );
+			} else if( pos >= last_col_pos ) {
+				this.Column = UITagButton.LastColumnPos;
+				this.Row = UITagButton.LastColumnRowStart + pos - last_col_pos;
 			} else {
 				this.Column = 1 + (( pos - col_tall ) / col_short );
 				this.Row = ( pos - col_tall ) % col_short;

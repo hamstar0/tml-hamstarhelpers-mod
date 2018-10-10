@@ -7,8 +7,10 @@ using HamstarHelpers.Services.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.Support {
@@ -17,11 +19,16 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		private readonly UIWebUrl HeadUrlUI;
 		private readonly UIText ModderTextUI; 
 		private readonly UIWebUrl ModderUrlUI;
-		private readonly UIText RecomInfoTextUI;
-		private readonly UIWebUrl RecomInfoUrlUI;
+		//private readonly UIText RecomInfoTextUI;
+		//private readonly UIWebUrl RecomInfoUrlUI;
+		private readonly UIText AuthorText1UI;
+		private readonly UIWebUrl AuthorUrlUI;
+		private readonly UIText AuthorText2UI;
 		private readonly UIText SupportText1UI;
 		private readonly UIWebUrl SupportUrlUI;
 		private readonly UIText SupportText2UI;
+
+		private IList<UIElement> Elements = new List<UIElement>();
 
 		private bool IsClicking = false;
 
@@ -37,64 +44,101 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			float x_off = 312f;
 			float y = 12f;
 			float row_height = 30f;
+			int row = 0;
 
 			////
 
 			this.HeadTextUI = new UIText( "Powered by:", 1.1f );
 			this.HeadTextUI.Left.Set( -x_off, 1f );
-			this.HeadTextUI.Top.Set( y, 0f );
+			this.HeadTextUI.Top.Set( y + (row * row_height), 0f );
 			this.HeadTextUI.TextColor = Color.Lerp( Color.White, Color.Gold, 0.25f );
 			this.HeadTextUI.Recalculate();
+			this.Elements.Add( this.HeadTextUI );
 
 			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v "+mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f );
 			this.HeadUrlUI.Left.Set( -( x_off - 114f ), 1f );
-			this.HeadUrlUI.Top.Set( y, 0f );
+			this.HeadUrlUI.Top.Set( y + (row * row_height), 0f );
 			this.HeadUrlUI.Recalculate();
+			this.Elements.Add( this.HeadUrlUI );
+			
+			////
 
 			y += 4;
+			row++;
 
-			////
-			
 			this.ModderTextUI = new UIText( "Do you make mods?" );
 			this.ModderTextUI.Left.Set( -x_off, 1f );
-			this.ModderTextUI.Top.Set( y + row_height, 0f );
+			this.ModderTextUI.Top.Set( y + (row * row_height), 0f );
 			this.ModderTextUI.Recalculate();
+			this.Elements.Add( this.ModderTextUI );
 
 			this.ModderUrlUI = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true, 1f );
 			this.ModderUrlUI.Left.Set( -(x_off - 166f), 1f );
-			this.ModderUrlUI.Top.Set( y + row_height, 0f );
+			this.ModderUrlUI.Top.Set( y + (row * row_height), 0f );
 			this.ModderUrlUI.Recalculate();
+			this.Elements.Add( this.ModderUrlUI );
 
 			////
+
+			/*row++;
 
 			this.RecomInfoTextUI = new UIText( "Feedback? Confused? Bored?" );
 			this.RecomInfoTextUI.Left.Set( -x_off, 1f );
-			this.RecomInfoTextUI.Top.Set( y + ( row_height * 2 ), 0f );
+			this.RecomInfoTextUI.Top.Set( y + (row * row_height), 0f );
 			this.RecomInfoTextUI.Recalculate();
+			this.Elements.Add( this.RecomInfoTextUI );
 
 			this.RecomInfoUrlUI = new UIWebUrl( UITheme.Vanilla, "Discord", "https://discord.gg/a2AwYtj", true, 1f );
 			this.RecomInfoUrlUI.Left.Set( -( x_off - 242f ), 1f );
-			this.RecomInfoUrlUI.Top.Set( y + ( row_height * 2 ), 0f );
+			this.RecomInfoUrlUI.Top.Set( y + (row * row_height), 0f );
 			this.RecomInfoUrlUI.Recalculate();
+			this.Elements.Add( this.RecomInfoUrlUI );*/
 
 			////
 
+			row++;
+
+			this.AuthorText1UI = new UIText( "I make" );
+			this.AuthorText1UI.Left.Set( -x_off, 1f );
+			this.AuthorText1UI.Top.Set( y + (row * row_height), 0f );
+			this.AuthorText1UI.Recalculate();
+			this.Elements.Add( this.AuthorText1UI );
+
+			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other mods.", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f );
+			this.AuthorUrlUI.Left.Set( -( x_off - 62f ), 1f );
+			this.AuthorUrlUI.Top.Set( y + (row * row_height), 0f );
+			this.AuthorUrlUI.Recalculate();
+			this.Elements.Add( this.AuthorUrlUI );
+			
+			this.AuthorText2UI = new UIText( ", too!" );
+			this.AuthorText2UI.Left.Set( -( x_off - 152f ), 1f );
+			this.AuthorText2UI.Top.Set( y + (row * row_height), 0f );
+			this.AuthorText2UI.Recalculate();
+			this.Elements.Add( this.AuthorText2UI );
+
+			////
+
+			row++;
+
 			this.SupportText1UI = new UIText( "Please" );
 			this.SupportText1UI.Left.Set( -x_off, 1f );
-			this.SupportText1UI.Top.Set( y + (row_height * 3), 0f );
+			this.SupportText1UI.Top.Set( y + (row * row_height), 0f );
 			this.SupportText1UI.Recalculate();
 			this.SupportText1UI.TextColor = Color.MediumSpringGreen;
+			this.Elements.Add( this.SupportText1UI );
 
 			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f );
 			this.SupportUrlUI.Left.Set( -(x_off - 54), 1f );
-			this.SupportUrlUI.Top.Set( y + (row_height * 3), 0f );
+			this.SupportUrlUI.Top.Set( y + (row * row_height), 0f );
 			this.SupportUrlUI.Recalculate();
+			this.Elements.Add( this.SupportUrlUI );
 
 			this.SupportText2UI = new UIText( "my mods!" );
 			this.SupportText2UI.Left.Set( -(x_off - 119), 1f );
-			this.SupportText2UI.Top.Set( y + (row_height * 3), 0f );
+			this.SupportText2UI.Top.Set( y + (row * row_height), 0f );
 			this.SupportText2UI.Recalculate();
 			this.SupportText2UI.TextColor = Color.MediumSpringGreen;
+			this.Elements.Add( this.SupportText2UI );
 
 			Main.OnPostDraw += SupportInfoDisplay._Draw;
 		}
@@ -112,39 +156,17 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			this.IsClicking = Main.mouseLeft;
 
-			if( this.HeadUrlUI.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
-				if( is_clicking ) { this.HeadUrlUI.Click( null ); }
-				this.HeadUrlUI.MouseOver( null );
-			} else {
-				if( this.HeadUrlUI.IsMouseHovering ) {
-					this.HeadUrlUI.MouseOut( null );
-				}
-			}
+			for( int i=0; i<this.Elements.Count; i++ ) {
+				var url = this.Elements[i] as UIWebUrl;
+				if( url == null ) { continue; }
 
-			if( this.ModderUrlUI.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
-				if( is_clicking ) { this.ModderUrlUI.Click( null ); }
-				this.ModderUrlUI.MouseOver( null );
-			} else {
-				if( this.ModderUrlUI.IsMouseHovering ) {
-					this.ModderUrlUI.MouseOut( null );
-				}
-			}
-
-			if( this.RecomInfoUrlUI.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
-				if( is_clicking ) { this.RecomInfoUrlUI.Click( null ); }
-				this.RecomInfoUrlUI.MouseOver( null );
-			} else {
-				if( this.RecomInfoUrlUI.IsMouseHovering ) {
-					this.RecomInfoUrlUI.MouseOut( null );
-				}
-			}
-
-			if( this.SupportUrlUI.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
-				if( is_clicking ) { this.SupportUrlUI.Click( null ); }
-				this.SupportUrlUI.MouseOver( null );
-			} else {
-				if( this.SupportUrlUI.IsMouseHovering ) {
-					this.SupportUrlUI.MouseOut( null );
+				if( url.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
+					if( is_clicking ) { url.Click( null ); }
+					url.MouseOver( null );
+				} else {
+					if( url.IsMouseHovering ) {
+						url.MouseOut( null );
+					}
 				}
 			}
 		}
@@ -183,30 +205,18 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 
 		public void Draw( SpriteBatch sb ) {
-			this.HeadTextUI.Recalculate();
-			this.HeadUrlUI.Recalculate();
-			this.ModderTextUI.Recalculate();
-			this.ModderUrlUI.Recalculate();
-			this.RecomInfoTextUI.Recalculate();
-			this.RecomInfoUrlUI.Recalculate();
-			this.SupportText1UI.Recalculate();
-			this.SupportUrlUI.Recalculate();
-			this.SupportText2UI.Recalculate();
+			foreach( var elem in this.Elements ) {
+				elem.Recalculate();
+			}
 
 			this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.35f );
 			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( UITheme.Vanilla.UrlLitColor, AnimatedColors.Strobe.CurrentColor, 0.5f );
 			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( this.SupportUrlUI.Theme.UrlLitColor, AnimatedColors.DiscoFast.CurrentColor, 0.75f );
 			this.SupportUrlUI.RefreshTheme();
 
-			this.SupportText2UI.Draw( sb );
-			this.SupportUrlUI.Draw( sb );
-			this.SupportText1UI.Draw( sb );
-			this.RecomInfoUrlUI.Draw( sb );
-			this.RecomInfoTextUI.Draw( sb );
-			this.ModderUrlUI.Draw( sb );
-			this.ModderTextUI.Draw( sb );
-			this.HeadUrlUI.Draw( sb );
-			this.HeadTextUI.Draw( sb );
+			foreach( var elem in this.Elements ) {
+				elem.Draw( sb );
+			}
 		}
 	}
 }
