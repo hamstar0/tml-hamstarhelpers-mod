@@ -104,7 +104,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.AuthorText1UI.Recalculate();
 			this.Elements.Add( this.AuthorText1UI );
 
-			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other mods.", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f );
+			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f );
 			this.AuthorUrlUI.Left.Set( -( x_off - 62f ), 1f );
 			this.AuthorUrlUI.Top.Set( y + (row * row_height), 0f );
 			this.AuthorUrlUI.Recalculate();
@@ -215,6 +215,11 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportUrlUI.RefreshTheme();
 
 			foreach( var elem in this.Elements ) {
+			//	if( elem is UIWebUrl ) { continue; }
+			//	elem.Draw( sb );
+			//}
+			//foreach( var elem in this.Elements ) {
+			//	if( !(elem is UIWebUrl) ) { continue; }
 				elem.Draw( sb );
 			}
 		}
