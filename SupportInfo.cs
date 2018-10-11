@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			if( Main.dedServ ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
-			
+
 			float x_off = 312f;
 			float y = 12f;
 			float row_height = 30f;
@@ -51,14 +51,14 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			this.HeadTextUI = new UIText( "Powered by:", 1.1f );
 			this.HeadTextUI.Left.Set( -x_off, 1f );
-			this.HeadTextUI.Top.Set( y + (row * row_height), 0f );
+			this.HeadTextUI.Top.Set( 4 + y + (row * row_height), 0f );
 			this.HeadTextUI.TextColor = Color.Lerp( Color.White, Color.Gold, 0.25f );
 			this.HeadTextUI.Recalculate();
 			this.Elements.Add( this.HeadTextUI );
 
 			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v "+mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f );
 			this.HeadUrlUI.Left.Set( -( x_off - 114f ), 1f );
-			this.HeadUrlUI.Top.Set( y + (row * row_height), 0f );
+			this.HeadUrlUI.Top.Set( 4 + y + (row * row_height), 0f );
 			this.HeadUrlUI.Recalculate();
 			this.Elements.Add( this.HeadUrlUI );
 			
@@ -106,13 +106,13 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.Elements.Insert( 0, this.AuthorText1UI );
 
 			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other specialized mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f );
-			this.AuthorUrlUI.Left.Set( -( x_off - 62f ), 1f );
+			this.AuthorUrlUI.Left.Set( -( x_off - 60f ), 1f );
 			this.AuthorUrlUI.Top.Set( y + (row * row_height), 0f );
 			this.AuthorUrlUI.Recalculate();
 			this.Elements.Add( this.AuthorUrlUI );
 			
 			this.AuthorText2UI = new UIText( ", too." );
-			this.AuthorText2UI.Left.Set( -( x_off - 244f ), 1f );
+			this.AuthorText2UI.Left.Set( -( x_off - 242f ), 1f );
 			this.AuthorText2UI.Top.Set( y + (row * row_height), 0f );
 			this.AuthorText2UI.Recalculate();
 			this.Elements.Insert( 0, this.AuthorText2UI );
@@ -223,6 +223,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				if( !( elem is UIWebUrl ) ) { continue; }
 				elem.Draw( sb );
 			}
+			
+			Vector2 bonus = Main.DrawThickCursor( false );
+			Main.DrawCursor( bonus, false );
 		}
 	}
 }

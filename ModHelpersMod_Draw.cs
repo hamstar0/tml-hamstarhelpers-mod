@@ -21,7 +21,7 @@ namespace HamstarHelpers {
 					this.DrawMiniMapForAll( sb );
 				}
 			} catch( Exception e ) {
-				ErrorLogger.Log( "ModHelpersMod.PostDrawInterface - " + e.ToString() );
+				LogHelpers.Log( "!ModHelpersMod.PostDrawInterface - " + e.ToString() );
 				throw e;
 			}
 		}
@@ -30,7 +30,7 @@ namespace HamstarHelpers {
 			try {
 				this.DrawFullMapForAll( Main.spriteBatch );
 			} catch( Exception e ) {
-				ErrorLogger.Log( "ModHelpersMod.PostDrawFullscreenMap: " + e.ToString() );
+				LogHelpers.Log( "!ModHelpersMod.PostDrawFullscreenMap - " + e.ToString() );
 				throw e;
 			}
 		}
@@ -47,29 +47,37 @@ namespace HamstarHelpers {
 			GameInterfaceDrawMethod debug_layer_draw = delegate {
 				var sb = Main.spriteBatch;
 
-				this.PlayerMessages.Draw( sb );
-				SimpleMessage.DrawMessage( sb );
+				try {
+					this.PlayerMessages.Draw( sb );
+					SimpleMessage.DrawMessage( sb );
 
-				DebugHelpers.PrintAll( sb );
-				DebugHelpers.Once = false;
-				DebugHelpers.OnceInAWhile--;
+					DebugHelpers.PrintAll( sb );
+					DebugHelpers.Once = false;
+					DebugHelpers.OnceInAWhile--;
+				} catch( Exception e ) {
+					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-debug_layer_draw - " + e.ToString() );
+				}
 				return true;
 			};
 
 			GameInterfaceDrawMethod cp_layer_draw = delegate {
 				var sb = Main.spriteBatch;
-				
-				if( !this.Config.DisableControlPanel ) {
-					this.ControlPanel.UpdateToggler();
-					this.ControlPanel.DrawToggler( sb );
-				}
-				if( this.LastSeenCPScreenWidth != Main.screenWidth || this.LastSeenCPScreenHeight != Main.screenHeight ) {
-					this.LastSeenCPScreenWidth = Main.screenWidth;
-					this.LastSeenCPScreenHeight = Main.screenHeight;
-					this.ControlPanel.RecalculateMe();
-				}
 
-				this.Inbox.Draw( sb );
+				try {
+					if( !this.Config.DisableControlPanel ) {
+						this.ControlPanel.UpdateToggler();
+						this.ControlPanel.DrawToggler( sb );
+					}
+					if( this.LastSeenCPScreenWidth != Main.screenWidth || this.LastSeenCPScreenHeight != Main.screenHeight ) {
+						this.LastSeenCPScreenWidth = Main.screenWidth;
+						this.LastSeenCPScreenHeight = Main.screenHeight;
+						this.ControlPanel.RecalculateMe();
+					}
+
+					this.Inbox.Draw( sb );
+				} catch( Exception e ) {
+					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-cp_layer_draw - " + e.ToString() );
+				}
 
 //sb.DrawString( Main.fontDeathText, "ALERT", new Vector2(128, 128), this.AnimatedColors.Alert.CurrentColor );
 //sb.DrawString( Main.fontDeathText, "STROBE", new Vector2(128, 256), this.AnimatedColors.Strobe.CurrentColor );
@@ -80,7 +88,11 @@ namespace HamstarHelpers {
 			};
 
 			GameInterfaceDrawMethod modlock_layer_draw = delegate {
-				this.ModLockHelpers.DrawWarning( Main.spriteBatch );
+				try {
+					this.ModLockHelpers.DrawWarning( Main.spriteBatch );
+				} catch( Exception e ) {
+					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-modlock_layer_draw - " + e.ToString() );
+				}
 				return true;
 			};
 

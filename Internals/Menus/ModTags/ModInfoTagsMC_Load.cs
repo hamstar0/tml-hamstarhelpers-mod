@@ -77,6 +77,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 //LogHelpers.Log( "SetCurrentMod modname: " + mod_name + ", modtags: " + string.Join(",", net_modtags ) );
 				if( has_net_tags ) {
+					MenuContextBase.InfoDisplay.SetText( "", Color.Gray );
 					this.FinishButton.SetModeReadOnly();
 					this.ResetButton.Disable();
 				} else {

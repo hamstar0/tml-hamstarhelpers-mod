@@ -118,8 +118,8 @@ namespace HamstarHelpers {
 
 		public override void PostDrawTiles() {
 			Player player = Main.LocalPlayer;
+			if( player == null ) { return; }
 			var mymod = (ModHelpersMod)this.mod;
-			var myplayer = player.GetModPlayer<ModHelpersPlayer>( mymod );
 
 			try {
 				lock( ModHelpersWorld.MyLock ) {

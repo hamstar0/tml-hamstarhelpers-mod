@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		public int Row;
 
 		////////////////
-
+		
 		public string Desc { get; private set; }
 		public int TagState { get; private set; }
 
