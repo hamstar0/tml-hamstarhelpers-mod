@@ -209,7 +209,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			////
 
-			var modrec_url = new UIWebUrl( this.Theme, "Need mods?", "https://sites.google.com/site/terrariamodsuggestions/" );
+			/*var modrec_url = new UIWebUrl( this.Theme, "Need mods?", "https://sites.google.com/site/terrariamodsuggestions/" );
 			modrec_url.Top.Set( top, 0f );
 			modrec_url.Left.Set( 0f, 0f );
 			this.InnerContainer.Append( modrec_url );
@@ -217,12 +217,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			var serverbrowser_url = new UIWebUrl( this.Theme, "Lonely?", "https://forums.terraria.org/index.php?threads/server-browser-early-beta.68346/" );
 			serverbrowser_url.Top.Set( top, 0f );
 			this.InnerContainer.Append( serverbrowser_url );
-			serverbrowser_url.Left.Set( -serverbrowser_url.GetDimensions().Width * 0.5f, 0.5f );
+			serverbrowser_url.Left.Set( -serverbrowser_url.GetDimensions().Width * 0.5f, 0.5f );*/
 
 			var support_url = new UIWebUrl( this.Theme, "Support my mods!", "https://www.patreon.com/hamstar0" );
 			support_url.Top.Set( top, 0f );
 			this.InnerContainer.Append( support_url );
-			support_url.Left.Set( -support_url.GetDimensions().Width, 1f );
+			//support_url.Left.Set( -support_url.GetDimensions().Width, 1f );
+			support_url.Left.Set( -support_url.GetDimensions().Width * 0.5f, 0.5f );
 		}
 
 
