@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Services.AnimatedColor;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
@@ -69,6 +70,11 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public bool IsTogglerUpdateAlertShown() {
 			var mymod = ModHelpersMod.Instance;
+			if( mymod.Data == null ) {
+				LogHelpers.LogOnce( "!ModHelpers.UIControlPanel.IsTogglerUpdateAlertShown - No mod data." );
+				return false;
+			}
+
 			var ver = new Version( mymod.Data.ControlPanelNewSince );
 
 			if( ver < UIControlPanel.AlertVersion ) {

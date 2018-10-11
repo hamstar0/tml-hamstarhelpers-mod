@@ -19,7 +19,7 @@ namespace HamstarHelpers {
 			bool success;
 			var data = DataFileHelpers.LoadJson<HamstarHelpersData>( this, "data", out success );
 
-			if( success ) {
+			if( success && data != null ) {
 				this.Data = data;
 			}
 
@@ -30,7 +30,7 @@ namespace HamstarHelpers {
 		private void UnloadModData() {
 			DataFileHelpers.SaveAsJson<HamstarHelpersData>( this, "data", this.Data );
 
-			this.Data = null;
+			this.Data = new HamstarHelpersData();
 		}
 	}
 }
