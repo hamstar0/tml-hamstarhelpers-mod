@@ -48,10 +48,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			{ "Non-functional",         "State: Does not work for its intended purpose." },
 			{ "Buggy",                  "State: Does unexpected or erroneous things." },
 			//{ "Made By Team",			"" },
-			//{ "Simplistic",			"" }
+			//{ "Simplistic",			"" },
 			//{ "Minimalistic",			"" },
 			//{ "Shows Effort",			"" },
-			//{ "Polished",				"" }
+			//{ "Polished",				"" },
 
 			{ "Music",                  "Content: Adds or edits music." },
 			{ "Rich Art",				"Content: Adds extensive or detailed art for new or existing game entities." },

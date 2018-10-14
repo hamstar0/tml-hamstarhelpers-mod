@@ -71,15 +71,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				MenuContextBase.InfoDisplay?.SetText( desc );
-				MenuContextBase.InfoDisplay?.Left.Set( Main.mouseX+8f, 0f );
-				MenuContextBase.InfoDisplay?.Top.Set( Main.mouseY+8f, 0f );
-				MenuContextBase.InfoDisplay?.Recalculate();
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( MenuContextBase.InfoDisplay?.GetText() == desc ) {
 					MenuContextBase.InfoDisplay?.SetText( "" );
-					MenuContextBase.InfoDisplay?.Recalculate();
 				}
 				this.RefreshTheme();
 			};

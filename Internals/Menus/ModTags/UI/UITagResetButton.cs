@@ -64,7 +64,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				}
 			}
 
-			if( this.MenuContext.GetTagsOfState(1).Count > 0 ) {
+			if( this.MenuContext.GetTagsOfState(1).Count > 0 || this.MenuContext.GetTagsOfState(-1).Count > 0 ) {
 				if( mod_info_context != null ) {
 					if( mod_info_context.FinishButton.Text == "Modify Tags" ) {
 						this.Disable();

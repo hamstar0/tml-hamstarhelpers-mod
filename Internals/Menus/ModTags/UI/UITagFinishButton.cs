@@ -21,6 +21,16 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		public UITagFinishButton( ModInfoTagsMenuContext menu_context )
 				: base( UITheme.Vanilla, "", 98f, 24f, -298f, 172f, 0.36f, true ) {
 			this.MenuContext = menu_context;
+			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
+				if( this.Text == "Submit Tags" ) {
+					MenuContextBase.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
+				} else if( this.Text == "Modify Tags" ) {
+					MenuContextBase.InfoDisplay?.SetText( "Enable changing current mod's tags.", Color.White );
+				}
+			};
+			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
+				MenuContextBase.InfoDisplay?.SetText( "", Color.White );
+			};
 
 			this.RecalculatePos();
 		}
@@ -126,12 +136,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
-
-			if( this.IsMouseHovering ) {
-				if( this.Text == "Submit Tags" ) {
-					MenuContextBase.InfoDisplay.SetText( "Submit tags to online database.", Color.White );
-				}
-			}
 		}
 	}
 }
