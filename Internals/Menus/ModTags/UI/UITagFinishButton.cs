@@ -1,6 +1,10 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria.UI;
 
 
@@ -82,7 +86,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				return;
 			}
 
-			if( string.IsNullOrEmpty(this.MenuContext.CurrentModName) ) {
+			string mod_name = this.MenuContext.CurrentModName;
+
+			if( string.IsNullOrEmpty( mod_name ) ) {
 				this.Disable();
 				return;
 			}
@@ -92,17 +98,39 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				return;
 			}
 
-			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( this.MenuContext.CurrentModName ) ) {
+			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( mod_name ) ) {
 				this.Disable();
 				return;
 			}
 
-			if( this.MenuContext.GetTagsOfState(1).Count >= 2 ) {
+			ISet<string> tags = this.MenuContext.GetTagsOfState( 1 );
+
+			if( this.MenuContext.AllModTagsSnapshot != null && this.MenuContext.AllModTagsSnapshot.ContainsKey(mod_name) ) {
+				if( tags.SetEquals( this.MenuContext.AllModTagsSnapshot[mod_name] ) ) {
+					this.Disable();
+					return;
+				}
+			}
+
+			if( tags.Count >= 2 ) {
 				this.Enable();
 				return;
 			} else {
 				this.Disable();
 				return;
+			}
+		}
+
+
+		////////////////
+
+		public override void Draw( SpriteBatch sb ) {
+			base.Draw( sb );
+
+			if( this.IsMouseHovering ) {
+				if( this.Text == "Submit Tags" ) {
+					MenuContextBase.InfoDisplay.SetText( "Submit tags to online database.", Color.White );
+				}
 			}
 		}
 	}

@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		public string CurrentModName = "";
 
-		private IDictionary<string, ISet<string>> AllModTagsSnapshot = null;
+		internal IDictionary<string, ISet<string>> AllModTagsSnapshot = null;
 
 		////////////////
 

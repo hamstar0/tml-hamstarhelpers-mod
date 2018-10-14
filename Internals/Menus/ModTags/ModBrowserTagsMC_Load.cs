@@ -1,8 +1,10 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Menus;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria.UI;
 
@@ -13,6 +15,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			Action<UIState> ui_load = ui => {
 				this.RecalculateMenuObjects();
 				this.EnableTagButtons();
+
+				MenuContextBase.InfoDisplay.SetText( "Click tags to filter the list. Right-click tags to filter without them.", Color.Gray );
 			};
 			Action<UIState> ui_unload = ui => {
 				this.ResetMenuObjects();
