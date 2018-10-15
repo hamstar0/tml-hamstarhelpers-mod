@@ -37,106 +37,103 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		////////////////
 
-		internal SupportInfoDisplay() {
+		internal SupportInfoDisplay( float x_off = 256f, float y = 12f, float row_height = 30f, float scale = 0.8f ) {
 			if( Main.dedServ ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
-
-			float x_off = 312f;
-			float y = 12f;
-			float row_height = 30f;
-			int row = 0;
+			float row = 0;
 
 			////
 
-			this.HeadTextUI = new UIText( "Powered by:", 1.1f );
+			this.HeadTextUI = new UIText( "Powered by:", 1.1f * scale );
 			this.HeadTextUI.Left.Set( -x_off, 1f );
-			this.HeadTextUI.Top.Set( 4 + y + (row * row_height), 0f );
+			this.HeadTextUI.Top.Set( (4f + y + (row * row_height)) * scale, 0f );
 			this.HeadTextUI.TextColor = Color.Lerp( Color.White, Color.Gold, 0.25f );
 			this.HeadTextUI.Recalculate();
 			this.Elements.Add( this.HeadTextUI );
 
-			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v "+mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f );
-			this.HeadUrlUI.Left.Set( -( x_off - 114f ), 1f );
-			this.HeadUrlUI.Top.Set( 4 + y + (row * row_height), 0f );
+			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v "+mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f * scale );
+			this.HeadUrlUI.Left.Set( -( x_off - (114f * scale) ), 1f );
+			this.HeadUrlUI.Top.Set( (4f + y + (row * row_height)) * scale, 0f );
 			this.HeadUrlUI.Recalculate();
 			this.Elements.Add( this.HeadUrlUI );
 			
 			////
 
-			y += 4;
-			row++;
+			y += 4f * scale;
+			row += 1;
 
-			this.ModderTextUI = new UIText( "Do you make mods?" );
+			this.ModderTextUI = new UIText( "Do you make mods?", 1f * scale );
 			this.ModderTextUI.Left.Set( -x_off, 1f );
-			this.ModderTextUI.Top.Set( y + (row * row_height), 0f );
+			this.ModderTextUI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.ModderTextUI.Recalculate();
 			this.Elements.Add( this.ModderTextUI );
 
-			this.ModderUrlUI = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true, 1f );
-			this.ModderUrlUI.Left.Set( -(x_off - 166f), 1f );
-			this.ModderUrlUI.Top.Set( y + (row * row_height), 0f );
+			this.ModderUrlUI = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true, 1f * scale );
+			this.ModderUrlUI.Left.Set( -(x_off - (166f * scale ) ), 1f );
+			this.ModderUrlUI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.ModderUrlUI.Recalculate();
 			this.Elements.Add( this.ModderUrlUI );
 
 			////
 
-			/*row++;
+			/*
+			row += 1;
 
-			this.RecomInfoTextUI = new UIText( "Feedback? Confused? Bored?" );
+			this.RecomInfoTextUI = new UIText( "Feedback? Confused? Bored?", 1f * scale );
 			this.RecomInfoTextUI.Left.Set( -x_off, 1f );
-			this.RecomInfoTextUI.Top.Set( y + (row * row_height), 0f );
+			this.RecomInfoTextUI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.RecomInfoTextUI.Recalculate();
 			this.Elements.Add( this.RecomInfoTextUI );
 
-			this.RecomInfoUrlUI = new UIWebUrl( UITheme.Vanilla, "Discord", "https://discord.gg/a2AwYtj", true, 1f );
-			this.RecomInfoUrlUI.Left.Set( -( x_off - 242f ), 1f );
-			this.RecomInfoUrlUI.Top.Set( y + (row * row_height), 0f );
+			this.RecomInfoUrlUI = new UIWebUrl( UITheme.Vanilla, "Discord", "https://discord.gg/a2AwYtj", true, 1f * scale );
+			this.RecomInfoUrlUI.Left.Set( -( x_off - (242f * scale) ), 1f );
+			this.RecomInfoUrlUI.Top.Set( (y + (row * row_height) * scale), 0f );
 			this.RecomInfoUrlUI.Recalculate();
 			this.Elements.Add( this.RecomInfoUrlUI );*/
 
 			////
 
-			row++;
+			row += 1;
 
-			this.AuthorText1UI = new UIText( "I make" );
+			this.AuthorText1UI = new UIText( "I make", 1f * scale );
 			this.AuthorText1UI.Left.Set( -x_off, 1f );
-			this.AuthorText1UI.Top.Set( y + (row * row_height), 0f );
+			this.AuthorText1UI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.AuthorText1UI.Recalculate();
 			this.Elements.Insert( 0, this.AuthorText1UI );
 
-			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other specialized mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f );
-			this.AuthorUrlUI.Left.Set( -( x_off - 60f ), 1f );
-			this.AuthorUrlUI.Top.Set( y + (row * row_height), 0f );
+			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other specialized mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f * scale );
+			this.AuthorUrlUI.Left.Set( -( x_off - (60f * scale) ), 1f );
+			this.AuthorUrlUI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.AuthorUrlUI.Recalculate();
 			this.Elements.Add( this.AuthorUrlUI );
 			
-			this.AuthorText2UI = new UIText( ", too." );
-			this.AuthorText2UI.Left.Set( -( x_off - 242f ), 1f );
-			this.AuthorText2UI.Top.Set( y + (row * row_height), 0f );
+			this.AuthorText2UI = new UIText( ", too.", 1f * scale );
+			this.AuthorText2UI.Left.Set( -( x_off - (242f * scale) ), 1f );
+			this.AuthorText2UI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.AuthorText2UI.Recalculate();
 			this.Elements.Insert( 0, this.AuthorText2UI );
 
 			////
 
-			row++;
+			row += 1;
 
-			this.SupportText1UI = new UIText( "Please" );
+			this.SupportText1UI = new UIText( "Please", 1f * scale );
 			this.SupportText1UI.Left.Set( -x_off, 1f );
-			this.SupportText1UI.Top.Set( y + (row * row_height), 0f );
+			this.SupportText1UI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.SupportText1UI.Recalculate();
 			this.SupportText1UI.TextColor = Color.MediumSpringGreen;
 			this.Elements.Insert( 0, this.SupportText1UI );
 
-			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f );
-			this.SupportUrlUI.Left.Set( -(x_off - 54), 1f );
-			this.SupportUrlUI.Top.Set( y + (row * row_height), 0f );
+			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f * scale );
+			this.SupportUrlUI.Left.Set( -(x_off - ( 54f * scale ) ), 1f );
+			this.SupportUrlUI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.SupportUrlUI.Recalculate();
 			this.Elements.Add( this.SupportUrlUI );
 
-			this.SupportText2UI = new UIText( "my mods!" );
-			this.SupportText2UI.Left.Set( -(x_off - 119), 1f );
-			this.SupportText2UI.Top.Set( y + (row * row_height), 0f );
+			this.SupportText2UI = new UIText( "my mods!", 1f * scale );
+			this.SupportText2UI.Left.Set( -(x_off - (119f * scale)), 1f );
+			this.SupportText2UI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.SupportText2UI.Recalculate();
 			this.SupportText2UI.TextColor = Color.MediumSpringGreen;
 			this.Elements.Insert( 0, this.SupportText2UI );

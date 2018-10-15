@@ -92,7 +92,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			//{ "Where: Hallow Biome",	"" },
 
 			{ "From Beginning",			"When: Before any boss kills or invasion events." },
-			{ "Bossed Begun",			"When: Player has begun killing bosses. World generally accessible." },
+			{ "Bosses Begun",			"When: Player has begun killing bosses. World generally accessible." },
 			{ "Post-BoC & EoW",			"When: Corruption/crimson conquered. Underworld accessible." },
 			{ "Hard Mode",				"When: Wall of Flesh conquered, large hallowed and evil biomes, harder monsters." },
 			{ "Post-Mech bosses",		"When: Mech bosses conquered, restless jungle." },
