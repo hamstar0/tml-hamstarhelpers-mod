@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers {
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
-		public static string ConfigFileName { get { return "Mod Helpers Config.json"; } }
+		public static string ConfigFileName => "Mod Helpers Config.json";
 
 
 		////////////////
@@ -49,9 +49,14 @@ namespace HamstarHelpers {
 		public bool IsCheckingModVersions = true;
 		public bool IsCheckingModTags = true;
 
-		public string PrivilegedUserId = "";
+		public bool DisableJudgmentalTags = true;
 
-		public bool HideTitleInfo = false;
+		public bool DisableModTags = false;
+		public bool DisableModRecommendations = false;
+		public bool DisableModMenuUpdates = false;
+		public bool DisableSupportLinks = false;
+
+		public string PrivilegedUserId = "";
 
 
 

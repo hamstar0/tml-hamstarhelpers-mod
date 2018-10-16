@@ -19,6 +19,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 
 		public static void Initialize() {
+			if( ModHelpersMod.Instance.Config.DisableModRecommendations ) { return; }
+
 			new ModRecommendsMenuContext();
 		}
 

@@ -37,7 +37,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		////////////////
 
-		internal SupportInfoDisplay( float x_off = 256f, float y = 12f, float row_height = 30f, float scale = 0.8f ) {
+		internal SupportInfoDisplay( float x_off = 244f, float y = 12f, float row_height = 30f, float scale = 0.8f ) {
 			if( Main.dedServ ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
@@ -177,7 +177,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			if( Main.spriteBatch == null ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
-			if( mymod == null || mymod.Config == null || mymod.Config.HideTitleInfo ) { return; }
+			if( mymod == null || mymod.Config == null || mymod.Config.DisableSupportLinks ) { return; }
 
 			if( Main.MenuUI.CurrentState != null ) {
 				Type ui_type = Main.MenuUI.CurrentState.GetType();

@@ -6,6 +6,8 @@ using HamstarHelpers.Internals.Menus.ModTags.UI;
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public static void Initialize() {
+			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
+
 			new ModBrowserTagsMenuContext();
 		}
 

@@ -159,6 +159,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				bg_color = Color.Lerp( bg_color, Color.Green, 0.4f );
 			} else if( this.Desc.Contains( "State:" ) ) {
 				bg_color = Color.Lerp( bg_color, Color.DarkViolet, 0.4f );
+			} else if( this.Desc.Contains( "Judgmental:" ) ) {
+				bg_color = Color.Lerp( bg_color, Color.Gray, 0.4f );
 			}
 			bg_color.A = a;
 
@@ -185,6 +187,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				edge_color = Color.Lerp( edge_color, Color.Green, 0.25f );
 			} else if( this.Desc.Contains( "State:" ) ) {
 				edge_color = Color.Lerp( edge_color, Color.DarkViolet, 0.4f );
+			} else if( this.Desc.Contains( "Judgmental:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.Gray, 0.4f );
 			}
 			edge_color.A = a;
 

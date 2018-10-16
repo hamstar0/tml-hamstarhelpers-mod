@@ -11,6 +11,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		public static void Initialize() {
+			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
+
 			new ModInfoTagsMenuContext();
 		}
 
