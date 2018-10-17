@@ -30,13 +30,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			if( Main.netMode == 2 && caller.CommandType != CommandType.Console ) {
-				bool success;
-				bool has_priv = UserHelpers.HasBasicServerPrivilege( caller.Player, out success );
-
-				if( !success ) {
-					caller.Reply( "Could not validate.", Color.Yellow );
-					return;
-				} else if( !has_priv ) {
+				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;
 				}
