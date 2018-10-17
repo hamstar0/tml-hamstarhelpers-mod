@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 
+using ItemMatcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
@@ -14,35 +18,35 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		////////////////
 
-		public static void AddCustomItemGroup( string name, Func<Item, bool> matcher ) {
+		public static void AddCustomItemGroup( string group_name, string[] group_dependencies, Func<Item, IDictionary<string, ISet<int>>, bool> matcher ) {
 			lock( EntityGroups.MyLock ) {
 				var ent_grps = ModHelpersMod.Instance.EntityGroups;
 				if( !ent_grps.IsEnabled ) { throw new Exception("Entity groups not enabled."); }
 				if( ent_grps.CustomItemMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
-				var entry = new KeyValuePair<string, Func<Item, bool>>( name, matcher );
+				var entry = new Tuple<string, string[], ItemMatcher>( group_name, group_dependencies, matcher );
 				ent_grps.CustomItemMatchers.Add( entry );
 			}
 		}
 
-		public static void AddCustomNPCGroup( string name, Func<NPC, bool> matcher ) {
+		public static void AddCustomNPCGroup( string name, string[] group_dependencies, Func<NPC, IDictionary<string, ISet<int>>, bool> matcher ) {
 			lock( EntityGroups.MyLock ) {
 				var ent_grps = ModHelpersMod.Instance.EntityGroups;
 				if( !ent_grps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
 				if( ent_grps.CustomNPCMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
-				var entry = new KeyValuePair<string, Func<NPC, bool>>( name, matcher );
+				var entry = new Tuple<string, string[], NPCMatcher>( name, group_dependencies, matcher );
 				ent_grps.CustomNPCMatchers.Add( entry );
 			}
 		}
 
-		public static void AddCustomProjectileGroup( string name, Func<Projectile, bool> matcher ) {
+		public static void AddCustomProjectileGroup( string name, string[] group_dependencies, Func<Projectile, IDictionary<string, ISet<int>>, bool> matcher ) {
 			lock( EntityGroups.MyLock ) {
 				var ent_grps = ModHelpersMod.Instance.EntityGroups;
 				if( !ent_grps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
 				if( ent_grps.CustomProjMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
-				var entry = new KeyValuePair<string, Func<Projectile, bool>>( name, matcher );
+				var entry = new Tuple<string, string[], ProjMatcher>( name, group_dependencies, matcher );
 				ent_grps.CustomProjMatchers.Add( entry );
 			}
 		}
@@ -50,37 +54,13 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		////////////////
 
-		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ItemGroups {
-			get {
-				return ModHelpersMod.Instance.EntityGroups._ItemGroups;
-			}
-		}
-		public static IReadOnlyDictionary<string, ReadOnlySet<int>> NPCGroups {
-			get {
-				return ModHelpersMod.Instance.EntityGroups._NPCGroups;
-			}
-		}
-		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ProjectileGroups {
-			get {
-				return ModHelpersMod.Instance.EntityGroups._ProjGroups;
-			}
-		}
+		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ItemGroups => ModHelpersMod.Instance.EntityGroups._ItemGroups;
+		public static IReadOnlyDictionary<string, ReadOnlySet<int>> NPCGroups => ModHelpersMod.Instance.EntityGroups._NPCGroups;
+		public static IReadOnlyDictionary<string, ReadOnlySet<int>> ProjectileGroups => ModHelpersMod.Instance.EntityGroups._ProjGroups;
 
 
-		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerItem {
-			get {
-				return ModHelpersMod.Instance.EntityGroups._GroupsPerItem;
-			}
-		}
-		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerNPC {
-			get {
-				return ModHelpersMod.Instance.EntityGroups._GroupsPerNPC;
-			}
-		}
-		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerProj {
-			get {
-				return ModHelpersMod.Instance.EntityGroups._GroupsPerProj;
-			}
-		}
+		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerItem => ModHelpersMod.Instance.EntityGroups._GroupsPerItem;
+		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerNPC => ModHelpersMod.Instance.EntityGroups._GroupsPerNPC;
+		public static IReadOnlyDictionary<int, ReadOnlySet<string>> GroupsPerProj => ModHelpersMod.Instance.EntityGroups._GroupsPerProj;
 	}
 }

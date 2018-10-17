@@ -1,16 +1,19 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
-using Terraria;
+
+using ItemMatcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private IList<KeyValuePair<string, Func<Item, bool>>> DefineItemGroups() {
-			var matchers = new List<KeyValuePair<string, Func<Item, bool>>>();
+		private IList<Tuple<string, string[], ItemMatcher>> DefineItemGroups() {
+			var matchers = new List<Tuple<string, string[], ItemMatcher>>();
 
-			Action<string, Func<Item, bool>> add_item_grp_def = ( name, matcher ) => {
-				matchers.Add( new KeyValuePair<string, Func<Item, bool>>( name, matcher ) );
+			Action<string, string[], ItemMatcher> add_item_grp_def = ( name, grps, matcher ) => {
+				matchers.Add( new Tuple<string, string[], ItemMatcher>( name, grps, matcher ) );
 			};
 			
 			this.DefineItemEquipmentGroups1( add_item_grp_def );
@@ -30,21 +33,21 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private IList<KeyValuePair<string, Func<NPC, bool>>> DefineNPCGroups() {
-			var matchers = new List<KeyValuePair<string, Func<NPC, bool>>>();
+		private IList<Tuple<string, string[], NPCMatcher>> DefineNPCGroups() {
+			var matchers = new List<Tuple<string, string[], NPCMatcher>>();
 
-			Action<string, Func<NPC, bool>> add_item_grp_def = ( name, matcher ) => {
-				matchers.Add( new KeyValuePair<string, Func<NPC, bool>>( name, matcher ) );
+			Action<string, string[], NPCMatcher> add_npc_grp_def = ( name, dependencies, matcher ) => {
+				matchers.Add( new Tuple<string, string[], NPCMatcher>( name, dependencies, matcher ) );
 			};
 
-			this.DefineNPCGroups1( add_item_grp_def );
+			this.DefineNPCGroups1( add_npc_grp_def );
 
 			return matchers;
 		}
 
 
-		private IList<KeyValuePair<string, Func<Projectile, bool>>> DefineProjectileGroups() {
-			var matchers = new List<KeyValuePair<string, Func<Projectile, bool>>>();
+		private IList<Tuple<string, string[], ProjMatcher>> DefineProjectileGroups() {
+			var matchers = new List<Tuple<string, string[], ProjMatcher>>();
 			return matchers;
 		}
 	}

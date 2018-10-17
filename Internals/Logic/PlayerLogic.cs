@@ -25,7 +25,7 @@ namespace HamstarHelpers.Internals.Logic {
 		////////////////
 
 		public string PrivateUID { get; private set; }
-		public bool HasUID { get; private set; }
+		public bool HasLoadedUID { get; private set; }
 
 		private ISet<int> PermaBuffsById = new HashSet<int>();
 		private ISet<int> HasBuffIds = new HashSet<int>();
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public PlayerLogic() {
 			this.PrivateUID = Guid.NewGuid().ToString( "D" );
-			this.HasUID = false;
+			this.HasLoadedUID = false;
 			this.HasSyncedModSettings = false;
 			this.HasSyncedModData = false;
 			this.IsSynced = false;
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.Logic {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.Load - "+e.ToString() );
 			}
 
-			this.HasUID = true;
+			this.HasLoadedUID = true;
 		}
 
 		public TagCompound Save() {

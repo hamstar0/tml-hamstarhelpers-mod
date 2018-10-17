@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 
 			this.ClientPrivateUID = myplayer.Logic.PrivateUID;
-			this.ClientHasUID = myplayer.Logic.HasUID;
+			this.ClientHasUID = myplayer.Logic.HasLoadedUID;
 		}
 
 

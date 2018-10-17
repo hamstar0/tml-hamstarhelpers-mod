@@ -17,9 +17,9 @@ namespace HamstarHelpers.Internals.Logic {
 
 	partial class PlayerLogic {
 		public void OnSingleConnect( ModHelpersMod mymod, Player player ) {
-			if( !this.HasUID ) {
+			if( !this.HasLoadedUID ) {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnSingleConnect - No UID for " + player.name + " (" + player.whoAmI + ")" );
-				this.HasUID = true; // Ugly failsafe
+				this.HasLoadedUID = true; // Ugly failsafe
 			}
 
 			if( !mymod.ConfigJson.LoadFile() ) {
@@ -33,9 +33,9 @@ namespace HamstarHelpers.Internals.Logic {
 		}
 
 		public void OnClientConnect( ModHelpersMod mymod, Player player ) {
-			if( !this.HasUID ) {
+			if( !this.HasLoadedUID ) {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
-				this.HasUID = true;	// Ugly failsafe
+				this.HasLoadedUID = true;	// Ugly failsafe
 			}
 			
 			// Send
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Internals.Logic {
 		}
 
 		public bool HasSyncedState() {
-			return this.HasSyncedModSettings && this.HasSyncedModData && this.HasUID;
+			return this.HasSyncedModSettings && this.HasSyncedModData && this.HasLoadedUID;
 		}
 
 		private void FinishSync() {
@@ -96,7 +96,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 
 		public void NetReceiveIdServer( bool has_uid, string uid ) {
-			this.HasUID = has_uid;
+			this.HasLoadedUID = has_uid;
 			this.PrivateUID = uid;
 		}
 	}

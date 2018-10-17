@@ -9,6 +9,10 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
+using ItemMatcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
@@ -47,9 +51,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 		private IDictionary<int, ReadOnlySet<string>> _RawGroupsPerNPC = new Dictionary<int, ReadOnlySet<string>>();
 		private IDictionary<int, ReadOnlySet<string>> _RawGroupsPerProj = new Dictionary<int, ReadOnlySet<string>>();
 
-		private IList<KeyValuePair<string, Func<Item, bool>>> CustomItemMatchers = new List<KeyValuePair<string, Func<Item, bool>>>();
-		private IList<KeyValuePair<string, Func<NPC, bool>>> CustomNPCMatchers = new List<KeyValuePair<string, Func<NPC, bool>>>();
-		private IList<KeyValuePair<string, Func<Projectile, bool>>> CustomProjMatchers = new List<KeyValuePair<string, Func<Projectile, bool>>>();
+		private IList<Tuple<string, string[], ItemMatcher>> CustomItemMatchers = new List<Tuple<string, string[], ItemMatcher>>();
+		private IList<Tuple<string, string[], NPCMatcher>> CustomNPCMatchers = new List<Tuple<string, string[], NPCMatcher>>();
+		private IList<Tuple<string, string[], ProjMatcher>> CustomProjMatchers = new List<Tuple<string, string[], ProjMatcher>>();
 
 		private IList<Item> ItemPool = null;
 		private IList<NPC> NPCPool = null;
@@ -78,9 +82,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 				
 				ThreadPool.QueueUserWorkItem( _ => {
 					try {
-						IList<KeyValuePair<string, Func<Item, bool>>> item_matchers;
-						IList<KeyValuePair<string, Func<NPC, bool>>> npc_matchers;
-						IList<KeyValuePair<string, Func<Projectile, bool>>> proj_matchers;
+						IList<Tuple<string, string[], ItemMatcher>> item_matchers;
+						IList<Tuple<string, string[], NPCMatcher>> npc_matchers;
+						IList<Tuple<string, string[], ProjMatcher>> proj_matchers;
 
 						lock( EntityGroups.MyLock ) {
 							item_matchers = this.DefineItemGroups();
