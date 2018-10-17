@@ -1,9 +1,10 @@
 ﻿using HamstarHelpers.Helpers.ItemHelpers;
+using System;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
-	public static class PlayerIdentityHelpers {
+	public static partial class PlayerIdentityHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;
 		public const int InventoryMainSize = 40;
@@ -11,37 +12,25 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 
 		////////////////
-
-		public static string GetUniqueId( Player player, out bool success ) {
-			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-
-			success = myplayer.Logic.HasLoadedUID;
-			return myplayer.Logic.PrivateUID;
+		
+		public static string GetProperUniqueId( Player player ) {
+			int hash = Math.Abs( Main.ActivePlayerFileData.Path.GetHashCode() ^ Main.ActivePlayerFileData.IsCloudSave.GetHashCode() );
+			return Main.clientUUID + "_" + hash;
 		}
 
-		public static Player GetPlayerById( string uid, out bool is_nothing_overlooked ) {
-			Player plr = null;
+		public static Player GetPlayerByProperId( string uid ) {
 			int len = Main.player.Length;
-			is_nothing_overlooked = true;
 
 			for( int i=0; i<len; i++ ) {
-				plr = Main.player[ i ];
+				Player plr = Main.player[ i ];
 				if( plr == null || !plr.active ) { continue; }
-
-				bool mysuccess;
-				string myuid = PlayerIdentityHelpers.GetUniqueId( plr, out mysuccess );
-				if( !mysuccess ) {
-					is_nothing_overlooked = false;
-					continue;
-				}
-
-				if( myuid == uid ) {
-					is_nothing_overlooked = true;
-					break;
+				
+				if( PlayerIdentityHelpers.GetProperUniqueId(plr) == uid ) {
+					return plr;
 				}
 			}
 
-			return plr;
+			return null;
 		}
 
 

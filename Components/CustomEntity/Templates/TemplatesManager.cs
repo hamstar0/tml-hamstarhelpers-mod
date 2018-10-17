@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
@@ -14,11 +13,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 			string uid = "";
 
 			if( owner != null ) {
-				bool success;
-				uid = PlayerIdentityHelpers.GetUniqueId( owner, out success );
-				if( !success ) {
-					throw new HamstarException( "!ModHelpers.CustomEntityTemplateManager - No player UID." );
-				}
+				uid = PlayerIdentityHelpers.GetProperUniqueId( owner );
 			}
 
 			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;

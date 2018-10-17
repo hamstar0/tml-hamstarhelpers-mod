@@ -73,14 +73,9 @@ namespace HamstarHelpers {
 				if( Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length ) {
 					return "  Unobtainable";
 				}
+				
 
-				bool success;
-				string uid = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer, out success );
-				if( !success ) {
-					return "  UID unobtainable";
-				}
-
-				return "  " + uid;
+				return "  " + PlayerIdentityHelpers.GetProperUniqueId( Main.LocalPlayer );
 			} );
 		}
 

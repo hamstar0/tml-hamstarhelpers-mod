@@ -109,6 +109,7 @@
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Obsolete.cs" />
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCInvasionHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers_Obsolete.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
     <Compile Include="Internals\Menus\ModRecommendations\ModRecommendsMC_Get.cs" />
     <Compile Include="Internals\Menus\ModRecommendations\ModRecommendsMC.cs" />

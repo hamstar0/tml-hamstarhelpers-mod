@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Terraria.ID;
 
+
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerHelpers {
 		public const int InventorySize = 58;
