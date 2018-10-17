@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.CustomEntity;
@@ -27,10 +26,7 @@ using HamstarHelpers.Helpers.RecipeHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Services.DataDumper;
-using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.CustomHotkeys;
 using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Services.Menus;
@@ -41,17 +37,6 @@ using HamstarHelpers.Helpers.XnaHelpers;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
-		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
-			LogHelpers.Log( "UNHANDLED crash? "+e.IsTerminating+" \nSender: "+sender.ToString()+" \nMessage: "+e.ExceptionObject.ToString() );
-		}
-
-
-
-		////////////////
-
-		internal JsonConfig<HamstarHelpersConfigData> ConfigJson;
-		public HamstarHelpersConfigData Config { get { return ConfigJson.Data; } }
-		
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;
 		internal MenuContextServiceManager MenuContextMngr;
@@ -95,45 +80,20 @@ namespace HamstarHelpers {
 		internal SupportInfoDisplay SupportInfo;
 		internal XnaHelpers XnaHelpers;
 
-
-		public bool HasSetupContent { get; private set; }
-		public bool HasAddedRecipeGroups { get; private set; }
-		public bool HasAddedRecipes { get; private set; }
-
+		
 		public ModHotKey ControlPanelHotkey = null;
 		public ModHotKey DataDumpHotkey = null;
-
-		private int LastSeenCPScreenWidth = -1;
-		private int LastSeenCPScreenHeight = -1;
-
-
-		private bool HasUnhandledExceptionLogger = false;
-
+		
 
 
 		////////////////
 
-		public ModHelpersMod() {
-			this.HasSetupContent = false;
-			this.HasAddedRecipeGroups = false;
-			this.HasAddedRecipes = false;
-
+		private void InitializeOuter() {
 			this.ExceptionMngr = new HamstarExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
-			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>( HamstarHelpersConfigData.ConfigFileName,
-					ConfigurationDataBase.RelativePath, new HamstarHelpersConfigData() );
 		}
 
-		public override void Load() {
-			ModHelpersMod.Instance = this;
-
-			this.LoadConfigs();
-
-			if( !this.HasUnhandledExceptionLogger && this.Config.DebugModeUnhandledExceptionLogging ) {
-				this.HasUnhandledExceptionLogger = true;
-				AppDomain.CurrentDomain.UnhandledException += ModHelpersMod.UnhandledLogger;
-			}
-			
+		private void LoadOuter() {
 			this.DataStore = new DataStore();
 			this.Promises = new Promises();
 			this.LoadHelpers = new LoadHelpers();
@@ -166,57 +126,10 @@ namespace HamstarHelpers {
 			this.XnaHelpers = new XnaHelpers();
 			this.ServerInfo = new ServerInfo();
 			this.SupportInfo = new SupportInfoDisplay();
-
-			if( !this.Config.DisableControlPanelHotkey ) {
-				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
-			}
-			this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
-
-			this.LoadModData();
-
-			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
-				return "  "+WorldHelpers.GetUniqueIdWithSeed();
-			} );
-
-			DataDumper.SetDumpSource( "PlayerUid", () => {
-				if( Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length ) {
-					return "  Unobtainable";
-				}
-
-				bool success;
-				string uid = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer, out success );
-				if( !success ) {
-					return "  UID unobtainable";
-				}
-
-				return "  " + uid;
-			} );
 		}
 
 
-		private void LoadConfigs() {
-			if( !this.ConfigJson.LoadFile() ) {
-				this.ConfigJson.SaveFile();
-			}
-
-			if( this.Config.UpdateToLatestVersion( this ) ) {
-				ErrorLogger.Log( "Mod Helpers updated to " + this.Version.ToString() );
-				this.ConfigJson.SaveFile();
-			}
-		}
-
-		public override void Unload() {
-			this.UnloadModData();
-
-			this.Promises.FulfillModUnloadPromises();
-
-			try {
-				if( this.HasUnhandledExceptionLogger ) {
-					this.HasUnhandledExceptionLogger = false;
-					AppDomain.CurrentDomain.UnhandledException -= ModHelpersMod.UnhandledLogger;
-				}
-			} catch { }
-
+		public void UnloadOuter() {
 			this.ExceptionMngr = null;
 			this.Timers = null;
 			this.ConfigJson = null;
@@ -255,13 +168,11 @@ namespace HamstarHelpers {
 
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;
-
-			ModHelpersMod.Instance = null;
 		}
 
 		////////////////
 
-		public override void PostSetupContent() {
+		private void PostSetupContentOuter() {
 			this.PacketProtocols = PacketProtocol.GetProtocolTypes();
 
 			this.Promises.OnPostSetupContent();
@@ -273,72 +184,23 @@ namespace HamstarHelpers {
 				Menus.OnPostSetupContent();
 				UIControlPanel.OnPostSetupContent( this );
 			}
-
-			this.HasSetupContent = true;
-			this.CheckAndProcessLoadFinish();
 		}
 
 		////////////////
 
-		public override void AddRecipes() {
-			if( this.Config.AddCrimsonLeatherRecipe ) {
-				var vertebrae_to_leather = new ModRecipe( this );
-
-				vertebrae_to_leather.AddIngredient( ItemID.Vertebrae, 5 );
-				vertebrae_to_leather.SetResult( ItemID.Leather );
-				vertebrae_to_leather.AddRecipe();
-			}
-		}
-
-		public override void AddRecipeGroups() {
+		private void AddRecipeGroupsOuter() {
 			NPCBannerHelpers.InitializeBanners();
 
 			foreach( var kv in RecipeHelpers.Groups ) {
 				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
-
-			this.HasAddedRecipeGroups = true;
-			this.CheckAndProcessLoadFinish();
 		}
 
-		public override void PostAddRecipes() {
+		private void PostAddRecipesOuter() {
 			this.ItemIdentityHelpers.PopulateNames();
 			this.NPCIdentityHelpers.PopulateNames();
 			this.ProjectileIdentityHelpers.PopulateNames();
 			this.BuffIdentityHelpers.PopulateNames();
-			
-			this.HasAddedRecipes = true;
-			this.CheckAndProcessLoadFinish();
-		}
-
-
-		////////////////
-
-		private void CheckAndProcessLoadFinish() {
-			if( !this.HasSetupContent ) { return; }
-			if( !this.HasAddedRecipeGroups ) { return; }
-			if( !this.HasAddedRecipes ) { return; }
-
-			Promises.AddWorldUnloadEachPromise( () => {
-				this.OnWorldExit();
-			} );
-
-			this.Promises.FulfillPostModLoadPromises();
-		}
-
-
-		////////////////
-
-		public override void PreSaveAndQuit() {
-			this.Promises.PreSaveAndExit();
-		}
-
-
-		////////////////
-		
-		private void OnWorldExit() {
-			var myworld = this.GetModWorld<ModHelpersWorld>();
-			myworld.OnWorldExit();
 		}
 	}
 }

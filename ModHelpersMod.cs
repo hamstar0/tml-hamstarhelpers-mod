@@ -14,6 +14,14 @@ namespace HamstarHelpers {
 
 		////////////////
 
+		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
+			LogHelpers.Log( "UNHANDLED crash? " + e.IsTerminating + " \nSender: " + sender.ToString() + " \nMessage: " + e.ExceptionObject.ToString() );
+		}
+
+
+
+		////////////////
+
 		public override void HandlePacket( BinaryReader reader, int player_who ) {
 			try {
 				int protocol_code = reader.ReadInt32();
