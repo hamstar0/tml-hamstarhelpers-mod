@@ -419,7 +419,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				}
 			);
 			add_def( "Any Cobalt Or Palladium Equipment",
-				new string[] { "Any Copper Equipment", "Any Palladium Equipment" },
+				new string[] { "Any Cobalt Equipment", "Any Palladium Equipment" },
 				( item, grps ) => {
 					return grps["Any Cobalt Equipment"].Contains( item.type ) ||
 						grps["Any Palladium Equipment"].Contains( item.type );

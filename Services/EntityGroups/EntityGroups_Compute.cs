@@ -7,9 +7,6 @@ using Terraria;
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private ISet<string> AlreadyRequeued = new HashSet<string>();
-
-
 		private void ComputeGroups<T>( IList<Tuple<string, string[], Func<T, IDictionary<string, ISet<int>>, bool>>> matchers,
 				ref IDictionary<string, ReadOnlySet<int>> groups,
 				ref IDictionary<int, ReadOnlySet<string>> groups_per_ent ) where T : Entity {
@@ -19,9 +16,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			for( int i=0; i<matchers.Count; i++ ) {
 				string grp_name = matchers[i].Item1;
+				string[] dependencies = matchers[i].Item2;
+				var matcher_func = matchers[i].Item3;
 				ISet<int> grp;
 
-				if( !this.ComputeGroupMatch( pool, grp_name, matchers[i].Item2, matchers[i].Item3, out grp ) ) {
+				if( !this.ComputeGroupMatch( pool, grp_name, dependencies, matcher_func, out grp ) ) {
 					matchers.Add( matchers[i] );
 					continue;
 				}
@@ -49,45 +48,16 @@ namespace HamstarHelpers.Services.EntityGroups {
 		private bool ComputeGroupMatch<T>( IList<T> entity_pool,
 				string group_name,
 				string[] dependencies,
-				Func<T, IDictionary<string, ISet<int>>, bool> matcher,
+				Func<T, IDictionary<string, ISet<int>>, bool> matcher_func,
 				out ISet<int> entity_ids_of_group )
 				where T : Entity {
 			entity_ids_of_group = new HashSet<int>();
-			var dep = new Dictionary<string, ISet<int>>();
-
-			if( dependencies != null ) {
-				IReadOnlyDictionary<string, ReadOnlySet<int>> entity_groups;
-
-				switch( typeof(T).Name ) {
-				case "Item":
-					entity_groups = this._ItemGroups;
-					break;
-				case "NPC":
-					entity_groups = this._NPCGroups;
-					break;
-				case "Projectile":
-					entity_groups = this._ProjGroups;
-					break;
-				default:
-					throw new NotImplementedException();
-				}
-
-				foreach( string dependency in dependencies ) {
-					if( !entity_groups.ContainsKey(dependency) ) {
-						if( this.AlreadyRequeued.Contains(group_name) ) {
-							throw new Exception( "Entity group "+group_name+" could not find dependency "+dependency+"." );
-						}
-						this.AlreadyRequeued.Add( group_name );
-
-						return false;
-					}
-				}
-			}
+			IDictionary<string, ISet<int>> deps = this.GetGroups<T>( group_name, dependencies );
 
 			for( int i = 1; i < entity_pool.Count; i++ ) {
 				try {
 					lock( EntityGroups.MyLock ) {
-						if( matcher( entity_pool[i], dep ) ) {
+						if( matcher_func( entity_pool[i], deps ) ) {
 							entity_ids_of_group.Add( i );
 						}
 					}
@@ -97,6 +67,48 @@ namespace HamstarHelpers.Services.EntityGroups {
 			}
 
 			return true;
+		}
+
+
+		////////////////
+
+		private ISet<string> _AlreadyRequeued = new HashSet<string>();
+
+		private IDictionary<string, ISet<int>> GetGroups<T>( string group_name, string[] dependencies )
+				where T : Entity {
+			var deps = new Dictionary<string, ISet<int>>();
+			if( dependencies == null ) { return deps; }
+
+			IReadOnlyDictionary<string, ReadOnlySet<int>> entity_groups;
+
+			switch( typeof( T ).Name ) {
+			case "Item":
+				entity_groups = this._ItemGroups;
+				break;
+			case "NPC":
+				entity_groups = this._NPCGroups;
+				break;
+			case "Projectile":
+				entity_groups = this._ProjGroups;
+				break;
+			default:
+				throw new NotImplementedException();
+			}
+
+			foreach( string dependency in dependencies ) {
+				if( !entity_groups.ContainsKey( dependency ) ) {
+					if( this._AlreadyRequeued.Contains( group_name ) ) {
+						throw new Exception( "Entity group " + group_name + " could not find dependency " + dependency + "." );
+					}
+					this._AlreadyRequeued.Add( group_name );
+
+					return deps;
+				}
+
+				deps[dependency] = entity_groups[dependency];
+			}
+
+			return deps;
 		}
 	}
 }
