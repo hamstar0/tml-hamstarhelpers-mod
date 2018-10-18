@@ -50,11 +50,16 @@ namespace HamstarHelpers {
 
 
 		private void LoadExceptionBehavior() {
-			if( this.Config.DebugModeEnableSilentLogging ) {
-				//AppDomain.CurrentDomain.FirstChanceException
-				FieldInfo field = typeof( AppDomain ).GetField( "FirstChanceException", BindingFlags.Static | BindingFlags.Instance );
-				field.SetValue( AppDomain.CurrentDomain, null );
-				//if( field != null && (field.FieldType == typeof(MulticastDelegate) || field.FieldType.IsSubclassOf( typeof(MulticastDelegate) )) ) {
+			if( this.Config.DebugModeDisableSilentLogging ) {
+				var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+				FieldInfo fce_field = typeof( AppDomain ).GetField( "FirstChanceException", flags );
+				if( fce_field == null ) {
+					fce_field = typeof( AppDomain ).GetField( "_firstChanceException", flags );
+				}
+				if( fce_field != null ) {
+					//if( field != null && (field.FieldType == typeof(MulticastDelegate) || field.FieldType.IsSubclassOf( typeof(MulticastDelegate) )) ) {
+					fce_field.SetValue( AppDomain.CurrentDomain, null );
+				}
 			}
 
 			if( !this.HasUnhandledExceptionLogger && this.Config.DebugModeUnhandledExceptionLogging ) {
