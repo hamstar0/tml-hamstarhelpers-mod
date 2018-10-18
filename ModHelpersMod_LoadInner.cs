@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Helpers.PlayerHelpers;
+using System.Reflection;
 
 
 namespace HamstarHelpers {
@@ -16,10 +17,6 @@ namespace HamstarHelpers {
 		public HamstarHelpersConfigData Config { get { return ConfigJson.Data; } }
 
 		////
-
-		public bool HasSetupContent { get; private set; }
-		public bool HasAddedRecipeGroups { get; private set; }
-		public bool HasAddedRecipes { get; private set; }
 
 		private int LastSeenCPScreenWidth = -1;
 		private int LastSeenCPScreenHeight = -1;
@@ -31,13 +28,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public ModHelpersMod() {
-			ModHelpersMod.Instance = this;
-
-			this.HasSetupContent = false;
-			this.HasAddedRecipeGroups = false;
-			this.HasAddedRecipes = false;
-
+		private void InitializeInner() {
 			this.InitializeOuter();
 
 			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>(
@@ -48,35 +39,28 @@ namespace HamstarHelpers {
 		}
 
 
-		public override void Load() {
+		private void LoadInner() {
 			this.LoadConfigs();
+			this.LoadExceptionBehavior();
+			this.LoadOuter();
+			this.LoadHotkeys();
+			this.LoadModData();
+			this.LoadDataSources();
+		}
+
+
+		private void LoadExceptionBehavior() {
+			if( this.Config.DebugModeEnableSilentLogging ) {
+				//AppDomain.CurrentDomain.FirstChanceException
+				FieldInfo field = typeof( AppDomain ).GetField( "FirstChanceException", BindingFlags.Static | BindingFlags.Instance );
+				field.SetValue( AppDomain.CurrentDomain, null );
+				//if( field != null && (field.FieldType == typeof(MulticastDelegate) || field.FieldType.IsSubclassOf( typeof(MulticastDelegate) )) ) {
+			}
 
 			if( !this.HasUnhandledExceptionLogger && this.Config.DebugModeUnhandledExceptionLogging ) {
 				this.HasUnhandledExceptionLogger = true;
 				AppDomain.CurrentDomain.UnhandledException += ModHelpersMod.UnhandledLogger;
 			}
-
-			this.LoadOuter();
-			
-			if( !this.Config.DisableControlPanelHotkey ) {
-				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
-			}
-			this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
-
-			this.LoadModData();
-
-			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
-				return "  "+WorldHelpers.GetUniqueIdWithSeed();
-			} );
-
-			DataDumper.SetDumpSource( "PlayerUid", () => {
-				if( Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length ) {
-					return "  Unobtainable";
-				}
-				
-
-				return "  " + PlayerIdentityHelpers.GetProperUniqueId( Main.LocalPlayer );
-			} );
 		}
 
 
@@ -90,16 +74,38 @@ namespace HamstarHelpers {
 				this.ConfigJson.SaveFile();
 			}
 		}
-		
+
+
+		private void LoadHotkeys() {
+			if( !this.Config.DisableControlPanelHotkey ) {
+				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
+			}
+			this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
+		}
+
+
+		private void LoadDataSources() {
+			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
+				return "  " + WorldHelpers.GetUniqueIdWithSeed();
+			} );
+
+			DataDumper.SetDumpSource( "PlayerUid", () => {
+				if( Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length ) {
+					return "  Unobtainable";
+				}
+
+				return "  " + PlayerIdentityHelpers.GetProperUniqueId( Main.LocalPlayer );
+			} );
+		}
+
+
 		////
 
-		public override void Unload() {
+		private void UnloadInner() {
 			this.Promises.FulfillModUnloadPromises();
 
 			this.UnloadModData();
 			this.UnloadOuter();
-			
-			ModHelpersMod.Instance = null;
 
 			try {
 				if( this.HasUnhandledExceptionLogger ) {
@@ -112,16 +118,13 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void PostSetupContent() {
+		private void PostSetupContentInner() {
 			this.PostSetupContentOuter();
-
-			this.HasSetupContent = true;
-			this.CheckAndProcessLoadFinish();
 		}
 
 		////////////////
 
-		public override void AddRecipes() {
+		private void AddRecipesInner() {
 			if( this.Config.AddCrimsonLeatherRecipe ) {
 				var vertebrae_to_leather = new ModRecipe( this );
 
@@ -131,28 +134,18 @@ namespace HamstarHelpers {
 			}
 		}
 
-		public override void AddRecipeGroups() {
+		private void AddRecipeGroupsInner() {
 			this.AddRecipeGroupsOuter();
-
-			this.HasAddedRecipeGroups = true;
-			this.CheckAndProcessLoadFinish();
 		}
 
-		public override void PostAddRecipes() {
+		private void PostAddRecipesInner() {
 			this.PostAddRecipesOuter();
-			
-			this.HasAddedRecipes = true;
-			this.CheckAndProcessLoadFinish();
 		}
 
 
 		////////////////
 
-		private void CheckAndProcessLoadFinish() {
-			if( !this.HasSetupContent ) { return; }
-			if( !this.HasAddedRecipeGroups ) { return; }
-			if( !this.HasAddedRecipes ) { return; }
-
+		private void PostLoadAll() {
 			Promises.AddWorldUnloadEachPromise( () => {
 				this.OnWorldExit();
 			} );
@@ -163,13 +156,6 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void PreSaveAndQuit() {
-			this.Promises.PreSaveAndExit();
-		}
-
-
-		////////////////
-		
 		private void OnWorldExit() {
 			var myworld = this.GetModWorld<ModHelpersWorld>();
 			myworld.OnWorldExit();

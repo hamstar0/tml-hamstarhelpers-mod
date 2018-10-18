@@ -18,6 +18,7 @@ namespace HamstarHelpers {
 		public bool DebugModeDumpAlsoServer = false;
 		public bool DebugModeResetCustomEntities = false;
 		public bool DebugModeCustomEntityInfo = false;
+		public bool DebugModeEnableSilentLogging = false;
 
 		public bool UseCustomLogging = false;
 		public bool UseCustomLoggingPerNetMode = false;
