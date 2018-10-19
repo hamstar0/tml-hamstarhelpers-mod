@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Promises;
@@ -39,7 +38,7 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 			
 			// Send
-			PacketProtocol.QuickSendToServer<PlayerIdProtocol>();
+			PacketProtocol.QuickSendToServer<PlayerOldIdProtocol>();
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 
 			// Receive

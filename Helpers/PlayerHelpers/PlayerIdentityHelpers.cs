@@ -1,10 +1,12 @@
-﻿using HamstarHelpers.Helpers.ItemHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.ItemHelpers;
 using System;
+using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
-	public static partial class PlayerIdentityHelpers {
+	public partial class PlayerIdentityHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;
 		public const int InventoryMainSize = 40;
@@ -13,10 +15,19 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 		////////////////
 		
-		public static string GetProperUniqueId( Player player ) {
+		public static string GetMyProperUniqueId() {
 			int hash = Math.Abs( Main.ActivePlayerFileData.Path.GetHashCode() ^ Main.ActivePlayerFileData.IsCloudSave.GetHashCode() );
 			return Main.clientUUID + "_" + hash;
 		}
+
+		public static string GetProperUniqueId( Player player ) {
+			string id;
+			if( !ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
+				throw new HamstarException("!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player "+player.name+"'s id.");
+			}
+			return id;
+		}
+
 
 		public static Player GetPlayerByProperId( string uid ) {
 			int len = Main.player.Length;
@@ -109,5 +120,10 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			}
 			return hash;
 		}
+
+
+		////////////////
+
+		internal IDictionary<int, string> PlayerIds = new Dictionary<int, string>();
 	}
 }

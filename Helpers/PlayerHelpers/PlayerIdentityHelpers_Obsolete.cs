@@ -3,7 +3,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
-	public static partial class PlayerIdentityHelpers {
+	public partial class PlayerIdentityHelpers {
 		[Obsolete("use GetProperUniqueId(Player)", true)]
 		public static string GetUniqueId( Player player, out bool success ) {
 			return PlayerIdentityHelpers._GetUniqueId( player, out success );

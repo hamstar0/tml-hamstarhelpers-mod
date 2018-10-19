@@ -19,7 +19,7 @@ namespace HamstarHelpers.Commands {
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			string uid = PlayerIdentityHelpers.GetProperUniqueId( Main.LocalPlayer );
+			string uid = PlayerIdentityHelpers.GetMyProperUniqueId();
 			
 			caller.Reply( "Your user ID is: " + uid, Color.Lime );
 		}

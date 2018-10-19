@@ -1,5 +1,7 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Services.Timers;
@@ -56,8 +58,14 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == 1 ) {
+				if( to_who == -1 ) {
+					PacketProtocol.QuickSendToServer<PlayerNewIdProtocol>();
+				}
+			} else if( Main.netMode == 2 ) {
 				if( to_who == -1 && from_who == this.player.whoAmI ) {
+					PacketProtocol.QuickSendToClient<PlayerNewIdProtocol>( from_who, -1 );
+
 					Promises.AddSafeWorldLoadOncePromise( () => {
 						this.Logic.OnServerConnect( ModHelpersMod.Instance, Main.player[from_who] );
 					} );

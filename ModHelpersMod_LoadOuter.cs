@@ -1,21 +1,27 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Internals.ControlPanel.Inbox;
+using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Internals.ControlPanel;
+using HamstarHelpers.Internals.Menus;
+using HamstarHelpers.Internals.Menus.Support;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.Network.Data;
-using HamstarHelpers.Internals.ControlPanel.Inbox;
-using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Services.DataStore;
+using HamstarHelpers.Services.Menus;
+using HamstarHelpers.Services.ServerInfo;
+using HamstarHelpers.Services.CustomHotkeys;
+using HamstarHelpers.Services.Players;
 using HamstarHelpers.Helpers.MiscHelpers;
+using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
-using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.NetHelpers;
 using HamstarHelpers.Helpers.BuffHelpers;
@@ -23,17 +29,12 @@ using HamstarHelpers.Helpers.ItemHelpers;
 using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.ProjectileHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
+using HamstarHelpers.Helpers.XnaHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Services.CustomHotkeys;
-using HamstarHelpers.Internals.Menus;
-using HamstarHelpers.Services.Menus;
-using HamstarHelpers.Services.ServerInfo;
-using HamstarHelpers.Internals.Menus.Support;
-using HamstarHelpers.Helpers.XnaHelpers;
-
+using HamstarHelpers.Helpers.PlayerHelpers;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
@@ -67,10 +68,11 @@ namespace HamstarHelpers {
 		internal NPCBannerHelpers NPCBannerHelpers;
 		internal RecipeHelpers RecipeHelpers;
 		internal LoadHelpers LoadHelpers;
-		internal TmlPlayerHelpers TmlPlayerHelpers;
+		internal PlayerState PlayerState;
 		internal WorldHelpers WorldHelpers;
 		internal ModLockHelpers ModLockHelpers;
 		internal MusicHelpers MusicHelpers;
+		internal PlayerIdentityHelpers PlayerIdentityHelpers;
 
 		// Internals
 		internal InboxControl Inbox;
@@ -83,7 +85,7 @@ namespace HamstarHelpers {
 		
 		public ModHotKey ControlPanelHotkey = null;
 		public ModHotKey DataDumpHotkey = null;
-		
+
 
 
 		////////////////
@@ -109,7 +111,7 @@ namespace HamstarHelpers {
 			this.BuffIdentityHelpers = new BuffIdentityHelpers();
 			this.NPCBannerHelpers = new NPCBannerHelpers();
 			this.RecipeHelpers = new RecipeHelpers();
-			this.TmlPlayerHelpers = new TmlPlayerHelpers();
+			this.PlayerState = new PlayerState();
 			this.WorldHelpers = new WorldHelpers();
 			this.ControlPanel = new UIControlPanel();
 			this.ModLockHelpers = new ModLockHelpers();
@@ -121,6 +123,7 @@ namespace HamstarHelpers {
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuContextMngr = new MenuContextServiceManager();
 			this.MusicHelpers = new MusicHelpers();
+			this.PlayerIdentityHelpers = new PlayerIdentityHelpers();
 			this.CustomEntMngr = new CustomEntityManager();
 			this.CustomHotkeys = new CustomHotkeys();
 			this.XnaHelpers = new XnaHelpers();
@@ -144,7 +147,7 @@ namespace HamstarHelpers {
 			this.BuffIdentityHelpers = null;
 			this.NPCBannerHelpers = null;
 			this.RecipeHelpers = null;
-			this.TmlPlayerHelpers = null;
+			this.PlayerState = null;
 			this.LoadHelpers = null;
 			this.GetModVersion = null;
 			this.GetModTags = null;
@@ -158,6 +161,7 @@ namespace HamstarHelpers {
 			this.MenuItemMngr = null;
 			this.MenuContextMngr = null;
 			this.MusicHelpers = null;
+			this.PlayerIdentityHelpers = null;
 			this.CustomEntMngr = null;
 			this.Promises = null;
 			this.DataStore = null;

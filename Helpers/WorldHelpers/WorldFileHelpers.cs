@@ -7,7 +7,7 @@ using Terraria.Social;
 
 
 namespace HamstarHelpers.Helpers.WorldHelpers {
-	public class WorldFileHelpers {
+	public static class WorldFileHelpers {
 		/*public static void EraseWorld_WIN( int which ) {
 			WorldFileData data = Main.WorldList[which];
 

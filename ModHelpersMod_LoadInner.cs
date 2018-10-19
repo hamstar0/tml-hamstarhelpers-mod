@@ -99,7 +99,7 @@ namespace HamstarHelpers {
 					return "  Unobtainable";
 				}
 
-				return "  " + PlayerIdentityHelpers.GetProperUniqueId( Main.LocalPlayer );
+				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId();
 			} );
 		}
 

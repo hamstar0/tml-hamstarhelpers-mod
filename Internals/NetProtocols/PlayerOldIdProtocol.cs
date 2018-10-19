@@ -5,14 +5,14 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class PlayerIdProtocol : PacketProtocol {
+	class PlayerOldIdProtocol : PacketProtocol {
 		public bool ClientHasUID = false;
 		public string ClientPrivateUID = "";
 
 
 		////////////////
 
-		private PlayerIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+		private PlayerOldIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 
 		////////////////

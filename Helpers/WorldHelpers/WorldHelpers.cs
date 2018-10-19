@@ -91,6 +91,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		internal IDictionary<string, Action> NightHooks = new Dictionary<string, Action>();
 
 
+
 		////////////////
 
 		internal void Load( ModHelpersMod mymod, TagCompound tags ) {

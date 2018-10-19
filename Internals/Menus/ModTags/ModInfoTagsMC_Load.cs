@@ -90,9 +90,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 						kv.Value.Enable();
 					}
 
-					if( net_modtags.Contains( kv.Key ) ) {
-						kv.Value.SetTagState( 1 );
-					}
+					kv.Value.SetTagState( net_modtags.Contains(kv.Key) ? 1 : 0 );
 				}
 
 				return false;

@@ -23,6 +23,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			return ModHelpers.GetAllPlayableModsPreferredOrder();
 		}
 
+
 		public static IEnumerable<Mod> GetAllPlayableModsPreferredOrder() {
 			var mymod = ModHelpersMod.Instance;
 			var self = mymod.ModMetaDataManager;

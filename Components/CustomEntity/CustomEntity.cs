@@ -62,9 +62,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			string uid = PlayerIdentityHelpers.GetProperUniqueId( owner );
+			string id = PlayerIdentityHelpers.GetProperUniqueId( owner );
 
-			this.Initialize( uid, owner.whoAmI, core, components );
+			this.Initialize( id, owner.whoAmI, core, components );
 		}
 
 		////////////////

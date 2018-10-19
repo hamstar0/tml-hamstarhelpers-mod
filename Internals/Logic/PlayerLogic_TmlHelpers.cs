@@ -3,7 +3,7 @@ using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Helpers.TmlHelpers;
 using System.Linq;
 using Terraria;
-
+using HamstarHelpers.Services.Players;
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.Logic {
 					this.HasBuffIds.Remove( buff_id );
 					buff_change = true;
 
-					TmlPlayerHelpers.OnBuffExpire( player, buff_id );
+					PlayerState.OnBuffExpire( player, buff_id );
 				}
 			}
 
@@ -72,19 +72,19 @@ namespace HamstarHelpers.Internals.Logic {
 
 					if( had_an_equip ) {
 						if( item.type != this.EquipSlotsToItemTypes[i] ) {
-							TmlPlayerHelpers.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
-							TmlPlayerHelpers.OnArmorEquip( player, i, item );
+							PlayerState.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
+							PlayerState.OnArmorEquip( player, i, item );
 							this.EquipSlotsToItemTypes[i] = item.type;
 							equip_change = true;
 						}
 					} else {
 						this.EquipSlotsToItemTypes[i] = item.type;
-						TmlPlayerHelpers.OnArmorEquip( player, i, item );
+						PlayerState.OnArmorEquip( player, i, item );
 						equip_change = true;
 					}
 				} else {
 					if( this.EquipSlotsToItemTypes.ContainsKey( i ) ) {
-						TmlPlayerHelpers.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
+						PlayerState.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
 						this.EquipSlotsToItemTypes.Remove( i );
 						equip_change = true;
 					}

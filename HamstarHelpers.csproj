@@ -130,7 +130,10 @@
     <Compile Include="Internals\Menus\ModTags\UI\UITagButton.cs" />
     <Compile Include="Internals\Menus\ModTags\ModInfoTagsMC.cs" />
     <Compile Include="Internals\Menus\ModUpdates\ModUpdatesMC.cs" />
+    <Compile Include="Internals\NetProtocols\PlayerNewIdProtocol.cs" />
     <Compile Include="ModHelpersMod_LoadOuter.cs" />
+    <Compile Include="Services\Players\PlayerState.cs" />
+    <Compile Include="Services\Tml\BuildPropertiesEditor.cs" />
     <Compile Include="SupportInfo.cs" />
     <Compile Include="Internals\NetProtocols\ItemNoGrabProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerDataProtocol.cs" />
@@ -202,7 +205,7 @@
     <Compile Include="Internals\NetProtocols\CustomEntityProtocol.cs" />
     <Compile Include="Internals\NetProtocols\DataDumpProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PingProtocol.cs" />
-    <Compile Include="Internals\NetProtocols\PlayerIdProtocol.cs" />
+    <Compile Include="Internals\NetProtocols\PlayerOldIdProtocol.cs" />
     <Compile Include="Internals\NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="ModHelpersMod_DrawMap.cs" />
     <Compile Include="ModHelpersMod_LoadInner.cs" />
@@ -255,13 +258,13 @@
     <Compile Include="Helpers\TileHelpers\TileIdentityHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileWallHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileWorldHelpers.cs" />
-    <Compile Include="Helpers\TmlHelpers\BuildPropertiesEditor.cs" />
+    <Compile Include="Helpers\TmlHelpers\_BuildPropertiesEditor.cs" />
     <Compile Include="Helpers\TmlHelpers\CommandsHelpers\CommandsHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModLockHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlHelpers.cs" />
-    <Compile Include="Helpers\TmlHelpers\TmlPlayerHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\_TmlPlayerHelpers.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Helpers\DotNetHelpers\DotNetHelpers.cs" />

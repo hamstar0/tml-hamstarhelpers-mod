@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers {
-	public class TmlPlayerHelpers {
+namespace HamstarHelpers.Services.Players {
+	public class PlayerState {
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
-			var tml_player = ModHelpersMod.Instance.TmlPlayerHelpers;
+			var player_state = ModHelpersMod.Instance.PlayerState;
 
-			if( tml_player.BuffExpireHooks.ContainsKey(which) ) { return false; }
-			tml_player.BuffExpireHooks[ which ] = action;
+			if( player_state.BuffExpireHooks.ContainsKey(which) ) { return false; }
+			player_state.BuffExpireHooks[ which ] = action;
 			return true;
 		}
 
 		public static bool AddArmorEquipAction( string which, Action<Player, int, Item> action ) {
-			var tml_player = ModHelpersMod.Instance.TmlPlayerHelpers;
+			var player_state = ModHelpersMod.Instance.PlayerState;
 
-			if( tml_player.ArmorEquipHooks.ContainsKey( which ) ) { return false; }
-			tml_player.ArmorEquipHooks[ which ] = action;
+			if( player_state.ArmorEquipHooks.ContainsKey( which ) ) { return false; }
+			player_state.ArmorEquipHooks[ which ] = action;
 			return true;
 		}
 
 		public static bool AddArmorUnequipAction( string which, Action<Player, int, int> action ) {
-			var tml_player = ModHelpersMod.Instance.TmlPlayerHelpers;
+			var player_state = ModHelpersMod.Instance.PlayerState;
 
-			if( tml_player.ArmorUnequipHooks.ContainsKey( which ) ) { return false; }
-			tml_player.ArmorUnequipHooks[ which ] = action;
+			if( player_state.ArmorUnequipHooks.ContainsKey( which ) ) { return false; }
+			player_state.ArmorUnequipHooks[ which ] = action;
 			return true;
 		}
 
@@ -33,15 +33,15 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		////////////////
 
 		internal static void OnBuffExpire( Player player, int buff_id ) {
-			var tml_player = ModHelpersMod.Instance.TmlPlayerHelpers;
+			var player_state = ModHelpersMod.Instance.PlayerState;
 
-			foreach( var action in tml_player.BuffExpireHooks ) {
+			foreach( var action in player_state.BuffExpireHooks ) {
 				action.Value( player, buff_id );
 			}
 		}
 		
 		internal static void OnArmorEquip( Player player, int slot, Item item ) {
-			var tml_player = ModHelpersMod.Instance.TmlPlayerHelpers;
+			var tml_player = ModHelpersMod.Instance.PlayerState;
 
 			foreach( var action in tml_player.ArmorEquipHooks ) {
 				action.Value( player, slot, item );
@@ -49,9 +49,9 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		}
 
 		internal static void OnArmorUnequip( Player player, int slot, int item_type ) {
-			var tml_player = ModHelpersMod.Instance.TmlPlayerHelpers;
+			var player_state = ModHelpersMod.Instance.PlayerState;
 
-			foreach( var action in tml_player.ArmorUnequipHooks ) {
+			foreach( var action in player_state.ArmorUnequipHooks ) {
 				action.Value( player, slot, item_type );
 			}
 		}

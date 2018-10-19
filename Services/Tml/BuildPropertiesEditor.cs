@@ -6,7 +6,7 @@ using System.Reflection;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers {
+namespace HamstarHelpers.Services.Tml {
 	public class BuildPropertiesEditor {
 			public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
 			IEnumerable<Type> class_types;

@@ -53,9 +53,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.LatestAvailableVersion = default( Version );
 
 			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
-				BuildPropertiesEditor props = modfile != null ?
-					BuildPropertiesEditor.GetBuildPropertiesForModFile( modfile ) :
-					(BuildPropertiesEditor)null;
+				Services.Tml.BuildPropertiesEditor props = modfile != null ?
+					Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( modfile ) :
+					(Services.Tml.BuildPropertiesEditor)null;
 				if( props != null ) {
 					this.Author = (string)props.GetField( "author" );
 					this.HomepageUrl = (string)props.GetField( "homepage" );
