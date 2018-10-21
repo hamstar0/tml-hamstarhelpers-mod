@@ -37,5 +37,17 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 			return (object)value;
 		}
+
+
+		public static IList<T> FlagsToList<T>( int flags ) where T : struct, IConvertible {
+			IEnumerable<int> values = Enum.GetValues( typeof( T ) ).Cast<int>();
+			var list = new List<int>();
+
+			foreach( int val in values ) {
+				if( (flags & val) == 0 ) { continue; }
+				list.Add( val );
+			}
+			return list.Cast<T>().ToList();
+		}
 	}
 }
