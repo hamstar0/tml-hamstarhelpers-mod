@@ -35,20 +35,35 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 			}
 
-			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list ) => {
+			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list, on_tag_count, off_tag_count ) => {
+				string filter_name = "Tags";
+				if( on_tag_count > 0 || off_tag_count > 0 ) {
+					filter_name += " ";
+
+					if( on_tag_count > 0 ) {
+						filter_name += "+" + on_tag_count;
+						if( off_tag_count > 0 ) {
+							filter_name += " ";
+						}
+					}
+					if( off_tag_count > 0 ) {
+						filter_name += "-" + off_tag_count;
+					}
+				}
+
 				ReflectionHelpers.SetField( my_uid, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
-				MenuModHelper.ApplyModBrowserFilter( "Custom Tags", is_filtered, ( List<string>)filtered_list );
+				MenuModHelper.ApplyModBrowserFilter( filter_name, is_filtered, ( List<string>)filtered_list );
 			} );
 		}
 
 
 		////////////////
 
-		public void FilterModsAsync( IList<string> mod_names, Action<bool, IList<string>> callback ) {
+		public void FilterModsAsync( IList<string> mod_names, Action<bool, IList<string>, int, int> callback ) {
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				if( !args.Found ) {
 					MenuContextBase.InfoDisplay?.SetText( "Could not acquire mod data." );
-					callback( false, new List<string>() );
+					callback( false, new List<string>(), 0, 0 );
 					return false;
 				}
 
@@ -70,7 +85,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					}
 				}
 
-				callback( is_filtered, filtered_list );
+				callback( is_filtered, filtered_list, on_tags.Count, off_tags.Count );
 
 				return false;
 			} );

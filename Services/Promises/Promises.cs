@@ -93,7 +93,7 @@ namespace HamstarHelpers.Services.Promises {
 
 		private static void _Update() { // <- Just in case references are doing something funky...
 			var mymod = ModHelpersMod.Instance;
-			if( mymod == null ) { return; }
+			if( mymod == null || mymod.Promises == null ) { return; }
 			
 			if( mymod.Promises.OnTickGet() ) {	// <- Throttles to 60fps
 				mymod.Promises.Update();
