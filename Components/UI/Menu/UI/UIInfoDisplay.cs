@@ -9,6 +9,9 @@ namespace HamstarHelpers.Components.UI.Menu.UI {
 		private readonly MenuContextBase MenuContext;
 		private readonly UIText TextElem;
 
+		private string DefaultText = "";
+		private readonly Color DefaultColor = new Color( 112, 112, 112 );
+
 
 
 		////////////////
@@ -28,9 +31,25 @@ namespace HamstarHelpers.Components.UI.Menu.UI {
 
 
 		////////////////
-		
+
+		public void SetDefaultText( string text ) {
+			this.DefaultText = text;
+
+			// If the field is empty or already as a default, set to our new default
+			if( this.TextElem.Text == "" || this.TextElem.TextColor == this.DefaultColor ) {
+				this.SetText( "" );
+			}
+		}
+
+		////////////////
+
 		public void SetText( string text, Color? color=null ) {
-			this.TextElem.TextColor = color??Color.White;
+			if( string.IsNullOrEmpty(text) ) {
+				text = this.DefaultText;
+				color = this.DefaultColor;
+			}
+
+			this.TextElem.TextColor = color ?? Color.White;
 			this.TextElem.SetText( text );
 		}
 

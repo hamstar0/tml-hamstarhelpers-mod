@@ -21,15 +21,20 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					return;
 				}
 
+				MenuContextBase.InfoDisplay.SetDefaultText( "" );
+
 				this.ResetUIState( mod_name );
 				this.SetCurrentMod( ui, mod_name );
 				this.RecalculateMenuObjects();
 			};
 
 			Action<UIState> ui_unload = ui => {
+				MenuContextBase.InfoDisplay.SetDefaultText( "" );
+
 				this.ResetMenuObjects();
 			};
 
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load", ui_load, ui_unload );
 			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load", ui_load, ui_unload );
 		}
 
@@ -77,11 +82,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 //LogHelpers.Log( "SetCurrentMod modname: " + mod_name + ", modtags: " + string.Join(",", net_modtags ) );
 				if( has_net_tags ) {
-					MenuContextBase.InfoDisplay.SetText( "", Color.Gray );
+					MenuContextBase.InfoDisplay.SetDefaultText( "Do these tags look incorrect? If so, modify them." );
 					this.FinishButton.SetModeReadOnly();
 					this.ResetButton.Disable();
 				} else {
-					MenuContextBase.InfoDisplay.SetText( "No tags set for this mod. Why not add some?", Color.Gray );
+					MenuContextBase.InfoDisplay.SetDefaultText( "No tags set for this mod. Why not add some?" );
 					this.FinishButton.SetModeSubmit();
 				}
 				
