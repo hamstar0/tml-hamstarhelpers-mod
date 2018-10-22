@@ -14,15 +14,11 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Menu {
 	abstract partial class SessionMenuContext : MenuContext {
-		public abstract string UIName { get; }
-		public abstract string SubContextName { get; }
-
-		////////////////
-
-		public readonly UIInfoDisplay InfoDisplay;
+		public UIInfoDisplay InfoDisplay { get; private set; }
 
 		protected UIState MyUI = null;
-		
+
+		private bool DisplayInfo;
 		private bool OccludesLogo;
 		private Vector2 OldOverhaulLogoPos = default( Vector2 );
 
@@ -34,22 +30,25 @@ namespace HamstarHelpers.Components.UI.Menu {
 		////////////////
 
 		protected SessionMenuContext( bool display_info, bool occludes_logo ) {
-			if( display_info ) {
+			this.DisplayInfo = display_info;
+			this.OccludesLogo = occludes_logo;
+			this.OldLogo1 = Main.logoTexture;
+			this.OldLogo2 = Main.logo2Texture;
+		}
+		
+		public override void OnContexualize( string ui_class_name, string context_name ) {
+			if( this.DisplayInfo ) {
 				WidgetMenuContext widget_ctx;
 
-				if( MenuContextService.GetMenuContext( this.UIName, "ModHelpers: Info Display" ) == null ) {
+				if( MenuContextService.GetMenuContext( ui_class_name, "ModHelpers: Info Display" ) == null ) {
 					widget_ctx = new WidgetMenuContext( new UIInfoDisplay(), false );
-					MenuContextService.AddMenuContext( this.UIName, "ModHelpers: Info Display", widget_ctx );
+					MenuContextService.AddMenuContext( ui_class_name, "ModHelpers: Info Display", widget_ctx );
 				} else {
-					widget_ctx = (WidgetMenuContext)MenuContextService.GetMenuContext( this.UIName, "ModHelpers: Info Display" );
+					widget_ctx = (WidgetMenuContext)MenuContextService.GetMenuContext( ui_class_name, "ModHelpers: Info Display" );
 				}
 
 				this.InfoDisplay = (UIInfoDisplay)widget_ctx.MyElement;
 			}
-
-			this.OccludesLogo = occludes_logo;
-			this.OldLogo1 = Main.logoTexture;
-			this.OldLogo2 = Main.logo2Texture;
 		}
 
 

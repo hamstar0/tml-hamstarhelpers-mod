@@ -21,12 +21,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			}
 
 			Action<string> on_success = delegate ( string output ) {
-				SessionMenuContext.InfoDisplay?.SetText( output, Color.Lime );
+				this.InfoDisplay?.SetText( output, Color.Lime );
 				ErrorLogger.Log( "Mod info submit result: " + output );
 			};
 
 			Action<Exception, string> on_fail = ( e, output ) => {
-				SessionMenuContext.InfoDisplay?.SetText( "Error: " + (string.IsNullOrEmpty(output)?e.Message:output), Color.Red );
+				this.InfoDisplay?.SetText( "Error: " + (string.IsNullOrEmpty(output)?e.Message:output), Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 

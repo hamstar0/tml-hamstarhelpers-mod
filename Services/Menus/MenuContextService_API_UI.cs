@@ -7,7 +7,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Services.Menus {
-	public class MenuContextService {
+	public partial class MenuContextService {
 		public static UIElement GetMenuContainerOuter( UIState ui ) {
 			Type ui_type = ui.GetType();
 			FieldInfo ui_outer_box_field = ui_type.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );

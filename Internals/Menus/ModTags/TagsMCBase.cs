@@ -18,7 +18,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		protected TagsMenuContextBase( bool can_disable_tags ) : base( true, true ) {
 			this.CanDisableTags = can_disable_tags;
-			
+		}
+
+		public override void OnContexualize( string ui_class_name, string context_name ) {
 			int i = 0;
 
 			foreach( var kv in TagsMenuContextBase.Tags ) {
@@ -28,8 +30,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				var button = new UITagButton( this, i, tag_text, tag_desc, this.CanDisableTags );
 				var button_widget_ctx = new WidgetMenuContext( button, false );
 
-				MenuContextService.AddMenuContext( this.UIName, "ModHelpers: " + this.SubContextName + " Tag " + i, button_widget_ctx );
-				this.TagButtons[tag_text] = button;
+				MenuContextService.AddMenuContext( ui_class_name, context_name + " Tag " + i, button_widget_ctx );
+				this.TagButtons[ tag_text ] = button;
 
 				i++;
 			}
@@ -37,7 +39,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 
 		////////////////
-		
+
 		public abstract void OnTagStateChange( UITagButton tag_button );
 
 

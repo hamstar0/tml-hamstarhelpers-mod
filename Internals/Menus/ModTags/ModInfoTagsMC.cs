@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			var ctx = new ModInfoTagsMenuContext();
-			MenuContextService.AddMenuContext( ctx.UIName, "ModHelpers: " + ctx.SubContextName + " Tag Finish Button", ctx );
+			MenuContextService.AddMenuContext( "UIModInfo", "ModHelpers: Mod Info", ctx );
 		}
 
 
@@ -30,11 +30,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		internal IDictionary<string, ISet<string>> AllModTagsSnapshot = null;
 
-		////////////////
-
-		public override string UIName => "UIModInfo";
-		public override string SubContextName => "Mod Info";
-
 
 
 		////////////////
@@ -42,12 +37,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private ModInfoTagsMenuContext() : base( false ) {
 			this.FinishButton = new UITagFinishButton( this );
 			this.ResetButton = new UITagResetButton( this );
-
+		}
+		
+		public override void OnContexualize( string ui_class_name, string context_name ) {
 			var finish_button_widget_ctx = new WidgetMenuContext( this.FinishButton, false );
 			var reset_button_widget_ctx = new WidgetMenuContext( this.ResetButton, false );
 
-			MenuContextService.AddMenuContext( this.UIName, "ModHelpers: " + this.SubContextName + " Tag Finish Button", finish_button_widget_ctx );
-			MenuContextService.AddMenuContext( this.UIName, "ModHelpers: " + this.SubContextName + " Tag Reset Button", reset_button_widget_ctx );
+			MenuContextService.AddMenuContext( ui_class_name, context_name + " Tag Finish Button", finish_button_widget_ctx );
+			MenuContextService.AddMenuContext( ui_class_name, context_name + " Tag Reset Button", reset_button_widget_ctx );
 		}
 
 

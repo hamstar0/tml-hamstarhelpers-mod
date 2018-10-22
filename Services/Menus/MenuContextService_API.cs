@@ -6,7 +6,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Services.Menus {
-	public class MenuContextService {
+	public partial class MenuContextService {
 		public static bool ContainsMenuContexts( string ui_class_name ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuContextMngr == null ) { return false; }
@@ -41,6 +41,8 @@ namespace HamstarHelpers.Services.Menus {
 				mymod.MenuContextMngr.Contexts[ui_class_name] = new Dictionary<string, MenuContext>();
 			}
 			mymod.MenuContextMngr.Contexts[ui_class_name][context_name] = context;
+
+			context.OnContexualize( ui_class_name, context_name );
 
 			UIState ui = Main.MenuUI.CurrentState;
 			string curr_ui_name = ui?.GetType().Name;

@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
+using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Internals.Menus.ModRecommendations;
 using HamstarHelpers.Internals.Menus.ModTags;
 using HamstarHelpers.Internals.Menus.ModUpdates;
@@ -41,7 +42,9 @@ namespace HamstarHelpers.Internals.Menus {
 				} catch( Exception ) { }
 			};
 
-			MenuContextService.AddMenuLoader( "UIMods", "ModHelpers: Mod Menu Config Folder Button", button, true );
+			var button_widget_ctx = new WidgetMenuContext( button, true );
+
+			MenuContextService.AddMenuContext( "UIMods", "ModHelpers: Mod Menu Config Folder Button", button_widget_ctx );
 		}
 	}
 }

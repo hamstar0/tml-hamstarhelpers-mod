@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,13 +22,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			this.MenuContext = menu_context;
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.Text == "Submit Tags" ) {
-					SessionMenuContext.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
+					MenuContext.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
 				} else if( this.Text == "Modify Tags" ) {
-					SessionMenuContext.InfoDisplay?.SetText( "Enable changing current mod's tags.", Color.White );
+					MenuContext.InfoDisplay?.SetText( "Enable changing current mod's tags.", Color.White );
 				}
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				SessionMenuContext.InfoDisplay?.SetText( "", Color.White );
+				MenuContext.InfoDisplay?.SetText( "", Color.White );
 			};
 
 			this.RecalculatePos();

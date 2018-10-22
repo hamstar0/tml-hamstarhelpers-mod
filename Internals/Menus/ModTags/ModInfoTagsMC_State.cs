@@ -64,6 +64,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			}
 		}
 
+
 		////////////////
 
 		private void SetCurrentMod( UIState ui, string mod_name ) {
