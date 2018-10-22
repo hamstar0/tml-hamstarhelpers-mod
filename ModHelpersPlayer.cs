@@ -60,7 +60,7 @@ namespace HamstarHelpers {
 
 		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
 			if( Main.netMode == 1 ) {
-				if( to_who == -1 ) {
+				if( to_who == -1 && new_player ) {
 					PacketProtocol.QuickSendToServer<PlayerNewIdProtocol>();
 				}
 			} else if( Main.netMode == 2 ) {

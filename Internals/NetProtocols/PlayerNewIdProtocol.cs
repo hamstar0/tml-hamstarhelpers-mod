@@ -26,11 +26,15 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetMyProperUniqueId();
 		}
 
+		protected override void SetServerDefaults( int to_who ) {
+		}
+
 
 		////////////////
 
 		protected override void ReceiveWithServer( int from_who ) {
-			this.PlayerIds.Add( this.PlayerIds.Single() );
+			var kv = this.PlayerIds.Single();
+			this.PlayerIds[ kv.Key ] = kv.Value;
 
 			this.SendToClient( -1, -1 );
 		}
