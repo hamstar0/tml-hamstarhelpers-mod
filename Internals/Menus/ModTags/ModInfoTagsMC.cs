@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		public override string UIName => "UIModInfo";
-		public override string ContextName => "Mod Info";
+		public override string SubContextName => "Mod Info";
 
 
 

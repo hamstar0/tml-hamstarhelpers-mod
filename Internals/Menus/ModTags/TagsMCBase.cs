@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	abstract partial class TagsMenuContextBase : MenuContextBase {
+	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		internal IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
 
 		private bool CanDisableTags;

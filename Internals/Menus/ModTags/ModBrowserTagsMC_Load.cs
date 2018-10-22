@@ -2,28 +2,47 @@
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Menus;
+using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
+	class ModBrowserTagsMenuLoader : MenuLoader {
+		public override void Show( UIState ui ) {
+			this.RecalculateMenuObjects();
+			this.EnableTagButtons();
+
+			this.BeginModBrowserPopulateCheck( ui );
+
+			SessionMenuContext.InfoDisplay.SetDefaultText( "Click tags to filter the list. Right-click tags to filter without them." );
+		}
+
+		public override void Hide( UIState ui ) {
+			SessionMenuContext.InfoDisplay.SetDefaultText( "" );
+
+			this.ResetMenuObjects();
+		}
+	}
+
+
+
+
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		protected void InitializeContext() {
 			Action<UIState> ui_load = ui => {
 				this.RecalculateMenuObjects();
 				this.EnableTagButtons();
-				
-				MenuContextBase.InfoDisplay.SetDefaultText( "Click tags to filter the list. Right-click tags to filter without them." );
+
+				this.BeginModBrowserPopulateCheck( ui );
 			};
 			Action<UIState> ui_unload = ui => {
-				MenuContextBase.InfoDisplay.SetDefaultText( "" );
-
-				this.ResetMenuObjects();
 			};
 
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: "+this.ContextName+" Load", ui_load, ui_unload );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: "+this.SubContextName+" Load", ui_load, ui_unload );
 		}
 
 
@@ -33,8 +52,35 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			this.BlankButton.Disable();
 
-			MenuContextService.AddMenuLoader( this.UIName, this.ContextName + " Tag Blank Button", this.BlankButton, false );
-			MenuContextService.AddMenuLoader( this.UIName, this.ContextName + " Tag Reset Button", this.ResetButton, false );
+			MenuContextService.AddMenuLoader( this.UIName, this.SubContextName + " Tag Blank Button", this.BlankButton, false );
+			MenuContextService.AddMenuLoader( this.UIName, this.SubContextName + " Tag Reset Button", this.ResetButton, false );
+		}
+
+
+		////////////////
+
+		private bool ModBrowserPopulateCheck( UIState mod_browser_ui ) {
+			object list;
+
+			if( !ReflectionHelpers.GetField( mod_browser_ui, "modList", out list ) ) {
+				return false;
+			}
+			
+			f
+
+			return true;
+		}
+
+		private void BeginModBrowserPopulateCheck( UIState mod_browser_ui ) {
+			if( this.ModBrowserPopulateCheck(mod_browser_ui) ) {
+				return;
+			}
+
+			if( Timers.GetTimerTickDuration( "ModHelpersModBrowserCheckLoop" ) <= 0 ) {
+				Timers.SetTimer( "", 2, () => {
+					return this.ModBrowserPopulateCheck( mod_browser_ui );
+				} );
+			}
 		}
 	}
 }

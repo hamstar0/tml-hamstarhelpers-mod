@@ -46,14 +46,14 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 					string desc = kv.Value;
 					
 					if( rect.Contains( (int)evt.MousePosition.X, (int)evt.MousePosition.Y ) ) {
-						MenuContextBase.InfoDisplay?.SetText( desc );
+						SessionMenuContext.InfoDisplay?.SetText( desc );
 						this.Recalculate();
 						break;
 					}
 				}
 			};
 			this.List.OnMouseOut += ( evt, elem ) => {
-				MenuContextBase.InfoDisplay?.SetText( "" );
+				SessionMenuContext.InfoDisplay?.SetText( "" );
 				this.Recalculate();
 			};
 			this.Append( this.List );

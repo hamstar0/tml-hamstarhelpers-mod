@@ -114,7 +114,7 @@ namespace HamstarHelpers.Services.AnimatedColor {
 
 		private static void _Update() {
 			ModHelpersMod mymod = ModHelpersMod.Instance;
-			if( mymod == null ) { return; }
+			if( mymod == null || mymod.AnimatedColors == null ) { return; }
 
 			if( mymod.AnimatedColors.OnTickGet() ) {
 				mymod.AnimatedColors.Update();

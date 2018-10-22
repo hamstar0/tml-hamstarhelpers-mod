@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		public override string UIName => "UIModBrowser";
-		public override string ContextName => "Mod Browser";
+		public override string SubContextName => "Mod Browser";
 
 
 

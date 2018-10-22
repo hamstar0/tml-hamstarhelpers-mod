@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
-	partial class ModRecommendsMenuContext : MenuContextBase {
+	partial class ModRecommendsMenuContext : SessionMenuContext {
 		public static int Limit => 6;
 
 
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 		
 		public override string UIName => "UIModInfo";
-		public override string ContextName => "Mod Recommendations";
+		public override string SubContextName => "Mod Recommendations";
 
 		////////////////
 		
@@ -47,13 +47,13 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 				ModHelpers.PromptModDownloads( "Recommended", (List<string>)this.RecommendsList.GetModNames() );
 			};
 
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Info Display", this.RecommendsList, false );
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Download Button", this.DownloadButton, false );
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load Mods",
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Info Display", this.RecommendsList, false );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Download Button", this.DownloadButton, false );
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Load Mods",
 				ui => {
-					string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenu(), ui );
+					string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
 					if( mod_name == null ) {
-						LogHelpers.Log( "Could not load mod recommendations." );
+						LogHelpers.Log( "Could not load mod recommendations; no mod found." );
 						return;
 					}
 
@@ -67,8 +67,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 
 		private void PopulateList( string mod_name ) {
-			string curr_mod_name = MenuModHelper.GetModName( MenuContextService.GetPreviousMenu(),
-					this.MyUI ?? MenuContextService.GetCurrentMenu() );
+			string curr_mod_name = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(),
+					this.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 			if( mod_name != curr_mod_name ) {
 				return;
 			}

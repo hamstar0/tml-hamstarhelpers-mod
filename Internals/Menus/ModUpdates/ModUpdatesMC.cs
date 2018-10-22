@@ -15,7 +15,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModUpdates {
-	partial class ModUpdatesMenuContext : MenuContextBase {
+	partial class ModUpdatesMenuContext : SessionMenuContext {
 		public static void Initialize() {
 			if( ModHelpersMod.Instance.Config.DisableModMenuUpdates ) { return; }
 			
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		////////////////
 
 		public override string UIName => "UIMods";
-		public override string ContextName => "Mod Updates";
+		public override string SubContextName => "Mod Updates";
 
 
 
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				}
 			};
 
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Load Mods",
+			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Load Mods",
 				ui => {
 					Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, () => {
 						Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {

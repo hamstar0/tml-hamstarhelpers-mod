@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal void SubmitTags() {
 			if( string.IsNullOrEmpty( this.CurrentModName ) ) {
-				this.CurrentModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenu(), MenuContextService.GetCurrentMenu() )
+				this.CurrentModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(), MenuContextService.GetCurrentMenuUI() )
 					?? "";
 				if( string.IsNullOrEmpty( this.CurrentModName ) ) {
 					throw new Exception( "Invalid mod name." );
@@ -21,12 +21,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			}
 
 			Action<string> on_success = delegate ( string output ) {
-				MenuContextBase.InfoDisplay?.SetText( output, Color.Lime );
+				SessionMenuContext.InfoDisplay?.SetText( output, Color.Lime );
 				ErrorLogger.Log( "Mod info submit result: " + output );
 			};
 
 			Action<Exception, string> on_fail = ( e, output ) => {
-				MenuContextBase.InfoDisplay?.SetText( "Error: " + (string.IsNullOrEmpty(output)?e.Message:output), Color.Red );
+				SessionMenuContext.InfoDisplay?.SetText( "Error: " + (string.IsNullOrEmpty(output)?e.Message:output), Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 

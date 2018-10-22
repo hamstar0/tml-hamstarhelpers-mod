@@ -192,7 +192,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		private static void _Draw( GameTime game_time ) {	// <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
-			if( mymod == null ) { return; }
+			if( mymod == null || mymod.MenuItemMngr == null ) { return; }
 
 			mymod.MenuItemMngr.Draw( game_time );
 		}

@@ -1,16 +1,15 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.UI.Menus;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Services.Menus {
 	class MenuContextServiceManager {
-		internal IDictionary<string, IDictionary<string, Action<UIState>>> Show = new Dictionary<string, IDictionary<string, Action<UIState>>>();
-		internal IDictionary<string, IDictionary<string, Action<UIState>>> Hide = new Dictionary<string, IDictionary<string, Action<UIState>>>();
+		internal IDictionary<string, IDictionary<string, MenuContextBase>> Contexts = new Dictionary<string, IDictionary<string, MenuContextBase>>();
 
 		internal Tuple<string, UIState> CurrentMenuUI = null;
 		internal Tuple<string, UIState> PreviousMenuUI = null;
@@ -32,8 +31,7 @@ namespace HamstarHelpers.Services.Menus {
 				Main.OnPostDraw -= MenuContextServiceManager._Update;
 				this.HideAll();
 
-				this.Show.Clear();
-				this.Hide.Clear();
+				this.Contexts.Clear();
 			} catch { }
 		}
 
@@ -42,8 +40,8 @@ namespace HamstarHelpers.Services.Menus {
 
 		private void HideAll() {
 			if( this.CurrentMenuUI != null ) {
-				foreach( Action<UIState> hide in this.Hide[ this.CurrentMenuUI.Item1 ].Values ) {
-					hide( this.CurrentMenuUI.Item2 );
+				foreach( MenuContextBase loader in this.Contexts[ this.CurrentMenuUI.Item1 ].Values ) {
+					loader.Hide( this.CurrentMenuUI.Item2 );
 				}
 			}
 		}
@@ -79,11 +77,11 @@ namespace HamstarHelpers.Services.Menus {
 
 			this.PreviousMenuUI = this.CurrentMenuUI;
 
-			if( prev_ui_name != null && this.Hide.ContainsKey(prev_ui_name) ) {
-				var hiders = this.Hide[ prev_ui_name ].Values;
+			if( prev_ui_name != null && this.Contexts.ContainsKey(prev_ui_name) ) {
+				var contexts = this.Contexts[ prev_ui_name ].Values;
 				
-				foreach( Action<UIState> hide in hiders ) {
-					hide( this.CurrentMenuUI.Item2 );
+				foreach( MenuContextBase ctx in contexts ) {
+					ctx.Hide( this.CurrentMenuUI.Item2 );
 				}
 				//this.Unloaders.Remove( prev_ui_name );
 			}
@@ -93,11 +91,9 @@ namespace HamstarHelpers.Services.Menus {
 				return;
 			}
 
-			if( this.Show.ContainsKey( curr_ui_name ) ) {
-				KeyValuePair<string, Action<UIState>>[] loaders = this.Show[curr_ui_name].ToArray();
-
-				foreach( var kv in loaders ) {
-					kv.Value( ui );
+			if( this.Contexts.ContainsKey( curr_ui_name ) ) {
+				foreach( MenuContextBase ctx in this.Contexts[curr_ui_name].Values ) {
+					ctx.Show( ui );
 				}
 			}
 

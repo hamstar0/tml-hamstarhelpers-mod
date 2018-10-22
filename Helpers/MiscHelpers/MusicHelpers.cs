@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		private static void _Update() { // <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
-			if( mymod == null ) { return; }
+			if( mymod == null || mymod.MusicHelpers == null ) { return; }
 			
 			if( mymod.MusicHelpers.OnTickGet() ) {
 				mymod.MusicHelpers.Update();

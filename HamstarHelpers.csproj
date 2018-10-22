@@ -95,9 +95,9 @@
     <Compile Include="Components\UI\Elements\UITextPanelButton.cs" />
     <Compile Include="Components\UI\Elements\UIWebUrl.cs" />
     <Compile Include="Components\UI\DialogManager.cs" />
+    <Compile Include="Components\UI\Menu\WidgetMenuContext.cs" />
     <Compile Include="Components\UI\Menu\MenuItem.cs" />
-    <Compile Include="Components\UI\Menu\MenuContextBase.cs" />
-    <Compile Include="Components\UI\Menu\MenuContextBase_Load.cs" />
+    <Compile Include="Components\UI\Menu\SessionMenuContext.cs" />
     <Compile Include="Components\UI\UITheme.cs" />
     <Compile Include="Components\UI\UITheme_Default.cs" />
     <Compile Include="Components\UI\UITheme_Vanilla.cs" />
@@ -135,6 +135,8 @@
     <Compile Include="Internals\NetProtocols\PlayerNewIdProtocol.cs" />
     <Compile Include="ModHelpersMod_LoadOuter.cs" />
     <Compile Include="Components\Players\PlayerData.cs" />
+    <Compile Include="Components\UI\Menu\MenuContextBase.cs" />
+    <Compile Include="Services\Menus\MenuContextService_API_UI.cs" />
     <Compile Include="Services\Players\PlayerState.cs" />
     <Compile Include="Services\Tml\BuildPropertiesEditor.cs" />
     <Compile Include="SupportInfo.cs" />

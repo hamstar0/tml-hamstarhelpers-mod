@@ -135,7 +135,7 @@ namespace HamstarHelpers.Services.Timers {
 //private static int TICKCOUNT=0;
 		private static void _Update() {  // <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
-			if( mymod == null ) { return; }
+			if( mymod == null || mymod.Timers == null ) { return; }
 
 			if( mymod.Timers.OnTickGet() ) {
 //long NOW = DateTime.Now.Ticks;

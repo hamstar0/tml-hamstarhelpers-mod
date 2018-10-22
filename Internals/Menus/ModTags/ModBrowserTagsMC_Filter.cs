@@ -62,7 +62,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		public void FilterModsAsync( IList<string> mod_names, Action<bool, IList<string>, int, int> callback ) {
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				if( !args.Found ) {
-					MenuContextBase.InfoDisplay?.SetText( "Could not acquire mod data." );
+					SessionMenuContext.InfoDisplay?.SetText( "Could not acquire mod data." );
 					callback( false, new List<string>(), 0, 0 );
 					return false;
 				}

@@ -70,12 +70,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				MenuContextBase.InfoDisplay?.SetText( desc );
+				SessionMenuContext.InfoDisplay?.SetText( desc );
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( MenuContextBase.InfoDisplay?.GetText() == desc ) {
-					MenuContextBase.InfoDisplay?.SetText( "" );
+				if( SessionMenuContext.InfoDisplay?.GetText() == desc ) {
+					SessionMenuContext.InfoDisplay?.SetText( "" );
 				}
 				this.RefreshTheme();
 			};

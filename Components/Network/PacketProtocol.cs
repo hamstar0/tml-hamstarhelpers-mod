@@ -118,14 +118,14 @@ namespace HamstarHelpers.Components.Network {
 		/// Overridden for initializing the class to create a reply in a request to the client.
 		/// </summary>
 		protected virtual void SetClientDefaults() {
-			throw new HamstarException( "No SetClientDefaults implemented" );
+			throw new NotImplementedException( "No SetClientDefaults implemented" );
 		}
 
 		/// <summary>
 		/// Overridden for initializing the class to create a reply in a request to the server.
 		/// </summary>
 		protected virtual void SetServerDefaults( int to_who ) {
-			throw new HamstarException( "No SetServerDefaults(int) implemented" );
+			throw new NotImplementedException( "No SetServerDefaults(int) implemented" );
 		}
 
 		[Obsolete( "use SetServerDefaults( int for_who )", false )]

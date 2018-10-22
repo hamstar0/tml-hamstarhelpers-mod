@@ -79,12 +79,13 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 			}
 
 			object localmod = ui_localmod_field.GetValue( curr_ui );
+
 			if( localmod != null ) {
 				return MenuModHelper.GetLocalModName( localmod );
-			}
-
-			if( prev_ui?.GetType().Name == "UIModBrowser" ) {
-				return MenuModHelper.GetSelectedModBrowserMod( prev_ui );
+			} else {
+				if( prev_ui?.GetType().Name == "UIModBrowser" ) {
+					return MenuModHelper.GetSelectedModBrowserMod( prev_ui );
+				}
 			}
 
 			LogHelpers.Log( "No mod loaded." );
@@ -94,18 +95,18 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 
 		private static string GetSelectedModBrowserMod( UIState mod_browser ) {
 			object mod_list_item;
-			if( !ReflectionHelpers.GetField( mod_browser, "selectedItem", out mod_list_item ) ) {
+			if( !ReflectionHelpers.GetField( mod_browser, "selectedItem", out mod_list_item ) || mod_list_item == null ) {
 				LogHelpers.Log( "No selected mod list item." );
 				return null;
 			}
 
-			object raw_mod_name;
-			if( !ReflectionHelpers.GetField( mod_list_item, "mod", out raw_mod_name ) ) {
+			string mod_name;
+			if( !ReflectionHelpers.GetField( mod_list_item, "mod", out mod_name ) ) {
 				LogHelpers.Log( "Invalid mod data in mod browser listed entry." );
 				return null;
 			}
 
-			return (string)raw_mod_name;
+			return mod_name;
 		}
 
 		private static string GetLocalModName( object localmod ) {

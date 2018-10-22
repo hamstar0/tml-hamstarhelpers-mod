@@ -5,7 +5,7 @@ using HamstarHelpers.Services.Menus;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	abstract partial class TagsMenuContextBase : MenuContextBase {
+	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		private void InitializeTagButtons() {
 			int i = 0;
 
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 				var button = new UITagButton( this, i, tag_text, tag_desc, this.CanDisableTags );
 
-				MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.ContextName + " Tag " + i, button, false );
+				MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Tag " + i, button, false );
 				this.TagButtons[ tag_text ] = button;
 
 				i++;

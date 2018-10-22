@@ -6,20 +6,16 @@ using Terraria.GameContent.UI.Elements;
 
 namespace HamstarHelpers.Components.UI.Menu.UI {
 	internal class UIInfoDisplay : UIMenuPanel {
-		private readonly MenuContextBase MenuContext;
 		private readonly UIText TextElem;
 
 		private string DefaultText = "";
-		private readonly Color DefaultColor = new Color( 112, 112, 112 );
+		private readonly Color DefaultColor = new Color( 128, 128, 128 );
 
 
 
 		////////////////
 
-		public UIInfoDisplay( MenuContextBase menu_context )
-				: base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
-			this.MenuContext = menu_context;
-
+		public UIInfoDisplay() : base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
 			this.TextElem = new UIText( "" );
 			this.TextElem.Width.Set( 0f, 1f );
 			this.TextElem.Height.Set( 0f, 1f );

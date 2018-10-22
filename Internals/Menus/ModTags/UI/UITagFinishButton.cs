@@ -23,13 +23,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			this.MenuContext = menu_context;
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.Text == "Submit Tags" ) {
-					MenuContextBase.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
+					SessionMenuContext.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
 				} else if( this.Text == "Modify Tags" ) {
-					MenuContextBase.InfoDisplay?.SetText( "Enable changing current mod's tags.", Color.White );
+					SessionMenuContext.InfoDisplay?.SetText( "Enable changing current mod's tags.", Color.White );
 				}
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				MenuContextBase.InfoDisplay?.SetText( "", Color.White );
+				SessionMenuContext.InfoDisplay?.SetText( "", Color.White );
 			};
 
 			this.RecalculatePos();

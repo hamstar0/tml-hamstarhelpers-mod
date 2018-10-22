@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	abstract partial class TagsMenuContextBase : MenuContextBase {
+	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		public static IDictionary<string, string> Tags {
 			get {
 				var dict = new Dictionary<string, string> {

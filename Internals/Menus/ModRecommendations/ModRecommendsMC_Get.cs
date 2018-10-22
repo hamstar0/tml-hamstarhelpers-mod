@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
-	partial class ModRecommendsMenuContext : MenuContextBase {
+	partial class ModRecommendsMenuContext : SessionMenuContext {
 		private IList<Tuple<string, string>> GetRecommendsFromActiveMod( string mod_name ) {
 			Mod mod = ModLoader.GetMod( mod_name );
 			if( mod == null ) {
