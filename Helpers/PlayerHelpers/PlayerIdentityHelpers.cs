@@ -21,9 +21,16 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		}
 
 		public static string GetProperUniqueId( Player player ) {
+			var mymod = ModHelpersMod.Instance;
 			string id;
-			if( !ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
-				throw new HamstarException("!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player "+player.name+"'s id.");
+
+			if( !mymod.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
+				if( player.whoAmI == Main.myPlayer && Main.netMode != 2 ) {
+					id = PlayerIdentityHelpers.GetMyProperUniqueId();
+					mymod.PlayerIdentityHelpers.PlayerIds[player.whoAmI] = id;
+				} else {
+					throw new HamstarException( "!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player " + player.name + "'s id." );
+				}
 			}
 			return id;
 		}

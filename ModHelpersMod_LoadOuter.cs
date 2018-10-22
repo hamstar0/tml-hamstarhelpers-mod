@@ -8,6 +8,7 @@ using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Components.Players;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
@@ -30,11 +31,12 @@ using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.ProjectileHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
 using HamstarHelpers.Helpers.XnaHelpers;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.PlayerHelpers;
+
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
@@ -55,6 +57,7 @@ namespace HamstarHelpers {
 		internal DataStore DataStore;
 		internal CustomHotkeys CustomHotkeys;
 		internal ServerInfo ServerInfo;
+		internal PlayerDataManager PlayerDataMngr;
 
 		// Helpers
 		internal LogHelpers LogHelpers;
@@ -128,6 +131,7 @@ namespace HamstarHelpers {
 			this.CustomHotkeys = new CustomHotkeys();
 			this.XnaHelpers = new XnaHelpers();
 			this.ServerInfo = new ServerInfo();
+			this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();
 		}
 
@@ -168,6 +172,7 @@ namespace HamstarHelpers {
 			this.CustomHotkeys = null;
 			this.XnaHelpers = null;
 			this.ServerInfo = null;
+			this.PlayerDataMngr = null;
 			this.SupportInfo = null;
 
 			this.ControlPanelHotkey = null;

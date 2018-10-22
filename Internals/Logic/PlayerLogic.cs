@@ -70,14 +70,11 @@ namespace HamstarHelpers.Internals.Logic {
 			this.HasLoadedUID = true;
 		}
 
-		public TagCompound Save() {
+		public void Save( TagCompound tags ) {
 			var perma_buffs = this.PermaBuffsById.ToArray();
 
-			var tags = new TagCompound {
-				{ "uid", this.PrivateUID },
-				{ "perma_buffs", perma_buffs }
-			};
-			return tags;
+			tags["uid"] = this.PrivateUID;
+			tags["perma_buffs"] = perma_buffs;
 		}
 	}
 }

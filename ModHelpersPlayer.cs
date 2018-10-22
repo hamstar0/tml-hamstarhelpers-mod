@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Players;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Internals.NetProtocols;
@@ -114,6 +115,8 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void Load( TagCompound tags ) {
+			PlayerData.LoadAll( this.player.whoAmI, tags );
+
 			this.Logic.Load( tags );
 			
 			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
@@ -122,11 +125,16 @@ namespace HamstarHelpers {
 		}
 
 		public override TagCompound Save() {
+			var tags = new TagCompound();
 			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
 
+			PlayerData.SaveAll( this.player.whoAmI, tags );
+			
 			Promises.TriggerValidatedPromise( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
 
-			return this.Logic.Save();
+			this.Logic.Save( tags );
+
+			return tags;
 		}
 
 
