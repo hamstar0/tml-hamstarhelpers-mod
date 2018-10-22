@@ -298,7 +298,6 @@
     <Content Include="Internals\ControlPanel\Inbox\MiniIconLit2.png" />
     <Content Include="description.txt" />
     <Content Include="icon.png" />
-    <Content Include="recommendations.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />

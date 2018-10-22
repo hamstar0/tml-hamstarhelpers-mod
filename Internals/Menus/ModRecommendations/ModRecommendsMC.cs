@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 	partial class ModRecommendsMenuContext : MenuContextBase {
 		public static int Limit => 6;
@@ -68,7 +67,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 
 		private void PopulateList( string mod_name ) {
-			string curr_mod_name = MenuModHelper.GetModName( MenuContextService.GetPreviousMenu(), this.MyUI ?? MenuContextService.GetCurrentMenu() );
+			string curr_mod_name = MenuModHelper.GetModName( MenuContextService.GetPreviousMenu(),
+					this.MyUI ?? MenuContextService.GetCurrentMenu() );
 			if( mod_name != curr_mod_name ) {
 				return;
 			}
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 
 			string err = "";
 			IList<Tuple<string, string>> recommends = this.GetRecommendsFromActiveMod( mod_name ) ??
-													  this.GetRecommendsFromInactiveMod( mod_name, ref err );
+													  this.GetRecommendsFromUI( mod_name, ref err );
 
 			if( string.IsNullOrEmpty(err) ) {
 				foreach( Tuple<string, string> recom in recommends.Take( ModRecommendsMenuContext.Limit ) ) {

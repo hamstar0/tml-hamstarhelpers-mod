@@ -8,12 +8,12 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers.Services.Tml {
 	public class BuildPropertiesEditor {
-			public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
-			IEnumerable<Type> class_types;
+		private static Type GetBuildPropertiesClassType() {
+			IEnumerable<Type> bp_class_types;
 
 			try {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-				Func<Assembly, IEnumerable<Type>> select_many = delegate( Assembly a ) {
+				Func<Assembly, IEnumerable<Type>> select_many = delegate ( Assembly a ) {
 					try {
 						return a.GetTypes();
 					} catch {
@@ -21,19 +21,26 @@ namespace HamstarHelpers.Services.Tml {
 					}
 				};
 
-				class_types = from t in assemblies.SelectMany( select_many )
-							  where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
-							  select t;
+				bp_class_types = from t in assemblies.SelectMany( select_many )
+								 where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
+								 select t;
 			} catch( Exception e ) {
 				LogHelpers.Log( "BuildPropertiesEditor.GetBuildPropertiesForModFile - " + e.ToString() );
-				return (BuildPropertiesEditor)null;
+				return (Type)null;
 			}
 
-			if( class_types.Count() == 0 ) {
-				return (BuildPropertiesEditor)null;
+			if( bp_class_types.Count() == 0 ) {
+				return (Type)null;
 			}
 
-			Type build_prop_type = class_types.First();
+			return bp_class_types.First();
+		}
+
+
+		public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
+			Type build_prop_type = BuildPropertiesEditor.GetBuildPropertiesClassType();
+			if( build_prop_type == null ) { return (BuildPropertiesEditor)null; }
+
 			MethodInfo method = build_prop_type.GetMethod( "ReadModFile", BindingFlags.NonPublic | BindingFlags.Static );
 			if( method == null ) { return (BuildPropertiesEditor)null; }
 

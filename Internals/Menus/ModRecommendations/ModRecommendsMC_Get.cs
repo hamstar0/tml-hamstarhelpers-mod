@@ -1,15 +1,14 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
@@ -19,17 +18,22 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 			if( mod == null ) {
 				return null;
 			}
-			
-			byte[] file_data = ModHelpers.UnsafeLoadFileFromMod( mod.File, "recommendations.txt" );
-			if( file_data == null ) {
-				return new List<Tuple<string, string>>();
-			}
 
-			return this.ParseRecommendations( file_data );
+			//byte[] file_data = ModHelpers.UnsafeLoadFileFromMod( mod.File, "description.txt" );    //recommendations.txt
+			//if( file_data == null ) {
+			//	return new List<Tuple<string, string>>();
+			//}
+
+			var build_edit = BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+			string description = (string)build_edit.GetField( "description" );
+			byte[] desc_data = Encoding.ASCII.GetBytes( string.IsNullOrEmpty( description ) ? "" : description );
+
+			return this.ParseRecommendationsFromModDescription( desc_data );
 		}
-		
+
 		public IList<Tuple<string, string>> GetRecommendsFromInactiveMod( string mod_name, ref string err ) {
-			TmodFile tmod = null;
+			throw new NotImplementedException();
+			/*TmodFile tmod = null;
 			string[] file_names = Directory.GetFiles( ModLoader.ModPath, "*.tmod", SearchOption.TopDirectoryOnly );
 			Type type = typeof( TmodFile );
 
@@ -56,12 +60,10 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 				return null;
 			}
 
-			byte[] file_data = ModHelpers.UnsafeLoadFileFromMod( tmod, "recommendations.txt" );	// tmod.GetFile( "recommendations.txt" );
+			byte[] file_data = ModHelpers.UnsafeLoadFileFromMod( tmod, "recommendations.txt" );
 			if( file_data == null ) {
 				return new List<Tuple<string, string>>();
-			}
-
-			return this.ParseRecommendations( file_data );
+			}*/
 
 			/*var asm = Assembly.Load( tmod.GetMainAssembly(), null );
 			if( asm == null ) {
@@ -82,13 +84,39 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 			return (IList<Tuple<string, string>>)list;*/
 		}
 
+		public IList<Tuple<string, string>> GetRecommendsFromUI( string mod_name, ref string err ) {
+			UIPanel msg_box;
+			if( this.MyUI == null || !ReflectionHelpers.GetField<UIPanel>( this.MyUI, "modInfo", out msg_box ) ) {
+				err = "No modInfo field.";
+				return new List<Tuple<string, string>>();
+			}
 
-		private IList<Tuple<string, string>> ParseRecommendations( byte[] file_data ) {
+			string mod_desc;
+			if( !ReflectionHelpers.GetField<string>( msg_box, "text", BindingFlags.NonPublic | BindingFlags.Instance, out mod_desc ) ) {
+				err = "No modInfo.text field.";
+				return new List<Tuple<string, string>>();
+			}
+
+			return this.ParseRecommendationsFromModDescription( Encoding.ASCII.GetBytes(mod_desc) );
+		}
+
+
+		////////////////
+
+		private IList<Tuple<string, string>> ParseRecommendationsFromModDescription( byte[] file_data ) {
 			string data = Encoding.Default.GetString( file_data );
 			//string[] lines = data.Substring(3).Trim().Split( '\n' ).ToArray();
 			string[] lines = data.Trim().Split( '\n' ).ToArray();
+			int line_pos = lines.Length;
 
-			IEnumerable<string[]> recommendations = lines.Select(
+			for( int i=0; i<lines.Length; i++ ) {
+				if( lines[i].Trim() == "Mod recommendations:" ) {
+					line_pos = i + 1;
+					break;
+				}
+			}
+
+			IEnumerable<string[]> recommendations = lines.Skip( line_pos ).Select(
 				line => line.Split( '=' ).Select( s => s.Trim() ).ToArray()
 			);
 			

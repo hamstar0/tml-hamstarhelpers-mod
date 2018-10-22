@@ -3,3 +3,6 @@
 Supplies assorted helper functions and classes, and provides a handy in-game mod control panel UI for listing mods, reporting bugs, editing configs, and other customizations.
 
 Now offers per-world mod locking and mod tagging and browsing! See the homepage for information.
+
+Mod recommendations:
+ModdersToolkit = Tons of experimenting and tinkering options.
