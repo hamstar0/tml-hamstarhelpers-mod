@@ -84,12 +84,12 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			var tip = new UIText( "To enable issue reports for your mod, " );
 			this.InnerContainer.Append( (UIElement)tip );
 
-			var tip_url = new UIWebUrl( this.Theme, "read this.",
+			this.TipUrl = new UIWebUrl( this.Theme, "read this.",
 				"https://forums.terraria.org/index.php?threads/mod-helpers-a-modders-mod-for-mods-and-modding.63670/#modders",
-				true, 1f );
-			tip_url.Left.Set( tip.GetInnerDimensions().Width, 0f );
-			tip_url.Top.Set( -2f, 0f );
-			this.InnerContainer.Append( (UIElement)tip_url );
+				false, 1f );
+			this.TipUrl.Left.Set( tip.GetInnerDimensions().Width, 0f );
+			this.TipUrl.Top.Set( -2f, 0f );
+			this.InnerContainer.Append( (UIElement)this.TipUrl );
 
 			top += 24f;
 
@@ -219,11 +219,11 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.InnerContainer.Append( serverbrowser_url );
 			serverbrowser_url.Left.Set( -serverbrowser_url.GetDimensions().Width * 0.5f, 0.5f );*/
 
-			var support_url = new UIWebUrl( this.Theme, "Support my mods!", "https://www.patreon.com/hamstar0" );
-			support_url.Top.Set( top, 0f );
-			this.InnerContainer.Append( support_url );
-			//support_url.Left.Set( -support_url.GetDimensions().Width, 1f );
-			support_url.Left.Set( -support_url.GetDimensions().Width * 0.5f, 0.5f );
+			this.SupportUrl = new UIWebUrl( this.Theme, "Support my mods!", "https://www.patreon.com/hamstar0" );
+			this.SupportUrl.Top.Set( top, 0f );
+			this.InnerContainer.Append( this.SupportUrl );
+			//this.SupportUrl.Left.Set( -this.SupportUrl.GetDimensions().Width, 1f );
+			this.SupportUrl.Left.Set( -this.SupportUrl.GetDimensions().Width * 0.5f, 0.5f );
 		}
 
 

@@ -223,8 +223,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		}
 
 		////////////////
-
-
+		
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 

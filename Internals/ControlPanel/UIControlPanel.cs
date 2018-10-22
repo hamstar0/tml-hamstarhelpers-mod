@@ -63,6 +63,9 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private UITextPanelButton ApplyConfigButton = null;
 		private UITextPanelButton ModLockButton = null;
 
+		private UIWebUrl TipUrl = null;
+		private UIWebUrl SupportUrl = null;
+
 		private bool HasClicked = false;
 		private bool ModListUpdateRequired = false;
 		public bool AwaitingReport { get; private set; }
@@ -206,6 +209,18 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				if( elem.IsMouseHovering ) {
 					( (UIModData)elem ).DrawHoverEffects( sb );
 					break;
+				}
+			}
+
+			if( this.TipUrl.IsMouseHovering ) {
+				if( !this.TipUrl.WillDrawOwnHoverUrl ) {
+					this.TipUrl.DrawHoverEffects( sb );
+				}
+			}
+
+			if( this.SupportUrl.IsMouseHovering ) {
+				if( !this.SupportUrl.WillDrawOwnHoverUrl ) {
+					this.SupportUrl.DrawHoverEffects( sb );
 				}
 			}
 		}
