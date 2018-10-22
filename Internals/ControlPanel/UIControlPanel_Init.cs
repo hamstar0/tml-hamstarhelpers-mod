@@ -219,7 +219,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.InnerContainer.Append( serverbrowser_url );
 			serverbrowser_url.Left.Set( -serverbrowser_url.GetDimensions().Width * 0.5f, 0.5f );*/
 
-			this.SupportUrl = new UIWebUrl( this.Theme, "Support my mods!", "https://www.patreon.com/hamstar0" );
+			this.SupportUrl = new UIWebUrl( this.Theme, "Support my mods!", "https://www.patreon.com/hamstar0", false );
 			this.SupportUrl.Top.Set( top, 0f );
 			this.InnerContainer.Append( this.SupportUrl );
 			//this.SupportUrl.Left.Set( -this.SupportUrl.GetDimensions().Width, 1f );

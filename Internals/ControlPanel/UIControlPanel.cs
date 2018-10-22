@@ -148,12 +148,12 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		}
 
 		public void DrawHoverElements( SpriteBatch sb ) {
-			if( !this.ModListElem.IsMouseHovering ) { return; }
-			
-			foreach( UIElement elem in this.ModListElem._items ) {
-				if( elem.IsMouseHovering ) {
-					( (UIModData)elem ).DrawHoverEffects( sb );
-					break;
+			if( this.ModListElem.IsMouseHovering ) {
+				foreach( UIElement elem in this.ModListElem._items ) {
+					if( elem.IsMouseHovering ) {
+						( (UIModData)elem ).DrawHoverEffects( sb );
+						break;
+					}
 				}
 			}
 
