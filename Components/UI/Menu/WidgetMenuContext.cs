@@ -3,7 +3,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Menus {
-	public class WidgetMenuContext : MenuContextBase {
+	public class WidgetMenuContext : MenuContext {
 		public readonly bool IsInner;
 		public readonly UIElement MyElement;
 

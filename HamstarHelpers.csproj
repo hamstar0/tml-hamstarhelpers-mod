@@ -121,7 +121,6 @@
     <Compile Include="Internals\Menus\ModTags\ModBrowserTagsMC.cs" />
     <Compile Include="Helpers\TmlHelpers\Menus\MenuModHelper.cs" />
     <Compile Include="Internals\Menus\ModTags\ModInfoTagsMC_Load.cs" />
-    <Compile Include="Internals\Menus\ModTags\TagsMCBase_Load.cs" />
     <Compile Include="Internals\Menus\ModTags\TagsMCBase_Defs.cs" />
     <Compile Include="Internals\Menus\ModTags\TagsMCBase.cs" />
     <Compile Include="Components\UI\Elements\Menu\UIMenuButton.cs" />
@@ -135,7 +134,7 @@
     <Compile Include="Internals\NetProtocols\PlayerNewIdProtocol.cs" />
     <Compile Include="ModHelpersMod_LoadOuter.cs" />
     <Compile Include="Components\Players\PlayerData.cs" />
-    <Compile Include="Components\UI\Menu\MenuContextBase.cs" />
+    <Compile Include="Components\UI\Menu\MenuContext.cs" />
     <Compile Include="Services\Menus\MenuContextService_API_UI.cs" />
     <Compile Include="Services\Players\PlayerState.cs" />
     <Compile Include="Services\Tml\BuildPropertiesEditor.cs" />
@@ -308,6 +307,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Components\UI\Menu\_Contexts\" />
     <Folder Include="Internals\Menus\Support\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Services.Menus {
 	class MenuContextServiceManager {
-		internal IDictionary<string, IDictionary<string, MenuContextBase>> Contexts = new Dictionary<string, IDictionary<string, MenuContextBase>>();
+		internal IDictionary<string, IDictionary<string, MenuContext>> Contexts = new Dictionary<string, IDictionary<string, MenuContext>>();
 
 		internal Tuple<string, UIState> CurrentMenuUI = null;
 		internal Tuple<string, UIState> PreviousMenuUI = null;
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Services.Menus {
 
 		private void HideAll() {
 			if( this.CurrentMenuUI != null ) {
-				foreach( MenuContextBase loader in this.Contexts[ this.CurrentMenuUI.Item1 ].Values ) {
+				foreach( MenuContext loader in this.Contexts[ this.CurrentMenuUI.Item1 ].Values ) {
 					loader.Hide( this.CurrentMenuUI.Item2 );
 				}
 			}
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Services.Menus {
 			if( prev_ui_name != null && this.Contexts.ContainsKey(prev_ui_name) ) {
 				var contexts = this.Contexts[ prev_ui_name ].Values;
 				
-				foreach( MenuContextBase ctx in contexts ) {
+				foreach( MenuContext ctx in contexts ) {
 					ctx.Hide( this.CurrentMenuUI.Item2 );
 				}
 				//this.Unloaders.Remove( prev_ui_name );
@@ -92,7 +92,7 @@ namespace HamstarHelpers.Services.Menus {
 			}
 
 			if( this.Contexts.ContainsKey( curr_ui_name ) ) {
-				foreach( MenuContextBase ctx in this.Contexts[curr_ui_name].Values ) {
+				foreach( MenuContext ctx in this.Contexts[curr_ui_name].Values ) {
 					ctx.Show( ui );
 				}
 			}

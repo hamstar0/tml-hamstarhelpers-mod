@@ -1,5 +1,7 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.UI.Menus;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
+using HamstarHelpers.Services.Menus;
 using System.Collections.Generic;
 
 
@@ -13,7 +15,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		public static void Initialize() {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
-			new ModInfoTagsMenuContext();
+			var ctx = new ModInfoTagsMenuContext();
+			MenuContextService.AddMenuContext( ctx.UIName, "ModHelpers: " + ctx.SubContextName + " Tag Finish Button", ctx );
 		}
 
 
@@ -37,8 +40,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private ModInfoTagsMenuContext() : base( false ) {
-			this.InitializeContext();
-			this.InitializeControls();
+			this.FinishButton = new UITagFinishButton( this );
+			this.ResetButton = new UITagResetButton( this );
+
+			var finish_button_widget_ctx = new WidgetMenuContext( this.FinishButton, false );
+			var reset_button_widget_ctx = new WidgetMenuContext( this.ResetButton, false );
+
+			MenuContextService.AddMenuContext( this.UIName, "ModHelpers: " + this.SubContextName + " Tag Finish Button", finish_button_widget_ctx );
+			MenuContextService.AddMenuContext( this.UIName, "ModHelpers: " + this.SubContextName + " Tag Reset Button", reset_button_widget_ctx );
 		}
 
 

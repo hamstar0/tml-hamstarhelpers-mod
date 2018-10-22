@@ -1,49 +1,47 @@
-﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
-using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
-using System;
 using System.Collections.Generic;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
-		private void InitializeContext() {
-			Action<UIState> ui_load = ui => {
-				string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
-				if( mod_name == null ) {
-					LogHelpers.Log( "Could not load mod tags; no mod found" );
-					return;
-				}
+		public override void Show( UIState ui ) {
+			base.Show( ui );
+			this.ShowGeneral( ui );
+		}
 
-				SessionMenuContext.InfoDisplay.SetDefaultText( "" );
-
-				this.ResetUIState( mod_name );
-				this.SetCurrentMod( ui, mod_name );
-				this.RecalculateMenuObjects();
-			};
-
-			Action<UIState> ui_unload = ui => {
-				SessionMenuContext.InfoDisplay.SetDefaultText( "" );
-
-				this.ResetMenuObjects();
-			};
-
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Load", ui_load, ui_unload );
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Load", ui_load, ui_unload );
+		public override void Hide( UIState ui ) {
+			base.Hide( ui );
+			this.HideGeneral( ui );
 		}
 
 
-		private void InitializeControls() {
-			this.FinishButton = new UITagFinishButton( this );
-			this.ResetButton = new UITagResetButton( this );
+		////////////////
 
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Tag Finish Button", this.FinishButton, false );
-			MenuContextService.AddMenuLoader( this.UIName, "ModHelpers: " + this.SubContextName + " Tag Reset Button", this.ResetButton, false );
+		private void ShowGeneral( UIState ui ) {
+			string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
+			if( mod_name == null ) {
+				LogHelpers.Log( "Could not load mod tags; no mod found" );
+				return;
+			}
+
+			this.InfoDisplay.SetDefaultText( "" );
+
+			this.ResetUIState( mod_name );
+			this.SetCurrentMod( ui, mod_name );
+			this.RecalculateMenuObjects();
+		}
+
+		////////////////
+
+		private void HideGeneral( UIState ui ) {
+			this.InfoDisplay.SetDefaultText( "" );
+
+			this.ResetMenuObjects();
 		}
 
 
@@ -81,11 +79,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 //LogHelpers.Log( "SetCurrentMod modname: " + mod_name + ", modtags: " + string.Join(",", net_modtags ) );
 				if( has_net_tags ) {
-					SessionMenuContext.InfoDisplay.SetDefaultText( "Do these tags look incorrect? If so, modify them." );
+					this.InfoDisplay.SetDefaultText( "Do these tags look incorrect? If so, modify them." );
 					this.FinishButton.SetModeReadOnly();
 					this.ResetButton.Disable();
 				} else {
-					SessionMenuContext.InfoDisplay.SetDefaultText( "No tags set for this mod. Why not add some?" );
+					this.InfoDisplay.SetDefaultText( "No tags set for this mod. Why not add some?" );
 					this.FinishButton.SetModeSubmit();
 				}
 				

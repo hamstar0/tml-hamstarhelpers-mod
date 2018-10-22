@@ -13,7 +13,8 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Menu {
-	abstract partial class SessionMenuContext : MenuContextBase {
+	abstract partial class SessionMenuContext : MenuContext {
+		public abstract string UIName { get; }
 		public abstract string SubContextName { get; }
 
 		////////////////
@@ -32,15 +33,15 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		////////////////
 
-		protected SessionMenuContext( string ui_name, bool display_info, bool occludes_logo ) {
+		protected SessionMenuContext( bool display_info, bool occludes_logo ) {
 			if( display_info ) {
 				WidgetMenuContext widget_ctx;
 
-				if( MenuContextService.GetMenuContext( ui_name, "ModHelpers: Info Display" ) == null ) {
+				if( MenuContextService.GetMenuContext( this.UIName, "ModHelpers: Info Display" ) == null ) {
 					widget_ctx = new WidgetMenuContext( new UIInfoDisplay(), false );
-					MenuContextService.AddMenuContext( ui_name, "ModHelpers: Info Display", widget_ctx );
+					MenuContextService.AddMenuContext( this.UIName, "ModHelpers: Info Display", widget_ctx );
 				} else {
-					widget_ctx = (WidgetMenuContext)MenuContextService.GetMenuContext( ui_name, "ModHelpers: Info Display" );
+					widget_ctx = (WidgetMenuContext)MenuContextService.GetMenuContext( this.UIName, "ModHelpers: Info Display" );
 				}
 
 				this.InfoDisplay = (UIInfoDisplay)widget_ctx.MyElement;
