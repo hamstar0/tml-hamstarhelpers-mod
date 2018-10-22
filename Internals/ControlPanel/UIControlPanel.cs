@@ -1,42 +1,17 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.TmlHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		private static object ModDataListLock = new object();
-		
-		////////////////
-
-
-		public static void UpdateModList( ModHelpersMod mymod ) {
-			var ctrl_panel = mymod.ControlPanel;
-
-			if( ctrl_panel == null || !ctrl_panel.ModListUpdateRequired || !ctrl_panel.IsOpen ) {
-				return;
-			}
-
-			ctrl_panel.ModListUpdateRequired = false;
-			
-			lock( UIControlPanel.ModDataListLock ) {
-				try {
-					ctrl_panel.ModListElem.Clear();
-					ctrl_panel.ModListElem.AddRange( ctrl_panel.ModDataList.ToArray() );
-				} catch( Exception ) { }
-			}
-		}
 
 
 
@@ -75,6 +50,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private bool IsPopulatingList = false;
 
 
+
 		////////////////
 
 		public UIControlPanel() {
@@ -102,37 +78,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( count == 0 && !this.IsPopulatingList ) {
 				this.LoadModListAsync();
 			}
-		}
-
-
-		////////////////
-
-		public void LoadModListAsync() {
-			ThreadPool.QueueUserWorkItem( _ => {
-				this.IsPopulatingList = true;
-
-				lock( UIControlPanel.ModDataListLock ) {
-					this.ModDataList.Clear();
-				}
-
-				var mymod = ModHelpersMod.Instance;
-				int i = 1;
-
-				foreach( var mod in ModHelpers.GetAllPlayableModsPreferredOrder() ) {
-					UIModData moditem = this.CreateModListItem( i++, mod );
-
-					lock( UIControlPanel.ModDataListLock ) {
-						this.ModDataList.Add( moditem );
-					}
-
-					if( mymod.Config.IsCheckingModVersions ) {
-						moditem.CheckForNewVersionAsync();
-					}
-				}
-
-				this.ModListUpdateRequired = true;
-				this.IsPopulatingList = false;
-			} );
 		}
 
 
@@ -223,77 +168,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 					this.SupportUrl.DrawHoverEffects( sb );
 				}
 			}
-		}
-
-
-		////////////////
-
-		public bool CanOpen() {
-			return !this.IsOpen && !Main.inFancyUI;
-		}
-
-
-		public void Open() {
-			this.IsOpen = true;
-
-			Main.playerInventory = false;
-			Main.editChest = false;
-			Main.npcChatText = "";
-
-			Main.inFancyUI = true;
-			Main.InGameUI.SetState( (UIState)this );
-
-			this.Backend = Main.InGameUI;
-
-			this.RecalculateMe();
-		}
-
-
-		public void Close() {
-			this.IsOpen = false;
-
-			Main.inFancyUI = false;
-			Main.InGameUI.SetState( (UIState)null );
-
-			this.Backend = null;
-		}
-
-		////////////////
-
-		private void SelectModFromList( UIModData list_item ) {
-			Mod mod = list_item.Mod;
-
-			if( this.CurrentModListItem != null ) {
-				this.Theme.ApplyListItem( this.CurrentModListItem );
-			}
-			this.Theme.ApplyListItemSelected( list_item );
-			this.CurrentModListItem = list_item;
-
-			this.Logic.SetCurrentMod( mod );
-
-			if( !ModMetaDataManager.HasGithub( mod ) ) {
-				this.DisableIssueInput();
-			} else {
-				this.EnableIssueInput();
-			}
-		}
-
-		////////////////
-
-		private void ApplyConfigChanges( ModHelpersMod mymod ) {
-			this.Logic.ApplyConfigChanges( mymod );
-
-			this.SetDialogToClose = true;
-		}
-
-		private void ToggleModLock( ModHelpersMod mymod ) {
-			if( !ModLockHelpers.IsWorldLocked() ) {
-				ModLockHelpers.LockWorld();
-			} else {
-				ModLockHelpers.UnlockWorld();
-			}
-
-			this.RefreshModLockButton( mymod );
 		}
 	}
 }
