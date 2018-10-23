@@ -40,6 +40,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		}
 		
 		public override void OnContexualize( string ui_class_name, string context_name ) {
+			base.OnContexualize( ui_class_name, context_name );
+
 			var finish_button_widget_ctx = new WidgetMenuContext( this.FinishButton, false );
 			var reset_button_widget_ctx = new WidgetMenuContext( this.ResetButton, false );
 

@@ -49,6 +49,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		}
 
 		public override void OnContexualize( string ui_class_name, string context_name ) {
+			base.OnContexualize( ui_class_name, context_name );
+
 			var recom_widget_ctx = new WidgetMenuContext( this.RecommendsList, false );
 			var dl_widget_ctx = new WidgetMenuContext( this.DownloadButton, false );
 

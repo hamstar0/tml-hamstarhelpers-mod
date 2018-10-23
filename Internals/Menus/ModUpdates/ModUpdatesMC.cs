@@ -31,6 +31,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		}
 		
 		public override void OnContexualize( string ui_class_name, string context_name ) {
+			base.OnContexualize( ui_class_name, context_name );
 		}
 
 

@@ -34,6 +34,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 			this.OccludesLogo = occludes_logo;
 			this.OldLogo1 = Main.logoTexture;
 			this.OldLogo2 = Main.logo2Texture;
+			this.InfoDisplay = new UIInfoDisplay();
 		}
 		
 		public override void OnContexualize( string ui_class_name, string context_name ) {
@@ -41,13 +42,12 @@ namespace HamstarHelpers.Components.UI.Menu {
 				WidgetMenuContext widget_ctx;
 
 				if( MenuContextService.GetMenuContext( ui_class_name, "ModHelpers: Info Display" ) == null ) {
-					widget_ctx = new WidgetMenuContext( new UIInfoDisplay(), false );
+					widget_ctx = new WidgetMenuContext( this.InfoDisplay, false );
 					MenuContextService.AddMenuContext( ui_class_name, "ModHelpers: Info Display", widget_ctx );
 				} else {
 					widget_ctx = (WidgetMenuContext)MenuContextService.GetMenuContext( ui_class_name, "ModHelpers: Info Display" );
+					this.InfoDisplay = (UIInfoDisplay)widget_ctx.MyElement;
 				}
-
-				this.InfoDisplay = (UIInfoDisplay)widget_ctx.MyElement;
 			}
 		}
 
