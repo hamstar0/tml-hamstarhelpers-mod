@@ -78,7 +78,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void ApplyModBrowserModInfoBindings( UIList ui_mod_list ) {
 			object mod_list;
 
-			if( !ReflectionHelpers.GetField( ui_mod_list, "_items", out mod_list ) ) {
+			if( !ReflectionHelpers.GetField( ui_mod_list, "_items", out mod_list ) || mod_list == null ) {
 				throw new Exception( "Invalid modList._items" );
 			}
 
@@ -88,6 +88,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			for( int i = 0; i < items_arr.Length; i++ ) {
 				var item = (UIElement)items_arr.GetValue( i );
+				if( item == null ) {
+					LogHelpers.Log( "Invalid modList._item[" + i + "]" );
+					continue;
+				}
 
 				//string mod_name;
 				//if( !ReflectionHelpers.GetField( item, "mod", out mod_name ) || mod_name == null ) {
@@ -97,7 +101,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				UIPanel mod_info_button;
 				if( !ReflectionHelpers.GetField( item, "moreInfoButton", BindingFlags.Instance | BindingFlags.NonPublic, out mod_info_button )
 						|| mod_info_button == null ) {
-					throw new Exception( "Invalid modList._item[" + i + "].moreInfoButton" );
+					LogHelpers.Log( "Invalid modList._item[" + i + "].moreInfoButton" );
+					continue;
 				}
 
 				mod_info_button.OnClick += ( evt, elem ) => {

@@ -65,8 +65,6 @@ namespace HamstarHelpers {
 				}
 			} else if( Main.netMode == 2 ) {
 				if( to_who == -1 && from_who == this.player.whoAmI ) {
-					PacketProtocol.QuickSendToClient<PlayerNewIdProtocol>( from_who, -1 );
-
 					Promises.AddSafeWorldLoadOncePromise( () => {
 						this.Logic.OnServerConnect( ModHelpersMod.Instance, Main.player[from_who] );
 					} );

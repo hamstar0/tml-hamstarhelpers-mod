@@ -122,7 +122,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportText1UI.Left.Set( -x_off, 1f );
 			this.SupportText1UI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.SupportText1UI.Recalculate();
-			this.SupportText1UI.TextColor = Color.MediumSpringGreen;
+			//this.SupportText1UI.TextColor = Color.MediumSpringGreen;
 			this.Elements.Insert( 0, this.SupportText1UI );
 
 			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f * scale );
@@ -135,7 +135,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportText2UI.Left.Set( -(x_off - (119f * scale)), 1f );
 			this.SupportText2UI.Top.Set( (y + (row * row_height)) * scale, 0f );
 			this.SupportText2UI.Recalculate();
-			this.SupportText2UI.TextColor = Color.MediumSpringGreen;
+			//this.SupportText2UI.TextColor = Color.MediumSpringGreen;
 			this.Elements.Insert( 0, this.SupportText2UI );
 
 			Main.OnPostDraw += SupportInfoDisplay._Draw;
@@ -207,7 +207,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				elem.Recalculate();
 			}
 
-			this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.35f );
+			this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.25f );
 			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( UITheme.Vanilla.UrlLitColor, AnimatedColors.Strobe.CurrentColor, 0.5f );
 			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( this.SupportUrlUI.Theme.UrlLitColor, AnimatedColors.DiscoFast.CurrentColor, 0.75f );
 			this.SupportUrlUI.RefreshTheme();

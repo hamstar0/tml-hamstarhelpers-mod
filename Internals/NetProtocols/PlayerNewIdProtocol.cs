@@ -34,9 +34,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveWithServer( int from_who ) {
 			var kv = this.PlayerIds.Single();
-			this.PlayerIds[ kv.Key ] = kv.Value;
 
-			this.SendToClient( -1, -1 );
+			this.PlayerIds[ kv.Key ] = kv.Value;
+			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ kv.Key ] = kv.Value;
 		}
 
 		protected override void ReceiveWithClient() {
