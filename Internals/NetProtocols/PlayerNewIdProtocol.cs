@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void SetClientDefaults() {
-			this.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetMyProperUniqueId();
+			this.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetProperUniqueId( Main.LocalPlayer );
 		}
 
 		protected override void SetServerDefaults( int to_who ) {
