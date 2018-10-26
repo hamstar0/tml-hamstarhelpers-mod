@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
@@ -160,7 +159,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			} else if( this.Desc.Contains( "State:" ) ) {
 				bg_color = Color.Lerp( bg_color, Color.DarkViolet, 0.4f );
 			} else if( this.Desc.Contains( "Judgmental:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.Gray, 0.4f );
+				bg_color = Color.Lerp( bg_color, Color.DimGray, 0.4f );
+			} else if( this.Desc.Contains( "Priviledge:" ) ) {
+				bg_color = Color.Lerp( bg_color, Color.SlateGray, 0.4f );
 			}
 			bg_color.A = a;
 
@@ -188,7 +189,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			} else if( this.Desc.Contains( "State:" ) ) {
 				edge_color = Color.Lerp( edge_color, Color.DarkViolet, 0.4f );
 			} else if( this.Desc.Contains( "Judgmental:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.Gray, 0.4f );
+				edge_color = Color.Lerp( edge_color, Color.DimGray, 0.4f );
+			} else if( this.Desc.Contains( "Priviledge:" ) ) {
+				edge_color = Color.Lerp( edge_color, Color.SlateGray, 0.4f );
 			}
 			edge_color.A = a;
 

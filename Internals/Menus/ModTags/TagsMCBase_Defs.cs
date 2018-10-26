@@ -113,13 +113,15 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					{ "Needs New World",        "Playing from the beginning is difficult, problematic, or just impossible." },
 					{ "Needs New Player",       "Character must begin as a blank slate, similarly." },
 					{ "Mod Interacting",        "Supplies data, alters behavior, provides APIs, or manages other mods." },
-					{ "Mod Collab",             "May be paired with (an)other mod(s) to create a more-than-sum-of-parts result." },
+					{ "Mod Collab",             "May be specifically paired with (an)other mod(s) to create a more-than-sum-of-parts result." },
 					{ "Server Use",             "Affects servers. Admin tools, scheduled events, game rule changes, etc." },
 					{ "May Lag",                "May use system resources or network bandwidth heavily. Good computer recommended." },
 					{ "Adds UI",                "Adds user interface components for mod functions." },
 					{ "Configurable",           "Provides options for configuring game settings (menu, config file, commands, etc.)." },
 					{ "Technical",              "May require a brain." },
 					{ "Rated R",                "Guess." },
+					{ "Accesses System",		"Priviledge: Accesses files, makes web requests, opens programs, uses system functions, etc." },
+					{ "Injects Code",			"Priviledge: Uses Reflection, swaps methods, or invokes libraries that do these." },
 				};
 
 				if( !ModHelpersMod.Instance.Config.DisableJudgmentalTags ) {
