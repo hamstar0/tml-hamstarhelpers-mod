@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers;
+﻿/*using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -52,6 +53,13 @@ namespace HamstarHelpers.Components.Players {
 		////////////////
 
 		internal static void LoadAll( int player_who, TagCompound tags ) {
+			Player player = Main.player[ player_who ];
+			if( player == null || !player.active ) {
+				LogHelpers.Log( "PlayerData.LoadAll - Player id'd "+player_who+" could not load their data." );
+				return;
+			}
+
+			
 			var datas = ModHelpersMod.Instance.PlayerDataMngr.Data[ player_who ];
 
 			foreach( var data in datas.Values ) {
@@ -91,4 +99,4 @@ namespace HamstarHelpers.Components.Players {
 		
 		abstract protected void Save( TagCompound tags );
 	}
-}
+}*/

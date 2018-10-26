@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Players;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Internals.NetProtocols;
@@ -80,8 +80,11 @@ namespace HamstarHelpers {
 			int who = player.whoAmI;
 
 			Action run = () => {
-				var mymod = (ModHelpersMod)this.mod;
+				if( has_entered_world ) { return; }
+				has_entered_world = true;
 
+				var mymod = (ModHelpersMod)this.mod;
+				
 				if( Main.netMode == 0 ) {
 					this.Logic.OnSingleConnect( mymod, Main.player[who] );
 				} else if( Main.netMode == 1 ) {
@@ -93,15 +96,13 @@ namespace HamstarHelpers {
 				if( args.Who != who ) { return false; }
 
 				run();
-
-				has_entered_world = true;
 				return false;
 			} );
 
 			Timers.SetTimer( "ModHelpersOnEnterWorldFailsafe", 2 * 60, () => {
 				if( !has_entered_world ) {
-					Main.NewText( "Warning: Player ID failed to load. Some mods might fail to load properly.", Color.Red );
-					Main.NewText( "To fix, try restarting game or reloading mods. If this happens again, please report this issue.", Color.DarkGray );
+					LogHelpers.Log( "Warning: Player ID failed to load." );
+					//Main.NewText( "To fix, try restarting game or reloading mods. If this happens again, please report this issue.", Color.DarkGray );
 
 					run();  // Run anyway
 				}
@@ -113,24 +114,36 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void Load( TagCompound tags ) {
-			PlayerData.LoadAll( this.player.whoAmI, tags );
+			try {
+				//PlayerData.LoadAll( this.player.whoAmI, tags );
 
-			this.Logic.Load( tags );
-			
-			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
+				this.Logic.Load( tags );
 
-			Promises.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
+				var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
+
+				Promises.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
+			} catch( Exception e ) {
+				if( !(e is HamstarException) ) {
+					throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
+				}
+			}
 		}
 
 		public override TagCompound Save() {
 			var tags = new TagCompound();
-			var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
+			try {
+				var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
 
-			PlayerData.SaveAll( this.player.whoAmI, tags );
+				//PlayerData.SaveAll( this.player.whoAmI, tags );
 			
-			Promises.TriggerValidatedPromise( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
+				Promises.TriggerValidatedPromise( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
 
-			this.Logic.Save( tags );
+				this.Logic.Save( tags );
+			} catch( Exception e ) {
+				if( !(e is HamstarException) ) {
+					throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Save - " + e.ToString() );
+				}
+			}
 
 			return tags;
 		}
