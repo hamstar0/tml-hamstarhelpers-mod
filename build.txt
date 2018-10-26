@@ -1,5 +1,5 @@
 author = hamstar
-version = 3.1.0.1
+version = 3.1.0.2
 displayName = Mod Helpers
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 includePDB = true

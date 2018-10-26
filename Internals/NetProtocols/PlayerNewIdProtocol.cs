@@ -4,7 +4,6 @@ using HamstarHelpers.Components.Network.Data;
 using Terraria;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -33,10 +32,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void ReceiveWithServer( int from_who ) {
-			var kv = this.PlayerIds.Single();
-
-			this.PlayerIds[ kv.Key ] = kv.Value;
-			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ kv.Key ] = kv.Value;
+			string uid;
+			if( this.PlayerIds.TryGetValue( from_who, out uid ) ) {
+				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ from_who ] = uid;
+			} else {
+				LogHelpers.Log( "!ModHelpers.PlayerNewIdProtocol.ReceiveWithServer - No UID reported from player id'd "+from_who );
+			}
 		}
 
 		protected override void ReceiveWithClient() {

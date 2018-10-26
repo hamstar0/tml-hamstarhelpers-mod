@@ -61,6 +61,7 @@ namespace HamstarHelpers.Internals.Logic {
 			// Every player must have their ids accounted for!
 			if( !mymod.PlayerIdentityHelpers.PlayerIds.ContainsKey(player.whoAmI) ) {
 				string timer_name = "ModHelpersPlayerIdFailsafe_" + player.whoAmI;
+
 				if( Timers.GetTimerTickDuration( timer_name ) == 0 ) {
 					Timers.SetTimer( timer_name, 3 * 60, () => {
 						PacketProtocol.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1 );
