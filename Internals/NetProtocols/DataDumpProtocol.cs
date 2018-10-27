@@ -17,9 +17,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override bool ReceiveRequestWithServer( int from_who ) {
-			bool success;
 			if( ModHelpersMod.Instance.Config.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer ) ) {
-				DataDumper.DumpToFile( out success );
+				string _;
+				DataDumper.DumpToFile( out _ );
 			}
 
 			return true;

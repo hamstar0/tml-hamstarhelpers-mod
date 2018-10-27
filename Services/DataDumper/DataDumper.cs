@@ -96,7 +96,14 @@ namespace HamstarHelpers.Services.DataDumper {
 
 		////////////////
 
+		[Obsolete("use DumpToFile(out string)", true)]
 		public static string DumpToFile( out bool success ) {
+			string file_name;
+			success = DataDumper.DumpToFile( out file_name );
+			return file_name;
+		}
+
+		public static bool DumpToFile( out string file_name ) {
 			string data;
 			IDictionary<string, Func<string>> dumpables = DataDumper.GetDumpables();
 
@@ -112,13 +119,13 @@ namespace HamstarHelpers.Services.DataDumper {
 				);
 			}
 			
-			string file_name = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
+			file_name = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
 			string rel_path = DataDumper.GetRelativePath();
 			string full_folder = Main.SavePath + Path.DirectorySeparatorChar + rel_path;
 			string full_path = full_folder + Path.DirectorySeparatorChar + file_name;
 
 			DataDumper.PrepareDir();
-			success = FileHelpers.SaveTextFile( data, full_path, false, false );
+			bool success = FileHelpers.SaveTextFile( data, full_path, false, false );
 
 			if( success ) {
 				// Allow admins to dump on behalf of server, also
@@ -129,7 +136,7 @@ namespace HamstarHelpers.Services.DataDumper {
 				}
 			}
 
-			return file_name;
+			return success;
 		}
 	}
 }

@@ -166,26 +166,31 @@ namespace HamstarHelpers {
 
 		public override void ProcessTriggers( TriggersSet triggers_set ) {
 			var mymod = (ModHelpersMod)this.mod;
-			bool success;
 
-			if( mymod.ControlPanelHotkey.JustPressed ) {
+			if( mymod.ControlPanelHotkey == null && mymod.ControlPanelHotkey.JustPressed ) {
 				if( mymod.Config.DisableControlPanelHotkey ) {
 					Main.NewText( "Control panel hotkey disabled.", Color.Red );
 				} else {
-					if( mymod.ControlPanel.IsOpen ) {
-						mymod.ControlPanel.Open();
-					} else {
-						mymod.ControlPanel.Close();
+					if( mymod.ControlPanel != null ) {
+						if( mymod.ControlPanel.IsOpen ) {
+							mymod.ControlPanel.Open();
+						} else {
+							mymod.ControlPanel.Close();
+						}
 					}
 				}
 			}
 
-			if( mymod.DataDumpHotkey.JustPressed ) {
-				string file_name = DataDumper.DumpToFile( out success );
-				Main.NewText( "Dumped latest debug data to log file "+file_name, Color.Azure );
+			if( mymod.DataDumpHotkey != null && mymod.DataDumpHotkey.JustPressed ) {
+				string file_name;
+				if( DataDumper.DumpToFile( out file_name ) ) {
+					Main.NewText( "Dumped latest debug data to log file " + file_name, Color.Azure );
+				}
 			}
 
-			mymod.CustomHotkeys.ProcessTriggers( triggers_set );
+			if( mymod.CustomHotkeys != null ) {
+				mymod.CustomHotkeys.ProcessTriggers( triggers_set );
+			}
 		}
 	}
 }
