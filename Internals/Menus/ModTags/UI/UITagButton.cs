@@ -161,7 +161,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			} else if( this.Desc.Contains( "Judgmental:" ) ) {
 				bg_color = Color.Lerp( bg_color, Color.DimGray, 0.4f );
 			} else if( this.Desc.Contains( "Priviledge:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.SlateGray, 0.4f );
+				bg_color = Color.Lerp( bg_color, Color.Black, 0.4f );
 			}
 			bg_color.A = a;
 
@@ -191,7 +191,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			} else if( this.Desc.Contains( "Judgmental:" ) ) {
 				edge_color = Color.Lerp( edge_color, Color.DimGray, 0.4f );
 			} else if( this.Desc.Contains( "Priviledge:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.SlateGray, 0.4f );
+				edge_color = Color.Lerp( edge_color, Color.Black, 0.4f );
 			}
 			edge_color.A = a;
 

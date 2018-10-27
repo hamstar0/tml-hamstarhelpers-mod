@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
@@ -19,6 +18,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 		private readonly UIText Label;
 		private readonly UIList List;
+		private readonly UIText EmptyText;
 		private IDictionary<Rectangle, string> Descriptions = new Dictionary<Rectangle, string>();
 		private ISet<string> ModNameList = new HashSet<string>();
 
@@ -58,6 +58,11 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 			};
 			this.Append( this.List );
 
+			this.EmptyText = new UIText( "See the Mod Helpers\nhomepage for listing\nother mods here." );
+			this.EmptyText.TextColor = new Color( 128, 128, 128 );
+			this.EmptyText.Top.Set( 16f, 0f );
+			this.Append( this.EmptyText );
+
 			this.Recalculate();
 		}
 
@@ -76,6 +81,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 		////////////////
 
 		public void Clear() {
+			bool is_empty = this.List._items.Count == 0;
+
 			foreach( UIText elem in this.List._items ) {
 				string timer_name = "ModHelpersUIRecommendsList_" + elem.Text;
 
@@ -88,6 +95,11 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 			this.Descriptions.Clear();
 			this.List.Clear();
 			this.Recalculate();
+
+			if( !is_empty ) {
+				this.Append( this.EmptyText );
+				this.Recalculate();
+			}
 		}
 
 		////////////////
@@ -149,6 +161,10 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 				return false;
 			} );
+
+			this.RemoveChild( this.EmptyText );
+			this.EmptyText.Remove();
+			this.Recalculate();
 		}
 	}
 }
