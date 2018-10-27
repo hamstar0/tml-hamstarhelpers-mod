@@ -167,30 +167,45 @@ namespace HamstarHelpers {
 		public override void ProcessTriggers( TriggersSet triggers_set ) {
 			var mymod = (ModHelpersMod)this.mod;
 
-			if( mymod.ControlPanelHotkey == null && mymod.ControlPanelHotkey.JustPressed ) {
-				if( mymod.Config.DisableControlPanelHotkey ) {
-					Main.NewText( "Control panel hotkey disabled.", Color.Red );
-				} else {
-					if( mymod.ControlPanel != null ) {
-						if( mymod.ControlPanel.IsOpen ) {
-							mymod.ControlPanel.Open();
-						} else {
-							mymod.ControlPanel.Close();
+			try {
+				if( mymod.ControlPanelHotkey != null && mymod.ControlPanelHotkey.JustPressed ) {
+					if( mymod.Config.DisableControlPanelHotkey ) {
+						Main.NewText( "Control panel hotkey disabled.", Color.Red );
+					} else {
+						if( mymod.ControlPanel != null ) {
+							if( mymod.ControlPanel.IsOpen ) {
+								mymod.ControlPanel.Open();
+							} else {
+								mymod.ControlPanel.Close();
+							}
 						}
 					}
 				}
+			} catch( Exception e ) {
+				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (1) - " + e.ToString() );
+				return;
 			}
 
-			if( mymod.DataDumpHotkey != null && mymod.DataDumpHotkey.JustPressed ) {
-				string file_name;
-				if( DataDumper.DumpToFile( out file_name ) ) {
-					Main.NewText( "Dumped latest debug data to log file " + file_name, Color.Azure );
+			try {
+				if( mymod.DataDumpHotkey != null && mymod.DataDumpHotkey.JustPressed ) {
+					string file_name;
+					if( DataDumper.DumpToFile( out file_name ) ) {
+						Main.NewText( "Dumped latest debug data to log file " + file_name, Color.Azure );
+					}
 				}
+			} catch(Exception e ) {
+				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (2) - " + e.ToString() );
+				return;
 			}
 
-			if( mymod.CustomHotkeys != null ) {
-				mymod.CustomHotkeys.ProcessTriggers( triggers_set );
+			try {
+				if( mymod.CustomHotkeys != null ) {
+					mymod.CustomHotkeys.ProcessTriggers( triggers_set );
+				}
+			} catch(Exception e ) {
+				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (3) - " + e.ToString() );
+				return;
 			}
-		}
+}
 	}
 }
