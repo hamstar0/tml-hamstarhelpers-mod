@@ -53,6 +53,23 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityCore : Entity {
 		public string DisplayName = "";
 
+		////////////////
+
+		public int WhoAmI {
+			get { return this.whoAmI; }
+			private set { this.whoAmI = value; }
+		}
+		
+		public Vector2 Position {
+			get { return this.position; }
+			set { this.position = value; }
+		}
+
+		public Vector2 Velocity {
+			get { return this.velocity; }
+			set { this.velocity = value; }
+		}
+
 
 		////////////////
 
