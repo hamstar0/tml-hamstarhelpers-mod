@@ -110,6 +110,8 @@
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCInvasionHelpers_Obsolete.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\TileHelpers\TileType.cs" />
+    <Compile Include="Helpers\TileHelpers\TileWorldFinderHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldStateHelpers.cs" />
     <Compile Include="Helpers\WorldHelpers\WorldStateHelpers_API.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel_ModList.cs" />
