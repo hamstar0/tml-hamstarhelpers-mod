@@ -120,8 +120,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					{ "Configurable",           "Provides options for configuring game settings (menu, config file, commands, etc.)." },
 					{ "Technical",              "May require a brain." },
 					{ "Rated R",                "Guess." },
-					{ "Accesses System",		"Priviledge: Accesses files, makes web requests, opens programs, uses system functions, etc." },
-					{ "Injects Code",			"Priviledge: Uses Reflection, swaps methods, or invokes libraries that do these." },
+					{ "Accesses System",		"Priviledge: Accesses files, opens programs, uses system functions, etc." },
+					{ "Accesses Web",			"Priviledge: Makes web requests to send or receive data." }
+					//{ "Injects Code",           "Priviledge: Uses Reflection, swaps methods, or invokes libraries that do these." },
 				};
 
 				if( !ModHelpersMod.Instance.Config.DisableJudgmentalTags ) {

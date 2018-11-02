@@ -9,11 +9,11 @@ namespace HamstarHelpers.Internals.Logic {
 		////////////////
 		
 		public void LoadForWorld( ModHelpersMod mymod, TagCompound tags ) {
-			mymod.WorldHelpers.Load( mymod, tags );
+			mymod.WorldStateHelpers.Load( mymod, tags );
 		}
 
 		public void SaveForWorld( ModHelpersMod mymod, TagCompound tags ) {
-			mymod.WorldHelpers.Save( mymod, tags );
+			mymod.WorldStateHelpers.Save( mymod, tags );
 		}
 	}
 }

@@ -107,10 +107,14 @@ namespace HamstarHelpers {
 		////
 
 		private void UnloadInner() {
-			this.Promises.FulfillModUnloadPromises();
+			try {
+				this.Promises.FulfillModUnloadPromises();
 
-			this.UnloadModData();
-			this.UnloadOuter();
+				this.UnloadModData();
+				this.UnloadOuter();
+			} catch( Exception e ) {
+				ErrorLogger.Log( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );
+			}
 
 			try {
 				if( this.HasUnhandledExceptionLogger ) {

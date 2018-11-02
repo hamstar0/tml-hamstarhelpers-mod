@@ -110,6 +110,8 @@
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
     <Compile Include="Helpers\NPCHelpers\NPCInvasionHelpers_Obsolete.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\WorldHelpers\WorldStateHelpers.cs" />
+    <Compile Include="Helpers\WorldHelpers\WorldStateHelpers_API.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel_ModList.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel_Funcs.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
@@ -284,7 +286,7 @@
     <Compile Include="Components\Errors\Errors.cs" />
     <Compile Include="Helpers\HudHelpers\HudHelpers.cs" />
     <Compile Include="Helpers\HudHelpers\HudMapHelpers.cs" />
-    <Compile Include="Helpers\WorldHelpers\WorldHelpers_Defs.cs" />
+    <Compile Include="Helpers\WorldHelpers\Constants.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaColorHelpers.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaHelpers.cs" />
   </ItemGroup>

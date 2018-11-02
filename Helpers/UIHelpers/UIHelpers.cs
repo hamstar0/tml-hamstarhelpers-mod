@@ -5,6 +5,19 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.UIHelpers {
 	public static class UIHelpers {
+		public static readonly int MinScreenWidth = 800;
+		public static readonly int MinScreenHeight = 640;
+		public static readonly int MaxScreenWidth = 1920;
+		public static readonly int MaxScreenHeight = 1080;
+		public static readonly int MinScreenWidthTiles = 80;
+		public static readonly int MinScreenHeightTiles = 40;
+		public static readonly int MaxScreenWidthTiles = 124;   //1920 + 64
+		public static readonly int MaxScreenHeightTiles = 70;   //1080 + 40
+
+
+
+		////////////////
+
 		public static Rectangle GetWorldFrameOfScreen() {
 			int screen_wid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
 			int screen_hei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );

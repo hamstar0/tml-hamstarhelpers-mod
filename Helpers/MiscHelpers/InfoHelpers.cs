@@ -117,7 +117,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			string[] mods_arr = mods_list.ToArray();
 			bool is_day = Main.dayTime;
 			double time_of_day = Main.time;
-			int half_days = WorldHelpers.WorldHelpers.GetElapsedHalfDays();
+			int half_days = WorldHelpers.WorldStateHelpers.GetElapsedHalfDays();
 			string world_size = WorldHelpers.WorldHelpers.GetSize().ToString();
 			string[] world_prog = InfoHelpers.GetWorldProgress().ToArray();
 			int active_items = ItemHelpers.ItemHelpers.GetActive().Count;

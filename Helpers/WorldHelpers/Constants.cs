@@ -34,11 +34,4 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		Large,
 		SuperLarge
 	}
-
-
-
-	public partial class WorldHelpers {
-		public readonly static int VanillaDayDuration = 54000;
-		public readonly static int VanillaNightDuration = 32400;
-	}
 }
