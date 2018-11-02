@@ -4,19 +4,36 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.TileHelpers {
 	public class TileType {
-		public bool? IsWire;
-		public bool? IsSolid;
-		public bool IsPlatformSolid;
-		public bool IsActuatedSolid;
-		public bool IsVanillaBombable;
-
-		public bool? HasWall;
-
-		public bool? HasWater;
-		public bool? HasHoney;
-		public bool? HasLava;
+		public readonly static TileType OpenWall = new TileType {
+			IsSolid = false,
+			HasWall = true
+		};
+		public readonly static TileType CommonSolid = new TileType {
+			IsSolid = true,
+			IsActuatedSolid = true,
+			IsPlatformSolid = false
+		};
 
 
+
+		////////////////
+
+		public bool? IsWire { get; private set; }
+
+		public bool? IsSolid { get; private set; }
+		public bool IsPlatformSolid { get; private set; }
+		public bool IsActuatedSolid { get; private set; }
+		public bool IsVanillaBombable { get; private set; }
+
+		public bool? HasWall { get; private set; }
+
+		public bool? HasWater { get; private set; }
+		public bool? HasHoney { get; private set; }
+		public bool? HasLava { get; private set; }
+
+
+
+		////////////////
 
 		public bool Check( int tile_x, int tile_y ) {
 			Tile tile = Main.tile[ tile_x, tile_y ];
