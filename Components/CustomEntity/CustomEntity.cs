@@ -53,7 +53,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) {
 			Player owner = PlayerIdentityHelpers.GetPlayerByProperId( owner_uid );
 			if( owner == null ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.CTor_3 - Could not verify if entity's owner is present or absent." );
+				throw new HamstarException( "!ModHelpers.CustomEntity.CTor_3 - Could not verify if entity's owner (by id '"+owner_uid+"') is present or absent." );
 			}
 
 			int owner_who = owner == null ? -1 : owner.whoAmI;

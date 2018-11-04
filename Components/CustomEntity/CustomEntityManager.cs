@@ -16,10 +16,16 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
+		public readonly static object MyLock = new object();
+
+
+
+		////////////////
+
 		internal CustomEntityTemplateManager TemplateMngr;
 
-		internal readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
-		internal readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
+		private readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
+		private readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
 
 		private Func<bool> OnTickGet;
 
@@ -48,14 +54,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			Promises.AddPostWorldUnloadEachPromise( () => {
-				this.EntitiesByIndexes.Clear();
-				this.EntitiesByComponentType.Clear();
+				lock( CustomEntityManager.MyLock ) {
+					this.EntitiesByIndexes.Clear();
+					this.EntitiesByComponentType.Clear();
+				}
 			} );
 
 			DataDumper.SetDumpSource( "CustomEntityList", () => {
-				return string.Join( "\n  ", this.EntitiesByIndexes.OrderBy( kv => kv.Key )
-					.Select( kv => kv.Key+": "+kv.Value.ToString() )
-				);
+				lock( CustomEntityManager.MyLock ) {
+					return string.Join( "\n  ", this.EntitiesByIndexes.OrderBy( kv => kv.Key )
+						.Select( kv => kv.Key + ": " + kv.Value.ToString() )
+					);
+				}
 			} );
 		}
 
@@ -67,7 +77,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private static void _Update() { // <- Just in case references are doing something funky...
-			ModHelpersMod mymod = ModHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.CustomEntMngr == null ) { return; }
 
 			if( mymod.CustomEntMngr.OnTickGet() ) {
@@ -78,8 +88,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal void Update() {
 			if( !LoadHelpers.IsWorldBeingPlayed() ) { return; }
 
-			foreach( CustomEntity ent in this.EntitiesByIndexes.Values.ToArray() ) {
-				ent.Update();
+			lock( CustomEntityManager.MyLock ) {
+				foreach( CustomEntity ent in this.EntitiesByIndexes.Values.ToArray() ) {
+					ent.Update();
+				}
 			}
 		}
 
@@ -87,7 +99,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		internal void DrawAll( SpriteBatch sb ) {
-			foreach( CustomEntity ent in this.EntitiesByIndexes.Values ) {
+			CustomEntity[] ents;
+			lock( CustomEntityManager.MyLock ) {
+				ents = this.EntitiesByIndexes.Values.ToArray();
+			}
+
+			foreach( CustomEntity ent in ents ) {
 				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
 				if( draw_comp != null ) {
 					draw_comp.Draw( sb, ent );

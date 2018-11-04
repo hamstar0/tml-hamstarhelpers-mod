@@ -70,6 +70,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 			set { this.velocity = value; }
 		}
 
+		public int Width {
+			get { return this.width; }
+			set { this.width = value; }
+		}
+
+		public int Height {
+			get { return this.height; }
+			set { this.height = value; }
+		}
+
 
 		////////////////
 

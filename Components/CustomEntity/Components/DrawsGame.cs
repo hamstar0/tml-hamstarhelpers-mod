@@ -55,6 +55,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			}
 
 			var src_mod = ModLoader.GetMod( this.ModName );
+			if( src_mod == null ) {
+				this.IsInitialized = false;
+				return;
+			}
 
 			if( !Main.dedServ ) {
 				if( this.Texture == null ) {
@@ -81,7 +85,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var scr_scr_pos = core.position - Main.screenPosition;
 			var tex_rect = new Rectangle( 0, 0, this.Texture.Width, this.Texture.Height / this.FrameCount );
 
-			Color color = Lighting.GetColor( (int)( core.position.X / 16), (int)( core.position.Y / 16), Color.White );
+			Color color = Lighting.GetColor( (int)( core.Center.X / 16), (int)( core.Center.Y / 16), Color.White );
 			float scale = 1f;
 
 			SpriteEffects dir = DrawsInGameEntityComponent.GetOrientation( core );

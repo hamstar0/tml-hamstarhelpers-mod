@@ -178,7 +178,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 					this.LatestAvailableVersion = args.Info[ this.Mod.Name ].Item2;
 				} else {
 					if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
-						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName ); //+ "': " + reason );
+						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName+"'" ); //+ "': " + reason );
 					}
 				}
 				return false;

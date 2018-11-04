@@ -26,7 +26,10 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 			var core = new CustomEntityCore( template.DisplayName, template.Width, template.Height, default(Vector2), 0 );
 			var components = template.Components.Select( c => c.InternalClone() ).ToList();
 
-			return new CustomEntity( uid, core, components );
+			if( !string.IsNullOrEmpty(uid) ) {
+				return new CustomEntity( uid, core, components );
+			}
+			return new CustomEntity( core, components );
 		}
 
 

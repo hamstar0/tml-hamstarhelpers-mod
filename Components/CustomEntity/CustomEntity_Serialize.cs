@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using Terraria;
 
+
 namespace HamstarHelpers.Components.CustomEntity {
 	internal class CustomEntityConverter : JsonConverter {
 		public override bool CanWrite {
@@ -54,7 +55,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 					i++;
 				}
 
-				return new CustomEntity( player_uid, core, components );
+				if( !string.IsNullOrEmpty(player_uid) ) {
+					return new CustomEntity( player_uid, core, components );
+				}
+				return new CustomEntity( core, components );
 			} catch( Exception e ) {
 				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - "+e.Message );
 				return null;

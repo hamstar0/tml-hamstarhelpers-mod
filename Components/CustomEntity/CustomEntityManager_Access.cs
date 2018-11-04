@@ -32,15 +32,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 
 				comp_type = component.GetType();
-				do {
-					if( !mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-						mngr.EntitiesByComponentType[ comp_type ] = new HashSet<int>();
-					}
+				lock( CustomEntityManager.MyLock ) {
+					do {
+						if( !mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+							mngr.EntitiesByComponentType[comp_type] = new HashSet<int>();
+						}
 
-					mngr.EntitiesByComponentType[ comp_type ].Add( who );
+						mngr.EntitiesByComponentType[comp_type].Add( who );
 
-					comp_type = comp_type.BaseType;
-				} while( comp_type != base_type );
+						comp_type = comp_type.BaseType;
+					} while( comp_type != base_type );
+				}
 			}
 
 			ent.Core.whoAmI = who;
@@ -86,28 +88,32 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
 
-			IList<CustomEntityComponent> ent_components = mngr.EntitiesByIndexes[who].Components;
+			lock( CustomEntityManager.MyLock ) {
+				IList<CustomEntityComponent> ent_components = mngr.EntitiesByIndexes[who].Components;
 
-			foreach( CustomEntityComponent component in ent_components ) {
-				comp_type = component.GetType();
-				do {
-					if( mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-						mngr.EntitiesByComponentType[comp_type].Remove( who );
-					}
+				foreach( CustomEntityComponent component in ent_components ) {
+					comp_type = component.GetType();
+					do {
+						if( mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
+							mngr.EntitiesByComponentType[comp_type].Remove( who );
+						}
 
-					comp_type = comp_type.BaseType;
-				} while( comp_type != base_type );
+						comp_type = comp_type.BaseType;
+					} while( comp_type != base_type );
+				}
+
+				mngr.EntitiesByIndexes.Remove( who );
 			}
-
-			mngr.EntitiesByIndexes.Remove( who );
 		}
 
 
 		public static void ClearAllEntities() {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
-			mngr.EntitiesByIndexes.Clear();
-			mngr.EntitiesByComponentType.Clear();
+			lock( CustomEntityManager.MyLock ) {
+				mngr.EntitiesByIndexes.Clear();
+				mngr.EntitiesByComponentType.Clear();
+			}
 		}
 
 
@@ -120,21 +126,23 @@ namespace HamstarHelpers.Components.CustomEntity {
 			ISet<int> ent_idxs = new HashSet<int>();
 			Type curr_type = typeof( T );
 
-			if( !mngr.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
-				foreach( var kv in mngr.EntitiesByComponentType ) {
-					if( kv.Key.IsSubclassOf( curr_type ) ) {
-						ent_idxs.UnionWith( kv.Value );
+			lock( CustomEntityManager.MyLock ) {
+				if( !mngr.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
+					foreach( var kv in mngr.EntitiesByComponentType ) {
+						if( kv.Key.IsSubclassOf( curr_type ) ) {
+							ent_idxs.UnionWith( kv.Value );
+						}
+					}
+
+					if( ent_idxs == null ) {
+						return new HashSet<CustomEntity>();
 					}
 				}
 
-				if( ent_idxs == null ) {
-					return new HashSet<CustomEntity>();
-				}
+				return new HashSet<CustomEntity>(
+					ent_idxs.Select( i => (CustomEntity)mngr.EntitiesByIndexes[i] )
+				);
 			}
-
-			return new HashSet<CustomEntity>(
-				ent_idxs.Select( i => (CustomEntity)mngr.EntitiesByIndexes[i] )
-			);
 		}
 	}
 }

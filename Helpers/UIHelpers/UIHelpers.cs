@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 using Terraria;
 
 
@@ -17,6 +18,13 @@ namespace HamstarHelpers.Helpers.UIHelpers {
 
 
 		////////////////
+
+		public static Tuple<int, int> GetScreenSize() {
+			int screen_wid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
+			int screen_hei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
+
+			return Tuple.Create( screen_wid, screen_hei );
+		}
 
 		public static Rectangle GetWorldFrameOfScreen() {
 			int screen_wid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
