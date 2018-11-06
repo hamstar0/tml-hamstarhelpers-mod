@@ -43,7 +43,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Main.OnTick += CustomEntityManager._Update;
 
 			// Initialize components
-			var component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
+			var component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntityComponent) );
 
 			foreach( var component_type in component_types ) {
 				Type[] nested_types = component_type.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
@@ -57,7 +57,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( !Main.dedServ ) {
-				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay( EffectPriority.VeryHigh, RenderLayers.TilesAndNPCs );
+				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay( EffectPriority.VeryHigh, RenderLayers.Walls );
+				Overlays.Scene.Activate( "CustomEntity" );
 
 				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
 			}

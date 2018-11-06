@@ -142,8 +142,11 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 		////////////////
 
 		private void AddRawModEntry( string mod_display_name, string mod_name, string recommended_because ) {
-			string fmt_display_name = mod_display_name?.Substring( 0, 18 ) ?? mod_name;
+			string fmt_display_name;
+
 			if( mod_display_name != null ) {
+				fmt_display_name = mod_display_name.Length > 24 ? mod_display_name.Substring( 0, 22 ) : mod_display_name;
+
 				if( fmt_display_name.Length != mod_display_name.Length ) {
 					fmt_display_name += "...";
 				}
@@ -169,7 +172,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 
 		private void AddModEntry( string mod_display_name, string mod_name, string recommended_because ) {
-			string fmt_display_name = mod_display_name.Substring( 18 );
+			string fmt_display_name = mod_display_name.Length > 24 ? mod_display_name.Substring( 0, 22 ) : mod_display_name;
 			if( fmt_display_name.Length != mod_display_name.Length ) {
 				fmt_display_name += "...";
 			}
