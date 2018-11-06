@@ -67,6 +67,7 @@
     <Compile Include="Components\CustomEntity\Components\Saveable_Load.cs" />
     <Compile Include="Components\CustomEntity\Components\Saveable.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityCore.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntityOverlay.cs" />
     <Compile Include="Components\CustomEntity\Templates\CustomEntityTemplate.cs" />
     <Compile Include="Components\CustomEntity\Templates\TemplatesManager.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityManager_Access.cs" />

@@ -3,16 +3,18 @@ using HamstarHelpers.Components.CustomEntity.Templates;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Helpers.XnaHelpers;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Services.Timers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Terraria;
-
+using Terraria.Graphics.Effects;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
@@ -53,6 +55,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 			}
 
+			if( !Main.dedServ ) {
+				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay( EffectPriority.VeryHigh, RenderLayers.TilesAndNPCs );
+
+				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
+			}
+
 			Promises.AddPostWorldUnloadEachPromise( () => {
 				lock( CustomEntityManager.MyLock ) {
 					this.EntitiesByIndexes.Clear();
@@ -70,6 +78,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		~CustomEntityManager() {
+			if( !Main.dedServ ) {
+				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
+			}
 			Main.OnTick -= CustomEntityManager._Update;
 		}
 
@@ -97,6 +108,34 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
+		
+		private static void _PostDrawAll( GameTime _ ) {
+			var sb = Main.spriteBatch;
+			bool is_begun = XnaHelpers.IsMainSpriteBatchBegun();
+
+			if( !is_begun ) {
+				sb.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.BackgroundViewMatrix.TransformationMatrix );
+			}
+			ModHelpersMod.Instance?.CustomEntMngr?.PostDrawAll( sb );
+			if( !is_begun ) {
+				sb.End();
+			}
+		}
+
+
+		internal void PreDrawAll( SpriteBatch sb ) {
+			CustomEntity[] ents;
+			lock( CustomEntityManager.MyLock ) {
+				ents = this.EntitiesByIndexes.Values.ToArray();
+			}
+
+			foreach( CustomEntity ent in ents ) {
+				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
+				if( draw_comp != null ) {
+					draw_comp.PreDraw( Main.spriteBatch, ent );
+				}
+			}
+		}
 
 		internal void DrawAll( SpriteBatch sb ) {
 			CustomEntity[] ents;
@@ -108,6 +147,21 @@ namespace HamstarHelpers.Components.CustomEntity {
 				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
 				if( draw_comp != null ) {
 					draw_comp.Draw( sb, ent );
+				}
+			}
+		}
+
+
+		private void PostDrawAll( SpriteBatch sb ) {
+			CustomEntity[] ents;
+			lock( CustomEntityManager.MyLock ) {
+				ents = this.EntitiesByIndexes.Values.ToArray();
+			}
+
+			foreach( CustomEntity ent in ents ) {
+				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
+				if( draw_comp != null ) {
+					draw_comp.PostDraw( Main.spriteBatch, ent );
 				}
 			}
 		}

@@ -71,11 +71,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		////////////////
-
-		public void Draw( SpriteBatch sb, CustomEntity ent ) {
+		
+		public virtual bool PreDraw( SpriteBatch sb, CustomEntity ent ) { return true; }
+		
+		public virtual void Draw( SpriteBatch sb, CustomEntity ent ) {
 			if( Main.netMode == 2 ) { throw new Exception( "Server cannot Draw." ); }
-
-			if( !this.PreDraw( sb, ent ) ) { return; }
 
 			var core = ent.Core;
 			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
@@ -96,12 +96,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				var rect = new Rectangle( (int)( core.position.X - Main.screenPosition.X ), (int)( core.position.Y - Main.screenPosition.Y ), core.width, core.height );
 				HudHelpers.DrawBorderedRect( sb, null, Color.Red, rect, 1 );
 			}
-
-			this.PostDraw( sb, ent );
 		}
-
-
-		public virtual bool PreDraw( SpriteBatch sb, CustomEntity ent ) { return true; }
 
 		public virtual void PostDraw( SpriteBatch sb, CustomEntity ent ) { }
 	}

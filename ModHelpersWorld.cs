@@ -116,7 +116,7 @@ namespace HamstarHelpers {
 
 
 		////////////////
-
+		
 		public override void PostDrawTiles() {
 			Player player = Main.LocalPlayer;
 			if( player == null ) { return; }
