@@ -37,12 +37,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		private DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
-		
+
 		public DrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
 			this.ModName = src_mod_name;
 			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
-			
+
 			this.ConfirmLoad();
 		}
 
@@ -71,9 +71,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		////////////////
-		
+
 		public virtual bool PreDraw( SpriteBatch sb, CustomEntity ent ) { return true; }
-		
+
 		public virtual void Draw( SpriteBatch sb, CustomEntity ent ) {
 			if( Main.netMode == 2 ) { throw new Exception( "Server cannot Draw." ); }
 
@@ -85,12 +85,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var scr_scr_pos = core.position - Main.screenPosition;
 			var tex_rect = new Rectangle( 0, 0, this.Texture.Width, this.Texture.Height / this.FrameCount );
 
-			Color color = Lighting.GetColor( (int)( core.Center.X / 16), (int)( core.Center.Y / 16), Color.White );
+			Color color = Lighting.GetColor( (int)( core.Center.X / 16 ), (int)( core.Center.Y / 16 ), Color.White );
 			float scale = 1f;
 
 			SpriteEffects dir = DrawsInGameEntityComponent.GetOrientation( core );
 
-			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, default(Vector2), scale, dir, 1f );
+			sb.Draw( this.Texture, scr_scr_pos, tex_rect, color, 0f, default( Vector2 ), scale, dir, 1f );
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 				var rect = new Rectangle( (int)( core.position.X - Main.screenPosition.X ), (int)( core.position.Y - Main.screenPosition.Y ), core.width, core.height );

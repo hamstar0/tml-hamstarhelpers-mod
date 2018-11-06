@@ -32,16 +32,16 @@ namespace HamstarHelpers {
 		////////////////
 
 		public string ObsoleteID2 { get; private set; }
-		
+
 		internal string ObsoletedID;
 		public bool HasObsoletedID { get; internal set; }  // Workaround for tml bug?
 
 		internal WorldLogic WorldLogic { get; private set; }
-		
+
 
 
 		////////////////
-		
+
 		public override void Initialize() {
 			var mymod = (ModHelpersMod)this.mod;
 
@@ -51,7 +51,7 @@ namespace HamstarHelpers {
 
 			this.WorldLogic = new WorldLogic( mymod );
 
-			if( String.IsNullOrEmpty(this.ObsoleteID2) ) {
+			if( String.IsNullOrEmpty( this.ObsoleteID2 ) ) {
 				throw new Exception( "UID not defined." );
 			}
 		}
@@ -77,7 +77,7 @@ namespace HamstarHelpers {
 
 			mymod.ModLockHelpers.PostLoad( mymod, this );
 			//mymod.UserHelpers.OnWorldLoad( this );
-			
+
 			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			this.HasObsoletedID = true;
@@ -93,7 +93,7 @@ namespace HamstarHelpers {
 			mymod.ModLockHelpers.Save( mymod, tags );
 
 			this.WorldLogic.SaveForWorld( mymod, tags );
-			
+
 			Promises.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			return tags;
@@ -104,7 +104,7 @@ namespace HamstarHelpers {
 
 		public override void PreUpdate() {
 			var mymod = (ModHelpersMod)this.mod;
-			
+
 			if( this.WorldLogic != null ) {
 				if( Main.netMode == 0 ) { // Single
 					this.WorldLogic.PreUpdateSingle( mymod );
@@ -116,7 +116,7 @@ namespace HamstarHelpers {
 
 
 		////////////////
-		
+
 		public override void PostDrawTiles() {
 			Player player = Main.LocalPlayer;
 			if( player == null ) { return; }

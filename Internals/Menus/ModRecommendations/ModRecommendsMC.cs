@@ -22,8 +22,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 
 		public static void Initialize() {
 			if( ModHelpersMod.Instance.Config.DisableModRecommendations ) { return; }
-
-			new ModRecommendsMenuContext();
+			
 			var ctx = new ModRecommendsMenuContext();
 			MenuContextService.AddMenuContext( "UIModInfo", "ModHelpers: Mod Recommendations", ctx );
 		}
@@ -90,9 +89,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 													  this.GetRecommendsFromUI( mod_name, ref err );
 
 			if( string.IsNullOrEmpty(err) ) {
-				foreach( Tuple<string, string> recom in recommends.Take( ModRecommendsMenuContext.Limit ) ) {
-					this.RecommendsList.AddModEntry( recom.Item1, recom.Item2 );
-				}
+				this.RecommendsList.AddModEntriesAsync( mod_name, recommends.Take( ModRecommendsMenuContext.Limit ) );
 			} else {
 				LogHelpers.Log( "!ModHelpers.ModRecommendsMenuContext.PopulateList - " + err );
 			}

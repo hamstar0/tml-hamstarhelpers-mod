@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 	abstract partial class SessionMenuContext : MenuContext {
 		public UIInfoDisplay InfoDisplay { get; private set; }
 
-		protected UIState MyUI = null;
+		public UIState MyUI { get; protected set; }
 
 		private bool DisplayInfo;
 		private bool OccludesLogo;

@@ -57,7 +57,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static string ComputeSHA256Hash( string str ) {
 			var crypt = new SHA256Managed();
-			byte[] hash_bytes = crypt.ComputeHash( Encoding.ASCII.GetBytes( str ) );
+			byte[] hash_bytes = crypt.ComputeHash( Encoding.UTF8.GetBytes( str ) );
 			string hash = Convert.ToBase64String( hash_bytes );
 			
 			return hash;

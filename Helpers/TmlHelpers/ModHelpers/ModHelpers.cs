@@ -52,7 +52,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		public static byte[] UnsafeLoadFileFromMod( TmodFile tmod, string file_name ) {
 			using( var file_stream = File.OpenRead( tmod.path ) )
 			using( var h_reader = new BinaryReader( file_stream ) ) {
-				if( Encoding.ASCII.GetString( h_reader.ReadBytes( 4 ) ) != "TMOD" ) {
+				if( Encoding.UTF8.GetString( h_reader.ReadBytes( 4 ) ) != "TMOD" ) {
 					throw new Exception( "Magic Header != \"TMOD\"" );
 				}
 

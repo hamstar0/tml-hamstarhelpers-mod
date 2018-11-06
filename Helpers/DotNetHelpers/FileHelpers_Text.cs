@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 				File.WriteAllText( full_path, data );
 
 				using( var mem_stream = (Stream)new MemoryStream() ) {
-					byte[] bytes = Encoding.ASCII.GetBytes( data );
+					byte[] bytes = Encoding.UTF8.GetBytes( data );
 
 					mem_stream.Write( bytes, 0, data.Length );
 
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 				return null;
 			}
 
-			return Encoding.Default.GetString( buf );
+			return Encoding.UTF8.GetString( buf );
 			/*using( Stream file_stream = (Stream)new FileStream( full_path, FileMode.Open ) ) {
 				using( StreamReader file_reader = new StreamReader( file_stream ) ) {
 					return file_reader.ReadToEnd();

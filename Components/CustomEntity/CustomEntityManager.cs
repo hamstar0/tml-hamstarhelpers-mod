@@ -16,6 +16,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.Graphics.Effects;
 
+
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
 		public readonly static object MyLock = new object();
@@ -108,7 +109,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
-		
+
 		private static void _PostDrawAll( GameTime _ ) {
 			var sb = Main.spriteBatch;
 			bool is_begun = XnaHelpers.IsMainSpriteBatchBegun();
