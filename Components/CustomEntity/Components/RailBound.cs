@@ -20,9 +20,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private RailBoundEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
 
-		public RailBoundEntityComponent() {
-			this.ConfirmLoad();
-		}
+		public RailBoundEntityComponent() { }
 
 
 		////////////////

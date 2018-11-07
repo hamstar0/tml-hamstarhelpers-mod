@@ -19,8 +19,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		public PeriodicSyncEntityComponent() {
 			this.LastSynced = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );
-
-			this.ConfirmLoad();
 		}
 
 

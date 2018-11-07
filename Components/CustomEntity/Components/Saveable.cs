@@ -33,6 +33,31 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 
 		////////////////
+		
+		private static void SaveAll( bool is_json ) {
+			var mymod = ModHelpersMod.Instance;
+			string file_name = SaveableEntityComponent.GetFileNameBase();
+
+			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>();
+			ents = new HashSet<CustomEntity>(
+				ents.Where(
+					ent => ent.GetComponentByType<SaveableEntityComponent>().AsJson == is_json
+				)
+				//ent => {
+				//	LogHelpers.Log( "saving ent: " + ent.ToString() + " behav:" + ent.GetComponentByName( "TrainBehaviorEntityComponent" )?.ToString() );
+				//	return ent.GetComponentByType<SaveableEntityComponent>().AsJson == is_json;
+				//}
+			);
+
+			if( ents.Count > 0 ) {
+				if( is_json ) {
+					DataFileHelpers.SaveAsJson( mymod, file_name, CustomEntity.SerializerSettings, ents );
+				} else {
+					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings, ents );
+				}
+			}
+		}
+
 
 		private static bool LoadAll( bool is_json ) {
 			var mymod = ModHelpersMod.Instance;
@@ -49,43 +74,21 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			if( success ) {
 				foreach( var ent in ents ) {
-					if( ent != null && CustomEntityTemplateManager.GetID( ent.Components ) == -1 ) {
+					if( ent != null && CustomEntityTemplateManager.GetTemplateID( ent.Components ) == -1 ) {
 						CustomEntityTemplateManager.Add( new CustomEntityTemplate( ent ) );
 					}
 				}
 				foreach( var ent in ents ) {
 					if( ent != null ) {
+						foreach( var comp in ent.Components ) {
+							comp.InternalInitialize();
+						}
 						CustomEntityManager.AddEntity( ent );
 					}
 				}
 			}
 
 			return success;
-		}
-
-
-		private static void SaveAll( bool is_json ) {
-			var mymod = ModHelpersMod.Instance;
-			string file_name = SaveableEntityComponent.GetFileNameBase();
-
-			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>();
-			ents = new HashSet<CustomEntity>(
-				ents.Where(
-					ent => ent.GetComponentByType<SaveableEntityComponent>().AsJson == is_json
-//ent => {
-//	LogHelpers.Log( "saving ent: " + ent.ToString() + " behav:" + ent.GetComponentByName( "TrainBehaviorEntityComponent" )?.ToString() );
-//	return ent.GetComponentByType<SaveableEntityComponent>().AsJson == is_json;
-//}
-				)
-			);
-
-			if( ents.Count > 0 ) {
-				if( is_json ) {
-					DataFileHelpers.SaveAsJson( mymod, file_name, CustomEntity.SerializerSettings, ents );
-				} else {
-					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings, ents );
-				}
-			}
 		}
 
 
@@ -102,8 +105,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		public SaveableEntityComponent( bool as_json ) {
 			this.AsJson = as_json;
-
-			this.ConfirmLoad();
 		}
 	}
 }

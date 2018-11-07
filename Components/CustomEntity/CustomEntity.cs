@@ -14,9 +14,6 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntity : PacketProtocolData {
-		[JsonIgnore]
-		public int TypeID { get; internal set; }
-
 		[PacketProtocolIgnore]
 		public string OwnerPlayerUID = "";
 		[JsonIgnore]
@@ -28,12 +25,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
 		private IDictionary<string, int> AllComponentsByTypeName = new Dictionary<string, int>();
 
+		////
+
+		[JsonIgnore]
+		public int TypeID { get; internal set; }
+
 		[JsonProperty]
-		private string[] ComponentNames {
-			get {
-				return this.Components.Select( t => t.GetType().Name ).ToArray();
-			}
-		}
+		private string[] ComponentNames => this.Components.Select( c => c.GetType().Name ).ToArray();
+
+		[JsonIgnore]
+		[PacketProtocolIgnore]
+		public bool IsInitialized => this.Components.All( c => c.IsInitialized );
 
 
 
@@ -67,10 +69,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.Initialize( id, owner.whoAmI, core, components );
 		}
 
+
 		////////////////
-		
+
 		private void Initialize( string owner_uid, int owner_who, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.TypeID = CustomEntityTemplateManager.GetID( components );
+			this.TypeID = CustomEntityTemplateManager.GetTemplateID( components );
 			if( this.TypeID == -1 ) {
 				string comp_str = string.Join( ", ", components.Select( c => c.GetType().Name ) );
 				throw new NotImplementedException( "!ModHelpers.CustomEntity.Initialize - No custom entity ID found to match to new entity called "
@@ -83,7 +86,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.Components = components;
 		}
 
-		public void RefreshOwnerWho() {
+
+		////////////////
+
+		internal void RefreshOwnerWho() {
 			if( Main.netMode == 1 ) {
 				throw new HamstarException( "No client." );
 			}

@@ -18,7 +18,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		public static void SetEntityByWho( int who, CustomEntity ent ) {
-			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntity.SetEntityByWho - Null ent not allowed." ); }
+			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.SetEntityByWho - Null ent not allowed." ); }
+			if( !ent.IsInitialized ) { throw new HamstarException("!ModHelpers.CustomEntityManager.SetEntityByWho - Initialized ents only."); }
 
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 

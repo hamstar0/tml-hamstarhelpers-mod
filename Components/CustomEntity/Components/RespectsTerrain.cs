@@ -9,9 +9,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
 		private RespectsTerrainEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
 
-		public RespectsTerrainEntityComponent() {
-			this.ConfirmLoad();
-		}
+		public RespectsTerrainEntityComponent() { }
 
 
 		////////////////

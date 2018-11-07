@@ -38,13 +38,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.FrameCount = frame_count;
 			this.Scale = scale;
 			this.Zooms = zooms;
-
-			this.ConfirmLoad();
 		}
 
 		////////////////
 
-		protected override void ConfirmLoad() {
+		protected override void Initialize() {
 			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 || this.Scale == 0 ) {
 				this.IsInitialized = false;
 				return;
@@ -62,7 +60,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				}
 			}
 
-			base.ConfirmLoad();
+			base.Initialize();
 		}
 
 

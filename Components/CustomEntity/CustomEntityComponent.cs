@@ -26,7 +26,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected virtual void ConfirmLoad() {
+		internal void InternalInitialize() {
+			this.Initialize();
+		}
+
+		protected virtual void Initialize() {
 			this.IsInitialized = true;
 		}
 

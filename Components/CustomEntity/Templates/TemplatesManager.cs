@@ -9,7 +9,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Templates {
 	public class CustomEntityTemplateManager {
-		public static CustomEntity CreateEntityByID( int id, Player owner ) {
+		public static CustomEntity CreateEntityByID( int template_id, Player owner ) {
 			string uid = "";
 
 			if( owner != null ) {
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 			CustomEntityTemplate template = null;
 
-			if( !templates.Templates.TryGetValue( id, out template ) ) {
+			if( !templates.Templates.TryGetValue( template_id, out template ) ) {
 				return null;
 			}
 
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity.Templates {
 
 		////////////////
 
-		public static int GetID( IList<CustomEntityComponent> components ) {
+		public static int GetTemplateID( IList<CustomEntityComponent> components ) {
 			CustomEntityTemplateManager templates = ModHelpersMod.Instance.CustomEntMngr.TemplateMngr;
 			int count = components.Count;
 
