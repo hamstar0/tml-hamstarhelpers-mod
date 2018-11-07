@@ -49,7 +49,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.Initialize( "", -1, core, components );
+			this.FinishCtor( "", -1, core, components );
 		}
 
 		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) {
@@ -60,19 +60,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			int owner_who = owner == null ? -1 : owner.whoAmI;
 
-			this.Initialize( owner_uid, owner_who, core, components );
+			this.FinishCtor( owner_uid, owner_who, core, components );
 		}
 
 		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) {
 			string id = PlayerIdentityHelpers.GetProperUniqueId( owner );
 
-			this.Initialize( id, owner.whoAmI, core, components );
+			this.FinishCtor( id, owner.whoAmI, core, components );
 		}
+		
+		////
 
-
-		////////////////
-
-		private void Initialize( string owner_uid, int owner_who, CustomEntityCore core, IList<CustomEntityComponent> components ) {
+		private void FinishCtor( string owner_uid, int owner_who, CustomEntityCore core, IList<CustomEntityComponent> components ) {
 			this.TypeID = CustomEntityTemplateManager.GetTemplateID( components );
 			if( this.TypeID == -1 ) {
 				string comp_str = string.Join( ", ", components.Select( c => c.GetType().Name ) );
@@ -84,6 +83,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.OwnerPlayerWho = owner_who;
 			this.Core = core;
 			this.Components = components;
+		}
+		
+		////////////////
+
+		public void Initialize() {
+			if( this.IsInitialized ) { return; }
+
+			foreach( var comp in this.Components ) {
+				comp.InternalInitialize();
+			}
 		}
 
 

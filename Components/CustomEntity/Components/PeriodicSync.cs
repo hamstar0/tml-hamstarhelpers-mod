@@ -9,7 +9,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private int LastSynced;
+		private int NextSync;
 
 
 
@@ -18,15 +18,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		private PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : this() { }
 
 		public PeriodicSyncEntityComponent() {
-			this.LastSynced = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );
+			this.NextSync = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );
 		}
 
 
 		////////////////
 
 		public void UpdateMe( CustomEntity ent ) {
-			if( this.LastSynced-- <= 0 ) {
-				this.LastSynced = 60 * 15;
+			if( this.NextSync-- <= 0 ) {
+				this.NextSync = 60 * 15;
 				
 				ent.SyncTo();
 			}

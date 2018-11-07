@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
@@ -69,14 +70,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		protected override void Initialize() {
 			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 ) {
-				this.IsInitialized = false;
-				return;
+				throw new HamstarException("!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields.");
 			}
 
 			var src_mod = ModLoader.GetMod( this.ModName );
 			if( src_mod == null ) {
-				this.IsInitialized = false;
-				return;
+				throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid mod "+this.ModName );
 			}
 
 			if( !Main.dedServ ) {
