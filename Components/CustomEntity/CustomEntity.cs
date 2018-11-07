@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.CustomEntity.Templates;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
@@ -9,25 +8,27 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	public partial class CustomEntity : PacketProtocolData {
-		[PacketProtocolIgnore]
-		public string OwnerPlayerUID = "";
-		[JsonIgnore]
-		public int OwnerPlayerWho = -1;
-
+	abstract public partial class CustomEntity : PacketProtocolData {
 		public CustomEntityCore Core;
 		public IList<CustomEntityComponent> Components = new List<CustomEntityComponent>();
 
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
 		private IDictionary<string, int> AllComponentsByTypeName = new Dictionary<string, int>();
 
+		[PacketProtocolIgnore]
+		public string OwnerPlayerUID = "";
+		[JsonIgnore]
+		public int OwnerPlayerWho = -1;
+
 		////
 
 		[JsonIgnore]
+		[PacketProtocolIgnore]
 		public int TypeID { get; internal set; }
 
 		[JsonProperty]
@@ -41,18 +42,20 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		private CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : this() { }
+		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : this() { }
+
 
 		[JsonConstructor]
 		internal CustomEntity() {
-			this.TypeID = -1;
+			this.TypeID = CustomEntityManager.GetID( this.GetType() );
+			this.Initialize();
 		}
 
-		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {
+		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {	// Deserializer 1
 			this.FinishCtor( "", -1, core, components );
 		}
 
-		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) {
+		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) { // Deserializer 2
 			Player owner = PlayerIdentityHelpers.GetPlayerByProperId( owner_uid );
 			if( owner == null ) {
 				throw new HamstarException( "!ModHelpers.CustomEntity.CTor_3 - Could not verify if entity's owner (by id '"+owner_uid+"') is present or absent." );
@@ -63,19 +66,20 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.FinishCtor( owner_uid, owner_who, core, components );
 		}
 
-		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			string id = PlayerIdentityHelpers.GetProperUniqueId( owner );
+		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) { // Deserializer 3
+			string owner_uid = PlayerIdentityHelpers.GetProperUniqueId( owner );
 
-			this.FinishCtor( id, owner.whoAmI, core, components );
+			this.FinishCtor( owner_uid, owner.whoAmI, core, components );
 		}
 		
 		////
 
 		private void FinishCtor( string owner_uid, int owner_who, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.TypeID = CustomEntityTemplateManager.GetTemplateID( components );
+			this.TypeID = CustomEntityManager.GetID( this.GetType() );
+
 			if( this.TypeID == -1 ) {
 				string comp_str = string.Join( ", ", components.Select( c => c.GetType().Name ) );
-				throw new NotImplementedException( "!ModHelpers.CustomEntity.Initialize - No custom entity ID found to match to new entity called "
+				throw new NotImplementedException( "!ModHelpers.CustomEntity.FinishCtor - No ID found to match to new entity "
 					+ core.DisplayName + ". Components: " + comp_str );
 			}
 
@@ -84,10 +88,28 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.Core = core;
 			this.Components = components;
 		}
-		
+
 		////////////////
 
-		public void Initialize() {
+		internal CustomEntity CloneAsType( Type ent_type ) {
+			var args = this.OwnerPlayerWho == -1 ?
+				new object[] { this.Core, this.Components } :
+				new object[] { this.OwnerPlayerUID, this.Core, this.Components };
+			
+			return (CustomEntity)Activator.CreateInstance( ent_type,
+				BindingFlags.NonPublic | BindingFlags.Instance,
+				null,
+				args,
+				null );
+		}
+
+
+		////////////////
+
+		protected abstract void Initialize();
+
+
+		internal void FinishInitialize() {
 			if( this.IsInitialized ) { return; }
 
 			foreach( var comp in this.Components ) {

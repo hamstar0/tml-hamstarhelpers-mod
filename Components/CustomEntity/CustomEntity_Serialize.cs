@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.CustomEntity.Templates;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 
 
@@ -30,6 +31,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			JObject jo = JObject.Load( reader );
 
 			try {
+				int type_id = jo["TypeID"].ToObject<Int32>();
 				string player_uid = jo["OwnerPlayerUID"].ToObject<String>();
 				CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
 				string[] comp_names = jo["ComponentNames"].ToObject<string[]>();
@@ -55,10 +57,25 @@ namespace HamstarHelpers.Components.CustomEntity {
 					i++;
 				}
 
-				if( !string.IsNullOrEmpty(player_uid) ) {
-					return new CustomEntity( player_uid, core, components );
+				Type ent_type = CustomEntityManager.GetTypeByID( type_id );
+				if( ent_type == null ) {
+					LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - No entity type of id "+type_id+" ("+core.DisplayName+")" );
+					return null;
 				}
-				return new CustomEntity( core, components );
+
+				if( !string.IsNullOrEmpty(player_uid) ) {
+					return (CustomEntity)Activator.CreateInstance( ent_type,
+						BindingFlags.NonPublic | BindingFlags.Instance,
+						null,
+						new object[] { player_uid, core, components },
+						null );
+				}
+
+				return (CustomEntity)Activator.CreateInstance( ent_type,
+					BindingFlags.NonPublic | BindingFlags.Instance,
+					null,
+					new object[] { core, components },
+					null );
 			} catch( Exception e ) {
 				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - "+e.Message );
 				return null;
@@ -74,7 +91,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 
-	public partial class CustomEntity : PacketProtocolData {
+	abstract public partial class CustomEntity : PacketProtocolData {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
 			TypeNameHandling = TypeNameHandling.None,
 			ContractResolver = new CustomEntityCoreContractResolver(),
@@ -115,10 +132,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		protected override void ReadStream( BinaryReader reader ) {
-			int id = (int)(ushort)reader.ReadUInt16();
+			int type_id = (int)(ushort)reader.ReadUInt16();
 			byte owner_who = reader.ReadByte();
 
-			CustomEntity new_ent = CustomEntityTemplateManager.CreateEntityByID( id, null );
+			Type ent_type = CustomEntityManager.GetTypeByID( type_id );
+			if( ent_type == null ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id "+type_id );
+			}
+
+			CustomEntity new_ent = CustomEntityManager.Create( ent_type );
 
 			new_ent.OwnerPlayerWho = owner_who == (byte)255 ? (int)-1 : (int)owner_who;
 
