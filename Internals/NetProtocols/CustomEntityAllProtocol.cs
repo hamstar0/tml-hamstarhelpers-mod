@@ -42,7 +42,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 					LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.ReceiveWithClient - New entity " + ent.ToString() );
 				}*/
 
-				CustomEntityManager.SetEntityByWho( ent.Core.whoAmI, ent );
+				CustomEntityManager.AddToWorld( ent.Core.whoAmI, ent );
 			}
 
 			SaveableEntityComponent.PostLoadAll();

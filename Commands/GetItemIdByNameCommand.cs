@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.ItemHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.CommandsHelpers;
+using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
 
@@ -26,7 +27,7 @@ namespace HamstarHelpers.Commands {
 				throw new UsageException( "Invalid item type." );
 			}
 
-			caller.Reply( "Item id for " + item_name + ": " + ItemIdentityHelpers.NamesToIds[item_name] );
+			caller.Reply( "Item id for " + item_name + ": " + ItemIdentityHelpers.NamesToIds[item_name], Color.Lime );
 		}
 	}
 }

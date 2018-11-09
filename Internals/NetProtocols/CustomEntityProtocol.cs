@@ -63,7 +63,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}*/
 
 			if( existing_ent == null ) {
-				CustomEntityManager.SetEntityByWho( this.Entity.Core.whoAmI, this.Entity );
+				CustomEntityManager.AddToWorld( this.Entity.Core.whoAmI, this.Entity );
 			} else {
 				existing_ent.SyncFrom( this.Entity );
 			}

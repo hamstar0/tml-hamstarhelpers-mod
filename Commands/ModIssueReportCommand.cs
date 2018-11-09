@@ -47,7 +47,7 @@ namespace HamstarHelpers.Commands {
 
 			Action<string> on_success = delegate ( string output ) {
 				if( output != "Done?" ) {
-					caller.Reply( output, Color.GreenYellow );
+					caller.Reply( output, Color.Lime );
 				} else {
 					caller.Reply( "Issue report was not sent", Color.Red );
 				}

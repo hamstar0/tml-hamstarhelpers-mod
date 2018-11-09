@@ -37,10 +37,10 @@ namespace HamstarHelpers.Commands {
 			}
 
 			if( ModLockHelpers.IsWorldLocked() ) {
-				caller.Reply( "World unlocked.", Color.GreenYellow );
+				caller.Reply( "World unlocked.", Color.Lime );
 				ModLockHelpers.UnlockWorld();
 			} else {
-				caller.Reply( "World locked.", Color.GreenYellow );
+				caller.Reply( "World locked.", Color.Lime );
 				ModLockHelpers.LockWorld();
 			}
 		}

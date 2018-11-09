@@ -12,9 +12,11 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	abstract public partial class CustomEntity : PacketProtocolData {
-		protected CustomEntity( Player owner ) {
+		protected CustomEntity( Player owner_plr ) {
 			this.TypeId = CustomEntityManager.GetId( this.GetType() );
-			CustomEntityManager.AddToWorld( this, owner );
+
+			this.OwnerPlayerWho = owner_plr == null ? -1 : owner_plr.whoAmI;
+			this.OwnerPlayerUID = owner_plr == null ? "" : PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
 		}
 
 		////

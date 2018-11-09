@@ -17,7 +17,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
-		public static void SetEntityByWho( int who, CustomEntity ent ) {
+		////////////////
+
+		public static void AddToWorld( CustomEntity ent ) {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+			CustomEntityManager.AddToWorld( mngr.EntitiesByIndexes.Count, ent );
+		}
+		
+		public static void AddToWorld( int who, CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.SetEntityByWho - Null ent not allowed." ); }
 			if( !ent.IsInitialized ) { throw new HamstarException("!ModHelpers.CustomEntityManager.SetEntityByWho - Initialized ents only."); }
 

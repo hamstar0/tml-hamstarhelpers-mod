@@ -1,32 +1,11 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		internal static void AddToWorld( CustomEntity ent, Player owner_plr ) {
-			//return (CustomEntity)Activator.CreateInstance( ent_type,
-			//	BindingFlags.NonPublic | BindingFlags.Instance,
-			//	null,
-			//	new object[] { ModHelpersMod.Instance.PacketProtocolCtorLock },
-			//	null );
-
-			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
-
-			ent.OwnerPlayerWho = owner_plr == null ? -1 : owner_plr.whoAmI;
-			ent.OwnerPlayerUID = owner_plr == null ? "" : PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
-
-			CustomEntityManager.SetEntityByWho( mngr.EntitiesByIndexes.Count, ent );
-		}
-
-
-		////////////////
-
 		public static int GetId( Type ent_type ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
