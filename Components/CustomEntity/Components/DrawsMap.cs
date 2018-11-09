@@ -39,11 +39,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.FrameCount = frame_count;
 			this.Scale = scale;
 			this.Zooms = zooms;
-		}
 
-		////////////////
-
-		protected override void Initialize() {
 			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 || this.Scale == 0 ) {
 				throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
 			}
@@ -58,8 +54,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					this.Texture = src_mod.GetTexture( this.TexturePath );
 				}
 			}
-
-			base.Initialize();
 		}
 
 

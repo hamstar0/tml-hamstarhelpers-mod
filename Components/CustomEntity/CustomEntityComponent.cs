@@ -1,7 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
-using Newtonsoft.Json;
 using System.IO;
 
 
@@ -17,22 +15,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
-
-		[JsonIgnore]
-		[PacketProtocolIgnore]
-		public bool IsInitialized { get; protected set; }
-
-
-
-		////////////////
-
-		internal void InternalInitialize() {
-			this.Initialize();
-		}
-
-		protected virtual void Initialize() {
-			this.IsInitialized = true;
-		}
 
 		internal CustomEntityComponent InternalClone() {
 			return this.Clone();

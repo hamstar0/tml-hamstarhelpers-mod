@@ -1,4 +1,6 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
+using Newtonsoft.Json;
 using Terraria.Utilities;
 
 
@@ -9,13 +11,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
+		[PacketProtocolIgnore]
+		[JsonIgnore]
 		private int NextSync;
 
 
 
 		////////////////
 
-		private PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : this() { }
+		private PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		public PeriodicSyncEntityComponent() {
 			this.NextSync = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );

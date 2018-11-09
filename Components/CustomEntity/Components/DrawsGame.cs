@@ -64,11 +64,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.ModName = src_mod_name;
 			this.TexturePath = rel_texture_path;
 			this.FrameCount = frame_count;
-		}
 
-		////////////////
-
-		protected override void Initialize() {
 			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 ) {
 				throw new HamstarException("!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields.");
 			}
@@ -83,8 +79,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					this.Texture = src_mod.GetTexture( this.TexturePath );
 				}
 			}
-
-			base.Initialize();
 		}
 
 

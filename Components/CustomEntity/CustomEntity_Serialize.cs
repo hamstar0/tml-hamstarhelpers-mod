@@ -57,7 +57,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 					i++;
 				}
 
-				Type ent_type = CustomEntityManager.GetTypeByID( type_id );
+				Type ent_type = CustomEntityManager.GetTypeById( type_id );
 				if( ent_type == null ) {
 					LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - No entity type of id "+type_id+" ("+core.DisplayName+")" );
 					return null;
@@ -109,7 +109,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityCore core = this.Core;
 			byte owner_who = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;
 
-			writer.Write( (ushort)this.TypeID );
+			writer.Write( (ushort)this.TypeId );
 			writer.Write( (byte)owner_who );
 //LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
 //LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
@@ -135,15 +135,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 			int type_id = (int)(ushort)reader.ReadUInt16();
 			byte owner_who = reader.ReadByte();
 
-			Type ent_type = CustomEntityManager.GetTypeByID( type_id );
+			Type ent_type = CustomEntityManager.GetTypeById( type_id );
 			if( ent_type == null ) {
 				throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id "+type_id );
 			}
 
-			CustomEntity new_ent = CustomEntityManager.Create( ent_type );
+			Player owner = owner_who == (byte)255 ? null : Main.player[owner_who];
 
-			new_ent.OwnerPlayerWho = owner_who == (byte)255 ? (int)-1 : (int)owner_who;
-
+			var new_ent = (CustomEntity)PacketProtocolData.CreateData( ent_type );
+			
 			new_ent.Core.whoAmI = (ushort)reader.ReadUInt16();
 			new_ent.Core.DisplayName = (string)reader.ReadString();
 			new_ent.Core.position = new Vector2 {

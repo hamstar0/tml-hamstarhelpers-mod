@@ -50,6 +50,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 
+
 	public partial class CustomEntityCore : Entity {
 		public string DisplayName = "";
 
@@ -81,19 +82,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
+
 		////////////////
 
-		internal CustomEntityCore() { }
-
-		internal CustomEntityCore( string name, int width, int height, Vector2 position, int direction ) {
-			this.DisplayName = name;
-			this.position = position;
-			this.width = width;
-			this.height = height;
-			this.direction = direction;
-		}
-
-		internal void CopyFrom( CustomEntityCore copy ) {
+		internal CustomEntityCore( CustomEntityCore copy ) {
 			this.whoAmI = copy.whoAmI;
 			this.DisplayName = copy.DisplayName;
 			this.position = copy.position;
@@ -101,6 +93,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.width = copy.width;
 			this.height = copy.height;
 			this.direction = copy.direction;
+		}
+
+		public CustomEntityCore( string display_name, int width, int height, Vector2 position, int direction ) {
+			this.DisplayName = display_name;
+			this.position = position;
+			this.width = width;
+			this.height = height;
+			this.direction = direction;
 		}
 	}
 }

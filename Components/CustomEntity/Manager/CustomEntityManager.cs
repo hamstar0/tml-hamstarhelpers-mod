@@ -18,8 +18,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 
+
 		////////////////
-		
+
+		private int LatestId = 1;
+		private IDictionary<string, int> EntTypeIds = new Dictionary<string, int>();
+		private IDictionary<int, Type> TypeIdEnts = new Dictionary<int, Type>();
+
 		private readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
 		private readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
 

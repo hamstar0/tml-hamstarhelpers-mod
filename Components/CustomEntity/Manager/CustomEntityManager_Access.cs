@@ -28,10 +28,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			// Map entity to each of its components
 			foreach( CustomEntityComponent component in ent.Components ) {
-				if( !component.IsInitialized ) {
-					throw new NotImplementedException( component.GetType().Name + " is not initialized." );
-				}
-
 				comp_type = component.GetType();
 				lock( CustomEntityManager.MyLock ) {
 					do {
