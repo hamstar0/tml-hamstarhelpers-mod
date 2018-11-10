@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -56,26 +57,36 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		[PacketProtocolIgnore]
+		[JsonIgnore]
 		public int WhoAmI {
 			get { return this.whoAmI; }
 			private set { this.whoAmI = value; }
 		}
-		
+
+		[PacketProtocolIgnore]
+		[JsonIgnore]
 		public Vector2 Position {
 			get { return this.position; }
 			set { this.position = value; }
 		}
 
+		[PacketProtocolIgnore]
+		[JsonIgnore]
 		public Vector2 Velocity {
 			get { return this.velocity; }
 			set { this.velocity = value; }
 		}
 
+		[PacketProtocolIgnore]
+		[JsonIgnore]
 		public int Width {
 			get { return this.width; }
 			set { this.width = value; }
 		}
 
+		[PacketProtocolIgnore]
+		[JsonIgnore]
 		public int Height {
 			get { return this.height; }
 			set { this.height = value; }

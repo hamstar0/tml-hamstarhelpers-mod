@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -57,6 +58,8 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			} catch( IOException e ) {
 				string full_dir = DataFileHelpers.GetFullDirectoryPath( mod );
 				throw new IOException( "Failed to load json file " + file_name_no_ext + " at " + full_dir, e );
+			} catch( Exception e ) {
+				throw new Exception( "From "+file_name_no_ext+" ("+typeof(T).Name+")", e );
 			}
 		}
 

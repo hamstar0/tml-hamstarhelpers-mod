@@ -53,7 +53,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( !Main.dedServ ) {
-				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay( EffectPriority.VeryHigh, RenderLayers.Walls );
+				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay();
 				Overlays.Scene.Activate( "CustomEntity" );
 
 				Main.OnPostDraw += CustomEntityManager._PostDrawAll;

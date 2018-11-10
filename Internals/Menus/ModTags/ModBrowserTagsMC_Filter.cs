@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.WebRequests;
@@ -66,7 +65,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					callback( false, new List<string>(), 0, 0 );
 					return false;
 				}
-
+				
 				IList<string> filtered_list = new List<string>();
 				ISet<string> on_tags = this.GetTagsOfState( 1 );
 				ISet<string> off_tags = this.GetTagsOfState( -1 );

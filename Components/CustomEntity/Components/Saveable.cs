@@ -30,7 +30,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public bool AsJson;
+		public bool AsJson = true;
 
 
 

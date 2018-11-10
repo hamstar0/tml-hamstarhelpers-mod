@@ -23,10 +23,20 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public static Type GetTypeById( int type_id ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
-			if( mngr.TypeIdEnts.ContainsKey( type_id ) ) {
-				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeById - No CustomEntity for type id "+type_id );
+			if( !mngr.TypeIdEnts.ContainsKey( type_id ) ) {
+				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeById - No CustomEntity of type id "+type_id );
 			}
 			return mngr.TypeIdEnts[type_id];
+		}
+
+
+		public static Type GetTypeByName( string name ) {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+
+			if( !mngr.EntTypeIds.ContainsKey( name ) ) {
+				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeByName - No CustomEntity of type " + name );
+			}
+			return CustomEntityManager.GetTypeById( mngr.EntTypeIds[name] );
 		}
 
 
@@ -35,10 +45,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal static void LoadAs( string type_name, CustomEntity ent ) {
 			Type ent_type = Type.GetType( type_name );
 			if( ent_type == null ) {
-				throw new HamstarException( "!ModHelpers.CustomEntityManager.LoadAs - Invalid custom entity of type "+type_name );
+				throw new HamstarException( "!ModHelpers.CustomEntityManager.LoadAs - Invalid CustomEntity of type "+type_name );
 			}
-
+			
 			CustomEntity typed_ent = ent.CloneAsType( ent_type );
+			CustomEntityManager.AddToWorld( typed_ent );
 		}
 
 

@@ -11,7 +11,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public CustomEntityOverlay( EffectPriority priority = EffectPriority.VeryLow, RenderLayers layer = RenderLayers.All )
+		public CustomEntityOverlay( EffectPriority priority = EffectPriority.VeryHigh, RenderLayers layer = RenderLayers.Walls )
 			: base( priority, layer ) {
 		}
 

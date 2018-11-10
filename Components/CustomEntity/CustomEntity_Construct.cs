@@ -12,36 +12,33 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	abstract public partial class CustomEntity : PacketProtocolData {
-		protected CustomEntity( Player owner_plr ) {
-			this.TypeId = CustomEntityManager.GetId( this.GetType() );
-
-			this.OwnerPlayerWho = owner_plr == null ? -1 : owner_plr.whoAmI;
-			this.OwnerPlayerUID = owner_plr == null ? "" : PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
+		protected CustomEntity( Player owner_plr ) : this() {
+			this.OwnerPlayerWho = owner_plr.whoAmI;
+			this.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
 		}
 
 		////
 
-		[JsonConstructor]
-		internal CustomEntity() {
+		protected CustomEntity() {
+			this.OwnerPlayerWho = -1;
+			this.OwnerPlayerUID = "";
 			this.TypeId = CustomEntityManager.GetId( this.GetType() );
 		}
 
-		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) {	// Deserializer 1
+		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) : this() {	// Deserializer 1
 			this.FinishCtor( "", -1, core, components );
 		}
 
-		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) { // Deserializer 2
+		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) : this() { // Deserializer 2
 			Player owner = PlayerIdentityHelpers.GetPlayerByProperId( owner_uid );
 			if( owner == null ) {
 				throw new HamstarException( "!ModHelpers.CustomEntity.CTor_3 - Could not verify if entity's owner (by id '"+owner_uid+"') is present or absent." );
 			}
-
-			int owner_who = owner == null ? -1 : owner.whoAmI;
-
-			this.FinishCtor( owner_uid, owner_who, core, components );
+			
+			this.FinishCtor( owner_uid, owner.whoAmI, core, components );
 		}
 
-		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) { // Deserializer 3
+		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) : this() { // Deserializer 3
 			string owner_uid = PlayerIdentityHelpers.GetProperUniqueId( owner );
 
 			this.FinishCtor( owner_uid, owner.whoAmI, core, components );

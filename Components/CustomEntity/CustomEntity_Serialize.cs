@@ -14,40 +14,55 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
+	internal class CustomEntityWithType {
+		public string MyTypeName;
+		public CustomEntity MyEntity;
+	}
+
+
+
+
 	internal class CustomEntityConverter : JsonConverter {
-		public override bool CanWrite {
-			get { return false; }
-		}
+		public override bool CanWrite => false;
 
 		public override bool CanConvert( Type obj_type ) {
-			return obj_type == typeof( CustomEntity );
+			return obj_type == typeof( CustomEntityWithType );
 		}
 
 
 		public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
+			string type_name = null;
+			JToken raw_ent_data = null;
+			string player_uid = null;
+			CustomEntityCore core = null;
+			string[] comp_names = null;
+			IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
+
 			IEnumerable<Type> all_comp_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
 			IDictionary<string, Type> all_comp_type_map = all_comp_types.ToDictionary( t => t.Name, t => t );
 
 			JObject jo = JObject.Load( reader );
-
+			
 			try {
-				int type_id = jo["TypeID"].ToObject<Int32>();
-				string player_uid = jo["OwnerPlayerUID"].ToObject<String>();
-				CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
-				string[] comp_names = jo["ComponentNames"].ToObject<string[]>();
-				JToken raw_components = jo["Components"];
+				type_name = jo["MyTypeName"].ToObject<String>();
+				raw_ent_data = jo["MyEntity"];
 
-				IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
+				//int type_id = jo["TypeID"].ToObject<Int32>();
+				player_uid = raw_ent_data["OwnerPlayerUID"].ToObject<String>();
+				core = raw_ent_data["Core"].ToObject<CustomEntityCore>();
+				comp_names = raw_ent_data["ComponentNames"].ToObject<string[]>();
+				JToken raw_components = raw_ent_data["Components"];
+				
 				Type[] comp_types = new Type[comp_names.Length];
 				int i;
-
+				
 				for( i = 0; i < comp_names.Length; i++ ) {
 					if( !all_comp_type_map.ContainsKey( comp_names[i] ) ) {
 						return null;
 					}
 					comp_types[i] = all_comp_type_map[comp_names[i]];
 				}
-
+				
 				i = 0;
 				foreach( JObject obj in raw_components ) {
 					Type comp_type = comp_types[i];
@@ -56,28 +71,27 @@ namespace HamstarHelpers.Components.CustomEntity {
 					components.Add( (CustomEntityComponent)comp );
 					i++;
 				}
-
-				Type ent_type = CustomEntityManager.GetTypeById( type_id );
+				
+				Type ent_type = CustomEntityManager.GetTypeByName( type_name );
 				if( ent_type == null ) {
-					LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - No entity type of id "+type_id+" ("+core.DisplayName+")" );
 					return null;
 				}
-
-				if( !string.IsNullOrEmpty(player_uid) ) {
+				
+				if( !string.IsNullOrEmpty( player_uid ) ) {
 					return (CustomEntity)Activator.CreateInstance( ent_type,
 						BindingFlags.NonPublic | BindingFlags.Instance,
 						null,
 						new object[] { player_uid, core, components },
 						null );
+				} else {
+					return (CustomEntity)Activator.CreateInstance( ent_type,
+						BindingFlags.NonPublic | BindingFlags.Instance,
+						null,
+						new object[] { core, components },
+						null );
 				}
-
-				return (CustomEntity)Activator.CreateInstance( ent_type,
-					BindingFlags.NonPublic | BindingFlags.Instance,
-					null,
-					new object[] { core, components },
-					null );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - "+e.Message );
+				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - " + e.Message );
 				return null;
 			}
 		}
