@@ -5,7 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class ItemNoGrabProtocol : PacketProtocol {
+	class ItemNoGrabProtocol : PacketProtocolRequestToClient {
 		public static void SendToServer( int item_who, int no_grab_delay_amt ) {
 			var protocol = new ItemNoGrabProtocol( item_who, no_grab_delay_amt );
 			protocol.SendToServer( false );

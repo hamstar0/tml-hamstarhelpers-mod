@@ -70,13 +70,14 @@
     <Compile Include="Components\Network\Data\PacketProtocolData.cs" />
     <Compile Include="Components\Network\Data\PacketProtocolData_Read.cs" />
     <Compile Include="Components\Network\Data\PacketProtocolData_Write.cs" />
+    <Compile Include="Components\Network\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\Network\PacketProtocol.cs" />
+    <Compile Include="Components\Network\Interfaces.cs" />
     <Compile Include="Components\Network\PacketProtocol_Handler.cs" />
     <Compile Include="Components\Network\PacketProtocol_ModPacket.cs" />
     <Compile Include="Components\Network\PacketProtocol_Receive.cs" />
     <Compile Include="Components\Network\PacketProtocol_ReceiveAPI.cs" />
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
-    <Compile Include="Components\Network\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\UI\DialogManager.cs" />
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
     <Compile Include="Components\UI\Elements\Menu\UIMenuButton.cs" />

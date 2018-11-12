@@ -5,7 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class PlayerOldIdProtocol : PacketProtocol {
+	class PlayerOldIdProtocol : PacketProtocolSendToServer {
 		public bool ClientHasUID = false;
 		public string ClientPrivateUID = "";
 

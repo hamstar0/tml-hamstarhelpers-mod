@@ -9,13 +9,6 @@ using System.Text;
 
 
 namespace HamstarHelpers.Components.Network {
-	/*/// <summary>
-	/// Sets a non-public field to not be ignored by a protocol.
-	/// </summary>
-	public class PacketProtocolNonPublicAttribute : Attribute { }*/		//TODO
-
-	
-	
 	/// <summary>
 	/// Sets a field to be ignored by a protocol.
 	/// </summary>

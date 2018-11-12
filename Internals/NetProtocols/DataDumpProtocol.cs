@@ -7,7 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class DataDumpProtocol : PacketProtocol {
+	class DataDumpProtocol : PacketProtocolRequestToServer {
 		private DataDumpProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		////////////////
@@ -23,6 +23,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}
 
 			return true;
+		}
+
+		protected override void ReceiveWithClient() {
+			throw new System.NotImplementedException();
 		}
 	}
 }

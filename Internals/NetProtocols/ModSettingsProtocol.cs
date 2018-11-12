@@ -3,7 +3,7 @@ using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class ModSettingsProtocol : PacketProtocol {
+	class ModSettingsProtocol : PacketProtocolRequestToServer {
 		public HamstarHelpersConfigData Data;
 
 

@@ -36,14 +36,14 @@ namespace HamstarHelpers.Internals.Logic {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 				this.HasLoadedUID = true;	// Ugly failsafe
 			}
-			
+
 			// Send
-			PacketProtocol.QuickSendToServer<PlayerOldIdProtocol>();
+			PacketProtocolSendToServer.QuickSend<PlayerOldIdProtocol>();
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 
 			// Receive
-			PacketProtocol.QuickRequestToServer<ModSettingsProtocol>();
-			PacketProtocol.QuickRequestToServer<WorldDataProtocol>();
+			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>();
+			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>();
 
 			mymod.ControlPanel.LoadModListAsync();
 		}

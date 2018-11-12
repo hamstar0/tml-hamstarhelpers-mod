@@ -9,7 +9,7 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class CustomEntityAllProtocol : PacketProtocol {
+	class CustomEntityAllProtocol : PacketProtocolSendToClient {
 		public CustomEntity[] Entities;
 
 

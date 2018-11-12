@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 
-
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		/// <summary>

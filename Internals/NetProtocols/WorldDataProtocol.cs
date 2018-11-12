@@ -5,7 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class WorldDataProtocol : PacketProtocol {
+	class WorldDataProtocol : PacketProtocolRequestToServer {
 		public int HalfDays;
 		public bool HasObsoletedWorldId;
 		public string ObsoletedWorldId;

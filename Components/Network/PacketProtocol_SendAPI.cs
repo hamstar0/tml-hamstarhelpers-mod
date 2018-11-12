@@ -7,22 +7,26 @@ using Terraria;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
+		private static void QuickSendToServerBase<T>( bool sync_to_clients )
+				where T : PacketProtocol {   //, new()
+			if( Main.netMode != 1 ) {
+				throw new HamstarException( "Can only send as client." );
+			}
+
+			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			t.SetClientDefaults();
+
+			t.SendToServer( sync_to_clients );
+		}
+
+
 		/// <summary>
 		/// Shorthand to send a default instance of this protocol's data to the server. Requires `SetClientDefaults()`
 		/// to be implemented.
 		/// </summary>
 		public static void QuickSendToServer<T>()
 				where T : PacketProtocol {   //, new()
-			if( Main.netMode != 1 ) {
-				throw new HamstarException( "Can only send as client." );
-			}
-
-			//T t = new T();
-			//T t = (T)Activator.CreateInstance( typeof( T ), true );
-			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
-			t.SetClientDefaults();
-
-			t.SendToServer( false );
+			PacketProtocol.QuickSendToServerBase<T>( false );
 		}
 
 		/// <summary>
@@ -30,16 +34,10 @@ namespace HamstarHelpers.Components.Network {
 		/// to be implemented.
 		/// </summary>
 		public static void QuickSyncToServerAndClients<T>()
-				where T : PacketProtocol {  //, new()
-			if( Main.netMode != 1 ) {
-				throw new HamstarException( "Can only sync as a client." );
-			}
-
-			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
-			t.SetClientDefaults();
-
-			t.SendToServer( true );
+				where T : PacketProtocol {   //, new()
+			PacketProtocol.QuickSendToServerBase<T>( true );
 		}
+
 
 		/// <summary>
 		/// Shorthand to send a default instance of this protocol's data to a client. Requires `SetServerDefaults()`
@@ -48,12 +46,12 @@ namespace HamstarHelpers.Components.Network {
 		/// <param name="to_who">Main.player index of player (client) receiving this data. -1 for all clients.</param>
 		/// <param name="ignore_who">Main.player index of player (client) being ignored. -1 for no client.</param>
 		public static void QuickSendToClient<T>( int to_who, int ignore_who )
-				where T : PacketProtocol {	//, new()
+				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Can only send as client." );
 			}
 
-			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
 			try {
 				t.SetServerDefaults( to_who );
 			} catch( NotImplementedException ) {
@@ -77,10 +75,11 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Not server." );
 			}
 
-			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
 
 			t.SendRequestToClient( to_who, ignore_who );
 		}
+
 
 		/// <summary>
 		/// Shorthand to send a request for a default instance of this protocol's data from the server.
@@ -92,7 +91,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Not a client." );
 			}
 
-			T t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
 
 			t.SendRequestToServer();
 		}

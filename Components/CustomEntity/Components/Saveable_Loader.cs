@@ -37,7 +37,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		protected class MyStaticInitializer : StaticInitializer {
 			protected override void StaticInitialize() {
 				var mymod = ModHelpersMod.Instance;
-				var myworld = mymod.GetModWorld<ModHelpersWorld>();
 				
 				Promises.AddValidatedPromise<PromiseArguments>( ModHelpersWorld.LoadValidator, (_) => {
 					if( Main.netMode != 1 ) {
@@ -80,7 +79,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 				Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ServerConnectValidator, ( args ) => {
 					if( Main.netMode != 1 ) {
-						PacketProtocol.QuickSendToClient<CustomEntityAllProtocol>( args.Who, -1 );
+						PacketProtocolSendToClient.QuickSend<CustomEntityAllProtocol>( args.Who, -1 );
 					}
 					return true;
 				} );
