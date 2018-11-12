@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveWithServer( int from_who ) {
+		protected override void Receive( int from_who ) {
 			Player player = Main.player[ from_who ];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			

@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveWithClient() {
+		protected override void Receive() {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();

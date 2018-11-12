@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader.IO;
 
@@ -9,7 +8,7 @@ using Terraria.ModLoader.IO;
 namespace HamstarHelpers.Services.Tml {
 	public class BuildPropertiesEditor {
 		private static Type GetBuildPropertiesClassType() {
-			IEnumerable<Type> bp_class_types;
+			//IEnumerable<Type> bp_class_types;
 
 			try {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -21,19 +20,27 @@ namespace HamstarHelpers.Services.Tml {
 					}
 				};
 
-				bp_class_types = from t in assemblies.SelectMany( select_many )
-								 where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
-								 select t;
+				foreach( var ass in assemblies ) {
+					foreach( Type t in select_many( ass ) ) {
+						if( t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties" ) {
+							return t;
+						}
+					}
+				}
+				//bp_class_types = from t in assemblies.SelectMany( select_many )
+				//				 where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
+				//				 select t;
 			} catch( Exception e ) {
 				LogHelpers.Log( "BuildPropertiesEditor.GetBuildPropertiesForModFile - " + e.ToString() );
 				return (Type)null;
 			}
 
-			if( bp_class_types.Count() == 0 ) {
-				return (Type)null;
-			}
+			//if( bp_class_types.Count() == 0 ) {
+			//	return (Type)null;
+			//}
 
-			return bp_class_types.First();
+			//return bp_class_types.FirstOrDefault();
+			return null;
 		}
 
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 
 
@@ -126,6 +127,19 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			string[] player_equips = InfoHelpers.GetCurrentPlayerEquipment().ToArray();
 			int active_players = Main.ActivePlayersCount;
 			string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
+			bool autopause = Main.autoPause;
+			bool autosave = Main.autoSave;
+			int lighting = Lighting.lightMode;
+			int lighting_threads = Lighting.LightingThreads;
+			int frame_skip_mode = Main.FrameSkipMode;
+			bool is_maximized = Main.screenMaximized;
+			int window_wid = Main.screenWidth;
+			int window_hei = Main.screenHeight;
+			int quality_style = Main.qaStyle;
+			bool bg_on = Main.BackgroundEnabled;
+			bool child_safe = !ChildSafety.Disabled;
+			float game_zoom = Main.GameZoomTarget;
+			float ui_zoom = Main.UIScale;
 
 			list.Add( "Mods: " + string.Join( ", ", mods_arr ) );
 			list.Add( "Is day: " + is_day + ", Time of day/night: " + time_of_day + ", Elapsed half days: " + half_days );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
@@ -135,6 +149,18 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			list.Add( "Player info: " + string.Join( ", ", player_infos ) );
 			list.Add( "Player equips: " + string.Join( ", ", player_equips ) );
 			list.Add( "Player count: " + active_players + " (" + netmode + ")" );
+			list.Add( "Autopause: " + autopause );
+			list.Add( "Autosave: " + autosave );
+			list.Add( "Lighting mode: " + lighting );
+			list.Add( "Lighting threads: " + lighting_threads );
+			list.Add( "Frame skip mode: " + frame_skip_mode );
+			list.Add( "Is screen maximized: " + is_maximized );
+			list.Add( "Screen resolution: " + window_wid+" "+window_hei );
+			list.Add( "Quality style: " + quality_style );
+			list.Add( "Background on: " + bg_on );
+			list.Add( "Child safety: " + child_safe );
+			list.Add( "Game zoom: " + game_zoom );
+			list.Add( "UI zoom: " + ui_zoom );
 
 			return list;
 		}
