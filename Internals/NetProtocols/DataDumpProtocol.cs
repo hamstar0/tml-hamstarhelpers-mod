@@ -25,7 +25,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			return true;
 		}
 
-		protected override void ReceiveWithClient() {
+		protected override void Receive() {
 			throw new System.NotImplementedException();
 		}
 	}

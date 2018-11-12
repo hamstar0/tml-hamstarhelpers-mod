@@ -34,7 +34,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveWithClient() {
+		protected override void Receive() {
 			CustomEntityManager.ClearAllEntities();
 
 			foreach( CustomEntity ent in this.Entities ) {

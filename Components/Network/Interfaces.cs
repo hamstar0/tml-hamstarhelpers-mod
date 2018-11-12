@@ -7,8 +7,13 @@ namespace HamstarHelpers.Components.Network {
 			PacketProtocol.QuickSendToServer<T>();
 		}
 
+		////////////////
 
-		protected override void ReceiveWithClient() { throw new NotImplementedException(); }
+		protected override void ReceiveWithServer( int from_who ) {
+			this.Receive( from_who );
+		}
+
+		protected abstract void Receive( int from_who );
 	}
 
 
@@ -19,8 +24,13 @@ namespace HamstarHelpers.Components.Network {
 			PacketProtocol.QuickSendToClient<T>( to_who, ignore_who );
 		}
 
+		////////////////
 
-		protected override void ReceiveWithServer( int from_who ) { throw new NotImplementedException(); }
+		protected override void ReceiveWithClient() {
+			this.Receive();
+		}
+
+		protected abstract void Receive();
 	}
 
 
@@ -31,19 +41,29 @@ namespace HamstarHelpers.Components.Network {
 			PacketProtocol.QuickRequestToServer<T>();
 		}
 
+		////////////////
 
-		protected override void ReceiveWithServer( int from_who ) { throw new NotImplementedException(); }
+		protected override void ReceiveWithClient() {
+			this.Receive();
+		}
+
+		protected abstract void Receive();
 	}
 
 
-
+	
 
 	public abstract class PacketProtocolRequestToClient : PacketProtocol {
 		public static void QuickRequest<T>( int to_who, int ignore_who ) where T : PacketProtocolRequestToClient {
 			PacketProtocol.QuickRequestToClient<T>( to_who, ignore_who );
 		}
 
+		////////////////
 
-		protected override void ReceiveWithClient() { throw new NotImplementedException(); }
+		protected override void ReceiveWithServer( int from_who ) {
+			this.Receive( from_who );
+		}
+
+		protected abstract void Receive( int from_who );
 	}
 }

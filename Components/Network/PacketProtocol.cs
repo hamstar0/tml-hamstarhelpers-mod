@@ -10,29 +10,9 @@ using System.Text;
 
 namespace HamstarHelpers.Components.Network {
 	/// <summary>
-	/// Sets a field to be ignored by a protocol.
-	/// </summary>
-	public class PacketProtocolIgnoreAttribute : Attribute { }
-	/// <summary>
-	/// Sets a field to be not written by clients in a protocol.
-	/// </summary>
-	public class PacketProtocolWriteIgnoreClientAttribute : Attribute { }
-	/// <summary>
-	/// Sets a field to be not written by server in a protocol.
-	/// </summary>
-	public class PacketProtocolWriteIgnoreServerAttribute : Attribute { }
-
-	[Obsolete( "use PacketProtocolWriteIgnoreServerAttribute", true )]
-	public class PacketProtocolReadIgnoreClientAttribute : Attribute { }
-	[Obsolete( "use PacketProtocolWriteIgnoreServerAttribute", true )]
-	public class PacketProtocolReadIgnoreServerAttribute : Attribute { }
-
-
-
-
-	/// <summary>
 	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
 	/// </summary>
+	[Obsolete( "recommend using more restrictive subclass (PacketProtocolSendToServer, PacketProtocolRequestToClient, etc.)", false)]
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		/// <summary>
 		/// Gets a random integer as a code representing a given protocol (by name) to identify its
