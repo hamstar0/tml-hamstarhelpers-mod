@@ -2,7 +2,6 @@
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +21,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 		protected CustomEntity() {
 			this.OwnerPlayerWho = -1;
 			this.OwnerPlayerUID = "";
-			this.TypeId = CustomEntityManager.GetId( this.GetType() );
 		}
 
 		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) : this() {	// Deserializer 1
@@ -47,14 +45,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////
 
 		private void FinishCtor( string owner_uid, int owner_who, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.TypeId = CustomEntityManager.GetId( this.GetType() );
-
-			if( this.TypeId == -1 ) {
-				string comp_str = string.Join( ", ", components.Select( c => c.GetType().Name ) );
-				throw new NotImplementedException( "!ModHelpers.CustomEntity.FinishCtor - No ID found to match to new entity "
-					+ core.DisplayName + ". Components: " + comp_str );
-			}
-
 			this.OwnerPlayerUID = owner_uid;
 			this.OwnerPlayerWho = owner_who;
 			this.Core = core;
@@ -101,10 +91,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		public void CopyChangesFrom( CustomEntity copy ) {	// TODO: Actually copy changes only!
-			if( this.TypeId == -1 ) {
-				this.Core = new CustomEntityCore( copy.Core );
-			}
-			this.TypeId = copy.TypeId;
+			this.Core = new CustomEntityCore( copy.Core );
 			this.OwnerPlayerWho = copy.OwnerPlayerWho;
 			//this.OwnerPlayerUID = copy.OwnerPlayerUID;
 

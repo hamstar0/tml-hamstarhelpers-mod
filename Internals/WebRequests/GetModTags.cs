@@ -28,6 +28,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 				ISet<string> tags = kv.Value;
 
 				foreach( string tag in tags ) {
+					if( string.IsNullOrEmpty( tag ) ) { continue; }
+
 					if( !this.TagMods.ContainsKey( tag ) ) {
 						this.TagMods[tag] = new HashSet<string>();
 					}

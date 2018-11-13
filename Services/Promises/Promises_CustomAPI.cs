@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Services.Promises {
 	sealed public class PromiseValidator {
+		internal object MyLock = new object();
 		internal object ValidatorKey;
 
 
@@ -76,7 +77,7 @@ namespace HamstarHelpers.Services.Promises {
 				throw new Exception( "Validation failed." );
 			}
 
-			lock( validator ) {
+			lock( validator.MyLock ) {
 				mymod.Promises.ValidatedPromiseConditionsMet.Add( validator );
 				mymod.Promises.ValidatedPromiseArgs[ validator ] = args;
 				is_validated = mymod.Promises.ValidatedPromise.ContainsKey( validator );
@@ -86,12 +87,12 @@ namespace HamstarHelpers.Services.Promises {
 				IList<Func<PromiseArguments, bool>> func_list = mymod.Promises.ValidatedPromise[ validator ];
 				int count;
 
-				lock( validator ) {
+				lock( validator.MyLock ) {
 					count = func_list.Count;
 				}
 
 				for( int i = 0; i < func_list.Count; i++ ) {
-					lock( validator ) {
+					lock( validator.MyLock ) {
 						is_each = func_list[ i ]( args );
 					}
 

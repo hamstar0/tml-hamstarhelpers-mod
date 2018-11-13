@@ -17,8 +17,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public readonly static object MyLock = new object();
 
 
-
-
+		
 		////////////////
 
 		private int LatestId = 1;
@@ -37,6 +36,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal CustomEntityManager() {
 			this.OnTickGet = Timers.MainOnTickGet();
 			Main.OnTick += CustomEntityManager._Update;
+
+			// Initialize components
+			var entity_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntity) );
+
+			foreach( Type entity_type in entity_types.OrderBy( e=>e.Name ) ) {
+				this.CacheTypeIdInfo( entity_type );
+			}
 
 			// Initialize components
 			var component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntityComponent) );
@@ -69,7 +75,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			DataDumper.SetDumpSource( "CustomEntityList", () => {
 				lock( CustomEntityManager.MyLock ) {
 					return string.Join( "\n  ", this.EntitiesByIndexes.OrderBy( kv => kv.Key )
-						.Select( kv => kv.Key + ": " + kv.Value.ToString() )
+								 .Select( kv => kv.Key + ": " + kv.Value.ToString() )
 					);
 				}
 			} );
@@ -80,6 +86,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
 			}
 			Main.OnTick -= CustomEntityManager._Update;
+		}
+
+
+		////////////////
+
+		private void CacheTypeIdInfo( Type ent_type ) {
+			int id = this.LatestId++;
+
+			this.TypeIdEnts[ id ] = ent_type;
+			this.EntTypeIds[ ent_type.Name ] = id;
 		}
 
 

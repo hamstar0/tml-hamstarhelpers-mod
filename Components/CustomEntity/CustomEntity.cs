@@ -24,10 +24,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////
 
-		[JsonIgnore]
-		[PacketProtocolIgnore]
-		public int TypeId { get; internal set; }
-
 		[JsonProperty]
 		private string[] ComponentNames => this.Components.Select( c => c.GetType().Name ).ToArray();
 
@@ -125,7 +121,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		public override string ToString() {
 			string basename = "";
-			string typeid = "type "+this.TypeId;
+			string typeid = "type "+CustomEntityManager.GetIdByTypeName( this.GetType().Name );
 			string who = "";
 			string owner = ", owner:";
 
@@ -147,7 +143,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( this.Components != null ) {
-				typeid = typeid + ":"+this.Components.Count();
+				typeid = typeid+":"+this.Components.Count();
 			}
 
 			return basename + " ("+ typeid + who + owner + ")";

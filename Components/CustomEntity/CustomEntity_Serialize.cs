@@ -123,7 +123,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityCore core = this.Core;
 			byte owner_who = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;
 
-			writer.Write( (ushort)this.TypeId );
+			writer.Write( (ushort)CustomEntityManager.GetIdByTypeName(this.GetType().Name) );
 			writer.Write( (byte)owner_who );
 //LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
 //LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );

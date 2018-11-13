@@ -57,6 +57,7 @@
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityComponent.cs" />
     <Compile Include="Components\CustomEntity\CustomEntityCore.cs" />
+    <Compile Include="Components\CustomEntity\Manager\CustomEntityManager_Id.cs" />
     <Compile Include="Components\CustomEntity\Manager\CustomEntityManager_Draw.cs" />
     <Compile Include="Components\CustomEntity\Manager\CustomEntityManager.cs" />
     <Compile Include="Components\CustomEntity\Manager\CustomEntityManager_Create.cs" />

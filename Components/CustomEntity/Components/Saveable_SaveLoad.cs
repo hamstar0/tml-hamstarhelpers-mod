@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = ModHelpersMod.Instance;
 			string file_name = SaveableEntityComponent.GetFileNameBase();
 			bool success = false;
-			IList<CustomEntityWithType> wrapped_ents;
+			IList<CustomEntityWithType> wrapped_ents = null;
 
 			try {
 				if( is_json ) {
