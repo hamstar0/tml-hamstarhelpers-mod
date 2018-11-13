@@ -77,19 +77,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 					return null;
 				}
 				
-				if( !string.IsNullOrEmpty( player_uid ) ) {
-					return (CustomEntity)Activator.CreateInstance( ent_type,
-						BindingFlags.NonPublic | BindingFlags.Instance,
-						null,
-						new object[] { player_uid, core, components },
-						null );
-				} else {
-					return (CustomEntity)Activator.CreateInstance( ent_type,
-						BindingFlags.NonPublic | BindingFlags.Instance,
-						null,
-						new object[] { core, components },
-						null );
-				}
+				return (CustomEntity)Activator.CreateInstance( ent_type,
+					BindingFlags.NonPublic | BindingFlags.Instance,
+					null,
+					new object[] { core, components, player_uid },
+					null );
 			} catch( Exception e ) {
 				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - " + e.Message );
 				return null;

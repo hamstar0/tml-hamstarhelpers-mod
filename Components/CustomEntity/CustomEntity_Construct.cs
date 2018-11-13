@@ -11,45 +11,23 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	abstract public partial class CustomEntity : PacketProtocolData {
-		protected CustomEntity( Player owner_plr ) : this() {
-			this.OwnerPlayerWho = owner_plr.whoAmI;
-			this.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
-		}
+		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) { }
 
-		////
-
-		protected CustomEntity() {
+		protected CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid = "" ) {
+			this.OwnerPlayerUID = player_uid;
 			this.OwnerPlayerWho = -1;
-			this.OwnerPlayerUID = "";
-		}
 
-		internal CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components ) : this() {	// Deserializer 1
-			this.FinishCtor( "", -1, core, components );
-		}
-
-		internal CustomEntity( string owner_uid, CustomEntityCore core, IList<CustomEntityComponent> components ) : this() { // Deserializer 2
-			Player owner = PlayerIdentityHelpers.GetPlayerByProperId( owner_uid );
-			if( owner == null ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.CTor_3 - Could not verify if entity's owner (by id '"+owner_uid+"') is present or absent." );
+			if( player_uid != "" ) {
+				Player plr = PlayerIdentityHelpers.GetPlayerByProperId( player_uid );
+				if( plr == null ) {
+					this.OwnerPlayerWho = plr.whoAmI;
+				}
 			}
-			
-			this.FinishCtor( owner_uid, owner.whoAmI, core, components );
-		}
 
-		internal CustomEntity( Player owner, CustomEntityCore core, IList<CustomEntityComponent> components ) : this() { // Deserializer 3
-			string owner_uid = PlayerIdentityHelpers.GetProperUniqueId( owner );
-
-			this.FinishCtor( owner_uid, owner.whoAmI, core, components );
-		}
-		
-		////
-
-		private void FinishCtor( string owner_uid, int owner_who, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			this.OwnerPlayerUID = owner_uid;
-			this.OwnerPlayerWho = owner_who;
 			this.Core = core;
 			this.Components = components;
 		}
+
 
 		////////////////
 
