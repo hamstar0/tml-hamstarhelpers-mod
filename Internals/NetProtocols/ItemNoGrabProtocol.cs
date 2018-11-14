@@ -6,8 +6,20 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class ItemNoGrabProtocol : PacketProtocolRequestToClient {
+		protected class MyFactory : PacketProtocolData.Factory<ItemNoGrabProtocol> {
+			public MyFactory( int item_who, int no_grab_delay_amt, out ItemNoGrabProtocol protocol ) : base( out protocol ) {
+				protocol.ItemWho = item_who;
+				protocol.NoGrabDelayAmt = no_grab_delay_amt;
+			}
+		}
+
+
+		////////////////
+
 		public static void SendToServer( int item_who, int no_grab_delay_amt ) {
-			var protocol = new ItemNoGrabProtocol( item_who, no_grab_delay_amt );
+			ItemNoGrabProtocol protocol;
+			new MyFactory( item_who, no_grab_delay_amt, out protocol );
+			
 			protocol.SendToServer( false );
 		}
 
@@ -20,12 +32,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private ItemNoGrabProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
-
-		private ItemNoGrabProtocol( int item_who, int no_grab_delay_amt ) {
-			this.ItemWho = item_who;
-			this.NoGrabDelayAmt = no_grab_delay_amt;
-		}
+		protected ItemNoGrabProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 		////////////////
 

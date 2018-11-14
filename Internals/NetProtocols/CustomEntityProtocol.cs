@@ -5,14 +5,27 @@ using HamstarHelpers.Helpers.DebugHelpers;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class CustomEntityProtocol : PacketProtocol {
+	class CustomEntityProtocol : PacketProtocolSentToEither {
+		protected class MyFactory : PacketProtocolData.Factory<CustomEntityProtocol> {
+			public MyFactory( CustomEntity ent, out CustomEntityProtocol protocol ) : base( out protocol ) {
+				protocol.Entity = ent;
+			}
+		}
+		
+
+		////////////////
+
 		public static void SendToClients( CustomEntity ent ) {
-			var protocol = new CustomEntityProtocol( ent );
+			CustomEntityProtocol protocol;
+			new MyFactory( ent, out protocol );
+
 			protocol.SendToClient( -1, -1 );
 		}
 
 		public static void SyncToAll( CustomEntity ent ) {
-			var protocol = new CustomEntityProtocol( ent );
+			CustomEntityProtocol protocol;
+			var initializer = new MyFactory( ent, out protocol );
+
 			protocol.SendToServer( true );
 		}
 
@@ -26,15 +39,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private CustomEntityProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
-		
-		private CustomEntityProtocol( CustomEntity ent ) {
-			this.Entity = ent;
-		}
+		protected CustomEntityProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+
 
 		////////////////
 
-		protected override void ReceiveWithServer( int from_who ) {
+		protected override void ReceiveOnServer( int from_who ) {
 			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 
 			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
@@ -51,7 +61,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			ent.SyncFrom( this.Entity );
 		}
 
-		protected override void ReceiveWithClient() {
+		protected override void ReceiveOnClient() {
 			var existing_ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 
 			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {

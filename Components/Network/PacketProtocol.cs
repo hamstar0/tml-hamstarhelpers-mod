@@ -1,10 +1,8 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Text;
 
 
@@ -14,6 +12,10 @@ namespace HamstarHelpers.Components.Network {
 	/// </summary>
 	[Obsolete( "recommend using more restrictive subclass (PacketProtocolSendToServer, PacketProtocolRequestToClient, etc.)", false)]
 	public abstract partial class PacketProtocol : PacketProtocolData {
+		protected PacketProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+
+
+
 		/// <summary>
 		/// Gets a random integer as a code representing a given protocol (by name) to identify its
 		/// network packets.
@@ -35,15 +37,15 @@ namespace HamstarHelpers.Components.Network {
 
 
 		internal static IDictionary<int, Type> GetProtocolTypes() {
-			IEnumerable<Type> protocol_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( PacketProtocol ) );
+			IEnumerable<Type> protocol_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof(PacketProtocol) );
 			IDictionary<int, Type> protocol_type_map = new Dictionary<int, Type>();
 
 			foreach( Type subclass in protocol_types ) {
-				ConstructorInfo ctor_info = subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
-					new Type[] { typeof(PacketProtocolDataConstructorLock) }, null );
-				if( ctor_info == null ) {
-					throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
-				}
+				//ConstructorInfo ctor_info = subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+				//	new Type[] { typeof(PacketProtocolDataConstructorLock) }, null );
+				//if( ctor_info == null ) {
+				//	throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
+				//}
 
 				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					string name = subclass.Namespace + "." + subclass.Name;
@@ -74,6 +76,7 @@ namespace HamstarHelpers.Components.Network {
 		public virtual bool IsVerbose { get { return true; } }
 
 
+
 		////////////////
 		
 		/// <summary>
@@ -100,6 +103,9 @@ namespace HamstarHelpers.Components.Network {
 		protected virtual void SetServerDefaults( int to_who ) {
 			throw new NotImplementedException( "No SetServerDefaults(int) implemented" );
 		}
+
+
+
 
 		[Obsolete( "use SetServerDefaults( int for_who )", false )]
 		protected virtual void SetServerDefaults() {

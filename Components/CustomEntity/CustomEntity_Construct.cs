@@ -10,23 +10,29 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	abstract public partial class CustomEntity : PacketProtocolData {
-		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) { }
+	public abstract partial class CustomEntity : PacketProtocolData {
+		protected abstract class CustomEntityFactory : Factory<CustomEntity> {
+			public CustomEntityFactory( CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid,
+					out CustomEntity ent ) : base( out ent ) {
+				ent.OwnerPlayerUID = player_uid;
+				ent.OwnerPlayerWho = -1;
 
-		protected CustomEntity( CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid = "" ) {
-			this.OwnerPlayerUID = player_uid;
-			this.OwnerPlayerWho = -1;
-
-			if( player_uid != "" ) {
-				Player plr = PlayerIdentityHelpers.GetPlayerByProperId( player_uid );
-				if( plr == null ) {
-					this.OwnerPlayerWho = plr.whoAmI;
+				if( player_uid != "" ) {
+					Player plr = PlayerIdentityHelpers.GetPlayerByProperId( player_uid );
+					if( plr == null ) {
+						ent.OwnerPlayerWho = plr.whoAmI;
+					}
 				}
-			}
 
-			this.Core = core;
-			this.Components = components;
+				ent.Core = core;
+				ent.Components = components;
+			}
 		}
+
+
+		////////////////
+
+		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 
 		////////////////
@@ -68,12 +74,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public void CopyChangesFrom( CustomEntity copy ) {	// TODO: Actually copy changes only!
-			this.Core = new CustomEntityCore( copy.Core );
-			this.OwnerPlayerWho = copy.OwnerPlayerWho;
-			//this.OwnerPlayerUID = copy.OwnerPlayerUID;
+		private void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr ) {   // TODO: Actually copy changes only!
+			//Type my_factory_type = this.GetMainFactoryType();
+			//ConstructorInfo ctor = my_factory_type.GetConstructor( new Type[] {
+			//	typeof(CustomEntityCore), typeof(IList<CustomEntityComponent>), typeof(string), typeof(CustomEntity)
+			//} );
+			//var new_ent = (CustomEntity)ctor.Invoke( new object[] { core, components, player_uid } );
 
-			this.Components = copy.Components.Select( c => c.InternalClone() ).ToList();
+			this.Core = new CustomEntityCore( core );
+			this.OwnerPlayerWho = owner_plr != null ? owner_plr.whoAmI : -1;
+			//this.OwnerPlayerUID = owner_plr != null ? PlayerIdentityHelpers.GetProperUniqueId(owner_plr) : "";
+
+			this.Components = components.Select( c => c.InternalClone() ).ToList();
 
 			this.ComponentsByTypeName.Clear();
 			this.AllComponentsByTypeName.Clear();

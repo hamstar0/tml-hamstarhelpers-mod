@@ -68,6 +68,7 @@
     <Compile Include="Components\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Components\DataStructures\WorldDictionary.cs" />
     <Compile Include="Components\Errors\Errors.cs" />
+    <Compile Include="Components\Network\Data\PacketProtocolData_Create.cs" />
     <Compile Include="Components\Network\Data\PacketProtocolData.cs" />
     <Compile Include="Components\Network\Data\PacketProtocolData_Read.cs" />
     <Compile Include="Components\Network\Data\PacketProtocolData_Write.cs" />

@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private WorldDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+		protected WorldDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 
 		////////////////

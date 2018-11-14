@@ -8,24 +8,27 @@ using Terraria;
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private static void QuickSendToServerBase<T>( bool sync_to_clients )
-				where T : PacketProtocol {   //, new()
+				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 1 ) {
 				throw new HamstarException( "Can only send as client." );
 			}
 
-			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			T t = PacketProtocolData.Create<T>();
 			t.SetClientDefaults();
 
 			t.SendToServer( sync_to_clients );
 		}
 
 
+		////////////////
+		
+		
 		/// <summary>
 		/// Shorthand to send a default instance of this protocol's data to the server. Requires `SetClientDefaults()`
 		/// to be implemented.
 		/// </summary>
 		public static void QuickSendToServer<T>()
-				where T : PacketProtocol {   //, new()
+				where T : PacketProtocol {  //, new()
 			PacketProtocol.QuickSendToServerBase<T>( false );
 		}
 
@@ -34,7 +37,7 @@ namespace HamstarHelpers.Components.Network {
 		/// to be implemented.
 		/// </summary>
 		public static void QuickSyncToServerAndClients<T>()
-				where T : PacketProtocol {   //, new()
+				where T : PacketProtocol {  //, new()
 			PacketProtocol.QuickSendToServerBase<T>( true );
 		}
 
@@ -51,7 +54,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Can only send as client." );
 			}
 
-			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			T t = PacketProtocolData.Create<T>();
 			try {
 				t.SetServerDefaults( to_who );
 			} catch( NotImplementedException ) {
@@ -75,7 +78,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Not server." );
 			}
 
-			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			T t = PacketProtocolData.Create<T>();
 
 			t.SendRequestToClient( to_who, ignore_who );
 		}
@@ -91,7 +94,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Not a client." );
 			}
 
-			var t = (T)PacketProtocolData.CreateData( typeof( T ) );
+			T t = PacketProtocolData.Create<T>();
 
 			t.SendRequestToServer();
 		}

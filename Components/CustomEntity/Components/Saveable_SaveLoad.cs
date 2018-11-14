@@ -10,14 +10,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = ModHelpersMod.Instance;
 			string file_name = SaveableEntityComponent.GetFileNameBase();
 
-			IList<CustomEntityWithType> wrapped_ents = new List<CustomEntityWithType>();
+			IList<SerializedCustomEntity> wrapped_ents = new List<SerializedCustomEntity>();
 
 			foreach( var ent in CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>() ) {
 				if( ent.GetComponentByType<SaveableEntityComponent>().AsJson != is_json ) {
 					continue;
 				}
 				
-				wrapped_ents.Add( new CustomEntityWithType { MyTypeName = ent.GetType().Name, MyEntity = ent } );
+				wrapped_ents.Add( new SerializedCustomEntity { MyTypeName = ent.GetType().Name, MyEntity = ent } );
 			}
 
 			if( wrapped_ents.Count > 0 ) {
@@ -34,18 +34,18 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = ModHelpersMod.Instance;
 			string file_name = SaveableEntityComponent.GetFileNameBase();
 			bool success = false;
-			IList<CustomEntityWithType> wrapped_ents = null;
+			IList<SerializedCustomEntity> wrapped_ents = null;
 
 			try {
 				if( is_json ) {
-					wrapped_ents = DataFileHelpers.LoadJson<List<CustomEntityWithType>>( mymod, file_name, CustomEntity.SerializerSettings, out success );
+					wrapped_ents = DataFileHelpers.LoadJson<List<SerializedCustomEntity>>( mymod, file_name, CustomEntity.SerializerSettings, out success );
 				} else {
-					wrapped_ents = DataFileHelpers.LoadBinary<List<CustomEntityWithType>>( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings );
+					wrapped_ents = DataFileHelpers.LoadBinary<List<SerializedCustomEntity>>( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings );
 					success = wrapped_ents != null;
 				}
 
 				if( success ) {
-					foreach( CustomEntityWithType ent in wrapped_ents ) {
+					foreach( SerializedCustomEntity ent in wrapped_ents ) {
 						if( ent == null ) { continue; }
 						CustomEntityManager.LoadAs( ent.MyTypeName, ent.MyEntity );
 					}

@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using Terraria;
+using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -10,9 +10,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public string ClientPrivateUID = "";
 
 
+
 		////////////////
 
-		private PlayerOldIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+		protected PlayerOldIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 
 		////////////////

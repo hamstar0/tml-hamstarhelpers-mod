@@ -8,11 +8,26 @@ using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class PlayerDataProtocol : PacketProtocol {
+	class PlayerDataProtocol : PacketProtocolSentToEither {
+		protected class MyFactory : PacketProtocolData.Factory<PlayerDataProtocol> {
+			public MyFactory( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types,
+					out PlayerDataProtocol protocol ) : base( out protocol ) {
+				protocol.PlayerWho = Main.myPlayer;
+				protocol.PermaBuffsById = perma_buffs_by_id;
+				protocol.HasBuffIds = has_buff_ids;
+				protocol.EquipSlotsToItemTypes = equip_slots_to_item_types;
+			}
+		}
+
+
+		////////////////
+
 		public static void SyncToEveryone( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
-			var protocol = new PlayerDataProtocol( Main.myPlayer, perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
+			PlayerDataProtocol protocol;
+			new MyFactory( perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types, out protocol );
+			
 			protocol.SendToServer( true );
 		}
 
@@ -26,33 +41,25 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
 
 
-		////////////////
-
-		private PlayerDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
 
 		////////////////
 
-		private PlayerDataProtocol( int player_who, ISet<int> perma_buff_ids, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
-			this.PlayerWho = player_who;
-			this.PermaBuffsById = perma_buff_ids;
-			this.HasBuffIds = has_buff_ids;
-			this.EquipSlotsToItemTypes = equip_slots_to_item_types;
-		}
+		protected PlayerDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
-		////////////////
 
 		protected override void SetServerDefaults( int from_who ) { }
 
+
 		////////////////
 
-		protected override void ReceiveWithServer( int from_who ) {
+		protected override void ReceiveOnServer( int from_who ) {
 			Player player = Main.player[ from_who ];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveDataServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
 
-		protected override void ReceiveWithClient() {
+		protected override void ReceiveOnClient() {
 			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
 				throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
 			}

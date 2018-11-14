@@ -9,7 +9,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private ModSettingsProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+		protected ModSettingsProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 		////////////////
 

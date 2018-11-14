@@ -27,7 +27,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateData( protocol_type );
+				var protocol = (PacketProtocol)PacketProtocolData.Create( protocol_type );
 
 				if( is_request ) {
 					protocol.ReceiveRequestWithClientBase();
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateData( protocol_type );
+				var protocol = (PacketProtocol)PacketProtocolData.Create( protocol_type );
 
 				if( is_request ) {
 					protocol.ReceiveRequestWithServerBase( player_who );

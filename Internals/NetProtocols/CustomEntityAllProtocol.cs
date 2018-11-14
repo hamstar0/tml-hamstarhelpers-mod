@@ -13,14 +13,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public CustomEntity[] Entities;
 
 
-
 		////////////////
+		
+		protected CustomEntityAllProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
-		private CustomEntityAllProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
-
-
-		////////////////
-
+		////
+		
 		protected override void SetServerDefaults( int from_who ) {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<PeriodicSyncEntityComponent>();
 

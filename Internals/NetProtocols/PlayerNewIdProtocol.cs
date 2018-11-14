@@ -1,24 +1,24 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using Terraria;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using System.Collections.Generic;
+using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class PlayerNewIdProtocol : PacketProtocol {
+	class PlayerNewIdProtocol : PacketProtocolSentToEither {
 		public IDictionary<int, string> PlayerIds;
 
 
 
 		////////////////
 
-		private PlayerNewIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) {
+		protected PlayerNewIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
 			this.PlayerIds = ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
 		}
 
-
+		
 		////////////////
 
 		protected override void SetClientDefaults() {
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveWithServer( int from_who ) {
+		protected override void ReceiveOnServer( int from_who ) {
 			string uid;
 			if( this.PlayerIds.TryGetValue( from_who, out uid ) ) {
 				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ from_who ] = uid;
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}
 		}
 
-		protected override void ReceiveWithClient() {
+		protected override void ReceiveOnClient() {
 			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
 		}
 	}

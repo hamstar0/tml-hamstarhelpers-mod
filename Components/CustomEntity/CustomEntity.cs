@@ -10,7 +10,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	abstract public partial class CustomEntity : PacketProtocolData {
+	public abstract partial class CustomEntity : PacketProtocolData {
 		public CustomEntityCore Core;
 		public IList<CustomEntityComponent> Components = new List<CustomEntityComponent>();
 
@@ -23,6 +23,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public int OwnerPlayerWho = -1;
 
 		////
+
+		[JsonIgnore]
+		[PacketProtocolIgnore]
+		private Player OwnerPlayer => this.OwnerPlayerWho == -1 ? null : Main.player[ this.OwnerPlayerWho ];
 
 		[JsonProperty]
 		private string[] ComponentNames => this.Components.Select( c => c.GetType().Name ).ToArray();
@@ -86,7 +90,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				LogHelpers.Log( "ModHelpers.CustomEntity.SyncFrom - Synced from " + ent.ToString() + " for "+ this.ToString() );
 			}
 
-			this.CopyChangesFrom( ent );
+			this.CopyChangesFrom( ent.Core, ent.Components, ent.OwnerPlayer );
 		}
 
 

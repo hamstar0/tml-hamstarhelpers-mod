@@ -117,7 +117,7 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 
 			if( field_type.IsSubclassOf( typeof(PacketProtocolData) ) ) {
-				PacketProtocolData item = PacketProtocolData.CreateData( field_type );
+				var item = PacketProtocolData.Create( field_type );
 
 				item.ReadStream( reader );
 				

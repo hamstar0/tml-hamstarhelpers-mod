@@ -6,29 +6,10 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Components.Network.Data {
-	public class PacketProtocolDataConstructorLock {
-		internal PacketProtocolDataConstructorLock() { }
-	}
-
-
-
-
 	/// <summary>
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
 	public abstract partial class PacketProtocolData {
-		internal static PacketProtocolData CreateData( Type protocol_type ) {
-			return (PacketProtocolData)Activator.CreateInstance( protocol_type,
-				BindingFlags.NonPublic | BindingFlags.Instance,
-				null,
-				new object[] { ModHelpersMod.Instance.PacketProtocolCtorLock },
-				null
-			);
-		}
-
-
-		////////////////
-
 		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
 
 		internal IOrderedEnumerable<FieldInfo> OrderedFields {
@@ -45,7 +26,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		////////////////
-
+		
 		/// <summary>
 		/// Implements internal low level data reading for packet receipt.
 		/// </summary>

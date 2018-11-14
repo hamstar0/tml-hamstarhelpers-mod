@@ -8,10 +8,8 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class DataDumpProtocol : PacketProtocolRequestToServer {
-		private DataDumpProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
-
-		////////////////
-
+		protected DataDumpProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		
 		protected override void SetServerDefaults( int from_who ) { }
 
 		////////////////

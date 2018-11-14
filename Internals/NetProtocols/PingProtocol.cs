@@ -2,9 +2,8 @@
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 
-
 namespace HamstarHelpers.Internals.NetProtocols {
-	class PingProtocol : PacketProtocol {
+	class PingProtocol : PacketProtocolSentToEither {
 		public long StartTime = -1;
 		public long EndTime = -1;
 
@@ -18,7 +17,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private PingProtocol( PacketProtocolDataConstructorLock ctor_lock ) { }
+		protected PingProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 		////////////////
 
@@ -31,7 +30,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveWithServer( int from_who ) {
+		protected override void ReceiveOnServer( int from_who ) {
 			if( this.EndTime == -1 ) {
 				this.SendToClient( from_who, -1 );
 			} else {
@@ -40,7 +39,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 
-		protected override void ReceiveWithClient() {
+		protected override void ReceiveOnClient() {
 			var now = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 
 			this.EndTime = now;
