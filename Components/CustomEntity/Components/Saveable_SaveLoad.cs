@@ -17,7 +17,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					continue;
 				}
 				
-				wrapped_ents.Add( new SerializedCustomEntity { MyTypeName = ent.GetType().Name, MyEntity = ent } );
+				wrapped_ents.Add( new SerializedCustomEntity(ModHelpersMod.Instance.PacketProtocolCtorLock, ent) );
 			}
 
 			if( wrapped_ents.Count > 0 ) {
@@ -47,7 +47,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				if( success ) {
 					foreach( SerializedCustomEntity ent in wrapped_ents ) {
 						if( ent == null ) { continue; }
-						CustomEntityManager.LoadAs( ent.MyTypeName, ent.MyEntity );
+						
+						CustomEntityManager.AddToWorld( ent.Convert() );
 					}
 				}
 			} catch( Exception e ) {

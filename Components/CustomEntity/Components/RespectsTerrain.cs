@@ -7,9 +7,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
-		private RespectsTerrainEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
-
-		public RespectsTerrainEntityComponent() { }
+		protected RespectsTerrainEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 
 		////////////////

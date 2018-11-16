@@ -117,11 +117,11 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 
 			if( field_type.IsSubclassOf( typeof(PacketProtocolData) ) ) {
-				var item = PacketProtocolData.Create( field_type );
+				var data = PacketProtocolData.CreateRaw( field_type );
 
-				item.ReadStream( reader );
+				data.ReadStream( reader );
 				
-				return item;
+				return data;
 
 			} else if( ( is_enumerable || typeof( IEnumerable ).IsAssignableFrom( field_type ) )
 					&& ( !is_dictionary && !typeof( IDictionary ).IsAssignableFrom( field_type ) ) ) {

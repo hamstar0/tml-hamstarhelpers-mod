@@ -13,7 +13,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Can only send as client." );
 			}
 
-			T t = PacketProtocolData.Create<T>();
+			T t = (T)PacketProtocolData.CreateRaw( typeof(T) );
 			t.SetClientDefaults();
 
 			t.SendToServer( sync_to_clients );
@@ -53,8 +53,8 @@ namespace HamstarHelpers.Components.Network {
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Can only send as client." );
 			}
-
-			T t = PacketProtocolData.Create<T>();
+			
+			T t = (T)PacketProtocolData.CreateRaw( typeof(T) );
 			try {
 				t.SetServerDefaults( to_who );
 			} catch( NotImplementedException ) {
@@ -77,8 +77,8 @@ namespace HamstarHelpers.Components.Network {
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Not server." );
 			}
-
-			T t = PacketProtocolData.Create<T>();
+			
+			T t = (T)PacketProtocolData.CreateRaw( typeof(T) );
 
 			t.SendRequestToClient( to_who, ignore_who );
 		}
@@ -93,8 +93,8 @@ namespace HamstarHelpers.Components.Network {
 			if( Main.netMode != 1 ) {
 				throw new HamstarException( "Not a client." );
 			}
-
-			T t = PacketProtocolData.Create<T>();
+			
+			T t = (T)PacketProtocolData.CreateRaw( typeof(T) );
 
 			t.SendRequestToServer();
 		}

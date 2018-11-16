@@ -12,6 +12,33 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsInGameEntityComponent : CustomEntityComponent {
+		protected class MyFactory : CustomEntityComponent.ComponentFactory<DrawsInGameEntityComponent> {
+			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count,
+					out DrawsInGameEntityComponent comp ) : base( out comp ) {
+				comp.ModName = src_mod_name;
+				comp.TexturePath = rel_texture_path;
+				comp.FrameCount = frame_count;
+
+				if( string.IsNullOrEmpty( comp.ModName ) || string.IsNullOrEmpty( comp.TexturePath ) || comp.FrameCount == 0 ) {
+					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.MyFactory - Invalid fields." );
+				}
+
+				var src_mod = ModLoader.GetMod( comp.ModName );
+				if( src_mod == null ) {
+					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.MyFactory - Invalid mod " + comp.ModName );
+				}
+
+				if( !Main.dedServ ) {
+					if( comp.Texture == null ) {
+						comp.Texture = src_mod.GetTexture( comp.TexturePath );
+					}
+				}
+			}
+		}
+
+
+		////////////////
+
 		public static void DrawTexture( SpriteBatch sb, CustomEntity ent, Texture2D tex, int frame_count, Color color ) {
 			var core = ent.Core;
 			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
@@ -58,28 +85,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
-
-		public DrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
-			this.ModName = src_mod_name;
-			this.TexturePath = rel_texture_path;
-			this.FrameCount = frame_count;
-
-			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 ) {
-				throw new HamstarException("!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields.");
-			}
-
-			var src_mod = ModLoader.GetMod( this.ModName );
-			if( src_mod == null ) {
-				throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid mod "+this.ModName );
-			}
-
-			if( !Main.dedServ ) {
-				if( this.Texture == null ) {
-					this.Texture = src_mod.GetTexture( this.TexturePath );
-				}
-			}
-		}
+		protected DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 
 		////////////////

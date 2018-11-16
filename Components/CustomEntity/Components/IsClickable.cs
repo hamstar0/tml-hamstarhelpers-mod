@@ -1,10 +1,16 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	abstract public class IsClickableEntityComponent : CustomEntityComponent {
+		protected IsClickableEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+
+
+		////////////////
+
 		private void UpdateMe( CustomEntity ent ) {
 			if( this.CheckMouseHover( ent ) ) {
 				this.OnMouseHover( ent );

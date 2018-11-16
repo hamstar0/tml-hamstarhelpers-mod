@@ -12,6 +12,35 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsOnMapEntityComponent : CustomEntityComponent {
+		protected class MyFactory : CustomEntityComponent.ComponentFactory<DrawsOnMapEntityComponent> {
+			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms,
+					out DrawsOnMapEntityComponent comp ) : base( out comp ) {
+				comp.ModName = src_mod_name;
+				comp.TexturePath = rel_texture_path;
+				comp.FrameCount = frame_count;
+				comp.Scale = scale;
+				comp.Zooms = zooms;
+
+				if( string.IsNullOrEmpty( comp.ModName ) || string.IsNullOrEmpty( comp.TexturePath ) || comp.FrameCount == 0 || comp.Scale == 0 ) {
+					throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
+				}
+
+				var src_mod = ModLoader.GetMod( comp.ModName );
+				if( src_mod == null ) {
+					throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + comp.ModName );
+				}
+
+				if( !Main.dedServ ) {
+					if( comp.Texture == null ) {
+						comp.Texture = src_mod.GetTexture( comp.TexturePath );
+					}
+				}
+			}
+		}
+
+
+		////////////////
+
 		[PacketProtocolIgnore]
 		public string ModName;
 		[PacketProtocolIgnore]
@@ -31,30 +60,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
-
-		public DrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
-			this.ModName = src_mod_name;
-			this.TexturePath = rel_texture_path;
-			this.FrameCount = frame_count;
-			this.Scale = scale;
-			this.Zooms = zooms;
-
-			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 || this.Scale == 0 ) {
-				throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
-			}
-
-			var src_mod = ModLoader.GetMod( this.ModName );
-			if( src_mod == null ) {
-				throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod "+this.ModName );
-			}
-
-			if( !Main.dedServ ) {
-				if( this.Texture == null ) {
-					this.Texture = src_mod.GetTexture( this.TexturePath );
-				}
-			}
-		}
+		protected DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 
 		////////////////

@@ -19,9 +19,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : this() { }
-
-		public PeriodicSyncEntityComponent() {
+		protected PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
 			this.NextSync = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );
 		}
 

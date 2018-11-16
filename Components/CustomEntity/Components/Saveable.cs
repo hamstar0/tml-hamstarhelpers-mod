@@ -1,10 +1,20 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Services.Promises;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class SaveableEntityComponent : CustomEntityComponent {
+		protected class MyFactory : CustomEntityComponent.ComponentFactory<SaveableEntityComponent> {
+			public MyFactory( bool as_json, out SaveableEntityComponent comp ) : base( out comp ) {
+				comp.AsJson = as_json;
+			}
+		}
+
+
+		////////////////
+
 		internal readonly static object MyValidatorKey;
 		public readonly static PromiseValidator LoadAllValidator;
 
@@ -35,10 +45,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		private SaveableEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) { }
-
-		public SaveableEntityComponent( bool as_json ) {
-			this.AsJson = as_json;
-		}
+		protected SaveableEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 	}
 }

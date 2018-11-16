@@ -47,14 +47,14 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 
-		/*internal static PacketProtocolData CreateRaw( Type mytype ) {
+		internal static PacketProtocolData CreateRaw( Type mytype ) {
 			return (PacketProtocolData)Activator.CreateInstance( mytype,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
 				new object[] { ModHelpersMod.Instance.PacketProtocolCtorLock },
 				null
 			);
-		}*/
+		}
 
 
 		////////////////

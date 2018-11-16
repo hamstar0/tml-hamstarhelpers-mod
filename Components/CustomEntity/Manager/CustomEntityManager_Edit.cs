@@ -6,19 +6,6 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		internal static void LoadAs( string type_name, CustomEntity ent ) {
-			Type ent_type = Type.GetType( type_name );
-			if( ent_type == null ) {
-				throw new HamstarException( "!ModHelpers.CustomEntityManager.LoadAs - Invalid CustomEntity of type "+type_name );
-			}
-			
-			CustomEntity typed_ent = ent.CloneAsType( ent_type );
-			CustomEntityManager.AddToWorld( typed_ent );
-		}
-
-
-		////////////////
-
 		public static void RemoveEntity( CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
 

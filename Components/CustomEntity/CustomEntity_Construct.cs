@@ -5,15 +5,14 @@ using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
-		protected abstract class CustomEntityFactory : Factory<CustomEntity> {
+		protected abstract class CustomEntityFactory<T> : Factory<T> where T : CustomEntity {
 			public CustomEntityFactory( CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid,
-					out CustomEntity ent ) : base( out ent ) {
+					out T ent ) : base( out ent ) {
 				ent.OwnerPlayerUID = player_uid;
 				ent.OwnerPlayerWho = -1;
 
@@ -33,25 +32,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
-
-
-		////////////////
-
-		internal CustomEntity CloneAsType( Type ent_type ) {
-			if( !ent_type.IsSubclassOf(typeof(CustomEntity)) ) {
-				throw new HamstarException( ent_type.Name+" is not a valid CustomEntity." );
-			}
-
-			var args = this.OwnerPlayerWho == -1 ?
-				new object[] { this.Core, this.Components } :
-				new object[] { this.OwnerPlayerUID, this.Core, this.Components };
-			
-			return (CustomEntity)Activator.CreateInstance( ent_type,
-				BindingFlags.NonPublic | BindingFlags.Instance,
-				null,
-				args,
-				null );
-		}
 
 
 		////////////////

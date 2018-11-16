@@ -2,7 +2,6 @@
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -16,18 +15,40 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	internal class SerializedCustomEntity : CustomEntity {
-		protected class MyFactory : CustomEntityFactory<SerializedCustomEntity> {
-			public MyFactory( CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid,
-					out SerializedCustomEntity protocol ) : base( core, components, player_uid, out protocol ) { }
-		}
+		public string MyTypeName;
 
 
 		////////////////
 
-		public string MyTypeName;
-
-
 		protected SerializedCustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		
+		internal SerializedCustomEntity( PacketProtocolDataConstructorLock ctor_lock, CustomEntity ent ) : base( ctor_lock ) {
+			this.OwnerPlayerUID = ent.OwnerPlayerUID;
+			this.OwnerPlayerWho = ent.OwnerPlayerWho;
+			this.Core = ent.Core;
+			this.Components = ent.Components;
+			this.MyTypeName = ent.GetType().Name;
+		}
+
+		////////////////
+
+		internal CustomEntity Convert() {
+			Type ent_type = Type.GetType( this.MyTypeName );
+
+			if( !ent_type.IsSubclassOf( typeof( CustomEntity ) ) ) {
+				throw new HamstarException( ent_type.Name + " is not a valid CustomEntity." );
+			}
+
+			var args = this.OwnerPlayerWho == -1 ?
+				new object[] { this.Core, this.Components } :
+				new object[] { this.OwnerPlayerUID, this.Core, this.Components };
+
+			return (CustomEntity)Activator.CreateInstance( ent_type,
+				BindingFlags.NonPublic | BindingFlags.Instance,
+				null,
+				args,
+				null );
+		}
 	}
 
 
@@ -151,30 +172,33 @@ namespace HamstarHelpers.Components.CustomEntity {
 		protected override void ReadStream( BinaryReader reader ) {
 			int type_id = (int)(ushort)reader.ReadUInt16();
 			byte owner_who = reader.ReadByte();
+			int who = (ushort)reader.ReadUInt16();
+			string display_name = (string)reader.ReadString();
+			var pos = new Vector2 {
+				X = (float)reader.ReadSingle(),
+				Y = (float)reader.ReadSingle()
+			};
+			int dir = (short)reader.ReadInt16();
+			int wid = (ushort)reader.ReadUInt16();
+			int hei = (ushort)reader.ReadUInt16();
+			var vel = new Vector2 {
+				X = (float)reader.ReadSingle(),
+				Y = (float)reader.ReadSingle()
+			};
 
 			Type ent_type = CustomEntityManager.GetTypeById( type_id );
 			if( ent_type == null ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id "+type_id );
+				throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id " + type_id );
 			}
 
-			Player owner = owner_who == (byte)255 ? null : Main.player[owner_who];
-			
-			var core = new CustomEntityCore( ModHelpersMod.Instance.PacketProtocolCtorLock );
-			var components = new List<CustomEntityComponent>();
+			Player plr = owner_who == (byte)255 ? null : Main.player[owner_who];
 
-			core.whoAmI = (ushort)reader.ReadUInt16();
-			core.DisplayName = (string)reader.ReadString();
-			core.position = new Vector2 {
-				X = (float)reader.ReadSingle(),
-				Y = (float)reader.ReadSingle()
+			var components = new List<CustomEntityComponent>();
+			var core = new CustomEntityCore( display_name, wid, hei, pos, dir ) {
+				whoAmI = who,
+				velocity = vel
 			};
-			core.direction = (short)reader.ReadInt16();
-			core.width = (ushort)reader.ReadUInt16();
-			core.height = (ushort)reader.ReadUInt16();
-			core.velocity = new Vector2 {
-				X = (float)reader.ReadSingle(),
-				Y = (float)reader.ReadSingle()
-			};
+			
 //LogHelpers.Log( "READ id: "+this.ID+", name: "+core.DisplayName+", who: "+core.whoAmI+", total templates: "+ CustomEntityTemplates.TotalEntityTemplates());
 //LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
 			
@@ -183,7 +207,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 //LogHelpers.Log( "READ "+new_ent.ToString()+" pos:"+new_ent.Core.position );
-			this.CopyChangesFrom( core, components, player );
+			this.CopyChangesFrom( core, components, plr );
 		}
 	}
 }
