@@ -5,7 +5,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsGravityEntityComponent : CustomEntityComponent {
-		public static RespectsGravityEntityComponent Create() {
+		public static RespectsGravityEntityComponent CreateRespectsGravityEntityComponent() {
 			return (RespectsGravityEntityComponent)PacketProtocolData.CreateRaw( typeof(RespectsGravityEntityComponent) );
 		}
 

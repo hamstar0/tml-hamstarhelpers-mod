@@ -35,6 +35,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 				data.Core = this.InitializeCore();
 				data.Components = this.InitializeComponents();
+				this.PostInitialize( data );
 			}
 
 			////
