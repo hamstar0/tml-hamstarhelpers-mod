@@ -12,34 +12,51 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsInGameEntityComponent : CustomEntityComponent {
-		protected class MyFactory : Factory<DrawsInGameEntityComponent> {
-			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count,
-					out DrawsInGameEntityComponent comp ) : base( out comp ) {
-				comp.ModName = src_mod_name;
-				comp.TexturePath = rel_texture_path;
-				comp.FrameCount = frame_count;
+		protected class MyFactory : PacketProtocolData.Factory<DrawsInGameEntityComponent> {
+			private readonly string SourceModName;
+			private readonly string RelativeTexturePath;
+			private readonly int FrameCount;
 
-				if( string.IsNullOrEmpty( comp.ModName ) || string.IsNullOrEmpty( comp.TexturePath ) || comp.FrameCount == 0 ) {
+
+			////////////////
+
+			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count ) {
+				this.SourceModName = src_mod_name;
+				this.RelativeTexturePath = rel_texture_path;
+				this.FrameCount = frame_count;
+			}
+
+			////
+
+			public override void Initialize( DrawsInGameEntityComponent data ) {
+				data.ModName = this.SourceModName;
+				data.TexturePath = this.RelativeTexturePath;
+				data.FrameCount = this.FrameCount;
+
+				if( string.IsNullOrEmpty( data.ModName ) || string.IsNullOrEmpty( data.TexturePath ) || data.FrameCount == 0 ) {
 					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Create - Invalid fields." );
 				}
 
-				var src_mod = ModLoader.GetMod( comp.ModName );
+				var src_mod = ModLoader.GetMod( data.ModName );
 				if( src_mod == null ) {
-					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Create - Invalid mod " + comp.ModName );
+					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Create - Invalid mod " + data.ModName );
 				}
 
 				if( !Main.dedServ ) {
-					if( comp.Texture == null ) {
-						comp.Texture = src_mod.GetTexture( comp.TexturePath );
+					if( data.Texture == null ) {
+						data.Texture = src_mod.GetTexture( data.TexturePath );
 					}
 				}
 			}
 		}
 
+
+
+		////////////////
+
 		public static DrawsInGameEntityComponent Create( string src_mod_name, string rel_texture_path, int frame_count ) {
-			DrawsInGameEntityComponent comp;
-			new MyFactory( src_mod_name, rel_texture_path, frame_count, out comp );
-			return comp;
+			var factory = new MyFactory( src_mod_name, rel_texture_path, frame_count );
+			return factory.Create();
 		}
 
 

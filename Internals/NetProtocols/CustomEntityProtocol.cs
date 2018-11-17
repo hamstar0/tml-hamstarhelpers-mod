@@ -7,24 +7,36 @@ using HamstarHelpers.Helpers.DebugHelpers;
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityProtocol : PacketProtocolSentToEither {
 		protected class MyFactory : PacketProtocolData.Factory<CustomEntityProtocol> {
-			public MyFactory( CustomEntity ent, out CustomEntityProtocol protocol ) : base( out protocol ) {
-				protocol.Entity = ent;
+			private readonly CustomEntity Entity;
+
+
+			////////////////
+
+			public MyFactory( CustomEntity ent ) {
+				this.Entity = ent;
+			}
+
+			////
+
+			public override void Initialize( CustomEntityProtocol data ) {
+				data.Entity = this.Entity;
 			}
 		}
-		
+
+
 
 		////////////////
 
 		public static void SendToClients( CustomEntity ent ) {
-			CustomEntityProtocol protocol;
-			new MyFactory( ent, out protocol );
+			var factory = new MyFactory( ent );
+			CustomEntityProtocol protocol = factory.Create();
 
 			protocol.SendToClient( -1, -1 );
 		}
 
 		public static void SyncToAll( CustomEntity ent ) {
-			CustomEntityProtocol protocol;
-			var initializer = new MyFactory( ent, out protocol );
+			var factory = new MyFactory( ent );
+			CustomEntityProtocol protocol = factory.Create();
 
 			protocol.SendToServer( true );
 		}

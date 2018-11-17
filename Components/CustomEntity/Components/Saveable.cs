@@ -6,19 +6,30 @@ using HamstarHelpers.Services.Promises;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class SaveableEntityComponent : CustomEntityComponent {
-		protected class MyFactory : Factory<SaveableEntityComponent> {
-			public MyFactory( bool as_json, out SaveableEntityComponent comp ) : base( out comp ) {
-				comp.AsJson = as_json;
+		protected class MyFactory : PacketProtocolData.Factory<SaveableEntityComponent> {
+			private readonly bool AsJson;
+
+
+			////////////////
+
+			public MyFactory( bool as_json ) {
+				this.AsJson = as_json;
+			}
+
+			////
+
+			public override void Initialize( SaveableEntityComponent data ) {
+				data.AsJson = this.AsJson;
 			}
 		}
+
 
 
 		////////////////
 
 		public static SaveableEntityComponent Create( bool as_json ) {
-			SaveableEntityComponent comp;
-			new MyFactory( as_json, out comp );
-			return comp;
+			var factory = new MyFactory( as_json );
+			return factory.Create();
 		}
 
 

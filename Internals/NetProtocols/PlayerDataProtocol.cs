@@ -10,14 +10,31 @@ using HamstarHelpers.Components.Network.Data;
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerDataProtocol : PacketProtocolSentToEither {
 		protected class MyFactory : PacketProtocolData.Factory<PlayerDataProtocol> {
-			public MyFactory( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types,
-					out PlayerDataProtocol protocol ) : base( out protocol ) {
-				protocol.PlayerWho = Main.myPlayer;
-				protocol.PermaBuffsById = perma_buffs_by_id;
-				protocol.HasBuffIds = has_buff_ids;
-				protocol.EquipSlotsToItemTypes = equip_slots_to_item_types;
+			private readonly int PlayerWho;
+			private readonly ISet<int> PermaBuffsById;
+			private readonly ISet<int> HasBuffIds;
+			private readonly IDictionary<int, int> EquipSlotsToItemTypes;
+
+
+			////////////////
+
+			public MyFactory( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
+				this.PlayerWho = Main.myPlayer;
+				this.PermaBuffsById = perma_buffs_by_id;
+				this.HasBuffIds = has_buff_ids;
+				this.EquipSlotsToItemTypes = equip_slots_to_item_types;
+			}
+
+			////
+
+			public override void Initialize( PlayerDataProtocol data ) {
+				data.PlayerWho = this.PlayerWho;
+				data.PermaBuffsById = this.PermaBuffsById;
+				data.HasBuffIds = this.HasBuffIds;
+				data.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;
 			}
 		}
+		
 
 
 		////////////////
@@ -25,8 +42,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public static void SyncToEveryone( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
-			PlayerDataProtocol protocol;
-			new MyFactory( perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types, out protocol );
+			var factory = new MyFactory( perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
+			PlayerDataProtocol protocol = factory.Create();
 			
 			protocol.SendToServer( true );
 		}

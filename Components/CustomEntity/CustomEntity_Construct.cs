@@ -11,21 +11,33 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		protected abstract class CustomEntityFactory : Factory<CustomEntity> {
-			public CustomEntityFactory( out CustomEntity ent ) : base( out ent ) {
-				ent.Core = this.InitializeCore();
-				ent.Components = this.InitializeComponents();
+			private readonly Player OwnerPlayer;
 
-				ent.OwnerPlayerWho = -1;
-				ent.OwnerPlayerUID = "";
+
+			////////////////
+
+			protected CustomEntityFactory() { }
+
+			protected CustomEntityFactory( Player owner_plr ) {
+				this.OwnerPlayer = owner_plr;
 			}
 
-			public CustomEntityFactory( Player owner_plr, out CustomEntity ent ) : base( out ent ) {
-				ent.Core = this.InitializeCore();
-				ent.Components = this.InitializeComponents();
+			////////////////
 
-				ent.OwnerPlayerWho = owner_plr.whoAmI;
-				ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
+			public override void Initialize( CustomEntity data ) {
+				if( this.OwnerPlayer != null ) {
+					data.OwnerPlayerWho = this.OwnerPlayer.whoAmI;
+					data.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( this.OwnerPlayer );
+				} else {
+					data.OwnerPlayerWho = -1;
+					data.OwnerPlayerUID = "";
+				}
+
+				data.Core = this.InitializeCore();
+				data.Components = this.InitializeComponents();
 			}
+
+			////
 
 			protected abstract CustomEntityCore InitializeCore();
 			protected abstract IList<CustomEntityComponent> InitializeComponents();
@@ -35,11 +47,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			if( ctor_lock.Context.Name == typeof(PacketProtocolData.Factory<>).Name ) {
-				throw new NotImplementedException();
-			}
-		}
+		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 
 		////////////////

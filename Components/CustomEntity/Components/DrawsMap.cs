@@ -12,37 +12,59 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsOnMapEntityComponent : CustomEntityComponent {
-		protected class MyFactory : Factory<DrawsOnMapEntityComponent> {
-			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms,
-					out DrawsOnMapEntityComponent comp ) : base( out comp ) {
-				comp.ModName = src_mod_name;
-				comp.TexturePath = rel_texture_path;
-				comp.FrameCount = frame_count;
-				comp.Scale = scale;
-				comp.Zooms = zooms;
+		protected class MyFactory : PacketProtocolData.Factory<DrawsOnMapEntityComponent> {
+			private readonly string SourceModName;
+			private readonly string RelativeTexturePath;
+			private readonly int FrameCount;
+			private readonly float Scale;
+			private readonly bool Zooms;
 
-				if( string.IsNullOrEmpty( comp.ModName ) || string.IsNullOrEmpty( comp.TexturePath ) || comp.FrameCount == 0 || comp.Scale == 0 ) {
+
+			////////////////
+
+			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
+				this.SourceModName = src_mod_name;
+				this.RelativeTexturePath = rel_texture_path;
+				this.FrameCount = frame_count;
+				this.Scale = scale;
+				this.Zooms = zooms;
+			}
+
+			////
+
+			public override void Initialize( DrawsOnMapEntityComponent data ) {
+				data.ModName = this.SourceModName;
+				data.TexturePath = this.SourceModName;
+				data.FrameCount = this.FrameCount;
+				data.Scale = this.Scale;
+				data.Zooms = this.Zooms;
+
+				if( string.IsNullOrEmpty( data.ModName ) || string.IsNullOrEmpty( data.TexturePath ) || data.FrameCount == 0 || data.Scale == 0 ) {
 					throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
 				}
 
-				var src_mod = ModLoader.GetMod( comp.ModName );
+				var src_mod = ModLoader.GetMod( data.ModName );
 				if( src_mod == null ) {
-					throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + comp.ModName );
+					throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + data.ModName );
 				}
 
 				if( !Main.dedServ ) {
-					if( comp.Texture == null ) {
-						comp.Texture = src_mod.GetTexture( comp.TexturePath );
+					if( data.Texture == null ) {
+						data.Texture = src_mod.GetTexture( data.TexturePath );
 					}
 				}
 			}
 		}
 
+
+
+		////////////////
+
 		public static DrawsOnMapEntityComponent Create( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
-			DrawsOnMapEntityComponent comp;
-			new MyFactory( src_mod_name, rel_texture_path, frame_count, scale, zooms, out comp );
-			return comp;
+			var factory = new MyFactory( src_mod_name, rel_texture_path, frame_count, scale, zooms );
+			return factory.Create();
 		}
+
 
 
 		////////////////

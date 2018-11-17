@@ -18,22 +18,29 @@ namespace HamstarHelpers.Components.Network.Data {
 
 	public abstract partial class PacketProtocolData {
 		protected abstract class Factory<T> where T : PacketProtocolData {
-			public Factory( out T data ) {
+			public abstract void Initialize( T data );
+
+			public T Create() {
 				Type init_type = this.GetType();
 				Type my_type = init_type.DeclaringType;
 
-				data = (T)Activator.CreateInstance( my_type,
+				T data = (T)Activator.CreateInstance( my_type,
 					BindingFlags.Instance | BindingFlags.NonPublic,
 					null,
-					new object[] { new PacketProtocolDataConstructorLock( init_type ) },
+					new object[] { new PacketProtocolDataConstructorLock( my_type ) },
 					null
 				);
+				this.Initialize( data );
+
+				return data;
 			}
 		}
 
+
+
 		////////////////
 
-		private Type GetMainFactoryType<T>() where T : PacketProtocolData {
+		/*private Type GetMainFactoryType<T>() where T : PacketProtocolData {
 			Type factory_type = typeof( Factory<T> );
 			Type[] nesteds = this.GetType().GetNestedTypes( BindingFlags.Static | BindingFlags.NonPublic );
 
@@ -48,25 +55,16 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		protected Type GetMainFactoryType() {
 			return this.GetMainFactoryType<PacketProtocolData>();
-		}
+		}*/
 
 
 		////////////////
-
-		internal static T CreateRawAsContext<T>() where T : PacketProtocolData {
-			Type mytype = typeof(T);
-			return (T)PacketProtocolData.CreateRaw( mytype, mytype );
-		}
-
+		
 		internal static PacketProtocolData CreateRaw( Type data_type ) {
-			return PacketProtocolData.CreateRaw( typeof(PacketProtocolData), data_type );
-		}
-
-		private static PacketProtocolData CreateRaw( Type context_type, Type data_type ) {
 			return (PacketProtocolData)Activator.CreateInstance( data_type,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
-				new object[] { new PacketProtocolDataConstructorLock( context_type ) },
+				new object[] { new PacketProtocolDataConstructorLock( typeof( PacketProtocolData ) ) },
 				null
 			);
 		}
@@ -75,8 +73,8 @@ namespace HamstarHelpers.Components.Network.Data {
 		////////////////
 
 		protected PacketProtocolData( PacketProtocolDataConstructorLock ctor_lock ) {
-			if( ctor_lock == null ) {
-				throw new NotImplementedException();
+			if( ctor_lock == null || ctor_lock.Context.Name != this.GetType().Name ) {
+				throw new NotImplementedException( "Invalid "+this.GetType().Name );
 			}
 		}
 	}

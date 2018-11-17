@@ -14,24 +14,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			protected virtual void StaticInitialize() { }
 		}
-		
-
-
-		////////////////
-
-		protected static T CreateRaw<T>() where T : CustomEntityComponent {
-			return PacketProtocolData.CreateRawAsContext<T>();
-		}
 
 
 
 		////////////////
 
-		protected CustomEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			if( ctor_lock.Context.Name == typeof(PacketProtocolData.Factory<>).Name ) {
-				throw new NotImplementedException();
-			}
-		}
+		protected CustomEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 		////
 
