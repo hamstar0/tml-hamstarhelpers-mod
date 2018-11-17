@@ -53,11 +53,20 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 
-		internal static PacketProtocolData CreateRaw( Type mytype ) {
-			return (PacketProtocolData)Activator.CreateInstance( mytype,
+		internal static T CreateRawAsContext<T>() where T : PacketProtocolData {
+			Type mytype = typeof(T);
+			return (T)PacketProtocolData.CreateRaw( mytype, mytype );
+		}
+
+		internal static PacketProtocolData CreateRaw( Type data_type ) {
+			return PacketProtocolData.CreateRaw( typeof(PacketProtocolData), data_type );
+		}
+
+		private static PacketProtocolData CreateRaw( Type context_type, Type data_type ) {
+			return (PacketProtocolData)Activator.CreateInstance( data_type,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
-				new object[] { new PacketProtocolDataConstructorLock( typeof(PacketProtocolData) ) },
+				new object[] { new PacketProtocolDataConstructorLock( context_type ) },
 				null
 			);
 		}

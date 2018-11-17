@@ -36,7 +36,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			if( ctor_lock.Context == typeof(PacketProtocolData.Factory<>) ) {
+			if( ctor_lock.Context.Name == typeof(PacketProtocolData.Factory<>).Name ) {
 				throw new NotImplementedException();
 			}
 		}

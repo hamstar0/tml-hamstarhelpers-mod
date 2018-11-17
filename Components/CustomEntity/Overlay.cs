@@ -4,7 +4,7 @@ using Terraria.Graphics.Effects;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	class CustomEntityOverlay : Overlay {
+	class CustomEntityOverlay : Terraria.Graphics.Effects.Overlay {
 		public Vector2 TargetPosition = Vector2.Zero;
 
 
