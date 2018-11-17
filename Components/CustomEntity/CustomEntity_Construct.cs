@@ -41,6 +41,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			protected abstract CustomEntityCore InitializeCore();
 			protected abstract IList<CustomEntityComponent> InitializeComponents();
+			protected abstract void PostInitialize( CustomEntity ent );
 		}
 
 

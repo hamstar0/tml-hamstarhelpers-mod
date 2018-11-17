@@ -71,10 +71,15 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		////////////////
-
+		
 		protected PacketProtocolData( PacketProtocolDataConstructorLock ctor_lock ) {
-			if( ctor_lock == null || ctor_lock.Context.Name != this.GetType().Name ) {
-				throw new NotImplementedException( "Invalid "+this.GetType().Name );
+			if( ctor_lock == null ) {
+				throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Must be factory generated or cloned." );
+			}
+			if( ctor_lock.Context.Name != this.GetType().Name ) {
+				if( ctor_lock.Context.Name != "PacketProtocolData" ) {	// Allows cloning
+					throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Mismatched factory context." );
+				}
 			}
 		}
 	}

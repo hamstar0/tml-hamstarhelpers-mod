@@ -7,7 +7,7 @@ using Terraria.Utilities;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PeriodicSyncEntityComponent : CustomEntityComponent {
 		public static PeriodicSyncEntityComponent Create() {
-			return CustomEntityComponent.CreateRaw<PeriodicSyncEntityComponent>();
+			return (PeriodicSyncEntityComponent)PacketProtocolData.CreateRaw( typeof(PeriodicSyncEntityComponent) );
 		}
 
 
