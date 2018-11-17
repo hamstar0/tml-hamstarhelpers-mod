@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsInGameEntityComponent : CustomEntityComponent {
-		protected class MyFactory : CustomEntityComponent.ComponentFactory<DrawsInGameEntityComponent> {
+		protected class MyFactory : Factory<DrawsInGameEntityComponent> {
 			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count,
 					out DrawsInGameEntityComponent comp ) : base( out comp ) {
 				comp.ModName = src_mod_name;
@@ -20,12 +20,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				comp.FrameCount = frame_count;
 
 				if( string.IsNullOrEmpty( comp.ModName ) || string.IsNullOrEmpty( comp.TexturePath ) || comp.FrameCount == 0 ) {
-					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.MyFactory - Invalid fields." );
+					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Create - Invalid fields." );
 				}
 
 				var src_mod = ModLoader.GetMod( comp.ModName );
 				if( src_mod == null ) {
-					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.MyFactory - Invalid mod " + comp.ModName );
+					throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Create - Invalid mod " + comp.ModName );
 				}
 
 				if( !Main.dedServ ) {
@@ -35,6 +35,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				}
 			}
 		}
+
+		public static DrawsInGameEntityComponent Create( string src_mod_name, string rel_texture_path, int frame_count ) {
+			DrawsInGameEntityComponent comp;
+			new MyFactory( src_mod_name, rel_texture_path, frame_count, out comp );
+			return comp;
+		}
+
 
 
 		////////////////

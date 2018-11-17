@@ -1,28 +1,18 @@
 ﻿using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
+using System;
 using System.IO;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract class CustomEntityComponent : PacketProtocolData {
-		protected abstract class ComponentFactory<T> : Factory<T> where T : CustomEntityComponent {
-			public ComponentFactory( out T ent ) : base( out ent ) { }
-		}
-
-
-		////////////////
-
-		protected abstract class CustomEntityComponentFactory<T> : Factory<T> where T : CustomEntityComponent {
-			public CustomEntityComponentFactory( string player_uid, out T comp ) : base( out comp ) { }
-		}
-
-		
-
 		public class StaticInitializer {
-			protected virtual void StaticInitialize() { }
+			internal StaticInitializer() { }
 			internal void StaticInitializationWrapper() {
 				this.StaticInitialize();
 			}
+
+			protected virtual void StaticInitialize() { }
 		}
 
 
@@ -31,8 +21,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected CustomEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
-
-		////////////////
+		////
 
 		internal CustomEntityComponent InternalClone() {
 			return this.Clone();

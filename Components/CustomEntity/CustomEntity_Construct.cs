@@ -10,32 +10,40 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
-		protected abstract class CustomEntityFactory<T> : Factory<T> where T : CustomEntity {
-			public CustomEntityFactory( CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid,
-					out T ent ) : base( out ent ) {
-				ent.OwnerPlayerUID = player_uid;
+		protected abstract class CustomEntityFactory : Factory<CustomEntity> {
+			public CustomEntityFactory( out CustomEntity ent ) : base( out ent ) {
+				ent.Core = this.InitializeCore();
+				ent.Components = this.InitializeComponents();
+
 				ent.OwnerPlayerWho = -1;
+				ent.OwnerPlayerUID = "";
+			}
 
-				if( player_uid != "" ) {
-					Player plr = PlayerIdentityHelpers.GetPlayerByProperId( player_uid );
-					if( plr == null ) {
-						ent.OwnerPlayerWho = plr.whoAmI;
-					}
-				}
+			public CustomEntityFactory( Player owner_plr, out CustomEntity ent ) : base( out ent ) {
+				ent.Core = this.InitializeCore();
+				ent.Components = this.InitializeComponents();
 
-				ent.Core = core;
-				ent.Components = components;
+				ent.OwnerPlayerWho = owner_plr.whoAmI;
+				ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
+			}
+
+			protected abstract CustomEntityCore InitializeCore();
+			protected abstract IList<CustomEntityComponent> InitializeComponents();
+		}
+
+
+
+		////////////////
+
+		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
+			if( ctor_lock.Context == typeof(PacketProtocolData.Factory<>) ) {
+				throw new NotImplementedException();
 			}
 		}
 
 
 		////////////////
-
-		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
-
-
-		////////////////
-
+		
 		internal void RefreshOwnerWho() {
 			if( Main.netMode == 1 ) {
 				throw new HamstarException( "No client." );

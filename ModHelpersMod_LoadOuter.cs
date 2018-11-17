@@ -45,7 +45,6 @@ namespace HamstarHelpers {
 		internal MenuItemManager MenuItemMngr;
 		internal CustomEntityManager CustomEntMngr;
 		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
-		internal PacketProtocolDataConstructorLock PacketProtocolCtorLock = new PacketProtocolDataConstructorLock();
 
 		// Services
 		internal Promises Promises;

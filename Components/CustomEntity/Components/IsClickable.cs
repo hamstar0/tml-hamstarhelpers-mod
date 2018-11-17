@@ -5,7 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
-	abstract public class IsClickableEntityComponent : CustomEntityComponent {
+	public abstract class IsClickableEntityComponent : CustomEntityComponent {
 		protected IsClickableEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 

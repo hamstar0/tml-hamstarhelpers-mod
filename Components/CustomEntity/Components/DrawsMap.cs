@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsOnMapEntityComponent : CustomEntityComponent {
-		protected class MyFactory : CustomEntityComponent.ComponentFactory<DrawsOnMapEntityComponent> {
+		protected class MyFactory : Factory<DrawsOnMapEntityComponent> {
 			public MyFactory( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms,
 					out DrawsOnMapEntityComponent comp ) : base( out comp ) {
 				comp.ModName = src_mod_name;
@@ -36,6 +36,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 					}
 				}
 			}
+		}
+
+		public static DrawsOnMapEntityComponent Create( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
+			DrawsOnMapEntityComponent comp;
+			new MyFactory( src_mod_name, rel_texture_path, frame_count, scale, zooms, out comp );
+			return comp;
 		}
 
 

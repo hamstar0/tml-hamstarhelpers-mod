@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.MiscHelpers;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				if( ent.GetComponentByType<SaveableEntityComponent>().AsJson != is_json ) {
 					continue;
 				}
-				
-				wrapped_ents.Add( new SerializedCustomEntity(ModHelpersMod.Instance.PacketProtocolCtorLock, ent) );
+
+				var ctor_lock = new PacketProtocolDataConstructorLock( typeof(SaveableEntityComponent) );
+				var s_ent = new SerializedCustomEntity( ctor_lock, ent );
+
+				wrapped_ents.Add( s_ent );
 			}
 
 			if( wrapped_ents.Count > 0 ) {

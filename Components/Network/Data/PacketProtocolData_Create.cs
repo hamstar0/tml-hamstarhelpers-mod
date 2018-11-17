@@ -5,7 +5,12 @@ using System.Reflection;
 
 namespace HamstarHelpers.Components.Network.Data {
 	public class PacketProtocolDataConstructorLock {
-		internal PacketProtocolDataConstructorLock() { }
+		internal Type Context { get; private set; }
+
+
+		internal PacketProtocolDataConstructorLock( Type context ) {
+			this.Context = context;
+		}
 	}
 
 
@@ -14,13 +19,13 @@ namespace HamstarHelpers.Components.Network.Data {
 	public abstract partial class PacketProtocolData {
 		protected abstract class Factory<T> where T : PacketProtocolData {
 			public Factory( out T data ) {
-				Type inittype = this.GetType();
-				Type mytype = inittype.DeclaringType;
-				
-				data = (T)Activator.CreateInstance( mytype,
+				Type init_type = this.GetType();
+				Type my_type = init_type.DeclaringType;
+
+				data = (T)Activator.CreateInstance( my_type,
 					BindingFlags.Instance | BindingFlags.NonPublic,
 					null,
-					new object[] { ModHelpersMod.Instance.PacketProtocolCtorLock },
+					new object[] { new PacketProtocolDataConstructorLock( init_type ) },
 					null
 				);
 			}
@@ -40,6 +45,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 			return null;
 		}
+
 		protected Type GetMainFactoryType() {
 			return this.GetMainFactoryType<PacketProtocolData>();
 		}
@@ -51,7 +57,7 @@ namespace HamstarHelpers.Components.Network.Data {
 			return (PacketProtocolData)Activator.CreateInstance( mytype,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
-				new object[] { ModHelpersMod.Instance.PacketProtocolCtorLock },
+				new object[] { new PacketProtocolDataConstructorLock( typeof(PacketProtocolData) ) },
 				null
 			);
 		}

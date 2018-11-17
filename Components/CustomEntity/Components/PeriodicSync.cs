@@ -6,6 +6,14 @@ using Terraria.Utilities;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PeriodicSyncEntityComponent : CustomEntityComponent {
+		public static PeriodicSyncEntityComponent Create() {
+			return new PeriodicSyncEntityComponent( new PacketProtocolDataConstructorLock( typeof( PeriodicSyncEntityComponent ) ) );
+		}
+
+
+
+		////////////////
+
 		private static UnifiedRandom MyRand = new UnifiedRandom();
 
 
