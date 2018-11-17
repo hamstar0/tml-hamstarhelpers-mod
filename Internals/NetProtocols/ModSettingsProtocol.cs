@@ -20,7 +20,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void Receive() {
+		protected override void ReceiveReply() {
 			ModHelpersMod.Instance.Config.LoadFromNetwork( ModHelpersMod.Instance, this.Data );
 		}
 	}

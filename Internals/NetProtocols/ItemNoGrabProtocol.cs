@@ -51,7 +51,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void Receive( int from_who ) {
+		protected override void ReceiveReply( int from_who ) {
 			Item item = Main.item[ this.ItemWho ];
 			if( item == null /*|| !item.active*/ ) {
 				throw new HamstarException( "!ModHelpers.ItemNoGrabProtocol.ReceiveWithServer - Invalid item indexed at "+this.ItemWho );

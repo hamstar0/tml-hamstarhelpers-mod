@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsOnMapEntityComponent : CustomEntityComponent {
-		protected class DrawsOnMapEntityComponentFactory : PacketProtocolData.Factory<DrawsOnMapEntityComponent> {
+		protected class DrawsOnMapEntityComponentFactory<T> : PacketProtocolData.Factory<T> where T : DrawsOnMapEntityComponent {
 			private readonly string SourceModName;
 			private readonly string RelativeTexturePath;
 			private readonly int FrameCount;
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////
 
-			public override void Initialize( DrawsOnMapEntityComponent data ) {
+			public override void Initialize( T data ) {
 				data.ModName = this.SourceModName;
 				data.TexturePath = this.SourceModName;
 				data.FrameCount = this.FrameCount;
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public static DrawsOnMapEntityComponent CreateDrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
-			var factory = new DrawsOnMapEntityComponentFactory( src_mod_name, rel_texture_path, frame_count, scale, zooms );
+			var factory = new DrawsOnMapEntityComponentFactory<DrawsOnMapEntityComponent>( src_mod_name, rel_texture_path, frame_count, scale, zooms );
 			return factory.Create();
 		}
 

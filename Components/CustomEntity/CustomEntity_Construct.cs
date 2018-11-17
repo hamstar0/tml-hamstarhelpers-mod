@@ -10,7 +10,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
-		protected abstract class CustomEntityFactory : Factory<CustomEntity> {
+		protected abstract class CustomEntityFactory<T> : Factory<T> where T : CustomEntity {
 			private readonly Player OwnerPlayer;
 
 
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			////////////////
 
-			public override void Initialize( CustomEntity data ) {
+			public override void Initialize( T data ) {
 				if( this.OwnerPlayer != null ) {
 					data.OwnerPlayerWho = this.OwnerPlayer.whoAmI;
 					data.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( this.OwnerPlayer );
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			protected abstract CustomEntityCore InitializeCore();
 			protected abstract IList<CustomEntityComponent> InitializeComponents();
-			protected abstract void PostInitialize( CustomEntity ent );
+			protected abstract void PostInitialize( T ent );
 		}
 
 

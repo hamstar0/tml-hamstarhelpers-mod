@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsInGameEntityComponent : CustomEntityComponent {
-		protected class DrawsInGameEntityComponentFactory : PacketProtocolData.Factory<DrawsInGameEntityComponent> {
+		protected class DrawsInGameEntityComponentFactory<T> : PacketProtocolData.Factory<T> where T : DrawsInGameEntityComponent {
 			private readonly string SourceModName;
 			private readonly string RelativeTexturePath;
 			private readonly int FrameCount;
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////
 
-			public override void Initialize( DrawsInGameEntityComponent data ) {
+			public override void Initialize( T data ) {
 				data.ModName = this.SourceModName;
 				data.TexturePath = this.RelativeTexturePath;
 				data.FrameCount = this.FrameCount;
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public static DrawsInGameEntityComponent CreateDrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
-			var factory = new DrawsInGameEntityComponentFactory( src_mod_name, rel_texture_path, frame_count );
+			var factory = new DrawsInGameEntityComponentFactory<DrawsInGameEntityComponent>( src_mod_name, rel_texture_path, frame_count );
 			return factory.Create();
 		}
 

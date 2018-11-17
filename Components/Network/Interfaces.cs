@@ -75,10 +75,10 @@ namespace HamstarHelpers.Components.Network {
 		////////////////
 		
 		protected override void ReceiveWithClient() {
-			this.Receive();
+			this.ReceiveReply();
 		}
 
-		protected abstract void Receive();
+		protected abstract void ReceiveReply();
 	}
 
 
@@ -96,9 +96,9 @@ namespace HamstarHelpers.Components.Network {
 		////////////////
 		
 		protected override void ReceiveWithServer( int from_who ) {
-			this.Receive( from_who );
+			this.ReceiveReply( from_who );
 		}
 
-		protected abstract void Receive( int from_who );
+		protected abstract void ReceiveReply( int from_who );
 	}
 }

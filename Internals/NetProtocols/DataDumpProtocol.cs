@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			return true;
 		}
 
-		protected override void Receive() {
+		protected override void ReceiveReply() {
 			throw new System.NotImplementedException();
 		}
 	}
