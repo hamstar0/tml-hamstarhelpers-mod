@@ -61,49 +61,46 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return obj_type == typeof( SerializedCustomEntity );
 		}
 
+		////
 
-		public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
-			string type_name = null;
-			JToken raw_ent_data = null;
-			string player_uid = null;
-			CustomEntityCore core = null;
-			string[] comp_names = null;
+		public override object ReadJson( JsonReader reader, Type object_type, object existing_value, JsonSerializer serializer ) {
 			IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
 
 			IEnumerable<Type> all_comp_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
 			IDictionary<string, Type> all_comp_type_map = all_comp_types.ToDictionary( t => t.Name, t => t );
 
 			JObject jo = JObject.Load( reader );
-			
+
 			try {
-				type_name = jo["MyTypeName"].ToObject<String>();
-				raw_ent_data = jo["MyEntity"];
+				string type_name = jo["MyTypeName"].ToObject<String>();
 
 				//int type_id = jo["TypeID"].ToObject<Int32>();
-				player_uid = raw_ent_data["OwnerPlayerUID"].ToObject<String>();
-				core = raw_ent_data["Core"].ToObject<CustomEntityCore>();
-				comp_names = raw_ent_data["ComponentNames"].ToObject<string[]>();
-				JToken raw_components = raw_ent_data["Components"];
-				
+				string player_uid = jo["OwnerPlayerUID"].ToObject<String>();
+				CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
+				string[] comp_names = jo["ComponentNames"].ToObject<string[]>();
+				JToken raw_components = jo["Components"];
+
 				Type[] comp_types = new Type[comp_names.Length];
 				int i;
-				
+
 				for( i = 0; i < comp_names.Length; i++ ) {
 					if( !all_comp_type_map.ContainsKey( comp_names[i] ) ) {
 						return null;
 					}
 					comp_types[i] = all_comp_type_map[comp_names[i]];
 				}
-				
+
 				i = 0;
 				foreach( JObject obj in raw_components ) {
 					Type comp_type = comp_types[i];
-					object comp = obj.ToObject( comp_type, serializer );
+					var comp = (CustomEntityComponent)PacketProtocolData.CreateRaw( comp_type );
+					this.ReadIntoComponentFromJson( comp, obj, serializer );
+					//var comp = obj.ToObject( comp_type, serializer );
 
-					components.Add( (CustomEntityComponent)comp );
+					components.Add( comp );
 					i++;
 				}
-				
+
 				Type ent_type = CustomEntityManager.GetTypeByName( type_name );
 				if( ent_type == null ) {
 					return null;
@@ -120,15 +117,37 @@ namespace HamstarHelpers.Components.CustomEntity {
 				return null;
 			}
 		}
-
-
+		
 		public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
 			throw new NotImplementedException();
 		}
+
+
+		////////////////
+
+		private void ReadIntoComponentFromJson( CustomEntityComponent comp, JObject obj, JsonSerializer serializer ) {
+			Type comp_type = comp.GetType();
+
+			foreach( var kv in obj ) {
+				string name = kv.Key;
+				JToken raw_val = kv.Value;
+
+				var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+				FieldInfo field = comp_type.GetField( name, flags );
+				PropertyInfo prop = field != null ? null : comp_type.GetProperty( name, flags );
+
+				if( field != null ) {
+					var val = raw_val.ToObject( field.FieldType );
+					field.SetValue( comp, val );
+				} else if( prop != null ) {
+					var val = raw_val.ToObject( prop.PropertyType );
+					prop.SetValue( comp, val );
+				}
+			}
+		}
 	}
 
-
-
+	
 
 	public abstract partial class CustomEntity : PacketProtocolData {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
