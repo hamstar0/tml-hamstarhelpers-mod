@@ -49,6 +49,38 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components ) {
+			var ent = (CustomEntity)PacketProtocolData.CreateRaw( mytype );
+			ent.Core = core;
+			ent.Components = components;
+			ent.OwnerPlayerWho = -1;
+			ent.OwnerPlayerUID = "";
+			return ent;
+		}
+
+		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr ) {
+			var ent = (CustomEntity)PacketProtocolData.CreateRaw( mytype );
+			ent.Core = core;
+			ent.Components = components;
+			ent.OwnerPlayerWho = owner_plr.whoAmI;
+			ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
+			return ent;
+		}
+
+		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, string owner_uid ) {
+			Player plr = owner_uid != "" ? PlayerIdentityHelpers.GetPlayerByProperId( owner_uid ) : null;
+
+			if( plr == null ) {
+				return CustomEntity.CreateRaw( mytype, core, components );
+			} else {
+				return CustomEntity.CreateRaw( mytype, core, components, plr );
+			}
+		}
+
+
+
+		////////////////
+
 		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 

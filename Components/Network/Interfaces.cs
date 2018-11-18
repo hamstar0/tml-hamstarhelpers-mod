@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network.Data;
+using System;
 
 
 namespace HamstarHelpers.Components.Network {
@@ -7,9 +8,11 @@ namespace HamstarHelpers.Components.Network {
 
 		////
 
+		[Obsolete( "use ReceiveOnClient", true )]
 		protected override void ReceiveWithClient() {
 			this.ReceiveOnClient();
 		}
+		[Obsolete( "use ReceiveOnServer", true )]
 		protected override void ReceiveWithServer( int from_who ) {
 			this.ReceiveOnServer( from_who );
 		}
@@ -29,9 +32,10 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickSend<T>() where T : PacketProtocolSendToServer {
 			PacketProtocol.QuickSendToServer<T>();
 		}
-		
+
 		////////////////
-		
+
+		[Obsolete( "use Receive", true )]
 		protected override void ReceiveWithServer( int from_who ) {
 			this.Receive( from_who );
 		}
@@ -50,9 +54,10 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickSend<T>( int to_who, int ignore_who ) where T : PacketProtocolSendToClient {
 			PacketProtocol.QuickSendToClient<T>( to_who, ignore_who );
 		}
-		
+
 		////////////////
-		
+
+		[Obsolete( "use Receive", true )]
 		protected override void ReceiveWithClient() {
 			this.Receive();
 		}
@@ -73,7 +78,8 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
-		
+
+		[Obsolete( "use ReceiveReply", true )]
 		protected override void ReceiveWithClient() {
 			this.ReceiveReply();
 		}
@@ -95,6 +101,7 @@ namespace HamstarHelpers.Components.Network {
 
 		////////////////
 		
+		[Obsolete( "use ReceiveReply", true)]
 		protected override void ReceiveWithServer( int from_who ) {
 			this.ReceiveReply( from_who );
 		}

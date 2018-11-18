@@ -108,12 +108,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 				if( ent_type == null ) {
 					return null;
 				}
-				
-				return (CustomEntity)Activator.CreateInstance( ent_type,
-					BindingFlags.NonPublic | BindingFlags.Instance,
-					null,
-					new object[] { core, components, player_uid },
-					null );
+
+				return CustomEntity.CreateRaw( ent_type, core, components, player_uid );
+				//return (CustomEntity)Activator.CreateInstance( ent_type,
+				//	BindingFlags.NonPublic | BindingFlags.Instance,
+				//	null,
+				//	new object[] { core, components, player_uid },
+				//	null );
 			} catch( Exception e ) {
 				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - " + e.Message );
 				return null;
