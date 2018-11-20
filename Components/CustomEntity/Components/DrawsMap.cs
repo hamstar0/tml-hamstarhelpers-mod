@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			public override void Initialize( T data ) {
 				data.ModName = this.SourceModName;
-				data.TexturePath = this.SourceModName;
+				data.TexturePath = this.RelativeTexturePath;
 				data.FrameCount = this.FrameCount;
 				data.Scale = this.Scale;
 				data.Zooms = this.Zooms;

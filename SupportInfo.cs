@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.HudHelpers;
 using HamstarHelpers.Helpers.XnaHelpers;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Menus;
@@ -206,6 +207,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			foreach( var elem in this.Elements ) {
 				elem.Recalculate();
 			}
+
+			var rect = new Rectangle( Main.screenWidth - 252, 4, 248, 104 );
+			HudHelpers.DrawBorderedRect( sb, new Color(256, 0, 32) * 0.2f, new Color(255, 224, 224) * 0.2f, rect, 4 );
 
 			this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.25f );
 			this.SupportUrlUI.Theme.UrlLitColor = Color.Lerp( UITheme.Vanilla.UrlLitColor, AnimatedColors.Strobe.CurrentColor, 0.5f );

@@ -78,7 +78,7 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 			if( ctor_lock.Context.Name != this.GetType().Name ) {
 				if( ctor_lock.Context.Name != "PacketProtocolData" ) {	// Allows cloning
-					throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Mismatched factory context." );
+					throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Mismatched with "+ctor_lock.Context.Name+" factory context." );
 				}
 			}
 		}

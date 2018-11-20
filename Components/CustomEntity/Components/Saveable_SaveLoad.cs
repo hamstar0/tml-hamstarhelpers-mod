@@ -7,33 +7,6 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class SaveableEntityComponent : CustomEntityComponent {
-		private static void SaveAll( bool is_json ) {
-			var mymod = ModHelpersMod.Instance;
-			string file_name = SaveableEntityComponent.GetFileNameBase();
-
-			IList<SerializedCustomEntity> wrapped_ents = new List<SerializedCustomEntity>();
-
-			foreach( var ent in CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>() ) {
-				if( ent.GetComponentByType<SaveableEntityComponent>().AsJson != is_json ) {
-					continue;
-				}
-
-				var ctor_lock = new PacketProtocolDataConstructorLock( typeof(SaveableEntityComponent) );
-				var s_ent = new SerializedCustomEntity( ctor_lock, ent );
-
-				wrapped_ents.Add( s_ent );
-			}
-
-			if( wrapped_ents.Count > 0 ) {
-				if( is_json ) {
-					DataFileHelpers.SaveAsJson( mymod, file_name, CustomEntity.SerializerSettings, wrapped_ents );
-				} else {
-					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings, wrapped_ents );
-				}
-			}
-		}
-
-
 		private static bool LoadAll( bool is_json ) {
 			var mymod = ModHelpersMod.Instance;
 			string file_name = SaveableEntityComponent.GetFileNameBase();
@@ -60,6 +33,30 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			}
 
 			return success;
+		}
+
+
+		private static void SaveAll( bool is_json ) {
+			var mymod = ModHelpersMod.Instance;
+			string file_name = SaveableEntityComponent.GetFileNameBase();
+
+			IList<SerializedCustomEntity> wrapped_ents = new List<SerializedCustomEntity>();
+
+			foreach( var ent in CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>() ) {
+				if( ent.GetComponentByType<SaveableEntityComponent>().AsJson != is_json ) {
+					continue;
+				}
+				
+				wrapped_ents.Add( new SerializedCustomEntity( ent ) );
+			}
+
+			if( wrapped_ents.Count > 0 ) {
+				if( is_json ) {
+					DataFileHelpers.SaveAsJson( mymod, file_name, CustomEntity.SerializerSettings, wrapped_ents );
+				} else {
+					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings, wrapped_ents );
+				}
+			}
 		}
 	}
 }

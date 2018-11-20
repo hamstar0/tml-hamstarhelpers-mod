@@ -22,9 +22,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected SerializedCustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 		
-		internal SerializedCustomEntity( PacketProtocolDataConstructorLock ctor_lock, CustomEntity ent ) : base( ctor_lock ) {
+		internal SerializedCustomEntity( CustomEntity ent )
+				: base( new PacketProtocolDataConstructorLock( typeof(SerializedCustomEntity) ) ) {
 			this.OwnerPlayerUID = ent.OwnerPlayerUID;
-			this.OwnerPlayerWho = ent.OwnerPlayerWho;
 			this.Core = ent.Core;
 			this.Components = ent.Components;
 			this.MyTypeName = ent.GetType().Name;
@@ -39,15 +39,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 				throw new HamstarException( ent_type.Name + " is not a valid CustomEntity." );
 			}
 
-			var args = this.OwnerPlayerWho == -1 ?
-				new object[] { this.Core, this.Components } :
-				new object[] { this.OwnerPlayerUID, this.Core, this.Components };
-
-			return (CustomEntity)Activator.CreateInstance( ent_type,
-				BindingFlags.NonPublic | BindingFlags.Instance,
-				null,
-				args,
-				null );
+			return CustomEntity.CreateRaw( ent_type, this.Core, this.Components, this.OwnerPlayerUID );
+			//var args = this.OwnerPlayerUID == "" ?
+			//	new object[] { this.Core, this.Components } :
+			//	new object[] { this.OwnerPlayerUID, this.Core, this.Components };
+			//return (CustomEntity)Activator.CreateInstance( ent_type,
+			//	BindingFlags.NonPublic | BindingFlags.Instance,
+			//	null,
+			//	args,
+			//	null );
 		}
 	}
 
@@ -131,16 +131,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 			foreach( var kv in obj ) {
 				string name = kv.Key;
 				JToken raw_val = kv.Value;
+				object val = null;
 
 				var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 				FieldInfo field = comp_type.GetField( name, flags );
 				PropertyInfo prop = field != null ? null : comp_type.GetProperty( name, flags );
 
 				if( field != null ) {
-					var val = raw_val.ToObject( field.FieldType );
+					val = raw_val.ToObject( field.FieldType );
 					field.SetValue( comp, val );
 				} else if( prop != null ) {
-					var val = raw_val.ToObject( prop.PropertyType );
+					val = raw_val.ToObject( prop.PropertyType );
 					prop.SetValue( comp, val );
 				}
 			}
