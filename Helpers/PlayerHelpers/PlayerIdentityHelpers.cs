@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.ItemHelpers;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			if( !mymod.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
 				if( player.whoAmI == Main.myPlayer && Main.netMode != 2 ) {
 					id = PlayerIdentityHelpers.GetMyProperUniqueId();
-					mymod.PlayerIdentityHelpers.PlayerIds[player.whoAmI] = id;
+					mymod.PlayerIdentityHelpers.PlayerIds[ player.whoAmI ] = id;
 				} else {
 					throw new HamstarException( "!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player " + player.name + "'s id." );
 				}
@@ -41,7 +42,8 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 			for( int i=0; i<len; i++ ) {
 				Player plr = Main.player[ i ];
-				if( plr == null || !plr.active ) { continue; }
+//LogHelpers.Log( "GetPlayerByProperId: "+PlayerIdentityHelpers.GetProperUniqueId( plr )+" == "+uid+": "+plr.name+" ("+plr.whoAmI+")" );
+				if( plr == null /*|| !plr.active*/ ) { continue; }	// <- This is WEIRD!
 				
 				if( PlayerIdentityHelpers.GetProperUniqueId(plr) == uid ) {
 					return plr;

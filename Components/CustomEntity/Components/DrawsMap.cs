@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsOnMapEntityComponent : CustomEntityComponent {
-		protected class DrawsOnMapEntityComponentFactory<T> : PacketProtocolData.Factory<T> where T : DrawsOnMapEntityComponent {
+		protected class DrawsOnMapEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : DrawsOnMapEntityComponent {
 			private readonly string SourceModName;
 			private readonly string RelativeTexturePath;
 			private readonly int FrameCount;
@@ -32,27 +32,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////
 
-			public override void Initialize( T data ) {
+			public override void InitializeComponent( T data ) {
 				data.ModName = this.SourceModName;
 				data.TexturePath = this.RelativeTexturePath;
 				data.FrameCount = this.FrameCount;
 				data.Scale = this.Scale;
 				data.Zooms = this.Zooms;
-
-				if( string.IsNullOrEmpty( data.ModName ) || string.IsNullOrEmpty( data.TexturePath ) || data.FrameCount == 0 || data.Scale == 0 ) {
-					throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
-				}
-
-				var src_mod = ModLoader.GetMod( data.ModName );
-				if( src_mod == null ) {
-					throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + data.ModName );
-				}
-
-				if( !Main.dedServ ) {
-					if( data.Texture == null ) {
-						data.Texture = src_mod.GetTexture( data.TexturePath );
-					}
-				}
 			}
 		}
 
@@ -89,6 +74,26 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+
+
+		////////////////
+
+		protected override void PostInitialize() {
+			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 || this.Scale == 0 ) {
+				throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
+			}
+
+			var src_mod = ModLoader.GetMod( this.ModName );
+			if( src_mod == null ) {
+				throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + this.ModName );
+			}
+
+			if( !Main.dedServ ) {
+				if( this.Texture == null ) {
+					this.Texture = src_mod.GetTexture( this.TexturePath );
+				}
+			}
+		}
 
 
 		////////////////

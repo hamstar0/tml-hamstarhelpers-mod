@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
+using HamstarHelpers.Helpers.XnaHelpers;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
@@ -121,24 +122,28 @@ namespace HamstarHelpers {
 			Player player = Main.LocalPlayer;
 			if( player == null ) { return; }
 			var mymod = (ModHelpersMod)this.mod;
+			RasterizerState rasterizer = Main.gameMenu ||
+					(double)player.gravDir == 1.0 ?
+					RasterizerState.CullCounterClockwise : RasterizerState.CullClockwise;
 
-			try {
-				lock( ModHelpersWorld.MyLock ) {
-					//Main.spriteBatch.Begin();
-					RasterizerState rasterizer = Main.gameMenu ||
-						(double)player.gravDir == 1.0 ?
-							RasterizerState.CullCounterClockwise :
-							RasterizerState.CullClockwise;
-					Main.spriteBatch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, rasterizer, (Effect)null, Main.GameViewMatrix.TransformationMatrix );
+			lock( ModHelpersWorld.MyLock ) {
+				Main.spriteBatch.Begin( SpriteSortMode.Deferred,
+					BlendState.AlphaBlend,
+					Main.DefaultSamplerState,
+					DepthStencilState.None,
+					rasterizer,
+					(Effect)null,
+					Main.GameViewMatrix.TransformationMatrix
+				);
 
+				try {
 					mymod.CustomEntMngr.DrawAll( Main.spriteBatch );
-
 					DebugHelpers.DrawAllRects( Main.spriteBatch );
-
-					Main.spriteBatch.End();
+				} catch( Exception e ) {
+					LogHelpers.Log( "!ModHelpers.ModHelpersWorld.PostDrawTiles - " + e.ToString() );
 				}
-			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.ModHelpersWorld.PostDrawTiles - " + e.ToString() );
+
+				Main.spriteBatch.End();
 			}
 		}
 	}

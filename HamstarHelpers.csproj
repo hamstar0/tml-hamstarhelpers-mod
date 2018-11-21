@@ -53,6 +53,7 @@
     <Compile Include="Components\CustomEntity\Components\Saveable_SaveLoad.cs" />
     <Compile Include="Components\CustomEntity\Components\Saveable.cs" />
     <Compile Include="Components\CustomEntity\Components\Saveable_Loader.cs" />
+    <Compile Include="Components\CustomEntity\Component_Construct.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity_Construct.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
     <Compile Include="Components\CustomEntity\Component.cs" />

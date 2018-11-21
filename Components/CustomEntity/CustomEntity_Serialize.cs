@@ -49,8 +49,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !ent_type.IsSubclassOf( typeof( CustomEntity ) ) ) {
 				throw new HamstarException( ent_type.Name + " is not a valid CustomEntity." );
 			}
-
-			return CustomEntity.CreateRaw( ent_type, this.Core, this.Components, this.OwnerPlayerUID );
+			
+			if( string.IsNullOrEmpty(this.OwnerPlayerUID) ) {
+				return CustomEntity.CreateRaw( ent_type, this.Core, this.Components );
+			} else {
+				return CustomEntity.CreateRaw( ent_type, this.Core, this.Components, this.OwnerPlayerUID );
+			}
 			//var args = this.OwnerPlayerUID == "" ?
 			//	new object[] { this.Core, this.Components } :
 			//	new object[] { this.OwnerPlayerUID, this.Core, this.Components };
@@ -107,6 +111,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 					var comp = (CustomEntityComponent)PacketProtocolData.CreateRaw( comp_type );
 					this.ReadIntoComponentFromJson( comp, obj, serializer );
 					//var comp = obj.ToObject( comp_type, serializer );
+
+					comp.InternalPostInitialize();
 
 					components.Add( comp );
 					i++;

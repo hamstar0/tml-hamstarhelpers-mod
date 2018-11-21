@@ -5,6 +5,7 @@ using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 
 
@@ -33,53 +34,90 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 				data.Core = this.InitializeCore();
 				data.Components = this.InitializeComponents();
-				this.PostInitialize( data );
+
+				this.InitializeEntity( data );
+
+				data.PostInitialize();
 			}
 
 			////
 
 			protected abstract CustomEntityCore InitializeCore();
 			protected abstract IList<CustomEntityComponent> InitializeComponents();
-			protected abstract void PostInitialize( T ent );
+			protected abstract void InitializeEntity( T ent );
 		}
 
 
 
 		////////////////
 
+		private new static CustomEntity CreateRaw( Type mytype ) {
+			if( mytype.IsSubclassOf( typeof( CustomEntity ) ) ) {
+				throw new NotImplementedException( mytype.Name+" is not a CustomEntity subclass." );
+			}
+
+			var data = (CustomEntity)Activator.CreateInstance( mytype,
+				BindingFlags.Instance | BindingFlags.NonPublic,
+				null,
+				new object[] { new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) },
+				null
+			);
+
+			return data;
+		}
+
 		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			var ent = (CustomEntity)PacketProtocolData.CreateRaw( mytype );
+			var ent = CustomEntity.CreateRaw( mytype );
 			ent.Core = core;
 			ent.Components = components;
 			ent.OwnerPlayerWho = -1;
 			ent.OwnerPlayerUID = "";
+
+			ent.PostInitialize();
+
 			return ent;
 		}
 
 		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr ) {
-			var ent = (CustomEntity)PacketProtocolData.CreateRaw( mytype );
+			var ent = CustomEntity.CreateRaw( mytype );
 			ent.Core = core;
 			ent.Components = components;
 			ent.OwnerPlayerWho = owner_plr.whoAmI;
 			ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
+
+			ent.PostInitialize();
+
 			return ent;
 		}
 
-		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, string owner_uid ) {
-			Player plr = owner_uid != "" ? PlayerIdentityHelpers.GetPlayerByProperId( owner_uid ) : null;
+		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, string owner_uid="" ) {
+			var ent = CustomEntity.CreateRaw( mytype );
+			ent.Core = core;
+			ent.Components = components;
+			ent.OwnerPlayerWho = -1;
+			ent.OwnerPlayerUID = owner_uid;
 
-			if( plr == null ) {
-				return CustomEntity.CreateRaw( mytype, core, components );
-			} else {
-				return CustomEntity.CreateRaw( mytype, core, components, plr );
+			Player plr = PlayerIdentityHelpers.GetPlayerByProperId( owner_uid );
+			if( plr != null ) {
+				ent.OwnerPlayerWho = plr.whoAmI;
 			}
+
+			ent.PostInitialize();
+
+			return ent;
 		}
 
 
 
 		////////////////
 
-		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
+			if( !ctor_lock.FactoryType.IsSubclassOf( typeof(CustomEntityFactory<>) ) ) {
+				if( ctor_lock.FactoryType != typeof(CustomEntity) ) {
+					throw new NotImplementedException( "CustomEntity " + this.GetType().Name + " uses invalid factory " + ctor_lock.FactoryType.Name );
+				}
+			}
+		}
 
 
 		////////////////
@@ -117,6 +155,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			this.ComponentsByTypeName.Clear();
 			this.AllComponentsByTypeName.Clear();
+
+			this.PostInitialize();
 		}
 
 

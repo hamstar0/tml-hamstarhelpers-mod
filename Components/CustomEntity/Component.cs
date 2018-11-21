@@ -4,7 +4,7 @@ using System.IO;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	public abstract class CustomEntityComponent : PacketProtocolData {
+	public abstract partial class CustomEntityComponent : PacketProtocolData {
 		public class StaticInitializer {
 			internal StaticInitializer() { }
 			internal void StaticInitializationWrapper() {
@@ -14,21 +14,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 			protected virtual void StaticInitialize() { }
 		}
 
-
-
-		////////////////
-
-		protected CustomEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
-
-		////
-
-		internal CustomEntityComponent InternalClone() {
-			return this.Clone();
-		}
-
-		protected virtual CustomEntityComponent Clone() {
-			return (CustomEntityComponent)this.MemberwiseClone();
-		}
 
 
 		////////////////

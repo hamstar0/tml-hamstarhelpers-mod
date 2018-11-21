@@ -6,7 +6,7 @@ using HamstarHelpers.Services.Promises;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class SaveableEntityComponent : CustomEntityComponent {
-		protected class SaveableEntityComponentFactory<T> : PacketProtocolData.Factory<T> where T : SaveableEntityComponent {
+		protected class SaveableEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : SaveableEntityComponent {
 			private readonly bool AsJson;
 
 
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////
 
-			public override void Initialize( T data ) {
+			public override void InitializeComponent( T data ) {
 				data.AsJson = this.AsJson;
 			}
 		}

@@ -44,7 +44,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
-		
+
+		protected virtual void PostInitialize() { }
+
+
+		////////////////
+
 		public T GetComponentByType<T>() where T : CustomEntityComponent {
 			if( this.ComponentsByTypeName.Count != this.Components.Count ) {
 				this.RefreshComponentTypeNames();

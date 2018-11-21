@@ -26,7 +26,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		////////////////
-		
+
 		/// <summary>
 		/// Implements internal low level data reading for packet receipt.
 		/// </summary>

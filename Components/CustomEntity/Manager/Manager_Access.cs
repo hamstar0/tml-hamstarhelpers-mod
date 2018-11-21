@@ -83,10 +83,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 				lock( CustomEntityManager.MyLock ) {
 					do {
 						if( !mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-							mngr.EntitiesByComponentType[comp_type] = new HashSet<int>();
+							mngr.EntitiesByComponentType[ comp_type ] = new HashSet<int>();
 						}
 
-						mngr.EntitiesByComponentType[comp_type].Add( who );
+						mngr.EntitiesByComponentType[ comp_type ].Add( who );
 
 						comp_type = comp_type.BaseType;
 					} while( comp_type != base_type );
