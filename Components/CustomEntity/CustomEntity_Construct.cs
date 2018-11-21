@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
@@ -112,7 +113,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			if( !ctor_lock.FactoryType.IsSubclassOf( typeof(CustomEntityFactory<>) ) ) {
+			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof(CustomEntityFactory<>), ctor_lock.FactoryType ) ) {
 				if( ctor_lock.FactoryType != typeof(CustomEntity) ) {
 					throw new NotImplementedException( "CustomEntity " + this.GetType().Name + " uses invalid factory " + ctor_lock.FactoryType.Name );
 				}

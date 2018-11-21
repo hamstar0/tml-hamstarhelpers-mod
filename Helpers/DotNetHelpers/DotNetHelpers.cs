@@ -8,6 +8,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public const double RadDeg = Math.PI / 180d;
 
 
+		////////////////
+
 		public static string DictToString( IDictionary<object, object> dict ) {
 			return string.Join( ";", dict.Select( x => x.Key + "=" + x.Value ).ToArray() );
 		}
@@ -46,6 +48,22 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 					yield return val;
 				}
 			}
+		}
+
+
+		public static bool IsSubclassOfRawGeneric( Type generic_type, Type is_type_of ) {
+			while( is_type_of != null && is_type_of != typeof( object ) ) {
+				Type curr_type = is_type_of.IsGenericType ?
+					is_type_of.GetGenericTypeDefinition() :
+					is_type_of;
+
+				if( generic_type == curr_type ) {
+					return true;
+				}
+				is_type_of = is_type_of.BaseType;
+			}
+
+			return false;
 		}
 	}
 }

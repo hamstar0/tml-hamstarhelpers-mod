@@ -33,6 +33,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		private IList<UIElement> Elements = new List<UIElement>();
 
+		private bool IsHovingBox = false;
 		private bool IsClicking = false;
 		private bool IsExtended = false;
 
@@ -40,9 +41,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		////////////////
 
-		internal SupportInfoDisplay( float x_off = 244f, float y = 12f, float row_height = 30f, float scale = 0.8f ) {
+		internal SupportInfoDisplay( float x_off = 244f, float y_beg = 12f, float row_height = 30f, float scale = 0.8f ) {
 			if( Main.dedServ ) { return; }
-			
+
+			float y = y_beg;
 			float row = 0;
 			var mymod = ModHelpersMod.Instance;
 
@@ -63,13 +65,6 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.ExtendTextUI.Left.Set( -(x_off * 0.5f) - 16f, 1f );
 			this.ExtendTextUI.Top.Set( (-8f + y + row_height) * scale, 0f );
 			this.ExtendTextUI.Recalculate();
-			this.ExtendTextUI.OnClick += ( _, __ ) => {
-				if( this.IsExtended ) { return; }
-				this.IsExtended = true;
-
-				this.ExtendTextUI.Remove();
-				this.ExpandUI( x_off, y, row_height, scale );
-			};
 
 			////
 
@@ -141,7 +136,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		}
 
 
-		private void ExpandUI( float x_off, float y, float row_height, float scale ) {
+		private void ExpandUI() {
 			this.Elements.Add( this.ModderTextUI );
 			this.Elements.Add( this.ModderUrlUI );
 			this.Elements.Insert( 0, this.AuthorText1UI );
@@ -174,10 +169,18 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		////////////////
 
+		public Rectangle GetBox() {
+			return new Rectangle( Main.screenWidth - 252, 4, 248, ( this.IsExtended ? 104 : 40 ) );
+		}
+
+
+		////////////////
+
 		public void Update() {
 			bool is_clicking = Main.mouseLeft && !this.IsClicking;
 
 			this.IsClicking = Main.mouseLeft;
+			this.IsHovingBox = this.GetBox().Contains( Main.mouseX, Main.mouseY );
 
 			for( int i=0; i<this.Elements.Count; i++ ) {
 				var elem = this.Elements[i];
@@ -195,6 +198,14 @@ namespace HamstarHelpers.Internals.Menus.Support {
 						elem.MouseOut( null );
 					}
 				}
+			}
+			
+			if( this.IsHovingBox && is_clicking ) {
+				if( this.IsExtended ) { return; }
+				this.IsExtended = true;
+
+				this.ExtendTextUI.Remove();
+				this.ExpandUI();
 			}
 		}
 
@@ -239,7 +250,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
 			HudHelpers.DrawBorderedRect( sb, new Color(256, 0, 32) * 0.2f, new Color(255, 224, 224) * 0.2f, rect, 4 );
 
-			if( this.ExtendTextUI.IsMouseHovering ) {
+			if( this.IsHovingBox ) {
 				this.ExtendTextUI.TextColor = Color.White;
 			} else {
 				this.ExtendTextUI.TextColor = AnimatedColors.Ether.CurrentColor;
