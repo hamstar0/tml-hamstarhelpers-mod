@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Services.DataDumper;
@@ -92,6 +93,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private void CacheTypeIdInfo( Type ent_type ) {
+			if( this.EntTypeIds.ContainsKey(ent_type.Name) ) {
+				int other_id = this.EntTypeIds[ ent_type.Name ];
+				Type other_ent_type = this.TypeIdEnts[ other_id ];
+				throw new HamstarException( "CustomEntity "+ent_type.Name+" name conflict ("+ent_type.FullName+" vs "+other_ent_type.FullName+")" );
+			}
+
 			int id = this.LatestId++;
 
 			this.TypeIdEnts[ id ] = ent_type;

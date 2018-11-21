@@ -11,18 +11,18 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = ModHelpersMod.Instance;
 			string file_name = SaveableEntityComponent.GetFileNameBase();
 			bool success = false;
-			IList<SerializedCustomEntity> wrapped_ents = null;
+			IList<SerializableCustomEntity> wrapped_ents = null;
 
 			try {
 				if( is_json ) {
-					wrapped_ents = DataFileHelpers.LoadJson<List<SerializedCustomEntity>>( mymod, file_name, CustomEntity.SerializerSettings, out success );
+					wrapped_ents = DataFileHelpers.LoadJson<List<SerializableCustomEntity>>( mymod, file_name, CustomEntity.SerializerSettings, out success );
 				} else {
-					wrapped_ents = DataFileHelpers.LoadBinary<List<SerializedCustomEntity>>( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings );
+					wrapped_ents = DataFileHelpers.LoadBinary<List<SerializableCustomEntity>>( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings );
 					success = wrapped_ents != null;
 				}
 
 				if( success ) {
-					foreach( SerializedCustomEntity ent in wrapped_ents ) {
+					foreach( SerializableCustomEntity ent in wrapped_ents ) {
 						if( ent == null ) { continue; }
 						
 						CustomEntityManager.AddToWorld( ent.Convert() );
@@ -40,14 +40,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mymod = ModHelpersMod.Instance;
 			string file_name = SaveableEntityComponent.GetFileNameBase();
 
-			IList<SerializedCustomEntity> wrapped_ents = new List<SerializedCustomEntity>();
+			IList<SerializableCustomEntity> wrapped_ents = new List<SerializableCustomEntity>();
 
 			foreach( var ent in CustomEntityManager.GetEntitiesByComponent<SaveableEntityComponent>() ) {
 				if( ent.GetComponentByType<SaveableEntityComponent>().AsJson != is_json ) {
 					continue;
 				}
 				
-				wrapped_ents.Add( new SerializedCustomEntity( ent ) );
+				wrapped_ents.Add( new SerializableCustomEntity( ent ) );
 			}
 
 			if( wrapped_ents.Count > 0 ) {

@@ -14,27 +14,38 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	internal class SerializedCustomEntity : CustomEntity {
+	internal class SerializableCustomEntity : CustomEntity {
 		public string MyTypeName;
 
 
 		////////////////
 
-		protected SerializedCustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected SerializableCustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 		
-		internal SerializedCustomEntity( CustomEntity ent )
-				: base( new PacketProtocolDataConstructorLock( typeof(SerializedCustomEntity) ) ) {
-			this.OwnerPlayerUID = ent.OwnerPlayerUID;
+		internal SerializableCustomEntity( CustomEntity ent )
+				: base( new PacketProtocolDataConstructorLock( typeof(SerializableCustomEntity) ) ) {
+			this.MyTypeName = ent.GetType().Name;
 			this.Core = ent.Core;
 			this.Components = ent.Components;
-			this.MyTypeName = ent.GetType().Name;
+			this.OwnerPlayerUID = ent.OwnerPlayerUID;
+		}
+
+		internal SerializableCustomEntity( string type_name, CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid )
+				: base( new PacketProtocolDataConstructorLock( typeof( SerializableCustomEntity ) ) ) {
+			this.MyTypeName = type_name;
+			this.Core = core;
+			this.Components = components;
+			this.OwnerPlayerUID = player_uid;
 		}
 
 		////////////////
 
 		internal CustomEntity Convert() {
-			Type ent_type = Type.GetType( this.MyTypeName );
+			Type ent_type = CustomEntityManager.GetEntityType( this.MyTypeName );
 
+			if( ent_type == null ) {
+				throw new HamstarException( this.MyTypeName + " does not exist." );
+			}
 			if( !ent_type.IsSubclassOf( typeof( CustomEntity ) ) ) {
 				throw new HamstarException( ent_type.Name + " is not a valid CustomEntity." );
 			}
@@ -58,7 +69,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public override bool CanWrite => false;
 
 		public override bool CanConvert( Type obj_type ) {
-			return obj_type == typeof( SerializedCustomEntity );
+			return obj_type == typeof( SerializableCustomEntity );
 		}
 
 		////
@@ -101,12 +112,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 					i++;
 				}
 
-				Type ent_type = CustomEntityManager.GetTypeByName( type_name );
-				if( ent_type == null ) {
-					return null;
-				}
+				return new SerializableCustomEntity( type_name, core, components, player_uid );
 
-				return CustomEntity.CreateRaw( ent_type, core, components, player_uid );
+				//Type ent_type = CustomEntityManager.GetTypeByName( type_name );
+				//if( ent_type == null ) {
+				//	return null;
+				//}
+				//return CustomEntity.CreateRaw( ent_type, core, components, player_uid );
+
 				//return (CustomEntity)Activator.CreateInstance( ent_type,
 				//	BindingFlags.NonPublic | BindingFlags.Instance,
 				//	null,
@@ -117,7 +130,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				return null;
 			}
 		}
-		
+
 		public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
 			throw new NotImplementedException();
 		}
@@ -148,7 +161,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 	}
 
-	
+
 
 	public abstract partial class CustomEntity : PacketProtocolData {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
@@ -168,10 +181,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityCore core = this.Core;
 			byte owner_who = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;
 
-			writer.Write( (ushort)CustomEntityManager.GetIdByTypeName(this.GetType().Name) );
+			writer.Write( (ushort)CustomEntityManager.GetIdByTypeName( this.GetType().Name ) );
 			writer.Write( (byte)owner_who );
-//LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
-//LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
+			//LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+			//LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
 
 			writer.Write( (ushort)core.whoAmI );
 			writer.Write( (string)core.DisplayName );
@@ -183,10 +196,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 			writer.Write( (float)core.velocity.X );
 			writer.Write( (float)core.velocity.Y );
 
-			for( int i=0; i<this.Components.Count; i++ ) {
+			for( int i = 0; i < this.Components.Count; i++ ) {
 				this.Components[i].WriteStreamForwarded( writer );
 			}
-//LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
+			//LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
 		}
 
 
@@ -219,15 +232,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 				whoAmI = who,
 				velocity = vel
 			};
-			
-//LogHelpers.Log( "READ id: "+this.ID+", name: "+core.DisplayName+", who: "+core.whoAmI+", total templates: "+ CustomEntityTemplates.TotalEntityTemplates());
-//LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
-			
+
+			//LogHelpers.Log( "READ id: "+this.ID+", name: "+core.DisplayName+", who: "+core.whoAmI+", total templates: "+ CustomEntityTemplates.TotalEntityTemplates());
+			//LogHelpers.Log( "READ2 new_ent: "+(new_ent==null?"null":"not null")+", component count: "+(new_ent==null?"null2":""+new_ent.Components.Count) );
+
 			for( int i = 0; i < components.Count; i++ ) {
 				components[i].ReadStreamForwarded( reader );
 			}
 
-//LogHelpers.Log( "READ "+new_ent.ToString()+" pos:"+new_ent.Core.position );
+			//LogHelpers.Log( "READ "+new_ent.ToString()+" pos:"+new_ent.Core.position );
 			this.CopyChangesFrom( core, components, plr );
 		}
 	}

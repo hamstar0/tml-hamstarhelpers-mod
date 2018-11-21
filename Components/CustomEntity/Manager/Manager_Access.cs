@@ -8,12 +8,56 @@ using System.Linq;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
+		public static Type GetEntityType( string name ) {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+			int id;
+			Type mytype;
+
+			if( !mngr.EntTypeIds.TryGetValue( name, out id ) ) {
+				return null;
+			}
+			if( !mngr.TypeIdEnts.TryGetValue( id, out mytype ) ) {
+				return null;
+			}
+			return mytype;
+		}
+
+
+		////////////////
+
 		public static CustomEntity GetEntityByWho( int who ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			CustomEntity ent = null;
 			mngr.EntitiesByIndexes.TryGetValue( who, out ent );
 			return ent;
+		}
+
+		////////////////
+
+		public static ISet<CustomEntity> GetEntitiesByComponent<T>() where T : CustomEntityComponent {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+
+			ISet<int> ent_idxs = new HashSet<int>();
+			Type curr_type = typeof( T );
+
+			lock( CustomEntityManager.MyLock ) {
+				if( !mngr.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
+					foreach( var kv in mngr.EntitiesByComponentType ) {
+						if( kv.Key.IsSubclassOf( curr_type ) ) {
+							ent_idxs.UnionWith( kv.Value );
+						}
+					}
+
+					if( ent_idxs == null ) {
+						return new HashSet<CustomEntity>();
+					}
+				}
+
+				return new HashSet<CustomEntity>(
+					ent_idxs.Select( i => (CustomEntity)mngr.EntitiesByIndexes[i] )
+				);
+			}
 		}
 
 
@@ -59,35 +103,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 				LogHelpers.Log( "ModHelpers.CustomEntity.SetEntityByWho - Set " + ent.ToString() );
-			}
-		}
-
-
-
-		////////////////
-
-		public static ISet<CustomEntity> GetEntitiesByComponent<T>() where T : CustomEntityComponent {
-			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
-
-			ISet<int> ent_idxs = new HashSet<int>();
-			Type curr_type = typeof( T );
-
-			lock( CustomEntityManager.MyLock ) {
-				if( !mngr.EntitiesByComponentType.TryGetValue( curr_type, out ent_idxs ) ) {
-					foreach( var kv in mngr.EntitiesByComponentType ) {
-						if( kv.Key.IsSubclassOf( curr_type ) ) {
-							ent_idxs.UnionWith( kv.Value );
-						}
-					}
-
-					if( ent_idxs == null ) {
-						return new HashSet<CustomEntity>();
-					}
-				}
-
-				return new HashSet<CustomEntity>(
-					ent_idxs.Select( i => (CustomEntity)mngr.EntitiesByIndexes[i] )
-				);
 			}
 		}
 	}

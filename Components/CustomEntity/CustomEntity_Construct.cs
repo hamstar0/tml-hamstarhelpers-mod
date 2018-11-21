@@ -11,14 +11,12 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		protected abstract class CustomEntityFactory<T> : Factory<T> where T : CustomEntity {
-			private readonly Player OwnerPlayer;
+			protected readonly Player OwnerPlayer;
 
 
 			////////////////
-
-			protected CustomEntityFactory() { }
-
-			protected CustomEntityFactory( Player owner_plr ) {
+			
+			protected CustomEntityFactory( Player owner_plr=null ) {
 				this.OwnerPlayer = owner_plr;
 			}
 
@@ -134,10 +132,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 				Type comp_type = this.Components[i].GetType();
 				string comp_name = comp_type.Name;
 
-				this.ComponentsByTypeName[comp_name] = i;
+				this.ComponentsByTypeName[ comp_name ] = i;
 
 				do {
-					this.AllComponentsByTypeName[comp_name] = i;
+					this.AllComponentsByTypeName[ comp_name ] = i;
 
 					comp_type = comp_type.BaseType;
 					comp_name = comp_type.Name;
