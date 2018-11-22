@@ -43,8 +43,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			////
 
-			protected abstract CustomEntityCore InitializeCore();
-			protected abstract IList<CustomEntityComponent> InitializeComponents();
+			public abstract CustomEntityCore InitializeCore();
+			public abstract IList<CustomEntityComponent> InitializeComponents();
 			protected abstract void InitializeEntity( T ent );
 		}
 
@@ -113,8 +113,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof(CustomEntityFactory<>), ctor_lock.FactoryType ) ) {
-				if( ctor_lock.FactoryType != typeof(CustomEntity) && ctor_lock.FactoryType != typeof(PacketProtocolData) ) {
+			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof( CustomEntityFactory<> ), ctor_lock.FactoryType ) ) {
+				if( ctor_lock.FactoryType != typeof( CustomEntity ) && ctor_lock.FactoryType != typeof( PacketProtocolData ) ) {
 					throw new NotImplementedException( "CustomEntity " + this.GetType().Name + " uses invalid factory " + ctor_lock.FactoryType.Name );
 				}
 			}
@@ -122,7 +122,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
-		
+
+		protected abstract CustomEntityCore CreateCoreTemplate();
+		protected abstract IList<CustomEntityComponent> CreateComponentsTemplate();
+
+
+		////////////////
+
 		internal void RefreshOwnerWho() {
 			if( Main.netMode == 1 ) {
 				throw new HamstarException( "No client." );
@@ -141,13 +147,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		private void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr ) {   // TODO: Actually copy changes only!
-			//Type my_factory_type = this.GetMainFactoryType();
-			//ConstructorInfo ctor = my_factory_type.GetConstructor( new Type[] {
-			//	typeof(CustomEntityCore), typeof(IList<CustomEntityComponent>), typeof(string), typeof(CustomEntity)
-			//} );
-			//var new_ent = (CustomEntity)ctor.Invoke( new object[] { core, components, player_uid } );
-
+		private void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr ) { // TODO: Copy changes only!
 			this.Core = new CustomEntityCore( core );
 			this.OwnerPlayerWho = owner_plr != null ? owner_plr.whoAmI : -1;
 			//this.OwnerPlayerUID = owner_plr != null ? PlayerIdentityHelpers.GetProperUniqueId(owner_plr) : "";

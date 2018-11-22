@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		[JsonIgnore]
 		public int WhoAmI {
 			get { return this.whoAmI; }
-			private set { this.whoAmI = value; }
+			internal set { this.whoAmI = value; }
 		}
 
 		[PacketProtocolIgnore]

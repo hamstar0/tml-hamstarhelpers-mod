@@ -31,12 +31,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 			writer.Write( (ushort)core.height );
 			writer.Write( (float)core.velocity.X );
 			writer.Write( (float)core.velocity.Y );
-			writer.Write( (byte)this.Components.Count );
 
 			for( int i = 0; i < this.Components.Count; i++ ) {
 				this.Components[i].WriteStreamForwarded( writer );
 			}
-			//LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
+//LogHelpers.Log( "WRITE "+this.ToString()+" pos:"+ core.position );
 		}
 
 
@@ -56,7 +55,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 				X =					(float)reader.ReadSingle(),
 				Y =					(float)reader.ReadSingle()
 			};
-			int component_count =	(byte)reader.ReadByte();
 
 			Type ent_type = CustomEntityManager.GetTypeById( type_id );
 			if( ent_type == null ) {
@@ -65,18 +63,21 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Player plr = owner_who == (byte)255 ? null : Main.player[owner_who];
 
-			var components = new List<CustomEntityComponent>( component_count );
-			var core = new CustomEntityCore( display_name, wid, hei, pos, dir ) {
-				whoAmI = who,
-				velocity = vel
-			};
-
+			IList<CustomEntityComponent> components = this.CreateComponentsTemplate();
+			CustomEntityCore core = this.CreateCoreTemplate();
+			core.WhoAmI = who;
+			core.DisplayName = display_name;
+			core.Width = wid;
+			core.Height = hei;
+			core.Position = pos;
+			core.direction = dir;
+			core.Velocity = vel;
+			f
 			for( int i = 0; i < components.Count; i++ ) {
 				components[i].ReadStreamForwarded( reader );
 			}
-LogHelpers.Log( "READ id: "+ent_type.Name+", core: "+core.ToString()+", components: "+components.Count+")");
+//LogHelpers.Log( "READ id: "+ent_type.Name+", core: "+core.ToString()+", components: "+components.Count+")");
 
-//LogHelpers.Log( "READ "+new_ent.ToString()+" pos:"+new_ent.Core.position );
 			this.CopyChangesFrom( core, components, plr );
 		}
 	}

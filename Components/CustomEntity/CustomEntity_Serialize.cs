@@ -2,15 +2,12 @@
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
@@ -37,6 +34,21 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.Components = components;
 			this.OwnerPlayerUID = player_uid;
 		}
+
+		////////////////
+
+		protected override IList<CustomEntityComponent> CreateComponentsTemplate() {
+			if( !this.IsInitialized ) { throw new NotImplementedException( "SerializableCustomEntity components not initialized." ); }
+			return this.Components.ToList();
+			//throw new NotImplementedException( "SerializableCustomEntity does not supply component templates." );
+		}
+
+		protected override CustomEntityCore CreateCoreTemplate() {
+			if( !this.IsInitialized ) { throw new NotImplementedException( "SerializableCustomEntity core not initialized." ); }
+			return new CustomEntityCore( this.Core );
+			//throw new NotImplementedException( "SerializableCustomEntity does not supply core templates." );
+		}
+
 
 		////////////////
 
