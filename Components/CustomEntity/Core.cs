@@ -113,5 +113,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.height = height;
 			this.direction = direction;
 		}
+
+
+		////////////////
+
+		public override string ToString() {
+			return this.GetType().Name+" (who:"+this.whoAmI+", name:"+this.DisplayName+", pos:"+this.position+")";
+		}
 	}
 }

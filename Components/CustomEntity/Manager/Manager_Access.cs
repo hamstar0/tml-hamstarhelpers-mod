@@ -69,10 +69,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 		
 		public static void AddToWorld( int who, CustomEntity ent ) {
-			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.SetEntityByWho - Null ent not allowed." ); }
-			if( !ent.IsInitialized ) { throw new HamstarException("!ModHelpers.CustomEntityManager.SetEntityByWho - Initialized ents only."); }
+			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Null ent not allowed." ); }
+			if( !ent.IsInitialized ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Initialized ents only." ); }
 
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+
+			if( ent is SerializableCustomEntity ) {
+				ent = ((SerializableCustomEntity)ent).Convert();
+			}
 
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );

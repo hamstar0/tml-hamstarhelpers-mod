@@ -26,11 +26,12 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			string id;
 
 			if( !mymod.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
-				if( player.whoAmI == Main.myPlayer && Main.netMode != 2 ) {
+				if( Main.netMode != 2 && player.whoAmI == Main.myPlayer ) {
 					id = PlayerIdentityHelpers.GetMyProperUniqueId();
 					mymod.PlayerIdentityHelpers.PlayerIds[ player.whoAmI ] = id;
 				} else {
-					throw new HamstarException( "!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player " + player.name + "'s id." );
+					//throw new HamstarException( "!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player " + player.name + "'s id." );
+					return null;
 				}
 			}
 			return id;

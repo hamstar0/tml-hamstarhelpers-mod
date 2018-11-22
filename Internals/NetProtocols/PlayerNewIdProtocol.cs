@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Components.Network;
-using Terraria;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
-using System.Collections.Generic;
 using HamstarHelpers.Components.Network.Data;
+using Terraria;
+using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

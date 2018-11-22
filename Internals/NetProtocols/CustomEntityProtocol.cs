@@ -7,13 +7,13 @@ using HamstarHelpers.Helpers.DebugHelpers;
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityProtocol : PacketProtocolSentToEither {
 		protected class MyFactory : PacketProtocolData.Factory<CustomEntityProtocol> {
-			private readonly CustomEntity Entity;
+			private readonly SerializableCustomEntity Entity;
 
 
 			////////////////
 
 			public MyFactory( CustomEntity ent ) {
-				this.Entity = ent;
+				this.Entity = new SerializableCustomEntity(ent);
 			}
 
 			////
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public CustomEntity Entity;
+		public SerializableCustomEntity Entity;
 
 
 

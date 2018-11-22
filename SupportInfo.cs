@@ -247,14 +247,19 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				elem.Recalculate();
 			}
 
-			var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
-			HudHelpers.DrawBorderedRect( sb, new Color(256, 0, 32) * 0.2f, new Color(255, 224, 224) * 0.2f, rect, 4 );
+			var box_color = new Color( 256, 0, 32 );
+			var box_edge_color = new Color( 255, 224, 224 );
+			float color_mul = 0.25f;
 
 			if( this.IsHovingBox ) {
 				this.ExtendTextUI.TextColor = Color.White;
+				color_mul = 0.3f;
 			} else {
 				this.ExtendTextUI.TextColor = AnimatedColors.Ether.CurrentColor;
 			}
+
+			var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
+			HudHelpers.DrawBorderedRect( sb, box_color * color_mul, box_edge_color * color_mul, rect, 4 );
 
 			if( this.SupportUrlUI != null ) {
 				this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.25f );

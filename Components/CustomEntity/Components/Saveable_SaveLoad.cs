@@ -15,9 +15,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			try {
 				if( is_json ) {
-					wrapped_ents = DataFileHelpers.LoadJson<List<SerializableCustomEntity>>( mymod, file_name, CustomEntity.SerializerSettings, out success );
+					wrapped_ents = DataFileHelpers.LoadJson<List<SerializableCustomEntity>>( mymod, file_name, CustomEntityConverter.SerializerSettings, out success );
 				} else {
-					wrapped_ents = DataFileHelpers.LoadBinary<List<SerializableCustomEntity>>( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings );
+					wrapped_ents = DataFileHelpers.LoadBinary<List<SerializableCustomEntity>>( mymod, file_name + ".dat", false, CustomEntityConverter.SerializerSettings );
 					success = wrapped_ents != null;
 				}
 
@@ -52,9 +52,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			if( wrapped_ents.Count > 0 ) {
 				if( is_json ) {
-					DataFileHelpers.SaveAsJson( mymod, file_name, CustomEntity.SerializerSettings, wrapped_ents );
+					DataFileHelpers.SaveAsJson( mymod, file_name, CustomEntityConverter.SerializerSettings, wrapped_ents );
 				} else {
-					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntity.SerializerSettings, wrapped_ents );
+					DataFileHelpers.SaveAsBinary( mymod, file_name + ".dat", false, CustomEntityConverter.SerializerSettings, wrapped_ents );
 				}
 			}
 		}

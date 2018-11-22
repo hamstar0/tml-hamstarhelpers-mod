@@ -97,7 +97,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			ent.Components = components;
 			ent.OwnerPlayerWho = -1;
 			ent.OwnerPlayerUID = owner_uid;
-
+			
 			Player plr = PlayerIdentityHelpers.GetPlayerByProperId( owner_uid );
 			if( plr != null ) {
 				ent.OwnerPlayerWho = plr.whoAmI;
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
 			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof(CustomEntityFactory<>), ctor_lock.FactoryType ) ) {
-				if( ctor_lock.FactoryType != typeof(CustomEntity) ) {
+				if( ctor_lock.FactoryType != typeof(CustomEntity) && ctor_lock.FactoryType != typeof(PacketProtocolData) ) {
 					throw new NotImplementedException( "CustomEntity " + this.GetType().Name + " uses invalid factory " + ctor_lock.FactoryType.Name );
 				}
 			}

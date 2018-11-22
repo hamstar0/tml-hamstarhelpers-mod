@@ -7,13 +7,11 @@ namespace HamstarHelpers.Components.Network {
 		protected PacketProtocolSentToEither( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 
 		////
-
-		[Obsolete( "use ReceiveOnClient", true )]
-		protected override void ReceiveWithClient() {
+		
+		protected sealed override void ReceiveWithClient() {
 			this.ReceiveOnClient();
 		}
-		[Obsolete( "use ReceiveOnServer", true )]
-		protected override void ReceiveWithServer( int from_who ) {
+		protected sealed override void ReceiveWithServer( int from_who ) {
 			this.ReceiveOnServer( from_who );
 		}
 
@@ -34,9 +32,8 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
-
-		[Obsolete( "use Receive", true )]
-		protected override void ReceiveWithServer( int from_who ) {
+		
+		protected sealed override void ReceiveWithServer( int from_who ) {
 			this.Receive( from_who );
 		}
 
@@ -56,9 +53,8 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
-
-		[Obsolete( "use Receive", true )]
-		protected override void ReceiveWithClient() {
+		
+		protected sealed override void ReceiveWithClient() {
 			this.Receive();
 		}
 
@@ -78,9 +74,8 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
-
-		[Obsolete( "use ReceiveReply", true )]
-		protected override void ReceiveWithClient() {
+		
+		protected sealed override void ReceiveWithClient() {
 			this.ReceiveReply();
 		}
 
@@ -101,8 +96,7 @@ namespace HamstarHelpers.Components.Network {
 
 		////////////////
 		
-		[Obsolete( "use ReceiveReply", true)]
-		protected override void ReceiveWithServer( int from_who ) {
+		protected sealed override void ReceiveWithServer( int from_who ) {
 			this.ReceiveReply( from_who );
 		}
 

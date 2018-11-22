@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityAllProtocol : PacketProtocolSendToClient {
-		public CustomEntity[] Entities;
+		public SerializableCustomEntity[] Entities;
 
 
 		////////////////
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void SetServerDefaults( int from_who ) {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<PeriodicSyncEntityComponent>();
 
-			this.Entities = ents.ToArray();
+			this.Entities = ents.Select( ent => new SerializableCustomEntity(ent) ).ToArray();
 
 			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 				LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.SetServerDefaults - Sending " + string.Join(",\n   ", this.Entities.Select(e=>e.ToString())) );
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void Receive() {
 			CustomEntityManager.ClearAllEntities();
 
-			foreach( CustomEntity ent in this.Entities ) {
+			foreach( SerializableCustomEntity ent in this.Entities ) {
 				/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 					LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.ReceiveWithClient - New entity " + ent.ToString() );
 				}*/

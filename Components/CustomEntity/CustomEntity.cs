@@ -95,11 +95,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		internal void SyncFrom( CustomEntity ent ) {
-			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.SyncFrom - Synced from " + ent.ToString() + " for "+ this.ToString() );
+			if( !ent.IsInitialized ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.SyncFrom - 'From' entity not initialized." );
 			}
 
 			this.CopyChangesFrom( ent.Core, ent.Components, ent.OwnerPlayer );
+
+			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				LogHelpers.Log( "ModHelpers.CustomEntity.SyncFrom - Synced from " + ent.ToString() + " for " + this.ToString() );
+			}
 		}
 
 
