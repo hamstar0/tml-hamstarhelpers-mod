@@ -66,8 +66,8 @@ namespace HamstarHelpers.Components.Network.Data {
 		////////////////
 		
 		internal static PacketProtocolData CreateRaw( Type data_type ) {
-			if( data_type.IsSubclassOf(typeof(PacketProtocolData)) ) {
-				throw new NotImplementedException();
+			if( !data_type.IsSubclassOf(typeof(PacketProtocolData)) ) {
+				throw new NotImplementedException("Not a PacketProtocolData subclass.");
 			}
 
 			var data = (PacketProtocolData)Activator.CreateInstance( data_type,

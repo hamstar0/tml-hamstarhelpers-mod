@@ -47,6 +47,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected virtual void PostInitialize() { }
 
+		internal void InternalPostInitialize() {
+			this.PostInitialize();
+		}
+
 
 		////////////////
 

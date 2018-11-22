@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		}
 
 		public IList<Tuple<string, string>> GetRecommendsFromInactiveMod( string mod_name, ref string err ) {
-			throw new NotImplementedException();
+			throw new NotImplementedException( "GetRecommendsFromInactiveMod not implemented." );
 			/*TmodFile tmod = null;
 			string[] file_names = Directory.GetFiles( ModLoader.ModPath, "*.tmod", SearchOption.TopDirectoryOnly );
 			Type type = typeof( TmodFile );

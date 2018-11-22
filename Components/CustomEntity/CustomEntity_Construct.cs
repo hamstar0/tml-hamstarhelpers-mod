@@ -38,7 +38,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 				this.InitializeEntity( data );
 
-				data.PostInitialize();
+				data.InternalPostInitialize();
 			}
 
 			////
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		private new static CustomEntity CreateRaw( Type mytype ) {
-			if( mytype.IsSubclassOf( typeof( CustomEntity ) ) ) {
+			if( !mytype.IsSubclassOf( typeof( CustomEntity ) ) ) {
 				throw new NotImplementedException( mytype.Name+" is not a CustomEntity subclass." );
 			}
 
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			ent.OwnerPlayerWho = -1;
 			ent.OwnerPlayerUID = "";
 
-			ent.PostInitialize();
+			ent.InternalPostInitialize();
 
 			return ent;
 		}
@@ -86,7 +86,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			ent.OwnerPlayerWho = owner_plr.whoAmI;
 			ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
 
-			ent.PostInitialize();
+			ent.InternalPostInitialize();
 
 			return ent;
 		}
@@ -103,7 +103,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				ent.OwnerPlayerWho = plr.whoAmI;
 			}
 
-			ent.PostInitialize();
+			ent.InternalPostInitialize();
 
 			return ent;
 		}
@@ -157,7 +157,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.ComponentsByTypeName.Clear();
 			this.AllComponentsByTypeName.Clear();
 
-			this.PostInitialize();
+			this.InternalPostInitialize();
 		}
 
 

@@ -18,6 +18,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		protected virtual void PostInitialize() { }
+
+		internal void InternalPostInitialize() {
+			this.PostInitialize();
+		}
+
+
+		////////////////
+
 		public virtual void UpdateSingle( CustomEntity ent ) { }
 		public virtual void UpdateClient( CustomEntity ent ) { }
 		public virtual void UpdateServer( CustomEntity ent ) { }

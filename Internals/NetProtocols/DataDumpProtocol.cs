@@ -3,6 +3,7 @@ using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Services.DataDumper;
+using System;
 using Terraria;
 
 
@@ -24,7 +25,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		protected override void ReceiveReply() {
-			throw new System.NotImplementedException();
+			throw new NotImplementedException( "ReceiveReply not implemented." );
 		}
 	}
 }

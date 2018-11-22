@@ -37,14 +37,5 @@ namespace HamstarHelpers.Components.CustomEntity {
 		protected virtual CustomEntityComponent Clone() {
 			return (CustomEntityComponent)this.MemberwiseClone();
 		}
-
-
-		////////////////
-
-		protected virtual void PostInitialize() { }
-
-		internal void InternalPostInitialize() {
-			this.PostInitialize();
-		}
 	}
 }

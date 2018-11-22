@@ -92,7 +92,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				entity_groups = this._ProjGroups;
 				break;
 			default:
-				throw new NotImplementedException();
+				throw new NotImplementedException( "Invalid Entity type " + typeof( T ).Name );
 			}
 
 			foreach( string dependency in dependencies ) {

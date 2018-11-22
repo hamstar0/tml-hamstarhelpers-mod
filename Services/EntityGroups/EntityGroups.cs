@@ -138,7 +138,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				list = (IList<T>)this.GetProjPool();
 				break;
 			default:
-				throw new NotImplementedException();
+				throw new NotImplementedException( "Invalid Entity type " + typeof( T ).Name );
 			}
 			
 			return list;

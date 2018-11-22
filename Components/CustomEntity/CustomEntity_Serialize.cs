@@ -23,7 +23,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		protected SerializableCustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
 		
 		internal SerializableCustomEntity( CustomEntity ent )
-				: base( new PacketProtocolDataConstructorLock( typeof(SerializableCustomEntity) ) ) {
+				: base( new PacketProtocolDataConstructorLock( typeof(CustomEntity) ) ) {
 			this.MyTypeName = ent.GetType().Name;
 			this.Core = ent.Core;
 			this.Components = ent.Components;
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal SerializableCustomEntity( string type_name, CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid )
-				: base( new PacketProtocolDataConstructorLock( typeof( SerializableCustomEntity ) ) ) {
+				: base( new PacketProtocolDataConstructorLock( typeof(CustomEntity) ) ) {
 			this.MyTypeName = type_name;
 			this.Core = core;
 			this.Components = components;
@@ -138,7 +138,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
-			throw new NotImplementedException();
+			throw new NotImplementedException( "WriteJson not implemented." );
 		}
 
 
