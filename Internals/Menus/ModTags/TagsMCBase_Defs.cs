@@ -30,7 +30,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					{ "Informational",          "Adds game state reports (time, weather, etc.), reports game stats, etc." },
 					{ "Specialized",            "Focuses on one main specific, well-defined function." },
 					{ "Multi-faceted",          "Does more than one thing, whether focusing mainly on one thing or not." },
-					{ "Esoteric",               "Does something uncommon or unexpected. Likely one-of-a-kind." },
+					{ "Replacements",           "Primarily meant as an alternative to something the game already provides." },
+					//{ "Esoteric",               "Does something uncommon or unexpected. Likely one-of-a-kind." },
 					//{ "Visuals",                "Implements new or improved sprites, adds new background details, etc." },
 					{ "MP Compatible",          "Built for multiplayer." },
 					{ "PvP",                    "Player vs player (multiplayer)." },
@@ -54,8 +55,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					{ "Weapons & Tools",        "Content: Adds or edits weapon or tool items." },
 					{ "Armors",					"Content: Adds or edits armor items in particular." },
 					{ "Buffs & Pots.",          "Content: Adds or edits buffs and potion items." },
-					{ "Accessories",            "Content: Adds or edits player accessory items." },
-					{ "Mounts & Familiars",     "Content: Adds or edits player mounts or gameplay-relevant 'pets' (familiars)." },
+					{ "Accessories",            "Content: Adds or edits player accessory items (includes wings)." },
+					{ "Mounts & Familiars",     "Content: Adds or edits player mounts or gameplay-affecting 'pets' (familiars)." },
 					{ "Vanity",                 "Content: Adds or edits player vanity items, dyes, or non-gameplay pets." },
 					{ "Ores",                   "Content: Adds mineable ores (and probably matching equipment tiers)." },
 					{ "Recipes",                "Content: Adds or edits recipes beyond the expected minimum, or provides recipe information." },
@@ -105,7 +106,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					////
 					
 					{ "Adds Convenience",       "Reduces annoyances; auto-trashes junk items, centralizes storage, etc." },
-					{ "Replacements",           "Primarily meant as an alternative to something the game already provides." },
 					{ "Creativity",             "Emphasizes building or artistic expression (as opposed to fighting and adventuring)." },
 					{ "Cheat-like",             "Significantly reduces or removes some game challenges; may be 'unfair'." },
 					{ "Challenge",              "Increases difficulty of specific elements: Time limits, harder boss AI, etc." },
