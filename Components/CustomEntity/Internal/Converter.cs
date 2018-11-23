@@ -11,76 +11,6 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	internal class SerializableCustomEntity : CustomEntity {
-		public string MyTypeName;
-
-
-		////////////////
-
-		protected SerializableCustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
-		
-		internal SerializableCustomEntity( CustomEntity ent )
-				: base( new PacketProtocolDataConstructorLock( typeof(CustomEntity) ) ) {
-			this.MyTypeName = ent.GetType().Name;
-			this.Core = ent.Core;
-			this.Components = ent.Components;
-			this.OwnerPlayerUID = ent.OwnerPlayerUID;
-		}
-
-		internal SerializableCustomEntity( string type_name, CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid )
-				: base( new PacketProtocolDataConstructorLock( typeof(CustomEntity) ) ) {
-			this.MyTypeName = type_name;
-			this.Core = core;
-			this.Components = components;
-			this.OwnerPlayerUID = player_uid;
-		}
-
-		////////////////
-
-		protected override IList<CustomEntityComponent> CreateComponentsTemplate() {
-			if( !this.IsInitialized ) { throw new NotImplementedException( "SerializableCustomEntity components not initialized." ); }
-			return this.Components.ToList();
-			//throw new NotImplementedException( "SerializableCustomEntity does not supply component templates." );
-		}
-
-		protected override CustomEntityCore CreateCoreTemplate() {
-			if( !this.IsInitialized ) { throw new NotImplementedException( "SerializableCustomEntity core not initialized." ); }
-			return new CustomEntityCore( this.Core );
-			//throw new NotImplementedException( "SerializableCustomEntity does not supply core templates." );
-		}
-
-
-		////////////////
-
-		internal CustomEntity Convert() {
-			Type ent_type = CustomEntityManager.GetEntityType( this.MyTypeName );
-
-			if( ent_type == null ) {
-				throw new HamstarException( this.MyTypeName + " does not exist." );
-			}
-			if( !ent_type.IsSubclassOf( typeof( CustomEntity ) ) ) {
-				throw new HamstarException( ent_type.Name + " is not a valid CustomEntity." );
-			}
-			
-			if( string.IsNullOrEmpty(this.OwnerPlayerUID) ) {
-				return CustomEntity.CreateRaw( ent_type, this.Core, this.Components );
-			} else {
-				return CustomEntity.CreateRaw( ent_type, this.Core, this.Components, this.OwnerPlayerUID );
-			}
-			//var args = this.OwnerPlayerUID == "" ?
-			//	new object[] { this.Core, this.Components } :
-			//	new object[] { this.OwnerPlayerUID, this.Core, this.Components };
-			//return (CustomEntity)Activator.CreateInstance( ent_type,
-			//	BindingFlags.NonPublic | BindingFlags.Instance,
-			//	null,
-			//	args,
-			//	null );
-		}
-	}
-
-
-
-
 	internal class CustomEntityConverter : JsonConverter {
 		internal static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings {
 			TypeNameHandling = TypeNameHandling.None,
@@ -187,10 +117,5 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 			}
 		}
-	}
-
-
-
-	public abstract partial class CustomEntity : PacketProtocolData {
 	}
 }

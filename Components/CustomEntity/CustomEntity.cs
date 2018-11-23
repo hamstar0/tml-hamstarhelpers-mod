@@ -4,7 +4,9 @@ using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Terraria;
 
@@ -33,7 +35,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		[JsonIgnore]
 		[PacketProtocolIgnore]
-		public bool IsInitialized {
+		public virtual bool IsInitialized {
 			get {
 				if( this.Core == null ) { return false; }
 				if( this.Components.Count == 0 ) { return false; }
@@ -49,6 +51,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal void InternalPostInitialize() {
 			this.PostInitialize();
+		}
+
+
+		////////////////
+
+		protected void ClearComponentCache() {
+			this.ComponentsByTypeName.Clear();
+			this.AllComponentsByTypeName.Clear();
 		}
 
 
@@ -83,26 +93,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public void SyncTo() {
+		public void SyncToAll() {
+			if( !this.IsInitialized ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll - Not initialized." );
+			}
+
 			if( Main.netMode == 2 ) {
 				CustomEntityProtocol.SendToClients( this );
 			} else if( Main.netMode == 1 ) {
 				CustomEntityProtocol.SyncToAll( this );
 			} else {
 				throw new HamstarException( "!ModHelpers.CustomEntity.SyncTo - Multiplayer only." );
-			}
-		}
-
-
-		internal void SyncFrom( CustomEntity ent ) {
-			if( !ent.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncFrom - 'From' entity not initialized." );
-			}
-
-			this.CopyChangesFrom( ent.Core, ent.Components, ent.OwnerPlayer );
-
-			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.SyncFrom - Synced from " + ent.ToString() + " for " + this.ToString() );
 			}
 		}
 
@@ -164,6 +165,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			return basename + " ("+ typeid + who + owner + ")";
+		}
+
+
+		////////////////
+
+		protected override void WriteStream( BinaryWriter writer ) {
+			throw new NotImplementedException( "WriteStream not implemented." );
+		}
+
+
+		protected override void ReadStream( BinaryReader reader ) {
+			throw new NotImplementedException( "ReadStream not implemented." );
 		}
 	}
 }

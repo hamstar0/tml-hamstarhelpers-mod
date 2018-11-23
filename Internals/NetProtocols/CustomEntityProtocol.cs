@@ -70,7 +70,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				return;
 			}
 			
-			ent.SyncFrom( this.Entity );
+			ent.CopyChangesFrom( this.Entity );
 		}
 
 		protected override void ReceiveOnClient() {
@@ -87,7 +87,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			if( existing_ent == null ) {
 				CustomEntityManager.AddToWorld( this.Entity.Core.whoAmI, this.Entity );
 			} else {
-				existing_ent.SyncFrom( this.Entity );
+				existing_ent.CopyChangesFrom( this.Entity );
 			}
 		}
 	}

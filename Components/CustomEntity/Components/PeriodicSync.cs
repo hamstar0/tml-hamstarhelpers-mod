@@ -38,7 +38,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			if( this.NextSync-- <= 0 ) {
 				this.NextSync = 60 * 15;
 				
-				ent.SyncTo();
+				ent.SyncToAll();
 			}
 		}
 

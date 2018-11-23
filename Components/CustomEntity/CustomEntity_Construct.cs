@@ -13,7 +13,7 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		protected abstract class CustomEntityFactory<T> : Factory<T> where T : CustomEntity {
-			protected readonly Player OwnerPlayer;
+			public readonly Player OwnerPlayer;
 
 
 			////////////////
@@ -33,8 +33,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 					data.OwnerPlayerUID = "";
 				}
 
-				data.Core = this.InitializeCore();
-				data.Components = this.InitializeComponents();
+				data.Core = data.CreateCore<T>( this );
+				data.Components = data.CreateComponents<T>( this );
 
 				this.InitializeEntity( data );
 
@@ -43,8 +43,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			////
 
-			public abstract CustomEntityCore InitializeCore();
-			public abstract IList<CustomEntityComponent> InitializeComponents();
 			protected abstract void InitializeEntity( T ent );
 		}
 
@@ -121,10 +119,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
-		////////////////
 
-		protected abstract CustomEntityCore CreateCoreTemplate();
-		protected abstract IList<CustomEntityComponent> CreateComponentsTemplate();
+		////////////////
+		
+		protected abstract CustomEntityCore CreateCore<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
+		protected abstract IList<CustomEntityComponent> CreateComponents<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
+		public abstract CustomEntityCore CreateCoreTemplate();
+		public abstract IList<CustomEntityComponent> CreateComponentsTemplate();
+
 
 
 		////////////////
@@ -147,15 +149,30 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		private void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr ) { // TODO: Copy changes only!
+		internal void CopyChangesFrom( CustomEntity ent ) { // TODO: Copy changes only!
+			if( !ent.IsInitialized ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.CopyChangesFrom(CustomEntity) - Parameter not initialized." );
+			}
+
+			this.CopyChangesFrom( ent.Core, ent.Components, ent.OwnerPlayer );
+
+			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				LogHelpers.Log( "ModHelpers.CustomEntity.CopyChangesFrom(CustomEntity) - Synced from " + ent.ToString() + " for " + this.ToString() );
+			}
+		}
+
+
+		internal void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr=null ) {
 			this.Core = new CustomEntityCore( core );
 			this.OwnerPlayerWho = owner_plr != null ? owner_plr.whoAmI : -1;
 			//this.OwnerPlayerUID = owner_plr != null ? PlayerIdentityHelpers.GetProperUniqueId(owner_plr) : "";
 
 			this.Components = components.Select( c => c.InternalClone() ).ToList();
+			this.ClearComponentCache();
 
-			this.ComponentsByTypeName.Clear();
-			this.AllComponentsByTypeName.Clear();
+			if( !this.IsInitialized ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.CopyChangesFrom - Not initialized post-copy." );
+			}
 
 			this.InternalPostInitialize();
 		}

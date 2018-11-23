@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,16 +8,20 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	public abstract partial class CustomEntity : PacketProtocolData {
+	internal partial class SerializableCustomEntity : CustomEntity {
 		protected override void WriteStream( BinaryWriter writer ) {
+			if( !this.IsInitialized ) {
+				throw new HamstarException( "!ModHelpers.SerializableCustomEntity.WriteStream - Not initialized." );
+			}
+
 			if( Main.netMode != 1 ) {
 				this.RefreshOwnerWho();
 			}
 
 			CustomEntityCore core = this.Core;
 			byte owner_who = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;
-
-			writer.Write( (ushort)CustomEntityManager.GetIdByTypeName( this.GetType().Name ) );
+			
+			writer.Write( (ushort)CustomEntityManager.GetIdByTypeName( this.MyTypeName ) );
 			writer.Write( (byte)owner_who );
 //LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
 //LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
@@ -63,8 +66,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Player plr = owner_who == (byte)255 ? null : Main.player[owner_who];
 
-			IList<CustomEntityComponent> components = this.CreateComponentsTemplate();
-			CustomEntityCore core = this.CreateCoreTemplate();
+			var myent = (CustomEntity)CustomEntity.CreateRaw( ent_type );
+
+			CustomEntityCore core = myent.CreateCoreTemplate();
 			core.WhoAmI = who;
 			core.DisplayName = display_name;
 			core.Width = wid;
@@ -72,12 +76,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 			core.Position = pos;
 			core.direction = dir;
 			core.Velocity = vel;
-			f
+			
+			IList<CustomEntityComponent> components = myent.CreateComponentsTemplate();
 			for( int i = 0; i < components.Count; i++ ) {
 				components[i].ReadStreamForwarded( reader );
 			}
 //LogHelpers.Log( "READ id: "+ent_type.Name+", core: "+core.ToString()+", components: "+components.Count+")");
-
+			
 			this.CopyChangesFrom( core, components, plr );
 		}
 	}
