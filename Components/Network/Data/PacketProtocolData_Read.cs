@@ -139,7 +139,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 				if( inner_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					for( int i = 0; i < length; i++ ) {
-						var item = (PacketProtocolData)Activator.CreateInstance( inner_type, true );
+						var item = PacketProtocolData.CreateRaw( inner_type );
 
 						item.ReadStream( reader );
 						arr.SetValue( item, i );
@@ -165,7 +165,11 @@ namespace HamstarHelpers.Components.Network.Data {
 				if( field_type.IsArray ) {
 					return arr;
 				} else {
-					return Activator.CreateInstance( field_type, new object[] { arr } );
+					try {
+						return Activator.CreateInstance( field_type, new object[] { arr } );
+					} catch( Exception e ) {
+						throw new Exception( "!ModHelpers.PacketProtocolData.ReadStreamObjectValue - Invalid container type " + field_type.Name, e );
+					}
 				}
 
 			} else {

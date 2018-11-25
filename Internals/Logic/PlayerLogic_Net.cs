@@ -46,6 +46,13 @@ namespace HamstarHelpers.Internals.Logic {
 			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>();
 
 			mymod.ControlPanel.LoadModListAsync();
+			
+			Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ClientConnectValidator, ( args ) => {
+				if( Main.netMode != 1 ) {
+					PacketProtocolSendToClient.QuickSend<CustomEntityAllProtocol>( args.Who, -1 );
+				}
+				return true;
+			} );
 		}
 
 		public void OnServerConnect( ModHelpersMod mymod, Player player ) {

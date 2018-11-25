@@ -58,6 +58,7 @@
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
     <Compile Include="Components\CustomEntity\Internal\Component.cs" />
     <Compile Include="Components\CustomEntity\Internal\Core.cs" />
+    <Compile Include="Components\CustomEntity\Manager\Manager_Init.cs" />
     <Compile Include="Components\CustomEntity\Serializable_Net.cs" />
     <Compile Include="Components\CustomEntity\Manager\Manager_Id.cs" />
     <Compile Include="Components\CustomEntity\Manager\Manager_Draw.cs" />

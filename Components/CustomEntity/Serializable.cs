@@ -4,12 +4,18 @@ using HamstarHelpers.Components.Network.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
 	internal partial class SerializableCustomEntity : CustomEntity {
+		public static string GetTypeName( CustomEntity ent ) {
+			return ent.GetType().Name;
+		}
+
+
+
+		////////////////
+
 		public string MyTypeName;
 
 		////////////////
@@ -33,7 +39,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal SerializableCustomEntity( CustomEntity ent )
 				: base( new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) ) {
-			this.MyTypeName = ent.GetType().Name;
+			this.MyTypeName = SerializableCustomEntity.GetTypeName( ent );
 			this.Core = ent.Core;
 			this.Components = ent.Components;
 			this.OwnerPlayerUID = ent.OwnerPlayerUID;

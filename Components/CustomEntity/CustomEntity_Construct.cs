@@ -127,26 +127,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public abstract CustomEntityCore CreateCoreTemplate();
 		public abstract IList<CustomEntityComponent> CreateComponentsTemplate();
 
-
-
-		////////////////
-
-		internal void RefreshOwnerWho() {
-			if( Main.netMode == 1 ) {
-				throw new HamstarException( "No client." );
-			}
-
-			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
-				this.OwnerPlayerWho = -1;
-				return;
-			}
-			
-			Player owner = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
-
-			this.OwnerPlayerWho = owner == null ? -1 : owner.whoAmI;
-		}
-
-
+		
 		////////////////
 
 		internal void CopyChangesFrom( CustomEntity ent ) { // TODO: Copy changes only!
@@ -165,19 +146,40 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr=null ) {
 			this.Core = new CustomEntityCore( core );
 			this.OwnerPlayerWho = owner_plr != null ? owner_plr.whoAmI : -1;
-			//this.OwnerPlayerUID = owner_plr != null ? PlayerIdentityHelpers.GetProperUniqueId(owner_plr) : "";
+			this.OwnerPlayerUID = owner_plr != null ? PlayerIdentityHelpers.GetProperUniqueId(owner_plr) : "";
 
 			this.Components = components.Select( c => c.InternalClone() ).ToList();
 			this.ClearComponentCache();
 
 			if( !this.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.CopyChangesFrom - Not initialized post-copy." );
+				throw new HamstarException( "!ModHelpers."+this.GetType().Name+".CopyChangesFrom - Not initialized post-copy." );
 			}
 
 			this.InternalPostInitialize();
 		}
 
 
+
+		////////////////
+
+		internal void RefreshOwnerWho() {
+			if( Main.netMode == 1 ) {
+				throw new HamstarException( "No client." );
+			}
+
+			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
+				this.OwnerPlayerWho = -1;
+				return;
+			}
+
+			Player owner_plr = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
+			if( owner_plr == null ) {
+				LogHelpers.Log( "ModHelpers.CustomEntity.RefreshOwnerWho - No player found with UID "+this.OwnerPlayerUID );
+			}
+
+			this.OwnerPlayerWho = owner_plr == null ? -1 : owner_plr.whoAmI;
+		}
+		
 		////////////////
 
 		private void RefreshComponentTypeNames() {

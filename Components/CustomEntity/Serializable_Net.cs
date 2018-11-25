@@ -66,24 +66,25 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Player plr = owner_who == (byte)255 ? null : Main.player[owner_who];
 
-			var myent = (CustomEntity)CustomEntity.CreateRaw( ent_type );
+			var myent_template = (CustomEntity)CustomEntity.CreateRaw( ent_type );
+			CustomEntityCore core = myent_template.CreateCoreTemplate();
+			IList<CustomEntityComponent> components = myent_template.CreateComponentsTemplate();
 
-			CustomEntityCore core = myent.CreateCoreTemplate();
 			core.WhoAmI = who;
 			core.DisplayName = display_name;
 			core.Width = wid;
 			core.Height = hei;
 			core.Position = pos;
-			core.direction = dir;
 			core.Velocity = vel;
+			core.direction = dir;
 			
-			IList<CustomEntityComponent> components = myent.CreateComponentsTemplate();
 			for( int i = 0; i < components.Count; i++ ) {
 				components[i].ReadStreamForwarded( reader );
 			}
-//LogHelpers.Log( "READ id: "+ent_type.Name+", core: "+core.ToString()+", components: "+components.Count+")");
 			
+			this.MyTypeName = SerializableCustomEntity.GetTypeName( myent_template );
 			this.CopyChangesFrom( core, components, plr );
+//LogHelpers.Log( "READ "+this );
 		}
 	}
 }

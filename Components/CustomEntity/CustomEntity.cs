@@ -137,9 +137,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		protected override void WriteStream( BinaryWriter writer ) {
+			throw new NotImplementedException( "WriteStream not implemented." );
+		}
+		protected override void ReadStream( BinaryReader reader ) {
+			throw new NotImplementedException( "ReadStream not implemented." );
+		}
+
+
+		////////////////
+
 		public override string ToString() {
 			string basename = "";
-			string typeid = "type "+CustomEntityManager.GetIdByTypeName( this.GetType().Name );
+			string typeid = "type " + CustomEntityManager.GetIdByTypeName( this.GetType().Name );
 			string who = "";
 			string owner = ", owner:";
 
@@ -151,7 +161,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( this.OwnerPlayerUID != "" ) {
-				owner += " "+this.OwnerPlayerUID.Substring( 0, 8 )+"...";
+				owner += " " + this.OwnerPlayerUID.Substring( 0, 8 ) + "...";
 			}
 			if( this.OwnerPlayerWho != -1 ) {
 				owner += " '" + Main.player[this.OwnerPlayerWho].name + "':" + this.OwnerPlayerWho;
@@ -161,22 +171,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( this.Components != null ) {
-				typeid = typeid+":"+this.Components.Count();
+				typeid = typeid + ":" + this.Components.Count();
 			}
 
-			return basename + " ("+ typeid + who + owner + ")";
-		}
-
-
-		////////////////
-
-		protected override void WriteStream( BinaryWriter writer ) {
-			throw new NotImplementedException( "WriteStream not implemented." );
-		}
-
-
-		protected override void ReadStream( BinaryReader reader ) {
-			throw new NotImplementedException( "ReadStream not implemented." );
+			return basename + " (" + typeid + who + owner + ")";
 		}
 	}
 }

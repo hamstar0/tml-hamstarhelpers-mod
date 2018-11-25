@@ -11,6 +11,7 @@ namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
 		internal readonly static object MyValidatorKey;
 		internal readonly static PromiseValidator ServerConnectValidator;
+		internal readonly static PromiseValidator ClientConnectValidator;
 
 
 		////////////////
@@ -18,6 +19,7 @@ namespace HamstarHelpers.Internals.Logic {
 		static PlayerLogic() {
 			PlayerLogic.MyValidatorKey = new object();
 			PlayerLogic.ServerConnectValidator = new PromiseValidator( PlayerLogic.MyValidatorKey );
+			PlayerLogic.ClientConnectValidator = new PromiseValidator( PlayerLogic.MyValidatorKey );
 		}
 
 

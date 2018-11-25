@@ -255,7 +255,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				this.ExtendTextUI.TextColor = Color.White;
 				color_mul = 0.3f;
 			} else {
-				this.ExtendTextUI.TextColor = AnimatedColors.Ether.CurrentColor;
+				this.ExtendTextUI.TextColor = AnimatedColors.Air.CurrentColor;
 			}
 
 			var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
