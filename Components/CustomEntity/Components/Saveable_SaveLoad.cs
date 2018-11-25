@@ -24,7 +24,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				if( success ) {
 					foreach( SerializableCustomEntity ent in wrapped_ents ) {
 						if( ent == null ) { continue; }
-						
 						CustomEntityManager.AddToWorld( ent.Convert() );
 					}
 				}

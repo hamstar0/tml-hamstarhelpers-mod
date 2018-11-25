@@ -15,14 +15,22 @@ namespace HamstarHelpers.Services.DataStore {
 			}
 		}
 
-		public static object Get( object key, out bool success ) {
-			object val = null;
+		public static bool Get<T>( object key, out T val ) {
+			val = default(T);
+			object raw_val = null;
+			bool success = false;
 
 			lock( DataStore.MyLock ) {
-				success = ModHelpersMod.Instance.DataStore.Data.TryGetValue( key, out val );
+				success = ModHelpersMod.Instance.DataStore.Data.TryGetValue( key, out raw_val );
+
+				if( !( raw_val is T ) ) {
+					success = false;
+				} else {
+					val = (T)raw_val;
+				}
 			}
 			
-			return val;
+			return success;
 		}
 
 		public static void Set( object key, object val ) {

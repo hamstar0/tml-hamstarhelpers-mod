@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.CustomEntity.Components;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
@@ -95,7 +96,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		public void SyncToAll() {
 			if( !this.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll - Not initialized." );
+				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Not initialized." );
+			}
+			if( !SaveableEntityComponent.HaveAllEntitiesLoaded ) {
+				LogHelpers.Log( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Entities not yet loaded.");
+				return;
+			}
+
+			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				LogHelpers.Log( "ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+")" );
 			}
 
 			if( Main.netMode == 2 ) {
@@ -103,7 +112,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			} else if( Main.netMode == 1 ) {
 				CustomEntityProtocol.SyncToAll( this );
 			} else {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncTo - Multiplayer only." );
+				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Multiplayer only." );
 			}
 		}
 

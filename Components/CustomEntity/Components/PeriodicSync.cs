@@ -28,22 +28,24 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			this.NextSync = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 );
+			this.NextSync = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 ) + 60;
 		}
 
 
 		////////////////
 
-		public void UpdateMe( CustomEntity ent ) {
-			if( this.NextSync-- <= 0 ) {
-				this.NextSync = 60 * 15;
-				
-				ent.SyncToAll();
-			}
-		}
-
 		public override void UpdateServer( CustomEntity ent ) {
 			this.UpdateMe( ent );
+		}
+
+		////
+
+		protected void UpdateMe( CustomEntity ent ) {
+			if( this.NextSync-- <= 0 ) {
+				this.NextSync = 60 * 15;
+
+				ent.SyncToAll();
+			}
 		}
 	}
 }

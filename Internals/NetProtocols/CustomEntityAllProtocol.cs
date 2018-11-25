@@ -3,7 +3,6 @@ using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -39,13 +38,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 					LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.ReceiveWithClient - New entity " + ent.ToString() );
 				}*/
-
+				
 				CustomEntityManager.AddToWorld( ent.Core.whoAmI, ent );
 			}
 
 			SaveableEntityComponent.PostLoadAll();
-
-			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey, null );
 		}
 	}
 }

@@ -21,8 +21,8 @@ namespace HamstarHelpers.Services.DataDumper {
 		////////////////
 
 		internal static IDictionary<string, Func<string>> GetDumpables() {
-			bool success;
-			var dumpables = (IDictionary<string, Func<string>>)DataStore.DataStore.Get( DataDumper.MyDataStorekey, out success );
+			IDictionary<string, Func<string>> dumpables;
+			bool success = DataStore.DataStore.Get( DataDumper.MyDataStorekey, out dumpables );
 
 			lock( DataDumper.MyLock ) {
 				if( !success ) {

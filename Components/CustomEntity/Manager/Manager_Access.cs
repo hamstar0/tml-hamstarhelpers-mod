@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
@@ -33,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return ent;
 		}
 
-		////////////////
+		////
 
 		public static ISet<CustomEntity> GetEntitiesByComponent<T>() where T : CustomEntityComponent {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
@@ -60,6 +61,25 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 		}
 
+		////
+
+		public static ISet<T> GetEntitiesForPlayer<T>( Player player ) where T : CustomEntity {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+			var ents = new HashSet<T>();
+
+			foreach( CustomEntity ent in mngr.EntitiesByIndexes.Values ) {
+				if( !(ent is T) ) { continue; }
+
+				if( Main.netMode == 2 ) {
+					ent.RefreshOwnerWho();
+				}
+				if( ent.OwnerPlayerWho == player.whoAmI ) {
+					ents.Add( (T)ent );
+				}
+			}
+			return ents;
+		}
+
 
 		////////////////
 
@@ -68,6 +88,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityManager.AddToWorld( mngr.EntitiesByIndexes.Count, ent );
 		}
 		
+
 		public static void AddToWorld( int who, CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Null ent not allowed." ); }
 			if( !ent.IsInitialized ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Initialized ents only." ); }
@@ -106,7 +127,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.SetEntityByWho - Set " + ent.ToString() );
+				LogHelpers.Log( "ModHelpers.CustomEntity.AddToWorld - Set " + ent.ToString() );
 			}
 		}
 	}

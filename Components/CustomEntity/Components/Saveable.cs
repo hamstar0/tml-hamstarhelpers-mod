@@ -42,6 +42,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		internal readonly static object LoadAllDataKey = new object();
 
 
+
 		////////////////
 
 		static SaveableEntityComponent() {

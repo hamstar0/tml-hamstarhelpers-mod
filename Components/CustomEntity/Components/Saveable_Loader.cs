@@ -1,7 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
 using System;
@@ -11,23 +9,25 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class SaveableEntityComponent : CustomEntityComponent {
 		internal static void PostLoadAll() {
-			DataStore.Set( SaveableEntityComponent.LoadAllDataKey, true );
-			
+			SaveableEntityComponent.HaveAllEntitiesLoaded = true;
 			Promises.TriggerValidatedPromise( SaveableEntityComponent.LoadAllValidator, SaveableEntityComponent.MyValidatorKey, null );
 		}
 
 		internal static void PostUnloadAll() {
-			DataStore.Remove( SaveableEntityComponent.LoadAllDataKey );
+			SaveableEntityComponent.HaveAllEntitiesLoaded = false;
 		}
 
 
 		////////////////
 
-		public static bool IsLoaded {
+		public static bool HaveAllEntitiesLoaded {
 			get {
-				bool success;
-				object raw_output = DataStore.Get( SaveableEntityComponent.LoadAllDataKey, out success );
-				return success && (bool)raw_output;
+				bool output;
+				bool success = DataStore.Get( SaveableEntityComponent.LoadAllDataKey, out output );
+				return success && output;
+			}
+			internal set {
+				DataStore.Set( SaveableEntityComponent.LoadAllDataKey, value );
 			}
 		}
 
@@ -36,53 +36,56 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		protected class MyStaticInitializer : StaticInitializer {
 			protected override void StaticInitialize() {
-				var mymod = ModHelpersMod.Instance;
-				
-				Promises.AddValidatedPromise<PromiseArguments>( ModHelpersWorld.LoadValidator, (_) => {
-					if( Main.netMode != 1 ) {
-						if( !ModHelpersMod.Instance.Config.DebugModeResetCustomEntities ) {
-							try {
-								if( !SaveableEntityComponent.LoadAll( true ) ) {
-									if( mymod.Config.DebugModeNetInfo ) {
-										LogHelpers.Log( "!ModHelpers.SaveableEntityComponent.StaticInitialize - Load (json) failed." );
-									}
-								}
-								if( !SaveableEntityComponent.LoadAll( false ) ) {
-									if( mymod.Config.DebugModeNetInfo ) {
-										LogHelpers.Log( "!ModHelpers.SaveableEntityComponent.StaticInitialize - Load (no json) failed." );
-									}
-								}
-							} catch( Exception e ) {
-								LogHelpers.Log( "!ModHelpers.SaveableEntityComponent.StaticInitialize - " + e.ToString() );
-							}
-						}
-					}
-					
-					SaveableEntityComponent.PostLoadAll();
+				// Load all entities upon world load (single, server)
+				if( Main.netMode != 1 ) {
+					Promises.AddValidatedPromise<PromiseArguments>( ModHelpersWorld.LoadValidator, ( _ ) => {
+						MyStaticInitializer.LoadAll();
+						SaveableEntityComponent.PostLoadAll();
+						return true;
+					} );
+				}
 
-					return true;
-				} );
+				// Save all entities upon world save (single, server)
+				if( Main.netMode != 1 ) {
+					Promises.AddValidatedPromise<PromiseArguments>( ModHelpersWorld.SaveValidator, ( _ ) => {
+						MyStaticInitializer.SaveAll();
+						return true;
+					} );
+				}
 
-				Promises.AddValidatedPromise<PromiseArguments>( ModHelpersWorld.SaveValidator, (_) => {
-					if( Main.netMode != 1 ) {
-						SaveableEntityComponent.SaveAll( true );
-						SaveableEntityComponent.SaveAll( false );
-					}
-
-					return true;
-				} );
-
+				// Unload entities after world closes
 				Promises.AddPostWorldUnloadEachPromise( () => {
 					SaveableEntityComponent.PostUnloadAll();
-					DataStore.Remove( SaveableEntityComponent.LoadAllDataKey );
 				} );
+			}
 
-				Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ServerConnectValidator, ( args ) => {
-					if( Main.netMode != 1 ) {
-						PacketProtocolSendToClient.QuickSend<CustomEntityAllProtocol>( args.Who, -1 );
+
+			private static void LoadAll() {
+				var mymod = ModHelpersMod.Instance;
+
+				if( mymod.Config.DebugModeResetCustomEntities ) {
+					return;
+				}
+
+				try {
+					if( !SaveableEntityComponent.LoadAll( true ) ) {
+						if( mymod.Config.DebugModeNetInfo ) {
+							LogHelpers.Log( "!ModHelpers.SaveableEntityComponent.StaticInitialize.LoadAll - Load (json) failed." );
+						}
 					}
-					return true;
-				} );
+					if( !SaveableEntityComponent.LoadAll( false ) ) {
+						if( mymod.Config.DebugModeNetInfo ) {
+							LogHelpers.Log( "!ModHelpers.SaveableEntityComponent.StaticInitialize.LoadAll - Load (no json) failed." );
+						}
+					}
+				} catch( Exception e ) {
+					LogHelpers.Log( "!ModHelpers.SaveableEntityComponent.StaticInitialize.LoadAll - " + e.ToString() );
+				}
+			}
+
+			private static void SaveAll() {
+				SaveableEntityComponent.SaveAll( true );
+				SaveableEntityComponent.SaveAll( false );
 			}
 		}
 

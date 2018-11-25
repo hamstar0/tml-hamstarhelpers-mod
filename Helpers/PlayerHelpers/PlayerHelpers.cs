@@ -78,8 +78,8 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 
 		public static void SetSpawnPoint( Player player, int tile_x, int tile_y ) {
-			bool success;
-			var spawn_map = (IDictionary<string, IDictionary<int, int>>)DataStore.Get( PlayerHelpers.SpawnPointKey, out success );
+			IDictionary<string, IDictionary<int, int>> spawn_map;
+			bool success = DataStore.Get( PlayerHelpers.SpawnPointKey, out spawn_map );
 
 			player.SpawnX = tile_x;
 			player.SpawnY = tile_y;

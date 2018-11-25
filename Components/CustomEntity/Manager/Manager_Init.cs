@@ -1,13 +1,13 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Services.Timers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Terraria;
@@ -65,13 +65,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 			} );
 
-			// Refresh entity owners
-			Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ServerConnectValidator, ( args ) => {
-				foreach( var ent in this.EntitiesByIndexes.Values ) {
-					ent.RefreshOwnerWho();
-				}
-				return true;
-			} );
+			// Refresh entity owners on player connect and sync entities to player
+			if( Main.netMode == 2 ) {
+				Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ServerConnectValidator, ( args ) => {
+					foreach( var ent in this.EntitiesByIndexes.Values ) {
+						ent.RefreshOwnerWho();
+					}
+
+					PacketProtocolSendToClient.QuickSend<CustomEntityAllProtocol>( args.Who, -1 );
+
+					return true;
+				} );
+			}
 		}
 
 
