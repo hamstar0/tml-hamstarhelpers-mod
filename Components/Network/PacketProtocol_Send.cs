@@ -13,7 +13,12 @@ namespace HamstarHelpers.Components.Network {
 			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetServerPacket( true );
 
-			packet.Send( to_who, ignore_who );
+			try {
+				packet.Send( to_who, ignore_who );
+			} catch( Exception e ) {
+				LogHelpers.Log( "!PacketProtocol.SendRequestToClient - " + e.ToString() );
+				return;
+			}
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToClient " + to_who + ", " + ignore_who );
@@ -25,7 +30,12 @@ namespace HamstarHelpers.Components.Network {
 			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetClientPacket( true, false );
 
-			packet.Send();
+			try {
+				packet.Send();
+			} catch( Exception e ) {
+				LogHelpers.Log( "!PacketProtocol.SendRequestToServer - " + e.ToString() );
+				return;
+			}
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
@@ -48,12 +58,12 @@ namespace HamstarHelpers.Components.Network {
 			
 			try {
 				this.WriteStream( packet );
+
+				packet.Send( -1, -1 );
 			} catch( Exception e ) {
-				LogHelpers.Log( "PacketProtocol.SendToServer - " + e.ToString() );
+				LogHelpers.Log( "!PacketProtocol.SendToServer - " + e.ToString() );
 				return;
 			}
-
-			packet.Send( -1, -1 );
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( this );
@@ -75,12 +85,12 @@ namespace HamstarHelpers.Components.Network {
 
 			try {
 				this.WriteStream( packet );
+
+				packet.Send( to_who, ignore_who );
 			} catch( Exception e ) {
-				LogHelpers.Log( "PacketProtocol.SendToClient - " + e.ToString() );
+				LogHelpers.Log( "!PacketProtocol.SendToClient - " + e.ToString() );
 				return;
 			}
-
-			packet.Send( to_who, ignore_who );
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string json_str = JsonConvert.SerializeObject( this );

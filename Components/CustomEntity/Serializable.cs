@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.Core = ent.Core;
 			this.Components = ent.Components;
 			this.OwnerPlayerUID = ent.OwnerPlayerUID;
+			this.OwnerPlayerWho = ent.OwnerPlayerWho;
 		}
 
 		internal SerializableCustomEntity( string type_name, CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid )
@@ -51,6 +53,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.Core = core;
 			this.Components = components;
 			this.OwnerPlayerUID = player_uid;
+			this.OwnerPlayerWho = PlayerIdentityHelpers.GetPlayerByProperId( player_uid )?.whoAmI ?? -1;
 		}
 
 

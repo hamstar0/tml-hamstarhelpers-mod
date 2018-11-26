@@ -20,7 +20,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			////
 
-			public override void Initialize( ItemNoGrabProtocol data ) {
+			protected override void Initialize( ItemNoGrabProtocol data ) {
 				data.ItemWho = this.ItemWho;
 				data.NoGrabDelayAmt = this.NoGrabDelayAmt;
 			}

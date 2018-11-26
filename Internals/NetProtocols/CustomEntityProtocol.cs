@@ -6,7 +6,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityProtocol : PacketProtocolSentToEither {
-		protected class MyFactory : PacketProtocolData.Factory<CustomEntityProtocol> {
+		protected sealed class MyFactory : PacketProtocolData.Factory<CustomEntityProtocol> {
 			private readonly SerializableCustomEntity Entity;
 
 
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			////
 
-			public override void Initialize( CustomEntityProtocol data ) {
+			protected override void Initialize( CustomEntityProtocol data ) {
 				data.Entity = this.Entity;
 			}
 		}
@@ -85,7 +85,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}*/
 
 			if( existing_ent == null ) {
-				CustomEntityManager.AddToWorld( this.Entity.Core.whoAmI, this.Entity );
+				var real_ent = CustomEntityManager.AddToWorld( this.Entity.Core.whoAmI, this.Entity );
 			} else {
 				existing_ent.CopyChangesFrom( this.Entity );
 			}

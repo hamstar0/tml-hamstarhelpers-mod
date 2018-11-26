@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Network.Data;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.MiscHelpers;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				if( success ) {
 					foreach( SerializableCustomEntity ent in wrapped_ents ) {
 						if( ent == null ) { continue; }
-						CustomEntityManager.AddToWorld( ent.Convert() );
+						CustomEntity real_ent = ent.Convert();
+						CustomEntityManager.AddToWorld( real_ent );
 					}
 				}
 			} catch( Exception e ) {

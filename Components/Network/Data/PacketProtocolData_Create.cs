@@ -18,7 +18,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 	public abstract partial class PacketProtocolData {
 		protected abstract class Factory<T> where T : PacketProtocolData {
-			public abstract void Initialize( T data );
+			protected abstract void Initialize( T data );
 
 			public T Create() {
 				Type data_type = typeof( T );

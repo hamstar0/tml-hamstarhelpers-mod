@@ -24,7 +24,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			////////////////
 
-			public override void Initialize( T data ) {
+			protected sealed override void Initialize( T data ) {
 				if( this.OwnerPlayer != null ) {
 					data.OwnerPlayerWho = this.OwnerPlayer.whoAmI;
 					data.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( this.OwnerPlayer );

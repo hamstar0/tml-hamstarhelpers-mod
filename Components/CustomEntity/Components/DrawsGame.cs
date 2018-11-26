@@ -13,9 +13,9 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsInGameEntityComponent : CustomEntityComponent {
 		protected class DrawsInGameEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : DrawsInGameEntityComponent {
-			private readonly string SourceModName;
-			private readonly string RelativeTexturePath;
-			private readonly int FrameCount;
+			public readonly string SourceModName;
+			public readonly string RelativeTexturePath;
+			public readonly int FrameCount;
 
 
 			////////////////
@@ -28,11 +28,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////
 
-			public override void InitializeComponent( T data ) {
+			protected sealed override void InitializeComponent( T data ) {
 				data.ModName = this.SourceModName;
 				data.TexturePath = this.RelativeTexturePath;
 				data.FrameCount = this.FrameCount;
+
+				this.InitializeDerivedComponent( data );
 			}
+
+			protected virtual void InitializeDerivedComponent( T data ) { }
 		}
 
 
@@ -100,7 +104,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected sealed override void PostInitialize() {
-			if( string.IsNullOrEmpty( this.ModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 ) {
+			if( string.IsNullOrEmpty(this.ModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 ) {
 				throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
 			}
 

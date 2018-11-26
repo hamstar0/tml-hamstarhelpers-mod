@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			////
 
-			public override void Initialize( PlayerDataProtocol data ) {
+			protected override void Initialize( PlayerDataProtocol data ) {
 				data.PlayerWho = this.PlayerWho;
 				data.PermaBuffsById = this.PermaBuffsById;
 				data.HasBuffIds = this.HasBuffIds;

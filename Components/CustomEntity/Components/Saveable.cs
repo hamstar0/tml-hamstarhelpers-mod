@@ -7,7 +7,7 @@ using HamstarHelpers.Services.Promises;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class SaveableEntityComponent : CustomEntityComponent {
 		protected class SaveableEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : SaveableEntityComponent {
-			private readonly bool AsJson;
+			public readonly bool AsJson;
 
 
 			////////////////
@@ -18,9 +18,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////
 
-			public override void InitializeComponent( T data ) {
+			protected sealed override void InitializeComponent( T data ) {
 				data.AsJson = this.AsJson;
+
+				this.InitializeDerivedComponent( data );
 			}
+
+			protected virtual void InitializeDerivedComponent( T data ) { }
 		}
 
 

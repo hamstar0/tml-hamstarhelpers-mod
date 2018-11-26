@@ -89,21 +89,22 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 		
 
-		public static void AddToWorld( int who, CustomEntity ent ) {
+		public static CustomEntity AddToWorld( int who, CustomEntity ent ) {
 			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Null ent not allowed." ); }
 			if( !ent.IsInitialized ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Initialized ents only." ); }
 
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+			CustomEntity real_ent = ent;
 
 			if( ent is SerializableCustomEntity ) {
-				ent = ((SerializableCustomEntity)ent).Convert();
+				real_ent = ((SerializableCustomEntity)ent).Convert();
 			}
 
 			Type comp_type;
 			Type base_type = typeof( CustomEntityComponent );
 
 			// Map entity to each of its components
-			foreach( CustomEntityComponent component in ent.Components ) {
+			foreach( CustomEntityComponent component in real_ent.Components ) {
 				comp_type = component.GetType();
 				lock( CustomEntityManager.MyLock ) {
 					do {
@@ -118,17 +119,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 			}
 
-			ent.Core.whoAmI = who;
-			mngr.EntitiesByIndexes[ who ] = ent;
+			real_ent.Core.whoAmI = who;
+			mngr.EntitiesByIndexes[ who ] = real_ent;
 			
-			var save_comp = ent.GetComponentByType<SaveableEntityComponent>();
+			var save_comp = real_ent.GetComponentByType<SaveableEntityComponent>();
 			if( save_comp != null ) {
-				save_comp.InternalOnLoad( ent );
+				save_comp.InternalOnLoad( real_ent );
 			}
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.AddToWorld - Set " + ent.ToString() );
+				LogHelpers.Log( "ModHelpers.CustomEntity.AddToWorld - Set " + real_ent.ToString() );
 			}
+
+			return real_ent;
 		}
 	}
 }

@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			////
 
-			public override void Initialize( PlayerPermaDeathProtocol data ) {
+			protected override void Initialize( PlayerPermaDeathProtocol data ) {
 				data.PlayerWho = this.PlayerWho;
 				data.Msg = this.Msg;
 			}

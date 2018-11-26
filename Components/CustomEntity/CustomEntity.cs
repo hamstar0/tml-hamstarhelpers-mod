@@ -20,7 +20,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
 		private IDictionary<string, int> AllComponentsByTypeName = new Dictionary<string, int>();
 
-		[PacketProtocolIgnore]
+		[PacketProtocolWriteIgnoreClient]
 		public string OwnerPlayerUID = "";
 		[JsonIgnore]
 		public int OwnerPlayerWho = -1;
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Not initialized." );
 			}
 			if( !SaveableEntityComponent.HaveAllEntitiesLoaded ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Entities not yet loaded.");
+				LogHelpers.Log( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Entities not yet loaded." );
 				return;
 			}
 
@@ -107,12 +107,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 				LogHelpers.Log( "ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+")" );
 			}
 
+			if( Main.netMode == 0 ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll (" + this.GetType().Name + ") - Multiplayer only." );
+			}
+
 			if( Main.netMode == 2 ) {
 				CustomEntityProtocol.SendToClients( this );
 			} else if( Main.netMode == 1 ) {
 				CustomEntityProtocol.SyncToAll( this );
-			} else {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Multiplayer only." );
 			}
 		}
 
@@ -183,7 +185,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				typeid = typeid + ":" + this.Components.Count();
 			}
 
-			return basename + " (" + typeid + who + owner + ")";
+			return basename + " ["+this.GetType().Name+"] " + " (" + typeid + who + owner + ")";
 		}
 	}
 }
