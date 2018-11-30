@@ -125,6 +125,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					{ "Configurable",           "Provides options for configuring game settings (menu, config file, commands, etc.)." },
 					{ "Technical",              "May require a brain." },
 					{ "Rated R",                "Guess." },
+
 					{ "Accesses System",		"Priviledge: Accesses files, opens programs, uses system functions, etc." },
 					{ "Accesses Web",			"Priviledge: Makes web requests to send or receive data." }
 					//{ "Injects Code",           "Priviledge: Uses Reflection, swaps methods, or invokes libraries that do these." },
@@ -133,6 +134,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				if( !ModHelpersMod.Instance.Config.DisableJudgmentalTags ) {
 					dict[ "Misleading Info" ] =		"Judgmental: Not what it says on the tin or contains missing information.";
 					dict[ "Unoriginal Content" ] =	"Judgmental: Contains stolen or extensively-derived content.";
+					dict[ "Low Effort" ] =			"Judgmental: Evident lack of effort involved.";
 				}
 
 				return dict;

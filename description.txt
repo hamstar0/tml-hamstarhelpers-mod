@@ -6,3 +6,6 @@ Now offers per-world mod locking and mod tagging and browsing! See the homepage 
 
 Mod recommendations:
 ModdersToolkit = Tons of experimenting and tinkering options.
+AllDamage = Bridge between mods that need to add up all damage/crit together or add custom damage types.
+FKTModSettings = Adds a UI option for editing a mod's configs. Must be implemented per mod via. API/dependency.
+ShaderLib = A helper library for modders who wish to do things in Terraria regarding shaders.

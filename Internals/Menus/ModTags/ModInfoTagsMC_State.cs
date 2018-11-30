@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
+using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
@@ -89,11 +90,31 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 				
 				foreach( var kv in this.TagButtons ) {
+					string tag_name = kv.Key;
+					UITagButton button = kv.Value;
+					bool has_tag = net_modtags.Contains( tag_name );
+
 					if( !has_net_tags ) {
-						kv.Value.Enable();
+						button.Enable();
 					}
 
-					kv.Value.SetTagState( net_modtags.Contains(kv.Key) ? 1 : 0 );
+					if( tag_name == "Low Effort" ) {
+						if( has_tag ) {
+							button.SetTagState( 1 );
+						} else {
+							string desc = this.GetModDescriptionFromActiveMod( mod_name );
+							if( string.IsNullOrEmpty(desc) ) {
+								string _ = "";
+								desc = this.GetModDescriptionFromUI( mod_name, ref _ );
+							}
+
+							if( desc.Contains("Modify this file with a description of your mod.") ) {
+								button.SetTagState( 1 );
+							}
+						}
+					} else {
+						button.SetTagState( has_tag ? 1 : 0 );
+					}
 				}
 
 				return false;

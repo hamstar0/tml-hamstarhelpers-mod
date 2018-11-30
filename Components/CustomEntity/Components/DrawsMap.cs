@@ -106,6 +106,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
+		public virtual Color GetColor( CustomEntity ent ) {
+			return Color.White;
+		}
+		
+
+		////////////////
+
 		public void DrawMiniMap( SpriteBatch sb, CustomEntity ent ) {
 			if( !this.PreDrawMiniMap( sb, ent ) ) { return; }
 
@@ -119,7 +126,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var mini_map_data = HudMapHelpers.GetMiniMapScreenPosition( map_rect_origin );
 
 			if( mini_map_data.Item2 ) {
-				sb.Draw( this.Texture, mini_map_data.Item1, null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 1f );
+				sb.Draw( this.Texture, mini_map_data.Item1, null, this.GetColor(ent), 0f, default(Vector2), scale, SpriteEffects.None, 1f );
 			}
 
 			this.PostDrawMiniMap( sb, ent );
@@ -138,7 +145,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var over_map_data = HudMapHelpers.GetOverlayMapScreenPosition( map_rect_origin );
 
 			if( over_map_data.Item2 ) {
-				sb.Draw( this.Texture, over_map_data.Item1, null, Color.White, 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
+				sb.Draw( this.Texture, over_map_data.Item1, null, this.GetColor(ent), 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
 			}
 
 			this.PostDrawOverlayMap( sb, ent );
@@ -157,7 +164,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			var over_map_data = HudMapHelpers.GetFullMapScreenPosition( map_rect_origin );
 
 			if( over_map_data.Item2 ) {
-				sb.Draw( this.Texture, over_map_data.Item1, null, Color.White, 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
+				sb.Draw( this.Texture, over_map_data.Item1, null, this.GetColor(ent), 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
 			}
 
 			this.PostDrawFullscreenMap( sb, ent );

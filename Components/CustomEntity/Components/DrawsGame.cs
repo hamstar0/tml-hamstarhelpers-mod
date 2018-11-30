@@ -14,7 +14,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class DrawsInGameEntityComponent : CustomEntityComponent {
 		protected class DrawsInGameEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : DrawsInGameEntityComponent {
 			public readonly string SourceModName;
-			public readonly string RelativeTexturePath;
+			public readonly string TexturePath;
 			public readonly int FrameCount;
 
 
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			public DrawsInGameEntityComponentFactory( string src_mod_name, string rel_texture_path, int frame_count ) {
 				this.SourceModName = src_mod_name;
-				this.RelativeTexturePath = rel_texture_path;
+				this.TexturePath = rel_texture_path;
 				this.FrameCount = frame_count;
 			}
 
@@ -30,9 +30,9 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			protected sealed override void InitializeComponent( T data ) {
 				data.ModName = this.SourceModName;
-				data.TexturePath = this.RelativeTexturePath;
+				data.TexturePath = this.TexturePath;
 				data.FrameCount = this.FrameCount;
-
+				
 				this.InitializeDerivedComponent( data );
 			}
 
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public static void DrawTexture( SpriteBatch sb, CustomEntity ent, Texture2D tex, int frame_count, Color color ) {
+		public static void DrawTexture( SpriteBatch sb, CustomEntity ent, Texture2D tex, int frame_count, Color color, float scale, float rotation=0f, Vector2 origin=default(Vector2) ) {
 			var core = ent.Core;
 			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
 
@@ -60,15 +60,18 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			var scr_scr_pos = core.position - Main.screenPosition;
 			var tex_rect = new Rectangle( 0, 0, tex.Width, tex.Height / frame_count );
-
-			float scale = 1f;
-
+			
 			SpriteEffects dir = DrawsInGameEntityComponent.GetOrientation( core );
 
-			sb.Draw( tex, scr_scr_pos, tex_rect, color, 0f, default( Vector2 ), scale, dir, 1f );
+			sb.Draw( tex, scr_scr_pos, tex_rect, color, rotation, origin, scale, dir, 1f );
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				var rect = new Rectangle( (int)( core.position.X - Main.screenPosition.X ), (int)( core.position.Y - Main.screenPosition.Y ), core.width, core.height );
+				var rect = new Rectangle(
+					(int)(core.position.X - Main.screenPosition.X - ((float)origin.X * scale)),
+					(int)(core.position.Y - Main.screenPosition.Y - ((float)origin.Y * scale)),
+					(int)((float)core.width * scale),
+					(int)((float)core.height * scale)
+				);
 				HudHelpers.DrawBorderedRect( sb, null, Color.Red, rect, 1 );
 			}
 		}
@@ -130,11 +133,21 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
+		public virtual Color GetColor( CustomEntity ent ) {
+			return Color.White;
+		}
+
+		public virtual Color GetLightColor( CustomEntity ent ) {
+			return Lighting.GetColor( (int)( ent.Core.Center.X / 16 ), (int)( ent.Core.Center.Y / 16 ), this.GetColor( ent ) );
+		}
+
+
+		////////////////
+
 		public virtual void PreDraw( SpriteBatch sb, CustomEntity ent ) { }
 
 		public virtual void Draw( SpriteBatch sb, CustomEntity ent ) {
-			Color color = Lighting.GetColor( (int)(ent.Core.Center.X / 16), (int)(ent.Core.Center.Y / 16), Color.White );
-			DrawsInGameEntityComponent.DrawTexture( sb, ent, this.Texture, this.FrameCount, color );
+			DrawsInGameEntityComponent.DrawTexture( sb, ent, this.Texture, this.FrameCount, this.GetLightColor(ent), 1f );
 		}
 
 		public virtual void PostDraw( SpriteBatch sb, CustomEntity ent ) { }

@@ -96,16 +96,16 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			row += 1;
 
-			this.AuthorText1UI = new UIText( "I make", 1f * scale );
+			this.AuthorText1UI = new UIText( "Looking for more", 1f * scale );
 			this.AuthorText1UI.Left.Set( -x_off, 1f );
 			this.AuthorText1UI.Top.Set( ( y + ( row * row_height ) ) * scale, 0f );
 
-			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "other specialized mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f * scale );
-			this.AuthorUrlUI.Left.Set( -( x_off - ( 60f * scale ) ), 1f );
+			this.AuthorUrlUI = new UIWebUrl( UITheme.Vanilla, "specialized mods", "https://forums.terraria.org/index.php?threads/.63713/", true, 1f * scale );
+			this.AuthorUrlUI.Left.Set( -( x_off - ( 144f * scale ) ), 1f );
 			this.AuthorUrlUI.Top.Set( ( y + ( row * row_height ) ) * scale, 0f );
 
-			this.AuthorText2UI = new UIText( ", too.", 1f * scale );
-			this.AuthorText2UI.Left.Set( -( x_off - ( 242f * scale ) ), 1f );
+			this.AuthorText2UI = new UIText( "?", 1f * scale );
+			this.AuthorText2UI.Left.Set( -( x_off - ( 280f * scale ) ), 1f );
 			this.AuthorText2UI.Top.Set( ( y + ( row * row_height ) ) * scale, 0f );
 
 			////

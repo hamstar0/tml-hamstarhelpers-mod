@@ -215,6 +215,7 @@
     <Compile Include="Internals\Menus\ModTags\ModBrowserTagsMC_Filter.cs" />
     <Compile Include="Internals\Menus\ModTags\ModBrowserTagsMC_State.cs" />
     <Compile Include="Internals\Menus\ModTags\ModInfoTagsMC.cs" />
+    <Compile Include="Internals\Menus\ModTags\TagsMCBase_ModInfo.cs" />
     <Compile Include="Internals\Menus\ModTags\ModInfoTagsMC_State.cs" />
     <Compile Include="Internals\Menus\ModTags\ModInfoTagsMC_Submit.cs" />
     <Compile Include="Internals\Menus\ModTags\TagsMCBase.cs" />
@@ -238,6 +239,8 @@
     <Compile Include="Internals\WebRequests\GetModVersion.cs" />
     <Compile Include="Internals\WebRequests\PostGithubModIssueReports.cs" />
     <Compile Include="Internals\WebRequests\PostModInfo.cs" />
+    <Compile Include="Items\MagiTechScrapWallItem.cs" />
+    <Compile Include="Items\MagiTechScrapItem.cs" />
     <Compile Include="ModHelpersMod.cs" />
     <Compile Include="ModHelpersMod_Data.cs" />
     <Compile Include="ModHelpersMod_Draw.cs" />
@@ -276,6 +279,8 @@
     <Compile Include="Services\Timers\Timers.cs" />
     <Compile Include="Services\Tml\BuildPropertiesEditor.cs" />
     <Compile Include="SupportInfo.cs" />
+    <Compile Include="Tiles\MagiTechScrapTile.cs" />
+    <Compile Include="Walls\MagiTechScrapWall.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
@@ -321,7 +326,11 @@
     <Content Include="Internals\ControlPanel\Inbox\MiniIcon.png" />
     <Content Include="Internals\ControlPanel\Inbox\MiniIconLit.png" />
     <Content Include="Internals\ControlPanel\Inbox\MiniIconLit2.png" />
+    <Content Include="Items\MagiTechScrapWallItem.png" />
+    <Content Include="Items\MagiTechScrapItem.png" />
     <Content Include="modhelpers todo.txt" />
+    <Content Include="Tiles\MagiTechScrapTile.png" />
+    <Content Include="Walls\MagiTechScrapWall.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />

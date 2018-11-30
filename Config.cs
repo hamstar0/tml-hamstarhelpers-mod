@@ -57,6 +57,8 @@ namespace HamstarHelpers {
 		public bool DisableModMenuUpdates = false;
 		public bool DisableSupportLinks = false;
 
+		public double MagiTechScrapWorldGenRate = 0;	//6E-05;
+
 		public string PrivilegedUserId = "";
 
 
