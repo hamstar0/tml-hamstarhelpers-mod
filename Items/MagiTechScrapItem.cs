@@ -34,11 +34,51 @@ namespace HamstarHelpers.Items {
 
 
 		public override void AddRecipes() {
-			var recipe = new ModRecipe( this.mod );
+			var mymod = (ModHelpersMod)this.mod;
+
+			var recipe = new ModRecipe( mymod );
 			recipe.AddTile( TileID.WorkBenches );
-			recipe.AddIngredient( this.item.type, 1 );
-			recipe.SetResult( this.mod.ItemType<MagiTechScrapWallItem>(), 4 );
+			recipe.AddIngredient( this.mod.ItemType<MagiTechScrapWallItem>(), 4 );
+			recipe.SetResult( this.mod.ItemType<MagiTechScrapItem>(), 1 );
 			recipe.AddRecipe();
+
+
+			var recipe1 = new MagiTechScrapRecipe1( mymod );
+			var recipe2 = new MagiTechScrapRecipe2( mymod );
+			recipe1.AddRecipe();
+			recipe2.AddRecipe();
+		}
+	}
+
+
+
+	
+	class MagiTechScrapRecipe1 : ModRecipe {
+		public MagiTechScrapRecipe1( ModHelpersMod mymod ) : base( mymod ) {
+			this.AddTile( TileID.WorkBenches );
+			this.AddIngredient( ItemID.Cog, 10 );
+			this.AddIngredient( ItemID.Wire, 10 );
+			this.AddIngredient( ItemID.Ectoplasm, 3 );
+			this.SetResult( this.mod.ItemType<MagiTechScrapItem>(), 1 );
+		}
+
+
+		public override bool RecipeAvailable() {
+			return ((ModHelpersMod)this.mod).Config.MagiTechScrapDropsEnabled;
+		}
+	}
+
+
+	class MagiTechScrapRecipe2 : ModRecipe {
+		public MagiTechScrapRecipe2( ModHelpersMod mymod ) : base( mymod ) {
+			this.AddTile( TileID.WorkBenches );
+			this.AddIngredient( ItemID.MartianConduitPlating, 10 );
+			this.SetResult( this.mod.ItemType<MagiTechScrapItem>(), 1 );
+		}
+
+
+		public override bool RecipeAvailable() {
+			return ((ModHelpersMod)this.mod).Config.MagiTechScrapDropsEnabled;
 		}
 	}
 }

@@ -43,6 +43,7 @@
     <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
+    <Compile Include="Components\CustomEntity\Components\HitRadius.cs" />
     <Compile Include="Components\CustomEntity\Components\DrawsGame.cs" />
     <Compile Include="Components\CustomEntity\Components\DrawsMap.cs" />
     <Compile Include="Components\CustomEntity\Components\IsClickable.cs" />
@@ -249,7 +250,9 @@
     <Compile Include="ModHelpersMod_LoadOuter.cs" />
     <Compile Include="ModHelpersMod_Meta.cs" />
     <Compile Include="ModHelpersPlayer.cs" />
+    <Compile Include="ModHelpersProjectile.cs" />
     <Compile Include="ModHelpersWorld.cs" />
+    <Compile Include="ModHelpersNPC.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
     <Compile Include="Services\CustomHotkeys\CustomHotkeys.cs" />
     <Compile Include="Services\DataDumper\DataDumper.cs" />

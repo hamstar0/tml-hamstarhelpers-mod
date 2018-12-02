@@ -147,35 +147,5 @@ namespace HamstarHelpers {
 				Main.spriteBatch.End();
 			}
 		}
-
-
-		////////////////
-
-		public override void ModifyWorldGenTasks( List<GenPass> tasks, ref float totalWeight ) {
-			int idx = tasks.FindIndex( genpass => genpass.Name.Equals( "Shinies" ) );
-			if( idx != -1 ) {
-				tasks.Insert( idx + 1, new PassLegacy( "Example Mod Ores", this.GenerateMagiTechScrap ) );
-			}
-		}
-
-
-		private void GenerateMagiTechScrap( GenerationProgress progress ) {
-			var mymod = (ModHelpersMod)this.mod;
-			if( mymod.Config.MagiTechScrapWorldGenRate == 0 ) {
-				return;
-			}
-
-			int max = (int)( (double)(Main.maxTilesX * Main.maxTilesY) * mymod.Config.MagiTechScrapWorldGenRate );
-			progress.Message = "Mod Helpers McGuffin: Magi-Tech Scrap";
-			
-			for( int i = 0; i < max; i++ ) {
-				int x = WorldGen.genRand.Next( 0, Main.maxTilesX );
-				int y = WorldGen.genRand.Next( (int)WorldGen.rockLayer, Main.maxTilesY ); // WorldGen.worldSurfaceLow
-				double str = (double)WorldGen.genRand.Next( 1, 5 );
-				int steps = WorldGen.genRand.Next( 1, 5 );
-
-				WorldGen.TileRunner( x, y, str, steps, mymod.TileType<MagiTechScrapTile>(), false, 0f, 0f, false, true );
-			}
-		}
 	}
 }

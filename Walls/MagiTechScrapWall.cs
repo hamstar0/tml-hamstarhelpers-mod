@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Items;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -8,7 +9,7 @@ namespace HamstarHelpers.Walls {
 		public override void SetDefaults() {
 			Main.wallHouse[this.Type] = true;
 			this.dustType = 1;
-			//this.drop = this.mod.ItemType( "MagiTechWallItem" );
+			this.drop = this.mod.ItemType<MagiTechScrapWallItem>();
 			this.AddMapEntry( new Color( 150, 190, 174 ) );
 		}
 

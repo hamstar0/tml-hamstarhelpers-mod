@@ -31,8 +31,8 @@ namespace HamstarHelpers.Items {
 		public override void AddRecipes() {
 			var recipe = new ModRecipe( this.mod );
 			recipe.AddTile( TileID.WorkBenches );
-			recipe.AddIngredient( this.mod.ItemType<MagiTechScrapWallItem>(), 4 );
-			recipe.SetResult( this.mod.ItemType<MagiTechScrapItem>(), 1 );
+			recipe.AddIngredient( this.item.type, 1 );
+			recipe.SetResult( this.mod.ItemType<MagiTechScrapWallItem>(), 4 );
 			recipe.AddRecipe();
 		}
 	}
