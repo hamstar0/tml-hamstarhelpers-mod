@@ -32,10 +32,10 @@ namespace HamstarHelpers {
 
 		public override bool PreAI( NPC npc ) {
 			var mymod = (ModHelpersMod)this.mod;
-			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusEntityComponent>();
+			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusNPCEntityComponent>();
 
 			foreach( CustomEntity ent in ents ) {
-				float radius = ent.GetComponentByType<HitRadiusEntityComponent>().Radius;
+				float radius = ent.GetComponentByType<HitRadiusNPCEntityComponent>().Radius;
 
 				if( Vector2.Distance( ent.Core.Center, npc.Center ) <= radius ) {
 					this.ApplyHits( ent, npc );
@@ -49,10 +49,10 @@ namespace HamstarHelpers {
 
 		private void ApplyHits( CustomEntity ent, NPC npc ) {
 			int dmg = npc.damage;
-			var hit_rad_comp = ent.GetComponentByType<HitRadiusEntityComponent>();
+			var hit_rad_comp = ent.GetComponentByType<HitRadiusNPCEntityComponent>();
 
-			if( hit_rad_comp.PreHurtByNPC( ent, npc, ref dmg ) ) {
-				hit_rad_comp.PostHurtByNPC( ent, npc, dmg );
+			if( hit_rad_comp.PreHurt( ent, npc, ref dmg ) ) {
+				hit_rad_comp.PostHurt( ent, npc, dmg );
 			}
 		}
 	}

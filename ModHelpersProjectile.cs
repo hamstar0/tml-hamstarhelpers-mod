@@ -10,10 +10,10 @@ namespace HamstarHelpers {
 	class ModHelpersProjectile : GlobalProjectile {
 		public override bool PreAI( Projectile projectile ) {
 			var mymod = (ModHelpersMod)this.mod;
-			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusEntityComponent>();
+			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusProjectileEntityComponent>();
 
 			foreach( CustomEntity ent in ents ) {
-				float radius = ent.GetComponentByType<HitRadiusEntityComponent>().Radius;
+				float radius = ent.GetComponentByType<HitRadiusProjectileEntityComponent>().Radius;
 
 				if( Vector2.Distance(ent.Core.Center, projectile.Center) <= radius ) {
 					if( !this.ApplyHits( ent, projectile ) ) {
@@ -30,13 +30,13 @@ namespace HamstarHelpers {
 
 		private bool ApplyHits( CustomEntity ent, Projectile projectile ) {
 			int dmg = projectile.damage;
-			var atk_comp = ent.GetComponentByType<HitRadiusEntityComponent>();
+			var atk_comp = ent.GetComponentByType<HitRadiusProjectileEntityComponent>();
 
-			if( !atk_comp.PreHurtByProjectile( ent, projectile, ref dmg ) ) {
+			if( !atk_comp.PreHurt( ent, projectile, ref dmg ) ) {
 				return true;
 			}
 
-			atk_comp.PostHurtByProjectile( ent, projectile, dmg );
+			atk_comp.PostHurt( ent, projectile, dmg );
 
 			if( projectile.numHits > 1 ) {
 				projectile.numHits--;
