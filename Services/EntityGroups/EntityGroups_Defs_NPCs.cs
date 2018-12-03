@@ -6,22 +6,22 @@ using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDiction
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private void DefineNPCGroups1( Action<string, string[], NPCMatcher> add_def ) {
+		private void DefineNPCGroups1( Action<string, string[], NPCMatcher> addDef ) {
 			// General
 
-			add_def( "Any Friendly NPC", null, ( npc, grp ) => {
+			addDef( "Any Friendly NPC", null, ( npc, grp ) => {
 				return npc.friendly;
 			} );
-			add_def( "Any Hostile NPC", null, ( npc, grp ) => {
+			addDef( "Any Hostile NPC", null, ( npc, grp ) => {
 				return !npc.friendly;
 			} );
-			add_def( "Any Town NPC", null, ( npc, grp ) => {
+			addDef( "Any Town NPC", null, ( npc, grp ) => {
 				return npc.townNPC;
 			} );
 
 			// Monsters
 
-			add_def( "Any Slime", null, ( npc, grp ) => {
+			addDef( "Any Slime", null, ( npc, grp ) => {
 				if( npc.aiStyle == 1 ) {
 					switch( npc.netID ) {
 					case NPCID.HoppinJack:	//?

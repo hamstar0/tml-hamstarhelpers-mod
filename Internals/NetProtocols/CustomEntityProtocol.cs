@@ -51,12 +51,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected CustomEntityProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected CustomEntityProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
 
-		protected override void ReceiveOnServer( int from_who ) {
+		protected override void ReceiveOnServer( int fromWho ) {
 			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 
 			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
@@ -74,20 +74,20 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		protected override void ReceiveOnClient() {
-			var existing_ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
+			var existingEnt = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
 
 			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				if( existing_ent == null ) {
+				if( existingEnt == null ) {
 					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithClient - New entity " + this.Entity.ToString() );
 				} else {
-					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithClient - Entity update for " + existing_ent.ToString() + " from "+ this.Entity.ToString() );
+					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithClient - Entity update for " + existingEnt.ToString() + " from "+ this.Entity.ToString() );
 				}
 			}*/
 
-			if( existing_ent == null ) {
-				var real_ent = CustomEntityManager.AddToWorld( this.Entity.Core.whoAmI, this.Entity );
+			if( existingEnt == null ) {
+				var realEnt = CustomEntityManager.AddToWorld( this.Entity.Core.whoAmI, this.Entity );
 			} else {
-				existing_ent.CopyChangesFrom( this.Entity );
+				existingEnt.CopyChangesFrom( this.Entity );
 			}
 		}
 	}

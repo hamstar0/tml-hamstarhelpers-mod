@@ -11,18 +11,18 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		public static void UpdateModList( ModHelpersMod mymod ) {
-			var ctrl_panel = mymod.ControlPanel;
+			var ctrlPanel = mymod.ControlPanel;
 
-			if( ctrl_panel == null || !ctrl_panel.ModListUpdateRequired || !ctrl_panel.IsOpen ) {
+			if( ctrlPanel == null || !ctrlPanel.ModListUpdateRequired || !ctrlPanel.IsOpen ) {
 				return;
 			}
 
-			ctrl_panel.ModListUpdateRequired = false;
+			ctrlPanel.ModListUpdateRequired = false;
 
 			lock( UIControlPanel.ModDataListLock ) {
 				try {
-					ctrl_panel.ModListElem.Clear();
-					ctrl_panel.ModListElem.AddRange( ctrl_panel.ModDataList.ToArray() );
+					ctrlPanel.ModListElem.Clear();
+					ctrlPanel.ModListElem.AddRange( ctrlPanel.ModDataList.ToArray() );
 				} catch( Exception ) { }
 			}
 		}
@@ -62,14 +62,14 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		private void SelectModFromList( UIModData list_item ) {
-			Mod mod = list_item.Mod;
+		private void SelectModFromList( UIModData listItem ) {
+			Mod mod = listItem.Mod;
 
 			if( this.CurrentModListItem != null ) {
 				this.Theme.ApplyListItem( this.CurrentModListItem );
 			}
-			this.Theme.ApplyListItemSelected( list_item );
-			this.CurrentModListItem = list_item;
+			this.Theme.ApplyListItemSelected( listItem );
+			this.CurrentModListItem = listItem;
 
 			this.Logic.SetCurrentMod( mod );
 

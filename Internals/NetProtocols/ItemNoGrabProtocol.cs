@@ -13,9 +13,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			////////////////
 
-			public MyFactory( int item_who, int no_grab_delay_amt ) {
-				this.ItemWho = item_who;
-				this.NoGrabDelayAmt = no_grab_delay_amt;
+			public MyFactory( int itemWho, int noGrabDelayAmt ) {
+				this.ItemWho = itemWho;
+				this.NoGrabDelayAmt = noGrabDelayAmt;
 			}
 
 			////
@@ -30,8 +30,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public static void SendToServer( int item_who, int no_grab_delay_amt ) {
-			var factory = new MyFactory( item_who, no_grab_delay_amt );
+		public static void SendToServer( int itemWho, int noGrabDelayAmt ) {
+			var factory = new MyFactory( itemWho, noGrabDelayAmt );
 			ItemNoGrabProtocol protocol = factory.Create();
 			
 			protocol.SendToServer( false );
@@ -47,18 +47,18 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected ItemNoGrabProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected ItemNoGrabProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		////////////////
 
-		protected override void ReceiveReply( int from_who ) {
+		protected override void ReceiveReply( int fromWho ) {
 			Item item = Main.item[ this.ItemWho ];
 			if( item == null /*|| !item.active*/ ) {
 				throw new HamstarException( "!ModHelpers.ItemNoGrabProtocol.ReceiveWithServer - Invalid item indexed at "+this.ItemWho );
 			}
 
 			item.noGrabDelay = this.NoGrabDelayAmt;
-			item.ownIgnore = from_who;
+			item.ownIgnore = fromWho;
 			item.ownTime = this.NoGrabDelayAmt;
 		}
 	}

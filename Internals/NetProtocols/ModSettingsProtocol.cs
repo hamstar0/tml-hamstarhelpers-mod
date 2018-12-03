@@ -9,11 +9,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected ModSettingsProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected ModSettingsProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		////////////////
 
-		protected override void SetServerDefaults( int from_who ) {
+		protected override void SetServerDefaults( int fromWho ) {
 			this.Data = (HamstarHelpersConfigData)ModHelpersMod.Instance.Config.Clone();
 			this.Data.PrivilegedUserId = "";
 		}

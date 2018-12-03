@@ -30,13 +30,13 @@ namespace HamstarHelpers {
 
 		private bool ApplyHits( CustomEntity ent, Projectile projectile ) {
 			int dmg = projectile.damage;
-			var atk_comp = ent.GetComponentByType<HitRadiusProjectileEntityComponent>();
+			var atkComp = ent.GetComponentByType<HitRadiusProjectileEntityComponent>();
 
-			if( !atk_comp.PreHurt( ent, projectile, ref dmg ) ) {
+			if( !atkComp.PreHurt( ent, projectile, ref dmg ) ) {
 				return true;
 			}
 
-			atk_comp.PostHurt( ent, projectile, dmg );
+			atkComp.PostHurt( ent, projectile, dmg );
 
 			if( projectile.numHits > 1 ) {
 				projectile.numHits--;

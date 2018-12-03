@@ -12,7 +12,7 @@ namespace HamstarHelpers.Services.Timers {
 
 		public static Func<bool> MainOnTickGet() {
 			long then = DateTime.Now.Ticks;
-			int frames = 0, sub_frames;
+			int frames = 0, subFrames;
 //int FRAMES=0;
 
 			return () => {
@@ -20,9 +20,9 @@ namespace HamstarHelpers.Services.Timers {
 				int span = (int)( now - then );
 
 				frames += span / (10000000 / 90);
-				sub_frames = span % (10000000 / 90);
+				subFrames = span % (10000000 / 90);
 
-				then = now - sub_frames;
+				then = now - subFrames;
 //DebugHelpers.Print("blahh", "frames: "+FRAMES, 20);
 				
 				if( frames > 0 ) {
@@ -37,12 +37,12 @@ namespace HamstarHelpers.Services.Timers {
 
 		////////////////
 
-		public static void SetTimer( string name, int tick_duration, Func<bool> action ) {
+		public static void SetTimer( string name, int tickDuration, Func<bool> action ) {
 			var timers = ModHelpersMod.Instance?.Timers;
 			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
-				timers.Running[name] = new KeyValuePair<Func<bool>, int>( action, tick_duration );
+				timers.Running[name] = new KeyValuePair<Func<bool>, int>( action, tickDuration );
 				timers.Elapsed[name] = 0;
 				timers.Expired.Remove( name );
 			}

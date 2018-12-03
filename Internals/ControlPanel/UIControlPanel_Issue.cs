@@ -51,14 +51,14 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
 
 			UIControlPanel self = this;
-			string issue_title = this.IssueTitleInput.Text;
-			string issue_body = this.IssueBodyInput.Text;
-			if( string.IsNullOrEmpty( issue_title ) || string.IsNullOrEmpty( issue_body ) ) { return; }
+			string issueTitle = this.IssueTitleInput.Text;
+			string issueBody = this.IssueBodyInput.Text;
+			if( string.IsNullOrEmpty( issueTitle ) || string.IsNullOrEmpty( issueBody ) ) { return; }
 
 			this.AwaitingReport = true;
 			this.DisableIssueInput();
 
-			self.Logic.ReportIssue( self.CurrentModListItem.Mod, issue_title, issue_body, delegate {
+			self.Logic.ReportIssue( self.CurrentModListItem.Mod, issueTitle, issueBody, delegate {
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
 				self.SetDialogToClose = true;

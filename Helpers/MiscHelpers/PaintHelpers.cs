@@ -14,29 +14,29 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		////////////////
 		
 		public static byte GetNearestPaintType( Color color ) {
-			int color_code = (((int)color.R >> 3) << 3) + (((int)color.G >> 3) << 11) + (((int)color.B >> 3) << 19 );
+			int colorCode = (((int)color.R >> 3) << 3) + (((int)color.G >> 3) << 11) + (((int)color.B >> 3) << 19 );
 
-			if( PaintHelpers.CachedMatches.ContainsKey( color_code ) ) {
-				return PaintHelpers.CachedMatches[ color_code ];
+			if( PaintHelpers.CachedMatches.ContainsKey( colorCode ) ) {
+				return PaintHelpers.CachedMatches[ colorCode ];
 			}
 
-			float min_val = 9999;
-			int min_idx = 0;
+			float minVal = 9999;
+			int minIdx = 0;
 
 			for( int i=1; i<=30; i++ ) {
 				Color compare = WorldGen.paintColor( i );
 				Color diff = XnaColorHelpers.DifferenceRGB( color, compare );
-				float diff_amt = Math.Abs( XnaColorHelpers.SumRGB( diff ) );
+				float diffAmt = Math.Abs( XnaColorHelpers.SumRGB( diff ) );
 
-				if( min_val > diff_amt ) {
-					min_val = diff_amt;
-					min_idx = i;
+				if( minVal > diffAmt ) {
+					minVal = diffAmt;
+					minIdx = i;
 				}
 			}
 
-			PaintHelpers.CachedMatches[ color_code ] = (byte)min_idx;
+			PaintHelpers.CachedMatches[ colorCode ] = (byte)minIdx;
 
-			return (byte)min_idx;
+			return (byte)minIdx;
 		}
 	}
 }

@@ -18,14 +18,14 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 
 		[Obsolete( "use GetProperUniqueId(Player)", true )]
-		public static Player GetPlayerById( string uid, out bool is_nothing_overlooked ) {
-			return PlayerIdentityHelpers._GetPlayerById( uid, out is_nothing_overlooked );
+		public static Player GetPlayerById( string uid, out bool isNothingOverlooked ) {
+			return PlayerIdentityHelpers._GetPlayerById( uid, out isNothingOverlooked );
 		}
 
-		internal static Player _GetPlayerById( string uid, out bool is_nothing_overlooked ) {
+		internal static Player _GetPlayerById( string uid, out bool isNothingOverlooked ) {
 			Player plr = null;
 			int len = Main.player.Length;
-			is_nothing_overlooked = true;
+			isNothingOverlooked = true;
 
 			for( int i=0; i<len; i++ ) {
 				plr = Main.player[ i ];
@@ -34,12 +34,12 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				bool mysuccess;
 				string myuid = PlayerIdentityHelpers._GetUniqueId( plr, out mysuccess );
 				if( !mysuccess ) {
-					is_nothing_overlooked = false;
+					isNothingOverlooked = false;
 					continue;
 				}
 
 				if( myuid == uid ) {
-					is_nothing_overlooked = true;
+					isNothingOverlooked = true;
 					break;
 				}
 			}

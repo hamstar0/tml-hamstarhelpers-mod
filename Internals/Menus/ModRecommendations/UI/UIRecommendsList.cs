@@ -29,8 +29,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 		////////////////
 
-		public UIRecommendsList( ModRecommendsMenuContext mc, float width, float height, float x_center_offset, float y )
-				: base( UITheme.Vanilla, width, height, x_center_offset, y ) {
+		public UIRecommendsList( ModRecommendsMenuContext mc, float width, float height, float xCenterOffset, float y )
+				: base( UITheme.Vanilla, width, height, xCenterOffset, y ) {
 			this.MenuContext = mc;
 
 			this.Label = new UIText( "Recommendations:" );
@@ -82,14 +82,14 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 		////////////////
 
 		public void Clear() {
-			bool is_empty = this.ModNameList.Count == 0;
+			bool isEmpty = this.ModNameList.Count == 0;
 
 			this.ModNameList.Clear();
 			this.Descriptions.Clear();
 			this.List.RemoveAllChildren();
 			this.Recalculate();
 
-			if( !is_empty ) {
+			if( !isEmpty ) {
 				this.Append( this.EmptyText );
 				this.Recalculate();
 			}
@@ -98,36 +98,36 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 		////////////////
 
-		public void AddModEntriesAsync( string for_mod_name, IEnumerable<Tuple<string, string>> recom_mods ) {
-			foreach( var recom_mod in recom_mods ) {
-				string recom_mod_name = recom_mod.Item1;
-				string recommended_because = recom_mod.Item2;
+		public void AddModEntriesAsync( string forModName, IEnumerable<Tuple<string, string>> recomMods ) {
+			foreach( var recomMod in recomMods ) {
+				string recomModName = recomMod.Item1;
+				string recommendedBecause = recomMod.Item2;
 
-				Mod mod = ModLoader.GetMod( recom_mod_name );
+				Mod mod = ModLoader.GetMod( recomModName );
 
-				this.AddRawModEntry( mod?.DisplayName, recom_mod_name, recommended_because );
+				this.AddRawModEntry( mod?.DisplayName, recomModName, recommendedBecause );
 			}
 
 			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
-				string curr_mod_name = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(),
+				string currModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(),
 						this.MenuContext.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 
 				// Validate we're in the same UI
 				if( this.MenuContext.MyUI.GetType().Name != "UIModInfo" ) { return false; }
 				// Validate we're viewing the mod we started with
-				if( for_mod_name != curr_mod_name ) { return false; }
+				if( forModName != currModName ) { return false; }
 				
 				this.List.RemoveAllChildren();
 				this.ModNameList.Clear();
 
-				foreach( var recom_mod in recom_mods ) {
-					string recom_mod_name = recom_mod.Item1;
-					string recommended_because = recom_mod.Item2;
+				foreach( var recomMod in recomMods ) {
+					string recomModName = recomMod.Item1;
+					string recommendedBecause = recomMod.Item2;
 
-					if( args.Info.ContainsKey( recom_mod_name ) ) {
-						this.AddModEntry( args.Info[recom_mod_name].Item1, recom_mod_name, recommended_because );
+					if( args.Info.ContainsKey( recomModName ) ) {
+						this.AddModEntry( args.Info[recomModName].Item1, recomModName, recommendedBecause );
 					} else {
-						this.AddRawModEntry( null, recom_mod_name, recommended_because );
+						this.AddRawModEntry( null, recomModName, recommendedBecause );
 					}
 				}
 
@@ -141,56 +141,56 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 		////////////////
 
-		private void AddRawModEntry( string mod_display_name, string mod_name, string recommended_because ) {
-			string fmt_display_name;
+		private void AddRawModEntry( string modDisplayName, string modName, string recommendedBecause ) {
+			string fmtDisplayName;
 
-			if( mod_display_name != null ) {
-				fmt_display_name = mod_display_name.Length > 24 ? mod_display_name.Substring( 0, 22 ) : mod_display_name;
+			if( modDisplayName != null ) {
+				fmtDisplayName = modDisplayName.Length > 24 ? modDisplayName.Substring( 0, 22 ) : modDisplayName;
 
-				if( fmt_display_name.Length != mod_display_name.Length ) {
-					fmt_display_name += "...";
+				if( fmtDisplayName.Length != modDisplayName.Length ) {
+					fmtDisplayName += "...";
 				}
 			} else {
-				fmt_display_name = '"' + mod_name + '"';
+				fmtDisplayName = '"' + modName + '"';
 			}
 
-			Rectangle list_rect = this.List.GetOuterDimensions().ToRectangle();
-			var ui_item = new UIText( fmt_display_name, 0.75f );
+			Rectangle listRect = this.List.GetOuterDimensions().ToRectangle();
+			var uiItem = new UIText( fmtDisplayName, 0.75f );
 
-			this.List.Append( ui_item );
+			this.List.Append( uiItem );
 
-			Rectangle item_rect = ui_item.GetOuterDimensions().ToRectangle();
-			ui_item.Top.Set( item_rect.Height * this.ModNameList.Count, 0f );
+			Rectangle itemRect = uiItem.GetOuterDimensions().ToRectangle();
+			uiItem.Top.Set( itemRect.Height * this.ModNameList.Count, 0f );
 
 			this.List.Recalculate();
 
-			Rectangle desc_rect = ui_item.GetOuterDimensions().ToRectangle();
+			Rectangle descRect = uiItem.GetOuterDimensions().ToRectangle();
 
-			this.ModNameList.Add( mod_name );
-			this.Descriptions[ recommended_because ] = desc_rect;
+			this.ModNameList.Add( modName );
+			this.Descriptions[ recommendedBecause ] = descRect;
 		}
 
 
-		private void AddModEntry( string mod_display_name, string mod_name, string recommended_because ) {
-			string fmt_display_name = mod_display_name.Length > 24 ? mod_display_name.Substring( 0, 22 ) : mod_display_name;
-			if( fmt_display_name.Length != mod_display_name.Length ) {
-				fmt_display_name += "...";
+		private void AddModEntry( string modDisplayName, string modName, string recommendedBecause ) {
+			string fmtDisplayName = modDisplayName.Length > 24 ? modDisplayName.Substring( 0, 22 ) : modDisplayName;
+			if( fmtDisplayName.Length != modDisplayName.Length ) {
+				fmtDisplayName += "...";
 			}
 
-			Rectangle list_rect = this.List.GetOuterDimensions().ToRectangle();
-			var ui_item = new UIText( fmt_display_name, 0.75f );
+			Rectangle listRect = this.List.GetOuterDimensions().ToRectangle();
+			var uiItem = new UIText( fmtDisplayName, 0.75f );
 
-			this.List.Append( ui_item );
+			this.List.Append( uiItem );
 
-			Rectangle item_rect = ui_item.GetOuterDimensions().ToRectangle();
-			ui_item.Top.Set( item_rect.Height * this.ModNameList.Count, 0f );
+			Rectangle itemRect = uiItem.GetOuterDimensions().ToRectangle();
+			uiItem.Top.Set( itemRect.Height * this.ModNameList.Count, 0f );
 
 			this.List.Recalculate();
 
-			Rectangle desc_rect = ui_item.GetOuterDimensions().ToRectangle();
+			Rectangle descRect = uiItem.GetOuterDimensions().ToRectangle();
 
-			this.ModNameList.Add( mod_name );
-			this.Descriptions[recommended_because] = desc_rect;
+			this.ModNameList.Add( modName );
+			this.Descriptions[recommendedBecause] = descRect;
 		}
 	}
 }

@@ -21,42 +21,42 @@ namespace HamstarHelpers.Commands {
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			IList<Mod> mods = ModHelpers.GetAllPlayableModsPreferredOrder().ToList();
-			int arg_idx = 1;
+			int argIdx = 1;
 
-			string title = CommandsHelpers.GetQuotedStringFromArgsAt( args, arg_idx, out arg_idx );
-			if( arg_idx == -1 ) {
+			string title = CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx );
+			if( argIdx == -1 ) {
 				caller.Reply( "Invalid issue report title string", Color.Red );
 				return;
 			}
 
-			string body = CommandsHelpers.GetQuotedStringFromArgsAt( args, arg_idx, out arg_idx );
-			if( arg_idx == -1 ) {
+			string body = CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx );
+			if( argIdx == -1 ) {
 				caller.Reply( "Invalid issue report description string", Color.Red );
 				return;
 			}
 
-			int mod_idx;
-			if( !int.TryParse( args[0], out mod_idx ) ) {
-				caller.Reply( args[arg_idx] + " is not an integer", Color.Red );
+			int modIdx;
+			if( !int.TryParse( args[0], out modIdx ) ) {
+				caller.Reply( args[argIdx] + " is not an integer", Color.Red );
 				return;
 			}
-			if( mod_idx <= 0 || mod_idx > mods.Count ) {
-				caller.Reply( args[arg_idx] + " is not a mod entry; out of range", Color.Red );
+			if( modIdx <= 0 || modIdx > mods.Count ) {
+				caller.Reply( args[argIdx] + " is not a mod entry; out of range", Color.Red );
 				return;
 			}
 
-			Action<string> on_success = delegate ( string output ) {
+			Action<string> onSuccess = delegate ( string output ) {
 				if( output != "Done?" ) {
 					caller.Reply( output, Color.Lime );
 				} else {
 					caller.Reply( "Issue report was not sent", Color.Red );
 				}
 			};
-			Action<Exception, string> on_fail = ( e, output ) => {
+			Action<Exception, string> onFail = ( e, output ) => {
 				caller.Reply( e.Message, Color.Red );
 			};
 
-			PostGithubModIssueReports.ReportIssue( mods[mod_idx - 1], title, body, on_success, on_fail );
+			PostGithubModIssueReports.ReportIssue( mods[modIdx - 1], title, body, onSuccess, onFail );
 		}
 	}
 }

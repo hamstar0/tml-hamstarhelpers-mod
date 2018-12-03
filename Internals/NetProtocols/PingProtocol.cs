@@ -17,7 +17,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected PingProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected PingProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		////////////////
 
@@ -25,14 +25,14 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 		}
 
-		protected override void SetServerDefaults( int from_who ) { }
+		protected override void SetServerDefaults( int fromWho ) { }
 
 
 		////////////////
 
-		protected override void ReceiveOnServer( int from_who ) {
+		protected override void ReceiveOnServer( int fromWho ) {
 			if( this.EndTime == -1 ) {
-				this.SendToClient( from_who, -1 );
+				this.SendToClient( fromWho, -1 );
 			} else {
 				ModHelpersMod.Instance.ServerInfo.UpdatePingAverage( (int)( this.EndTime - this.StartTime ) );
 			}

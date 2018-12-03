@@ -17,21 +17,21 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			if( !mngr.EntitiesByIndexes.ContainsKey( who ) ) { return; }
 
-			Type comp_type;
-			Type base_type = typeof( CustomEntityComponent );
+			Type compType;
+			Type baseType = typeof( CustomEntityComponent );
 
 			lock( CustomEntityManager.MyLock ) {
-				IList<CustomEntityComponent> ent_components = mngr.EntitiesByIndexes[who].Components;
+				IList<CustomEntityComponent> entComponents = mngr.EntitiesByIndexes[who].Components;
 
-				foreach( CustomEntityComponent component in ent_components ) {
-					comp_type = component.GetType();
+				foreach( CustomEntityComponent component in entComponents ) {
+					compType = component.GetType();
 					do {
-						if( mngr.EntitiesByComponentType.ContainsKey( comp_type ) ) {
-							mngr.EntitiesByComponentType[comp_type].Remove( who );
+						if( mngr.EntitiesByComponentType.ContainsKey( compType ) ) {
+							mngr.EntitiesByComponentType[compType].Remove( who );
 						}
 
-						comp_type = comp_type.BaseType;
-					} while( comp_type != base_type );
+						compType = compType.BaseType;
+					} while( compType != baseType );
 				}
 
 				mngr.EntitiesByIndexes.Remove( who );

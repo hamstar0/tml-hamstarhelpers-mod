@@ -8,18 +8,18 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			int x = ((int)player.Center.X - (Main.maxScreenW / 2)) / 16;
 			int y = ((int)player.Center.Y - (Main.maxScreenH / 2)) / 16;
 
-			Rectangle player_zone = new Rectangle( x, y, (Main.maxScreenH / 16), (Main.maxScreenH / 16) );
-			int boss_radius = 5000;
+			Rectangle playerZone = new Rectangle( x, y, (Main.maxScreenH / 16), (Main.maxScreenH / 16) );
+			int bossRadius = 5000;
 
 			for( int i = 0; i < Main.npc.Length; i++ ) {
-				NPC check_npc = Main.npc[i];
-				if( !check_npc.active || !check_npc.boss ) { continue; }
+				NPC checkNpc = Main.npc[i];
+				if( !checkNpc.active || !checkNpc.boss ) { continue; }
 
-				int npc_left = (int)(check_npc.position.X + (float)check_npc.width / 2f) - boss_radius;
-				int npc_top = (int)(check_npc.position.Y + (float)check_npc.height / 2f) - boss_radius;
-				Rectangle npc_zone = new Rectangle( npc_left, npc_top, boss_radius * 2, boss_radius * 2 );
+				int npcLeft = (int)(checkNpc.position.X + (float)checkNpc.width / 2f) - bossRadius;
+				int npcTop = (int)(checkNpc.position.Y + (float)checkNpc.height / 2f) - bossRadius;
+				Rectangle npcZone = new Rectangle( npcLeft, npcTop, bossRadius * 2, bossRadius * 2 );
 
-				if( player_zone.Intersects( npc_zone ) ) { return true; }
+				if( playerZone.Intersects( npcZone ) ) { return true; }
 			}
 
 			return false;

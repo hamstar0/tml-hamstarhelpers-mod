@@ -13,18 +13,18 @@ namespace HamstarHelpers {
 	class ModHelpersNPC : GlobalNPC {
 		public override void NPCLoot( NPC npc ) {
 			var mymod = (ModHelpersMod)this.mod;
-			if( !mymod.Config.MagiTechScrapDropsEnabled ) { return; }
+			if( !mymod.Config.MagiTechScrapMechBossDropsEnabled ) { return; }
 
-			int scrap_type = mymod.ItemType<MagiTechScrapItem>();
+			int scrapType = mymod.ItemType<MagiTechScrapItem>();
 
 			switch( npc.type ) {
 			case NPCID.Retinazer:
 			case NPCID.Spazmatism:
-				ItemHelpers.CreateItem( npc.position, scrap_type, 5, 24, 24 );
+				ItemHelpers.CreateItem( npc.position, scrapType, 5, 24, 24 );
 				break;
 			case NPCID.TheDestroyer:
 			case NPCID.SkeletronPrime:
-				ItemHelpers.CreateItem( npc.position, scrap_type, 10, 24, 24 );
+				ItemHelpers.CreateItem( npc.position, scrapType, 10, 24, 24 );
 				break;
 			}
 		}
@@ -49,10 +49,10 @@ namespace HamstarHelpers {
 
 		private void ApplyHits( CustomEntity ent, NPC npc ) {
 			int dmg = npc.damage;
-			var hit_rad_comp = ent.GetComponentByType<HitRadiusNPCEntityComponent>();
+			var hitRadComp = ent.GetComponentByType<HitRadiusNPCEntityComponent>();
 
-			if( hit_rad_comp.PreHurt( ent, npc, ref dmg ) ) {
-				hit_rad_comp.PostHurt( ent, npc, dmg );
+			if( hitRadComp.PreHurt( ent, npc, ref dmg ) ) {
+				hitRadComp.PostHurt( ent, npc, dmg );
 			}
 		}
 	}

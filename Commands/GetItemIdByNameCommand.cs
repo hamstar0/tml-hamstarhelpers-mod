@@ -22,12 +22,12 @@ namespace HamstarHelpers.Commands {
 			}
 
 			int _;
-			string item_name = CommandsHelpers.GetQuotedStringFromArgsAt( args, 0, out _ );
-			if( !ItemIdentityHelpers.NamesToIds.ContainsKey( item_name ) ) {
+			string itemName = CommandsHelpers.GetQuotedStringFromArgsAt( args, 0, out _ );
+			if( !ItemIdentityHelpers.NamesToIds.ContainsKey( itemName ) ) {
 				throw new UsageException( "Invalid item type." );
 			}
 
-			caller.Reply( "Item id for " + item_name + ": " + ItemIdentityHelpers.NamesToIds[item_name], Color.Lime );
+			caller.Reply( "Item id for " + itemName + ": " + ItemIdentityHelpers.NamesToIds[itemName], Color.Lime );
 		}
 	}
 }

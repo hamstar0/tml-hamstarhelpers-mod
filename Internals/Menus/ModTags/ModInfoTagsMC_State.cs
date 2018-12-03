@@ -24,16 +24,16 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private void ShowGeneral( UIState ui ) {
-			string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
-			if( mod_name == null ) {
+			string modName = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
+			if( modName == null ) {
 				LogHelpers.Log( "Could not load mod tags; no mod found" );
 				return;
 			}
 
 			this.InfoDisplay.SetDefaultText( "" );
 
-			this.ResetUIState( mod_name );
-			this.SetCurrentMod( ui, mod_name );
+			this.ResetUIState( modName );
+			this.SetCurrentMod( ui, modName );
 			this.RecalculateMenuObjects();
 		}
 
@@ -48,8 +48,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private void ResetUIState( string mod_name ) {
-			if( !ModInfoTagsMenuContext.RecentTaggedMods.Contains( mod_name ) ) {
+		private void ResetUIState( string modName ) {
+			if( !ModInfoTagsMenuContext.RecentTaggedMods.Contains( modName ) ) {
 				if( this.FinishButton.IsLocked ) {
 					this.FinishButton.Unlock();
 				}
@@ -68,19 +68,19 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private void SetCurrentMod( UIState ui, string mod_name ) {
-			this.CurrentModName = mod_name;
+		private void SetCurrentMod( UIState ui, string modName ) {
+			this.CurrentModName = modName;
 
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				this.AllModTagsSnapshot = args.ModTags;
 
-				ISet<string> net_modtags = args.Found && args.ModTags.ContainsKey( mod_name ) ?
-						args.ModTags[ mod_name ] :
+				ISet<string> netModTags = args.Found && args.ModTags.ContainsKey( modName ) ?
+						args.ModTags[ modName ] :
 						new HashSet<string>();
-				bool has_net_tags = net_modtags.Count > 0;
+				bool hasNetTags = netModTags.Count > 0;
 
-//LogHelpers.Log( "SetCurrentMod modname: " + mod_name + ", modtags: " + string.Join(",", net_modtags ) );
-				if( has_net_tags ) {
+//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
+				if( hasNetTags ) {
 					this.InfoDisplay.SetDefaultText( "Do these tags look incorrect? If so, modify them." );
 					this.FinishButton.SetModeReadOnly();
 					this.ResetButton.Disable();
@@ -90,22 +90,22 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 				
 				foreach( var kv in this.TagButtons ) {
-					string tag_name = kv.Key;
+					string tagName = kv.Key;
 					UITagButton button = kv.Value;
-					bool has_tag = net_modtags.Contains( tag_name );
+					bool hasTag = netModTags.Contains( tagName );
 
-					if( !has_net_tags ) {
+					if( !hasNetTags ) {
 						button.Enable();
 					}
 
-					if( tag_name == "Low Effort" ) {
-						if( has_tag ) {
+					if( tagName == "Low Effort" ) {
+						if( hasTag ) {
 							button.SetTagState( 1 );
 						} else {
-							string desc = this.GetModDescriptionFromActiveMod( mod_name );
+							string desc = this.GetModDescriptionFromActiveMod( modName );
 							if( string.IsNullOrEmpty(desc) ) {
 								string _ = "";
-								desc = this.GetModDescriptionFromUI( mod_name, ref _ );
+								desc = this.GetModDescriptionFromUI( modName, ref _ );
 							}
 
 							if( desc.Contains("Modify this file with a description of your mod.") ) {
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 							}
 						}
 					} else {
-						button.SetTagState( has_tag ? 1 : 0 );
+						button.SetTagState( hasTag ? 1 : 0 );
 					}
 				}
 

@@ -33,22 +33,22 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 
 		[Obsolete( "use GetCurrentEventTypeSet()", true )]
 		public static IList<VanillaInvasionType> GetCurrentEventTypes() {
-			var event_types = new List<VanillaInvasionType>();
-			var inv_type = (VanillaInvasionType)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
+			var eventTypes = new List<VanillaInvasionType>();
+			var invType = (VanillaInvasionType)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
 
-			if( inv_type != VanillaInvasionType.None ) {
-				event_types.Add( inv_type );
+			if( invType != VanillaInvasionType.None ) {
+				eventTypes.Add( invType );
 			}
 
-			if( Sandstorm.Happening ) { event_types.Add( VanillaInvasionType.Sandstorm ); }
-			if( Main.bloodMoon ) { event_types.Add( VanillaInvasionType.BloodMoon ); }
-			if( Main.slimeRain ) { event_types.Add( VanillaInvasionType.SlimeRain ); }
-			if( Main.eclipse ) { event_types.Add( VanillaInvasionType.SolarEclipse ); }
-			if( Main.snowMoon ) { event_types.Add( VanillaInvasionType.FrostMoon ); }
-			if( Main.pumpkinMoon ) { event_types.Add( VanillaInvasionType.PumpkinMoon ); }
-			if( NPC.LunarApocalypseIsUp ) { event_types.Add( VanillaInvasionType.LunarApocalypse ); }
+			if( Sandstorm.Happening ) { eventTypes.Add( VanillaInvasionType.Sandstorm ); }
+			if( Main.bloodMoon ) { eventTypes.Add( VanillaInvasionType.BloodMoon ); }
+			if( Main.slimeRain ) { eventTypes.Add( VanillaInvasionType.SlimeRain ); }
+			if( Main.eclipse ) { eventTypes.Add( VanillaInvasionType.SolarEclipse ); }
+			if( Main.snowMoon ) { eventTypes.Add( VanillaInvasionType.FrostMoon ); }
+			if( Main.pumpkinMoon ) { eventTypes.Add( VanillaInvasionType.PumpkinMoon ); }
+			if( NPC.LunarApocalypseIsUp ) { eventTypes.Add( VanillaInvasionType.LunarApocalypse ); }
 
-			return event_types;
+			return eventTypes;
 		}
 	}
 }

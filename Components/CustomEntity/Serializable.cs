@@ -36,7 +36,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected SerializableCustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected SerializableCustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		internal SerializableCustomEntity( CustomEntity ent )
 				: base( new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) ) {
@@ -47,13 +47,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.OwnerPlayerWho = ent.OwnerPlayerWho;
 		}
 
-		internal SerializableCustomEntity( string type_name, CustomEntityCore core, IList<CustomEntityComponent> components, string player_uid )
+		internal SerializableCustomEntity( string typeName, CustomEntityCore core, IList<CustomEntityComponent> components, string playerUid )
 				: base( new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) ) {
-			this.MyTypeName = type_name;
+			this.MyTypeName = typeName;
 			this.Core = core;
 			this.Components = components;
-			this.OwnerPlayerUID = player_uid;
-			this.OwnerPlayerWho = PlayerIdentityHelpers.GetPlayerByProperId( player_uid )?.whoAmI ?? -1;
+			this.OwnerPlayerUID = playerUid;
+			this.OwnerPlayerWho = PlayerIdentityHelpers.GetPlayerByProperId( playerUid )?.whoAmI ?? -1;
 		}
 
 
@@ -83,24 +83,24 @@ namespace HamstarHelpers.Components.CustomEntity {
 				throw new HamstarException( "!ModHelpers.SerializableCustomEntity.Convert - Not initialized." );
 			}
 
-			Type ent_type = CustomEntityManager.GetEntityType( this.MyTypeName );
+			Type entType = CustomEntityManager.GetEntityType( this.MyTypeName );
 
-			if( ent_type == null ) {
+			if( entType == null ) {
 				throw new HamstarException( this.MyTypeName + " does not exist." );
 			}
-			if( !ent_type.IsSubclassOf( typeof( CustomEntity ) ) ) {
-				throw new HamstarException( ent_type.Name + " is not a valid CustomEntity." );
+			if( !entType.IsSubclassOf( typeof( CustomEntity ) ) ) {
+				throw new HamstarException( entType.Name + " is not a valid CustomEntity." );
 			}
 
 			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
-				return CustomEntity.CreateRaw( ent_type, this.Core, this.Components );
+				return CustomEntity.CreateRaw( entType, this.Core, this.Components );
 			} else {
-				return CustomEntity.CreateRaw( ent_type, this.Core, this.Components, this.OwnerPlayerUID );
+				return CustomEntity.CreateRaw( entType, this.Core, this.Components, this.OwnerPlayerUID );
 			}
 			//var args = this.OwnerPlayerUID == "" ?
 			//	new object[] { this.Core, this.Components } :
 			//	new object[] { this.OwnerPlayerUID, this.Core, this.Components };
-			//return (CustomEntity)Activator.CreateInstance( ent_type,
+			//return (CustomEntity)Activator.CreateInstance( entType,
 			//	BindingFlags.NonPublic | BindingFlags.Instance,
 			//	null,
 			//	args,

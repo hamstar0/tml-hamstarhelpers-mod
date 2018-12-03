@@ -7,10 +7,10 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.EntityHelpers {
 	public static class EntityHelpers {
-		public static int GetVanillaSnapshotHash( Entity ent, bool no_context ) {
+		public static int GetVanillaSnapshotHash( Entity ent, bool noContext ) {
 			int hash = ("active"+ent.active).GetHashCode();
 
-			if( !no_context ) {
+			if( !noContext ) {
 				//hash ^= ("position"+ent.position).GetHashCode();
 				//hash ^= ("velocity"+ent.velocity).GetHashCode();
 				//hash ^= ("oldPosition"+ent.oldPosition).GetHashCode();
@@ -30,16 +30,16 @@ namespace HamstarHelpers.Helpers.EntityHelpers {
 		}
 
 
-		public static void ApplyForce( Entity ent, Vector2 world_pos_from, float force ) {
-			Vector2 offset = world_pos_from - ent.position;
-			Vector2 force_vector = Vector2.Normalize( offset ) * force;
-			ent.velocity += force_vector;
+		public static void ApplyForce( Entity ent, Vector2 worldPosFrom, float force ) {
+			Vector2 offset = worldPosFrom - ent.position;
+			Vector2 forceVector = Vector2.Normalize( offset ) * force;
+			ent.velocity += forceVector;
 		}
 
 
 		public static bool SimpleLineOfSight( Vector2 position, Entity to ) {
-			var trace = new Utils.PerLinePoint( delegate ( int tile_x, int tile_y ) {
-				return !TileHelpers.TileHelpers.IsSolid( Framing.GetTileSafely( tile_x, tile_y ) );
+			var trace = new Utils.PerLinePoint( delegate ( int tileX, int tileY ) {
+				return !TileHelpers.TileHelpers.IsSolid( Framing.GetTileSafely( tileX, tileY ) );
 			} );
 			return Utils.PlotTileLine( position, to.position, 1, trace );
 		}

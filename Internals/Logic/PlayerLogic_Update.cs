@@ -16,8 +16,8 @@ namespace HamstarHelpers.Internals.Logic {
 				this.DialogManager.Update( mymod );
 			}
 
-			foreach( int buff_id in this.PermaBuffsById ) {
-				player.AddBuff( buff_id, 3 );
+			foreach( int buffId in this.PermaBuffsById ) {
+				player.AddBuff( buffId, 3 );
 			}
 
 			this.UpdateTml( mymod, player );
@@ -52,19 +52,19 @@ namespace HamstarHelpers.Internals.Logic {
 				mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish = true;	// Weird hack?
 			}
 
-			foreach( int buff_id in this.PermaBuffsById ) {
-				player.AddBuff( buff_id, 3 );
+			foreach( int buffId in this.PermaBuffsById ) {
+				player.AddBuff( buffId, 3 );
 			}
 
 			this.UpdateTml( mymod, player );
 
 			// Every player must have their ids accounted for!
 			if( !mymod.PlayerIdentityHelpers.PlayerIds.ContainsKey(player.whoAmI) ) {
-				string timer_name = "ModHelpersPlayerIdFailsafe_" + player.whoAmI;
+				string timerName = "ModHelpersPlayerIdFailsafe_" + player.whoAmI;
 
-				if( Timers.GetTimerTickDuration( timer_name ) == 0 ) {
-					Timers.SetTimer( timer_name, 3 * 60, () => {
-						PacketProtocol.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1 );
+				if( Timers.GetTimerTickDuration( timerName ) == 0 ) {
+					Timers.SetTimer( timerName, 3 * 60, () => {
+						PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1 );
 						return false;
 					} );
 				}

@@ -54,11 +54,11 @@ namespace HamstarHelpers.Services.DataDumper {
 				break;
 			}
 
-			double now_seconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
+			double nowSeconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
 
-			string now_seconds_whole = ( (int)now_seconds ).ToString( "D6" );
-			string now_seconds_decimal = ( now_seconds - (int)now_seconds ).ToString( "N2" );
-			string now = now_seconds_whole + "." + ( now_seconds_decimal.Length > 2 ? now_seconds_decimal.Substring( 2 ) : now_seconds_decimal );
+			string nowSecondsWhole = ( (int)nowSeconds ).ToString( "D6" );
+			string nowSecondsDecimal = ( nowSeconds - (int)nowSeconds ).ToString( "N2" );
+			string now = nowSecondsWhole + "." + ( nowSecondsDecimal.Length > 2 ? nowSecondsDecimal.Substring( 2 ) : nowSecondsDecimal );
 
 			return prefix + "_"+netmode +"_"+now + "_dump.txt";
 		}
@@ -71,14 +71,14 @@ namespace HamstarHelpers.Services.DataDumper {
 		////////////////
 
 		private static void PrepareDir() {
-			string full_dir = Main.SavePath + Path.DirectorySeparatorChar + DataDumper.GetRelativePath();
+			string fullDir = Main.SavePath + Path.DirectorySeparatorChar + DataDumper.GetRelativePath();
 
 			try {
 				Directory.CreateDirectory( Main.SavePath );
 				Directory.CreateDirectory( Main.SavePath + Path.DirectorySeparatorChar + "Logs" );
-				Directory.CreateDirectory( full_dir );
+				Directory.CreateDirectory( fullDir );
 			} catch( IOException e ) {
-				throw new IOException( "Failed to prepare directory: " + full_dir, e );
+				throw new IOException( "Failed to prepare directory: " + fullDir, e );
 			}
 		}
 
@@ -98,12 +98,12 @@ namespace HamstarHelpers.Services.DataDumper {
 
 		[Obsolete("use DumpToFile(out string)", true)]
 		public static string DumpToFile( out bool success ) {
-			string file_name;
-			success = DataDumper.DumpToFile( out file_name );
-			return file_name;
+			string fileName;
+			success = DataDumper.DumpToFile( out fileName );
+			return fileName;
 		}
 
-		public static bool DumpToFile( out string file_name ) {
+		public static bool DumpToFile( out string fileName ) {
 			string data;
 			IDictionary<string, Func<string>> dumpables = DataDumper.GetDumpables();
 
@@ -119,13 +119,13 @@ namespace HamstarHelpers.Services.DataDumper {
 				);
 			}
 			
-			file_name = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
-			string rel_path = DataDumper.GetRelativePath();
-			string full_folder = Main.SavePath + Path.DirectorySeparatorChar + rel_path;
-			string full_path = full_folder + Path.DirectorySeparatorChar + file_name;
+			fileName = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
+			string relPath = DataDumper.GetRelativePath();
+			string fullFolder = Main.SavePath + Path.DirectorySeparatorChar + relPath;
+			string fullPath = fullFolder + Path.DirectorySeparatorChar + fileName;
 
 			DataDumper.PrepareDir();
-			bool success = FileHelpers.SaveTextFile( data, full_path, false, false );
+			bool success = FileHelpers.SaveTextFile( data, fullPath, false, false );
 
 			if( success ) {
 				// Allow admins to dump on behalf of server, also

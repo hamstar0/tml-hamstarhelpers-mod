@@ -16,16 +16,16 @@ namespace HamstarHelpers.Services.Messages {
 
 
 	public class InboxMessages {
-		public static void SetMessage( string which, string msg, bool force_unread, Action<bool> on_run=null ) {
+		public static void SetMessage( string which, string msg, bool forceUnread, Action<bool> onRun=null ) {
 			Promises.Promises.AddPostWorldLoadOncePromise( () => {
 				InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 				int idx = inbox.Order.IndexOf( which );
 
 				inbox.Messages[which] = msg;
-				inbox.MessageActions[which] = on_run;
+				inbox.MessageActions[which] = onRun;
 
 				if( idx >= 0 ) {
-					if( force_unread ) {
+					if( forceUnread ) {
 						if( idx < inbox.Current ) {
 							inbox.Current--;
 						}
@@ -64,9 +64,9 @@ namespace HamstarHelpers.Services.Messages {
 		}
 
 
-		public static string GetMessageAt( int idx, out bool is_unread ) {
+		public static string GetMessageAt( int idx, out bool isUnread ) {
 			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
-			is_unread = false;
+			isUnread = false;
 
 			if( idx < 0 || idx >= inbox.Order.Count ) {
 				return null;
@@ -75,9 +75,9 @@ namespace HamstarHelpers.Services.Messages {
 			string which = inbox.Order[ idx ];
 			string msg = inbox.Messages[ which ];
 
-			is_unread = idx >= inbox.Current;
+			isUnread = idx >= inbox.Current;
 
-			inbox.MessageActions[which]?.Invoke( is_unread );
+			inbox.MessageActions[which]?.Invoke( isUnread );
 
 			return msg;
 		}
@@ -90,11 +90,11 @@ namespace HamstarHelpers.Services.Messages {
 			if( idx == -1 ) { return null; }
 
 			string msg = inbox.Messages[ which ];
-			bool is_unread = idx >= inbox.Current;
+			bool isUnread = idx >= inbox.Current;
 
-			inbox.MessageActions[which]?.Invoke( is_unread );
+			inbox.MessageActions[which]?.Invoke( isUnread );
 
-			if( is_unread ) {
+			if( isUnread ) {
 				if( inbox.Current != idx ) {
 					inbox.Order.RemoveAt( idx );
 					inbox.Order.Insert( inbox.Current, which );
@@ -146,8 +146,8 @@ namespace HamstarHelpers.Services.Messages {
 			if( success ) {
 				this.Data = data;
 
-				foreach( string msg_name in this.Data.Messages.Keys ) {
-					this.Data.MessageActions[ msg_name ] = null;
+				foreach( string msgName in this.Data.Messages.Keys ) {
+					this.Data.MessageActions[ msgName ] = null;
 				}
 			}
 			return success;

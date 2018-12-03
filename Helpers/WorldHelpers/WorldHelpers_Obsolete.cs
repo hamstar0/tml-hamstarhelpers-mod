@@ -18,8 +18,8 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		}
 
 		[Obsolete( "Recommend using WorldHelpers.GetUniqueIdWithSeed()", false )]
-		public static string GetUniqueId( bool as_file_name ) {
-			if( as_file_name ) {
+		public static string GetUniqueId( bool asFileName ) {
+			if( asFileName ) {
 				return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID;
 			} else {
 				return FileHelpers.SanitizePath( Main.worldName ) + ":" + Main.worldID;

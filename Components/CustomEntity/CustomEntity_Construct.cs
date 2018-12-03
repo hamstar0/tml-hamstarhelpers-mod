@@ -18,8 +18,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			////////////////
 			
-			protected CustomEntityFactory( Player owner_plr=null ) {
-				this.OwnerPlayer = owner_plr;
+			protected CustomEntityFactory( Player ownerPlr=null ) {
+				this.OwnerPlayer = ownerPlr;
 			}
 
 			////////////////
@@ -77,26 +77,26 @@ namespace HamstarHelpers.Components.CustomEntity {
 			return ent;
 		}
 
-		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr ) {
+		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, Player ownerPlr ) {
 			var ent = CustomEntity.CreateRaw( mytype );
 			ent.Core = core;
 			ent.Components = components;
-			ent.OwnerPlayerWho = owner_plr.whoAmI;
-			ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( owner_plr );
+			ent.OwnerPlayerWho = ownerPlr.whoAmI;
+			ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( ownerPlr );
 
 			ent.InternalPostInitialize();
 
 			return ent;
 		}
 
-		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, string owner_uid="" ) {
+		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, string ownerUid="" ) {
 			var ent = CustomEntity.CreateRaw( mytype );
 			ent.Core = core;
 			ent.Components = components;
 			ent.OwnerPlayerWho = -1;
-			ent.OwnerPlayerUID = owner_uid;
+			ent.OwnerPlayerUID = ownerUid;
 			
-			Player plr = PlayerIdentityHelpers.GetPlayerByProperId( owner_uid );
+			Player plr = PlayerIdentityHelpers.GetPlayerByProperId( ownerUid );
 			if( plr != null ) {
 				ent.OwnerPlayerWho = plr.whoAmI;
 			}
@@ -110,10 +110,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected CustomEntity( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof( CustomEntityFactory<> ), ctor_lock.FactoryType ) ) {
-				if( ctor_lock.FactoryType != typeof( CustomEntity ) && ctor_lock.FactoryType != typeof( PacketProtocolData ) ) {
-					throw new NotImplementedException( "CustomEntity " + this.GetType().Name + " uses invalid factory " + ctor_lock.FactoryType.Name );
+		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
+			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof( CustomEntityFactory<> ), ctorLock.FactoryType ) ) {
+				if( ctorLock.FactoryType != typeof( CustomEntity ) && ctorLock.FactoryType != typeof( PacketProtocolData ) ) {
+					throw new NotImplementedException( "CustomEntity " + this.GetType().Name + " uses invalid factory " + ctorLock.FactoryType.Name );
 				}
 			}
 		}
@@ -143,10 +143,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
-		internal void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player owner_plr=null ) {
+		internal void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player ownerPlr=null ) {
 			this.Core = new CustomEntityCore( core );
-			this.OwnerPlayerWho = owner_plr != null ? owner_plr.whoAmI : -1;
-			this.OwnerPlayerUID = owner_plr != null ? PlayerIdentityHelpers.GetProperUniqueId(owner_plr) : "";
+			this.OwnerPlayerWho = ownerPlr != null ? ownerPlr.whoAmI : -1;
+			this.OwnerPlayerUID = ownerPlr != null ? PlayerIdentityHelpers.GetProperUniqueId(ownerPlr) : "";
 
 			this.Components = components.Select( c => c.InternalClone() ).ToList();
 			this.ClearComponentCache();
@@ -172,34 +172,34 @@ namespace HamstarHelpers.Components.CustomEntity {
 				return;
 			}
 
-			Player owner_plr = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
-			if( owner_plr == null ) {
+			Player ownerPlr = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
+			if( ownerPlr == null ) {
 				LogHelpers.Log( "ModHelpers.CustomEntity.RefreshOwnerWho - No player found with UID "+this.OwnerPlayerUID );
 			}
 
-			this.OwnerPlayerWho = owner_plr == null ? -1 : owner_plr.whoAmI;
+			this.OwnerPlayerWho = ownerPlr == null ? -1 : ownerPlr.whoAmI;
 		}
 		
 		////////////////
 
 		private void RefreshComponentTypeNames() {
-			int comp_count = this.Components.Count;
+			int compCount = this.Components.Count;
 
 			this.ComponentsByTypeName.Clear();
 			this.AllComponentsByTypeName.Clear();
 
-			for( int i = 0; i < comp_count; i++ ) {
-				Type comp_type = this.Components[i].GetType();
-				string comp_name = comp_type.Name;
+			for( int i = 0; i < compCount; i++ ) {
+				Type compType = this.Components[i].GetType();
+				string compName = compType.Name;
 
-				this.ComponentsByTypeName[ comp_name ] = i;
+				this.ComponentsByTypeName[ compName ] = i;
 
 				do {
-					this.AllComponentsByTypeName[ comp_name ] = i;
+					this.AllComponentsByTypeName[ compName ] = i;
 
-					comp_type = comp_type.BaseType;
-					comp_name = comp_type.Name;
-				} while( comp_type.Name != "CustomEntityComponent" );
+					compType = compType.BaseType;
+					compName = compType.Name;
+				} while( compType.Name != "CustomEntityComponent" );
 			}
 		}
 	}

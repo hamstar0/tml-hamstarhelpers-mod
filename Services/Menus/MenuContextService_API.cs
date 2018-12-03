@@ -7,26 +7,26 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Services.Menus {
 	public partial class MenuContextService {
-		public static bool ContainsMenuContexts( string ui_class_name ) {
+		public static bool ContainsMenuContexts( string uiClassName ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuContextMngr == null ) { return false; }
 			var loaders = mymod.MenuContextMngr.Contexts;
 
-			return loaders.ContainsKey(ui_class_name) && loaders.Count > 0;
+			return loaders.ContainsKey(uiClassName) && loaders.Count > 0;
 		}
 
 
 		////////////////
 
-		public static MenuContext GetMenuContext( string ui_class_name, string context_name ) {
+		public static MenuContext GetMenuContext( string uiClassName, string contextName ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuContextMngr == null ) { return null; }
 			var loaders = mymod.MenuContextMngr.Contexts;
 
 			MenuContext ctx = null;
 
-			if( loaders.ContainsKey( ui_class_name ) ) {
-				loaders[ui_class_name].TryGetValue( context_name, out ctx );
+			if( loaders.ContainsKey( uiClassName ) ) {
+				loaders[uiClassName].TryGetValue( contextName, out ctx );
 			}
 			return ctx;
 		}
@@ -34,20 +34,20 @@ namespace HamstarHelpers.Services.Menus {
 
 		////////////////
 
-		public static void AddMenuContext( string ui_class_name, string context_name, MenuContext context ) {
+		public static void AddMenuContext( string uiClassName, string contextName, MenuContext context ) {
 			var mymod = ModHelpersMod.Instance;
 
-			if( !mymod.MenuContextMngr.Contexts.ContainsKey( ui_class_name ) ) {
-				mymod.MenuContextMngr.Contexts[ui_class_name] = new Dictionary<string, MenuContext>();
+			if( !mymod.MenuContextMngr.Contexts.ContainsKey( uiClassName ) ) {
+				mymod.MenuContextMngr.Contexts[uiClassName] = new Dictionary<string, MenuContext>();
 			}
-			mymod.MenuContextMngr.Contexts[ui_class_name][context_name] = context;
+			mymod.MenuContextMngr.Contexts[uiClassName][contextName] = context;
 
-			context.OnContexualize( ui_class_name, context_name );
+			context.OnContexualize( uiClassName, contextName );
 
 			UIState ui = Main.MenuUI.CurrentState;
-			string curr_ui_name = ui?.GetType().Name;
+			string currUiName = ui?.GetType().Name;
 
-			if( ui_class_name == curr_ui_name ) {
+			if( uiClassName == currUiName ) {
 				context.Show( ui );
 			}
 		}

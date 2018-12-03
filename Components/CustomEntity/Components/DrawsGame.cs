@@ -20,10 +20,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////////////////
 
-			public DrawsInGameEntityComponentFactory( string src_mod_name, string rel_texture_path, int frame_count ) {
-				this.SourceModName = src_mod_name;
-				this.TexturePath = rel_texture_path;
-				this.FrameCount = frame_count;
+			public DrawsInGameEntityComponentFactory( string srcModName, string relTexturePath, int frameCount ) {
+				this.SourceModName = srcModName;
+				this.TexturePath = relTexturePath;
+				this.FrameCount = frameCount;
 			}
 
 			////
@@ -43,8 +43,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public static DrawsInGameEntityComponent CreateDrawsInGameEntityComponent( string src_mod_name, string rel_texture_path, int frame_count ) {
-			var factory = new DrawsInGameEntityComponentFactory<DrawsInGameEntityComponent>( src_mod_name, rel_texture_path, frame_count );
+		public static DrawsInGameEntityComponent CreateDrawsInGameEntityComponent( string srcModName, string relTexturePath, int frameCount ) {
+			var factory = new DrawsInGameEntityComponentFactory<DrawsInGameEntityComponent>( srcModName, relTexturePath, frameCount );
 			return factory.Create();
 		}
 
@@ -52,18 +52,18 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public static void DrawTexture( SpriteBatch sb, CustomEntity ent, Texture2D tex, int frame_count, Color color, float scale, float rotation=0f, Vector2 origin=default(Vector2) ) {
+		public static void DrawTexture( SpriteBatch sb, CustomEntity ent, Texture2D tex, int frameCount, Color color, float scale, float rotation=0f, Vector2 origin=default(Vector2) ) {
 			var core = ent.Core;
-			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
+			var worldScrRect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
 
-			if( !core.Hitbox.Intersects( world_scr_rect ) ) { return; }
+			if( !core.Hitbox.Intersects( worldScrRect ) ) { return; }
 
-			var scr_scr_pos = core.position - Main.screenPosition;
-			var tex_rect = new Rectangle( 0, 0, tex.Width, tex.Height / frame_count );
+			var scrScrPos = core.position - Main.screenPosition;
+			var texRect = new Rectangle( 0, 0, tex.Width, tex.Height / frameCount );
 			
 			SpriteEffects dir = DrawsInGameEntityComponent.GetOrientation( core );
 
-			sb.Draw( tex, scr_scr_pos, tex_rect, color, rotation, origin, scale, dir, 1f );
+			sb.Draw( tex, scrScrPos, texRect, color, rotation, origin, scale, dir, 1f );
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 				var rect = new Rectangle(
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
@@ -111,14 +111,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
 			}
 
-			var src_mod = ModLoader.GetMod( this.ModName );
-			if( src_mod == null ) {
+			var srcMod = ModLoader.GetMod( this.ModName );
+			if( srcMod == null ) {
 				throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid mod " + this.ModName );
 			}
 
 			if( !Main.dedServ ) {
 				if( this.Texture == null ) {
-					this.Texture = src_mod.GetTexture( this.TexturePath );
+					this.Texture = srcMod.GetTexture( this.TexturePath );
 					if( this.Texture == null ) {
 						throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid texture " + this.TexturePath );
 					}

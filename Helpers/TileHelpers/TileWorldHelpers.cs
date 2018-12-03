@@ -4,18 +4,18 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.TileHelpers {
 	public static class TileWorldHelpers {
-		public static bool IsWithinMap( int tile_x, int tile_y ) {
-			return (tile_x > 41 && tile_x < Main.maxTilesX - 42) && (tile_y > 41 && tile_y < Main.maxTilesY - 42);
+		public static bool IsWithinMap( int tileX, int tileY ) {
+			return (tileX > 41 && tileX < Main.maxTilesX - 42) && (tileY > 41 && tileY < Main.maxTilesY - 42);
 		}
 
 
-		public static float GaugeBrightnessWithin( int tile_x, int tile_y, int width, int height ) {
+		public static float GaugeBrightnessWithin( int tileX, int tileY, int width, int height ) {
 			int i = 0, j = 0;
 			float avg = 0f;
 
 			for( i = 0; i < width; i++ ) {
 				for( j = 0; j < height; j++ ) {
-					avg += Lighting.Brightness( tile_x + i, tile_y + j );
+					avg += Lighting.Brightness( tileX + i, tileY + j );
 				}
 			}
 
@@ -23,16 +23,16 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		}
 
 
-		public static Vector2 DropToGround( Vector2 world_pos ) {
-			int x = (int)world_pos.X / 16;
-			int y = (int)world_pos.Y / 16;
+		public static Vector2 DropToGround( Vector2 worldPos ) {
+			int x = (int)worldPos.X / 16;
+			int y = (int)worldPos.Y / 16;
 
 			do {
 				y++;
 			} while( y <= (Main.maxTilesY - 42) && !TileHelpers.IsSolid( Framing.GetTileSafely( x, y ) ) );
 			y--;
 
-			return new Vector2( world_pos.X, y * 16 );
+			return new Vector2( worldPos.X, y * 16 );
 		}
 	}
 }

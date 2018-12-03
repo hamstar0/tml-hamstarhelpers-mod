@@ -10,45 +10,45 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private void DefineItemWeaponGroups1( Action<string, string[], Matcher> add_def ) {
+		private void DefineItemWeaponGroups1( Action<string, string[], Matcher> addDef ) {
 			// Weapon Classes
 
-			add_def( "Any Ranged Weapon", null,
+			addDef( "Any Ranged Weapon", null,
 				( item, grps ) => {
 					return item.ranged;
 				} );
-			add_def( "Any Magic Weapon", null,
+			addDef( "Any Magic Weapon", null,
 				( item, grps ) => {
 					return item.magic;
 				} );
-			add_def( "Any Melee Weapon", null,
+			addDef( "Any Melee Weapon", null,
 				( item, grps ) => {
 					return item.melee;
 				} );
-			add_def( "Any Thrown Weapon", null,
+			addDef( "Any Thrown Weapon", null,
 				( item, grps ) => {
 					return item.thrown;
 				} );
 
 			// Melee Sub Classes
 
-			add_def( "Any Swingable", null,
+			addDef( "Any Swingable", null,
 				( item, grps ) => {
 					return item.melee && item.useStyle == 1;
 				} );
-			add_def( "Any Thrustable", null,
+			addDef( "Any Thrustable", null,
 				( item, grps ) => {
 					return item.melee && item.useStyle == 5;
 				} );
-			add_def( "Any Flail", null,
+			addDef( "Any Flail", null,
 				( item, grps ) => {
 					if( !item.melee || item.useStyle != 5 ) { return false; }
 					if( item.type == ItemID.Anchor ) { return true; }
 
 					if( item.shoot == 0 ) { return false; }
-					var proj_pool = this.GetProjPool();
+					var projPool = this.GetProjPool();
 
-					switch( proj_pool[ item.shoot ].aiStyle ) {
+					switch( projPool[ item.shoot ].aiStyle ) {
 					case 15:    // Standard
 					case 13:    // Chain Knife, Boxing Glove
 					case 69:    // Flairon
@@ -57,29 +57,29 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Boomerang", null,
+			addDef( "Any Boomerang", null,
 				( item, grps ) => {
 					if( !item.melee || item.useStyle != 1 ) { return false; }
 					if( item.type == ItemID.FlyingKnife ) { return true; }
 
 					if( item.shoot == 0 ) { return false; }
-					var proj_pool = this.GetProjPool();
+					var projPool = this.GetProjPool();
 
-					switch( proj_pool[ item.shoot ].aiStyle ) {
+					switch( projPool[ item.shoot ].aiStyle ) {
 					case 3:    // Boomerangs
 					case 15:    // Thorn Chakram
 						return true;
 					}
 					return false;
 				} );
-			add_def( "Any Yoyo", null,
+			addDef( "Any Yoyo", null,
 				( item, grps ) => {
 					return ItemAttributeHelpers.IsYoyo( item );
 				} );
 
 			// Magic Sub Classes
 
-			add_def( "Any Magic Staff Or Scepter Or Wand", null,
+			addDef( "Any Magic Staff Or Scepter Or Wand", null,
 				( item, grps ) => {
 					if( !item.magic ) { return false; }
 
@@ -88,14 +88,14 @@ namespace HamstarHelpers.Services.EntityGroups {
 						name.Contains( "Scepter" ) ||
 						name.Contains( "Wand" );
 				} );
-			add_def( "Any Magic Rod", null,
+			addDef( "Any Magic Rod", null,
 				( item, grps ) => {
 					if( !item.magic ) { return false; }
 
 					string name = ItemIdentityHelpers.GetQualifiedName( item );
 					return name.Contains( "Rod" );
 				} );
-			add_def( "Any Magic Gun", null,
+			addDef( "Any Magic Gun", null,
 				( item, grps ) => {
 					if( !item.magic ) { return false; }
 
@@ -111,7 +111,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 						name.Contains( "Cannon" ) ||
 						name.Contains( "Laser" );
 				} );
-			add_def( "Any Magic Tome", null,
+			addDef( "Any Magic Tome", null,
 				( item, grps ) => {
 					if( !item.magic ) { return false; }
 
@@ -134,20 +134,20 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			// Ranged Sub Classes
 
-			add_def( "Any Ranger Gun", null,
+			addDef( "Any Ranger Gun", null,
 				( item, grps ) => {
 					if( !item.ranged ) { return false; }
 					return item.useAmmo == AmmoID.Bullet ||
 						item.useAmmo == AmmoID.CandyCorn ||
 						item.useAmmo == AmmoID.Coin;
 				} );
-			add_def( "Any Ranger Bow", null,
+			addDef( "Any Ranger Bow", null,
 				( item, grps ) => {
 					if( !item.ranged ) { return false; }
 					return item.useAmmo == AmmoID.Arrow ||
 						item.useAmmo == AmmoID.Stake;
 				} );
-			add_def( "Any Ranger Launcher", null,
+			addDef( "Any Ranger Launcher", null,
 				( item, grps ) => {
 					if( !item.ranged ) { return false; }
 					return item.useAmmo == AmmoID.Rocket ||
@@ -158,22 +158,22 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			// Summon Sub Classes
 
-			add_def( "Any Minion Summon Item", null,
+			addDef( "Any Minion Summon Item", null,
 				( item, grps ) => {
 					return item.summon && !item.sentry;
 				} );
-			add_def( "Any Sentry Summon Item", null,
+			addDef( "Any Sentry Summon Item", null,
 				( item, grps ) => {
 					return item.summon && item.sentry;
 				} );
 			
 			// Vanity Classes
-			add_def( "Any Vanity Accessory", null,
+			addDef( "Any Vanity Accessory", null,
 				( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.accessory;
 				} );
-			add_def( "Any Vanity Garment", null,
+			addDef( "Any Vanity Garment", null,
 				( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return !item.accessory;
@@ -181,10 +181,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private void DefineItemWeaponGroups2( Action<string, string[], Matcher> add_def ) {
+		private void DefineItemWeaponGroups2( Action<string, string[], Matcher> addDef ) {
 			// Misc Sub Classes
 
-			add_def( "Any Ranger Misc",
+			addDef( "Any Ranger Misc",
 				new string[] { "Any Ranger Gun", "Any Ranger Bow", "Any Ranger Launcher" },
 				( item, grps ) => {
 					if( !item.ranged ) { return false; }
@@ -195,7 +195,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				}
 			);
 
-			add_def( "Any Magic Misc",
+			addDef( "Any Magic Misc",
 				new string[] { "Any Magic Staff Or Scepter Or Wand", "Any Magic Rod", "Any Magic Gun", "Any Magic Tome" },
 				( item, grps ) => {
 					if( !item.magic ) { return false; }

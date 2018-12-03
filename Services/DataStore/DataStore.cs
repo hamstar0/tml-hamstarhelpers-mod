@@ -17,16 +17,16 @@ namespace HamstarHelpers.Services.DataStore {
 
 		public static bool Get<T>( object key, out T val ) {
 			val = default(T);
-			object raw_val = null;
+			object rawVal = null;
 			bool success = false;
 
 			lock( DataStore.MyLock ) {
-				success = ModHelpersMod.Instance.DataStore.Data.TryGetValue( key, out raw_val );
+				success = ModHelpersMod.Instance.DataStore.Data.TryGetValue( key, out rawVal );
 
-				if( !( raw_val is T ) ) {
+				if( !( rawVal is T ) ) {
 					success = false;
 				} else {
-					val = (T)raw_val;
+					val = (T)rawVal;
 				}
 			}
 			

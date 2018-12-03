@@ -12,22 +12,22 @@ namespace HamstarHelpers.Services.EntityGroups {
 		private IList<Tuple<string, string[], ItemMatcher>> DefineItemGroups() {
 			var matchers = new List<Tuple<string, string[], ItemMatcher>>();
 
-			Action<string, string[], ItemMatcher> add_item_grp_def = ( name, grps, matcher ) => {
+			Action<string, string[], ItemMatcher> addItemGrpDef = ( name, grps, matcher ) => {
 				matchers.Add( new Tuple<string, string[], ItemMatcher>( name, grps, matcher ) );
 			};
 			
-			this.DefineItemEquipmentGroups1( add_item_grp_def );
-			this.DefineItemAccessoriesGroups1( add_item_grp_def );
-			this.DefineItemWeaponGroups1( add_item_grp_def );
-			this.DefineItemPlaceablesGroups1( add_item_grp_def );
+			this.DefineItemEquipmentGroups1( addItemGrpDef );
+			this.DefineItemAccessoriesGroups1( addItemGrpDef );
+			this.DefineItemWeaponGroups1( addItemGrpDef );
+			this.DefineItemPlaceablesGroups1( addItemGrpDef );
 
-			this.DefineItemEquipmentGroups2( add_item_grp_def );
-			this.DefineItemWeaponGroups2( add_item_grp_def );
-			this.DefineItemPlaceablesGroups2( add_item_grp_def );
+			this.DefineItemEquipmentGroups2( addItemGrpDef );
+			this.DefineItemWeaponGroups2( addItemGrpDef );
+			this.DefineItemPlaceablesGroups2( addItemGrpDef );
 
-			this.DefineItemEquipmentGroups3( add_item_grp_def );
+			this.DefineItemEquipmentGroups3( addItemGrpDef );
 
-			this.DefineItemMiscGroups4( add_item_grp_def );
+			this.DefineItemMiscGroups4( addItemGrpDef );
 			
 			return matchers;
 		}
@@ -36,11 +36,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 		private IList<Tuple<string, string[], NPCMatcher>> DefineNPCGroups() {
 			var matchers = new List<Tuple<string, string[], NPCMatcher>>();
 
-			Action<string, string[], NPCMatcher> add_npc_grp_def = ( name, dependencies, matcher ) => {
+			Action<string, string[], NPCMatcher> addNpcGrpDef = ( name, dependencies, matcher ) => {
 				matchers.Add( new Tuple<string, string[], NPCMatcher>( name, dependencies, matcher ) );
 			};
 
-			this.DefineNPCGroups1( add_npc_grp_def );
+			this.DefineNPCGroups1( addNpcGrpDef );
 
 			return matchers;
 		}

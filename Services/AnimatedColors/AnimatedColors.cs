@@ -18,12 +18,12 @@ namespace HamstarHelpers.Services.AnimatedColor {
 
 		////////////////
 
-		public static AnimatedColors Create( int duration_per_color, Color[] colors ) {
-			return AnimatedColors.Create( ModHelpersMod.Instance.AnimatedColors, duration_per_color, colors );
+		public static AnimatedColors Create( int durationPerColor, Color[] colors ) {
+			return AnimatedColors.Create( ModHelpersMod.Instance.AnimatedColors, durationPerColor, colors );
 		}
 
-		internal static AnimatedColors Create( AnimatedColorsManager mngr, int duration_per_color, Color[] colors ) {
-			var def = new AnimatedColors( duration_per_color, colors );
+		internal static AnimatedColors Create( AnimatedColorsManager mngr, int durationPerColor, Color[] colors ) {
+			var def = new AnimatedColors( durationPerColor, colors );
 
 			mngr.Defs.Add( def );
 
@@ -42,8 +42,8 @@ namespace HamstarHelpers.Services.AnimatedColor {
 
 		////////////////
 
-		public AnimatedColors( int color_duration, Color[] colors ) {
-			this.ColorDuration = color_duration;
+		public AnimatedColors( int colorDuration, Color[] colors ) {
+			this.ColorDuration = colorDuration;
 			this.CyclePosition = 0;
 			this.Progress = 0;
 			this.Colors = colors;

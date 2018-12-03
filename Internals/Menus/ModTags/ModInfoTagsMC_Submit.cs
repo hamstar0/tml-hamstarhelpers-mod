@@ -20,24 +20,24 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 			}
 
-			Action<string> on_success = delegate ( string output ) {
+			Action<string> onSuccess = delegate ( string output ) {
 				this.InfoDisplay?.SetText( output, Color.Lime );
 				ErrorLogger.Log( "Mod info submit result: " + output );
 			};
 
-			Action<Exception, string> on_fail = ( e, output ) => {
+			Action<Exception, string> onFail = ( e, output ) => {
 				this.InfoDisplay?.SetText( "Error: " + (string.IsNullOrEmpty(output)?e.Message:output), Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 
-			ISet<string> new_tags = this.GetTagsOfState( 1 );
+			ISet<string> newTags = this.GetTagsOfState( 1 );
 
 			// Update snapshot of tags for the given mod (locally)
 			if( this.AllModTagsSnapshot != null ) {
-				this.AllModTagsSnapshot[this.CurrentModName] = new_tags;
+				this.AllModTagsSnapshot[this.CurrentModName] = newTags;
 			}
 
-			PostModInfo.SubmitModInfo( this.CurrentModName, new_tags, on_success, on_fail );
+			PostModInfo.SubmitModInfo( this.CurrentModName, newTags, onSuccess, onFail );
 
 			this.FinishButton.Lock();
 			this.ResetButton.Lock();

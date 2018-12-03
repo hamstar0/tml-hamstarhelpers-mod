@@ -37,21 +37,21 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var modlock = mymod.ModLockHelpers;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			IEnumerable<Mod> all_mods = ModHelpers.GetAllPlayableModsPreferredOrder();
-			ISet<string> mod_names = new HashSet<string>();
+			IEnumerable<Mod> allMods = ModHelpers.GetAllPlayableModsPreferredOrder();
+			ISet<string> modNames = new HashSet<string>();
 
-			foreach( Mod mod in all_mods ) {
-				mod_names.Add( mod.Name );
+			foreach( Mod mod in allMods ) {
+				modNames.Add( mod.Name );
 			}
 
-			modlock.WorldModLocks[ modworld.ObsoleteID2 ] = mod_names;
+			modlock.WorldModLocks[ modworld.ObsoleteID2 ] = modNames;
 
 			modlock.ScanMods( modworld );
 
 			if( mymod.Config.WorldModLockMinimumOnly ) {
-				Main.NewText( "Your world now requires exactly these mods: " + string.Join( ", ", mod_names ) );
+				Main.NewText( "Your world now requires exactly these mods: " + string.Join( ", ", modNames ) );
 			} else {
-				Main.NewText( "Your world now requires at least these mods: " + string.Join( ", ", mod_names ) );
+				Main.NewText( "Your world now requires at least these mods: " + string.Join( ", ", modNames ) );
 			}
 		}
 
@@ -119,27 +119,27 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				return;
 			}
 
-			ISet<string> req_mod_names = this.WorldModLocks[ modworld.ObsoleteID2] ;
-			ISet<string> checked_mod_names = new HashSet<string>();
-			IEnumerable<Mod> all_mods = ModHelpers.GetAllPlayableModsPreferredOrder();
+			ISet<string> reqModNames = this.WorldModLocks[ modworld.ObsoleteID2] ;
+			ISet<string> checkedModNames = new HashSet<string>();
+			IEnumerable<Mod> allMods = ModHelpers.GetAllPlayableModsPreferredOrder();
 
-			foreach( Mod mod in all_mods ) {
-				if( !req_mod_names.Contains( mod.Name ) ) {
+			foreach( Mod mod in allMods ) {
+				if( !reqModNames.Contains( mod.Name ) ) {
 					this.ExtraModNames.Add( mod.Name );
 				} else {
 					this.FoundModNames.Add( mod.Name );
 				}
-				checked_mod_names.Add( mod.Name );
+				checkedModNames.Add( mod.Name );
 			}
 
-			foreach( string mod_name in req_mod_names ) {
-				if( !checked_mod_names.Contains( mod_name ) ) {
-					this.MissingModNames.Add( mod_name );
+			foreach( string modName in reqModNames ) {
+				if( !checkedModNames.Contains( modName ) ) {
+					this.MissingModNames.Add( modName );
 				}
 			}
 
 			this.IsMismatched = ModLockHelpers.IsModMismatchFound();
-//LogHelpers.Log( "req_mod_names:"+string.Join(",",req_mod_names)+
+//LogHelpers.Log( "req_modNames:"+string.Join(",",req_modNames)+
 //", extra:"+string.Join(",",this.ExtraModNames)+
 //", found:"+string.Join(",",this.FoundModNames)+
 //", missing:"+string.Join(",",this.MissingModNames ) );
@@ -153,18 +153,18 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			if( tags.ContainsKey( "world_mod_lock_count" ) ) {
-				int world_count = tags.GetInt( "world_mod_lock_count" );
+				int worldCount = tags.GetInt( "world_mod_lock_count" );
 
-				for( int i = 0; i < world_count; i++ ) {
-					string world_uid = tags.GetString( "world_mod_lock_uid_" + i );
-					int mod_count = tags.GetInt( "world_mod_lock_mods_" + i + "_count" );
+				for( int i = 0; i < worldCount; i++ ) {
+					string worldUid = tags.GetString( "world_mod_lock_uid_" + i );
+					int modCount = tags.GetInt( "world_mod_lock_mods_" + i + "_count" );
 
-					this.WorldModLocks[ world_uid ] = new HashSet<string>();
+					this.WorldModLocks[ worldUid ] = new HashSet<string>();
 
-					for( int j = 0; j < mod_count; j++ ) {
-						string mod_name = tags.GetString( "world_mod_lock_mods_" + i + "_" + j );
-//LogHelpers.Log( "Load world_mod_lock_mods_" + i + "_" + j +": "+mod_name );
-						this.WorldModLocks[ world_uid ].Add( mod_name );
+					for( int j = 0; j < modCount; j++ ) {
+						string modName = tags.GetString( "world_mod_lock_mods_" + i + "_" + j );
+//LogHelpers.Log( "Load world_mod_lock_mods_" + i + "_" + j +": "+modName );
+						this.WorldModLocks[ worldUid ].Add( modName );
 					}
 				}
 			}
@@ -177,16 +177,16 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 			int i = 0;
 			foreach( var kv in this.WorldModLocks ) {
-				string world_uid = kv.Key;
-				ISet<string> mod_names = kv.Value;
+				string worldUid = kv.Key;
+				ISet<string> modNames = kv.Value;
 
-				tags.Set( "world_mod_lock_uid_" + i, world_uid );
-				tags.Set( "world_mod_lock_mods_" + i + "_count", mod_names.Count );
+				tags.Set( "world_mod_lock_uid_" + i, worldUid );
+				tags.Set( "world_mod_lock_mods_" + i + "_count", modNames.Count );
 
 				int j = 0;
-				foreach( string mod_name in mod_names ) {
-//LogHelpers.Log( "Save world_mod_lock_mods_" + i + "_" + j +": "+mod_name );
-					tags.Set( "world_mod_lock_mods_" + i + "_" + j, mod_name );
+				foreach( string modName in modNames ) {
+//LogHelpers.Log( "Save world_mod_lock_mods_" + i + "_" + j +": "+modName );
+					tags.Set( "world_mod_lock_mods_" + i + "_" + j, modName );
 					j++;
 				}
 				i++;
@@ -239,27 +239,27 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 			Vector2 pos = new Vector2( Main.screenWidth / 2, Main.screenHeight / 2 );
 			Vector2 dim = Main.fontDeathText.MeasureString( warning );
-			Vector2 main_pos = pos - (dim / 2);
+			Vector2 mainPos = pos - (dim / 2);
 
-			sb.DrawString( Main.fontDeathText, warning, main_pos, Color.Red );
+			sb.DrawString( Main.fontDeathText, warning, mainPos, Color.Red );
 
 			if( this.FoundModNames.Count > 0 ) {
 				string needed = "Needed mods: " + string.Join( ", ", this.FoundModNames.ToArray() );
-				main_pos.X += 128;
-				main_pos.Y += 48;
-				sb.DrawString( Main.fontMouseText, needed, main_pos, Color.White );
+				mainPos.X += 128;
+				mainPos.Y += 48;
+				sb.DrawString( Main.fontMouseText, needed, mainPos, Color.White );
 			}
 
 			if( this.MissingModNames.Count > 0 ) {
 				string missing = "Missing mods: " + string.Join( ", ", this.MissingModNames.ToArray() );
-				main_pos.Y += 24;
-				sb.DrawString( Main.fontMouseText, missing, main_pos, Color.White );
+				mainPos.Y += 24;
+				sb.DrawString( Main.fontMouseText, missing, mainPos, Color.White );
 			}
 
 			if( this.ExtraModNames.Count > 0 ) {
 				string extra = "Extra mods: " + string.Join( ", ", this.ExtraModNames.ToArray() );
-				main_pos.Y += 24;
-				sb.DrawString( Main.fontMouseText, extra, main_pos, Color.White );
+				mainPos.Y += 24;
+				sb.DrawString( Main.fontMouseText, extra, mainPos, Color.White );
 			}
 		}
 	}

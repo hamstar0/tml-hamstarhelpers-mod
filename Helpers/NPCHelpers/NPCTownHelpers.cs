@@ -8,16 +8,16 @@ using Terraria.Localization;
 
 namespace HamstarHelpers.Helpers.NPCHelpers {
 	public static class NPCTownHelpers {
-		public static void Spawn( int town_npc_type, int tile_x, int tile_y ) {
-			int npc_who = NPC.NewNPC( tile_x * 16, tile_y * 16, town_npc_type, 1, 0f, 0f, 0f, 0f, 255 );
-			NPC npc = Main.npc[ npc_who ];
+		public static void Spawn( int townNpcType, int tileX, int tileY ) {
+			int npcWho = NPC.NewNPC( tileX * 16, tileY * 16, townNpcType, 1, 0f, 0f, 0f, 0f, 255 );
+			NPC npc = Main.npc[ npcWho ];
 
-			Main.townNPCCanSpawn[ town_npc_type ] = false;
-			npc.homeTileX = tile_x;
-			npc.homeTileY = tile_y;
+			Main.townNPCCanSpawn[ townNpcType ] = false;
+			npc.homeTileX = tileX;
+			npc.homeTileY = tileY;
 			npc.homeless = true;
 
-			if( tile_x < WorldGen.bestX ) {
+			if( tileX < WorldGen.bestX ) {
 				npc.direction = 1;
 			} else {
 				npc.direction = -1;
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			}
 
 			//AchievementsHelper.NotifyProgressionEvent( 8 );
-			//if( Main.npc[ npc_who ].type == 160 ) {
+			//if( Main.npc[ npcWho ].type == 160 ) {
 			//	AchievementsHelper.NotifyProgressionEvent( 18 );
 			//}
 		}
@@ -57,13 +57,13 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 		}
 
 
-		public static Chest GetShop( int npc_type ) {
+		public static Chest GetShop( int npcType ) {
 			if( Main.instance == null ) {
 				LogHelpers.Log( "No main instance." );
 				return null;
 			}
 
-			switch( npc_type ) {
+			switch( npcType ) {
 			case NPCID.Merchant:
 				return Main.instance.shop[1];
 			case NPCID.ArmsDealer:

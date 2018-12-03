@@ -23,22 +23,22 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 	class PostGithubModIssueReports {
-		public static void ReportIssue( Mod mod, string issue_title, string issue_body, Action<string> on_success, Action<Exception, string> on_error, Action on_completion=null ) {
+		public static void ReportIssue( Mod mod, string issueTitle, string issueBody, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
 				throw new Exception( "Mod is not eligable for submitting issues." );
 			}
 
-			int max_lines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
+			int maxLines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
 
 			IEnumerable<Mod> mods = ModHelpers.GetAllPlayableModsPreferredOrder();
-			string body_info = string.Join( "\n \n", InfoHelpers.GetGameData( mods ).ToArray() );
-			string body_errors = string.Join( "\n", InfoHelpers.GetErrorLog( max_lines ).ToArray() );
+			string bodyInfo = string.Join( "\n \n", InfoHelpers.GetGameData( mods ).ToArray() );
+			string bodyErrors = string.Join( "\n", InfoHelpers.GetErrorLog( maxLines ).ToArray() );
 			
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
-			string title = "In-game: " + issue_title;
-			string body = body_info;
-			body += "\n \n \n \n" + "Recent error logs:\n```\n" + body_errors + "\n```";
-			body += "\n \n" + issue_body;
+			string title = "In-game: " + issueTitle;
+			string body = bodyInfo;
+			body += "\n \n \n \n" + "Recent error logs:\n```\n" + bodyErrors + "\n```";
+			body += "\n \n" + issueBody;
 
 			var json = new GithubModIssueReportData {
 				githubuser = ModMetaDataManager.GetGithubUserName( mod ),
@@ -46,13 +46,13 @@ namespace HamstarHelpers.Internals.WebRequests {
 				title = title,
 				body = body
 			};
-			string json_str = JsonConvert.SerializeObject( json, Formatting.Indented );
-			byte[] json_bytes = Encoding.UTF8.GetBytes( json_str );
+			string jsonStr = JsonConvert.SerializeObject( json, Formatting.Indented );
+			byte[] jsonBytes = Encoding.UTF8.GetBytes( jsonStr );
 
-			Action<String> on_response = ( output ) => {
-				JObject resp_json = JObject.Parse( output );
-				//JToken data = resp_json.SelectToken( "Data.html_url" );
-				JToken msg = resp_json.SelectToken( "Msg" );
+			Action<String> onResponse = ( output ) => {
+				JObject respJson = JObject.Parse( output );
+				//JToken data = respJson.SelectToken( "Data.html_url" );
+				JToken msg = respJson.SelectToken( "Msg" );
 
 				/*if( data != null ) {
 					string post_at_url = data.ToObject<string>();
@@ -62,13 +62,13 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}*/
 
 				if( msg == null ) {
-					on_success( "Failure." );
+					onSuccess( "Failure." );
 				} else {
-					on_success( msg.ToObject<string>() );
+					onSuccess( msg.ToObject<string>() );
 				}
 			};
 
-			NetHelpers.MakePostRequestAsync( url, json_bytes, on_response, on_error, on_completion );
+			NetHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, onError, onCompletion );
 		}
 	}
 }

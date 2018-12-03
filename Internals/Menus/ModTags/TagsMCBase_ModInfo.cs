@@ -9,33 +9,33 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
-		public string GetModDescriptionFromActiveMod( string mod_name ) {
-			Mod mod = ModLoader.GetMod( mod_name );
+		public string GetModDescriptionFromActiveMod( string modName ) {
+			Mod mod = ModLoader.GetMod( modName );
 			if( mod == null ) {
 				return null;
 			}
 
-			var build_edit = BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
-			string description = (string)build_edit.GetField( "description" );
+			var buildEdit = BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+			string description = (string)buildEdit.GetField( "description" );
 
 			return string.IsNullOrEmpty( description ) ? "" : description;
 		}
 
 
-		public string GetModDescriptionFromUI( string mod_name, ref string err ) {
-			UIPanel msg_box;
-			if( this.MyUI == null || !ReflectionHelpers.GetField<UIPanel>( this.MyUI, "modInfo", out msg_box ) ) {
+		public string GetModDescriptionFromUI( string modName, ref string err ) {
+			UIPanel msgBox;
+			if( this.MyUI == null || !ReflectionHelpers.GetField<UIPanel>( this.MyUI, "modInfo", out msgBox ) ) {
 				err = "No modInfo field.";
 				return "";
 			}
 
-			string mod_desc;
-			if( !ReflectionHelpers.GetField<string>( msg_box, "text", BindingFlags.NonPublic | BindingFlags.Instance, out mod_desc ) ) {
+			string modDesc;
+			if( !ReflectionHelpers.GetField<string>( msgBox, "text", BindingFlags.NonPublic | BindingFlags.Instance, out modDesc ) ) {
 				err = "No modInfo.text field.";
 				return "";
 			}
 
-			return mod_desc;
+			return modDesc;
 		}
 	}
 }

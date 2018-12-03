@@ -11,15 +11,15 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		}
 
 		
-		public static bool IsSolid( Tile tile, bool is_platform_solid = false, bool is_actuated_solid = false ) {
+		public static bool IsSolid( Tile tile, bool isPlatformSolid = false, bool isActuatedSolid = false ) {
 			if( tile == null || !tile.active() ) { return false; }
 			if( !Main.tileSolid[ tile.type ] ) { return false; }
 
-			bool is_top_solid = Main.tileSolidTop[ tile.type ];
-			bool is_passable = tile.inActive();
+			bool isTopSolid = Main.tileSolidTop[ tile.type ];
+			bool isPassable = tile.inActive();
 
-			if( !is_platform_solid && is_top_solid ) { return false; }
-			if( !is_actuated_solid && is_passable ) { return false; }
+			if( !isPlatformSolid && isTopSolid ) { return false; }
+			if( !isActuatedSolid && isPassable ) { return false; }
 			
 			return true;
 		}
@@ -31,9 +31,9 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		}
 
 
-		public static bool IsNotVanillaBombable( int tile_x, int tile_y ) {
-			Tile tile = Framing.GetTileSafely( tile_x, tile_y );
-			return !TileLoader.CanExplode( tile_x, tile_y ) || TileHelpers.IsNotVanillaBombableType( tile );
+		public static bool IsNotVanillaBombable( int tileX, int tileY ) {
+			Tile tile = Framing.GetTileSafely( tileX, tileY );
+			return !TileLoader.CanExplode( tileX, tileY ) || TileHelpers.IsNotVanillaBombableType( tile );
 		}
 
 		public static bool IsNotVanillaBombableType( Tile tile ) {
@@ -55,18 +55,18 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		}
 
 
-		public static bool PlaceTile( int tile_x, int tile_y, int tile_type, int place_style=0, bool muted=false, bool forced=false, int plr_who=-1 ) {
-			if( !WorldGen.PlaceTile( tile_x, tile_y, tile_type, muted, forced, plr_who, place_style ) ) {
+		public static bool PlaceTile( int tileX, int tileY, int tileType, int placeStyle=0, bool muted=false, bool forced=false, int plrWho=-1 ) {
+			if( !WorldGen.PlaceTile( tileX, tileY, tileType, muted, forced, plrWho, placeStyle ) ) {
 				return false;
 			}
 
-			NetMessage.SendData( MessageID.TileChange, -1, -1, null, 1, (float)tile_x, (float)tile_y, (float)tile_type, place_style, 0, 0 );
+			NetMessage.SendData( MessageID.TileChange, -1, -1, null, 1, (float)tileX, (float)tileY, (float)tileType, placeStyle, 0, 0 );
 
 			if( Main.netMode == 1 ) {
-				if( tile_type == TileID.Chairs ) {
-					NetMessage.SendTileSquare( -1, tile_x - 1, tile_y - 1, 3, TileChangeType.None );
-				} else if( tile_type == TileID.Beds || tile_type == TileID.Bathtubs ) {
-					NetMessage.SendTileSquare( -1, tile_x, tile_y, 5, TileChangeType.None );
+				if( tileType == TileID.Chairs ) {
+					NetMessage.SendTileSquare( -1, tileX - 1, tileY - 1, 3, TileChangeType.None );
+				} else if( tileType == TileID.Beds || tileType == TileID.Bathtubs ) {
+					NetMessage.SendTileSquare( -1, tileX, tileY, 5, TileChangeType.None );
 				}
 			}
 

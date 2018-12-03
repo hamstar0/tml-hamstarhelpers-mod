@@ -11,8 +11,8 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	class CustomEntityCoreContractResolver : DefaultContractResolver {
-		protected override IList<JsonProperty> CreateProperties( Type type, MemberSerialization member_serialization ) {
-			IList<JsonProperty> properties = base.CreateProperties( type, member_serialization );
+		protected override IList<JsonProperty> CreateProperties( Type type, MemberSerialization memberSerialization ) {
+			IList<JsonProperty> properties = base.CreateProperties( type, memberSerialization );
 
 			properties = properties.Where( ( p ) => {
 				if( p.DeclaringType.Name != "Entity" ) { return true; }
@@ -106,8 +106,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.direction = copy.direction;
 		}
 
-		public CustomEntityCore( string display_name, int width, int height, Vector2 position, int direction ) {
-			this.DisplayName = display_name;
+		public CustomEntityCore( string displayName, int width, int height, Vector2 position, int direction ) {
+			this.DisplayName = displayName;
 			this.position = position;
 			this.width = width;
 			this.height = height;

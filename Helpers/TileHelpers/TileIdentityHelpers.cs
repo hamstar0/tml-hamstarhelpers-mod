@@ -2935,20 +2935,20 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 		////////////////
 
-		public static string GetVanillaTileName( int tile_type ) {
-			if( !TileIdentityHelpers.VanillaTileData.ContainsKey( tile_type ) || !TileIdentityHelpers.VanillaTileData[tile_type].ContainsKey( -1 ) ) {
+		public static string GetVanillaTileName( int tileType ) {
+			if( !TileIdentityHelpers.VanillaTileData.ContainsKey( tileType ) || !TileIdentityHelpers.VanillaTileData[tileType].ContainsKey( -1 ) ) {
 				return "";
 			}
-			return TileIdentityHelpers.VanillaTileData[tile_type][-1];
+			return TileIdentityHelpers.VanillaTileData[tileType][-1];
 		}
 
 
-		public static bool IsObject( int tile_type ) {
-			return Main.tileFrameImportant[tile_type]
-				|| Main.tileContainer[tile_type]
-				|| Main.tileSign[tile_type]
-				|| Main.tileAlch[tile_type]
-				|| Main.tileTable[tile_type]; //tileFlame
+		public static bool IsObject( int tileType ) {
+			return Main.tileFrameImportant[tileType]
+				|| Main.tileContainer[tileType]
+				|| Main.tileSign[tileType]
+				|| Main.tileAlch[tileType]
+				|| Main.tileTable[tileType]; //tileFlame
 		}
 	}
 }

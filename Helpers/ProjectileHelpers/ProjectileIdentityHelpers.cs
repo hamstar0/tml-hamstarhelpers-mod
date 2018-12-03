@@ -10,8 +10,8 @@ namespace HamstarHelpers.Helpers.ProjectileHelpers {
 			return ProjectileIdentityHelpers.GetQualifiedName( proj.type );
 		}
 
-		public static string GetQualifiedName( int proj_type ) {
-			string name = Lang.GetProjectileName( proj_type ).Value;
+		public static string GetQualifiedName( int projType ) {
+			string name = Lang.GetProjectileName( projType ).Value;
 			return name;
 		}
 

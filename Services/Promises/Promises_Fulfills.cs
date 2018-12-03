@@ -39,36 +39,36 @@ namespace HamstarHelpers.Services.Promises {
 			if( this.WorldLoadPromiseConditionsMet ) { return; }
 			this.WorldLoadPromiseConditionsMet = true;
 
-			Action[] world_load_once_promises;
-			Action[] world_load_each_promises;
-			Action[] post_world_load_once_promises;
-			Action[] post_world_load_each_promises;
+			Action[] worldLoadOncePromises;
+			Action[] worldLoadEachPromises;
+			Action[] postWorldLoadOncePromises;
+			Action[] postWorldLoadEachPromises;
 
 			lock( Promises.WorldLoadOnceLock ) {
-				world_load_once_promises = this.WorldLoadOncePromises.ToArray();
+				worldLoadOncePromises = this.WorldLoadOncePromises.ToArray();
 				this.WorldLoadOncePromises.Clear();
 			}
 			lock( Promises.WorldLoadEachLock ) {
-				world_load_each_promises = this.WorldLoadEachPromises.ToArray();
+				worldLoadEachPromises = this.WorldLoadEachPromises.ToArray();
 			}
 			lock( Promises.PostWorldLoadOnceLock ) {
-				post_world_load_once_promises = this.PostWorldLoadOncePromises.ToArray();
+				postWorldLoadOncePromises = this.PostWorldLoadOncePromises.ToArray();
 				this.PostWorldLoadOncePromises.Clear();
 			}
 			lock( Promises.PostWorldLoadEachLock ) {
-				post_world_load_each_promises = this.PostWorldLoadEachPromises.ToArray();
+				postWorldLoadEachPromises = this.PostWorldLoadEachPromises.ToArray();
 			}
 
-			foreach( Action promise in world_load_once_promises ) {
+			foreach( Action promise in worldLoadOncePromises ) {
 				promise();
 			}
-			foreach( Action promise in world_load_each_promises ) {
+			foreach( Action promise in worldLoadEachPromises ) {
 				promise();
 			}
-			foreach( Action promise in post_world_load_once_promises ) {
+			foreach( Action promise in postWorldLoadOncePromises ) {
 				promise();
 			}
-			foreach( Action promise in post_world_load_each_promises ) {
+			foreach( Action promise in postWorldLoadEachPromises ) {
 				promise();
 			}
 		}
@@ -78,21 +78,21 @@ namespace HamstarHelpers.Services.Promises {
 			if( this.WorldInPlayPromiseConditionsMet ) { return; }
 			this.WorldInPlayPromiseConditionsMet = true;
 
-			Action[] in_play_once_promises;
-			Action[] in_play_each_promises;
+			Action[] inPlayOncePromises;
+			Action[] inPlayEachPromises;
 
 			lock( Promises.WorldInPlayOnceLock ) {
-				in_play_once_promises = this.WorldInPlayOncePromises.ToArray();
+				inPlayOncePromises = this.WorldInPlayOncePromises.ToArray();
 				this.WorldInPlayOncePromises.Clear();
 			}
 			lock( Promises.WorldInPlayEachLock ) {
-				in_play_each_promises = this.WorldInPlayEachPromises.ToArray();
+				inPlayEachPromises = this.WorldInPlayEachPromises.ToArray();
 			}
 
-			foreach( Action promise in in_play_once_promises ) {
+			foreach( Action promise in inPlayOncePromises ) {
 				promise();
 			}
-			foreach( Action promise in in_play_each_promises ) {
+			foreach( Action promise in inPlayEachPromises ) {
 				promise();
 			}
 		}
@@ -102,21 +102,21 @@ namespace HamstarHelpers.Services.Promises {
 			if( this.SafeWorldLoadPromiseConditionsMet ) { return; }
 			this.SafeWorldLoadPromiseConditionsMet = true;
 
-			Action[] safe_world_load_once_promises;
-			Action[] safe_world_load_each_promises;
+			Action[] safeWorldLoadOncePromises;
+			Action[] safeWorldLoadEachPromises;
 
 			lock( Promises.SafeWorldLoadOnceLock ) {
-				safe_world_load_once_promises = this.SafeWorldLoadOncePromises.ToArray();
+				safeWorldLoadOncePromises = this.SafeWorldLoadOncePromises.ToArray();
 				this.SafeWorldLoadOncePromises.Clear();
 			}
 			lock( Promises.SafeWorldLoadEachLock ) {
-				safe_world_load_each_promises = this.SafeWorldLoadEachPromises.ToArray();
+				safeWorldLoadEachPromises = this.SafeWorldLoadEachPromises.ToArray();
 			}
 
-			foreach( Action promise in safe_world_load_once_promises ) {
+			foreach( Action promise in safeWorldLoadOncePromises ) {
 				promise();
 			}
-			foreach( Action promise in safe_world_load_each_promises ) {
+			foreach( Action promise in safeWorldLoadEachPromises ) {
 				promise();
 			}
 		}
@@ -126,21 +126,21 @@ namespace HamstarHelpers.Services.Promises {
 			if( this.WorldUnloadPromiseConditionsMet ) { return; }
 			this.WorldUnloadPromiseConditionsMet = true;
 
-			Action[] world_unload_once_promises;
-			Action[] world_unload_each_promises;
+			Action[] worldUnloadOncePromises;
+			Action[] worldUnloadEachPromises;
 
 			lock( Promises.WorldUnloadOnceLock ) {
-				world_unload_once_promises = this.WorldUnloadOncePromises.ToArray();
+				worldUnloadOncePromises = this.WorldUnloadOncePromises.ToArray();
 				this.WorldUnloadOncePromises.Clear();
 			}
 			lock( Promises.WorldUnloadEachLock ) {
-				world_unload_each_promises = this.WorldUnloadEachPromises.ToArray();
+				worldUnloadEachPromises = this.WorldUnloadEachPromises.ToArray();
 			}
 
-			foreach( Action promise in world_unload_once_promises ) {
+			foreach( Action promise in worldUnloadOncePromises ) {
 				promise();
 			}
-			foreach( Action promise in world_unload_each_promises ) {
+			foreach( Action promise in worldUnloadEachPromises ) {
 				promise();
 			}
 		}
@@ -150,21 +150,21 @@ namespace HamstarHelpers.Services.Promises {
 			if( this.PostWorldUnloadPromiseConditionsMet ) { return; }
 			this.PostWorldUnloadPromiseConditionsMet = true;
 
-			Action[] post_world_unload_once_promises;
-			Action[] post_world_unload_each_promises;
+			Action[] postWorldUnloadOncePromises;
+			Action[] postWorldUnloadEachPromises;
 
 			lock( Promises.PostWorldUnloadOnceLock ) {
-				post_world_unload_once_promises = this.PostWorldUnloadOncePromises.ToArray();
+				postWorldUnloadOncePromises = this.PostWorldUnloadOncePromises.ToArray();
 				this.PostWorldUnloadOncePromises.Clear();
 			}
 			lock( Promises.PostWorldUnloadEachLock ) {
-				post_world_unload_each_promises = this.PostWorldUnloadEachPromises.ToArray();
+				postWorldUnloadEachPromises = this.PostWorldUnloadEachPromises.ToArray();
 			}
 
-			foreach( Action promise in post_world_unload_once_promises ) {
+			foreach( Action promise in postWorldUnloadOncePromises ) {
 				promise();
 			}
-			foreach( Action promise in post_world_unload_each_promises ) {
+			foreach( Action promise in postWorldUnloadEachPromises ) {
 				promise();
 			}
 		}

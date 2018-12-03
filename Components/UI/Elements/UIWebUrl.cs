@@ -25,54 +25,54 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 		
-		public UIWebUrl( UITheme theme, string label, string url, bool hover_url = true, float scale = 0.85f, bool large = false ) : base() {
+		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f, bool large = false ) : base() {
 			this.Theme = theme;
 			this.IsVisited = false;
 
-			this.WillDrawOwnHoverUrl = hover_url;
+			this.WillDrawOwnHoverUrl = hoverUrl;
 			this.Url = url;
 
 			this.TextElem = new UIText( label, scale, large );
 			this.TextElem.TextColor = theme.UrlColor;
 			this.Append( this.TextElem );
 
-			CalculatedStyle label_size = this.TextElem.GetDimensions();
-			float underscore_len = Main.fontMouseText.MeasureString("_").X;
-			float text_len = Main.fontMouseText.MeasureString( label ).X;
-			int line_len = (int)Math.Max( 1f, Math.Round(text_len / (underscore_len - 2)) );
+			CalculatedStyle labelSize = this.TextElem.GetDimensions();
+			float underscoreLen = Main.fontMouseText.MeasureString("_").X;
+			float textLen = Main.fontMouseText.MeasureString( label ).X;
+			int lineLen = (int)Math.Max( 1f, Math.Round(textLen / (underscoreLen - 2)) );
 
-			this.LineElem = new UIText( new String('_', line_len), scale, large );
+			this.LineElem = new UIText( new String('_', lineLen), scale, large );
 			this.LineElem.TextColor = theme.UrlColor;
 			this.Append( this.LineElem );
 
-			this.Width.Set( label_size.Width, 0f );
-			this.Height.Set( label_size.Height, 0f );
+			this.Width.Set( labelSize.Width, 0f );
+			this.Height.Set( labelSize.Height, 0f );
 
-			UIText text_elem = this.TextElem;
-			UIText line_elem = this.LineElem;
+			UIText textElem = this.TextElem;
+			UIText lineElem = this.LineElem;
 
-			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-				if( text_elem.TextColor != theme.UrlVisitColor ) {
-					text_elem.TextColor = theme.UrlLitColor;
-					text_elem.TextColor = theme.UrlLitColor;
+			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement fromElem ) {
+				if( textElem.TextColor != theme.UrlVisitColor ) {
+					textElem.TextColor = theme.UrlLitColor;
+					textElem.TextColor = theme.UrlLitColor;
 				}
 			};
-			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-				if( text_elem.TextColor != theme.UrlVisitColor ) {
-					text_elem.TextColor = theme.UrlColor;
-					text_elem.TextColor = theme.UrlColor;
+			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement fromElem ) {
+				if( textElem.TextColor != theme.UrlVisitColor ) {
+					textElem.TextColor = theme.UrlColor;
+					textElem.TextColor = theme.UrlColor;
 				}
 			};
 
-			this.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+			this.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
 				try {
 					SystemHelpers.OpenUrl( this.Url );
 					//System.Diagnostics.Process.Start( this.Url );
 
 					this.IsVisited = true;
 
-					text_elem.TextColor = theme.UrlVisitColor;
-					line_elem.TextColor = theme.UrlVisitColor;
+					textElem.TextColor = theme.UrlVisitColor;
+					lineElem.TextColor = theme.UrlVisitColor;
 				} catch( Exception e ) {
 					Main.NewText( e.Message );
 				}

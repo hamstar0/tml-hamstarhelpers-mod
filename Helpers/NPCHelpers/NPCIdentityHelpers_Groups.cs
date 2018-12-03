@@ -22,7 +22,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 
 
 		static NPCIdentityHelpers() {
-			var blood_moon = new HashSet<int> {
+			var bloodMoon = new HashSet<int> {
 				NPCID.TheGroom, NPCID.TheBride, NPCID.BloodZombie, NPCID.Drippler,
 				NPCID.CorruptBunny, NPCID.CorruptGoldfish, NPCID.CorruptPenguin,
 				NPCID.CrimsonBunny, NPCID.CrimsonGoldfish, NPCID.CrimsonPenguin,
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			var goblins = new HashSet<int> {
 				NPCID.GoblinPeon, NPCID.GoblinSorcerer, NPCID.GoblinThief, NPCID.GoblinWarrior, NPCID.GoblinArcher, NPCID.GoblinSummoner
 			};
-			var frost_legion = new HashSet<int> {
+			var frostLegion = new HashSet<int> {
 				NPCID.MisterStabby, NPCID.SnowmanGangsta, NPCID.SnowBalla
 			};
 			var pirates = new HashSet<int> {
@@ -43,23 +43,23 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 				NPCID.GigaZapper, NPCID.MartianTurret, NPCID.MartianDrone, NPCID.MartianWalker, NPCID.Scutlix,
 				NPCID.MartianSaucer, NPCID.MartianSaucerCannon, NPCID.MartianSaucerCore, NPCID.MartianSaucerTurret
 			};
-			var solar_eclipse = new HashSet<int> {
+			var solarEclipse = new HashSet<int> {
 				NPCID.Eyezor, NPCID.Frankenstein, NPCID.SwampThing, NPCID.Vampire, NPCID.CreatureFromTheDeep, NPCID.Fritz, NPCID.ThePossessed,
 				NPCID.Mothron, NPCID.MothronEgg, NPCID.MothronSpawn, NPCID.Reaper,
 				NPCID.Butcher, NPCID.DeadlySphere, NPCID.DrManFly, NPCID.Nailhead, NPCID.Psycho
 			};
-			var pumpkin_moon = new HashSet<int> {
+			var pumpkinMoon = new HashSet<int> {
 				NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7,
 				NPCID.Scarecrow8, NPCID.Scarecrow9, NPCID.Scarecrow10,
 				NPCID.Splinterling, NPCID.Hellhound, NPCID.Poltergeist, NPCID.HeadlessHorseman,
 				NPCID.MourningWood, NPCID.Pumpking, NPCID.PumpkingBlade
 			};
-			var frost_moon = new HashSet<int> {
+			var frostMoon = new HashSet<int> {
 				NPCID.PresentMimic, NPCID.Flocko, NPCID.GingerbreadMan, NPCID.Nutcracker, NPCID.NutcrackerSpinning, NPCID.Yeti,
 				NPCID.ZombieElf, NPCID.ZombieElfGirl, NPCID.ElfArcher, NPCID.ElfCopter,
 				NPCID.Krampus, NPCID.Everscream, NPCID.SantaNK1, NPCID.IceQueen
 			};
-			var old_ones_army = new HashSet<int> {
+			var oldOnesArmy = new HashSet<int> {
 				NPCID.DD2LanePortal, NPCID.DD2EterniaCrystal,
 				NPCID.DD2GoblinT1, NPCID.DD2GoblinT2, NPCID.DD2GoblinT3,
 				NPCID.DD2GoblinBomberT1, NPCID.DD2GoblinBomberT2, NPCID.DD2GoblinBomberT3,
@@ -70,36 +70,36 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 				NPCID.DD2DrakinT2, NPCID.DD2DrakinT3, NPCID.DD2DarkMageT1, NPCID.DD2DarkMageT3, NPCID.DD2AttackerTest,
 				NPCID.DD2Betsy
 			};
-			var solar_pillar = new HashSet<int> {
+			var solarPillar = new HashSet<int> {
 				NPCID.LunarTowerSolar, NPCID.SolarCrawltipedeBody, NPCID.SolarCrawltipedeTail, NPCID.SolarCrawltipedeHead,
 				NPCID.SolarDrakomireRider, NPCID.SolarDrakomire, NPCID.SolarSpearman, NPCID.SolarSolenian, NPCID.SolarSroller,
 				NPCID.SolarCorite, NPCID.SolarFlare, NPCID.SolarGoop
 			};
-			var nebula_pillar = new HashSet<int> {
+			var nebulaPillar = new HashSet<int> {
 				NPCID.NebulaBrain, NPCID.NebulaBeast, NPCID.NebulaHeadcrab, NPCID.NebulaSoldier, NPCID.LunarTowerNebula
 			};
-			var vortex_pillar = new HashSet<int> {
+			var vortexPillar = new HashSet<int> {
 				NPCID.VortexHornet, NPCID.VortexHornetQueen, NPCID.VortexLarva, NPCID.VortexRifleman, NPCID.VortexSoldier, NPCID.LunarTowerVortex
 			};
-			var stardust_pillar = new HashSet<int> {
+			var stardustPillar = new HashSet<int> {
 				NPCID.StardustCellBig, NPCID.StardustCellSmall, NPCID.StardustJellyfishBig, NPCID.StardustJellyfishSmall, NPCID.StardustSoldier,
 				NPCID.StardustSpiderBig, NPCID.StardustSpiderSmall, NPCID.StardustWormBody, NPCID.StardustWormHead, NPCID.StardustWormTail,
 				NPCID.LunarTowerStardust
 			};
 
-			NPCIdentityHelpers.VanillaBloodMoonTypes = new ReadOnlySet<int>( blood_moon );
+			NPCIdentityHelpers.VanillaBloodMoonTypes = new ReadOnlySet<int>( bloodMoon );
 			NPCIdentityHelpers.VanillaGoblinArmyTypes = new ReadOnlySet<int>( goblins );
-			NPCIdentityHelpers.VanillaFrostLegionTypes = new ReadOnlySet<int>( frost_legion );
+			NPCIdentityHelpers.VanillaFrostLegionTypes = new ReadOnlySet<int>( frostLegion );
 			NPCIdentityHelpers.VanillaPirateTypes = new ReadOnlySet<int>( pirates );
 			NPCIdentityHelpers.VanillaMartianTypes = new ReadOnlySet<int>( martians );
-			NPCIdentityHelpers.VanillaSolarEclipseTypes = new ReadOnlySet<int>( solar_eclipse );
-			NPCIdentityHelpers.VanillaPumpkingMoonTypes = new ReadOnlySet<int>( pumpkin_moon );
-			NPCIdentityHelpers.VanillaFrostMoonTypes = new ReadOnlySet<int>( frost_moon );
-			NPCIdentityHelpers.VanillaOldOnesArmyTypes = new ReadOnlySet<int>( old_ones_army );
-			NPCIdentityHelpers.VanillaSolarPillarTypes = new ReadOnlySet<int>( solar_pillar );
-			NPCIdentityHelpers.VanillaNebulaPillarTypes = new ReadOnlySet<int>( nebula_pillar );
-			NPCIdentityHelpers.VanillaVortexPillarTypes = new ReadOnlySet<int>( vortex_pillar );
-			NPCIdentityHelpers.VanillaStardustPillarTypes = new ReadOnlySet<int>( stardust_pillar );
+			NPCIdentityHelpers.VanillaSolarEclipseTypes = new ReadOnlySet<int>( solarEclipse );
+			NPCIdentityHelpers.VanillaPumpkingMoonTypes = new ReadOnlySet<int>( pumpkinMoon );
+			NPCIdentityHelpers.VanillaFrostMoonTypes = new ReadOnlySet<int>( frostMoon );
+			NPCIdentityHelpers.VanillaOldOnesArmyTypes = new ReadOnlySet<int>( oldOnesArmy );
+			NPCIdentityHelpers.VanillaSolarPillarTypes = new ReadOnlySet<int>( solarPillar );
+			NPCIdentityHelpers.VanillaNebulaPillarTypes = new ReadOnlySet<int>( nebulaPillar );
+			NPCIdentityHelpers.VanillaVortexPillarTypes = new ReadOnlySet<int>( vortexPillar );
+			NPCIdentityHelpers.VanillaStardustPillarTypes = new ReadOnlySet<int>( stardustPillar );
 		}
 	}
 }

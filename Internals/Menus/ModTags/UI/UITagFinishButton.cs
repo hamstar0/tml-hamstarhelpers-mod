@@ -17,9 +17,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagFinishButton( ModInfoTagsMenuContext menu_context )
+		public UITagFinishButton( ModInfoTagsMenuContext menuContext )
 				: base( UITheme.Vanilla, "", 98f, 24f, -298f, 172f, 0.36f, true ) {
-			this.MenuContext = menu_context;
+			this.MenuContext = menuContext;
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.Text == "Submit Tags" ) {
 					MenuContext.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
@@ -95,9 +95,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				return;
 			}
 
-			string mod_name = this.MenuContext.CurrentModName;
+			string modName = this.MenuContext.CurrentModName;
 
-			if( string.IsNullOrEmpty( mod_name ) ) {
+			if( string.IsNullOrEmpty( modName ) ) {
 				this.Disable();
 				return;
 			}
@@ -107,15 +107,15 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				return;
 			}
 
-			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( mod_name ) ) {
+			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( modName ) ) {
 				this.Disable();
 				return;
 			}
 
 			ISet<string> tags = this.MenuContext.GetTagsOfState( 1 );
 
-			if( this.MenuContext.AllModTagsSnapshot != null && this.MenuContext.AllModTagsSnapshot.ContainsKey(mod_name) ) {
-				if( tags.SetEquals( this.MenuContext.AllModTagsSnapshot[mod_name] ) ) {
+			if( this.MenuContext.AllModTagsSnapshot != null && this.MenuContext.AllModTagsSnapshot.ContainsKey(modName) ) {
+				if( tags.SetEquals( this.MenuContext.AllModTagsSnapshot[modName] ) ) {
 					this.Disable();
 					return;
 				}

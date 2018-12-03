@@ -2,15 +2,12 @@
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Promises;
-using HamstarHelpers.Tiles;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent.Generation;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.World.Generation;
+
 
 namespace HamstarHelpers {
 	class ModHelpersWorld : ModWorld {

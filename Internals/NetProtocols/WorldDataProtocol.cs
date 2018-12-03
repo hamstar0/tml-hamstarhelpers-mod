@@ -13,12 +13,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected WorldDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected WorldDataProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
 
-		protected override void SetServerDefaults( int from_who ) {
+		protected override void SetServerDefaults( int fromWho ) {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 

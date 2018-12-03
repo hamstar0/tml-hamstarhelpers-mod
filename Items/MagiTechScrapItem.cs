@@ -1,6 +1,4 @@
-using HamstarHelpers.Tiles;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 
@@ -29,20 +27,20 @@ namespace HamstarHelpers.Items {
 
 			this.item.material = true;
 
-			this.item.consumable = true;
-			this.item.createTile = this.mod.TileType<MagiTechScrapTile>();
+			//this.item.consumable = true;
+			//this.item.createTile = this.mod.TileType<MagiTechScrapTile>();
 		}
 
 
 		public override void AddRecipes() {
-			var mymod = (ModHelpersMod)this.mod;
+			/*var mymod = (ModHelpersMod)this.mod;
 
 			var recipe = new ModRecipe( mymod );
 			recipe.AddTile( TileID.WorkBenches );
 			recipe.AddIngredient( this.mod.ItemType<MagiTechScrapWallItem>(), 4 );
 			recipe.SetResult( this.mod.ItemType<MagiTechScrapItem>(), 1 );
-			recipe.AddRecipe();
-			
+			recipe.AddRecipe();*/
+
 			/*var recipe1 = new MagiTechScrapRecipe1( mymod );
 			var recipe2 = new MagiTechScrapRecipe2( mymod );
 			recipe1.AddRecipe();

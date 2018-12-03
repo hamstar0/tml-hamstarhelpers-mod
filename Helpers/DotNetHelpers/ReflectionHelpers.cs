@@ -8,17 +8,17 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public partial class ReflectionHelpers {
-		public static Type GetClassTypeFrom( string assemble_name, string class_name ) {
-			return typeof( ModLoader ).Assembly.GetType( class_name );
+		public static Type GetClassTypeFrom( string assembleName, string className ) {
+			return typeof( ModLoader ).Assembly.GetType( className );
 		}
 
 
-		public static IEnumerable<Type> GetAllAvailableSubTypes( Type parent_type ) {
-			var mod_types = ModLoader.LoadedMods.Select( mod => mod.GetType() );
-			var assemblies = mod_types.Select( mod_type => mod_type.Assembly );
+		public static IEnumerable<Type> GetAllAvailableSubTypes( Type parentType ) {
+			var modTypes = ModLoader.LoadedMods.Select( mod => mod.GetType() );
+			var assemblies = modTypes.Select( modType => modType.Assembly );
 			var subclasses = from assembly in assemblies
 							 from type in assembly.GetTypes()
-							 where type.IsSubclassOf( parent_type ) && !type.IsAbstract
+							 where type.IsSubclassOf( parentType ) && !type.IsAbstract
 							 select type;
 
 			return subclasses;
@@ -27,30 +27,30 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////////////////
 
-		public static bool Get<T>( Object instance, string prop_or_field_name, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( instance, prop_or_field_name, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( instance, prop_or_field_name, out val );
+		public static bool Get<T>( Object instance, string propOrFieldName, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( instance, propOrFieldName, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( instance, propOrFieldName, out val );
 			}
 			return true;
 		}
 
-		public static bool Get<T>( Object instance, string prop_or_field_name, BindingFlags flags, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( instance, prop_or_field_name, flags, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( instance, prop_or_field_name, flags, out val );
+		public static bool Get<T>( Object instance, string propOrFieldName, BindingFlags flags, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( instance, propOrFieldName, flags, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( instance, propOrFieldName, flags, out val );
 			}
 			return true;
 		}
 
-		public static bool Get<T>( Type obj_type, Object instance, string prop_or_field_name, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( obj_type, instance, prop_or_field_name, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( obj_type, instance, prop_or_field_name, out val );
+		public static bool Get<T>( Type objType, Object instance, string propOrFieldName, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( objType, instance, propOrFieldName, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( objType, instance, propOrFieldName, out val );
 			}
 			return true;
 		}
 
-		public static bool Get<T>( Type obj_type, Object instance, string prop_or_field_name, BindingFlags flags, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( obj_type, instance, prop_or_field_name, flags, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( obj_type, instance, prop_or_field_name, flags, out val );
+		public static bool Get<T>( Type objType, Object instance, string propOrFieldName, BindingFlags flags, out T val ) {
+			if( !ReflectionHelpers.GetField<T>( objType, instance, propOrFieldName, flags, out val ) ) {
+				return ReflectionHelpers.GetProperty<T>( objType, instance, propOrFieldName, flags, out val );
 			}
 			return true;
 		}
@@ -58,88 +58,88 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////////////////
 
-		public static bool GetField<T>( Object instance, string field_name, out T field_val ) {
-			field_val = default( T );
+		public static bool GetField<T>( Object instance, string fieldName, out T fieldVal ) {
+			fieldVal = default( T );
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			FieldInfo field = objtype.GetField( field_name );
+			FieldInfo field = objtype.GetField( fieldName );
 			if( field == null ) { return false; }
 			
-			field_val = (T)field.GetValue( instance );
+			fieldVal = (T)field.GetValue( instance );
 			return true;
 		}
 
-		public static bool GetField<T>( Object instance, string field_name, BindingFlags flags, out T field_val ) {
-			field_val = default( T );
+		public static bool GetField<T>( Object instance, string fieldName, BindingFlags flags, out T fieldVal ) {
+			fieldVal = default( T );
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			FieldInfo field = objtype.GetField( field_name, flags );
+			FieldInfo field = objtype.GetField( fieldName, flags );
 			if( field == null ) { return false; }
 
-			field_val = (T)field.GetValue( instance );
+			fieldVal = (T)field.GetValue( instance );
 			return true;
 		}
 
-		public static bool GetField<T>( Type obj_type, Object instance, string field_name, out T field_val ) {
-			field_val = default( T );
+		public static bool GetField<T>( Type objType, Object instance, string fieldName, out T fieldVal ) {
+			fieldVal = default( T );
 
-			FieldInfo field = obj_type.GetField( field_name );
+			FieldInfo field = objType.GetField( fieldName );
 			if( field == null ) { return false; }
 
-			field_val = (T)field.GetValue( instance );
+			fieldVal = (T)field.GetValue( instance );
 			return true;
 		}
 
-		public static bool GetField<T>( Type obj_type, Object instance, string field_name, BindingFlags flags, out T field_val ) {
-			field_val = default( T );
+		public static bool GetField<T>( Type objType, Object instance, string fieldName, BindingFlags flags, out T fieldVal ) {
+			fieldVal = default( T );
 
-			FieldInfo field = obj_type.GetField( field_name, flags );
+			FieldInfo field = objType.GetField( fieldName, flags );
 			if( field == null ) { return false; }
 
-			field_val = (T)field.GetValue( instance );
+			fieldVal = (T)field.GetValue( instance );
 			return true;
 		}
 
 		////
 
-		public static bool SetField( Object instance, string field_name, object value ) {
+		public static bool SetField( Object instance, string fieldName, object value ) {
 			if( instance == null ) { return false; }
 
-			Type obj_type = instance.GetType();
-			FieldInfo field = obj_type.GetField( field_name );
+			Type objType = instance.GetType();
+			FieldInfo field = objType.GetField( fieldName );
 			if( field == null ) { return false; }
 			
 			field.SetValue( instance, value );
 			return true;
 		}
 
-		public static bool SetField( Object instance, string field_name, BindingFlags flags, object value ) {
+		public static bool SetField( Object instance, string fieldName, BindingFlags flags, object value ) {
 			if( instance == null ) { return false; }
 
-			Type obj_type = instance.GetType();
-			FieldInfo field = obj_type.GetField( field_name, flags );
+			Type objType = instance.GetType();
+			FieldInfo field = objType.GetField( fieldName, flags );
 			if( field == null ) { return false; }
 			
 			field.SetValue( instance, value );
 			return true;
 		}
 
-		public static bool SetField( Type obj_type, Object instance, string field_name, object value ) {
+		public static bool SetField( Type objType, Object instance, string fieldName, object value ) {
 			if( instance == null ) { return false; }
 
-			FieldInfo field = obj_type.GetField( field_name );
+			FieldInfo field = objType.GetField( fieldName );
 			if( field == null ) { return false; }
 
 			field.SetValue( instance, value );
 			return true;
 		}
 
-		public static bool SetField( Type obj_type, Object instance, string field_name, BindingFlags flags, object value ) {
+		public static bool SetField( Type objType, Object instance, string fieldName, BindingFlags flags, object value ) {
 			if( instance == null ) { return false; }
 
-			FieldInfo field = obj_type.GetField( field_name, flags );
+			FieldInfo field = objType.GetField( fieldName, flags );
 			if( field == null ) { return false; }
 
 			field.SetValue( instance, value );
@@ -149,58 +149,58 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////////////////
 
-		public static bool GetProperty<T>( Object instance, string prop_name, out T prop_val ) {
-			prop_val = default( T );
+		public static bool GetProperty<T>( Object instance, string propName, out T propVal ) {
+			propVal = default( T );
 			if( instance == null ) { return false; }
 
-			Type obj_type = instance.GetType();
-			PropertyInfo prop = obj_type.GetProperty( prop_name );
+			Type objType = instance.GetType();
+			PropertyInfo prop = objType.GetProperty( propName );
 			if( prop == null ) { return false; }
 
-			prop_val = (T)prop.GetValue( instance );
+			propVal = (T)prop.GetValue( instance );
 			return true;
 		}
 
-		public static bool GetProperty<T>( Object instance, string prop_name, BindingFlags flags, out T prop_val ) {
-			prop_val = default( T );
+		public static bool GetProperty<T>( Object instance, string propName, BindingFlags flags, out T propVal ) {
+			propVal = default( T );
 			if( instance == null ) { return false; }
 
-			Type obj_type = instance.GetType();
-			PropertyInfo prop = obj_type.GetProperty( prop_name, flags );
+			Type objType = instance.GetType();
+			PropertyInfo prop = objType.GetProperty( propName, flags );
 			if( prop == null ) { return false; }
 
-			prop_val = (T)prop.GetValue( instance );
+			propVal = (T)prop.GetValue( instance );
 			return true;
 		}
 
-		public static bool GetProperty<T>( Type obj_type, Object instance, string prop_name, out T prop_val ) {
-			prop_val = default( T );
+		public static bool GetProperty<T>( Type objType, Object instance, string propName, out T propVal ) {
+			propVal = default( T );
 
-			PropertyInfo prop = obj_type.GetProperty( prop_name );
+			PropertyInfo prop = objType.GetProperty( propName );
 			if( prop == null ) { return false; }
 
-			prop_val = (T)prop.GetValue( instance );
+			propVal = (T)prop.GetValue( instance );
 			return true;
 		}
 
-		public static bool GetProperty<T>( Type obj_type, Object instance, string prop_name, BindingFlags flags, out T prop_val ) {
-			prop_val = default( T );
+		public static bool GetProperty<T>( Type objType, Object instance, string propName, BindingFlags flags, out T propVal ) {
+			propVal = default( T );
 
-			PropertyInfo prop = obj_type.GetProperty( prop_name, flags );
+			PropertyInfo prop = objType.GetProperty( propName, flags );
 			if( prop == null ) { return false; }
 
-			prop_val = (T)prop.GetValue( instance );
+			propVal = (T)prop.GetValue( instance );
 			return true;
 		}
 
 		////
 
-		public static bool SetProperty( Object instance, string prop_name, object value ) {
+		public static bool SetProperty( Object instance, string propName, object value ) {
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			FieldInfo field = objtype.GetField( prop_name );
-			PropertyInfo prop = objtype.GetProperty( prop_name );
+			FieldInfo field = objtype.GetField( propName );
+			PropertyInfo prop = objtype.GetProperty( propName );
 			if( prop == null ) { return false; }
 			
 			prop.SetValue( instance, value );
@@ -210,24 +210,24 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////////////////
 		
-		public static bool RunMethod<T>( Object instance, string method_name, object[] args, out T return_val ) {
-			return_val = default( T );
+		public static bool RunMethod<T>( Object instance, string methodName, object[] args, out T returnVal ) {
+			returnVal = default( T );
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			MethodInfo method = objtype.GetMethod( method_name );
+			MethodInfo method = objtype.GetMethod( methodName );
 			if( method == null ) { return false; }
 
 			method.Invoke( instance, args );
 			return true;
 		}
 
-		public static bool RunMethod<T>( Object instance, string method_name, BindingFlags flags, object[] args, out T return_val ) {
-			return_val = default( T );
+		public static bool RunMethod<T>( Object instance, string methodName, BindingFlags flags, object[] args, out T returnVal ) {
+			returnVal = default( T );
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			MethodInfo method = objtype.GetMethod( method_name, flags );
+			MethodInfo method = objtype.GetMethod( methodName, flags );
 			if( method == null ) { return false; }
 
 			method.Invoke( instance, args );

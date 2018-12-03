@@ -9,60 +9,60 @@ namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
 		private void ComputeGroups<T>( IList<Tuple<string, string[], Func<T, IDictionary<string, ISet<int>>, bool>>> matchers,
 				ref IDictionary<string, ReadOnlySet<int>> groups,
-				ref IDictionary<int, ReadOnlySet<string>> groups_per_ent ) where T : Entity {
-			var raw_groups_per_ent = new Dictionary<int, ISet<string>>();
+				ref IDictionary<int, ReadOnlySet<string>> groupsPerEnt ) where T : Entity {
+			var rawGroupsPerEnt = new Dictionary<int, ISet<string>>();
 			
 			IList<T> pool = this.GetPool<T>();
 
 			for( int i=0; i<matchers.Count; i++ ) {
-				string grp_name = matchers[i].Item1;
+				string grpName = matchers[i].Item1;
 				string[] dependencies = matchers[i].Item2;
-				var matcher_func = matchers[i].Item3;
+				var matcherFunc = matchers[i].Item3;
 				ISet<int> grp;
 
-				if( !this.ComputeGroupMatch( pool, grp_name, dependencies, matcher_func, out grp ) ) {
+				if( !this.ComputeGroupMatch( pool, grpName, dependencies, matcherFunc, out grp ) ) {
 					matchers.Add( matchers[i] );
 					continue;
 				}
 
 				lock( EntityGroups.MyLock ) {
-					groups[ grp_name ] = new ReadOnlySet<int>( grp );
+					groups[ grpName ] = new ReadOnlySet<int>( grp );
 				}
 
 				foreach( int idx in grp ) {
-					if( !raw_groups_per_ent.ContainsKey( idx ) ) {
-						raw_groups_per_ent[ idx ] = new HashSet<string>();
+					if( !rawGroupsPerEnt.ContainsKey( idx ) ) {
+						rawGroupsPerEnt[ idx ] = new HashSet<string>();
 					}
-					raw_groups_per_ent[ idx ].Add( grp_name );
+					rawGroupsPerEnt[ idx ].Add( grpName );
 				}
 			}
 
 			lock( EntityGroups.MyLock ) {
-				foreach( var kv in raw_groups_per_ent ) {
-					groups_per_ent[ kv.Key ] = new ReadOnlySet<string>( kv.Value );
+				foreach( var kv in rawGroupsPerEnt ) {
+					groupsPerEnt[ kv.Key ] = new ReadOnlySet<string>( kv.Value );
 				}
 			}
 		}
 
 
-		private bool ComputeGroupMatch<T>( IList<T> entity_pool,
-				string group_name,
+		private bool ComputeGroupMatch<T>( IList<T> entityPool,
+				string groupName,
 				string[] dependencies,
-				Func<T, IDictionary<string, ISet<int>>, bool> matcher_func,
-				out ISet<int> entity_ids_of_group )
+				Func<T, IDictionary<string, ISet<int>>, bool> matcherFunc,
+				out ISet<int> entityIdsOfGroup )
 				where T : Entity {
-			entity_ids_of_group = new HashSet<int>();
-			IDictionary<string, ISet<int>> deps = this.GetGroups<T>( group_name, dependencies );
+			entityIdsOfGroup = new HashSet<int>();
+			IDictionary<string, ISet<int>> deps = this.GetGroups<T>( groupName, dependencies );
 
-			for( int i = 1; i < entity_pool.Count; i++ ) {
+			for( int i = 1; i < entityPool.Count; i++ ) {
 				try {
 					lock( EntityGroups.MyLock ) {
-						if( matcher_func( entity_pool[i], deps ) ) {
-							entity_ids_of_group.Add( i );
+						if( matcherFunc( entityPool[i], deps ) ) {
+							entityIdsOfGroup.Add( i );
 						}
 					}
 				} catch( Exception ) {
-					LogHelpers.Log( "EntityGroups.ComputeGroups - Compute fail for '" + group_name + "' with ent (" + i + ") " + ( entity_pool[i] == null ? "null" : entity_pool[i].ToString() ) );
+					LogHelpers.Log( "EntityGroups.ComputeGroups - Compute fail for '" + groupName + "' with ent (" + i + ") " + ( entityPool[i] == null ? "null" : entityPool[i].ToString() ) );
 				}
 			}
 
@@ -74,38 +74,38 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		private ISet<string> _AlreadyRequeued = new HashSet<string>();
 
-		private IDictionary<string, ISet<int>> GetGroups<T>( string group_name, string[] dependencies )
+		private IDictionary<string, ISet<int>> GetGroups<T>( string groupName, string[] dependencies )
 				where T : Entity {
 			var deps = new Dictionary<string, ISet<int>>();
 			if( dependencies == null ) { return deps; }
 
-			IReadOnlyDictionary<string, ReadOnlySet<int>> entity_groups;
+			IReadOnlyDictionary<string, ReadOnlySet<int>> entityGroups;
 
 			switch( typeof( T ).Name ) {
 			case "Item":
-				entity_groups = this._ItemGroups;
+				entityGroups = this._ItemGroups;
 				break;
 			case "NPC":
-				entity_groups = this._NPCGroups;
+				entityGroups = this._NPCGroups;
 				break;
 			case "Projectile":
-				entity_groups = this._ProjGroups;
+				entityGroups = this._ProjGroups;
 				break;
 			default:
 				throw new NotImplementedException( "Invalid Entity type " + typeof( T ).Name );
 			}
 
 			foreach( string dependency in dependencies ) {
-				if( !entity_groups.ContainsKey( dependency ) ) {
-					if( this._AlreadyRequeued.Contains( group_name ) ) {
-						throw new Exception( "Entity group " + group_name + " could not find dependency " + dependency + "." );
+				if( !entityGroups.ContainsKey( dependency ) ) {
+					if( this._AlreadyRequeued.Contains( groupName ) ) {
+						throw new Exception( "Entity group " + groupName + " could not find dependency " + dependency + "." );
 					}
-					this._AlreadyRequeued.Add( group_name );
+					this._AlreadyRequeued.Add( groupName );
 
 					return deps;
 				}
 
-				deps[dependency] = entity_groups[dependency];
+				deps[dependency] = entityGroups[dependency];
 			}
 
 			return deps;

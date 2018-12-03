@@ -29,24 +29,24 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		////////////////
 
-		protected SessionMenuContext( bool display_info, bool occludes_logo ) {
-			this.DisplayInfo = display_info;
-			this.OccludesLogo = occludes_logo;
+		protected SessionMenuContext( bool displayInfo, bool occludesLogo ) {
+			this.DisplayInfo = displayInfo;
+			this.OccludesLogo = occludesLogo;
 			this.OldLogo1 = Main.logoTexture;
 			this.OldLogo2 = Main.logo2Texture;
 			this.InfoDisplay = new UIInfoDisplay();
 		}
 		
-		public override void OnContexualize( string ui_class_name, string context_name ) {
+		public override void OnContexualize( string uiClassName, string contextName ) {
 			if( this.DisplayInfo ) {
-				WidgetMenuContext widget_ctx;
+				WidgetMenuContext widgetCtx;
 
-				if( MenuContextService.GetMenuContext( ui_class_name, "ModHelpers: Info Display" ) == null ) {
-					widget_ctx = new WidgetMenuContext( this.InfoDisplay, false );
-					MenuContextService.AddMenuContext( ui_class_name, "ModHelpers: Info Display", widget_ctx );
+				if( MenuContextService.GetMenuContext( uiClassName, "ModHelpers: Info Display" ) == null ) {
+					widgetCtx = new WidgetMenuContext( this.InfoDisplay, false );
+					MenuContextService.AddMenuContext( uiClassName, "ModHelpers: Info Display", widgetCtx );
 				} else {
-					widget_ctx = (WidgetMenuContext)MenuContextService.GetMenuContext( ui_class_name, "ModHelpers: Info Display" );
-					this.InfoDisplay = (UIInfoDisplay)widget_ctx.MyElement;
+					widgetCtx = (WidgetMenuContext)MenuContextService.GetMenuContext( uiClassName, "ModHelpers: Info Display" );
+					this.InfoDisplay = (UIInfoDisplay)widgetCtx.MyElement;
 				}
 			}
 		}
@@ -79,18 +79,18 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		protected void RecalculateMenuObjects() {
 			if( Main.screenWidth < (800 + 128) ) {
-				Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
+				Mod ohMod = ModLoader.GetMod( "OverhaulMod" );
 
-				if( oh_mod != null ) {
-					Type oh_mod_type = oh_mod.GetType();
-					var oh_logo_pos_field = oh_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static );
+				if( ohMod != null ) {
+					Type ohModType = ohMod.GetType();
+					var ohLogoPosField = ohModType.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static );
 
-					if( oh_logo_pos_field != null ) {
+					if( ohLogoPosField != null ) {
 						if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
-							this.OldOverhaulLogoPos = (Vector2)oh_logo_pos_field.GetValue( oh_mod );
+							this.OldOverhaulLogoPos = (Vector2)ohLogoPosField.GetValue( ohMod );
 						}
 
-						oh_logo_pos_field.SetValue( oh_mod, new Vector2( -384, -384 ) );
+						ohLogoPosField.SetValue( ohMod, new Vector2( -384, -384 ) );
 					}
 				}
 			}
@@ -98,14 +98,14 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		protected void ResetMenuObjects() {
 			if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
-				Mod oh_mod = ModLoader.GetMod( "OverhaulMod" );
+				Mod ohMod = ModLoader.GetMod( "OverhaulMod" );
 
-				if( oh_mod != null ) {
-					Type overhaul_mod_type = oh_mod.GetType();
-					var menu_data_pos_field = overhaul_mod_type.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.Static );
+				if( ohMod != null ) {
+					Type overhaulModType = ohMod.GetType();
+					var menuDataPosField = overhaulModType.GetField( "mainMenuDataOffset", BindingFlags.Public | BindingFlags.Static );
 
-					if( menu_data_pos_field != null ) {
-						menu_data_pos_field.SetValue( oh_mod, this.OldOverhaulLogoPos );
+					if( menuDataPosField != null ) {
+						menuDataPosField.SetValue( ohMod, this.OldOverhaulLogoPos );
 					}
 				}
 			}

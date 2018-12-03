@@ -11,12 +11,12 @@ namespace HamstarHelpers.Components.UI.Menus {
 
 		////////////////
 
-		public WidgetMenuContext( UIElement my_elem, bool is_inner ) {
-			this.MyElement = my_elem;
-			this.IsInner = is_inner;
+		public WidgetMenuContext( UIElement myElem, bool isInner ) {
+			this.MyElement = myElem;
+			this.IsInner = isInner;
 		}
 
-		public override void OnContexualize( string ui_class_name, string context_name ) {
+		public override void OnContexualize( string uiClassName, string contextName ) {
 		}
 
 
@@ -36,15 +36,15 @@ namespace HamstarHelpers.Components.UI.Menus {
 
 
 		////////////////
-
+		
 		private UIElement GetInsertElem( UIState ui ) {
 			if( this.IsInner ) {
-				UIElement ui_outer_container = MenuContextService.GetMenuContainerOuter( ui );
-				UIElement ui_inner_container = MenuContextService.GetMenuContainerInner( ui_outer_container );
+				UIElement uiOuterContainer = MenuContextService.GetMenuContainerOuter( ui );
+				UIElement uiInnerContainer = MenuContextService.GetMenuContainerInner( uiOuterContainer );
 
-				return MenuContextService.GetMenuContainerInsertPoint( ui_inner_container );
+				return MenuContextService.GetMenuContainerInsertPoint( uiInnerContainer );
 			} else {
-				return ui;//ui_outer_container;
+				return ui;//uiOuterContainer;
 			}
 		}
 	}

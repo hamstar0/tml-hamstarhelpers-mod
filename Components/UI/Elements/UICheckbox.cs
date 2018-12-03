@@ -48,14 +48,14 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public UICheckbox( string label, string title, bool is_clickable = true, float text_scale = 1, bool large = false )
-				: base( label, text_scale, large ) {
+		public UICheckbox( string label, string title, bool isClickable = true, float textScale = 1, bool large = false )
+				: base( label, textScale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
 				UICheckbox.LoadTextures();
 			}
 
 			this.Title = title;
-			this.IsClickable = is_clickable;
+			this.IsClickable = isClickable;
 
 			this.SetText( "   " + label );
 			this.Recalculate();
@@ -72,8 +72,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 		
 		protected override void DrawSelf( SpriteBatch sb ) {
-			CalculatedStyle inner_pos = base.GetInnerDimensions();
-			Vector2 pos = new Vector2( inner_pos.X, inner_pos.Y - 5 );
+			CalculatedStyle innerPos = base.GetInnerDimensions();
+			Vector2 pos = new Vector2( innerPos.X, innerPos.Y - 5 );
 
 			sb.Draw( UICheckbox.CheckboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f );
 			if( this.Selected ) {

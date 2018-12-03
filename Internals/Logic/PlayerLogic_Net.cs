@@ -88,21 +88,21 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void NetReceiveDataClient( ISet<int> perma_buff_ids, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
-			this.PermaBuffsById = perma_buff_ids;
-			this.HasBuffIds = has_buff_ids;
-			this.EquipSlotsToItemTypes = equip_slots_to_item_types;
+		public void NetReceiveDataClient( ISet<int> permaBuffIds, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+			this.PermaBuffsById = permaBuffIds;
+			this.HasBuffIds = hasBuffIds;
+			this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
 		}
 
-		public void NetReceiveDataServer( ISet<int> perma_buff_ids, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
-			this.PermaBuffsById = perma_buff_ids;
-			this.HasBuffIds = has_buff_ids;
-			this.EquipSlotsToItemTypes = equip_slots_to_item_types;
+		public void NetReceiveDataServer( ISet<int> permaBuffIds, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+			this.PermaBuffsById = permaBuffIds;
+			this.HasBuffIds = hasBuffIds;
+			this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
 		}
 
 
-		public void NetReceiveIdServer( bool has_uid, string uid ) {
-			this.HasLoadedUID = has_uid;
+		public void NetReceiveIdServer( bool hasUid, string uid ) {
+			this.HasLoadedUID = hasUid;
 			this.PrivateUID = uid;
 		}
 	}

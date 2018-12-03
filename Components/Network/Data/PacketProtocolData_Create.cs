@@ -8,8 +8,8 @@ namespace HamstarHelpers.Components.Network.Data {
 		internal Type FactoryType { get; private set; }
 
 
-		internal PacketProtocolDataConstructorLock( Type factory_type ) {
-			this.FactoryType = factory_type;
+		internal PacketProtocolDataConstructorLock( Type factoryType ) {
+			this.FactoryType = factoryType;
 		}
 	}
 
@@ -21,18 +21,18 @@ namespace HamstarHelpers.Components.Network.Data {
 			protected abstract void Initialize( T data );
 
 			public T Create() {
-				Type data_type = typeof( T );
-				Type factory_type = this.GetType();
-				Type factory_container_type = factory_type.DeclaringType;
+				Type dataType = typeof( T );
+				Type factoryType = this.GetType();
+				Type factoryContainerType = factoryType.DeclaringType;
 				
-				if( data_type != factory_container_type ) {
-					throw new NotImplementedException( "Invalid PacketProtocolData factory for class " + data_type.Name + "; expected " + factory_container_type.Name );
+				if( dataType != factoryContainerType ) {
+					throw new NotImplementedException( "Invalid PacketProtocolData factory for class " + dataType.Name + "; expected " + factoryContainerType.Name );
 				}
 
-				T data = (T)Activator.CreateInstance( factory_container_type,
+				T data = (T)Activator.CreateInstance( factoryContainerType,
 					BindingFlags.Instance | BindingFlags.NonPublic,
 					null,
-					new object[] { new PacketProtocolDataConstructorLock( factory_type ) },
+					new object[] { new PacketProtocolDataConstructorLock( factoryType ) },
 					null
 				);
 				this.Initialize( data );
@@ -46,11 +46,11 @@ namespace HamstarHelpers.Components.Network.Data {
 		////////////////
 
 		/*private Type GetMainFactoryType<T>() where T : PacketProtocolData {
-			Type factory_type = typeof( Factory<T> );
+			Type factoryType = typeof( Factory<T> );
 			Type[] nesteds = this.GetType().GetNestedTypes( BindingFlags.Static | BindingFlags.NonPublic );
 
 			foreach( var nested in nesteds ) {
-				if( nested.IsSubclassOf( factory_type ) && !nested.IsAbstract ) {
+				if( nested.IsSubclassOf( factoryType ) && !nested.IsAbstract ) {
 					return nested;
 				}
 			}
@@ -65,12 +65,12 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 		
-		internal static PacketProtocolData CreateRaw( Type data_type ) {
-			if( !data_type.IsSubclassOf(typeof(PacketProtocolData)) ) {
+		internal static PacketProtocolData CreateRaw( Type dataType ) {
+			if( !dataType.IsSubclassOf(typeof(PacketProtocolData)) ) {
 				throw new NotImplementedException("Not a PacketProtocolData subclass.");
 			}
 
-			var data = (PacketProtocolData)Activator.CreateInstance( data_type,
+			var data = (PacketProtocolData)Activator.CreateInstance( dataType,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
 				new object[] { new PacketProtocolDataConstructorLock( typeof( PacketProtocolData ) ) },
@@ -83,8 +83,8 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 
-		protected PacketProtocolData( PacketProtocolDataConstructorLock ctor_lock ) {
-			if( ctor_lock == null ) {
+		protected PacketProtocolData( PacketProtocolDataConstructorLock ctorLock ) {
+			if( ctorLock == null ) {
 				throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Must be factory generated or cloned." );
 			}
 		}

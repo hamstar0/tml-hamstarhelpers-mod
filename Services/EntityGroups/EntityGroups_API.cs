@@ -11,43 +11,43 @@ using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
 		public static void Enable() {
-			var ent_grps = ModHelpersMod.Instance.EntityGroups;
-			ent_grps.IsEnabled = true;
+			var entGrps = ModHelpersMod.Instance.EntityGroups;
+			entGrps.IsEnabled = true;
 		}
 
 
 		////////////////
 
-		public static void AddCustomItemGroup( string group_name, string[] group_dependencies, Func<Item, IDictionary<string, ISet<int>>, bool> matcher ) {
+		public static void AddCustomItemGroup( string groupName, string[] groupDependencies, Func<Item, IDictionary<string, ISet<int>>, bool> matcher ) {
 			lock( EntityGroups.MyLock ) {
-				var ent_grps = ModHelpersMod.Instance.EntityGroups;
-				if( !ent_grps.IsEnabled ) { throw new Exception("Entity groups not enabled."); }
-				if( ent_grps.CustomItemMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
+				var entGrps = ModHelpersMod.Instance.EntityGroups;
+				if( !entGrps.IsEnabled ) { throw new Exception("Entity groups not enabled."); }
+				if( entGrps.CustomItemMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
-				var entry = new Tuple<string, string[], ItemMatcher>( group_name, group_dependencies, matcher );
-				ent_grps.CustomItemMatchers.Add( entry );
+				var entry = new Tuple<string, string[], ItemMatcher>( groupName, groupDependencies, matcher );
+				entGrps.CustomItemMatchers.Add( entry );
 			}
 		}
 
-		public static void AddCustomNPCGroup( string name, string[] group_dependencies, Func<NPC, IDictionary<string, ISet<int>>, bool> matcher ) {
+		public static void AddCustomNPCGroup( string name, string[] groupDependencies, Func<NPC, IDictionary<string, ISet<int>>, bool> matcher ) {
 			lock( EntityGroups.MyLock ) {
-				var ent_grps = ModHelpersMod.Instance.EntityGroups;
-				if( !ent_grps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
-				if( ent_grps.CustomNPCMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
+				var entGrps = ModHelpersMod.Instance.EntityGroups;
+				if( !entGrps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
+				if( entGrps.CustomNPCMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
-				var entry = new Tuple<string, string[], NPCMatcher>( name, group_dependencies, matcher );
-				ent_grps.CustomNPCMatchers.Add( entry );
+				var entry = new Tuple<string, string[], NPCMatcher>( name, groupDependencies, matcher );
+				entGrps.CustomNPCMatchers.Add( entry );
 			}
 		}
 
-		public static void AddCustomProjectileGroup( string name, string[] group_dependencies, Func<Projectile, IDictionary<string, ISet<int>>, bool> matcher ) {
+		public static void AddCustomProjectileGroup( string name, string[] groupDependencies, Func<Projectile, IDictionary<string, ISet<int>>, bool> matcher ) {
 			lock( EntityGroups.MyLock ) {
-				var ent_grps = ModHelpersMod.Instance.EntityGroups;
-				if( !ent_grps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
-				if( ent_grps.CustomProjMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
+				var entGrps = ModHelpersMod.Instance.EntityGroups;
+				if( !entGrps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
+				if( entGrps.CustomProjMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
-				var entry = new Tuple<string, string[], ProjMatcher>( name, group_dependencies, matcher );
-				ent_grps.CustomProjMatchers.Add( entry );
+				var entry = new Tuple<string, string[], ProjMatcher>( name, groupDependencies, matcher );
+				entGrps.CustomProjMatchers.Add( entry );
 			}
 		}
 

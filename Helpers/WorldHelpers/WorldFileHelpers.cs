@@ -19,13 +19,13 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 					SocialAPI.Cloud.Delete( data.Path );
 				}
 
-				string t_path = Path.ChangeExtension( data.Path, ".twld" );
+				string tpath = Path.ChangeExtension( data.Path, ".twld" );
 
 				if( !data.IsCloudSave ) {
-					FileOperationAPIWrapper.MoveToRecycleBin( t_path );
-					FileOperationAPIWrapper.MoveToRecycleBin( t_path + ".bak" );
+					FileOperationAPIWrapper.MoveToRecycleBin( tPath );
+					FileOperationAPIWrapper.MoveToRecycleBin( tPath + ".bak" );
 				} else if( SocialAPI.Cloud != null ) {
-					SocialAPI.Cloud.Delete( t_path );
+					SocialAPI.Cloud.Delete( tPath );
 				}
 			} catch { }
 
@@ -33,26 +33,26 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		}*/
 
 		
-		public static void EraseWorld( WorldFileData data, bool also_bak=true ) {
+		public static void EraseWorld( WorldFileData data, bool alsoBak=true ) {
 			try {
 				if( !data.IsCloudSave ) {
 					File.Delete( data.Path );
-					if( also_bak ) {
+					if( alsoBak ) {
 						File.Delete( data.Path + ".bak" );
 					}
 				} else if( SocialAPI.Cloud != null ) {
 					SocialAPI.Cloud.Delete( data.Path );
 				}
 
-				string t_path = Path.ChangeExtension( data.Path, ".twld" );
+				string tPath = Path.ChangeExtension( data.Path, ".twld" );
 
 				if( !data.IsCloudSave ) {
-					File.Delete( t_path );
-					if( also_bak ) {
-						File.Delete( t_path + ".bak" );
+					File.Delete( tPath );
+					if( alsoBak ) {
+						File.Delete( tPath + ".bak" );
 					}
 				} else if( SocialAPI.Cloud != null ) {
-					SocialAPI.Cloud.Delete( t_path );
+					SocialAPI.Cloud.Delete( tPath );
 				}
 
 				LogHelpers.Log( "WorldFileHelpers.EraseWorld - World \"" + data.Name + "\" deleted. ("+data.Path+")" );

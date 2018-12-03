@@ -9,48 +9,48 @@ namespace HamstarHelpers.Components.UI {
 			return (UITheme)this.MemberwiseClone();
 		}
 
-		public void Switch( UITheme new_theme ) {
+		public void Switch( UITheme newTheme ) {
 			foreach( FieldInfo field in typeof( UITheme ).GetFields() ) {
-				field.SetValue( this, field.GetValue( new_theme ) );
+				field.SetValue( this, field.GetValue( newTheme ) );
 			}
 
-			/*this.ButtonBgColor = new_theme.ButtonBgColor;
-			this.ButtonBgDisabledColor = new_theme.ButtonBgDisabledColor;
-			this.ButtonBgLitColor = new_theme.ButtonBgLitColor;
-			this.ButtonEdgeColor = new_theme.ButtonEdgeColor;
-			this.ButtonEdgeDisabledColor = new_theme.ButtonEdgeDisabledColor;
-			this.ButtonEdgeLitColor = new_theme.ButtonEdgeLitColor;
-			this.ButtonTextColor = new_theme.ButtonTextColor;
-			this.ButtonTextDisabledColor = new_theme.ButtonTextDisabledColor;
-			this.ButtonTextLitColor = new_theme.ButtonTextLitColor;
-			this.HeadBgColor = new_theme.HeadBgColor;
-			this.HeadEdgeColor = new_theme.HeadEdgeColor;
-			this.InputBgColor = new_theme.InputBgColor;
-			this.InputBgDisabledColor = new_theme.InputBgDisabledColor;
-			this.InputEdgeColor = new_theme.InputEdgeColor;
-			this.InputEdgeDisabledColor = new_theme.InputEdgeDisabledColor;
-			this.InputTextColor = new_theme.InputTextColor;
-			this.InputTextDisabledColor = new_theme.InputTextDisabledColor;
-			this.ListBgColor = new_theme.ListBgColor;
-			this.ListEdgeColor = new_theme.ListEdgeColor;
-			this.ListItemBgColor = new_theme.ListItemBgColor;
-			this.ListItemBgLitColor = new_theme.ListItemBgLitColor;
-			this.ListItemEdgeColor = new_theme.ListItemEdgeColor;
-			this.ListItemEdgeLitColor = new_theme.ListItemEdgeLitColor;
-			this.ListItemEdgeSelectedColor = new_theme.ListItemEdgeSelectedColor;
-			this.MainBgColor = new_theme.MainBgColor;
-			this.MainEdgeColor = new_theme.MainEdgeColor;
-			this.ModListBgColor = new_theme.ModListBgColor;
-			this.ModListEdgeColor = new_theme.ModListEdgeColor;
-			this.ModListItemBgColor = new_theme.ModListItemBgColor;
-			this.ModListItemBgLitColor = new_theme.ModListItemBgLitColor;
-			this.ModListItemBgSelectedColor = new_theme.ModListItemBgSelectedColor;
-			this.ModListItemEdgeColor = new_theme.ModListItemEdgeColor;
-			this.ModListItemEdgeLitColor = new_theme.ModListItemEdgeLitColor;
-			this.ModListItemEdgeSelectedColor = new_theme.ModListItemEdgeSelectedColor;
-			this.UrlColor = new_theme.UrlColor;
-			this.UrlLitColor = new_theme.UrlLitColor;
-			this.UrlVisitColor = new_theme.UrlVisitColor;*/
+			/*this.ButtonBgColor = newTheme.ButtonBgColor;
+			this.ButtonBgDisabledColor = newTheme.ButtonBgDisabledColor;
+			this.ButtonBgLitColor = newTheme.ButtonBgLitColor;
+			this.ButtonEdgeColor = newTheme.ButtonEdgeColor;
+			this.ButtonEdgeDisabledColor = newTheme.ButtonEdgeDisabledColor;
+			this.ButtonEdgeLitColor = newTheme.ButtonEdgeLitColor;
+			this.ButtonTextColor = newTheme.ButtonTextColor;
+			this.ButtonTextDisabledColor = newTheme.ButtonTextDisabledColor;
+			this.ButtonTextLitColor = newTheme.ButtonTextLitColor;
+			this.HeadBgColor = newTheme.HeadBgColor;
+			this.HeadEdgeColor = newTheme.HeadEdgeColor;
+			this.InputBgColor = newTheme.InputBgColor;
+			this.InputBgDisabledColor = newTheme.InputBgDisabledColor;
+			this.InputEdgeColor = newTheme.InputEdgeColor;
+			this.InputEdgeDisabledColor = newTheme.InputEdgeDisabledColor;
+			this.InputTextColor = newTheme.InputTextColor;
+			this.InputTextDisabledColor = newTheme.InputTextDisabledColor;
+			this.ListBgColor = newTheme.ListBgColor;
+			this.ListEdgeColor = newTheme.ListEdgeColor;
+			this.ListItemBgColor = newTheme.ListItemBgColor;
+			this.ListItemBgLitColor = newTheme.ListItemBgLitColor;
+			this.ListItemEdgeColor = newTheme.ListItemEdgeColor;
+			this.ListItemEdgeLitColor = newTheme.ListItemEdgeLitColor;
+			this.ListItemEdgeSelectedColor = newTheme.ListItemEdgeSelectedColor;
+			this.MainBgColor = newTheme.MainBgColor;
+			this.MainEdgeColor = newTheme.MainEdgeColor;
+			this.ModListBgColor = newTheme.ModListBgColor;
+			this.ModListEdgeColor = newTheme.ModListEdgeColor;
+			this.ModListItemBgColor = newTheme.ModListItemBgColor;
+			this.ModListItemBgLitColor = newTheme.ModListItemBgLitColor;
+			this.ModListItemBgSelectedColor = newTheme.ModListItemBgSelectedColor;
+			this.ModListItemEdgeColor = newTheme.ModListItemEdgeColor;
+			this.ModListItemEdgeLitColor = newTheme.ModListItemEdgeLitColor;
+			this.ModListItemEdgeSelectedColor = newTheme.ModListItemEdgeSelectedColor;
+			this.UrlColor = newTheme.UrlColor;
+			this.UrlLitColor = newTheme.UrlLitColor;
+			this.UrlVisitColor = newTheme.UrlVisitColor;*/
 		}
 
 

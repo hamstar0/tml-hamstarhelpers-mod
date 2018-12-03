@@ -7,7 +7,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		private static void QuickSendToServerBase<T>( bool sync_to_clients )
+		private static void QuickSendToServerBase<T>( bool syncToClients )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 1 ) {
 				throw new HamstarException( "Can only send as client." );
@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.Network {
 			T t = (T)PacketProtocolData.CreateRaw( typeof(T) );
 			t.SetClientDefaults();
 
-			t.SendToServer( sync_to_clients );
+			t.SendToServer( syncToClients );
 		}
 
 
@@ -46,9 +46,9 @@ namespace HamstarHelpers.Components.Network {
 		/// Shorthand to send a default instance of this protocol's data to a client. Requires `SetServerDefaults()`
 		/// to be implemented.
 		/// </summary>
-		/// <param name="to_who">Main.player index of player (client) receiving this data. -1 for all clients.</param>
-		/// <param name="ignore_who">Main.player index of player (client) being ignored. -1 for no client.</param>
-		public static void QuickSendToClient<T>( int to_who, int ignore_who )
+		/// <param name="toWho">Main.player index of player (client) receiving this data. -1 for all clients.</param>
+		/// <param name="ignoreWho">Main.player index of player (client) being ignored. -1 for no client.</param>
+		public static void QuickSendToClient<T>( int toWho, int ignoreWho )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Can only send as client." );
@@ -56,12 +56,12 @@ namespace HamstarHelpers.Components.Network {
 			
 			T t = (T)PacketProtocolData.CreateRaw( typeof(T) );
 			try {
-				t.SetServerDefaults( to_who );
+				t.SetServerDefaults( toWho );
 			} catch( NotImplementedException ) {
 				t.SetServerDefaults();
 			}
 
-			t.SendToClient( to_who, ignore_who );
+			t.SendToClient( toWho, ignoreWho );
 		}
 
 		////////////////
@@ -70,9 +70,9 @@ namespace HamstarHelpers.Components.Network {
 		/// Shorthand to send a request for a default instance of this protocol's data from a client.
 		/// Requires `SetClientDefaults()` to be implemented.
 		/// </summary>
-		/// <param name="to_who">Main.player index of player (client) being requested for this data. -1 for all clients.</param>
-		/// <param name="ignore_who">Main.player index of player (client) being ignored. -1 for no client.</param>
-		public static void QuickRequestToClient<T>( int to_who, int ignore_who )
+		/// <param name="toWho">Main.player index of player (client) being requested for this data. -1 for all clients.</param>
+		/// <param name="ignoreWho">Main.player index of player (client) being ignored. -1 for no client.</param>
+		public static void QuickRequestToClient<T>( int toWho, int ignoreWho )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Not server." );
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Components.Network {
 			
 			T t = (T)PacketProtocolData.CreateRaw( typeof(T) );
 
-			t.SendRequestToClient( to_who, ignore_who );
+			t.SendRequestToClient( toWho, ignoreWho );
 		}
 
 

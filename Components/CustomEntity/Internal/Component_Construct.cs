@@ -18,12 +18,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected CustomEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
-			Type base_factory_type = typeof( CustomEntityComponentFactory<> );
+		protected CustomEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
+			Type baseFactoryType = typeof( CustomEntityComponentFactory<> );
 
-			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof(CustomEntityComponentFactory<>), ctor_lock.FactoryType) ) {
-				if( ctor_lock.FactoryType != typeof( PacketProtocolData ) ) {
-					throw new NotImplementedException( "CustomEntityComponent " + this.GetType().Name + " uses invalid factory " + ctor_lock.FactoryType.Name );
+			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof(CustomEntityComponentFactory<>), ctorLock.FactoryType) ) {
+				if( ctorLock.FactoryType != typeof( PacketProtocolData ) ) {
+					throw new NotImplementedException( "CustomEntityComponent " + this.GetType().Name + " uses invalid factory " + ctorLock.FactoryType.Name );
 				}
 			}
 		}

@@ -20,14 +20,14 @@ namespace HamstarHelpers.Components.Config {
 
 
 	public partial class JsonConfig<T> : JsonConfig where T : class {
-		public static string Serialize( T data, JsonSerializerSettings json_settings ) {
+		public static string Serialize( T data, JsonSerializerSettings jsonSettings ) {
 			lock( JsonConfig.MyLock ) {
-				return JsonConvert.SerializeObject( data, Formatting.Indented, json_settings );
+				return JsonConvert.SerializeObject( data, Formatting.Indented, jsonSettings );
 			}
 		}
-		public static T Deserialize( string data, JsonSerializerSettings json_settings ) {
+		public static T Deserialize( string data, JsonSerializerSettings jsonSettings ) {
 			lock( JsonConfig.MyLock ) {
-				return JsonConvert.DeserializeObject<T>( data, json_settings );
+				return JsonConvert.DeserializeObject<T>( data, jsonSettings );
 			}
 		}
 
@@ -52,11 +52,11 @@ namespace HamstarHelpers.Components.Config {
 
 		////////////////
 
-		public JsonConfig( string file_name, string relative_path, T defaults_copy_only, JsonSerializerSettings json_settings ) {
-			this.FileName = file_name;
-			this.PathName = relative_path;
-			this.Data = defaults_copy_only;
-			this.JsonSettings = json_settings;
+		public JsonConfig( string fileName, string relativePath, T defaultsCopyOnly, JsonSerializerSettings jsonSettings ) {
+			this.FileName = fileName;
+			this.PathName = relativePath;
+			this.Data = defaultsCopyOnly;
+			this.JsonSettings = jsonSettings;
 
 			lock( JsonConfig.MyFileLock ) {
 				Directory.CreateDirectory( Main.SavePath );
@@ -64,14 +64,14 @@ namespace HamstarHelpers.Components.Config {
 			}
 		}
 
-		public JsonConfig( string file_name, string relative_path, JsonSerializerSettings json_settings ) :
-			this( file_name, relative_path, (T)Activator.CreateInstance( typeof(T) ), json_settings ) { }
+		public JsonConfig( string fileName, string relativePath, JsonSerializerSettings jsonSettings ) :
+			this( fileName, relativePath, (T)Activator.CreateInstance( typeof(T) ), jsonSettings ) { }
 
-		public JsonConfig( string file_name, string relative_path ) :
-			this( file_name, relative_path, new JsonSerializerSettings() ) { }
+		public JsonConfig( string fileName, string relativePath ) :
+			this( fileName, relativePath, new JsonSerializerSettings() ) { }
 
-		public JsonConfig( string file_name, string relative_path, T defaults_copy_only ) :
-			this( file_name, relative_path, defaults_copy_only, new JsonSerializerSettings() ) { }
+		public JsonConfig( string fileName, string relativePath, T defaultsCopyOnly ) :
+			this( fileName, relativePath, defaultsCopyOnly, new JsonSerializerSettings() ) { }
 
 
 		////////////////
@@ -80,17 +80,17 @@ namespace HamstarHelpers.Components.Config {
 			return JsonConfig<T>.Serialize( this.Data, this.JsonSettings );
 		}
 
-		public void DeserializeMe( string str_data, out bool success ) {
+		public void DeserializeMe( string strData, out bool success ) {
 			T data = null;
 			success = false;
 
 			try {
-				data = JsonConfig<T>.Deserialize( str_data, this.JsonSettings );
+				data = JsonConfig<T>.Deserialize( strData, this.JsonSettings );
 
 				this.Data = data;
 				success = true;
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.JsonConfig.DeserializeMe - Error for "+this.FileName+" (no input? "+(str_data==null)+", no output? "+(data==null)+"): " + e.ToString() );
+				LogHelpers.Log( "!ModHelpers.JsonConfig.DeserializeMe - Error for "+this.FileName+" (no input? "+(strData==null)+", no output? "+(data==null)+"): " + e.ToString() );
 			}
 		}
 
@@ -147,8 +147,8 @@ namespace HamstarHelpers.Components.Config {
 
 			if( this.Data is ConfigurationDataBase ) {
 				var data = (object)this.Data;
-				var config_data = (ConfigurationDataBase)data;
-				config_data.OnLoad( success );
+				var configData = (ConfigurationDataBase)data;
+				configData.OnLoad( success );
 			}
 
 			return success;
@@ -164,8 +164,8 @@ namespace HamstarHelpers.Components.Config {
 
 			if( this.Data is ConfigurationDataBase ) {
 				var data = (object)this.Data;
-				var config_data = (ConfigurationDataBase)data;
-				config_data.OnSave();
+				var configData = (ConfigurationDataBase)data;
+				configData.OnSave();
 			}
 		}
 

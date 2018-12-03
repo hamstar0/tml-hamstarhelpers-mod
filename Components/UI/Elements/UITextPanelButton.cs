@@ -23,11 +23,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 			var self = this;
 
 			theme.ApplyButton( this );
-			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement fromElem ) {
 				if( !self.IsEnabled ) { return; }
 				theme.ApplyButtonLit( self );
 			};
-			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement fromElem ) {
 				if( !self.IsEnabled ) { return; }
 				theme.ApplyButton( self );
 			};
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		/*private void DrawHoverTextIfHover( GameTime game_time ) {
+		/*private void DrawHoverTextIfHover( GameTime gameTime ) {
 			if( string.IsNullOrEmpty( this.HoverText ) ) { return; }
 
 			if( this.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {

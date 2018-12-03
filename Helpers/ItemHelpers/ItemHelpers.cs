@@ -70,25 +70,25 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		////////////////
 
 		public static int CalculateStandardUseTime( Item item ) {
-			int use_time;
+			int useTime;
 
 			// No exact science for this one (Note: No accommodations made for other mods' non-standard use of useTime!)
 			if( item.melee || item.useTime == 0 ) {
-				use_time = item.useAnimation;
+				useTime = item.useAnimation;
 			} else {
-				use_time = item.useTime;
-				if( item.reuseDelay > 0 ) { use_time = (use_time + item.reuseDelay) / 2; }
+				useTime = item.useTime;
+				if( item.reuseDelay > 0 ) { useTime = (useTime + item.reuseDelay) / 2; }
 			}
 
 			if( item.useTime <= 0 || item.useTime == 100 ) {    // 100 = default amount
 				if( item.useAnimation > 0 && item.useAnimation != 100 ) {   // 100 = default amount
-					use_time = item.useAnimation;
+					useTime = item.useAnimation;
 				} else {
-					use_time = 100;
+					useTime = 100;
 				}
 			}
 
-			return use_time;
+			return useTime;
 		}
 	}
 }

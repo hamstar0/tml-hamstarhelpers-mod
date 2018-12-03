@@ -63,13 +63,13 @@ namespace HamstarHelpers.Commands {
 			}
 
 			try {
-				object[] call_args = new object[args.Length - 1];
+				object[] callArgs = new object[args.Length - 1];
 
 				for( int i = 1; i < args.Length; i++ ) {
-					call_args[i - 1] = DotNetHelpers.ParseToInferredPrimitiveType( args[i] );
+					callArgs[i - 1] = DotNetHelpers.ParseToInferredPrimitiveType( args[i] );
 				}
 
-				callmod.Call( call_args );
+				callmod.Call( callArgs );
 			} catch( Exception e ) {
 				caller.Reply( e.Message, Color.Red );
 			}

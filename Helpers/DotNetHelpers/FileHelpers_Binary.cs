@@ -6,24 +6,24 @@ using Terraria.Utilities;
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public static partial class FileHelpers {
-		public static bool SaveBinaryFile<T>( T obj, string full_path, bool is_cloud, bool backup_old, JsonSerializerSettings json_settings )
+		public static bool SaveBinaryFile<T>( T obj, string fullPath, bool isCloud, bool backupOld, JsonSerializerSettings jsonSettings )
 				where T : class {
-			if( backup_old && FileUtilities.Exists( full_path, is_cloud ) ) {
-				FileUtilities.Copy( full_path, full_path + ".bak", is_cloud );
+			if( backupOld && FileUtilities.Exists( fullPath, isCloud ) ) {
+				FileUtilities.Copy( fullPath, fullPath + ".bak", isCloud );
 			}
 
-			string json_str = JsonConvert.SerializeObject( obj, obj.GetType(), json_settings );
+			string jsonStr = JsonConvert.SerializeObject( obj, obj.GetType(), jsonSettings );
 
-			if( is_cloud ) {
+			if( isCloud ) {
 				if( SocialAPI.Cloud != null ) { return false; }
 
-				using( Stream mem_stream = (Stream)new MemoryStream() ) {
-					FileHelpers.ToStream( json_str, mem_stream );
-					SocialAPI.Cloud.Write( full_path, ( (MemoryStream)mem_stream ).ToArray() );
+				using( Stream memStream = (Stream)new MemoryStream() ) {
+					FileHelpers.ToStream( jsonStr, memStream );
+					SocialAPI.Cloud.Write( fullPath, ( (MemoryStream)memStream ).ToArray() );
 				}
 			} else {
-				using( Stream file_stream = (Stream)new FileStream( full_path, FileMode.Create, FileAccess.Write ) ) {
-					FileHelpers.ToStream( json_str, file_stream );
+				using( Stream fileStream = (Stream)new FileStream( fullPath, FileMode.Create, FileAccess.Write ) ) {
+					FileHelpers.ToStream( jsonStr, fileStream );
 				}
 			}
 
@@ -31,35 +31,35 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		}
 
 
-		public static T LoadBinaryFile<T>( string full_path, bool is_cloud, JsonSerializerSettings json_settings )
+		public static T LoadBinaryFile<T>( string fullPath, bool isCloud, JsonSerializerSettings jsonSettings )
 				where T : class {
-			if( !FileUtilities.Exists( full_path, is_cloud ) ) {
+			if( !FileUtilities.Exists( fullPath, isCloud ) ) {
 				return null;
 			}
 
-			byte[] buf = FileUtilities.ReadAllBytes( full_path, is_cloud );
+			byte[] buf = FileUtilities.ReadAllBytes( fullPath, isCloud );
 			if( buf.Length < 1 || buf[0] != 0x1F || buf[1] != 0x8B ) {
 				return null;
 			}
 
-			using( var mem_stream = new MemoryStream( buf ) ) {
-				string json_str = FileHelpers.FromStream( mem_stream );
-				return JsonConvert.DeserializeObject<T>( json_str, json_settings );
+			using( var memStream = new MemoryStream( buf ) ) {
+				string jsonStr = FileHelpers.FromStream( memStream );
+				return JsonConvert.DeserializeObject<T>( jsonStr, jsonSettings );
 			}
 		}
 
 
 		////////////////
 
-		public static bool SaveBinaryFile<T>( T obj, string full_path, bool is_cloud, bool backup_old )
+		public static bool SaveBinaryFile<T>( T obj, string fullPath, bool isCloud, bool backupOld )
 				where T : class {
-			return FileHelpers.SaveBinaryFile<T>( obj, full_path, is_cloud, backup_old, new JsonSerializerSettings() );
+			return FileHelpers.SaveBinaryFile<T>( obj, fullPath, isCloud, backupOld, new JsonSerializerSettings() );
 		}
 
 
-		public static T LoadBinaryFile<T>( string full_path, bool is_cloud )
+		public static T LoadBinaryFile<T>( string fullPath, bool isCloud )
 				where T : class {
-			return FileHelpers.LoadBinaryFile<T>( full_path, is_cloud, new JsonSerializerSettings() );
+			return FileHelpers.LoadBinaryFile<T>( fullPath, isCloud, new JsonSerializerSettings() );
 		}
 	}
 }

@@ -35,11 +35,11 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				}
 			}
 			bool immune = player.immune;
-			int immune_time = player.immuneTime;
+			int immuneTime = player.immuneTime;
 
 			player.Spawn();
 			player.immune = immune;
-			player.immuneTime = immune_time;
+			player.immuneTime = immuneTime;
 		}
 
 
@@ -47,11 +47,11 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			player.grappling[0] = -1;
 			player.grapCount = 0;
 
-			bool is_immune = player.immune;
-			int immune_time = player.immuneTime;
+			bool isImmune = player.immune;
+			int immuneTime = player.immuneTime;
 			player.Spawn();
-			player.immune = is_immune;
-			player.immuneTime = immune_time;
+			player.immune = isImmune;
+			player.immuneTime = immuneTime;
 
 			if( Main.netMode <= 1 ) {
 				player.Teleport( pos, style );
@@ -77,15 +77,15 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		}
 
 
-		public static void SetSpawnPoint( Player player, int tile_x, int tile_y ) {
-			IDictionary<string, IDictionary<int, int>> spawn_map;
-			bool success = DataStore.Get( PlayerHelpers.SpawnPointKey, out spawn_map );
+		public static void SetSpawnPoint( Player player, int tileX, int tileY ) {
+			IDictionary<string, IDictionary<int, int>> spawnMap;
+			bool success = DataStore.Get( PlayerHelpers.SpawnPointKey, out spawnMap );
 
-			player.SpawnX = tile_x;
-			player.SpawnY = tile_y;
+			player.SpawnX = tileX;
+			player.SpawnY = tileY;
 
 			if( !success ) {
-				spawn_map = new Dictionary<string, IDictionary<int, int>>();
+				spawnMap = new Dictionary<string, IDictionary<int, int>>();
 
 				for( int i = 0; i < 200; i++ ) {
 					string key1 = player.spN[i];
@@ -95,22 +95,22 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 						break;
 					}
 
-					if( !spawn_map.ContainsKey( key1 ) ) {
-						spawn_map[ key1 ] = new Dictionary<int, int>();
+					if( !spawnMap.ContainsKey( key1 ) ) {
+						spawnMap[ key1 ] = new Dictionary<int, int>();
 					}
-					spawn_map[key1][key2] = i;
+					spawnMap[key1][key2] = i;
 				}
 
-				DataStore.Set( PlayerHelpers.SpawnPointKey, spawn_map );
+				DataStore.Set( PlayerHelpers.SpawnPointKey, spawnMap );
 			}
 
-			if( spawn_map.ContainsKey( Main.worldName ) && spawn_map[ Main.worldName ].ContainsKey( Main.worldID ) ) {
-				int idx = spawn_map[Main.worldName][Main.worldID];
+			if( spawnMap.ContainsKey( Main.worldName ) && spawnMap[ Main.worldName ].ContainsKey( Main.worldID ) ) {
+				int idx = spawnMap[Main.worldName][Main.worldID];
 
-				player.spX[idx] = tile_x;
-				player.spY[idx] = tile_y;
+				player.spX[idx] = tileX;
+				player.spY[idx] = tileY;
 			} else {
-				player.ChangeSpawn( tile_x, tile_y );
+				player.ChangeSpawn( tileX, tileY );
 
 				DataStore.Remove( PlayerHelpers.SpawnPointKey );	// <- Force rebuild
 			}
@@ -128,14 +128,14 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				return 0;
 			}
 
-			int safety_min = 25 + player.extraFall;
+			int safetyMin = 25 + player.extraFall;
 			int damage = (int)(player.position.Y / 16f) - player.fallStart;
 
 			if( player.stoned ) {
 				return (int)(((float)damage * player.gravDir - 2f) * 20f);
 			}
 
-			if( (player.gravDir == 1f && damage > safety_min) || (player.gravDir == -1f && damage < -safety_min) ) {
+			if( (player.gravDir == 1f && damage > safetyMin) || (player.gravDir == -1f && damage < -safetyMin) ) {
 				if( player.noFallDmg ) {
 					return 0;
 				}
@@ -145,11 +145,11 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 					}
 				}
 
-				int final_damage = (int)((float)damage * player.gravDir - (float)safety_min) * 10;
+				int finalDamage = (int)((float)damage * player.gravDir - (float)safetyMin) * 10;
 				if( player.mount.Active ) {
-					final_damage = (int)((float)final_damage * player.mount.FallDamage);
+					finalDamage = (int)((float)finalDamage * player.mount.FallDamage);
 				}
-				return final_damage;
+				return finalDamage;
 			}
 
 			return 0;
@@ -157,7 +157,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 
 		public static float LooselyAssessPower( Player player ) {
-			float item_count = 0;
+			float itemCount = 0;
 			float tally = 0;
 
 			for( int i=0; i<PlayerHelpers.InventoryHotbarSize; i++ ) {
@@ -165,7 +165,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant(item) ) { continue; }
 
 				tally += ItemAttributeHelpers.LooselyAppraise( item );
-				item_count += 1;
+				itemCount += 1;
 			}
 
 			for( int i=0; i<player.armor.Length; i++ ) {
@@ -173,7 +173,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
 
 				tally += ItemAttributeHelpers.LooselyAppraise( item );
-				item_count += 1;
+				itemCount += 1;
 			}
 
 			for( int i = 0; i < player.miscEquips.Length; i++ ) {
@@ -181,41 +181,41 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
 
 				tally += ItemAttributeHelpers.LooselyAppraise( item );
-				item_count += 1;
+				itemCount += 1;
 			}
 
-			float tech_factor = tally / (item_count * ItemAttributeHelpers.HighestVanillaRarity);
-			float defense_factor = 1f + ((float)player.statDefense * 0.01f);
+			float techFactor = tally / (itemCount * ItemAttributeHelpers.HighestVanillaRarity);
+			float defenseFactor = 1f + ((float)player.statDefense * 0.01f);
 			float vitality = (float)player.statLifeMax / 20f;
-			float vitality_factor = (vitality / (4f * ItemAttributeHelpers.HighestVanillaRarity)) * defense_factor;
+			float vitalityFactor = (vitality / (4f * ItemAttributeHelpers.HighestVanillaRarity)) * defenseFactor;
 
-			return (tech_factor + vitality_factor) / 2f;
+			return (techFactor + vitalityFactor) / 2f;
 		}
 
 
-		public static bool IsIncapacitated( Player player, bool freedom_needed=false, bool arms_needed=false, bool sight_needed=false,
-				bool sanity_needed=false ) {
+		public static bool IsIncapacitated( Player player, bool freedomNeeded=false, bool armsNeeded=false, bool sightNeeded=false,
+				bool sanityNeeded=false ) {
 			if( player == null || !player.active || player.dead || player.stoned || player.frozen || player.ghost ||
 				player.gross || player.webbed || player.mapFullScreen ) { return true; }
-			if( freedom_needed && (player.pulley || player.grappling[0] >= 0 || player.mount.Cart) ) { return true; }
-			if( arms_needed && player.noItems ) { return true; }
-			if( sight_needed && player.blackout ) { return true; }
-			if( sanity_needed && player.confused ) { return true; }
+			if( freedomNeeded && (player.pulley || player.grappling[0] >= 0 || player.mount.Cart) ) { return true; }
+			if( armsNeeded && player.noItems ) { return true; }
+			if( sightNeeded && player.blackout ) { return true; }
+			if( sanityNeeded && player.confused ) { return true; }
 			return false;
 		}
 
 
-		public static void KillWithPermadeath( Player player, string death_msg ) {
+		public static void KillWithPermadeath( Player player, string deathMsg ) {
 			if( Main.netMode != 0 ) {
-				PlayerPermaDeathProtocol.SendToAll( player.whoAmI, death_msg );
+				PlayerPermaDeathProtocol.SendToAll( player.whoAmI, deathMsg );
 			} else {
-				PlayerHelpers.ApplyPermaDeath( player, death_msg );
+				PlayerHelpers.ApplyPermaDeath( player, deathMsg );
 			}
 		}
 
-		internal static void ApplyPermaDeath( Player player, string death_msg ) {
+		internal static void ApplyPermaDeath( Player player, string deathMsg ) {
 			player.difficulty = 2;
-			player.KillMe( PlayerDeathReason.ByCustomReason( death_msg ), 9999, 0 );
+			player.KillMe( PlayerDeathReason.ByCustomReason( deathMsg ), 9999, 0 );
 		}
 
 		
@@ -289,32 +289,32 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		private static void WingModReset( Mod wingmod, Player player ) {
 			object _;
 			ModPlayer mywingplayer = player.GetModPlayer( wingmod, "WingSlotPlayer" );
-			Item wing_item;
+			Item wingItem;
 
-			object wing_equip_slot;
-			if( ReflectionHelpers.GetField(mywingplayer, "EquipSlot", out wing_equip_slot) && wing_equip_slot != null ) {
-				if( ReflectionHelpers.GetProperty( wing_equip_slot, "Item", out wing_item ) ) {
-					if( wing_item != null && !wing_item.IsAir ) {
-						ReflectionHelpers.SetProperty( wing_equip_slot, "Item", new Item() );
-						ReflectionHelpers.SetField( mywingplayer, "EquipSlot", wing_equip_slot );
+			object wingEquipSlot;
+			if( ReflectionHelpers.GetField(mywingplayer, "EquipSlot", out wingEquipSlot) && wingEquipSlot != null ) {
+				if( ReflectionHelpers.GetProperty( wingEquipSlot, "Item", out wingItem ) ) {
+					if( wingItem != null && !wingItem.IsAir ) {
+						ReflectionHelpers.SetProperty( wingEquipSlot, "Item", new Item() );
+						ReflectionHelpers.SetField( mywingplayer, "EquipSlot", wingEquipSlot );
 					}
 				}
 			}
 
-			object wing_vanity_slot;
-			if( ReflectionHelpers.GetField(mywingplayer, "VanitySlot", out wing_vanity_slot) && wing_vanity_slot != null ) {
-				if( ReflectionHelpers.GetProperty( wing_vanity_slot, "Item", out wing_item ) && wing_item != null && !wing_item.IsAir ) {
-					ReflectionHelpers.SetProperty( wing_vanity_slot, "Item", new Item() );
-					ReflectionHelpers.SetField( mywingplayer, "VanitySlot", wing_vanity_slot );
+			object wingVanitySlot;
+			if( ReflectionHelpers.GetField(mywingplayer, "VanitySlot", out wingVanitySlot) && wingVanitySlot != null ) {
+				if( ReflectionHelpers.GetProperty( wingVanitySlot, "Item", out wingItem ) && wingItem != null && !wingItem.IsAir ) {
+					ReflectionHelpers.SetProperty( wingVanitySlot, "Item", new Item() );
+					ReflectionHelpers.SetField( mywingplayer, "VanitySlot", wingVanitySlot );
 				}
 			}
 
-			object wing_dye_slot;
+			object wingDyeSlot;
 
-			if( ReflectionHelpers.GetField(mywingplayer, "DyeSlot", out wing_dye_slot) && wing_dye_slot != null ) {
-				if( ReflectionHelpers.GetProperty( wing_dye_slot, "Item", out wing_item ) && wing_item != null && !wing_item.IsAir ) {
-					ReflectionHelpers.SetProperty( wing_dye_slot, "Item", new Item() );
-					ReflectionHelpers.SetField( mywingplayer, "DyeSlot", wing_dye_slot );
+			if( ReflectionHelpers.GetField(mywingplayer, "DyeSlot", out wingDyeSlot) && wingDyeSlot != null ) {
+				if( ReflectionHelpers.GetProperty( wingDyeSlot, "Item", out wingItem ) && wingItem != null && !wingItem.IsAir ) {
+					ReflectionHelpers.SetProperty( wingDyeSlot, "Item", new Item() );
+					ReflectionHelpers.SetField( mywingplayer, "DyeSlot", wingDyeSlot );
 				}
 			}
 		}

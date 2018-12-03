@@ -19,12 +19,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 
-		internal void SetTagMods( IDictionary<string, ISet<string>> mod_tags ) {
-			this.ModTags = mod_tags;
+		internal void SetTagMods( IDictionary<string, ISet<string>> modTags ) {
+			this.ModTags = modTags;
 			this.TagMods = new Dictionary<string, ISet<string>>();
 
-			foreach( var kv in mod_tags ) {
-				string mod_name = kv.Key;
+			foreach( var kv in modTags ) {
+				string modName = kv.Key;
 				ISet<string> tags = kv.Value;
 
 				foreach( string tag in tags ) {
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 					if( !this.TagMods.ContainsKey( tag ) ) {
 						this.TagMods[tag] = new HashSet<string>();
 					}
-					this.TagMods[tag].Add( mod_name );
+					this.TagMods[tag].Add( modName );
 				}
 			}
 //LogHelpers.Log( "tag mods: " + string.Join( ",", tagmods.Select( kv => kv.Key + ":" + kv.Value ) ) );
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		public static string ModTagsUrl => "https://script.google.com/macros/s/AKfycbwakEvF9DDYGup34DJJjcxPd0MUApNpl2GalZgr/exec";
-			//"http://hamstar.pw/hamstarhelpers/mod_info/";	<- express
+			//"http://hamstar.pw/hamstarhelpers/modInfo/";	<- express
 
 		////////////////
 
@@ -75,9 +75,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 						Found = false
 					};
 					
-					GetModTags.RetrieveAllTagModsAsync( ( mod_tags, found ) => {
+					GetModTags.RetrieveAllTagModsAsync( ( modTags, found ) => {
 						if( found ) {
-							args.SetTagMods( mod_tags );
+							args.SetTagMods( modTags );
 						}
 						args.Found = found;
 						
@@ -89,41 +89,41 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-		private static void RetrieveAllTagModsAsync( Action<IDictionary<string, ISet<string>>, bool> on_completion ) {
-			Func<string, Tuple<IDictionary<string, ISet<string>>, bool>> on_get_response = ( string output ) => {
+		private static void RetrieveAllTagModsAsync( Action<IDictionary<string, ISet<string>>, bool> onCompletion ) {
+			Func<string, Tuple<IDictionary<string, ISet<string>>, bool>> onGetResponse = ( string output ) => {
 				bool found = false;
-				IDictionary<string, ISet<string>> mod_tag_set = new Dictionary<string, ISet<string>>();
+				IDictionary<string, ISet<string>> modTagSet = new Dictionary<string, ISet<string>>();
 
-				JObject resp_json = JObject.Parse( output );
+				JObject respJson = JObject.Parse( output );
 
-				if( resp_json.Count > 0 ) {
-					JToken tag_list_token = resp_json.SelectToken( "modlist" );
-					if( tag_list_token == null ) {
-						throw new NullReferenceException( "No modlist: " + string.Join(",", resp_json.Properties()) );
+				if( respJson.Count > 0 ) {
+					JToken tagListToken = respJson.SelectToken( "modlist" );
+					if( tagListToken == null ) {
+						throw new NullReferenceException( "No modlist: " + string.Join(",", respJson.Properties()) );
 					}
 
-					JToken[] tag_list = tag_list_token.ToArray();
+					JToken[] tagList = tagListToken.ToArray();
 
-					foreach( JToken tag_entry in tag_list ) {
-						JToken mod_name_token = tag_entry.SelectToken( "ModName" );
-						JToken mod_tags_token = tag_entry.SelectToken( "ModTags" );
-						if( mod_name_token == null || mod_tags_token == null ) {
+					foreach( JToken tagEntry in tagList ) {
+						JToken modNameToken = tagEntry.SelectToken( "ModName" );
+						JToken modTagsToken = tagEntry.SelectToken( "ModTags" );
+						if( modNameToken == null || modTagsToken == null ) {
 							continue;
 						}
 
-						string mod_name = mod_name_token.ToObject<string>();
-						string mod_tags_raw = mod_tags_token.ToObject<string>();
-						string[] mod_tags = mod_tags_raw.Split( ',' );
+						string modName = modNameToken.ToObject<string>();
+						string modTagsRaw = modTagsToken.ToObject<string>();
+						string[] modTags = modTagsRaw.Split( ',' );
 
-						mod_tag_set[ mod_name ] = new HashSet<string>( mod_tags );
+						modTagSet[ modName ] = new HashSet<string>( modTags );
 					}
 					found = true;
 				}
 				
-				return Tuple.Create( mod_tag_set, found );
+				return Tuple.Create( modTagSet, found );
 			};
 
-			Action<Exception, string> on_get_fail = ( e, output ) => {
+			Action<Exception, string> onGetFail = ( e, output ) => {
 				if( e is JsonReaderException ) {
 					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - Bad JSON: " +
 						(output.Length > 256 ? output.Substring(0, 256) : output) );
@@ -134,15 +134,15 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			Action<IDictionary<string, ISet<string>>, bool> on_get_completion = ( response_val, found ) => {
-				if( response_val == null ) {
-					response_val = new Dictionary<string, ISet<string>>();
+			Action<IDictionary<string, ISet<string>>, bool> onGetCompletion = ( responseVal, found ) => {
+				if( responseVal == null ) {
+					responseVal = new Dictionary<string, ISet<string>>();
 				}
 
-				on_completion( response_val, found );
+				onCompletion( responseVal, found );
 			};
 
-			NetHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, on_get_response, on_get_fail, on_get_completion );
+			NetHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, onGetResponse, onGetFail, onGetCompletion );
 		}
 
 

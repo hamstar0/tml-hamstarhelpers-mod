@@ -17,8 +17,8 @@ namespace HamstarHelpers.Components.DataStructures {
 			}
 		}
 
-		public ReadOnlyDictionaryOfSets( IDictionary<K, ISet<V>> dict_copy ) {
-			this.Dict = new Dictionary<K, ISet<V>>( dict_copy );
+		public ReadOnlyDictionaryOfSets( IDictionary<K, ISet<V>> dictCopy ) {
+			this.Dict = new Dictionary<K, ISet<V>>( dictCopy );
 		}
 
 
@@ -85,11 +85,11 @@ namespace HamstarHelpers.Components.DataStructures {
 		////////////////
 
 		public bool TryGetValue( K key, out V value ) {
-			ISet<V> value_set;
-			bool tried = this.Dict.TryGetValue( key, out value_set );
+			ISet<V> valueSet;
+			bool tried = this.Dict.TryGetValue( key, out valueSet );
 
 			if( tried ) {
-				value = value_set.First();
+				value = valueSet.First();
 			} else {
 				value = default( V );
 			}

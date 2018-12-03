@@ -35,7 +35,7 @@ namespace HamstarHelpers.Services.CustomHotkeys {
 
 		////////////////
 
-		public void ProcessTriggers( TriggersSet triggers_set ) {
+		public void ProcessTriggers( TriggersSet triggersSet ) {
 			if( this.Key1.JustPressed ) {
 				foreach( Action act in this.Key1Actions.Values ) {
 					act();

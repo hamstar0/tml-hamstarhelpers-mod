@@ -16,16 +16,16 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 		public static void Log( string msg ) {
 			try {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
-				var log_helpers = mymod.LogHelpers;
+				var logHelpers = mymod.LogHelpers;
 
-				double now_seconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds - log_helpers.StartTime;
+				double nowSeconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds - logHelpers.StartTime;
 
-				string now_seconds_whole = ( (int)now_seconds ).ToString( "D6" );
-				string now_seconds_decimal = ( now_seconds - (int)now_seconds ).ToString( "N2" );
-				string now = now_seconds_whole + "." + ( now_seconds_decimal.Length > 2 ? now_seconds_decimal.Substring( 2 ) : now_seconds_decimal );
+				string nowSecondsWhole = ( (int)nowSeconds ).ToString( "D6" );
+				string nowSecondsDecimal = ( nowSeconds - (int)nowSeconds ).ToString( "N2" );
+				string now = nowSecondsWhole + "." + ( nowSecondsDecimal.Length > 2 ? nowSecondsDecimal.Substring( 2 ) : nowSecondsDecimal );
 
 				string from = Main.myPlayer.ToString( "D3" );
-				string logged = Main.netMode + ":" + from + ":" + log_helpers.LoggedMessages.ToString( "D5" ) + " - " + now;
+				string logged = Main.netMode + ":" + from + ":" + logHelpers.LoggedMessages.ToString( "D5" ) + " - " + now;
 				if( logged.Length < 26 ) {
 					logged += new String( ' ', 26 - logged.Length );
 				} else {
@@ -33,10 +33,10 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 				}
 
 				if( mymod.Config.UseCustomLogging ) {
-					log_helpers.OutputDirect( log_helpers.GetHourlyLogFileName(), logged + msg );
+					logHelpers.OutputDirect( logHelpers.GetHourlyLogFileName(), logged + msg );
 
 					if( mymod.Config.UseCustomLoggingPerNetMode ) {
-						log_helpers.OutputDirect( log_helpers.GetModalLogFileName(), logged + msg );
+						logHelpers.OutputDirect( logHelpers.GetModalLogFileName(), logged + msg );
 					}
 
 					if( mymod.Config.UseAlsoNormalLogging ) {
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 					ErrorLogger.Log( logged + msg );
 				}
 
-				log_helpers.LoggedMessages++;
+				logHelpers.LoggedMessages++;
 			} catch( Exception e ) {
 				try {
 					ErrorLogger.Log( "FALLBACK LOGGER 2 (" + e.GetType().Name + ") " + msg );
@@ -56,17 +56,17 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 
 		public static void LogOnce( string msg ) {
-			var log_helpers = ModHelpersMod.Instance.LogHelpers;
-			bool is_shown = false;
+			var logHelpers = ModHelpersMod.Instance.LogHelpers;
+			bool isShown = false;
 
 			lock( LogHelpers.MyLock ) {
-				if( !log_helpers.UniqueMessages.Contains( msg ) ) {
-					log_helpers.UniqueMessages.Add( msg );
-					is_shown = true;
+				if( !logHelpers.UniqueMessages.Contains( msg ) ) {
+					logHelpers.UniqueMessages.Add( msg );
+					isShown = true;
 				}
 			}
 
-			if( is_shown ) {
+			if( isShown ) {
 				LogHelpers.Log( "~" + msg );
 			}
 		}
@@ -103,22 +103,22 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 		////////////////
 
 		public string GetLogPath() {
-			string base_path = ErrorLogger.LogPath + Path.DirectorySeparatorChar;
-			string full_path = base_path + "History" + Path.DirectorySeparatorChar;
+			string basePath = ErrorLogger.LogPath + Path.DirectorySeparatorChar;
+			string fullPath = basePath + "History" + Path.DirectorySeparatorChar;
 
-			Directory.CreateDirectory( base_path );
-			Directory.CreateDirectory( full_path );
+			Directory.CreateDirectory( basePath );
+			Directory.CreateDirectory( fullPath );
 
-			return full_path;
+			return fullPath;
 		}
 
 		public string GetHourlyLogFileName() {
-			DateTime curr_hour = this.StartTimeBase;
-			curr_hour.AddMinutes( -curr_hour.Minute );
-			curr_hour.AddSeconds( -curr_hour.Second );
-			curr_hour.AddMilliseconds( -curr_hour.Millisecond );
+			DateTime currHour = this.StartTimeBase;
+			currHour.AddMinutes( -currHour.Minute );
+			currHour.AddSeconds( -currHour.Second );
+			currHour.AddMilliseconds( -currHour.Millisecond );
 
-			string when = curr_hour.ToString( "MM-dd, HH" );
+			string when = currHour.ToString( "MM-dd, HH" );
 
 			return "Log Any " + when + ".txt";
 		}
@@ -154,16 +154,16 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 		////////////////
 
-		public void OutputDirect( string file_name, string log_entry ) {
+		public void OutputDirect( string fileName, string logEntry ) {
 			lock( LogHelpers.MyLock ) {
 				string path = this.GetLogPath();
 
 				try {
-					using( StreamWriter writer = File.AppendText( path + file_name ) ) {
-						writer.WriteLine( log_entry );
+					using( StreamWriter writer = File.AppendText( path + fileName ) ) {
+						writer.WriteLine( logEntry );
 					}
 				} catch( Exception e ) {
-					ErrorLogger.Log( "FALLBACK LOGGER ("+e.GetType().Name+"; "+file_name+") - " + log_entry );
+					ErrorLogger.Log( "FALLBACK LOGGER ("+e.GetType().Name+"; "+fileName+") - " + logEntry );
 				}
 			}
 		}

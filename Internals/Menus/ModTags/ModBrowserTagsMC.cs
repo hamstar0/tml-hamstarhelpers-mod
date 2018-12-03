@@ -34,27 +34,27 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.BlankButton.Disable();
 		}
 
-		public override void OnContexualize( string ui_class_name, string context_name ) {
-			base.OnContexualize( ui_class_name, context_name );
+		public override void OnContexualize( string uiClassName, string contextName ) {
+			base.OnContexualize( uiClassName, contextName );
 
-			var blank_recom_panel = new UIMenuPanel( UITheme.Vanilla, 198f, 132f, 202f, 40f );
-			var blank_dl_button_panel = new UIMenuPanel( UITheme.Vanilla, 198f, 26f, 202f, 172f );
+			var blankRecomPanel = new UIMenuPanel( UITheme.Vanilla, 198f, 132f, 202f, 40f );
+			var blankDlButtonPanel = new UIMenuPanel( UITheme.Vanilla, 198f, 26f, 202f, 172f );
 
-			var blank_button_widget_ctx = new WidgetMenuContext( this.BlankButton, false );
-			var reset_button_widget_ctx = new WidgetMenuContext( this.ResetButton, false );
-			var blank_recom_widget_ctx = new WidgetMenuContext( blank_recom_panel, false );
-			var blank_dl_widget_ctx = new WidgetMenuContext( blank_dl_button_panel, false );
+			var blankButtonWidgetCtx = new WidgetMenuContext( this.BlankButton, false );
+			var resetButtonWidgetCtx = new WidgetMenuContext( this.ResetButton, false );
+			var blankRecomWidgetCtx = new WidgetMenuContext( blankRecomPanel, false );
+			var blankDlWidgetCtx = new WidgetMenuContext( blankDlButtonPanel, false );
 
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Tag Blank Button", blank_button_widget_ctx );
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Tag Reset Button", reset_button_widget_ctx );
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Blank Recommendations List", blank_recom_widget_ctx );
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Blank Download Button", blank_dl_widget_ctx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Blank Button", blankButtonWidgetCtx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Reset Button", resetButtonWidgetCtx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Blank Recommendations List", blankRecomWidgetCtx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Blank Download Button", blankDlWidgetCtx );
 		}
 
 
 		////////////////
 
-		public override void OnTagStateChange( UITagButton tag_button ) {
+		public override void OnTagStateChange( UITagButton tagButton ) {
 			this.FilterMods();
 
 			this.ResetButton.UpdateEnableState();

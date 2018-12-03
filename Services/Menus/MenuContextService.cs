@@ -60,10 +60,10 @@ namespace HamstarHelpers.Services.Menus {
 		private void Update() {
 			UIState ui = Main.MenuUI.CurrentState;
 
-			string prev_ui_name = this.CurrentMenuUI?.Item1;
-			string curr_ui_name = ui?.GetType().Name;
+			string prevUiName = this.CurrentMenuUI?.Item1;
+			string currUiName = ui?.GetType().Name;
 
-			if( prev_ui_name == curr_ui_name ) {
+			if( prevUiName == currUiName ) {
 				return;
 			}
 
@@ -72,13 +72,13 @@ namespace HamstarHelpers.Services.Menus {
 
 
 		private void LoadUI( UIState ui ) {
-			string prev_ui_name = this.CurrentMenuUI?.Item1;
-			string curr_ui_name = ui?.GetType().Name;
+			string prevUiName = this.CurrentMenuUI?.Item1;
+			string currUiName = ui?.GetType().Name;
 
 			this.PreviousMenuUI = this.CurrentMenuUI;
 
-			if( prev_ui_name != null && this.Contexts.ContainsKey(prev_ui_name) ) {
-				var contexts = this.Contexts[ prev_ui_name ].Values;
+			if( prevUiName != null && this.Contexts.ContainsKey(prevUiName) ) {
+				var contexts = this.Contexts[ prevUiName ].Values;
 				
 				foreach( MenuContext ctx in contexts ) {
 					ctx.Hide( this.CurrentMenuUI.Item2 );
@@ -91,13 +91,13 @@ namespace HamstarHelpers.Services.Menus {
 				return;
 			}
 
-			if( this.Contexts.ContainsKey( curr_ui_name ) ) {
-				foreach( MenuContext ctx in this.Contexts[curr_ui_name].Values ) {
+			if( this.Contexts.ContainsKey( currUiName ) ) {
+				foreach( MenuContext ctx in this.Contexts[currUiName].Values ) {
 					ctx.Show( ui );
 				}
 			}
 
-			this.CurrentMenuUI = Tuple.Create( curr_ui_name, ui );
+			this.CurrentMenuUI = Tuple.Create( currUiName, ui );
 		}
 	}
 }

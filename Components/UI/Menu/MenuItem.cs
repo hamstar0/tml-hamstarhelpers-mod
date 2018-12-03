@@ -9,10 +9,10 @@ using Terraria;
 
 namespace HamstarHelpers.Components.UI.Menu {
 	public class MenuItem {
-		public static void AddMenuItem( string text, int offset_y, int menu_context, Action my_action ) {
+		public static void AddMenuItem( string text, int offsetX, int menuContext, Action myAction ) {
 			var mymod = ModHelpersMod.Instance;
-			var item = new MenuItem( text, offset_y, menu_context, my_action );
-			string key = text + "." + offset_y + "." + menu_context;
+			var item = new MenuItem( text, offsetX, menuContext, myAction );
+			string key = text + "." + offsetX + "." + menuContext;
 			
 			mymod.MenuItemMngr.Items[ key ] = item;
 		}
@@ -35,11 +35,11 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		////////////////
 
-		internal MenuItem( string text, int offset_y, int menu_context, Action my_action ) {
+		internal MenuItem( string text, int offsetY, int menuContext, Action myAction ) {
 			this.MenuText = text;
-			this.OffsetY = offset_y;
-			this.MenuContext = menu_context;
-			this.MyAction = my_action;
+			this.OffsetY = offsetY;
+			this.MenuContext = menuContext;
+			this.MyAction = myAction;
 		}
 
 
@@ -61,23 +61,23 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 
 		internal bool IsMouseOverMenuItem() {
-			int rel_offset_y = this.OffsetY < 0 ? Main.screenHeight + this.OffsetY : this.OffsetY;
+			int relOffsetY = this.OffsetY < 0 ? Main.screenHeight + this.OffsetY : this.OffsetY;
 			
 			Vector2 dim = Main.fontDeathText.MeasureString( this.MenuText );
 			Vector2 origin = dim * 0.5f;
 
-			float base_pos_x = Main.screenWidth / 2;
-			float base_pos_y = rel_offset_y + origin.Y;
+			float basePosX = Main.screenWidth / 2;
+			float basePosY = relOffsetY + origin.Y;
 
-			return Main.mouseX >= base_pos_x - ( dim.X * 0.5f ) && Main.mouseX <= base_pos_x + ( dim.X * 0.5f ) &&
-					Main.mouseY >= base_pos_y - ( dim.Y * 0.5f ) && Main.mouseY <= base_pos_y + ( dim.Y * 0.5f );
+			return Main.mouseX >= basePosX - ( dim.X * 0.5f ) && Main.mouseX <= basePosX + ( dim.X * 0.5f ) &&
+					Main.mouseY >= basePosY - ( dim.Y * 0.5f ) && Main.mouseY <= basePosY + ( dim.Y * 0.5f );
 		}
 
 
 		////////////////
 
 		internal void DrawMenuItem() {
-			int rel_offset_y = this.OffsetY < 0 ? Main.screenHeight + this.OffsetY : this.OffsetY;
+			int relOffsetY = this.OffsetY < 0 ? Main.screenHeight + this.OffsetY : this.OffsetY;
 
 			byte b = (byte)( ( 255 + Main.tileColor.R * 2 ) / 3 );
 			Color color = new Color( (int)b, (int)b, (int)b, 255 );
@@ -85,16 +85,16 @@ namespace HamstarHelpers.Components.UI.Menu {
 			Vector2 dim = Main.fontDeathText.MeasureString( this.MenuText );
 			Vector2 origin = dim * 0.5f;
 
-			float base_pos_x = Main.screenWidth / 2;
-			float base_pos_y = rel_offset_y + origin.Y;
+			float basePosX = Main.screenWidth / 2;
+			float basePosY = relOffsetY + origin.Y;
 
-			bool is_selected = Main.mouseX >= base_pos_x - ( dim.X * 0.5f ) && Main.mouseX <= base_pos_x + ( dim.X * 0.5f ) &&
-							   Main.mouseY >= base_pos_y - ( dim.Y * 0.5f ) && Main.mouseY <= base_pos_y + ( dim.Y * 0.5f );
+			bool isSelected = Main.mouseX >= basePosX - ( dim.X * 0.5f ) && Main.mouseX <= basePosX + ( dim.X * 0.5f ) &&
+							   Main.mouseY >= basePosY - ( dim.Y * 0.5f ) && Main.mouseY <= basePosY + ( dim.Y * 0.5f );
 
-			if( is_selected && !this.MenuItemHovered ) {
+			if( isSelected && !this.MenuItemHovered ) {
 				Main.PlaySound( 12 );
 			}
-			this.MenuItemHovered = is_selected;
+			this.MenuItemHovered = isSelected;
 
 			if( this.MenuItemHovered ) {
 				this.MenuItemScale = this.MenuItemScale < 1f ? this.MenuItemScale + 0.02f : 1f;
@@ -103,60 +103,60 @@ namespace HamstarHelpers.Components.UI.Menu {
 			}
 
 			for( int i = 0; i < 5; i++ ) {
-				Color menu_item_color = i == 4 ? color : Color.Black;
+				Color menuItemColor = i == 4 ? color : Color.Black;
 
 				if( this.MenuItemHovered ) {
 					if( i == 4 ) {
 						int alpha = 255;
-						int red = (int)menu_item_color.R;
-						int green = (int)menu_item_color.G;
-						int blue = (int)menu_item_color.B;
+						int red = (int)menuItemColor.R;
+						int green = (int)menuItemColor.G;
+						int blue = (int)menuItemColor.B;
 
-						float alpha_scale = (float)alpha / 255f;
+						float alphaScale = (float)alpha / 255f;
 
-						red = (int)( (float)red * ( 1f - alpha_scale ) + 255f * alpha_scale );
-						green = (int)( (float)green * ( 1f - alpha_scale ) + 215f * alpha_scale );
-						blue = (int)( (float)blue * ( 1f - alpha_scale ) );
+						red = (int)( (float)red * ( 1f - alphaScale ) + 255f * alphaScale );
+						green = (int)( (float)green * ( 1f - alphaScale ) + 215f * alphaScale );
+						blue = (int)( (float)blue * ( 1f - alphaScale ) );
 
-						menu_item_color = new Color( (byte)red, (byte)green, (byte)blue, (byte)alpha );
+						menuItemColor = new Color( (byte)red, (byte)green, (byte)blue, (byte)alpha );
 					}
 				} else {
-					menu_item_color *= 0.5f;
+					menuItemColor *= 0.5f;
 				}
 
-				int x_shift = 0;
-				int y_shift = 0;
+				int xShift = 0;
+				int yShift = 0;
 
 				if( i == 0 ) {
-					x_shift = -2;
+					xShift = -2;
 				}
 				if( i == 1 ) {
-					x_shift = 2;
+					xShift = 2;
 				}
 				if( i == 2 ) {
-					y_shift = -2;
+					yShift = -2;
 				}
 				if( i == 3 ) {
-					y_shift = 2;
+					yShift = 2;
 				}
 
-				float menu_item_scale = this.MenuItemScale;
+				float menuItemScale = this.MenuItemScale;
 
-				Vector2 draw_pos = new Vector2( base_pos_x, base_pos_y );
-				draw_pos.X += x_shift;
-				draw_pos.Y += y_shift;
+				Vector2 drawPos = new Vector2( basePosX, basePosY );
+				drawPos.X += xShift;
+				drawPos.Y += yShift;
 
 				if( Main.netMode == 2 ) {
-					menu_item_scale *= 0.5f;
+					menuItemScale *= 0.5f;
 				}
 
-				Main.spriteBatch.DrawString( Main.fontDeathText, this.MenuText, draw_pos, menu_item_color, 0f, origin, menu_item_scale, SpriteEffects.None, 0f );
+				Main.spriteBatch.DrawString( Main.fontDeathText, this.MenuText, drawPos, menuItemColor, 0f, origin, menuItemScale, SpriteEffects.None, 0f );
 			}
 
 			Vector2 bonus = Main.DrawThickCursor( false );
 			Main.DrawCursor( bonus, false );
 
-			/*GamepadMainMenuHandler.MenuItemPositions.Add( new Vector2( (float)( menu_item_pos_x_base ), (float)( menu_item_pos_y_base + line_height * pos ) + origin.Y ) );
+			/*GamepadMainMenuHandler.MenuItemPositions.Add( new Vector2( (float)( menuItemPosXBase ), (float)( menuItemPoYBase + lineHeight * pos ) + origin.Y ) );
 			
 			if( GamepadMainMenuHandler.MenuItemPositions.Count == 0 ) {
 				Vector2 value2 = new Vector2( (float)Math.Cos( (double)( Main.GlobalTime * 6.28318548f ) ),
@@ -190,14 +190,14 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 		////////////////
 
-		private static void _Draw( GameTime game_time ) {	// <- Just in case references are doing something funky...
+		private static void _Draw( GameTime gameTime ) {	// <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuItemMngr == null ) { return; }
 
-			mymod.MenuItemMngr.Draw( game_time );
+			mymod.MenuItemMngr.Draw( gameTime );
 		}
 
-		private void Draw( GameTime game_time ) {
+		private void Draw( GameTime gameTime ) {
 			foreach( MenuItem item in this.Items.Values ) {
 				if( item.MenuContext == Main.menuMode ) {
 					item.Draw();

@@ -56,111 +56,111 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		public static IList<string> GetCurrentVanillaEvents() {
 			VanillaEventFlag flags = NPCInvasionHelpers.GetCurrentEventTypeSet();
 
-			IList<string> out_list = new List<string>();
+			IList<string> outList = new List<string>();
 
 			if( ( flags & VanillaEventFlag.Goblins ) > 0 ) {
 				flags -= VanillaEventFlag.Goblins;
-				out_list.Add( "Goblins" );
+				outList.Add( "Goblins" );
 			}
 			if( ( flags & VanillaEventFlag.FrostLegion ) > 0 ) {
 				flags -= VanillaEventFlag.FrostLegion;
-				out_list.Add( "Frost Legion" );
+				outList.Add( "Frost Legion" );
 			}
 			if( ( flags & VanillaEventFlag.Pirates ) > 0 ) {
 				flags -= VanillaEventFlag.Pirates;
-				out_list.Add( "Pirates" );
+				outList.Add( "Pirates" );
 			}
 			if( ( flags & VanillaEventFlag.Martians ) > 0 ) {
 				flags -= VanillaEventFlag.Martians;
-				out_list.Add( "Martians" );
+				outList.Add( "Martians" );
 			}
 			if( ( flags & VanillaEventFlag.BloodMoon ) > 0 ) {
 				flags -= VanillaEventFlag.BloodMoon;
-				out_list.Add( "Blood Moon" );
+				outList.Add( "Blood Moon" );
 			}
 			if( ( flags & VanillaEventFlag.SlimeRain ) > 0 ) {
 				flags -= VanillaEventFlag.SlimeRain;
-				out_list.Add( "Slime Rain" );
+				outList.Add( "Slime Rain" );
 			}
 			if( ( flags & VanillaEventFlag.Sandstorm ) > 0 ) {
 				flags -= VanillaEventFlag.Sandstorm;
-				out_list.Add( "Sandstorm" );
+				outList.Add( "Sandstorm" );
 			}
 			if( ( flags & VanillaEventFlag.SolarEclipse ) > 0 ) {
 				flags -= VanillaEventFlag.SolarEclipse;
-				out_list.Add( "Solar Eclipse" );
+				outList.Add( "Solar Eclipse" );
 			}
 			if( ( flags & VanillaEventFlag.PumpkinMoon ) > 0 ) {
 				flags -= VanillaEventFlag.PumpkinMoon;
-				out_list.Add( "Pumpkin Moon" );
+				outList.Add( "Pumpkin Moon" );
 			}
 			if( ( flags & VanillaEventFlag.FrostMoon ) > 0 ) {
 				flags -= VanillaEventFlag.FrostMoon;
-				out_list.Add( "Frost Moon" );
+				outList.Add( "Frost Moon" );
 			}
 			if( ( flags & VanillaEventFlag.LunarApocalypse ) > 0 ) {
 				flags -= VanillaEventFlag.LunarApocalypse;
-				out_list.Add( "Lunar Apocalypse" );
+				outList.Add( "Lunar Apocalypse" );
 			}
 
-			if( out_list.Count == 0 ) {
-				out_list.Add( "Normal" );
+			if( outList.Count == 0 ) {
+				outList.Add( "Normal" );
 			}
 
-			return out_list;
+			return outList;
 		}
 
 
 		public static IList<string> GetGameData( IEnumerable<Mod> mods ) {
 			var list = new List<string>();
 
-			var mods_list = mods.OrderBy( m => m.Name ).Select( m => m.DisplayName + " " + m.Version.ToString() );
-			string[] mods_arr = mods_list.ToArray();
-			bool is_day = Main.dayTime;
-			double time_of_day = Main.time;
-			int half_days = WorldHelpers.WorldStateHelpers.GetElapsedHalfDays();
-			string world_size = WorldHelpers.WorldHelpers.GetSize().ToString();
-			string[] world_prog = InfoHelpers.GetWorldProgress().ToArray();
-			int active_items = ItemHelpers.ItemHelpers.GetActive().Count;
-			int active_npcs = NPCHelpers.NPCHelpers.GetActive().Count;
-			string[] player_infos = InfoHelpers.GetCurrentPlayerInfo().ToArray();
-			string[] player_equips = InfoHelpers.GetCurrentPlayerEquipment().ToArray();
-			int active_players = Main.ActivePlayersCount;
+			var modsList = mods.OrderBy( m => m.Name ).Select( m => m.DisplayName + " " + m.Version.ToString() );
+			string[] modsArr = modsList.ToArray();
+			bool isDay = Main.dayTime;
+			double timeOfDay = Main.time;
+			int halfDays = WorldHelpers.WorldStateHelpers.GetElapsedHalfDays();
+			string worldSize = WorldHelpers.WorldHelpers.GetSize().ToString();
+			string[] worldProg = InfoHelpers.GetWorldProgress().ToArray();
+			int activeItems = ItemHelpers.ItemHelpers.GetActive().Count;
+			int activeNpcs = NPCHelpers.NPCHelpers.GetActive().Count;
+			string[] playerInfos = InfoHelpers.GetCurrentPlayerInfo().ToArray();
+			string[] playerEquips = InfoHelpers.GetCurrentPlayerEquipment().ToArray();
+			int activePlayers = Main.ActivePlayersCount;
 			string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
 			bool autopause = Main.autoPause;
 			bool autosave = Main.autoSave;
 			int lighting = Lighting.lightMode;
-			int lighting_threads = Lighting.LightingThreads;
-			int frame_skip_mode = Main.FrameSkipMode;
-			bool is_maximized = Main.screenMaximized;
-			int window_wid = Main.screenWidth;
-			int window_hei = Main.screenHeight;
-			int quality_style = Main.qaStyle;
-			bool bg_on = Main.BackgroundEnabled;
-			bool child_safe = !ChildSafety.Disabled;
-			float game_zoom = Main.GameZoomTarget;
-			float ui_zoom = Main.UIScale;
+			int lightingThreads = Lighting.LightingThreads;
+			int frameSkipMode = Main.FrameSkipMode;
+			bool isMaximized = Main.screenMaximized;
+			int windowWid = Main.screenWidth;
+			int windowHei = Main.screenHeight;
+			int qualityStyle = Main.qaStyle;
+			bool bgOn = Main.BackgroundEnabled;
+			bool childSafe = !ChildSafety.Disabled;
+			float gameZoom = Main.GameZoomTarget;
+			float uiZoom = Main.UIScale;
 
-			list.Add( "Mods: " + string.Join( ", ", mods_arr ) );
-			list.Add( "Is day: " + is_day + ", Time of day/night: " + time_of_day + ", Elapsed half days: " + half_days );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
-			list.Add( "World name: " + Main.worldName + ", world size: " + world_size );
-			list.Add( "World progress: " + string.Join( ", ", world_prog ) );
-			list.Add( "Items on ground: " + active_items + ", Npcs active: " + active_npcs );
-			list.Add( "Player info: " + string.Join( ", ", player_infos ) );
-			list.Add( "Player equips: " + string.Join( ", ", player_equips ) );
-			list.Add( "Player count: " + active_players + " (" + netmode + ")" );
+			list.Add( "Mods: " + string.Join( ", ", modsArr ) );
+			list.Add( "Is day: " + isDay + ", Time of day/night: " + timeOfDay + ", Elapsed half days: " + halfDays );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
+			list.Add( "World name: " + Main.worldName + ", world size: " + worldSize );
+			list.Add( "World progress: " + string.Join( ", ", worldProg ) );
+			list.Add( "Items on ground: " + activeItems + ", Npcs active: " + activeNpcs );
+			list.Add( "Player info: " + string.Join( ", ", playerInfos ) );
+			list.Add( "Player equips: " + string.Join( ", ", playerEquips ) );
+			list.Add( "Player count: " + activePlayers + " (" + netmode + ")" );
 			list.Add( "Autopause: " + autopause );
 			list.Add( "Autosave: " + autosave );
 			list.Add( "Lighting mode: " + lighting );
-			list.Add( "Lighting threads: " + lighting_threads );
-			list.Add( "Frame skip mode: " + frame_skip_mode );
-			list.Add( "Is screen maximized: " + is_maximized );
-			list.Add( "Screen resolution: " + window_wid+" "+window_hei );
-			list.Add( "Quality style: " + quality_style );
-			list.Add( "Background on: " + bg_on );
-			list.Add( "Child safety: " + child_safe );
-			list.Add( "Game zoom: " + game_zoom );
-			list.Add( "UI zoom: " + ui_zoom );
+			list.Add( "Lighting threads: " + lightingThreads );
+			list.Add( "Frame skip mode: " + frameSkipMode );
+			list.Add( "Is screen maximized: " + isMaximized );
+			list.Add( "Screen resolution: " + windowWid+" "+windowHei );
+			list.Add( "Quality style: " + qualityStyle );
+			list.Add( "Background on: " + bgOn );
+			list.Add( "Child safety: " + childSafe );
+			list.Add( "Game zoom: " + gameZoom );
+			list.Add( "UI zoom: " + uiZoom );
 
 			return list;
 		}
@@ -248,8 +248,8 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		////////////////
 
-		public static IList<string> GetErrorLog( int max_lines ) {
-			if( max_lines > 150 ) { max_lines = 150; }
+		public static IList<string> GetErrorLog( int maxLines ) {
+			if( maxLines > 150 ) { maxLines = 150; }
 
 			IList<string> lines = new List<string>();
 			char sep = Path.DirectorySeparatorChar;
@@ -264,7 +264,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				bool eof = false;
 
 				do {
-					lines = new List<string>( max_lines + 25 );
+					lines = new List<string>( maxLines + 25 );
 
 					if( reader.BaseStream.Length > size ) {
 						reader.BaseStream.Seek( -size, SeekOrigin.End );
@@ -278,13 +278,13 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 					while( ( line = reader.ReadLine() ) != null ) {
 						lines.Add( line );
 					}
-				} while( lines.Count < max_lines && !eof );
+				} while( lines.Count < maxLines && !eof );
 			}
 
-			IList<string> rev_lines = lines.Reverse().Take( 25 ).ToList();
-			if( lines.Count > max_lines ) { rev_lines.Add( "..." ); }
+			IList<string> revLines = lines.Reverse().Take( 25 ).ToList();
+			if( lines.Count > maxLines ) { revLines.Add( "..." ); }
 
-			return new List<string>( rev_lines.Reverse() );
+			return new List<string>( revLines.Reverse() );
 		}
 	}
 }

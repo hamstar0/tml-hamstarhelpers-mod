@@ -22,10 +22,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////////////////
 
-			public DrawsOnMapEntityComponentFactory( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
-				this.SourceModName = src_mod_name;
-				this.RelativeTexturePath = rel_texture_path;
-				this.FrameCount = frame_count;
+			public DrawsOnMapEntityComponentFactory( string srcModName, string relTexturePath, int frameCount, float scale, bool zooms ) {
+				this.SourceModName = srcModName;
+				this.RelativeTexturePath = relTexturePath;
+				this.FrameCount = frameCount;
 				this.Scale = scale;
 				this.Zooms = zooms;
 			}
@@ -49,8 +49,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public static DrawsOnMapEntityComponent CreateDrawsOnMapEntityComponent( string src_mod_name, string rel_texture_path, int frame_count, float scale, bool zooms ) {
-			var factory = new DrawsOnMapEntityComponentFactory<DrawsOnMapEntityComponent>( src_mod_name, rel_texture_path, frame_count, scale, zooms );
+		public static DrawsOnMapEntityComponent CreateDrawsOnMapEntityComponent( string srcModName, string relTexturePath, int frameCount, float scale, bool zooms ) {
+			var factory = new DrawsOnMapEntityComponentFactory<DrawsOnMapEntityComponent>( srcModName, relTexturePath, frameCount, scale, zooms );
 			return factory.Create();
 		}
 
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
@@ -87,14 +87,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
 			}
 
-			var src_mod = ModLoader.GetMod( this.ModName );
-			if( src_mod == null ) {
+			var srcMod = ModLoader.GetMod( this.ModName );
+			if( srcMod == null ) {
 				throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + this.ModName );
 			}
 
 			if( !Main.dedServ ) {
 				if( this.Texture == null ) {
-					this.Texture = src_mod.GetTexture( this.TexturePath );
+					this.Texture = srcMod.GetTexture( this.TexturePath );
 				}
 			}
 
@@ -119,14 +119,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			Entity core = ent.Core;
 			float scale = (this.Zooms ? Main.mapMinimapScale : 1f) * this.Scale;
 
-			int tile_x = (int)core.Center.X - (int)( (float)this.Texture.Width * this.Scale * 8 );
-			int tile_y = (int)core.Center.Y - (int)( (float)this.Texture.Height * this.Scale * 8 );
+			int tileX = (int)core.Center.X - (int)( (float)this.Texture.Width * this.Scale * 8 );
+			int tileY = (int)core.Center.Y - (int)( (float)this.Texture.Height * this.Scale * 8 );
 
-			var map_rect_origin = new Rectangle( tile_x, tile_y, this.Texture.Width, this.Texture.Height );
-			var mini_map_data = HudMapHelpers.GetMiniMapScreenPosition( map_rect_origin );
+			var mapRectOrigin = new Rectangle( tileX, tileY, this.Texture.Width, this.Texture.Height );
+			var miniMapData = HudMapHelpers.GetMiniMapScreenPosition( mapRectOrigin );
 
-			if( mini_map_data.Item2 ) {
-				sb.Draw( this.Texture, mini_map_data.Item1, null, this.GetColor(ent), 0f, default(Vector2), scale, SpriteEffects.None, 1f );
+			if( miniMapData.Item2 ) {
+				sb.Draw( this.Texture, miniMapData.Item1, null, this.GetColor(ent), 0f, default(Vector2), scale, SpriteEffects.None, 1f );
 			}
 
 			this.PostDrawMiniMap( sb, ent );
@@ -138,14 +138,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			Entity core = ent.Core;
 			float scale = (this.Zooms ? Main.mapOverlayScale : 1f) * this.Scale;
 
-			int tile_x = (int)core.Center.X - (int)( (float)this.Texture.Width * this.Scale * 8 );
-			int tile_y = (int)core.Center.Y - (int)( (float)this.Texture.Height * this.Scale * 8 );
+			int tileX = (int)core.Center.X - (int)( (float)this.Texture.Width * this.Scale * 8 );
+			int tileY = (int)core.Center.Y - (int)( (float)this.Texture.Height * this.Scale * 8 );
 
-			var map_rect_origin = new Rectangle( tile_x, tile_y, this.Texture.Width, this.Texture.Height );
-			var over_map_data = HudMapHelpers.GetOverlayMapScreenPosition( map_rect_origin );
+			var mapRectOrigin = new Rectangle( tileX, tileY, this.Texture.Width, this.Texture.Height );
+			var overMapData = HudMapHelpers.GetOverlayMapScreenPosition( mapRectOrigin );
 
-			if( over_map_data.Item2 ) {
-				sb.Draw( this.Texture, over_map_data.Item1, null, this.GetColor(ent), 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
+			if( overMapData.Item2 ) {
+				sb.Draw( this.Texture, overMapData.Item1, null, this.GetColor(ent), 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
 			}
 
 			this.PostDrawOverlayMap( sb, ent );
@@ -157,14 +157,14 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			Entity core = ent.Core;
 			float scale = (this.Zooms ? Main.mapFullscreenScale : 1f) * this.Scale;
 
-			int tile_x = (int)core.Center.X - (int)( (float)this.Texture.Width * this.Scale * 8 );
-			int tile_y = (int)core.Center.Y - (int)( (float)this.Texture.Height * this.Scale * 8 );
+			int tileX = (int)core.Center.X - (int)( (float)this.Texture.Width * this.Scale * 8 );
+			int tileY = (int)core.Center.Y - (int)( (float)this.Texture.Height * this.Scale * 8 );
 
-			var map_rect_origin = new Rectangle( tile_x, tile_y, this.Texture.Width, this.Texture.Height );
-			var over_map_data = HudMapHelpers.GetFullMapScreenPosition( map_rect_origin );
+			var mapRectOrigin = new Rectangle( tileX, tileY, this.Texture.Width, this.Texture.Height );
+			var overMapData = HudMapHelpers.GetFullMapScreenPosition( mapRectOrigin );
 
-			if( over_map_data.Item2 ) {
-				sb.Draw( this.Texture, over_map_data.Item1, null, this.GetColor(ent), 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
+			if( overMapData.Item2 ) {
+				sb.Draw( this.Texture, overMapData.Item1, null, this.GetColor(ent), 0f, default( Vector2 ), scale, SpriteEffects.None, 1f );
 			}
 
 			this.PostDrawFullscreenMap( sb, ent );

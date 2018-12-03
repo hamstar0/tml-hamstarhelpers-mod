@@ -31,12 +31,12 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 
-		public static bool IsAboveWorldSurface( Vector2 world_pos ) {
-			return world_pos.Y < (Main.worldSurface * 16);
+		public static bool IsAboveWorldSurface( Vector2 worldPos ) {
+			return worldPos.Y < (Main.worldSurface * 16);
 		}
 
-		public static bool IsWithinUnderworld( Vector2 world_pos ) {
-			return world_pos.Y > ((Main.maxTilesY - 200) * 16);
+		public static bool IsWithinUnderworld( Vector2 worldPos ) {
+			return worldPos.Y > ((Main.maxTilesY - 200) * 16);
 		}
 	}
 }

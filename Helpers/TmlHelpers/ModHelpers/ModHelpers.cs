@@ -28,19 +28,19 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var mymod = ModHelpersMod.Instance;
 			var self = mymod.ModMetaDataManager;
 			var mods = new LinkedList<Mod>();
-			var mod_set = new HashSet<string>();
+			var modSet = new HashSet<string>();
 
 			mods.AddLast( mymod );
-			mod_set.Add( mymod.Name );
+			modSet.Add( mymod.Name );
 
 			foreach( var kv in self.ConfigMods ) {
 				if( kv.Key == mymod.Name || kv.Value.File == null ) { continue; }
 				mods.AddLast( kv.Value );
-				mod_set.Add( kv.Value.Name );
+				modSet.Add( kv.Value.Name );
 			}
 
 			foreach( var mod in ModLoader.LoadedMods ) {
-				if( mod_set.Contains( mod.Name ) || mod.File == null ) { continue; }
+				if( modSet.Contains( mod.Name ) || mod.File == null ) { continue; }
 				mods.AddLast( mod );
 			}
 			return mods;
@@ -49,30 +49,30 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		public static byte[] UnsafeLoadFileFromMod( TmodFile tmod, string file_name ) {
-			using( var file_stream = File.OpenRead( tmod.path ) )
-			using( var h_reader = new BinaryReader( file_stream ) ) {
-				if( Encoding.UTF8.GetString( h_reader.ReadBytes( 4 ) ) != "TMOD" ) {
+		public static byte[] UnsafeLoadFileFromMod( TmodFile tmod, string fileName ) {
+			using( var fileStream = File.OpenRead( tmod.path ) )
+			using( var hReader = new BinaryReader( fileStream ) ) {
+				if( Encoding.UTF8.GetString( hReader.ReadBytes( 4 ) ) != "TMOD" ) {
 					throw new Exception( "Magic Header != \"TMOD\"" );
 				}
 
-				var _tml_vers = new Version( h_reader.ReadString() );
-				byte[] _hash = h_reader.ReadBytes( 20 );
-				byte[] _signature = h_reader.ReadBytes( 256 );
-				int _datalen = h_reader.ReadInt32();
+				var _tmlVers = new Version( hReader.ReadString() );
+				byte[] _hash = hReader.ReadBytes( 20 );
+				byte[] _signature = hReader.ReadBytes( 256 );
+				int _datalen = hReader.ReadInt32();
 
-				using( var deflate_stream = new DeflateStream( file_stream, CompressionMode.Decompress ) )
-				using( var reader = new BinaryReader( deflate_stream ) ) {
+				using( var deflateStream = new DeflateStream( fileStream, CompressionMode.Decompress ) )
+				using( var reader = new BinaryReader( deflateStream ) ) {
 					string name = reader.ReadString();
 					var version = new Version( reader.ReadString() );
 
 					int count = reader.ReadInt32();
 					for( int i = 0; i < count; i++ ) {
-						string inner_file_name = reader.ReadString();
+						string innerFileName = reader.ReadString();
 						int len = reader.ReadInt32();
 						byte[] content = reader.ReadBytes( len );
 
-						if( inner_file_name == file_name ) {
+						if( innerFileName == fileName ) {
 							return content;
 						}
 					}
@@ -85,20 +85,20 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		public static void PromptModDownloads( string pack_title, List<string> mod_names ) {
-			Type interface_type = Assembly.GetAssembly( typeof(ModLoader) ).GetType( "Terraria.ModLoader.Interface" );
+		public static void PromptModDownloads( string packTitle, List<string> modNames ) {
+			Type interfaceType = Assembly.GetAssembly( typeof(ModLoader) ).GetType( "Terraria.ModLoader.Interface" );
 
-			int mod_browser_menu_mode;
-			if( !ReflectionHelpers.GetField<int>( interface_type, null, "modBrowserID", BindingFlags.Static | BindingFlags.NonPublic, out mod_browser_menu_mode ) ) {
+			int modBrowserMenuMode;
+			if( !ReflectionHelpers.GetField<int>( interfaceType, null, "modBrowserID", BindingFlags.Static | BindingFlags.NonPublic, out modBrowserMenuMode ) ) {
 				LogHelpers.Log( "Could not switch to mod browser menu context." );
 				return;
 			}
 
 			Main.PlaySound( SoundID.MenuTick );
-			Main.menuMode = mod_browser_menu_mode;
+			Main.menuMode = modBrowserMenuMode;
 
-			UIState mod_browser_ui;
-			if( !ReflectionHelpers.GetField<UIState>( interface_type, null, "modBrowser", BindingFlags.Static | BindingFlags.NonPublic, out mod_browser_ui ) ) {
+			UIState modBrowserUi;
+			if( !ReflectionHelpers.GetField<UIState>( interfaceType, null, "modBrowser", BindingFlags.Static | BindingFlags.NonPublic, out modBrowserUi ) ) {
 				LogHelpers.Log( "Could not acquire mod browser UI." );
 				return;
 			}
@@ -108,38 +108,38 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 					return false;
 				}
 
-				bool is_loading;
-				if( !ReflectionHelpers.GetField<bool>( mod_browser_ui, "loading", out is_loading ) ) {
+				bool isLoading;
+				if( !ReflectionHelpers.GetField<bool>( modBrowserUi, "loading", out isLoading ) ) {
 					return false;
 				}
 
-				if( is_loading ) {
+				if( isLoading ) {
 					return true;
 				}
 				
-				MenuModHelper.ApplyModBrowserFilter( pack_title, true, mod_names );
+				MenuModHelper.ApplyModBrowserFilter( packTitle, true, modNames );
 				return false;
 			} );
 
-			/*Assembly tml_asm = typeof( ModLoader ).Assembly;
-			Type interface_type = tml_asm.GetType( "Interface" );
+			/*Assembly tmlAsm = typeof( ModLoader ).Assembly;
+			Type interfaceType = tmlAsm.GetType( "Interface" );
 
-			Type ui_mod_dl_type = tml_asm.GetType( "UIModDownloadItem" );
-			object ui_mod_dl = Activator.CreateInstance( ui_mod_dl_type, "ModName", "0.0.0", "hamstar", "", ModSide.Both, "", "http://javid.ddns.net/tModLoader/download.php?Down=mods/HamstarHelpers.tmod", 0, 0, "", false, false, null );
+			Type uiModDlType = tmlAsm.GetType( "UIModDownloadItem" );
+			object uiModDl = Activator.CreateInstance( uiModDlType, "ModName", "0.0.0", "hamstar", "", ModSide.Both, "", "http://javid.ddns.net/tModLoader/download.php?Down=mods/HamstarHelpers.tmod", 0, 0, "", false, false, null );
 			//UIModDownloadItem modItem = new UIModDownloadItem( displayname, name, version, author, modreferences, modside, modIconURL, download, downloads, hot, timeStamp, update, updateIsDowngrade, installed );
 			items.Add( modItem );
 			
-			Interface.downloadMods.SetDownloading( pack_title );
-			Interface.downloadMods.SetModsToDownload( mod_filter, items );
+			Interface.downloadMods.SetDownloading( packTitle );
+			Interface.downloadMods.SetModsToDownload( modFilter, items );
 			Interface.modBrowser.updateNeeded = true;
 
-			int menu_mode;
-			if( !ReflectionHelpers.GetField<int>( interface_type, null, "downloadModsID", out menu_mode ) ) {
+			int menuMode;
+			if( !ReflectionHelpers.GetField<int>( interfaceType, null, "downloadModsID", out menuMode ) ) {
 				LogHelpers.Log( "Could not switch to downloads menu." );
 				return;
 			}
 			Main.PlaySound( SoundID.MenuTick );
-			Main.menuMode = menu_mode;*/
+			Main.menuMode = menuMode;*/
 		}
 	}
 }

@@ -9,13 +9,13 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class DataDumpProtocol : PacketProtocolRequestToServer {
-		protected DataDumpProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected DataDumpProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 		
-		protected override void SetServerDefaults( int from_who ) { }
+		protected override void SetServerDefaults( int fromWho ) { }
 
 		////////////////
 
-		protected override bool ReceiveRequestWithServer( int from_who ) {
+		protected override bool ReceiveRequestWithServer( int fromWho ) {
 			if( ModHelpersMod.Instance.Config.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer ) ) {
 				string _;
 				DataDumper.DumpToFile( out _ );

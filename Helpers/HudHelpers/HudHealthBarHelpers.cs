@@ -7,10 +7,10 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.HudHelpers {
 	public static class HudHealthBarHelpers {
-		public static Color GetHealthBarColor( int hp, int max_hp, float alpha ) {
+		public static Color GetHealthBarColor( int hp, int maxHp, float alpha ) {
 			if( hp <= 0 ) { return Color.Black; }
 
-			float ratio = (float)hp / (float)max_hp;
+			float ratio = (float)hp / (float)maxHp;
 			if( ratio > 1f ) { ratio = 1f; }
 			ratio -= 0.1f;
 
@@ -43,10 +43,10 @@ namespace HamstarHelpers.Helpers.HudHelpers {
 
 
 		public static void DrawHealthText( SpriteBatch sb, float x, float y, int hp, Color color ) {
-			int offset_x = (int)((Math.Log10( (double)hp ) + 1d) * 3.3d);
+			int offsetX = (int)((Math.Log10( (double)hp ) + 1d) * 3.3d);
 			//byte c = (byte)MathHelper.Clamp( (alpha+0.2f) * 254f, 0f, 255f );
 
-			Vector2 pos = new Vector2( x - offset_x, y - 4 );
+			Vector2 pos = new Vector2( x - offsetX, y - 4 );
 			//Color color = new Color( c, c, c, c );
 
 			sb.DrawString( Main.fontItemStack, hp.ToString(), pos, Color.Black, 0f, new Vector2( -1f, -1f ), 0.85f, SpriteEffects.None, 1f );
@@ -54,54 +54,54 @@ namespace HamstarHelpers.Helpers.HudHelpers {
 		}
 
 
-		public static void DrawHealthBar( SpriteBatch sb, float x, float y, int hp, int max_hp, Color color, float scale = 1f ) {
+		public static void DrawHealthBar( SpriteBatch sb, float x, float y, int hp, int maxHp, Color color, float scale = 1f ) {
 			if( hp <= 0 ) { return; }
 
-			float ratio = (float)hp / (float)max_hp;
+			float ratio = (float)hp / (float)maxHp;
 			if( ratio > 1f ) { ratio = 1f; }
 			ratio -= 0.1f;
 
-			int ratio_large = (int)(36f * ratio);
-			float offset_x = x - (18f * scale);
-			float offset_y = y + 4;
+			int ratioLarge = (int)(36f * ratio);
+			float offsetX = x - (18f * scale);
+			float offsetY = y + 4;
 			float depth = 1f;
 
-			if( ratio_large < 3 ) { ratio_large = 3; }
+			if( ratioLarge < 3 ) { ratioLarge = 3; }
 
 			Vector2 pos;
 			Rectangle? rect;
 
-			if( ratio_large < 34 ) {
-				if( ratio_large < 36 ) {
-					pos = new Vector2( offset_x + (float)ratio_large * scale, offset_y );
+			if( ratioLarge < 34 ) {
+				if( ratioLarge < 36 ) {
+					pos = new Vector2( offsetX + (float)ratioLarge * scale, offsetY );
 					rect = new Rectangle?( new Rectangle( 2, 0, 2, Main.hbTexture2.Height ) );
 					sb.Draw( Main.hbTexture2, pos, rect, color, 0f, new Vector2( 0f, 0f ), scale, SpriteEffects.None, depth );
 				}
-				if( ratio_large < 34 ) {
-					pos = new Vector2( offset_x + (float)(ratio_large + 2) * scale, offset_y );
-					rect = new Rectangle?( new Rectangle( ratio_large + 2, 0, 36 - ratio_large - 2, Main.hbTexture2.Height ) );
+				if( ratioLarge < 34 ) {
+					pos = new Vector2( offsetX + (float)(ratioLarge + 2) * scale, offsetY );
+					rect = new Rectangle?( new Rectangle( ratioLarge + 2, 0, 36 - ratioLarge - 2, Main.hbTexture2.Height ) );
 					sb.Draw( Main.hbTexture2, pos, rect, color, 0f, new Vector2( 0f, 0f ), scale, SpriteEffects.None, depth );
 				}
-				if( ratio_large > 2 ) {
-					pos = new Vector2( offset_x, offset_y );
-					rect = new Rectangle?( new Rectangle( 0, 0, ratio_large - 2, Main.hbTexture1.Height ) );
+				if( ratioLarge > 2 ) {
+					pos = new Vector2( offsetX, offsetY );
+					rect = new Rectangle?( new Rectangle( 0, 0, ratioLarge - 2, Main.hbTexture1.Height ) );
 					sb.Draw( Main.hbTexture1, pos, rect, color, 0f, new Vector2( 0f, 0f ), scale, SpriteEffects.None, depth );
 				}
 
-				pos = new Vector2( offset_x + (float)(ratio_large - 2) * scale, offset_y );
+				pos = new Vector2( offsetX + (float)(ratioLarge - 2) * scale, offsetY );
 				rect = new Rectangle?( new Rectangle( 32, 0, 2, Main.hbTexture1.Height ) );
 				sb.Draw( Main.hbTexture1, pos, rect, color, 0f, new Vector2( 0f, 0f ), scale, SpriteEffects.None, depth );
 				return;
 			}
 
-			if( ratio_large < 36 ) {
-				pos = new Vector2( offset_x + (float)ratio_large * scale, offset_y );
-				rect = new Rectangle?( new Rectangle( ratio_large, 0, 36 - ratio_large, Main.hbTexture2.Height ) );
+			if( ratioLarge < 36 ) {
+				pos = new Vector2( offsetX + (float)ratioLarge * scale, offsetY );
+				rect = new Rectangle?( new Rectangle( ratioLarge, 0, 36 - ratioLarge, Main.hbTexture2.Height ) );
 				sb.Draw( Main.hbTexture2, pos, rect, color, 0f, new Vector2( 0f, 0f ), scale, SpriteEffects.None, depth );
 			}
 
-			pos = new Vector2( offset_x, offset_y );
-			rect = new Rectangle?( new Rectangle( 0, 0, ratio_large, Main.hbTexture1.Height ) );
+			pos = new Vector2( offsetX, offsetY );
+			rect = new Rectangle?( new Rectangle( 0, 0, ratioLarge, Main.hbTexture1.Height ) );
 			sb.Draw( Main.hbTexture1, pos, rect, color, 0f, new Vector2( 0f, 0f ), scale, SpriteEffects.None, depth );
 		}
 	}

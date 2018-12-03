@@ -13,14 +13,14 @@ namespace HamstarHelpers.Components.Network.Data {
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
 	public abstract partial class PacketProtocolData {
-		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData field_container ) {
-			foreach( FieldInfo field in field_container.OrderedFields ) {
+		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData fieldContainer ) {
+			foreach( FieldInfo field in fieldContainer.OrderedFields ) {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
 					continue;
 				}
 				
-				Type field_type = field.FieldType;
-				object field_data = PacketProtocolData.ReadStreamValue( reader, field_type );
+				Type fieldType = field.FieldType;
+				object fieldData = PacketProtocolData.ReadStreamValue( reader, fieldType );
 
 				if( Main.netMode == 1 ) {
 					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {
@@ -32,152 +32,152 @@ namespace HamstarHelpers.Components.Network.Data {
 					}
 				}
 
-//LogHelpers.Log( "READ "+ field_container.GetType().Name + " FIELD " + field + " VALUE " + field_data );
-				field.SetValue( field_container, field_data );
+//LogHelpers.Log( "READ "+ fieldContainer.GetType().Name + " FIELD " + field + " VALUE " + fieldData );
+				field.SetValue( fieldContainer, fieldData );
 			}
 		}
 
 
 		////////////////
 
-		private static object ReadStreamValue( BinaryReader reader, Type field_type ) {
-			object raw_val;
+		private static object ReadStreamValue( BinaryReader reader, Type fieldType ) {
+			object rawVal;
 
-			switch( Type.GetTypeCode( field_type ) ) {
+			switch( Type.GetTypeCode( fieldType ) ) {
 			case TypeCode.String:
-				raw_val = reader.ReadString();
+				rawVal = reader.ReadString();
 				break;
 			case TypeCode.Single:
-				raw_val = reader.ReadSingle();
+				rawVal = reader.ReadSingle();
 				break;
 			case TypeCode.UInt64:
-				raw_val = reader.ReadUInt64();
+				rawVal = reader.ReadUInt64();
 				break;
 			case TypeCode.Int64:
-				raw_val = reader.ReadInt64();
+				rawVal = reader.ReadInt64();
 				break;
 			case TypeCode.UInt32:
-				raw_val = reader.ReadUInt32();
+				rawVal = reader.ReadUInt32();
 				break;
 			case TypeCode.Int32:
-				raw_val = reader.ReadInt32();
+				rawVal = reader.ReadInt32();
 				break;
 			case TypeCode.UInt16:
-				raw_val = reader.ReadUInt16();
+				rawVal = reader.ReadUInt16();
 				break;
 			case TypeCode.Int16:
-				raw_val = reader.ReadInt16();
+				rawVal = reader.ReadInt16();
 				break;
 			case TypeCode.Double:
-				raw_val = reader.ReadDouble();
+				rawVal = reader.ReadDouble();
 				break;
 			case TypeCode.Char:
-				raw_val = reader.ReadChar();
+				rawVal = reader.ReadChar();
 				break;
 			case TypeCode.SByte:
-				raw_val = reader.ReadSByte();
+				rawVal = reader.ReadSByte();
 				break;
 			case TypeCode.Byte:
-				raw_val = reader.ReadByte();
+				rawVal = reader.ReadByte();
 				break;
 			case TypeCode.Boolean:
-				raw_val = reader.ReadBoolean();
+				rawVal = reader.ReadBoolean();
 				break;
 			case TypeCode.Decimal:
-				raw_val = reader.ReadDecimal();
+				rawVal = reader.ReadDecimal();
 				break;
 			case TypeCode.Object:
-				raw_val = PacketProtocolData.ReadStreamObjectValue( reader, field_type );
+				rawVal = PacketProtocolData.ReadStreamObjectValue( reader, fieldType );
 				break;
 			default:
-				raw_val = null;
+				rawVal = null;
 				break;
 			}
 			
-			return raw_val;
+			return rawVal;
 		}
 
 
-		private static object ReadStreamObjectValue( BinaryReader reader, Type field_type ) {
-			bool is_enumerable = false, is_dictionary = false;
-			string[] data_type_name_chunks = null;
+		private static object ReadStreamObjectValue( BinaryReader reader, Type fieldType ) {
+			bool isEnumerable = false, isDictionary = false;
+			string[] dataTypeNameChunks = null;
 
-			if( field_type.IsInterface ) {
-				data_type_name_chunks = field_type.Name.Split( new char[] { '`' }, 2 );
+			if( fieldType.IsInterface ) {
+				dataTypeNameChunks = fieldType.Name.Split( new char[] { '`' }, 2 );
 
-				switch( data_type_name_chunks[0] ) {
+				switch( dataTypeNameChunks[0] ) {
 				case "ISet":
 				case "IList":
-					is_enumerable = true;
+					isEnumerable = true;
 					break;
 				case "IDictionary":
-					is_dictionary = true;
+					isDictionary = true;
 					break;
 				}
 			}
 			
-			if( field_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-				var data = PacketProtocolData.CreateRaw( field_type );
+			if( fieldType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+				var data = PacketProtocolData.CreateRaw( fieldType );
 
 				data.ReadStream( reader );
 				
 				return data;
 
-			} else if( ( is_enumerable || typeof( IEnumerable ).IsAssignableFrom( field_type ) )
-					&& ( !is_dictionary && !typeof( IDictionary ).IsAssignableFrom( field_type ) ) ) {
+			} else if( ( isEnumerable || typeof( IEnumerable ).IsAssignableFrom( fieldType ) )
+					&& ( !isDictionary && !typeof( IDictionary ).IsAssignableFrom( fieldType ) ) ) {
 				ushort length = reader.ReadUInt16();
-				Type[] inner_types = field_type.GetGenericArguments();
-				Type inner_type;
+				Type[] innerTypes = fieldType.GetGenericArguments();
+				Type innerType;
 				
-				if( inner_types.Length == 0 ) {
-					inner_type = field_type.GetElementType();
+				if( innerTypes.Length == 0 ) {
+					innerType = fieldType.GetElementType();
 				} else {
-					inner_type = inner_types[0];
+					innerType = innerTypes[0];
 				}
 				
-				Array arr = Array.CreateInstance( inner_type, length );
+				Array arr = Array.CreateInstance( innerType, length );
 
-				if( inner_type.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+				if( innerType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					for( int i = 0; i < length; i++ ) {
-						var item = PacketProtocolData.CreateRaw( inner_type );
+						var item = PacketProtocolData.CreateRaw( innerType );
 
 						item.ReadStream( reader );
 						arr.SetValue( item, i );
 					}
 				} else {
 					for( int i = 0; i < length; i++ ) {
-						object item = PacketProtocolData.ReadStreamValue( reader, inner_type );
+						object item = PacketProtocolData.ReadStreamValue( reader, innerType );
 						arr.SetValue( item, i );
 					}
 				}
 
-				if( field_type.IsInterface ) {
-					switch( data_type_name_chunks[0] ) {
+				if( fieldType.IsInterface ) {
+					switch( dataTypeNameChunks[0] ) {
 					case "ISet":
-						field_type = typeof( HashSet<> ).MakeGenericType( inner_type );
+						fieldType = typeof( HashSet<> ).MakeGenericType( innerType );
 						break;
 					case "IList":
-						field_type = typeof( List<> ).MakeGenericType( inner_type );
+						fieldType = typeof( List<> ).MakeGenericType( innerType );
 						break;
 					}
 				}
 				
-				if( field_type.IsArray ) {
+				if( fieldType.IsArray ) {
 					return arr;
 				} else {
 					try {
-						return Activator.CreateInstance( field_type, new object[] { arr } );
+						return Activator.CreateInstance( fieldType, new object[] { arr } );
 					} catch( Exception e ) {
-						throw new Exception( "!ModHelpers.PacketProtocolData.ReadStreamObjectValue - Invalid container type " + field_type.Name, e );
+						throw new Exception( "!ModHelpers.PacketProtocolData.ReadStreamObjectValue - Invalid container type " + fieldType.Name, e );
 					}
 				}
 
 			} else {
-				string raw_json = reader.ReadString();
+				string rawJson = reader.ReadString();
 
-				var json_val = JsonConvert.DeserializeObject( raw_json, field_type );
+				var jsonVal = JsonConvert.DeserializeObject( rawJson, fieldType );
 				
-				return json_val;
+				return jsonVal;
 			}
 		}
 	}

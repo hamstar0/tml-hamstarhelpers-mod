@@ -32,11 +32,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public UIDialog( UITheme theme, int initial_width, int initial_height ) {
+		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) {
 			this.IsOpen = false;
 			this.Theme = theme;
-			this.InitialContainerWidth = initial_width;
-			this.InitialContainerHeight = initial_height;
+			this.InitialContainerWidth = initialWidth;
+			this.InitialContainerHeight = initialHeight;
 		}
 
 		////////////////
@@ -76,8 +76,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public override void Update( GameTime game_time ) {
-			base.Update( game_time );
+		public override void Update( GameTime gameTime ) {
+			base.Update( gameTime );
 
 			if( !this.IsOpen ) {
 				return;
@@ -119,18 +119,18 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public void RecalculateContainer() {
 			CalculatedStyle dim = this.OuterContainer.GetDimensions();
-			float offset_x = this.LeftPixels;
-			float offset_y = this.TopPixels;
+			float offsetX = this.LeftPixels;
+			float offsetY = this.TopPixels;
 
 			if( this.LeftCentered ) {
-				offset_x -= dim.Width * 0.5f;
+				offsetX -= dim.Width * 0.5f;
 			}
 			if( this.TopCentered ) {
-				offset_y -= dim.Height * 0.5f;
+				offsetY -= dim.Height * 0.5f;
 			}
 			
-			this.OuterContainer.Left.Set( offset_x, this.LeftPercent );
-			this.OuterContainer.Top.Set( offset_y, this.TopPercent );
+			this.OuterContainer.Left.Set( offsetX, this.LeftPercent );
+			this.OuterContainer.Top.Set( offsetY, this.TopPercent );
 		}
 
 

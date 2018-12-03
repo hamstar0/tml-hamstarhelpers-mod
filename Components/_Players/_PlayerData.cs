@@ -40,8 +40,8 @@ namespace HamstarHelpers.Components.Players {
 			return PlayerData.GetData<T>( player.whoAmI );
 		}
 
-		public static T GetData<T>( int player_who ) where T : PlayerData {
-			var datas = ModHelpersMod.Instance.PlayerDataMngr.Data[ player_who ];
+		public static T GetData<T>( int playerWho ) where T : PlayerData {
+			var datas = ModHelpersMod.Instance.PlayerDataMngr.Data[ playerWho ];
 			Type t = typeof( T );
 			PlayerData data = null;
 
@@ -52,35 +52,35 @@ namespace HamstarHelpers.Components.Players {
 
 		////////////////
 
-		internal static void LoadAll( int player_who, TagCompound tags ) {
-			Player player = Main.player[ player_who ];
+		internal static void LoadAll( int playerWho, TagCompound tags ) {
+			Player player = Main.player[ playerWho ];
 			if( player == null || !player.active ) {
-				LogHelpers.Log( "PlayerData.LoadAll - Player id'd "+player_who+" could not load their data." );
+				LogHelpers.Log( "PlayerData.LoadAll - Player id'd "+playerWho+" could not load their data." );
 				return;
 			}
 
 			
-			var datas = ModHelpersMod.Instance.PlayerDataMngr.Data[ player_who ];
+			var datas = ModHelpersMod.Instance.PlayerDataMngr.Data[ playerWho ];
 
 			foreach( var data in datas.Values ) {
-				string tags_name = data.GetType().Name;
-				if( !tags.ContainsKey(tags_name) ) { continue; }
+				string tagsName = data.GetType().Name;
+				if( !tags.ContainsKey(tagsName) ) { continue; }
 
-				var new_tags = tags.GetCompound( tags_name );
-				data.Load( new_tags );
+				var newTags = tags.GetCompound( tagsName );
+				data.Load( newTags );
 			}
 		}
 
-		internal static void SaveAll( int player_who, TagCompound tags ) {
-			var datas = ModHelpersMod.Instance.PlayerDataMngr.Data[ player_who ];
+		internal static void SaveAll( int playerWho, TagCompound tags ) {
+			var datas = ModHelpersMod.Instance.PlayerDataMngr.Data[ playerWho ];
 
 			foreach( var data in datas.Values ) {
-				string tags_name = data.GetType().Name;
-				var new_tags = new TagCompound();
+				string tagsName = data.GetType().Name;
+				var newTags = new TagCompound();
 
-				data.Save( new_tags );
+				data.Save( newTags );
 
-				tags[ tags_name ] = new_tags;
+				tags[ tagsName ] = newTags;
 			}
 		}
 

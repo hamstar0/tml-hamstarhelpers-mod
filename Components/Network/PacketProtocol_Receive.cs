@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		private void ReceiveWithEitherBase( BinaryReader reader, int from_who ) {
+		private void ReceiveWithEitherBase( BinaryReader reader, int fromWho ) {
 			var mymod = ModHelpersMod.Instance;
 			Type mytype = this.GetType();
 
@@ -21,41 +21,41 @@ namespace HamstarHelpers.Components.Network {
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string name = mytype.Namespace + "." + mytype.Name;
-				string json_str = JsonConvert.SerializeObject( this );
-				LogHelpers.Log( "<" + name + " ReceiveWithEitherBase: " + json_str );
+				string jsonStr = JsonConvert.SerializeObject( this );
+				LogHelpers.Log( "<" + name + " ReceiveWithEitherBase: " + jsonStr );
 			}
 
-			foreach( FieldInfo my_field in mytype.GetFields() ) {
-				FieldInfo your_field = mytype.GetField( my_field.Name );
+			foreach( FieldInfo myField in mytype.GetFields() ) {
+				FieldInfo yourField = mytype.GetField( myField.Name );
 
-				if( your_field == null ) {
+				if( yourField == null ) {
 					string name = mytype.Namespace + "." + mytype.Name;
-					LogHelpers.Log( "Missing " + name + " protocol field for " + my_field.Name );
+					LogHelpers.Log( "Missing " + name + " protocol field for " + myField.Name );
 					return;
 				}
 
-				object val = your_field.GetValue( this );
+				object val = yourField.GetValue( this );
 
 				if( val == null ) {
 					string name = mytype.Namespace + "." + mytype.Name;
-					LogHelpers.Log( "Missing " + name + " protocol value for " + your_field.Name );
+					LogHelpers.Log( "Missing " + name + " protocol value for " + yourField.Name );
 					return;
 				}
-				my_field.SetValue( this, val );
+				myField.SetValue( this, val );
 			}
 		}
 
 
-		private void ReceiveWithClientBase( BinaryReader reader, int from_who ) {
-			this.ReceiveWithEitherBase( reader, from_who );
+		private void ReceiveWithClientBase( BinaryReader reader, int fromWho ) {
+			this.ReceiveWithEitherBase( reader, fromWho );
 
 			this.ReceiveWithClient();
 		}
 
-		private void ReceiveWithServerBase( BinaryReader reader, int from_who ) {
-			this.ReceiveWithEitherBase( reader, from_who );
+		private void ReceiveWithServerBase( BinaryReader reader, int fromWho ) {
+			this.ReceiveWithEitherBase( reader, fromWho );
 
-			this.ReceiveWithServer( from_who );
+			this.ReceiveWithServer( fromWho );
 		}
 
 
@@ -72,18 +72,18 @@ namespace HamstarHelpers.Components.Network {
 			
 			this.SetClientDefaults();
 
-			bool skip_send = false;
-			var method_info = this.GetType().GetMethod( "ReceiveRequestOnClient" );
+			bool skipSend = false;
+			var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnClient" );
 			
-			skip_send = this.ReceiveRequestWithClient();
+			skipSend = this.ReceiveRequestWithClient();
 
-			if( !skip_send ) {
+			if( !skipSend ) {
 				this.SendToServer( false );
 			}
 		}
 
 
-		private void ReceiveRequestWithServerBase( int from_who ) {
+		private void ReceiveRequestWithServerBase( int fromWho ) {
 			ModHelpersMod mymod = ModHelpersMod.Instance;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
@@ -93,18 +93,18 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				this.SetServerDefaults( from_who );
+				this.SetServerDefaults( fromWho );
 			} catch( NotImplementedException ) {
 				this.SetServerDefaults();
 			}
 
-			bool skip_send = false;
-			var method_info = this.GetType().GetMethod( "ReceiveRequestOnServer" );
+			bool skipSend = false;
+			var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnServer" );
 			
-			skip_send = this.ReceiveRequestWithServer( from_who );
+			skipSend = this.ReceiveRequestWithServer( fromWho );
 
-			if( !skip_send ) {
-				this.SendToClient( from_who, -1 );
+			if( !skipSend ) {
+				this.SendToClient( fromWho, -1 );
 			}
 		}
 	}

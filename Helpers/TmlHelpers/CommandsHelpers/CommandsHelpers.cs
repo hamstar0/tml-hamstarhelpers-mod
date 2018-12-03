@@ -4,29 +4,29 @@ using System.Linq;
 
 namespace HamstarHelpers.Helpers.TmlHelpers.CommandsHelpers {
 	public static class CommandsHelpers {
-		public static string GetQuotedStringFromArgsAt( string[] args, int start_pos, out int next_arg_idx ) {
-			next_arg_idx = -1;
+		public static string GetQuotedStringFromArgsAt( string[] args, int startPos, out int nextArgIdx ) {
+			nextArgIdx = -1;
 
-			if( args[start_pos].Length == 0 || args[start_pos][0] != '"' ) {
+			if( args[startPos].Length == 0 || args[startPos][0] != '"' ) {
 				return "";
 			}
 
-			string start_seg = args[start_pos].Substring( 1 );
-			if( args[start_pos][ start_seg.Length - 1 ] == '"' ) {
-				next_arg_idx = start_pos + 1;
-				return start_seg;
+			string startSeg = args[startPos].Substring( 1 );
+			if( args[startPos][ startSeg.Length - 1 ] == '"' ) {
+				nextArgIdx = startPos + 1;
+				return startSeg;
 			}
 
-			IList<string> segs = new List<string> { start_seg };
+			IList<string> segs = new List<string> { startSeg };
 
-			for( int i=start_pos+1; i<args.Length; i++ ) {
+			for( int i=startPos+1; i<args.Length; i++ ) {
 				string seg = args[i];
 				
 				if( seg.Length > 0 && seg[ seg.Length-1 ] == '"' ) {
-					string sub_seg = seg.Substring( 0, seg.Length - 1 );
-					segs.Add( sub_seg );
+					string subSeg = seg.Substring( 0, seg.Length - 1 );
+					segs.Add( subSeg );
 
-					next_arg_idx = i + 1;
+					nextArgIdx = i + 1;
 
 					return string.Join( " ", segs.ToArray() );
 				}

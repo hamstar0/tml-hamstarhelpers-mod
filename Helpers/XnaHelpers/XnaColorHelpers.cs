@@ -4,20 +4,20 @@ using System;
 
 namespace HamstarHelpers.Helpers.XnaHelpers {
 	public static partial class XnaColorHelpers {
-		public static Color Add( Color c1, int amt, bool also_alpha ) {
+		public static Color Add( Color c1, int amt, bool alsoAlpha ) {
 			byte cr = (byte)MathHelper.Clamp( (int)c1.R + amt, 0, 255 );
 			byte cg = (byte)MathHelper.Clamp( (int)c1.G + amt, 0, 255 );
 			byte cb = (byte)MathHelper.Clamp( (int)c1.B + amt, 0, 255 );
 			byte ca = c1.A;
 
-			if( also_alpha ) {
+			if( alsoAlpha ) {
 				ca = (byte)MathHelper.Clamp( (int)c1.A + amt, 0, 255 );
 			}
 
 			return new Color( cr, cg, cb, ca );
 		}
 		
-		public static Color Add( Color c1, Color c2, bool also_alpha ) {
+		public static Color Add( Color c1, Color c2, bool alsoAlpha ) {
 			int r = (int)c1.R + (int)c2.R;
 			int g = (int)c1.G + (int)c2.G;
 			int b = (int)c1.B + (int)c2.B;
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 			byte cb = (byte)MathHelper.Clamp( b, 0, 255 );
 			byte ca = c1.A;
 
-			if( also_alpha ) {
+			if( alsoAlpha ) {
 				int a = (int)c1.A + (int)c2.A;
 				ca = (byte)MathHelper.Clamp( a, 0, 255 );
 			}

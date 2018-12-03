@@ -9,29 +9,29 @@ using Terraria.UI;
 namespace HamstarHelpers.Services.Menus {
 	public partial class MenuContextService {
 		public static UIElement GetMenuContainerOuter( UIState ui ) {
-			Type ui_type = ui.GetType();
-			FieldInfo ui_outer_box_field = ui_type.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );
-			UIElement ui_outer_box = (UIElement)ui_outer_box_field.GetValue( ui );
+			Type uiType = ui.GetType();
+			FieldInfo uiOuterBoxField = uiType.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );
+			UIElement uiOuterBox = (UIElement)uiOuterBoxField.GetValue( ui );
 
-			return ui_outer_box;
+			return uiOuterBox;
 		}
 
-		public static UIElement GetMenuContainerInner( UIElement ui_outer_box ) {
-			Type ui_outer_box_type = ui_outer_box.GetType();
-			FieldInfo ui_outer_box_elems_field = ui_outer_box_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
-			List<UIElement> ui_outer_box_elems = (List<UIElement>)ui_outer_box_elems_field.GetValue( ui_outer_box );
+		public static UIElement GetMenuContainerInner( UIElement uiOuterBox ) {
+			Type uiOuterBoxType = uiOuterBox.GetType();
+			FieldInfo uiOuterBoxElemsField = uiOuterBoxType.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
+			List<UIElement> uiOuterBoxElems = (List<UIElement>)uiOuterBoxElemsField.GetValue( uiOuterBox );
 
-			return ui_outer_box_elems[0];
+			return uiOuterBoxElems[0];
 		}
 
-		public static UIElement GetMenuContainerInsertPoint( UIElement ui_inner_container ) {
-			Type ui_container_type = ui_inner_container.GetType();
-			FieldInfo ui_container_elems_field = ui_container_type.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
-			List<UIElement> ui_container_elems = (List<UIElement>)ui_container_elems_field.GetValue( ui_inner_container );
+		public static UIElement GetMenuContainerInsertPoint( UIElement uiInnerContainer ) {
+			Type uiContainerType = uiInnerContainer.GetType();
+			FieldInfo uiContainerElemsField = uiContainerType.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
+			List<UIElement> uiContainerElems = (List<UIElement>)uiContainerElemsField.GetValue( uiInnerContainer );
 
-			for( int i = 0; i < ui_container_elems.Count; i++ ) {
-				if( ui_container_elems[i] is UIElement && !( ui_container_elems[i] is UIList ) && !( ui_container_elems[i] is UIScrollbar ) ) {
-					return ui_container_elems[i];
+			for( int i = 0; i < uiContainerElems.Count; i++ ) {
+				if( uiContainerElems[i] is UIElement && !( uiContainerElems[i] is UIList ) && !( uiContainerElems[i] is UIScrollbar ) ) {
+					return uiContainerElems[i];
 				}
 			}
 
@@ -39,9 +39,9 @@ namespace HamstarHelpers.Services.Menus {
 		}
 
 		public static UIElement GetMenuContainerInsertPoint( UIState ui ) {
-			var ui_outer_container = MenuContextService.GetMenuContainerOuter( ui );
-			var ui_inner_container = MenuContextService.GetMenuContainerInner( ui_outer_container );
-			return MenuContextService.GetMenuContainerInsertPoint( ui_inner_container );
+			var uiOuterContainer = MenuContextService.GetMenuContainerOuter( ui );
+			var uiInnerContainer = MenuContextService.GetMenuContainerInner( uiOuterContainer );
+			return MenuContextService.GetMenuContainerInsertPoint( uiInnerContainer );
 		}
 
 

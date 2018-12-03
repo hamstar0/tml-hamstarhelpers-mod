@@ -30,8 +30,8 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		private ModUpdatesMenuContext() : base( false, false ) {
 		}
 		
-		public override void OnContexualize( string ui_class_name, string context_name ) {
-			base.OnContexualize( ui_class_name, context_name );
+		public override void OnContexualize( string uiClassName, string contextName ) {
+			base.OnContexualize( uiClassName, contextName );
 		}
 
 
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		////////////////
 
-		private void DisplayModListVersions( UIState ui, IDictionary<string, Tuple<string, Version>> mod_version_info ) {
+		private void DisplayModListVersions( UIState ui, IDictionary<string, Tuple<string, Version>> modVersionInfo ) {
 			object items;
 			if( !ReflectionHelpers.Get( ui, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
 				LogHelpers.Log( "!ModHelpers.ModUpdatesMenuContext._ctor - No 'items' field in ui " + ui );
@@ -63,12 +63,12 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				return;
 			}
 
-			var items_arr = (Array)items.GetType()
+			var itemsArr = (Array)items.GetType()
 				.GetMethod( "ToArray" )
 				.Invoke( items, new object[] { } );
 
-			for( int i = 0; i < items_arr.Length; i++ ) {
-				object item = items_arr.GetValue( i );
+			for( int i = 0; i < itemsArr.Length; i++ ) {
+				object item = itemsArr.GetValue( i );
 
 				object mod;
 				ReflectionHelpers.Get<object>( item, "mod", BindingFlags.Instance | BindingFlags.NonPublic, out mod );
@@ -76,47 +76,47 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				TmodFile tmod;
 				ReflectionHelpers.Get<TmodFile>( mod, "modFile", out tmod );
 
-				this.CheckVersion( mod_version_info, list, tmod.name, tmod.version );
+				this.CheckVersion( modVersionInfo, list, tmod.name, tmod.version );
 			}
 		}
 
 
 		////////////////
 
-		public void CheckVersion( IDictionary<string, Tuple<string, Version>> mod_info, UIList mod_list, string mod_name, Version mod_version ) {
-//LogHelpers.Log( "mod_info.Count:"+mod_info.Count+ ", name:"+name+", vers:"+vers);
-			if( !mod_info.ContainsKey( mod_name ) ) { return; }
-			if( mod_info[ mod_name ].Item2 == mod_version ) { return; }
+		public void CheckVersion( IDictionary<string, Tuple<string, Version>> modInfo, UIList modList, string modName, Version modVersion ) {
+//LogHelpers.Log( "modInfo.Count:"+modInfo.Count+ ", name:"+name+", vers:"+vers);
+			if( !modInfo.ContainsKey( modName ) ) { return; }
+			if( modInfo[ modName ].Item2 == modVersion ) { return; }
 
-			UIPanel ui_mod_item = null;
+			UIPanel uiModItem = null;
 
-			foreach( UIElement mod_item in mod_list._items ) {
+			foreach( UIElement modItem in modList._items ) {
 				object mod;
 				TmodFile tmod;
 
-				ReflectionHelpers.Get<object>( mod_item, "mod", BindingFlags.Instance | BindingFlags.NonPublic, out mod );
+				ReflectionHelpers.Get<object>( modItem, "mod", BindingFlags.Instance | BindingFlags.NonPublic, out mod );
 				ReflectionHelpers.Get<TmodFile>( mod, "modFile", out tmod );
 
-				if( tmod.name == mod_name ) {
-					ui_mod_item = (UIPanel)mod_item;
+				if( tmod.name == modName ) {
+					uiModItem = (UIPanel)modItem;
 					break;
 				}
 			}
 
-			if( ui_mod_item != null ) {
-				string new_mod_version = mod_info[mod_name].Item2.ToString();
+			if( uiModItem != null ) {
+				string newModVersion = modInfo[modName].Item2.ToString();
 
-//LogHelpers.Log( " name: "+name+", ui_mod_item: " + ui_mod_item.GetOuterDimensions().ToRectangle() );
-				var txt = new UIText( new_mod_version + " On Mod Browser", 0.8f, true );
+//LogHelpers.Log( " name: "+name+", uiModItem: " + uiModItem.GetOuterDimensions().ToRectangle() );
+				var txt = new UIText( newModVersion + " On Mod Browser", 0.8f, true );
 				txt.Top.Set( 24f, 0f );
 				txt.Left.Set( -184f, 0.5f );
 				txt.TextColor = Color.Gold;
 
-				ui_mod_item.Append( txt );
-				ui_mod_item.Recalculate();
-				ui_mod_item.Parent?.Recalculate();
-				ui_mod_item.Parent?.Parent?.Recalculate();
-				ui_mod_item.Parent?.Parent?.Parent?.Recalculate();
+				uiModItem.Append( txt );
+				uiModItem.Recalculate();
+				uiModItem.Parent?.Recalculate();
+				uiModItem.Parent?.Parent?.Recalculate();
+				uiModItem.Parent?.Parent?.Parent?.Recalculate();
 			}
 		}
 	}

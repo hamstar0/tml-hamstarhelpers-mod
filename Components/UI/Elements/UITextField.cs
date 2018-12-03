@@ -38,9 +38,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public UITextField( UITheme theme, string hint_text ) {
+		public UITextField( UITheme theme, string hintText ) {
 			this.Theme = theme;
-			this.HintText = hint_text;
+			this.HintText = hintText;
 			
 			this.SetPadding( 6f );
 			this.RefreshTheme();
@@ -77,13 +77,13 @@ namespace HamstarHelpers.Components.UI.Elements {
 				PlayerInput.WritingText = true;
 				Main.instance.HandleIME();
 
-				string new_str = Main.GetInputText( this.Text );
+				string newStr = Main.GetInputText( this.Text );
 
-				if( !new_str.Equals( this.Text ) ) {
-					this.OnTextChange( this, new TextInputEventArgs( new_str ) );
+				if( !newStr.Equals( this.Text ) ) {
+					this.OnTextChange( this, new TextInputEventArgs( newStr ) );
 				}
 
-				this.Text = new_str;
+				this.Text = newStr;
 			}
 
 			var pos = new Vector2( dim.X + this.PaddingLeft, dim.Y + this.PaddingTop );
@@ -91,13 +91,13 @@ namespace HamstarHelpers.Components.UI.Elements {
 			if( this.Text.Length == 0 ) {
 				Utils.DrawBorderString( sb, this.HintText, pos, Color.Gray, 1f );
 			} else {
-				string display_str = this.Text;
+				string displayStr = this.Text;
 
 				if( ++this.CursorAnimation % 40 < 20 ) {
-					display_str = display_str + "|";
+					displayStr = displayStr + "|";
 				}
 
-				Utils.DrawBorderString( sb, display_str, pos, this.TextColor, 1f );
+				Utils.DrawBorderString( sb, displayStr, pos, this.TextColor, 1f );
 			}
 		}
 	}

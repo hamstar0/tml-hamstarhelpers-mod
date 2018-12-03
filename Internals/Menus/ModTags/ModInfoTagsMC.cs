@@ -39,20 +39,20 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.ResetButton = new UITagResetButton( this );
 		}
 		
-		public override void OnContexualize( string ui_class_name, string context_name ) {
-			base.OnContexualize( ui_class_name, context_name );
+		public override void OnContexualize( string uiClassName, string contextName ) {
+			base.OnContexualize( uiClassName, contextName );
 
-			var finish_button_widget_ctx = new WidgetMenuContext( this.FinishButton, false );
-			var reset_button_widget_ctx = new WidgetMenuContext( this.ResetButton, false );
+			var finishButtonWidgetCtx = new WidgetMenuContext( this.FinishButton, false );
+			var resetButtonWidgetCtx = new WidgetMenuContext( this.ResetButton, false );
 
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Tag Finish Button", finish_button_widget_ctx );
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Tag Reset Button", reset_button_widget_ctx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Finish Button", finishButtonWidgetCtx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Reset Button", resetButtonWidgetCtx );
 		}
 
 
 		////////////////
 
-		public override void OnTagStateChange( UITagButton tag_button ) {
+		public override void OnTagStateChange( UITagButton tagButton ) {
 			this.FinishButton.UpdateEnableState();
 			this.ResetButton.UpdateEnableState();
 		}

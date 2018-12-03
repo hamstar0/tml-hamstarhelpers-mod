@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected PlayerOldIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected PlayerOldIdProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
@@ -28,8 +28,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void Receive( int from_who ) {
-			Player player = Main.player[ from_who ];
+		protected override void Receive( int fromWho ) {
+			Player player = Main.player[ fromWho ];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveIdServer( this.ClientHasUID, this.ClientPrivateUID );

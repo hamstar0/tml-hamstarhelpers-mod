@@ -19,14 +19,14 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 			return Lang.GetItemNameValue( item.type );  // not netID?
 		}
 
-		public static string GetQualifiedName( int item_type ) {
-			return Lang.GetItemNameValue( item_type );
+		public static string GetQualifiedName( int itemType ) {
+			return Lang.GetItemNameValue( itemType );
 		}
 
 
 
-		public static int GetVanillaSnapshotHash( Item item, bool no_context, bool minimal ) {
-			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( item, no_context );
+		public static int GetVanillaSnapshotHash( Item item, bool noContext, bool minimal ) {
+			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( item, noContext );
 
 			string id = ItemIdentityHelpers.GetUniqueId( item );
 			
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 			hash ^= ( "prefix" + item.prefix ).GetHashCode();
 			hash ^= ( "stack" + item.stack ).GetHashCode();
 
-			if( !no_context ) {
+			if( !noContext ) {
 				hash ^= ( "owner" + item.owner ).GetHashCode();
 				hash ^= ( "netID" + item.netID ).GetHashCode();
 				hash ^= ( "favorited" + item.favorited ).GetHashCode();

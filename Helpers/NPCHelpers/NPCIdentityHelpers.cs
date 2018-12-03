@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			return Lang.GetNPCNameValue( npc.netID );
 		}
 
-		public static string GetQualifiedName( int netid ) {    //npc_type?
+		public static string GetQualifiedName( int netid ) {    //npcType?
 			return Lang.GetNPCNameValue( netid );
 		}
 

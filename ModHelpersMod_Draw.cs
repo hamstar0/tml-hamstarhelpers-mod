@@ -44,7 +44,7 @@ namespace HamstarHelpers {
 			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 			if( idx == -1 ) { return; }
 
-			GameInterfaceDrawMethod debug_layer_draw = delegate {
+			GameInterfaceDrawMethod debugLayerDraw = delegate {
 				var sb = Main.spriteBatch;
 
 				try {
@@ -55,12 +55,12 @@ namespace HamstarHelpers {
 					DebugHelpers.Once = false;
 					DebugHelpers.OnceInAWhile--;
 				} catch( Exception e ) {
-					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-debug_layer_draw - " + e.ToString() );
+					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-debugLayerDraw - " + e.ToString() );
 				}
 				return true;
 			};
 
-			GameInterfaceDrawMethod cp_layer_draw = delegate {
+			GameInterfaceDrawMethod cpLayerDraw = delegate {
 				var sb = Main.spriteBatch;
 
 				try {
@@ -76,7 +76,7 @@ namespace HamstarHelpers {
 
 					this.Inbox.Draw( sb );
 				} catch( Exception e ) {
-					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-cp_layer_draw - " + e.ToString() );
+					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-cpLayerDraw - " + e.ToString() );
 				}
 
 //sb.DrawString( Main.fontDeathText, "ALERT", new Vector2(128, 128), this.AnimatedColors.Alert.CurrentColor );
@@ -87,28 +87,28 @@ namespace HamstarHelpers {
 				return true;
 			};
 
-			GameInterfaceDrawMethod modlock_layer_draw = delegate {
+			GameInterfaceDrawMethod modlockLayerDraw = delegate {
 				try {
 					this.ModLockHelpers.DrawWarning( Main.spriteBatch );
 				} catch( Exception e ) {
-					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-modlock_layer_draw - " + e.ToString() );
+					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-modlockLayerDraw - " + e.ToString() );
 				}
 				return true;
 			};
 
 
-			var debug_layer = new LegacyGameInterfaceLayer( "ModHelpers: Debug Display",
-				debug_layer_draw, InterfaceScaleType.UI );
-			layers.Insert( idx, debug_layer );
+			var debugLayer = new LegacyGameInterfaceLayer( "ModHelpers: Debug Display",
+				debugLayerDraw, InterfaceScaleType.UI );
+			layers.Insert( idx, debugLayer );
 
-			var modlock_layer = new LegacyGameInterfaceLayer( "ModHelpers: Mod Lock",
-				modlock_layer_draw, InterfaceScaleType.UI );
-			layers.Insert( idx, modlock_layer );
+			var modlockLayer = new LegacyGameInterfaceLayer( "ModHelpers: Mod Lock",
+				modlockLayerDraw, InterfaceScaleType.UI );
+			layers.Insert( idx, modlockLayer );
 
 			if( !this.Config.DisableControlPanel ) {
-				var cp_layer = new LegacyGameInterfaceLayer( "ModHelpers: Control Panel",
-					cp_layer_draw, InterfaceScaleType.UI );
-				layers.Insert( idx, cp_layer );
+				var cpLayer = new LegacyGameInterfaceLayer( "ModHelpers: Control Panel",
+					cpLayerDraw, InterfaceScaleType.UI );
+				layers.Insert( idx, cpLayer );
 			}
 		}
 	}

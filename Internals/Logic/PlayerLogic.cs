@@ -62,8 +62,8 @@ namespace HamstarHelpers.Internals.Logic {
 					this.PrivateUID = tags.GetString( "uid" );
 				}
 				if( tags.ContainsKey( "perma_buffs" ) ) {
-					var perma_buffs = tags.GetList<int>( "perma_buffs" );
-					this.PermaBuffsById = new HashSet<int>( perma_buffs );
+					var permaBuffs = tags.GetList<int>( "perma_buffs" );
+					this.PermaBuffsById = new HashSet<int>( permaBuffs );
 				}
 			} catch( Exception e ) {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.Load - "+e.ToString() );
@@ -73,10 +73,10 @@ namespace HamstarHelpers.Internals.Logic {
 		}
 
 		public void Save( TagCompound tags ) {
-			var perma_buffs = this.PermaBuffsById.ToArray();
+			var permaBuffs = this.PermaBuffsById.ToArray();
 
 			tags["uid"] = this.PrivateUID;
-			tags["perma_buffs"] = perma_buffs;
+			tags["perma_buffs"] = permaBuffs;
 		}
 	}
 }

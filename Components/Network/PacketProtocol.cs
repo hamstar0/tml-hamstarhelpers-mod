@@ -12,7 +12,7 @@ namespace HamstarHelpers.Components.Network {
 	/// </summary>
 	[Obsolete( "recommend using more restrictive subclass (PacketProtocolSendToServer, PacketProtocolRequestToClient, etc.)", false)]
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		protected PacketProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected PacketProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 
@@ -37,13 +37,13 @@ namespace HamstarHelpers.Components.Network {
 
 
 		internal static IDictionary<int, Type> GetProtocolTypes() {
-			IEnumerable<Type> protocol_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof(PacketProtocol) );
-			IDictionary<int, Type> protocol_type_map = new Dictionary<int, Type>();
+			IEnumerable<Type> protocolTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof(PacketProtocol) );
+			IDictionary<int, Type> protocolTypeMap = new Dictionary<int, Type>();
 
-			foreach( Type subclass in protocol_types ) {
-				//ConstructorInfo ctor_info = subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+			foreach( Type subclass in protocolTypes ) {
+				//ConstructorInfo ctorInfo = subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
 				//	new Type[] { typeof(PacketProtocolDataConstructorLock) }, null );
-				//if( ctor_info == null ) {
+				//if( ctorInfo == null ) {
 				//	throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
 				//}
 
@@ -56,13 +56,13 @@ namespace HamstarHelpers.Components.Network {
 					string name = subclass.Namespace + "." + subclass.Name;
 					int code = PacketProtocol.GetPacketCode( name );
 
-					protocol_type_map[ code ] = subclass;
+					protocolTypeMap[ code ] = subclass;
 				} catch( Exception e ) {
 					LogHelpers.Log( subclass.Name + " - " + e.Message );
 				}
 			}
 
-			return protocol_type_map;
+			return protocolTypeMap;
 		}
 
 
@@ -100,14 +100,14 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Overridden for initializing the class to create a reply in a request to the server.
 		/// </summary>
-		protected virtual void SetServerDefaults( int to_who ) {
+		protected virtual void SetServerDefaults( int toWho ) {
 			throw new NotImplementedException( "No SetServerDefaults(int) implemented" );
 		}
 
 
 
 
-		[Obsolete( "use SetServerDefaults( int for_who )", false )]
+		[Obsolete( "use SetServerDefaults( int toWho )", false )]
 		protected virtual void SetServerDefaults() {
 			throw new NotImplementedException( "No SetServerDefaults(int)" );
 		}

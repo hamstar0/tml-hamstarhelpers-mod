@@ -6,15 +6,15 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private void DefineItemAccessoriesGroups1( Action<string, string[], Matcher> add_def ) {
+		private void DefineItemAccessoriesGroups1( Action<string, string[], Matcher> addDef ) {
 			// Accessory Classes
 
-			add_def( "Any Wing Accessory", null,
+			addDef( "Any Wing Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					return item.wingSlot > 0;
 				} );
-			add_def( "Any Vanilla Movement Accessory", null,
+			addDef( "Any Vanilla Movement Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Combat Accessory", null,
+			addDef( "Any Vanilla Combat Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -143,7 +143,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Yoyo Accessory", null,
+			addDef( "Any Vanilla Yoyo Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -175,7 +175,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Health Or Mana Accessory", null,
+			addDef( "Any Vanilla Health Or Mana Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -194,7 +194,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Construction Accessory", null,
+			addDef( "Any Vanilla Construction Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -210,7 +210,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Information Accessory", null,
+			addDef( "Any Vanilla Information Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -243,7 +243,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Fishing Accessory", null,
+			addDef( "Any Vanilla Fishing Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -255,7 +255,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Music Box Accessory", null,
+			addDef( "Any Vanilla Music Box Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -304,7 +304,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					return false;
 				} );
-			add_def( "Any Vanilla Expert Accessory", null,
+			addDef( "Any Vanilla Expert Accessory", null,
 				( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {

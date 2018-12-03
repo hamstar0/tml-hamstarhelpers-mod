@@ -47,14 +47,14 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 			};
 		}
 
-		public override void OnContexualize( string ui_class_name, string context_name ) {
-			base.OnContexualize( ui_class_name, context_name );
+		public override void OnContexualize( string uiClassName, string contextName ) {
+			base.OnContexualize( uiClassName, contextName );
 
-			var recom_widget_ctx = new WidgetMenuContext( this.RecommendsList, false );
-			var dl_widget_ctx = new WidgetMenuContext( this.DownloadButton, false );
+			var recomWidgetCtx = new WidgetMenuContext( this.RecommendsList, false );
+			var dlWidgetCtx = new WidgetMenuContext( this.DownloadButton, false );
 
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Recommendations List", recom_widget_ctx );
-			MenuContextService.AddMenuContext( ui_class_name, context_name + " Download Button", dl_widget_ctx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Recommendations List", recomWidgetCtx );
+			MenuContextService.AddMenuContext( uiClassName, contextName + " Download Button", dlWidgetCtx );
 		}
 
 
@@ -63,33 +63,33 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 
-			string mod_name = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
-			if( mod_name == null ) {
+			string modName = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
+			if( modName == null ) {
 				LogHelpers.Log( "Could not load mod recommendations; no mod found." );
 				return;
 			}
 
-			this.PopulateList( mod_name );
+			this.PopulateList( modName );
 		}
 
 
 		////////////////
 
-		private void PopulateList( string mod_name ) {
-			string curr_mod_name = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(),
+		private void PopulateList( string modName ) {
+			string currModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(),
 					this.MyUI ?? MenuContextService.GetCurrentMenuUI() );
-			if( mod_name != curr_mod_name ) {
+			if( modName != currModName ) {
 				return;
 			}
 
 			this.RecommendsList.Clear();
 
 			string err = "";
-			IList<Tuple<string, string>> recommends = this.GetRecommendsFromActiveMod( mod_name ) ??
-													  this.GetRecommendsFromUI( mod_name, ref err );
+			IList<Tuple<string, string>> recommends = this.GetRecommendsFromActiveMod( modName ) ??
+													  this.GetRecommendsFromUI( modName, ref err );
 
 			if( string.IsNullOrEmpty(err) ) {
-				this.RecommendsList.AddModEntriesAsync( mod_name, recommends.Take( ModRecommendsMenuContext.Limit ) );
+				this.RecommendsList.AddModEntriesAsync( modName, recommends.Take( ModRecommendsMenuContext.Limit ) );
 			} else {
 				LogHelpers.Log( "!ModHelpers.ModRecommendsMenuContext.PopulateList - " + err );
 			}

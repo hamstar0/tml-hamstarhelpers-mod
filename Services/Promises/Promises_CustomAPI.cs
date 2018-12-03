@@ -9,8 +9,8 @@ namespace HamstarHelpers.Services.Promises {
 		internal object ValidatorKey;
 
 
-		public PromiseValidator( object validator_key ) {
-			this.ValidatorKey = validator_key;
+		public PromiseValidator( object validatorKey ) {
+			this.ValidatorKey = validatorKey;
 		}
 	}
 
@@ -37,14 +37,14 @@ namespace HamstarHelpers.Services.Promises {
 
 		public static void AddValidatedPromise<T>( PromiseValidator validator, Func<T, bool> action ) where T : PromiseArguments {
 			var mymod = ModHelpersMod.Instance;
-			bool conditions_met;
+			bool conditionsMet;
 			T args;
 			
 			lock( validator ) {
-				conditions_met = mymod.Promises.ValidatedPromiseConditionsMet.Contains( validator );
+				conditionsMet = mymod.Promises.ValidatedPromiseConditionsMet.Contains( validator );
 			}
 
-			if( conditions_met ) {
+			if( conditionsMet ) {
 				lock( validator ) {
 					args = (T)mymod.Promises.ValidatedPromiseArgs[ validator ];
 				}
@@ -69,50 +69,50 @@ namespace HamstarHelpers.Services.Promises {
 
 		////////////////
 
-		public static void TriggerValidatedPromise( PromiseValidator validator, object validator_key, PromiseArguments args ) {
+		public static void TriggerValidatedPromise( PromiseValidator validator, object validatorKey, PromiseArguments args ) {
 			var mymod = ModHelpersMod.Instance;
-			bool is_validated, is_each;
+			bool isValidated, isEach;
 
-			if( validator.ValidatorKey != validator_key ) {
+			if( validator.ValidatorKey != validatorKey ) {
 				throw new Exception( "Validation failed." );
 			}
 
 			lock( validator.MyLock ) {
 				mymod.Promises.ValidatedPromiseConditionsMet.Add( validator );
 				mymod.Promises.ValidatedPromiseArgs[ validator ] = args;
-				is_validated = mymod.Promises.ValidatedPromise.ContainsKey( validator );
+				isValidated = mymod.Promises.ValidatedPromise.ContainsKey( validator );
 			}
 
-			if( is_validated ) {
-				IList<Func<PromiseArguments, bool>> func_list = mymod.Promises.ValidatedPromise[ validator ];
+			if( isValidated ) {
+				IList<Func<PromiseArguments, bool>> funcList = mymod.Promises.ValidatedPromise[ validator ];
 				int count;
 
 				lock( validator.MyLock ) {
-					count = func_list.Count;
+					count = funcList.Count;
 				}
 
-				for( int i = 0; i < func_list.Count; i++ ) {
+				for( int i = 0; i < funcList.Count; i++ ) {
 					lock( validator.MyLock ) {
-						is_each = func_list[ i ]( args );
+						isEach = funcList[ i ]( args );
 					}
 
-					if( !is_each ) {
-						func_list.RemoveAt( i );
+					if( !isEach ) {
+						funcList.RemoveAt( i );
 						i--;
 					}
 				}
 			}
 		}
 		
-		public static void TriggerValidatedPromise( PromiseValidator validator, object validator_key ) {
-			Promises.TriggerValidatedPromise( validator, validator_key, null );
+		public static void TriggerValidatedPromise( PromiseValidator validator, object validatorKey ) {
+			Promises.TriggerValidatedPromise( validator, validatorKey, null );
 		}
 
 
-		public static void UntriggerValidatedPromise( PromiseValidator validator, object validator_key ) {
+		public static void UntriggerValidatedPromise( PromiseValidator validator, object validatorKey ) {
 			var mymod = ModHelpersMod.Instance;
 
-			if( validator.ValidatorKey != validator_key ) {
+			if( validator.ValidatorKey != validatorKey ) {
 				throw new Exception( "Validation failed." );
 			}
 
@@ -125,10 +125,10 @@ namespace HamstarHelpers.Services.Promises {
 
 		////////////////
 
-		public static void ClearValidatedPromise( PromiseValidator validator, object validator_key ) {
+		public static void ClearValidatedPromise( PromiseValidator validator, object validatorKey ) {
 			var mymod = ModHelpersMod.Instance;
 
-			if( validator.ValidatorKey != validator_key ) {
+			if( validator.ValidatorKey != validatorKey ) {
 				throw new Exception( "Validation failed." );
 			}
 

@@ -5,32 +5,32 @@ using Terraria.ID;
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static class PlayerMovementHelpers {
-		public static bool IsRelaxed( Player player, bool not_mounted = true, bool not_grappled = true,
-				bool not_pulleyed = true, bool not_frozen = true, bool not_inverted = true ) {
+		public static bool IsRelaxed( Player player, bool notMounted = true, bool notGrappled = true,
+				bool notPulleyed = true, bool notFrozen = true, bool notInverted = true ) {
 			// Unmoved/moving
 			if( player.velocity.X != 0 || player.velocity.Y != 0 ) { return false; }
 
 			// No mounts (includes minecart)
-			if( not_mounted && player.mount.Active ) { return false; }
+			if( notMounted && player.mount.Active ) { return false; }
 
 			// Not grappled
-			if( not_grappled && player.grappling[0] >= 0 ) { return false; }
+			if( notGrappled && player.grappling[0] >= 0 ) { return false; }
 
 			// Not on a pulley
-			if( not_pulleyed && player.pulley ) { return false; }
+			if( notPulleyed && player.pulley ) { return false; }
 
 			// Not frozen
-			if( not_frozen && player.frozen ) { return false; }
+			if( notFrozen && player.frozen ) { return false; }
 
 			// Not inverted (gravity)
-			if( not_inverted && player.gravDir < 0f ) { return false; }
+			if( notInverted && player.gravDir < 0f ) { return false; }
 
 			return true;
 		}
 
 
 		public static bool IsFlying( Player player ) {
-			bool wing_fly = !player.pulley && player.grappling[0] == -1 && !player.tongued &&
+			bool wingFly = !player.pulley && player.grappling[0] == -1 && !player.tongued &&
 				player.controlJump && player.wingTime > 0f && (
 				(player.wingsLogic > 0 && !player.jumpAgainCloud && player.jump == 0 && player.velocity.Y != 0f) ||
 				(player.controlDown && (
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				)
 			);
 
-			bool rocket_fly = (player.wingTime == 0f || player.wingsLogic == 0) &&
+			bool rocketFly = (player.wingTime == 0f || player.wingsLogic == 0) &&
 				player.rocketBoots > 0 &&
 				player.controlJump &&
 				player.canRocket &&
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				!player.jumpAgainCloud &&
 				player.rocketTime > 0;
 
-			return wing_fly || rocket_fly;
+			return wingFly || rocketFly;
 		}
 
 

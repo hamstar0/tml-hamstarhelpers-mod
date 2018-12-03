@@ -47,8 +47,8 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 				ItemID.MusicBoxUndergroundHallow };
 		}
 
-		public static int GetMusicTypeOfVanillaMusicBox( int item_type ) {
-			switch( item_type ) {
+		public static int GetMusicTypeOfVanillaMusicBox( int itemType ) {
+			switch( itemType ) {
 			case ItemID.MusicBoxOverworldDay:
 				return 1;
 			case ItemID.MusicBoxEerie:

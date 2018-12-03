@@ -74,8 +74,8 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		}
 
 
-		public static bool IsGameplayRelevant( Item item, bool toys_relevant = false, bool junk_relevant = false ) {
-			if( !toys_relevant ) {
+		public static bool IsGameplayRelevant( Item item, bool toysRelevant = false, bool junkRelevant = false ) {
+			if( !toysRelevant ) {
 				switch( item.type ) {
 				case ItemID.WaterGun:
 				case ItemID.SlimeGun:
@@ -83,7 +83,7 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 					return false;
 				}
 			}
-			if( junk_relevant && item.rare < 0 ) { return false; }
+			if( junkRelevant && item.rare < 0 ) { return false; }
 			return !item.vanity && item.dye <= 0 && item.hairDye <= 0 && item.paint == 0 && !Main.vanityPet[item.buffType];
 		}
 

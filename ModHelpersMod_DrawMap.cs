@@ -13,12 +13,12 @@ namespace HamstarHelpers {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<DrawsOnMapEntityComponent>();
 
 			foreach( var ent in ents ) {
-				var map_comp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
+				var mapComp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
 
 				if( Main.mapStyle == 1 ) {
-					map_comp.DrawMiniMap( sb, ent );
+					mapComp.DrawMiniMap( sb, ent );
 				} else {
-					map_comp.DrawOverlayMap( sb, ent );
+					mapComp.DrawOverlayMap( sb, ent );
 				}
 			}
 		}
@@ -28,9 +28,9 @@ namespace HamstarHelpers {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<DrawsOnMapEntityComponent>();
 
 			foreach( var ent in ents ) {
-				var map_comp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
+				var mapComp = ent.GetComponentByType<DrawsOnMapEntityComponent>();
 
-				map_comp.DrawFullscreenMap( sb, ent );
+				mapComp.DrawFullscreenMap( sb, ent );
 			}
 		}
 	}

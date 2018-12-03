@@ -13,7 +13,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected RespectsGravityEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected RespectsGravityEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		private void UpdateMe( CustomEntity ent ) {
 			Entity core = ent.Core;
 			float gravity = 0.1f;
-			float max_fall_speed = 7f;
+			float maxFallSpeed = 7f;
 
 			// Halts movement into unload parts of the map
 			if( Main.netMode == 1 ) {
@@ -37,15 +37,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			if( core.honeyWet ) {
 				gravity = 0.05f;
-				max_fall_speed = 3f;
+				maxFallSpeed = 3f;
 			} else if( core.wet ) {
-				max_fall_speed = 5f;
+				maxFallSpeed = 5f;
 				gravity = 0.08f;
 			}
 
 			core.velocity.Y = core.velocity.Y + gravity;
-			if( core.velocity.Y > max_fall_speed ) {
-				core.velocity.Y = max_fall_speed;
+			if( core.velocity.Y > maxFallSpeed ) {
+				core.velocity.Y = maxFallSpeed;
 			}
 
 			core.velocity.X = core.velocity.X * 0.95f;

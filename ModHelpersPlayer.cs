@@ -50,23 +50,23 @@ namespace HamstarHelpers {
 			this.Logic = new PlayerLogic();
 		}
 
-		public override void clientClone( ModPlayer client_clone ) {
-			var clone = (ModHelpersPlayer)client_clone;
+		public override void clientClone( ModPlayer clientClone ) {
+			var clone = (ModHelpersPlayer)clientClone;
 			clone.Logic = this.Logic;
 		}
 
 
 		////////////////
 
-		public override void SyncPlayer( int to_who, int from_who, bool new_player ) {
+		public override void SyncPlayer( int toWho, int fromWho, bool newPlayer ) {
 			if( Main.netMode == 1 ) {
-				if( to_who == -1 && new_player ) {
+				if( toWho == -1 && newPlayer ) {
 					PacketProtocolSentToEither.QuickSendToServer<PlayerNewIdProtocol>();
 				}
 			} else if( Main.netMode == 2 ) {
-				if( to_who == -1 && from_who == this.player.whoAmI ) {
+				if( toWho == -1 && fromWho == this.player.whoAmI ) {
 					Promises.AddSafeWorldLoadOncePromise( () => {
-						this.Logic.OnServerConnect( ModHelpersMod.Instance, Main.player[from_who] );
+						this.Logic.OnServerConnect( ModHelpersMod.Instance, Main.player[fromWho] );
 					} );
 				}
 			}
@@ -76,12 +76,12 @@ namespace HamstarHelpers {
 			if( player.whoAmI != Main.myPlayer ) { return; }
 			if( this.player.whoAmI != Main.myPlayer ) { return; }
 
-			bool has_entered_world = false;
+			bool hasEnteredWorld = false;
 			int who = player.whoAmI;
 
 			Action run = () => {
-				if( has_entered_world ) { return; }
-				has_entered_world = true;
+				if( hasEnteredWorld ) { return; }
+				hasEnteredWorld = true;
 
 				var mymod = (ModHelpersMod)this.mod;
 				
@@ -100,7 +100,7 @@ namespace HamstarHelpers {
 			} );
 
 			Timers.SetTimer( "ModHelpersOnEnterWorldFailsafe", 2 * 60, () => {
-				if( !has_entered_world ) {
+				if( !hasEnteredWorld ) {
 					LogHelpers.Log( "Warning: Player ID failed to load." );
 					//Main.NewText( "To fix, try restarting game or reloading mods. If this happens again, please report this issue.", Color.DarkGray );
 
@@ -164,7 +164,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void ProcessTriggers( TriggersSet triggers_set ) {
+		public override void ProcessTriggers( TriggersSet triggersSet ) {
 			var mymod = (ModHelpersMod)this.mod;
 
 			try {
@@ -188,9 +188,9 @@ namespace HamstarHelpers {
 
 			try {
 				if( mymod.DataDumpHotkey != null && mymod.DataDumpHotkey.JustPressed ) {
-					string file_name;
-					if( DataDumper.DumpToFile( out file_name ) ) {
-						Main.NewText( "Dumped latest debug data to log file " + file_name, Color.Azure );
+					string fileName;
+					if( DataDumper.DumpToFile( out fileName ) ) {
+						Main.NewText( "Dumped latest debug data to log file " + fileName, Color.Azure );
 					}
 				}
 			} catch(Exception e ) {
@@ -200,7 +200,7 @@ namespace HamstarHelpers {
 
 			try {
 				if( mymod.CustomHotkeys != null ) {
-					mymod.CustomHotkeys.ProcessTriggers( triggers_set );
+					mymod.CustomHotkeys.ProcessTriggers( triggersSet );
 				}
 			} catch(Exception e ) {
 				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (3) - " + e.ToString() );

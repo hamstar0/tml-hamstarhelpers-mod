@@ -33,12 +33,12 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			return myset;
 		}
 
-		public static int RemoveInventoryItemQuantity( Player player, int item_type, int quantity ) {
+		public static int RemoveInventoryItemQuantity( Player player, int itemType, int quantity ) {
 			int removed = 0;
 
 			for( int i = 0; i < player.inventory.Length; i++ ) {
 				Item item = player.inventory[i];
-				if( item == null || item.IsAir || item.type != item_type ) { continue; }
+				if( item == null || item.IsAir || item.type != itemType ) { continue; }
 
 				int stack = item.stack;
 
@@ -63,21 +63,21 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			int _;
 			PlayerItemHelpers.DropInventoryItem( player, slot, 100, out _ );
 		}
-		public static void DropInventoryItem( Player player, int slot, int no_grab_delay, out int idx ) {
-			idx = PlayerItemHelpers.DropInventoryItem( player, slot, no_grab_delay );
+		public static void DropInventoryItem( Player player, int slot, int noGrabDelay, out int idx ) {
+			idx = PlayerItemHelpers.DropInventoryItem( player, slot, noGrabDelay );
 		}
 
-		public static int DropInventoryItem( Player player, int slot, int no_grab_delay ) {
+		public static int DropInventoryItem( Player player, int slot, int noGrabDelay ) {
 			Item item = player.inventory[ slot ];
 			if( item == null || item.IsAir ) {
 				return -1;
 			}
 
 			int idx = Item.NewItem( (int)player.position.X, (int)player.position.Y, player.width, player.height, item.type, item.stack, false, -1, false, false );
-			Item proto_new_item = Main.item[idx];
+			Item protoNewItem = Main.item[idx];
 
-			item.position.X = proto_new_item.position.X;
-			item.position.Y = proto_new_item.position.Y;
+			item.position.X = protoNewItem.position.X;
+			item.position.Y = protoNewItem.position.Y;
 
 			Main.item[ idx ] = item;
 
@@ -89,21 +89,21 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			
 			item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
 			item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
-			item.noGrabDelay = no_grab_delay;
+			item.noGrabDelay = noGrabDelay;
 			item.favorited = false;
 			item.newAndShiny = false;
 			item.owner = player.whoAmI;
 
-			if( Main.netMode != 0 && no_grab_delay > 0 ) {
+			if( Main.netMode != 0 && noGrabDelay > 0 ) {
 				item.ownIgnore = player.whoAmI;
-				item.ownTime = no_grab_delay;
+				item.ownTime = noGrabDelay;
 			}
 
 			Recipe.FindRecipes();
 
 			if( Main.netMode == 1 ) {   // Client
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 0f/*1f*/, 0f, 0f, 0, 0, 0 );
-				ItemNoGrabProtocol.SendToServer( idx, no_grab_delay );
+				ItemNoGrabProtocol.SendToServer( idx, noGrabDelay );
 			}
 
 			return idx;
@@ -147,41 +147,41 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 
 		public static bool UnhandItem( Player player ) {
-			bool is_unhanded = false;
+			bool isUnhanded = false;
 
 			// Drop mouse item always
 			if( player.selectedItem == PlayerItemHelpers.VanillaInventorySelectedSlot ) {
 				PlayerItemHelpers.DropInventoryItem( player, PlayerItemHelpers.VanillaInventorySelectedSlot );
-				is_unhanded = true;
+				isUnhanded = true;
 			}
 			// Preferably select a blank slot
-			if( !is_unhanded ) {
+			if( !isUnhanded ) {
 				for( int i = 0; i < player.inventory.Length; i++ ) {
 					if( player.inventory[i] == null || player.inventory[i].IsAir ) {
 						player.selectedItem = i;
-						is_unhanded = true;
+						isUnhanded = true;
 						break;
 					}
 				}
 			}
 			// Otherwise select a non-usable item
-			if( !is_unhanded ) {
+			if( !isUnhanded ) {
 				for( int i = 0; i < player.inventory.Length; i++ ) {
 					Item item = player.inventory[i];
 					if( item != null && item.holdStyle == 0 && item.createTile == -1 && !item.potion && item.useStyle == 0 ) {
 						player.selectedItem = i;
-						is_unhanded = true;
+						isUnhanded = true;
 						break;
 					}
 				}
 			}
 			// Otherwise select a non-held item
-			if( !is_unhanded ) {
+			if( !isUnhanded ) {
 				for( int i = 12; i < player.inventory.Length; i++ ) {
 					Item item = player.inventory[i];
 					if( item != null && item.holdStyle == 0 ) {
 						player.selectedItem = i;
-						is_unhanded = true;
+						isUnhanded = true;
 						break;
 					}
 				}
@@ -189,35 +189,35 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			
 			player.noItems = true;
 
-			return is_unhanded;
+			return isUnhanded;
 		}
 
 
 		////////////////
 
-		public static bool IsPlayerNaked( Player player, bool also_vanity = false, bool can_hide = true ) {
+		public static bool IsPlayerNaked( Player player, bool alsoVanity = false, bool canHide = true ) {
 			// Armor
 			for( int i = 0; i < 3; i++ ) {
 				if( !player.armor[0].IsAir ) { return false; }
 			}
 
-			int acc_range = 8 + player.extraAccessorySlots;
+			int accRange = 8 + player.extraAccessorySlots;
 
 			// Accessory
-			for( int i = 0; i < acc_range; i++ ) {
-				if( !player.armor[i].IsAir && (!player.hideVisual[3] || (player.hideVisual[3] && !can_hide)) ) {
+			for( int i = 0; i < accRange; i++ ) {
+				if( !player.armor[i].IsAir && (!player.hideVisual[3] || (player.hideVisual[3] && !canHide)) ) {
 					return false;
 				}
 			}
 
-			if( also_vanity ) {
+			if( alsoVanity ) {
 				// Vanity armor/clothes
-				for( int i = acc_range; i < acc_range + 3; i++ ) {
+				for( int i = accRange; i < accRange + 3; i++ ) {
 					if( !player.armor[i].IsAir ) { return false; }
 				}
 				// Vanity Accessory
-				for( int i = acc_range + 3; i < 20; i++ ) {
-					if( !player.armor[i].IsAir && (!player.hideVisual[i] || (player.hideVisual[i] && !can_hide)) ) {
+				for( int i = accRange + 3; i < 20; i++ ) {
+					if( !player.armor[i].IsAir && (!player.hideVisual[i] || (player.hideVisual[i] && !canHide)) ) {
 						return false;
 					}
 				}
@@ -230,11 +230,11 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 		public static long CountMoney( Player player ) {
 			bool _;
-			long inv_count = Utils.CoinsCount( out _, player.inventory, new int[] { 58, 57, 56, 55, 54 } );
-			long bank_count = Utils.CoinsCount( out _, player.bank.item, new int[0] );
-			long bank2_count = Utils.CoinsCount( out _, player.bank2.item, new int[0] );
-			long bank3_count = Utils.CoinsCount( out _, player.bank3.item, new int[0] );
-			return Utils.CoinsCombineStacks( out _, new long[] { inv_count, bank_count, bank2_count, bank3_count } );
+			long invCount = Utils.CoinsCount( out _, player.inventory, new int[] { 58, 57, 56, 55, 54 } );
+			long bankCount = Utils.CoinsCount( out _, player.bank.item, new int[0] );
+			long bank2Count = Utils.CoinsCount( out _, player.bank2.item, new int[0] );
+			long bank3Count = Utils.CoinsCount( out _, player.bank3.item, new int[0] );
+			return Utils.CoinsCombineStacks( out _, new long[] { invCount, bankCount, bank2Count, bank3Count } );
 		}
 
 		////////////////

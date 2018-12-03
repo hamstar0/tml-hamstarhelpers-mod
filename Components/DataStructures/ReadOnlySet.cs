@@ -25,7 +25,7 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		public bool Contains( T item ) => this.MySet.Contains( item );
 
-		public void CopyTo( T[] array, int array_idx ) => this.MySet.CopyTo( array, array_idx );
+		public void CopyTo( T[] array, int arrayIdx ) => this.MySet.CopyTo( array, arrayIdx );
 
 		public bool Remove( T item ) { throw new NotImplementedException(); }
 

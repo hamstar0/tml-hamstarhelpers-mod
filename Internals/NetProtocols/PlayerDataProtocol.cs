@@ -18,11 +18,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			////////////////
 
-			public MyFactory( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
+			public MyFactory( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 				this.PlayerWho = Main.myPlayer;
-				this.PermaBuffsById = perma_buffs_by_id;
-				this.HasBuffIds = has_buff_ids;
-				this.EquipSlotsToItemTypes = equip_slots_to_item_types;
+				this.PermaBuffsById = permaBuffsById;
+				this.HasBuffIds = hasBuffIds;
+				this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
 			}
 
 			////
@@ -39,10 +39,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public static void SyncToEveryone( ISet<int> perma_buffs_by_id, ISet<int> has_buff_ids, IDictionary<int, int> equip_slots_to_item_types ) {
+		public static void SyncToEveryone( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
-			var factory = new MyFactory( perma_buffs_by_id, has_buff_ids, equip_slots_to_item_types );
+			var factory = new MyFactory( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
 			PlayerDataProtocol protocol = factory.Create();
 			
 			protocol.SendToServer( true );
@@ -61,16 +61,16 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected PlayerDataProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected PlayerDataProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
-		protected override void SetServerDefaults( int from_who ) { }
+		protected override void SetServerDefaults( int fromWho ) { }
 
 
 		////////////////
 
-		protected override void ReceiveOnServer( int from_who ) {
-			Player player = Main.player[ from_who ];
+		protected override void ReceiveOnServer( int fromWho ) {
+			Player player = Main.player[ fromWho ];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveDataServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );

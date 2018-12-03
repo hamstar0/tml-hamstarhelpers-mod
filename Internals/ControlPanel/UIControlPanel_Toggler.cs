@@ -36,10 +36,10 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.IsTogglerLit = false;
 
 			Promises.AddWorldLoadEachPromise( () => {
-				int mod_update_count = this.ModUpdatesAvailable();
+				int modUpdateCount = this.ModUpdatesAvailable();
 				
-				if( mod_update_count > 0 ) {
-					InboxMessages.SetMessage( "mod_updates", mod_update_count + " mod updates available. See mod browser.", true );
+				if( modUpdateCount > 0 ) {
+					InboxMessages.SetMessage( "mod_updates", modUpdateCount + " mod updates available. See mod browser.", true );
 				}
 			} );
 		}
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public void DrawToggler( SpriteBatch sb ) {
 			if( !this.IsTogglerShown() ) { return; }
 
-			bool alert_shown = this.IsTogglerUpdateAlertShown();
+			bool alertShown = this.IsTogglerUpdateAlertShown();
 			Texture2D tex;
 			Color color;
 
@@ -119,12 +119,12 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			sb.Draw( tex, UIControlPanel.TogglerPosition, null, color );
 
-			if( alert_shown ) {
+			if( alertShown ) {
 				this.DrawTogglerAlert( sb );
 			}
 
 			if( this.IsTogglerLit ) {
-				if( alert_shown ) {
+				if( alertShown ) {
 					sb.DrawString( Main.fontMouseText, "New mod updates!", new Vector2( Main.mouseX + 8, Main.mouseY + 8 ), AnimatedColors.Alert.CurrentColor );
 				} else {
 					sb.DrawString( Main.fontMouseText, "Mod Control Panel", new Vector2( Main.mouseX + 8, Main.mouseY + 8 ), Color.White );
@@ -149,7 +149,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 		
 		private void CheckTogglerMouseInteraction() {
-			bool is_click = Main.mouseLeft && Main.mouseLeftRelease;
+			bool isClick = Main.mouseLeft && Main.mouseLeftRelease;
 			Vector2 pos = UIControlPanel.TogglerPosition;
 			Vector2 size = UIControlPanel.ControlPanelIcon.Size();
 
@@ -158,7 +158,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( this.IsTogglerShown() ) {
 				if( Main.mouseX >= pos.X && Main.mouseX < (pos.X + size.X) ) {
 					if( Main.mouseY >= pos.Y && Main.mouseY < (pos.Y + size.Y) ) {
-						if( is_click && !this.HasClicked ) {
+						if( isClick && !this.HasClicked ) {
 							if( this.IsOpen ) {
 								this.Close();
 							} else if( this.CanOpen() ) {
@@ -174,7 +174,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				}
 			}
 
-			this.HasClicked = is_click;
+			this.HasClicked = isClick;
 		}
 	}
 }

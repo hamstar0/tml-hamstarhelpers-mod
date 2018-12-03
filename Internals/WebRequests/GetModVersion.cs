@@ -43,18 +43,18 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 
-		/*public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> on_success, Action<string> on_fail ) {
+		/*public static void GetLatestKnownVersionAsync( Mod mod, Action<Version> onSuccess, Action<string> onFail ) {
 			Action check = delegate () {
 				var mymod = ModHelpersMod.Instance;
 
 				try {
 					if( mymod.GetModVersion.ModVersions.ContainsKey( mod.Name ) ) {
-						on_success( mymod.GetModVersion.ModVersions[mod.Name] );
+						onSuccess( mymod.GetModVersion.ModVersions[mod.Name] );
 					} else {
-						on_fail( "GetLatestKnownVersion - Unrecognized mod " + mod.Name + " (not found on mod browser)" );
+						onFail( "GetLatestKnownVersion - Unrecognized mod " + mod.Name + " (not found on mod browser)" );
 					}
 				} catch( Exception e ) {
-					on_fail( e.ToString() );
+					onFail( e.ToString() );
 				}
 			};
 
@@ -86,46 +86,46 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, Tuple<string, Version>>, bool> on_success ) {
-			Func<string, Tuple<IDictionary<string, Tuple<string, Version>>, bool>> on_response = ( string output ) => {
+		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, Tuple<string, Version>>, bool> onSuccess ) {
+			Func<string, Tuple<IDictionary<string, Tuple<string, Version>>, bool>> onResponse = ( string output ) => {
 				bool found = false;
-				IDictionary<string, Tuple<string, Version>> mod_versions = new Dictionary<string, Tuple<string, Version>>();
+				IDictionary<string, Tuple<string, Version>> modVersions = new Dictionary<string, Tuple<string, Version>>();
 
-				JObject resp_json = JObject.Parse( output );
+				JObject respJson = JObject.Parse( output );
 
-				if( resp_json.Count > 0 ) {
-					JToken mod_list_token = resp_json.SelectToken( "modlist" );
-					if( mod_list_token == null ) {
+				if( respJson.Count > 0 ) {
+					JToken modListToken = respJson.SelectToken( "modlist" );
+					if( modListToken == null ) {
 						throw new NullReferenceException( "No modlist" );
 					}
 
-					JToken[] mod_list = mod_list_token.ToArray();
+					JToken[] modList = modListToken.ToArray();
 
-					foreach( JToken mod_entry in mod_list ) {
-						JToken mod_name_token = mod_entry.SelectToken( "name" );
-						JToken mod_displayname_token = mod_entry.SelectToken( "displayname" );
-						JToken mod_vers_raw_token = mod_entry.SelectToken( "version" );
+					foreach( JToken modEntry in modList ) {
+						JToken modNameToken = modEntry.SelectToken( "name" );
+						JToken modDisplaynameToken = modEntry.SelectToken( "displayname" );
+						JToken modVersRawToken = modEntry.SelectToken( "version" );
 						
-						if( mod_name_token == null || mod_vers_raw_token == null || mod_displayname_token == null ) {
+						if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null ) {
 							continue;
 						}
 
-						string mod_name = mod_name_token.ToObject<string>();
-						string mod_displayname = mod_displayname_token.ToObject<string>();
-						string mod_vers_raw = mod_vers_raw_token.ToObject<string>();
+						string modName = modNameToken.ToObject<string>();
+						string modDisplayName = modDisplaynameToken.ToObject<string>();
+						string modVersRaw = modVersRawToken.ToObject<string>();
 
-						Version mod_vers = Version.Parse( mod_vers_raw.Substring( 1 ) );
+						Version modVers = Version.Parse( modVersRaw.Substring( 1 ) );
 
-						mod_versions[ mod_name ] = Tuple.Create( mod_displayname, mod_vers );
+						modVersions[ modName ] = Tuple.Create( modDisplayName, modVers );
 					}
 
 					found = true;
 				}
 				
-				return Tuple.Create( mod_versions, found );
+				return Tuple.Create( modVersions, found );
 			};
 
-			Action<Exception, string> on_fail = ( e, output ) => {
+			Action<Exception, string> onFail = ( e, output ) => {
 				if( e is JsonReaderException ) {
 					LogHelpers.Log( "ModHelpers.ModVersionGet.RetrieveLatestKnownVersions - Bad JSON: " +
 						(output.Length > 256 ? output.Substring(0, 256) : output) );
@@ -136,15 +136,15 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			Action<IDictionary<string, Tuple<string, Version>>, bool> on_completion = ( response_val, success ) => {
-				if( response_val == null ) {
-					response_val = new Dictionary<string, Tuple<string, Version>>();
+			Action<IDictionary<string, Tuple<string, Version>>, bool> onCompletion = ( responseVal, success ) => {
+				if( responseVal == null ) {
+					responseVal = new Dictionary<string, Tuple<string, Version>>();
 				}
 
-				on_success( response_val, success );
+				onSuccess( responseVal, success );
 			};
 
-			NetHelpers.MakeGetRequestAsync( GetModVersion.ModVersionUrl, on_response, on_fail, on_completion );
+			NetHelpers.MakeGetRequestAsync( GetModVersion.ModVersionUrl, onResponse, onFail, onCompletion );
 		}
 
 

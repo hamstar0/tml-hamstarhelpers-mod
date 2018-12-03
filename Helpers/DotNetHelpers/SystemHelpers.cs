@@ -37,13 +37,13 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			}
 
 			int index = BitsInLong - 1;
-			long curr_num = Math.Abs( number );
+			long currNum = Math.Abs( number );
 			char[] chars = new char[ BitsInLong ];
 
-			while( curr_num != 0 ) {
-				int remainder = (int)( curr_num % radix );
+			while( currNum != 0 ) {
+				int remainder = (int)( currNum % radix );
 				chars[index--] = Digits[remainder];
-				curr_num = curr_num / radix;
+				currNum = currNum / radix;
 			}
 
 			string result = new String( chars, index + 1, BitsInLong - index - 1 );
@@ -57,8 +57,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static string ComputeSHA256Hash( string str ) {
 			var crypt = new SHA256Managed();
-			byte[] hash_bytes = crypt.ComputeHash( Encoding.UTF8.GetBytes( str ) );
-			string hash = Convert.ToBase64String( hash_bytes );
+			byte[] hashBytes = crypt.ComputeHash( Encoding.UTF8.GetBytes( str ) );
+			string hash = Convert.ToBase64String( hashBytes );
 			
 			return hash;
 		}

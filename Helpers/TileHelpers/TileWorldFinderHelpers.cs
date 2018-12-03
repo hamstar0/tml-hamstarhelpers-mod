@@ -4,18 +4,18 @@ using System;
 
 namespace HamstarHelpers.Helpers.TileHelpers {
 	public static class TileWorldFinderHelpers {
-		public static Tuple<int, int> FindWithin( TileType tile_type, Rectangle within ) {
-			return TileWorldFinderHelpers.FindWithin( tile_type, within, 1, 1 );
+		public static Tuple<int, int> FindWithin( TileType tileType, Rectangle within ) {
+			return TileWorldFinderHelpers.FindWithin( tileType, within, 1, 1 );
 		}
 
 
-		public static Tuple<int, int> FindWithin( TileType tile_type, Rectangle within, int width, int height ) {
-			int max_x = within.X + within.Width - width;
-			int max_y = within.Y + within.Height - height;
+		public static Tuple<int, int> FindWithin( TileType tileType, Rectangle within, int width, int height ) {
+			int maxX = within.X + within.Width - width;
+			int maxY = within.Y + within.Height - height;
 
-			for( int i=within.X; i<max_x; i++ ) {
-				for( int j=within.Y; j<max_y; j++ ) {
-					if( tile_type.CheckArea( i, j, width, height) ) {
+			for( int i=within.X; i<maxX; i++ ) {
+				for( int j=within.Y; j<maxY; j++ ) {
+					if( tileType.CheckArea( i, j, width, height) ) {
 						return Tuple.Create( i, j );
 					}
 				}
@@ -25,61 +25,61 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		}
 
 
-		public static Tuple<int, int> FindWithinFromCenter( TileType tile_type, Rectangle within, int width, int height ) {
-			int mid_x = within.X + ( within.Width / 2 ) - ( width / 2 );
-			int mid_y = within.Y + ( within.Height / 2 ) - ( height / 2 );
-			int max_x = within.X + within.Width - width;
-			int max_y = within.Y + within.Height - height;
-			int curr_min_x = mid_x;
-			int curr_max_x = mid_x;
-			int curr_min_y = mid_y;
-			int curr_max_y = mid_y;
+		public static Tuple<int, int> FindWithinFromCenter( TileType tileType, Rectangle within, int width, int height ) {
+			int midX = within.X + ( within.Width / 2 ) - ( width / 2 );
+			int midY = within.Y + ( within.Height / 2 ) - ( height / 2 );
+			int maxX = within.X + within.Width - width;
+			int maxY = within.Y + within.Height - height;
+			int currMinX = midX;
+			int currMaxX = midX;
+			int currMinY = midY;
+			int currMaxY = midY;
 
-			int i = mid_x;
-			int j = mid_y;
+			int i = midX;
+			int j = midY;
 			int turn = 0;
 
-			while( !( curr_min_x == within.X && curr_max_x == max_x && curr_min_y == within.Y && curr_max_y == max_y ) ) {
-				if( tile_type.CheckArea(i, j, width, height) ) {	// TODO Optimize curr_min and curr_max from data from CheckArea
+			while( !( currMinX == within.X && currMaxX == maxX && currMinY == within.Y && currMaxY == maxY ) ) {
+				if( tileType.CheckArea(i, j, width, height) ) {	// TODO Optimize currMin and currMax from data from CheckArea
 					return Tuple.Create( i, j );
 				}
 
 				switch( turn ) {
 				case 0:
-					if( i < curr_max_x ) {
+					if( i < currMaxX ) {
 						i++;
 					} else {
-						if( j < curr_max_y ) { j++; }
+						if( j < currMaxY ) { j++; }
 						turn++;
 					}
 					break;
 				case 1:
-					if( j < curr_max_y ) {
+					if( j < currMaxY ) {
 						j++;
 					} else {
-						if( i > curr_min_x ) { i--; }
+						if( i > currMinX ) { i--; }
 						turn++;
 					}
 					break;
 				case 2:
-					if( i > curr_min_x ) {
+					if( i > currMinX ) {
 						i--;
 					} else {
-						if( j > curr_min_y ) { j--; }
+						if( j > currMinY ) { j--; }
 						turn++;
 					}
 					break;
 				case 3:
-					if( j > curr_min_y ) {
+					if( j > currMinY ) {
 						j--;
 					} else {
-						if( i < curr_max_x ) { i--; }
+						if( i < currMaxX ) { i--; }
 						turn = 0;
 
-						if( curr_min_x > within.X ) { curr_min_x--; }
-						if( curr_min_y > within.Y ) { curr_min_y--; }
-						if( curr_max_x < max_x ) { curr_max_x++; }
-						if( curr_max_y < max_y ) { curr_max_y++; }
+						if( currMinX > within.X ) { currMinX--; }
+						if( currMinY > within.Y ) { currMinY--; }
+						if( currMaxX < maxX ) { currMaxX++; }
+						if( currMaxY < maxY ) { currMaxY++; }
 					}
 					break;
 				}

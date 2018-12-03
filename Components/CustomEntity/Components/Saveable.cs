@@ -12,8 +12,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			////////////////
 
-			public SaveableEntityComponentFactory( bool as_json ) {
-				this.AsJson = as_json;
+			public SaveableEntityComponentFactory( bool asJson ) {
+				this.AsJson = asJson;
 			}
 
 			////
@@ -31,8 +31,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public static SaveableEntityComponent CreateSaveableEntityComponent( bool as_json ) {
-			var factory = new SaveableEntityComponentFactory<SaveableEntityComponent>( as_json );
+		public static SaveableEntityComponent CreateSaveableEntityComponent( bool asJson ) {
+			var factory = new SaveableEntityComponentFactory<SaveableEntityComponent>( asJson );
 			return factory.Create();
 		}
 
@@ -71,6 +71,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected SaveableEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected SaveableEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 	}
 }

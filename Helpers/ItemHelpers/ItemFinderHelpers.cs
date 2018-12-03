@@ -9,31 +9,31 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 
 		
-		public static int FindIndexOfFirstOfItemInCollection( Item[] collection, ISet<int> item_types ) {
+		public static int FindIndexOfFirstOfItemInCollection( Item[] collection, ISet<int> itemTypes ) {
 			for( int i = 0; i < collection.Length; i++ ) {
 				Item item = collection[i];
 				if( item == null || item.IsAir ) { continue; }
-				if( item_types.Contains( item.type ) ) { return i; }
+				if( itemTypes.Contains( item.type ) ) { return i; }
 			}
 			return -1;
 		}
 
 		
-		public static ISet<int> FindIndexOfEach( Item[] collection, ISet<int> item_types ) {
+		public static ISet<int> FindIndexOfEach( Item[] collection, ISet<int> itemTypes ) {
 			var set = new SortedSet<int>();
 
 			for( int i=0; i<collection.Length; i++ ) {
 				Item item = collection[i];
 				if( item == null || item.IsAir ) { continue; }
 
-				if( item_types.Contains( item.type ) ) { set.Add( i ); }
+				if( itemTypes.Contains( item.type ) ) { set.Add( i ); }
 			}
 			return set;
 		}
 
 		
-		public static int CountTotalOfEach( Item[] collection, ISet<int> item_types ) {
-			var set = ItemFinderHelpers.FindIndexOfEach( collection, item_types );
+		public static int CountTotalOfEach( Item[] collection, ISet<int> itemTypes ) {
+			var set = ItemFinderHelpers.FindIndexOfEach( collection, itemTypes );
 			int total = 0;
 
 			foreach( int idx in set ) {
@@ -48,12 +48,12 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 				ISet<int> types ) {
 			IDictionary<int, KeyValuePair<int, int>> found = new Dictionary<int, KeyValuePair<int, int>>();
 
-			foreach( var where_item in entries ) {
-				int where = where_item.Key;
-				int i_type = where_item.Value.Key;
+			foreach( var whereItem in entries ) {
+				int where = whereItem.Key;
+				int iType = whereItem.Value.Key;
 
-				if( types.Contains( i_type ) ) {
-					found[where] = where_item.Value;
+				if( types.Contains( iType ) ) {
+					found[where] = whereItem.Value;
 				}
 			}
 
@@ -61,57 +61,57 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		}
 
 
-		public static ReadOnlySet<int> FindItemsByValue( long sell_value, bool include_coins = false ) {
-			if( !ItemFinderHelpers.SellItems.Keys.Contains( sell_value ) ) {
-				ItemFinderHelpers.SellItems[sell_value] = new HashSet<int>();
+		public static ReadOnlySet<int> FindItemsByValue( long sellValue, bool includeCoins = false ) {
+			if( !ItemFinderHelpers.SellItems.Keys.Contains( sellValue ) ) {
+				ItemFinderHelpers.SellItems[sellValue] = new HashSet<int>();
 			} else {
-				return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sell_value] );
+				return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sellValue] );
 			}
 
 			for( int i = 0; i < Main.itemTexture.Length; i++ ) {
-				if( !include_coins && i == 71 ) { i = 75; }
+				if( !includeCoins && i == 71 ) { i = 75; }
 
 				Item item = new Item();
 				item.SetDefaults( i );
 				if( item.value <= 0 ) { continue; }
 
-				if( sell_value % item.value == 0 ) {
-					ItemFinderHelpers.SellItems[sell_value].Add( i );
+				if( sellValue % item.value == 0 ) {
+					ItemFinderHelpers.SellItems[sellValue].Add( i );
 				}
 			}
 
-			return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sell_value] );
+			return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sellValue] );
 		}
 
 
-		public static Item FindFirstPlayerItemOfType( Player player, int item_type ) {
-			Item item = ItemFinderHelpers.FindFirstItemOfType( player.inventory, item_type );
+		public static Item FindFirstPlayerItemOfType( Player player, int itemType ) {
+			Item item = ItemFinderHelpers.FindFirstItemOfType( player.inventory, itemType );
 			if( item != null ) { return item; }
 
 			if( player.chest >= 0 ) {   // Player's current chest
-				item = ItemFinderHelpers.FindFirstItemOfType( Main.chest[player.chest].item, item_type );
+				item = ItemFinderHelpers.FindFirstItemOfType( Main.chest[player.chest].item, itemType );
 				if( item != null ) { return item; }
 			}
 			if( player.chest == -2 ) {  // Piggy bank
-				item = ItemFinderHelpers.FindFirstItemOfType( player.bank.item, item_type );
+				item = ItemFinderHelpers.FindFirstItemOfType( player.bank.item, itemType );
 				if( item != null ) { return item; }
 			}
 			if( player.chest == -3 ) {  // Safe
-				item = ItemFinderHelpers.FindFirstItemOfType( player.bank2.item, item_type );
+				item = ItemFinderHelpers.FindFirstItemOfType( player.bank2.item, itemType );
 				if( item != null ) { return item; }
 			}
 			if( player.chest == -4 ) {  // ..whatever this is
-				item = ItemFinderHelpers.FindFirstItemOfType( player.bank3.item, item_type );
+				item = ItemFinderHelpers.FindFirstItemOfType( player.bank3.item, itemType );
 				if( item != null ) { return item; }
 			}
 
 			return null;
 		}
 
-		public static Item FindFirstItemOfType( Item[] items, int item_type ) {
+		public static Item FindFirstItemOfType( Item[] items, int itemType ) {
 			for( int i = 0; i < items.Length; i++ ) {
 				Item item = items[i];
-				if( item.type == item_type && item.stack > 0 ) {
+				if( item.type == itemType && item.stack > 0 ) {
 					return item;
 				}
 			}
@@ -119,34 +119,34 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		}
 
 
-		public static IDictionary<int, bool> FindChanges( Item[] prev_items, Item[] curr_items ) {
+		public static IDictionary<int, bool> FindChanges( Item[] prevItems, Item[] currItems ) {
 			IDictionary<int, bool> changes = new Dictionary<int, bool>();
-			int len = curr_items.Length;
+			int len = currItems.Length;
 
 			for( int i = 0; i < len; i++ ) {
-				Item prev_item = prev_items[i];
-				Item curr_item = curr_items[i];
+				Item prevItem = prevItems[i];
+				Item currItem = currItems[i];
 
-				if( prev_item == null ) {
-					if( curr_item != null ) { changes[i] = true; }
+				if( prevItem == null ) {
+					if( currItem != null ) { changes[i] = true; }
 					continue;
-				} else if( curr_item == null ) {
-					if( prev_item != null ) { changes[i] = false; }
+				} else if( currItem == null ) {
+					if( prevItem != null ) { changes[i] = false; }
 					continue;
 				}
 
-				if( prev_item.type != curr_item.type || prev_item.stack != curr_item.stack ) {
-					changes[i] = prev_item.IsAir || prev_item.stack < curr_item.stack;
+				if( prevItem.type != currItem.type || prevItem.stack != currItem.stack ) {
+					changes[i] = prevItem.IsAir || prevItem.stack < currItem.stack;
 
 					// Skip coins
 					if( changes[i] ) {
-						if( curr_item.type == 71 || curr_item.type == 72
-						|| curr_item.type == 73 || curr_item.type == 74 ) {
+						if( currItem.type == 71 || currItem.type == 72
+						|| currItem.type == 73 || currItem.type == 74 ) {
 							changes.Remove( i );
 						}
 					} else {
-						if( prev_item.type == 71 || prev_item.type == 72
-						|| prev_item.type == 73 || prev_item.type == 74 ) {
+						if( prevItem.type == 71 || prevItem.type == 72
+						|| prevItem.type == 73 || prevItem.type == 74 ) {
 							changes.Remove( i );
 						}
 					}
@@ -157,12 +157,12 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		}
 
 
-		public static IDictionary<int, Item> FindChangesOf( IDictionary<int, Item> changes_at, ISet<int> types ) {
+		public static IDictionary<int, Item> FindChangesOf( IDictionary<int, Item> changesAt, ISet<int> types ) {
 			IDictionary<int, Item> found = new Dictionary<int, Item>();
 
-			foreach( var where_item in changes_at ) {
-				int where = where_item.Key;
-				Item item = where_item.Value;
+			foreach( var whereItem in changesAt ) {
+				int where = whereItem.Key;
+				Item item = whereItem.Value;
 
 				if( types.Contains( item.type ) ) {
 					found[where] = item;

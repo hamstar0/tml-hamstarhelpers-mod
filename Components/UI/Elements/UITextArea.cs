@@ -12,7 +12,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public class UITextArea : UIPanel {
-		public delegate void TextChangeEvent( StringBuilder new_text );
+		public delegate void TextChangeEvent( StringBuilder newText );
 
 
 		////////////////
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 		
-		public UITextArea( UITheme theme, string hint, int max_length=2024 ) {
+		public UITextArea( UITheme theme, string hint, int maxLength=2024 ) {
 			// TODO Add multiline support
 
 			this.Theme = theme;
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.CursorAnimation = 0;
 			this.HasFocus = false;
 			this.IsEnabled = false;
-			this.MaxLength = max_length;
+			this.MaxLength = maxLength;
 
 			this.SetText( "" );
 
@@ -59,12 +59,12 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 		
 		public void SetText( string text ) {
-			var str_bldr = new StringBuilder( text );
+			var strBldr = new StringBuilder( text );
 			if( this.OnPreChange != null ) {
-				this.OnPreChange.Invoke( str_bldr );
+				this.OnPreChange.Invoke( strBldr );
 			}
 
-			text = str_bldr.ToString();
+			text = strBldr.ToString();
 
 			if( text.Length > this.MaxLength ) {
 				text = text.Substring( 0, this.MaxLength );
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public override void Update( GameTime game_time ) {
+		public override void Update( GameTime gameTime ) {
 			if( this.HasFocus ) {
 				Main.blockInput = true;	// Force the point!
 
@@ -87,10 +87,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 				Terraria.GameInput.PlayerInput.WritingText = true;
 				Main.instance.HandleIME();
 
-				string new_text = Main.GetInputText( this.Text );
+				string newText = Main.GetInputText( this.Text );
 
-				if( !new_text.Equals( this.Text ) ) {
-					this.SetText( new_text );
+				if( !newText.Equals( this.Text ) ) {
+					this.SetText( newText );
 				}
 
 				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 				}
 			}
 
-			base.Update( game_time );
+			base.Update( gameTime );
 		}
 
 		public override void Recalculate() {
@@ -182,22 +182,22 @@ namespace HamstarHelpers.Components.UI.Elements {
 			base.DrawSelf( sb );
 
 			try {
-				CalculatedStyle inner_dim = this.GetInnerDimensions();
-				Vector2 pos = inner_dim.Position();
+				CalculatedStyle innerDim = this.GetInnerDimensions();
+				Vector2 pos = innerDim.Position();
 
 				if( this.DisplayText != "" ) {
 					Utils.DrawBorderString( sb, this.DisplayText, pos, this.TextColor, 1f, 0.0f, 0.0f, -1 );
 				}
 
 				if( this.HasFocus ) {
-					Vector2 ime_pos = new Vector2( (float)(Main.screenWidth / 2), (float)(this.GetDimensions().ToRectangle().Bottom + 32) );
-					Main.instance.DrawWindowsIMEPanel( ime_pos, 0.5f );
+					Vector2 imePos = new Vector2( (float)(Main.screenWidth / 2), (float)(this.GetDimensions().ToRectangle().Bottom + 32) );
+					Main.instance.DrawWindowsIMEPanel( imePos, 0.5f );
 
 					if( (this.CursorAnimation %= 40) <= 20 ) {
 						// TODO cursor needs to be offset according to display text:
 						
-						float cursor_offset_x = this.DisplayText.Length == 0 ? 0f : Main.fontMouseText.MeasureString( this.DisplayText ).X;
-						pos.X += cursor_offset_x + 2.0f;    //((inner_dim.Width - this.TextSize.X) * 0.5f)
+						float cursorOffsetX = this.DisplayText.Length == 0 ? 0f : Main.fontMouseText.MeasureString( this.DisplayText ).X;
+						pos.X += cursorOffsetX + 2.0f;    //((innerDim.Width - this.TextSize.X) * 0.5f)
 
 						Utils.DrawBorderString( sb, "|", pos, Color.White );
 					}
@@ -214,16 +214,16 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public static string GetFittedText( string text, int cursor_pos, float width ) {
+		public static string GetFittedText( string text, int cursorPos, float width ) {
 			int start = 0;
 			int end = text.Length;
 			string substr = text;
 
 			while( Main.fontMouseText.MeasureString( substr ).X > width ) {
-				if( cursor_pos >= end ) {
+				if( cursorPos >= end ) {
 					substr = substr.Substring( 1 );
 					start++;
-				} else if( cursor_pos <= start ) {
+				} else if( cursorPos <= start ) {
 					end--;
 					substr = substr.Substring( 0, end - start );
 				} else {

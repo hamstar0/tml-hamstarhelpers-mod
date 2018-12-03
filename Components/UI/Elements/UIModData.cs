@@ -37,15 +37,15 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public UIModData( UITheme theme, Mod mod, bool will_draw_own_hover_elements = true )
-				: this( theme, null, mod, will_draw_own_hover_elements ) { }
+		public UIModData( UITheme theme, Mod mod, bool willDrawOwnHoverElements = true )
+				: this( theme, null, mod, willDrawOwnHoverElements ) { }
 		
-		public UIModData( UITheme theme, int? idx, Mod mod, bool will_draw_own_hover_elements = true ) {
+		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			var self = this;
 			TmodFile modfile = mod.File;
 
 			this.Mod = mod;
-			this.WillDrawOwnHoverElements = will_draw_own_hover_elements;
+			this.WillDrawOwnHoverElements = willDrawOwnHoverElements;
 
 			this.Author = null;
 			this.HomepageUrl = null;
@@ -68,26 +68,26 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.Width.Set( 0f, 1f );
 			this.Height.Set( 64, 0f );
 
-			float title_offset = 72f;
+			float titleOffset = 72f;
 
 			// Mod index
 
 			if( idx != null ) {
-				var mod_idx_elem = new UIText( (int)idx + "" );
-				mod_idx_elem.Left.Set( title_offset, 0f );
-				this.Append( (UIElement)mod_idx_elem );
+				var modIdxElem = new UIText( (int)idx + "" );
+				modIdxElem.Left.Set( titleOffset, 0f );
+				this.Append( (UIElement)modIdxElem );
 
-				title_offset += 16f;
+				titleOffset += 16f;
 			}
 
 			// Mod title
 
-			string mod_title = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
+			string modTitle = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
 			
 			if( !String.IsNullOrEmpty(this.HomepageUrl) ) {
-				this.TitleElem = new UIWebUrl( theme, mod_title, this.HomepageUrl, false );
+				this.TitleElem = new UIWebUrl( theme, modTitle, this.HomepageUrl, false );
 			} else {
-				this.TitleElem = new UIText( mod_title );
+				this.TitleElem = new UIText( modTitle );
 			}
 			this.TitleElem.Left.Set( 88f, 0f );
 			this.Append( (UIElement)this.TitleElem );
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			if( this.Author != null ) {
 				this.AuthorElem = new UIText( "By: "+this.Author, 0.7f );
 				this.AuthorElem.Top.Set( 20f, 0f );
-				this.AuthorElem.Left.Set( title_offset, 0f );
+				this.AuthorElem.Left.Set( titleOffset, 0f );
 				this.Append( (UIElement)this.AuthorElem );
 			}
 
@@ -107,10 +107,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 				if( !Main.dedServ ) {   //...?
 					try {
 						var stream = new MemoryStream( modfile.GetFile( "icon.png" ) );
-						var icon_tex = Texture2D.FromStream( Main.graphics.GraphicsDevice, stream );
+						var iconTex = Texture2D.FromStream( Main.graphics.GraphicsDevice, stream );
 
-						if( icon_tex.Width == 80 && icon_tex.Height == 80 ) {
-							this.IconElem = new UIImage( icon_tex );
+						if( iconTex.Width == 80 && iconTex.Height == 80 ) {
+							this.IconElem = new UIImage( iconTex );
 							this.IconElem.Top.Set( -4f, 0f );
 							this.IconElem.Left.Set( -4f, 0f );
 							this.IconElem.MarginTop = -8f;
@@ -135,7 +135,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 						this.ConfigResetButton.VAlign = 1f;
 						this.Append( this.ConfigResetButton );
 
-						this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+						this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
 							string msg = mod.DisplayName + " config file reset to defaults.";
 
 							ModMetaDataManager.ResetDefaultsConfig( mod );
@@ -150,7 +150,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 					this.ConfigOpenButton.VAlign = 1f;
 					this.Append( this.ConfigOpenButton );
 					
-					this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
+					this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
 						string path = ModMetaDataManager.GetConfigRelativePath( mod );
 						string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;
 
@@ -184,16 +184,16 @@ namespace HamstarHelpers.Components.UI.Elements {
 				return false;
 			} );
 
-			/*Action<Version> on_success = delegate ( Version vers ) {
+			/*Action<Version> onSuccess = delegate ( Version vers ) {
 				this.LatestAvailableVersion = vers;
 			};
-			Action<string> on_fail = delegate ( string reason ) {
+			Action<string> onFail = delegate ( string reason ) {
 				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName + "': " + reason );
 				}
 			};
 
-			GetModVersion.GetLatestKnownVersionAsync( this.Mod, on_success, on_fail );*/
+			GetModVersion.GetLatestKnownVersionAsync( this.Mod, onSuccess, onFail );*/
 		}
 
 
@@ -237,8 +237,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 			if( this.LatestAvailableVersion > this.Mod.Version ) {
 				Color color = AnimatedColors.Fire.CurrentColor;
-				CalculatedStyle inner_dim = base.GetInnerDimensions();
-				Vector2 pos = inner_dim.Position();
+				CalculatedStyle innerDim = base.GetInnerDimensions();
+				Vector2 pos = innerDim.Position();
 				pos.X += 128f;
 			
 				sb.DrawString( Main.fontDeathText, this.LatestAvailableVersion.ToString()+" Available", pos, color, 0f, default( Vector2 ), 1f, SpriteEffects.None, 1f );
@@ -249,10 +249,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( this.TitleElem.IsMouseHovering ) {
 				if( this.TitleElem is UIWebUrl ) {
-					var title_url = (UIWebUrl)this.TitleElem;
+					var titleUrl = (UIWebUrl)this.TitleElem;
 
-					if( !title_url.WillDrawOwnHoverUrl ) {
-						title_url.DrawHoverEffects( sb );
+					if( !titleUrl.WillDrawOwnHoverUrl ) {
+						titleUrl.DrawHoverEffects( sb );
 					}
 				}
 			}

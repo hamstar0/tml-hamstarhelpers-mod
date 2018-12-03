@@ -16,13 +16,13 @@ namespace HamstarHelpers.Components.UI.Elements.Menu {
 
 		////////////////
 
-		public UIMenuPanel( UITheme theme, float width, float height, float x_center_offset, float y ) {
+		public UIMenuPanel( UITheme theme, float width, float height, float xCenterOffset, float y ) {
 			this.Theme = theme;
 
 			this.Width.Set( width, 0f );
 			this.Height.Set( height, 0f );
 
-			this.XCenterOffset = x_center_offset;
+			this.XCenterOffset = xCenterOffset;
 			this.YPos = y;
 
 			this.RecalculatePos();

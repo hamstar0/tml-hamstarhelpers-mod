@@ -67,14 +67,14 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.DialogClose.Left.Set( -16f, 1f );
 			this.DialogClose.Width.Set( 24f, 0f );
 			this.DialogClose.Height.Set( 24f, 0f );
-			this.DialogClose.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			this.DialogClose.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				self.Close();
 				Main.PlaySound( SoundID.MenuClose );
 			};
-			this.DialogClose.OnMouseOver += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			this.DialogClose.OnMouseOver += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				self.Theme.ApplyButtonLit( self.DialogClose );
 			};
-			this.DialogClose.OnMouseOut += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			this.DialogClose.OnMouseOut += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				self.Theme.ApplyButton( self.DialogClose );
 			};
 			this.InnerContainer.Append( this.DialogClose );
@@ -95,17 +95,17 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			////
 
-			var mod_list_panel = new UIPanel();
+			var modListPanel = new UIPanel();
 			{
-				mod_list_panel.Top.Set( top, 0f );
-				mod_list_panel.Width.Set( 0f, 1f );
-				mod_list_panel.Height.Set( UIControlPanel.ModListHeight, 0f );
-				mod_list_panel.HAlign = 0f;
-				mod_list_panel.SetPadding( 4f );
-				mod_list_panel.PaddingTop = 0.0f;
-				mod_list_panel.BackgroundColor = this.Theme.ListBgColor;
-				mod_list_panel.BorderColor = this.Theme.ListEdgeColor;
-				this.InnerContainer.Append( (UIElement)mod_list_panel );
+				modListPanel.Top.Set( top, 0f );
+				modListPanel.Width.Set( 0f, 1f );
+				modListPanel.Height.Set( UIControlPanel.ModListHeight, 0f );
+				modListPanel.HAlign = 0f;
+				modListPanel.SetPadding( 4f );
+				modListPanel.PaddingTop = 0.0f;
+				modListPanel.BackgroundColor = this.Theme.ListBgColor;
+				modListPanel.BorderColor = this.Theme.ListEdgeColor;
+				this.InnerContainer.Append( (UIElement)modListPanel );
 
 				this.ModListElem = new UIList();
 				{
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 					this.ModListElem.HAlign = 0f;
 					this.ModListElem.ListPadding = 4f;
 					this.ModListElem.SetPadding( 0f );
-					mod_list_panel.Append( (UIElement)this.ModListElem );
+					modListPanel.Append( (UIElement)this.ModListElem );
 
 					top += UIControlPanel.ModListHeight + this.InnerContainer.PaddingTop;
 
@@ -124,7 +124,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 						scrollbar.Height.Set( -16f, 1f );
 						scrollbar.SetView( 100f, 1000f );
 						scrollbar.HAlign = 1f;
-						mod_list_panel.Append( (UIElement)scrollbar ); 
+						modListPanel.Append( (UIElement)scrollbar ); 
 						this.ModListElem.SetScrollbar( scrollbar );
 					}
 				}
@@ -139,7 +139,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.IssueTitleInput.HAlign = 0f;
 			this.IssueTitleInput.SetPadding( 8f );
 			this.IssueTitleInput.Disable();
-			this.IssueTitleInput.OnPreChange += delegate ( StringBuilder new_text ) {
+			this.IssueTitleInput.OnPreChange += delegate ( StringBuilder newText ) {
 				self.RefreshIssueSubmitButton();
 			};
 			this.InnerContainer.Append( (UIElement)this.IssueTitleInput );
@@ -153,7 +153,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.IssueBodyInput.HAlign = 0f;
 			this.IssueBodyInput.SetPadding( 8f );
 			this.IssueBodyInput.Disable();
-			this.IssueBodyInput.OnPreChange += delegate ( StringBuilder new_text ) {
+			this.IssueBodyInput.OnPreChange += delegate ( StringBuilder newText ) {
 				self.RefreshIssueSubmitButton();
 			};
 			this.InnerContainer.Append( (UIElement)this.IssueBodyInput );
@@ -167,7 +167,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.IssueSubmitButton.Left.Set( 0f, 0f );
 			this.IssueSubmitButton.Width.Set( 200f, 0f );
 			this.IssueSubmitButton.Disable();
-			this.IssueSubmitButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			this.IssueSubmitButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				if( self.AwaitingReport || !self.IssueSubmitButton.IsEnabled ) { return; }
 				self.SubmitIssue();
 			};
@@ -181,7 +181,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( Main.netMode != 0  ) {
 				this.ApplyConfigButton.Disable();
 			}
-			this.ApplyConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			this.ApplyConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				if( !self.ApplyConfigButton.IsEnabled ) { return; }
 				self.ApplyConfigChanges( ModHelpersMod.Instance );
 			};
@@ -196,7 +196,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( Main.netMode != 0 || !mymod.Config.WorldModLockEnable ) {
 				this.ModLockButton.Disable();
 			}
-			this.ModLockButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			this.ModLockButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				if( !self.ModLockButton.IsEnabled ) { return; }
 				self.ToggleModLock( ModHelpersMod.Instance );
 				Main.PlaySound( SoundID.Unlock );
@@ -210,9 +210,9 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			////
 
 			/*var modrec_url = new UIWebUrl( this.Theme, "Need mods?", "https://sites.google.com/site/terrariamodsuggestions/" );
-			modrec_url.Top.Set( top, 0f );
-			modrec_url.Left.Set( 0f, 0f );
-			this.InnerContainer.Append( modrec_url );
+			modrecUrl.Top.Set( top, 0f );
+			modrecUrl.Left.Set( 0f, 0f );
+			this.InnerContainer.Append( modrecUrl );
 
 			var serverbrowser_url = new UIWebUrl( this.Theme, "Lonely?", "https://forums.terraria.org/index.php?threads/server-browser-early-beta.68346/" );
 			serverbrowser_url.Top.Set( top, 0f );
@@ -235,22 +235,22 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			this.Theme.ApplyListItem( elem );
 
-			elem.OnMouseOver += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-				if( !(from_elem is UIModData) ) { return; }
+			elem.OnMouseOver += delegate ( UIMouseEvent evt, UIElement fromElem ) {
+				if( !(fromElem is UIModData) ) { return; }
 
 				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
 
 				self.Theme.ApplyListItemLit( elem );
 			};
-			elem.OnMouseOut += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-				if( !(from_elem is UIModData) ) { return; }
+			elem.OnMouseOut += delegate ( UIMouseEvent evt, UIElement fromElem ) {
+				if( !(fromElem is UIModData) ) { return; }
 				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
 
 				self.Theme.ApplyListItem( elem );
 			};
 
-			elem.OnClick += delegate ( UIMouseEvent evt, UIElement from_elem ) {
-				if( !(from_elem is UIModData) ) { return; }
+			elem.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
+				if( !(fromElem is UIModData) ) { return; }
 				if( self.Logic.CurrentMod != null && elem.Mod.Name == self.Logic.CurrentMod.Name ) { return; }
 				if( self.AwaitingReport ) { return; }
 
@@ -274,19 +274,19 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public void RefreshModLockButton( ModHelpersMod mymod ) {
-			bool are_mods_locked = ModLockHelpers.IsWorldLocked();
-			string status = are_mods_locked ? ": ON" : ": OFF";
-			bool is_enabled = true;
+			bool areModsLocked = ModLockHelpers.IsWorldLocked();
+			string status = areModsLocked ? ": ON" : ": OFF";
+			bool isEnabled = true;
 
 			if( !mymod.Config.WorldModLockEnable ) {
 				status += " (disabled)";
-				is_enabled = false;
+				isEnabled = false;
 			} else if( Main.netMode != 0 ) {
 				status += " (single-player only)";
-				is_enabled = false;
+				isEnabled = false;
 			}
 
-			if( !is_enabled ) {
+			if( !isEnabled ) {
 				if( this.ModLockButton.IsEnabled ) {
 					this.ModLockButton.Disable();
 				}

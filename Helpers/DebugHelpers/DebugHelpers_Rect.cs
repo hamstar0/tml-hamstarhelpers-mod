@@ -21,17 +21,17 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 
 		////////////////
 		
-		public static void DrawRect( string msg_label, Rectangle rect, bool is_world_pos, int duration ) {
+		public static void DrawRect( string msgLabel, Rectangle rect, bool isWorldPos, int duration ) {
 			lock( DebugHelpers.MyRectLock ) {
-				if( is_world_pos ) {
+				if( isWorldPos ) {
 					rect.X -= (int)Main.screenPosition.X;
 					rect.Y -= (int)Main.screenPosition.Y;
 				}
 
-				DebugHelpers.Rects[msg_label] = rect;
-				DebugHelpers.RectsTime[msg_label] = duration;
-				DebugHelpers.RectsTimeStart[msg_label] = duration;
-				DebugHelpers.RectsShade[msg_label] = 255;
+				DebugHelpers.Rects[msgLabel] = rect;
+				DebugHelpers.RectsTime[msgLabel] = duration;
+				DebugHelpers.RectsTimeStart[msgLabel] = duration;
+				DebugHelpers.RectsShade[msgLabel] = 255;
 
 				if( DebugHelpers.Rects.Count > 16 ) {
 					foreach( string key in DebugHelpers.RectsTime.Keys.ToList() ) {
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 		////////////////
 
 		internal static void DrawAllRects( SpriteBatch sb ) {
-			int y_pos = 0;
+			int yPos = 0;
 
 			lock( DebugHelpers.MyRectLock ) {
 				foreach( string key in DebugHelpers.Rects.Keys.ToList() ) {
@@ -61,8 +61,8 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 					if( DebugHelpers.RectsShade.ContainsKey(key) ) {
 						int shade = DebugHelpers.RectsShade[key];
 						if( DebugHelpers.RectsTime.ContainsKey(key) ) {
-							float time_ratio = (float)DebugHelpers.RectsTime[key] / (float)DebugHelpers.RectsTimeStart[key];
-							shade = (int)Math.Min( 255f, 255f * time_ratio );
+							float timeRatio = (float)DebugHelpers.RectsTime[key] / (float)DebugHelpers.RectsTimeStart[key];
+							shade = (int)Math.Min( 255f, 255f * timeRatio );
 						} else {
 							DebugHelpers.RectsShade[key]--;
 						}
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 							DebugHelpers.RectsTime[key]--;
 						}
 					}
-					y_pos += 24;
+					yPos += 24;
 				}
 			}
 		}

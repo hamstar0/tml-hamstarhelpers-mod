@@ -27,17 +27,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		private void CacheTypeIdInfo( Type ent_type ) {
-			if( this.EntTypeIds.ContainsKey(ent_type.Name) ) {
-				int other_id = this.EntTypeIds[ ent_type.Name ];
-				Type other_ent_type = this.TypeIdEnts[ other_id ];
-				throw new HamstarException( "CustomEntity "+ent_type.Name+" name conflict ("+ent_type.FullName+" vs "+other_ent_type.FullName+")" );
+		private void CacheTypeIdInfo( Type entType ) {
+			if( this.EntTypeIds.ContainsKey(entType.Name) ) {
+				int otherId = this.EntTypeIds[ entType.Name ];
+				Type otherEntType = this.TypeIdEnts[ otherId ];
+				throw new HamstarException( "CustomEntity "+entType.Name+" name conflict ("+entType.FullName+" vs "+otherEntType.FullName+")" );
 			}
 
 			int id = this.LatestId++;
 
-			this.TypeIdEnts[ id ] = ent_type;
-			this.EntTypeIds[ ent_type.Name ] = id;
+			this.TypeIdEnts[ id ] = entType;
+			this.EntTypeIds[ entType.Name ] = id;
 		}
 
 

@@ -13,52 +13,52 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		internal void FilterMods() {
-			IList<string> mod_names = new List<string>();
-			UIState my_uid = this.MyUI;
+			IList<string> modNames = new List<string>();
+			UIState myUid = this.MyUI;
 
 			object items;
-			if( !ReflectionHelpers.GetField( my_uid, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
-				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui " + my_uid );
+			if( !ReflectionHelpers.GetField( myUid, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
+				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui " + myUid );
 			}
 
-			var items_arr = (Array)items.GetType()
+			var itemsArr = (Array)items.GetType()
 				.GetMethod( "ToArray" )
 				.Invoke( items, new object[] { } );
 
-			for( int i = 0; i < items_arr.Length; i++ ) {
-				object item = items_arr.GetValue( i );
-				string mod_name;
+			for( int i = 0; i < itemsArr.Length; i++ ) {
+				object item = itemsArr.GetValue( i );
+				string modName;
 
-				if( ReflectionHelpers.GetField<string>( item, "mod", out mod_name ) ) {
-					mod_names.Add( mod_name );
+				if( ReflectionHelpers.GetField<string>( item, "mod", out modName ) ) {
+					modNames.Add( modName );
 				}
 			}
 
-			this.FilterModsAsync( mod_names, ( is_filtered, filtered_list, on_tag_count, off_tag_count ) => {
-				string filter_name = "Tags";
-				if( on_tag_count > 0 || off_tag_count > 0 ) {
-					filter_name += " ";
+			this.FilterModsAsync( modNames, ( isFiltered, filteredList, onTagCount, offTagCount ) => {
+				string filterName = "Tags";
+				if( onTagCount > 0 || offTagCount > 0 ) {
+					filterName += " ";
 
-					if( on_tag_count > 0 ) {
-						filter_name += "+" + on_tag_count;
-						if( off_tag_count > 0 ) {
-							filter_name += " ";
+					if( onTagCount > 0 ) {
+						filterName += "+" + onTagCount;
+						if( offTagCount > 0 ) {
+							filterName += " ";
 						}
 					}
-					if( off_tag_count > 0 ) {
-						filter_name += "-" + off_tag_count;
+					if( offTagCount > 0 ) {
+						filterName += "-" + offTagCount;
 					}
 				}
 
-				ReflectionHelpers.SetField( my_uid, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
-				MenuModHelper.ApplyModBrowserFilter( filter_name, is_filtered, (List<string>)filtered_list );
+				ReflectionHelpers.SetField( myUid, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
+				MenuModHelper.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredList );
 			} );
 		}
 
 
 		////////////////
 
-		public void FilterModsAsync( IList<string> mod_names, Action<bool, IList<string>, int, int> callback ) {
+		public void FilterModsAsync( IList<string> modNames, Action<bool, IList<string>, int, int> callback ) {
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				if( !args.Found ) {
 					this.InfoDisplay?.SetText( "Could not acquire mod data." );
@@ -66,25 +66,25 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					return false;
 				}
 				
-				IList<string> filtered_list = new List<string>();
-				ISet<string> on_tags = this.GetTagsOfState( 1 );
-				ISet<string> off_tags = this.GetTagsOfState( -1 );
-				bool is_filtered = on_tags.Count > 0 || off_tags.Count > 0;
+				IList<string> filteredList = new List<string>();
+				ISet<string> onTags = this.GetTagsOfState( 1 );
+				ISet<string> offTags = this.GetTagsOfState( -1 );
+				bool isFiltered = onTags.Count > 0 || offTags.Count > 0;
 
-				if( is_filtered ) {
-					foreach( string mod_name in mod_names ) {
-						if( !args.ModTags.ContainsKey( mod_name ) ) { continue; }
+				if( isFiltered ) {
+					foreach( string modName in modNames ) {
+						if( !args.ModTags.ContainsKey( modName ) ) { continue; }
 
-						ISet<string> mod_tags = args.ModTags[mod_name];
+						ISet<string> modTags = args.ModTags[modName];
 
-						if( mod_tags.Overlaps( off_tags ) ) { continue; }
-						if( on_tags.Count > 0 && !mod_tags.IsSupersetOf( on_tags ) ) { continue; }
+						if( modTags.Overlaps( offTags ) ) { continue; }
+						if( onTags.Count > 0 && !modTags.IsSupersetOf( onTags ) ) { continue; }
 
-						filtered_list.Add( mod_name );
+						filteredList.Add( modName );
 					}
 				}
 
-				callback( is_filtered, filtered_list, on_tags.Count, off_tags.Count );
+				callback( isFiltered, filteredList, onTags.Count, offTags.Count );
 
 				return false;
 			} );

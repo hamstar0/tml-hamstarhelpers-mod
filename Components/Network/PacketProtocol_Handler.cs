@@ -7,73 +7,73 @@ using System.IO;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		internal static void HandlePacketOnClient( int protocol_code, BinaryReader reader, int player_who ) {
+		internal static void HandlePacketOnClient( int protocolCode, BinaryReader reader, int playerWho ) {
 			var mymod = ModHelpersMod.Instance;
-			bool is_request;
+			bool isRequest;
 
 			try {
-				is_request = reader.ReadBoolean();
+				isRequest = reader.ReadBoolean();
 			} catch( Exception e ) {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - " + e.ToString() );
 			}
 
-			if( !mymod.PacketProtocols.ContainsKey( protocol_code ) ) {
+			if( !mymod.PacketProtocols.ContainsKey( protocolCode ) ) {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Unrecognized packet." );
 			}
 
-			Type protocol_type;
-			if( !mymod.PacketProtocols.TryGetValue( protocol_code, out protocol_type ) ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Invalid protocol (hash: " + protocol_code + ")" );
+			Type protocolType;
+			if( !mymod.PacketProtocols.TryGetValue( protocolCode, out protocolType ) ) {
+				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateRaw( protocol_type );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateRaw( protocolType );
 
-				if( is_request ) {
+				if( isRequest ) {
 					protocol.ReceiveRequestWithClientBase();
 				} else {
-					protocol.ReceiveWithClientBase( reader, player_who );
+					protocol.ReceiveWithClientBase( reader, playerWho );
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - "+protocol_type.Name + " - " + e.ToString() );
+				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - "+protocolType.Name + " - " + e.ToString() );
 			}
 		}
 
 
-		internal static void HandlePacketOnServer( int protocol_code, BinaryReader reader, int player_who ) {
+		internal static void HandlePacketOnServer( int protocolCode, BinaryReader reader, int playerWho ) {
 			var mymod = ModHelpersMod.Instance;
-			bool is_request, is_synced_to_clients;
+			bool isRequest, isSyncedToClients;
 
 			try {
-				is_request = reader.ReadBoolean();
-				is_synced_to_clients = reader.ReadBoolean();
+				isRequest = reader.ReadBoolean();
+				isSyncedToClients = reader.ReadBoolean();
 			} catch( Exception e ) {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
 			}
 
-			if( !mymod.PacketProtocols.ContainsKey( protocol_code ) ) {
+			if( !mymod.PacketProtocols.ContainsKey( protocolCode ) ) {
 				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Unrecognized packet." );
 			}
 
-			Type protocol_type;
-			if( !mymod.PacketProtocols.TryGetValue( protocol_code, out protocol_type ) ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Invalid protocol (hash: " + protocol_code + ")" );
+			Type protocolType;
+			if( !mymod.PacketProtocols.TryGetValue( protocolCode, out protocolType ) ) {
+				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateRaw( protocol_type );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateRaw( protocolType );
 
-				if( is_request ) {
-					protocol.ReceiveRequestWithServerBase( player_who );
+				if( isRequest ) {
+					protocol.ReceiveRequestWithServerBase( playerWho );
 				} else {
-					protocol.ReceiveWithServerBase( reader, player_who );
+					protocol.ReceiveWithServerBase( reader, playerWho );
 
-					if( is_synced_to_clients ) {
-						protocol.SendToClient( -1, player_who );
+					if( isSyncedToClients ) {
+						protocol.SendToClient( -1, playerWho );
 					}
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( protocol_type.Name + " - " + e.ToString() );
+				throw new HamstarException( protocolType.Name + " - " + e.ToString() );
 			}
 		}
 	}

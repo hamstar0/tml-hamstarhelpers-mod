@@ -19,10 +19,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			CustomEntityCore core = this.Core;
-			byte owner_who = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;
+			byte ownerWho = this.OwnerPlayerWho == -1 ? (byte)255 : (byte)this.OwnerPlayerWho;
 			
 			writer.Write( (ushort)CustomEntityManager.GetIdByTypeName( this.MyTypeName ) );
-			writer.Write( (byte)owner_who );
+			writer.Write( (byte)ownerWho );
 //LogHelpers.Log( "WRITE id: "+this.ID+", name: "+core.DisplayName+", templates: "+ CustomEntityTemplates.TotalEntityTemplates());
 //LogHelpers.Log( "WRITE2 who: "+core.whoAmI+", component count: "+this.Components.Count );
 			writer.Write( (ushort)core.whoAmI );
@@ -43,10 +43,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		protected override void ReadStream( BinaryReader reader ) {
-			int type_id =			(ushort)reader.ReadUInt16();
-			byte owner_who =		(byte)reader.ReadByte();
+			int typeId =			(ushort)reader.ReadUInt16();
+			byte ownerWho =		(byte)reader.ReadByte();
 			int who =				(ushort)reader.ReadUInt16();
-			string display_name =	(string)reader.ReadString();
+			string displayName =	(string)reader.ReadString();
 			var pos = new Vector2 {
 				X =					(float)reader.ReadSingle(),
 				Y =					(float)reader.ReadSingle()
@@ -59,19 +59,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 				Y =					(float)reader.ReadSingle()
 			};
 
-			Type ent_type = CustomEntityManager.GetTypeById( type_id );
-			if( ent_type == null ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id " + type_id );
+			Type entType = CustomEntityManager.GetTypeById( typeId );
+			if( entType == null ) {
+				throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id " + typeId );
 			}
 
-			Player plr = owner_who == (byte)255 ? null : Main.player[owner_who];
+			Player plr = ownerWho == (byte)255 ? null : Main.player[ownerWho];
 
-			var myent_template = (CustomEntity)CustomEntity.CreateRaw( ent_type );
-			CustomEntityCore core = myent_template.CreateCoreTemplate();
-			IList<CustomEntityComponent> components = myent_template.CreateComponentsTemplate();
+			var myentTemplate = (CustomEntity)CustomEntity.CreateRaw( entType );
+			CustomEntityCore core = myentTemplate.CreateCoreTemplate();
+			IList<CustomEntityComponent> components = myentTemplate.CreateComponentsTemplate();
 
 			core.WhoAmI = who;
-			core.DisplayName = display_name;
+			core.DisplayName = displayName;
 			core.Width = wid;
 			core.Height = hei;
 			core.Position = pos;
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				components[i].ReadStreamForwarded( reader );
 			}
 			
-			this.MyTypeName = SerializableCustomEntity.GetTypeName( myent_template );
+			this.MyTypeName = SerializableCustomEntity.GetTypeName( myentTemplate );
 			this.CopyChangesFrom( core, components, plr );
 //LogHelpers.Log( "READ "+this );
 		}

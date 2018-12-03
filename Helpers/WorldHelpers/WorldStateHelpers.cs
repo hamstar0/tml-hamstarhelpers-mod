@@ -34,12 +34,12 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 		
-		internal void LoadFromData( ModHelpersMod mymod, int half_days, string world_id ) {
+		internal void LoadFromData( ModHelpersMod mymod, int halfDays, string worldId ) {
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			this.HalfDaysElapsed = half_days;
+			this.HalfDaysElapsed = halfDays;
 
-			myworld.ObsoletedID = world_id;
+			myworld.ObsoletedID = worldId;
 		}
 
 

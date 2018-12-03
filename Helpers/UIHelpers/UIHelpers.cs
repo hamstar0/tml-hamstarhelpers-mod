@@ -20,37 +20,37 @@ namespace HamstarHelpers.Helpers.UIHelpers {
 		////////////////
 
 		public static Tuple<int, int> GetScreenSize() {
-			int screen_wid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
-			int screen_hei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
+			int screenWid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
+			int screenHei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
 
-			return Tuple.Create( screen_wid, screen_hei );
+			return Tuple.Create( screenWid, screenHei );
 		}
 
 		public static Rectangle GetWorldFrameOfScreen() {
-			int screen_wid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
-			int screen_hei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
-			int screen_x = (int)Main.screenPosition.X + ( ( Main.screenWidth - screen_wid ) / 2 );
-			int screen_y = (int)Main.screenPosition.Y + ( ( Main.screenHeight - screen_hei ) / 2 );
+			int screenWid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
+			int screenHei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
+			int screenX = (int)Main.screenPosition.X + ( ( Main.screenWidth - screenWid ) / 2 );
+			int screenY = (int)Main.screenPosition.Y + ( ( Main.screenHeight - screenHei ) / 2 );
 
-			return new Rectangle( screen_x, screen_y, screen_wid, screen_hei );
+			return new Rectangle( screenX, screenY, screenWid, screenHei );
 		}
 
-		public static Vector2 ConvertToScreenPosition( Vector2 world_pos ) {
+		public static Vector2 ConvertToScreenPosition( Vector2 worldPos ) {
 			var frame = UIHelpers.GetWorldFrameOfScreen();
-			var screen_pos = new Vector2( frame.X, frame.Y );
+			var screenPos = new Vector2( frame.X, frame.Y );
 
-			return ( world_pos - screen_pos ) * Main.GameZoomTarget;
+			return ( worldPos - screenPos ) * Main.GameZoomTarget;
 		}
 
 		public static Vector2 GetWorldMousePosition() {
-			Rectangle zoomed_screen_frame = UIHelpers.GetWorldFrameOfScreen();
-			var zoomed_screen_pos = new Vector2( zoomed_screen_frame.X, zoomed_screen_frame.Y );
-			var mouse_pos = new Vector2( Main.mouseX, Main.mouseY );
+			Rectangle zoomedScreenFrame = UIHelpers.GetWorldFrameOfScreen();
+			var zoomedScreenPos = new Vector2( zoomedScreenFrame.X, zoomedScreenFrame.Y );
+			var mousePos = new Vector2( Main.mouseX, Main.mouseY );
 
-			Vector2 screen_mouse_pos = UIHelpers.ConvertToScreenPosition( mouse_pos + Main.screenPosition );
-			Vector2 world_mouse_pos = screen_mouse_pos + zoomed_screen_pos;
+			Vector2 screenMousePos = UIHelpers.ConvertToScreenPosition( mousePos + Main.screenPosition );
+			Vector2 worldMousePos = screenMousePos + zoomedScreenPos;
 
-			return world_mouse_pos;
+			return worldMousePos;
 		}
 
 

@@ -14,7 +14,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected PlayerNewIdProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) {
+		protected PlayerNewIdProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
 			this.PlayerIds = ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
 		}
 
@@ -25,18 +25,18 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetProperUniqueId( Main.LocalPlayer );
 		}
 
-		protected override void SetServerDefaults( int to_who ) {
+		protected override void SetServerDefaults( int toWho ) {
 		}
 
 
 		////////////////
 
-		protected override void ReceiveOnServer( int from_who ) {
+		protected override void ReceiveOnServer( int fromWho ) {
 			string uid;
-			if( this.PlayerIds.TryGetValue( from_who, out uid ) ) {
-				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ from_who ] = uid;
+			if( this.PlayerIds.TryGetValue( fromWho, out uid ) ) {
+				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ fromWho ] = uid;
 			} else {
-				LogHelpers.Log( "!ModHelpers.PlayerNewIdProtocol.ReceiveWithServer - No UID reported from player id'd "+from_who );
+				LogHelpers.Log( "!ModHelpers.PlayerNewIdProtocol.ReceiveWithServer - No UID reported from player id'd "+fromWho );
 			}
 		}
 

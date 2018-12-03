@@ -11,13 +11,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
 		private static void _PostDrawAll( GameTime _ ) {
 			var sb = Main.spriteBatch;
-			bool is_begun = XnaHelpers.IsMainSpriteBatchBegun();
+			bool isBegun = XnaHelpers.IsMainSpriteBatchBegun();
 
-			if( !is_begun ) {
+			if( !isBegun ) {
 				sb.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.BackgroundViewMatrix.TransformationMatrix );
 			}
 			ModHelpersMod.Instance?.CustomEntMngr?.PostDrawAll( sb );
-			if( !is_begun ) {
+			if( !isBegun ) {
 				sb.End();
 			}
 		}
@@ -30,9 +30,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			foreach( CustomEntity ent in ents ) {
-				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
-				if( draw_comp != null ) {
-					draw_comp.PreDraw( sb, ent );
+				var drawComp = ent.GetComponentByType<DrawsInGameEntityComponent>();
+				if( drawComp != null ) {
+					drawComp.PreDraw( sb, ent );
 				}
 			}
 		}
@@ -44,9 +44,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			foreach( CustomEntity ent in ents ) {
-				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
-				if( draw_comp != null ) {
-					draw_comp.Draw( sb, ent );
+				var drawComp = ent.GetComponentByType<DrawsInGameEntityComponent>();
+				if( drawComp != null ) {
+					drawComp.Draw( sb, ent );
 				}
 			}
 		}
@@ -59,9 +59,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			foreach( CustomEntity ent in ents ) {
-				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
-				if( draw_comp != null ) {
-					draw_comp.PostDraw( Main.spriteBatch, ent );
+				var drawComp = ent.GetComponentByType<DrawsInGameEntityComponent>();
+				if( drawComp != null ) {
+					drawComp.PostDraw( Main.spriteBatch, ent );
 				}
 			}
 		}

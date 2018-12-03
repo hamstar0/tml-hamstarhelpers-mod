@@ -40,10 +40,10 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 		
 		public static VanillaEventFlag GetCurrentEventTypeSet() {
 			int flags = 0;
-			int inv_type = (int)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
+			int invType = (int)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
 
-			if( (VanillaEventFlag)inv_type != VanillaEventFlag.None ) {
-				flags += inv_type;
+			if( (VanillaEventFlag)invType != VanillaEventFlag.None ) {
+				flags += invType;
 			}
 
 			if( Sandstorm.Happening ) { flags += (int)VanillaEventFlag.Sandstorm; }

@@ -57,7 +57,7 @@ namespace HamstarHelpers {
 		public bool DisableModMenuUpdates = false;
 		public bool DisableSupportLinks = false;
 
-		public bool MagiTechScrapDropsEnabled = false;
+		public bool MagiTechScrapMechBossDropsEnabled = false;
 
 		public string PrivilegedUserId = "";
 
@@ -66,12 +66,12 @@ namespace HamstarHelpers {
 		////////////////
 
 		internal bool UpdateToLatestVersion( ModHelpersMod mymod ) {
-			var new_config = new HamstarHelpersConfigData();
-			var vers_since = this.VersionSinceUpdate != "" ?
+			var newConfig = new HamstarHelpersConfigData();
+			var versSince = this.VersionSinceUpdate != "" ?
 				new Version( this.VersionSinceUpdate ) :
 				new Version();
 			
-			if( vers_since >= mymod.Version ) {
+			if( versSince >= mymod.Version ) {
 				return false;
 			}
 

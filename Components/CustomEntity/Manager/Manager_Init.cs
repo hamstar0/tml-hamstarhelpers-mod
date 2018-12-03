@@ -21,22 +21,22 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Main.OnTick += CustomEntityManager._Update;
 
 			// Initialize components
-			var entity_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntity) );
+			var entityTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntity) );
 
-			foreach( Type entity_type in entity_types.OrderBy( e=>e.Name ) ) {
-				this.CacheTypeIdInfo( entity_type );
+			foreach( Type entityType in entityTypes.OrderBy( e=>e.Name ) ) {
+				this.CacheTypeIdInfo( entityType );
 			}
 
 			// Initialize components
-			var component_types = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntityComponent) );
+			var componentTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntityComponent) );
 
-			foreach( var component_type in component_types ) {
-				Type[] nested_types = component_type.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
+			foreach( var componentType in componentTypes ) {
+				Type[] nestedTypes = componentType.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
 
-				foreach( var nested_type in nested_types ) {
-					if( nested_type.IsSubclassOf( typeof( CustomEntityComponent.StaticInitializer ) ) ) {
-						var static_init = (CustomEntityComponent.StaticInitializer)Activator.CreateInstance( nested_type );
-						static_init.StaticInitializationWrapper();
+				foreach( var nestedType in nestedTypes ) {
+					if( nestedType.IsSubclassOf( typeof( CustomEntityComponent.StaticInitializer ) ) ) {
+						var staticInit = (CustomEntityComponent.StaticInitializer)Activator.CreateInstance( nestedType );
+						staticInit.StaticInitializationWrapper();
 					}
 				}
 			}

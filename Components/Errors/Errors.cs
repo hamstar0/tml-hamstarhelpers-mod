@@ -24,17 +24,17 @@ namespace HamstarHelpers.Components.Errors {
 		////////////////
 
 		private void Initialize( string msg ) {
-			var msg_count = ModHelpersMod.Instance.ExceptionMngr.MsgCount;
+			var msgCount = ModHelpersMod.Instance.ExceptionMngr.MsgCount;
 			int count = 0;
 
-			if( msg_count.TryGetValue( msg, out count ) ) {
+			if( msgCount.TryGetValue( msg, out count ) ) {
 				if( count > 10 && (Math.Log10( count ) % 1) != 0 ) {
 					return;
 				}
 			} else {
-				msg_count[msg] = 0;
+				msgCount[msg] = 0;
 			}
-			msg_count[msg]++;
+			msgCount[msg]++;
 
 			if( this.InnerException != null ) {
 				LogHelpers.Log( "EXCEPTION (" + count + ") - " + msg + " | " + this.InnerException.Message );

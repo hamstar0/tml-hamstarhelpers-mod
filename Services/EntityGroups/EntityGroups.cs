@@ -82,19 +82,19 @@ namespace HamstarHelpers.Services.EntityGroups {
 				
 				ThreadPool.QueueUserWorkItem( _ => {
 					try {
-						IList<Tuple<string, string[], ItemMatcher>> item_matchers;
-						IList<Tuple<string, string[], NPCMatcher>> npc_matchers;
-						IList<Tuple<string, string[], ProjMatcher>> proj_matchers;
+						IList<Tuple<string, string[], ItemMatcher>> itemMatchers;
+						IList<Tuple<string, string[], NPCMatcher>> npcMatchers;
+						IList<Tuple<string, string[], ProjMatcher>> projMatchers;
 
 						lock( EntityGroups.MyLock ) {
-							item_matchers = this.DefineItemGroups();
-							npc_matchers = this.DefineNPCGroups();
-							proj_matchers = this.DefineProjectileGroups();
+							itemMatchers = this.DefineItemGroups();
+							npcMatchers = this.DefineNPCGroups();
+							projMatchers = this.DefineProjectileGroups();
 						}
 
-						this.ComputeGroups<Item>( item_matchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
-						this.ComputeGroups<NPC>( npc_matchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
-						this.ComputeGroups<Projectile>( proj_matchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+						this.ComputeGroups<Item>( itemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						this.ComputeGroups<NPC>( npcMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						this.ComputeGroups<Projectile>( projMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
 
 						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
 						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
@@ -180,7 +180,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			var list = new Projectile[ ProjectileLoader.ProjectileCount ];
 			list[0] = null;
 
-			UnifiedRandom old_rand = Main.rand;
+			UnifiedRandom oldRand = Main.rand;
 			Main.rand = new UnifiedRandom();
 			
 			for( int i = 1; i < ProjectileLoader.ProjectileCount; i++ ) {
@@ -193,7 +193,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				}
 			} 
 
-			Main.rand = old_rand;
+			Main.rand = oldRand;
 
 			this.ProjPool = new List<Projectile>( list );
 			return this.ProjPool;

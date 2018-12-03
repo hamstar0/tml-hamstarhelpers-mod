@@ -42,9 +42,9 @@ namespace HamstarHelpers.Internals.Menus {
 				} catch( Exception ) { }
 			};
 
-			var button_widget_ctx = new WidgetMenuContext( button, true );
+			var buttonWidgetCtx = new WidgetMenuContext( button, true );
 
-			MenuContextService.AddMenuContext( "UIMods", "ModHelpers: Mod Menu Config Folder Button", button_widget_ctx );
+			MenuContextService.AddMenuContext( "UIMods", "ModHelpers: Mod Menu Config Folder Button", buttonWidgetCtx );
 		}
 	}
 }

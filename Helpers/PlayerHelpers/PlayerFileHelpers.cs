@@ -13,16 +13,16 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				FileUtilities.Delete( data.Path, data.IsCloudSave );
 				FileUtilities.Delete( data.Path + ".bak", data.IsCloudSave );
 
-				bool cloud_save = data.IsCloudSave;
+				bool cloudSave = data.IsCloudSave;
 				string path = Path.ChangeExtension( data.Path, ".tplr" );
 
-				FileUtilities.Delete( path, cloud_save );
-				FileUtilities.Delete( path + ".bak", cloud_save );
+				FileUtilities.Delete( path, cloudSave );
+				FileUtilities.Delete( path + ".bak", cloudSave );
 			
-				string dir_path = data.Path.Substring( 0, data.Path.Length - 4 );
+				string dirPath = data.Path.Substring( 0, data.Path.Length - 4 );
 
-				if( Directory.Exists( dir_path ) ) {
-					Directory.Delete( dir_path, true );
+				if( Directory.Exists( dirPath ) ) {
+					Directory.Delete( dirPath, true );
 				}
 
 				Main.LoadPlayers();

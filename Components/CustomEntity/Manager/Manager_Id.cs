@@ -5,21 +5,21 @@ using System;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public static Type GetTypeById( int type_id ) {
+		public static Type GetTypeById( int typeId ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
-			if( !mngr.TypeIdEnts.ContainsKey( type_id ) ) {
-				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeById - No CustomEntity of type id "+type_id );
+			if( !mngr.TypeIdEnts.ContainsKey( typeId ) ) {
+				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeById - No CustomEntity of type id "+typeId );
 			}
-			return mngr.TypeIdEnts[type_id];
+			return mngr.TypeIdEnts[typeId];
 		}
 		
 		public static Type GetTypeByName( string name ) {
-			int type_id = -1;
+			int typeId = -1;
 
 			try {
-				type_id = CustomEntityManager.GetIdByTypeName( name );
-				return CustomEntityManager.GetTypeById( type_id );
+				typeId = CustomEntityManager.GetIdByTypeName( name );
+				return CustomEntityManager.GetTypeById( typeId );
 			} catch( HamstarException e ) {
 				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeByName - No CustomEntity " + name, e );
 			}

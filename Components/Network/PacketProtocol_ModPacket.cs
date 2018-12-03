@@ -8,28 +8,28 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		private ModPacket GetClientPacket( bool is_request, bool sync_to_all ) {
+		private ModPacket GetClientPacket( bool isRequest, bool syncToAll ) {
 			if( Main.netMode != 1 ) { throw new Exception("Not a client"); }
 
 			string name = this.GetPacketName();
 			var packet = ModHelpersMod.Instance.GetPacket();
 
 			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
-			packet.Write( is_request );
-			packet.Write( sync_to_all );
+			packet.Write( isRequest );
+			packet.Write( syncToAll );
 
 			return packet;
 		}
 
 
-		private ModPacket GetServerPacket( bool is_request ) {
+		private ModPacket GetServerPacket( bool isRequest ) {
 			if( Main.netMode != 2 ) { throw new HamstarException( "Not a server" ); }
 
 			string name = this.GetPacketName();
 			var packet = ModHelpersMod.Instance.GetPacket();
 
 			packet.Write( (int)PacketProtocol.GetPacketCode( name ) );
-			packet.Write( is_request );
+			packet.Write( isRequest );
 
 			return packet;
 		}

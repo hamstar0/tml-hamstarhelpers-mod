@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 			this.ConfirmButton.Top.Set( -32f, 1f );
 			this.ConfirmButton.Left.Set( (this.CancelAction != null ? -192f : -64f), 0.5f );
 			this.ConfirmButton.Width.Set( 128f, 0f );
-			this.ConfirmButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+			this.ConfirmButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				this.ConfirmAction();
 				this.Remove();
 			};
@@ -72,7 +72,7 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 				this.CancelButton.Top.Set( -32f, 1f );
 				this.CancelButton.Left.Set( 64f, 0.5f );
 				this.CancelButton.Width.Set( 128f, 0f );
-				this.CancelButton.OnClick += delegate ( UIMouseEvent evt, UIElement listening_element ) {
+				this.CancelButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 					this.CancelAction.Invoke();
 					this.Remove();
 				};
@@ -97,18 +97,18 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 			base.Recalculate();
 
 			CalculatedStyle dim = this.GetDimensions();
-			float offset_x = this.LeftPixels;
-			float offset_y = this.TopPixels;
+			float offsetX = this.LeftPixels;
+			float offsetY = this.TopPixels;
 
 			if( this.LeftCentered ) {
-				offset_x -= dim.Width * 0.5f;
+				offsetX -= dim.Width * 0.5f;
 			}
 			if( this.TopCentered ) {
-				offset_y -= dim.Height * 0.5f;
+				offsetY -= dim.Height * 0.5f;
 			}
 
-			this.Left.Set( offset_x, this.LeftPercent );
-			this.Top.Set( offset_y, this.TopPercent );
+			this.Left.Set( offsetX, this.LeftPercent );
+			this.Top.Set( offsetY, this.TopPercent );
 		}
 	}
 }

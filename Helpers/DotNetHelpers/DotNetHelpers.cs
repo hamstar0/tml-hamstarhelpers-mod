@@ -31,10 +31,10 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			Double doubleout;
 			if( Double.TryParse( value, out doubleout ) ) { return (object)doubleout; }
 
-			string lower_value = value.ToLower();
+			string lowerValue = value.ToLower();
 			Boolean boolout;
-			if( Boolean.TryParse( lower_value, out boolout ) ) {
-				if( lower_value.Equals( boolout ) ) { return (object)boolout; }
+			if( Boolean.TryParse( lowerValue, out boolout ) ) {
+				if( lowerValue.Equals( boolout ) ) { return (object)boolout; }
 			}
 
 			return (object)value;
@@ -51,16 +51,16 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		}
 
 
-		public static bool IsSubclassOfRawGeneric( Type generic_type, Type is_type_of ) {
-			while( is_type_of != null && is_type_of != typeof( object ) ) {
-				Type curr_type = is_type_of.IsGenericType ?
-					is_type_of.GetGenericTypeDefinition() :
-					is_type_of;
+		public static bool IsSubclassOfRawGeneric( Type genericType, Type isTypeOf ) {
+			while( isTypeOf != null && isTypeOf != typeof( object ) ) {
+				Type currType = isTypeOf.IsGenericType ?
+					isTypeOf.GetGenericTypeDefinition() :
+					isTypeOf;
 
-				if( generic_type == curr_type ) {
+				if( genericType == currType ) {
 					return true;
 				}
-				is_type_of = is_type_of.BaseType;
+				isTypeOf = isTypeOf.BaseType;
 			}
 
 			return false;

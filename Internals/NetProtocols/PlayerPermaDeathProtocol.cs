@@ -14,8 +14,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			////////////////
 
-			public MyFactory( int player_who, string msg ) {
-				this.PlayerWho = player_who;
+			public MyFactory( int playerWho, string msg ) {
+				this.PlayerWho = playerWho;
 				this.Msg = msg;
 			}
 
@@ -31,8 +31,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 		
-		public static void SendToAll( int player_dead_who, string msg ) {
-			var factory = new MyFactory( player_dead_who, msg );
+		public static void SendToAll( int playerDeadWho, string msg ) {
+			var factory = new MyFactory( playerDeadWho, msg );
 			PlayerPermaDeathProtocol protocol = factory.Create();
 
 			if( Main.netMode == 1 ) {
@@ -53,12 +53,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 		
-		protected PlayerPermaDeathProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected PlayerPermaDeathProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
 
-		protected override void ReceiveOnServer( int from_who ) {
+		protected override void ReceiveOnServer( int fromWho ) {
 			//Player player = Main.player[ this.PlayerWho ];
 
 			//PlayerHelpers.ApplyPermaDeath( player, this.Msg );	?

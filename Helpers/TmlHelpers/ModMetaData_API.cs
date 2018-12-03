@@ -24,8 +24,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			var self = ModHelpersMod.Instance.ModMetaDataManager;
 			if( !self.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo config_path_field = ModMetaDataManager.GetConfigFilePathProp( mod );
-			return (string)config_path_field.GetValue( null );
+			PropertyInfo configPathField = ModMetaDataManager.GetConfigFilePathProp( mod );
+			return (string)configPathField.GetValue( null );
 		}
 
 		/*public static void SetConfigRelativePath( Mod mod, string path ) {
@@ -33,8 +33,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
 
-			FieldInfo config_path_field = mod.GetType().GetField( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
-			config_path_field.SetValue( null, path );
+			FieldInfo configPathField = mod.GetType().GetField( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
+			configPathField.SetValue( null, path );
 		}*/
 
 		public static void ReloadConfigFromFile( Mod mod ) {
@@ -43,8 +43,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
 
-			MethodInfo config_reload_method = ModMetaDataManager.GetConfigFileLoadMethod( mod );
-			config_reload_method.Invoke( null, new object[] { } );
+			MethodInfo configReloadMethod = ModMetaDataManager.GetConfigFileLoadMethod( mod );
+			configReloadMethod.Invoke( null, new object[] { } );
 		}
 		
 		public static void ResetDefaultsConfig( Mod mod ) {
@@ -53,8 +53,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				throw new Exception( "Not a recognized config resetable mod." );
 			}
 
-			MethodInfo config_defaults_method = ModMetaDataManager.GetConfigDefaultsResetMethod( mod );
-			config_defaults_method.Invoke( null, new object[] { } );
+			MethodInfo configDefaultsMethod = ModMetaDataManager.GetConfigDefaultsResetMethod( mod );
+			configDefaultsMethod.Invoke( null, new object[] { } );
 		}
 
 		////////////////
@@ -63,16 +63,16 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			var self = ModHelpersMod.Instance.ModMetaDataManager;
 			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo git_user_prop = ModMetaDataManager.GetGithubUserNameProp( mod );
-			return (string)git_user_prop.GetValue( null );
+			PropertyInfo gitUserProp = ModMetaDataManager.GetGithubUserNameProp( mod );
+			return (string)gitUserProp.GetValue( null );
 		}
 
 		public static string GetGithubProjectName( Mod mod ) {
 			var self = ModHelpersMod.Instance.ModMetaDataManager;
 			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo git_proj_prop = ModMetaDataManager.GetGitubProjectNameProp( mod );
-			return (string)git_proj_prop.GetValue( null );
+			PropertyInfo gitProjProp = ModMetaDataManager.GetGitubProjectNameProp( mod );
+			return (string)gitProjProp.GetValue( null );
 		}
 	}
 }

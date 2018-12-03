@@ -15,8 +15,8 @@ namespace HamstarHelpers.Components.Network {
 		/// <summary>
 		/// Runs when data received on server (class's own fields).
 		/// </summary>
-		/// <param name="from_who">Main.player index of the player (client) sending us our data.</param>
-		protected virtual void ReceiveWithServer( int from_who ) {
+		/// <param name="fromWho">Main.player index of the player (client) sending us our data.</param>
+		protected virtual void ReceiveWithServer( int fromWho ) {
 			throw new NotImplementedException( "No ReceiveWithServer" );
 		}
 
@@ -34,9 +34,9 @@ namespace HamstarHelpers.Components.Network {
 		/// Runs when a request is received for the server to send data to the client. Expects
 		/// `SetServerDefaults()` to be implemented.
 		/// </summary>
-		/// <param name="from_who">Main.player index of player (client) sending this request.</param>
+		/// <param name="fromWho">Main.player index of player (client) sending this request.</param>
 		/// <returns>True to indicate the request is being handled manually.</returns>
-		protected virtual bool ReceiveRequestWithServer( int from_who ) {
+		protected virtual bool ReceiveRequestWithServer( int fromWho ) {
 			return false;
 		}
 	}

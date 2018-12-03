@@ -52,13 +52,13 @@ namespace HamstarHelpers {
 		private void LoadExceptionBehavior() {
 			if( this.Config.DebugModeDisableSilentLogging ) {
 				var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
-				FieldInfo fce_field = typeof( AppDomain ).GetField( "FirstChanceException", flags );
-				if( fce_field == null ) {
-					fce_field = typeof( AppDomain ).GetField( "_firstChanceException", flags );
+				FieldInfo fceField = typeof( AppDomain ).GetField( "FirstChanceException", flags );
+				if( fceField == null ) {
+					fceField = typeof( AppDomain ).GetField( "_firstChanceException", flags );
 				}
-				if( fce_field != null ) {
+				if( fceField != null ) {
 					//if( field != null && (field.FieldType == typeof(MulticastDelegate) || field.FieldType.IsSubclassOf( typeof(MulticastDelegate) )) ) {
-					fce_field.SetValue( AppDomain.CurrentDomain, null );
+					fceField.SetValue( AppDomain.CurrentDomain, null );
 				}
 			}
 
@@ -135,11 +135,11 @@ namespace HamstarHelpers {
 
 		private void AddRecipesInner() {
 			if( this.Config.AddCrimsonLeatherRecipe ) {
-				var vertebrae_to_leather = new ModRecipe( this );
+				var vertebraeToLeather = new ModRecipe( this );
 
-				vertebrae_to_leather.AddIngredient( ItemID.Vertebrae, 5 );
-				vertebrae_to_leather.SetResult( ItemID.Leather );
-				vertebrae_to_leather.AddRecipe();
+				vertebraeToLeather.AddIngredient( ItemID.Vertebrae, 5 );
+				vertebraeToLeather.SetResult( ItemID.Leather );
+				vertebraeToLeather.AddRecipe();
 			}
 		}
 

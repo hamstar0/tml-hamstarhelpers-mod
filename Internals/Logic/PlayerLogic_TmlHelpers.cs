@@ -21,31 +21,31 @@ namespace HamstarHelpers.Internals.Logic {
 		////////////////
 
 		private void CheckBuffHooks( Player player ) {
-			bool buff_change = false;
+			bool buffChange = false;
 
 			// Add new buffs
 			for( int i = 0; i < player.buffTime.Length; i++ ) {
 				if( player.buffTime[i] > 0 ) {
-					int buff_id = player.buffType[i];
+					int buffId = player.buffType[i];
 
-					if( !this.HasBuffIds.Contains( buff_id ) ) {
-						this.HasBuffIds.Add( buff_id );
-						buff_change = true;
+					if( !this.HasBuffIds.Contains( buffId ) ) {
+						this.HasBuffIds.Add( buffId );
+						buffChange = true;
 					}
 				}
 			}
 
 			// Remove old buffs + fire hooks
-			foreach( int buff_id in this.HasBuffIds.ToArray() ) {
-				if( player.FindBuffIndex( buff_id ) == -1 ) {
-					this.HasBuffIds.Remove( buff_id );
-					buff_change = true;
+			foreach( int buffId in this.HasBuffIds.ToArray() ) {
+				if( player.FindBuffIndex( buffId ) == -1 ) {
+					this.HasBuffIds.Remove( buffId );
+					buffChange = true;
 
-					PlayerState.OnBuffExpire( player, buff_id );
+					PlayerState.OnBuffExpire( player, buffId );
 				}
 			}
 
-			if( buff_change ) {
+			if( buffChange ) {
 				if( Main.netMode == 1 ) {
 					if( this.CanUpdateData ) {
 						this.CanUpdateData = false;
@@ -62,36 +62,36 @@ namespace HamstarHelpers.Internals.Logic {
 		}
 
 		private void CheckArmorEquipHooks( Player player ) {
-			bool equip_change = false;
+			bool equipChange = false;
 
 			for( int i = 0; i < player.armor.Length; i++ ) {
 				Item item = player.armor[i];
 
 				if( item != null && !item.IsAir ) {
-					bool had_an_equip = this.EquipSlotsToItemTypes.ContainsKey( i );
+					bool hadAnEquip = this.EquipSlotsToItemTypes.ContainsKey( i );
 
-					if( had_an_equip ) {
+					if( hadAnEquip ) {
 						if( item.type != this.EquipSlotsToItemTypes[i] ) {
 							PlayerState.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
 							PlayerState.OnArmorEquip( player, i, item );
 							this.EquipSlotsToItemTypes[i] = item.type;
-							equip_change = true;
+							equipChange = true;
 						}
 					} else {
 						this.EquipSlotsToItemTypes[i] = item.type;
 						PlayerState.OnArmorEquip( player, i, item );
-						equip_change = true;
+						equipChange = true;
 					}
 				} else {
 					if( this.EquipSlotsToItemTypes.ContainsKey( i ) ) {
 						PlayerState.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
 						this.EquipSlotsToItemTypes.Remove( i );
-						equip_change = true;
+						equipChange = true;
 					}
 				}
 			}
 
-			if( equip_change ) {
+			if( equipChange ) {
 				if( Main.netMode == 1 ) {
 					if( this.CanUpdateData ) {
 						this.CanUpdateData = false;
@@ -110,16 +110,16 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void AddPermaBuff( int buff_id ) {
-			if( this.PermaBuffsById.Add( buff_id ) ) {
+		public void AddPermaBuff( int buffId ) {
+			if( this.PermaBuffsById.Add( buffId ) ) {
 				PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			}
 		}
 
-		public void RemovePermaBuff( int buff_id ) {
-			if( !this.PermaBuffsById.Contains( buff_id ) ) { return; }
+		public void RemovePermaBuff( int buffId ) {
+			if( !this.PermaBuffsById.Contains( buffId ) ) { return; }
 
-			if( this.PermaBuffsById.Remove( buff_id ) ) {
+			if( this.PermaBuffsById.Remove( buffId ) ) {
 				PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			}
 		}

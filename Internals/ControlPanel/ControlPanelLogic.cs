@@ -28,25 +28,25 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public void ApplyConfigChanges( ModHelpersMod mymod ) {
 			ConfigsRefreshCommand.RefreshConfigs();
 
-			string mod_names = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );
-			string output = "Mod configs reloaded for " + mod_names;
+			string modNames = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );
+			string output = "Mod configs reloaded for " + modNames;
 
 			Main.NewText( output, Color.Yellow );
 			ErrorLogger.Log( output );
 		}
 
 
-		public void ReportIssue( Mod mod, string issue_title, string issue_body, Action on_completion ) {
-			Action<string> on_success = delegate ( string output ) {
+		public void ReportIssue( Mod mod, string issueTitle, string issueBody, Action onCompletion ) {
+			Action<string> onSuccess = delegate ( string output ) {
 				Main.NewText( "Issue submit result: " + output, Color.Yellow );
 				ErrorLogger.Log( "Issue submit result: " + output );
 			};
-			Action<Exception, string> on_fail = ( e, output ) => {
+			Action<Exception, string> onFail = ( e, output ) => {
 				Main.NewText( "Issue submit error: " + e.Message, Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 
-			PostGithubModIssueReports.ReportIssue( mod, issue_title, issue_body, on_success, on_fail, on_completion );
+			PostGithubModIssueReports.ReportIssue( mod, issueTitle, issueBody, onSuccess, onFail, onCompletion );
 		}
 	}
 }

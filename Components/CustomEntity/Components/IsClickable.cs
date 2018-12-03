@@ -6,7 +6,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public abstract class IsClickableEntityComponent : CustomEntityComponent {
-		protected IsClickableEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected IsClickableEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
@@ -33,16 +33,16 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private bool CheckMouseHover( CustomEntity ent ) {
 			Entity core = ent.Core;
-			var world_scr_rect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
+			var worldScrRect = new Rectangle( (int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight );
 			Rectangle box = core.Hitbox;
 
-			if( !box.Intersects( world_scr_rect ) ) {
+			if( !box.Intersects( worldScrRect ) ) {
 				return false;
 			}
 
-			var screen_box = new Rectangle( box.X - world_scr_rect.X, box.Y - world_scr_rect.Y, box.Width, box.Height );
+			var screenBox = new Rectangle( box.X - worldScrRect.X, box.Y - worldScrRect.Y, box.Width, box.Height );
 
-			return screen_box.Contains( Main.mouseX, Main.mouseY );
+			return screenBox.Contains( Main.mouseX, Main.mouseY );
 		}
 	}
 }

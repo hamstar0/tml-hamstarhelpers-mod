@@ -35,8 +35,8 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 		////////////////
 
-		public bool Check( int tile_x, int tile_y ) {
-			Tile tile = Main.tile[ tile_x, tile_y ];
+		public bool Check( int tileX, int tileY ) {
+			Tile tile = Main.tile[ tileX, tileY ];
 
 			if( this.IsWire != null ) {
 				if( TileHelpers.IsWire( tile ) != this.IsWire ) {
@@ -78,16 +78,16 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		}
 
 
-		public bool CheckArea( Rectangle tile_area ) {
-			return this.CheckArea( tile_area.X, tile_area.Y, tile_area.Width, tile_area.Height );
+		public bool CheckArea( Rectangle tileArea ) {
+			return this.CheckArea( tileArea.X, tileArea.Y, tileArea.Width, tileArea.Height );
 		}
 		
-		public bool CheckArea( int tile_x, int tile_y, int width, int height ) {    //, out int fail_at_x, out int fail_at_y
-			int max_x = tile_x + width;
-			int max_y = tile_y + height;
+		public bool CheckArea( int tileX, int tileY, int width, int height ) {    //, out int failAtX, out int failAtY
+			int maxX = tileX + width;
+			int maxY = tileY + height;
 
-			for( int i = tile_x; i < max_x; i++ ) {
-				for( int j = tile_y; j < max_y; j++ ) {
+			for( int i = tileX; i < maxX; i++ ) {
+				for( int j = tileY; j < maxY; j++ ) {
 					if( !this.Check( i, j ) ) {
 						return false;
 					}

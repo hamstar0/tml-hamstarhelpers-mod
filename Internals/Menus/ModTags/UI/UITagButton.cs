@@ -37,27 +37,27 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagButton( TagsMenuContextBase menu_context, int pos, string label, string desc, bool can_negate_tags )
+		public UITagButton( TagsMenuContextBase menuContext, int pos, string label, string desc, bool canNegateTags )
 				: base( UITheme.Vanilla, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -308f, 40, 0.6f, false ) {
-			this.MenuContext = menu_context;
+			this.MenuContext = menuContext;
 			this.TagState = 0;
 			this.DrawPanel = false;
 			this.Desc = desc;
 
-			int col_tall = UITagButton.ColumnHeightTall;
-			int col_short = UITagButton.ColumnHeightShort;
-			int cols_in_mid = UITagButton.ColumnsInMid;
-			int last_col_pos = col_tall + ( col_short * cols_in_mid );
+			int colTall = UITagButton.ColumnHeightTall;
+			int colShort = UITagButton.ColumnHeightShort;
+			int colsInMid = UITagButton.ColumnsInMid;
+			int lastColPos = colTall + ( colShort * colsInMid );
 
-			if( pos < col_tall ) {
+			if( pos < colTall ) {
 				this.Column = 0;
 				this.Row = pos;
-			} else if( pos >= last_col_pos ) {
+			} else if( pos >= lastColPos ) {
 				this.Column = UITagButton.LastColumnPos;
-				this.Row = UITagButton.LastColumnRowStart + pos - last_col_pos;
+				this.Row = UITagButton.LastColumnRowStart + pos - lastColPos;
 			} else {
-				this.Column = 1 + (( pos - col_tall ) / col_short );
-				this.Row = ( pos - col_tall ) % col_short;
+				this.Column = 1 + (( pos - colTall ) / colShort );
+				this.Row = ( pos - colTall ) % colShort;
 			}
 			
 			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				this.TogglePositiveTag();
 			};
 			this.OnRightClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( !this.IsEnabled || !can_negate_tags ) { return; }
+				if( !this.IsEnabled || !canNegateTags ) { return; }
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
@@ -139,63 +139,63 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		////////////////
 
 		public Color GetBgColor() {
-			Color bg_color = !this.IsEnabled ?
+			Color bgColor = !this.IsEnabled ?
 				this.Theme.ButtonBgDisabledColor :
 				this.IsMouseHovering ?
 					this.Theme.ButtonBgLitColor :
 					this.Theme.ButtonBgColor;
-			byte a = bg_color.A;
+			byte a = bgColor.A;
 			
 			if( this.Desc.Contains("Mechanics:") ) {
-				bg_color = Color.Lerp( bg_color, Color.Gold, 0.3f );
+				bgColor = Color.Lerp( bgColor, Color.Gold, 0.3f );
 			} else if( this.Desc.Contains("Theme:") ) {
-				bg_color = Color.Lerp( bg_color, Color.DarkTurquoise, 0.4f );
+				bgColor = Color.Lerp( bgColor, Color.DarkTurquoise, 0.4f );
 			} else if( this.Desc.Contains( "Content:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.DarkRed, 0.3f );
+				bgColor = Color.Lerp( bgColor, Color.DarkRed, 0.3f );
 			//} else if( this.Desc.Contains( "Where:" ) ) {
-			//	bg_color = Color.Lerp( bg_color, Color.Green, 0.4f );
+			//	bgColor = Color.Lerp( bgColor, Color.Green, 0.4f );
 			} else if( this.Desc.Contains( "When:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.Green, 0.4f );
+				bgColor = Color.Lerp( bgColor, Color.Green, 0.4f );
 			} else if( this.Desc.Contains( "State:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.DarkViolet, 0.4f );
+				bgColor = Color.Lerp( bgColor, Color.DarkViolet, 0.4f );
 			} else if( this.Desc.Contains( "Judgmental:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.DimGray, 0.4f );
+				bgColor = Color.Lerp( bgColor, Color.DimGray, 0.4f );
 			} else if( this.Desc.Contains( "Priviledge:" ) ) {
-				bg_color = Color.Lerp( bg_color, Color.Black, 0.4f );
+				bgColor = Color.Lerp( bgColor, Color.Black, 0.4f );
 			}
-			bg_color.A = a;
+			bgColor.A = a;
 
-			return bg_color;
+			return bgColor;
 		}
 
 		public Color GetEdgeColor() {
-			Color edge_color = !this.IsEnabled ?
+			Color edgeColor = !this.IsEnabled ?
 				this.Theme.ButtonEdgeDisabledColor :
 				this.IsMouseHovering ?
 					this.Theme.ButtonEdgeLitColor :
 					this.Theme.ButtonEdgeColor;
-			byte a = edge_color.A;
+			byte a = edgeColor.A;
 			
 			if( this.Desc.Contains( "Mechanics:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.Goldenrod, 0.35f );
+				edgeColor = Color.Lerp( edgeColor, Color.Goldenrod, 0.35f );
 			} else if( this.Desc.Contains( "Theme:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.Aquamarine, 0.25f );
+				edgeColor = Color.Lerp( edgeColor, Color.Aquamarine, 0.25f );
 			} else if( this.Desc.Contains( "Content:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.Red, 0.25f );
+				edgeColor = Color.Lerp( edgeColor, Color.Red, 0.25f );
 			//} else if( this.Desc.Contains( "Where:" ) ) {
-			//	edge_color = Color.Lerp( edge_color, Color.Green, 0.25f );
+			//	edgeColor = Color.Lerp( edgeColor, Color.Green, 0.25f );
 			} else if( this.Desc.Contains( "When:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.Green, 0.25f );
+				edgeColor = Color.Lerp( edgeColor, Color.Green, 0.25f );
 			} else if( this.Desc.Contains( "State:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.DarkViolet, 0.4f );
+				edgeColor = Color.Lerp( edgeColor, Color.DarkViolet, 0.4f );
 			} else if( this.Desc.Contains( "Judgmental:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.DimGray, 0.4f );
+				edgeColor = Color.Lerp( edgeColor, Color.DimGray, 0.4f );
 			} else if( this.Desc.Contains( "Priviledge:" ) ) {
-				edge_color = Color.Lerp( edge_color, Color.Black, 0.4f );
+				edgeColor = Color.Lerp( edgeColor, Color.Black, 0.4f );
 			}
-			edge_color.A = a;
+			edgeColor.A = a;
 
-			return edge_color;
+			return edgeColor;
 		}
 
 

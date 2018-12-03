@@ -5,73 +5,73 @@ using System.Reflection;
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public partial class ReflectionHelpers {
-		[Obsolete( "use `bool GetField(..., out object field_val)`)", true)]
-		public static object GetField( Object instance, string field_name, out bool success ) {
+		[Obsolete( "use `bool GetField(..., out object fieldVal)`)", true)]
+		public static object GetField( Object instance, string fieldName, out bool success ) {
 			object obj;
-			success = ReflectionHelpers.GetField( instance, field_name, out obj );
+			success = ReflectionHelpers.GetField( instance, fieldName, out obj );
 			return success;
 		}
-		[Obsolete( "use `bool GetField(..., out object field_val)`)", true )]
-		public static object GetField( Object instance, string field_name, BindingFlags flags, out bool success ) {
+		[Obsolete( "use `bool GetField(..., out object fieldVal)`)", true )]
+		public static object GetField( Object instance, string fieldName, BindingFlags flags, out bool success ) {
 			object obj;
-			success = ReflectionHelpers.GetField( instance, field_name, flags, out obj );
+			success = ReflectionHelpers.GetField( instance, fieldName, flags, out obj );
 			return success;
 		}
-		[Obsolete( "use `bool GetField(..., out object field_val)`)", true )]
-		public static object GetField( Type obj_type, Object instance, string field_name, BindingFlags flags, out bool success ) {
+		[Obsolete( "use `bool GetField(..., out object fieldVal)`)", true )]
+		public static object GetField( Type objType, Object instance, string fieldName, BindingFlags flags, out bool success ) {
 			object obj;
-			success = ReflectionHelpers.GetField( obj_type, instance, field_name, flags, out obj );
+			success = ReflectionHelpers.GetField( objType, instance, fieldName, flags, out obj );
 			return success;
 		}
 
 
 		[Obsolete( "use `bool SetField(...)`)", true )]
-		public static void SetField( Object obj, string field_name, object value, out bool success ) {
-			success = ReflectionHelpers.SetField( obj, field_name, value );
+		public static void SetField( Object obj, string fieldName, object value, out bool success ) {
+			success = ReflectionHelpers.SetField( obj, fieldName, value );
 		}
 		[Obsolete( "use `bool SetField(...)`)", true )]
-		public static void SetField( Object obj, string field_name, object value, BindingFlags flags, out bool success ) {
-			success = ReflectionHelpers.SetField( obj, field_name, flags, value );
+		public static void SetField( Object obj, string fieldName, object value, BindingFlags flags, out bool success ) {
+			success = ReflectionHelpers.SetField( obj, fieldName, flags, value );
 		}
 
 
-		[Obsolete( "use `bool GetProperty(..., out object prop_val)`)", true )]
-		public static object GetProperty( Object instance, string prop_name, out bool success ) {
+		[Obsolete( "use `bool GetProperty(..., out object propVal)`)", true )]
+		public static object GetProperty( Object instance, string propName, out bool success ) {
 			object obj;
-			success = ReflectionHelpers.GetProperty( instance, prop_name, out obj );
+			success = ReflectionHelpers.GetProperty( instance, propName, out obj );
 			return obj;
 		}
-		[Obsolete( "use `bool GetProperty(..., out object prop_val)`)", true )]
-		public static object GetProperty( Object instance, string prop_name, BindingFlags flags, out bool success ) {
+		[Obsolete( "use `bool GetProperty(..., out object propVal)`)", true )]
+		public static object GetProperty( Object instance, string propName, BindingFlags flags, out bool success ) {
 			object obj;
-			success = ReflectionHelpers.GetProperty( instance, prop_name, flags, out obj );
+			success = ReflectionHelpers.GetProperty( instance, propName, flags, out obj );
 			return obj;
 		}
-		[Obsolete( "use `bool GetProperty(..., out object prop_val)`)", true )]
-		public static object GetProperty( Type obj_type, Object instance, string prop_name, BindingFlags flags, out bool success ) {
+		[Obsolete( "use `bool GetProperty(..., out object propVal)`)", true )]
+		public static object GetProperty( Type objType, Object instance, string propName, BindingFlags flags, out bool success ) {
 			object obj;
-			success = ReflectionHelpers.GetProperty( obj_type, instance, prop_name, flags, out obj );
+			success = ReflectionHelpers.GetProperty( objType, instance, propName, flags, out obj );
 			return obj;
 		}
 
 
 		[Obsolete( "use `bool SetProperty(...)`)", true )]
-		public static void SetProperty( Object obj, string prop_name, object value, out bool success ) {
-			success = ReflectionHelpers.SetProperty( obj, prop_name, value );
+		public static void SetProperty( Object obj, string propName, object value, out bool success ) {
+			success = ReflectionHelpers.SetProperty( obj, propName, value );
 		}
 
 
-		[Obsolete( "use `bool RunMethod(..., out object return_val)`)", true )]
-		public static object RunMethod( Object obj, string method_name, object[] args, out bool success ) {
-			object return_val;
-			success = ReflectionHelpers.RunMethod( obj, method_name, args, out return_val );
-			return return_val;
+		[Obsolete( "use `bool RunMethod(..., out object returnVal)`)", true )]
+		public static object RunMethod( Object obj, string methodName, object[] args, out bool success ) {
+			object returnVal;
+			success = ReflectionHelpers.RunMethod( obj, methodName, args, out returnVal );
+			return returnVal;
 		}
-		[Obsolete( "use `bool RunMethod(..., out object return_val)`)", true )]
-		public static object RunMethod( Object obj, string method_name, BindingFlags flags, object[] args, out bool success ) {
-			object return_val;
-			success = ReflectionHelpers.RunMethod( obj, method_name, flags, args, out return_val );
-			return return_val;
+		[Obsolete( "use `bool RunMethod(..., out object returnVal)`)", true )]
+		public static object RunMethod( Object obj, string methodName, BindingFlags flags, object[] args, out bool success ) {
+			object returnVal;
+			success = ReflectionHelpers.RunMethod( obj, methodName, flags, args, out returnVal );
+			return returnVal;
 		}
 	}
 }

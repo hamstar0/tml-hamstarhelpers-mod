@@ -10,8 +10,8 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private void DefineItemMiscGroups4( Action<string, string[], Matcher> add_def ) {
-			add_def( "Any Item", null,
+		private void DefineItemMiscGroups4( Action<string, string[], Matcher> addDef ) {
+			addDef( "Any Item", null,
 				( item, grps ) => {
 					return true;
 				} );
@@ -20,20 +20,20 @@ namespace HamstarHelpers.Services.EntityGroups {
 				if( i >= -10 && i <= -3 ) { i = -2; }
 
 				int tier = i;
-				add_def( "Any " + ItemAttributeHelpers.RarityColorText[i] + " Tier", null,
+				addDef( "Any " + ItemAttributeHelpers.RarityColorText[i] + " Tier", null,
 					( item, grps ) => {
 						return item.rare == tier;
 					} );
 			}
 
-			add_def( "Any Plain Material", new string[] { "Any Equipment" },
+			addDef( "Any Plain Material", new string[] { "Any Equipment" },
 				( item, grps ) => {
 					return item.material &&
 						//!EntityGroups.ItemGroups["Any Placeable"].Contains( item.type ) &&
 						!grps["Any Equipment"].Contains( item.type );
 				} );
 
-			add_def( "Any Vanilla Corruption Item", null,
+			addDef( "Any Vanilla Corruption Item", null,
 				( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Ebonwood:
@@ -131,7 +131,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return false;
 				} );
 
-			add_def( "Any Vanilla Crimson Item", null,
+			addDef( "Any Vanilla Crimson Item", null,
 				( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Shadewood:

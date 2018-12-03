@@ -14,11 +14,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 		
-		protected CustomEntityAllProtocol( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected CustomEntityAllProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		////
 		
-		protected override void SetServerDefaults( int from_who ) {
+		protected override void SetServerDefaults( int fromWho ) {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<PeriodicSyncEntityComponent>();
 
 			this.Entities = ents.Select( ent => new SerializableCustomEntity(ent) ).ToArray();
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 					LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.ReceiveWithClient - New entity " + ent.ToString() );
 				}*/
 				
-				var real_ent = CustomEntityManager.AddToWorld( ent.Core.whoAmI, ent );
+				var realEnt = CustomEntityManager.AddToWorld( ent.Core.whoAmI, ent );
 			}
 
 			SaveableEntityComponent.PostLoadAll();

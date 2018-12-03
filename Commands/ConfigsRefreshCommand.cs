@@ -40,8 +40,8 @@ namespace HamstarHelpers.Commands {
 
 			ConfigsRefreshCommand.RefreshConfigs();
 
-			string mod_names = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );
-			caller.Reply( "Mod configs reloaded for " + mod_names, Color.Lime );
+			string modNames = string.Join( ", ", mymod.ModMetaDataManager.ConfigMods.Keys.ToArray() );
+			caller.Reply( "Mod configs reloaded for " + modNames, Color.Lime );
 		}
 	}
 }

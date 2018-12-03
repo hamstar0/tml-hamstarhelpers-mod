@@ -26,7 +26,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected RailBoundEntityComponent( PacketProtocolDataConstructorLock ctor_lock ) : base( ctor_lock ) { }
+		protected RailBoundEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
@@ -44,45 +44,45 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private void UpdateMe( CustomEntity ent ) {
 			Entity core = ent.Core;
-			bool is_on_rail = false;
-			int x_beg = (int)core.position.X / 16;
-			int y_beg = ( (int)core.position.Y + core.height - 1 ) / 16;
+			bool isOnRail = false;
+			int xBeg = (int)core.position.X / 16;
+			int yBeg = ( (int)core.position.Y + core.height - 1 ) / 16;
 			int i = 0, j = 0;
 
-			int x_end = Math.Max( ( (int)core.position.X + core.width ) / 16, x_beg + 1 );
+			int xEnd = Math.Max( ( (int)core.position.X + core.width ) / 16, xBeg + 1 );
 
-			int x_mid = ( x_beg + x_end ) / 2;
+			int xMid = ( xBeg + xEnd ) / 2;
 
-			for( int i_off = 0; i_off < 2; i_off++ ) {
+			for( int iOff = 0; iOff < 2; iOff++ ) {
 				int flip = 0;
 
 				do {
-					i = x_mid + i_off;
+					i = xMid + iOff;
 
-					for( j = y_beg; j < y_beg + 2; j++ ) {
+					for( j = yBeg; j < yBeg + 2; j++ ) {
 						if( Main.tile[i, j] != null && Main.tile[i, j].type == TileID.MinecartTrack ) {
 							this.SnapToTrack( ent, i, j );
-							is_on_rail = true;
+							isOnRail = true;
 
 							break;
 						}
 					}
 
-					if( is_on_rail ) { break; }
+					if( isOnRail ) { break; }
 
-					if( i_off == 0 ) { break; }
-					i_off = -i_off;
+					if( iOff == 0 ) { break; }
+					iOff = -iOff;
 				} while( flip++ == 0 );
 
-				if( is_on_rail ) { break; }
+				if( isOnRail ) { break; }
 			}
 
-			if( !this.IsOnRail && is_on_rail ) {
+			if( !this.IsOnRail && isOnRail ) {
 				this.IsOnRail = true;
 				Main.PlaySound( SoundID.Item53 );
 			}
 
-			this.IsOnRail = is_on_rail;
+			this.IsOnRail = isOnRail;
 
 			if( this.IsOnRail ) {
 				if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
@@ -98,10 +98,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public void SnapToTrack( CustomEntity ent, int tile_x, int tile_y ) {
+		public void SnapToTrack( CustomEntity ent, int tileX, int tileY ) {
 			Entity core = ent.Core;
 
-			core.position.Y = ((tile_y * 16) - core.height) + 8;
+			core.position.Y = ((tileY * 16) - core.height) + 8;
 			core.velocity.X = 0;
 			core.velocity.Y = 0;
 		}

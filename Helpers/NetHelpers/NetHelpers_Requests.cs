@@ -13,7 +13,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 
 
 		
-		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> on_response, Action<Exception, string> on_error, Action on_completion=null ) {
+		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> onResponse, Action<Exception, string> onError, Action onCompletion=null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success;
 				string output = null;
@@ -24,16 +24,16 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 					//}
 
 					if( success ) {
-						on_response( output );
+						onResponse( output );
 					} else {
 						output = null;
 						throw new Exception( "POST request unsuccessful (url: "+url+")" );
 					}
 				} catch( Exception e ) {
-					on_error?.Invoke( e, output );
+					onError?.Invoke( e, output );
 				}
 
-				on_completion?.Invoke();
+				onCompletion?.Invoke();
 			} );
 		}
 
@@ -45,31 +45,31 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 			request.ContentLength = bytes.Length;
 			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
 
-			using( Stream data_stream = request.GetRequestStream() ) {
-				data_stream.Write( bytes, 0, bytes.Length );
-				data_stream.Close();
+			using( Stream dataStream = request.GetRequestStream() ) {
+				dataStream.Write( bytes, 0, bytes.Length );
+				dataStream.Close();
 			}
 
 			HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
-			int status_code = (int)resp.StatusCode;
-			string resp_data;
+			int statusCode = (int)resp.StatusCode;
+			string respData;
 
-			success = status_code >= 200 && status_code < 300;
+			success = statusCode >= 200 && statusCode < 300;
 
-			using( Stream resp_data_stream = resp.GetResponseStream() ) {
-				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
-				resp_data = stream_read.ReadToEnd();
-				resp_data_stream.Close();
+			using( Stream respDataStream = resp.GetResponseStream() ) {
+				var streamRead = new StreamReader( respDataStream, Encoding.UTF8 );
+				respData = streamRead.ReadToEnd();
+				respDataStream.Close();
 			}
 
-			return resp_data;
+			return respData;
 		}
 
 
 		////////////////
 
 		[Obsolete( "use MakeGetRequestAsync(string, Func<string, Tuple<object, bool>>, Action<Exception, string>, Action<object, bool>)" )]
-		public static void MakeGetRequestAsync( string url, Action<string> on_response, Action<Exception, string> on_error, Action on_completion = null ) {
+		public static void MakeGetRequestAsync( string url, Action<string> onResponse, Action<Exception, string> onError, Action onCompletion = null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success;
 				string output = null;
@@ -78,28 +78,28 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 					output = NetHelpers.MakeGetRequest( url, out success );
 
 					if( success ) {
-						on_response( output );
+						onResponse( output );
 					} else {
-						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
+						onError?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
 					}
 				} catch( Exception e ) {
-					on_error?.Invoke( e, output ?? "" );
+					onError?.Invoke( e, output ?? "" );
 				}
 
-				on_completion?.Invoke();
+				onCompletion?.Invoke();
 			} );
 		}
 
 		public static void MakeGetRequestAsync<T>( string url,
-				Func<string, Tuple<T, bool>> on_response,
-				Action<Exception, string> on_error,
-				Action<T, bool> on_completion = null ) where T : class {
+				Func<string, Tuple<T, bool>> onResponse,
+				Action<Exception, string> onError,
+				Action<T, bool> onCompletion = null ) where T : class {
 
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success = false;
 				string output = null;
 
-				var response_val = Tuple.Create( (T)null, false );
+				var responseVal = Tuple.Create( (T)null, false );
 
 				try {
 					//lock( NetHelpers.RequestMutex ) {
@@ -107,15 +107,15 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 					//}
 
 					if( success ) {
-						response_val = on_response( output );
+						responseVal = onResponse( output );
 					} else {
-						on_error?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
+						onError?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
 					}
 				} catch( Exception e ) {
-					on_error?.Invoke( e, output ?? "" );
+					onError?.Invoke( e, output ?? "" );
 				}
 				
-				on_completion?.Invoke( response_val.Item1, (success && response_val.Item2) );
+				onCompletion?.Invoke( responseVal.Item1, (success && responseVal.Item2) );
 			} );
 		}
 
@@ -134,18 +134,18 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 				return "";
 			}
  
-			int status_code = (int)resp.StatusCode;
-			string resp_data = "";
+			int statusCode = (int)resp.StatusCode;
+			string respData = "";
 
-			success = status_code >= 200 && status_code < 300;
+			success = statusCode >= 200 && statusCode < 300;
 
-			using( Stream resp_data_stream = resp.GetResponseStream() ) {
-				var stream_read = new StreamReader( resp_data_stream, Encoding.UTF8 );
-				resp_data = stream_read.ReadToEnd();
-				resp_data_stream.Close();
+			using( Stream respDataStream = resp.GetResponseStream() ) {
+				var streamRead = new StreamReader( respDataStream, Encoding.UTF8 );
+				respData = streamRead.ReadToEnd();
+				respDataStream.Close();
 			}
 
-			return resp_data;
+			return respData;
 		}
 	}
 }

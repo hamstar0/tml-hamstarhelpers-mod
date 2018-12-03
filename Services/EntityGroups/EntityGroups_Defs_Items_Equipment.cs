@@ -9,16 +9,16 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private void DefineItemEquipmentGroups1( Action<string, string[], Matcher> add_def ) {
-			add_def( "Any Weapon", null,
+		private void DefineItemEquipmentGroups1( Action<string, string[], Matcher> addDef ) {
+			addDef( "Any Weapon", null,
 				( item, grps ) => {
 					return item.damage > 0;
 				} );
-			add_def( "Any Tool", null,
+			addDef( "Any Tool", null,
 				( item, grps ) => {
 					return ItemAttributeHelpers.IsTool( item );
 				} );
-			add_def( "Any Vanilla Explosive", null,
+			addDef( "Any Vanilla Explosive", null,
 				( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Bomb:
@@ -49,31 +49,31 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return false;
 				} );
 
-			add_def( "Any Accessory", null,
+			addDef( "Any Accessory", null,
 				( item, grps ) => {
 					return item.accessory && !item.vanity;
 				} );
-			add_def( "Any Armor", null,
+			addDef( "Any Armor", null,
 				( item, grps ) => {
 					return ItemAttributeHelpers.IsArmor( item );
 				} );
-			add_def( "Any Vanity", null,
+			addDef( "Any Vanity", null,
 				( item, grps ) => {
 					return item.vanity;
 				} );
-			add_def( "Any Potion", null,
+			addDef( "Any Potion", null,
 				( item, grps ) => {
 					return item.potion;
 				} );
 			
 			// Vanity Classes
 
-			add_def( "Any Vanity Accessory", null,
+			addDef( "Any Vanity Accessory", null,
 				( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.accessory;
 				} );
-			add_def( "Any Vanity Garment", null,
+			addDef( "Any Vanity Garment", null,
 				( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return !item.accessory;
@@ -81,240 +81,240 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private void DefineItemEquipmentGroups2( Action<string, string[], Matcher> add_def ) {
+		private void DefineItemEquipmentGroups2( Action<string, string[], Matcher> addDef ) {
 			// Equipment Tiers
 
-			add_def( "Any Tiki Equipment", null,
+			addDef( "Any Tiki Equipment", null,
 				( item, grps ) => {
 					string name = ItemIdentityHelpers.GetQualifiedName( item );
 					if( !name.Contains( "Tiki" ) ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Plain Wood Equipment", null,
+			addDef( "Any Plain Wood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Wood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Boreal Wood Equipment", null,
+			addDef( "Any Boreal Wood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.BorealWood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Palm Wood Equipment", null,
+			addDef( "Any Palm Wood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.PalmWood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Rich Mahogany Equipment", null,
+			addDef( "Any Rich Mahogany Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.RichMahogany }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Ebonwood Equipment", null,
+			addDef( "Any Ebonwood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Ebonwood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Shadewood Equipment", null,
+			addDef( "Any Shadewood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Shadewood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Pearlwood Equipment", null,
+			addDef( "Any Pearlwood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Pearlwood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Dynasty Wood Equipment", null,
+			addDef( "Any Dynasty Wood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DynastyWood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Spooky Wood Equipment", null,
+			addDef( "Any Spooky Wood Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.SpookyWood }, 2 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Tin Equipment", null,
+			addDef( "Any Tin Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.TinBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Copper Equipment", null,
+			addDef( "Any Copper Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CopperBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Iron Equipment", null,
+			addDef( "Any Iron Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.IronBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Lead Equipment", null,
+			addDef( "Any Lead Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.LeadBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Silver Equipment", null,
+			addDef( "Any Silver Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.SilverBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Tungsten Equipment", null,
+			addDef( "Any Tungsten Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.TungstenBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Gold Equipment", null,
+			addDef( "Any Gold Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.GoldBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Platinum Equipment", null,
+			addDef( "Any Platinum Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.PlatinumBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Meteor Equipment", null,
+			addDef( "Any Meteor Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.MeteoriteBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Demonite Equipment", null,
+			addDef( "Any Demonite Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.DemoniteBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Crimtane Equipment", null,
+			addDef( "Any Crimtane Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CrimtaneBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Jungle Equipment", null,
+			addDef( "Any Jungle Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.JungleSpores }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Bee Equipment", null,
+			addDef( "Any Bee Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.BeeWax }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Bone Equipment", null,
+			addDef( "Any Bone Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.Bone }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Hellstone Equipment", null,
+			addDef( "Any Hellstone Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.HellstoneBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Cobalt Equipment", null,
+			addDef( "Any Cobalt Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.CobaltBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Palladium Equipment", null,
+			addDef( "Any Palladium Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.PalladiumBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Mythril Equipment", null,
+			addDef( "Any Mythril Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.MythrilBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Orichalcum Equipment", null,
+			addDef( "Any Orichalcum Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.OrichalcumBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Adamantite Equipment", null,
+			addDef( "Any Adamantite Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.AdamantiteBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Titanium Equipment", null,
+			addDef( "Any Titanium Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.TitaniumBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Frost Core Equipment", null,
+			addDef( "Any Frost Core Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.FrostCore }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Forbidden Equipment", null,
+			addDef( "Any Forbidden Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.AncientBattleArmorMaterial }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Hallow Equipment", null,
+			addDef( "Any Hallow Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.HallowedBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Chlorophyte Equipment", null,
+			addDef( "Any Chlorophyte Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.ChlorophyteBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Shroomite Equipment", null,
+			addDef( "Any Shroomite Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.ShroomiteBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Spectre Equipment", null,
+			addDef( "Any Spectre Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.SpectreBar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Shell Equipment", null,
+			addDef( "Any Shell Equipment", null,
 				( item, grps ) => {
 					var has1 = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.BeetleShell }, 1 );
 					var has2 = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.TurtleShell }, 1 );
@@ -322,31 +322,31 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return item.createTile == -1 && item.createWall == -1;
 				} );
 
-			add_def( "Any Nebula Equipment", null,
+			addDef( "Any Nebula Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.FragmentNebula }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Vortex Equipment", null,
+			addDef( "Any Vortex Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.FragmentVortex }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Solar Equipment", null,
+			addDef( "Any Solar Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.FragmentSolar }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Stardust Equipment", null,
+			addDef( "Any Stardust Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.FragmentStardust }, 1 );
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} );
-			add_def( "Any Luminite Ore Equipment", null,
+			addDef( "Any Luminite Ore Equipment", null,
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.LunarBar }, 1 );
 					if( !has ) { return false; }
@@ -355,8 +355,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private void DefineItemEquipmentGroups3( Action<string, string[], Matcher> add_def ) {
-			add_def( "Any Equipment",
+		private void DefineItemEquipmentGroups3( Action<string, string[], Matcher> addDef ) {
+			addDef( "Any Equipment",
 				new string[] { "Any Weapon", "Any Tool", "Any Accessory", "Any Armor" },
 				( item, grps ) => {
 					return grps["Any Weapon"].Contains( item.type ) ||
@@ -366,7 +366,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				}
 			);
 
-			add_def( "Any Wood Equipment",
+			addDef( "Any Wood Equipment",
 				new string[] { "Any Wood" },
 				( item, grps ) => {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, grps["Any Wood"], 1 );
@@ -374,42 +374,42 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return item.createTile == -1 && item.createWall == -1;
 				}
 			);
-			add_def( "Any Copper Or Tin Equipment",
+			addDef( "Any Copper Or Tin Equipment",
 				new string[] { "Any Copper Equipment", "Any Tin Equipment" },
 				( item, grps ) => {
 					return grps["Any Copper Equipment"].Contains( item.type ) ||
 						grps["Any Tin Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Iron Or Lead Equipment",
+			addDef( "Any Iron Or Lead Equipment",
 				new string[] { "Any Iron Equipment", "Any Lead Equipment" },
 				( item, grps ) => {
 					return grps["Any Iron Equipment"].Contains( item.type ) ||
 						grps["Any Lead Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Silver Or Tungsten Equipment",
+			addDef( "Any Silver Or Tungsten Equipment",
 				new string[] { "Any Silver Equipment", "Any Tungsten Equipment" },
 				( item, grps ) => {
 					return grps["Any Silver Equipment"].Contains( item.type ) ||
 						grps["Any Tungsten Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Gold Or Platinum Equipment",
+			addDef( "Any Gold Or Platinum Equipment",
 				new string[] { "Any Gold Equipment", "Any Platinum Equipment" },
 				( item, grps ) => {
 					return grps["Any Gold Equipment"].Contains( item.type ) ||
 						grps["Any Platinum Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Demonite Or Crimtane Equipment",
+			addDef( "Any Demonite Or Crimtane Equipment",
 				new string[] { "Any Demonite Equipment", "Any Crimtane Equipment" },
 				( item, grps ) => {
 					return grps["Any Demonite Equipment"].Contains( item.type ) ||
 						grps["Any Crimtane Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Meteor Or Jungle Or Bone Or Bee Equipment",
+			addDef( "Any Meteor Or Jungle Or Bone Or Bee Equipment",
 				new string[] { "Any Meteor Equipment", "Any Jungle Equipment", "Any Bone Equipment", "Any Bee Equipment" },
 				( item, grps ) => {
 					return grps["Any Meteor Equipment"].Contains( item.type ) ||
@@ -418,35 +418,35 @@ namespace HamstarHelpers.Services.EntityGroups {
 						grps["Any Bee Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Cobalt Or Palladium Equipment",
+			addDef( "Any Cobalt Or Palladium Equipment",
 				new string[] { "Any Cobalt Equipment", "Any Palladium Equipment" },
 				( item, grps ) => {
 					return grps["Any Cobalt Equipment"].Contains( item.type ) ||
 						grps["Any Palladium Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Mythril Or Orichalcum Equipment",
+			addDef( "Any Mythril Or Orichalcum Equipment",
 				new string[] { "Any Mythril Equipment", "Any Orichalcum Equipment" },
 				( item, grps ) => {
 					return grps["Any Mythril Equipment"].Contains( item.type ) ||
 						grps["Any Orichalcum Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Adamantite Or Titanium Equipment",
+			addDef( "Any Adamantite Or Titanium Equipment",
 				new string[] { "Any Adamantite Equipment", "Any Titanium Equipment" },
 				( item, grps ) => {
 					return grps["Any Adamantite Equipment"].Contains( item.type ) ||
 						grps["Any Titanium Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Frost Core Or Forbidden Equipment",
+			addDef( "Any Frost Core Or Forbidden Equipment",
 				new string[] { "Any Frost Core Equipment", "Any Forbidden Equipment" },
 				( item, grps ) => {
 					return grps["Any Frost Core Equipment"].Contains( item.type ) ||
 						grps["Any Forbidden Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Chlorophyte Or Shroomite Or Spectre Equipment",
+			addDef( "Any Chlorophyte Or Shroomite Or Spectre Equipment",
 				new string[] { "Any Chlorophyte Equipment", "Any Shroomite Equipment", "Any Spectre Equipment" },
 				( item, grps ) => {
 					return grps["Any Chlorophyte Equipment"].Contains( item.type ) ||
@@ -454,7 +454,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 						grps["Any Spectre Equipment"].Contains( item.type );
 				}
 			);
-			add_def( "Any Celestial Equipment",
+			addDef( "Any Celestial Equipment",
 				new string[] { "Any Nebula Equipment", "Any Vortex Equipment", "Any Solar Equipment", "Any Stardust Equipment" },
 				( item, grps ) => {
 					return grps["Any Nebula Equipment"].Contains( item.type ) ||

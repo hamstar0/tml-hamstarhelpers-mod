@@ -34,10 +34,10 @@ namespace HamstarHelpers {
 				throw new Exception( "Cannot reset to default configs outside of single player." );
 			}
 
-			var config_data = new HamstarHelpersConfigData();
-			//config_data.SetDefaults();
+			var configData = new HamstarHelpersConfigData();
+			//configData.SetDefaults();
 
-			ModHelpersMod.Instance.ConfigJson.SetData( config_data );
+			ModHelpersMod.Instance.ConfigJson.SetData( configData );
 			ModHelpersMod.Instance.ConfigJson.SaveFile();
 		}
 	}

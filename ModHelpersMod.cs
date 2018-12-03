@@ -104,14 +104,14 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void HandlePacket( BinaryReader reader, int player_who ) {
+		public override void HandlePacket( BinaryReader reader, int playerWho ) {
 			try {
-				int protocol_code = reader.ReadInt32();
+				int protocolCode = reader.ReadInt32();
 				
 				if( Main.netMode == 1 ) {
-					PacketProtocol.HandlePacketOnClient( protocol_code, reader, player_who );
+					PacketProtocol.HandlePacketOnClient( protocolCode, reader, playerWho );
 				} else if( Main.netMode == 2 ) {
-					PacketProtocol.HandlePacketOnServer( protocol_code, reader, player_who );
+					PacketProtocol.HandlePacketOnServer( protocolCode, reader, playerWho );
 				}
 			} catch( Exception e ) {
 				LogHelpers.Log( "ModHelpersMod.HandlePacket - " + e.ToString() );
