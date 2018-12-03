@@ -20,7 +20,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public static HitRadiusProjectileEntityComponent CreateAttackableEntityComponent( float radius ) {
+		public static HitRadiusProjectileEntityComponent CreateHitRadiusProjectileEntityComponent( float radius ) {
 			var factory = new HitRadiusProjectileEntityComponentFactory<HitRadiusProjectileEntityComponent>( radius );
 			return factory.Create();
 		}

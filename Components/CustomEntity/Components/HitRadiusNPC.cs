@@ -4,7 +4,7 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public abstract class HitRadiusNPCEntityComponent : CustomEntityComponent {
-		protected class HitRadiusNPCEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : HitRadiusProjectileEntityComponent {
+		protected class HitRadiusNPCEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : HitRadiusNPCEntityComponent {
 			public float Radius;
 
 			public HitRadiusNPCEntityComponentFactory( float radius ) {
@@ -20,8 +20,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public static HitRadiusProjectileEntityComponent CreateAttackableEntityComponent( float radius ) {
-			var factory = new HitRadiusNPCEntityComponentFactory<HitRadiusProjectileEntityComponent>( radius );
+		public static HitRadiusNPCEntityComponent CreateHitRadiusProjectileEntityComponent( float radius ) {
+			var factory = new HitRadiusNPCEntityComponentFactory<HitRadiusNPCEntityComponent>( radius );
 			return factory.Create();
 		}
 

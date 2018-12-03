@@ -32,7 +32,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			foreach( CustomEntity ent in ents ) {
 				var draw_comp = ent.GetComponentByType<DrawsInGameEntityComponent>();
 				if( draw_comp != null ) {
-					draw_comp.PreDraw( Main.spriteBatch, ent );
+					draw_comp.PreDraw( sb, ent );
 				}
 			}
 		}

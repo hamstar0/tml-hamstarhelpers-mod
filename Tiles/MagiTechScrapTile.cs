@@ -10,9 +10,9 @@ namespace HamstarHelpers.Tiles {
 		public override void SetDefaults() {
 			Main.tileSolid[this.Type] = true;
 			Main.tileBlockLight[this.Type] = true;
-			Main.tileLighted[this.Type] = true;
-			Main.tileLargeFrames[this.Type] = 1;	//wallLargeFrames
-			Main.tileBrick[this.Type] = true;
+			//Main.tileLighted[this.Type] = true;
+			//Main.tileLargeFrames[this.Type] = 1;
+			//Main.tileBrick[this.Type] = true;
 
 			this.dustType = 1;
 			this.drop = this.mod.ItemType<MagiTechScrapItem>();

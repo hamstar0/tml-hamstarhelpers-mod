@@ -241,8 +241,8 @@
     <Compile Include="Internals\WebRequests\GetModVersion.cs" />
     <Compile Include="Internals\WebRequests\PostGithubModIssueReports.cs" />
     <Compile Include="Internals\WebRequests\PostModInfo.cs" />
-    <Compile Include="Items\MagiTechScrapWallItem.cs" />
     <Compile Include="Items\MagiTechScrapItem.cs" />
+    <Compile Include="Items\MagiTechScrapWallItem.cs" />
     <Compile Include="ModHelpersMod.cs" />
     <Compile Include="ModHelpersMod_Data.cs" />
     <Compile Include="ModHelpersMod_Draw.cs" />
@@ -330,8 +330,8 @@
     <Content Include="Internals\ControlPanel\Inbox\MiniIcon.png" />
     <Content Include="Internals\ControlPanel\Inbox\MiniIconLit.png" />
     <Content Include="Internals\ControlPanel\Inbox\MiniIconLit2.png" />
-    <Content Include="Items\MagiTechScrapWallItem.png" />
     <Content Include="Items\MagiTechScrapItem.png" />
+    <Content Include="Items\MagiTechScrapWallItem.png" />
     <Content Include="modhelpers todo.txt" />
     <Content Include="Tiles\MagiTechScrapTile.png" />
     <Content Include="Walls\MagiTechScrapWall.png" />

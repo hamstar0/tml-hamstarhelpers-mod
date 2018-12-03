@@ -20,11 +20,11 @@ namespace HamstarHelpers {
 			switch( npc.type ) {
 			case NPCID.Retinazer:
 			case NPCID.Spazmatism:
-				ItemHelpers.CreateItem( npc.position, scrap_type, 1, 24, 24 );
+				ItemHelpers.CreateItem( npc.position, scrap_type, 5, 24, 24 );
 				break;
 			case NPCID.TheDestroyer:
 			case NPCID.SkeletronPrime:
-				ItemHelpers.CreateItem( npc.position, scrap_type, 2, 24, 24 );
+				ItemHelpers.CreateItem( npc.position, scrap_type, 10, 24, 24 );
 				break;
 			}
 		}

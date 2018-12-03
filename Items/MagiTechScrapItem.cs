@@ -27,8 +27,9 @@ namespace HamstarHelpers.Items {
 			this.item.useTime = 10;
 			this.item.autoReuse = true;
 
-			this.item.consumable = true;
 			this.item.material = true;
+
+			this.item.consumable = true;
 			this.item.createTile = this.mod.TileType<MagiTechScrapTile>();
 		}
 
@@ -41,19 +42,18 @@ namespace HamstarHelpers.Items {
 			recipe.AddIngredient( this.mod.ItemType<MagiTechScrapWallItem>(), 4 );
 			recipe.SetResult( this.mod.ItemType<MagiTechScrapItem>(), 1 );
 			recipe.AddRecipe();
-
-
-			var recipe1 = new MagiTechScrapRecipe1( mymod );
+			
+			/*var recipe1 = new MagiTechScrapRecipe1( mymod );
 			var recipe2 = new MagiTechScrapRecipe2( mymod );
 			recipe1.AddRecipe();
-			recipe2.AddRecipe();
+			recipe2.AddRecipe();*/
 		}
 	}
 
 
 
 	
-	class MagiTechScrapRecipe1 : ModRecipe {
+	/*class MagiTechScrapRecipe1 : ModRecipe {
 		public MagiTechScrapRecipe1( ModHelpersMod mymod ) : base( mymod ) {
 			this.AddTile( TileID.WorkBenches );
 			this.AddIngredient( ItemID.Cog, 10 );
@@ -80,5 +80,5 @@ namespace HamstarHelpers.Items {
 		public override bool RecipeAvailable() {
 			return ((ModHelpersMod)this.mod).Config.MagiTechScrapDropsEnabled;
 		}
-	}
+	}*/
 }
