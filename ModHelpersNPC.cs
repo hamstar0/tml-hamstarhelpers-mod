@@ -35,7 +35,7 @@ namespace HamstarHelpers {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusNPCEntityComponent>();
 
 			foreach( CustomEntity ent in ents ) {
-				float radius = ent.GetComponentByType<HitRadiusNPCEntityComponent>().Radius;
+				float radius = ent.GetComponentByType<HitRadiusNPCEntityComponent>().GetRadius( ent );
 
 				if( Vector2.Distance( ent.Core.Center, npc.Center ) <= radius ) {
 					this.ApplyHits( ent, npc );

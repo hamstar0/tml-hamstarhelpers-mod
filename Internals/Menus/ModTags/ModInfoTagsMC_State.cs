@@ -1,10 +1,12 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria.UI;
 
 
@@ -35,6 +37,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.ResetUIState( modName );
 			this.SetCurrentMod( ui, modName );
 			this.RecalculateMenuObjects();
+			
+			UIElement elem;
+			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+				elem.Left.Pixels += UITagButton.ColumnWidth;
+				elem.Recalculate();
+			}
 		}
 
 		////////////////
@@ -43,6 +51,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.InfoDisplay.SetDefaultText( "" );
 
 			this.ResetMenuObjects();
+
+			UIElement elem;
+			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+				elem.Left.Pixels -= UITagButton.ColumnWidth;
+				elem.Recalculate();
+			}
 		}
 
 

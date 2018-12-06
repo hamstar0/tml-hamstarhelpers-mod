@@ -16,8 +16,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		public const int ColumnHeightTall = 31;
 		public const int ColumnHeightShort = 8;
 		public const int ColumnsInMid = 5;
-		public const int LastColumnPos = 7;
-		public const int LastColumnRowStart = 10;
+		public const int LastColumnPos = 1;
+		public const int LastColumnRowStart = 8;
 
 
 

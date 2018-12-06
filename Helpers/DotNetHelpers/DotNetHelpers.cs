@@ -6,6 +6,7 @@ using System.Linq;
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public static class DotNetHelpers {
 		public const double RadDeg = Math.PI / 180d;
+		public const double DegRed = 180d / Math.PI;
 
 
 		////////////////

@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -11,13 +12,12 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	class ModHelpersProjectile : GlobalProjectile {
 		public override bool PreAI( Projectile projectile ) {
-try {
 			var mymod = (ModHelpersMod)this.mod;
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusProjectileEntityComponent>();
 
 			foreach( CustomEntity ent in ents ) {
-				float radius = ent.GetComponentByType<HitRadiusProjectileEntityComponent>().Radius;
-DebugHelpers.Print( "proj"+projectile.whoAmI+":"+projectile.Name, radius+" vs "+Vector2.Distance(ent.Core.Center, projectile.Center), 20 );
+				var hitComp = ent.GetComponentByType<HitRadiusProjectileEntityComponent>();
+				float radius = hitComp.GetRadius( ent );
 
 				if( Vector2.Distance(ent.Core.Center, projectile.Center) <= radius ) {
 					if( !this.ApplyHits( ent, projectile ) ) {
@@ -26,7 +26,6 @@ DebugHelpers.Print( "proj"+projectile.whoAmI+":"+projectile.Name, radius+" vs "+
 					}
 				}
 			}
-} catch( Exception e ) { LogHelpers.Log( "? "+e.ToString() ); }
 
 			return true;
 		}

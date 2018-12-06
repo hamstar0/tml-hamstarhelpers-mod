@@ -4,9 +4,9 @@ using HamstarHelpers.Internals.NetProtocols;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria;
 using Terraria.ID;
+
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerItemHelpers {
@@ -17,6 +17,8 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		public const int VanillaInventoryLastCoinSlot = 53;
 		public const int VanillaInventoryLastAmmolot = 57;
 		public const int VanillaInventorySelectedSlot = 58;
+
+		public const int VanillaAccessorySlotFirst = 3;
 
 
 		////////////////
@@ -279,11 +281,11 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		////////////////
 
 		public static bool IsArmorSlot( int slot ) {
-			return slot < 3;
+			return slot < PlayerItemHelpers.VanillaAccessorySlotFirst;
 		}
 
 		public static bool IsAccessorySlot( Player player, int slot ) {
-			return slot >= 3 && slot < 8 + player.extraAccessorySlots;
+			return slot >= PlayerItemHelpers.VanillaAccessorySlotFirst && slot < 8 + player.extraAccessorySlots;
 		}
 
 		public static bool IsVanitySlot( Player player, int slot ) {

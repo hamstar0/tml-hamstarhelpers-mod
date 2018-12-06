@@ -28,7 +28,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private ModBrowserTagsMenuContext() : base( true ) {
-			this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -298f, 172f, 0.36f, true );
+			this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true );
 			this.ResetButton = new UITagResetButton( this );
 
 			this.BlankButton.Disable();

@@ -55,14 +55,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 				throw new NotImplementedException( mytype.Name+" is not a CustomEntity subclass." );
 			}
 
-			var data = (CustomEntity)Activator.CreateInstance( mytype,
+			var ent = (CustomEntity)Activator.CreateInstance( mytype,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
 				new object[] { new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) },
 				null
 			);
 
-			return data;
+			return ent;
 		}
 
 		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components ) {
@@ -191,10 +191,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			for( int i = 0; i < compCount; i++ ) {
 				Type compType = this.Components[i].GetType();
 				string compName = compType.Name;
-
-				this.ComponentsByTypeName[ compName ] = i;
-
+				
 				do {
+					if( this.ComponentsByTypeName.ContainsKey(compName) ) {
+						throw new HamstarException( "!ModHelpers.CustomEntity.RefreshComponentTypeNames - "+this.GetType().Name+" component "+compName+" already exists." );
+					}
+
 					this.AllComponentsByTypeName[ compName ] = i;
 
 					compType = compType.BaseType;

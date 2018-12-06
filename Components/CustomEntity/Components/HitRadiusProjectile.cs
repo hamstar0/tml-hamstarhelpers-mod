@@ -4,38 +4,12 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public abstract class HitRadiusProjectileEntityComponent : CustomEntityComponent {
-		protected class HitRadiusProjectileEntityComponentFactory<T> : CustomEntityComponentFactory<T> where T : HitRadiusProjectileEntityComponent {
-			public float Radius;
-
-			public HitRadiusProjectileEntityComponentFactory( float radius ) {
-				this.Radius = radius;
-			}
-
-			protected override void InitializeComponent( T data ) {
-				data.Radius = this.Radius;
-			}
-		}
-
-
-
-		////////////////
-
-		public static HitRadiusProjectileEntityComponent CreateHitRadiusProjectileEntityComponent( float radius ) {
-			var factory = new HitRadiusProjectileEntityComponentFactory<HitRadiusProjectileEntityComponent>( radius );
-			return factory.Create();
-		}
-
+		protected HitRadiusProjectileEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		
 
 		////////////////
 		
-		public bool IsImmune = false;
-		public float Radius;
-
-
-
-		////////////////
-
-		protected HitRadiusProjectileEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		public abstract float GetRadius( CustomEntity ent );
 
 
 		////////////////

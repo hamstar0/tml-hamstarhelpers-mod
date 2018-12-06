@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Timers;
 using System;
 using System.Reflection;
@@ -17,6 +18,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.EnableTagButtons();
 
 			this.InfoDisplay.SetDefaultText( "Click tags to filter the list. Right-click tags to filter without them." );
+
+			UIElement elem;
+			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+				elem.Left.Pixels += UITagButton.ColumnWidth;
+				elem.Recalculate();
+			}
 		}
 
 		public override void Hide( UIState ui ) {
@@ -25,15 +32,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.InfoDisplay.SetDefaultText( "" );
 
 			this.ResetMenuObjects();
-		}
 
-		////////////////
-
-		private void ShowGeneral( UIState ui ) {
-			this.RecalculateMenuObjects();
-			this.EnableTagButtons();
-
-			this.BeginModBrowserPopulateCheck( ui );
+			UIElement elem;
+			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+				elem.Left.Pixels -= UITagButton.ColumnWidth;
+				elem.Recalculate();
+			}
 		}
 
 
