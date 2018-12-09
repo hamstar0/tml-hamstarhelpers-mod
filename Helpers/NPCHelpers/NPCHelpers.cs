@@ -25,6 +25,16 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 		}
 
 
+		public static void Hurt( NPC npc, int damage ) {
+			if( damage > npc.life ) {
+				NPCHelpers.Kill( npc );
+			} else {
+				npc.life -= damage;
+				NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
+			}
+		}
+
+
 		public static void Kill( NPC npc ) {
 			npc.life = 0;
 			npc.checkDead();

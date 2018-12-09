@@ -21,7 +21,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Type baseType = typeof( CustomEntityComponent );
 
 			lock( CustomEntityManager.MyLock ) {
-				IList<CustomEntityComponent> entComponents = mngr.EntitiesByIndexes[who].Components;
+				IList<CustomEntityComponent> entComponents = mngr.EntitiesByIndexes[who].InternalComponents;
 
 				foreach( CustomEntityComponent component in entComponents ) {
 					compType = component.GetType();

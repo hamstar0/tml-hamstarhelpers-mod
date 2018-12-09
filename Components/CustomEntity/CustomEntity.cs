@@ -15,17 +15,30 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		public CustomEntityCore Core;
-		public IList<CustomEntityComponent> Components = new List<CustomEntityComponent>();
+		[JsonRequired]
+		protected IList<CustomEntityComponent> Components = new List<CustomEntityComponent>();
 
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
 		private IDictionary<string, int> AllComponentsByTypeName = new Dictionary<string, int>();
 
+		[JsonRequired]
 		[PacketProtocolWriteIgnoreClient]
-		public string OwnerPlayerUID = "";
+		protected string OwnerPlayerUID = "";
 		[JsonIgnore]
-		public int OwnerPlayerWho = -1;
+		protected int OwnerPlayerWho = -1;
+
+		[PacketProtocolIgnore]
+		[JsonIgnore]
+		public string MyOwnerPlayerUID => this.OwnerPlayerUID;
+		[PacketProtocolIgnore]
+		[JsonIgnore]
+		public int MyOwnerPlayerWho => this.OwnerPlayerWho;
 
 		////
+
+		[JsonIgnore]
+		[PacketProtocolIgnore]
+		internal IList<CustomEntityComponent> InternalComponents => this.Components;
 
 		[JsonIgnore]
 		[PacketProtocolIgnore]

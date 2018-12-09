@@ -73,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				if( Main.netMode == 2 ) {
 					ent.RefreshOwnerWho();
 				}
-				if( ent.OwnerPlayerWho == player.whoAmI ) {
+				if( ent.MyOwnerPlayerWho == player.whoAmI ) {
 					ents.Add( (T)ent );
 				}
 			}
@@ -104,7 +104,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Type baseType = typeof( CustomEntityComponent );
 
 			// Map entity to each of its components
-			foreach( CustomEntityComponent component in realEnt.Components ) {
+			foreach( CustomEntityComponent component in realEnt.InternalComponents ) {
 				compType = component.GetType();
 				lock( CustomEntityManager.MyLock ) {
 					do {

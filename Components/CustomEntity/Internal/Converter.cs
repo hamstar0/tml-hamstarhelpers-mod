@@ -37,17 +37,20 @@ namespace HamstarHelpers.Components.CustomEntity {
 			IDictionary<string, Type> allCompTypeMap = allCompTypes.ToDictionary( t => t.Name, t => t );
 
 			JObject jo = JObject.Load( reader );
+			int mark = 0;
 
 			try {
 				string typeName = jo["MyTypeName"].ToObject<String>();
+				mark++;
 
 				//int typeId = jo["TypeID"].ToObject<Int32>();
 				string playerUid = jo["OwnerPlayerUID"].ToObject<String>();
 				CustomEntityCore core = jo["Core"].ToObject<CustomEntityCore>();
 				string[] compNames = jo["ComponentNames"].ToObject<string[]>();
 				JToken rawComponents = jo["Components"];
+				mark++;
 
-				Type[] compTypes = new Type[compNames.Length];
+				Type[] compTypes = new Type[ compNames.Length ];
 				int i;
 
 				for( i = 0; i < compNames.Length; i++ ) {
@@ -55,7 +58,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 						return null;
 					}
 					compTypes[i] = allCompTypeMap[compNames[i]];
+					mark+=10;
 				}
+				mark++;
 
 				i = 0;
 				foreach( JObject obj in rawComponents ) {
@@ -63,12 +68,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 					var comp = (CustomEntityComponent)PacketProtocolData.CreateRaw( compType );
 					this.ReadIntoComponentFromJson( comp, obj, serializer );
 					//var comp = obj.ToObject( compType, serializer );
-
+					
 					comp.InternalPostInitialize();
 
 					components.Add( comp );
 					i++;
+					mark += 100;
 				}
+				mark++;
 
 				return new SerializableCustomEntity( typeName, core, components, playerUid );
 
@@ -84,7 +91,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				//	new object[] { core, components, playerUid },
 				//	null );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - " + e.Message );
+				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - ("+mark+") " + e.Message );
 				return null;
 			}
 		}

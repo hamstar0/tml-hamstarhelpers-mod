@@ -42,9 +42,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 				: base( new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) ) {
 			this.MyTypeName = SerializableCustomEntity.GetTypeName( ent );
 			this.Core = ent.Core;
-			this.Components = ent.Components;
-			this.OwnerPlayerUID = ent.OwnerPlayerUID;
-			this.OwnerPlayerWho = ent.OwnerPlayerWho;
+			this.Components = ent.InternalComponents;
+			this.OwnerPlayerUID = ent.MyOwnerPlayerUID;
+			this.OwnerPlayerWho = ent.MyOwnerPlayerWho;
 		}
 
 		internal SerializableCustomEntity( string typeName, CustomEntityCore core, IList<CustomEntityComponent> components, string playerUid )
