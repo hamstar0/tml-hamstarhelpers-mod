@@ -68,28 +68,6 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 
 		////////////////
 
-		[Obsolete( "use MakeGetRequestAsync(string, Func<string, Tuple<object, bool>>, Action<Exception, string>, Action<object, bool>)" )]
-		public static void MakeGetRequestAsync( string url, Action<string> onResponse, Action<Exception, string> onError, Action onCompletion = null ) {
-			ThreadPool.QueueUserWorkItem( _ => {
-				bool success;
-				string output = null;
-
-				try {
-					output = NetHelpers.MakeGetRequest( url, out success );
-
-					if( success ) {
-						onResponse( output );
-					} else {
-						onError?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
-					}
-				} catch( Exception e ) {
-					onError?.Invoke( e, output ?? "" );
-				}
-
-				onCompletion?.Invoke();
-			} );
-		}
-
 		public static void MakeGetRequestAsync<T>( string url,
 				Func<string, Tuple<T, bool>> onResponse,
 				Action<Exception, string> onError,

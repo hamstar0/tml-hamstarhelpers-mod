@@ -5,6 +5,16 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.ProjectileHelpers {
 	public static class ProjectileHelpers {
+		public static void Hit( Projectile proj ) {
+			if( proj.penetrate <= 0 ) {
+				proj.Kill();
+			} else {
+				proj.penetrate--;
+				proj.netUpdate = true;
+			}
+		}
+
+
 		public static void DrawSimple( SpriteBatch sb, Projectile proj, Vector2 pos, float rot, Color color, float scale ) {
 			Texture2D tex = Main.projectileTexture[proj.type];
 			int texHeight = tex.Height / Main.projFrames[proj.type];

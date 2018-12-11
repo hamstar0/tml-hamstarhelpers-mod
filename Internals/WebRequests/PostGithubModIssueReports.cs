@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.MiscHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.NetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
@@ -21,7 +22,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 	}
 
 
-
+	
 	class PostGithubModIssueReports {
 		public static void ReportIssue( Mod mod, string issueTitle, string issueBody, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
@@ -68,7 +69,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			NetHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, onError, onCompletion );
+			Action<Exception, string> wrappedOnError = ( Exception e, string str ) => {
+				LogHelpers.Log( "!ModHelpers.PostGithubModIssueReports.ReportIssue - Failed for POST to "+url+" : " + jsonStr );
+				onError( e, str );
+			};
+
+			NetHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
 		}
 	}
 }

@@ -85,7 +85,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.InnerContainer.Append( (UIElement)tip );
 
 			this.TipUrl = new UIWebUrl( this.Theme, "read this.",
-				"https://forums.terraria.org/index.php?threads/mod-helpers-a-modders-mod-for-mods-and-modding.63670/#modders",
+				"https://forums.terraria.org/index.php?threads/mod-helpers.63670/#modders",
 				false, 1f );
 			this.TipUrl.Left.Set( tip.GetInnerDimensions().Width, 0f );
 			this.TipUrl.Top.Set( -2f, 0f );

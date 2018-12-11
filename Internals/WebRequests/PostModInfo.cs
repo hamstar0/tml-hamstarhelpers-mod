@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.NetHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.NetHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,7 +17,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 	class PostModInfo {
 		public static void SubmitModInfo( string modName, ISet<string> modTags, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
-			string url = "http://hamstar.pw/hamstarhelpers/modInfo_submit/";
+			string url = "http://hamstar.pw/hamstarhelpers/mod_info_submit/";
 			var json = new PostModTagsData {
 				modname = modName,
 				modtags = string.Join(",", modTags)
@@ -36,7 +37,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			NetHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, onError, onCompletion );
+			Action<Exception, string> wrappedOnError = ( Exception e, string str ) => {
+				LogHelpers.Log( "!ModHelpers.PostModInfo.SubmitModInfo - Failed for post: "+jsonStr );
+				onError( e, str );
+			};
+
+			NetHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
 		}
 	}
 }
