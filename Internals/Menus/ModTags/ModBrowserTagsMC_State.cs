@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			UIList uiModList;
 
 			if( !ReflectionHelpers.GetField( modBrowserUi, "modList", out uiModList ) ) {
-				throw new Exception( "Invalid modList" );
+				throw new Exception( "!ModHelpers.BeginModBrowserPopulateCheck.IsModBrowserListPopulated - Invalid modList" );
 			}
 			
 			if( this.IsModBrowserListPopulated( uiModList ) ) {
@@ -72,7 +72,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			int count;
 
 			if( !ReflectionHelpers.GetProperty( uiModList, "Count", out count ) ) {
-				throw new Exception( "Invalid modList.Count" );
+				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.IsModBrowserListPopulated - Invalid modList.Count" );
 			}
 
 			return count > 0;
@@ -83,7 +83,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			object modList;
 
 			if( !ReflectionHelpers.GetField( uiModList, "_items", out modList ) || modList == null ) {
-				throw new Exception( "Invalid modList._items" );
+				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.ApplyModBrowserModInfoBindings - Invalid modList._items" );
 			}
 
 			var itemsArr = (Array)modList.GetType()
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			for( int i = 0; i < itemsArr.Length; i++ ) {
 				var item = (UIElement)itemsArr.GetValue( i );
 				if( item == null ) {
-					LogHelpers.Log( "Invalid modList._item[" + i + "]" );
+					LogHelpers.Log( "!ModHelpers.ModBrowserTagsMenuContext.ModBrowserTagsMenuContext - Invalid modList._item[" + i + "]" );
 					continue;
 				}
 
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				UIPanel modInfoButton;
 				if( !ReflectionHelpers.GetField( item, "moreInfoButton", BindingFlags.Instance | BindingFlags.NonPublic, out modInfoButton )
 						|| modInfoButton == null ) {
-					LogHelpers.Log( "Invalid modList._item[" + i + "].moreInfoButton" );
+					LogHelpers.Log( "!ModHelpers.ModBrowserTagsMenuContext.ModBrowserTagsMenuContext - Invalid modList._item[" + i + "].moreInfoButton" );
 					continue;
 				}
 

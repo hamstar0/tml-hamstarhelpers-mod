@@ -27,16 +27,17 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		private void ShowGeneral( UIState ui ) {
 			string modName = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
-			if( modName == null ) {
-				LogHelpers.Log( "Could not load mod tags; no mod found" );
-				return;
-			}
 
 			this.InfoDisplay.SetDefaultText( "" );
 
-			this.ResetUIState( modName );
-			this.SetCurrentMod( ui, modName );
-			this.RecalculateMenuObjects();
+			if( modName == null ) {
+				LogHelpers.Log( "!ModHelpers.ModInfoTagsMenuContext.ShowGeneral - Could not load mod tags; no mod found" );
+			} else {
+				this.ResetUIState( modName );
+				this.SetCurrentMod( ui, modName );
+				this.RecalculateMenuObjects();
+			}
+			
 			
 			UIElement elem;
 			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {

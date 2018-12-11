@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 
 			UIState modBrowserUi;
 			if( !ReflectionHelpers.GetField<UIState>( interfaceType, null, "modBrowser", BindingFlags.Static | BindingFlags.NonPublic, out modBrowserUi ) ) {
-				LogHelpers.Log( "Could not acquire mod browser UI." );
+				LogHelpers.Log( "!ModHelpers.MenuModHelpers.ApplyModBrowserFilter - Could not acquire mod browser UI." );
 				return;
 			}
 
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 			Type uiType = ui.GetType();
 			FieldInfo uiLocalmodField = uiType.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
 			if( uiLocalmodField == null ) {
-				LogHelpers.Log( "No 'localMod' field in " + uiType );
+				LogHelpers.Log( "!ModHelpers.MenuModHelpers.GetLocalMod - No 'localMod' field in " + uiType );
 				return null;
 			}
 
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 			Type uiType = currUi.GetType();
 			FieldInfo uiLocalmodField = uiType.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
 			if( uiLocalmodField == null ) {
-				LogHelpers.Log( "No 'localMod' field in " + uiType );
+				LogHelpers.Log( "!ModHelpers.MenuModHelpers.GetModName - No 'localMod' field in " + uiType );
 				return null;
 			}
 
@@ -96,13 +96,13 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 		private static string GetSelectedModBrowserMod( UIState modBrowser ) {
 			object modListItem;
 			if( !ReflectionHelpers.GetField( modBrowser, "selectedItem", out modListItem ) || modListItem == null ) {
-				LogHelpers.Log( "No selected mod list item." );
+				LogHelpers.Log( "!ModHelpers.MenuModHelpers.GetSelectedModBrowserMod - No selected mod list item." );
 				return null;
 			}
 
 			string modName;
 			if( !ReflectionHelpers.GetField( modListItem, "mod", out modName ) ) {
-				LogHelpers.Log( "Invalid mod data in mod browser listed entry." );
+				LogHelpers.Log( "!ModHelpers.MenuModHelpers.GetSelectedModBrowserMod - Invalid mod data in mod browser listed entry." );
 				return null;
 			}
 
@@ -112,7 +112,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 		private static string GetLocalModName( object localmod ) {
 			object rawModFile;
 			if( !ReflectionHelpers.GetField( localmod, "modFile", out rawModFile ) ) {
-				LogHelpers.Log( "Empty 'mod' field" );
+				LogHelpers.Log( "!ModHelpers.MenuModHelpers.GetLocalModName - Empty 'mod' field" );
 				return null;
 			}
 
