@@ -1,22 +1,21 @@
 ﻿using HamstarHelpers.Components.Network.Data;
 using System;
 
-
 namespace HamstarHelpers.Components.Network {
 	public abstract class PacketProtocolSentToEither : PacketProtocol {
 		protected PacketProtocolSentToEither( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		////
 		
+		protected abstract void ReceiveOnClient();
 		protected sealed override void ReceiveWithClient() {
 			this.ReceiveOnClient();
 		}
+
+		protected abstract void ReceiveOnServer( int fromWho );
 		protected sealed override void ReceiveWithServer( int fromWho ) {
 			this.ReceiveOnServer( fromWho );
 		}
-
-		protected abstract void ReceiveOnClient();
-		protected abstract void ReceiveOnServer( int fromWho );
 	}
 
 
@@ -32,12 +31,31 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
+
+		protected abstract void InitializeClientSendData();
+		protected sealed override void SetClientDefaults() {
+			this.InitializeClientSendData();
+		}
 		
+		protected abstract void Receive( int fromWho );
 		protected sealed override void ReceiveWithServer( int fromWho ) {
 			this.Receive( fromWho );
 		}
 
-		protected abstract void Receive( int fromWho );
+		////
+
+		protected sealed override void SetServerDefaults( int toWho ) {
+			throw new NotImplementedException();
+		}
+		protected sealed override void ReceiveWithClient() {
+			throw new NotImplementedException();
+		}
+		protected sealed override bool ReceiveRequestWithClient() {
+			throw new NotImplementedException();
+		}
+		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
+			throw new NotImplementedException();
+		}
 	}
 
 
@@ -53,12 +71,31 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
-		
+
+		protected abstract void InitializeServerSendData( int toWho );
+		protected sealed override void SetServerDefaults( int toWho ) {
+			this.InitializeServerSendData( toWho );
+		}
+
+		protected abstract void Receive();
 		protected sealed override void ReceiveWithClient() {
 			this.Receive();
 		}
 
-		protected abstract void Receive();
+		////
+
+		protected sealed override void SetClientDefaults() {
+			throw new NotImplementedException();
+		}
+		protected sealed override void ReceiveWithServer( int fromWho ) {
+			throw new NotImplementedException();
+		}
+		protected sealed override bool ReceiveRequestWithClient() {
+			throw new NotImplementedException();
+		}
+		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
+			throw new NotImplementedException();
+		}
 	}
 
 
@@ -74,12 +111,28 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
-		
+
+		protected abstract void InitializeServerSendData( int toWho );
+		protected sealed override void SetServerDefaults( int toWho ) {
+			this.InitializeServerSendData( toWho );
+		}
+
+		protected abstract void ReceiveReply();
 		protected sealed override void ReceiveWithClient() {
 			this.ReceiveReply();
 		}
 
-		protected abstract void ReceiveReply();
+		////
+		
+		protected sealed override void SetClientDefaults() {
+			throw new NotImplementedException();
+		}
+		protected sealed override void ReceiveWithServer( int fromWho ) {
+			throw new NotImplementedException();
+		}
+		protected sealed override bool ReceiveRequestWithClient() {
+			throw new NotImplementedException();
+		}
 	}
 
 
@@ -95,11 +148,27 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
-		
+
+		protected abstract void InitializeClientSendData();
+		protected sealed override void SetClientDefaults() {
+			this.InitializeClientSendData();
+		}
+
+		protected abstract void ReceiveReply( int fromWho );
 		protected sealed override void ReceiveWithServer( int fromWho ) {
 			this.ReceiveReply( fromWho );
 		}
 
-		protected abstract void ReceiveReply( int fromWho );
+		////
+
+		protected sealed override void SetServerDefaults( int toWho ) {
+			throw new NotImplementedException();
+		}
+		protected sealed override void ReceiveWithClient() {
+			throw new NotImplementedException();
+		}
+		protected sealed override bool ReceiveRequestWithClient() {
+			throw new NotImplementedException();
+		}
 	}
 }

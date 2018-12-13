@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void SetClientDefaults() {
+		protected override void InitializeClientSendData() {
 			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 
 			this.ClientPrivateUID = myplayer.Logic.PrivateUID;

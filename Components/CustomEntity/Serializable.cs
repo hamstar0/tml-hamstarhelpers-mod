@@ -21,8 +21,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		[JsonIgnore]
 		[PacketProtocolIgnore]
+		[JsonIgnore]
 		public override bool IsInitialized {
 			get {
 				if( string.IsNullOrEmpty(this.MyTypeName) ) {

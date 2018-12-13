@@ -36,19 +36,23 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////
 
-		[JsonIgnore]
 		[PacketProtocolIgnore]
+		[JsonIgnore]
 		internal IList<CustomEntityComponent> InternalComponents => this.Components;
 
-		[JsonIgnore]
 		[PacketProtocolIgnore]
+		[JsonIgnore]
 		private Player OwnerPlayer => this.OwnerPlayerWho == -1 ? null : Main.player[ this.OwnerPlayerWho ];
 
 		[JsonProperty]
 		private string[] ComponentNames => this.Components.Select( c => c.GetType().Name ).ToArray();
 
-		[JsonIgnore]
 		[PacketProtocolIgnore]
+		[JsonIgnore]
+		public abstract Tuple<bool, bool> SyncClientServer { get; }
+
+		[PacketProtocolIgnore]
+		[JsonIgnore]
 		public virtual bool IsInitialized {
 			get {
 				if( this.Core == null ) { return false; }

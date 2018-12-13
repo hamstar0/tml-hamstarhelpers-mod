@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////
 		
-		protected override void SetServerDefaults( int fromWho ) {
+		protected override void InitializeServerSendData( int fromWho ) {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<PeriodicSyncEntityComponent>();
 
 			this.Entities = ents.Select( ent => new SerializableCustomEntity(ent) ).ToArray();

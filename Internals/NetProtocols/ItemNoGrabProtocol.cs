@@ -5,21 +5,16 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	class ItemNoGrabProtocol : PacketProtocolRequestToClient {
-		protected class MyFactory : PacketProtocolData.Factory<ItemNoGrabProtocol> {
+	class ItemNoGrabProtocol : PacketProtocolSendToServer {
+		protected class MyFactory : Factory<ItemNoGrabProtocol> {
 			private readonly int ItemWho;
 			private readonly int NoGrabDelayAmt;
-
-
-			////////////////
-
+			
 			public MyFactory( int itemWho, int noGrabDelayAmt ) {
 				this.ItemWho = itemWho;
 				this.NoGrabDelayAmt = noGrabDelayAmt;
 			}
-
-			////
-
+			
 			protected override void Initialize( ItemNoGrabProtocol data ) {
 				data.ItemWho = this.ItemWho;
 				data.NoGrabDelayAmt = this.NoGrabDelayAmt;
@@ -49,9 +44,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected ItemNoGrabProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
+		protected override void InitializeClientSendData() { }
+
 		////////////////
 
-		protected override void ReceiveReply( int fromWho ) {
+		protected override void Receive( int fromWho ) {
 			Item item = Main.item[ this.ItemWho ];
 			if( item == null /*|| !item.active*/ ) {
 				throw new HamstarException( "!ModHelpers.ItemNoGrabProtocol.ReceiveWithServer - Invalid item indexed at "+this.ItemWho );

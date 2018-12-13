@@ -11,7 +11,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	class DataDumpProtocol : PacketProtocolRequestToServer {
 		protected DataDumpProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 		
-		protected override void SetServerDefaults( int fromWho ) { }
+		protected override void InitializeServerSendData( int fromWho ) { }
 
 		////////////////
 

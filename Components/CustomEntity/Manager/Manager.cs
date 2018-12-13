@@ -56,7 +56,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !LoadHelpers.IsWorldBeingPlayed() ) { return; }
 
 			lock( CustomEntityManager.MyLock ) {
-				foreach( CustomEntity ent in this.EntitiesByIndexes.Values.ToArray() ) {
+				var ents = this.EntitiesByIndexes.Values.ToArray();
+
+				foreach( CustomEntity ent in ents ) {
 					ent.Update();
 				}
 			}

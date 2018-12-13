@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.Components.CustomEntity.Components;
-using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +19,18 @@ namespace HamstarHelpers.Components.CustomEntity {
 				return null;
 			}
 			return mytype;
+		}
+
+
+		////////////////
+
+		public static bool IsInWorld( CustomEntity myent ) {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+
+			CustomEntity ent = null;
+			mngr.EntitiesByIndexes.TryGetValue( myent.Core.WhoAmI, out ent );
+
+			return ent == myent;
 		}
 
 
@@ -78,60 +88,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 			}
 			return ents;
-		}
-
-
-		////////////////
-
-		public static void AddToWorld( CustomEntity ent ) {
-			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
-			CustomEntityManager.AddToWorld( mngr.EntitiesByIndexes.Count, ent );
-		}
-		
-
-		public static CustomEntity AddToWorld( int who, CustomEntity ent ) {
-			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Null ent not allowed." ); }
-			if( !ent.IsInitialized ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Initialized ents only." ); }
-
-			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
-			CustomEntity realEnt = ent;
-
-			if( ent is SerializableCustomEntity ) {
-				realEnt = ((SerializableCustomEntity)ent).Convert();
-			}
-
-			Type compType;
-			Type baseType = typeof( CustomEntityComponent );
-
-			// Map entity to each of its components
-			foreach( CustomEntityComponent component in realEnt.InternalComponents ) {
-				compType = component.GetType();
-				lock( CustomEntityManager.MyLock ) {
-					do {
-						if( !mngr.EntitiesByComponentType.ContainsKey( compType ) ) {
-							mngr.EntitiesByComponentType[ compType ] = new HashSet<int>();
-						}
-
-						mngr.EntitiesByComponentType[ compType ].Add( who );
-
-						compType = compType.BaseType;
-					} while( compType != baseType );
-				}
-			}
-
-			realEnt.Core.whoAmI = who;
-			mngr.EntitiesByIndexes[ who ] = realEnt;
-			
-			var saveComp = realEnt.GetComponentByType<SaveableEntityComponent>();
-			if( saveComp != null ) {
-				saveComp.InternalOnLoad( realEnt );
-			}
-
-			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.AddToWorld - Set " + realEnt.ToString() );
-			}
-
-			return realEnt;
 		}
 	}
 }
