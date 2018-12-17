@@ -33,6 +33,15 @@ namespace HamstarHelpers.Services.Promises {
 			}
 		}
 
+
+		////////////////
+
+		public static bool IsPromiseValidated( PromiseValidator validator ) {
+			lock( validator ) {
+				return ModHelpersMod.Instance.Promises.ValidatedPromiseConditionsMet.Contains( validator );
+			}
+		}
+		
 		////////////////
 
 		public static void AddValidatedPromise<T>( PromiseValidator validator, Func<T, bool> action ) where T : PromiseArguments {
@@ -84,10 +93,11 @@ namespace HamstarHelpers.Services.Promises {
 			}
 
 			if( isValidated ) {
-				IList<Func<PromiseArguments, bool>> funcList = mymod.Promises.ValidatedPromise[ validator ];
+				IList<Func<PromiseArguments, bool>> funcList;
 				int count;
 
 				lock( validator.MyLock ) {
+					funcList = mymod.Promises.ValidatedPromise[ validator ];
 					count = funcList.Count;
 				}
 

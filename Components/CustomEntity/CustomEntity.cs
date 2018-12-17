@@ -21,6 +21,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		private IDictionary<string, int> ComponentsByTypeName = new Dictionary<string, int>();
 		private IDictionary<string, int> AllComponentsByTypeName = new Dictionary<string, int>();
 
+		////
+
 		[JsonRequired]
 		[PacketProtocolWriteIgnoreClient]
 		protected string OwnerPlayerUID = "";
@@ -34,7 +36,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		[JsonIgnore]
 		public int MyOwnerPlayerWho => this.OwnerPlayerWho;
 
-		////
+		////////////////
 
 		[PacketProtocolIgnore]
 		[JsonIgnore]
@@ -188,11 +190,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 				who = ", who " + this.Core.whoAmI;
 			}
 
-			if( this.OwnerPlayerUID != "" ) {
+			if( !string.IsNullOrEmpty(this.OwnerPlayerUID) ) {
 				owner += " " + this.OwnerPlayerUID.Substring( 0, 8 ) + "...";
 			}
 			if( this.OwnerPlayerWho != -1 ) {
-				owner += " '" + Main.player[this.OwnerPlayerWho].name + "':" + this.OwnerPlayerWho;
+				owner += " " + (("'"+Main.player[this.OwnerPlayerWho]?.name+"'") ?? "MISSING_PLAYER") + "':" + this.OwnerPlayerWho;
 			}
 			if( this.OwnerPlayerUID == "" && this.OwnerPlayerWho == -1 ) {
 				owner += " none";
@@ -202,7 +204,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				typeid = typeid + ":" + this.Components.Count();
 			}
 
-			return basename + " ["+this.GetType().Name+"] " + " (" + typeid + who + owner + ")";
+			return basename + " ["+this.GetType().Name+"] (" + typeid + who + owner + ")";
 		}
 	}
 }

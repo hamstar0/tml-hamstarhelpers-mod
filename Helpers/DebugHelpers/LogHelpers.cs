@@ -60,14 +60,28 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 			bool isShown = false;
 
 			lock( LogHelpers.MyLock ) {
-				if( !logHelpers.UniqueMessages.Contains( msg ) ) {
-					logHelpers.UniqueMessages.Add( msg );
+				if( !logHelpers.UniqueMessages.ContainsKey( msg ) ) {
+					logHelpers.UniqueMessages[msg] = 1;
 					isShown = true;
+				} else {
+					logHelpers.UniqueMessages[msg]++;
+
+					if( ( Math.Log10( logHelpers.UniqueMessages[msg] ) % 1d ) == 0 ) {
+						msg = "(" + logHelpers.UniqueMessages[msg] + "th) " + msg;
+						isShown = true;
+					}
 				}
 			}
 
 			if( isShown ) {
 				LogHelpers.Log( "~" + msg );
+			}
+		}
+
+
+		public static bool LogOnceReset( string msg ) {
+			lock( LogHelpers.MyLock ) {
+				return ModHelpersMod.Instance.LogHelpers.UniqueMessages.Remove( msg );
 			}
 		}
 
@@ -79,7 +93,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 		private DateTime StartTimeBase;
 		private double StartTime;
 
-		private ISet<string> UniqueMessages = new HashSet<string>();
+		private IDictionary<string, int> UniqueMessages = new Dictionary<string, int>();
 
 
 		////////////////

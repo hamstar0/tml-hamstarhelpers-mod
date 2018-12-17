@@ -75,13 +75,17 @@ namespace HamstarHelpers.Internals.WebRequests {
 						Found = false
 					};
 					
-					GetModTags.RetrieveAllTagModsAsync( ( modTags, found ) => {
+					GetModTags.RetrieveAllModTagsAsync( ( modTags, found ) => {
 						if( found ) {
 							args.SetTagMods( modTags );
 						}
 						args.Found = found;
-						
-						Promises.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
+
+						try {
+							Promises.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
+						} catch( Exception e ) {
+							LogHelpers.Log( "ModHelpers.GetModTags.CacheAllModTagsAsync - "+e.ToString() );
+						}
 					} );
 				}
 			} );
@@ -89,7 +93,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-		private static void RetrieveAllTagModsAsync( Action<IDictionary<string, ISet<string>>, bool> onCompletion ) {
+		private static void RetrieveAllModTagsAsync( Action<IDictionary<string, ISet<string>>, bool> onCompletion ) {
 			Func<string, Tuple<IDictionary<string, ISet<string>>, bool>> onGetResponse = ( string output ) => {
 				bool found = false;
 				IDictionary<string, ISet<string>> modTagSet = new Dictionary<string, ISet<string>>();

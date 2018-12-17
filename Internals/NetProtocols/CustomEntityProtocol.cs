@@ -6,7 +6,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityProtocol : PacketProtocolSentToEither {
-		protected sealed class MyFactory : PacketProtocolData.Factory<CustomEntityProtocol> {
+		protected sealed class MyFactory : Factory<CustomEntityProtocol> {
 			private readonly SerializableCustomEntity Entity;
 
 
@@ -56,39 +56,29 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveOnServer( int fromWho ) {
-			var ent = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
+		private void Receive() {
+			var newEnt = CustomEntityManager.GetEntityByWho( this.Entity.Core.WhoAmI );
 
-			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				if( ent != null ) {
-					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithServer - Syncing entity " + ent.ToString() + "..." );
+			if( newEnt == null ) {
+				CustomEntityManager.AddToWorld( this.Entity.Core.WhoAmI, this.Entity.Convert(), true );
+			} else {
+				if( newEnt.GetType().Name != this.Entity.MyTypeName ) {
+					LogHelpers.Log( "!ModHelpers.CustomEntityProtocol.Receive - Entity mismatch: "
+						+ "Client sends " + newEnt.GetType().Name + ", server expects " + this.Entity.MyTypeName );
+					return;
 				}
-			}*/
 
-			if( ent == null ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntityProtocol.ReceiveWithServer - No existing entity to sync " + this.Entity.ToString() );
-				return;
+				newEnt.CopyChangesFrom( this.Entity );
 			}
-			
-			ent.CopyChangesFrom( this.Entity );
+		}
+
+
+		protected override void ReceiveOnServer( int fromWho ) {
+			this.Receive();
 		}
 
 		protected override void ReceiveOnClient() {
-			var existingEnt = CustomEntityManager.GetEntityByWho( this.Entity.Core.whoAmI );
-
-			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				if( existingEnt == null ) {
-					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithClient - New entity " + this.Entity.ToString() );
-				} else {
-					LogHelpers.Log( "ModHelpers.CustomEntityProtocol.ReceiveWithClient - Entity update for " + existingEnt.ToString() + " from "+ this.Entity.ToString() );
-				}
-			}*/
-
-			if( existingEnt == null ) {
-				var realEnt = CustomEntityManager.AddToWorld( this.Entity.Core.whoAmI, this.Entity );
-			} else {
-				existingEnt.CopyChangesFrom( this.Entity );
-			}
+			this.Receive();
 		}
 	}
 }

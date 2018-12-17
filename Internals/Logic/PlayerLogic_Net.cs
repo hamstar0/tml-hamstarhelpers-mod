@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnClientConnect( ModHelpersMod mymod, Player player ) {
+		public void OnCurrentClientConnect( ModHelpersMod mymod, Player player ) {
 			if( !this.HasLoadedUID ) {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 				this.HasLoadedUID = true;	// Ugly failsafe
@@ -46,13 +46,6 @@ namespace HamstarHelpers.Internals.Logic {
 			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>();
 
 			mymod.ControlPanel.LoadModListAsync();
-			
-			Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ClientConnectValidator, ( args ) => {
-				if( Main.netMode != 1 ) {
-					PacketProtocolSendToClient.QuickSend<CustomEntityAllProtocol>( args.Who, -1 );
-				}
-				return true;
-			} );
 		}
 
 		public void OnServerConnect( ModHelpersMod mymod, Player player ) {
@@ -60,7 +53,6 @@ namespace HamstarHelpers.Internals.Logic {
 			this.FinishWorldDataSync();
 
 			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
-
 			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
 		}
 

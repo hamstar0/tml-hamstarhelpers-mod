@@ -95,11 +95,14 @@ namespace HamstarHelpers {
 			} );
 
 			DataDumper.SetDumpSource( "PlayerUid", () => {
-				if( Main.myPlayer < 0 || Main.myPlayer >= Main.player.Length ) {
+				if( Main.myPlayer < 0 || Main.myPlayer >= (Main.player.Length - 1) ) {
 					return "  Unobtainable";
 				}
 
-				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId();
+				bool _;
+				string oldUid = PlayerIdentityHelpers._GetUniqueId( Main.LocalPlayer, out _ );
+
+				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId() + " (old uid: "+oldUid+")";
 			} );
 		}
 

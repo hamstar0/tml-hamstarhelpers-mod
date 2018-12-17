@@ -14,7 +14,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			return true;
 		}
 
-		
+
 		public static bool IsWorldLoaded() {
 			if( !LoadHelpers.IsModLoaded() ) { return false; }
 

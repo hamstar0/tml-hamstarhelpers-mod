@@ -88,7 +88,7 @@ namespace HamstarHelpers {
 				if( Main.netMode == 0 ) {
 					this.Logic.OnSingleConnect( mymod, Main.player[who] );
 				} else if( Main.netMode == 1 ) {
-					this.Logic.OnClientConnect( mymod, Main.player[who] );
+					this.Logic.OnCurrentClientConnect( mymod, Main.player[who] );
 				}
 			};
 

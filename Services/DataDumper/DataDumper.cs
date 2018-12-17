@@ -44,7 +44,7 @@ namespace HamstarHelpers.Services.DataDumper {
 				netmode = "single";
 				break;
 			case 1:
-				netmode = "client";
+				netmode = "client("+Main.LocalPlayer.name+"_"+Main.myPlayer+")";
 				break;
 			case 2:
 				netmode = "server";

@@ -34,18 +34,28 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
+		public override void UpdateClient( CustomEntity ent ) {
+			if( ent.SyncClientServer.Item1 ) {
+				this.UpdateMe( ent );
+			}
+		}
+
 		public override void UpdateServer( CustomEntity ent ) {
-			this.UpdateMe( ent );
+			if( ent.SyncClientServer.Item2 ) {
+				this.UpdateMe( ent );
+			}
 		}
 
 		////
 
-		protected void UpdateMe( CustomEntity ent ) {
+		protected virtual bool UpdateMe( CustomEntity ent ) {
 			if( this.NextSync-- <= 0 ) {
 				this.NextSync = 60 * 15;
 
 				ent.SyncToAll();
+				return true;
 			}
+			return false;
 		}
 	}
 }

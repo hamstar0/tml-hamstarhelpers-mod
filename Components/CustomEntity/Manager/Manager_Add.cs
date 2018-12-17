@@ -4,7 +4,6 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 
 
@@ -22,12 +21,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
-		public static CustomEntity AddToWorld( int who, CustomEntity ent ) {
+		public static CustomEntity AddToWorld( int who, CustomEntity ent, bool skipSync = false ) {
 			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Null ent not allowed." ); }
 			if( !ent.IsInitialized ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Initialized ents only." ); }
 
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 			CustomEntity realEnt = ent;
+
+			if( mngr.EntitiesByIndexes.ContainsKey(who) ) {
+				throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - "
+					+ "Attempting to add "+ent.ToString()+" to slot "+who+" occupied by "+mngr.EntitiesByIndexes[who].ToString() );
+			}
 
 			if( ent is SerializableCustomEntity ) {
 				realEnt = ( (SerializableCustomEntity)ent ).Convert();
@@ -53,7 +57,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			realEnt.Core.whoAmI = who;
-			mngr.EntitiesByIndexes[who] = realEnt;
+			mngr.EntitiesByIndexes[ who ] = realEnt;
 
 			var saveComp = realEnt.GetComponentByType<SaveableEntityComponent>();
 			if( saveComp != null ) {
@@ -61,19 +65,21 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			// Sync also
-			if( Main.netMode == 1 ) {
-				if( ent.SyncClientServer.Item1 ) {
-					Promises.AddValidatedPromise( SaveableEntityComponent.LoadAllValidator, () => {
-						ent.SyncToAll();
-						return false;
-					} );
-				}
-			} else if( Main.netMode == 2 ) {
-				if( ent.SyncClientServer.Item2 ) {
-					Promises.AddValidatedPromise( SaveableEntityComponent.LoadAllValidator, () => {
-						ent.SyncToAll();
-						return false;
-					} );
+			if( !skipSync ) {
+				if( Main.netMode == 1 ) {
+					if( ent.SyncClientServer.Item1 ) {
+						Promises.AddValidatedPromise( SaveableEntityComponent.LoadAllValidator, () => {
+							ent.SyncToAll();
+							return false;
+						} );
+					}
+				} else if( Main.netMode == 2 ) {
+					if( ent.SyncClientServer.Item2 ) {
+						Promises.AddValidatedPromise( SaveableEntityComponent.LoadAllValidator, () => {
+							ent.SyncToAll();
+							return false;
+						} );
+					}
 				}
 			}
 
