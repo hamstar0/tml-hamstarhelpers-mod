@@ -21,7 +21,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void InitializeServerSendData( int fromWho ) {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<PeriodicSyncEntityComponent>();
 
-			this.Entities = ents.Select( ent => new SerializableCustomEntity(ent) ).ToArray();
+			this.Entities = ents.Where( ent => ent.SyncFromClientServer.Item2 )
+				.Select( ent => new SerializableCustomEntity(ent) )
+				.ToArray();
 
 			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
 				LogHelpers.Log( "ModHelpers.CustomEntityAllProtocol.SetServerDefaults - Sending " + string.Join(",\n   ", this.Entities.Select(e=>e.ToString())) );

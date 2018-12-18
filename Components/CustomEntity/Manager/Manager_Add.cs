@@ -13,7 +13,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 			int who = mngr.EntitiesByIndexes.Count + 1;
 
-			if( !ent.SyncClientServer.Item1 && !ent.SyncClientServer.Item2 ) {
+			if( !ent.SyncFromClientServer.Item1 && !ent.SyncFromClientServer.Item2 ) {
 				who = -who;
 			}
 
@@ -67,14 +67,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 			// Sync also
 			if( !skipSync ) {
 				if( Main.netMode == 1 ) {
-					if( ent.SyncClientServer.Item1 ) {
+					if( ent.SyncFromClientServer.Item1 ) {
 						Promises.AddValidatedPromise( SaveableEntityComponent.LoadAllValidator, () => {
 							ent.SyncToAll();
 							return false;
 						} );
 					}
 				} else if( Main.netMode == 2 ) {
-					if( ent.SyncClientServer.Item2 ) {
+					if( ent.SyncFromClientServer.Item2 ) {
 						Promises.AddValidatedPromise( SaveableEntityComponent.LoadAllValidator, () => {
 							ent.SyncToAll();
 							return false;

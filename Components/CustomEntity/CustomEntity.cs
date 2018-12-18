@@ -51,7 +51,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		[PacketProtocolIgnore]
 		[JsonIgnore]
-		public abstract Tuple<bool, bool> SyncClientServer { get; }
+		public abstract Tuple<bool, bool> SyncFromClientServer { get; }
 
 		[PacketProtocolIgnore]
 		[JsonIgnore]

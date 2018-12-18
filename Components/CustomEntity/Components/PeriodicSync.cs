@@ -6,8 +6,21 @@ using Terraria.Utilities;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PeriodicSyncEntityComponent : CustomEntityComponent {
+		public const int RandomSyncDurationMin = 60 * 3;	// 3 minutes
+		public const int RandomSyncDurationMax = 60 * 15;	// 15 minutes
+
+
+		////////////////
+
 		public static PeriodicSyncEntityComponent CreatePeriodicSyncEntityComponent() {
-			return (PeriodicSyncEntityComponent)PacketProtocolData.CreateRaw( typeof(PeriodicSyncEntityComponent) );
+			return (PeriodicSyncEntityComponent)PacketProtocolData.CreateRaw( typeof( PeriodicSyncEntityComponent ) );
+		}
+
+		////////////////
+
+		public static int GetRandomSyncDuration() {
+			int range = PeriodicSyncEntityComponent.RandomSyncDurationMax - PeriodicSyncEntityComponent.RandomSyncDurationMin;
+			return PeriodicSyncEntityComponent.MyRand.Next( range ) + PeriodicSyncEntityComponent.RandomSyncDurationMin;
 		}
 
 
@@ -28,20 +41,20 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
-			this.NextSync = PeriodicSyncEntityComponent.MyRand.Next( 60 * 30 ) + 60;
+			this.NextSync = PeriodicSyncEntityComponent.GetRandomSyncDuration();
 		}
 
 
 		////////////////
 
 		public override void UpdateClient( CustomEntity ent ) {
-			if( ent.SyncClientServer.Item1 ) {
+			if( ent.SyncFromClientServer.Item1 ) {
 				this.UpdateMe( ent );
 			}
 		}
 
 		public override void UpdateServer( CustomEntity ent ) {
-			if( ent.SyncClientServer.Item2 ) {
+			if( ent.SyncFromClientServer.Item2 ) {
 				this.UpdateMe( ent );
 			}
 		}
@@ -50,7 +63,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		protected virtual bool UpdateMe( CustomEntity ent ) {
 			if( this.NextSync-- <= 0 ) {
-				this.NextSync = 60 * 15;
+				this.NextSync = PeriodicSyncEntityComponent.GetRandomSyncDuration();
 
 				ent.SyncToAll();
 				return true;
