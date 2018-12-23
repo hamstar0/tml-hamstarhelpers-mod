@@ -32,7 +32,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			foreach( var componentType in componentTypes ) {
 				Type[] nestedTypes = componentType.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
-
+				if( nestedTypes == null ) { continue; }
+				
 				foreach( var nestedType in nestedTypes ) {
 					if( nestedType.IsSubclassOf( typeof( CustomEntityComponent.StaticInitializer ) ) ) {
 						var staticInit = (CustomEntityComponent.StaticInitializer)Activator.CreateInstance( nestedType );

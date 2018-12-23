@@ -51,8 +51,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					//{ "Shows Effort",			"" },
 					//{ "Polished",				"" },
 
-					{ "Item Sets",              "Content: Adds or edits discrete (often themed) sets or types of items." },
-					{ "Weapons & Tools",        "Content: Adds or edits weapon or tool items." },
+					//{ "Item Sets",              "Content: Adds or edits discrete (often themed) sets or types of items." },
+					{ "Weapons",				"Content: Adds or edits weapon items." },
+					{ "Tools",					"Content: Adds or edits tool items." },
 					{ "Armors",					"Content: Adds or edits armor items in particular." },
 					{ "Buffs & Pots.",          "Content: Adds or edits buffs and potion items." },
 					{ "Accessories",            "Content: Adds or edits player accessory items (includes wings)." },

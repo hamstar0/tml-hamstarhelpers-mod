@@ -167,7 +167,7 @@ namespace HamstarHelpers.Components.Network {
 		protected sealed override void ReceiveWithClient() {
 			throw new NotImplementedException();
 		}
-		protected sealed override bool ReceiveRequestWithClient() {
+		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
 			throw new NotImplementedException();
 		}
 	}

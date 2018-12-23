@@ -151,7 +151,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			} else if( this.Desc.Contains("Theme:") ) {
 				bgColor = Color.Lerp( bgColor, Color.DarkTurquoise, 0.4f );
 			} else if( this.Desc.Contains( "Content:" ) ) {
-				bgColor = Color.Lerp( bgColor, Color.DarkRed, 0.3f );
+				bgColor = Color.Lerp( bgColor, Color.Red, 0.3f );	//DarkRed
 			//} else if( this.Desc.Contains( "Where:" ) ) {
 			//	bgColor = Color.Lerp( bgColor, Color.Green, 0.4f );
 			} else if( this.Desc.Contains( "When:" ) ) {

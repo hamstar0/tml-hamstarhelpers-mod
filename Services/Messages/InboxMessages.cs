@@ -21,8 +21,8 @@ namespace HamstarHelpers.Services.Messages {
 				InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 				int idx = inbox.Order.IndexOf( which );
 
-				inbox.Messages[which] = msg;
-				inbox.MessageActions[which] = onRun;
+				inbox.Messages[ which ] = msg;
+				inbox.MessageActions[ which ] = onRun;
 
 				if( idx >= 0 ) {
 					if( forceUnread ) {
@@ -56,9 +56,11 @@ namespace HamstarHelpers.Services.Messages {
 			}
 
 			string which = inbox.Order[ inbox.Current++ ];
-			string msg = inbox.Messages[ which ];
+			string msg = null;
 
-			inbox.MessageActions[which]?.Invoke( true );
+			if( inbox.Messages.TryGetValue( which, out msg ) ) {
+				inbox.MessageActions[ which ]?.Invoke( true );
+			}
 
 			return msg;
 		}
@@ -73,11 +75,12 @@ namespace HamstarHelpers.Services.Messages {
 			}
 
 			string which = inbox.Order[ idx ];
-			string msg = inbox.Messages[ which ];
+			string msg = null;
 
-			isUnread = idx >= inbox.Current;
-
-			inbox.MessageActions[which]?.Invoke( isUnread );
+			if( inbox.Messages.TryGetValue( which, out msg ) ) {
+				isUnread = idx >= inbox.Current;
+				inbox.MessageActions[ which ]?.Invoke( isUnread );
+			}
 
 			return msg;
 		}
@@ -88,11 +91,16 @@ namespace HamstarHelpers.Services.Messages {
 
 			int idx = inbox.Order.IndexOf( which );
 			if( idx == -1 ) { return null; }
+			
+			string msg = null;
 
-			string msg = inbox.Messages[ which ];
+			if( !inbox.Messages.TryGetValue( which, out msg ) ) {
+				return null;
+			}
+
 			bool isUnread = idx >= inbox.Current;
 
-			inbox.MessageActions[which]?.Invoke( isUnread );
+			inbox.MessageActions[ which ]?.Invoke( isUnread );
 
 			if( isUnread ) {
 				if( inbox.Current != idx ) {
@@ -109,9 +117,9 @@ namespace HamstarHelpers.Services.Messages {
 
 		////////////////
 
-		private IDictionary<string, string> Messages { get { return this.Data.Messages; } }
-		private IDictionary<string, Action<bool>> MessageActions { get { return this.Data.MessageActions; } }
-		private List<string> Order { get { return this.Data.Order; } }
+		private IDictionary<string, string> Messages => this.Data.Messages;
+		private IDictionary<string, Action<bool>> MessageActions => this.Data.MessageActions;
+		private List<string> Order => this.Data.Order;
 		public int Current {
 			get { return this.Data.Current; }
 			set { this.Data.Current = value; }
