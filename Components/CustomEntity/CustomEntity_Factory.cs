@@ -41,7 +41,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			////
 
-			protected abstract void InitializeEntity( T ent );
+			protected virtual void InitializeEntity( T ent ) { }
 		}
 
 

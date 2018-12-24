@@ -58,6 +58,7 @@ namespace HamstarHelpers {
 		public bool DisableSupportLinks = false;
 
 		public bool MagiTechScrapMechBossDropsEnabled = false;
+		public bool CoalAsTile = true;
 
 		public string PrivilegedUserId = "";
 

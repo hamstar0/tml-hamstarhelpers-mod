@@ -17,39 +17,11 @@ using Terraria.Graphics.Effects;
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
 		internal CustomEntityManager() {
-			this.OnTickGet = Timers.MainOnTickGet();
-			Main.OnTick += CustomEntityManager._Update;
-
-			// Initialize components
-			var entityTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntity) );
-
-			foreach( Type entityType in entityTypes.OrderBy( e=>e.Name ) ) {
-				this.CacheTypeIdInfo( entityType );
-			}
-
-			// Initialize components
-			var componentTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof(CustomEntityComponent) );
-
-			foreach( var componentType in componentTypes ) {
-				Type[] nestedTypes = componentType.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
-				if( nestedTypes == null ) { continue; }
-				
-				foreach( var nestedType in nestedTypes ) {
-					if( nestedType.IsSubclassOf( typeof( CustomEntityComponent.StaticInitializer ) ) ) {
-						var staticInit = (CustomEntityComponent.StaticInitializer)Activator.CreateInstance( nestedType );
-						staticInit.StaticInitializationWrapper();
-					}
-				}
-			}
-
-			// Initialize drawing layer
-			if( !Main.dedServ ) {
-				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay();
-				Overlays.Scene.Activate( "CustomEntity" );
-
-				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
-			}
-
+			this.InitializeUpdate();
+			this.InitializeEntityTypes();
+			this.InitializeComponentTypes();
+			this.InitializeDrawingLayer();
+			
 			// Reset any data from previous games
 			Promises.AddPostWorldUnloadEachPromise( () => {
 				lock( CustomEntityManager.MyLock ) {
@@ -62,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			DataDumper.SetDumpSource( "CustomEntityList", () => {
 				lock( CustomEntityManager.MyLock ) {
 					return string.Join( "\n  ", this.EntitiesByIndexes.OrderBy( kv => kv.Key )
-								 .Select( kv => kv.Key + ": " + kv.Value?.ToString() ?? "null" ) );
+									.Select( kv => kv.Key + ": " + kv.Value?.ToString() ?? "null" ) );
 				}
 			} );
 
@@ -80,12 +52,57 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 		}
 
+		////
 
 		~CustomEntityManager() {
 			if( !Main.dedServ ) {
 				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
 			}
 			Main.OnTick -= CustomEntityManager._Update;
+		}
+
+
+		////////////////
+
+		private void InitializeUpdate() {
+			this.OnTickGet = Timers.MainOnTickGet();
+			Main.OnTick += CustomEntityManager._Update;
+		}
+
+
+		private void InitializeEntityTypes() {
+			var entityTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntity ) );
+
+			foreach( Type entityType in entityTypes.OrderBy( e => e.Name ) ) {
+				this.CacheTypeIdInfo( entityType );
+			}
+		}
+
+
+		private void InitializeComponentTypes() {
+			var componentTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
+
+			foreach( var componentType in componentTypes ) {
+				Type[] nestedTypes = componentType.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );
+				if( nestedTypes == null ) { continue; }
+
+				foreach( var nestedType in nestedTypes ) {
+					if( nestedType.IsSubclassOf( typeof( CustomEntityComponent.StaticInitializer ) ) ) {
+						var staticInit = (CustomEntityComponent.StaticInitializer)Activator.CreateInstance( nestedType );
+						staticInit.StaticInitializationWrapper();
+					}
+				}
+			}
+		}
+
+
+		private void InitializeDrawingLayer() {
+			if( !Main.dedServ ) {
+				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay();
+				Overlays.Scene.Activate( "CustomEntity" );
+
+				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
+			}
 		}
 	}
 }

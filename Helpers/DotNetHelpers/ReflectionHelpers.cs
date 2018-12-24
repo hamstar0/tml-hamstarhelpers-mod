@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -14,15 +13,42 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 
 		public static IEnumerable<Type> GetAllAvailableSubTypes( Type parentType ) {
-			var modTypes = ModLoader.LoadedMods.Select( mod => mod.GetType() );
+			var subclasses = new List<Type>();
+
+			foreach( var mod in ModLoader.LoadedMods ) {
+				Type[] myTypes = null;
+				try {
+					myTypes = mod.GetType().Assembly.GetTypes();
+				} catch {
+					continue;
+				}
+
+				foreach( var myType in myTypes ) {
+					if( myType == null || !myType.IsSubclassOf( parentType ) || myType.IsAbstract ) { continue; }
+					subclasses.Add( myType );
+				}
+			}
+
+			return subclasses;
+		}
+
+		/*public static IEnumerable<Type> GetAllAvailableSubTypes2( Type parentType ) {
+			var modTypes = ModLoader.LoadedMods.Where( mod => mod != null ).Select( mod => mod.GetType() );
+			var assemblies = modTypes.Select( modType => modType.Assembly );
+			var allSubclasses = assemblies.SelectMany( assembly => assembly.GetTypes() ).Where( myType => myType != null );
+			var subclasses = allSubclasses.Where( myType => myType.IsSubclassOf( parentType ) && !myType.IsAbstract );
+			return subclasses;
+		}
+
+		public static IEnumerable<Type> GetAllAvailableSubTypes3( Type parentType ) {
+			var modTypes = ModLoader.LoadedMods.Where( mod => mod != null ).Select( mod => mod.GetType() );
 			var assemblies = modTypes.Select( modType => modType.Assembly );
 			var subclasses = from assembly in assemblies
 							 from type in assembly.GetTypes()
 							 where type.IsSubclassOf( parentType ) && !type.IsAbstract
 							 select type;
-
 			return subclasses;
-		}
+		}*/
 
 
 		////////////////

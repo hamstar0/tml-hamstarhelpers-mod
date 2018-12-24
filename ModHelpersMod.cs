@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.IO;
 using Terraria;
@@ -42,6 +43,11 @@ namespace HamstarHelpers {
 
 
 		public override void Load() {
+			if( Environment.Version < new Version(4, 0, 30319, 42000) ) {
+				SystemHelpers.OpenUrl( "https://dotnet.microsoft.com/download/dotnet-framework-runtime" );
+				throw new FileNotFoundException( "Mod Helpers "+this.Version+" requires .NET v4.6+ to work." );
+			}
+
 			this.LoadInner();
 		}
 

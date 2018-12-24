@@ -49,7 +49,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.OwnerPlayerWho = ownerPlr != null ? ownerPlr.whoAmI : -1;
 			this.OwnerPlayerUID = ownerPlr != null ? PlayerIdentityHelpers.GetProperUniqueId(ownerPlr) : "";
 
-			this.Components = components.Select( c => c.InternalClone() ).ToList();
+			this.Components = components.SafeSelect( c => c.InternalClone() ).ToList();
 			this.ClearComponentCache();
 
 			if( !this.IsInitialized ) {

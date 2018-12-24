@@ -3,6 +3,7 @@ using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<PeriodicSyncEntityComponent>();
 
 			this.Entities = ents.Where( ent => ent.SyncFromClientServer.Item2 )
-				.Select( ent => new SerializableCustomEntity(ent) )
+				.SafeSelect( ent => new SerializableCustomEntity(ent) )
 				.ToArray();
 
 			/*if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {

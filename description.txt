@@ -1,8 +1,14 @@
 (Formerly Hamstar's Helpers)
 
-Supplies assorted helper functions and classes, and provides a handy in-game mod control panel UI for listing mods, reporting bugs, editing configs, and other customizations.
+Supplies numerous helper functions, classes, services, and utilities for mods to use. This mod also features helpful user controls:
+* In-game mod control panel UI for reporting bugs, editing mod configs, and seeing mods' status.
+* Mod browser now allows filtering mods by descriptive tags, made available from a database. Tags may be viewed and edited by anyone, for any mod.
+* Per-world mod locking available via. control panel to prevent playthrough mishaps.
 
-Now offers per-world mod locking and mod tagging and browsing! See the homepage for information.
+Modders: See the homepage for information on setting up your mod to receive bug reports!
+
+Credits:
+Nvar: Coal tile.
 
 Mod recommendations:
 ModdersToolkit = Tons of experimenting and tinkering options.
