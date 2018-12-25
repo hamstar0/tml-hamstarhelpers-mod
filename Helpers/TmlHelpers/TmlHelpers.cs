@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -17,17 +18,17 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		////////////////
 
 		public static string GetModUniqueName( Mod mod ) {
-			if( TmlHelpers.ModIds.ContainsKey(mod) ) { return TmlHelpers.ModIds[mod]; }
+			if( TmlHelpers.ModIds.ContainsKey( mod ) ) { return TmlHelpers.ModIds[mod]; }
 			TmlHelpers.ModIds[mod] = mod.Name + ":" + mod.Version;
-			return TmlHelpers.ModIds[ mod ];
+			return TmlHelpers.ModIds[mod];
 		}
 
 
 		////////////////
-		
-		public static void ExitToDesktop( bool save=true ) {
-			LogHelpers.Log( "Exiting to desktop "+(save?"with save...":"...") );
-			
+
+		public static void ExitToDesktop( bool save = true ) {
+			LogHelpers.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );
+
 			if( Main.netMode == 0 ) {
 				if( save ) { Main.SaveSettings(); }
 				SocialAPI.Shutdown();
@@ -40,7 +41,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			}
 		}
 
-		public static void ExitToMenu( bool save=true ) {
+		public static void ExitToMenu( bool save = true ) {
 			IngameOptions.Close();
 			Main.menuMode = 10;
 
@@ -69,5 +70,26 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				} ), (Action)null );
 			}
 		}
+
+
+		/*public static string[] AssertCallParams( object[] args, Type[] types, bool[] nullables = null ) {
+			if( args.Length != types.Length ) {
+				return new string[] { "Mismatched input argument quantity." };
+			}
+
+			var errors = new List<string>();
+
+			for( int i = 0; i < types.Length; i++ ) {
+				if( args[i] == null ) {
+					if( !types[i].IsClass || nullables == null || !nullables[i] ) {
+						errors.Add( "Invalid paramater #" + i + ": Expected " + types[i].Name + ", found null" );
+					}
+				} else if( args[i].GetType() != types[i] ) {
+					errors.Add( "Invalid parameter #" + i + ": Expected " + types[i].Name + ", found " + args[i].GetType() );
+				}
+			}
+
+			return errors.ToArray();
+		}*/
 	}
 }

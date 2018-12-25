@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -6,7 +7,38 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
+	[AttributeUsage( AttributeTargets.All, AllowMultiple = false, Inherited = true )]
+	public class NullableAttribute : Attribute { }
+
+
+
+
+
 	public partial class ReflectionHelpers {
+		public static object SafeCall( MethodInfo method, object methodContext, object[] args ) {
+			var paramInfos = method.GetParameters();
+
+			if( args.Length != paramInfos.Length ) {
+				throw new Exception( "Mismatched input argument quantity. (for call " + method.Name + ")" );
+			}
+			
+			for( int i = 0; i < paramInfos.Length; i++ ) {
+				Type paramType = paramInfos[i].ParameterType;
+
+				if( args[i] == null ) {
+					if( !paramType.IsClass || paramInfos[i].GetCustomAttribute<NullableAttribute>() == null ) {
+						throw new Exception( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null" );
+					}
+				} else if( args[i].GetType() != paramType ) {
+					throw new Exception( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+args[i].GetType() );
+				}
+			}
+
+			return method.Invoke( methodContext, args );
+		}
+
+		////
+
 		public static Type GetClassTypeFrom( string assembleName, string className ) {
 			return typeof( ModLoader ).Assembly.GetType( className );
 		}
