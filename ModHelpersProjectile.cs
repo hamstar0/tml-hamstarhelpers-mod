@@ -2,8 +2,6 @@
 using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;

@@ -3,14 +3,14 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
-	public abstract class HitRadiusNPCEntityComponent : CustomEntityComponent {
-		protected HitRadiusNPCEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+	public abstract class HitRadiusNpcEntityComponent : CustomEntityComponent {
+		protected HitRadiusNpcEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 
 		////////////////
 
 		public abstract float GetRadius( CustomEntity ent );
-		
+
 
 		////////////////
 

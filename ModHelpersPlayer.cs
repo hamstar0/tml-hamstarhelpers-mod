@@ -1,4 +1,6 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.CustomEntity;
+using HamstarHelpers.Components.CustomEntity.Components;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
@@ -8,6 +10,7 @@ using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
@@ -152,6 +155,21 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreUpdate() {
+			var mymod = (ModHelpersMod)this.mod;
+			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusPlayerEntityComponent>();
+
+			foreach( CustomEntity ent in ents ) {
+				var hitRadComp = ent.GetComponentByType<HitRadiusPlayerEntityComponent>();
+				float radius = hitRadComp.GetRadius( ent );
+
+				if( Vector2.Distance( ent.Core.Center, this.player.Center ) <= radius ) {
+					int dmg = 0;
+					if( hitRadComp.PreHurt( ent, this.player, ref dmg ) ) {
+						hitRadComp.PostHurt( ent, this.player, dmg );
+					}
+				}
+			}
+
 			if( Main.netMode == 2 ) {
 				this.Logic.PreUpdateServer( (ModHelpersMod)this.mod, this.player );
 			} else if( Main.netMode == 1 ) {
@@ -206,6 +224,6 @@ namespace HamstarHelpers {
 				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (3) - " + e.ToString() );
 				return;
 			}
-}
+		}
 	}
 }
