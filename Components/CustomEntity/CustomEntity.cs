@@ -1,13 +1,10 @@
-﻿using HamstarHelpers.Components.CustomEntity.Components;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.NetProtocols;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Terraria;
 
@@ -76,64 +73,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected void ClearComponentCache() {
-			this.ComponentsByTypeName.Clear();
-			this.AllComponentsByTypeName.Clear();
-		}
-
-
-		////////////////
-
-		public T GetComponentByType<T>() where T : CustomEntityComponent {
-			if( this.ComponentsByTypeName.Count != this.Components.Count ) {
-				this.RefreshComponentTypeNames();
-			}
-
-			int idx;
-
-			if( !this.AllComponentsByTypeName.TryGetValue( typeof(T).Name, out idx ) ) {
-				return null;
-			}
-			return (T)this.Components[ idx ];
-		}
-
-		public CustomEntityComponent GetComponentByName( string name ) {
-			if( this.ComponentsByTypeName.Count != this.Components.Count ) {
-				this.RefreshComponentTypeNames();
-			}
-
-			int idx;
-
-			if( !this.AllComponentsByTypeName.TryGetValue( name, out idx ) ) {
-				return null;
-			}
-			return this.Components[idx];
-		}
-
-
-		////////////////
-
-		public void SyncToAll() {
-			if( !this.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Not initialized." );
-			}
-			if( !SaveableEntityComponent.HaveAllEntitiesLoaded ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Entities not yet loaded." );
-				return;
-			}
-
-			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+")" );
-			}
-
-			if( Main.netMode == 0 ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll (" + this.GetType().Name + ") - Multiplayer only." );
-			}
-
-			if( Main.netMode == 2 ) {
-				CustomEntityProtocol.SendToClients( this );
-			} else if( Main.netMode == 1 ) {
-				CustomEntityProtocol.SyncToAll( this );
+		internal void InternalWorldInitialize() {
+			for( int i=0; i<this.Components.Count; i++ ) {
+				this.Components[i].InternalOnAddToWorld( this );
 			}
 		}
 
@@ -162,16 +104,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 				break;
 			}
-		}
-
-
-		////////////////
-
-		protected override void WriteStream( BinaryWriter writer ) {
-			throw new NotImplementedException( "WriteStream not implemented." );
-		}
-		protected override void ReadStream( BinaryReader reader ) {
-			throw new NotImplementedException( "ReadStream not implemented." );
 		}
 
 

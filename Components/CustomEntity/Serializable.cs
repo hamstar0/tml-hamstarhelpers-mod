@@ -83,7 +83,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				throw new HamstarException( "!ModHelpers.SerializableCustomEntity.Convert - Not initialized." );
 			}
 
-			Type entType = CustomEntityManager.GetEntityType( this.MyTypeName );
+			Type entType = CustomEntityManager.GetTypeByName( this.MyTypeName );
 
 			if( entType == null ) {
 				throw new HamstarException( this.MyTypeName + " does not exist." );

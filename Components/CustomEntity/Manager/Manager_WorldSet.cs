@@ -11,7 +11,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
 		public static void AddToWorld( CustomEntity ent ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
-			int who = mngr.EntitiesByIndexes.Count + 1;
+			int who = mngr.WorldEntitiesByIndexes.Count + 1;
 
 			if( !ent.SyncFromClientServer.Item1 && !ent.SyncFromClientServer.Item2 ) {
 				who = -who;
@@ -28,9 +28,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 			CustomEntity realEnt = ent;
 
-			if( mngr.EntitiesByIndexes.ContainsKey(who) ) {
+			if( mngr.WorldEntitiesByIndexes.ContainsKey(who) ) {
 				throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - "
-					+ "Attempting to add "+ent.ToString()+" to slot "+who+" occupied by "+mngr.EntitiesByIndexes[who].ToString() );
+					+ "Attempting to add "+ent.ToString()+" to slot "+who+" occupied by "+mngr.WorldEntitiesByIndexes[who].ToString() );
 			}
 
 			if( ent is SerializableCustomEntity ) {
@@ -45,11 +45,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 				compType = component.GetType();
 				lock( CustomEntityManager.MyLock ) {
 					do {
-						if( !mngr.EntitiesByComponentType.ContainsKey( compType ) ) {
-							mngr.EntitiesByComponentType[compType] = new HashSet<int>();
+						if( !mngr.WorldEntitiesByComponentType.ContainsKey( compType ) ) {
+							mngr.WorldEntitiesByComponentType[compType] = new HashSet<int>();
 						}
 
-						mngr.EntitiesByComponentType[compType].Add( who );
+						mngr.WorldEntitiesByComponentType[compType].Add( who );
 
 						compType = compType.BaseType;
 					} while( compType != baseType );
@@ -57,12 +57,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			realEnt.Core.whoAmI = who;
-			mngr.EntitiesByIndexes[ who ] = realEnt;
+			mngr.WorldEntitiesByIndexes[ who ] = realEnt;
 
-			var saveComp = realEnt.GetComponentByType<SaveableEntityComponent>();
-			if( saveComp != null ) {
-				saveComp.InternalOnLoad( realEnt );
-			}
+			realEnt.InternalWorldInitialize();
 
 			// Sync also
 			if( !skipSync ) {
@@ -88,6 +85,51 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			return realEnt;
+		}
+
+
+		////////////////
+
+		public static void RemoveEntity( CustomEntity ent ) {
+			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
+
+			CustomEntityManager.RemoveEntityByWho( ent.Core.whoAmI );
+		}
+
+		public static void RemoveEntityByWho( int who ) {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+
+			if( !mngr.WorldEntitiesByIndexes.ContainsKey( who ) ) { return; }
+
+			Type compType;
+			Type baseType = typeof( CustomEntityComponent );
+
+			lock( CustomEntityManager.MyLock ) {
+				IList<CustomEntityComponent> entComponents = mngr.WorldEntitiesByIndexes[who].InternalComponents;
+
+				foreach( CustomEntityComponent component in entComponents ) {
+					compType = component.GetType();
+					do {
+						if( mngr.WorldEntitiesByComponentType.ContainsKey( compType ) ) {
+							mngr.WorldEntitiesByComponentType[compType].Remove( who );
+						}
+
+						compType = compType.BaseType;
+					} while( compType != baseType );
+				}
+
+				mngr.WorldEntitiesByIndexes.Remove( who );
+			}
+		}
+
+
+		public static void ClearAllEntities() {
+			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
+
+			lock( CustomEntityManager.MyLock ) {
+				mngr.WorldEntitiesByIndexes.Clear();
+				mngr.WorldEntitiesByComponentType.Clear();
+			}
 		}
 	}
 }

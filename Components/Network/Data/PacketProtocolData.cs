@@ -25,6 +25,16 @@ namespace HamstarHelpers.Components.Network.Data {
 		}
 
 
+
+		////////////////
+
+		protected PacketProtocolData( PacketProtocolDataConstructorLock ctorLock ) {
+			if( ctorLock == null ) {
+				throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Must be factory generated or cloned." );
+			}
+		}
+
+
 		////////////////
 
 		/// <summary>

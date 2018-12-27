@@ -18,8 +18,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 		private IDictionary<string, int> EntTypeIds = new Dictionary<string, int>();
 		private IDictionary<int, Type> TypeIdEnts = new Dictionary<int, Type>();
 
-		private readonly IDictionary<int, CustomEntity> EntitiesByIndexes = new Dictionary<int, CustomEntity>();
-		private readonly IDictionary<Type, ISet<int>> EntitiesByComponentType = new Dictionary<Type, ISet<int>>();
+		private readonly IDictionary<int, CustomEntity> WorldEntitiesByIndexes = new Dictionary<int, CustomEntity>();
+		private readonly IDictionary<Type, ISet<int>> WorldEntitiesByComponentType = new Dictionary<Type, ISet<int>>();
 
 		private Func<bool> OnTickGet;
 
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !LoadHelpers.IsWorldBeingPlayed() ) { return; }
 
 			lock( CustomEntityManager.MyLock ) {
-				var ents = this.EntitiesByIndexes.Values.ToArray();
+				var ents = this.WorldEntitiesByIndexes.Values.ToArray();
 
 				foreach( CustomEntity ent in ents ) {
 					ent.Update();

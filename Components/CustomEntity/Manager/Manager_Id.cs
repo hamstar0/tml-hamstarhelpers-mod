@@ -5,13 +5,13 @@ using System;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public static Type GetTypeById( int typeId ) {
+		public static int GetIdByTypeName( string name ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
-			if( !mngr.TypeIdEnts.ContainsKey( typeId ) ) {
-				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeById - No CustomEntity of type id "+typeId );
+			if( !mngr.EntTypeIds.ContainsKey( name ) ) {
+				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetIdByTypeName - No CustomEntity of type " + name );
 			}
-			return mngr.TypeIdEnts[typeId];
+			return mngr.EntTypeIds[ name ];
 		}
 		
 		public static Type GetTypeByName( string name ) {
@@ -25,13 +25,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 		}
 
-		public static int GetIdByTypeName( string name ) {
+		public static Type GetTypeById( int typeId ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
-			if( !mngr.EntTypeIds.ContainsKey( name ) ) {
-				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetIdByTypeName - No CustomEntity of type " + name );
+			if( !mngr.TypeIdEnts.ContainsKey( typeId ) ) {
+				throw new HamstarException( "!ModHelpers.CustomEntityManager.GetTypeById - No CustomEntity of type id "+typeId );
 			}
-			return mngr.EntTypeIds[ name ];
+			return mngr.TypeIdEnts[typeId];
 		}
 	}
 }

@@ -25,15 +25,15 @@ namespace HamstarHelpers.Components.CustomEntity {
 			// Reset any data from previous games
 			Promises.AddPostWorldUnloadEachPromise( () => {
 				lock( CustomEntityManager.MyLock ) {
-					this.EntitiesByIndexes.Clear();
-					this.EntitiesByComponentType.Clear();
+					this.WorldEntitiesByIndexes.Clear();
+					this.WorldEntitiesByComponentType.Clear();
 				}
 			} );
 
 			// Bind 'data dump' hotkey
 			DataDumper.SetDumpSource( "CustomEntityList", () => {
 				lock( CustomEntityManager.MyLock ) {
-					return string.Join( "\n  ", this.EntitiesByIndexes.OrderBy( kv => kv.Key )
+					return string.Join( "\n  ", this.WorldEntitiesByIndexes.OrderBy( kv => kv.Key )
 									.Select( kv => kv.Key + ": " + kv.Value?.ToString() ?? "null" ) );
 				}
 			} );
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			// Refresh entity owners on player connect and sync entities to player
 			if( Main.netMode == 2 ) {
 				Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ServerConnectValidator, ( args ) => {
-					foreach( var ent in this.EntitiesByIndexes.Values ) {
+					foreach( var ent in this.WorldEntitiesByIndexes.Values ) {
 						ent.RefreshOwnerWho();
 					}
 

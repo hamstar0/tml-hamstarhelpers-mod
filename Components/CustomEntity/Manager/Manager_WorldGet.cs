@@ -7,28 +7,11 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public partial class CustomEntityManager {
-		public static Type GetEntityType( string name ) {
-			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
-			int id;
-			Type mytype;
-
-			if( !mngr.EntTypeIds.TryGetValue( name, out id ) ) {
-				return null;
-			}
-			if( !mngr.TypeIdEnts.TryGetValue( id, out mytype ) ) {
-				return null;
-			}
-			return mytype;
-		}
-
-
-		////////////////
-
 		public static bool IsInWorld( CustomEntity myent ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			CustomEntity ent = null;
-			mngr.EntitiesByIndexes.TryGetValue( myent.Core.WhoAmI, out ent );
+			mngr.WorldEntitiesByIndexes.TryGetValue( myent.Core.WhoAmI, out ent );
 
 			return ent == myent;
 		}
@@ -36,11 +19,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		public static CustomEntity GetEntityByWho( int who ) {
+		public static CustomEntity GetEntityByWho( int whoAmI ) {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 
 			CustomEntity ent = null;
-			mngr.EntitiesByIndexes.TryGetValue( who, out ent );
+			mngr.WorldEntitiesByIndexes.TryGetValue( whoAmI, out ent );
 			return ent;
 		}
 
@@ -53,8 +36,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 			Type currType = typeof( T );
 
 			lock( CustomEntityManager.MyLock ) {
-				if( !mngr.EntitiesByComponentType.TryGetValue( currType, out entIdxs ) ) {
-					foreach( var kv in mngr.EntitiesByComponentType ) {
+				if( !mngr.WorldEntitiesByComponentType.TryGetValue( currType, out entIdxs ) ) {
+					foreach( var kv in mngr.WorldEntitiesByComponentType ) {
 						if( kv.Key.IsSubclassOf( currType ) ) {
 							entIdxs.UnionWith( kv.Value );
 						}
@@ -66,7 +49,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 
 				return new HashSet<CustomEntity>(
-					entIdxs.Select( i => (CustomEntity)mngr.EntitiesByIndexes[i] )
+					entIdxs.Select( i => (CustomEntity)mngr.WorldEntitiesByIndexes[i] )
 				);
 			}
 		}
@@ -77,7 +60,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 			var ents = new HashSet<T>();
 
-			foreach( CustomEntity ent in mngr.EntitiesByIndexes.Values ) {
+			foreach( CustomEntity ent in mngr.WorldEntitiesByIndexes.Values ) {
 				if( !(ent is T) ) { continue; }
 
 				if( Main.netMode == 2 ) {

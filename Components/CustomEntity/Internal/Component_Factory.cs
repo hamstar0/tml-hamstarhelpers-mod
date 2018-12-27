@@ -8,7 +8,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		protected abstract class CustomEntityComponentFactory<T> : Factory<T> where T : CustomEntityComponent {
 			protected override void Initialize( T data ) {
 				this.InitializeComponent( data );
-				data.PostInitialize();
+				data.Initialize();
 			}
 
 			protected abstract void InitializeComponent( T data );

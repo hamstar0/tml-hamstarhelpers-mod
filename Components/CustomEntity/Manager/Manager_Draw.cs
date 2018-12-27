@@ -26,7 +26,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal void PreDrawAll( SpriteBatch sb ) {
 			CustomEntity[] ents;
 			lock( CustomEntityManager.MyLock ) {
-				ents = this.EntitiesByIndexes.Values.ToArray();
+				ents = this.WorldEntitiesByIndexes.Values.ToArray();
 			}
 
 			foreach( CustomEntity ent in ents ) {
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal void DrawAll( SpriteBatch sb ) {
 			CustomEntity[] ents;
 			lock( CustomEntityManager.MyLock ) {
-				ents = this.EntitiesByIndexes.Values.ToArray();
+				ents = this.WorldEntitiesByIndexes.Values.ToArray();
 			}
 
 			foreach( CustomEntity ent in ents ) {
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		private void PostDrawAll( SpriteBatch sb ) {
 			CustomEntity[] ents;
 			lock( CustomEntityManager.MyLock ) {
-				ents = this.EntitiesByIndexes.Values.ToArray();
+				ents = this.WorldEntitiesByIndexes.Values.ToArray();
 			}
 
 			foreach( CustomEntity ent in ents ) {

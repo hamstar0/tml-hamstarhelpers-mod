@@ -5,31 +5,11 @@ using System.IO;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntityComponent : PacketProtocolData {
-		public class StaticInitializer {
-			internal StaticInitializer() { }
-			internal void StaticInitializationWrapper() {
-				this.StaticInitialize();
-			}
+		protected virtual void Initialize() { }
 
-			protected virtual void StaticInitialize() { }
+		internal void InternalInitialize() {
+			this.Initialize();
 		}
-
-
-
-		////////////////
-
-		protected virtual void PostInitialize() { }
-
-		internal void InternalPostInitialize() {
-			this.PostInitialize();
-		}
-
-
-		////////////////
-
-		public virtual void UpdateSingle( CustomEntity ent ) { }
-		public virtual void UpdateClient( CustomEntity ent ) { }
-		public virtual void UpdateServer( CustomEntity ent ) { }
 
 
 		////////////////

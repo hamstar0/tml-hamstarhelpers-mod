@@ -69,7 +69,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 					this.ReadIntoComponentFromJson( comp, obj, serializer );
 					//var comp = obj.ToObject( compType, serializer );
 					
-					comp.InternalPostInitialize();
+					comp.InternalInitialize();
 
 					components.Add( comp );
 					i++;

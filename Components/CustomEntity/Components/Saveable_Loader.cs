@@ -97,7 +97,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		protected virtual void OnLoadClient( CustomEntity ent ) { }
 		protected virtual void OnLoadServer( CustomEntity ent ) { }
 
-		internal void InternalOnLoad( CustomEntity ent ) {
+		protected sealed override void OnAddToWorld( CustomEntity ent ) {
 			if( Main.netMode == 0 ) {
 				this.OnLoadSingle( ent );
 			} else if( Main.netMode == 1 ) {
