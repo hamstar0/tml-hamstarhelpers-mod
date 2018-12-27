@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,6 +22,37 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			if( TmlHelpers.ModIds.ContainsKey( mod ) ) { return TmlHelpers.ModIds[mod]; }
 			TmlHelpers.ModIds[mod] = mod.Name + ":" + mod.Version;
 			return TmlHelpers.ModIds[mod];
+		}
+
+
+		public static IDictionary<Mod, Version> FindDependencyModMajorVersionMismatches( Mod mod ) {
+			var buildEditor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+			var modRefs = buildEditor.ModReferences;
+			var badModDeps = new Dictionary<Mod, Version>();
+
+			foreach( var kv in modRefs ) {
+				Mod depMod = ModLoader.GetMod( kv.Key );
+				if( depMod == null ) { continue; }
+
+				if( depMod.Version.Major != kv.Value.Major ) {
+					badModDeps[ depMod ] = kv.Value;
+				}
+			}
+
+			return badModDeps;
+		}
+
+
+		public static string ReportBadDependencyMods( Mod mod ) {
+			IDictionary<Mod, Version> badDepMods = TmlHelpers.FindDependencyModMajorVersionMismatches( mod );
+
+			if( badDepMods.Count != 0 ) {
+				IEnumerable<string> badDepModsList = badDepMods.SafeSelect(
+					kv => kv.Key.DisplayName + " (needs " + kv.Value.ToString() + ", is " + kv.Key.Version.ToString() + ")"
+				);
+				return mod.DisplayName+" ("+mod.Name+") is out of date with its dependency mod(s): "+string.Join(", \n", badDepModsList);
+			}
+			return null;
 		}
 
 

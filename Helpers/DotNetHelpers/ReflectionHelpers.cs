@@ -15,6 +15,12 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 
 	public partial class ReflectionHelpers {
+		public readonly static BindingFlags MostAccess = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+
+
+
+		////////////////
+
 		public static object SafeCall( MethodInfo method, object methodContext, object[] args ) {
 			var paramInfos = method.GetParameters();
 
@@ -87,7 +93,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static bool Get<T>( Object instance, string propOrFieldName, out T val ) {
 			if( !ReflectionHelpers.GetField<T>( instance, propOrFieldName, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( instance, propOrFieldName, out val );
+				return ReflectionHelpers.GetProperty<T>( instance, propOrFieldName, ReflectionHelpers.MostAccess, out val );
 			}
 			return true;
 		}
@@ -101,7 +107,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		public static bool Get<T>( Type objType, Object instance, string propOrFieldName, out T val ) {
 			if( !ReflectionHelpers.GetField<T>( objType, instance, propOrFieldName, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( objType, instance, propOrFieldName, out val );
+				return ReflectionHelpers.GetProperty<T>( objType, instance, propOrFieldName, ReflectionHelpers.MostAccess, out val );
 			}
 			return true;
 		}
@@ -121,7 +127,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			FieldInfo field = objtype.GetField( fieldName );
+			FieldInfo field = objtype.GetField( fieldName, ReflectionHelpers.MostAccess );
 			if( field == null ) { return false; }
 			
 			fieldVal = (T)field.GetValue( instance );
@@ -143,7 +149,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static bool GetField<T>( Type objType, Object instance, string fieldName, out T fieldVal ) {
 			fieldVal = default( T );
 
-			FieldInfo field = objType.GetField( fieldName );
+			FieldInfo field = objType.GetField( fieldName, ReflectionHelpers.MostAccess );
 			if( field == null ) { return false; }
 
 			fieldVal = (T)field.GetValue( instance );
@@ -166,7 +172,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			if( instance == null ) { return false; }
 
 			Type objType = instance.GetType();
-			FieldInfo field = objType.GetField( fieldName );
+			FieldInfo field = objType.GetField( fieldName, ReflectionHelpers.MostAccess );
 			if( field == null ) { return false; }
 			
 			field.SetValue( instance, value );
@@ -187,7 +193,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static bool SetField( Type objType, Object instance, string fieldName, object value ) {
 			if( instance == null ) { return false; }
 
-			FieldInfo field = objType.GetField( fieldName );
+			FieldInfo field = objType.GetField( fieldName, ReflectionHelpers.MostAccess );
 			if( field == null ) { return false; }
 
 			field.SetValue( instance, value );
@@ -212,7 +218,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			if( instance == null ) { return false; }
 
 			Type objType = instance.GetType();
-			PropertyInfo prop = objType.GetProperty( propName );
+			PropertyInfo prop = objType.GetProperty( propName, ReflectionHelpers.MostAccess );
 			if( prop == null ) { return false; }
 
 			propVal = (T)prop.GetValue( instance );
@@ -234,7 +240,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static bool GetProperty<T>( Type objType, Object instance, string propName, out T propVal ) {
 			propVal = default( T );
 
-			PropertyInfo prop = objType.GetProperty( propName );
+			PropertyInfo prop = objType.GetProperty( propName, ReflectionHelpers.MostAccess );
 			if( prop == null ) { return false; }
 
 			propVal = (T)prop.GetValue( instance );
@@ -257,8 +263,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			FieldInfo field = objtype.GetField( propName );
-			PropertyInfo prop = objtype.GetProperty( propName );
+			PropertyInfo prop = objtype.GetProperty( propName, ReflectionHelpers.MostAccess );
 			if( prop == null ) { return false; }
 			
 			prop.SetValue( instance, value );
@@ -273,7 +278,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			if( instance == null ) { return false; }
 
 			Type objtype = instance.GetType();
-			MethodInfo method = objtype.GetMethod( methodName );
+			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess );
 			if( method == null ) { return false; }
 
 			method.Invoke( instance, args );
