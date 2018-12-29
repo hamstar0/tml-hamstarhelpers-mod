@@ -276,6 +276,7 @@
     <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Placeables.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_Defs_Items_Weapons.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_Defs_NPCs.cs" />
+    <Compile Include="Services\GameData\BossData.cs" />
     <Compile Include="Services\Menus\MenuContextService.cs" />
     <Compile Include="Services\Menus\MenuContextService_API.cs" />
     <Compile Include="Services\Menus\MenuContextService_API_UI.cs" />
