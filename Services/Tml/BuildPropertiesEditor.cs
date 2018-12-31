@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
@@ -90,27 +91,50 @@ namespace HamstarHelpers.Services.Tml {
 
 		public IDictionary<string, Version> ModReferences {
 			get {
-				var modRefs = (object[])this.GetField( "modReferences" );
-				var dict = new Dictionary<string, Version>( modRefs.Length );
+				var modRefsRaw = (object)this.GetField( "modReferences" );
+				int length;
+
+				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
+					throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReferences" );
+				}
+				
+				var dict = new Dictionary<string, Version>( length );
 				string name;
 				Version vers;
 				
-				foreach( var modRef in modRefs ) {
+				for( int i=0; i<length; i++ ) {
+					object modRef;
+					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
+						throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReference array value "+i );
+					}
+
 					if( !ReflectionHelpers.GetField( modRef, "mod", out name ) ) { continue; }
 					if( !ReflectionHelpers.GetField( modRef, "target", out vers ) ) { continue; }
-					dict[name] = vers;
+					dict[ name ] = vers;
 				}
 				return dict;
 			}
 		}
+
 		public IDictionary<string, Version> WeakReferences {
 			get {
-				var modRefs = (object[])this.GetField( "weakReferences" );
-				var dict = new Dictionary<string, Version>( modRefs.Length );
+				var modRefsRaw = (object)this.GetField( "modReferences" );
+				int length;
+
+				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
+					throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReferences" );
+				}
+
+				var dict = new Dictionary<string, Version>( length );
 				string name;
 				Version vers;
 
-				foreach( var modRef in modRefs ) {
+				for( int i = 0; i < length; i++ ) {
+					object modRef;
+					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
+						throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReference array value " + i );
+					}
+
 					if( !ReflectionHelpers.GetField( modRef, "mod", out name ) ) { continue; }
 					if( !ReflectionHelpers.GetField( modRef, "target", out vers ) ) { continue; }
 					dict[name] = vers;

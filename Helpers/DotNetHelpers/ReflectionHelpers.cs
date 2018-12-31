@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -277,8 +278,12 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			returnVal = default( T );
 			if( instance == null ) { return false; }
 
+			Type[] paramTypes = args?.Select( o => o.GetType() ).ToArray()
+				?? new Type[] { };
+
 			Type objtype = instance.GetType();
-			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess );
+			//MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess );
+			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess, null, paramTypes, null );
 			if( method == null ) { return false; }
 
 			method.Invoke( instance, args );
@@ -289,8 +294,12 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			returnVal = default( T );
 			if( instance == null ) { return false; }
 
+			Type[] paramTypes = args?.Select( o => o.GetType() ).ToArray()
+				?? new Type[] { };
+
 			Type objtype = instance.GetType();
-			MethodInfo method = objtype.GetMethod( methodName, flags );
+			//MethodInfo method = objtype.GetMethod( methodName, flags );
+			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess, null, new Type[] { typeof( int ) }, null );
 			if( method == null ) { return false; }
 
 			method.Invoke( instance, args );
