@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Reflection;
@@ -25,11 +26,24 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 		}
 
 
+		[Obsolete( "use IsMainSpriteBatchBegun(out bool)" )]
 		public static bool IsMainSpriteBatchBegun() {
-			if( ModHelpersMod.Instance?.XnaHelpers?.MainSpriteBatchBegun == null ) {
+			return (bool)ModHelpersMod.Instance?.XnaHelpers?.MainSpriteBatchBegun?.GetValue( Main.spriteBatch );
+		}
+
+		public static bool IsMainSpriteBatchBegun( out bool isBegun ) {
+			var mymod = ModHelpersMod.Instance;
+			object isBegunRaw = mymod?.XnaHelpers?.MainSpriteBatchBegun?.GetValue( Main.spriteBatch );
+
+			if( isBegunRaw != null ) {
+				LogHelpers.LogOnce( "!ModHelpers.XnaHelpers.IsMainSpriteBatchBegun - " +
+						"ModHelpersMod.Instance:" + mymod+", XnaHelpers:"+mymod?.XnaHelpers+", MainSpriteBatchBegun:"+mymod?.XnaHelpers?.MainSpriteBatchBegun );
+				isBegun = (bool)isBegunRaw;
+				return true;
+			} else {
+				isBegun = false;
 				return false;
 			}
-			return (bool)ModHelpersMod.Instance.XnaHelpers.MainSpriteBatchBegun.GetValue( Main.spriteBatch );
 		}
 
 

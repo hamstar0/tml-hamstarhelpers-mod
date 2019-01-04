@@ -7,7 +7,6 @@ using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.CustomEntity;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
