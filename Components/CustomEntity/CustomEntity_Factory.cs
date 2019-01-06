@@ -34,14 +34,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 				ent.Core = ent.CreateCore( this );
 				ent.Components = ent.CreateComponents( this );
 
-				this.InitializeEntity( ent );
-
 				ent.InternalPostInitialize();
 			}
-
-			////
-
-			protected virtual void InitializeEntity( T ent ) { }
 		}
 
 

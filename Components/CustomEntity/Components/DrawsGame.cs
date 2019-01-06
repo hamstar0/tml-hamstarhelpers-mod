@@ -33,10 +33,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				data.TexturePath = this.TexturePath;
 				data.FrameCount = this.FrameCount;
 				
-				this.InitializeDerivedComponent( data );
+				this.InitializeDrawsInGameEntityComponent( data );
 			}
 
-			protected virtual void InitializeDerivedComponent( T data ) { }
+			protected virtual void InitializeDrawsInGameEntityComponent( T data ) { }
 		}
 
 

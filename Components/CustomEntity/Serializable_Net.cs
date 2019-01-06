@@ -9,7 +9,8 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	internal partial class SerializableCustomEntity : CustomEntity {
-		public override Tuple<bool, bool> SyncFromClientServer => Tuple.Create( false, false );
+		public override bool SyncFromClient => false;
+		public override bool SyncFromServer => false;
 
 
 		protected override void WriteStream( BinaryWriter writer ) {

@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 			// Update ping every 15 seconds
 			if( mymod.Config.IsServerGaugingAveragePing && this.TestPing++ > (60*15) ) {
-				PacketProtocol.QuickSendToServer<PingProtocol>();
+				PacketProtocolSentToEither.QuickSendToServer<PingProtocol>();
 				this.TestPing = 0;
 			}
 		}

@@ -6,7 +6,7 @@ using System;
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntityComponent : PacketProtocolData {
 		protected abstract class CustomEntityComponentFactory<T> : Factory<T> where T : CustomEntityComponent {
-			protected override void Initialize( T data ) {
+			protected sealed override void Initialize( T data ) {
 				this.InitializeComponent( data );
 				data.Initialize();
 			}

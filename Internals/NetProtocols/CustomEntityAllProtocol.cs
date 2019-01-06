@@ -22,7 +22,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void InitializeServerSendData( int fromWho ) {
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<PeriodicSyncEntityComponent>();
 
-			this.Entities = ents.Where( ent => ent.SyncFromClientServer.Item2 )
+			this.Entities = ents.Where( ent => ent.SyncFromServer )
 				.SafeSelect( ent => new SerializableCustomEntity(ent) )
 				.ToArray();
 

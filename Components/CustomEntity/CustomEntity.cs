@@ -3,7 +3,6 @@ using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -48,7 +47,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		[PacketProtocolIgnore]
 		[JsonIgnore]
-		public abstract Tuple<bool, bool> SyncFromClientServer { get; }
+		public abstract bool SyncFromClient { get; }
+		[PacketProtocolIgnore]
+		[JsonIgnore]
+		public abstract bool SyncFromServer { get; }
 
 		[PacketProtocolIgnore]
 		[JsonIgnore]

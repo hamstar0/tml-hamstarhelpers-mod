@@ -39,10 +39,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				data.Scale = this.Scale;
 				data.Zooms = this.Zooms;
 
-				this.InitializeDerivedComponent( data );
+				this.InitializeDrawsOnMapEntityComponent( data );
 			}
-			
-			protected virtual void InitializeDerivedComponent( T data ) { }
+
+			protected virtual void InitializeDrawsOnMapEntityComponent( T data ) { }
 		}
 
 

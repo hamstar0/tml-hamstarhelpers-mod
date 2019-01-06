@@ -21,10 +21,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			protected sealed override void InitializeComponent( T data ) {
 				data.AsJson = this.AsJson;
 
-				this.InitializeDerivedComponent( data );
+				this.InitializeSaveableEntityComponent( data );
 			}
 
-			protected virtual void InitializeDerivedComponent( T data ) { }
+			protected virtual void InitializeSaveableEntityComponent( T data ) { }
 		}
 
 

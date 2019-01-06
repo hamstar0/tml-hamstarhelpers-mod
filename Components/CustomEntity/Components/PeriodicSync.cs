@@ -48,13 +48,13 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public override void UpdateClient( CustomEntity ent ) {
-			if( ent.SyncFromClientServer.Item1 ) {
+			if( ent.SyncFromClient ) {
 				this.UpdateMe( ent );
 			}
 		}
 
 		public override void UpdateServer( CustomEntity ent ) {
-			if( ent.SyncFromClientServer.Item2 ) {
+			if( ent.SyncFromServer ) {
 				this.UpdateMe( ent );
 			}
 		}

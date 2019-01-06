@@ -116,7 +116,6 @@
     <Compile Include="Components\UI\UITheme.cs" />
     <Compile Include="Components\UI\UITheme_Default.cs" />
     <Compile Include="Components\UI\UITheme_Vanilla.cs" />
-    <Compile Include="Components\_Players\_PlayerData.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffHelpers.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffIdentityHelpers.cs" />
