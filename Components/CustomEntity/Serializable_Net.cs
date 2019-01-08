@@ -8,14 +8,15 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	internal partial class SerializableCustomEntity : CustomEntity {
+	internal sealed partial class SerializableCustomEntity : CustomEntity {
 		public override bool SyncFromClient => false;
 		public override bool SyncFromServer => false;
 
 
 		protected override void WriteStream( BinaryWriter writer ) {
 			if( !this.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.SerializableCustomEntity.WriteStream - Not initialized." );
+				//throw new HamstarException( "!ModHelpers.SerializableCustomEntity.WriteStream - Not initialized." );
+				throw new HamstarException( "Not initialized." );
 			}
 
 			if( Main.netMode != 1 ) {
@@ -65,12 +66,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Type entType = CustomEntityManager.GetTypeById( typeId );
 			if( entType == null ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id " + typeId );
+				//throw new HamstarException( "!ModHelpers.CustomEntity.ReadStream - Invalid entity type id " + typeId );
+				throw new HamstarException( "Invalid entity type id " + typeId );
 			}
 
 			Player plr = ownerWho == (byte)255 ? null : Main.player[ownerWho];
 
-			var myentTemplate = (CustomEntity)CustomEntity.CreateRaw( entType );
+			var myentTemplate = (CustomEntity)CustomEntity.CreateRawUninitialized( entType );
 			CustomEntityCore core = myentTemplate.CreateCoreTemplate();
 			IList<CustomEntityComponent> components = myentTemplate.CreateComponentsTemplate();
 

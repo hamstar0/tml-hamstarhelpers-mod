@@ -22,15 +22,19 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		public static CustomEntity AddToWorld( int who, CustomEntity ent, bool skipSync = false ) {
-			if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Null ent not allowed." ); }
-			if( !ent.IsInitialized ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Initialized ents only." ); }
+			//if( ent == null ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Null ent not allowed." ); }
+			//if( !ent.IsInitialized ) { throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - Initialized ents only." ); }
+			if( ent == null ) { throw new HamstarException( "Null ent not allowed." ); }
+			if( !ent.IsInitialized ) { throw new HamstarException( "Initialized ents only." ); }
 
 			CustomEntityManager mngr = ModHelpersMod.Instance.CustomEntMngr;
 			CustomEntity realEnt = ent;
 
 			if( mngr.WorldEntitiesByIndexes.ContainsKey(who) ) {
-				throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - "
-					+ "Attempting to add "+ent.ToString()+" to slot "+who+" occupied by "+mngr.WorldEntitiesByIndexes[who].ToString() );
+				//throw new HamstarException( "!ModHelpers.CustomEntityManager.AddToWorld - "
+				//	+ "Attempting to add "+ent.ToString()+" to slot "+who+" occupied by "+mngr.WorldEntitiesByIndexes[who].ToString() );
+				throw new HamstarException( "Attempting to add "+ent.ToString()+" to slot "+who+" occupied by "
+						+ mngr.WorldEntitiesByIndexes[who].ToString() );
 			}
 
 			if( ent is SerializableCustomEntity ) {

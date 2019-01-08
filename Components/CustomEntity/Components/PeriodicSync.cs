@@ -10,11 +10,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public const int RandomSyncDurationMax = 60 * 15;	// 15 minutes
 
 
+
 		////////////////
 
 		public static PeriodicSyncEntityComponent CreatePeriodicSyncEntityComponent() {
-			return (PeriodicSyncEntityComponent)PacketProtocolData.CreateRaw( typeof( PeriodicSyncEntityComponent ) );
+			var comp = (PeriodicSyncEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof( PeriodicSyncEntityComponent ) );
+			comp.OnInitialize();
+			return comp;
 		}
+
 
 		////////////////
 
@@ -43,6 +47,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		protected PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
 			this.NextSync = PeriodicSyncEntityComponent.GetRandomSyncDuration();
 		}
+
+		public override void OnInitialize() { }
 
 
 		////////////////

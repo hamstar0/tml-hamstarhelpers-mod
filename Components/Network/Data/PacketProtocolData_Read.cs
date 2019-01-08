@@ -117,10 +117,11 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 			
 			if( fieldType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-				var data = PacketProtocolData.CreateRaw( fieldType );
+				var data = PacketProtocolData.CreateRawUninitialized( fieldType );
 
 				data.ReadStream( reader );
-				
+				data.OnInitialize();
+
 				return data;
 
 			} else if( ( isEnumerable || typeof( IEnumerable ).IsAssignableFrom( fieldType ) )
@@ -139,9 +140,11 @@ namespace HamstarHelpers.Components.Network.Data {
 
 				if( innerType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					for( int i = 0; i < length; i++ ) {
-						var item = PacketProtocolData.CreateRaw( innerType );
+						var item = PacketProtocolData.CreateRawUninitialized( innerType );
 
 						item.ReadStream( reader );
+						item.OnInitialize();
+
 						arr.SetValue( item, i );
 					}
 				} else {

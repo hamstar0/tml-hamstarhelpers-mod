@@ -120,6 +120,7 @@
     <Compile Include="Helpers\BuffHelpers\BuffHelpers.cs" />
     <Compile Include="Helpers\BuffHelpers\BuffIdentityHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\DebugHelpers\DebugHelpers.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Print.cs" />
     <Compile Include="Helpers\DebugHelpers\DebugHelpers_Rect.cs" />
     <Compile Include="Helpers\DebugHelpers\LogHelpers.cs" />

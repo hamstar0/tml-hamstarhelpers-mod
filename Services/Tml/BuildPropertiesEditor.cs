@@ -95,7 +95,8 @@ namespace HamstarHelpers.Services.Tml {
 				int length;
 
 				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
-					throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReferences" );
+					//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReferences" );
+					throw new HamstarException( "Invalid modReferences" );
 				}
 				
 				var dict = new Dictionary<string, Version>( length );
@@ -105,7 +106,8 @@ namespace HamstarHelpers.Services.Tml {
 				for( int i=0; i<length; i++ ) {
 					object modRef;
 					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
-						throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReference array value "+i );
+						//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReference array value "+i );
+						throw new HamstarException( "Invalid modReference array value " + i );
 					}
 
 					if( !ReflectionHelpers.GetField( modRef, "mod", out name ) ) { continue; }
@@ -122,7 +124,8 @@ namespace HamstarHelpers.Services.Tml {
 				int length;
 
 				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
-					throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReferences" );
+					//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReferences" );
+					throw new HamstarException( "Invalid modReferences" );
 				}
 
 				var dict = new Dictionary<string, Version>( length );
@@ -132,7 +135,8 @@ namespace HamstarHelpers.Services.Tml {
 				for( int i = 0; i < length; i++ ) {
 					object modRef;
 					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
-						throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReference array value " + i );
+						//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReference array value " + i );
+						throw new HamstarException( "Invalid modReference array value " + i );
 					}
 
 					if( !ReflectionHelpers.GetField( modRef, "mod", out name ) ) { continue; }

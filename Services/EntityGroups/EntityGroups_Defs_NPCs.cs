@@ -21,6 +21,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			// Monsters
 
+			addDef( "Any Boss", null, ( npc, grp ) => {
+				if( npc.type == NPCID.EaterofWorldsHead ) { return true; }	// special case
+				return npc.boss;
+			} );
+
 			addDef( "Any Slime", null, ( npc, grp ) => {
 				if( npc.aiStyle == 1 ) {
 					switch( npc.netID ) {
@@ -37,8 +42,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 					case NPCID.Gastropod:
 						return true;
 					}
+					return false;
 				}
-				return false;
 			} );
 		}
 	}

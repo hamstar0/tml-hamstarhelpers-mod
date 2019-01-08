@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				ent.Core = ent.CreateCore( this );
 				ent.Components = ent.CreateComponents( this );
 
-				ent.InternalPostInitialize();
+				ent.OnInitialize();
 			}
 		}
 
@@ -42,15 +42,16 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		private new static CustomEntity CreateRaw( Type mytype ) {
+		private new static CustomEntity CreateRawUninitialized( Type mytype ) {
 			if( !mytype.IsSubclassOf( typeof( CustomEntity ) ) ) {
 				throw new NotImplementedException( mytype.Name+" is not a CustomEntity subclass." );
 			}
 
+			//var ent = (CustomEntity)PacketProtocolData.CreateRaw( mytype );
 			var ent = (CustomEntity)Activator.CreateInstance( mytype,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
-				new object[] { new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) },
+				new object[] { new PacketProtocolDataConstructorLock() },
 				null
 			);
 
@@ -58,31 +59,31 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components ) {
-			var ent = CustomEntity.CreateRaw( mytype );
+			var ent = CustomEntity.CreateRawUninitialized( mytype );
 			ent.Core = core;
 			ent.Components = components;
 			ent.OwnerPlayerWho = -1;
 			ent.OwnerPlayerUID = "";
 
-			ent.InternalPostInitialize();
+			ent.OnInitialize();
 
 			return ent;
 		}
 
 		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, Player ownerPlr ) {
-			var ent = CustomEntity.CreateRaw( mytype );
+			var ent = CustomEntity.CreateRawUninitialized( mytype );
 			ent.Core = core;
 			ent.Components = components;
 			ent.OwnerPlayerWho = ownerPlr.whoAmI;
 			ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( ownerPlr );
 
-			ent.InternalPostInitialize();
+			ent.OnInitialize();
 
 			return ent;
 		}
 
 		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, string ownerUid="" ) {
-			var ent = CustomEntity.CreateRaw( mytype );
+			var ent = CustomEntity.CreateRawUninitialized( mytype );
 			ent.Core = core;
 			ent.Components = components;
 			ent.OwnerPlayerWho = -1;
@@ -93,7 +94,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				ent.OwnerPlayerWho = plr.whoAmI;
 			}
 
-			ent.InternalPostInitialize();
+			ent.OnInitialize();
 
 			return ent;
 		}

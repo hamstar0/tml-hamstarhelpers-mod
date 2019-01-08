@@ -51,7 +51,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void Receive( int fromWho ) {
 			Item item = Main.item[ this.ItemWho ];
 			if( item == null /*|| !item.active*/ ) {
-				throw new HamstarException( "!ModHelpers.ItemNoGrabProtocol.ReceiveWithServer - Invalid item indexed at "+this.ItemWho );
+				//throw new HamstarException( "!ModHelpers.ItemNoGrabProtocol.ReceiveWithServer - Invalid item indexed at "+this.ItemWho );
+				throw new HamstarException( "Invalid item indexed at "+this.ItemWho );
 			}
 
 			item.noGrabDelay = this.NoGrabDelayAmt;

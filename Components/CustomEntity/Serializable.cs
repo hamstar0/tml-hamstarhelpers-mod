@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	internal partial class SerializableCustomEntity : CustomEntity {
+	internal sealed partial class SerializableCustomEntity : CustomEntity {
 		public static string GetTypeName( CustomEntity ent ) {
 			return ent.GetType().Name;
 		}
@@ -36,10 +36,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected SerializableCustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		internal SerializableCustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		internal SerializableCustomEntity( CustomEntity ent )
-				: base( new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) ) {
+				: base( new PacketProtocolDataConstructorLock() ) {
 			this.MyTypeName = SerializableCustomEntity.GetTypeName( ent );
 			this.Core = ent.Core;
 			this.Components = ent.InternalComponents;
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal SerializableCustomEntity( string typeName, CustomEntityCore core, IList<CustomEntityComponent> components, string playerUid )
-				: base( new PacketProtocolDataConstructorLock( typeof( CustomEntity ) ) ) {
+				: base( new PacketProtocolDataConstructorLock() ) {
 			this.MyTypeName = typeName;
 			this.Core = core;
 			this.Components = components;
@@ -80,7 +80,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal CustomEntity Convert() {
 			if( !this.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.SerializableCustomEntity.Convert - Not initialized." );
+				//throw new HamstarException( "!ModHelpers.SerializableCustomEntity.Convert - Not initialized." );
+				throw new HamstarException( "Not initialized." );
 			}
 
 			Type entType = CustomEntityManager.GetTypeByName( this.MyTypeName );

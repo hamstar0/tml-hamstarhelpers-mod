@@ -102,33 +102,35 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-
+		
 		////////////////
 
-		protected sealed override void Initialize() {
+		public sealed override void OnInitialize() {
 			if( string.IsNullOrEmpty(this.ModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 ) {
-				throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
+				//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
+				throw new HamstarException( "Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
 			}
 
 			var srcMod = ModLoader.GetMod( this.ModName );
 			if( srcMod == null ) {
-				throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid mod " + this.ModName );
+				//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid mod " + this.ModName );
+				throw new HamstarException( "Invalid mod " + this.ModName );
 			}
 
 			if( !Main.dedServ ) {
 				if( this.Texture == null ) {
 					this.Texture = srcMod.GetTexture( this.TexturePath );
 					if( this.Texture == null ) {
-						throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid texture " + this.TexturePath );
+						//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid texture " + this.TexturePath );
+						throw new HamstarException( "Invalid texture " + this.TexturePath );
 					}
 				}
 			}
 
-			this.PostPostInitialize();
+			this.PostInitialize();
 		}
 
-		protected virtual void PostPostInitialize() { }
+		protected virtual void PostInitialize() { }
 
 
 		////////////////

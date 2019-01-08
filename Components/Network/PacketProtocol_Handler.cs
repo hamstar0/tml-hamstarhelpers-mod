@@ -14,20 +14,23 @@ namespace HamstarHelpers.Components.Network {
 			try {
 				isRequest = reader.ReadBoolean();
 			} catch( Exception e ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - " + e.ToString() );
+				//throw new HamstarException( "PacketProtocol.HandlePacketOnClient - " + e.ToString() );
+				throw new HamstarException( e.ToString() );
 			}
 
 			if( !mymod.PacketProtocols.ContainsKey( protocolCode ) ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Unrecognized packet." );
+				//throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Unrecognized packet." );
+				throw new HamstarException( "Unrecognized packet." );
 			}
 
 			Type protocolType;
 			if( !mymod.PacketProtocols.TryGetValue( protocolCode, out protocolType ) ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Invalid protocol (hash: " + protocolCode + ")" );
+				//throw new HamstarException( "PacketProtocol.HandlePacketOnClient - Invalid protocol (hash: " + protocolCode + ")" );
+				throw new HamstarException( "Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateRaw( protocolType );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateRawUninitialized( protocolType );
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithClientBase();
@@ -35,7 +38,8 @@ namespace HamstarHelpers.Components.Network {
 					protocol.ReceiveWithClientBase( reader, playerWho );
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnClient - "+protocolType.Name + " - " + e.ToString() );
+				//throw new HamstarException( "PacketProtocol.HandlePacketOnClient - "+protocolType.Name + " - " + e.ToString() );
+				throw new HamstarException( protocolType.Name + " - " + e.ToString() );
 			}
 		}
 
@@ -48,20 +52,23 @@ namespace HamstarHelpers.Components.Network {
 				isRequest = reader.ReadBoolean();
 				isSyncedToClients = reader.ReadBoolean();
 			} catch( Exception e ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
+				//throw new HamstarException( "PacketProtocol.HandlePacketOnServer - " + e.ToString() );
+				throw new HamstarException( e.ToString() );
 			}
 
 			if( !mymod.PacketProtocols.ContainsKey( protocolCode ) ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Unrecognized packet." );
+				//throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Unrecognized packet." );
+				throw new HamstarException( "Unrecognized packet." );
 			}
 
 			Type protocolType;
 			if( !mymod.PacketProtocols.TryGetValue( protocolCode, out protocolType ) ) {
-				throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Invalid protocol (hash: " + protocolCode + ")" );
+				//throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Invalid protocol (hash: " + protocolCode + ")" );
+				throw new HamstarException( "Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateRaw( protocolType );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateRawUninitialized( protocolType );
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithServerBase( playerWho );

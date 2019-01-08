@@ -6,7 +6,7 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsGravityEntityComponent : CustomEntityComponent {
 		public static RespectsGravityEntityComponent CreateRespectsGravityEntityComponent() {
-			return (RespectsGravityEntityComponent)PacketProtocolData.CreateRaw( typeof(RespectsGravityEntityComponent) );
+			return (RespectsGravityEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof(RespectsGravityEntityComponent) );
 		}
 
 
@@ -14,6 +14,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected RespectsGravityEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		public override void OnInitialize() { }
 
 
 		////////////////

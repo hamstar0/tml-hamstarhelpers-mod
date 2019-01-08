@@ -65,16 +65,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
-
-		protected virtual void PostInitialize() { }
-
-		internal void InternalPostInitialize() {
-			this.PostInitialize();
-		}
-
-
-		////////////////
-
+		
 		internal void InternalWorldInitialize() {
 			for( int i=0; i<this.Components.Count; i++ ) {
 				this.Components[i].InternalOnAddToWorld( this );

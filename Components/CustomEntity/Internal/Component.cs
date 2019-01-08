@@ -5,15 +5,6 @@ using System.IO;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntityComponent : PacketProtocolData {
-		protected virtual void Initialize() { }
-
-		internal void InternalInitialize() {
-			this.Initialize();
-		}
-
-
-		////////////////
-
 		internal void ReadStreamForwarded( BinaryReader reader ) {
 			base.ReadStream( reader );
 		}

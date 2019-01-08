@@ -55,8 +55,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static bool IsSubclassOfRawGeneric( Type genericType, Type isTypeOf ) {
 			while( isTypeOf != null && isTypeOf != typeof( object ) ) {
 				Type currType = isTypeOf.IsGenericType ?
-					isTypeOf.GetGenericTypeDefinition() :
-					isTypeOf;
+						isTypeOf.GetGenericTypeDefinition() :
+						isTypeOf;
 
 				if( genericType == currType ) {
 					return true;

@@ -24,6 +24,7 @@ namespace HamstarHelpers.Components.Errors {
 		////////////////
 
 		private void Initialize( string msg ) {
+			string context = DebugHelpers.GetCurrentContext( 3 );
 			var msgCount = ModHelpersMod.Instance.ExceptionMngr.MsgCount;
 			int count = 0;
 
@@ -37,9 +38,9 @@ namespace HamstarHelpers.Components.Errors {
 			msgCount[msg]++;
 
 			if( this.InnerException != null ) {
-				LogHelpers.Log( "EXCEPTION (" + count + ") - " + msg + " | " + this.InnerException.Message );
+				LogHelpers.Log( "!"+context+" (E#" + count + ") - " + msg + " | " + this.InnerException.Message );
 			} else {
-				LogHelpers.Log( "EXCEPTION (" + count + ") - " + msg );
+				LogHelpers.Log( "!"+context+" (E#" + count + ") - " + msg );
 			}
 		}
 	}

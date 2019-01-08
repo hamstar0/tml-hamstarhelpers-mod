@@ -12,10 +12,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		public void SyncToAll() {
 			if( !this.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Not initialized." );
+				//throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Not initialized." );
+				throw new HamstarException( "Not initialized." );
 			}
 			if( !SaveableEntityComponent.HaveAllEntitiesLoaded ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Entities not yet loaded." );
+				//LogHelpers.Log( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Entities not yet loaded." );
+				LogHelpers.Log( DebugHelpers.GetCurrentContext()+" - Entities not yet loaded." );
 				return;
 			}
 
@@ -24,7 +26,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( Main.netMode == 0 ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll (" + this.GetType().Name + ") - Multiplayer only." );
+				//throw new HamstarException( "!ModHelpers.CustomEntity.SyncToAll (" + this.GetType().Name + ") - Multiplayer only." );
+				throw new HamstarException( "Multiplayer only." );
 			}
 
 			if( Main.netMode == 2 ) {

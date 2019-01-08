@@ -43,6 +43,8 @@ namespace HamstarHelpers.Components.Network {
 				}
 				myField.SetValue( this, val );
 			}
+
+			this.OnInitialize();
 		}
 
 
@@ -71,9 +73,10 @@ namespace HamstarHelpers.Components.Network {
 			}
 			
 			this.SetClientDefaults();
+			this.OnInitialize();
 
 			bool skipSend = false;
-			var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnClient" );
+			//var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnClient" );
 			
 			skipSend = this.ReceiveRequestWithClient();
 
@@ -97,6 +100,7 @@ namespace HamstarHelpers.Components.Network {
 			} catch( NotImplementedException ) {
 				this.SetServerDefaults();
 			}
+			this.OnInitialize();
 
 			bool skipSend = false;
 			var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnServer" );

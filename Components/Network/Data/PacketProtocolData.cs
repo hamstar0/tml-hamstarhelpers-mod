@@ -35,6 +35,9 @@ namespace HamstarHelpers.Components.Network.Data {
 		}
 
 
+		public abstract void OnInitialize();
+
+
 		////////////////
 
 		/// <summary>

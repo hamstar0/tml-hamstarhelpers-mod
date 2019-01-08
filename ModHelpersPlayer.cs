@@ -127,7 +127,8 @@ namespace HamstarHelpers {
 				Promises.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
 			} catch( Exception e ) {
 				if( !(e is HamstarException) ) {
-					throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
+					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
+					throw new HamstarException( e.ToString() );
 				}
 			}
 		}
@@ -144,7 +145,8 @@ namespace HamstarHelpers {
 				this.Logic.Save( tags );
 			} catch( Exception e ) {
 				if( !(e is HamstarException) ) {
-					throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Save - " + e.ToString() );
+					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Save - " + e.ToString() );
+					throw new HamstarException( e.ToString() );
 				}
 			}
 

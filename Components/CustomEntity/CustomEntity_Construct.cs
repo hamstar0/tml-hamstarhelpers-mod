@@ -11,18 +11,14 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
-		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
-			if( !DotNetHelpers.IsSubclassOfRawGeneric( typeof( CustomEntityFactory<> ), ctorLock.FactoryType ) ) {
-				if( ctorLock.FactoryType != typeof( CustomEntity ) && ctorLock.FactoryType != typeof( PacketProtocolData ) ) {
-					throw new NotImplementedException( "CustomEntity " + this.GetType().Name + " uses invalid factory " + ctorLock.FactoryType.Name );
-				}
-			}
-		}
+		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		public sealed override void OnInitialize() { }
 
 
 
 		////////////////
-		
+
 		protected abstract CustomEntityCore CreateCore<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
 		protected abstract IList<CustomEntityComponent> CreateComponents<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
 		public abstract CustomEntityCore CreateCoreTemplate();
@@ -33,13 +29,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal void CopyChangesFrom( CustomEntity ent ) { // TODO: Copy changes only!
 			if( !ent.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers.CustomEntity.CopyChangesFrom(CustomEntity) - Parameter not initialized." );
+				//throw new HamstarException( "!ModHelpers.CustomEntity.CopyChangesFrom(CustomEntity) - Parameter not initialized." );
+				throw new HamstarException( "Parameter not initialized." );
 			}
 
 			this.CopyChangesFrom( ent.Core, ent.Components, ent.OwnerPlayer );
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.CopyChangesFrom(CustomEntity) - Synced from " + ent.ToString() + " for " + this.ToString() );
+				LogHelpers.Log( DebugHelpers.GetCurrentContext()+" - Synced from " + ent.ToString() + " for " + this.ToString() );
 			}
 		}
 
@@ -53,10 +50,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.ClearComponentCache();
 
 			if( !this.IsInitialized ) {
-				throw new HamstarException( "!ModHelpers."+this.GetType().Name+".CopyChangesFrom - Not initialized post-copy." );
+				//throw new HamstarException( "!ModHelpers."+this.GetType().Name+".CopyChangesFrom - Not initialized post-copy." );
+				throw new HamstarException( "Not initialized post-copy." );
 			}
 
-			this.InternalPostInitialize();
+			this.OnInitialize();
 		}
 
 
@@ -75,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Player ownerPlr = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
 			if( ownerPlr == null ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.RefreshOwnerWho - No player found with UID "+this.OwnerPlayerUID );
+				LogHelpers.Log( DebugHelpers.GetCurrentContext()+" - No player found with UID "+this.OwnerPlayerUID );
 			}
 
 			this.OwnerPlayerWho = ownerPlr == null ? -1 : ownerPlr.whoAmI;
@@ -95,7 +93,8 @@ namespace HamstarHelpers.Components.CustomEntity {
 				
 				do {
 					if( this.ComponentsByTypeName.ContainsKey(compName) ) {
-						throw new HamstarException( "!ModHelpers.CustomEntity.RefreshComponentTypeNames - "+this.GetType().Name+" component "+compName+" already exists." );
+						//throw new HamstarException( "!ModHelpers.CustomEntity.RefreshComponentTypeNames - "+this.GetType().Name+" component "+compName+" already exists." );
+						throw new HamstarException( "Component "+compName+" already exists." );
 					}
 
 					this.AllComponentsByTypeName[ compName ] = i;

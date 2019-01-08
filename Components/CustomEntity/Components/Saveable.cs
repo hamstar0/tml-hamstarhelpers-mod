@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Services.Promises;
@@ -65,6 +66,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
+		[PacketProtocolIgnore]
 		public bool AsJson = true;
 
 
@@ -72,5 +74,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected SaveableEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		public override void OnInitialize() { }
 	}
 }
