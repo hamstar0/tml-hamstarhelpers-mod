@@ -82,7 +82,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public sealed override void OnInitialize() {
+		protected sealed override void OnInitialize() {
 			if( string.IsNullOrEmpty(this.ModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 || this.Scale == 0 ) {
 				//throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
 				throw new HamstarException( "Invalid fields." );

@@ -21,7 +21,7 @@ namespace HamstarHelpers {
 					this.DrawMiniMapForAll( sb );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpersMod.PostDrawInterface - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				throw e;
 			}
 		}
@@ -30,7 +30,7 @@ namespace HamstarHelpers {
 			try {
 				this.DrawFullMapForAll( Main.spriteBatch );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpersMod.PostDrawFullscreenMap - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				throw e;
 			}
 		}
@@ -55,7 +55,7 @@ namespace HamstarHelpers {
 					DebugHelpers.Once = false;
 					DebugHelpers.OnceInAWhile--;
 				} catch( Exception e ) {
-					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-debugLayerDraw - " + e.ToString() );
+					LogHelpers.Warn( "debugLayerDraw - " + e.ToString() );
 				}
 				return true;
 			};
@@ -76,7 +76,7 @@ namespace HamstarHelpers {
 
 					this.Inbox.Draw( sb );
 				} catch( Exception e ) {
-					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-cpLayerDraw - " + e.ToString() );
+					LogHelpers.Warn( "cpLayerDraw - " + e.ToString() );
 				}
 
 //sb.DrawString( Main.fontDeathText, "ALERT", new Vector2(128, 128), this.AnimatedColors.Alert.CurrentColor );
@@ -91,7 +91,7 @@ namespace HamstarHelpers {
 				try {
 					this.ModLockHelpers.DrawWarning( Main.spriteBatch );
 				} catch( Exception e ) {
-					LogHelpers.Log( "!ModHelpersMod.ModifyInterfaceLayers-modlockLayerDraw - " + e.ToString() );
+					LogHelpers.Warn( "modlockLayerDraw - " + e.ToString() );
 				}
 				return true;
 			};

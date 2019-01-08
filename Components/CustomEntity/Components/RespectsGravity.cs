@@ -15,7 +15,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		protected RespectsGravityEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
-		public override void OnInitialize() { }
+		protected override void OnInitialize() { }
 
 
 		////////////////

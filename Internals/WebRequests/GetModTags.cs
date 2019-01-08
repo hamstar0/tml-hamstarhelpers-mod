@@ -84,7 +84,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 						try {
 							Promises.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
 						} catch( Exception e ) {
-							LogHelpers.Log( "ModHelpers.GetModTags.CacheAllModTagsAsync - "+e.ToString() );
+							LogHelpers.Alert( e.ToString() );
 						}
 					} );
 				}
@@ -129,12 +129,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			Action<Exception, string> onGetFail = ( e, output ) => {
 				if( e is JsonReaderException ) {
-					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - Bad JSON: " +
-						(output.Length > 256 ? output.Substring(0, 256) : output) );
+					LogHelpers.Alert( "Bad JSON: " + (output.Length > 256 ? output.Substring(0, 256) : output) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - " + (output ?? "..." ) + " - " + e.Message );
+					LogHelpers.Alert( (output ?? "...") + " - " + e.Message );
 				} else {
-					LogHelpers.Log( "ModHelpers.ModTagsGet.RetrieveAllModTagsAsync - " + (output ?? "...") + " - " + e.ToString() );
+					LogHelpers.Alert( (output ?? "...") + " - " + e.ToString() );
 				}
 			};
 

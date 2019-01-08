@@ -35,7 +35,7 @@ namespace HamstarHelpers.Services.Tml {
 				//				 where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
 				//				 select t;
 			} catch( Exception e ) {
-				LogHelpers.Log( "BuildPropertiesEditor.GetBuildPropertiesForModFile - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return (Type)null;
 			}
 

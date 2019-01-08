@@ -48,7 +48,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.NextSync = PeriodicSyncEntityComponent.GetRandomSyncDuration();
 		}
 
-		public override void OnInitialize() { }
+		protected override void OnInitialize() { }
 
 
 		////////////////

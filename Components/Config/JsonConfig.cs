@@ -90,7 +90,7 @@ namespace HamstarHelpers.Components.Config {
 				this.Data = data;
 				success = true;
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.JsonConfig.DeserializeMe - Error for "+this.FileName+" (no input? "+(strData==null)+", no output? "+(data==null)+"): " + e.ToString() );
+				LogHelpers.Warn( "Error for "+this.FileName+" (no input? "+(strData==null)+", no output? "+(data==null)+"): " + e.ToString() );
 			}
 		}
 

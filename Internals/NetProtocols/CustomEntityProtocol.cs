@@ -63,8 +63,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				CustomEntityManager.AddToWorld( this.Entity.Core.WhoAmI, this.Entity.Convert(), true );
 			} else {
 				if( newEnt.GetType().Name != this.Entity.MyTypeName ) {
-					LogHelpers.Log( "!ModHelpers.CustomEntityProtocol.Receive - Entity mismatch: "
-						+ "Client sends " + newEnt.GetType().Name + ", server expects " + this.Entity.MyTypeName );
+					LogHelpers.Warn( "Entity mismatch: "
+							+ "Client sends " + newEnt.GetType().Name+", "
+							+ "server expects " + this.Entity.MyTypeName );
 					return;
 				}
 

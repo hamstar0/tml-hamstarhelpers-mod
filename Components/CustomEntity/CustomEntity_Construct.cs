@@ -13,7 +13,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
-		public sealed override void OnInitialize() { }
+		protected sealed override void OnInitialize() { }
 
 
 
@@ -36,7 +36,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			this.CopyChangesFrom( ent.Core, ent.Components, ent.OwnerPlayer );
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( DebugHelpers.GetCurrentContext()+" - Synced from " + ent.ToString() + " for " + this.ToString() );
+				LogHelpers.Alert( "Synced from " + ent.ToString() + " for " + this.ToString() );
 			}
 		}
 
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Player ownerPlr = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
 			if( ownerPlr == null ) {
-				LogHelpers.Log( DebugHelpers.GetCurrentContext()+" - No player found with UID "+this.OwnerPlayerUID );
+				LogHelpers.Alert( "No player found with UID "+this.OwnerPlayerUID );
 			}
 
 			this.OwnerPlayerWho = ownerPlr == null ? -1 : ownerPlr.whoAmI;

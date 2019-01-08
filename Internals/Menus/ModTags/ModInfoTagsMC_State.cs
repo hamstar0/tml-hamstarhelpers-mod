@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.InfoDisplay.SetDefaultText( "" );
 
 			if( modName == null ) {
-				LogHelpers.Log( "!ModHelpers.ModInfoTagsMenuContext.ShowGeneral - Could not load mod tags; no mod found" );
+				LogHelpers.Warn( "Could not load mod tags; no mod found" );
 			} else {
 				this.ResetUIState( modName );
 				this.SetCurrentMod( ui, modName );

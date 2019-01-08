@@ -17,12 +17,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 			if( !SaveableEntityComponent.HaveAllEntitiesLoaded ) {
 				//LogHelpers.Log( "!ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+") - Entities not yet loaded." );
-				LogHelpers.Log( DebugHelpers.GetCurrentContext()+" - Entities not yet loaded." );
+				LogHelpers.Alert( "Entities not yet loaded." );
 				return;
 			}
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.SyncToAll ("+this.GetType().Name+")" );
+				LogHelpers.Alert( "Syncing..." );
 			}
 
 			if( Main.netMode == 0 ) {

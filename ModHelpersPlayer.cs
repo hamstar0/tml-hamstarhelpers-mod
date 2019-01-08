@@ -202,7 +202,7 @@ namespace HamstarHelpers {
 					}
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (1) - " + e.ToString() );
+				LogHelpers.Warn( "(1) - " + e.ToString() );
 				return;
 			}
 
@@ -214,7 +214,7 @@ namespace HamstarHelpers {
 					}
 				}
 			} catch(Exception e ) {
-				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (2) - " + e.ToString() );
+				LogHelpers.Warn( "(2) - " + e.ToString() );
 				return;
 			}
 
@@ -223,7 +223,7 @@ namespace HamstarHelpers {
 					mymod.CustomHotkeys.ProcessTriggers( triggersSet );
 				}
 			} catch(Exception e ) {
-				LogHelpers.Log( "!ModHelpers.ModHelpersPlayer.ProcessTriggers (3) - " + e.ToString() );
+				LogHelpers.Warn( "(3) - " + e.ToString() );
 				return;
 			}
 		}

@@ -10,7 +10,8 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 	public class LogHelpers {
 		private static object MyLock = new object();
 
-		
+
+
 		////////////////
 
 		public static void Log( string msg ) {
@@ -54,6 +55,16 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 			}
 		}
 
+		public static void Alert( string msg="" ) {
+			LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg : "") );
+		}
+
+		public static void Warn( string msg="" ) {
+			LogHelpers.Log( "!" + DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg: "") );
+		}
+
+
+		////
 
 		public static void LogOnce( string msg ) {
 			var logHelpers = ModHelpersMod.Instance.LogHelpers;

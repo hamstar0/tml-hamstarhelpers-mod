@@ -138,7 +138,7 @@ namespace HamstarHelpers {
 					mymod.CustomEntMngr.DrawAll( Main.spriteBatch );
 					DebugHelpers.DrawAllRects( Main.spriteBatch );
 				} catch( Exception e ) {
-					LogHelpers.Log( "!ModHelpers.ModHelpersWorld.PostDrawTiles - " + e.ToString() );
+					LogHelpers.Warn( e.ToString() );
 				}
 
 				Main.spriteBatch.End();

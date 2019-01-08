@@ -93,7 +93,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			for( int i = 0; i < itemsArr.Length; i++ ) {
 				var item = (UIElement)itemsArr.GetValue( i );
 				if( item == null ) {
-					LogHelpers.Log( "!ModHelpers.ModBrowserTagsMenuContext.ModBrowserTagsMenuContext - Invalid modList._item[" + i + "]" );
+					LogHelpers.Warn( "Invalid modList._item[" + i + "]" );
 					continue;
 				}
 
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				UIPanel modInfoButton;
 				if( !ReflectionHelpers.GetField( item, "moreInfoButton", BindingFlags.Instance | BindingFlags.NonPublic, out modInfoButton )
 						|| modInfoButton == null ) {
-					LogHelpers.Log( "!ModHelpers.ModBrowserTagsMenuContext.ModBrowserTagsMenuContext - Invalid modList._item[" + i + "].moreInfoButton" );
+					LogHelpers.Log( "Invalid modList._item[" + i + "].moreInfoButton" );
 					continue;
 				}
 

@@ -111,7 +111,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 						
 						Promises.Promises.TriggerValidatedPromise( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
 					} catch( Exception e ) {
-						LogHelpers.Log( "EntityGroups - Initialization failed: "+e.ToString() );
+						LogHelpers.Warn( "Initialization failed: " +e.ToString() );
 					}
 				} );
 			} );

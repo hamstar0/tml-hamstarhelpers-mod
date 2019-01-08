@@ -102,10 +102,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		protected DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-		
+
 		////////////////
 
-		public sealed override void OnInitialize() {
+		protected sealed override void OnInitialize() {
 			if( string.IsNullOrEmpty(this.ModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 ) {
 				//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
 				throw new HamstarException( "Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );

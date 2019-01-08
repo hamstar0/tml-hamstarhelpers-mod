@@ -85,7 +85,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
-				LogHelpers.Log( "ModHelpers.CustomEntity.AddToWorld - Set " + realEnt.ToString() );
+				LogHelpers.Alert( "Set " + realEnt.ToString() );
 			}
 
 			return realEnt;

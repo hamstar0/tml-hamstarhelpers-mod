@@ -89,8 +89,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			Type interfaceType = Assembly.GetAssembly( typeof(ModLoader) ).GetType( "Terraria.ModLoader.Interface" );
 
 			int modBrowserMenuMode;
-			if( !ReflectionHelpers.GetField<int>( interfaceType, null, "modBrowserID", BindingFlags.Static | BindingFlags.NonPublic, out modBrowserMenuMode ) ) {
-				LogHelpers.Log( "Could not switch to mod browser menu context." );
+			if( !ReflectionHelpers.GetField( interfaceType, null, "modBrowserID", BindingFlags.Static | BindingFlags.NonPublic, out modBrowserMenuMode ) ) {
+				LogHelpers.Warn( "Could not switch to mod browser menu context." );
 				return;
 			}
 
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 			UIState modBrowserUi;
 			if( !ReflectionHelpers.GetField<UIState>( interfaceType, null, "modBrowser", BindingFlags.Static | BindingFlags.NonPublic, out modBrowserUi ) ) {
-				LogHelpers.Log( "Could not acquire mod browser UI." );
+				LogHelpers.Warn( "Could not acquire mod browser UI." );
 				return;
 			}
 

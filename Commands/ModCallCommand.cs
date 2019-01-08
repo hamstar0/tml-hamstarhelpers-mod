@@ -30,7 +30,7 @@ namespace HamstarHelpers.Commands {
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == 1 ) {
-				LogHelpers.Log( "ModCallCommand - Not supposed to run on client." );
+				LogHelpers.Warn( "Not supposed to run on client." );
 				return;
 			}
 

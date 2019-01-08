@@ -69,7 +69,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 					this.ReadIntoComponentFromJson( comp, obj, serializer );
 					//var comp = obj.ToObject( compType, serializer );
 					
-					comp.OnInitialize();
+					comp.InternalOnInitialize();
 
 					components.Add( comp );
 					i++;
@@ -91,7 +91,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				//	new object[] { core, components, playerUid },
 				//	null );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.CustomEntity.ReadJson - ("+mark+") " + e.Message );
+				LogHelpers.Warn( "("+mark+") " + e.Message );
 				return null;
 			}
 		}

@@ -75,6 +75,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		protected SaveableEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
-		public override void OnInitialize() { }
+		protected override void OnInitialize() { }
 	}
 }

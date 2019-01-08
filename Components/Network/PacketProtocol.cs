@@ -12,8 +12,8 @@ namespace HamstarHelpers.Components.Network {
 	/// </summary>
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		protected PacketProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-		
-		public override void OnInitialize() { }	// Validations are handled internally
+
+		protected override void OnInitialize() { }	// Validations are handled internally
 
 
 

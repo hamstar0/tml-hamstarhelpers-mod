@@ -11,7 +11,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.Select( selector );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeSelect - "+e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.Select( selector );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeSelect - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.SelectMany( selector );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeSelectMany - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.SelectMany( collectionSelector, resultSelector );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeSelectMany - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.SelectMany( collectionSelector, resultSelector );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeSelectMany - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.SelectMany( selector );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeSelectMany - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -75,7 +75,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.Where( predicate );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeWhere - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TSource>();
 			}
 			return output;
@@ -85,7 +85,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.Where( predicate );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeWhere - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return new List<TSource>();
 			}
 			return output;
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.OrderBy( keySelector, comparer );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeOrderBy - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return (new List<TSource>()).OrderBy( t=>t );
 			}
 			return output;
@@ -107,7 +107,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			try {
 				output = source.OrderBy( keySelector );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.LinqHelpers.SafeOrderBy - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return ( new List<TSource>() ).OrderBy( t => t );
 			}
 			return output;

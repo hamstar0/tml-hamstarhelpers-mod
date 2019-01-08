@@ -62,7 +62,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 						}
 					}
 				} catch( Exception ) {
-					LogHelpers.Log( "EntityGroups.ComputeGroups - Compute fail for '" + groupName + "' with ent (" + i + ") " + ( entityPool[i] == null ? "null" : entityPool[i].ToString() ) );
+					LogHelpers.Alert( "Compute fail for '"+groupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
 				}
 			}
 

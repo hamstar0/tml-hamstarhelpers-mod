@@ -10,8 +10,9 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 				StackTrace stack = new StackTrace();
 				StackFrame frame = stack.GetFrame( stackFrameIdx );
 				MethodBase method = frame.GetMethod();
+				string namespaceBase = method.DeclaringType.Namespace.Split('.')[0];
 
-				return method.DeclaringType.Namespace + "." + method.DeclaringType.Name + "." + method.Name;
+				return namespaceBase + "." + method.DeclaringType.Name + "." + method.Name;
 			} catch {
 				return "Unknown Context";
 			}

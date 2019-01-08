@@ -121,7 +121,7 @@ namespace HamstarHelpers {
 					PacketProtocol.HandlePacketOnServer( protocolCode, reader, playerWho );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( "ModHelpersMod.HandlePacket - " + e.ToString() );
+				LogHelpers.Alert( e.ToString() );
 			}
 		}
 
