@@ -22,6 +22,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		public readonly static PromiseValidator LoadedAllValidator;
 
 
+
 		////////////////
 
 		static EntityGroups() {

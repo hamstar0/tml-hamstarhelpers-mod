@@ -46,7 +46,7 @@ namespace HamstarHelpers {
 			//ErrorLogger.Log( "Loading Mod Helpers. Ensure you have .NET Framework v4.6+ installed, if you're having problems." );
 			if( Environment.Version < new Version( 4, 0, 30319, 42000 ) ) {
 				SystemHelpers.OpenUrl( "https://dotnet.microsoft.com/download/dotnet-framework-runtime" );
-				throw new FileNotFoundException( "Mod Helpers " + this.Version + " requires .NET v4.6+ to work." );
+				throw new FileNotFoundException( "Mod Helpers "+this.Version+" requires .NET v4.6+ to work." );
 			}
 
 			this.LoadInner();

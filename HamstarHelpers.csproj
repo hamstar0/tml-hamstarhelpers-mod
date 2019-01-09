@@ -270,6 +270,7 @@
     <Compile Include="Services\CustomHotkeys\CustomHotkeys.cs" />
     <Compile Include="Services\DataDumper\DataDumper.cs" />
     <Compile Include="Services\DataStore\DataStore.cs" />
+    <Compile Include="Services\EntityData\EntityData.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_API.cs" />
     <Compile Include="Services\EntityGroups\EntityGroups_Compute.cs" />
