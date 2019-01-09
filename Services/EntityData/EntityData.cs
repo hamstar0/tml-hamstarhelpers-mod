@@ -17,12 +17,16 @@ namespace HamstarHelpers.Services.EntityData {
 		public static IDictionary<string, object> GetNpcData( int npcType ) {
 			var data = new Dictionary<string, object>();
 			var fields = typeof( NPC ).GetFields();
+			var props = typeof( NPC ).GetProperties();
 
 			NPC npc = new NPC();
 			npc.SetDefaults( npcType );
 
 			foreach( var field in fields ) {
 				data[ field.Name ] = field.GetValue( npc );
+			}
+			foreach( var prop in props ) {
+				data[ prop.Name ] = prop.GetValue( npc );
 			}
 
 			return data;
@@ -31,12 +35,16 @@ namespace HamstarHelpers.Services.EntityData {
 		public static IDictionary<string, object> GetItemData( int itemType ) {
 			var data = new Dictionary<string, object>();
 			var fields = typeof( Item ).GetFields();
+			var props = typeof( Item ).GetProperties();
 
 			Item item = new Item();
 			item.SetDefaults( itemType );
 
 			foreach( var field in fields ) {
 				data[ field.Name ] = field.GetValue( item );
+			}
+			foreach( var prop in props ) {
+				data[ prop.Name ] = prop.GetValue( item );
 			}
 
 			return data;
@@ -45,12 +53,16 @@ namespace HamstarHelpers.Services.EntityData {
 		public static IDictionary<string, object> GetProjectileData( int projType ) {
 			var data = new Dictionary<string, object>();
 			var fields = typeof( Projectile ).GetFields();
+			var props = typeof( Projectile ).GetProperties();
 
 			Projectile proj = new Projectile();
 			proj.SetDefaults( projType );
 
 			foreach( var field in fields ) {
 				data[ field.Name ] = field.GetValue( proj );
+			}
+			foreach( var prop in props ) {
+				data[ prop.Name ] = prop.GetValue( proj );
 			}
 
 			return data;
