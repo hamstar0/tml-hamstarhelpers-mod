@@ -20,8 +20,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected abstract CustomEntityCore CreateCore<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
+
 		protected abstract IList<CustomEntityComponent> CreateComponents<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
+
 		public abstract CustomEntityCore CreateCoreTemplate();
+
 		public abstract IList<CustomEntityComponent> CreateComponentsTemplate();
 
 		
@@ -53,8 +56,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 				//throw new HamstarException( "!ModHelpers."+this.GetType().Name+".CopyChangesFrom - Not initialized post-copy." );
 				throw new HamstarException( "Not initialized post-copy." );
 			}
-
-			this.OnInitialize();
 		}
 
 

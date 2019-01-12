@@ -43,20 +43,16 @@ namespace HamstarHelpers.Components.Network {
 				}
 				myField.SetValue( this, val );
 			}
-
-			this.OnInitialize();
 		}
 
 
 		private void ReceiveWithClientBase( BinaryReader reader, int fromWho ) {
 			this.ReceiveWithEitherBase( reader, fromWho );
-
 			this.ReceiveWithClient();
 		}
 
 		private void ReceiveWithServerBase( BinaryReader reader, int fromWho ) {
 			this.ReceiveWithEitherBase( reader, fromWho );
-
 			this.ReceiveWithServer( fromWho );
 		}
 
@@ -73,7 +69,6 @@ namespace HamstarHelpers.Components.Network {
 			}
 			
 			this.SetClientDefaults();
-			this.OnInitialize();
 
 			bool skipSend = false;
 			//var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnClient" );
@@ -100,7 +95,6 @@ namespace HamstarHelpers.Components.Network {
 			} catch( NotImplementedException ) {
 				this.SetServerDefaults();
 			}
-			this.OnInitialize();
 
 			bool skipSend = false;
 			var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnServer" );

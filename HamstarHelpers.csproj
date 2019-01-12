@@ -47,6 +47,10 @@
     <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
+    <Compile Include="Components\CustomEntity\Components\DrawsGame_Draw.cs" />
+    <Compile Include="Components\CustomEntity\Components\DrawsGame_Factory.cs" />
+    <Compile Include="Components\CustomEntity\Components\DrawsMap_Factory.cs" />
+    <Compile Include="Components\CustomEntity\Components\DrawsMap_Draw.cs" />
     <Compile Include="Components\CustomEntity\Components\HitRadiusPlayer.cs" />
     <Compile Include="Components\CustomEntity\Components\HitRadiusNpc.cs" />
     <Compile Include="Components\CustomEntity\Components\HitRadiusProjectile.cs" />

@@ -91,6 +91,13 @@ namespace HamstarHelpers.Components.CustomEntity {
 			get { return this.height; }
 			set { this.height = value; }
 		}
+		
+		[PacketProtocolIgnore]
+		[JsonIgnore]
+		public int Direction {
+			get { return this.direction; }
+			set { this.direction = value; }
+		}
 
 
 

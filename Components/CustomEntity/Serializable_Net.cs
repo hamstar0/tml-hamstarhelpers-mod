@@ -49,7 +49,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		protected override void ReadStream( BinaryReader reader ) {
 			int typeId =			(ushort)reader.ReadUInt16();
-			byte ownerWho =		(byte)reader.ReadByte();
+			byte ownerWho =			(byte)reader.ReadByte();
 			int who =				(ushort)reader.ReadUInt16();
 			string displayName =	(string)reader.ReadString();
 			var pos = new Vector2 {
@@ -70,7 +70,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				throw new HamstarException( "Invalid entity type id " + typeId );
 			}
 
-			Player plr = ownerWho == (byte)255 ? null : Main.player[ownerWho];
+			Player plr = ownerWho == (byte)255 ? null : Main.player[ ownerWho ];
 
 			var myentTemplate = (CustomEntity)CustomEntity.CreateRawUninitialized( entType );
 			CustomEntityCore core = myentTemplate.CreateCoreTemplate();
@@ -82,10 +82,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 			core.Height = hei;
 			core.Position = pos;
 			core.Velocity = vel;
-			core.direction = dir;
+			core.Direction = dir;
 			
 			for( int i = 0; i < components.Count; i++ ) {
 				components[i].ReadStreamForwarded( reader );
+				components[i].InternalOnInitialize();
 			}
 			
 			this.MyTypeName = SerializableCustomEntity.GetTypeName( myentTemplate );

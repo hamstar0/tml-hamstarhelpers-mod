@@ -145,7 +145,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 			string fmtDisplayName;
 
 			if( modDisplayName != null ) {
-				fmtDisplayName = modDisplayName.Length > 24 ? modDisplayName.Substring( 0, 22 ) : modDisplayName;
+				fmtDisplayName = modDisplayName.Length > 28 ? modDisplayName.Substring( 0, 26 ) : modDisplayName;
 
 				if( fmtDisplayName.Length != modDisplayName.Length ) {
 					fmtDisplayName += "...";
@@ -172,7 +172,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 
 
 		private void AddModEntry( string modDisplayName, string modName, string recommendedBecause ) {
-			string fmtDisplayName = modDisplayName.Length > 24 ? modDisplayName.Substring( 0, 22 ) : modDisplayName;
+			string fmtDisplayName = modDisplayName.Length > 28 ? modDisplayName.Substring( 0, 26 ) : modDisplayName;
 			if( fmtDisplayName.Length != modDisplayName.Length ) {
 				fmtDisplayName += "...";
 			}

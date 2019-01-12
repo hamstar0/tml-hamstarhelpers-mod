@@ -84,6 +84,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				throw new HamstarException( "Not initialized." );
 			}
 
+			CustomEntity ent;
 			Type entType = CustomEntityManager.GetTypeByName( this.MyTypeName );
 
 			if( entType == null ) {
@@ -94,18 +95,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 			}
 
 			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
-				return CustomEntity.CreateRaw( entType, this.Core, this.Components );
+				ent = CustomEntity.CreateRaw( entType, this.Core, this.Components );
 			} else {
-				return CustomEntity.CreateRaw( entType, this.Core, this.Components, this.OwnerPlayerUID );
+				ent = CustomEntity.CreateRaw( entType, this.Core, this.Components, this.OwnerPlayerUID );
 			}
-			//var args = this.OwnerPlayerUID == "" ?
-			//	new object[] { this.Core, this.Components } :
-			//	new object[] { this.OwnerPlayerUID, this.Core, this.Components };
-			//return (CustomEntity)Activator.CreateInstance( entType,
-			//	BindingFlags.NonPublic | BindingFlags.Instance,
-			//	null,
-			//	args,
-			//	null );
+
+			ent.InternalOnInitialize();
+
+			return ent;
 		}
 	}
 }
