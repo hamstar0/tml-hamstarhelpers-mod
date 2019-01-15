@@ -2,7 +2,9 @@
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -69,6 +71,54 @@ namespace HamstarHelpers.Components.CustomEntity {
 		internal void InternalWorldInitialize() {
 			for( int i=0; i<this.Components.Count; i++ ) {
 				this.Components[i].InternalOnAddToWorld( this );
+			}
+		}
+
+
+
+		////////////////
+
+		internal void RefreshOwnerWho() {
+			if( Main.netMode == 1 ) {
+				throw new HamstarException( "No client." );
+			}
+
+			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
+				this.OwnerPlayerWho = -1;
+				return;
+			}
+
+			Player ownerPlr = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
+			if( ownerPlr == null ) {
+				LogHelpers.Alert( "No player found with UID " + this.OwnerPlayerUID );
+			}
+
+			this.OwnerPlayerWho = ownerPlr == null ? -1 : ownerPlr.whoAmI;
+		}
+
+		////////////////
+
+		private void RefreshComponentTypeNames() {
+			int compCount = this.Components.Count;
+
+			this.ComponentsByTypeName.Clear();
+			this.AllComponentsByTypeName.Clear();
+
+			for( int i = 0; i < compCount; i++ ) {
+				Type compType = this.Components[i].GetType();
+				string compName = compType.Name;
+
+				do {
+					if( this.ComponentsByTypeName.ContainsKey( compName ) ) {
+						//throw new HamstarException( "!ModHelpers.CustomEntity.RefreshComponentTypeNames - "+this.GetType().Name+" component "+compName+" already exists." );
+						throw new HamstarException( "Component " + compName + " already exists." );
+					}
+
+					this.AllComponentsByTypeName[compName] = i;
+
+					compType = compType.BaseType;
+					compName = compType.Name;
+				} while( compType.Name != "CustomEntityComponent" );
 			}
 		}
 

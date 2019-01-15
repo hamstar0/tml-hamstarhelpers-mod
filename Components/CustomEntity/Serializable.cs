@@ -59,14 +59,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected override IList<CustomEntityComponent> CreateComponents<T>( CustomEntityFactory<T> factory ) {
+		protected override IList<CustomEntityComponent> CreateComponents( CustomEntityFactory factory ) {
 			throw new NotImplementedException( "CreateComponents not implemented" );
-			//if( !this.IsInitialized ) { throw new NotImplementedException( "SerializableCustomEntity components not initialized." ); }
-			//return this.Components.ToList();
 		}
-		protected override CustomEntityCore CreateCore<T>( CustomEntityFactory<T> factory ) {
+		protected override CustomEntityCore CreateCore( CustomEntityFactory factory ) {
 			throw new NotImplementedException( "CreateCore not implemented" );
-			//return new CustomEntityCore( this.Core );
 		}
 		public override CustomEntityCore CreateCoreTemplate() {
 			throw new NotImplementedException( "CreateCoreTemplate not implemented" );
@@ -80,7 +77,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		internal CustomEntity Convert() {
 			if( !this.IsInitialized ) {
-				//throw new HamstarException( "!ModHelpers.SerializableCustomEntity.Convert - Not initialized." );
 				throw new HamstarException( "Not initialized." );
 			}
 

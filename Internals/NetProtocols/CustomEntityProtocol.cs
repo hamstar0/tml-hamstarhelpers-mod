@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.CustomEntity;
+﻿using System;
+using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
@@ -6,20 +7,11 @@ using HamstarHelpers.Helpers.DebugHelpers;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class CustomEntityProtocol : PacketProtocolSentToEither {
-		protected sealed class MyFactory : Factory<CustomEntityProtocol> {
-			private readonly SerializableCustomEntity Entity;
-
-
-			////////////////
-
+		protected class MyFactory {
+			public SerializableCustomEntity Entity;
+			
 			public MyFactory( CustomEntity ent ) {
 				this.Entity = new SerializableCustomEntity(ent);
-			}
-
-			////
-
-			protected override void Initialize( CustomEntityProtocol data ) {
-				data.Entity = this.Entity;
 			}
 		}
 
@@ -29,14 +21,14 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		public static void SendToClients( CustomEntity ent ) {
 			var factory = new MyFactory( ent );
-			CustomEntityProtocol protocol = factory.Create();
+			var protocol = CustomEntityProtocol.CreateDefault<CustomEntityProtocol>( factory );
 
 			protocol.SendToClient( -1, -1 );
 		}
 
 		public static void SyncToAll( CustomEntity ent ) {
 			var factory = new MyFactory( ent );
-			CustomEntityProtocol protocol = factory.Create();
+			var protocol = CustomEntityProtocol.CreateDefault<CustomEntityProtocol>( factory );
 
 			protocol.SendToServer( true );
 		}
@@ -46,6 +38,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public SerializableCustomEntity Entity;
+
+
+		////////////////
+
+		protected override Tuple<PacketProtocolData, Type> _MyFactoryType => Tuple.Create( (PacketProtocolData)this, typeof(MyFactory) );
 
 
 

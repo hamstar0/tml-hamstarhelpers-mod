@@ -10,34 +10,38 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
-		protected abstract class CustomEntityFactory<T> : Factory<T> where T : CustomEntity {
+		protected abstract class CustomEntityFactory {
 			public readonly Player OwnerPlayer;
-
-
-			////////////////
 			
 			protected CustomEntityFactory( Player ownerPlr=null ) {
 				this.OwnerPlayer = ownerPlr;
 			}
-
-			////////////////
-
-			protected sealed override void Initialize( T ent ) {
-				if( this.OwnerPlayer != null ) {
-					ent.OwnerPlayerWho = this.OwnerPlayer.whoAmI;
-					ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( this.OwnerPlayer );
-				} else {
-					ent.OwnerPlayerWho = -1;
-					ent.OwnerPlayerUID = "";
-				}
-
-				ent.Core = ent.CreateCore( this );
-				ent.Components = ent.CreateComponents( this );
-
-				ent.OnInitialize();
-			}
 		}
 
+
+
+		////////////////
+
+		protected override Tuple<PacketProtocolData, Type> _MyFactoryType => Tuple.Create( (PacketProtocolData)this, typeof( CustomEntityFactory ) );
+
+
+
+		////////////////
+		
+		protected sealed override void OnFactoryCreate( object factory ) {
+			var myfactory = factory as CustomEntityFactory;
+
+			if( this.OwnerPlayer != null ) {
+				this.OwnerPlayerWho = this.OwnerPlayer.whoAmI;
+				this.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( this.OwnerPlayer );
+			} else {
+				this.OwnerPlayerWho = -1;
+				this.OwnerPlayerUID = "";
+			}
+
+			this.Core = this.CreateCore( myfactory );
+			this.Components = this.CreateComponents( myfactory );
+		}
 
 
 		////////////////
@@ -46,8 +50,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !mytype.IsSubclassOf( typeof( CustomEntity ) ) ) {
 				throw new NotImplementedException( mytype.Name+" is not a CustomEntity subclass." );
 			}
-
-			//var ent = (CustomEntity)PacketProtocolData.CreateRaw( mytype );
+			
 			var ent = (CustomEntity)Activator.CreateInstance( mytype,
 				BindingFlags.Instance | BindingFlags.NonPublic,
 				null,
@@ -64,18 +67,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 			ent.Components = components;
 			ent.OwnerPlayerWho = -1;
 			ent.OwnerPlayerUID = "";
-
-			ent.OnInitialize();
-
-			return ent;
-		}
-
-		internal static CustomEntity CreateRaw( Type mytype, CustomEntityCore core, IList<CustomEntityComponent> components, Player ownerPlr ) {
-			var ent = CustomEntity.CreateRawUninitialized( mytype );
-			ent.Core = core;
-			ent.Components = components;
-			ent.OwnerPlayerWho = ownerPlr.whoAmI;
-			ent.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( ownerPlr );
 
 			ent.OnInitialize();
 

@@ -13,25 +13,26 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
+		////
+
 		protected sealed override void OnInitialize() {
-			for( int i=0; i<this.Components.Count; i++ ) {
+			for( int i = 0; i < this.Components.Count; i++ ) {
 				this.Components[i].InternalOnEntityInitialize( this );
 			}
 		}
 
 
-
 		////////////////
 
-		protected abstract CustomEntityCore CreateCore<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
+		protected abstract CustomEntityCore CreateCore( CustomEntityFactory factory );
 
-		protected abstract IList<CustomEntityComponent> CreateComponents<T>( CustomEntityFactory<T> factory ) where T : CustomEntity;
+		protected abstract IList<CustomEntityComponent> CreateComponents( CustomEntityFactory factory );
 
 		public abstract CustomEntityCore CreateCoreTemplate();
 
 		public abstract IList<CustomEntityComponent> CreateComponentsTemplate();
 
-		
+
 		////////////////
 
 		internal void CopyChangesFrom( CustomEntity ent ) { // TODO: Copy changes only!
@@ -48,10 +49,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 
-		internal void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player ownerPlr=null ) {
+		internal void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player ownerPlr = null ) {
 			this.Core = new CustomEntityCore( core );
 			this.OwnerPlayerWho = ownerPlr != null ? ownerPlr.whoAmI : -1;
-			this.OwnerPlayerUID = ownerPlr != null ? PlayerIdentityHelpers.GetProperUniqueId(ownerPlr) : "";
+			this.OwnerPlayerUID = ownerPlr != null ? PlayerIdentityHelpers.GetProperUniqueId( ownerPlr ) : "";
 
 			this.Components = components.SafeSelect( c => c.InternalClone() ).ToList();
 			this.ClearComponentCache();
@@ -59,54 +60,6 @@ namespace HamstarHelpers.Components.CustomEntity {
 			if( !this.IsInitialized ) {
 				//throw new HamstarException( "!ModHelpers."+this.GetType().Name+".CopyChangesFrom - Not initialized post-copy." );
 				throw new HamstarException( "Not initialized post-copy." );
-			}
-		}
-
-
-
-		////////////////
-
-		internal void RefreshOwnerWho() {
-			if( Main.netMode == 1 ) {
-				throw new HamstarException( "No client." );
-			}
-
-			if( string.IsNullOrEmpty( this.OwnerPlayerUID ) ) {
-				this.OwnerPlayerWho = -1;
-				return;
-			}
-
-			Player ownerPlr = PlayerIdentityHelpers.GetPlayerByProperId( this.OwnerPlayerUID );
-			if( ownerPlr == null ) {
-				LogHelpers.Alert( "No player found with UID "+this.OwnerPlayerUID );
-			}
-
-			this.OwnerPlayerWho = ownerPlr == null ? -1 : ownerPlr.whoAmI;
-		}
-		
-		////////////////
-
-		private void RefreshComponentTypeNames() {
-			int compCount = this.Components.Count;
-
-			this.ComponentsByTypeName.Clear();
-			this.AllComponentsByTypeName.Clear();
-
-			for( int i = 0; i < compCount; i++ ) {
-				Type compType = this.Components[i].GetType();
-				string compName = compType.Name;
-				
-				do {
-					if( this.ComponentsByTypeName.ContainsKey(compName) ) {
-						//throw new HamstarException( "!ModHelpers.CustomEntity.RefreshComponentTypeNames - "+this.GetType().Name+" component "+compName+" already exists." );
-						throw new HamstarException( "Component "+compName+" already exists." );
-					}
-
-					this.AllComponentsByTypeName[ compName ] = i;
-
-					compType = compType.BaseType;
-					compName = compType.Name;
-				} while( compType.Name != "CustomEntityComponent" );
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Reflection;
 
@@ -13,6 +14,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 	public abstract partial class PacketProtocolData {
+		[Obsolete("use PacketDataProtocol.CreateDefault instead.", true)]
 		protected abstract class Factory<T> where T : PacketProtocolData {
 			protected abstract void Initialize( T data );
 
@@ -43,15 +45,32 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 
-		/*rotected static T CreateDefault<T>( Factory<T> factory ) where T : PacketProtocolData {
-			Type factoryType = factory.GetType();
+		public static T CreateDefault<T>( object factory ) where T : PacketProtocolData {
+			return (T)PacketProtocolData.CreateDefault( typeof(T), factory );
+		}
 
-			if( typeof(T) != factoryType.DeclaringType || factoryType.IsAbstract ) {
-				throw new HamstarException( "Invalid factory "+factoryType.ToString() );
+		public static PacketProtocolData CreateDefault( Type productType, object factory ) {
+			PacketProtocolData data = PacketProtocolData.CreateRawUninitialized( productType );
+
+			if( data.MyFactoryType != factory.GetType() ) {
+				throw new NotImplementedException( "Incorrect factory type: Found: "+factory.GetType().Name+", expected "+data.MyFactoryType.Name );
 			}
 
-			return factory.Create();
-		}*/
+			FieldInfo[] fields = factory.GetType().GetFields( BindingFlags.Public );
+
+			foreach( FieldInfo field in fields ) {
+				var value = field.GetValue( factory );
+				string fieldName = field.Name;
+
+				FieldInfo dataField = data.GetType().GetField( fieldName );
+				dataField.SetValue( data, value, ReflectionHelpers.MostAccess, null, null );
+			}
+
+			data.OnFactoryCreate( factory );
+			data.OnInitialize();
+
+			return data;
+		}
 
 		////////////////
 
@@ -69,5 +88,30 @@ namespace HamstarHelpers.Components.Network.Data {
 
 			return data;
 		}
+
+
+
+		////////////////
+
+		protected virtual Tuple<PacketProtocolData, Type> _MyFactoryType { get; }
+		protected Type MyFactoryType {
+			get {
+				if( this._MyFactoryType != null && this._MyFactoryType.Item1.GetType() != this.GetType() ) {
+					throw new NotImplementedException(
+						"Incorrect factory product type: Found " + this._MyFactoryType.Item1.GetType().Name + ", expected " + this.GetType().Name
+					);
+				}
+				return this._MyFactoryType.Item2;
+			}
+		}
+
+
+		////////////////
+
+		protected virtual void OnFactoryCreate( object factory ) { }
+
+		protected abstract void OnInitialize();
+
+		internal void InternalOnInitialize() { this.OnInitialize(); }
 	}
 }

@@ -7,23 +7,13 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerPermaDeathProtocol : PacketProtocolSentToEither {
-		protected class MyFactory : PacketProtocolData.Factory<PlayerPermaDeathProtocol> {
+		protected class MyFactory {
 			private readonly int PlayerWho;
 			private readonly string Msg;
-
-
-			////////////////
-
+			
 			public MyFactory( int playerWho, string msg ) {
 				this.PlayerWho = playerWho;
 				this.Msg = msg;
-			}
-
-			////
-
-			protected override void Initialize( PlayerPermaDeathProtocol data ) {
-				data.PlayerWho = this.PlayerWho;
-				data.Msg = this.Msg;
 			}
 		}
 		
@@ -33,7 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		
 		public static void SendToAll( int playerDeadWho, string msg ) {
 			var factory = new MyFactory( playerDeadWho, msg );
-			PlayerPermaDeathProtocol protocol = factory.Create();
+			var protocol = PacketProtocolData.CreateDefault<PlayerPermaDeathProtocol>( factory );
 
 			if( Main.netMode == 1 ) {
 				protocol.SendToServer( true );

@@ -1,23 +1,19 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
+using System;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class ItemNoGrabProtocol : PacketProtocolSendToServer {
-		protected class MyFactory : Factory<ItemNoGrabProtocol> {
+		protected class MyFactory {
 			private readonly int ItemWho;
 			private readonly int NoGrabDelayAmt;
 			
 			public MyFactory( int itemWho, int noGrabDelayAmt ) {
 				this.ItemWho = itemWho;
 				this.NoGrabDelayAmt = noGrabDelayAmt;
-			}
-			
-			protected override void Initialize( ItemNoGrabProtocol data ) {
-				data.ItemWho = this.ItemWho;
-				data.NoGrabDelayAmt = this.NoGrabDelayAmt;
 			}
 		}
 
@@ -27,7 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		public static void SendToServer( int itemWho, int noGrabDelayAmt ) {
 			var factory = new MyFactory( itemWho, noGrabDelayAmt );
-			ItemNoGrabProtocol protocol = factory.Create();
+			var protocol = PacketProtocolData.CreateDefault<ItemNoGrabProtocol>( factory );
 			
 			protocol.SendToServer( false );
 		}
@@ -38,6 +34,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		public int ItemWho;
 		public int NoGrabDelayAmt;
+
+
+		////////////////
+
+		protected override Tuple<PacketProtocolData, Type> _MyFactoryType => Tuple.Create( (PacketProtocolData)this, typeof(MyFactory) );
+
 
 
 		////////////////

@@ -35,11 +35,6 @@ namespace HamstarHelpers.Components.Network.Data {
 		}
 
 
-		protected abstract void OnInitialize();
-
-		internal void InternalOnInitialize() { this.OnInitialize(); }
-
-
 		////////////////
 
 		/// <summary>

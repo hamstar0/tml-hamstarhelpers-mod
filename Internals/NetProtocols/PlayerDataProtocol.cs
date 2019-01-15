@@ -9,29 +9,17 @@ using HamstarHelpers.Components.Network.Data;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerDataProtocol : PacketProtocolSentToEither {
-		protected class MyFactory : PacketProtocolData.Factory<PlayerDataProtocol> {
+		protected class MyFactory {
 			private readonly int PlayerWho;
 			private readonly ISet<int> PermaBuffsById;
 			private readonly ISet<int> HasBuffIds;
 			private readonly IDictionary<int, int> EquipSlotsToItemTypes;
-
-
-			////////////////
-
+			
 			public MyFactory( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 				this.PlayerWho = Main.myPlayer;
 				this.PermaBuffsById = permaBuffsById;
 				this.HasBuffIds = hasBuffIds;
 				this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
-			}
-
-			////
-
-			protected override void Initialize( PlayerDataProtocol data ) {
-				data.PlayerWho = this.PlayerWho;
-				data.PermaBuffsById = this.PermaBuffsById;
-				data.HasBuffIds = this.HasBuffIds;
-				data.EquipSlotsToItemTypes = this.EquipSlotsToItemTypes;
 			}
 		}
 		
@@ -43,7 +31,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
 
 			var factory = new MyFactory( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
-			PlayerDataProtocol protocol = factory.Create();
+			var protocol = PacketProtocolData.CreateDefault<PlayerDataProtocol>( factory );
 			
 			protocol.SendToServer( true );
 		}
