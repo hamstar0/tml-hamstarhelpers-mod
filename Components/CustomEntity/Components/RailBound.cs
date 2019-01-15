@@ -12,7 +12,9 @@ using Terraria.ID;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RailBoundEntityComponent : CustomEntityComponent {
 		public static RailBoundEntityComponent CreateRailBoundEntityComponent() {
-			return (RailBoundEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof( RailBoundEntityComponent ) );
+			var comp = (RailBoundEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof(RailBoundEntityComponent) );
+			comp.OnInitialize();
+			return comp;
 		}
 
 

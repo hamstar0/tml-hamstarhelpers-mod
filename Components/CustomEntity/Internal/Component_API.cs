@@ -17,9 +17,14 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
+		internal void InternalOnEntityInitialize( CustomEntity ent ) {
+			this.OnEntityInitialize( ent );
+		}
 		internal void InternalOnAddToWorld( CustomEntity ent ) {
 			this.OnAddToWorld( ent );
 		}
+
+		protected virtual void OnEntityInitialize( CustomEntity ent ) { }
 
 		protected virtual void OnAddToWorld( CustomEntity ent ) { }
 

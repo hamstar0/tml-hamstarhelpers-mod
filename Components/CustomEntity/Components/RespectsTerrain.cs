@@ -8,7 +8,9 @@ using Terraria;
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
 		public static RespectsTerrainEntityComponent CreateRespectsTerrainEntityComponent() {
-			return (RespectsTerrainEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof(RespectsTerrainEntityComponent) );
+			var comp = ( RespectsTerrainEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof(RespectsTerrainEntityComponent) );
+			comp.OnInitialize();
+			return comp;
 		}
 
 

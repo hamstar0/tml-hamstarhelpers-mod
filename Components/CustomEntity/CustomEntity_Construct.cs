@@ -13,7 +13,11 @@ namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
 		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
-		protected sealed override void OnInitialize() { }
+		protected sealed override void OnInitialize() {
+			for( int i=0; i<this.Components.Count; i++ ) {
+				this.Components[i].InternalOnEntityInitialize( this );
+			}
+		}
 
 
 

@@ -42,7 +42,19 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		////////////////
-		
+
+		/*rotected static T CreateDefault<T>( Factory<T> factory ) where T : PacketProtocolData {
+			Type factoryType = factory.GetType();
+
+			if( typeof(T) != factoryType.DeclaringType || factoryType.IsAbstract ) {
+				throw new HamstarException( "Invalid factory "+factoryType.ToString() );
+			}
+
+			return factory.Create();
+		}*/
+
+		////////////////
+
 		internal static PacketProtocolData CreateRawUninitialized( Type dataType ) {
 			if( !dataType.IsSubclassOf(typeof(PacketProtocolData)) ) {
 				throw new HamstarException("Not a PacketProtocolData subclass.");
