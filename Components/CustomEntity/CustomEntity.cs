@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using Newtonsoft.Json;
 using System;
@@ -40,41 +41,57 @@ namespace HamstarHelpers.Components.CustomEntity {
 		[JsonIgnore]
 		internal IList<CustomEntityComponent> InternalComponents => this.Components;
 
-		[PacketProtocolIgnore]
-		[JsonIgnore]
-		private Player OwnerPlayer => this.OwnerPlayerWho == -1 ? null : Main.player[ this.OwnerPlayerWho ];
-
-		[JsonProperty]
-		private string[] ComponentNames => this.Components.Select( c => c.GetType().Name ).ToArray();
-
-		[PacketProtocolIgnore]
-		[JsonIgnore]
-		public abstract bool SyncFromClient { get; }
-		[PacketProtocolIgnore]
-		[JsonIgnore]
-		public abstract bool SyncFromServer { get; }
-
-		[PacketProtocolIgnore]
-		[JsonIgnore]
-		public virtual bool IsInitialized {
-			get {
-				if( this.Core == null ) { return false; }
-				if( this.Components.Count == 0 ) { return false; }
-				return true;
-			}
-		}
-
 
 
 		////////////////
+
+		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		////
+
+		protected sealed override void OnInitialize() {
+			for( int i = 0; i < this.Components.Count; i++ ) {
+				this.Components[i].InternalOnEntityInitialize( this );
+			}
+		}
 		
-		internal void InternalWorldInitialize() {
+		internal void InternalOnAddToWorld() {
 			for( int i=0; i<this.Components.Count; i++ ) {
 				this.Components[i].InternalOnAddToWorld( this );
 			}
 		}
 
 
+		////////////////
+
+		internal void CopyChangesFrom( CustomEntity ent ) { // TODO: Copy changes only!
+			if( !ent.IsInitialized ) {
+				//throw new HamstarException( "!ModHelpers.CustomEntity.CopyChangesFrom(CustomEntity) - Parameter not initialized." );
+				throw new HamstarException( "Parameter not initialized." );
+			}
+
+			this.CopyChangesFrom( ent.Core, ent.Components, ent.OwnerPlayer );
+
+			if( ModHelpersMod.Instance.Config.DebugModeCustomEntityInfo ) {
+				LogHelpers.Alert( "Synced from " + ent.ToString() + " for " + this.ToString() );
+			}
+		}
+
+
+		internal void CopyChangesFrom( CustomEntityCore core, IList<CustomEntityComponent> components, Player ownerPlr = null ) {
+			this.Core = new CustomEntityCore( core );
+			this.OwnerPlayerWho = ownerPlr != null ? ownerPlr.whoAmI : -1;
+			this.OwnerPlayerUID = ownerPlr != null ? PlayerIdentityHelpers.GetProperUniqueId( ownerPlr ) : "";
+
+			this.Components = components.SafeSelect( c => c.InternalClone() ).ToList();
+			this.ClearComponentCache();
+
+			if( !this.IsInitialized ) {
+				//throw new HamstarException( "!ModHelpers."+this.GetType().Name+".CopyChangesFrom - Not initialized post-copy." );
+				throw new HamstarException( "Not initialized post-copy." );
+			}
+		}
+		
 
 		////////////////
 

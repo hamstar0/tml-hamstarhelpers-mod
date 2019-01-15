@@ -7,12 +7,39 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class ShootsAtPlayerEntityComponent : CustomEntityComponent {
+		protected class ShootsAtPlayerEntityComponentFactory {
+			public int ProjectileType;
+			public int MinRange;
+			public int MaxRange;
+			public bool IgnoresSolidCover;
+			public int Cooldown;
+			public int MaxCooldown;
+			
+			public ShootsAtPlayerEntityComponentFactory( int projectileType, int minRange, int maxRange, bool ignoresSolidCover,
+					int cooldown, int maxCooldown ) {
+				this.ProjectileType = projectileType;
+				this.MinRange = minRange;
+				this.MaxRange = maxRange;
+				this.IgnoresSolidCover = ignoresSolidCover;
+				this.Cooldown = cooldown;
+				this.MaxCooldown = maxCooldown;
+			}
+		}
+
+
+
+		////////////////
+
 		public int ProjectileType;
 		public int MinRange;
 		public int MaxRange;
 		public bool IgnoresSolidCover;
 		public int Cooldown;
 		public int MaxCooldown;
+
+		////
+
+		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(ShootsAtPlayerEntityComponentFactory) );
 
 
 

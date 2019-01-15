@@ -38,7 +38,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override Tuple<PacketProtocolData, Type> _MyFactoryType => Tuple.Create( (PacketProtocolData)this, typeof(MyFactory) );
+		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(MyFactory) );
 
 
 

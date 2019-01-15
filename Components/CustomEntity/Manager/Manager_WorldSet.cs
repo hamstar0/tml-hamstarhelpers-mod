@@ -63,7 +63,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			realEnt.Core.whoAmI = who;
 			mngr.WorldEntitiesByIndexes[ who ] = realEnt;
 
-			realEnt.InternalWorldInitialize();
+			realEnt.InternalOnAddToWorld();
 
 			// Sync also
 			if( !skipSync ) {

@@ -5,12 +5,29 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class DrawsInGameEntityComponent : CustomEntityComponent {
+		protected class DrawsInGameEntityComponentFactory {
+			public readonly string SourceModName;
+			public readonly string TexturePath;
+			public readonly int FrameCount;
+			
+			public DrawsInGameEntityComponentFactory( string srcModName, string relTexturePath, int frameCount ) {
+				this.SourceModName = srcModName;
+				this.TexturePath = relTexturePath;
+				this.FrameCount = frameCount;
+			}
+		}
+
+
+
+		////////////////
+
 		[PacketProtocolIgnore]
 		public string ModName;
 		[PacketProtocolIgnore]
@@ -18,9 +35,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		[PacketProtocolIgnore]
 		public int FrameCount;
 
+		////////////////
+
 		[PacketProtocolIgnore]
 		[JsonIgnore]
 		public Texture2D Texture { get; protected set; }
+
+		////
+
+		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(DrawsInGameEntityComponentFactory) );
 
 
 

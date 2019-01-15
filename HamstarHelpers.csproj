@@ -48,8 +48,6 @@
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Components\CustomEntity\Components\Draws\DrawsGame_Draw.cs" />
-    <Compile Include="Components\CustomEntity\Components\Draws\DrawsGame_Factory.cs" />
-    <Compile Include="Components\CustomEntity\Components\Draws\DrawsMap_Factory.cs" />
     <Compile Include="Components\CustomEntity\Components\Draws\DrawsMap_Draw.cs" />
     <Compile Include="Components\CustomEntity\Components\Hits\HitRadiusPlayer.cs" />
     <Compile Include="Components\CustomEntity\Components\Hits\HitRadiusNpc.cs" />
@@ -61,8 +59,6 @@
     <Compile Include="Components\CustomEntity\Components\RailBound.cs" />
     <Compile Include="Components\CustomEntity\Components\RespectsGravity.cs" />
     <Compile Include="Components\CustomEntity\Components\RespectsTerrain.cs" />
-    <Compile Include="Components\CustomEntity\Components\Shoots\ShootsAtPlayer_Factory.cs" />
-    <Compile Include="Components\CustomEntity\Components\Saveable_Factory.cs" />
     <Compile Include="Components\CustomEntity\Components\Saveable_SaveLoad.cs" />
     <Compile Include="Components\CustomEntity\Components\Saveable.cs" />
     <Compile Include="Components\CustomEntity\Components\Saveable_Loader.cs" />
@@ -71,8 +67,7 @@
     <Compile Include="Components\CustomEntity\CustomEntity_Components.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity_Factory.cs" />
     <Compile Include="Components\CustomEntity\Internal\Component_API.cs" />
-    <Compile Include="Components\CustomEntity\Internal\Component_Factory.cs" />
-    <Compile Include="Components\CustomEntity\CustomEntity_Construct.cs" />
+    <Compile Include="Components\CustomEntity\CustomEntity_API.cs" />
     <Compile Include="Components\CustomEntity\CustomEntity.cs" />
     <Compile Include="Components\CustomEntity\Internal\Component.cs" />
     <Compile Include="Components\CustomEntity\Internal\Core.cs" />

@@ -22,7 +22,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected override Tuple<PacketProtocolData, Type> _MyFactoryType => Tuple.Create( (PacketProtocolData)this, typeof( CustomEntityFactory ) );
+		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(CustomEntityFactory) );
 
 
 

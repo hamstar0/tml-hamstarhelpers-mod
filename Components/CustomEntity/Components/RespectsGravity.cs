@@ -5,16 +5,6 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsGravityEntityComponent : CustomEntityComponent {
-		public static RespectsGravityEntityComponent CreateRespectsGravityEntityComponent() {
-			var comp = (RespectsGravityEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof(RespectsGravityEntityComponent) );
-			comp.OnInitialize();
-			return comp;
-		}
-
-
-
-		////////////////
-
 		protected RespectsGravityEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
 		protected override void OnInitialize() { }

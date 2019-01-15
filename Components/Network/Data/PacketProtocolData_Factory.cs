@@ -93,12 +93,14 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 
-		protected virtual Tuple<PacketProtocolData, Type> _MyFactoryType { get; }
+		protected virtual Tuple<object, Type> _MyFactoryType { get; }
 		protected Type MyFactoryType {
 			get {
-				if( this._MyFactoryType != null && this._MyFactoryType.Item1.GetType() != this.GetType() ) {
+				var myobj = this._MyFactoryType.Item1;
+
+				if( this._MyFactoryType != null && myobj.GetType() != this.GetType() ) {
 					throw new NotImplementedException(
-						"Incorrect factory product type: Found " + this._MyFactoryType.Item1.GetType().Name + ", expected " + this.GetType().Name
+						"Incorrect factory product type: Found " + myobj.GetType().Name + ", expected " + this.GetType().Name
 					);
 				}
 				return this._MyFactoryType.Item2;

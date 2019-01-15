@@ -5,12 +5,33 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class DrawsOnMapEntityComponent : CustomEntityComponent {
+		protected class DrawsOnMapEntityComponentFactory {
+			public readonly string SourceModName;
+			public readonly string RelativeTexturePath;
+			public readonly int FrameCount;
+			public readonly float Scale;
+			public readonly bool Zooms;
+			
+			public DrawsOnMapEntityComponentFactory( string srcModName, string relTexturePath, int frameCount, float scale, bool zooms ) {
+				this.SourceModName = srcModName;
+				this.RelativeTexturePath = relTexturePath;
+				this.FrameCount = frameCount;
+				this.Scale = scale;
+				this.Zooms = zooms;
+			}
+		}
+
+
+
+		////////////////
+
 		[PacketProtocolIgnore]
 		public string ModName;
 		[PacketProtocolIgnore]
@@ -22,9 +43,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		[PacketProtocolIgnore]
 		public bool Zooms;
 
+		////////////////
+
 		[PacketProtocolIgnore]
 		[JsonIgnore]
 		public Texture2D Texture { get; protected set; }
+
+		////
+
+		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(DrawsOnMapEntityComponentFactory) );
 
 
 
