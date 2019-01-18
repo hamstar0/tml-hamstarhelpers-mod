@@ -49,15 +49,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		[PacketProtocolIgnore]
 		public bool AsJson = true;
 
-		////////////////
-
-		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(SaveableEntityComponentFactory) );
-
 
 
 		////////////////
 
 		protected SaveableEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		protected override Type GetMyFactoryType() {
+			return typeof( SaveableEntityComponentFactory );
+		}
 
 		protected override void OnInitialize() { }
 	}

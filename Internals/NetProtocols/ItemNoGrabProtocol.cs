@@ -36,15 +36,14 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public int NoGrabDelayAmt;
 
 
-		////////////////
-
-		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(MyFactory) );
-
-
 
 		////////////////
 
 		protected ItemNoGrabProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		protected override Type GetMyFactoryType() {
+			return typeof( MyFactory );
+		}
 
 		protected override void InitializeClientSendData() { }
 

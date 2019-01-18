@@ -40,16 +40,16 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public SerializableCustomEntity Entity;
 
 
-		////////////////
-
-		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(MyFactory) );
-
-
 
 		////////////////
 
 		protected CustomEntityProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
 
+		////////////////
+
+		protected override Type GetMyFactoryType() {
+			return typeof(MyFactory);
+		}
 
 		////////////////
 

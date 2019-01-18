@@ -22,8 +22,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(CustomEntityFactory) );
-
+		protected override Type GetMyFactoryType() {
+			return typeof(CustomEntityFactory);
+		}
 
 
 		////////////////

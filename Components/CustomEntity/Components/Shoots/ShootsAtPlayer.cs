@@ -37,15 +37,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		public int Cooldown;
 		public int MaxCooldown;
 
-		////
-
-		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(ShootsAtPlayerEntityComponentFactory) );
-
 
 
 		////////////////
 
 		protected ShootsAtPlayerEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		protected override Type GetMyFactoryType() {
+			return typeof( ShootsAtPlayerEntityComponentFactory );
+		}
 
 		protected override void OnInitialize() { }
 

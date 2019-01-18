@@ -45,15 +45,30 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 
+		public static T CreateDefault<T>() where T : PacketProtocolData {
+			var productType = typeof( T );
+			T data = (T)PacketProtocolData.CreateRawUninitialized( productType );
+			Type factoryType = data.GetMyFactoryType();
+
+			if( factoryType != null ) {
+				throw new NotImplementedException( "Non-null factory type found: " + factoryType.Name );
+			}
+			
+			data.OnInitialize();
+
+			return data;
+		}
+
 		public static T CreateDefault<T>( object factory ) where T : PacketProtocolData {
 			return (T)PacketProtocolData.CreateDefault( typeof(T), factory );
 		}
 
 		public static PacketProtocolData CreateDefault( Type productType, object factory ) {
 			PacketProtocolData data = PacketProtocolData.CreateRawUninitialized( productType );
+			Type factoryType = data.GetMyFactoryType();
 
-			if( data.MyFactoryType != factory.GetType() ) {
-				throw new NotImplementedException( "Incorrect factory type: Found: "+factory.GetType().Name+", expected "+data.MyFactoryType.Name );
+			if( factoryType != factory.GetType() ) {
+				throw new NotImplementedException( "Incorrect factory type. Found: "+factory.GetType().Name+", expected "+ factoryType.Name );
 			}
 
 			FieldInfo[] fields = factory.GetType().GetFields( BindingFlags.Public );
@@ -92,28 +107,18 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		////////////////
-
-		protected virtual Tuple<object, Type> _MyFactoryType { get; }
-		protected Type MyFactoryType {
-			get {
-				var myobj = this._MyFactoryType.Item1;
-
-				if( this._MyFactoryType != null && myobj.GetType() != this.GetType() ) {
-					throw new NotImplementedException(
-						"Incorrect factory product type: Found " + myobj.GetType().Name + ", expected " + this.GetType().Name
-					);
-				}
-				return this._MyFactoryType.Item2;
-			}
-		}
-
-
-		////////////////
-
+		
 		protected virtual void OnFactoryCreate( object factory ) { }
 
 		protected abstract void OnInitialize();
 
 		internal void InternalOnInitialize() { this.OnInitialize(); }
+
+
+		////////////////
+
+		protected virtual Type GetMyFactoryType() {
+			return (Type)null;
+		}
 	}
 }

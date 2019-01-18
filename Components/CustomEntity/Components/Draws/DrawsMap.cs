@@ -49,15 +49,17 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		[JsonIgnore]
 		public Texture2D Texture { get; protected set; }
 
-		////
-
-		protected override Tuple<object, Type> _MyFactoryType => Tuple.Create( (object)this, typeof(DrawsOnMapEntityComponentFactory) );
-
 
 
 		////////////////
 
 		protected DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+
+		////////////////
+
+		protected override Type GetMyFactoryType() {
+			return typeof( DrawsOnMapEntityComponentFactory );
+		}
 
 
 		////////////////
