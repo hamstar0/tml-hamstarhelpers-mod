@@ -41,9 +41,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected abstract CustomEntityCore CreateCore( CustomEntityFactory factory );
+		protected abstract CustomEntityCore CreateCore( CustomEntityConstructor factory );
 
-		protected abstract IList<CustomEntityComponent> CreateComponents( CustomEntityFactory factory );
+		protected abstract IList<CustomEntityComponent> CreateComponents( CustomEntityConstructor factory );
 
 		public abstract CustomEntityCore CreateCoreTemplate();
 

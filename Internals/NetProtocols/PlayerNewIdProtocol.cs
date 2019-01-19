@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
-using HamstarHelpers.Components.Network.Data;
 using Terraria;
 using System.Collections.Generic;
 
@@ -14,7 +13,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected PlayerNewIdProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
+		private PlayerNewIdProtocol() {
 			this.PlayerIds = ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
 		}
 

@@ -10,6 +10,28 @@ namespace HamstarHelpers.Components.Network.Data {
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
 	public abstract partial class PacketProtocolData {
+		internal static bool ValidateConstructor( Type dataType ) {
+			ConstructorInfo ctorInfo = dataType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+				new Type[] { typeof( PacketProtocolDataConstructorLock ) }, null );
+
+			if( ctorInfo == null ) {
+				ctorInfo = dataType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+					new Type[] { }, null );
+
+				if( ctorInfo == null ) {
+					return false;
+				}
+			} else {
+				return ctorInfo.IsFamily;
+			}
+
+			return true;
+		}
+
+
+
+		////////////////
+
 		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
 
 		internal IOrderedEnumerable<FieldInfo> OrderedFields {
@@ -29,10 +51,12 @@ namespace HamstarHelpers.Components.Network.Data {
 		////////////////
 
 		protected PacketProtocolData( PacketProtocolDataConstructorLock ctorLock ) {
-			if( ctorLock == null ) {
-				throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Must be factory generated or cloned." );
-			}
+			//if( ctorLock == null ) {
+			//	throw new NotImplementedException( "Invalid " + this.GetType().Name + ": Must be factory generated or cloned." );
+			//}
 		}
+
+		protected PacketProtocolData() { }
 
 
 		////////////////

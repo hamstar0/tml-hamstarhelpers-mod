@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,24 +11,8 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class DrawsInGameEntityComponent : CustomEntityComponent {
-		protected class DrawsInGameEntityComponentFactory {
-			public readonly string SourceModName;
-			public readonly string TexturePath;
-			public readonly int FrameCount;
-			
-			public DrawsInGameEntityComponentFactory( string srcModName, string relTexturePath, int frameCount ) {
-				this.SourceModName = srcModName;
-				this.TexturePath = relTexturePath;
-				this.FrameCount = frameCount;
-			}
-		}
-
-
-
-		////////////////
-
 		[PacketProtocolIgnore]
-		public string ModName;
+		public string SourceModName;
 		[PacketProtocolIgnore]
 		public string TexturePath;
 		[PacketProtocolIgnore]
@@ -45,26 +28,26 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected DrawsInGameEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private DrawsInGameEntityComponent() { }
 
-		////////////////
-
-		protected override Type GetMyFactoryType() {
-			return typeof( DrawsInGameEntityComponentFactory );
+		protected DrawsInGameEntityComponent( string srcModName, string relTexturePath, int frameCount ) {
+			this.SourceModName = srcModName;
+			this.TexturePath = relTexturePath;
+			this.FrameCount = frameCount;
 		}
 
 		////////////////
 
 		protected sealed override void OnInitialize() {
-			if( string.IsNullOrEmpty(this.ModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 ) {
+			if( string.IsNullOrEmpty(this.SourceModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 ) {
 				//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
-				throw new HamstarException( "Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
+				throw new HamstarException( "Invalid fields. (" + this.SourceModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
 			}
 
-			var srcMod = ModLoader.GetMod( this.ModName );
+			var srcMod = ModLoader.GetMod( this.SourceModName );
 			if( srcMod == null ) {
 				//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid mod " + this.ModName );
-				throw new HamstarException( "Invalid mod " + this.ModName );
+				throw new HamstarException( "Invalid mod " + this.SourceModName );
 			}
 
 			if( !Main.dedServ ) {

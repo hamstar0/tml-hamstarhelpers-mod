@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Components.Network;
 using Terraria;
-using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -13,7 +12,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected PlayerOldIdProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private PlayerOldIdProtocol() { }
 
 
 		////////////////

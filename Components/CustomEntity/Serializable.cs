@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.PlayerHelpers;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,10 +36,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		internal SerializableCustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private SerializableCustomEntity() : base( null ) { }
 
-		internal SerializableCustomEntity( CustomEntity ent )
-				: base( new PacketProtocolDataConstructorLock() ) {
+		internal SerializableCustomEntity( CustomEntity ent ) : base( null ) {
 			this.MyTypeName = SerializableCustomEntity.GetTypeName( ent );
 			this.Core = ent.Core;
 			this.Components = ent.InternalComponents;
@@ -48,7 +47,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		internal SerializableCustomEntity( string typeName, CustomEntityCore core, IList<CustomEntityComponent> components, string playerUid )
-				: base( new PacketProtocolDataConstructorLock() ) {
+				: base( null ) {
 			this.MyTypeName = typeName;
 			this.Core = core;
 			this.Components = components;
@@ -59,17 +58,17 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////////////////
 
-		protected override IList<CustomEntityComponent> CreateComponents( CustomEntityFactory factory ) {
+		protected override IList<CustomEntityComponent> CreateComponents( CustomEntityConstructor factory ) {
 			throw new NotImplementedException( "CreateComponents not implemented" );
 		}
-		protected override CustomEntityCore CreateCore( CustomEntityFactory factory ) {
+		protected override CustomEntityCore CreateCore( CustomEntityConstructor factory ) {
 			throw new NotImplementedException( "CreateCore not implemented" );
 		}
 		public override CustomEntityCore CreateCoreTemplate() {
-			throw new NotImplementedException( "CreateCoreTemplate not implemented" );
+			return new CustomEntityCore( "", 0, 0, default(Vector2), 0 );
 		}
 		public override IList<CustomEntityComponent> CreateComponentsTemplate() {
-			throw new NotImplementedException( "CreateComponentsTemplate not implemented" );
+			return new List<CustomEntityComponent>();
 		}
 
 

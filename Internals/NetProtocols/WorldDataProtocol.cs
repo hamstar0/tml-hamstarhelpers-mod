@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.WorldHelpers;
 using Terraria;
 
@@ -13,7 +12,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected WorldDataProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private WorldDataProtocol() { }
 
 
 		////////////////

@@ -117,7 +117,7 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 			
 			if( fieldType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-				var data = PacketProtocolData.CreateRawUninitialized( fieldType );
+				var data = (PacketProtocol)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				data.ReadStream( reader );
 				data.OnInitialize();
@@ -140,7 +140,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 				if( innerType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					for( int i = 0; i < length; i++ ) {
-						var item = PacketProtocolData.CreateRawUninitialized( innerType );
+						var item = (PacketProtocolData)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 						item.ReadStream( reader );
 						item.OnInitialize();

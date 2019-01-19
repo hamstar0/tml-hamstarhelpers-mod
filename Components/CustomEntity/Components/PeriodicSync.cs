@@ -14,7 +14,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public static PeriodicSyncEntityComponent CreatePeriodicSyncEntityComponent() {
-			var comp = (PeriodicSyncEntityComponent)PacketProtocolData.CreateRawUninitialized( typeof( PeriodicSyncEntityComponent ) );
+			var comp = new PeriodicSyncEntityComponent();
 			comp.OnInitialize();
 			return comp;
 		}
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected PeriodicSyncEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) {
+		private PeriodicSyncEntityComponent() {
 			this.NextSync = PeriodicSyncEntityComponent.GetRandomSyncDuration();
 		}
 

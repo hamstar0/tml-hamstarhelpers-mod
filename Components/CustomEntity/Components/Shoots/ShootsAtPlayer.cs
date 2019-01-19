@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Network.Data;
-using HamstarHelpers.Helpers.TileHelpers;
+﻿using HamstarHelpers.Helpers.TileHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -7,29 +6,6 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class ShootsAtPlayerEntityComponent : CustomEntityComponent {
-		protected class ShootsAtPlayerEntityComponentFactory {
-			public int ProjectileType;
-			public int MinRange;
-			public int MaxRange;
-			public bool IgnoresSolidCover;
-			public int Cooldown;
-			public int MaxCooldown;
-			
-			public ShootsAtPlayerEntityComponentFactory( int projectileType, int minRange, int maxRange, bool ignoresSolidCover,
-					int cooldown, int maxCooldown ) {
-				this.ProjectileType = projectileType;
-				this.MinRange = minRange;
-				this.MaxRange = maxRange;
-				this.IgnoresSolidCover = ignoresSolidCover;
-				this.Cooldown = cooldown;
-				this.MaxCooldown = maxCooldown;
-			}
-		}
-
-
-
-		////////////////
-
 		public int ProjectileType;
 		public int MinRange;
 		public int MaxRange;
@@ -41,10 +17,15 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected ShootsAtPlayerEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private ShootsAtPlayerEntityComponent() { }
 
-		protected override Type GetMyFactoryType() {
-			return typeof( ShootsAtPlayerEntityComponentFactory );
+		private ShootsAtPlayerEntityComponent( int projectileType, int minRange, int maxRange, bool ignoresSolidCover, int cooldown, int maxCooldown ) {
+			this.ProjectileType = projectileType;
+			this.MinRange = minRange;
+			this.MaxRange = maxRange;
+			this.IgnoresSolidCover = ignoresSolidCover;
+			this.Cooldown = cooldown;
+			this.MaxCooldown = maxCooldown;
 		}
 
 		protected override void OnInitialize() { }

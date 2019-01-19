@@ -3,10 +3,6 @@ using System;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract class PacketProtocolSentToEither : PacketProtocol {
-		protected PacketProtocolSentToEither( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-		////
-		
 		protected abstract void ReceiveOnClient();
 		protected sealed override void ReceiveWithClient() {
 			this.ReceiveOnClient();
@@ -22,10 +18,6 @@ namespace HamstarHelpers.Components.Network {
 
 
 	public abstract class PacketProtocolSendToServer : PacketProtocol {
-		protected PacketProtocolSendToServer( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-		////
-
 		public static void QuickSend<T>() where T : PacketProtocolSendToServer {
 			PacketProtocol.QuickSendToServer<T>();
 		}
@@ -62,10 +54,6 @@ namespace HamstarHelpers.Components.Network {
 
 
 	public abstract class PacketProtocolSendToClient : PacketProtocol {
-		protected PacketProtocolSendToClient( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-		////
-
 		public static void QuickSend<T>( int toWho, int ignoreWho ) where T : PacketProtocolSendToClient {
 			PacketProtocol.QuickSendToClient<T>( toWho, ignoreWho );
 		}
@@ -102,10 +90,6 @@ namespace HamstarHelpers.Components.Network {
 
 	
 	public abstract class PacketProtocolRequestToServer : PacketProtocol {
-		protected PacketProtocolRequestToServer( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-		////
-
 		public static void QuickRequest<T>() where T : PacketProtocolRequestToServer {
 			PacketProtocol.QuickRequestToServer<T>();
 		}
@@ -139,10 +123,6 @@ namespace HamstarHelpers.Components.Network {
 	
 
 	public abstract class PacketProtocolRequestToClient : PacketProtocol {
-		protected PacketProtocolRequestToClient( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-		////
-
 		public static void QuickRequest<T>( int toWho, int ignoreWho ) where T : PacketProtocolRequestToClient {
 			PacketProtocol.QuickRequestToClient<T>( toWho, ignoreWho );
 		}

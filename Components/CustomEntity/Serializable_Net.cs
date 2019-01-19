@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 
 
@@ -72,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Player plr = ownerWho == (byte)255 ? null : Main.player[ ownerWho ];
 
-			var myentTemplate = (CustomEntity)CustomEntity.CreateRawUninitialized( entType );
+			var myentTemplate = (CustomEntity)Activator.CreateInstance( entType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 			CustomEntityCore core = myentTemplate.CreateCoreTemplate();
 			IList<CustomEntityComponent> components = myentTemplate.CreateComponentsTemplate();
 

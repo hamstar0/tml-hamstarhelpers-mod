@@ -5,10 +5,6 @@ using System.IO;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntityComponent : PacketProtocolData {
-		protected CustomEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-		////
-
 		internal CustomEntityComponent InternalClone() {
 			return this.Clone();
 		}

@@ -18,7 +18,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected RailBoundEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private RailBoundEntityComponent() { }
 
 		protected override void OnInitialize() { }
 

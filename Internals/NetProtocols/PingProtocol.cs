@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -8,17 +7,18 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public long StartTime = -1;
 		public long EndTime = -1;
 
-
-
-		////////////////
 		
+		////////////////
+
 		[PacketProtocolIgnore]
-		public override bool IsVerbose { get { return false; } }
+		public override bool IsVerbose => false;
+
 
 
 		////////////////
 
-		protected PingProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private PingProtocol() { }
+
 
 		////////////////
 

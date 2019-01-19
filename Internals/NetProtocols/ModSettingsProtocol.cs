@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -9,7 +8,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected ModSettingsProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private ModSettingsProtocol() { }
 
 		////////////////
 

@@ -65,7 +65,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				i = 0;
 				foreach( JObject obj in rawComponents ) {
 					Type compType = compTypes[i];
-					var comp = (CustomEntityComponent)PacketProtocolData.CreateRawUninitialized( compType );
+					var comp = (CustomEntityComponent)Activator.CreateInstance( compType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 					this.ReadIntoComponentFromJson( comp, obj, serializer );
 					//var comp = obj.ToObject( compType, serializer );
 					

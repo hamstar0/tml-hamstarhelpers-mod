@@ -4,34 +4,14 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerDataProtocol : PacketProtocolSentToEither {
-		protected class MyFactory {
-			private readonly int PlayerWho;
-			private readonly ISet<int> PermaBuffsById;
-			private readonly ISet<int> HasBuffIds;
-			private readonly IDictionary<int, int> EquipSlotsToItemTypes;
-			
-			public MyFactory( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
-				this.PlayerWho = Main.myPlayer;
-				this.PermaBuffsById = permaBuffsById;
-				this.HasBuffIds = hasBuffIds;
-				this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
-			}
-		}
-		
-
-
-		////////////////
-
 		public static void SyncToEveryone( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
-
-			var factory = new MyFactory( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
-			var protocol = PacketProtocolData.CreateDefault<PlayerDataProtocol>( factory );
+			
+			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
 			
 			protocol.SendToServer( true );
 		}
@@ -49,7 +29,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected PlayerDataProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private PlayerDataProtocol( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+			this.PlayerWho = Main.myPlayer;
+			this.PermaBuffsById = permaBuffsById;
+			this.HasBuffIds = hasBuffIds;
+			this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
+		}
 
 
 		protected override void SetServerDefaults( int fromWho ) { }

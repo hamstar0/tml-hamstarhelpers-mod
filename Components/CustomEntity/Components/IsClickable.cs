@@ -1,12 +1,11 @@
-﻿using HamstarHelpers.Components.Network.Data;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public abstract class IsClickableEntityComponent : CustomEntityComponent {
-		protected IsClickableEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private IsClickableEntityComponent() { }
 
 
 		////////////////

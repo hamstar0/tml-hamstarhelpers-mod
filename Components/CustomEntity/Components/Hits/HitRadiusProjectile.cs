@@ -1,10 +1,9 @@
-﻿using HamstarHelpers.Components.Network.Data;
-using Terraria;
+﻿using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public abstract class HitRadiusProjectileEntityComponent : CustomEntityComponent {
-		protected HitRadiusProjectileEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private HitRadiusProjectileEntityComponent() { }
 		
 
 		////////////////

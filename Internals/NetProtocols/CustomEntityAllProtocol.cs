@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 		
-		protected CustomEntityAllProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private CustomEntityAllProtocol() { }
 
 		////
 		

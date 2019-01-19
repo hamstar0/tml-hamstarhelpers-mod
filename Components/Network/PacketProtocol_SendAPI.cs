@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
+using System.Reflection;
 using Terraria;
 
 
@@ -12,8 +13,8 @@ namespace HamstarHelpers.Components.Network {
 			if( Main.netMode != 1 ) {
 				throw new HamstarException( "Can only send as client." );
 			}
-
-			T t = (T)PacketProtocolData.CreateRawUninitialized( typeof(T) );
+			
+			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 			t.SetClientDefaults();
 			t.OnInitialize();
 
@@ -55,7 +56,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Can only send as client." );
 			}
 			
-			T t = (T)PacketProtocolData.CreateRawUninitialized( typeof(T) );
+			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 			try {
 				t.SetServerDefaults( toWho );
 			} catch( NotImplementedException ) {
@@ -79,8 +80,8 @@ namespace HamstarHelpers.Components.Network {
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Not server." );
 			}
-			
-			T t = (T)PacketProtocolData.CreateRawUninitialized( typeof(T) );
+
+			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 			t.SendRequestToClient( toWho, ignoreWho );
 		}
@@ -96,7 +97,7 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Not a client." );
 			}
 			
-			T t = (T)PacketProtocolData.CreateRawUninitialized( typeof(T) );
+			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 			t.SendRequestToServer();
 		}

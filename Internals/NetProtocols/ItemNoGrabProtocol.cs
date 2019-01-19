@@ -1,30 +1,13 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using System;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class ItemNoGrabProtocol : PacketProtocolSendToServer {
-		protected class MyFactory {
-			private readonly int ItemWho;
-			private readonly int NoGrabDelayAmt;
-			
-			public MyFactory( int itemWho, int noGrabDelayAmt ) {
-				this.ItemWho = itemWho;
-				this.NoGrabDelayAmt = noGrabDelayAmt;
-			}
-		}
-
-
-
-		////////////////
-
 		public static void SendToServer( int itemWho, int noGrabDelayAmt ) {
-			var factory = new MyFactory( itemWho, noGrabDelayAmt );
-			var protocol = PacketProtocolData.CreateDefault<ItemNoGrabProtocol>( factory );
-			
+			var protocol = new ItemNoGrabProtocol( itemWho, noGrabDelayAmt );
 			protocol.SendToServer( false );
 		}
 
@@ -39,13 +22,17 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected ItemNoGrabProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+		private ItemNoGrabProtocol() { }
 
-		protected override Type GetMyFactoryType() {
-			return typeof( MyFactory );
+		private ItemNoGrabProtocol( int itemWho, int noGrabDelayAmt ) {
+			this.ItemWho = itemWho;
+			this.NoGrabDelayAmt = noGrabDelayAmt;
 		}
 
+		////
+
 		protected override void InitializeClientSendData() { }
+
 
 		////////////////
 

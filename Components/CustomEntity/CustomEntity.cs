@@ -13,6 +13,18 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity {
 	public abstract partial class CustomEntity : PacketProtocolData {
+		protected abstract class CustomEntityConstructor {
+			public readonly Player OwnerPlayer;
+
+			protected CustomEntityConstructor( Player ownerPlr = null ) {
+				this.OwnerPlayer = ownerPlr;
+			}
+		}
+
+
+
+		////////////////
+
 		public CustomEntityCore Core;
 		[JsonRequired]
 		protected IList<CustomEntityComponent> Components = new List<CustomEntityComponent>();
@@ -44,8 +56,26 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		////////////////
+		
+		protected CustomEntity( CustomEntityConstructor ctor ) {
+			var myctor = ctor as CustomEntityConstructor;
 
-		protected CustomEntity( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
+			if( this.OwnerPlayer != null ) {
+				this.OwnerPlayerWho = this.OwnerPlayer.whoAmI;
+				this.OwnerPlayerUID = PlayerIdentityHelpers.GetProperUniqueId( this.OwnerPlayer );
+			} else {
+				this.OwnerPlayerWho = -1;
+				this.OwnerPlayerUID = "";
+			}
+
+			if( myctor != null ) {
+				this.Core = this.CreateCore( myctor );
+				this.Components = this.CreateComponents( myctor );
+			} else {
+				this.Core = this.CreateCoreTemplate();
+				this.Components = this.CreateComponentsTemplate();
+			}
+		}
 
 		////
 

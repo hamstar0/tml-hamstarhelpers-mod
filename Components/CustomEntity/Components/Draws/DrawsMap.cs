@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,30 +11,10 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public partial class DrawsOnMapEntityComponent : CustomEntityComponent {
-		protected class DrawsOnMapEntityComponentFactory {
-			public readonly string SourceModName;
-			public readonly string RelativeTexturePath;
-			public readonly int FrameCount;
-			public readonly float Scale;
-			public readonly bool Zooms;
-			
-			public DrawsOnMapEntityComponentFactory( string srcModName, string relTexturePath, int frameCount, float scale, bool zooms ) {
-				this.SourceModName = srcModName;
-				this.RelativeTexturePath = relTexturePath;
-				this.FrameCount = frameCount;
-				this.Scale = scale;
-				this.Zooms = zooms;
-			}
-		}
-
-
-
-		////////////////
-
 		[PacketProtocolIgnore]
-		public string ModName;
+		public string SourceModName;
 		[PacketProtocolIgnore]
-		public string TexturePath;
+		public string RelativeTexturePath;
 		[PacketProtocolIgnore]
 		public int FrameCount;
 		[PacketProtocolIgnore]
@@ -53,32 +32,32 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		protected DrawsOnMapEntityComponent( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
-		////////////////
-
-		protected override Type GetMyFactoryType() {
-			return typeof( DrawsOnMapEntityComponentFactory );
+		protected DrawsOnMapEntityComponent( string srcModName, string relTexturePath, int frameCount, float scale, bool zooms ) {
+			this.SourceModName = srcModName;
+			this.RelativeTexturePath = relTexturePath;
+			this.FrameCount = frameCount;
+			this.Scale = scale;
+			this.Zooms = zooms;
 		}
 
 
 		////////////////
 
 		protected sealed override void OnInitialize() {
-			if( string.IsNullOrEmpty(this.ModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 || this.Scale == 0 ) {
+			if( string.IsNullOrEmpty(this.SourceModName) || string.IsNullOrEmpty(this.RelativeTexturePath) || this.FrameCount == 0 || this.Scale == 0 ) {
 				//throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
 				throw new HamstarException( "Invalid fields." );
 			}
 
-			var srcMod = ModLoader.GetMod( this.ModName );
+			var srcMod = ModLoader.GetMod( this.SourceModName );
 			if( srcMod == null ) {
 				//throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + this.ModName );
-				throw new HamstarException( "Invalid mod " + this.ModName );
+				throw new HamstarException( "Invalid mod " + this.SourceModName );
 			}
 
 			if( !Main.dedServ ) {
 				if( this.Texture == null ) {
-					this.Texture = srcMod.GetTexture( this.TexturePath );
+					this.Texture = srcMod.GetTexture( this.RelativeTexturePath );
 				}
 			}
 

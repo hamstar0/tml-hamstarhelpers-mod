@@ -3,6 +3,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 
@@ -11,8 +12,6 @@ namespace HamstarHelpers.Components.Network {
 	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
 	/// </summary>
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		protected PacketProtocol( PacketProtocolDataConstructorLock ctorLock ) : base( ctorLock ) { }
-
 		protected override void OnInitialize() { }	// Validations are handled internally
 
 
@@ -41,25 +40,35 @@ namespace HamstarHelpers.Components.Network {
 			IEnumerable<Type> protocolTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof(PacketProtocol) );
 			IDictionary<int, Type> protocolTypeMap = new Dictionary<int, Type>();
 
-			foreach( Type subclass in protocolTypes ) {
-				//ConstructorInfo ctorInfo = subclass.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
-				//	new Type[] { typeof(PacketProtocolDataConstructorLock) }, null );
-				//if( ctorInfo == null ) {
-				//	throw new NotImplementedException( "Missing internal constructor for " + subclass.Name );
-				//}
+			foreach( Type subclassType in protocolTypes ) {
+				ConstructorInfo ctorInfo = subclassType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+					new Type[] { typeof( PacketProtocolDataConstructorLock ) }, null );
+
+				if( ctorInfo == null ) {
+					ctorInfo = subclassType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+						new Type[] { }, null );
+
+					if( ctorInfo == null ) {
+						throw new NotImplementedException( "Missing private constructor for " + subclassType.Name );
+					}
+				} else {
+					if( ctorInfo.IsFamily ) {
+						throw new NotImplementedException( "Invalid constructor for " + subclassType.Name + "; must be private, not protected." );
+					}
+				}
 
 				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
-					string name = subclass.Namespace + "." + subclass.Name;
+					string name = subclassType.Namespace + "." + subclassType.Name;
 					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + name );
 				}
 
 				try {
-					string name = subclass.Namespace + "." + subclass.Name;
+					string name = subclassType.Namespace + "." + subclassType.Name;
 					int code = PacketProtocol.GetPacketCode( name );
 
-					protocolTypeMap[ code ] = subclass;
+					protocolTypeMap[ code ] = subclassType;
 				} catch( Exception e ) {
-					LogHelpers.Log( subclass.Name + " - " + e.Message );
+					LogHelpers.Log( subclassType.Name + " - " + e.Message );
 				}
 			}
 

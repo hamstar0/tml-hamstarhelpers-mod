@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -15,6 +16,10 @@ namespace HamstarHelpers.Components.Network.Data {
 	/// </summary>
 	public abstract partial class PacketProtocolData {
 		private static void WriteStreamFromContainer( BinaryWriter writer, PacketProtocolData data ) {
+			if( !PacketProtocolData.ValidateConstructor(data.GetType()) ) {
+				throw new HamstarException( "Invalid default constructor for "+data.GetType().Name );
+			}
+
 			foreach( FieldInfo field in data.OrderedFields ) {
 				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
 					continue;

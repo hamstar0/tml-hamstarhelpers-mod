@@ -3,7 +3,7 @@ using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
-
+using System.Reflection;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateRawUninitialized( protocolType );
+				var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithClientBase();
@@ -70,7 +70,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateRawUninitialized( protocolType );
+				var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithServerBase( playerWho );
