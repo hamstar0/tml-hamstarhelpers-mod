@@ -95,7 +95,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				ent = CustomEntity.CreateRaw( entType, this.Core, this.Components, this.OwnerPlayerUID );
 			}
 
-			ent.InternalOnInitialize();
+			ent.InternalOnClone();
 
 			return ent;
 		}

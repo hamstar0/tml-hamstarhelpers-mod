@@ -45,18 +45,10 @@ namespace HamstarHelpers.Components.Network.Data {
 				);*/
 				this.Initialize( data );
 
-				data.OnInitialize();
+				data.OnClone();
 
 				return data;
 			}
 		}
-
-
-
-		////////////////
-		
-		protected abstract void OnInitialize();
-
-		internal void InternalOnInitialize() { this.OnInitialize(); }
 	}
 }

@@ -12,10 +12,6 @@ namespace HamstarHelpers.Components.Network {
 	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
 	/// </summary>
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		protected override void OnInitialize() { }	// Validations are handled internally
-
-
-
 		/// <summary>
 		/// Gets a random integer as a code representing a given protocol (by name) to identify its
 		/// network packets.
@@ -49,11 +45,10 @@ namespace HamstarHelpers.Components.Network {
 						new Type[] { }, null );
 
 					if( ctorInfo == null ) {
-						throw new NotImplementedException( "Missing private constructor for " + subclassType.Name );
+						throw new NotImplementedException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
 					}
-				} else {
 					if( ctorInfo.IsFamily ) {
-						throw new NotImplementedException( "Invalid constructor for " + subclassType.Name + "; must be private, not protected." );
+						throw new NotImplementedException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
 					}
 				}
 
@@ -88,7 +83,16 @@ namespace HamstarHelpers.Components.Network {
 
 
 		////////////////
+
+		protected PacketProtocol( PacketProtocolDataConstructorLock _=null ) { }
+
+		////////////////
+
+		protected override void OnClone() { }   // Validations are handled internally
 		
+
+		////////////////
+
 		/// <summary>
 		/// Returns qualified name of current packet class.
 		/// </summary>

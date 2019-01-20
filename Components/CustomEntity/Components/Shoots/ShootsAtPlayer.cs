@@ -28,7 +28,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.MaxCooldown = maxCooldown;
 		}
 
-		protected override void OnInitialize() { }
+		protected override void OnClone() { }
 
 
 		////////////////

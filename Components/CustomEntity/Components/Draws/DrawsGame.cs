@@ -34,12 +34,22 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.SourceModName = srcModName;
 			this.TexturePath = relTexturePath;
 			this.FrameCount = frameCount;
+
+			this.Validate();
+			this.Initialize();
 		}
 
 		////////////////
 
-		protected sealed override void OnInitialize() {
-			if( string.IsNullOrEmpty(this.SourceModName) || string.IsNullOrEmpty(this.TexturePath) || this.FrameCount == 0 ) {
+		protected sealed override void OnClone() {
+			this.Validate();
+			this.Initialize();
+		}
+
+		////
+
+		private void Validate() {
+			if( string.IsNullOrEmpty( this.SourceModName ) || string.IsNullOrEmpty( this.TexturePath ) || this.FrameCount == 0 ) {
 				//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid fields. (" + this.ModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
 				throw new HamstarException( "Invalid fields. (" + this.SourceModName + ", " + this.TexturePath + ", " + this.FrameCount + ")" );
 			}
@@ -49,6 +59,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				//throw new HamstarException( "!ModHelpers.DrawsInGameEntityComponent.Initialize - Invalid mod " + this.ModName );
 				throw new HamstarException( "Invalid mod " + this.SourceModName );
 			}
+		}
+
+		private void Initialize() {
+			var srcMod = ModLoader.GetMod( this.SourceModName );
 
 			if( !Main.dedServ ) {
 				if( this.Texture == null ) {

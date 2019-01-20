@@ -3,11 +3,6 @@
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public abstract class HitRadiusProjectileEntityComponent : CustomEntityComponent {
-		private HitRadiusProjectileEntityComponent() { }
-		
-
-		////////////////
-		
 		public abstract float GetRadius( CustomEntity ent );
 
 

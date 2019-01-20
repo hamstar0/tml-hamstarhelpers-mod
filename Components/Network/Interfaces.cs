@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Network.Data;
 using System;
 
+
 namespace HamstarHelpers.Components.Network {
 	public abstract class PacketProtocolSentToEither : PacketProtocol {
 		protected abstract void ReceiveOnClient();
@@ -12,6 +13,10 @@ namespace HamstarHelpers.Components.Network {
 		protected sealed override void ReceiveWithServer( int fromWho ) {
 			this.ReceiveOnServer( fromWho );
 		}
+
+		////////////////
+		
+		protected PacketProtocolSentToEither( PacketProtocolDataConstructorLock _=null ) { }
 	}
 
 
@@ -21,6 +26,10 @@ namespace HamstarHelpers.Components.Network {
 		public static void QuickSend<T>() where T : PacketProtocolSendToServer {
 			PacketProtocol.QuickSendToServer<T>();
 		}
+
+		////////////////
+		
+		protected PacketProtocolSendToServer( PacketProtocolDataConstructorLock _=null ) { }
 
 		////////////////
 
@@ -59,6 +68,10 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
+		
+		protected PacketProtocolSendToClient( PacketProtocolDataConstructorLock _=null ) { }
+
+		////////////////
 
 		protected abstract void InitializeServerSendData( int toWho );
 		protected sealed override void SetServerDefaults( int toWho ) {
@@ -95,6 +108,10 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
+		
+		protected PacketProtocolRequestToServer( PacketProtocolDataConstructorLock _=null ) { }
+
+		////////////////
 
 		protected abstract void InitializeServerSendData( int toWho );
 		protected sealed override void SetServerDefaults( int toWho ) {
@@ -128,6 +145,10 @@ namespace HamstarHelpers.Components.Network {
 		}
 
 		////////////////
+		
+		protected PacketProtocolRequestToClient( PacketProtocolDataConstructorLock _=null ) { }
+
+		////
 
 		protected abstract void InitializeClientSendData();
 		protected sealed override void SetClientDefaults() {

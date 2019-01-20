@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
@@ -20,7 +19,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private RailBoundEntityComponent() { }
 
-		protected override void OnInitialize() { }
+		protected override void OnClone() { }
 
 
 		////////////////

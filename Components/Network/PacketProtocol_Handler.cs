@@ -34,10 +34,10 @@ namespace HamstarHelpers.Components.Network {
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithClientBase();
-					protocol.OnInitialize();
+					protocol.OnClone();
 				} else {
 					protocol.ReceiveWithClientBase( reader, playerWho );
-					protocol.OnInitialize();
+					protocol.OnClone();
 				}
 			} catch( Exception e ) {
 				//throw new HamstarException( "PacketProtocol.HandlePacketOnClient - "+protocolType.Name + " - " + e.ToString() );
@@ -74,10 +74,10 @@ namespace HamstarHelpers.Components.Network {
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithServerBase( playerWho );
-					protocol.OnInitialize();
+					protocol.OnClone();
 				} else {
 					protocol.ReceiveWithServerBase( reader, playerWho );
-					protocol.OnInitialize();
+					protocol.OnClone();
 
 					if( isSyncedToClients ) {
 						protocol.SendToClient( -1, playerWho );

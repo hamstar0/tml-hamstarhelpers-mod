@@ -42,10 +42,12 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		private SaveableEntityComponent() { }
 
-		private SaveableEntityComponent( bool asJson ) {
+		protected SaveableEntityComponent( bool asJson ) {
 			this.AsJson = asJson;
 		}
 
-		protected override void OnInitialize() { }
+		////
+
+		protected override void OnClone() { }
 	}
 }

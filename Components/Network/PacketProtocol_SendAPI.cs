@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.Network {
 			
 			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 			t.SetClientDefaults();
-			t.OnInitialize();
+			t.OnClone();
 
 			t.SendToServer( syncToClients );
 		}
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Components.Network {
 			} catch( NotImplementedException ) {
 				t.SetServerDefaults();
 			}
-			t.OnInitialize();
+			t.OnClone();
 
 			t.SendToClient( toWho, ignoreWho );
 		}

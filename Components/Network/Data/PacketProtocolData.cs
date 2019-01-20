@@ -21,7 +21,6 @@ namespace HamstarHelpers.Components.Network.Data {
 				if( ctorInfo == null ) {
 					return false;
 				}
-			} else {
 				return ctorInfo.IsFamily;
 			}
 
@@ -57,6 +56,13 @@ namespace HamstarHelpers.Components.Network.Data {
 		}
 
 		protected PacketProtocolData() { }
+
+		
+		////////////////
+
+		protected abstract void OnClone();
+
+		internal void InternalOnClone() { this.OnClone(); }
 
 
 		////////////////

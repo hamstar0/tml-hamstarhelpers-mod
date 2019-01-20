@@ -5,11 +5,6 @@ using Terraria;
 
 namespace HamstarHelpers.Components.CustomEntity.Components {
 	public abstract class IsClickableEntityComponent : CustomEntityComponent {
-		private IsClickableEntityComponent() { }
-
-
-		////////////////
-
 		private void UpdateMe( CustomEntity ent ) {
 			if( this.CheckMouseHover( ent ) ) {
 				this.OnMouseHover( ent );

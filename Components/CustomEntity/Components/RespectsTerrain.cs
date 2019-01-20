@@ -9,7 +9,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsTerrainEntityComponent : CustomEntityComponent {
 		private RespectsTerrainEntityComponent() { }
 
-		protected override void OnInitialize() { }
+		protected override void OnClone() { }
 
 
 		////////////////

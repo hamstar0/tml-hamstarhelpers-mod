@@ -87,7 +87,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			
 			for( int i = 0; i < components.Count; i++ ) {
 				components[i].ReadStreamForwarded( reader );
-				components[i].InternalOnInitialize();
+				components[i].InternalOnClone();
 			}
 			
 			this.MyTypeName = SerializableCustomEntity.GetTypeName( myentTemplate );

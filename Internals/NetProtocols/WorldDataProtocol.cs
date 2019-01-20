@@ -10,6 +10,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public string ObsoletedWorldId;
 
 
+
 		////////////////
 
 		private WorldDataProtocol() { }

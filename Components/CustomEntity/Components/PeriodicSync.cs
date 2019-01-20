@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Network;
-using HamstarHelpers.Components.Network.Data;
 using Newtonsoft.Json;
 using Terraria.Utilities;
 
@@ -8,16 +7,6 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class PeriodicSyncEntityComponent : CustomEntityComponent {
 		public const int RandomSyncDurationMin = 60 * 3;	// 3 minutes
 		public const int RandomSyncDurationMax = 60 * 15;	// 15 minutes
-
-
-
-		////////////////
-
-		public static PeriodicSyncEntityComponent CreatePeriodicSyncEntityComponent() {
-			var comp = new PeriodicSyncEntityComponent();
-			comp.OnInitialize();
-			return comp;
-		}
 
 
 		////////////////
@@ -48,7 +37,11 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 			this.NextSync = PeriodicSyncEntityComponent.GetRandomSyncDuration();
 		}
 
-		protected override void OnInitialize() { }
+		protected PeriodicSyncEntityComponent( object _=null ) { }
+
+		////
+
+		protected override void OnClone() { }
 
 
 		////////////////

@@ -79,7 +79,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		////
 
-		protected sealed override void OnInitialize() {
+		protected sealed override void OnClone() {
 			for( int i = 0; i < this.Components.Count; i++ ) {
 				this.Components[i].InternalOnEntityInitialize( this );
 			}

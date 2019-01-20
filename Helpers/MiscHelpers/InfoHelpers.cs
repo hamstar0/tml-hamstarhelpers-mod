@@ -141,13 +141,13 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			float gameZoom = Main.GameZoomTarget;
 			float uiZoom = Main.UIScale;
 
-			list.Add( "Mods: " + string.Join( ", ", modsArr ) );
+			list.Add( InfoHelpers.RenderModTable( modsArr ) );
 			list.Add( "Is day: " + isDay + ", Time of day/night: " + timeOfDay + ", Elapsed half days: " + halfDays );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
 			list.Add( "World name: " + Main.worldName + ", world size: " + worldSize );
-			list.Add( "World progress: " + string.Join( ", ", worldProg ) );
+			list.Add( "World progress: " + (worldProg.Length > 0 ? string.Join(", ", worldProg) : "none") );
 			list.Add( "Items on ground: " + activeItems + ", Npcs active: " + activeNpcs );
 			list.Add( "Player info: " + string.Join( ", ", playerInfos ) );
-			list.Add( "Player equips: " + string.Join( ", ", playerEquips ) );
+			list.Add( "Player equips: " + (playerEquips.Length > 0 ? string.Join(", ", playerEquips) : "none" ) );
 			list.Add( "Player count: " + activePlayers + " (" + netmode + ")" );
 			list.Add( "Autopause: " + autopause );
 			list.Add( "Autosave: " + autosave );
@@ -155,7 +155,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			list.Add( "Lighting threads: " + lightingThreads );
 			list.Add( "Frame skip mode: " + frameSkipMode );
 			list.Add( "Is screen maximized: " + isMaximized );
-			list.Add( "Screen resolution: " + windowWid+" "+windowHei );
+			list.Add( "Screen resolution: " + windowWid + " " + windowHei );
 			list.Add( "Quality style: " + qualityStyle );
 			list.Add( "Background on: " + bgOn );
 			list.Add( "Child safety: " + childSafe );
@@ -163,6 +163,21 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			list.Add( "UI zoom: " + uiZoom );
 
 			return list;
+		}
+
+		public static string RenderModTable( string[] mods ) {
+			mods = mods.Select( m => m.Replace( "|", "\\|" ) ).ToArray();
+			
+			int len = mods.Length;
+			string output = "| Mods:  | - | - |";
+			output += "\n| :--- | :--- | :--- |";
+
+			for( int i=0; i<len; i++ ) {
+				output += '\n';
+				output += "| " + mods[i] + " | " + (++i<len ? mods[i] : "-") + " | " + (++i<len ? mods[i] : "-") + " |";
+			}
+
+			return output;
 		}
 
 		public static IList<string> GetWorldProgress() {

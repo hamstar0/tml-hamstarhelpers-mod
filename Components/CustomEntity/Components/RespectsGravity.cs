@@ -7,7 +7,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 	public class RespectsGravityEntityComponent : CustomEntityComponent {
 		private RespectsGravityEntityComponent() { }
 
-		protected override void OnInitialize() { }
+		protected override void OnClone() { }
 
 
 		////////////////

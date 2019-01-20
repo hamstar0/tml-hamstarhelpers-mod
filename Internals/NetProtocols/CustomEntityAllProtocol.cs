@@ -12,6 +12,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public SerializableCustomEntity[] Entities;
 
 
+
 		////////////////
 		
 		private CustomEntityAllProtocol() { }

@@ -26,7 +26,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 		////////////////
-		
+
+		private PlayerPermaDeathProtocol() { }
+
 		protected PlayerPermaDeathProtocol( int playerWho, string msg ) {
 			this.PlayerWho = playerWho;
 			this.Msg = msg;

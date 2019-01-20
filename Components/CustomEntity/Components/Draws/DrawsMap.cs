@@ -32,19 +32,31 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
+		private DrawsOnMapEntityComponent() { }
+
 		protected DrawsOnMapEntityComponent( string srcModName, string relTexturePath, int frameCount, float scale, bool zooms ) {
 			this.SourceModName = srcModName;
 			this.RelativeTexturePath = relTexturePath;
 			this.FrameCount = frameCount;
 			this.Scale = scale;
 			this.Zooms = zooms;
+
+			this.Validate();
+			this.Initialize();
 		}
 
 
 		////////////////
 
-		protected sealed override void OnInitialize() {
-			if( string.IsNullOrEmpty(this.SourceModName) || string.IsNullOrEmpty(this.RelativeTexturePath) || this.FrameCount == 0 || this.Scale == 0 ) {
+		protected sealed override void OnClone() {
+			this.Validate();
+			this.Initialize();
+		}
+
+		////
+
+		private void Validate() {
+			if( string.IsNullOrEmpty( this.SourceModName ) || string.IsNullOrEmpty( this.RelativeTexturePath ) || this.FrameCount == 0 || this.Scale == 0 ) {
 				//throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid fields." );
 				throw new HamstarException( "Invalid fields." );
 			}
@@ -54,6 +66,10 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 				//throw new HamstarException( "!ModHelpers.DrawsOnMapEntityComponent.Initialize - Invalid mod " + this.ModName );
 				throw new HamstarException( "Invalid mod " + this.SourceModName );
 			}
+		}
+
+		private void Initialize() {
+			var srcMod = ModLoader.GetMod( this.SourceModName );
 
 			if( !Main.dedServ ) {
 				if( this.Texture == null ) {
@@ -63,6 +79,8 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 			this.PostInitialize();
 		}
+
+		////
 
 		protected virtual void PostInitialize() { }
 		

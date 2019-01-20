@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			string bodyErrors = string.Join( "\n", InfoHelpers.GetErrorLog( maxLines ).ToArray() );
 			
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
-			string title = "In-game: " + issueTitle;
+			string title = "Reported from in-game: " + issueTitle;
 			string body = bodyInfo;
 			body += "\n \n \n \n" + "Recent error logs:\n```\n" + bodyErrors + "\n```";
 			body += "\n \n" + issueBody;

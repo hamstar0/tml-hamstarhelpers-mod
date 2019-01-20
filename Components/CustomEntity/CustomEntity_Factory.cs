@@ -17,7 +17,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			ent.OwnerPlayerWho = -1;
 			ent.OwnerPlayerUID = "";
 
-			ent.OnInitialize();
+			ent.OnClone();
 
 			return ent;
 		}
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				ent.OwnerPlayerWho = plr.whoAmI;
 			}
 
-			ent.OnInitialize();
+			ent.OnClone();
 
 			return ent;
 		}

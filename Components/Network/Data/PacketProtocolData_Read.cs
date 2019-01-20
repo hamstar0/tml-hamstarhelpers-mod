@@ -120,7 +120,7 @@ namespace HamstarHelpers.Components.Network.Data {
 				var data = (PacketProtocol)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				data.ReadStream( reader );
-				data.OnInitialize();
+				data.OnClone();
 
 				return data;
 
@@ -143,7 +143,7 @@ namespace HamstarHelpers.Components.Network.Data {
 						var item = (PacketProtocolData)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 						item.ReadStream( reader );
-						item.OnInitialize();
+						item.OnClone();
 
 						arr.SetValue( item, i );
 					}

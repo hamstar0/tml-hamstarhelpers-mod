@@ -6,6 +6,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public HamstarHelpersConfigData Data;
 
 
+
 		////////////////
 
 		private ModSettingsProtocol() { }
