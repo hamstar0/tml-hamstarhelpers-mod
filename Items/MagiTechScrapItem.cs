@@ -1,9 +1,19 @@
+using HamstarHelpers.Helpers.ItemHelpers;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Items {
 	public class MagiTechScrapItem : ModItem {
+		public static int Create( Vector2 pos, int stack ) {
+			return ItemHelpers.CreateItem( pos, ModHelpersMod.Instance.ItemType<MagiTechScrapItem>(), stack, 24, 24 );
+		}
+
+
+
+		////////////////
+
 		public override void SetStaticDefaults() {
 			var mymod = (ModHelpersMod)this.mod;
 

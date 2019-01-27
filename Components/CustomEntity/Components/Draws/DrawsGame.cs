@@ -93,12 +93,19 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 
 		////////////////
 
-		public virtual void PreDraw( SpriteBatch sb, CustomEntity ent ) { }
+		public virtual Effect GetFx( CustomEntity ent ) {
+			return null;
+		}
 
-		public virtual void Draw( SpriteBatch sb, CustomEntity ent ) {
+
+		////////////////
+
+		public virtual void DrawOverlay( SpriteBatch sb, CustomEntity ent ) { }
+
+		public virtual void DrawPostTiles( SpriteBatch sb, CustomEntity ent ) {
 			DrawsInGameEntityComponent.DrawTexture( sb, ent, this.Texture, this.FrameCount, this.GetLightColor(ent), 1f );
 		}
 
-		public virtual void PostDraw( SpriteBatch sb, CustomEntity ent ) { }
+		public virtual void DrawPostDraw( SpriteBatch sb, CustomEntity ent ) { }
 	}
 }

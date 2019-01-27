@@ -56,7 +56,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 		~CustomEntityManager() {
 			if( !Main.dedServ ) {
-				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
+				Main.OnPostDraw += CustomEntityManager._DrawPostDrawAll;
 			}
 			Main.OnTick -= CustomEntityManager._Update;
 		}
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				Overlays.Scene["CustomEntity"] = new CustomEntityOverlay();
 				Overlays.Scene.Activate( "CustomEntity" );
 
-				Main.OnPostDraw += CustomEntityManager._PostDrawAll;
+				Main.OnPostDraw += CustomEntityManager._DrawPostDrawAll;
 			}
 		}
 	}

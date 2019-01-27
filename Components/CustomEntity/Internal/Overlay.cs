@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.Graphics.Effects;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	class CustomEntityOverlay : Terraria.Graphics.Effects.Overlay {
+	class CustomEntityOverlay : Overlay {
 		public Vector2 TargetPosition = Vector2.Zero;
 
 
@@ -34,7 +35,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		public override void Draw( SpriteBatch sb ) {
-			ModHelpersMod.Instance?.CustomEntMngr?.PreDrawAll( sb );
+			ModHelpersMod.Instance?.CustomEntMngr?.DrawOverlayAll( sb );
 			//sb.Draw( this._texture.Value, new Rectangle( 0, 0, Main.screenWidth, Main.screenHeight ), Main.bgColor );
 		}
 

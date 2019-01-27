@@ -1,8 +1,6 @@
 ﻿using HamstarHelpers.Helpers.TmlHelpers;
 using System;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Helpers.WorldHelpers {
