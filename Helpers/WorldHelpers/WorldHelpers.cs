@@ -53,7 +53,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		public static bool IsSky( Vector2 worldPos ) {
 			Vector2 tilePos = worldPos * 16;
-			return tilePos.Y <= (Main.worldSurface * 0.35);  //0.34999999403953552?
+			return tilePos.Y <= (Main.worldSurface * 0.35);	//0.34999999403953552?
 		}
 
 		public static bool IsWithinUnderworld( Vector2 worldPos ) {

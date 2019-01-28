@@ -81,6 +81,8 @@
     <Compile Include="Components\CustomEntity\Internal\Overlay.cs" />
     <Compile Include="Components\CustomEntity\Internal\Converter.cs" />
     <Compile Include="Components\CustomEntity\Serializable.cs" />
+    <Compile Include="Components\DataStructures\QuadTree_GetNear.cs" />
+    <Compile Include="Components\DataStructures\QuadTree.cs" />
     <Compile Include="Components\DataStructures\ReadOnlyDictionaryOfSets.cs" />
     <Compile Include="Components\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Components\DataStructures\WorldDictionary.cs" />
