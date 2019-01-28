@@ -27,16 +27,50 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 				return WorldSize.SuperLarge;
 			}
 		}
-		
+
 
 		////////////////
 
+		public static bool IsRockLayer( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos * 16;
+			return tilePos.Y <= Main.maxTilesY - 200 && (double)tilePos.Y > Main.rockLayer;
+		}
+
+		public static bool IsDirtLayer( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos * 16;
+			return (double)tilePos.Y <= Main.rockLayer && (double)tilePos.Y > Main.worldSurface;
+		}
+
 		public static bool IsAboveWorldSurface( Vector2 worldPos ) {
-			return worldPos.Y < (Main.worldSurface * 16);
+			Vector2 tilePos = worldPos * 16;
+			return tilePos.Y < Main.worldSurface;
+		}
+
+		public static bool IsOverworld( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos * 16;
+			return (double)tilePos.Y <= Main.worldSurface && (double)tilePos.Y > Main.worldSurface * 0.35;
+		}
+
+		public static bool IsSky( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos * 16;
+			return tilePos.Y <= (Main.worldSurface * 0.35);  //0.34999999403953552?
 		}
 
 		public static bool IsWithinUnderworld( Vector2 worldPos ) {
-			return worldPos.Y > ((Main.maxTilesY - 200) * 16);
+			Vector2 tilePos = worldPos * 16;
+			return tilePos.Y > (Main.maxTilesY - 200);
+		}
+
+		public static bool IsBeach( Vector2 worldPos ) {
+			if( !WorldHelpers.IsOverworld( worldPos ) ) {
+				return false;
+			}
+			return IsBeachRegion( worldPos );
+		}
+
+		public static bool IsBeachRegion( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos * 16;
+			return tilePos.X < 380 || tilePos.X > (Main.maxTilesX - 380);
 		}
 	}
 }
