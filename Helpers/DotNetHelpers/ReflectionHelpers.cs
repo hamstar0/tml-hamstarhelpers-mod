@@ -46,8 +46,39 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////
 
-		public static Type GetClassTypeFromMod( Mod mod, string className ) {
-			return mod.GetType().Assembly.GetType( className );
+		public static Type GetTypeFromMod( Mod mod, string typeName ) {
+			return mod.GetType().Assembly.GetType( typeName );
+		}
+
+		public static IList<Type> GetTypesFromAssembly( string assemblyName, string typeName ) {
+			var typeList = new List<Type>();
+
+			try {
+				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+				Func<Assembly, IEnumerable<Type>> selectMany = delegate ( Assembly a ) {
+					try {
+						return a.GetTypes();
+					} catch {
+						return new List<Type>();
+					}
+				};
+
+				foreach( var ass in assemblies ) {
+					if( ass.GetName().Name != assemblyName ) { continue; }
+
+					foreach( Type t in selectMany( ass ) ) {
+						if( t.Name == typeName ) {
+							typeList.Add( t );
+						}
+					}
+					break;
+				}
+
+			} catch( Exception e ) {
+				LogHelpers.Warn( e.ToString() );
+			}
+
+			return typeList;
 		}
 
 

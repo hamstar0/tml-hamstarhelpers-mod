@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using System;
+using System.Linq;
 using System.Reflection;
 
 
@@ -7,7 +8,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public partial class ReflectionHelpers {
 		[Obsolete( "use `Type GetClassTypeFromMod(...)`)", true )]
 		public static Type GetClassTypeFrom( string assemblyName, string className ) {
-			return ReflectionHelpers.GetClassTypeFromMod( assemblyName, className );
+			return ReflectionHelpers.GetTypesFromAssembly( assemblyName, className ).FirstOrDefault();
 		}
 
 		[Obsolete( "use `bool GetField(..., out object fieldVal)`)", true)]

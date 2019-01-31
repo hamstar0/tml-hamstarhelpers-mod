@@ -1,15 +1,20 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.TileHelpers {
 	public static class TileWallHelpers {
-		public static bool IsDungeon( Tile tile ) {
-			if( tile == null ) { return false; }
+		public static bool IsDungeon( Tile tile, out bool isLihzahrd ) {
+			if( tile == null ) {
+				isLihzahrd = false;
+				return false;
+			}
+
+			isLihzahrd = tile.wall == (ushort)WallID.LihzahrdBrickUnsafe; /*|| tile.wall == (ushort)WallID.LihzahrdBrick*/
 
 			// Lihzahrd Brick Wall
-			//if( tile.wall == 87 ) {
-			if( tile.wall == (ushort)WallID.LihzahrdBrickUnsafe /*|| tile.wall == (ushort)WallID.LihzahrdBrick*/ ) {
+			if( isLihzahrd ) {
 				return true;
 			}
 			// Dungeon Walls
@@ -26,6 +31,16 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 				return true;
 			}
 			return false;
+		}
+
+
+
+		////////////////
+
+		[Obsolete( "use IsDungeon(Tile, out bool)" )]
+		public static bool IsDungeon( Tile tile ) {
+			bool _;
+			return TileWallHelpers.IsDungeon( tile, out _ );
 		}
 	}
 }
