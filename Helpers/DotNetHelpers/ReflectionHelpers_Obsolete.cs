@@ -5,6 +5,11 @@ using System.Reflection;
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public partial class ReflectionHelpers {
+		[Obsolete( "use `Type GetClassTypeFromMod(...)`)", true )]
+		public static Type GetClassTypeFrom( string assemblyName, string className ) {
+			return ReflectionHelpers.GetClassTypeFromMod( assemblyName, className );
+		}
+
 		[Obsolete( "use `bool GetField(..., out object fieldVal)`)", true)]
 		public static object GetField( Object instance, string fieldName, out bool success ) {
 			object obj;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace HamstarHelpers.Components.DataStructures {
@@ -32,6 +34,17 @@ namespace HamstarHelpers.Components.DataStructures {
 			this.Parent = parent;
 		}
 
+
+		////////////////
+
+		public void Clear() {
+			this.TopLeft = null;
+			this.TopRight = null;
+			this.BotLeft = null;
+			this.BotRight = null;
+			this.Value = null;
+		}
+
 		////////////////
 
 		public T Get( int x, int y ) {
@@ -54,9 +67,39 @@ namespace HamstarHelpers.Components.DataStructures {
 			}
 		}
 
-		////
+		public IEnumerable<Tuple<int, int, T>> GetAll() {
+			var list = new List<Tuple<int, int, T>>();
+			var enumer = (IEnumerable<Tuple<int, int, T>>)list;
+
+			if( this.Value != null ) {
+				list.Add( Tuple.Create(this.X, this.Y, this.Value) );
+			}
+			if( this.TopLeft != null ) {
+				enumer = list.Concat( this.TopLeft.GetAll() );
+			}
+			if( this.TopRight != null ) {
+				enumer = list.Concat( this.TopRight.GetAll() );
+			}
+			if( this.BotLeft != null ) {
+				enumer = list.Concat( this.BotLeft.GetAll() );
+			}
+			if( this.BotRight != null ) {
+				enumer = list.Concat( this.BotRight.GetAll() );
+			}
+
+			return enumer;
+		}
+		
+		
+		////////////////
 
 		public void Set( int x, int y, T val ) {
+			if( this.Parent == null ) {
+				if( x > ( this.X * 2 ) || y > ( this.Y * 2 ) ) {
+					throw new ArgumentException( "Coordinate values will not fit inside this tree's space." );
+				}
+			}
+
 			this.Count++;
 
 			if( this.X == x && this.Y == y ) {

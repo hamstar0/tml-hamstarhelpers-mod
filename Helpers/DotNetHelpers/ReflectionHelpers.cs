@@ -46,8 +46,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////
 
-		public static Type GetClassTypeFrom( string assembleName, string className ) {
-			return typeof( ModLoader ).Assembly.GetType( className );
+		public static Type GetClassTypeFromMod( Mod mod, string className ) {
+			return mod.GetType().Assembly.GetType( className );
 		}
 
 

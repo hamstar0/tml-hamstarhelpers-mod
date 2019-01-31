@@ -2936,7 +2936,8 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		////////////////
 
 		public static string GetVanillaTileName( int tileType ) {
-			if( !TileIdentityHelpers.VanillaTileData.ContainsKey( tileType ) || !TileIdentityHelpers.VanillaTileData[tileType].ContainsKey( -1 ) ) {
+			if( !TileIdentityHelpers.VanillaTileData.ContainsKey( tileType ) ||
+				!TileIdentityHelpers.VanillaTileData[ tileType ].ContainsKey( -1 ) ) {
 				return "";
 			}
 			return TileIdentityHelpers.VanillaTileData[tileType][-1];

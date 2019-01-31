@@ -8,11 +8,8 @@ Supplies numerous helper functions, classes, services, and utilities for mods to
 Modders: See the homepage for information on setting up your mod to receive bug reports!
 
 Credits:
-Nvar: Coal tile.
+Nvar: Coal item's tile sprite sheet.
 
 Mod recommendations:
-ModdersToolkit = Tons of experimenting and tinkering options.
-AllDamage = Bridge between mods that need to add up all damage/crit together or add custom damage types.
+ModdersToolkit = Tons of experimenting and tinkering options for modders.
 FKTModSettings = Adds a UI option for editing a mod's configs. Must be implemented per mod via. API/dependency.
-ShaderLib = A helper library for modders who wish to do things in Terraria regarding shaders.
-BaseMod = An API for implementing custom+mixed NPC/projectile AI, draw methods, and assorted useful data values.

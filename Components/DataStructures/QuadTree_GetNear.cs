@@ -5,67 +5,71 @@ using System.Linq;
 
 namespace HamstarHelpers.Components.DataStructures {
 	public partial class QuadTree<T> where T : class {
-		public T[] GetNearCoordinates( int x, int y, int amt ) {
-			return this.GetQuadsNearCoordinates( x, y, amt )
+		public T[] GetNearestElements( int x, int y, int amt ) {
+			return this.GetTreesNearCoordinates( x, y, amt )
 				.Select( q=>q.Value )
 				.ToArray();
 		}
 
 		////
 
-		private IList<QuadTree<T>> GetQuadsNearCoordinates( int x, int y, int amt ) {
+		private IList<QuadTree<T>> GetTreesNearCoordinates( int x, int y, int amt ) {
 			var list = new SortedList<double, QuadTree<T>>();
+			var checks = new HashSet<QuadTree<T>>();
+			double leastDist = Double.MaxValue;
+			QuadTree<T> leastTree;
+
+
 			Func<QuadTree<T>, double> getDist = ( q ) => {
 				int diffX = q.X - x;
 				int diffY = q.Y - y;
 				return Math.Sqrt( (diffX*diffX) + (diffY*diffY) );
 			};
 
+			Action<QuadTree<T>> listDeepestTreeAt = ( tree ) => {
+				QuadTree<T> deepestTree = tree.GetDeepestTreeAt( x, y, checks );
+				checks.Add( deepestTree );
+
+				double dist = getDist( deepestTree );
+
+				if( dist < leastDist ) {
+					leastDist = dist;
+					leastTree = deepestTree;
+				}
+
+				list[ getDist(deepestTree) ] = deepestTree;
+			};
+
+
 			if( this.Value != null ) {
 				list[ getDist(this) ] = this;
 			}
 			
-			ISet<QuadTree<T>> quads = new HashSet<QuadTree<T>>();
-			if( this.TopLeft != null && this.TopLeft.Value != null ) { quads.Add( this.TopLeft ); }
-			if( this.TopRight != null && this.TopRight.Value != null ) { quads.Add( this.TopRight ); }
-			if( this.BotLeft != null && this.BotLeft.Value != null ) { quads.Add( this.BotLeft ); }
-			if( this.BotRight != null && this.BotRight.Value != null ) { quads.Add( this.BotRight ); }
+			for( int i=0; i < (amt+1); i++ ) {
+				bool done = true;
 
-			var checks = new HashSet<QuadTree<T>>();
-			double leastDist;
-			QuadTree<T> leastQuad;
-			int count = 0;
-
-			do {
 				leastDist = Double.MaxValue;
-				leastQuad = null;
+				leastTree = null;
 
-				foreach( var quad in quads ) {
-					if( quad.Value == null ) { continue; }
-
-					var stack = new List<QuadTree<T>>();
-					this.TraceTreeStack( x, y, stack, checks );
-
-					if( stack.Count > 0 && quad.Value != null ) {
-						double dist = getDist( quad );
-
-						if( dist < leastDist ) {
-							leastDist = dist;
-							leastQuad = quad;
-						}
-
-						list[ getDist(quad) ] = quad;
-						count++;
-					}
+				if( this.TopLeft != null && this.TopLeft.Value != null && !checks.Contains(this.TopLeft) ) {
+					listDeepestTreeAt( this.TopLeft );
+					done = false;
+				}
+				if( this.TopRight != null && this.TopRight.Value != null && !checks.Contains(this.TopRight) ) {
+					listDeepestTreeAt( this.TopRight );
+					done = false;
+				}
+				if( this.BotLeft != null && this.BotLeft.Value != null && !checks.Contains(this.BotLeft) ) {
+					listDeepestTreeAt( this.BotLeft );
+					done = false;
+				}
+				if( this.BotRight != null && this.BotRight.Value != null && !checks.Contains(this.BotRight) ) {
+					listDeepestTreeAt( this.BotRight );
+					done = false;
 				}
 
-				if( leastQuad != null ) {
-					list[leastDist] = leastQuad;
-					count++;
-				} else {
-					break;
-				}
-			} while( count < (amt + 1) );
+				if( done ) { break; }
+			}
 
 			return list.Values.Take( amt ).ToList();
 		}
@@ -73,25 +77,26 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		////////////////
 
-		private void TraceTreeStack( int x, int y, IList<QuadTree<T>> stack, ISet<QuadTree<T>> checks ) {
+		public QuadTree<T> GetDeepestTreeAt( int x, int y, ISet<QuadTree<T>> avoid ) {
+			QuadTree<T> quad = this;
+
 			if( x != this.X || y != this.Y ) {
-				if( x < this.X && !checks.Contains(this.TopLeft) && !checks.Contains(this.TopRight) ) {
-					if( y < this.Y && !checks.Contains(this.TopLeft) ) {
-						this.TopLeft?.TraceTreeStack( x, y, stack, checks );
+				if( x < this.X && !avoid.Contains(this.TopLeft) && !avoid.Contains(this.TopRight) ) {
+					if( y < this.Y && !avoid.Contains(this.TopLeft) ) {
+						quad = this.TopLeft?.GetDeepestTreeAt( x, y, avoid );
 					} else {
-						this.TopRight?.TraceTreeStack( x, y, stack, checks );
+						quad = this.TopRight?.GetDeepestTreeAt( x, y, avoid );
 					}
 				} else {
-					if( y < this.Y && !checks.Contains(this.BotLeft) && !checks.Contains(this.BotRight) ) {
-						this.BotLeft?.TraceTreeStack( x, y, stack, checks );
+					if( y < this.Y && !avoid.Contains(this.BotLeft) && !avoid.Contains(this.BotRight) ) {
+						quad = this.BotLeft?.GetDeepestTreeAt( x, y, avoid );
 					} else {
-						this.BotRight?.TraceTreeStack( x, y, stack, checks );
+						quad = this.BotRight?.GetDeepestTreeAt( x, y, avoid );
 					}
 				}
 			}
-
-			stack.Add( this );
-			checks.Add( this );
+			
+			return quad;
 		}
 	}
 }
