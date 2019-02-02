@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
@@ -10,7 +11,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.CustomEntity {
-	class CustomEntityCoreContractResolver : DefaultContractResolver {
+	class CustomEntityCoreContractResolver : XnaContractResolver {
 		protected override IList<JsonProperty> CreateProperties( Type type, MemberSerialization memberSerialization ) {
 			IList<JsonProperty> properties = base.CreateProperties( type, memberSerialization );
 

@@ -3,9 +3,27 @@ using Terraria;
 using Newtonsoft.Json;
 using System;
 using HamstarHelpers.Helpers.DebugHelpers;
+using Newtonsoft.Json.Serialization;
 
 
 namespace HamstarHelpers.Components.Config {
+	public class XnaContractResolver : DefaultContractResolver {
+		protected override JsonContract CreateContract( Type objectType ) {
+			switch( objectType.Name ) {
+			case "Rectangle":
+			//case "Vector2":
+			//case "Vector3":
+			//case "Vector4":
+				return this.CreateObjectContract( objectType );
+			}
+
+			return base.CreateContract( objectType );
+		}
+	}
+
+
+
+
 	public class JsonConfig {
 		protected static readonly object MyLock = new object();
 		protected static readonly object MyFileLock = new object();
@@ -32,10 +50,12 @@ namespace HamstarHelpers.Components.Config {
 		}
 
 		public static string Serialize( T data ) {
-			return JsonConfig<T>.Serialize( data, new JsonSerializerSettings() );
+			var settings = new JsonSerializerSettings() { ContractResolver = new XnaContractResolver() };
+			return JsonConfig<T>.Serialize( data, settings );
 		}
 		public static T Deserialize( string data ) {
-			return JsonConfig<T>.Deserialize( data, new JsonSerializerSettings() );
+			var settings = new JsonSerializerSettings() { ContractResolver = new XnaContractResolver() };
+			return JsonConfig<T>.Deserialize( data, settings );
 		}
 
 
@@ -96,89 +116,6 @@ namespace HamstarHelpers.Components.Config {
 
 		public void SetData( T data ) {
 			this.Data = data;
-		}
-
-
-		////////////////
-
-		public string GetPathOnly() {
-			if( this.PathName != "" ) {
-				return Main.SavePath + Path.DirectorySeparatorChar + this.PathName;
-			}
-			return Main.SavePath;
-		}
-		public string GetFullPath() {
-			return this.GetPathOnly() + Path.DirectorySeparatorChar + this.FileName;
-		}
-
-		public void SetFilePath( string filename, string pathname ) {
-			this.FileName = filename;
-			this.PathName = pathname;
-		}
-
-
-		public bool FileExists() {
-			lock( JsonConfig.MyFileLock ) {
-				return File.Exists( this.GetFullPath() );
-			}
-		}
-
-		////////////////
-
-		public bool LoadFile() {
-			string path = this.GetFullPath();
-			string json;
-			bool success = true;
-
-			lock( JsonConfig.MyFileLock ) {
-				if( !File.Exists( path ) ) {
-					success = false;
-				}
-			}
-
-			if( success ) {
-				using( StreamReader r = new StreamReader( path ) ) {
-					lock( JsonConfig.MyFileLock ) {
-						json = r.ReadToEnd();
-					}
-					this.DeserializeMe( json, out success );
-				}
-			}
-
-			if( this.Data is ConfigurationDataBase ) {
-				var data = (object)this.Data;
-				var configData = (ConfigurationDataBase)data;
-				configData.OnLoad( success );
-			}
-
-			return success;
-		}
-
-		public void SaveFile() {
-			string path = this.GetFullPath();
-			string json = this.SerializeMe();
-
-			lock( JsonConfig.MyFileLock ) {
-				File.WriteAllText( path, json );
-			}
-
-			if( this.Data is ConfigurationDataBase ) {
-				var data = (object)this.Data;
-				var configData = (ConfigurationDataBase)data;
-				configData.OnSave();
-			}
-		}
-
-		public bool DestroyFile() {
-			string path = this.GetFullPath();
-
-			lock( JsonConfig.MyFileLock ) {
-				if( !File.Exists( path ) ) { return false; }
-
-				File.Delete( path );
-			}
-
-			return true;
 		}
 	}
 }

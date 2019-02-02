@@ -46,6 +46,7 @@
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
+    <Compile Include="Components\Config\JsonConfig_File.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Components\CustomEntity\Components\Draws\DrawsGame_Draw.cs" />
     <Compile Include="Components\CustomEntity\Components\Draws\DrawsMap_Draw.cs" />

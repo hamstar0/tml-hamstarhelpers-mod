@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 		////////////////
 
-		public static IDictionary<string, float> GetBiomesNear( int tileX, int tileY ) {
+		public static IDictionary<string, float> GetVanillaBiomesNear( int tileX, int tileY ) {
 			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( tileX, tileY );
 			var biomes = new Dictionary<string, float>();
 
