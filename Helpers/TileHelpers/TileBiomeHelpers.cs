@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria.ID;
 
 
@@ -33,14 +34,16 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 		////////////////
 
-		public static IDictionary<string, float> GetVanillaBiomesNear( int tileX, int tileY ) {
+		public static IDictionary<string, float> GetVanillaBiomePercentsNear( int tileX, int tileY,
+				out int totalTiles, out int unidenfiedTiles ) {
 			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( tileX, tileY );
 			var biomes = new Dictionary<string, float>();
 
 			int holyTiles = 0;
-			foreach( int holyTileType in TileBiomeHelpers.VanillaHolyTiles ) {
-				if( tiles.ContainsKey( holyTileType ) ) {
-					holyTiles += tiles[holyTileType];
+			foreach( int tileType in TileBiomeHelpers.VanillaHolyTiles ) {
+				if( tiles.ContainsKey( tileType ) ) {
+					holyTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -48,6 +51,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaCorruptionTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					corrTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -55,6 +59,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaCrimsonTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					crimTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -62,6 +67,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaSnowTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					snowTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -69,6 +75,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaJungleTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					jungTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -76,6 +83,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaShroomTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					mushTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -83,6 +91,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaMeteorTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					meteTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -90,6 +99,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaDesertTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					deseTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
@@ -97,6 +107,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaDungeonTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					dungTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 			
@@ -104,12 +115,17 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			foreach( int tileType in TileBiomeHelpers.VanillaLihzahrdTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					lihzTiles += tiles[tileType];
+					tiles.Remove( tileType );
 				}
 			}
 
+			unidenfiedTiles = tiles.Values.Sum();
+			totalTiles = unidenfiedTiles + holyTiles + corrTiles + crimTiles + meteTiles + jungTiles + snowTiles + deseTiles
+				+ mushTiles + dungTiles + lihzTiles;
+			
 			biomes["Holy"] = (float)holyTiles / (float)TileBiomeHelpers.VanillaHolyMinTiles;
 			biomes["Corruption"] = (float)corrTiles / (float)TileBiomeHelpers.VanillaCorruptionMinTiles;
-			biomes["Crimson"] = (float)corrTiles / (float)TileBiomeHelpers.VanillaCrimsonMinTiles;
+			biomes["Crimson"] = (float)crimTiles / (float)TileBiomeHelpers.VanillaCrimsonMinTiles;
 			biomes["Meteor"] = (float)meteTiles / (float)TileBiomeHelpers.VanillaMeteorMinTiles;
 			biomes["Jungle"] = (float)jungTiles / (float)TileBiomeHelpers.VanillaJungleMinTiles;
 			biomes["Snow"] = (float)snowTiles / (float)TileBiomeHelpers.VanillaSnowMinTiles;

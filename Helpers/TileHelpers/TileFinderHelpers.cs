@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -45,8 +46,9 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 					return false;
 				}
 
+				bool _;
 				isBlocked = TileHelpers.IsSolid( tile, true, true ) ||
-					TileWallHelpers.IsDungeon( tile ) ||
+					TileWallHelpers.IsDungeon( tile, out _ ) ||
 					TileHelpers.IsWire( tile ) ||
 					tile.lava();
 			} while( isBlocked && ((tile != null && tile.type != 0) || Lighting.Brightness( toX, toX ) == 0) );
@@ -58,46 +60,51 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		////
 
 		public static IDictionary<int, int> GetPlayerRangeTilesAt( int tileX, int tileY ) {
-			var screenRangeTiles = new Dictionary<int, int>();
+			var tiles = new Dictionary<int, int>();
 
-			float minScreenWidHalfX = 50f * 0.5f;
-			float minScreenHeiHalfY = 37.5f * 0.5f;
-			int offscreenTiles = 23;
+			float minScreenTileWidth = 50f;
+			float minScreenTileHeight = 37.5f;
+			float offscreenTiles = 23f;
 			/*if( Lighting.lightMode < 2 ) {
 				offscreenTiles = 40;
 			} else {
 				offscreenTiles = 23;
 			}*/
 
-			int firstLightX = (int)(((float)tileX - minScreenWidHalfX) / 16f) - 1;
-			int firstLightY = (int)(((float)tileY - minScreenHeiHalfY) / 16f) - 1;
-			int lastLightX = (int)(((float)tileX + minScreenWidHalfX) / 16f) + 2;
-			int lastLightY = (int)(((float)tileY + minScreenHeiHalfY) / 16f) + 2;
-			firstLightX = Utils.Clamp<int>( firstLightX, 0, Main.maxTilesX - 1 );
-			firstLightY = Utils.Clamp<int>( firstLightY, 0, Main.maxTilesX - 1 );
-			lastLightX = Utils.Clamp<int>( lastLightX, 0, Main.maxTilesY - 1 );
-			lastLightY = Utils.Clamp<int>( lastLightY, 0, Main.maxTilesY - 1 );
+			int leftTileX = tileX - (int)((offscreenTiles - minScreenTileWidth) * 0.5f) - 1;
+			int topTileY = tileY - (int)((offscreenTiles - minScreenTileHeight) * 0.5f) - 1;
+			int rightTileX = tileX + (int)((offscreenTiles + minScreenTileWidth) * 0.5f) + 1;
+			int botTileY = tileY + (int)((offscreenTiles + minScreenTileHeight) * 0.5f) + 1;
+			leftTileX = Utils.Clamp<int>( leftTileX, 5, Main.maxTilesX - 1 );
+			topTileY = Utils.Clamp<int>( topTileY, 5, Main.maxTilesY - 1 );
+			rightTileX = Utils.Clamp<int>( rightTileX, 5, Main.maxTilesX - 1 );
+			botTileY = Utils.Clamp<int>( botTileY, 5, Main.maxTilesY - 1 );
 
-			int width = offscreenTiles + (lastLightX - firstLightX);
-			int height = offscreenTiles + (lastLightY - firstLightY);
-
-			int biomeOffsetX = ( width - Main.zoneX ) / 2;
-			int biomeOffsetY = ( height - Main.zoneY ) / 2;
+			//int width = lastLightX - firstLightX;
+			//int height = lastLightY - firstLightY;
+			//
+			//int biomeOffsetX = Math.Abs( ( width - Main.zoneX ) / 2 );
+			//int biomeOffsetY = Math.Abs( ( height - Main.zoneY ) / 2 );
+/*LogHelpers.Log("firstLightX:"+firstLightX+", firstLightY:"+firstLightY
+	+", lastLightX:"+lastLightX+", lastLightY:"+lastLightY
+	+", width:"+width+", height:"+height
+	+", biomeOffsetX:"+biomeOffsetX+", biomeOffsetY:"+biomeOffsetX);*/
 
 			Tile tile;
-			for( int x = firstLightX + biomeOffsetX; x < lastLightX - biomeOffsetX; x++ ) {
-				for( int y = firstLightY + biomeOffsetY; y < lastLightY - biomeOffsetY; y++ ) {
+			for( int x = leftTileX; x < rightTileX; x++ ) {
+				for( int y = topTileY; y < botTileY; y++ ) {
 					tile = Main.tile[x, y];
-
-					if( !screenRangeTiles.ContainsKey(tile.type) ) {
-						screenRangeTiles[ tile.type ] = 1;
+					if( tile == null || !tile.active() ) { continue; }
+					
+					if( !tiles.ContainsKey( tile.type ) ) {
+						tiles[ tile.type ] = 1;
 					} else {
-						screenRangeTiles[ tile.type ] += 1;
+						tiles[ tile.type ] += 1;
 					}
 				}
 			}
 
-			return screenRangeTiles;
+			return tiles;
 		}
 	}
 }

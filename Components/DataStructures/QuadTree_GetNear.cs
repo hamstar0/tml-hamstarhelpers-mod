@@ -51,20 +51,20 @@ namespace HamstarHelpers.Components.DataStructures {
 				leastDist = Double.MaxValue;
 				leastTree = null;
 
-				if( this.TopLeft != null && this.TopLeft.Value != null && !checks.Contains(this.TopLeft) ) {
-					listDeepestTreeAt( this.TopLeft );
+				if( this.TopLeftQuad != null && this.TopLeftQuad.Value != null && !checks.Contains(this.TopLeftQuad) ) {
+					listDeepestTreeAt( this.TopLeftQuad );
 					done = false;
 				}
-				if( this.TopRight != null && this.TopRight.Value != null && !checks.Contains(this.TopRight) ) {
-					listDeepestTreeAt( this.TopRight );
+				if( this.TopRightQuad != null && this.TopRightQuad.Value != null && !checks.Contains(this.TopRightQuad) ) {
+					listDeepestTreeAt( this.TopRightQuad );
 					done = false;
 				}
-				if( this.BotLeft != null && this.BotLeft.Value != null && !checks.Contains(this.BotLeft) ) {
-					listDeepestTreeAt( this.BotLeft );
+				if( this.BotLeftQuad != null && this.BotLeftQuad.Value != null && !checks.Contains(this.BotLeftQuad) ) {
+					listDeepestTreeAt( this.BotLeftQuad );
 					done = false;
 				}
-				if( this.BotRight != null && this.BotRight.Value != null && !checks.Contains(this.BotRight) ) {
-					listDeepestTreeAt( this.BotRight );
+				if( this.BotRightQuad != null && this.BotRightQuad.Value != null && !checks.Contains(this.BotRightQuad) ) {
+					listDeepestTreeAt( this.BotRightQuad );
 					done = false;
 				}
 
@@ -81,17 +81,17 @@ namespace HamstarHelpers.Components.DataStructures {
 			QuadTree<T> quad = this;
 
 			if( x != this.X || y != this.Y ) {
-				if( x < this.X && !avoid.Contains(this.TopLeft) && !avoid.Contains(this.TopRight) ) {
-					if( y < this.Y && !avoid.Contains(this.TopLeft) ) {
-						quad = this.TopLeft?.GetDeepestTreeAt( x, y, avoid );
+				if( x < this.X && !avoid.Contains(this.TopLeftQuad) && !avoid.Contains(this.TopRightQuad) ) {
+					if( y < this.Y && !avoid.Contains(this.TopLeftQuad) ) {
+						quad = this.TopLeftQuad?.GetDeepestTreeAt( x, y, avoid );
 					} else {
-						quad = this.TopRight?.GetDeepestTreeAt( x, y, avoid );
+						quad = this.TopRightQuad?.GetDeepestTreeAt( x, y, avoid );
 					}
 				} else {
-					if( y < this.Y && !avoid.Contains(this.BotLeft) && !avoid.Contains(this.BotRight) ) {
-						quad = this.BotLeft?.GetDeepestTreeAt( x, y, avoid );
+					if( y < this.Y && !avoid.Contains(this.BotLeftQuad) && !avoid.Contains(this.BotRightQuad) ) {
+						quad = this.BotLeftQuad?.GetDeepestTreeAt( x, y, avoid );
 					} else {
-						quad = this.BotRight?.GetDeepestTreeAt( x, y, avoid );
+						quad = this.BotRightQuad?.GetDeepestTreeAt( x, y, avoid );
 					}
 				}
 			}

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,10 +11,10 @@ namespace HamstarHelpers.Components.DataStructures {
 		public int Y { get; private set; }
 
 		private QuadTree<T> Parent;
-		private QuadTree<T> TopLeft;
-		private QuadTree<T> TopRight;
-		private QuadTree<T> BotLeft;
-		private QuadTree<T> BotRight;
+		private QuadTree<T> TopLeftQuad;
+		private QuadTree<T> TopRightQuad;
+		private QuadTree<T> BotLeftQuad;
+		private QuadTree<T> BotRightQuad;
 
 		public T Value;
 
@@ -22,26 +24,27 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		////////////////
 
-		public QuadTree( int x, int y, T val = null ) {
-			this.X = x;
-			this.Y = y;
-			this.Parent = null;
-			this.Value = val;
-			this.Count = val == null ? 1 : 0;
+		public QuadTree( int x, int y ) : this( null, x, y ) {
+			if( x <= 0 || y <= 0 ) {
+				throw new ArgumentException( "Positive integer coordinates required." );
+			}
 		}
 
-		private QuadTree( QuadTree<T> parent, int x, int y ) : this(x, y) {
+		private QuadTree( QuadTree<T> parent, int x, int y ) {
 			this.Parent = parent;
+			this.X = x;
+			this.Y = y;
+			this.Count = 0;
 		}
 
 
 		////////////////
 
 		public void Clear() {
-			this.TopLeft = null;
-			this.TopRight = null;
-			this.BotLeft = null;
-			this.BotRight = null;
+			this.TopLeftQuad = null;
+			this.TopRightQuad = null;
+			this.BotLeftQuad = null;
+			this.BotRightQuad = null;
 			this.Value = null;
 		}
 
@@ -54,15 +57,15 @@ namespace HamstarHelpers.Components.DataStructures {
 
 			if( x < this.X ) {
 				if( y < this.Y ) {
-					return this.TopLeft?.Get( x, y ) ?? null;
+					return this.TopLeftQuad?.Get( x, y ) ?? null;
 				} else {
-					return this.TopRight?.Get( x, y ) ?? null;
+					return this.TopRightQuad?.Get( x, y ) ?? null;
 				}
 			} else {
 				if( y < this.Y ) {
-					return this.BotLeft?.Get( x, y ) ?? null;
+					return this.BotLeftQuad?.Get( x, y ) ?? null;
 				} else {
-					return this.BotRight?.Get( x, y ) ?? null;
+					return this.BotRightQuad?.Get( x, y ) ?? null;
 				}
 			}
 		}
@@ -72,25 +75,25 @@ namespace HamstarHelpers.Components.DataStructures {
 			var enumer = (IEnumerable<Tuple<int, int, T>>)list;
 
 			if( this.Value != null ) {
-				list.Add( Tuple.Create(this.X, this.Y, this.Value) );
+				list.Add( Tuple.Create( this.X, this.Y, this.Value ) );
 			}
-			if( this.TopLeft != null ) {
-				enumer = list.Concat( this.TopLeft.GetAll() );
+			if( this.TopLeftQuad != null ) {
+				enumer = list.Concat( this.TopLeftQuad.GetAll() );
 			}
-			if( this.TopRight != null ) {
-				enumer = list.Concat( this.TopRight.GetAll() );
+			if( this.TopRightQuad != null ) {
+				enumer = list.Concat( this.TopRightQuad.GetAll() );
 			}
-			if( this.BotLeft != null ) {
-				enumer = list.Concat( this.BotLeft.GetAll() );
+			if( this.BotLeftQuad != null ) {
+				enumer = list.Concat( this.BotLeftQuad.GetAll() );
 			}
-			if( this.BotRight != null ) {
-				enumer = list.Concat( this.BotRight.GetAll() );
+			if( this.BotRightQuad != null ) {
+				enumer = list.Concat( this.BotRightQuad.GetAll() );
 			}
 
 			return enumer;
 		}
-		
-		
+
+
 		////////////////
 
 		public void Set( int x, int y, T val ) {
@@ -101,55 +104,84 @@ namespace HamstarHelpers.Components.DataStructures {
 			}
 
 			this.Count++;
-
+			
 			if( this.X == x && this.Y == y ) {
 				this.Value = val;
 				return;
 			}
 
-			int diffX, diffY, leftX, rightX, upY, downY;
-
-			if( this.Parent != null ) {
-				diffX = Math.Abs( ( this.X - this.Parent.X ) / 2 );
-				diffY = Math.Abs( ( this.Y - this.Parent.Y ) / 2 );
-			} else {
-				diffX = this.X / 2;
-				diffY = this.Y / 2;
-			}
-
-			if( diffX == 0 && diffY == 0 ) {
-				throw new Exception( "I suck at algorithms, apparently..." );
-			}
-
-			leftX = this.X - diffX;
-			rightX = this.X + diffX;
-			upY = this.Y - diffY;
-			downY = this.Y + diffY;
+			this.SetQuadAt( x, y, val );    //GIVE ME MY BRAIN BACK!
+		}
+		
+		private void SetQuadAt( int x, int y, T val ) {
+			int quadX, quadY;
+			this.GetQuadCoords( x, y, out quadX, out quadY );
 
 			if( x < this.X ) {
 				if( y < this.Y ) {
-					if( this.TopLeft == null ) {
-						this.TopLeft = new QuadTree<T>( this, leftX, upY );
+					if( this.TopLeftQuad == null ) {
+						this.TopLeftQuad = new QuadTree<T>( this, quadX, quadY );
 					}
-					this.TopLeft.Set( x, y, val );
+					this.TopLeftQuad.Set( x, y, val );
 				} else {
-					if( this.TopRight == null ) {
-						this.TopRight = new QuadTree<T>( this, rightX, upY );
+					if( this.BotLeftQuad == null ) {
+						this.BotLeftQuad = new QuadTree<T>( this, quadX, quadY );
 					}
-					this.TopRight.Set( x, y, val );
+					this.BotLeftQuad.Set( x, y, val );
 				}
 			} else {
 				if( y < this.Y ) {
-					if( this.BotLeft == null ) {
-						this.BotLeft = new QuadTree<T>( this, leftX, downY );
+					if( this.TopRightQuad == null ) {
+						this.TopRightQuad = new QuadTree<T>( this, quadX, quadY );
 					}
-					this.BotLeft.Set( x, y, val );
+					this.TopRightQuad.Set( x, y, val );
 				} else {
-					if( this.BotRight == null ) {
-						this.BotRight = new QuadTree<T>( this, rightX, downY );
+					if( this.BotRightQuad == null ) {
+						this.BotRightQuad = new QuadTree<T>( this, quadX, quadY );
 					}
-					this.BotRight.Set( x, y, val );
+					this.BotRightQuad.Set( x, y, val );
 				}
+			}
+		}
+
+		private void GetQuadCoords( int x, int y, out int quadX, out int quadY ) {
+			int quadWidth, quadHeight;
+
+			if( this.Parent != null ) {
+				quadWidth = Math.Abs( this.X - this.Parent.X ) / 2;
+				quadHeight = Math.Abs( this.Y - this.Parent.Y ) / 2;
+				//innerWidth = innerWidth == 1 ? 1 : innerWidth / 2;
+				//innerHeight = innerHeight == 1 ? 1 : innerHeight / 2;
+			} else {
+				quadWidth = this.X / 2;
+				quadHeight = this.Y / 2;
+			}
+
+//LogHelpers.Log( "[x:"+x+",y:"+y+"] x vs X("+this.X+"), y vs Y("+this.Y+")    quadWidth:" + quadWidth + ", quadHeight:" + quadHeight );
+			if( quadWidth == 0 && quadHeight == 0 ) {
+				string err = "X:" + this.X + " in " + ( this.Parent?.X ?? -1 ) + ", Y:" + this.Y + " in " + ( this.Parent?.Y ?? -1 );
+//LogHelpers.Log( "      "+err);
+				throw new Exception( "I suck at algorithms, apparently ("+err+")..." );
+			}
+
+			if( quadWidth > 1 ) {
+				if( x < this.X ) {
+					quadX = this.X - quadWidth;
+				} else {
+					quadX = this.X + quadWidth;
+				}
+			} else {
+				quadX = x;
+			}
+
+			if( quadHeight > 1 ) {
+				if( y < this.Y ) {
+					quadY = this.Y - quadHeight;
+				} else {
+					quadY = this.Y + quadHeight;
+				}
+			} else {
+				quadY = y;
 			}
 		}
 	}

@@ -15,7 +15,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		protected override IList<JsonProperty> CreateProperties( Type type, MemberSerialization memberSerialization ) {
 			IList<JsonProperty> properties = base.CreateProperties( type, memberSerialization );
 
-			properties = properties.Where( ( p ) => {
+			properties = properties.Where( (p) => {
 				if( p.DeclaringType.Name != "Entity" ) { return true; }
 
 				switch( p.PropertyName ) {
