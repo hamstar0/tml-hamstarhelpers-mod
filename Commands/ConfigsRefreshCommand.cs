@@ -23,10 +23,10 @@ namespace HamstarHelpers.Commands {
 
 		////////////////
 		
-		public override CommandType Type { get { return CommandType.World; } }
-		public override string Command { get { return "mh-configs-refresh"; } }
-		public override string Usage { get { return "/" + this.Command; } }
-		public override string Description { get { return "Refreshes all mod config files (single-player only). Only works for mods setup with Mod Helpers to do so (see Control Panel)."; } }
+		public override CommandType Type => CommandType.World;
+		public override string Command => "mh-configs-refresh";
+		public override string Usage => "/" + this.Command;
+		public override string Description => "Refreshes all mod config files (single-player only). Only works for mods setup with Mod Helpers to do so (see Control Panel).";
 
 
 		////////////////

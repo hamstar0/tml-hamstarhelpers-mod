@@ -185,6 +185,7 @@ namespace HamstarHelpers {
 			this.ModMetaDataManager.OnPostSetupContent();
 			this.GetModVersion.OnPostSetupContent();
 			this.GetModTags.OnPostSetupContent();
+			this.PlayerIdentityHelpers.OnPostSetupContent();
 
 			if( !Main.dedServ ) {
 				Menus.OnPostSetupContent();

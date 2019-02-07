@@ -24,6 +24,7 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		}
 
 
+		////////////////
 
 		public static int GetVanillaSnapshotHash( Item item, bool noContext, bool minimal ) {
 			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( item, noContext );

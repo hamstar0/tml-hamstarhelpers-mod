@@ -16,9 +16,9 @@ namespace HamstarHelpers.Commands {
 				return CommandType.Console | CommandType.World;
 			}
 		}
-		public override string Command { get { return "mh-mod-lock-world-toggle"; } }
-		public override string Usage { get { return "/" + this.Command; } }
-		public override string Description { get { return "Toggles locking mods for the current world."; } }
+		public override string Command => "mh-mod-lock-world-toggle";
+		public override string Usage => "/" + this.Command;
+		public override string Description => "Toggles locking mods for the current world.";
 
 
 		////////////////

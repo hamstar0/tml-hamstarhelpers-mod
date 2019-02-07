@@ -17,13 +17,10 @@ namespace HamstarHelpers.Commands {
 				return CommandType.Console | CommandType.World;
 			}
 		}
-		public override string Command { get { return "mh-mod-call"; } }
-		public override string Usage { get { return "/" + this.Command + " MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped strings needs spaces\" anotherparametc"; } }
-		public override string Description {
-			get {
-				return "Runs Mod.Call(). Use with care!" + "\n   Parameters: <mod name> <parameter 1> <parameter 2> etc...";
-			}
-		}
+		public override string Command => "mh-mod-call";
+		public override string Usage => "/" + this.Command + " MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped strings needs spaces\" anotherparametc";
+		public override string Description => "Runs Mod.Call(). Use with care!"
+			+ "\n   Parameters: <mod name> <parameter 1> <parameter 2> etc...";
 
 
 		////////////////

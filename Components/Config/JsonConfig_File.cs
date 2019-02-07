@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using Terraria;
-using Newtonsoft.Json;
 using System;
 using HamstarHelpers.Helpers.DebugHelpers;
+using System.Threading;
 
 
 namespace HamstarHelpers.Components.Config {
@@ -85,6 +85,22 @@ namespace HamstarHelpers.Components.Config {
 			}
 
 			return true;
+		}
+
+
+		////////////////
+
+		public void LoadFileAsync( Action<bool> onCompletion ) {
+			ThreadPool.QueueUserWorkItem( _ => {
+				onCompletion( this.LoadFile() );
+			} );
+		}
+
+		public void SaveFileAsync( Action onCompletion ) {
+			ThreadPool.QueueUserWorkItem( _ => {
+				this.SaveFile();
+				onCompletion();
+			} );
 		}
 	}
 }
