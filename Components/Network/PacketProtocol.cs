@@ -54,7 +54,7 @@ namespace HamstarHelpers.Components.Network {
 
 				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 					string name = subclassType.Namespace + "." + subclassType.Name;
-					LogHelpers.Log( "PacketProtocol.GetProtocols() - " + name );
+					LogHelpers.Alert( name );
 				}
 
 				try {
@@ -78,7 +78,13 @@ namespace HamstarHelpers.Components.Network {
 		/// Indicates whether send packets will be logged if the config specifies to do so. Defaults to true.
 		/// </summary>
 		[PacketProtocolIgnore]
-		public virtual bool IsVerbose { get { return true; } }
+		public virtual bool IsVerbose => true;
+
+		/// <summary>
+		/// Indicates whether to handle stream encoding and decoding with a separate thread. Defaults to false.
+		/// </summary>
+		[PacketProtocolIgnore]
+		public virtual bool IsAsync => false;
 
 
 

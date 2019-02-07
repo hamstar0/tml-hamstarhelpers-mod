@@ -3,6 +3,7 @@ using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
+using System.Threading;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -16,7 +17,7 @@ namespace HamstarHelpers.Components.Network {
 			try {
 				packet.Send( toWho, ignoreWho );
 			} catch( Exception e ) {
-				LogHelpers.Log( "!PacketProtocol.SendRequestToClient - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return;
 			}
 
@@ -33,7 +34,7 @@ namespace HamstarHelpers.Components.Network {
 			try {
 				packet.Send();
 			} catch( Exception e ) {
-				LogHelpers.Log( "!PacketProtocol.SendRequestToServer - " + e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 				return;
 			}
 
@@ -50,19 +51,18 @@ namespace HamstarHelpers.Components.Network {
 		/// </summary>
 		protected void SendToServer( bool syncToClients ) {
 			if( Main.netMode != 1 ) {
-				throw new HamstarException( "Not a client.");
+				throw new HamstarException( "Not a client." );
 			}
 
 			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetClientPacket( false, syncToClients );
-			
-			try {
-				this.WriteStream( packet );
 
-				packet.Send( -1, -1 );
-			} catch( Exception e ) {
-				LogHelpers.Log( "!PacketProtocol.SendToServer - " + e.ToString() );
-				return;
+			if( this.IsAsync ) {
+				ThreadPool.QueueUserWorkItem( _ => {
+					this.Send_Core( packet );
+				} );
+			} else {
+				this.Send_Core( packet );
 			}
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
@@ -83,18 +83,30 @@ namespace HamstarHelpers.Components.Network {
 			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetServerPacket( false );
 
-			try {
-				this.WriteStream( packet );
-
-				packet.Send( toWho, ignoreWho );
-			} catch( Exception e ) {
-				LogHelpers.Log( "!PacketProtocol.SendToClient - " + e.ToString() );
-				return;
+			if( this.IsAsync ) {
+				ThreadPool.QueueUserWorkItem( _ => {
+					this.Send_Core( packet, toWho, ignoreWho );
+				} );
+			} else {
+				this.Send_Core( packet, toWho, ignoreWho );
 			}
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string jsonStr = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendToClient " + toWho + ", " + ignoreWho + ": " + jsonStr );
+			}
+		}
+
+
+		////////////////
+
+		private void Send_Core( ModPacket packet, int toWho=-1, int ignoreWho=-1 ) {
+			try {
+				this.WriteStream( packet );
+				packet.Send( toWho, ignoreWho );
+			} catch( Exception e ) {
+				LogHelpers.Warn( e.ToString() );
+				return;
 			}
 		}
 	}

@@ -4,6 +4,8 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
+
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
@@ -36,8 +38,13 @@ namespace HamstarHelpers.Components.Network {
 					protocol.ReceiveRequestWithClientBase();
 					protocol.OnClone();
 				} else {
-					protocol.ReceiveWithClientBase( reader, playerWho );
-					protocol.OnClone();
+					if( protocol.IsAsync ) {
+						ThreadPool.QueueUserWorkItem( _ => {
+							protocol.HandleClient_Core( reader, playerWho );
+						} );
+					} else {
+						protocol.HandleClient_Core( reader, playerWho );
+					}
 				}
 			} catch( Exception e ) {
 				//throw new HamstarException( "PacketProtocol.HandlePacketOnClient - "+protocolType.Name + " - " + e.ToString() );
@@ -76,15 +83,33 @@ namespace HamstarHelpers.Components.Network {
 					protocol.ReceiveRequestWithServerBase( playerWho );
 					protocol.OnClone();
 				} else {
-					protocol.ReceiveWithServerBase( reader, playerWho );
-					protocol.OnClone();
-
-					if( isSyncedToClients ) {
-						protocol.SendToClient( -1, playerWho );
+					if( protocol.IsAsync ) {
+						ThreadPool.QueueUserWorkItem( _ => {
+							protocol.HandleServer_Core( reader, playerWho, isSyncedToClients );
+						} );
+					} else {
+						protocol.HandleServer_Core( reader, playerWho, isSyncedToClients );
 					}
 				}
 			} catch( Exception e ) {
 				throw new HamstarException( protocolType.Name + " - " + e.ToString() );
+			}
+		}
+
+
+		////////////////
+
+		private void HandleClient_Core( BinaryReader reader, int playerWho ) {
+			this.ReceiveWithClientBase( reader, playerWho );
+			this.OnClone();
+		}
+
+		private void HandleServer_Core( BinaryReader reader, int playerWho, bool isSyncedToClients ) {
+			this.ReceiveWithServerBase( reader, playerWho );
+			this.OnClone();
+
+			if( isSyncedToClients ) {
+				this.SendToClient( -1, playerWho );
 			}
 		}
 	}

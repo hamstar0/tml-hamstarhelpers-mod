@@ -30,7 +30,7 @@ namespace HamstarHelpers.Components.Network {
 
 				if( yourField == null ) {
 					string name = mytype.Namespace + "." + mytype.Name;
-					LogHelpers.Log( "Missing " + name + " protocol field for " + myField.Name );
+					LogHelpers.Warn( "Missing " + name + " protocol field for " + myField.Name );
 					return;
 				}
 
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Components.Network {
 
 				if( val == null ) {
 					string name = mytype.Namespace + "." + mytype.Name;
-					LogHelpers.Log( "Missing " + name + " protocol value for " + yourField.Name );
+					LogHelpers.Warn( "Missing " + name + " protocol value for " + yourField.Name );
 					return;
 				}
 				myField.SetValue( this, val );
