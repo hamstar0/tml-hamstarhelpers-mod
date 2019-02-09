@@ -59,16 +59,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.UpdateTml( mymod, player );
 
 			// Every player must have their ids accounted for!
-			if( !mymod.PlayerIdentityHelpers.PlayerIds.ContainsKey(player.whoAmI) ) {
-				string timerName = "ModHelpersPlayerIdFailsafe_" + player.whoAmI;
-
-				if( Timers.GetTimerTickDuration( timerName ) == 0 ) {
-					Timers.SetTimer( timerName, 3 * 60, () => {
-						PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1 );
-						return false;
-					} );
-				}
-			}
+			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1, -1 );
 		}
 	}
 }

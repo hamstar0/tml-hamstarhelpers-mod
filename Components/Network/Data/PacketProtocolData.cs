@@ -21,10 +21,10 @@ namespace HamstarHelpers.Components.Network.Data {
 				if( ctorInfo == null ) {
 					return false;
 				}
-				return ctorInfo.IsFamily;
+				return !ctorInfo.IsFamily;	// This is so the default ctor can't be inherited; won't mix with non-default ctors
 			}
 
-			return true;
+			return ctorInfo.IsFamily;
 		}
 
 

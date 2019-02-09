@@ -103,12 +103,18 @@ namespace HamstarHelpers.Components.Network {
 
 	
 	public abstract class PacketProtocolRequestToServer : PacketProtocol {
+		[Obsolete( "use QuickRequest<T>(int)", true )]
 		public static void QuickRequest<T>() where T : PacketProtocolRequestToServer {
-			PacketProtocol.QuickRequestToServer<T>();
+			PacketProtocolRequestToServer.QuickRequest<T>(0);
+		}
+
+		public static void QuickRequest<T>( int retries ) where T : PacketProtocolRequestToServer {
+			PacketProtocolRequestToServer.QuickRequestToServer<T>( retries );
 		}
 
 		////////////////
-		
+
+
 		protected PacketProtocolRequestToServer( PacketProtocolDataConstructorLock _=null ) { }
 
 		////////////////
@@ -140,12 +146,17 @@ namespace HamstarHelpers.Components.Network {
 	
 
 	public abstract class PacketProtocolRequestToClient : PacketProtocol {
+		[Obsolete( "use QuickRequest<T>(int, int, int)", true )]
 		public static void QuickRequest<T>( int toWho, int ignoreWho ) where T : PacketProtocolRequestToClient {
-			PacketProtocol.QuickRequestToClient<T>( toWho, ignoreWho );
+			PacketProtocolRequestToClient.QuickRequest<T>( toWho, ignoreWho, 0 );
+		}
+
+		public static void QuickRequest<T>( int toWho, int ignoreWho, int retries ) where T : PacketProtocolRequestToClient {
+			PacketProtocol.QuickRequestToClient<T>( toWho, ignoreWho, retries );
 		}
 
 		////////////////
-		
+
 		protected PacketProtocolRequestToClient( PacketProtocolDataConstructorLock _=null ) { }
 
 		////

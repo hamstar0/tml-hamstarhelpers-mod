@@ -43,7 +43,7 @@ namespace HamstarHelpers {
 		internal MenuContextServiceManager MenuContextMngr;
 		internal MenuItemManager MenuItemMngr;
 		internal CustomEntityManager CustomEntMngr;
-		internal IDictionary<int, Type> PacketProtocols = new Dictionary<int, Type>();
+		internal PacketProtocolManager PacketProtocolMngr;
 
 		// Services
 		internal Promises Promises;
@@ -58,7 +58,7 @@ namespace HamstarHelpers {
 
 		// Helpers
 		internal LogHelpers LogHelpers;
-		internal ModMetaDataManager ModMetaDataManager;
+		internal ModMetaDataManager ModMetaDataMngr;
 		internal NetHelpers NetHelpers;
 		internal BuffHelpers BuffHelpers;
 		internal ItemIdentityHelpers ItemIdentityHelpers;
@@ -102,7 +102,9 @@ namespace HamstarHelpers {
 
 			this.Timers = new Timers();
 			this.LogHelpers = new LogHelpers();
-			this.ModMetaDataManager = new ModMetaDataManager();
+			this.ModMetaDataMngr = new ModMetaDataManager();
+			this.PacketProtocolMngr = new PacketProtocolManager();
+
 			this.BuffHelpers = new BuffHelpers();
 			this.NetHelpers = new NetHelpers();
 			this.ItemIdentityHelpers = new ItemIdentityHelpers();
@@ -134,12 +136,12 @@ namespace HamstarHelpers {
 
 
 		public void UnloadOuter() {
+			this.PacketProtocolMngr = null;
 			this.ExceptionMngr = null;
 			this.Timers = null;
 			this.ConfigJson = null;
-			this.PacketProtocols = null;
 			this.LogHelpers = null;
-			this.ModMetaDataManager = null;
+			this.ModMetaDataMngr = null;
 			this.BuffHelpers = null;
 			this.NetHelpers = null;
 			this.ItemIdentityHelpers = null;
@@ -179,10 +181,9 @@ namespace HamstarHelpers {
 		////////////////
 
 		private void PostSetupContentOuter() {
-			this.PacketProtocols = PacketProtocol.GetProtocolTypes();
-
+			this.PacketProtocolMngr.OnPostSetupContent();
 			this.Promises.OnPostSetupContent();
-			this.ModMetaDataManager.OnPostSetupContent();
+			this.ModMetaDataMngr.OnPostSetupContent();
 			this.GetModVersion.OnPostSetupContent();
 			this.GetModTags.OnPostSetupContent();
 			this.PlayerIdentityHelpers.OnPostSetupContent();

@@ -32,7 +32,7 @@ namespace HamstarHelpers.Components.Network {
 
 		/// <summary>
 		/// Runs when a request is received for the server to send data to the client. Expects
-		/// `SetServerDefaults()` to be implemented.
+		/// `SetServerDefaults(int)` to be implemented.
 		/// </summary>
 		/// <param name="fromWho">Main.player index of player (client) sending this request.</param>
 		/// <returns>True to indicate the request is being handled manually.</returns>

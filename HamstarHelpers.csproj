@@ -97,6 +97,9 @@
     <Compile Include="Components\Network\Data\PacketProtocolData_Read.cs" />
     <Compile Include="Components\Network\Data\PacketProtocolData_Write.cs" />
     <Compile Include="Components\Network\Attributes.cs" />
+    <Compile Include="Components\Network\PacketProtocolManager.cs" />
+    <Compile Include="Components\Network\PacketProtocol_RequestAPI.cs" />
+    <Compile Include="Components\Network\PacketProtocol_SendRequest.cs" />
     <Compile Include="Components\Network\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\Network\PacketProtocol.cs" />
     <Compile Include="Components\Network\Interfaces.cs" />

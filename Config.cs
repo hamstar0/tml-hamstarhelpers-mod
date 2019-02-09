@@ -41,7 +41,8 @@ namespace HamstarHelpers {
 		public bool IsServerHiddenFromBrowser = false;
 		public bool IsServerHiddenFromBrowserUnlessPortForwardedViaUPNP = true;
 		public bool IsServerPromptingUsersBeforeListingOnBrowser = true;
-		public int ServerBrowserCustomPort = -1;
+		//public int ServerBrowserCustomPort = -1;
+		public int PacketRequestRetryDuration = 60 * 4;	// 5 seconds
 
 		public int InboxIconPosX = 2;
 		public int InboxIconPosY = 80;

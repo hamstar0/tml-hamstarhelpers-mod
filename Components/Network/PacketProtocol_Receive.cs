@@ -15,7 +15,9 @@ namespace HamstarHelpers.Components.Network {
 			try {
 				this.ReadStream( reader );
 			} catch( Exception e ) {
-				LogHelpers.Log( "Stream read error - " + e.ToString() );
+				LogHelpers.Warn( "Stream read error - " + e.ToString() );
+				//reader.BaseStream.Position = 0;
+				//TODO: Output what remains of stram
 				return;
 			}
 
@@ -43,6 +45,9 @@ namespace HamstarHelpers.Components.Network {
 				}
 				myField.SetValue( this, val );
 			}
+			
+			int packetCode = PacketProtocol.GetPacketCode( this.GetType().Name );
+			mymod.PacketProtocolMngr.FulfillRequest( packetCode );	// If packet is not a request, this is just ignored
 		}
 
 

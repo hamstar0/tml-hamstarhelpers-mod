@@ -6,22 +6,22 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Helpers.TmlHelpers {
 	public partial class ModMetaDataManager {
 		public static bool HasGithub( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			return self.GithubMods.ContainsKey( mod.Name );
 		}
 		public static bool HasConfig( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			return self.ConfigMods.ContainsKey( mod.Name );
 		}
 		public static bool HasConfigDefaultsReset( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			return self.ConfigDefaultsResetMods.ContainsKey( mod.Name );
 		}
 
 		////////////////
 
 		public static string GetConfigRelativePath( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			if( !self.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
 
 			PropertyInfo configPathField = ModMetaDataManager.GetConfigFilePathProp( mod );
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		}*/
 
 		public static void ReloadConfigFromFile( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			if( !self.ConfigMods.ContainsKey( mod.Name ) ) {
 				throw new Exception( "Not a recognized configurable mod." );
 			}
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		}
 		
 		public static void ResetDefaultsConfig( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			if( !self.ConfigDefaultsResetMods.ContainsKey( mod.Name ) ) {
 				throw new Exception( "Not a recognized config resetable mod." );
 			}
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		////////////////
 
 		public static string GetGithubUserName( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
 			PropertyInfo gitUserProp = ModMetaDataManager.GetGithubUserNameProp( mod );
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		}
 
 		public static string GetGithubProjectName( Mod mod ) {
-			var self = ModHelpersMod.Instance.ModMetaDataManager;
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
 			PropertyInfo gitProjProp = ModMetaDataManager.GetGitubProjectNameProp( mod );

@@ -42,8 +42,8 @@ namespace HamstarHelpers.Internals.Logic {
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 
 			// Receive
-			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>();
-			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>();
+			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>( -1 );
+			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>( -1 );
 
 			mymod.ControlPanel.LoadModListAsync();
 		}

@@ -10,42 +10,6 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
-		internal void SendRequestToClient( int toWho, int ignoreWho ) {
-			var mymod = ModHelpersMod.Instance;
-			ModPacket packet = this.GetServerPacket( true );
-
-			try {
-				packet.Send( toWho, ignoreWho );
-			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
-				return;
-			}
-
-			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToClient " + toWho + ", " + ignoreWho );
-			}
-		}
-
-
-		internal void SendRequestToServer() {
-			var mymod = ModHelpersMod.Instance;
-			ModPacket packet = this.GetClientPacket( true, false );
-
-			try {
-				packet.Send();
-			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
-				return;
-			}
-
-			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
-			}
-		}
-
-
-		////////////////
-
 		/// <summary>
 		/// Sends the current packet to the server.
 		/// </summary>

@@ -75,7 +75,7 @@ namespace HamstarHelpers.Components.Network {
 		////////////////
 
 		/// <summary>
-		/// Indicates whether send packets will be logged if the config specifies to do so. Defaults to true.
+		/// Indicates whether sent packets will be logged if the config specifies to do so. Defaults to true.
 		/// </summary>
 		[PacketProtocolIgnore]
 		public virtual bool IsVerbose => true;
