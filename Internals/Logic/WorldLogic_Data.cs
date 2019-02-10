@@ -3,17 +3,19 @@
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class WorldLogic {
-		public WorldLogic( ModHelpersMod mymod ) { }
+		public WorldLogic() { }
 		
 
 		////////////////
 		
-		public void LoadForWorld( ModHelpersMod mymod, TagCompound tags ) {
-			mymod.WorldStateHelpers.Load( mymod, tags );
+		public void LoadForWorld( TagCompound tags ) {
+			var mymod = ModHelpersMod.Instance;
+			mymod.WorldStateHelpers.Load( tags );
 		}
 
-		public void SaveForWorld( ModHelpersMod mymod, TagCompound tags ) {
-			mymod.WorldStateHelpers.Save( mymod, tags );
+		public void SaveForWorld( TagCompound tags ) {
+			var mymod = ModHelpersMod.Instance;
+			mymod.WorldStateHelpers.Save( tags );
 		}
 	}
 }

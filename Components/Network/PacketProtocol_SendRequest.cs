@@ -59,19 +59,21 @@ namespace HamstarHelpers.Components.Network {
 
 			mymod.PacketProtocolMngr.ExpectReqest( packetCode );
 
-			Timers.SetTimer( "PacketProtocolRequestToClientTimeout", retryDuration, () => {
-				if( mymod.PacketProtocolMngr.GetRequestsOf( packetCode ) > 0 ) {
-					if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-						LogHelpers.Log( "  Request timed out. Retrying " + this.GetType().Name + " request to client"
-							+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
+			if( retries > 0 ) {
+				Timers.SetTimer( "PacketProtocolRequestToClientTimeout", retryDuration, () => {
+					if( mymod.PacketProtocolMngr.GetRequestsOf( packetCode ) > 0 ) {
+						if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+							LogHelpers.Log( "  Request timed out. Retrying " + this.GetType().Name + " request to client"
+								+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
+						}
+
+						mymod.PacketProtocolMngr.FulfillRequest( packetCode );
+
+						this.SendRequestToClient( toWho, ignoreWho, retries - 1 );
 					}
-
-					mymod.PacketProtocolMngr.FulfillRequest( packetCode );
-
-					this.SendRequestToClient( toWho, ignoreWho, retries - 1 );
-				}
-				return false;
-			} );
+					return false;
+				} );
+			}
 		}
 
 		private void RetryRequestToServerIfTimeout( int retries ) {
@@ -81,19 +83,21 @@ namespace HamstarHelpers.Components.Network {
 
 			mymod.PacketProtocolMngr.ExpectReqest( packetCode );
 
-			Timers.SetTimer( "PacketProtocolRequestToServerTimeout", retryDuration, () => {
-				if( mymod.PacketProtocolMngr.GetRequestsOf( packetCode ) > 0 ) {
-					if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-						LogHelpers.Log( "  Request timed out. Retrying "+this.GetType().Name+ " request to server ("
-							+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
+			if( retries > 0 ) {
+				Timers.SetTimer( "PacketProtocolRequestToServerTimeout", retryDuration, () => {
+					if( mymod.PacketProtocolMngr.GetRequestsOf( packetCode ) > 0 ) {
+						if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+							LogHelpers.Log( "  Request timed out. Retrying " + this.GetType().Name + " request to server ("
+								+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
+						}
+
+						mymod.PacketProtocolMngr.FulfillRequest( packetCode );
+
+						this.SendRequestToServer( retries - 1 );
 					}
-
-					mymod.PacketProtocolMngr.FulfillRequest( packetCode );
-
-					this.SendRequestToServer( retries - 1 );
-				}
-				return false;
-			} );
+					return false;
+				} );
+			}
 		}
 	}
 }

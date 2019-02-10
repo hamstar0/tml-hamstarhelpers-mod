@@ -41,10 +41,12 @@ namespace HamstarHelpers.Components.CustomEntity {
 			// Refresh entity owners on player connect and sync entities to player
 			if( Main.netMode == 2 ) {
 				Promises.AddValidatedPromise<PlayerLogicPromiseArguments>( PlayerLogic.ServerConnectValidator, ( args ) => {
+					if( this.WorldEntitiesByIndexes.Count == 0 ) { return true; }
+
 					foreach( var ent in this.WorldEntitiesByIndexes.Values ) {
 						ent.RefreshOwnerWho();
 					}
-
+					
 					PacketProtocolSendToClient.QuickSend<CustomEntityAllProtocol>( args.Who, -1 );
 
 					return true;

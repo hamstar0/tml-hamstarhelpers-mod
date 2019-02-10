@@ -94,7 +94,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		internal void PostLoad( ModHelpersMod mymod, ModHelpersWorld modworld ) {
+		internal void PostLoad( ModHelpersWorld modworld ) {
 			this.IsInitialized = true;
 			this.MismatchBroadcastMade = false;
 			this.ScanMods( modworld );
@@ -149,7 +149,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		internal void Load( ModHelpersMod mymod, TagCompound tags ) {
+		internal void Load( TagCompound tags ) {
+			var mymod = ModHelpersMod.Instance;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			if( tags.ContainsKey( "world_mod_lock_count" ) ) {
@@ -170,7 +171,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			}
 		}
 
-		internal void Save( ModHelpersMod mymod, TagCompound tags ) {
+		internal void Save( TagCompound tags ) {
+			var mymod = ModHelpersMod.Instance;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			tags.Set( "world_mod_lock_count", this.WorldModLocks.Count );

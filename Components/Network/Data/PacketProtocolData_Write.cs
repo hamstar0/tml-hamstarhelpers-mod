@@ -21,9 +21,6 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 
 			foreach( FieldInfo field in data.OrderedFields ) {
-				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
-					continue;
-				}
 				if( Main.netMode == 1 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
 					continue;
 				} else if( Main.netMode == 2 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {

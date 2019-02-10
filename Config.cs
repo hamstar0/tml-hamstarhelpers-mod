@@ -19,6 +19,7 @@ namespace HamstarHelpers {
 		public bool DebugModeResetCustomEntities = false;
 		public bool DebugModeCustomEntityInfo = false;
 		public bool DebugModeDisableSilentLogging = false;
+		public bool DebugModePacketInfo = false;
 
 		public bool UseCustomLogging = false;
 		public bool UseCustomLoggingPerNetMode = false;
@@ -42,6 +43,7 @@ namespace HamstarHelpers {
 		public bool IsServerHiddenFromBrowserUnlessPortForwardedViaUPNP = true;
 		public bool IsServerPromptingUsersBeforeListingOnBrowser = true;
 		//public int ServerBrowserCustomPort = -1;
+
 		public int PacketRequestRetryDuration = 60 * 4;	// 5 seconds
 
 		public int InboxIconPosX = 2;
@@ -67,7 +69,8 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		internal bool UpdateToLatestVersion( ModHelpersMod mymod ) {
+		internal bool UpdateToLatestVersion() {
+			var mymod = ModHelpersMod.Instance;
 			var newConfig = new HamstarHelpersConfigData();
 			var versSince = this.VersionSinceUpdate != "" ?
 				new Version( this.VersionSinceUpdate ) :
@@ -85,7 +88,8 @@ namespace HamstarHelpers {
 
 		////////////////
 		
-		internal void LoadFromNetwork( ModHelpersMod mymod, HamstarHelpersConfigData config ) {
+		internal void LoadFromNetwork( HamstarHelpersConfigData config ) {
+			var mymod = ModHelpersMod.Instance;
 			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 
 			mymod.ConfigJson.SetData( config );

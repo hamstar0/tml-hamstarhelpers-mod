@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace HamstarHelpers.Components.Network {
 	class PacketProtocolManager {
 		private IDictionary<int, Type> PacketProtocolTypesByCode = new Dictionary<int, Type>();
-		private IDictionary<int, int> RequestResponseQueue = new Dictionary<int, int>();
+		private readonly IDictionary<int, int> RequestResponseQueue = new Dictionary<int, int>();
 
 
 
@@ -37,15 +37,14 @@ namespace HamstarHelpers.Components.Network {
 		////////////////
 
 		public int GetRequestsOf( int code ) {
-			if( !this.RequestResponseQueue.ContainsKey( code ) ) {
-				return 0;
-			} else {
+			if( this.RequestResponseQueue.ContainsKey( code ) ) {
 				return this.RequestResponseQueue[code];
 			}
+			return 0;
 		}
 
 		public bool FulfillRequest( int code ) {
-			if( this.RequestResponseQueue[ code ] > 0 ) {
+			if( this.RequestResponseQueue.ContainsKey(code) && this.RequestResponseQueue[ code ] > 0 ) {
 				this.RequestResponseQueue[ code ] -= 1;
 				return true;
 			}

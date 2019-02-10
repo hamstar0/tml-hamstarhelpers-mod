@@ -62,14 +62,10 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void SyncPlayer( int toWho, int fromWho, bool newPlayer ) {
-			if( Main.netMode == 1 ) {
-				if( toWho == -1 && newPlayer ) {
-					PacketProtocolSentToEither.QuickSendToServer<PlayerNewIdProtocol>();
-				}
-			} else if( Main.netMode == 2 ) {
+			if( Main.netMode == 2 ) {
 				if( toWho == -1 && fromWho == this.player.whoAmI ) {
 					Promises.AddSafeWorldLoadOncePromise( () => {
-						this.Logic.OnServerConnect( ModHelpersMod.Instance, Main.player[fromWho] );
+						this.Logic.OnServerConnect( Main.player[fromWho] );
 					} );
 				}
 			}
@@ -89,9 +85,9 @@ namespace HamstarHelpers {
 				var mymod = (ModHelpersMod)this.mod;
 				
 				if( Main.netMode == 0 ) {
-					this.Logic.OnSingleConnect( mymod, Main.player[who] );
+					this.Logic.OnSingleConnect( Main.player[who] );
 				} else if( Main.netMode == 1 ) {
-					this.Logic.OnCurrentClientConnect( mymod, Main.player[who] );
+					this.Logic.OnCurrentClientConnect( Main.player[who] );
 				}
 			};
 
@@ -173,11 +169,11 @@ namespace HamstarHelpers {
 			}
 
 			if( Main.netMode == 2 ) {
-				this.Logic.PreUpdateServer( (ModHelpersMod)this.mod, this.player );
+				this.Logic.PreUpdateServer( this.player );
 			} else if( Main.netMode == 1 ) {
-				this.Logic.PreUpdateClient( (ModHelpersMod)this.mod, this.player );
+				this.Logic.PreUpdateClient( this.player );
 			} else {
-				this.Logic.PreUpdateSingle( (ModHelpersMod)this.mod );
+				this.Logic.PreUpdateSingle();
 			}
 		}
 

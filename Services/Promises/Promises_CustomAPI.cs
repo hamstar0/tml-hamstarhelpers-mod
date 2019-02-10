@@ -44,7 +44,7 @@ namespace HamstarHelpers.Services.Promises {
 		
 		////////////////
 
-		public static void AddValidatedPromise<T>( PromiseValidator validator, Func<T, bool> action ) where T : PromiseArguments {
+		public static void AddValidatedPromise<T>( PromiseValidator validator, Func<T, bool> func ) where T : PromiseArguments {
 			var mymod = ModHelpersMod.Instance;
 			bool conditionsMet;
 			T args;
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Services.Promises {
 					args = (T)mymod.Promises.ValidatedPromiseArgs[ validator ];
 				}
 
-				if( !action( args ) ) {
+				if( !func( args ) ) {
 					return;
 				}
 			}
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Services.Promises {
 				if( !mymod.Promises.ValidatedPromise.ContainsKey( validator ) ) {
 					mymod.Promises.ValidatedPromise[validator] = new List<Func<PromiseArguments, bool>>();
 				}
-				mymod.Promises.ValidatedPromise[validator].Add( U => action( (T)U ) );
+				mymod.Promises.ValidatedPromise[validator].Add( U => func( (T)U ) );
 			}
 		}
 		

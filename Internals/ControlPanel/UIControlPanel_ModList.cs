@@ -10,7 +10,8 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
-		public static void UpdateModList( ModHelpersMod mymod ) {
+		public static void UpdateModList() {
+			var mymod = ModHelpersMod.Instance;
 			var ctrlPanel = mymod.ControlPanel;
 
 			if( ctrlPanel == null || !ctrlPanel.ModListUpdateRequired || !ctrlPanel.IsOpen ) {

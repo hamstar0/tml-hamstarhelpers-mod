@@ -115,7 +115,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return;
 			}
 
-			this.UpdateElements( ModHelpersMod.Instance );
+			this.UpdateElements();
 		}
 
 

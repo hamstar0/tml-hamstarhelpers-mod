@@ -13,17 +13,17 @@ namespace HamstarHelpers.Components.Network {
 			var mymod = ModHelpersMod.Instance;
 			bool isRequest;
 
-			try {
-				isRequest = reader.ReadBoolean();
-			} catch( Exception e ) {
-				throw new HamstarException( e.ToString() );
-			}
-			
 			Type protocolType = mymod.PacketProtocolMngr.GetProtocolType( protocolCode );
 			if( protocolType == null ) {
 				throw new HamstarException( "Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
+			try {
+				isRequest = reader.ReadBoolean();
+			} catch( Exception e ) {
+				throw new HamstarException( "Could not read data for protocol " + protocolType.Namespace+"."+protocolType.Name+" - "+e.ToString() );
+			}
+			
 			try {
 				var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Components.Network {
 					}
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( protocolType.Name + " - " + e.ToString() );
+				throw new HamstarException( "Error handling " + protocolType.Namespace + "." + protocolType.Name + " - " + e.ToString() );
 			}
 		}
 
@@ -49,18 +49,18 @@ namespace HamstarHelpers.Components.Network {
 			var mymod = ModHelpersMod.Instance;
 			bool isRequest, isSyncedToClients;
 
-			try {
-				isRequest = reader.ReadBoolean();
-				isSyncedToClients = reader.ReadBoolean();
-			} catch( Exception e ) {
-				throw new HamstarException( e.ToString() );
-			}
-			
 			Type protocolType = mymod.PacketProtocolMngr.GetProtocolType( protocolCode );
 			if( protocolType == null ) {
 				throw new HamstarException( "Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
+			try {
+				isRequest = reader.ReadBoolean();
+				isSyncedToClients = reader.ReadBoolean();
+			} catch( Exception e ) {
+				throw new HamstarException( "Could not read data for protocol " + protocolType.Namespace+"."+protocolType.Name+" - "+e.ToString() );
+			}
+			
 			try {
 				var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Components.Network {
 					}
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( protocolType.Name + " - " + e.ToString() );
+				throw new HamstarException( "Error handling " + protocolType.Namespace + "." + protocolType.Name + " - " + e.ToString() );
 			}
 		}
 

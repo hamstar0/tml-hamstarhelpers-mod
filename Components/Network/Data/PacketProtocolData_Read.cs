@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -14,11 +15,16 @@ namespace HamstarHelpers.Components.Network.Data {
 	/// </summary>
 	public abstract partial class PacketProtocolData {
 		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData fieldContainer ) {
+			var mymod = ModHelpersMod.Instance;
+			int i = 0;
+
+			if( mymod.Config.DebugModePacketInfo ) {
+				LogHelpers.Log( "  Begun reading packet " + fieldContainer.GetType().Name + " ("+fieldContainer.FieldCount+" fields)" );
+			}
+
 			foreach( FieldInfo field in fieldContainer.OrderedFields ) {
-				if( Attribute.IsDefined( field, typeof( PacketProtocolIgnoreAttribute ) ) ) {
-					continue;
-				}
-				
+				i++;
+
 				Type fieldType = field.FieldType;
 				object fieldData = PacketProtocolData.ReadStreamValue( reader, fieldType );
 
@@ -30,6 +36,11 @@ namespace HamstarHelpers.Components.Network.Data {
 					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
 						continue;
 					}
+				}
+
+				if( mymod.Config.DebugModePacketInfo ) {
+					LogHelpers.Log( "  * Reading packet "+fieldContainer.GetType().Name
+						+" field ("+i+" of "+fieldContainer.FieldCount+") "+field.Name+": "+DotNetHelpers.Stringify(fieldData, 32) );
 				}
 
 //LogHelpers.Log( "READ "+ fieldContainer.GetType().Name + " FIELD " + field + " VALUE " + fieldData );

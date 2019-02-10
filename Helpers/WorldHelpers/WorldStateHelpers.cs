@@ -18,7 +18,8 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 
-		internal void Load( ModHelpersMod mymod, TagCompound tags ) {
+		internal void Load( TagCompound tags ) {
+			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			if( tags.ContainsKey( "world_id" ) ) {
@@ -26,7 +27,8 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 			}
 		}
 
-		internal void Save( ModHelpersMod mymod, TagCompound tags ) {
+		internal void Save( TagCompound tags ) {
+			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			tags.Set( "half_days_elapsed_" + myworld.ObsoletedID, (int)this.HalfDaysElapsed );
@@ -34,7 +36,8 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 		
-		internal void LoadFromData( ModHelpersMod mymod, int halfDays, string worldId ) {
+		internal void LoadFromData( int halfDays, string worldId ) {
+			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			this.HalfDaysElapsed = halfDays;
@@ -45,7 +48,9 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 
-		internal void Update( ModHelpersMod mymod ) {
+		internal void Update() {
+			var mymod = ModHelpersMod.Instance;
+
 			if( !LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 				this.IsDay = Main.dayTime;
 			} else {

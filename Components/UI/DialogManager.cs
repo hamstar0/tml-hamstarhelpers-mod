@@ -50,7 +50,7 @@ namespace HamstarHelpers.Components.UI {
 
 		////////////////
 
-		internal void Update( ModHelpersMod mymod ) {
+		internal void Update() {
 			if( this.CurrentDialog == null ) {
 				return;
 			}

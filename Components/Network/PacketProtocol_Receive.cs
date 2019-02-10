@@ -15,7 +15,8 @@ namespace HamstarHelpers.Components.Network {
 			try {
 				this.ReadStream( reader );
 			} catch( Exception e ) {
-				LogHelpers.Warn( "Stream read error - " + e.ToString() );
+				string name = mytype.Namespace + "." + mytype.Name;
+				LogHelpers.Warn( "Stream read error for "+name+" - " + e.ToString() );
 				//reader.BaseStream.Position = 0;
 				//TODO: Output what remains of stram
 				return;

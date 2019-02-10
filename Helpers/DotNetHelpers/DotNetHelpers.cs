@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,10 +12,34 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////////////////
 
+		[Obsolete( "use StringifyDict<TKey, TValue>( IDictionary<TKey, TValue> dict )", true )]
 		public static string DictToString( IDictionary<object, object> dict ) {
 			return string.Join( ";", dict.Select( x => x.Key + "=" + x.Value ).ToArray() );
 		}
 
+		public static string StringifyDict<TKey, TValue>( IDictionary<TKey, TValue> dict ) {
+			return string.Join( ";", dict.Select( x => x.Key + "=" + x.Value ) );
+		}
+
+		public static string Stringify( object obj, int charLimit=-1 ) {
+			string output;
+
+			if( obj.GetType().IsClass ) {
+				output = JsonConvert.SerializeObject( obj ).ToString();
+			} else {
+				output = obj.ToString();
+			}
+
+			if( charLimit > 0 ) {
+				if( output.Length > charLimit ) {
+					output = output.Substring(0, charLimit) + "...";
+				}
+			}
+			return output;
+		}
+
+
+		////////////////
 
 		public static object ParseToInferredPrimitiveType( string value ) {
 			Int32 int32out;

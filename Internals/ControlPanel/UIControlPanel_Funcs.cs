@@ -42,20 +42,20 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		private void ApplyConfigChanges( ModHelpersMod mymod ) {
-			this.Logic.ApplyConfigChanges( mymod );
+		private void ApplyConfigChanges() {
+			this.Logic.ApplyConfigChanges();
 
 			this.SetDialogToClose = true;
 		}
 
-		private void ToggleModLock( ModHelpersMod mymod ) {
+		private void ToggleModLock() {
 			if( !ModLockHelpers.IsWorldLocked() ) {
 				ModLockHelpers.LockWorld();
 			} else {
 				ModLockHelpers.UnlockWorld();
 			}
 
-			this.RefreshModLockButton( mymod );
+			this.RefreshModLockButton();
 		}
 	}
 }

@@ -23,8 +23,10 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public static void OnPostSetupContent( ModHelpersMod mymod ) {
+		public static void OnPostSetupContent() {
 			if( Main.dedServ ) { return; }
+
+			var mymod = ModHelpersMod.Instance;
 
 			UIControlPanel.ControlPanelIcon = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIcon" );
 			UIControlPanel.ControlPanelIconLit = mymod.GetTexture( "Internals/ControlPanel/ControlPanelIconLit" );
@@ -35,9 +37,9 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		private void InitializeComponents() {
+			var mymod = ModHelpersMod.Instance;
 			UIControlPanel self = this;
 			ControlPanelLogic logic = this.Logic;
-			var mymod = ModHelpersMod.Instance;
 			float top = 0;
 			
 			this.OuterContainer = new UIElement();
@@ -183,7 +185,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			}
 			this.ApplyConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				if( !self.ApplyConfigButton.IsEnabled ) { return; }
-				self.ApplyConfigChanges( ModHelpersMod.Instance );
+				self.ApplyConfigChanges();
 			};
 			this.InnerContainer.Append( this.ApplyConfigButton );
 
@@ -198,12 +200,12 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			}
 			this.ModLockButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
 				if( !self.ModLockButton.IsEnabled ) { return; }
-				self.ToggleModLock( ModHelpersMod.Instance );
+				self.ToggleModLock();
 				Main.PlaySound( SoundID.Unlock );
 			};
 			this.InnerContainer.Append( this.ModLockButton );
 
-			this.RefreshModLockButton( mymod );
+			this.RefreshModLockButton();
 
 			top += 36f;
 
@@ -273,7 +275,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public void RefreshModLockButton( ModHelpersMod mymod ) {
+		public void RefreshModLockButton() {
+			var mymod = ModHelpersMod.Instance;
 			bool areModsLocked = ModLockHelpers.IsWorldLocked();
 			string status = areModsLocked ? ": ON" : ": OFF";
 			bool isEnabled = true;
@@ -314,14 +317,16 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public void UpdateElements( ModHelpersMod mymod ) {
+		public void UpdateElements() {
+			var mymod = ModHelpersMod.Instance;
+
 			if( !mymod.Config.WorldModLockEnable ) {
 				if( this.ModLockButton.IsEnabled ) {
-					this.RefreshModLockButton( mymod );
+					this.RefreshModLockButton();
 				}
 			} else {
 				if( !this.ModLockButton.IsEnabled ) {
-					this.RefreshModLockButton( mymod );
+					this.RefreshModLockButton();
 				}
 			}
 		}

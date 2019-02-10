@@ -1,40 +1,44 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Messages;
-using HamstarHelpers.Services.Timers;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
-		private void PreUpdatePlayer( ModHelpersMod mymod, Player player ) {
+		private void PreUpdatePlayer( Player player ) {
+			var mymod = ModHelpersMod.Instance;
+
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 				SimpleMessage.UpdateMessage();
 				mymod.PlayerMessages.Update();
-				this.DialogManager.Update( mymod );
+				this.DialogManager.Update();
 			}
 
 			foreach( int buffId in this.PermaBuffsById ) {
 				player.AddBuff( buffId, 3 );
 			}
 
-			this.UpdateTml( mymod, player );
+			this.UpdateTml( player );
 		}
 
 		////////////////
 
-		public void PreUpdateSingle( ModHelpersMod mymod ) {
-			this.PreUpdatePlayer( mymod, Main.LocalPlayer );
+		public void PreUpdateSingle() {
+			this.PreUpdatePlayer( Main.LocalPlayer );
 		}
 
-		public void PreUpdateClient( ModHelpersMod mymod, Player player ) {
-			this.PreUpdatePlayer( mymod, player );
+		public void PreUpdateClient( Player player ) {
+			this.PreUpdatePlayer( player );
+
+			var mymod = ModHelpersMod.Instance;
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var myworld = mymod.GetModWorld<ModHelpersWorld>();
-				myworld.WorldLogic.PreUpdateClient( mymod );
+				myworld.WorldLogic.PreUpdateClient();
 			}
 
 			// Update ping every 15 seconds
@@ -44,10 +48,9 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 		}
 
-		public void PreUpdateServer( ModHelpersMod mymod, Player player ) {
-			if( player.whoAmI == Main.myPlayer ) { // Current player
-				var modworld = mymod.GetModWorld<ModHelpersWorld>();
-			}
+		public void PreUpdateServer( Player player ) {
+			var mymod = ModHelpersMod.Instance;
+
 			if( player.whoAmI != 255 ) {
 				mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish = true;	// Weird hack?
 			}
@@ -56,10 +59,7 @@ namespace HamstarHelpers.Internals.Logic {
 				player.AddBuff( buffId, 3 );
 			}
 
-			this.UpdateTml( mymod, player );
-
-			// Every player must have their ids accounted for!
-			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1, -1 );
+			this.UpdateTml( player );
 		}
 	}
 }

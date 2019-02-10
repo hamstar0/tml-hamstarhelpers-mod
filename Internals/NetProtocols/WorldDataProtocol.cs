@@ -38,7 +38,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			myworld.HasObsoletedID = this.HasObsoletedWorldId;
 			myworld.ObsoletedID = this.ObsoletedWorldId;
 
-			mymod.WorldStateHelpers.LoadFromData( mymod, this.HalfDays, this.ObsoletedWorldId );
+			mymod.WorldStateHelpers.LoadFromData( this.HalfDays, this.ObsoletedWorldId );
 
 			myplayer.Logic.FinishWorldDataSync();
 		}

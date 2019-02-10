@@ -74,7 +74,7 @@ namespace HamstarHelpers {
 				this.ConfigJson.SaveFile();
 			}
 
-			if( this.Config.UpdateToLatestVersion( this ) ) {
+			if( this.Config.UpdateToLatestVersion() ) {
 				ErrorLogger.Log( "Mod Helpers updated to " + this.Version.ToString() );
 				this.ConfigJson.SaveFile();
 			}

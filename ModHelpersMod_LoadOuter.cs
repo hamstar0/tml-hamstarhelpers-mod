@@ -190,7 +190,7 @@ namespace HamstarHelpers {
 
 			if( !Main.dedServ ) {
 				Menus.OnPostSetupContent();
-				UIControlPanel.OnPostSetupContent( this );
+				UIControlPanel.OnPostSetupContent();
 			}
 		}
 

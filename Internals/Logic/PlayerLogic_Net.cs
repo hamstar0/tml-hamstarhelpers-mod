@@ -15,7 +15,9 @@ namespace HamstarHelpers.Internals.Logic {
 
 
 	partial class PlayerLogic {
-		public void OnSingleConnect( ModHelpersMod mymod, Player player ) {
+		public void OnSingleConnect( Player player ) {
+			var mymod = ModHelpersMod.Instance;
+
 			if( !this.HasLoadedUID ) {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnSingleConnect - No UID for " + player.name + " (" + player.whoAmI + ")" );
 				this.HasLoadedUID = true; // Ugly failsafe
@@ -31,7 +33,9 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnCurrentClientConnect( ModHelpersMod mymod, Player player ) {
+		public void OnCurrentClientConnect( Player player ) {
+			var mymod = ModHelpersMod.Instance;
+
 			if( !this.HasLoadedUID ) {
 				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 				this.HasLoadedUID = true;	// Ugly failsafe
@@ -48,12 +52,16 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
-		public void OnServerConnect( ModHelpersMod mymod, Player player ) {
+		public void OnServerConnect( Player player ) {
+			var mymod = ModHelpersMod.Instance;
+
 			this.FinishModSettingsSync();
 			this.FinishWorldDataSync();
 
 			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
 			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
+
+			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1, -1 );
 		}
 
 

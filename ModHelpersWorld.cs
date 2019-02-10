@@ -48,7 +48,7 @@ namespace HamstarHelpers {
 			this.ObsoletedID = Guid.NewGuid().ToString( "D" );
 			this.HasObsoletedID = false;  // 'Load()' decides if no pre-existing one is found
 
-			this.WorldLogic = new WorldLogic( mymod );
+			this.WorldLogic = new WorldLogic();
 
 			if( String.IsNullOrEmpty( this.ObsoleteID2 ) ) {
 				throw new Exception( "UID not defined." );
@@ -70,11 +70,11 @@ namespace HamstarHelpers {
 			}
 
 			//mymod.UserHelpers.Load( mymod, tags );
-			mymod.ModLockHelpers.Load( mymod, tags );
+			mymod.ModLockHelpers.Load( tags );
 
-			this.WorldLogic.LoadForWorld( mymod, tags );
+			this.WorldLogic.LoadForWorld( tags );
 
-			mymod.ModLockHelpers.PostLoad( mymod, this );
+			mymod.ModLockHelpers.PostLoad( this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
 			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
@@ -89,9 +89,9 @@ namespace HamstarHelpers {
 			tags.Set( "world_id", this.ObsoletedID );
 
 			//mymod.UserHelpers.Save( mymod, tags );
-			mymod.ModLockHelpers.Save( mymod, tags );
+			mymod.ModLockHelpers.Save( tags );
 
-			this.WorldLogic.SaveForWorld( mymod, tags );
+			this.WorldLogic.SaveForWorld( tags );
 
 			Promises.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
 
@@ -106,9 +106,9 @@ namespace HamstarHelpers {
 
 			if( this.WorldLogic != null ) {
 				if( Main.netMode == 0 ) { // Single
-					this.WorldLogic.PreUpdateSingle( mymod );
+					this.WorldLogic.PreUpdateSingle();
 				} else if( Main.netMode == 2 ) {
-					this.WorldLogic.PreUpdateServer( mymod );
+					this.WorldLogic.PreUpdateServer();
 				}
 			}
 		}

@@ -31,19 +31,23 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		////////////////
 
-		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
-
+		internal int FieldCount { get; private set; } = -1;
 		internal IOrderedEnumerable<FieldInfo> OrderedFields {
 			get {
 				if( this._OrderedFields == null ) {
 					Type mytype = this.GetType();
 					FieldInfo[] fields = mytype.GetFields( BindingFlags.Public | BindingFlags.Instance );
 
-					this._OrderedFields = fields.OrderByDescending( x => x.Name );  //Where( f => f.FieldType.IsPrimitive )
+					this.FieldCount = fields.Count();
+					this._OrderedFields = fields
+						.Where( field => !Attribute.IsDefined(field, typeof(PacketProtocolIgnoreAttribute)) )
+						.OrderByDescending( field => field.Name );  //Where( f => f.FieldType.IsPrimitive )
 				}
 				return this._OrderedFields;
 			}
 		}
+
+		private IOrderedEnumerable<FieldInfo> _OrderedFields = null;
 
 
 
