@@ -8,6 +8,13 @@ using Newtonsoft.Json.Serialization;
 
 namespace HamstarHelpers.Components.Config {
 	public class XnaContractResolver : DefaultContractResolver {
+		public readonly static JsonSerializerSettings DefaultSettings = new JsonSerializerSettings() {
+			ContractResolver = new XnaContractResolver()
+		};
+
+
+		////////////////
+
 		protected override JsonContract CreateContract( Type objectType ) {
 			switch( objectType.Name ) {
 			case "Rectangle":
@@ -30,8 +37,17 @@ namespace HamstarHelpers.Components.Config {
 
 
 		////////////////
+		
+		public static object Deserialize( string data, Type dataType, JsonSerializerSettings jsonSettings ) {
+			lock( JsonConfig.MyLock ) {
+				return JsonConvert.DeserializeObject( data, dataType, jsonSettings );
+			}
+		}
 
-		public static string ConfigSubfolder { get { return "Mod Configs"; } }
+
+		////////////////
+
+		public static string ConfigSubfolder => "Mod Configs";
 	}
 
 
@@ -50,12 +66,10 @@ namespace HamstarHelpers.Components.Config {
 		}
 
 		public static string Serialize( T data ) {
-			var settings = new JsonSerializerSettings() { ContractResolver = new XnaContractResolver() };
-			return JsonConfig<T>.Serialize( data, settings );
+			return JsonConfig<T>.Serialize( data, XnaContractResolver.DefaultSettings );
 		}
 		public static T Deserialize( string data ) {
-			var settings = new JsonSerializerSettings() { ContractResolver = new XnaContractResolver() };
-			return JsonConfig<T>.Deserialize( data, settings );
+			return JsonConfig<T>.Deserialize( data, XnaContractResolver.DefaultSettings );
 		}
 
 
@@ -88,10 +102,10 @@ namespace HamstarHelpers.Components.Config {
 			this( fileName, relativePath, (T)Activator.CreateInstance( typeof(T) ), jsonSettings ) { }
 
 		public JsonConfig( string fileName, string relativePath ) :
-			this( fileName, relativePath, new JsonSerializerSettings() ) { }
+			this( fileName, relativePath, XnaContractResolver.DefaultSettings ) { }
 
 		public JsonConfig( string fileName, string relativePath, T defaultsCopyOnly ) :
-			this( fileName, relativePath, defaultsCopyOnly, new JsonSerializerSettings() ) { }
+			this( fileName, relativePath, defaultsCopyOnly, XnaContractResolver.DefaultSettings ) { }
 
 
 		////////////////

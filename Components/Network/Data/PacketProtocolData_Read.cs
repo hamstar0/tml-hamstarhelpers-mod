@@ -1,10 +1,12 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Terraria;
 
@@ -16,13 +18,14 @@ namespace HamstarHelpers.Components.Network.Data {
 	public abstract partial class PacketProtocolData {
 		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData fieldContainer ) {
 			var mymod = ModHelpersMod.Instance;
+			IOrderedEnumerable<FieldInfo> orderedFields = fieldContainer.OrderedFields;
 			int i = 0;
 
 			if( mymod.Config.DebugModePacketInfo ) {
 				LogHelpers.Log( "  Begun reading packet " + fieldContainer.GetType().Name + " ("+fieldContainer.FieldCount+" fields)" );
 			}
 
-			foreach( FieldInfo field in fieldContainer.OrderedFields ) {
+			foreach( FieldInfo field in orderedFields ) {
 				i++;
 
 				Type fieldType = field.FieldType;
@@ -110,6 +113,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 
 		private static object ReadStreamObjectValue( BinaryReader reader, Type fieldType ) {
+			var mymod = ModHelpersMod.Instance;
 			bool isEnumerable = false, isDictionary = false;
 			string[] dataTypeNameChunks = null;
 
@@ -188,9 +192,10 @@ namespace HamstarHelpers.Components.Network.Data {
 
 			} else {
 				string rawJson = reader.ReadString();
-
-				var jsonVal = JsonConvert.DeserializeObject( rawJson, fieldType );
 				
+				var jsonVal = JsonConfig.Deserialize( rawJson, fieldType, XnaContractResolver.DefaultSettings );
+				//var jsonVal = JsonConvert.DeserializeObject( rawJson, fieldType );
+
 				return jsonVal;
 			}
 		}

@@ -24,7 +24,9 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static string Stringify( object obj, int charLimit=-1 ) {
 			string output;
 
-			if( obj.GetType().IsClass ) {
+			if( obj == null ) {
+				output = "null";
+			} else if( obj.GetType().IsClass ) {
 				output = JsonConvert.SerializeObject( obj ).ToString();
 			} else {
 				output = obj.ToString();
