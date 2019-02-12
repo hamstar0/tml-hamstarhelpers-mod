@@ -1,9 +1,9 @@
 (Formerly Hamstar's Helpers)
 
-Supplies numerous helper functions, classes, services, and utilities for mods to use. This mod also features helpful user controls:
+Supplies numerous helper functions, classes, services, utilities, and information for other mods. Features include:
 * In-game mod control panel UI for reporting bugs, editing mod configs, and seeing mods' status.
-* Mod browser now allows filtering mods by descriptive tags, made available from a database. Tags may be viewed and edited by anyone, for any mod.
-* Per-world mod locking available via. control panel to prevent playthrough mishaps.
+* Descriptive mod tags that may be viewed and edited by anyone, for any mod. Mod searches in the browser may be filtered by these tags.
+* Per-world mod locking available via. control panel to prevent mod mismatch mishaps.
 
 Modders: See the homepage for information on setting up your mod to receive bug reports!
 
