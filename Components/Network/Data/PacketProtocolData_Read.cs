@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,7 +43,8 @@ namespace HamstarHelpers.Components.Network.Data {
 
 				if( mymod.Config.DebugModePacketInfo ) {
 					LogHelpers.Log( "  * Reading packet "+fieldContainer.GetType().Name
-						+" field ("+i+" of "+fieldContainer.FieldCount+") "+field.Name+": "+DotNetHelpers.Stringify(fieldData, 32) );
+						+" field ("+i+" of "+fieldContainer.FieldCount+") "+field.Name
+						+": "+DotNetHelpers.Stringify(fieldData, 32) );
 				}
 
 //LogHelpers.Log( "READ "+ fieldContainer.GetType().Name + " FIELD " + field + " VALUE " + fieldData );
@@ -186,13 +187,20 @@ namespace HamstarHelpers.Components.Network.Data {
 					try {
 						return Activator.CreateInstance( fieldType, new object[] { arr } );
 					} catch( Exception e ) {
-						throw new Exception( "!ModHelpers.PacketProtocolData.ReadStreamObjectValue - Invalid container type " + fieldType.Name, e );
+						throw new HamstarException( "Invalid container type " + fieldType.Name, e );
 					}
 				}
 
 			} else {
+				//if( mymod.Config.DebugModePacketInfo ) {
+				//	LogHelpers.Log( "    ReadStreamObjectValue - type: " + fieldType.Name + ", reading: " + reader.BaseStream.Length + " bytes" );
+				//}
 				string rawJson = reader.ReadString();
 				
+				if( mymod.Config.DebugModePacketInfo ) {
+					LogHelpers.Log( "    - ReadStreamObjectValue - type: "+fieldType.Name+", raw value ("+rawJson.Length+"): \n  "+rawJson );
+				}
+
 				var jsonVal = JsonConfig.Deserialize( rawJson, fieldType, XnaContractResolver.DefaultSettings );
 				//var jsonVal = JsonConvert.DeserializeObject( rawJson, fieldType );
 

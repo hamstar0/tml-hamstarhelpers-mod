@@ -1,10 +1,8 @@
 ﻿using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Services.Timers;

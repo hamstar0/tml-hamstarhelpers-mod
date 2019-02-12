@@ -76,12 +76,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 					};
 					
 					GetModTags.RetrieveAllModTagsAsync( ( modTags, found ) => {
-						if( found ) {
-							args.SetTagMods( modTags );
-						}
-						args.Found = found;
-
 						try {
+							if( found ) {
+								args.SetTagMods( modTags );
+							}
+							args.Found = found;
+
 							Promises.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
 						} catch( Exception e ) {
 							LogHelpers.Alert( e.ToString() );

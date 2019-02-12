@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -15,21 +16,37 @@ namespace HamstarHelpers.Components.Network.Data {
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
 	public abstract partial class PacketProtocolData {
-		private static void WriteStreamFromContainer( BinaryWriter writer, PacketProtocolData data ) {
-			if( !PacketProtocolData.ValidateConstructor(data.GetType()) ) {
-				throw new HamstarException( "Invalid default constructor for "+data.GetType().Name );
+		private static void WriteStreamFromContainer( BinaryWriter writer, PacketProtocolData fieldContainer ) {
+			var mymod = ModHelpersMod.Instance;
+			IOrderedEnumerable<FieldInfo> orderedFields = fieldContainer.OrderedFields;
+			int i = 0;
+
+			if( !PacketProtocolData.ValidateConstructor(fieldContainer.GetType()) ) {
+				throw new HamstarException( "Invalid default constructor for "+fieldContainer.GetType().Name );
 			}
 
-			foreach( FieldInfo field in data.OrderedFields ) {
+			if( mymod.Config.DebugModePacketInfo ) {
+				LogHelpers.Log( "  Begun writing packet " + fieldContainer.GetType().Name + " (" + fieldContainer.FieldCount + " fields)" );
+			}
+
+			foreach( FieldInfo field in orderedFields ) {
+				i++;
+
 				if( Main.netMode == 1 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
 					continue;
 				} else if( Main.netMode == 2 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {
 					continue;
 				}
 
-				object rawFieldVal = field.GetValue( data );
-//LogHelpers.Log( "WRITE "+ data.GetType().Name+ " FIELD " + field + " VALUE "+(rawFieldVal??"null"));
-				
+				object rawFieldVal = field.GetValue( fieldContainer );
+				//LogHelpers.Log( "WRITE "+ data.GetType().Name+ " FIELD " + field + " VALUE "+(rawFieldVal??"null"));
+
+				if( mymod.Config.DebugModePacketInfo ) {
+					LogHelpers.Log( "  * Writing packet " + fieldContainer.GetType().Name
+						+ " field (" + i + " of " + fieldContainer.FieldCount + ") "
+						+ field.Name + ": " + DotNetHelpers.Stringify( rawFieldVal, 32 ) );
+				}
+
 				PacketProtocolData.WriteStreamValue( writer, field.FieldType, rawFieldVal );
 			}
 		}
@@ -138,6 +155,10 @@ namespace HamstarHelpers.Components.Network.Data {
 			} else {
 				string jsonEncVal = JsonConvert.SerializeObject( rawVal );
 				writer.Write( (string)jsonEncVal );
+
+				if( ModHelpersMod.Instance.Config.DebugModePacketInfo ) {
+					LogHelpers.Log( "    - WriteStreamObjectValue - type: " + fieldType.Name + ", raw value ("+jsonEncVal.Length+"): \n  " + jsonEncVal );
+				}
 			}
 		}
 	}

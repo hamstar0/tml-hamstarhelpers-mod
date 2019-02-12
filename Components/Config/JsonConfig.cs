@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json.Serialization;
-
+using HamstarHelpers.Components.Errors;
 
 namespace HamstarHelpers.Components.Config {
 	public class XnaContractResolver : DefaultContractResolver {
@@ -129,6 +129,9 @@ namespace HamstarHelpers.Components.Config {
 		}
 
 		public void SetData( T data ) {
+			if( data == null ) {
+				throw new HamstarException( "Data must not be null." );
+			}
 			this.Data = data;
 		}
 	}

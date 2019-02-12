@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 
 			if( !this.HasLoadedUID ) {
-				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnSingleConnect - No UID for " + player.name + " (" + player.whoAmI + ")" );
+				LogHelpers.Warn( "No UID for " + player.name + " (" + player.whoAmI + ")" );
 				this.HasLoadedUID = true; // Ugly failsafe
 			}
 
@@ -37,7 +37,7 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 
 			if( !this.HasLoadedUID ) {
-				LogHelpers.Log( "!ModHelpers.PlayerLogic.OnCurrentClientConnect - No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
+				LogHelpers.Warn( "No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 				this.HasLoadedUID = true;	// Ugly failsafe
 			}
 

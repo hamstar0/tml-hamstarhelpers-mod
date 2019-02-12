@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Timers;
-using HamstarHelpers.Helpers.TmlHelpers;
 using System.Linq;
 using Terraria;
 using HamstarHelpers.Services.Players;
+
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
