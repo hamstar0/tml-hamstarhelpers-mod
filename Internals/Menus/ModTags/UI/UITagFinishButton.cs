@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		////////////////
 
 		public UITagFinishButton( ModInfoTagsMenuContext menuContext )
-				: base( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true ) {
+				: base( UITheme.Vanilla, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
 			this.MenuContext = menuContext;
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.Text == "Submit Tags" ) {

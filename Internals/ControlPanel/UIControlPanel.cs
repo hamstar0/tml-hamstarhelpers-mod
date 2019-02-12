@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public bool IsOpen { get; private set; }
 
-		private UITheme Theme = new UITheme();
+		private UITheme Theme = UITheme.Vanilla;
 		private ControlPanelLogic Logic = new ControlPanelLogic();
 		private UserInterface Backend = null;
 
