@@ -5,7 +5,6 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.Promises;
-using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -45,7 +44,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override bool CloneNewInstances { get { return false; } }
+		public override bool CloneNewInstances => false;
 		
 		public override void Initialize() {
 			this.Logic = new PlayerLogic();
@@ -72,39 +71,16 @@ namespace HamstarHelpers {
 		public override void OnEnterWorld( Player player ) {
 			if( player.whoAmI != Main.myPlayer ) { return; }
 			if( this.player.whoAmI != Main.myPlayer ) { return; }
-
-			bool hasEnteredWorld = false;
+			
 			int who = player.whoAmI;
-
-			Action run = () => {
-				if( hasEnteredWorld ) { return; }
-				hasEnteredWorld = true;
-
-				var mymod = (ModHelpersMod)this.mod;
+			
+			var mymod = (ModHelpersMod)this.mod;
 				
-				if( Main.netMode == 0 ) {
-					this.Logic.OnSingleConnect( Main.player[who] );
-				} else if( Main.netMode == 1 ) {
-					this.Logic.OnCurrentClientConnect( Main.player[who] );
-				}
-			};
-
-			Promises.AddValidatedPromise<PlayerPromiseArguments>( ModHelpersPlayer.LoadValidator, ( args ) => {
-				if( args.Who != who ) { return false; }
-
-				run();
-				return false;
-			} );
-
-			Timers.SetTimer( "ModHelpersOnEnterWorldFailsafe", 2 * 60, () => {
-				if( !hasEnteredWorld ) {
-					LogHelpers.Log( "Warning: Player ID failed to load." );
-					//Main.NewText( "To fix, try restarting game or reloading mods. If this happens again, please report this issue.", Color.DarkGray );
-
-					run();  // Run anyway
-				}
-				return false;
-			} );
+			if( Main.netMode == 0 ) {
+				this.Logic.OnSingleConnect( Main.player[who] );
+			} else if( Main.netMode == 1 ) {
+				this.Logic.OnCurrentClientConnect( Main.player[who] );
+			}
 		}
 
 

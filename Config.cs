@@ -37,7 +37,7 @@ namespace HamstarHelpers {
 
 		public bool ModCallCommandEnabled = true;
 
-		public int ModIssueReportErrorLogMaxLines = 35;
+		public int ModIssueReportErrorLogMaxLines = 50;
 
 		public bool IsServerHiddenFromBrowser = false;
 		public bool IsServerHiddenFromBrowserUnlessPortForwardedViaUPNP = true;
@@ -78,6 +78,12 @@ namespace HamstarHelpers {
 			
 			if( versSince >= mymod.Version ) {
 				return false;
+			}
+
+			if( versSince < new Version(4,2,0,1) ) {
+				if( this.ModIssueReportErrorLogMaxLines == 35 ) {
+					this.ModIssueReportErrorLogMaxLines = newConfig.ModIssueReportErrorLogMaxLines;
+				}
 			}
 
 			this.VersionSinceUpdate = mymod.Version.ToString();

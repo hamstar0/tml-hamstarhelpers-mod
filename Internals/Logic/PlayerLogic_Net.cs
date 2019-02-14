@@ -33,6 +33,7 @@ namespace HamstarHelpers.Internals.Logic {
 			mymod.ControlPanel.LoadModListAsync();
 		}
 
+
 		public void OnCurrentClientConnect( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -51,6 +52,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 			mymod.ControlPanel.LoadModListAsync();
 		}
+
 
 		public void OnServerConnect( Player player ) {
 			var mymod = ModHelpersMod.Instance;
