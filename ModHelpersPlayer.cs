@@ -131,7 +131,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreUpdate() {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusPlayerEntityComponent>();
 
@@ -154,14 +154,14 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.pl
 			} else {
 				this.Logic.PreUpdateSingle();
 			}
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 
 
 		////////////////
 
 		public override void ProcessTriggers( TriggersSet triggersSet ) {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 
 			try {
@@ -206,7 +206,7 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.pl
 				LogHelpers.Warn( "(3) - " + e.ToString() );
 				return;
 			}
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 	}
 }

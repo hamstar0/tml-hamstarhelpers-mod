@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	class ModHelpersProjectile : GlobalProjectile {
 		public override bool PreAI( Projectile projectile ) {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+ projectile.whoAmI+":"+ projectile.type+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+ projectile.whoAmI+":"+ projectile.type+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusProjectileEntityComponent>();
 
@@ -27,7 +27,7 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+ projectile.whoAmI+":"+ proj
 				}
 			}
 			
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+ projectile.whoAmI+":"+ projectile.type+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+ projectile.whoAmI+":"+ projectile.type+"_B", 1 );
 			return true;
 		}
 

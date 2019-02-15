@@ -101,8 +101,7 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipes ) { return; }
 
 			this.PostLoadAll();
-			
-DataDumper.SetDumpSource( "DEBUG", () => {/////////////////////////////////////
+/*DataDumper.SetDumpSource( "DEBUG", () => {
 	var data = Services.DataStore.DataStore.GetAll();
 	string str = "";
 
@@ -125,7 +124,7 @@ DataDumper.SetDumpSource( "DEBUG", () => {/////////////////////////////////////
 	}
 
 	return str;
-} );
+} );*/
 		}
 
 
@@ -139,7 +138,7 @@ DataDumper.SetDumpSource( "DEBUG", () => {/////////////////////////////////////
 		////////////////
 
 		public override void HandlePacket( BinaryReader reader, int playerWho ) {
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			try {
 				int protocolCode = reader.ReadInt32();
 				
@@ -151,7 +150,7 @@ Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			} catch( Exception e ) {
 				LogHelpers.Alert( e.ToString() );
 			}
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 

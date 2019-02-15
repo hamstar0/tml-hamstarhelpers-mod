@@ -12,7 +12,7 @@ using Terraria.UI;
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		public override void PostDrawInterface( SpriteBatch sb ) {
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			if( this.LoadHelpers != null ) {
 				this.LoadHelpers.IsClientPlaying_Hackish = true;  // Ugh!
 			}
@@ -25,25 +25,25 @@ Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 				LogHelpers.Warn( e.ToString() );
 				throw e;
 			}
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 		public override void PostDrawFullscreenMap( ref string mouseText ) {
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			try {
 				this.DrawFullMapForAll( Main.spriteBatch );
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
 				throw e;
 			}
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 
 		////////////////
 
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			if( this.LoadHelpers != null && !LoadHelpers.IsWorldBeingPlayed() ) { return; }
 
 			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
@@ -115,7 +115,7 @@ Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 					cpLayerDraw, InterfaceScaleType.UI );
 				layers.Insert( idx, cpLayer );
 			}
-Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 	}
 }

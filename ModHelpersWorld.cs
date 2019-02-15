@@ -64,7 +64,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void Load( TagCompound tags ) {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( tags.ContainsKey( "world_id" ) ) {
@@ -82,11 +82,11 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			this.HasObsoletedID = true;
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 		public override TagCompound Save() {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 			TagCompound tags = new TagCompound();
 
@@ -99,7 +99,7 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 
 			Promises.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
 			
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 			return tags;
 		}
 
@@ -107,7 +107,7 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		////////////////
 
 		public override void PreUpdate() {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( this.WorldLogic != null ) {
@@ -117,14 +117,14 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 					this.WorldLogic.PreUpdateServer();
 				}
 			}
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 
 		////////////////
 
 		public override void PostDrawTiles() {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			Player player = Main.LocalPlayer;
 			if( player == null ) { return; }
 			var mymod = (ModHelpersMod)this.mod;
@@ -151,7 +151,7 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 
 				Main.spriteBatch.End();
 			}
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 	}
 }

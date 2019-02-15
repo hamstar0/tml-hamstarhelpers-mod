@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	class ModHelpersItem : GlobalItem {
 		public override void SetDefaults( Item item ) {
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+item.whoAmI+":"+item.type+"_A", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+item.whoAmI+":"+item.type+"_A", 1 );
 			if( item.type == ItemID.Coal ) {
 				var mymod = ModHelpersMod.Instance;
 
@@ -30,7 +30,7 @@ DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+item.whoAmI+":"+item.type+"_
 			}
 
 			base.SetDefaults( item );
-DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+item.whoAmI+":"+item.type+"_B", 1 );
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+item.whoAmI+":"+item.type+"_B", 1 );
 		}
 	}
 }
