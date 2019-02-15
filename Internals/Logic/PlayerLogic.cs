@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.Logic {
 		public DialogManager DialogManager = new DialogManager();
 
 		public bool HasSyncedModSettings { get; private set; }
-		public bool HasSyncedModData { get; private set; }
+		public bool HasSyncedWorldData { get; private set; }
 		public bool IsSynced { get; private set; }
 
 
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.PrivateUID = Guid.NewGuid().ToString( "D" );
 			this.HasLoadedUID = false;
 			this.HasSyncedModSettings = false;
-			this.HasSyncedModData = false;
+			this.HasSyncedWorldData = false;
 			this.IsSynced = false;
 		}
 

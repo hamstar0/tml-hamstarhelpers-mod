@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Services.DataDumper;
 using System;
 using System.IO;
 using Terraria;
@@ -17,6 +18,7 @@ namespace HamstarHelpers {
 
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
 			LogHelpers.Log( "UNHANDLED crash? " + e.IsTerminating + " \nSender: " + sender.ToString() + " \nMessage: " + e.ExceptionObject.ToString() );
+			
 		}
 
 
@@ -99,6 +101,31 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipes ) { return; }
 
 			this.PostLoadAll();
+			
+DataDumper.SetDumpSource( "DEBUG", () => {/////////////////////////////////////
+	var data = Services.DataStore.DataStore.GetAll();
+	string str = "";
+
+	foreach( var kv in data ) {
+		string key = kv.Key as string;
+		if( key == null ) { continue; }
+
+		if( key[key.Length-1] != 'A' ) {
+			continue;
+		}
+
+		string keyB = key.Substring( 0, key.Length - 1 ) + "B";
+		if( !data.ContainsKey(keyB) ) { continue; }
+
+		double valA = (double)kv.Value;
+		double valB = (double)data[keyB];
+		if( valA != valB ) {
+			str += key + " " + valA + " vs " + valB+",\n";
+		}
+	}
+
+	return str;
+} );
 		}
 
 
@@ -112,6 +139,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void HandlePacket( BinaryReader reader, int playerWho ) {
+Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			try {
 				int protocolCode = reader.ReadInt32();
 				
@@ -123,6 +151,7 @@ namespace HamstarHelpers {
 			} catch( Exception e ) {
 				LogHelpers.Alert( e.ToString() );
 			}
+Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 

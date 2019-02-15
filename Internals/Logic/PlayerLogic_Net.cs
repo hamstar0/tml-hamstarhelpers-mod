@@ -27,10 +27,8 @@ namespace HamstarHelpers.Internals.Logic {
 				mymod.ConfigJson.SaveFile();
 			}
 			
-			this.FinishModSettingsSync();
-			this.FinishWorldDataSync();
-
-			mymod.ControlPanel.LoadModListAsync();
+			this.FinishModSettingsSyncFromServer();
+			this.FinishWorldDataSyncFromServer();
 		}
 
 
@@ -49,16 +47,15 @@ namespace HamstarHelpers.Internals.Logic {
 			// Receive
 			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>( -1 );
 			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>( -1 );
-
-			mymod.ControlPanel.LoadModListAsync();
 		}
 
 
 		public void OnServerConnect( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 
-			this.FinishModSettingsSync();
-			this.FinishWorldDataSync();
+			this.HasSyncedModSettings = true;
+			this.HasSyncedWorldData = true;
+			this.IsSynced = true;
 
 			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
 			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
@@ -69,21 +66,39 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void FinishModSettingsSync() {
+		public void FinishModSettingsSyncFromServer() {
 			this.HasSyncedModSettings = true;
-			if( this.HasSyncedState() ) { this.FinishSync(); }
+			if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
+				LogHelpers.Alert();
+			}
+			if( this.HasSyncedState() ) { this.FinishSyncFromServer(); }
 		}
-		public void FinishWorldDataSync() {
-			this.HasSyncedModData = true;
-			if( this.HasSyncedState() ) { this.FinishSync(); }
+
+		public void FinishWorldDataSyncFromServer() {
+			this.HasSyncedWorldData = true;
+			if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
+				LogHelpers.Alert();
+			}
+			if( this.HasSyncedState() ) { this.FinishSyncFromServer(); }
 		}
+
 
 		public bool HasSyncedState() {
-			return this.HasSyncedModSettings && this.HasSyncedModData && this.HasLoadedUID;
+			return this.HasSyncedModSettings && this.HasSyncedWorldData && this.HasLoadedUID;
 		}
 
-		private void FinishSync() {
+
+		private void FinishSyncFromServer() {
 			if( this.IsSynced ) { return; }
+
+			var mymod = ModHelpersMod.Instance;
+
+			if( mymod.Config.DebugModeNetInfo ) {
+				LogHelpers.Alert();
+			}
+
+			mymod.ControlPanel.LoadModListAsync();
+
 			this.IsSynced = true;
 		}
 

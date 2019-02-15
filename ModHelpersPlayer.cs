@@ -4,6 +4,7 @@ using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.DataDumper;
+using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using System;
@@ -127,6 +128,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreUpdate() {
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusPlayerEntityComponent>();
 
@@ -149,12 +151,14 @@ namespace HamstarHelpers {
 			} else {
 				this.Logic.PreUpdateSingle();
 			}
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 
 
 		////////////////
 
 		public override void ProcessTriggers( TriggersSet triggersSet ) {
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 
 			try {
@@ -180,7 +184,10 @@ namespace HamstarHelpers {
 				if( mymod.DataDumpHotkey != null && mymod.DataDumpHotkey.JustPressed ) {
 					string fileName;
 					if( DataDumper.DumpToFile( out fileName ) ) {
-						Main.NewText( "Dumped latest debug data to log file " + fileName, Color.Azure );
+						string msg = "Dumped latest debug data to log file " + fileName;
+
+						Main.NewText( msg, Color.Azure );
+						LogHelpers.Log( msg );
 					}
 				}
 			} catch(Exception e ) {
@@ -196,6 +203,7 @@ namespace HamstarHelpers {
 				LogHelpers.Warn( "(3) - " + e.ToString() );
 				return;
 			}
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 	}
 }

@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
-		public static string GithubUserName { get { return "hamstar0"; } }
-		public static string GithubProjectName { get { return "tml-hamstarhelpers-mod"; } }
+		public static string GithubUserName => "hamstar0";
+		public static string GithubProjectName => "tml-hamstarhelpers-mod";
 
 
 		////////////////

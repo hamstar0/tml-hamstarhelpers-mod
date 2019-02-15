@@ -100,7 +100,7 @@ namespace HamstarHelpers {
 
 			mymod.ConfigJson.SetData( config );
 
-			myplayer.Logic.FinishModSettingsSync();
+			myplayer.Logic.FinishModSettingsSyncFromServer();
 		}
 	}
 }

@@ -23,9 +23,7 @@ namespace HamstarHelpers.Components.Network {
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToClient " + toWho + ", " + ignoreWho );
 			}
 			
-			if( retries != 0 ) {
-				this.RetryRequestToClientIfTimeout( toWho, ignoreWho, retries );
-			}
+			this.RetryRequestToClientIfTimeout( toWho, ignoreWho, retries );
 		}
 
 
@@ -44,60 +42,44 @@ namespace HamstarHelpers.Components.Network {
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
 			}
 
-			if( retries != 0 ) {
-				this.RetryRequestToServerIfTimeout( retries );
-			}
+			this.RetryRequestToServerIfTimeout( retries );
 		}
 
 
 		////////////////
 
 		private void RetryRequestToClientIfTimeout( int toWho, int ignoreWho, int retries ) {
-			var mymod = ModHelpersMod.Instance;
-			int packetCode = PacketProtocol.GetPacketCode( this.GetType().Name );
-			int retryDuration = mymod.Config.PacketRequestRetryDuration;
+			if( retries == 0 ) { return; }
 
-			mymod.PacketProtocolMngr.ExpectReqest( packetCode );
+			int retryDuration = ModHelpersMod.Instance.Config.PacketRequestRetryDuration;
+			
+			Timers.SetTimer( "PacketProtocolRequestToClientTimeout", retryDuration, () => {
+				if( ModHelpersMod.Instance.Config.DebugModeNetInfo && this.IsVerbose ) {
+					LogHelpers.Log( "  Request (client) timed out. Retrying " + this.GetType().Name + " request "
+						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
+				}
 
-			if( retries > 0 ) {
-				Timers.SetTimer( "PacketProtocolRequestToClientTimeout", retryDuration, () => {
-					if( mymod.PacketProtocolMngr.GetRequestsOf( packetCode ) > 0 ) {
-						if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-							LogHelpers.Log( "  Request timed out. Retrying " + this.GetType().Name + " request to client"
-								+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
-						}
+				this.SendRequestToClient( toWho, ignoreWho, retries - 1 );
 
-						mymod.PacketProtocolMngr.FulfillRequest( packetCode );
-
-						this.SendRequestToClient( toWho, ignoreWho, retries - 1 );
-					}
-					return false;
-				} );
-			}
+				return false;
+			} );
 		}
 
 		private void RetryRequestToServerIfTimeout( int retries ) {
-			var mymod = ModHelpersMod.Instance;
-			int packetCode = PacketProtocol.GetPacketCode( this.GetType().Name );
-			int retryDuration = mymod.Config.PacketRequestRetryDuration;
+			if( retries == 0 ) { return; }
 
-			mymod.PacketProtocolMngr.ExpectReqest( packetCode );
+			int retryDuration = ModHelpersMod.Instance.Config.PacketRequestRetryDuration;
+			
+			Timers.SetTimer( "PacketProtocolRequestToServerTimeout", retryDuration, () => {
+				if( ModHelpersMod.Instance.Config.DebugModeNetInfo && this.IsVerbose ) {
+					LogHelpers.Log( "  Request (server) timed out. Retrying " + this.GetType().Name + " request "
+						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
+				}
 
-			if( retries > 0 ) {
-				Timers.SetTimer( "PacketProtocolRequestToServerTimeout", retryDuration, () => {
-					if( mymod.PacketProtocolMngr.GetRequestsOf( packetCode ) > 0 ) {
-						if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-							LogHelpers.Log( "  Request timed out. Retrying " + this.GetType().Name + " request to server ("
-								+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
-						}
+				this.SendRequestToServer( retries - 1 );
 
-						mymod.PacketProtocolMngr.FulfillRequest( packetCode );
-
-						this.SendRequestToServer( retries - 1 );
-					}
-					return false;
-				} );
-			}
+				return false;
+			} );
 		}
 	}
 }

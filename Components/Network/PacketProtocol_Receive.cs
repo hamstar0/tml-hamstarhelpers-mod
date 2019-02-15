@@ -46,9 +46,8 @@ namespace HamstarHelpers.Components.Network {
 				}
 				myField.SetValue( this, val );
 			}
-			
-			int packetCode = PacketProtocol.GetPacketCode( this.GetType().Name );
-			mymod.PacketProtocolMngr.FulfillRequest( packetCode );	// If packet is not a request, this is just ignored
+
+			string packetName = this.GetType().Name;
 		}
 
 
@@ -66,7 +65,7 @@ namespace HamstarHelpers.Components.Network {
 		////////
 
 		private void ReceiveRequestWithClientBase() {
-			ModHelpersMod mymod = ModHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
@@ -88,7 +87,7 @@ namespace HamstarHelpers.Components.Network {
 
 
 		private void ReceiveRequestWithServerBase( int fromWho ) {
-			ModHelpersMod mymod = ModHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();

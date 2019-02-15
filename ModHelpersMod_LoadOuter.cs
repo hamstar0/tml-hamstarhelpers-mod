@@ -34,7 +34,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-
+using Terraria.ID;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
@@ -188,7 +188,7 @@ namespace HamstarHelpers {
 			this.GetModTags.OnPostSetupContent();
 			this.PlayerIdentityHelpers.OnPostSetupContent();
 
-			if( !Main.dedServ ) {
+			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {
 				Menus.OnPostSetupContent();
 				UIControlPanel.OnPostSetupContent();
 			}

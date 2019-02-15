@@ -357,7 +357,6 @@
     <Content Include="Internals\ControlPanel\Inbox\MiniIconLit.png" />
     <Content Include="Internals\ControlPanel\Inbox\MiniIconLit2.png" />
     <Content Include="Items\MagiTechScrapItem.png" />
-    <Content Include="modhelpers todo.txt" />
     <Content Include="Tiles\CoalTile.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,15 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace HamstarHelpers.Services.DataStore {
 	public class DataStore {
 		private static object MyLock = new object();
+
 
 
 		////////////////
@@ -44,11 +49,56 @@ namespace HamstarHelpers.Services.DataStore {
 		}
 
 
+		////////////////
+		
+		internal static IDictionary<object, object> GetAll() {
+			var ds = ModHelpersMod.Instance.DataStore;
+			IDictionary<object, object> clone;
+
+			lock( DataStore.MyLock ) {
+				clone = ds.Data.ToDictionary( kv => kv.Key, kv => kv.Value );
+				clone.Remove( DataDumper.DataDumper.MyDataStorekey );
+			}
+			return clone;
+		}
+
+
+		////////////////
+
+		public static void Add( object key, double val ) {
+			var ds = ModHelpersMod.Instance.DataStore;
+
+			lock( DataStore.MyLock ) {
+				if( !ds.Data.ContainsKey( key ) ) {
+					ds.Data[key] = val;
+				} else {
+					Type dst = ds.Data[key].GetType();
+
+					if( !dst.IsValueType || Type.GetTypeCode(dst) == TypeCode.Boolean ) {
+						throw new HamstarException( "Cannot use Add with non-numeric values." );
+					}
+					ds.Data[ key ] = (double)ds.Data[key] + val;
+				}
+			}
+		}
+		
+
 
 		////////////////
 
 		private IDictionary<object, object> Data = new Dictionary<object, object>();
 
+
+
+		////////////////
+
 		internal DataStore() { }
+
+
+		////////////////
+
+		public string Serialize() {
+			return JsonConvert.SerializeObject( DataStore.GetAll(), Formatting.Indented );
+		}
 	}
 }

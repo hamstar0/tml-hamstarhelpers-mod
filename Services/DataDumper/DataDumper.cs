@@ -13,7 +13,7 @@ using Terraria;
 namespace HamstarHelpers.Services.DataDumper {
 	public static class DataDumper {
 		private static object MyLock = new object();
-		private static object MyDataStorekey = new object();
+		internal static object MyDataStorekey = new object();
 		private static int Dumps = 0;
 
 
@@ -107,9 +107,9 @@ namespace HamstarHelpers.Services.DataDumper {
 			string data;
 			IDictionary<string, Func<string>> dumpables = DataDumper.GetDumpables();
 
-			Func<KeyValuePair<string, Func<string>>, string> getKey = ( kv ) => {
+			Func<KeyValuePair<string, Func<string>>, string> getKey = kv => {
 				try { return kv.Value(); }
-				catch { return "ERROR"; }
+				catch( Exception e ) { return "ERROR: "+e.Message; }
 			};
 
 			lock( DataDumper.MyLock ) {

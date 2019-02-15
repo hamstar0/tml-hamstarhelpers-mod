@@ -40,7 +40,16 @@ namespace HamstarHelpers.Services.Menus {
 
 		private void HideAll() {
 			if( this.CurrentMenuUI != null ) {
-				foreach( MenuContext loader in this.Contexts[ this.CurrentMenuUI.Item1 ].Values ) {
+				string context = this.CurrentMenuUI.Item1;
+
+				if( !this.Contexts.ContainsKey(context) ) {
+					LogHelpers.Warn( "Missing menu context " + context );
+					return;
+				}
+
+				IDictionary<string, MenuContext> loaders = this.Contexts[ context ];
+
+				foreach( MenuContext loader in loaders.Values ) {
 					loader.Hide( this.CurrentMenuUI.Item2 );
 				}
 			}

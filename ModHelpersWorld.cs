@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -63,6 +64,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void Load( TagCompound tags ) {
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( tags.ContainsKey( "world_id" ) ) {
@@ -80,9 +82,11 @@ namespace HamstarHelpers {
 			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			this.HasObsoletedID = true;
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 		public override TagCompound Save() {
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 			TagCompound tags = new TagCompound();
 
@@ -94,7 +98,8 @@ namespace HamstarHelpers {
 			this.WorldLogic.SaveForWorld( tags );
 
 			Promises.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
-
+			
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 			return tags;
 		}
 
@@ -102,6 +107,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreUpdate() {
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( this.WorldLogic != null ) {
@@ -111,12 +117,14 @@ namespace HamstarHelpers {
 					this.WorldLogic.PreUpdateServer();
 				}
 			}
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 
 		////////////////
 
 		public override void PostDrawTiles() {
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			Player player = Main.LocalPlayer;
 			if( player == null ) { return; }
 			var mymod = (ModHelpersMod)this.mod;
@@ -143,6 +151,7 @@ namespace HamstarHelpers {
 
 				Main.spriteBatch.End();
 			}
+DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 	}
 }
