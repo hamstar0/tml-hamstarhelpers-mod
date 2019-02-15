@@ -65,7 +65,7 @@ namespace HamstarHelpers.Components.Network {
 				}
 
 				if( mymod2.Config.DebugModeNetInfo && this.IsVerbose ) {
-					LogHelpers.Log( "  Request (client) timed out. Retrying " + this.GetType().Name + " request "
+					LogHelpers.Log( "  Request (to client) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}
 
@@ -94,7 +94,7 @@ namespace HamstarHelpers.Components.Network {
 				}
 
 				if( mymod2.Config.DebugModeNetInfo && this.IsVerbose ) {
-					LogHelpers.Log( "  Request (server) timed out. Retrying " + this.GetType().Name + " request "
+					LogHelpers.Log( "  Request (to server) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}
 

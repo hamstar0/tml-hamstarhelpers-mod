@@ -11,11 +11,13 @@ namespace HamstarHelpers.Components.Network {
 		private void ReceiveWithEitherBase( BinaryReader reader, int fromWho ) {
 			var mymod = ModHelpersMod.Instance;
 			Type mytype = this.GetType();
+			string protNamespace = mytype.Namespace;
+			string protName = mytype.Name;
 
 			try {
 				this.ReadStream( reader );
 			} catch( Exception e ) {
-				string name = mytype.Namespace + "." + mytype.Name;
+				string name = protNamespace + "." + protName;
 				LogHelpers.Warn( "Stream read error for "+name+" - " + e.ToString() );
 				//reader.BaseStream.Position = 0;
 				//TODO: Output what remains of stram
@@ -23,7 +25,7 @@ namespace HamstarHelpers.Components.Network {
 			}
 
 			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
-				string name = mytype.Namespace + "." + mytype.Name;
+				string name = protNamespace + "." + protName;
 				string jsonStr = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( "<" + name + " ReceiveWithEitherBase: " + jsonStr );
 			}
@@ -32,7 +34,7 @@ namespace HamstarHelpers.Components.Network {
 				FieldInfo yourField = mytype.GetField( myField.Name );
 
 				if( yourField == null ) {
-					string name = mytype.Namespace + "." + mytype.Name;
+					string name = protNamespace + "." + protName;
 					LogHelpers.Warn( "Missing " + name + " protocol field for " + myField.Name );
 					return;
 				}
@@ -40,12 +42,14 @@ namespace HamstarHelpers.Components.Network {
 				object val = yourField.GetValue( this );
 
 				if( val == null ) {
-					string name = mytype.Namespace + "." + mytype.Name;
+					string name = protNamespace + "." + protName;
 					LogHelpers.Warn( "Missing " + name + " protocol value for " + yourField.Name );
 					return;
 				}
 				myField.SetValue( this, val );
 			}
+			
+			mymod.PacketProtocolMngr.FulfillRequest( protName );	// If any
 
 			string packetName = this.GetType().Name;
 		}
