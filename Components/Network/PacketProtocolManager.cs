@@ -12,7 +12,7 @@ namespace HamstarHelpers.Components.Network {
 		////////////////
 
 		private IDictionary<int, Type> PacketProtocolTypesByCode = new Dictionary<int, Type>();
-		private readonly IDictionary<int, int> RequestResponseQueue = new Dictionary<int, int>();
+		private readonly IDictionary<string, bool> RequestResponseQueue = new Dictionary<string, bool>();
 
 
 
@@ -44,27 +44,23 @@ namespace HamstarHelpers.Components.Network {
 
 		////////////////
 
-		public int GetRequestsOf( int code ) {
-			if( this.RequestResponseQueue.ContainsKey( code ) ) {
-				return this.RequestResponseQueue[code];
+		public bool IsRequesting( string protocolName ) {
+			if( this.RequestResponseQueue.ContainsKey( protocolName ) ) {
+				return this.RequestResponseQueue[protocolName];
 			}
-			return 0;
+			return false;
 		}
 
-		public bool FulfillRequest( int code ) {
-			if( this.RequestResponseQueue.ContainsKey( code ) && this.RequestResponseQueue[code] > 0 ) {
-				this.RequestResponseQueue[code] -= 1;
+		public bool FulfillRequest( string protocolName ) {
+			if( this.RequestResponseQueue.ContainsKey( protocolName ) && this.RequestResponseQueue[protocolName] ) {
+				this.RequestResponseQueue[protocolName] = false;
 				return true;
 			}
 			return false;
 		}
 
-		public void ExpectReqest( int code ) {
-			if( !this.RequestResponseQueue.ContainsKey( code ) ) {
-				this.RequestResponseQueue[code] = 1;
-			} else {
-				this.RequestResponseQueue[code] += 1;
-			}
+		public void ExpectReqest( string protocolName ) {
+			this.RequestResponseQueue[protocolName] = true;
 		}
 	}
 }

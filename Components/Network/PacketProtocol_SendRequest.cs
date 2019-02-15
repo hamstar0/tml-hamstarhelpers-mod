@@ -51,13 +51,25 @@ namespace HamstarHelpers.Components.Network {
 		private void RetryRequestToClientIfTimeout( int toWho, int ignoreWho, int retries ) {
 			if( retries == 0 ) { return; }
 
-			int retryDuration = ModHelpersMod.Instance.Config.PacketRequestRetryDuration;
-			
-			Timers.SetTimer( "PacketProtocolRequestToClientTimeout", retryDuration, () => {
-				if( ModHelpersMod.Instance.Config.DebugModeNetInfo && this.IsVerbose ) {
+			var mymod = ModHelpersMod.Instance;
+			string protocolName = this.GetType().Name;
+			string timerName = protocolName + "RequestToClientTimeout";
+			int retryDuration = mymod.Config.PacketRequestRetryDuration;
+
+			mymod.PacketProtocolMngr.ExpectReqest( protocolName );
+
+			Timers.SetTimer( timerName, retryDuration, () => {
+				var mymod2 = ModHelpersMod.Instance;
+				if( !mymod2.PacketProtocolMngr.IsRequesting(protocolName) ) {
+					return false;
+				}
+
+				if( mymod2.Config.DebugModeNetInfo && this.IsVerbose ) {
 					LogHelpers.Log( "  Request (client) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}
+
+				mymod2.PacketProtocolMngr.FulfillRequest( protocolName );
 
 				this.SendRequestToClient( toWho, ignoreWho, retries - 1 );
 
@@ -68,13 +80,25 @@ namespace HamstarHelpers.Components.Network {
 		private void RetryRequestToServerIfTimeout( int retries ) {
 			if( retries == 0 ) { return; }
 
-			int retryDuration = ModHelpersMod.Instance.Config.PacketRequestRetryDuration;
-			
-			Timers.SetTimer( "PacketProtocolRequestToServerTimeout", retryDuration, () => {
-				if( ModHelpersMod.Instance.Config.DebugModeNetInfo && this.IsVerbose ) {
+			var mymod = ModHelpersMod.Instance;
+			string protocolName = this.GetType().Name;
+			string timerName = this.GetType().Name + "RequestToServerTimeout";
+			int retryDuration = mymod.Config.PacketRequestRetryDuration;
+
+			mymod.PacketProtocolMngr.ExpectReqest( protocolName );
+
+			Timers.SetTimer( timerName, retryDuration, () => {
+				var mymod2 = ModHelpersMod.Instance;
+				if( !mymod2.PacketProtocolMngr.IsRequesting( protocolName ) ) {
+					return false;
+				}
+
+				if( mymod2.Config.DebugModeNetInfo && this.IsVerbose ) {
 					LogHelpers.Log( "  Request (server) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}
+
+				mymod2.PacketProtocolMngr.FulfillRequest( protocolName );
 
 				this.SendRequestToServer( retries - 1 );
 
