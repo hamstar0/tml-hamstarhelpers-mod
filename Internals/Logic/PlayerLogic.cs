@@ -64,7 +64,7 @@ namespace HamstarHelpers.Internals.Logic {
 					this.PermaBuffsById = new HashSet<int>( permaBuffs );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( "!ModHelpers.PlayerLogic.Load - "+e.ToString() );
+				LogHelpers.Warn( e.ToString() );
 			}
 
 			this.HasLoadedUID = true;

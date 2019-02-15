@@ -60,11 +60,14 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void SyncPlayer( int toWho, int fromWho, bool newPlayer ) {
+			if( Main.netMode == 1 ) {
+				if( toWho == -1 && fromWho == -1 && newPlayer ) {
+					this.Logic.OnCurrentClientConnect( this.player );
+				}
+			}
 			if( Main.netMode == 2 ) {
 				if( toWho == -1 && fromWho == this.player.whoAmI ) {
-					Promises.AddSafeWorldLoadOncePromise( () => {
-						this.Logic.OnServerConnect( Main.player[fromWho] );
-					} );
+					this.Logic.OnServerConnect( Main.player[fromWho] );
 				}
 			}
 		}
@@ -78,9 +81,9 @@ namespace HamstarHelpers {
 			var mymod = (ModHelpersMod)this.mod;
 				
 			if( Main.netMode == 0 ) {
-				this.Logic.OnSingleConnect( Main.player[who] );
+				this.Logic.OnSingleEnterWorld( Main.player[who] );
 			} else if( Main.netMode == 1 ) {
-				this.Logic.OnCurrentClientConnect( Main.player[who] );
+				this.Logic.OnCurrentClientEnterWorld( Main.player[who] );
 			}
 		}
 

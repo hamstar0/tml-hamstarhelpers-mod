@@ -57,7 +57,6 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		public static bool IsPlayerLoaded( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-
 			return myplayer.Logic.HasLoadedUID;
 		}
 	}

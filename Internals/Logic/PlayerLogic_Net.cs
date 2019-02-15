@@ -15,7 +15,25 @@ namespace HamstarHelpers.Internals.Logic {
 
 
 	partial class PlayerLogic {
-		public void OnSingleConnect( Player player ) {
+		public void OnCurrentClientConnect( Player player ) {
+			PacketProtocolSentToEither.QuickSendToServer<PlayerNewIdProtocol>();
+		}
+
+		public void OnServerConnect( Player player ) {
+			var mymod = ModHelpersMod.Instance;
+
+			this.HasSyncedModSettings = true;
+			this.HasSyncedWorldData = true;
+			this.IsSynced = true;
+
+			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
+			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
+
+			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1, -1 );
+		}
+
+
+		public void OnSingleEnterWorld( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 
 			if( !this.HasLoadedUID ) {
@@ -32,7 +50,7 @@ namespace HamstarHelpers.Internals.Logic {
 		}
 
 
-		public void OnCurrentClientConnect( Player player ) {
+		public void OnCurrentClientEnterWorld( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 
 			if( !this.HasLoadedUID ) {
@@ -47,20 +65,6 @@ namespace HamstarHelpers.Internals.Logic {
 			// Receive
 			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>( -1 );
 			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>( -1 );
-		}
-
-
-		public void OnServerConnect( Player player ) {
-			var mymod = ModHelpersMod.Instance;
-
-			this.HasSyncedModSettings = true;
-			this.HasSyncedWorldData = true;
-			this.IsSynced = true;
-
-			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
-			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
-
-			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1, -1 );
 		}
 
 
