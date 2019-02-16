@@ -8,7 +8,7 @@ namespace HamstarHelpers.Components.DataStructures {
 		public void Set( int x, int y, T val ) {
 			if( this.Parent == null ) {
 				if( x >= (this.X * 2) || y >= (this.Y * 2) ) {
-					throw new ArgumentException( "Coordinate values will not fit inside this tree's space." );
+					throw new HamstarException( "Coordinate values will not fit inside this tree's space." );
 				}
 			}
 
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Components.DataStructures {
 			if( quadWidth == 0 && quadHeight == 0 ) {
 				string err = "X:" + this.X + " in " + ( this.Parent?.X ?? -1 ) + ", Y:" + this.Y + " in " + ( this.Parent?.Y ?? -1 );
 //LogHelpers.Log( "      "+err);
-				throw new Exception( "I suck at algorithms, apparently ("+err+")..." );
+				throw new HamstarException( "I suck at algorithms, apparently ("+err+")..." );
 			}
 
 			if( quadWidth > 1 ) {

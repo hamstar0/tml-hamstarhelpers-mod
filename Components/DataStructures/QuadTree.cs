@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		public QuadTree( int x, int y ) : this( null, x, y ) {
 			if( x <= 0 || y <= 0 ) {
-				throw new ArgumentException( "Positive integer coordinates required." );
+				throw new HamstarException( "Positive integer coordinates required." );
 			}
 		}
 

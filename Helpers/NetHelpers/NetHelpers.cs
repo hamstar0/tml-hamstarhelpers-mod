@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.Timers;
 using System;
 using System.Net;
@@ -10,7 +11,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 		public static string GetPublicIP() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.NetHelpers.PublicIP == null ) {
-				throw new Exception( "Public IP not yet acquired." );
+				throw new HamstarException( "Public IP not yet acquired." );
 			}
 			return mymod.NetHelpers.PublicIP;
 		}

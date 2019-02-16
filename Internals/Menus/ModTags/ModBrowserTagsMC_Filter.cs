@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.WebRequests;
@@ -18,7 +19,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			object items;
 			if( !ReflectionHelpers.GetField( myUid, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
-				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.FilterMods - No 'items' field in ui " + myUid );
+				throw new HamstarException( "No 'items' field in ui " + myUid );
 			}
 
 			var itemsArr = (Array)items.GetType()

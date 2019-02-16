@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Components.Network {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private ModPacket GetClientPacket( bool isRequest, bool syncToAll ) {
-			if( Main.netMode != 1 ) { throw new Exception("Not a client"); }
+			if( Main.netMode != 1 ) { throw new HamstarException( "Not a client"); }
 
 			string name = this.GetPacketName();
 			var packet = ModHelpersMod.Instance.GetPacket();

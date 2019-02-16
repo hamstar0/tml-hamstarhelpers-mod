@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.NPCHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
@@ -254,7 +255,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		public static int GetAveragePingOfServer() {
 			if( Main.netMode != 2 ) {
-				throw new Exception("Server-side only.");
+				throw new HamstarException("Server-side only.");
 			}
 
 			return ModHelpersMod.Instance.ServerInfo.AveragePing;

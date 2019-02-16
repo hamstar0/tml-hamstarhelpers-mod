@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Components.Errors;
+using System;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -30,7 +31,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 		/*public static void SetConfigRelativePath( Mod mod, string path ) {
 			if( !ExtendedModManager.ConfigMods.ContainsKey( mod.Name ) ) {
-				throw new Exception( "Not a recognized configurable mod." );
+				throw new HamstarException( "Not a recognized configurable mod." );
 			}
 
 			FieldInfo configPathField = mod.GetType().GetField( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
@@ -40,7 +41,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		public static void ReloadConfigFromFile( Mod mod ) {
 			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			if( !self.ConfigMods.ContainsKey( mod.Name ) ) {
-				throw new Exception( "Not a recognized configurable mod." );
+				throw new HamstarException( "Not a recognized configurable mod." );
 			}
 
 			MethodInfo configReloadMethod = ModMetaDataManager.GetConfigFileLoadMethod( mod );
@@ -50,7 +51,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		public static void ResetDefaultsConfig( Mod mod ) {
 			var self = ModHelpersMod.Instance.ModMetaDataMngr;
 			if( !self.ConfigDefaultsResetMods.ContainsKey( mod.Name ) ) {
-				throw new Exception( "Not a recognized config resetable mod." );
+				throw new HamstarException( "Not a recognized config resetable mod." );
 			}
 
 			MethodInfo configDefaultsMethod = ModMetaDataManager.GetConfigDefaultsResetMethod( mod );

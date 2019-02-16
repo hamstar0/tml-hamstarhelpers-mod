@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
 using System.Net;
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 						onResponse( output );
 					} else {
 						output = null;
-						throw new Exception( "POST request unsuccessful (url: "+url+")" );
+						throw new HamstarException( "POST request unsuccessful (url: "+url+")" );
 					}
 				} catch( Exception e ) {
 					onError?.Invoke( e, output );

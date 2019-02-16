@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
@@ -20,7 +21,7 @@ namespace HamstarHelpers {
 
 		public static void ReloadConfigFromFile() {
 			if( Main.netMode != 0 ) {
-				throw new Exception( "Cannot reload configs outside of single player." );
+				throw new HamstarException( "Cannot reload configs outside of single player." );
 			}
 			if( ModHelpersMod.Instance != null ) {
 				if( !ModHelpersMod.Instance.ConfigJson.LoadFile() ) {
@@ -31,7 +32,7 @@ namespace HamstarHelpers {
 
 		public static void ResetConfigFromDefaults() {
 			if( Main.netMode != 0 ) {
-				throw new Exception( "Cannot reset to default configs outside of single player." );
+				throw new HamstarException( "Cannot reset to default configs outside of single player." );
 			}
 
 			var configData = new HamstarHelpersConfigData();

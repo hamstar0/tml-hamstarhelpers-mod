@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Services.DataDumper;
@@ -24,7 +25,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		protected override void ReceiveReply() {
-			throw new NotImplementedException( "ReceiveReply not implemented." );
+			throw new HamstarException( "ReceiveReply not implemented." );
 		}
 	}
 }

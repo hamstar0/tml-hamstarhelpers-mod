@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.WebRequests;
@@ -16,7 +17,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				this.CurrentModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(), MenuContextService.GetCurrentMenuUI() )
 					?? "";
 				if( string.IsNullOrEmpty( this.CurrentModName ) ) {
-					throw new Exception( "Invalid mod name." );
+					throw new HamstarException( "Invalid mod name." );
 				}
 			}
 

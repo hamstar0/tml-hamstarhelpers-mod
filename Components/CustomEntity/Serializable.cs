@@ -59,10 +59,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected override IList<CustomEntityComponent> CreateComponents( CustomEntityConstructor factory ) {
-			throw new NotImplementedException( "CreateComponents not implemented" );
+			throw new HamstarException( "CreateComponents not implemented" );
 		}
 		protected override CustomEntityCore CreateCore( CustomEntityConstructor factory ) {
-			throw new NotImplementedException( "CreateCore not implemented" );
+			throw new HamstarException( "CreateCore not implemented" );
 		}
 		public override CustomEntityCore CreateCoreTemplate() {
 			return new CustomEntityCore( "", 0, 0, default(Vector2), 0 );

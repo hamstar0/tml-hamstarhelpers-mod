@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Components.Errors;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,7 +11,7 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		public ReadOnlySet( ISet<T> myset ) {
 			if( myset == null ) {
-				throw new Exception( "Base set not defined." );
+				throw new HamstarException( "Base set not defined." );
 			}
 			this.MySet = myset;
 		}

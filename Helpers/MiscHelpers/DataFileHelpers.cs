@@ -1,4 +1,6 @@
 ﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using Newtonsoft.Json;
 using System;
@@ -37,6 +39,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				Directory.CreateDirectory( Main.SavePath + Path.DirectorySeparatorChar + DataFileHelpers.BaseFolder );
 				Directory.CreateDirectory( fullDir );
 			} catch( IOException e ) {
+				LogHelpers.Warn( "Failed to prepare directory: " + fullDir+" - "+e.ToString() );
 				throw new IOException( "Failed to prepare directory: " + fullDir, e );
 			}
 		}
@@ -57,9 +60,10 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				return jsonFile.Data;
 			} catch( IOException e ) {
 				string fullDir = DataFileHelpers.GetFullDirectoryPath( mod );
+				LogHelpers.Warn( "Failed to load json file " + fileNameNoExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to load json file " + fileNameNoExt + " at " + fullDir, e );
 			} catch( Exception e ) {
-				throw new Exception( "From "+fileNameNoExt+" ("+typeof(T).Name+")", e );
+				throw new HamstarException( "From "+fileNameNoExt+" ("+typeof(T).Name+")", e );
 			}
 		}
 
@@ -72,6 +76,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				return FileHelpers.LoadBinaryFile<T>( fullPath, isCloud, jsonSettings );
 			} catch( IOException e ) {
 				string fullDir = DataFileHelpers.GetFullDirectoryPath( mod );
+				LogHelpers.Warn( "Failed to load binary file " + fileNameHasExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to load binary file "+fileNameHasExt+" at " + fullDir, e );
 			}
 		}
@@ -87,6 +92,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				var jsonFile = new JsonConfig<T>( fileNameNoExt + ".json", relDir, data, jsonSettings );
 				jsonFile.SaveFile();
 			} catch( IOException e ) {
+				LogHelpers.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - " + e.ToString() );
 				throw new IOException( "Failed to save json file " + fileNameNoExt + " at " + relDir, e );
 			}
 		}
@@ -100,6 +106,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				FileHelpers.SaveBinaryFile<T>( data, fullPath, isCloud, false, jsonSettings );
 			} catch( IOException e ) {
 				string fullDir = DataFileHelpers.GetFullDirectoryPath( mod );
+				LogHelpers.Warn( "Failed to save binary file " + fileNameHasExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to save binary file " + fileNameHasExt + " at " + fullDir, e );
 			}
 		}

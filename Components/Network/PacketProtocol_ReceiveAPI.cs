@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 
@@ -9,7 +10,7 @@ namespace HamstarHelpers.Components.Network {
 		/// Runs when data received on client (class's own fields).
 		/// </summary>
 		protected virtual void ReceiveWithClient() {
-			throw new NotImplementedException( "No ReceiveWithClient" );
+			throw new HamstarException( "No ReceiveWithClient" );
 		}
 
 		/// <summary>
@@ -17,7 +18,7 @@ namespace HamstarHelpers.Components.Network {
 		/// </summary>
 		/// <param name="fromWho">Main.player index of the player (client) sending us our data.</param>
 		protected virtual void ReceiveWithServer( int fromWho ) {
-			throw new NotImplementedException( "No ReceiveWithServer" );
+			throw new HamstarException( "No ReceiveWithServer" );
 		}
 
 

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using System;
 
 
@@ -46,16 +47,16 @@ namespace HamstarHelpers.Components.Network {
 		////
 
 		protected sealed override void SetServerDefaults( int toWho ) {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override void ReceiveWithClient() {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override bool ReceiveRequestWithClient() {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 	}
 
@@ -86,16 +87,16 @@ namespace HamstarHelpers.Components.Network {
 		////
 
 		protected sealed override void SetClientDefaults() {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override void ReceiveWithServer( int fromWho ) {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override bool ReceiveRequestWithClient() {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 	}
 
@@ -132,13 +133,13 @@ namespace HamstarHelpers.Components.Network {
 		////
 		
 		protected sealed override void SetClientDefaults() {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override void ReceiveWithServer( int fromWho ) {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override bool ReceiveRequestWithClient() {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 	}
 
@@ -174,13 +175,13 @@ namespace HamstarHelpers.Components.Network {
 		////
 
 		protected sealed override void SetServerDefaults( int toWho ) {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override void ReceiveWithClient() {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
-			throw new NotImplementedException();
+			throw new HamstarException( "Not implemented" );
 		}
 	}
 }

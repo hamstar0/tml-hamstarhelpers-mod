@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.NetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
@@ -26,7 +27,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 	class PostGithubModIssueReports {
 		public static void ReportIssue( Mod mod, string issueTitle, string issueBody, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
 			if( !ModMetaDataManager.HasGithub( mod ) ) {
-				throw new Exception( "Mod is not eligable for submitting issues." );
+				throw new HamstarException( "Mod is not eligable for submitting issues." );
 			}
 
 			int maxLines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.UI;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
@@ -100,7 +101,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		////////////////
 
 		public void SetTagState( int state ) {
-			if( state < -1 || state > 1 ) { throw new Exception( "Invalid state." ); }
+			if( state < -1 || state > 1 ) { throw new HamstarException( "Invalid state." ); }
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 

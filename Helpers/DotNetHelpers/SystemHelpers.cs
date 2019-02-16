@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Components.Errors;
+using System;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -29,7 +30,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			const string Digits = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 			if( radix < 2 || radix > Digits.Length ) {
-				throw new ArgumentException( "The radix must be >= 2 and <= " + Digits.Length.ToString() );
+				throw new HamstarException( "The radix must be >= 2 and <= " + Digits.Length.ToString() );
 			}
 
 			if( number == 0 ) {

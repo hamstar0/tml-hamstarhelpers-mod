@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
@@ -45,10 +46,10 @@ namespace HamstarHelpers.Components.Network {
 						new Type[] { }, null );
 
 					if( ctorInfo == null ) {
-						throw new NotImplementedException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
+						throw new HamstarException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
 					}
 					if( ctorInfo.IsFamily ) {
-						throw new NotImplementedException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
+						throw new HamstarException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
 					}
 				}
 
@@ -114,14 +115,14 @@ namespace HamstarHelpers.Components.Network {
 		/// Overridden for initializing the class to create a reply in a request to the client.
 		/// </summary>
 		protected virtual void SetClientDefaults() {
-			throw new NotImplementedException( "No SetClientDefaults implemented" );
+			throw new HamstarException( "No SetClientDefaults implemented" );
 		}
 
 		/// <summary>
 		/// Overridden for initializing the class to create a reply in a request to the server.
 		/// </summary>
 		protected virtual void SetServerDefaults( int toWho ) {
-			throw new NotImplementedException( "No SetServerDefaults(int) implemented" );
+			throw new HamstarException( "No SetServerDefaults(int) implemented" );
 		}
 
 
@@ -129,7 +130,7 @@ namespace HamstarHelpers.Components.Network {
 
 		[Obsolete( "use SetServerDefaults( int toWho )", false )]
 		protected virtual void SetServerDefaults() {
-			throw new NotImplementedException( "No SetServerDefaults(int)" );
+			throw new HamstarException( "No SetServerDefaults(int)" );
 		}
 	}
 }

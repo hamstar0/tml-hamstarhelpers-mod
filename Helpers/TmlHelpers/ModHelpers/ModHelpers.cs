@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Services.Menus;
@@ -53,7 +54,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			using( var fileStream = File.OpenRead( tmod.path ) )
 			using( var hReader = new BinaryReader( fileStream ) ) {
 				if( Encoding.UTF8.GetString( hReader.ReadBytes( 4 ) ) != "TMOD" ) {
-					throw new Exception( "Magic Header != \"TMOD\"" );
+					throw new HamstarException( "Magic Header != \"TMOD\"" );
 				}
 
 				var _tmlVers = new Version( hReader.ReadString() );

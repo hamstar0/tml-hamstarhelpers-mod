@@ -26,7 +26,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			var paramInfos = method.GetParameters();
 
 			if( args.Length != paramInfos.Length ) {
-				throw new Exception( "Mismatched input argument quantity. (for call " + method.Name + ")" );
+				throw new HamstarException( "Mismatched input argument quantity. (for call " + method.Name + ")" );
 			}
 			
 			for( int i = 0; i < paramInfos.Length; i++ ) {
@@ -34,10 +34,10 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 				if( args[i] == null ) {
 					if( !paramType.IsClass || paramInfos[i].GetCustomAttribute<NullableAttribute>() == null ) {
-						throw new Exception( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null" );
+						throw new HamstarException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null" );
 					}
 				} else if( args[i].GetType() != paramType ) {
-					throw new Exception( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+args[i].GetType() );
+					throw new HamstarException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+args[i].GetType() );
 				}
 			}
 

@@ -9,7 +9,7 @@ using HamstarHelpers.Components.Errors;
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerDataProtocol : PacketProtocolSentToEither {
 		public static void SyncToEveryone( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
-			if( Main.netMode != 1 ) { throw new Exception( "Not client" ); }
+			if( Main.netMode != 1 ) { throw new HamstarException( "Not client" ); }
 			
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
 			

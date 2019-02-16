@@ -41,10 +41,10 @@ namespace HamstarHelpers.Components.CustomEntity {
 		////////////////
 
 		protected override void WriteStream( BinaryWriter writer ) {
-			throw new NotImplementedException( "WriteStream not implemented." );
+			throw new HamstarException( "WriteStream not implemented." );
 		}
 		protected override void ReadStream( BinaryReader reader ) {
-			throw new NotImplementedException( "ReadStream not implemented." );
+			throw new HamstarException( "ReadStream not implemented." );
 		}
 	}
 }

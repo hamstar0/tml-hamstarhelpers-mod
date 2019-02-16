@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Timers;
@@ -47,7 +48,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			UIList uiModList;
 
 			if( !ReflectionHelpers.GetField( modBrowserUi, "modList", out uiModList ) ) {
-				throw new Exception( "!ModHelpers.BeginModBrowserPopulateCheck.IsModBrowserListPopulated - Invalid modList" );
+				throw new HamstarException( "Invalid modList" );
 			}
 			
 			if( this.IsModBrowserListPopulated( uiModList ) ) {
@@ -72,7 +73,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			int count;
 
 			if( !ReflectionHelpers.GetProperty( uiModList, "Count", out count ) ) {
-				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.IsModBrowserListPopulated - Invalid modList.Count" );
+				throw new HamstarException( "Invalid modList.Count" );
 			}
 
 			return count > 0;
@@ -83,7 +84,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			object modList;
 
 			if( !ReflectionHelpers.GetField( uiModList, "_items", out modList ) || modList == null ) {
-				throw new Exception( "!ModHelpers.ModBrowserTagsMenuContext.ApplyModBrowserModInfoBindings - Invalid modList._items" );
+				throw new HamstarException( "Invalid modList._items" );
 			}
 
 			var itemsArr = (Array)modList.GetType()

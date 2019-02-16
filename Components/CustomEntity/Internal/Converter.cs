@@ -97,7 +97,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		}
 
 		public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
-			throw new NotImplementedException( "WriteJson not implemented." );
+			throw new HamstarException( "WriteJson not implemented." );
 		}
 
 

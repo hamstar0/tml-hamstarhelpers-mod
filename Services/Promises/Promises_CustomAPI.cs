@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 
@@ -83,7 +84,7 @@ namespace HamstarHelpers.Services.Promises {
 			bool isValidated, isEach;
 
 			if( validator.ValidatorKey != validatorKey ) {
-				throw new Exception( "Validation failed." );
+				throw new HamstarException( "Validation failed." );
 			}
 
 			lock( validator.MyLock ) {
@@ -123,7 +124,7 @@ namespace HamstarHelpers.Services.Promises {
 			var mymod = ModHelpersMod.Instance;
 
 			if( validator.ValidatorKey != validatorKey ) {
-				throw new Exception( "Validation failed." );
+				throw new HamstarException( "Validation failed." );
 			}
 
 			lock( validator ) {
@@ -139,7 +140,7 @@ namespace HamstarHelpers.Services.Promises {
 			var mymod = ModHelpersMod.Instance;
 
 			if( validator.ValidatorKey != validatorKey ) {
-				throw new Exception( "Validation failed." );
+				throw new HamstarException( "Validation failed." );
 			}
 
 			lock( validator ) {

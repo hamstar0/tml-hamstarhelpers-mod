@@ -11,7 +11,7 @@ namespace HamstarHelpers.Components.DataStructures {
 			int count = this.TestQuad( "", overlaps, 0, this.X, this.Y );
 
 			if( count != this.Count ) {
-				throw new Exception( "TEST FAILED: Count mismatch - Counted "+count+", expected "+this.Count );
+				throw new HamstarException( "TEST FAILED: Count mismatch - Counted "+count+", expected "+this.Count );
 			}
 		}
 
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Components.DataStructures {
 			if( !overlaps.ContainsKey(this.X) ) {
 				overlaps[ this.X ] = new HashSet<int>();
 			} else if( overlaps[this.X].Contains( this.Y ) ) {
-				throw new Exception( "TEST FAILED: Tree layer "+layer+" ("+which+") overlaps at "+this.X+":"+this.Y );
+				throw new HamstarException( "TEST FAILED: Tree layer "+layer+" ("+which+") overlaps at "+this.X+":"+this.Y );
 			}
 			overlaps[this.X].Add( this.Y );
 
@@ -31,17 +31,17 @@ namespace HamstarHelpers.Components.DataStructures {
 				int myHeight = Math.Abs( this.Y - this.Parent.Y );
 
 				if( myWidth == 0 && myHeight == 0 && this.Value == null ) {
-					throw new Exception( "TEST FAILED: Tree layer "+layer+" ("+which+") has an empty leaf" );
+					throw new HamstarException( "TEST FAILED: Tree layer "+layer+" ("+which+") has an empty leaf" );
 				}
 
 				/*if( myWidth != maxQuadWidth ) {
-					throw new Exception( "TEST FAILED: Tree layer "+layer+" ("+which+") bad width - Measured "+myWidth+", expected "+maxQuadWidth );
+					throw new HamstarException( "TEST FAILED: Tree layer "+layer+" ("+which+") bad width - Measured "+myWidth+", expected "+maxQuadWidth );
 				}
 				if( myHeight != maxQuadHeight ) {
-					throw new Exception( "TEST FAILED: Tree layer "+layer+" ("+which+") bad height - Measured "+myHeight+", expected "+maxQuadHeight );
+					throw new HamstarException( "TEST FAILED: Tree layer "+layer+" ("+which+") bad height - Measured "+myHeight+", expected "+maxQuadHeight );
 				}*/
 			}
-			
+
 			count += this.TopLeftQuad?.TestQuad( which+"┌", overlaps, layer+1, maxQuadWidth/2, maxQuadHeight/2 ) ?? 0;
 			count += this.TopRightQuad?.TestQuad( which+"┐", overlaps, layer+1, maxQuadWidth/2, maxQuadHeight/2 ) ?? 0;
 			count += this.BotLeftQuad?.TestQuad( which+"└", overlaps, layer+1, maxQuadWidth/2, maxQuadHeight/2 ) ?? 0;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Components.Errors;
+using System;
 using Terraria;
 
 
@@ -6,7 +7,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 	public partial class NetHelpers {
 		public static int GetServerPing() {
 			if( Main.netMode != 1 ) {
-				throw new Exception("Only clients can gauge ping.");
+				throw new HamstarException( "Only clients can gauge ping.");
 			}
 			
 			return ModHelpersMod.Instance.NetHelpers.CurrentPing;
