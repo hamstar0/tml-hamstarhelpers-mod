@@ -1,14 +1,8 @@
-﻿using HamstarHelpers.Helpers.ItemHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Services.DataStore;
-using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-using Terraria.ID;
 using System;
+
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerHelpers {

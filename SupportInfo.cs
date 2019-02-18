@@ -218,7 +218,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.Config == null || mymod.Config.DisableSupportLinks ) { return; }
-
+			
 			if( Main.MenuUI.CurrentState != null ) {
 				Type uiType = Main.MenuUI.CurrentState.GetType();
 
@@ -226,14 +226,15 @@ namespace HamstarHelpers.Internals.Menus.Support {
 					return;
 				}
 			}
-
+			
 			bool isBegun;
-			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) { return; }
+			XnaHelpers.IsMainSpriteBatchBegun( out isBegun );
+			if( !isBegun ) { return; }
 
 			if( !isBegun ) {
 				Main.spriteBatch.Begin();
 			}
-
+			
 			mymod.SupportInfo?.Update();
 			mymod.SupportInfo?.Draw( Main.spriteBatch );
 
