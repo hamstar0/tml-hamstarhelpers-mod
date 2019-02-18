@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
@@ -73,7 +74,9 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 			Player plr = ownerWho == (byte)255 ? null : Main.player[ ownerWho ];
 
-			var myentTemplate = (CustomEntity)Activator.CreateInstance( entType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+			var myentTemplate = (CustomEntity)PacketProtocolData.CreateInstance( entType );
+			//var myentTemplate = (CustomEntity)Activator.CreateInstance( entType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+
 			CustomEntityCore core = myentTemplate.CreateCoreTemplate();
 			IList<CustomEntityComponent> components = myentTemplate.CreateComponentsTemplate();
 

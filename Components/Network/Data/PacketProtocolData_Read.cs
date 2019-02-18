@@ -133,7 +133,8 @@ namespace HamstarHelpers.Components.Network.Data {
 			}
 			
 			if( fieldType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-				var data = (PacketProtocol)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+				var data = (PacketProtocol)PacketProtocolData.CreateInstance( fieldType );
+				//var data = (PacketProtocol)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				data.ReadStream( reader );
 				data.OnClone();
@@ -156,7 +157,8 @@ namespace HamstarHelpers.Components.Network.Data {
 
 				if( innerType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
 					for( int i = 0; i < length; i++ ) {
-						var item = (PacketProtocolData)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+						var item = (PacketProtocolData)PacketProtocolData.CreateInstance( fieldType );
+						//var item = (PacketProtocolData)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 						item.ReadStream( reader );
 						item.OnClone();

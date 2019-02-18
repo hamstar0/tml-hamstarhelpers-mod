@@ -14,7 +14,8 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Can only send as client." );
 			}
 			
-			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 			t.SetClientDefaults();
 			t.OnClone();
 
@@ -56,7 +57,9 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Can only send as client." );
 			}
 			
-			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+
 			try {
 				t.SetServerDefaults( toWho );
 			} catch( NotImplementedException ) {

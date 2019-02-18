@@ -73,6 +73,7 @@ namespace HamstarHelpers {
 		}
 
 		public override void OnEnterWorld( Player player ) {
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			if( player.whoAmI != Main.myPlayer ) { return; }
 			if( this.player.whoAmI != Main.myPlayer ) { return; }
 			
@@ -85,12 +86,14 @@ namespace HamstarHelpers {
 			} else if( Main.netMode == 1 ) {
 				this.Logic.OnCurrentClientEnterWorld( Main.player[who] );
 			}
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 
 
 		////////////////
 
 		public override void Load( TagCompound tags ) {
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			try {
 				//PlayerData.LoadAll( this.player.whoAmI, tags );
 
@@ -105,6 +108,7 @@ namespace HamstarHelpers {
 					throw new HamstarException( e.ToString() );
 				}
 			}
+//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 
 		public override TagCompound Save() {
@@ -119,7 +123,6 @@ namespace HamstarHelpers {
 				this.Logic.Save( tags );
 			} catch( Exception e ) {
 				if( !(e is HamstarException) ) {
-					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Save - " + e.ToString() );
 					throw new HamstarException( e.ToString() );
 				}
 			}

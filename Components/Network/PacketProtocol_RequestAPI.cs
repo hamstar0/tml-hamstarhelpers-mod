@@ -32,7 +32,8 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Not server." );
 			}
 
-			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 			t.SendRequestToClient( toWho, ignoreWho, retries );
 		}
@@ -47,7 +48,8 @@ namespace HamstarHelpers.Components.Network {
 				throw new HamstarException( "Not a client." );
 			}
 			
-			T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 			t.SendRequestToServer( retries );
 		}

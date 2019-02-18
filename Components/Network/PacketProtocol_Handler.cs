@@ -25,7 +25,8 @@ namespace HamstarHelpers.Components.Network {
 			}
 			
 			try {
-				var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateInstance( protocolType );
+				//var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithClientBase();
@@ -62,7 +63,8 @@ namespace HamstarHelpers.Components.Network {
 			}
 			
 			try {
-				var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
+				var protocol = (PacketProtocol)PacketProtocolData.CreateInstance( protocolType );
+				//var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				if( isRequest ) {
 					protocol.ReceiveRequestWithServerBase( playerWho );

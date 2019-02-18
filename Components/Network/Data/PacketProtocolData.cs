@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
 using System.Linq;
@@ -21,10 +22,25 @@ namespace HamstarHelpers.Components.Network.Data {
 				if( ctorInfo == null ) {
 					return false;
 				}
-				return !ctorInfo.IsFamily;	// This is so the default ctor can't be inherited; won't mix with non-default ctors
+				return !ctorInfo.IsFamily;  // This is so the default ctor can't be inherited; won't mix with non-default ctors
 			}
 
 			return ctorInfo.IsFamily;
+		}
+
+
+		internal static PacketProtocolData CreateInstance( Type mytype ) {
+			ConstructorInfo ctorInfo = mytype.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
+				new Type[] { typeof( PacketProtocolDataConstructorLock ) }, null );
+			Object[] args;
+
+			if( ctorInfo == null ) {
+				args = new object[] { };
+			} else {
+				args = new object[] { (PacketProtocolDataConstructorLock)null };
+			}
+
+			return (PacketProtocolData)Activator.CreateInstance( mytype, BindingFlags.NonPublic | BindingFlags.Instance, null, args, null );
 		}
 
 
