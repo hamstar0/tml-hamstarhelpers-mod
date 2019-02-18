@@ -1,10 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {

@@ -36,8 +36,6 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 			object isBegunRaw = mymod?.XnaHelpers?.MainSpriteBatchBegun?.GetValue( Main.spriteBatch );
 
 			if( isBegunRaw != null ) {
-				LogHelpers.LogOnce( "!ModHelpers.XnaHelpers.IsMainSpriteBatchBegun - " +
-						"ModHelpersMod.Instance:" + mymod+", XnaHelpers:"+mymod?.XnaHelpers+", MainSpriteBatchBegun:"+mymod?.XnaHelpers?.MainSpriteBatchBegun );
 				isBegun = (bool)isBegunRaw;
 				return true;
 			} else {
@@ -57,10 +55,12 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 		////////////////
 
 		internal XnaHelpers() {
-			ReflectionHelpers.GetField( Main.spriteBatch, "_beginCalled",
-				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance,
-				out this.MainSpriteBatchBegun
-			);
+			Type sbType = Main.spriteBatch.GetType();
+			this.MainSpriteBatchBegun = sbType.GetField( "inBeginEndPair", ReflectionHelpers.MostAccess );
+
+			if( this.MainSpriteBatchBegun == null ) {
+				this.MainSpriteBatchBegun = sbType.GetField( "_beginCalled", ReflectionHelpers.MostAccess );
+			}
 		}
 	}
 }

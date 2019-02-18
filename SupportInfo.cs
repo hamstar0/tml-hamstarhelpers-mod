@@ -228,8 +228,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			}
 			
 			bool isBegun;
-			XnaHelpers.IsMainSpriteBatchBegun( out isBegun );
-			if( !isBegun ) { return; }
+			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) { return; }
 
 			if( !isBegun ) {
 				Main.spriteBatch.Begin();
