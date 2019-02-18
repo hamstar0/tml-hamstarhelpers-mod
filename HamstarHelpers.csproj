@@ -141,6 +141,8 @@
     <Compile Include="Helpers\DotNetHelpers\FileHelpers_Binary.cs" />
     <Compile Include="Helpers\DotNetHelpers\FileHelpers_Text.cs" />
     <Compile Include="Helpers\DotNetHelpers\LinqHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Methods.cs" />
+    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_GetSet.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Obsolete.cs" />
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
@@ -179,7 +181,7 @@
     <Compile Include="Helpers\PlayerHelpers\PlayerFileHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerHeadDisplayHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerHelpers_Warps.cs" />
-    <Compile Include="Helpers\PlayerHelpers\PlayerHelpers_Mods.cs" />
+    <Compile Include="Helpers\PlayerHelpers\PlayerHelpers_Mods_Obsolete.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers.cs" />
     <Compile Include="Helpers\PlayerHelpers\PlayerIdentityHelpers_Obsolete.cs" />
