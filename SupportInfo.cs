@@ -37,6 +37,8 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		private bool IsClicking = false;
 		private bool IsExtended = false;
 
+		private float XOff;
+
 
 
 		////////////////
@@ -47,6 +49,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			float y = yBeg;
 			float row = 0;
 			var mymod = ModHelpersMod.Instance;
+			this.XOff = xOff;
 
 			////
 
@@ -56,7 +59,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.HeadTextUI.TextColor = Color.Lerp( Color.White, Color.Gold, 0.25f );
 			this.HeadTextUI.Recalculate();
 
-			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v " + mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f * scale );
+			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v" + mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f * scale );
 			this.HeadUrlUI.Left.Set( -( xOff - ( 114f * scale ) ), 1f );
 			this.HeadUrlUI.Top.Set( (4f + y) * scale, 0f );
 			this.HeadUrlUI.Recalculate();
@@ -169,8 +172,13 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		////////////////
 
-		public Rectangle GetBox() {
-			return new Rectangle( Main.screenWidth - 252, 4, 248, ( this.IsExtended ? 104 : 40 ) );
+		public Rectangle GetInnerBox() {
+			return new Rectangle(
+				Main.screenWidth - (int)this.XOff - 4,
+				4,
+				(int)this.XOff,
+				(this.IsExtended ? 104 : 40)
+			);
 		}
 
 
@@ -180,7 +188,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			bool isClicking = Main.mouseLeft && !this.IsClicking;
 
 			this.IsClicking = Main.mouseLeft;
-			this.IsHovingBox = this.GetBox().Contains( Main.mouseX, Main.mouseY );
+			this.IsHovingBox = this.GetInnerBox().Contains( Main.mouseX, Main.mouseY );
 
 			for( int i=0; i<this.Elements.Count; i++ ) {
 				var elem = this.Elements[i];
@@ -259,7 +267,8 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				this.ExtendTextUI.TextColor = AnimatedColors.Air.CurrentColor;
 			}
 
-			var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
+			//var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
+			var rect = this.GetInnerBox();
 			HudHelpers.DrawBorderedRect( sb, boxColor * colorMul, boxEdgeColor * colorMul, rect, 4 );
 
 			if( this.SupportUrlUI != null ) {

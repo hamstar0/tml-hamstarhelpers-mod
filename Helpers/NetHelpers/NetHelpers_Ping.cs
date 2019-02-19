@@ -22,7 +22,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 		////////////////
 
 		internal void UpdatePing( int ping ) {
-			this.CurrentPing = ((this.CurrentPing * 2) + ping) / 3;
+			this.CurrentPing = (this.CurrentPing + this.CurrentPing + ping) / 3;
 		}
 	}
 }

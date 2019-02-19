@@ -13,20 +13,36 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 			var wingMod = ModLoader.GetMod( "WingSlot" );
 			var thoriumMod = ModLoader.GetMod( "ThoriumMod" );
+			var weaponOutMod = ModLoader.GetMod( "WeaponOut" );
+			var weaponOutLiteMod = ModLoader.GetMod( "WeaponOutLite" );
 
 			if( wingMod != null ) {
-				ModPlayer mywingplayer = player.GetModPlayer( wingMod, "WingSlotPlayer" );
+				ModPlayer modplayer = player.GetModPlayer( wingMod, "WingSlotPlayer" );
 
-				PlayerModHelpers.RemoveWingSlotProperty( mywingplayer, "EquipSlot" );
-				PlayerModHelpers.RemoveWingSlotProperty( mywingplayer, "VanitySlot" );
-				PlayerModHelpers.RemoveWingSlotProperty( mywingplayer, "DyeSlot" );
+				PlayerModHelpers.RemoveWingSlotProperty( modplayer, "EquipSlot" );
+				PlayerModHelpers.RemoveWingSlotProperty( modplayer, "VanitySlot" );
+				PlayerModHelpers.RemoveWingSlotProperty( modplayer, "DyeSlot" );
 			}
 
 			if( thoriumMod != null ) {
-				ModPlayer thoriumPlayer = player.GetModPlayer( thoriumMod, "ThoriumPlayer" );
+				ModPlayer modplayer = player.GetModPlayer( thoriumMod, "ThoriumPlayer" );
 
 				// "Inspiration" resets to the recommended default:
-				ReflectionHelpers.Set( thoriumPlayer, "bardResource", 8 );
+				ReflectionHelpers.Set( modplayer, "bardResource", 8 );
+			}
+
+			if( weaponOutMod != null ) {
+				ModPlayer modplayer = player.GetModPlayer( weaponOutMod, "PlayerFX" );
+
+				// "Frenzy Hearrt" resets:
+				ReflectionHelpers.Set( modplayer, "demonBlood", false );
+			}
+
+			if( weaponOutLiteMod != null ) {
+				ModPlayer modplayer = player.GetModPlayer( weaponOutLiteMod, "PlayerFX" );
+
+				// "Frenzy Hearrt" resets:
+				ReflectionHelpers.Set( modplayer, "demonBlood", false );
 			}
 		}
 

@@ -16,13 +16,14 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			
 			for( int i = 0; i < paramInfos.Length; i++ ) {
 				Type paramType = paramInfos[i].ParameterType;
+				Type argType = args[i].GetType();
 
 				if( args[i] == null ) {
 					if( !paramType.IsClass || paramInfos[i].GetCustomAttribute<NullableAttribute>() == null ) {
 						throw new HamstarException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null" );
 					}
-				} else if( args[i].GetType() != paramType ) {
-					throw new HamstarException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+args[i].GetType() );
+				} else if( argType != paramType || !argType.IsSubclassOf( paramType ) ) {
+					throw new HamstarException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+argType.Name );
 				}
 			}
 

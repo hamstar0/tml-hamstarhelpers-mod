@@ -47,7 +47,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			this.SendToServer( false );
 
-			ModHelpersMod.Instance.NetHelpers.UpdatePing( (int)( now - this.StartTime ) );
+			if( this.StartTime != -1 ) {
+				ModHelpersMod.Instance.NetHelpers.UpdatePing( (int)( now - this.StartTime ) );
+			}
 		}
 	}
 }
