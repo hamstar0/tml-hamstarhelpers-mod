@@ -45,7 +45,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 						ReflectionHelpers.SetField( mywingplayer, propName, wingEquipSlot );
 					}
 				} else {
-					LogHelpers.Log( "Invalid Wing Mod item slot for " + propName );
+					LogHelpers.Warn( "Invalid Wing Mod item slot for " + propName );
 				}
 			} else {
 				LogHelpers.Log( "No Wing Mod item slot recognized for " + propName );

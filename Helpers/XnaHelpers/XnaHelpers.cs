@@ -55,6 +55,8 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 		////////////////
 
 		internal XnaHelpers() {
+			if( Main.dedServ || Main.netMode == 2 ) { return; }
+
 			Type sbType = Main.spriteBatch.GetType();
 			this.MainSpriteBatchBegun = sbType.GetField( "inBeginEndPair", ReflectionHelpers.MostAccess );
 
