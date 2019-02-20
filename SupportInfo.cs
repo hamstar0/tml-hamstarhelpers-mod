@@ -23,9 +23,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		private readonly UIWebUrl ModderUrlUI;
 		//private readonly UIText RecomInfoTextUI;
 		//private readonly UIWebUrl RecomInfoUrlUI;
-		private readonly UIText AuthorText1UI;
-		private readonly UIWebUrl AuthorUrlUI;
-		private readonly UIText AuthorText2UI;
+		//private readonly UIText AuthorText1UI;
+		//private readonly UIWebUrl AuthorUrlUI;
+		//private readonly UIText AuthorText2UI;
 		private readonly UIText SupportText1UI;
 		private readonly UIWebUrl SupportUrlUI;
 		private readonly UIText SupportText2UI;
@@ -97,6 +97,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			////
 
+			/*
 			row += 1;
 
 			this.AuthorText1UI = new UIText( "Looking for more", 1f * scale );
@@ -109,7 +110,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			this.AuthorText2UI = new UIText( "?", 1f * scale );
 			this.AuthorText2UI.Left.Set( -( xOff - ( 280f * scale ) ), 1f );
-			this.AuthorText2UI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
+			this.AuthorText2UI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );*/
 
 			////
 
@@ -142,9 +143,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		private void ExpandUI() {
 			this.Elements.Add( this.ModderTextUI );
 			this.Elements.Add( this.ModderUrlUI );
-			this.Elements.Insert( 0, this.AuthorText1UI );
-			this.Elements.Add( this.AuthorUrlUI );
-			this.Elements.Insert( 0, this.AuthorText2UI );
+			//this.Elements.Insert( 0, this.AuthorText1UI );
+			//this.Elements.Add( this.AuthorUrlUI );
+			//this.Elements.Insert( 0, this.AuthorText2UI );
 			this.Elements.Insert( 0, this.SupportText1UI );
 			this.Elements.Add( this.SupportUrlUI );
 			this.Elements.Insert( 0, this.SupportText2UI );
@@ -156,9 +157,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			this.ModderTextUI.Recalculate();
 			this.ModderUrlUI.Recalculate();
-			this.AuthorText1UI.Recalculate();
-			this.AuthorUrlUI.Recalculate();
-			this.AuthorText2UI.Recalculate();
+			//this.AuthorText1UI.Recalculate();
+			//this.AuthorUrlUI.Recalculate();
+			//this.AuthorText2UI.Recalculate();
 			this.SupportText1UI.Recalculate();
 			this.SupportUrlUI.Recalculate();
 			this.SupportText2UI.Recalculate();
@@ -177,7 +178,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				Main.screenWidth - (int)this.XOff - 4,
 				4,
 				(int)this.XOff,
-				(this.IsExtended ? 104 : 40)
+				(this.IsExtended ? 78 : 40 )   //104:40
 			);
 		}
 
