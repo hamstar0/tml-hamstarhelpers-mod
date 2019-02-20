@@ -122,7 +122,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 						if( hasTag ) {
 							button.SetTagState( 1 );
 						} else {
-							string desc = this.GetModDescriptionFromActiveMod( modName );
+							string desc = this.GetModDataFromActiveMod( modName, "description" );
 							if( string.IsNullOrEmpty(desc) ) {
 								string _ = "";
 								desc = this.GetModDescriptionFromUI( modName, ref _ );

@@ -110,6 +110,7 @@
     <Compile Include="Components\Network\PacketProtocol_Send.cs" />
     <Compile Include="Components\UI\DialogManager.cs" />
     <Compile Include="Components\UI\Elements\Dialogs\UIPromptDialog.cs" />
+    <Compile Include="Components\UI\Elements\UIHiddenPanel.cs" />
     <Compile Include="Components\UI\Elements\Menu\UIMenuButton.cs" />
     <Compile Include="Components\UI\Elements\Menu\UIMenuPanel.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />

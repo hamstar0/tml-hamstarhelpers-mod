@@ -9,16 +9,16 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
-		public string GetModDescriptionFromActiveMod( string modName ) {
+		public string GetModDataFromActiveMod( string modName, string fieldName ) {
 			Mod mod = ModLoader.GetMod( modName );
 			if( mod == null ) {
 				return null;
 			}
 
 			var buildEdit = BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
-			string description = (string)buildEdit.GetField( "description" );
+			string data = (string)buildEdit.GetField( fieldName );
 
-			return string.IsNullOrEmpty( description ) ? "" : description;
+			return string.IsNullOrEmpty( data ) ? "" : data;
 		}
 
 

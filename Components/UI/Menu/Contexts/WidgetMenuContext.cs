@@ -16,8 +16,7 @@ namespace HamstarHelpers.Components.UI.Menus {
 			this.IsInner = isInner;
 		}
 
-		public override void OnContexualize( string uiClassName, string contextName ) {
-		}
+		public override void OnContexualize( string uiClassName, string contextName ) { }
 
 
 		////////////////

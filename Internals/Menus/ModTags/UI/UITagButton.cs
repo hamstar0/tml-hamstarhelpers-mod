@@ -5,7 +5,6 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.HudHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.UI;
 
@@ -70,12 +69,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				MenuContext.InfoDisplay?.SetText( desc );
+				this.MenuContext.InfoDisplay?.SetText( desc );
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( MenuContext.InfoDisplay?.GetText() == desc ) {
-					MenuContext.InfoDisplay?.SetText( "" );
+				if( this.MenuContext.InfoDisplay?.GetText() == desc ) {
+					this.MenuContext.InfoDisplay?.SetText( "" );
 				}
 				this.RefreshTheme();
 			};
