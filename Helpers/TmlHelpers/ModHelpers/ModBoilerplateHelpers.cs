@@ -17,8 +17,10 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 			var methodInfo = apiClassType.GetMethod( callType );
 			if( methodInfo == null ) {
-				LogHelpers.Alert( "Unrecognized call binding " + callType + " with args:\n"
-					+ string.Join( ",\n  ", args.SafeSelect( a => a.GetType().Name + ": " + a == null ? "null" : a.ToString() ) ) );
+				var argsList = args.SafeSelect( a => a.GetType().Name + ": " + a == null ? "null" : a.ToString() );
+				string argsListStr = string.Join( ", ", argsList );
+
+				LogHelpers.Alert( "Unrecognized call binding " + callType + " with args: "+argsListStr );
 				return null;
 			}
 

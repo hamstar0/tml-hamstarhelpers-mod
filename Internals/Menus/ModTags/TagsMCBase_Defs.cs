@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					{ "Quests",                 "Adds goals for player to progress the game or gain profit from." },
 					{ "Informational",          "Adds game state reports (time, weather, etc.), reports game stats, etc." },
 					{ "Specialized",            "Focuses on one main specific, well-defined function." },
-					{ "Multi-faceted",          "Does more than one thing, whether focusing mainly on one thing or not." },
+					//{ "Multi-faceted",          "Does more than one thing, whether focusing mainly on one thing or not." },
 					{ "Replacements",           "Primarily meant as an alternative to something the game already provides." },
 					//{ "Esoteric",               "Does something uncommon or unexpected. Likely one-of-a-kind." },
 					//{ "Visuals",                "Implements new or improved sprites, adds new background details, etc." },
@@ -41,6 +41,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					////
 
 					{ "Open Source",            "State: Freely available source code." },
+					{ "Has Documentation",		"State: Has an associated wiki or other comprehensive information source." },
 					{ "Unmaintained",           "State: No longer receives version updates." },
 					{ "Unfinished",             "State: Has missing or partially-working features." },
 					{ "Buggy",                  "State: Does unexpected or erroneous things." },

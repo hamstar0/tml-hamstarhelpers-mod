@@ -20,10 +20,10 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 				if( args[i] == null ) {
 					if( !paramType.IsClass || paramInfos[i].GetCustomAttribute<NullableAttribute>() == null ) {
-						throw new HamstarException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null" );
+						throw new HamstarException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null (for call "+method.Name+")" );
 					}
-				} else if( argType != paramType || !argType.IsSubclassOf( paramType ) ) {
-					throw new HamstarException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+argType.Name );
+				} else if( argType.Name != paramType.Name && !argType.IsSubclassOf( paramType ) ) {
+					throw new HamstarException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+argType.Name+" (for call "+method.Name+")" );
 				}
 			}
 
