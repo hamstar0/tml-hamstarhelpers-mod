@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		public static void UpdateModList() {
 			var mymod = ModHelpersMod.Instance;
-			var ctrlPanel = mymod.ControlPanel;
+			UIControlPanel ctrlPanel = mymod.ControlPanel;
 
 			if( ctrlPanel == null || !ctrlPanel.ModListUpdateRequired || !ctrlPanel.IsOpen ) {
 				return;
@@ -23,8 +23,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			lock( UIControlPanel.ModDataListLock ) {
 				try {
+					UIModData[] modDataList = ctrlPanel.ModDataList.ToArray();
+
 					ctrlPanel.ModListElem.Clear();
-					ctrlPanel.ModListElem.AddRange( ctrlPanel.ModDataList.ToArray() );
+
+					if( modDataList.Length > 0 ) {
+						ctrlPanel.ModListElem.AddRange( modDataList );
+					}
 				} catch( Exception ) { }
 			}
 		}

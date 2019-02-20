@@ -82,6 +82,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 				this.GetProjPool();
 				
 				ThreadPool.QueueUserWorkItem( _ => {
+					int _check = 0;
+
 					try {
 						IList<Tuple<string, string[], ItemMatcher>> itemMatchers;
 						IList<Tuple<string, string[], NPCMatcher>> npcMatchers;
@@ -89,17 +91,26 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 						lock( EntityGroups.MyLock ) {
 							itemMatchers = this.DefineItemGroups();
+							_check++;
 							npcMatchers = this.DefineNPCGroups();
+							_check++;
 							projMatchers = this.DefineProjectileGroups();
+							_check++;
 						}
 
 						this.ComputeGroups<Item>( itemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						_check++;
 						this.ComputeGroups<NPC>( npcMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						_check++;
 						this.ComputeGroups<Projectile>( projMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+						_check++;
 
 						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						_check++;
 						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						_check++;
 						this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+						_check++;
 
 						lock( EntityGroups.MyLock ) {
 							this.CustomItemMatchers = null;
@@ -111,8 +122,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 						}
 						
 						Promises.Promises.TriggerValidatedPromise( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
+						_check++;
 					} catch( Exception e ) {
-						LogHelpers.Warn( "Initialization failed: " +e.ToString() );
+						LogHelpers.Warn( "Initialization failed (at #"+_check+"): "+e.ToString() );
 					}
 				} );
 			} );

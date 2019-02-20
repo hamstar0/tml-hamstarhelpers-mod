@@ -31,10 +31,10 @@ using HamstarHelpers.Helpers.RecipeHelpers;
 using HamstarHelpers.Helpers.XnaHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
