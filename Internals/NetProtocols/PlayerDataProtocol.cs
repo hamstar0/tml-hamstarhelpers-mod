@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			Player player = Main.player[ fromWho ];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
-			myplayer.Logic.NetReceiveDataServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			myplayer.Logic.NetReceiveDataOnServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
 
 		protected override void ReceiveOnClient() {
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
-			myplayer.Logic.NetReceiveDataClient( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			myplayer.Logic.NetReceiveDataOnClient( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
 	}
 }

@@ -29,13 +29,13 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 		////////////////
-
+		
 		protected override void ReceiveOnServer( int fromWho ) {
 			string uid;
 			if( this.PlayerIds.TryGetValue( fromWho, out uid ) ) {
 				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ fromWho ] = uid;
 			} else {
-				LogHelpers.Log( "!ModHelpers.PlayerNewIdProtocol.ReceiveWithServer - No UID reported from player id'd "+fromWho );
+				LogHelpers.Warn( "No UID reported from player id'd "+fromWho );
 			}
 		}
 

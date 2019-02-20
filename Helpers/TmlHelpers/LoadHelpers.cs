@@ -21,7 +21,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				this.StartupDelay = 0;
 				this.IsClientPlaying_Hackish = false;
 			} );
-			Promises.AddPostWorldUnloadEachPromise( () => {
+			Promises.AddPostWorldUnloadEachPromise( () => { // Redundant?
 				this.StartupDelay = 0;
 				this.IsClientPlaying_Hackish = false;
 			} );
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 		////////////////
 
-		internal void Update() {
+		internal void UpdateUponWorldBeingPlayed() {
 			this.StartupDelay++;    // Seems needed for day/night tracking (and possibly other things?)
 		}
 	}

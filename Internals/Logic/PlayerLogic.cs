@@ -24,8 +24,8 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public string PrivateUID { get; private set; }
-		public bool HasLoadedUID { get; private set; }
+		public string OldPrivateUID { get; private set; }
+		public bool HasLoadedOldUID { get; private set; }
 
 		private ISet<int> PermaBuffsById = new HashSet<int>();
 		private ISet<int> HasBuffIds = new HashSet<int>();
@@ -44,8 +44,8 @@ namespace HamstarHelpers.Internals.Logic {
 		////////////////
 
 		public PlayerLogic() {
-			this.PrivateUID = Guid.NewGuid().ToString( "D" );
-			this.HasLoadedUID = false;
+			this.OldPrivateUID = Guid.NewGuid().ToString( "D" );
+			this.HasLoadedOldUID = false;
 			this.HasSyncedModSettings = false;
 			this.HasSyncedWorldData = false;
 			this.IsSynced = false;
@@ -57,7 +57,7 @@ namespace HamstarHelpers.Internals.Logic {
 		public void Load( TagCompound tags ) {
 			try {
 				if( tags.ContainsKey( "uid" ) ) {
-					this.PrivateUID = tags.GetString( "uid" );
+					this.OldPrivateUID = tags.GetString( "uid" );
 				}
 				if( tags.ContainsKey( "perma_buffs" ) ) {
 					var permaBuffs = tags.GetList<int>( "perma_buffs" );
@@ -67,13 +67,13 @@ namespace HamstarHelpers.Internals.Logic {
 				LogHelpers.Warn( e.ToString() );
 			}
 
-			this.HasLoadedUID = true;
+			this.HasLoadedOldUID = true;
 		}
 
 		public void Save( TagCompound tags ) {
 			var permaBuffs = this.PermaBuffsById.ToArray();
 
-			tags["uid"] = this.PrivateUID;
+			tags["uid"] = this.OldPrivateUID;
 			tags["perma_buffs"] = permaBuffs;
 		}
 	}

@@ -93,6 +93,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 		}
 
 
+		////
+
 		private static string GetSelectedModBrowserMod( UIState modBrowser ) {
 			object modListItem;
 			if( !ReflectionHelpers.GetField( modBrowser, "selectedItem", out modListItem ) || modListItem == null ) {

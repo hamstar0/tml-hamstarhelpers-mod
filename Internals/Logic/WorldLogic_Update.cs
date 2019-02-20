@@ -13,8 +13,8 @@ namespace HamstarHelpers.Internals.Logic {
 
 			if( LoadHelpers.IsWorldBeingPlayed() ) {
 				mymod.Promises.FulfillWorldInPlayPromises();
-				mymod.LoadHelpers.Update();
-				mymod.WorldStateHelpers.Update();
+				mymod.LoadHelpers.UpdateUponWorldBeingPlayed();
+				mymod.WorldStateHelpers.UpdateUponWorldBeingPlayed();
 			}
 
 			if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {

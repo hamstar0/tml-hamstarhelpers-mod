@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var modlock = mymod.ModLockHelpers;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			return modlock.WorldModLocks.ContainsKey( modworld.ObsoleteID2 );
+			return modlock.WorldModLocks.ContainsKey( modworld.ObsoleteId2 );
 		}
 
 		public static bool IsModMismatchFound() {
@@ -37,14 +37,14 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var modlock = mymod.ModLockHelpers;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			IEnumerable<Mod> allMods = ModHelpers.GetAllPlayableModsPreferredOrder();
+			IEnumerable<Mod> allMods = ModListHelpers.GetAllLoadedModsPreferredOrder();
 			ISet<string> modNames = new HashSet<string>();
 
 			foreach( Mod mod in allMods ) {
 				modNames.Add( mod.Name );
 			}
 
-			modlock.WorldModLocks[ modworld.ObsoleteID2 ] = modNames;
+			modlock.WorldModLocks[ modworld.ObsoleteId2 ] = modNames;
 
 			modlock.ScanMods( modworld );
 
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var modlock = mymod.ModLockHelpers;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			modlock.WorldModLocks.Remove( modworld.ObsoleteID2 );
+			modlock.WorldModLocks.Remove( modworld.ObsoleteId2 );
 			modlock.MismatchBroadcastMade = false;
 
 			modlock.ScanMods( modworld );
@@ -114,14 +114,14 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			this.MissingModNames = new HashSet<string>();
 			this.ExtraModNames = new HashSet<string>();
 
-			if( !this.WorldModLocks.ContainsKey( modworld.ObsoleteID2 ) ) {
+			if( !this.WorldModLocks.ContainsKey( modworld.ObsoleteId2 ) ) {
 				this.IsMismatched = false;
 				return;
 			}
 
-			ISet<string> reqModNames = this.WorldModLocks[ modworld.ObsoleteID2] ;
+			ISet<string> reqModNames = this.WorldModLocks[ modworld.ObsoleteId2] ;
 			ISet<string> checkedModNames = new HashSet<string>();
-			IEnumerable<Mod> allMods = ModHelpers.GetAllPlayableModsPreferredOrder();
+			IEnumerable<Mod> allMods = ModListHelpers.GetAllLoadedModsPreferredOrder();
 
 			foreach( Mod mod in allMods ) {
 				if( !reqModNames.Contains( mod.Name ) ) {
@@ -235,7 +235,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			if( !this.IsMismatched ) { return; }
 
 			int eta = this.ExitDuration / 60;
-			IEnumerable<Mod> mods = ModHelpers.GetAllPlayableModsPreferredOrder();
+			IEnumerable<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder();
 
 			string warning = "World mod mismatch! Auto-exiting in " + eta;
 

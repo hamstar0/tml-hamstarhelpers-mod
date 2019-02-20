@@ -23,8 +23,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			this.HalfDays = WorldStateHelpers.GetElapsedHalfDays();
-			this.HasObsoletedWorldId = myworld.HasObsoletedID;
-			this.ObsoletedWorldId = myworld.ObsoletedID;
+			this.HasObsoletedWorldId = myworld.HasObsoleteId;
+			this.ObsoletedWorldId = myworld.ObsoleteId;
 		}
 
 
@@ -35,12 +35,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
 
-			myworld.HasObsoletedID = this.HasObsoletedWorldId;
-			myworld.ObsoletedID = this.ObsoletedWorldId;
+			myworld.HasObsoleteId = this.HasObsoletedWorldId;
+			myworld.ObsoleteId = this.ObsoletedWorldId;
 
 			mymod.WorldStateHelpers.LoadFromData( this.HalfDays, this.ObsoletedWorldId );
 
-			myplayer.Logic.FinishWorldDataSyncFromServer();
+			myplayer.Logic.FinishWorldDataSyncOnClient();
 		}
 	}
 }

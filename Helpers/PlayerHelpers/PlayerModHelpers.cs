@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -8,7 +9,11 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static class PlayerModHelpers {
 		public static void ModdedExtensionsReset( Player player ) {
 			foreach( Mod mod in ModLoader.LoadedMods ) {
-				mod.Call( "ResetPlayerModData", player );
+				try {
+					mod.Call( "ResetPlayerModData", player );
+				} catch( Exception e ) {
+					LogHelpers.Warn( e.ToString() );
+				}
 			}
 
 			var wingMod = ModLoader.GetMod( "WingSlot" );
@@ -34,14 +39,14 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			if( weaponOutMod != null ) {
 				ModPlayer modplayer = player.GetModPlayer( weaponOutMod, "PlayerFX" );
 
-				// "Frenzy Hearrt" resets:
+				// "Frenzy Heart" resets:
 				ReflectionHelpers.Set( modplayer, "demonBlood", false );
 			}
 
 			if( weaponOutLiteMod != null ) {
 				ModPlayer modplayer = player.GetModPlayer( weaponOutLiteMod, "PlayerFX" );
 
-				// "Frenzy Hearrt" resets:
+				// "Frenzy Heart" resets:
 				ReflectionHelpers.Set( modplayer, "demonBlood", false );
 			}
 		}

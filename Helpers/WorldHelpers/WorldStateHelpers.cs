@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			if( tags.ContainsKey( "world_id" ) ) {
-				this.HalfDaysElapsed = tags.GetInt( "half_days_elapsed_" + myworld.ObsoletedID );
+				this.HalfDaysElapsed = tags.GetInt( "half_days_elapsed_" + myworld.ObsoleteId );
 			}
 		}
 
@@ -31,24 +31,24 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			tags.Set( "half_days_elapsed_" + myworld.ObsoletedID, (int)this.HalfDaysElapsed );
+			tags.Set( "half_days_elapsed_" + myworld.ObsoleteId, (int)this.HalfDaysElapsed );
 		}
 
 		////////////////
 		
-		internal void LoadFromData( int halfDays, string worldId ) {
+		internal void LoadFromData( int halfDays, string oldWorldId ) {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			this.HalfDaysElapsed = halfDays;
 
-			myworld.ObsoletedID = worldId;
+			myworld.ObsoleteId = oldWorldId;
 		}
 
 
 		////////////////
 
-		internal void Update() {
+		internal void UpdateUponWorldBeingPlayed() {
 			var mymod = ModHelpersMod.Instance;
 
 			if( !LoadHelpers.IsWorldSafelyBeingPlayed() ) {

@@ -201,10 +201,12 @@
     <Compile Include="Helpers\TileHelpers\TileWallHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileWorldFinderHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileWorldHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModBoilerplateHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\CommandsHelpers\CommandsHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\LoadHelpers_API.cs" />
     <Compile Include="Helpers\TmlHelpers\Menus\MenuModHelper.cs" />
+    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModListHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModLockHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData.cs" />

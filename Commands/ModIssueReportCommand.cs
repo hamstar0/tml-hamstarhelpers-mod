@@ -20,7 +20,7 @@ namespace HamstarHelpers.Commands {
 		////////////////
 
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			IList<Mod> mods = ModHelpers.GetAllPlayableModsPreferredOrder().ToList();
+			IList<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder().ToList();
 			int argIdx = 1;
 
 			string title = CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx );

@@ -24,42 +24,44 @@ namespace HamstarHelpers.Internals.Logic {
 
 			this.HasSyncedModSettings = true;
 			this.HasSyncedWorldData = true;
-			this.IsSynced = true;
+			this.IsSynced = true;	// Technically this should only be set upon sync receipt of player's 'old' uid...
 
 			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
 			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
 
+			PacketProtocolSentToEither.QuickRequestToClient<PlayerOldIdProtocol>( player.whoAmI, -1, -1 );
 			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1, -1 );
 		}
 
+		////
 
 		public void OnSingleEnterWorld( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 
-			if( !this.HasLoadedUID ) {
-				LogHelpers.Warn( "No UID for " + player.name + " (" + player.whoAmI + ")" );
-				this.HasLoadedUID = true; // Ugly failsafe
+			if( !this.HasLoadedOldUID ) {
+				LogHelpers.Warn( "No (old) UID for " + player.name + " (" + player.whoAmI + ")" );
+				this.HasLoadedOldUID = true;	// Ugly failsafe; don't really know why data from ModPlayer.Load isn't available here
 			}
 
 			if( !mymod.ConfigJson.LoadFile() ) {
 				mymod.ConfigJson.SaveFile();
 			}
 			
-			this.FinishModSettingsSyncFromServer();
-			this.FinishWorldDataSyncFromServer();
+			this.FinishModSettingsSyncOnClient();
+			this.FinishWorldDataSyncOnClient();
 		}
 
 
 		public void OnCurrentClientEnterWorld( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 
-			if( !this.HasLoadedUID ) {
-				LogHelpers.Warn( "No UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
-				this.HasLoadedUID = true;	// Ugly failsafe
+			if( !this.HasLoadedOldUID ) {
+				LogHelpers.Alert( "No (old) UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
+				this.HasLoadedOldUID = true;	// Ugly failsafe; don't really know why data from ModPlayer.Load isn't available here
 			}
 
 			// Send
-			PacketProtocolSendToServer.QuickSend<PlayerOldIdProtocol>();
+			PacketProtocolSendToServer.QuickSendToServer<PlayerOldIdProtocol>();
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 
 			// Receive
@@ -70,29 +72,29 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void FinishModSettingsSyncFromServer() {
+		public void FinishModSettingsSyncOnClient() {
 			this.HasSyncedModSettings = true;
 			if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 				LogHelpers.Alert();
 			}
-			if( this.HasSyncedState() ) { this.FinishSyncFromServer(); }
+			if( this.HasSyncedState() ) { this.FinishSyncOnClient(); }
 		}
 
-		public void FinishWorldDataSyncFromServer() {
+		public void FinishWorldDataSyncOnClient() {
 			this.HasSyncedWorldData = true;
 			if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 				LogHelpers.Alert();
 			}
-			if( this.HasSyncedState() ) { this.FinishSyncFromServer(); }
+			if( this.HasSyncedState() ) { this.FinishSyncOnClient(); }
 		}
 
+		////
 
 		public bool HasSyncedState() {
-			return this.HasSyncedModSettings && this.HasSyncedWorldData && this.HasLoadedUID;
+			return this.HasSyncedModSettings && this.HasSyncedWorldData && this.HasLoadedOldUID;
 		}
 
-
-		private void FinishSyncFromServer() {
+		private void FinishSyncOnClient() {
 			if( this.IsSynced ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
@@ -106,25 +108,34 @@ namespace HamstarHelpers.Internals.Logic {
 			this.IsSynced = true;
 		}
 
+		private void FinishSyncOnServer() {
+			if( this.IsSynced ) { return; }
+
+			this.IsSynced = true;
+		}
+
 
 		////////////////
 
-		public void NetReceiveDataClient( ISet<int> permaBuffIds, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+		public void NetReceiveDataOnClient( ISet<int> permaBuffIds, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 			this.PermaBuffsById = permaBuffIds;
 			this.HasBuffIds = hasBuffIds;
 			this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
 		}
 
-		public void NetReceiveDataServer( ISet<int> permaBuffIds, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+		public void NetReceiveDataOnServer( ISet<int> permaBuffIds, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 			this.PermaBuffsById = permaBuffIds;
 			this.HasBuffIds = hasBuffIds;
 			this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
 		}
 
+		////
 
-		public void NetReceiveIdServer( bool hasUid, string uid ) {
-			this.HasLoadedUID = hasUid;
-			this.PrivateUID = uid;
+		public void NetReceiveIdOnServer( bool hasUid, string uid ) {
+			this.HasLoadedOldUID = hasUid;
+			this.OldPrivateUID = uid;
+			
+			if( this.HasSyncedState() ) { this.FinishSyncOnServer(); }
 		}
 	}
 }

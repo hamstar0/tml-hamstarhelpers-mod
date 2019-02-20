@@ -12,8 +12,8 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		internal static string _GetUniqueId( Player player, out bool success ) {
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
-			success = myplayer.Logic.HasLoadedUID;
-			return myplayer.Logic.PrivateUID;
+			success = myplayer.Logic.HasLoadedOldUID;
+			return myplayer.Logic.OldPrivateUID;
 		}
 
 

@@ -31,11 +31,11 @@ namespace HamstarHelpers {
 
 
 		////////////////
+		
+		public bool HasObsoleteId { get; internal set; }  // Workaround for tml bug?
 
-		public string ObsoleteID2 { get; private set; }
-
-		internal string ObsoletedID;
-		public bool HasObsoletedID { get; internal set; }  // Workaround for tml bug?
+		public string ObsoleteId { get; internal set; }
+		public string ObsoleteId2 { get; private set; }
 
 		internal WorldLogic WorldLogic { get; private set; }
 
@@ -46,20 +46,20 @@ namespace HamstarHelpers {
 		public override void Initialize() {
 			var mymod = (ModHelpersMod)this.mod;
 
-			this.ObsoleteID2 = WorldHelpers.GetUniqueId();
-			this.ObsoletedID = Guid.NewGuid().ToString( "D" );
-			this.HasObsoletedID = false;  // 'Load()' decides if no pre-existing one is found
+			this.ObsoleteId = Guid.NewGuid().ToString( "D" );
+			this.ObsoleteId2 = WorldHelpers._GetUniqueId( false );
+			this.HasObsoleteId = false;  // 'Load()' decides if no pre-existing one is found
 
 			this.WorldLogic = new WorldLogic();
 
-			if( String.IsNullOrEmpty( this.ObsoleteID2 ) ) {
+			if( String.IsNullOrEmpty( this.ObsoleteId2 ) ) {
 				throw new HamstarException( "UID not defined." );
 			}
 		}
 
 
 		internal void OnWorldExit() {
-			this.HasObsoletedID = false;
+			this.HasObsoleteId = false;
 		}
 
 		////////////////
@@ -69,7 +69,7 @@ namespace HamstarHelpers {
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( tags.ContainsKey( "world_id" ) ) {
-				this.ObsoletedID = tags.GetString( "world_id" );
+				this.ObsoleteId = tags.GetString( "world_id" );
 			}
 
 			//mymod.UserHelpers.Load( mymod, tags );
@@ -82,7 +82,7 @@ namespace HamstarHelpers {
 
 			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
 
-			this.HasObsoletedID = true;
+			this.HasObsoleteId = true;
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
@@ -91,7 +91,7 @@ namespace HamstarHelpers {
 			var mymod = (ModHelpersMod)this.mod;
 			TagCompound tags = new TagCompound();
 
-			tags.Set( "world_id", this.ObsoletedID );
+			tags.Set( "world_id", this.ObsoleteId );
 
 			//mymod.UserHelpers.Save( mymod, tags );
 			mymod.ModLockHelpers.Save( tags );

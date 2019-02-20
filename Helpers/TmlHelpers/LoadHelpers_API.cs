@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using System;
 using Terraria;
 
 
@@ -20,7 +21,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
-			if( !myworld.HasObsoletedID ) { return false; }
+			if( !myworld.HasObsoleteId ) { return false; }
 
 			return true;
 		}
@@ -54,10 +55,11 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		}
 
 
+		[Obsolete( "`PlayerIdentityHelpers.GetProperUniqueId(player) != null` might work better", true )]
 		public static bool IsPlayerLoaded( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-			return myplayer.Logic.HasLoadedUID;
+			return myplayer.Logic.HasLoadedOldUID;
 		}
 	}
 }

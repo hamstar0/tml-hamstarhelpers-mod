@@ -12,13 +12,16 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		public readonly static int VanillaNightDuration = 32400;
 
 
-		[Obsolete( "Recommend using WorldHelpers.GetUniqueIdWithSeed()", false)]
+		[Obsolete( "use WorldHelpers.GetUniqueIdWithSeed()", true )]
 		public static string GetUniqueId() {
-			return WorldHelpers.GetUniqueId( false );
+			return WorldHelpers._GetUniqueId( false );
 		}
 
-		[Obsolete( "Recommend using WorldHelpers.GetUniqueIdWithSeed()", false )]
+		[Obsolete( "use WorldHelpers.GetUniqueIdWithSeed()", true )]
 		public static string GetUniqueId( bool asFileName ) {
+			return WorldHelpers._GetUniqueId( asFileName );
+		}
+		internal static string _GetUniqueId( bool asFileName ) {
 			if( asFileName ) {
 				return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID;
 			} else {
