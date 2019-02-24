@@ -8,7 +8,10 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 	public static partial class ItemFinderHelpers {
 		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 
-		
+
+
+		////////////////
+
 		public static int FindIndexOfFirstOfItemInCollection( Item[] collection, ISet<int> itemTypes ) {
 			for( int i = 0; i < collection.Length; i++ ) {
 				Item item = collection[i];

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.PlayerHelpers;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
@@ -48,7 +49,18 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 
 
 		public static void ReduceStack( Item item, int amt ) {
-			item.stack -= amt;
+			int newStackSize = (item.stack >= amt) ? (item.stack - amt) : 0;
+
+			if( Main.netMode != 2 && !Main.dedServ ) {
+				Item selectItem = Main.LocalPlayer.inventory[PlayerItemHelpers.VanillaInventorySelectedSlot];
+
+				if( selectItem == item && Main.mouseItem.type == item.type && Main.mouseItem.stack == item.stack ) {
+					selectItem.stack = newStackSize;
+					Main.mouseItem.stack = newStackSize;
+				}
+			}
+
+			item.stack = newStackSize;
 
 			if( item.stack <= 0 ) {
 				item.TurnToAir();

@@ -7,6 +7,22 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.ItemHelpers {
 	public partial class ItemIdentityHelpers {
+		public static string GetProperUniqueId( int itemType ) {
+			var item = new Item();
+			item.SetDefaults( itemType );
+
+			return ItemIdentityHelpers.GetProperUniqueId( item );
+		}
+
+		public static string GetProperUniqueId( Item item ) {
+			if( item.modItem == null ) {
+				return "Terraria." + item.type;
+			}
+			return item.modItem.mod.Name + "." + item.modItem.Name;
+		}
+
+		////
+
 		public static string GetUniqueId( Item item ) {
 			if( item.modItem != null ) {
 				return item.modItem.mod.Name + " " + item.Name;

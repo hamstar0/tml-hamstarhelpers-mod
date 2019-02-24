@@ -6,6 +6,22 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.ProjectileHelpers {
 	public class ProjectileIdentityHelpers {
+		public static string GetProperUniqueId( int projType ) {
+			var proj = new Projectile();
+			proj.SetDefaults( projType );
+
+			return ProjectileIdentityHelpers.GetProperUniqueId( proj );
+		}
+
+		public static string GetProperUniqueId( Projectile proj ) {
+			if( proj.modProjectile == null ) {
+				return "Terraria." + proj.type;
+			}
+			return proj.modProjectile.mod.Name + "." + proj.modProjectile.Name;
+		}
+
+		////
+
 		public static string GetQualifiedName( Projectile proj ) {
 			return ProjectileIdentityHelpers.GetQualifiedName( proj.type );
 		}
@@ -14,8 +30,6 @@ namespace HamstarHelpers.Helpers.ProjectileHelpers {
 			string name = Lang.GetProjectileName( projType ).Value;
 			return name;
 		}
-
-		// TODO: GetUniqueId()
 
 		// TODO: GetVanillaSnapshotHash()
 

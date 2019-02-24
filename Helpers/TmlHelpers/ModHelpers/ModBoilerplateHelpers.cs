@@ -20,7 +20,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				var argsList = args.SafeSelect( a => a.GetType().Name + ": " + a == null ? "null" : a.ToString() );
 				string argsListStr = string.Join( ", ", argsList );
 
-				LogHelpers.Alert( "Unrecognized call binding " + callType + " with args: "+argsListStr );
+				LogHelpers.Alert( apiClassType.Name+" has no Call binding for " + callType + " with args: "+argsListStr );
 				return null;
 			}
 
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			try {
 				return ReflectionHelpers.SafeCall( methodInfo, null, newArgs );
 			} catch( Exception e ) {
-				throw new HamstarException( "Bad API call.", e );
+				throw new HamstarException( apiClassType.Name+" failed to execute Call binding " +callType, e );
 			}
 		}
 	}

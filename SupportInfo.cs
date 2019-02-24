@@ -116,17 +116,17 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			row += 1;
 
-			this.SupportText1UI = new UIText( "Want more?", 1f * scale );
+			this.SupportText1UI = new UIText( "Please", 1f * scale );
 			this.SupportText1UI.Left.Set( -xOff, 1f );
 			this.SupportText1UI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 			//this.SupportText1UI.TextColor = Color.MediumSpringGreen;
 
-			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "Support", "https://www.patreon.com/hamstar0", true, 1f * scale );
-			this.SupportUrlUI.Left.Set( -( xOff - ( 100f * scale ) ), 1f );
+			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f * scale );
+			this.SupportUrlUI.Left.Set( -( xOff - ( 54f * scale ) ), 1f );
 			this.SupportUrlUI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 
-			this.SupportText2UI = new UIText( "needed!", 1f * scale );
-			this.SupportText2UI.Left.Set( -( xOff - ( 168f * scale ) ), 1f );
+			this.SupportText2UI = new UIText( "upkeep & improvement", 1f * scale );
+			this.SupportText2UI.Left.Set( -( xOff - ( 118f * scale ) ), 1f );
 			this.SupportText2UI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 			//this.SupportText2UI.TextColor = Color.MediumSpringGreen;
 

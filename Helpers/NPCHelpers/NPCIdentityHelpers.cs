@@ -6,6 +6,22 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.NPCHelpers {
 	public partial class NPCIdentityHelpers {
+		public static string GetProperUniqueId( int npcType ) {
+			var npc = new NPC();
+			npc.SetDefaults( npcType );
+
+			return NPCIdentityHelpers.GetProperUniqueId( npc );
+		}
+
+		public static string GetProperUniqueId( NPC npc ) {
+			if( npc.modNPC == null ) {
+				return "Terraria." + npc.type;
+			}
+			return npc.modNPC.mod.Name + "." + npc.modNPC.Name;
+		}
+
+		////
+
 		public static string GetUniqueId( NPC npc ) {
 			string id = npc.TypeName;
 
@@ -15,10 +31,10 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			if( id != "" ) { return id; }
 			return "" + npc.type;
 		}
-		
+
 		// TODO: GetVanillaSnapshotHash
 
-		
+
 		public static string GetQualifiedName( NPC npc ) {
 			return Lang.GetNPCNameValue( npc.netID );
 		}

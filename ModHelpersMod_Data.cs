@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.MiscHelpers;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
@@ -9,7 +10,7 @@ namespace HamstarHelpers {
 
 
 
-	partial class ModHelpersMod {
+	partial class ModHelpersMod : Mod {
 		internal HamstarHelpersData Data = new HamstarHelpersData();
 
 
