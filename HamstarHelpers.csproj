@@ -163,6 +163,8 @@
     <Compile Include="Helpers\ItemHelpers\ItemIdentityHelpers_Groups.cs" />
     <Compile Include="Helpers\ItemHelpers\MusicBoxHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\DataFileHelpers.cs" />
+    <Compile Include="Helpers\MiscHelpers\InfoHelpers_Complete.cs" />
+    <Compile Include="Helpers\MiscHelpers\InfoHelpers_Render.cs" />
     <Compile Include="Helpers\MiscHelpers\InfoHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\MiscHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\MusicHelpers.cs" />

@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.MiscHelpers {
@@ -112,75 +110,6 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		}
 
 
-		public static IList<string> GetGameData( IEnumerable<Mod> mods ) {
-			var list = new List<string>();
-
-			var modsList = mods.OrderBy( m => m.Name ).Select( m => m.DisplayName + " " + m.Version.ToString() );
-			string[] modsArr = modsList.ToArray();
-			bool isDay = Main.dayTime;
-			double timeOfDay = Main.time;
-			int halfDays = WorldHelpers.WorldStateHelpers.GetElapsedHalfDays();
-			string worldSize = WorldHelpers.WorldHelpers.GetSize().ToString();
-			string[] worldProg = InfoHelpers.GetWorldProgress().ToArray();
-			int activeItems = ItemHelpers.ItemHelpers.GetActive().Count;
-			int activeNpcs = NPCHelpers.NPCHelpers.GetActive().Count;
-			string[] playerInfos = InfoHelpers.GetCurrentPlayerInfo().ToArray();
-			string[] playerEquips = InfoHelpers.GetCurrentPlayerEquipment().ToArray();
-			int activePlayers = Main.ActivePlayersCount;
-			string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
-			bool autopause = Main.autoPause;
-			bool autosave = Main.autoSave;
-			int lighting = Lighting.lightMode;
-			int lightingThreads = Lighting.LightingThreads;
-			int frameSkipMode = Main.FrameSkipMode;
-			bool isMaximized = Main.screenMaximized;
-			int windowWid = Main.screenWidth;
-			int windowHei = Main.screenHeight;
-			int qualityStyle = Main.qaStyle;
-			bool bgOn = Main.BackgroundEnabled;
-			bool childSafe = !ChildSafety.Disabled;
-			float gameZoom = Main.GameZoomTarget;
-			float uiZoom = Main.UIScale;
-
-			list.Add( InfoHelpers.RenderModTable( modsArr ) );
-			list.Add( "Is day: " + isDay + ", Time of day/night: " + timeOfDay + ", Elapsed half days: " + halfDays );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
-			list.Add( "World name: " + Main.worldName + ", world size: " + worldSize );
-			list.Add( "World progress: " + (worldProg.Length > 0 ? string.Join(", ", worldProg) : "none") );
-			list.Add( "Items on ground: " + activeItems + ", Npcs active: " + activeNpcs );
-			list.Add( "Player info: " + string.Join( ", ", playerInfos ) );
-			list.Add( "Player equips: " + (playerEquips.Length > 0 ? string.Join(", ", playerEquips) : "none" ) );
-			list.Add( "Player count: " + activePlayers + " (" + netmode + ")" );
-			list.Add( "Autopause: " + autopause );
-			list.Add( "Autosave: " + autosave );
-			list.Add( "Lighting mode: " + lighting );
-			list.Add( "Lighting threads: " + lightingThreads );
-			list.Add( "Frame skip mode: " + frameSkipMode );
-			list.Add( "Is screen maximized: " + isMaximized );
-			list.Add( "Screen resolution: " + windowWid + " " + windowHei );
-			list.Add( "Quality style: " + qualityStyle );
-			list.Add( "Background on: " + bgOn );
-			list.Add( "Child safety: " + childSafe );
-			list.Add( "Game zoom: " + gameZoom );
-			list.Add( "UI zoom: " + uiZoom );
-
-			return list;
-		}
-
-		public static string RenderModTable( string[] mods ) {
-			mods = mods.Select( m => m.Replace( "|", "\\|" ) ).ToArray();
-			
-			int len = mods.Length;
-			string output = "| Mods:  | - | - |";
-			output += "\n| :--- | :--- | :--- |";
-
-			for( int i=0; i<len; i++ ) {
-				output += '\n';
-				output += "| " + mods[i] + " | " + (++i<len ? mods[i] : "-") + " | " + (++i<len ? mods[i] : "-") + " |";
-			}
-
-			return output;
-		}
-
 		public static IList<string> GetWorldProgress() {
 			var list = new List<string>();
 
@@ -204,50 +133,69 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		}
 
 
+		////
+
+		[Obsolete( "use InfoHelpers.GetPlayerInfo( Main.LocalPlayer )", true )]
 		public static IList<string> GetCurrentPlayerInfo() {
-			Player player = Main.LocalPlayer;
+			IDictionary<string, string> dict = InfoHelpers.GetPlayerInfo( Main.LocalPlayer );
+			dict["Name"] = "`" + dict["Name"] + "`";
+			return dict.Select( kv => kv.Key + ": " + kv.Value ).ToList();
+		}
 
-			string name = "Name: `" + player.name + "`";
-			string gender = "Male: " + player.Male;
-			string demon = "Demon Heart: " + player.extraAccessory;
-			string difficulty = "Difficulty mode: " + player.difficulty;
-			string life = "Life: " + player.statLife + " of " + player.statLifeMax2;
-			if( player.statLifeMax != player.statLifeMax2 ) { life += " (" + player.statLifeMax + ")"; }
-			string mana = "Mana: " + player.statMana + " of " + player.statManaMax2;
-			if( player.statManaMax != player.statManaMax2 ) { life += " (" + player.statManaMax + ")"; }
-			string def = "Defense: " + player.statDefense;
+		public static IDictionary<string, string> GetPlayerInfo( Player player ) {
+			var dict = new Dictionary<string, string> {
+				{ "Name", player.name },
+				{ "Male", ""+player.Male },
+				{ "Has Demon Heart", ""+player.extraAccessory },
+				{ "Difficulty mode", ""+player.difficulty },
+				{ "Life", player.statLife + " of " + player.statLifeMax2 },
+				{ "Mana", player.statMana + " of " + player.statManaMax2 },
+				{ "Defense", ""+player.statDefense }
+			};
 
-			return new List<string> { name, gender, demon, difficulty, life, mana, def };
+			if(player.statLifeMax != player.statLifeMax2 ) {
+				dict["Life"] += " (" + player.statLifeMax + ")";
+			}
+			if(player.statManaMax != player.statManaMax2 ) {
+				dict["Mana"] += " (" + player.statManaMax + ")";
+			}
+			
+			return dict;
 		}
 
 
+		[Obsolete( "use InfoHelpers.GetPlayerEquipment( Main.LocalPlayer )", true )]
 		public static IList<string> GetCurrentPlayerEquipment() {
-			Player player = Main.LocalPlayer;
-			var list = new List<string>();
+			IDictionary<string, string> dict = InfoHelpers.GetPlayerEquipment( Main.LocalPlayer );
+			return dict.Select( kv => kv.Key + ": " + kv.Value ).ToList();
+		}
+
+		public static IDictionary<string, string> GetPlayerEquipment( Player player ) {
+			var dict = new Dictionary<string, string>();
 
 			for( int i = 0; i < player.armor.Length; i++ ) {
-				string output = "";
+				string key;
 				Item item = player.armor[i];
 				if( item == null || item.IsAir ) { continue; }
 
 				if( i == 0 ) {
-					output += "Head: ";
+					key = "Head";
 				} else if( i == 1 ) {
-					output += "Body: ";
+					key = "Body";
 				} else if( i == 2 ) {
-					output += "Legs: ";
+					key = "Legs";
 				} else if( PlayerItemHelpers.IsAccessorySlot( player, i ) ) {
-					output += "Accessory: ";
+					key = "Accessory";
 				} else if( PlayerItemHelpers.IsVanitySlot( player, i ) ) {
-					output += "Vanity: ";
+					key = "Vanity";
+				} else {
+					key = "?";
 				}
 
-				output += item.HoverName;
-
-				list.Add( output );
+				dict[ key ] = item.HoverName;
 			}
 
-			return list;
+			return dict;
 		}
 
 
