@@ -64,13 +64,13 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		private static void RemoveWingSlotProperty( ModPlayer mywingplayer, string propName ) {
 			object wingEquipSlot;
 
-			if( ReflectionHelpers.GetField( mywingplayer, propName, out wingEquipSlot ) && wingEquipSlot != null ) {
+			if( ReflectionHelpers.Get( mywingplayer, propName, out wingEquipSlot ) && wingEquipSlot != null ) {
 				Item wingItem;
 
-				if( ReflectionHelpers.GetProperty( wingEquipSlot, "Item", out wingItem ) ) {
+				if( ReflectionHelpers.Get( wingEquipSlot, "Item", out wingItem ) ) {
 					if( wingItem != null && !wingItem.IsAir ) {
-						ReflectionHelpers.SetProperty( wingEquipSlot, "Item", new Item() );
-						ReflectionHelpers.SetField( mywingplayer, propName, wingEquipSlot );
+						ReflectionHelpers.Set( wingEquipSlot, "Item", new Item() );
+						ReflectionHelpers.Set( mywingplayer, propName, wingEquipSlot );
 					}
 				} else {
 					LogHelpers.Warn( "Invalid Wing Mod item slot for " + propName );

@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			UIState myUid = this.MyUI;
 
 			object items;
-			if( !ReflectionHelpers.GetField( myUid, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
+			if( !ReflectionHelpers.Get( myUid, "items", out items ) ) {
 				throw new HamstarException( "No 'items' field in ui " + myUid );
 			}
 
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				object item = itemsArr.GetValue( i );
 				string modName;
 
-				if( ReflectionHelpers.GetField<string>( item, "mod", out modName ) ) {
+				if( ReflectionHelpers.Get( item, "mod", out modName ) ) {
 					modNames.Add( modName );
 				}
 			}
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					}
 				}
 
-				ReflectionHelpers.SetField( myUid, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
+				ReflectionHelpers.Set( myUid, "updateFilterMode", (UpdateFilter)0 );
 				MenuModHelper.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredList );
 			} );
 		}

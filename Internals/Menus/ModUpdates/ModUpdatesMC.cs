@@ -8,7 +8,6 @@ using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
@@ -52,14 +51,14 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		private void DisplayModListVersions( UIState ui, IDictionary<string, Tuple<string, Version>> modVersionInfo ) {
 			object items;
-			if( !ReflectionHelpers.Get( ui, "items", BindingFlags.Instance | BindingFlags.NonPublic, out items ) ) {
-				LogHelpers.Log( "!ModHelpers.ModUpdatesMenuContext._ctor - No 'items' field in ui " + ui );
+			if( !ReflectionHelpers.Get( ui, "items", out items ) ) {
+				LogHelpers.Warn( "No 'items' field in ui " + ui );
 				return;
 			}
 
 			UIList list;
-			if( !ReflectionHelpers.Get<UIList>( ui, "modList", BindingFlags.Instance | BindingFlags.NonPublic, out list ) ) {
-				LogHelpers.Log( "!ModHelpers.ModUpdatesMenuContext._ctor - No 'modList' field in ui " + ui );
+			if( !ReflectionHelpers.Get( ui, "modList", out list ) ) {
+				LogHelpers.Warn( "No 'modList' field in ui " + ui );
 				return;
 			}
 
@@ -71,7 +70,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				object item = itemsArr.GetValue( i );
 
 				object mod;
-				ReflectionHelpers.Get<object>( item, "mod", BindingFlags.Instance | BindingFlags.NonPublic, out mod );
+				ReflectionHelpers.Get( item, "mod", out mod );
 
 				TmodFile tmod;
 				ReflectionHelpers.Get<TmodFile>( mod, "modFile", out tmod );
@@ -94,8 +93,8 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				object mod;
 				TmodFile tmod;
 
-				ReflectionHelpers.Get<object>( modItem, "mod", BindingFlags.Instance | BindingFlags.NonPublic, out mod );
-				ReflectionHelpers.Get<TmodFile>( mod, "modFile", out tmod );
+				ReflectionHelpers.Get( modItem, "mod", out mod );
+				ReflectionHelpers.Get( mod, "modFile", out tmod );
 
 				if( tmod.name == modName ) {
 					uiModItem = (UIPanel)modItem;

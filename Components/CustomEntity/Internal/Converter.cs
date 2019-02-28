@@ -33,7 +33,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
 			IList<CustomEntityComponent> components = new List<CustomEntityComponent>();
 
-			IEnumerable<Type> allCompTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof( CustomEntityComponent ) );
+			IEnumerable<Type> allCompTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomEntityComponent ) );
 			IDictionary<string, Type> allCompTypeMap = allCompTypes.ToDictionary( t => t.Name, t => t );
 
 			JObject jo = JObject.Load( reader );

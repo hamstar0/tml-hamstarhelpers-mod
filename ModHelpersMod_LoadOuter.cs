@@ -34,6 +34,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using HamstarHelpers.Helpers.DotNetHelpers;
 
 
 namespace HamstarHelpers {
@@ -73,6 +74,7 @@ namespace HamstarHelpers {
 		internal ModLockHelpers ModLockHelpers;
 		internal MusicHelpers MusicHelpers;
 		internal PlayerIdentityHelpers PlayerIdentityHelpers;
+		internal ReflectionHelpers ReflectionHelpers;
 
 		// Internals
 		internal InboxControl Inbox;
@@ -96,6 +98,7 @@ namespace HamstarHelpers {
 		}
 
 		private void LoadOuter() {
+			this.ReflectionHelpers = new ReflectionHelpers();
 			this.DataStore = new DataStore();
 			this.Promises = new Promises();
 			this.LoadHelpers = new LoadHelpers();
@@ -136,6 +139,7 @@ namespace HamstarHelpers {
 
 
 		public void UnloadOuter() {
+			this.ReflectionHelpers = null;
 			this.PacketProtocolMngr = null;
 			this.ExceptionMngr = null;
 			this.Timers = null;

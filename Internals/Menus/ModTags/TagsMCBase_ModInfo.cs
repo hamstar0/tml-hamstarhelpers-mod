@@ -24,13 +24,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		public string GetModDescriptionFromUI( string modName, ref string err ) {
 			UIPanel msgBox;
-			if( this.MyUI == null || !ReflectionHelpers.GetField<UIPanel>( this.MyUI, "modInfo", out msgBox ) ) {
+			if( this.MyUI == null || !ReflectionHelpers.Get( this.MyUI, "modInfo", out msgBox ) ) {
 				err = "No modInfo field.";
 				return "";
 			}
 
 			string modDesc;
-			if( !ReflectionHelpers.GetField<string>( msgBox, "text", BindingFlags.NonPublic | BindingFlags.Instance, out modDesc ) ) {
+			if( !ReflectionHelpers.Get( msgBox, "text", out modDesc ) ) {
 				err = "No modInfo.text field.";
 				return "";
 			}

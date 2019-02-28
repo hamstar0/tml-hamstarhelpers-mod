@@ -4,7 +4,6 @@ using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Timers;
 using System;
-using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -21,7 +20,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.InfoDisplay.SetDefaultText( "Click tags to filter the list. Right-click tags to filter without them." );
 
 			UIElement elem;
-			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", out elem ) ) {
 				elem.Left.Pixels += UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}
@@ -35,7 +34,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.ResetMenuObjects();
 
 			UIElement elem;
-			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", out elem ) ) {
 				elem.Left.Pixels -= UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}
@@ -47,7 +46,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void BeginModBrowserPopulateCheck( UIState modBrowserUi ) {
 			UIList uiModList;
 
-			if( !ReflectionHelpers.GetField( modBrowserUi, "modList", out uiModList ) ) {
+			if( !ReflectionHelpers.Get( modBrowserUi, "modList", out uiModList ) ) {
 				throw new HamstarException( "Invalid modList" );
 			}
 			
@@ -72,7 +71,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private bool IsModBrowserListPopulated( UIList uiModList ) {
 			int count;
 
-			if( !ReflectionHelpers.GetProperty( uiModList, "Count", out count ) ) {
+			if( !ReflectionHelpers.Get( uiModList, "Count", out count ) ) {
 				throw new HamstarException( "Invalid modList.Count" );
 			}
 
@@ -83,7 +82,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void ApplyModBrowserModInfoBindings( UIList uiModList ) {
 			object modList;
 
-			if( !ReflectionHelpers.GetField( uiModList, "_items", out modList ) || modList == null ) {
+			if( !ReflectionHelpers.Get( uiModList, "_items", out modList ) || modList == null ) {
 				throw new HamstarException( "Invalid modList._items" );
 			}
 
@@ -104,7 +103,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				//}
 
 				UIPanel modInfoButton;
-				if( !ReflectionHelpers.GetField( item, "moreInfoButton", BindingFlags.Instance | BindingFlags.NonPublic, out modInfoButton )
+				if( !ReflectionHelpers.Get( item, "moreInfoButton", out modInfoButton )
 						|| modInfoButton == null ) {
 					LogHelpers.Log( "Invalid modList._item[" + i + "].moreInfoButton" );
 					continue;
@@ -112,7 +111,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 				modInfoButton.OnClick += ( evt, elem ) => {
 					if( this.MyUI == null ) { return; }
-					ReflectionHelpers.SetField( this.MyUI, "selectedItem", item );
+					ReflectionHelpers.Set( this.MyUI, "selectedItem", item );
 				};
 			}
 		}

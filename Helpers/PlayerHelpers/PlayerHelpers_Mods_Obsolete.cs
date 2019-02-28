@@ -22,29 +22,29 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			Item wingItem;
 
 			object wingEquipSlot;
-			if( ReflectionHelpers.GetField(mywingplayer, "EquipSlot", out wingEquipSlot) && wingEquipSlot != null ) {
-				if( ReflectionHelpers.GetProperty( wingEquipSlot, "Item", out wingItem ) ) {
+			if( ReflectionHelpers.Get(mywingplayer, "EquipSlot", out wingEquipSlot) && wingEquipSlot != null ) {
+				if( ReflectionHelpers.Get( wingEquipSlot, "Item", out wingItem ) ) {
 					if( wingItem != null && !wingItem.IsAir ) {
-						ReflectionHelpers.SetProperty( wingEquipSlot, "Item", new Item() );
-						ReflectionHelpers.SetField( mywingplayer, "EquipSlot", wingEquipSlot );
+						ReflectionHelpers.Set( wingEquipSlot, "Item", new Item() );
+						ReflectionHelpers.Set( mywingplayer, "EquipSlot", wingEquipSlot );
 					}
 				}
 			}
 
 			object wingVanitySlot;
-			if( ReflectionHelpers.GetField(mywingplayer, "VanitySlot", out wingVanitySlot) && wingVanitySlot != null ) {
-				if( ReflectionHelpers.GetProperty( wingVanitySlot, "Item", out wingItem ) && wingItem != null && !wingItem.IsAir ) {
-					ReflectionHelpers.SetProperty( wingVanitySlot, "Item", new Item() );
-					ReflectionHelpers.SetField( mywingplayer, "VanitySlot", wingVanitySlot );
+			if( ReflectionHelpers.Get(mywingplayer, "VanitySlot", out wingVanitySlot) && wingVanitySlot != null ) {
+				if( ReflectionHelpers.Get( wingVanitySlot, "Item", out wingItem ) && wingItem != null && !wingItem.IsAir ) {
+					ReflectionHelpers.Set( wingVanitySlot, "Item", new Item() );
+					ReflectionHelpers.Set( mywingplayer, "VanitySlot", wingVanitySlot );
 				}
 			}
 
 			object wingDyeSlot;
 
-			if( ReflectionHelpers.GetField(mywingplayer, "DyeSlot", out wingDyeSlot) && wingDyeSlot != null ) {
-				if( ReflectionHelpers.GetProperty( wingDyeSlot, "Item", out wingItem ) && wingItem != null && !wingItem.IsAir ) {
-					ReflectionHelpers.SetProperty( wingDyeSlot, "Item", new Item() );
-					ReflectionHelpers.SetField( mywingplayer, "DyeSlot", wingDyeSlot );
+			if( ReflectionHelpers.Get(mywingplayer, "DyeSlot", out wingDyeSlot) && wingDyeSlot != null ) {
+				if( ReflectionHelpers.Get( wingDyeSlot, "Item", out wingItem ) && wingItem != null && !wingItem.IsAir ) {
+					ReflectionHelpers.Set( wingDyeSlot, "Item", new Item() );
+					ReflectionHelpers.Set( mywingplayer, "DyeSlot", wingDyeSlot );
 				}
 			}
 		}

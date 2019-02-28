@@ -6,79 +6,69 @@ using System.Reflection;
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public partial class ReflectionHelpers {
-		public static bool GetStatic<T>( Type classType, string fieldOrPropName, out T result ) {
-			FieldInfo field = classType.GetField( fieldOrPropName, ReflectionHelpers.MostAccess );
+		private static bool GetMemberValue<T>( MemberInfo member, object instance, out T result ) {
+			var field = member as FieldInfo;
 			if( field != null ) {
-				result = (T)field.GetValue( null );
+				result = (T)field.GetValue( instance );
 				return true;
 			}
 
-			PropertyInfo prop = classType.GetProperty( fieldOrPropName, ReflectionHelpers.MostAccess );
+			var prop = member as PropertyInfo;
 			if( prop != null ) {
-				result = (T)prop.GetValue( null );
+				result = (T)prop.GetValue( instance );
 				return true;
 			}
 
 			result = default( T );
 			return false;
 		}
-		
-		////////////////
 
-		public static bool SetStatic<T>( Type classType, string fieldOrPropName, T newValue ) {
-			FieldInfo field = classType.GetField( fieldOrPropName, ReflectionHelpers.MostAccess );
+		private static bool SetMemberValue<T>( MemberInfo member, object instance, T newValue ) {
+			var field = member as FieldInfo;
 			if( field != null ) {
-				field.SetValue( null, newValue );
+				field.SetValue( instance, newValue );
 				return true;
 			}
 
-			PropertyInfo prop = classType.GetProperty( fieldOrPropName, ReflectionHelpers.MostAccess );
+			var prop = member as PropertyInfo;
 			if( prop != null ) {
-				prop.SetValue( null, newValue );
+				prop.SetValue( instance, newValue );
 				return true;
 			}
-			
+
 			return false;
 		}
-		
-		
-		////////////////
 
-		public static bool Get<T>( Object instance, string propOrFieldName, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( instance, propOrFieldName, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( instance, propOrFieldName, ReflectionHelpers.MostAccess, out val );
-			}
-			return true;
-		}
 
-		public static bool Get<T>( Object instance, string propOrFieldName, BindingFlags flags, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( instance, propOrFieldName, flags, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( instance, propOrFieldName, flags, out val );
-			}
-			return true;
-		}
-
-		public static bool Get<T>( Type objType, Object instance, string propOrFieldName, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( objType, instance, propOrFieldName, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( objType, instance, propOrFieldName, ReflectionHelpers.MostAccess, out val );
-			}
-			return true;
-		}
-
-		public static bool Get<T>( Type objType, Object instance, string propOrFieldName, BindingFlags flags, out T val ) {
-			if( !ReflectionHelpers.GetField<T>( objType, instance, propOrFieldName, flags, out val ) ) {
-				return ReflectionHelpers.GetProperty<T>( objType, instance, propOrFieldName, flags, out val );
-			}
-			return true;
-		}
-		
 		////////////////
 		
-		public static bool Set( Object instance, string propOrFieldName, object value ) {
-			if( !ReflectionHelpers.SetField(instance, propOrFieldName, value) ) {
-				return ReflectionHelpers.SetProperty( instance, propOrFieldName, value );
+		public static bool Get<T>( Object instance, string fieldOrPropName, out T result ) {
+			return ReflectionHelpers.Get<T>( instance.GetType(), instance, fieldOrPropName, out result );
+		}
+
+		public static bool Get<T>( Type objType, Object instance, string fieldOrPropName, out T result ) {
+			MemberInfo rawMember = ReflectionHelpers.Instance.GetCachedInfoMember( objType, fieldOrPropName );
+			if( rawMember == null ) {
+				result = default( T );
+				return false;
 			}
-			return true;
+
+			return ReflectionHelpers.GetMemberValue( rawMember, instance, out result );
+		}
+
+		////////////////
+
+		public static bool Set( Object instance, string fieldOrPropName, object value ) {
+			return ReflectionHelpers.Set( instance.GetType(), instance, fieldOrPropName, value );
+		}
+
+		public static bool Set( Type objType, Object instance, string fieldOrPropName, object newValue ) {
+			MemberInfo rawMember = ReflectionHelpers.Instance.GetCachedInfoMember( objType, fieldOrPropName );
+			if( rawMember == null ) {
+				return false;
+			}
+
+			return ReflectionHelpers.SetMemberValue( rawMember, instance, newValue );
 		}
 	}
 }

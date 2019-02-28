@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 				.GetType( "Terraria.ModLoader.Interface" );
 
 			UIState modBrowserUi;
-			if( !ReflectionHelpers.GetField<UIState>( interfaceType, null, "modBrowser", BindingFlags.Static | BindingFlags.NonPublic, out modBrowserUi ) ) {
+			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowser", out modBrowserUi ) ) {
 				LogHelpers.Warn( "Could not acquire mod browser UI." );
 				return;
 			}
@@ -28,12 +28,12 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 
 			object _;
 			ReflectionHelpers.RunMethod<object>( modBrowserUi, "Activate", new object[] { }, out _ );
-			ReflectionHelpers.SetField( modBrowserUi, "updateNeeded", BindingFlags.Instance | BindingFlags.NonPublic, true );
-			ReflectionHelpers.SetField( modBrowserUi, "updateFilterMode", BindingFlags.Instance | BindingFlags.Public, (UpdateFilter)0 );
+			ReflectionHelpers.Set( modBrowserUi, "updateNeeded", true );
+			ReflectionHelpers.Set( modBrowserUi, "updateFilterMode", (UpdateFilter)0 );
 
 			UIElement inputTextUi;    //UIInputTextField
-			if( ReflectionHelpers.GetField<UIElement>( modBrowserUi, "filterTextBox", BindingFlags.Instance | BindingFlags.NonPublic, out inputTextUi ) && inputTextUi != null ) {
-				ReflectionHelpers.SetField( inputTextUi, "currentString", BindingFlags.Instance | BindingFlags.NonPublic, (object)"" );
+			if( ReflectionHelpers.Get( modBrowserUi, "filterTextBox", out inputTextUi ) && inputTextUi != null ) {
+				ReflectionHelpers.Set( inputTextUi, "currentString", (object)"" );
 			}
 
 			//UIElement filterToggle;
@@ -97,13 +97,13 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 
 		private static string GetSelectedModBrowserMod( UIState modBrowser ) {
 			object modListItem;
-			if( !ReflectionHelpers.GetField( modBrowser, "selectedItem", out modListItem ) || modListItem == null ) {
+			if( !ReflectionHelpers.Get( modBrowser, "selectedItem", out modListItem ) || modListItem == null ) {
 				LogHelpers.Warn( "No selected mod list item." );
 				return null;
 			}
 
 			string modName;
-			if( !ReflectionHelpers.GetField( modListItem, "mod", out modName ) ) {
+			if( !ReflectionHelpers.Get( modListItem, "mod", out modName ) ) {
 				LogHelpers.Warn( "Invalid mod data in mod browser listed entry." );
 				return null;
 			}
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
 
 		private static string GetLocalModName( object localmod ) {
 			object rawModFile;
-			if( !ReflectionHelpers.GetField( localmod, "modFile", out rawModFile ) ) {
+			if( !ReflectionHelpers.Get( localmod, "modFile", out rawModFile ) ) {
 				LogHelpers.Warn( "Empty 'mod' field" );
 				return null;
 			}

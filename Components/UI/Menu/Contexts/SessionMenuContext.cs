@@ -108,7 +108,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 				Type classType = ReflectionHelpers.GetClassFromAssembly( ohModType.AssemblyQualifiedName, "TerrariaOverhaul.UI.OverhaulUI" );
 				if( classType == null ) { return false; }
 
-				ReflectionHelpers.SetStatic( classType, "mainMenuDataOffset", newValue );
+				ReflectionHelpers.Set( classType, null, "mainMenuDataOffset", newValue );
 			}
 
 			return true;

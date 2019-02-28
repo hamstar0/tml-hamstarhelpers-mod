@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			
 			
 			UIElement elem;
-			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) ) {
 				elem.Left.Pixels += UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.ResetMenuObjects();
 
 			UIElement elem;
-			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", BindingFlags.Instance | BindingFlags.NonPublic, out elem ) ) {
+			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) ) {
 				elem.Left.Pixels -= UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}

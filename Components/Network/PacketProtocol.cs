@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.Network {
 
 
 		internal static IDictionary<int, Type> GetProtocolTypes() {
-			IEnumerable<Type> protocolTypes = ReflectionHelpers.GetAllAvailableSubTypes( typeof(PacketProtocol) );
+			IEnumerable<Type> protocolTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof(PacketProtocol) );
 			IDictionary<int, Type> protocolTypeMap = new Dictionary<int, Type>();
 
 			foreach( Type subclassType in protocolTypes ) {

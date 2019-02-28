@@ -110,8 +110,8 @@ namespace HamstarHelpers.Services.Tml {
 						throw new HamstarException( "Invalid modReference array value " + i );
 					}
 
-					if( !ReflectionHelpers.GetField( modRef, "mod", out name ) ) { continue; }
-					if( !ReflectionHelpers.GetField( modRef, "target", out vers ) ) { continue; }
+					if( !ReflectionHelpers.Get( modRef, "mod", out name ) ) { continue; }
+					if( !ReflectionHelpers.Get( modRef, "target", out vers ) ) { continue; }
 					dict[ name ] = vers;
 				}
 				return dict;
@@ -139,8 +139,8 @@ namespace HamstarHelpers.Services.Tml {
 						throw new HamstarException( "Invalid modReference array value " + i );
 					}
 
-					if( !ReflectionHelpers.GetField( modRef, "mod", out name ) ) { continue; }
-					if( !ReflectionHelpers.GetField( modRef, "target", out vers ) ) { continue; }
+					if( !ReflectionHelpers.Get( modRef, "mod", out name ) ) { continue; }
+					if( !ReflectionHelpers.Get( modRef, "target", out vers ) ) { continue; }
 					dict[name] = vers;
 				}
 				return dict;

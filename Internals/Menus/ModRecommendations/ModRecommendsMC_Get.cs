@@ -86,13 +86,13 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 
 		public IList<Tuple<string, string>> GetRecommendsFromUI( string modName, ref string err ) {
 			UIPanel msgBox;
-			if( this.MyUI == null || !ReflectionHelpers.GetField<UIPanel>( this.MyUI, "modInfo", out msgBox ) ) {
+			if( this.MyUI == null || !ReflectionHelpers.Get( this.MyUI, "modInfo", out msgBox ) ) {
 				err = "No modInfo field.";
 				return new List<Tuple<string, string>>();
 			}
 
 			string modDesc;
-			if( !ReflectionHelpers.GetField<string>( msgBox, "text", BindingFlags.NonPublic | BindingFlags.Instance, out modDesc ) ) {
+			if( !ReflectionHelpers.Get( msgBox, "text", out modDesc ) ) {
 				err = "No modInfo.text field.";
 				return new List<Tuple<string, string>>();
 			}
