@@ -86,7 +86,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				subheader += " :--- |";
 			}
 
-			return header + "\n" + subheader + "\n" + output;
+			return header + "\n" + subheader + "\n" + output; LABEL PLAYERS AND SUBDIVIDE INTO ACCESSORIES AND VANITY
 		}
 	}
 }

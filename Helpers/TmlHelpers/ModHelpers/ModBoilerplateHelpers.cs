@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
+using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
@@ -15,7 +16,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				return null;
 			}
 
-			var methodInfo = apiClassType.GetMethod( callType );
+			MethodInfo methodInfo = apiClassType.GetMethod( callType );
 			if( methodInfo == null ) {
 				var argsList = args.SafeSelect( a => a.GetType().Name + ": " + a == null ? "null" : a.ToString() );
 				string argsListStr = string.Join( ", ", argsList );

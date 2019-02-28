@@ -142,6 +142,7 @@
     <Compile Include="Helpers\DotNetHelpers\FileHelpers_Binary.cs" />
     <Compile Include="Helpers\DotNetHelpers\FileHelpers_Text.cs" />
     <Compile Include="Helpers\DotNetHelpers\LinqHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_GetSet_Specific.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Methods.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_GetSet.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers.cs" />
