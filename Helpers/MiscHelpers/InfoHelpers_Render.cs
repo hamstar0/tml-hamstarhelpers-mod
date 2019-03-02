@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 
 
@@ -15,14 +14,15 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		public static string RenderMarkdownModTable( string[] mods ) {
 			int len = mods.Length;
-			string[] sanMods = mods.Select( m => FormattingHelpers.SanitizeMarkdown(m) ).ToArray();
 
 			string output = "| Mods:  | - | - |";
 			output += "\n| :--- | :--- | :--- |";
 
 			for( int i = 0; i < len; i++ ) {
 				output += '\n';
-				output += "| " + sanMods[i] + " | " + (++i < len ? sanMods[i] : "-") + " | " + (++i < len ? sanMods[i] : "-") + " |";
+				output += "| `" + mods[i] + "` | ";
+				output += (++i < len ? "`"+mods[i]+"`" : "-") + " | ";
+				output += (++i < len ? "`"+mods[i]+"`" : "-") + " |";
 			}
 
 			return output;
@@ -44,9 +44,8 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				cols = playerInfos.Count > cols ? playerInfos.Count : cols;
 
 				playerInfos["Name"] = "`" + playerInfos["Name"] + "`";
-
-				IEnumerable<string> data = playerInfos.Values.Select( v => FormattingHelpers.SanitizeMarkdown(v) );
-				columns += "| " + string.Join(" | ", data) + " |";
+				
+				columns += "| " + string.Join(" | ", playerInfos.Values) + " |";
 			}
 
 			string header = "| " + string.Join(" | ", playerInfos.Keys) + " |";
@@ -64,7 +63,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			IDictionary<string, string> playerEquips = InfoHelpers.GetPlayerEquipment( player );
 			int cols = playerEquips.Count;
 
-			string label = "*Player "+player.name+"'s ("+player.whoAmI+") equipment:*";
+			string label = "**Player `"+player.name+"`'s ("+player.whoAmI+") equipment:**";
 
 			string header = "| " + string.Join( " | ", playerEquips.Keys ) + " |";
 
@@ -73,8 +72,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				subheader += " :--- |";
 			}
 
-			IEnumerable<string> equips = playerEquips.Values.Select( v => FormattingHelpers.SanitizeMarkdown(v) );
-			string columns = "| " + string.Join( " | ", equips ) + " |";
+			string columns = "| `" + string.Join( "` | `", playerEquips.Values ) + "` |";
 
 			return label + "\n \n" + header + "\n" + subheader + "\n" + columns;
 		}
