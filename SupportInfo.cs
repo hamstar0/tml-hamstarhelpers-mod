@@ -126,7 +126,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportUrlUI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 
 			this.SupportText2UI = new UIText( "upkeep & improvement", 1f * scale );
-			this.SupportText2UI.Left.Set( -( xOff - ( 118f * scale ) ), 1f );
+			this.SupportText2UI.Left.Set( -( xOff - ( 120f * scale ) ), 1f );
 			this.SupportText2UI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 			//this.SupportText2UI.TextColor = Color.MediumSpringGreen;
 

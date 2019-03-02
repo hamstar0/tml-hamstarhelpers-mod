@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public partial class ReflectionHelpers {
 		public static object SafeCall( MethodInfo method, object methodContext, object[] args ) {
 			var paramInfos = method.GetParameters();
-
+			
 			if( args.Length != paramInfos.Length ) {
 				throw new HamstarException( "Mismatched input argument quantity. (for call " + method.Name + ")" );
 			}
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess, null, paramTypes, null );
 			if( method == null ) { return false; }
 
-			method.Invoke( instance, args );
+			returnVal = (T)ReflectionHelpers.SafeCall( method, instance, args );
 			return true;
 		}
 
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess, null, new Type[] { typeof( int ) }, null );
 			if( method == null ) { return false; }
 
-			method.Invoke( instance, args );
+			returnVal = (T)ReflectionHelpers.SafeCall( method, instance, args );
 			return true;
 		}
 	}

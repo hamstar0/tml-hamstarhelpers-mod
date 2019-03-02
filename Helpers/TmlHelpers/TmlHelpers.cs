@@ -26,8 +26,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 
 		public static IDictionary<Mod, Version> FindDependencyModMajorVersionMismatches( Mod mod ) {
-			var buildEditor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
-			var modRefs = buildEditor.ModReferences;
+			Services.Tml.BuildPropertiesEditor buildEditor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+			IDictionary<string, Version> modRefs = buildEditor.ModReferences;
 			var badModDeps = new Dictionary<Mod, Version>();
 
 			foreach( var kv in modRefs ) {
