@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,9 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		public static IList<string> GetGameData( IEnumerable<Mod> mods ) {
 			var list = new List<string>();
 
-			var modsList = mods.OrderBy( m => m.Name ).Select( m => m.DisplayName + " " + m.Version.ToString() );
-			string[] modsArr = modsList.ToArray();
+			var modsList = mods.OrderBy( m => m.Name )
+				.Select( m => FormattingHelpers.SanitizeMarkdown(m.DisplayName) + " " + m.Version.ToString() )
+				.ToArray();
 			bool isDay = Main.dayTime;
 			double timeOfDay = Main.time;
 			int halfDays = WorldHelpers.WorldStateHelpers.GetElapsedHalfDays();
@@ -39,8 +41,16 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			float gameZoom = Main.GameZoomTarget;
 			float uiZoom = Main.UIScale;
 
-			list.Add( InfoHelpers.RenderMarkdownModTable( modsArr ) );
+			list.Add( InfoHelpers.RenderMarkdownModTable( modsList ) );
 			list.Add( InfoHelpers.RenderMarkdownPlayerTable() );
+
+			for( int i=0; i<Main.player.Length; i++ ) {
+				Player plr = Main.player[i];
+				if( plr == null || !plr.active ) { continue; }
+
+				list.Add( InfoHelpers.RenderMarkdownPlayerEquipsTable(plr) );
+			}
+
 			list.Add( "Is day: " + isDay + ", Time of day/night: " + timeOfDay + ", Elapsed half days: " + halfDays );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
 			list.Add( "World name: " + Main.worldName + ", world size: " + worldSize );
 			list.Add( "World progress: " + (worldProg.Length > 0 ? string.Join(", ", worldProg) : "none") );

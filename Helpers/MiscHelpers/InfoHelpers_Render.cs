@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,14 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		public static string RenderMarkdownModTable( string[] mods ) {
 			int len = mods.Length;
-			string[] sanMods = mods.Select( m => m.Replace( "|", "\\|" ) ).ToArray();
+			string[] sanMods = mods.Select( m => FormattingHelpers.SanitizeMarkdown(m) ).ToArray();
 
 			string output = "| Mods:  | - | - |";
 			output += "\n| :--- | :--- | :--- |";
 
 			for( int i = 0; i < len; i++ ) {
 				output += '\n';
-				output += "| " + sanMods[i] + " | " + ( ++i < len ? sanMods[i] : "-" ) + " | " + ( ++i < len ? sanMods[i] : "-" ) + " |";
+				output += "| " + sanMods[i] + " | " + (++i < len ? sanMods[i] : "-") + " | " + (++i < len ? sanMods[i] : "-") + " |";
 			}
 
 			return output;
@@ -31,8 +32,8 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		////
 
 		public static string RenderMarkdownPlayerTable() {
-			IDictionary<string, string> playerInfos;
-			string output = "";
+			IDictionary<string, string> playerInfos = null;
+			string columns = "";
 			int cols = 0;
 
 			for( int i=0; i<Main.player.Length; i++ ) {
@@ -44,49 +45,38 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 				playerInfos["Name"] = "`" + playerInfos["Name"] + "`";
 
-				output += "| " + string.Join(" | ", playerInfos.Values) + " |";
+				IEnumerable<string> data = playerInfos.Values.Select( v => FormattingHelpers.SanitizeMarkdown(v) );
+				columns += "| " + string.Join(" | ", data) + " |";
 			}
 
-			string header = "| Players:  |";
-			for( int i = 1; i < cols; i++ ) {
-				header += " - |";
-			}
+			string header = "| " + string.Join(" | ", playerInfos.Keys) + " |";
 
 			string subheader = "|";
 			for( int i = 0; i < cols; i++ ) {
 				subheader += " :--- |";
 			}
 
-			return header+"\n"+subheader+"\n"+output;
+			return header+"\n"+subheader+"\n"+columns;
 		}
 
 
-		public static string RenderMarkdownPlayerEquipsTable() {
-			IDictionary<string, string> playerEquips;
-			string output = "";
-			int cols = 0;
+		public static string RenderMarkdownPlayerEquipsTable( Player player ) {
+			IDictionary<string, string> playerEquips = InfoHelpers.GetPlayerEquipment( player );
+			int cols = playerEquips.Count;
 
-			for( int i = 0; i < Main.player.Length; i++ ) {
-				Player plr = Main.player[i];
-				if( plr == null || !plr.active ) { continue; }
+			string label = "*Player "+player.name+"'s ("+player.whoAmI+") equipment:*";
 
-				playerEquips = InfoHelpers.GetPlayerEquipment( plr );
-				cols = playerEquips.Count > cols ? playerEquips.Count : cols;
-
-				output += "| " + string.Join( " | ", playerEquips.Values ) + " |";
-			}
-
-			string header = "| Player equipment:  |";
-			for( int i = 1; i < cols; i++ ) {
-				header += " - |";
-			}
+			string header = "| " + string.Join( " | ", playerEquips.Keys ) + " |";
 
 			string subheader = "|";
 			for( int i = 0; i < cols; i++ ) {
 				subheader += " :--- |";
 			}
 
-			return header + "\n" + subheader + "\n" + output; LABEL PLAYERS AND SUBDIVIDE INTO ACCESSORIES AND VANITY
+			IEnumerable<string> equips = playerEquips.Values.Select( v => FormattingHelpers.SanitizeMarkdown(v) );
+			string columns = "| " + string.Join( " | ", equips ) + " |";
+
+			return label + "\n \n" + header + "\n" + subheader + "\n" + columns;
 		}
 	}
 }

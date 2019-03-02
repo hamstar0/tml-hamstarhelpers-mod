@@ -151,6 +151,7 @@
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Obsolete.cs" />
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
     <Compile Include="Helpers\DotNetHelpers\SteamHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\FormattingHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\SystemHelpers.cs" />
     <Compile Include="Helpers\DustHelpers\DustHelpers.cs" />
     <Compile Include="Helpers\EntityHelpers\EntityHelpers.cs" />

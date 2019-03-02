@@ -172,6 +172,9 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		public static IDictionary<string, string> GetPlayerEquipment( Player player ) {
 			var dict = new Dictionary<string, string>();
+			int acc = 1;
+			int van = 1;
+			int unk = 1;
 
 			for( int i = 0; i < player.armor.Length; i++ ) {
 				string key;
@@ -185,11 +188,14 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				} else if( i == 2 ) {
 					key = "Legs";
 				} else if( PlayerItemHelpers.IsAccessorySlot( player, i ) ) {
-					key = "Accessory";
+					key = "Accessory "+acc;
+					acc++;
 				} else if( PlayerItemHelpers.IsVanitySlot( player, i ) ) {
-					key = "Vanity";
+					key = "Vanity "+van;
+					van++;
 				} else {
-					key = "?";
+					key = "? "+unk;
+					unk++;
 				}
 
 				dict[ key ] = item.HoverName;
