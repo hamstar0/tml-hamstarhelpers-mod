@@ -14,7 +14,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			var list = new List<string>();
 
 			var modsList = mods.OrderBy( m => m.Name )
-				.Select( m => FormattingHelpers.SanitizeMarkdown(m.DisplayName) + " " + m.Version.ToString() )
+				.SafeSelect( m => FormattingHelpers.SanitizeMarkdown(m.DisplayName) + " " + m.Version.ToString() )
 				.ToArray();
 			bool isDay = Main.dayTime;
 			double timeOfDay = Main.time;
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			float uiZoom = Main.UIScale;
 
 			list.Add( InfoHelpers.RenderMarkdownModTable( modsList ) );
-			list.Add( InfoHelpers.RenderMarkdownPlayerTable() );
+			list.Add( InfoHelpers.RenderMarkdownPlayersTable() );
 
 			for( int i=0; i<Main.player.Length; i++ ) {
 				Player plr = Main.player[i];
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			}
 
 			list.Add( "Is day: " + isDay + ", Time of day/night: " + timeOfDay + ", Elapsed half days: " + halfDays );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
-			list.Add( "World name: " + Main.worldName + ", world size: " + worldSize );
+			list.Add( "World name: " + FormattingHelpers.SanitizeMarkdown(Main.worldName) + ", world size: " + worldSize );
 			list.Add( "World progress: " + (worldProg.Length > 0 ? string.Join(", ", worldProg) : "none") );
 			list.Add( "Items on ground: " + activeItems + ", Npcs active: " + activeNpcs );
 			//list.Add( "Player info: " + string.Join( ", ", playerInfos ) );

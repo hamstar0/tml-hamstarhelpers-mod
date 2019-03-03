@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace HamstarHelpers.Components.DataStructures {
 	public partial class QuadTree<T> where T : class {
 		public T[] GetNearestElements( int x, int y, int amt ) {
 			return this.GetTreesNearCoordinates( x, y, amt )
-				.Select( q => q.Value )
+				.SafeSelect( q => q.Value )
 				.ToArray();
 		}
 

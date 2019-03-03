@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 			DataDumper.SetDumpSource( "CustomEntityList", () => {
 				lock( CustomEntityManager.MyLock ) {
 					return string.Join( "\n  ", this.WorldEntitiesByIndexes.OrderBy( kv => kv.Key )
-									.Select( kv => kv.Key + ": " + kv.Value?.ToString() ?? "null" ) );
+									.SafeSelect( kv => kv.Key + ": " + kv.Value?.ToString() ?? "null" ) );
 				}
 			} );
 

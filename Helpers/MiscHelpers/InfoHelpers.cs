@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.NPCHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
@@ -139,7 +140,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		public static IList<string> GetCurrentPlayerInfo() {
 			IDictionary<string, string> dict = InfoHelpers.GetPlayerInfo( Main.LocalPlayer );
 			dict["Name"] = "`" + dict["Name"] + "`";
-			return dict.Select( kv => kv.Key + ": " + kv.Value ).ToList();
+			return dict.SafeSelect( kv => kv.Key + ": " + kv.Value ).ToList();
 		}
 
 		public static IDictionary<string, string> GetPlayerInfo( Player player ) {
@@ -167,7 +168,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		[Obsolete( "use InfoHelpers.GetPlayerEquipment( Main.LocalPlayer )", true )]
 		public static IList<string> GetCurrentPlayerEquipment() {
 			IDictionary<string, string> dict = InfoHelpers.GetPlayerEquipment( Main.LocalPlayer );
-			return dict.Select( kv => kv.Key + ": " + kv.Value ).ToList();
+			return dict.SafeSelect( kv => kv.Key + ": " + kv.Value ).ToList();
 		}
 
 		public static IDictionary<string, string> GetPlayerEquipment( Player player ) {

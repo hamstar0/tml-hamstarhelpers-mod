@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 
 		public static IEnumerable<Type> GetAllAvailableSubTypesFromMods( Type parentType ) {
-			IEnumerable<Assembly> asses = ModLoader.LoadedMods.Select( mod => mod.GetType().Assembly );
+			IEnumerable<Assembly> asses = ModLoader.LoadedMods.SafeSelect( mod => mod.GetType().Assembly );
 			return ReflectionHelpers.GetAllAvailableSubTypesFromAssemblies( asses, parentType );
 		}
 

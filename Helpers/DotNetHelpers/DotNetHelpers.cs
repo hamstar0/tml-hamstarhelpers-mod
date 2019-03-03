@@ -14,11 +14,11 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		[Obsolete( "use StringifyDict<TKey, TValue>( IDictionary<TKey, TValue> dict )", true )]
 		public static string DictToString( IDictionary<object, object> dict ) {
-			return string.Join( ";", dict.Select( x => x.Key + "=" + x.Value ).ToArray() );
+			return string.Join( ";", dict.SafeSelect( x => x.Key + "=" + x.Value ).ToArray() );
 		}
 
 		public static string StringifyDict<TKey, TValue>( IDictionary<TKey, TValue> dict ) {
-			return string.Join( ";", dict.Select( x => x.Key + "=" + x.Value ) );
+			return string.Join( ";", dict.SafeSelect( x => x.Key + "=" + x.Value ) );
 		}
 
 		public static string Stringify( object obj, int charLimit=-1 ) {

@@ -3,7 +3,6 @@ using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Network.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 		private Player OwnerPlayer => this.OwnerPlayerWho == -1 ? null : Main.player[this.OwnerPlayerWho];
 
 		[JsonProperty]
-		private string[] ComponentNames => this.Components.Select( c => c.GetType().Name ).ToArray();
+		private string[] ComponentNames => this.Components.SafeSelect( c => c.GetType().Name ).ToArray();
 
 		[PacketProtocolIgnore]
 		[JsonIgnore]

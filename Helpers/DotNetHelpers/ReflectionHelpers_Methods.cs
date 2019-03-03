@@ -36,7 +36,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			returnVal = default( T );
 			if( instance == null ) { return false; }
 
-			Type[] paramTypes = args?.Select( o => o.GetType() ).ToArray()
+			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
 				?? new Type[] { };
 
 			Type objtype = instance.GetType();
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 			returnVal = default( T );
 			if( instance == null ) { return false; }
 
-			Type[] paramTypes = args?.Select( o => o.GetType() ).ToArray()
+			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
 				?? new Type[] { };
 
 			Type objtype = instance.GetType();

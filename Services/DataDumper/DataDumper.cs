@@ -115,7 +115,7 @@ namespace HamstarHelpers.Services.DataDumper {
 			lock( DataDumper.MyLock ) {
 				data = string.Join( "\r\n", dumpables
 					.ToDictionary( kv => kv.Key, getKey )
-					.Select( kv=>kv.Key+":\r\n"+kv.Value )
+					.SafeSelect( kv=>kv.Key+":\r\n"+kv.Value )
 				);
 			}
 			

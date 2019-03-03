@@ -116,13 +116,13 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 				}
 			}
 
-			IEnumerable<string[]> recommendations = lines.Skip( linePos ).Select(
-				line => line.Split( '=' ).Select( s => s.Trim() ).ToArray()
+			IEnumerable<string[]> recommendations = lines.Skip( linePos ).SafeSelect(
+				line => line.Split( '=' ).SafeSelect( s => s.Trim() ).ToArray()
 			);
 			
 			return recommendations.Where(
 				entry => entry.Length == 2
-			).Select(
+			).SafeSelect(
 				entry => Tuple.Create(entry[0], entry[1])
 			).ToList();
 

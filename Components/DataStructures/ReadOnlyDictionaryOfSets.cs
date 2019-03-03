@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using HamstarHelpers.Helpers.DotNetHelpers;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,7 +46,7 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		public int CountAll {
 			get {;
-				return this.Dict.Select( kv => kv.Value.Count ).Sum();
+				return this.Dict.SafeSelect( kv => kv.Value.Count ).Sum();
 			}
 		}
 
@@ -66,13 +67,13 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		public IEnumerable<V> Values {
 			get {
-				return this.Dict.Values.Select( v => v.First() );
+				return this.Dict.Values.SafeSelect( v => v.First() );
 			}
 		}
 
 		IEnumerable<V> IReadOnlyDictionary<K, V>.Values {
 			get {
-				return this.Dict.Values.Select( v => v.First() );
+				return this.Dict.Values.SafeSelect( v => v.First() );
 			}
 		}
 
@@ -104,13 +105,13 @@ namespace HamstarHelpers.Components.DataStructures {
 		////////////////
 
 		public IEnumerator<KeyValuePair<K, V>> GetEnumerator() {
-			return this.Dict.Select(
+			return this.Dict.SafeSelect(
 				kv => new KeyValuePair<K, V>( kv.Key, kv.Value.First() )
 			).GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator() {
-			return this.Dict.Select(
+			return this.Dict.SafeSelect(
 				kv => new KeyValuePair<K, V>( kv.Key, kv.Value.First() )
 			).GetEnumerator();
 		}

@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				}
 
 				return new HashSet<CustomEntity>(
-					entIdxs.Select( i => (CustomEntity)mngr.WorldEntitiesByIndexes[i] )
+					entIdxs.SafeSelect( i => (CustomEntity)mngr.WorldEntitiesByIndexes[i] )
 				);
 			}
 		}

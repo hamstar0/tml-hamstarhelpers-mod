@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		////
 
-		public static string RenderMarkdownPlayerTable() {
+		public static string RenderMarkdownPlayersTable() {
 			IDictionary<string, string> playerInfos = null;
 			string columns = "";
 			int cols = 0;
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				playerInfos = InfoHelpers.GetPlayerInfo(plr);
 				cols = playerInfos.Count > cols ? playerInfos.Count : cols;
 
-				playerInfos["Name"] = "`" + playerInfos["Name"] + "`";
+				playerInfos["Name"] = FormattingHelpers.SanitizeMarkdown( playerInfos["Name"] );
 				
 				columns += "| " + string.Join(" | ", playerInfos.Values) + " |";
 			}
@@ -63,18 +63,25 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			IDictionary<string, string> playerEquips = InfoHelpers.GetPlayerEquipment( player );
 			int cols = playerEquips.Count;
 
-			string label = "**Player `"+player.name+"`'s ("+player.whoAmI+") equipment:**";
+			string playerLabel = "**Player "+FormattingHelpers.SanitizeMarkdown(player.name)+"'s ("+player.whoAmI+") equipment:**";
 
-			string header = "| " + string.Join( " | ", playerEquips.Keys ) + " |";
+			string equipsLabels = cols > 0 ? string.Join( " | ", playerEquips.Keys ) : "-";
+			string header = "| " + equipsLabels + " |";
 
 			string subheader = "|";
-			for( int i = 0; i < cols; i++ ) {
+			if( cols > 0 ) {
+				for( int i = 0; i < cols; i++ ) {
+					subheader += " :--- |";
+				}
+			} else {
 				subheader += " :--- |";
 			}
 
-			string columns = "| `" + string.Join( "` | `", playerEquips.Values ) + "` |";
+			string equips = string.Join( " | ", playerEquips.Values.SafeSelect(e=>FormattingHelpers.SanitizeMarkdown(e)) );
+			string equipsCols = cols > 0 ? equips : "-";
+			string columns = "| " + equipsCols + " |";
 
-			return label + "\n \n" + header + "\n" + subheader + "\n" + columns;
+			return playerLabel + "\n \n" + header + "\n" + subheader + "\n" + columns;
 		}
 	}
 }
