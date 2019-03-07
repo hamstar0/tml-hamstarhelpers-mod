@@ -119,7 +119,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 							this.Append( this.IconElem );
 						}
 					} catch( Exception e ) {
-						LogHelpers.Log( "!ModHelpers.UIModData.CTor - " + e.ToString() );
+						LogHelpers.Warn( e.ToString() );
 					}
 				}
 			}
@@ -200,26 +200,35 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 
 		public override int CompareTo( object obj ) {
-			if( this.Mod.Name == ModHelpersMod.Instance.Name ) {
+			var other = obj as UIModData;
+			if( other == null ) {   // Other object types are always sorted less than UIModData
+				return 1;
+			}
+
+			// Always sort own mod to top; this mod's configs should be available first
+			if( other.Mod.Name == ModHelpersMod.Instance.Name ) {
+				return 1;
+			} else if( this.Mod.Name == ModHelpersMod.Instance.Name ) {
 				return -1;
 			}
 
-			if( obj != null && obj is UIModData ) {
-				var other = (UIModData)obj;
+			try {
+				// Prioritize github'd mods
+				if( ModMetaDataManager.HasGithub( this.Mod ) && !ModMetaDataManager.HasGithub( other.Mod ) ) {
+					return -1;
+				} else if( !ModMetaDataManager.HasGithub( this.Mod ) && ModMetaDataManager.HasGithub( other.Mod ) ) {
+					return 1;
+				}
 
-				try {
-					if( ModMetaDataManager.HasGithub( this.Mod ) && !ModMetaDataManager.HasGithub( other.Mod ) ) {
-						return -1;
-					}
-					if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
-						return -1;
-					}
-				} catch( Exception ) { }
+				// Prioritize config'd mods
+				if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
+					return -1;
+				} else if( !ModMetaDataManager.HasConfig( this.Mod ) && ModMetaDataManager.HasConfig( other.Mod ) ) {
+					return 1;
+				}
+			} catch { }
 
-				return string.Compare( this.Mod.Name, other.Mod.Name );
-			}
-
-			return -1;
+			return string.Compare( other.Mod.Name, this.Mod.Name );
 		}
 
 		////////////////

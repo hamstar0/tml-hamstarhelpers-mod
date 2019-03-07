@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 					{ "Game Mode(s)",           "New game rules; added end goals, progression, setting, session, etc." },
 					{ "Quests",                 "Adds goals for player to progress the game or gain profit from." },
-					{ "Informational",          "Adds game state reports (time, weather, etc.), reports game stats, etc." },
+					{ "Informational",          "Adds game state reports (time, weather, progress, scores, etc.)." },
 					{ "Specialized",            "Focuses on one main specific, well-defined function." },
 					//{ "Multi-faceted",          "Does more than one thing, whether focusing mainly on one thing or not." },
 					{ "Replacements",           "Primarily meant as an alternative to something the game already provides." },

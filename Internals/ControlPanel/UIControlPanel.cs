@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		private static object ModDataListLock = new object();
+
+		private static IList<string> SupportMessages = new List<string> {
+			"Buy me coffee for coding! :)",
+			"Did you know I make other mods?",
+			"Want more?",
+			"Please support Mod Helpers!"
+		};
 
 
 
@@ -48,6 +56,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private bool ResetIssueInput = false;
 		private bool SetDialogToClose = false;
 		private bool IsPopulatingList = false;
+		
+		private int RandomSupportTextIdx = -1;
 
 
 
@@ -62,6 +72,12 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public override void OnInitialize() {
+			this.RandomSupportTextIdx = Main.rand.Next( UIControlPanel.SupportMessages.Count );
+			Promises.AddWorldUnloadEachPromise( () => {
+				this.RandomSupportTextIdx = Main.rand.Next( UIControlPanel.SupportMessages.Count );
+				this.SupportUrl.TextElem.SetText( UIControlPanel.SupportMessages[this.RandomSupportTextIdx] );
+			} );
+
 			this.InitializeComponents();
 		}
 

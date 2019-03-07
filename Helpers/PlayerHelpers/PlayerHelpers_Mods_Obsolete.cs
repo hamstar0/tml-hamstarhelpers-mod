@@ -11,13 +11,12 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			var wingmod = ModLoader.GetMod( "Wing Slot" );
 
 			if( wingmod != null ) {
-				PlayerHelpers.WingModReset( wingmod, player );
+				PlayerHelpers._WingModReset( wingmod, player );
 			}
 		}
 
 
-		private static void WingModReset( Mod wingmod, Player player ) {
-			object _;
+		private static void _WingModReset( Mod wingmod, Player player ) {
 			ModPlayer mywingplayer = player.GetModPlayer( wingmod, "WingSlotPlayer" );
 			Item wingItem;
 

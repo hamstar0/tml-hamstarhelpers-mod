@@ -37,35 +37,35 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		private bool IsClicking = false;
 		private bool IsExtended = false;
 
-		private float XOff;
+		private float Width;
 
 
 
 		////////////////
 
-		internal SupportInfoDisplay( float xOff = 244f, float yBeg = 12f, float rowHeight = 30f, float scale = 0.8f ) {
+		internal SupportInfoDisplay( float width = 248f, float yBeg = 12f, float rowHeight = 30f, float scale = 0.8f ) {
 			if( Main.dedServ ) { return; }
 
 			float y = yBeg;
 			float row = 0;
 			var mymod = ModHelpersMod.Instance;
-			this.XOff = xOff;
+			this.Width = width;
 
 			////
 
 			this.HeadTextUI = new UIText( "Powered by:", 1.1f * scale );
-			this.HeadTextUI.Left.Set( -xOff, 1f );
+			this.HeadTextUI.Left.Set( -width, 1f );
 			this.HeadTextUI.Top.Set( (4f + y) * scale, 0f );
 			this.HeadTextUI.TextColor = Color.Lerp( Color.White, Color.Gold, 0.25f );
 			this.HeadTextUI.Recalculate();
 
 			this.HeadUrlUI = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v" + mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f * scale );
-			this.HeadUrlUI.Left.Set( -( xOff - ( 114f * scale ) ), 1f );
+			this.HeadUrlUI.Left.Set( -( width - ( 114f * scale ) ), 1f );
 			this.HeadUrlUI.Top.Set( (4f + y) * scale, 0f );
 			this.HeadUrlUI.Recalculate();
 
 			this.ExtendTextUI = new UIText( "..." );
-			this.ExtendTextUI.Left.Set( -(xOff * 0.5f) - 16f, 1f );
+			this.ExtendTextUI.Left.Set( -(width * 0.5f) - 16f, 1f );
 			this.ExtendTextUI.Top.Set( (-8f + y + rowHeight) * scale, 0f );
 			this.ExtendTextUI.Recalculate();
 
@@ -75,11 +75,11 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			row += 1;
 
 			this.ModderTextUI = new UIText( "Do you make mods?", 1f * scale );
-			this.ModderTextUI.Left.Set( -xOff, 1f );
+			this.ModderTextUI.Left.Set( -width, 1f );
 			this.ModderTextUI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 
 			this.ModderUrlUI = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true, 1f * scale );
-			this.ModderUrlUI.Left.Set( -( xOff - ( 166f * scale ) ), 1f );
+			this.ModderUrlUI.Left.Set( -( width - ( 166f * scale ) ), 1f );
 			this.ModderUrlUI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 
 			////
@@ -117,16 +117,16 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			row += 1;
 
 			this.SupportText1UI = new UIText( "Please", 1f * scale );
-			this.SupportText1UI.Left.Set( -xOff, 1f );
+			this.SupportText1UI.Left.Set( -width, 1f );
 			this.SupportText1UI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 			//this.SupportText1UI.TextColor = Color.MediumSpringGreen;
 
 			this.SupportUrlUI = new UIWebUrl( UITheme.Vanilla.Clone(), "support", "https://www.patreon.com/hamstar0", true, 1f * scale );
-			this.SupportUrlUI.Left.Set( -( xOff - ( 54f * scale ) ), 1f );
+			this.SupportUrlUI.Left.Set( -( width - ( 54f * scale ) ), 1f );
 			this.SupportUrlUI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 
 			this.SupportText2UI = new UIText( "upkeep & improvement", 1f * scale );
-			this.SupportText2UI.Left.Set( -( xOff - ( 120f * scale ) ), 1f );
+			this.SupportText2UI.Left.Set( -( width - ( 120f * scale ) ), 1f );
 			this.SupportText2UI.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 			//this.SupportText2UI.TextColor = Color.MediumSpringGreen;
 
@@ -175,9 +175,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		public Rectangle GetInnerBox() {
 			return new Rectangle(
-				Main.screenWidth - (int)this.XOff - 4,
+				Main.screenWidth - (int)this.Width - 4,
 				4,
-				(int)this.XOff,
+				(int)this.Width,
 				(this.IsExtended ? 78 : 40 )   //104:40
 			);
 		}

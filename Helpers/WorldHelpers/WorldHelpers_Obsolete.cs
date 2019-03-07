@@ -10,24 +10,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		[Obsolete( "use WorldStateHelpers.VanillaNightDuration", true )]
 		public readonly static int VanillaNightDuration = 32400;
-
-
-		[Obsolete( "use WorldHelpers.GetUniqueIdWithSeed()", true )]
-		public static string GetUniqueId() {
-			return WorldHelpers._GetUniqueId( false );
-		}
-
-		[Obsolete( "use WorldHelpers.GetUniqueIdWithSeed()", true )]
-		public static string GetUniqueId( bool asFileName ) {
-			return WorldHelpers._GetUniqueId( asFileName );
-		}
-		internal static string _GetUniqueId( bool asFileName ) {
-			if( asFileName ) {
-				return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID;
-			} else {
-				return FileHelpers.SanitizePath( Main.worldName ) + ":" + Main.worldID;
-			}
-		}
+		
 
 		[Obsolete( "use WorldStateHelpers.IsBeingInvaded()", true )]
 		public static bool IsBeingInvaded() {

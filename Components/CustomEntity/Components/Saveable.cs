@@ -26,7 +26,7 @@ namespace HamstarHelpers.Components.CustomEntity.Components {
 		////////////////
 
 		public static string GetFileNameBase() {
-			return "world_" + WorldHelpers.GetUniqueIdWithSeed() + "_ents";
+			return "world_" + WorldHelpers.GetUniqueId(true) + "_ents";
 		}
 
 

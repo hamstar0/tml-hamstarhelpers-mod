@@ -21,6 +21,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public readonly static string ModLockTitle = "Mods locked for current world";
 
 
+
 		////////////////
 
 		public static void OnPostSetupContent() {
@@ -35,7 +36,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 
 		////////////////
-
+		
 		private void InitializeComponents() {
 			var mymod = ModHelpersMod.Instance;
 			UIControlPanel self = this;
@@ -220,8 +221,9 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			serverbrowser_url.Top.Set( top, 0f );
 			this.InnerContainer.Append( serverbrowser_url );
 			serverbrowser_url.Left.Set( -serverbrowser_url.GetDimensions().Width * 0.5f, 0.5f );*/
-
-			this.SupportUrl = new UIWebUrl( this.Theme, "Support my mods!", "https://www.patreon.com/hamstar0", false );
+			
+			string supportMsg = UIControlPanel.SupportMessages[ this.RandomSupportTextIdx ];
+			this.SupportUrl = new UIWebUrl( this.Theme, supportMsg, "https://www.patreon.com/hamstar0", false );
 			this.SupportUrl.Top.Set( top, 0f );
 			this.InnerContainer.Append( this.SupportUrl );
 			//this.SupportUrl.Left.Set( -this.SupportUrl.GetDimensions().Width, 1f );

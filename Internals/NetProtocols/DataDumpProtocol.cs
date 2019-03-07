@@ -3,7 +3,6 @@ using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Services.DataDumper;
-using System;
 using Terraria;
 
 
@@ -21,11 +20,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				DataDumper.DumpToFile( out _ );
 			}
 
-			return true;
+			return false;
 		}
 
-		protected override void ReceiveReply() {
-			throw new HamstarException( "ReceiveReply not implemented." );
-		}
+		protected override void ReceiveReply() { }
 	}
 }

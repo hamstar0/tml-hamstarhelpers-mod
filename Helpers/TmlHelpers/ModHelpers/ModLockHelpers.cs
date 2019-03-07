@@ -175,20 +175,20 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var mymod = ModHelpersMod.Instance;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			tags.Set( "world_mod_lock_count", this.WorldModLocks.Count );
+			tags["world_mod_lock_count"] = this.WorldModLocks.Count;
 
 			int i = 0;
 			foreach( var kv in this.WorldModLocks ) {
 				string worldUid = kv.Key;
 				ISet<string> modNames = kv.Value;
 
-				tags.Set( "world_mod_lock_uid_" + i, worldUid );
-				tags.Set( "world_mod_lock_mods_" + i + "_count", modNames.Count );
+				tags["world_mod_lock_uid_" + i] = worldUid;
+				tags["world_mod_lock_mods_" + i + "_count"] = modNames.Count;
 
 				int j = 0;
 				foreach( string modName in modNames ) {
 //LogHelpers.Log( "Save world_mod_lock_mods_" + i + "_" + j +": "+modName );
-					tags.Set( "world_mod_lock_mods_" + i + "_" + j, modName );
+					tags["world_mod_lock_mods_" + i + "_" + j] = modName;
 					j++;
 				}
 				i++;

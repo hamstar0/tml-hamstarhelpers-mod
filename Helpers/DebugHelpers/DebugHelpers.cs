@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 	public static partial class DebugHelpers {
 		public static string GetCurrentContext( int stackFrameIdx=1 ) {
 			try {
-				StackTrace stack = new StackTrace();
+				var stack = new StackTrace();
 				StackFrame frame = stack.GetFrame( stackFrameIdx );
 				MethodBase method = frame.GetMethod();
 				string namespaceBase = method.DeclaringType.Namespace.Split('.')[0];

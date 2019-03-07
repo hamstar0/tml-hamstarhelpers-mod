@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
 
-			tags.Set( "half_days_elapsed_" + myworld.ObsoleteId, (int)this.HalfDaysElapsed );
+			tags["half_days_elapsed_" + myworld.ObsoleteId] = (int)this.HalfDaysElapsed;
 		}
 
 		////////////////

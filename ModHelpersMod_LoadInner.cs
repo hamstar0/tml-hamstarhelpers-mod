@@ -91,7 +91,7 @@ namespace HamstarHelpers {
 
 		private void LoadDataSources() {
 			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
-				return "  " + WorldHelpers.GetUniqueIdWithSeed();
+				return "  " + WorldHelpers.GetUniqueIdWithSeed() + " (net mode: "+Main.netMode+")";
 			} );
 
 			DataDumper.SetDumpSource( "PlayerUid", () => {
