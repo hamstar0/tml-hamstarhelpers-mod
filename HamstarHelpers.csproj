@@ -83,11 +83,11 @@
     <Compile Include="Components\CustomEntity\Internal\Converter.cs" />
     <Compile Include="Components\CustomEntity\Serializable.cs" />
     <Compile Include="Components\DataStructures\Extensions.cs" />
-    <Compile Include="Components\DataStructures\QuadTree_Test.cs" />
-    <Compile Include="Components\DataStructures\QuadTree_Get.cs" />
-    <Compile Include="Components\DataStructures\QuadTree_Set.cs" />
-    <Compile Include="Components\DataStructures\QuadTree_GetNear.cs" />
-    <Compile Include="Components\DataStructures\QuadTree.cs" />
+    <Compile Include="Components\DataStructures\QuadTree\QuadTree_Test.cs" />
+    <Compile Include="Components\DataStructures\QuadTree\QuadTree_Get.cs" />
+    <Compile Include="Components\DataStructures\QuadTree\QuadTree_Set.cs" />
+    <Compile Include="Components\DataStructures\QuadTree\QuadTree_GetNear.cs" />
+    <Compile Include="Components\DataStructures\QuadTree\QuadTree.cs" />
     <Compile Include="Components\DataStructures\ReadOnlyDictionaryOfSets.cs" />
     <Compile Include="Components\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Components\DataStructures\WorldDictionary.cs" />

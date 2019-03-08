@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Components.DataStructures.QuadTree {
 	public partial class QuadTree<T> where T : class {
 		public T Get( int x, int y ) {
 			if( this.X == x && this.Y == y ) {

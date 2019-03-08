@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Components.DataStructures.QuadTree {
 	public partial class QuadTree<T> where T : class {
 		public void Test() {
 			var overlaps = new Dictionary<int, ISet<int>>();

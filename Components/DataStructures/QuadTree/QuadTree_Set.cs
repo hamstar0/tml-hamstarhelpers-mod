@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Components.DataStructures.QuadTree {
 	public partial class QuadTree<T> where T : class {
 		public void Set( int x, int y, T val ) {
 			if( this.Parent == null ) {

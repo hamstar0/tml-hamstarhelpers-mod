@@ -6,7 +6,7 @@ using System.Collections;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Components.DataStructures.QuadTree {
 	public partial class QuadTree<T> : IEnumerable where T : class {
 		public int X { get; private set; }
 		public int Y { get; private set; }
