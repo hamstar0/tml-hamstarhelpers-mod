@@ -51,7 +51,27 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 
 		public static bool IsWorldSafelyBeingPlayed() {
-			return ModHelpersMod.Instance.LoadHelpers.StartupDelay >= ( 60 * 2 );
+			var mymod = ModHelpersMod.Instance;
+			bool notSafelyPlayed = mymod.LoadHelpers.StartupDelay >= ( 60 * 2 );
+
+			if( mymod.Config.DebugModeHelpersInfo && !notSafelyPlayed ) {
+				if( Main.netMode != 2 && !Main.dedServ ) {
+					var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
+					LogHelpers.WarnOnce( "StartupDelay: "+mymod.LoadHelpers.StartupDelay+" ("+(60 * 2)+"?)"
+						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsClientPlaying_Hackish+" (true?)"
+						+ ", IsSynced: "+myplayer.Logic.IsSynced+" (true?)" );
+				} else {
+					var myworld = mymod.GetModWorld<ModHelpersWorld>();
+					LogHelpers.WarnOnce( "StartupDelay: "+mymod.LoadHelpers.StartupDelay
+						+ ", IsModLoaded(): "+LoadHelpers.IsModLoaded()+" (true?)"
+						+ ", HasObsoleteId: "+myworld.HasObsoleteId+" (false?)"
+						+ ", HasServerBegunHavingPlayers_Hackish: " + mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish+" (true?)"
+						+ ", HasSetupContent: "+mymod.HasSetupContent+" (true?)"
+						+ ", HasAddedRecipeGroups: "+mymod.HasAddedRecipeGroups+" (true?)"
+						+ ", HasAddedRecipes: "+mymod.HasAddedRecipes+" (true?)" );
+				}
+			}
+			return notSafelyPlayed;
 		}
 
 

@@ -88,7 +88,16 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 				LogHelpers.Log( "~" + msg );
 			}
 		}
+		
+		public static void AlertOnce( string msg = "" ) {
+			LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + ( ( msg != "" ) ? " - " + msg : "" ) );
+		}
 
+		public static void WarnOnce( string msg = "" ) {
+			LogHelpers.LogOnce( "!" + DebugHelpers.GetCurrentContext( 2 ) + ( ( msg != "" ) ? " - " + msg : "" ) );
+		}
+
+		////
 
 		public static bool LogOnceReset( string msg ) {
 			lock( LogHelpers.MyLock ) {

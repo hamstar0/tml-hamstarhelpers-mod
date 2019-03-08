@@ -13,6 +13,7 @@ namespace HamstarHelpers {
 
 		public string VersionSinceUpdate = new Version(0,0,0,0).ToString();
 
+		public bool DebugModeHelpersInfo = true;
 		public bool DebugModeNetInfo = false;
 		public bool DebugModeUnhandledExceptionLogging = true;
 		public bool DebugModeDumpAlsoServer = false;

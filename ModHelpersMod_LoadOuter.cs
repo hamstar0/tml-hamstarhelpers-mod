@@ -188,11 +188,12 @@ namespace HamstarHelpers {
 			this.PacketProtocolMngr.OnPostSetupContent();
 			this.Promises.OnPostSetupContent();
 			this.ModMetaDataMngr.OnPostSetupContent();
-			this.GetModVersion.OnPostSetupContent();
-			this.GetModTags.OnPostSetupContent();
 			this.PlayerIdentityHelpers.OnPostSetupContent();
 
 			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {
+				this.GetModVersion.OnPostSetupContent();
+				this.GetModTags.OnPostSetupContent();
+
 				Menus.OnPostSetupContent();
 				UIControlPanel.OnPostSetupContent();
 			}

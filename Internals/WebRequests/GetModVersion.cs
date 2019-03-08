@@ -31,6 +31,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		internal readonly static object PromiseValidatorKey;
 		public readonly static PromiseValidator ModVersionPromiseValidator;
 
+
 		////////////////
 
 		static GetModVersion() {
@@ -38,8 +39,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			GetModVersion.ModVersionPromiseValidator = new PromiseValidator( GetModVersion.PromiseValidatorKey );
 		}
 
-
-
+		
 
 		////////////////
 

@@ -54,20 +54,19 @@ namespace HamstarHelpers.Internals.WebRequests {
 		public static string ModTagsUrl => "https://script.google.com/macros/s/AKfycbwakEvF9DDYGup34DJJjcxPd0MUApNpl2GalZgr/exec";
 			//"http://hamstar.pw/hamstarhelpers/mod_info/";	<- express
 
+		
 		////////////////
 
 		static GetModTags() {
 			GetModTags.PromiseValidatorKey = new object();
 			GetModTags.TagsReceivedPromiseValidator = new PromiseValidator( GetModTags.PromiseValidatorKey );
 		}
-
-
-
-
 		
+		
+
 		////////////////
 		
-		internal static void CacheAllModTagsAsync() {
+		private static void CacheAllModTagsAsync() {
 			ThreadPool.QueueUserWorkItem( _ => {
 				lock( GetModTags.MyLock ) {
 					var mymod = ModHelpersMod.Instance;
@@ -91,8 +90,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			} );
 		}
 
-
-
+		
 		private static void RetrieveAllModTagsAsync( Action<IDictionary<string, ISet<string>>, bool> onCompletion ) {
 			Func<string, Tuple<IDictionary<string, ISet<string>>, bool>> onGetResponse = ( string output ) => {
 				bool found = false;
