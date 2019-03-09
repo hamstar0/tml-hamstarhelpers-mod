@@ -16,7 +16,7 @@ using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private static object MyLock = new object();
+		private readonly static object MyLock = new object();
 
 		private readonly static object MyValidatorKey;
 		public readonly static PromiseValidator LoadedAllValidator;
@@ -59,6 +59,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		private IList<Item> ItemPool = null;
 		private IList<NPC> NPCPool = null;
 		private IList<Projectile> ProjPool = null;
+
 
 
 		////////////////

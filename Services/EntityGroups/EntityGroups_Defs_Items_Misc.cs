@@ -162,7 +162,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 					case ItemID.CrimsonKey:
 					case ItemID.CrimsonKeyMold://?
-				
+
 					case ItemID.TheUndertaker:
 					case ItemID.TheRottedFork:
 					case ItemID.CrimsonRod:
@@ -229,6 +229,102 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 
 					return false;
+				} );
+
+			////
+
+			addDef( "Any Vanilla Alchemy Herb", null,
+				( item, grps ) => {
+					switch( item.type ) {
+					case ItemID.Daybloom:
+					case ItemID.Blinkroot:
+					case ItemID.Moonglow:
+					case ItemID.Waterleaf:
+					case ItemID.Deathweed:
+					case ItemID.Fireblossom:
+					case ItemID.Shiverthorn:
+						return true;
+					default:
+						return false;
+					}
+				} );
+
+			addDef( "Any Vanilla Alchemy Fish", null,
+				( item, grps ) => {
+					switch( item.type ) {
+					case ItemID.DoubleCod:
+					case ItemID.Damselfish:
+					case ItemID.ArmoredCavefish:
+					case ItemID.CrimsonTigerfish:
+					case ItemID.Obsidifish:
+					case ItemID.Prismite:
+					case ItemID.PrincessFish:
+					case ItemID.Hemopiranha:
+					case ItemID.Stinkfish:
+					case ItemID.VariegatedLardfish:
+					case ItemID.FrostMinnow:
+					case ItemID.Ebonkoi:
+					case ItemID.SpecularFish:
+					case ItemID.ChaosFish:
+						return true;
+					default:
+						return false;
+					}
+				} );
+
+			addDef( "Any Vanilla Alchemy Misc", null,
+				( item, grps ) => {
+					switch( item.type ) {
+					case ItemID.Mushroom:
+					case ItemID.GlowingMushroom:
+					case ItemID.Gel:
+					case ItemID.Cactus:
+					case ItemID.FallenStar:
+					case ItemID.PinkGel:
+					case ItemID.Lens:
+					case ItemID.IronOre:
+					case ItemID.LeadOre:
+					case ItemID.GoldOre:
+					case ItemID.PlatinumOre:
+					case ItemID.Obsidian:
+					case ItemID.Cobweb:
+					case ItemID.CrispyHoneyBlock:
+					case ItemID.Coral:
+					case ItemID.Amber:
+					case ItemID.Feather:
+					case ItemID.AntlionMandible:
+					case ItemID.SharkFin:
+					case ItemID.Stinger:
+					case ItemID.WormTooth:
+					case ItemID.RottenChunk:
+					case ItemID.Vertebrae:
+					case ItemID.Bone:
+					case ItemID.PixieDust:
+					case ItemID.CrystalShard:
+					case ItemID.UnicornHorn:
+					case ItemID.FragmentNebula:
+					case ItemID.FragmentSolar:
+					case ItemID.FragmentStardust:
+					case ItemID.FragmentVortex:
+						return true;
+					default:
+						return false;
+					}
+				} );
+
+			addDef( "Any Vanilla Alchemy Ingredient", new string[] {
+					"Any Vanilla Alchemy Herb",
+					"Any Vanilla Alchemy Fish",
+					"Any Vanilla Alchemy Misc"
+				},
+				( item, grps ) => {
+					switch( item.type ) {
+					case ItemID.BottledWater:
+					case ItemID.Bottle:
+						return true;
+					default:
+						return false;
+					}
 				} );
 		}
 	}

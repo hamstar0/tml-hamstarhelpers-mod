@@ -83,6 +83,12 @@ namespace HamstarHelpers.Services.Promises {
 			var mymod = ModHelpersMod.Instance;
 			bool isValidated, isEach;
 
+			if( mymod.Promises == null ) {
+				throw new HamstarException( "Promises not loaded." );
+			}
+			if( validatorKey == null ) {
+				throw new HamstarException( "No validation key specified." );
+			}
 			if( validator.ValidatorKey != validatorKey ) {
 				throw new HamstarException( "Validation failed." );
 			}

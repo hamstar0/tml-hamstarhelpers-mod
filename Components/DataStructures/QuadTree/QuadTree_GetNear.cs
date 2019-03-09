@@ -7,14 +7,14 @@ using System.Linq;
 namespace HamstarHelpers.Components.DataStructures.QuadTree {
 	public partial class QuadTree<T> where T : class {
 		public T[] GetNearestElements( int x, int y, int amt ) {
-			return this.GetTreesNearCoordinates( x, y, amt )
+			return this.GetValueTreesNearCoordinates( x, y, amt )
 				.SafeSelect( q => q.Value )
 				.ToArray();
 		}
 
 		////
 
-		private IList<QuadTree<T>> GetTreesNearCoordinates( int x, int y, int amt ) {
+		private IList<QuadTree<T>> GetValueTreesNearCoordinates( int x, int y, int amt ) {
 			var list = new SortedList<double, QuadTree<T>>();
 			var checks = new Dictionary<QuadTree<T>, bool>();
 			
@@ -29,11 +29,13 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 
 
 			Action<QuadTree<T>> listDeepestTreeAt = ( tree ) => {
-				QuadTree<T> deepestTree = tree.GetDeepestTreeAt( x, y, checks );
+				QuadTree<T> deepestTree = tree.GetDeepestTreeNearCoordinates( x, y, checks );
 
 				this.RegisterTreeChecks( checks, deepestTree );
-				
-				list[ getDist(deepestTree) ] = deepestTree;
+
+				if( deepestTree != null && deepestTree.Value != null ) {
+					list[ getDist(deepestTree) ] = deepestTree;
+				}
 			};
 
 
@@ -42,8 +44,8 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			// Check top level node:
 			if( this.Value != null ) {
 				list[ getDist(this) ] = this;
-				checks[ this ] = this.IsLeaf;
 			}
+			checks[ this ] = this.IsLeaf;
 
 			// Check each quad in tandem:
 			for( int i = 0; i < (amt + 1); i++ ) {
@@ -53,19 +55,19 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 				var blq = this.BotLeftQuad;
 				var brq = this.BotRightQuad;
 
-				if( tlq != null && !checks.HardGet( tlq ) ) {
+				if( tlq != null && !checks.GetOrDefault( tlq ) ) {
 					listDeepestTreeAt( tlq );
 					isDeadEnd = false;
 				}
-				if( trq != null && !checks.HardGet( trq ) ) {
+				if( trq != null && !checks.GetOrDefault( trq ) ) {
 					listDeepestTreeAt( trq );
 					isDeadEnd = false;
 				}
-				if( blq != null && !checks.HardGet( blq ) ) {
+				if( blq != null && !checks.GetOrDefault( blq ) ) {
 					listDeepestTreeAt( blq );
 					isDeadEnd = false;
 				}
-				if( brq != null && !checks.HardGet( brq ) ) {
+				if( brq != null && !checks.GetOrDefault( brq ) ) {
 					listDeepestTreeAt( brq );
 					isDeadEnd = false;
 				}
@@ -79,7 +81,7 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 
 		////////////////
 
-		public QuadTree<T> GetDeepestTreeAt( int x, int y, IDictionary<QuadTree<T>, bool> avoid ) {
+		public QuadTree<T> GetDeepestTreeNearCoordinates( int x, int y, IDictionary<QuadTree<T>, bool> avoid ) {
 			if( x == this.X && y == this.Y ) {
 				return this;
 			}
@@ -92,20 +94,20 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			var brq = this.BotRightQuad;
 
 			if( x < this.X && (tlq != null || blq != null) &&
-					(tlq == null || !avoid.HardGet(tlq)) &&
-					(blq == null || !avoid.HardGet(blq)) ) {
-				if( y < this.Y && tlq != null && !avoid.HardGet( tlq ) ) {
-					quad = tlq.GetDeepestTreeAt( x, y, avoid );
-				} else if( blq != null && !avoid.HardGet( blq ) ) {
-					quad = blq.GetDeepestTreeAt( x, y, avoid );
+					(tlq == null || !avoid.GetOrDefault(tlq)) &&
+					(blq == null || !avoid.GetOrDefault(blq)) ) {
+				if( y < this.Y && tlq != null && !avoid.GetOrDefault( tlq ) ) {
+					quad = tlq.GetDeepestTreeNearCoordinates( x, y, avoid );
+				} else if( blq != null && !avoid.GetOrDefault( blq ) ) {
+					quad = blq.GetDeepestTreeNearCoordinates( x, y, avoid );
 				}
 			} else if( (trq != null || brq != null) &&
-					(trq == null || !avoid.HardGet(trq)) &&
-					(brq == null || !avoid.HardGet(brq)) ) {
-				if( y < this.Y && trq != null && !avoid.HardGet( trq ) ) {
-					quad = trq.GetDeepestTreeAt( x, y, avoid );
-				} else if( brq != null && !avoid.HardGet( brq ) ) {
-					quad = brq.GetDeepestTreeAt( x, y, avoid );
+					(trq == null || !avoid.GetOrDefault(trq)) &&
+					(brq == null || !avoid.GetOrDefault(brq)) ) {
+				if( y < this.Y && trq != null && !avoid.GetOrDefault( trq ) ) {
+					quad = trq.GetDeepestTreeNearCoordinates( x, y, avoid );
+				} else if( brq != null && !avoid.GetOrDefault( brq ) ) {
+					quad = brq.GetDeepestTreeNearCoordinates( x, y, avoid );
 				}
 			}
 
@@ -116,7 +118,7 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 		////////////////
 
 		private void RegisterTreeChecks( IDictionary<QuadTree<T>, bool> checks, QuadTree<T> tree ) {
-			checks[ tree ] = this.IsDeadEnd( checks, tree );
+			checks[tree] = true;//this.IsDeadEnd( checks, tree );
 
 			for( QuadTree<T> currTree = tree.Parent; currTree != null; currTree = currTree.Parent ) {
 				if( currTree.Value == null ) {
@@ -135,14 +137,14 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			var blq = tree.BotLeftQuad;
 			var brq = tree.BotRightQuad;
 
-			if( (tlq != null && !checks.HardGet( tlq )) ||
-				(trq != null && !checks.HardGet( trq )) ||
-				(blq != null && !checks.HardGet( blq )) ||
-				(brq != null && !checks.HardGet( brq )) ) {
+			if( (tlq != null && !checks.GetOrDefault( tlq )) ||
+				(trq != null && !checks.GetOrDefault( trq )) ||
+				(blq != null && !checks.GetOrDefault( blq )) ||
+				(brq != null && !checks.GetOrDefault( brq )) ) {
+				return true;
 			} else {
 				return false;
 			}
-			return true;
 		}
 	}
 }
