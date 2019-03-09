@@ -10,7 +10,7 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private void DefineItemMiscGroups4( Action<string, string[], Matcher> addDef ) {
+		private void DefineItemMiscGroups1( Action<string, string[], Matcher> addDef ) {
 			addDef( "Any Item", null,
 				( item, grps ) => {
 					return true;
@@ -25,8 +25,12 @@ namespace HamstarHelpers.Services.EntityGroups {
 						return item.rare == tier;
 					} );
 			}
+		}
 
-			addDef( "Any Plain Material", new string[] { "Any Equipment" },
+
+		private void DefineItemMiscGroups3( Action<string, string[], Matcher> addDef ) {
+			addDef( "Any Plain Material",
+				new string[] { "Any Equipment" },
 				( item, grps ) => {
 					return item.material &&
 						//!EntityGroups.ItemGroups["Any Placeable"].Contains( item.type ) &&
@@ -311,20 +315,21 @@ namespace HamstarHelpers.Services.EntityGroups {
 						return false;
 					}
 				} );
+		}
+		
 
-			addDef( "Any Vanilla Alchemy Ingredient", new string[] {
-					"Any Vanilla Alchemy Herb",
-					"Any Vanilla Alchemy Fish",
-					"Any Vanilla Alchemy Misc"
-				},
+		private void DefineItemMiscGroups4( Action<string, string[], Matcher> addDef ) {
+			addDef( "Any Vanilla Alchemy Ingredient",
+				new string[] { "Any Vanilla Alchemy Herb", "Any Vanilla Alchemy Fish", "Any Vanilla Alchemy Misc" },
 				( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.BottledWater:
 					case ItemID.Bottle:
 						return true;
-					default:
-						return false;
 					}
+					return grps["Any Vanilla Alchemy Herb"].Contains( item.type )
+						|| grps["Any Vanilla Alchemy Fish"].Contains( item.type )
+						|| grps["Any Vanilla Alchemy Misc"].Contains( item.type );
 				} );
 		}
 	}
