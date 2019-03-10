@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Services.EntityGroups.Defs;
 using System;
 using System.Collections.Generic;
 
@@ -16,29 +17,29 @@ namespace HamstarHelpers.Services.EntityGroups {
 				matchers.Add( new Tuple<string, string[], ItemMatcher>( name, grps, matcher ) );
 			};
 			
-			this.DefineItemEquipmentGroups1( addItemGrpDef );
-			this.DefineItemAccessoriesGroups1( addItemGrpDef );
-			this.DefineItemWeaponGroups1( addItemGrpDef );
-			this.DefineItemPlaceablesGroups1( addItemGrpDef );
-			this.DefineItemMiscGroups1( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups1( addItemGrpDef );
+			EntityGroupDefs.DefineItemAccessoriesGroups1( addItemGrpDef );
+			EntityGroupDefs.DefineItemWeaponGroups1( addItemGrpDef );
+			EntityGroupDefs.DefineItemPlaceablesGroups1( addItemGrpDef );
+			EntityGroupDefs.DefineItemMiscGroups1( addItemGrpDef );
 
-			this.DefineItemEquipmentGroups2( addItemGrpDef );
-			//this.DefineItemAccessoriesGroups2( addItemGrpDef );
-			this.DefineItemWeaponGroups2( addItemGrpDef );
-			this.DefineItemPlaceablesGroups2( addItemGrpDef );
-			//this.DefineItemMiscGroups2( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups2( addItemGrpDef );
+			//EntityGroupDefs.DefineItemAccessoriesGroups2( addItemGrpDef );
+			EntityGroupDefs.DefineItemWeaponGroups2( addItemGrpDef );
+			EntityGroupDefs.DefineItemPlaceablesGroups2( addItemGrpDef );
+			//EntityGroupDefs.DefineItemMiscGroups2( addItemGrpDef );
 
-			this.DefineItemEquipmentGroups3( addItemGrpDef );
-			//this.DefineItemAccessoriesGroups3( addItemGrpDef );
-			//this.DefineItemWeaponGroups3( addItemGrpDef );
-			//this.DefineItemPlaceablesGroups3( addItemGrpDef );
-			this.DefineItemMiscGroups3( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups3( addItemGrpDef );
+			//EntityGroupDefs.DefineItemAccessoriesGroups3( addItemGrpDef );
+			//EntityGroupDefs.DefineItemWeaponGroups3( addItemGrpDef );
+			//EntityGroupDefs.DefineItemPlaceablesGroups3( addItemGrpDef );
+			EntityGroupDefs.DefineItemMiscGroups3( addItemGrpDef );
 
-			this.DefineItemEquipmentGroups4( addItemGrpDef );
-			//this.DefineItemAccessoriesGroups4( addItemGrpDef );
-			//this.DefineItemWeaponGroups4( addItemGrpDef );
-			//this.DefineItemPlaceablesGroups4( addItemGrpDef );
-			this.DefineItemMiscGroups4( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups4( addItemGrpDef );
+			//EntityGroupDefs.DefineItemAccessoriesGroups4( addItemGrpDef );
+			//EntityGroupDefs.DefineItemWeaponGroups4( addItemGrpDef );
+			//EntityGroupDefs.DefineItemPlaceablesGroups4( addItemGrpDef );
+			EntityGroupDefs.DefineItemMiscGroups4( addItemGrpDef );
 			
 			return matchers;
 		}
@@ -51,7 +52,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				matchers.Add( new Tuple<string, string[], NPCMatcher>( name, dependencies, matcher ) );
 			};
 
-			this.DefineNPCGroups1( addNpcGrpDef );
+			EntityGroupDefs.DefineNPCGroups1( addNpcGrpDef );
 
 			return matchers;
 		}

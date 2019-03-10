@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.ItemHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
 using System;
 using System.Collections.Generic;
@@ -8,27 +7,9 @@ using Terraria.ID;
 using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
-namespace HamstarHelpers.Services.EntityGroups {
-	public partial class EntityGroups {
-		private void DefineItemMiscGroups1( Action<string, string[], Matcher> addDef ) {
-			addDef( "Any Item", null,
-				( item, grps ) => {
-					return true;
-				} );
-
-			for( int i = -12; i <= ItemAttributeHelpers.HighestVanillaRarity; i++ ) {
-				if( i >= -10 && i <= -3 ) { i = -2; }
-
-				int tier = i;
-				addDef( "Any " + ItemAttributeHelpers.RarityColorText[i] + " Tier", null,
-					( item, grps ) => {
-						return item.rare == tier;
-					} );
-			}
-		}
-
-
-		private void DefineItemMiscGroups3( Action<string, string[], Matcher> addDef ) {
+namespace HamstarHelpers.Services.EntityGroups.Defs {
+	public partial class EntityGroupDefs {
+		internal static void DefineItemMiscGroups3( Action<string, string[], Matcher> addDef ) {
 			addDef( "Any Plain Material",
 				new string[] { "Any Equipment" },
 				( item, grps ) => {
@@ -314,22 +295,6 @@ namespace HamstarHelpers.Services.EntityGroups {
 					default:
 						return false;
 					}
-				} );
-		}
-		
-
-		private void DefineItemMiscGroups4( Action<string, string[], Matcher> addDef ) {
-			addDef( "Any Vanilla Alchemy Ingredient",
-				new string[] { "Any Vanilla Alchemy Herb", "Any Vanilla Alchemy Fish", "Any Vanilla Alchemy Misc" },
-				( item, grps ) => {
-					switch( item.type ) {
-					case ItemID.BottledWater:
-					case ItemID.Bottle:
-						return true;
-					}
-					return grps["Any Vanilla Alchemy Herb"].Contains( item.type )
-						|| grps["Any Vanilla Alchemy Fish"].Contains( item.type )
-						|| grps["Any Vanilla Alchemy Misc"].Contains( item.type );
 				} );
 		}
 	}

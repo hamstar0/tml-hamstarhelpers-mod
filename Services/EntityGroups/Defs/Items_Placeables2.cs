@@ -5,25 +5,9 @@ using Terraria.ID;
 using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
-namespace HamstarHelpers.Services.EntityGroups {
-	public partial class EntityGroups {
-		private void DefineItemPlaceablesGroups1( Action<string, string[], Matcher> addDef ) {
-			addDef( "Any Placeable", null,
-				( item, grps ) => {
-					return item.createTile != -1 || item.createWall != -1;
-				} );
-			addDef( "Any Tile", null,
-				( item, grps ) => {
-					return item.createTile != -1;
-				} );
-			addDef( "Any Wall", null,
-				( item, grps ) => {
-					return item.createWall != -1;
-				} );
-		}
-
-
-		private void DefineItemPlaceablesGroups2( Action<string, string[], Matcher> addDef ) {
+namespace HamstarHelpers.Services.EntityGroups.Defs {
+	public partial class EntityGroupDefs {
+		internal static void DefineItemPlaceablesGroups2( Action<string, string[], Matcher> addDef ) {
 			// Materials
 			addDef( "Any Wood", null,
 				( item, grps ) => {

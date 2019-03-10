@@ -158,7 +158,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			return list;
 		}
 
-		private IList<Item> GetItemPool() {
+		internal IList<Item> GetItemPool() {
 			if( this.ItemPool != null ) { return this.ItemPool; }
 
 			var list = new Item[ ItemLoader.ItemCount ];
@@ -173,7 +173,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			return this.ItemPool;
 		}
 
-		private IList<NPC> GetNPCPool() {
+		internal IList<NPC> GetNPCPool() {
 			if( this.NPCPool != null ) { return this.NPCPool; }
 			
 			var list = new NPC[ NPCLoader.NPCCount ];
@@ -188,7 +188,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			return this.NPCPool;
 		}
 
-		private IList<Projectile> GetProjPool() {
+		internal IList<Projectile> GetProjPool() {
 			if( this.ProjPool != null ) { return this.ProjPool; }
 			
 			var list = new Projectile[ ProjectileLoader.ProjectileCount ];

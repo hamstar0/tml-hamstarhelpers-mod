@@ -4,8 +4,8 @@ using Terraria.ID;
 using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
-namespace HamstarHelpers.Services.EntityGroups {
-	public partial class EntityGroups {
+namespace HamstarHelpers.Services.EntityGroups.Defs {
+	public partial class EntityGroupDefs {
 		private void DefineNPCGroups1( Action<string, string[], NPCMatcher> addDef ) {
 			// General
 

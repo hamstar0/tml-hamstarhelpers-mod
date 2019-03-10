@@ -4,9 +4,9 @@ using Terraria.ID;
 using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
-namespace HamstarHelpers.Services.EntityGroups {
-	public partial class EntityGroups {
-		private void DefineItemAccessoriesGroups1( Action<string, string[], Matcher> addDef ) {
+namespace HamstarHelpers.Services.EntityGroups.Defs {
+	public partial class EntityGroupDefs {
+		internal static void DefineItemAccessoriesGroups1( Action<string, string[], Matcher> addDef ) {
 			// Accessory Classes
 
 			addDef( "Any Wing Accessory", null,
