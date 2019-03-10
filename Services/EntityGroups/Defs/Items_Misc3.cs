@@ -8,7 +8,7 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
-	public partial class EntityGroupDefs {
+	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups3( Action<string, string[], Matcher> addDef ) {
 			addDef( "Any Plain Material",
 				new string[] { "Any Equipment" },

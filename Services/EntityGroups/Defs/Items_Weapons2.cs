@@ -5,7 +5,7 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
-	public partial class EntityGroupDefs {
+	partial class EntityGroupDefs {
 		internal static void DefineItemWeaponGroups2( Action<string, string[], Matcher> addDef ) {
 			// Misc Sub Classes
 

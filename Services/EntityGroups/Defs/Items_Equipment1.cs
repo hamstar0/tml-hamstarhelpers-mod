@@ -6,7 +6,7 @@ using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionar
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
-	public partial class EntityGroupDefs {
+	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups1( Action<string, string[], Matcher> addDef ) {
 			addDef( "Any Weapon", null,
 				( item, grps ) => {
@@ -55,17 +55,21 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				( item, grps ) => {
 					return ItemAttributeHelpers.IsArmor( item );
 				} );
-			addDef( "Any Vanity", null,
+			addDef( "Any Garment", null,
 				( item, grps ) => {
-					return item.vanity;
+					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;
 				} );
 			addDef( "Any Potion", null,
 				( item, grps ) => {
 					return item.potion;
 				} );
-			
+
 			// Vanity Classes
 
+			addDef( "Any Vanity", null,
+				( item, grps ) => {
+					return item.vanity;
+				} );
 			addDef( "Any Vanity Accessory", null,
 				( item, grps ) => {
 					if( !item.vanity ) { return false; }
@@ -74,7 +78,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 			addDef( "Any Vanity Garment", null,
 				( item, grps ) => {
 					if( !item.vanity ) { return false; }
-					return !item.accessory;
+					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;
 				} );
 		}
 	}

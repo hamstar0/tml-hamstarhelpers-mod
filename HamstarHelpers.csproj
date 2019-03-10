@@ -115,6 +115,8 @@
     <Compile Include="Components\UI\Elements\Menu\UIMenuPanel.cs" />
     <Compile Include="Components\UI\Elements\UICheckbox.cs" />
     <Compile Include="Components\UI\Elements\UIDialog.cs" />
+    <Compile Include="Components\UI\Elements\UIModData_Initialize.cs" />
+    <Compile Include="Components\UI\Elements\UIModData_Draw.cs" />
     <Compile Include="Components\UI\Elements\UIModData.cs" />
     <Compile Include="Components\UI\Elements\UIPromptPanel.cs" />
     <Compile Include="Components\UI\Elements\UITextArea.cs" />
