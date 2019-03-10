@@ -6,7 +6,7 @@ using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDiction
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
 	partial class EntityGroupDefs {
-		private void DefineNPCGroups1( Action<string, string[], NPCMatcher> addDef ) {
+		internal static void DefineNPCGroups1( Action<string, string[], NPCMatcher> addDef ) {
 			// General
 
 			addDef( "Any Friendly NPC", null, ( npc, grp ) => {

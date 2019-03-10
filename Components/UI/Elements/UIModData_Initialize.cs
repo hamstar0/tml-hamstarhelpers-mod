@@ -106,7 +106,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 						this.ConfigResetButton = new UITextPanelButton( theme, "Reset Config File" );
 						this.ConfigResetButton.Width.Set( 160f, 0f );
 						this.ConfigResetButton.Left.Set( -320f, 1f );
-						this.ConfigResetButton.VAlign = 1f;
+						this.ConfigResetButton.Top.Set( 28, 0f );
 						this.Append( this.ConfigResetButton );
 
 						this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
@@ -120,8 +120,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 					this.ConfigOpenButton = new UITextPanelButton( theme, "Open Config File" );
 					this.ConfigOpenButton.Width.Set( 160f, 0f );
+					this.ConfigOpenButton.Top.Set( 28, 0f );
 					this.ConfigOpenButton.HAlign = 1f;
-					this.ConfigOpenButton.VAlign = 1f;
 					this.Append( this.ConfigOpenButton );
 					
 					this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {

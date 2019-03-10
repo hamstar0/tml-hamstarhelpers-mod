@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					{ "Teams",                  "Requires or involves teams of players (multiplayer)." },
 
 					////
-
+					
 					{ "Open Source",            "State: Freely available source code." },
 					{ "Has Documentation",		"State: Has an associated wiki or other comprehensive information source." },
 					{ "Unmaintained",           "State: No longer receives version updates." },

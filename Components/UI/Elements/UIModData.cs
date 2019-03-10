@@ -6,6 +6,8 @@ using System;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
+using System.Collections.Generic;
+using HamstarHelpers.Components.DataStructures;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
@@ -25,7 +27,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public bool HasIconLoaded { get; private set; }
 		public bool WillDrawOwnHoverElements { get; private set; }
 
-		private string[] ModTags;
+		private ISet<string> ModTags = new HashSet<string>();
 
 
 
@@ -36,6 +38,17 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			this.InitializeMe( theme, idx, mod, willDrawOwnHoverElements );
+
+			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+				ISet<string> modTags = args.ModTags?.GetOrDefault( mod.Name );
+				this.ModTags = modTags ?? this.ModTags;
+
+				if( modTags != null ) {
+					this.Height.Set( 100, 0f );
+				}
+
+				return false;
+			} );
 		}
 
 

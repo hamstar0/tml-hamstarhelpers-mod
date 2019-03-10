@@ -1,23 +1,36 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Services.AnimatedColor;
-using HamstarHelpers.Services.Promises;
-using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System;
-using System.Diagnostics;
-using System.IO;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public partial class UIModData : UIPanel {
+		public static Color GetTagColor( string tag ) {
+			switch( tag ) {
+			case "May Lag":
+				return Color.Yellow;
+			case "Non-functional":
+			case "Cheat-like":
+				return Color.Red;
+			case "Misleading Info":
+			case "Buggy":
+				return Color.Purple;
+			case "Unmaintained":
+			case "Unfinished":
+				return Color.SlateGray;
+			default:
+				return Color.Silver;
+			}
+		}
+
+
+
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
@@ -29,19 +42,38 @@ namespace HamstarHelpers.Components.UI.Elements {
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
 
+			CalculatedStyle innerDim = base.GetInnerDimensions();
+			Vector2 innerPos = innerDim.Position();
+
 			if( this.LatestAvailableVersion > this.Mod.Version ) {
 				Color color = AnimatedColors.Fire.CurrentColor;
-				CalculatedStyle innerDim = base.GetInnerDimensions();
-				Vector2 pos = innerDim.Position();
-				pos.X += 128f;
+				var pos = new Vector2( innerPos.X + 128f, innerPos.Y );
 			
 				sb.DrawString( Main.fontDeathText, this.LatestAvailableVersion.ToString()+" Available", pos, color, 0f, default( Vector2 ), 1f, SpriteEffects.None, 1f );
 			}
 
-			//Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
-			//	args.ModTags
-			//	return false;
-			//} );
+			if( this.ModTags.Count > 0 ) {
+				var startPos = new Vector2( innerPos.X, innerPos.Y + 56 );
+				var pos = startPos;
+
+				int i = 0;
+				foreach( string tag in this.ModTags ) {
+					string tagStr = tag + ((i++ < this.ModTags.Count-1) ? "," : "");
+					Color tagColor = UIModData.GetTagColor( tag );
+
+					Vector2 dim = Main.fontMouseText.MeasureString( tag ) * 0.65f;
+					float addX = dim.X + 8;
+
+					if( ( (pos.X + addX) - innerDim.X ) > innerDim.Width ) {
+						pos.X = startPos.X;
+						pos.Y += 12;
+					}
+
+					Utils.DrawBorderString( sb, tagStr, pos, tagColor, 0.65f );
+					
+					pos.X += addX;
+				}
+			}
 		}
 
 
