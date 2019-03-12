@@ -43,10 +43,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 				ISet<string> modTags = args.ModTags?.GetOrDefault( mod.Name );
 				this.ModTags = modTags ?? this.ModTags;
 
-				if( modTags != null ) {
-					this.Height.Set( 100, 0f );
-				}
-
 				return false;
 			} );
 		}

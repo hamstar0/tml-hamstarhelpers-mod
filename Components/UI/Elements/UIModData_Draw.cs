@@ -31,6 +31,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 
 
+		////////////////
+
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
@@ -56,20 +58,24 @@ namespace HamstarHelpers.Components.UI.Elements {
 				var startPos = new Vector2( innerPos.X, innerPos.Y + 56 );
 				var pos = startPos;
 
+				this.Height.Set( 64 + 12, 0f );
+
 				int i = 0;
 				foreach( string tag in this.ModTags ) {
 					string tagStr = tag + ((i++ < this.ModTags.Count-1) ? "," : "");
 					Color tagColor = UIModData.GetTagColor( tag );
 
-					Vector2 dim = Main.fontMouseText.MeasureString( tag ) * 0.65f;
+					Vector2 dim = Main.fontMouseText.MeasureString( tag ) * 0.75f;
 					float addX = dim.X + 8;
 
-					if( ( (pos.X + addX) - innerDim.X ) > innerDim.Width ) {
+					if( ((pos.X + addX) - innerDim.X) > innerDim.Width ) {
 						pos.X = startPos.X;
 						pos.Y += 12;
+
+						this.Height.Set( this.Height.Pixels + 12, 0f );
 					}
 
-					Utils.DrawBorderString( sb, tagStr, pos, tagColor, 0.65f );
+					Utils.DrawBorderString( sb, tagStr, pos, tagColor, 0.75f );
 					
 					pos.X += addX;
 				}
