@@ -41,16 +41,22 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 					}
 
 					if( mymod.Config.UseAlsoNormalLogging ) {
-						ErrorLogger.Log( logged + msg );
+						lock( LogHelpers.MyLock ) {
+							ErrorLogger.Log( logged + msg );
+						}
 					}
 				} else {
-					ErrorLogger.Log( logged + msg );
+					lock( LogHelpers.MyLock ) {
+						ErrorLogger.Log( logged + msg );
+					}
 				}
 
 				logHelpers.LoggedMessages++;
 			} catch( Exception e ) {
 				try {
-					ErrorLogger.Log( "FALLBACK LOGGER 2 (" + e.GetType().Name + ") " + msg );
+					lock( LogHelpers.MyLock ) {
+						ErrorLogger.Log( "FALLBACK LOGGER 2 (" + e.GetType().Name + ") " + msg );
+					}
 				} catch { }
 			}
 		}
@@ -114,6 +120,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 		private double StartTime;
 
 		private IDictionary<string, int> UniqueMessages = new Dictionary<string, int>();
+
 
 
 		////////////////
@@ -197,7 +204,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 						writer.WriteLine( logEntry );
 					}
 				} catch( Exception e ) {
-					ErrorLogger.Log( "FALLBACK LOGGER ("+e.GetType().Name+"; "+fileName+") - " + logEntry );
+					ErrorLogger.Log( "FALLBACK LOGGER (" + e.GetType().Name + "; " + fileName + ") - " + logEntry );
 				}
 			}
 		}

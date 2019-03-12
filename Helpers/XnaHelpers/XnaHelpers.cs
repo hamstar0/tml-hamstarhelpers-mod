@@ -28,12 +28,12 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 
 		[Obsolete( "use IsMainSpriteBatchBegun(out bool)" )]
 		public static bool IsMainSpriteBatchBegun() {
-			return (bool)ModHelpersMod.Instance?.XnaHelpers?.MainSpriteBatchBegun?.GetValue( Main.spriteBatch );
+			return (bool)ModHelpersMod.Instance?.XnaHelpers?.SpriteBatchBegunField?.GetValue( Main.spriteBatch );
 		}
 
 		public static bool IsMainSpriteBatchBegun( out bool isBegun ) {
 			var mymod = ModHelpersMod.Instance;
-			object isBegunRaw = mymod?.XnaHelpers?.MainSpriteBatchBegun?.GetValue( Main.spriteBatch );
+			object isBegunRaw = mymod?.XnaHelpers?.SpriteBatchBegunField?.GetValue( Main.spriteBatch );
 
 			if( isBegunRaw != null ) {
 				isBegun = (bool)isBegunRaw;
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 
 		////////////////
 
-		private FieldInfo MainSpriteBatchBegun = null;
+		private FieldInfo SpriteBatchBegunField = null;
 
 
 
@@ -58,10 +58,10 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 			if( Main.dedServ || Main.netMode == 2 ) { return; }
 
 			Type sbType = Main.spriteBatch.GetType();
-			this.MainSpriteBatchBegun = sbType.GetField( "inBeginEndPair", ReflectionHelpers.MostAccess );
+			this.SpriteBatchBegunField = sbType.GetField( "inBeginEndPair", ReflectionHelpers.MostAccess );
 
-			if( this.MainSpriteBatchBegun == null ) {
-				this.MainSpriteBatchBegun = sbType.GetField( "_beginCalled", ReflectionHelpers.MostAccess );
+			if( this.SpriteBatchBegunField == null ) {
+				this.SpriteBatchBegunField = sbType.GetField( "_beginCalled", ReflectionHelpers.MostAccess );
 			}
 		}
 	}

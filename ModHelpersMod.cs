@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Services.DataDumper;
+using HamstarHelpers.Services.Messages;
 using System;
 using System.IO;
 using Terraria;
@@ -52,6 +52,10 @@ namespace HamstarHelpers {
 			}
 
 			this.LoadInner();
+
+			InboxMessages.SetMessage( "ModHelpers:ControlPanelTags",
+				"Mod tag lists have now been added to the Control Panel. Mod tags can be modified in the Mod Info menu page via. the main menu.",
+				false );
 		}
 
 		////
