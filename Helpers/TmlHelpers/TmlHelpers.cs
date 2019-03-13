@@ -3,6 +3,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
 using Terraria;
 using Terraria.Graphics.Capture;
@@ -131,10 +132,12 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {	// Solely for Main.LocalPlayer?
 			ModPlayer[] modPlayers;
 			if( ReflectionHelpers.Get(player, "modPlayers", out modPlayers) || modPlayers.Length == 0 ) {
-				object _;
-				if( !ReflectionHelpers.RunMethod( player, "SetupPlayer", new object[] { player }, out _ ) ) {
-					throw new HamstarException( "Could not run SetupPlayer for "+(player?.name??"null player") );
+				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", ReflectionHelpers.MostAccess );
+				if( setupPlayerMethod == null ) {
+					throw new HamstarException( "Could not run SetupPlayer for " + ( player?.name ?? "null player" ) );
 				}
+
+				setupPlayerMethod.Invoke( null, new object[] { player } );
 			}
 			
 			return player.GetModPlayer( mod, modPlayerName );
