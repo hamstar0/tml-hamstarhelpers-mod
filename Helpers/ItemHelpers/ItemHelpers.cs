@@ -52,7 +52,7 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 			int newStackSize = (item.stack >= amt) ? (item.stack - amt) : 0;
 
 			if( Main.netMode != 2 && !Main.dedServ ) {
-				Item selectItem = Main.LocalPlayer.inventory[PlayerItemHelpers.VanillaInventorySelectedSlot];
+				Item selectItem = Main.LocalPlayer.inventory[ PlayerItemHelpers.VanillaInventorySelectedSlot ];
 
 				if( selectItem == item && Main.mouseItem.type == item.type && Main.mouseItem.stack == item.stack ) {
 					selectItem.stack = newStackSize;

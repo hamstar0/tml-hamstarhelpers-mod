@@ -2,7 +2,7 @@
 using HamstarHelpers.Components.Network;
 using Terraria;
 using HamstarHelpers.Components.Errors;
-
+using HamstarHelpers.Helpers.TmlHelpers;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerOldIdProtocol : PacketProtocolSentToEither {
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////
 
 		protected override void SetClientDefaults() {
-			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
+			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
 
 			this.ClientPrivateUID = myplayer.Logic.OldPrivateUID;
 			this.ClientHasUID = myplayer.Logic.HasLoadedOldUID;

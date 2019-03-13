@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 				.SafeSelect( q => q.Value )
 				.ToArray();
 		}
+
 
 		////
 
@@ -31,7 +33,7 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			Action<QuadTree<T>> listDeepestTreeAt = ( tree ) => {
 				QuadTree<T> deepestTree = tree.GetDeepestTreeNearCoordinates( x, y, checks );
 
-				this.RegisterTreeChecks( checks, deepestTree );
+				this.ChartTree( checks, deepestTree );
 
 				if( deepestTree != null && deepestTree.Value != null ) {
 					list[ getDist(deepestTree) ] = deepestTree;
@@ -45,7 +47,6 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			if( this.Value != null ) {
 				list[ getDist(this) ] = this;
 			}
-			checks[ this ] = this.IsLeaf;
 
 			// Check each quad in tandem:
 			for( int i = 0; i < (amt + 1); i++ ) {
@@ -117,12 +118,17 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 
 		////////////////
 
-		private void RegisterTreeChecks( IDictionary<QuadTree<T>, bool> checks, QuadTree<T> tree ) {
-			checks[tree] = true;//this.IsDeadEnd( checks, tree );
+		private void ChartTree( IDictionary<QuadTree<T>, bool> checks, QuadTree<T> tree ) {
+			checks[ tree ] = true;//this.IsDeadEnd( checks, tree );
 
 			for( QuadTree<T> currTree = tree.Parent; currTree != null; currTree = currTree.Parent ) {
-				if( currTree.Value == null ) {
-					checks[ currTree ] = this.IsDeadEnd( checks, currTree );
+				if( !this.IsDeadEnd( checks, currTree ) ) {
+					break;
+				}
+
+				checks[ currTree ] = currTree.Value == null;
+				if( checks[currTree] == false ) {
+					break;
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using Terraria;
 
@@ -33,7 +34,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void ReceiveReply() {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = mymod.GetModWorld<ModHelpersWorld>();
-			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
+			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
 
 			myworld.HasObsoleteId = this.HasObsoletedWorldId;
 			myworld.ObsoleteId = this.ObsoletedWorldId;

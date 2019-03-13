@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.Config;
 using System;
 using Terraria;
+using HamstarHelpers.Helpers.TmlHelpers;
 
 
 namespace HamstarHelpers {
@@ -97,7 +98,7 @@ namespace HamstarHelpers {
 		
 		internal void LoadFromNetwork( HamstarHelpersConfigData config ) {
 			var mymod = ModHelpersMod.Instance;
-			var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
+			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
 
 			mymod.ConfigJson.SetData( config );
 

@@ -10,7 +10,13 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		}
 
 		internal static string _GetUniqueId( Player player, out bool success ) {
-			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
+			ModHelpersPlayer myplayer;
+
+			if( player == Main.LocalPlayer ) {
+				myplayer = (ModHelpersPlayer)TmlHelpers.TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
+			} else {
+				myplayer = player.GetModPlayer<ModHelpersPlayer>();
+			}
 
 			success = myplayer.Logic.HasLoadedOldUID;
 			return myplayer.Logic.OldPrivateUID;

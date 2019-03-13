@@ -29,25 +29,33 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 
 		public IEnumerable<Tuple<int, int, T>> GetAll() {
 			var list = new List<Tuple<int, int, T>>();
-			var enumer = (IEnumerable<Tuple<int, int, T>>)list;
 
 			if( this.Value != null ) {
 				list.Add( Tuple.Create( this.X, this.Y, this.Value ) );
 			}
+			
 			if( this.TopLeftQuad != null ) {
-				enumer = list.Concat( this.TopLeftQuad.GetAll() );
+				foreach( var item in this.TopLeftQuad.GetAll() ) {
+					list.Add( item );
+				}
 			}
 			if( this.TopRightQuad != null ) {
-				enumer = list.Concat( this.TopRightQuad.GetAll() );
+				foreach( var item in this.TopRightQuad.GetAll() ) {
+					list.Add( item );
+				}
 			}
 			if( this.BotLeftQuad != null ) {
-				enumer = list.Concat( this.BotLeftQuad.GetAll() );
+				foreach( var item in this.BotLeftQuad.GetAll() ) {
+					list.Add( item );
+				}
 			}
 			if( this.BotRightQuad != null ) {
-				enumer = list.Concat( this.BotRightQuad.GetAll() );
+				foreach( var item in this.BotRightQuad.GetAll() ) {
+					list.Add( item );
+				}
 			}
 
-			return enumer;
+			return list.AsEnumerable();
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using Terraria;
 
@@ -35,7 +36,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 					return false;
 				}
 
-				var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
+				var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
 				return myplayer.Logic.IsSynced;
 			} else {
 				if( !LoadHelpers.IsWorldLoaded() ) {
@@ -56,10 +57,11 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 			if( mymod.Config.DebugModeHelpersInfo && !notSafelyPlayed ) {
 				if( Main.netMode != 2 && !Main.dedServ ) {
-					var myplayer = Main.LocalPlayer.GetModPlayer<ModHelpersPlayer>();
+					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
+
 					LogHelpers.WarnOnce( "StartupDelay: "+mymod.LoadHelpers.StartupDelay+" ("+(60 * 2)+"?)"
 						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsClientPlaying_Hackish+" (true?)"
-						+ ", IsSynced: "+myplayer.Logic.IsSynced+" (true?)" );
+						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?)" );
 				} else {
 					var myworld = mymod.GetModWorld<ModHelpersWorld>();
 					LogHelpers.WarnOnce( "StartupDelay: "+mymod.LoadHelpers.StartupDelay

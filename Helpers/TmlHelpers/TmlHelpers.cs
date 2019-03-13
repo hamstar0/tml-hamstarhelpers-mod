@@ -16,6 +16,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		private static IDictionary<Mod, string> ModIds = new Dictionary<Mod, string>();
 
 
+
 		////////////////
 
 		public static string GetModUniqueName( Mod mod ) {
@@ -35,7 +36,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				if( depMod == null ) { continue; }
 
 				if( depMod.Version.Major != kv.Value.Major ) {
-					badModDeps[ depMod ] = kv.Value;
+					badModDeps[depMod] = kv.Value;
 				}
 			}
 
@@ -50,7 +51,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				IEnumerable<string> badDepModsList = badDepMods.SafeSelect(
 					kv => kv.Key.DisplayName + " (needs " + kv.Value.ToString() + ", is " + kv.Key.Version.ToString() + ")"
 				);
-				return mod.DisplayName+" ("+mod.Name+") is out of date with its dependency mod(s): "+string.Join(", \n", badDepModsList);
+				return mod.DisplayName + " (" + mod.Name + ") is out of date with its dependency mod(s): " + string.Join( ", \n", badDepModsList );
 			}
 			return null;
 		}
@@ -123,5 +124,20 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 			return errors.ToArray();
 		}*/
+
+
+		////////////////
+
+		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {	// Solely for Main.LocalPlayer?
+			ModPlayer[] modPlayers;
+			if( ReflectionHelpers.Get(player, "modPlayers", out modPlayers) || modPlayers.Length == 0 ) {
+				object _;
+				if( !ReflectionHelpers.RunMethod( player, "SetupPlayer", new object[] { player }, out _ ) ) {
+					throw new HamstarException( "Could not run SetupPlayer for "+(player?.name??"null player") );
+				}
+			}
+			
+			return player.GetModPlayer( mod, modPlayerName );
+		}
 	}
 }
