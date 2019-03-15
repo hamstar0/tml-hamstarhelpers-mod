@@ -6,7 +6,7 @@ using System;
 
 namespace HamstarHelpers.Helpers.PlayerHelpers {
 	public static partial class PlayerHelpers {
-		[Obsolete( "use PlayerModHelpers.ModdedExtensionsReset(Player)", true)]
+		[Obsolete( "use `PlayerModHelpers.ModdedExtensionsReset(Player)`", true)]
 		public static void ModdedExtensionsReset( Player player ) {
 			var wingmod = ModLoader.GetMod( "Wing Slot" );
 

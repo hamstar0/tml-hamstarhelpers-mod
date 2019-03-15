@@ -3,6 +3,7 @@ using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Menus;
+using System;
 using System.Collections.Generic;
 
 
@@ -19,14 +20,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		protected TagsMenuContextBase( bool canDisableTags ) : base( true, true ) {
 			this.CanDisableTags = canDisableTags;
 
-			int i = 0;
-			
-			foreach( var kv in TagsMenuContextBase.Tags ) {
-				string tagText = kv.Key;
-				string tagDesc = kv.Value;
+			for( int i=0; i<TagsMenuContextBase.Tags.Length; i++ ) {
+				string tagText = TagsMenuContextBase.Tags[i].Item1;
+				string tagDesc = TagsMenuContextBase.Tags[i].Item2;
 				
-				this.TagButtons[tagText] = new UITagButton( this, i, tagText, tagDesc, this.CanDisableTags );
-				i++;
+				this.TagButtons[ tagText ] = new UITagButton( this, i, tagText, tagDesc, this.CanDisableTags );
 			}
 		}
 

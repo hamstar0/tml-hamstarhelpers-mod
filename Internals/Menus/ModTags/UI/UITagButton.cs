@@ -13,11 +13,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 	internal class UITagButton : UIMenuButton {
 		public const float ColumnWidth = 102f;
 		public const float RowHeight = 16f;
-		public const int ColumnHeightTall = 31;
+		public const int ColumnHeightFirst = 32;
 		public const int ColumnHeightShort = 8;
-		public const int ColumnsInMid = 5;
-		public const int LastColumnPos = 1;
-		public const int LastColumnRowStart = 8;
 
 
 
@@ -44,20 +41,19 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			this.DrawPanel = false;
 			this.Desc = desc;
 
-			int colTall = UITagButton.ColumnHeightTall;
+			int colTall = UITagButton.ColumnHeightFirst;
 			int colShort = UITagButton.ColumnHeightShort;
-			int colsInMid = UITagButton.ColumnsInMid;
-			int lastColPos = colTall + ( colShort * colsInMid );
-
+			int posAfterPivot = pos - TagsMenuContextBase.TagColumnPivot;
+			
 			if( pos < colTall ) {
 				this.Column = 0;
 				this.Row = pos;
-			} else if( pos >= lastColPos ) {
-				this.Column = UITagButton.LastColumnPos;
-				this.Row = UITagButton.LastColumnRowStart + pos - lastColPos;
+			} else if( pos < TagsMenuContextBase.TagColumnPivot ) {
+				this.Column = 1;
+				this.Row = colShort + (pos - colTall);
 			} else {
-				this.Column = 1 + (( pos - colTall ) / colShort );
-				this.Row = ( pos - colTall ) % colShort;
+				this.Column = 1 + (posAfterPivot / colShort);
+				this.Row = posAfterPivot % colShort;
 			}
 			
 			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
