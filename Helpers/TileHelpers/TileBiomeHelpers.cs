@@ -37,7 +37,6 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 		public static IDictionary<string, float> GetVanillaBiomePercentsNear( int tileX, int tileY,
 				out int totalTiles, out int unidenfiedTiles ) {
 			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( tileX, tileY );
-			var biomes = new Dictionary<string, float>();
 
 			int holyTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaHolyTiles ) {
@@ -119,10 +118,11 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 				}
 			}
 
-			unidenfiedTiles = tiles.Values.Sum();
-			totalTiles = unidenfiedTiles + holyTiles + corrTiles + crimTiles + meteTiles + jungTiles + snowTiles + deseTiles
-				+ mushTiles + dungTiles + lihzTiles;
-			
+			unidenfiedTiles = tiles.Values.Sum();	// Unclaimed remainder
+			totalTiles = unidenfiedTiles + holyTiles + corrTiles + crimTiles + meteTiles + jungTiles + snowTiles + deseTiles + mushTiles
+				+ dungTiles + lihzTiles;
+
+			var biomes = new Dictionary<string, float>();
 			biomes["Holy"] = (float)holyTiles / (float)TileBiomeHelpers.VanillaHolyMinTiles;
 			biomes["Corruption"] = (float)corrTiles / (float)TileBiomeHelpers.VanillaCorruptionMinTiles;
 			biomes["Crimson"] = (float)crimTiles / (float)TileBiomeHelpers.VanillaCrimsonMinTiles;

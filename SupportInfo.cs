@@ -227,27 +227,31 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.Config == null || mymod.Config.DisableSupportLinks ) { return; }
-			
-			if( Main.MenuUI.CurrentState != null ) {
-				Type uiType = Main.MenuUI.CurrentState.GetType();
 
-				if( uiType.Name != "UIMods" && MenuContextService.ContainsMenuContexts(uiType.Name) ) {
-					return;
+			try {
+				if( Main.MenuUI?.CurrentState != null ) {
+					Type uiType = Main.MenuUI.CurrentState.GetType();
+
+					if( uiType.Name != "UIMods" && MenuContextService.ContainsMenuContexts( uiType.Name ) ) {
+						return;
+					}
 				}
-			}
-			
-			bool isBegun;
-			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) { return; }
 
-			if( !isBegun ) {
-				Main.spriteBatch.Begin();
-			}
-			
-			mymod.SupportInfo?.Update();
-			mymod.SupportInfo?.Draw( Main.spriteBatch );
+				bool isBegun;
+				if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) { return; }
 
-			if( !isBegun ) {
-				Main.spriteBatch.End();
+				if( !isBegun ) {
+					Main.spriteBatch.Begin();
+				}
+
+				mymod.SupportInfo?.Update();
+				mymod.SupportInfo?.Draw( Main.spriteBatch );
+
+				if( !isBegun ) {
+					Main.spriteBatch.End();
+				}
+			} catch( Exception e ) {
+				LogHelpers.LogOnce( e.ToString() );
 			}
 		}
 
