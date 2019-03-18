@@ -1,11 +1,18 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.XnaHelpers {
 	public partial class XnaHelpers {
+		private static object MyLock = new object();
+
+		
+
+		////////////////
+
 		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
 			int i, j;
 
@@ -43,8 +50,67 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 			}
 		}
 
+
 		////////////////
 
-		public static 
+		public static void DrawBatch( Action<SpriteBatch> draw, bool forceBegin=false ) {
+			lock( XnaHelpers.MyLock ) {
+				bool isBegun;
+				if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+					return;	// take no chances
+				}
+				if( !isBegun ) {
+					if( !forceBegin ) {
+						return;
+					}
+					Main.spriteBatch.Begin();
+				}
+
+				try {
+					draw( Main.spriteBatch );
+				} catch( Exception e ) {
+					LogHelpers.WarnOnce( e.ToString() );
+				}
+
+				if( !isBegun ) {
+					Main.spriteBatch.End();
+				}
+			}
+		}
+
+		public static void DrawBatch( Action<SpriteBatch> draw,
+				SpriteSortMode sortMode,
+				BlendState blendState,
+				SamplerState samplerState,
+				DepthStencilState depthStencilState,
+				RasterizerState rasterizerState,
+				Effect effect,
+				Matrix transformMatrix,
+				bool forceBegin = false ) {
+			lock( XnaHelpers.MyLock ) {
+				bool isBegun;
+				if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+					return; // take no chances
+				}
+				if( !isBegun ) {
+					if( !forceBegin ) {
+						return;
+					}
+					Main.spriteBatch.Begin();
+				}
+
+				Main.spriteBatch.Begin( sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, transformMatrix );
+
+				try {
+					draw( Main.spriteBatch );
+				} catch( Exception e ) {
+					LogHelpers.WarnOnce( e.ToString() );
+				}
+
+				if( !isBegun ) {
+					Main.spriteBatch.End();
+				}
+			}
+		}
 	}
 }
