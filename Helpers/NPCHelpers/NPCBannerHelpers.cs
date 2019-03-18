@@ -6,7 +6,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCHelpers {
-	public class NPCBannerHelpers {
+	public partial class NPCBannerHelpers {
 		public static IDictionary<int, int> GetNpcToBannerItemTypes() {
 			IDictionary<int, int> npcTypesToBannerItemTypes = new Dictionary<int, int>();
 
@@ -51,32 +51,6 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 
 			if( !npcBannerHelpers.BannerItemTypesToNpcTypes.ContainsKey( itemType ) ) { return new ReadOnlySet<int>( new HashSet<int>() ); }
 			return new ReadOnlySet<int>( npcBannerHelpers.BannerItemTypesToNpcTypes[ itemType ] );
-		}
-
-
-
-		////////////////
-
-		private IDictionary<int, int> NpcTypesToBannerItemTypes;
-		private ISet<int> BannerItemTypes;
-		private IDictionary<int, ISet<int>> BannerItemTypesToNpcTypes;
-
-
-
-		////////////////
-
-		internal void InitializeBanners() {
-			this.BannerItemTypesToNpcTypes = new Dictionary<int, ISet<int>>();
-			this.NpcTypesToBannerItemTypes = NPCBannerHelpers.GetNpcToBannerItemTypes();
-
-			foreach( var kv in this.NpcTypesToBannerItemTypes ) {
-				if( !this.BannerItemTypesToNpcTypes.ContainsKey(kv.Value) ) {
-					this.BannerItemTypesToNpcTypes[kv.Value] = new HashSet<int>();
-				}
-				this.BannerItemTypesToNpcTypes[kv.Value].Add( kv.Key );
-			}
-
-			this.BannerItemTypes = new HashSet<int>( this.BannerItemTypesToNpcTypes.Keys );
 		}
 	}
 }

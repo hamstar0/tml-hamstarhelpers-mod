@@ -10,10 +10,6 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.NetHelpers {
 	public partial class NetHelpers {
-		private readonly static object RequestMutex = new object();
-
-
-		
 		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> onResponse, Action<Exception, string> onError, Action onCompletion=null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success;

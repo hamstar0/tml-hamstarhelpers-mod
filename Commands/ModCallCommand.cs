@@ -19,7 +19,7 @@ namespace HamstarHelpers.Commands {
 			}
 		}
 		public override string Command => "mh-mod-call";
-		public override string Usage => "/" + this.Command + " MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped strings needs spaces\" anotherparametc";
+		public override string Usage => "/" + this.Command + " MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped strings allow spaces\" anotherparameter";
 		public override string Description => "Runs Mod.Call(). Use with care!"
 			+ "\n   Parameters: <mod name> <parameter 1> <parameter 2> etc...";
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Commands {
 				}
 			}
 
-			ModHelpersMod mymod = ModHelpersMod.Instance;
+			var mymod = ModHelpersMod.Instance;
 			if( !mymod.Config.ModCallCommandEnabled ) {
 				throw new UsageException( "Mod.Call() command disabled by settings." );
 			}

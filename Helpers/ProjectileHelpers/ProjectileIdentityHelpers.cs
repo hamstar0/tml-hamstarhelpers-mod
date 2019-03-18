@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.ProjectileHelpers {
-	public class ProjectileIdentityHelpers {
+	public partial class ProjectileIdentityHelpers {
 		public static string GetProperUniqueId( int projType ) {
 			var proj = new Projectile();
 			proj.SetDefaults( projType );
@@ -38,31 +38,6 @@ namespace HamstarHelpers.Helpers.ProjectileHelpers {
 
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get { return ModHelpersMod.Instance.ProjectileIdentityHelpers._NamesToIds; }
-		}
-
-
-
-		////////////////
-		
-		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
-
-
-		////////////////
-
-		internal void PopulateNames() {
-			var dict = new Dictionary<string, ISet<int>>();
-
-			for( int i = 1; i < ProjectileLoader.ProjectileCount; i++ ) {
-				string name = ProjectileIdentityHelpers.GetQualifiedName( i );
-
-				if( dict.ContainsKey( name ) ) {
-					dict[name].Add( i );
-				} else {
-					dict[name] = new HashSet<int>() { i };
-				}
-			}
-
-			this._NamesToIds = new ReadOnlyDictionaryOfSets<string, int>( dict );
 		}
 	}
 }

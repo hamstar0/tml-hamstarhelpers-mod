@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.Components.Errors;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -45,41 +46,76 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		}
 
 
-
 		////////////////
 
-		internal IDictionary<string, Mod> GithubMods;
-		internal IDictionary<string, Mod> ConfigMods;
-		internal IDictionary<string, Mod> ConfigDefaultsResetMods;
-
-
-		////////////////
-
-		internal ModMetaDataManager() {
-			this.GithubMods = new Dictionary<string, Mod>();
-			this.ConfigMods = new Dictionary<string, Mod>();
-			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();
+		public static bool HasGithub( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			return self.GithubMods.ContainsKey( mod.Name );
+		}
+		public static bool HasConfig( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			return self.ConfigMods.ContainsKey( mod.Name );
+		}
+		public static bool HasConfigDefaultsReset( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			return self.ConfigDefaultsResetMods.ContainsKey( mod.Name );
 		}
 
+		////////////////
+
+		public static string GetConfigRelativePath( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			if( !self.ConfigMods.ContainsKey( mod.Name ) ) { return null; }
+
+			PropertyInfo configPathField = ModMetaDataManager.GetConfigFilePathProp( mod );
+			return (string)configPathField.GetValue( null );
+		}
+
+		/*public static void SetConfigRelativePath( Mod mod, string path ) {
+			if( !ExtendedModManager.ConfigMods.ContainsKey( mod.Name ) ) {
+				throw new HamstarException( "Not a recognized configurable mod." );
+			}
+
+			FieldInfo configPathField = mod.GetType().GetField( "ConfigFileRelativePath", BindingFlags.Static | BindingFlags.Public );
+			configPathField.SetValue( null, path );
+		}*/
+
+		public static void ReloadConfigFromFile( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			if( !self.ConfigMods.ContainsKey( mod.Name ) ) {
+				throw new HamstarException( "Not a recognized configurable mod." );
+			}
+
+			MethodInfo configReloadMethod = ModMetaDataManager.GetConfigFileLoadMethod( mod );
+			configReloadMethod.Invoke( null, new object[] { } );
+		}
+
+		public static void ResetDefaultsConfig( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			if( !self.ConfigDefaultsResetMods.ContainsKey( mod.Name ) ) {
+				throw new HamstarException( "Not a recognized config resetable mod." );
+			}
+
+			MethodInfo configDefaultsMethod = ModMetaDataManager.GetConfigDefaultsResetMethod( mod );
+			configDefaultsMethod.Invoke( null, new object[] { } );
+		}
 
 		////////////////
 
-		internal void OnPostSetupContent() {
-			this.GithubMods = new Dictionary<string, Mod>();
-			this.ConfigMods = new Dictionary<string, Mod>();
-			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();
+		public static string GetGithubUserName( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			foreach( Mod mod in ModLoader.LoadedMods ) {
-				if( ModMetaDataManager.DetectGithub( mod ) ) {
-					this.GithubMods[mod.Name] = mod;
-				}
-				if( ModMetaDataManager.DetectConfig( mod ) ) {
-					this.ConfigMods[mod.Name] = mod;
-				}
-				if( ModMetaDataManager.DetectConfigDefaultsReset( mod ) ) {
-					this.ConfigDefaultsResetMods[mod.Name] = mod;
-				}
-			}
+			PropertyInfo gitUserProp = ModMetaDataManager.GetGithubUserNameProp( mod );
+			return (string)gitUserProp.GetValue( null );
+		}
+
+		public static string GetGithubProjectName( Mod mod ) {
+			var self = ModHelpersMod.Instance.ModMetaDataMngr;
+			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
+
+			PropertyInfo gitProjProp = ModMetaDataManager.GetGitubProjectNameProp( mod );
+			return (string)gitProjProp.GetValue( null );
 		}
 	}
 }

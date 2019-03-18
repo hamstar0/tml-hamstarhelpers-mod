@@ -1,30 +1,29 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
 using Microsoft.Xna.Framework;
 using System;
-using System.Reflection;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.XnaHelpers {
-	public class XnaHelpers {
+	public partial class XnaHelpers {
 		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
 			int i, j;
 
-			for( i=rect.X; i<(rect.X+rect.Width); i++ ) {
-				for( j=rect.Y; j<(rect.Y+rect.Height); j++ ) {
-					if( i > notrect.X && i <= (notrect.X+notrect.Width) ) {
-						if( j > notrect.Y && j <= (notrect.Y + notrect.Height) ) {
+			for( i = rect.X; i < ( rect.X + rect.Width ); i++ ) {
+				for( j = rect.Y; j < ( rect.Y + rect.Height ); j++ ) {
+					if( i > notrect.X && i <= ( notrect.X + notrect.Width ) ) {
+						if( j > notrect.Y && j <= ( notrect.Y + notrect.Height ) ) {
 							i = notrect.X + notrect.Width;
-							if( i >= (rect.X+rect.Width) ) { break; }
+							if( i >= ( rect.X + rect.Width ) ) { break; }
 						}
 					}
-					
-					if( !scanner(i, j) ) { return; }
+
+					if( !scanner( i, j ) ) { return; }
 				}
 			}
 		}
 
+		////////////////
 
 		[Obsolete( "use IsMainSpriteBatchBegun(out bool)" )]
 		public static bool IsMainSpriteBatchBegun() {
@@ -44,25 +43,8 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 			}
 		}
 
-
-
 		////////////////
 
-		private FieldInfo SpriteBatchBegunField = null;
-
-
-
-		////////////////
-
-		internal XnaHelpers() {
-			if( Main.dedServ || Main.netMode == 2 ) { return; }
-
-			Type sbType = Main.spriteBatch.GetType();
-			this.SpriteBatchBegunField = sbType.GetField( "inBeginEndPair", ReflectionHelpers.MostAccess );
-
-			if( this.SpriteBatchBegunField == null ) {
-				this.SpriteBatchBegunField = sbType.GetField( "_beginCalled", ReflectionHelpers.MostAccess );
-			}
-		}
+		public static 
 	}
 }

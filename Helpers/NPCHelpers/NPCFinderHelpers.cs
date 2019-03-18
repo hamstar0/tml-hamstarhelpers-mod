@@ -4,11 +4,17 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.NPCHelpers {
 	public static class NPCFinderHelpers {
+		private static IDictionary<int, int> AnyWhoOfType = new Dictionary<int, int>();
+
+
+
+		////////////////
+
 		public static int FindNpcTypeByUniqueId( string uid ) {
 			NPC npc = new NPC();
 			for( int i = Main.npcTexture.Length - 1; i >= 0; i-- ) {
 				npc.SetDefaults( i );
-				if( NPCIdentityHelpers.GetUniqueId( npc ) == uid ) {
+				if( NPCIdentityHelpers.GetUniqueId(npc) == uid ) {
 					return i;
 				}
 			}
@@ -16,11 +22,9 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 		}
 
 		
-		private static IDictionary<int, int> TypesToWhos = new Dictionary<int, int>();
-
 		public static NPC FindFirstNpcByType( int type ) {
-			if( NPCFinderHelpers.TypesToWhos.Keys.Contains( type ) ) {
-				NPC npc = Main.npc[NPCFinderHelpers.TypesToWhos[type]];
+			if( NPCFinderHelpers.AnyWhoOfType.Keys.Contains( type ) ) {
+				NPC npc = Main.npc[NPCFinderHelpers.AnyWhoOfType[type]];
 				if( npc != null && npc.active && npc.type == type ) {
 					return npc;
 				}
@@ -29,7 +33,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			for( int i = 0; i < Main.npc.Length; i++ ) {
 				NPC npc = Main.npc[i];
 				if( npc != null && npc.active && npc.type == type ) {
-					NPCFinderHelpers.TypesToWhos[type] = i;
+					NPCFinderHelpers.AnyWhoOfType[type] = i;
 					return npc;
 				}
 			}

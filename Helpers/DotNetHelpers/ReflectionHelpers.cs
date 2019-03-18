@@ -16,19 +16,5 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 	public partial class ReflectionHelpers {
 		public readonly static BindingFlags MostAccess = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-
-		public static ReflectionHelpers Instance => ModHelpersMod.Instance.ReflectionHelpers;
-
-
-
-		////////////////
-
-		private IDictionary<string, IDictionary<string, MemberInfo>> FieldPropMap = new ConcurrentDictionary<string, IDictionary<string, MemberInfo>>();
-
-
-
-		////////////////
-		
-		internal ReflectionHelpers() { }
 	}
 }

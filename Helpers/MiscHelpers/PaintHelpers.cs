@@ -7,7 +7,7 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.MiscHelpers {
 	public class PaintHelpers {
-		private static IDictionary<int, byte> CachedMatches = new Dictionary<int, byte>();
+		private static IDictionary<int, byte> CachedMatches = new Dictionary<int, byte>();	// Static; shouldn't expect to change
 
 
 

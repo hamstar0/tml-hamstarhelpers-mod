@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.MiscHelpers {
 	public partial class DataFileHelpers {
-		public static string BaseFolder { get { return "Mod Specific Data"; } }
+		public static string BaseFolder => "Mod Specific Data";
 
 
 

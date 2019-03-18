@@ -1,18 +1,36 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
 	public partial class ReflectionHelpers {
+		public static ReflectionHelpers Instance => ModHelpersMod.Instance.ReflectionHelpers;
+
+
+
+		////////////////
+
+		private IDictionary<string, IDictionary<string, MemberInfo>> FieldPropMap = new ConcurrentDictionary<string, IDictionary<string, MemberInfo>>();
+
+
+
+		////////////////
+		
+		internal ReflectionHelpers() { }
+
+
+		////////////////
+
 		private MemberInfo GetCachedInfoMember( Type classType, string fieldOrPropName ) {
 			string className = classType.FullName;
 			MemberInfo result;
 
 			if( !this.FieldPropMap.ContainsKey( className ) ) {
-				this.FieldPropMap[ className ] = new Dictionary<string, MemberInfo>();
+				this.FieldPropMap[className] = new Dictionary<string, MemberInfo>();
 			}
 
 			if( !this.FieldPropMap[className].ContainsKey( fieldOrPropName ) ) {
@@ -24,10 +42,10 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 					return null;
 				}
 
-				this.FieldPropMap[ className ][ fieldOrPropName ] = result;
+				this.FieldPropMap[className][fieldOrPropName] = result;
 			}
 
-			return this.FieldPropMap[ className ][ fieldOrPropName ];
+			return this.FieldPropMap[className][fieldOrPropName];
 		}
 	}
 }
