@@ -7,12 +7,6 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.XnaHelpers {
 	public partial class XnaHelpers {
-		private static object MyLock = new object();
-
-		
-
-		////////////////
-
 		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
 			int i, j;
 
@@ -53,32 +47,37 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 
 		////////////////
 
-		public static void DrawBatch( Action<SpriteBatch> draw, bool forceBegin=false ) {
-			lock( XnaHelpers.MyLock ) {
-				bool isBegun;
-				if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
-					return;	// take no chances
-				}
-				if( !isBegun ) {
-					if( !forceBegin ) {
-						return;
-					}
-					Main.spriteBatch.Begin();
-				}
+		public static bool DrawBatch( Action<SpriteBatch> draw, out bool isBegun, bool forceDraw=true ) {
+			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+				return false; // take no chances
+			}
+
+			if( !isBegun ) {
+				Main.spriteBatch.Begin();
 
 				try {
 					draw( Main.spriteBatch );
 				} catch( Exception e ) {
 					LogHelpers.WarnOnce( e.ToString() );
 				}
-
-				if( !isBegun ) {
-					Main.spriteBatch.End();
+				
+				Main.spriteBatch.End();
+			} else {
+				if( forceDraw ) {
+					LogHelpers.WarnOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
+					try {
+						draw( Main.spriteBatch );
+					} catch( Exception e ) {
+						LogHelpers.WarnOnce( e.ToString() );
+					}
 				}
 			}
+			
+			return true;
 		}
 
-		public static void DrawBatch( Action<SpriteBatch> draw,
+
+		public static bool DrawBatch( Action<SpriteBatch> draw,
 				SpriteSortMode sortMode,
 				BlendState blendState,
 				SamplerState samplerState,
@@ -86,19 +85,14 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 				RasterizerState rasterizerState,
 				Effect effect,
 				Matrix transformMatrix,
-				bool forceBegin = false ) {
-			lock( XnaHelpers.MyLock ) {
-				bool isBegun;
-				if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
-					return; // take no chances
-				}
-				if( !isBegun ) {
-					if( !forceBegin ) {
-						return;
-					}
-					Main.spriteBatch.Begin();
-				}
+				out bool isBegun,
+				bool forceBeginAnew = false,
+				bool forceDraw = true ) {
+			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+				return false; // take no chances
+			}
 
+			if( !isBegun ) {
 				Main.spriteBatch.Begin( sortMode, blendState, samplerState, depthStencilState, rasterizerState, effect, transformMatrix );
 
 				try {
@@ -107,10 +101,19 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 					LogHelpers.WarnOnce( e.ToString() );
 				}
 
-				if( !isBegun ) {
-					Main.spriteBatch.End();
+				Main.spriteBatch.End();
+			} else {
+				if( forceDraw ) {
+					LogHelpers.WarnOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
+					try {
+						draw( Main.spriteBatch );
+					} catch( Exception e ) {
+						LogHelpers.WarnOnce( e.ToString() );
+					}
 				}
 			}
+
+			return true;
 		}
 	}
 }

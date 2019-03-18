@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.XnaHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -53,9 +54,17 @@ namespace HamstarHelpers.Components.UI.Menu {
 
 				this.MyAction();
 			} else {
-				Main.spriteBatch.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.UIScaleMatrix );
-				this.DrawMenuItem();
-				Main.spriteBatch.End();
+				bool _;
+				XnaHelpers.DrawBatch( (sb) => this.DrawMenuItem(),
+					SpriteSortMode.Deferred,
+					BlendState.AlphaBlend,
+					SamplerState.LinearClamp,
+					DepthStencilState.None,
+					RasterizerState.CullCounterClockwise,
+					null,
+					Main.UIScaleMatrix,
+					out _
+				);
 			}
 		}
 

@@ -236,20 +236,12 @@ namespace HamstarHelpers.Internals.Menus.Support {
 						return;
 					}
 				}
-
-				bool isBegun;
-				if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) { return; }
-
-				if( !isBegun ) {
-					Main.spriteBatch.Begin();
-				}
-
-				mymod.SupportInfo?.Update();
-				mymod.SupportInfo?.Draw( Main.spriteBatch );
-
-				if( !isBegun ) {
-					Main.spriteBatch.End();
-				}
+				
+				bool _;
+				XnaHelpers.DrawBatch( ( sb ) => {
+					mymod.SupportInfo?.Update();
+					mymod.SupportInfo?.Draw( sb );
+				}, out _ );
 			} catch( Exception e ) {
 				LogHelpers.LogOnce( e.ToString() );
 			}

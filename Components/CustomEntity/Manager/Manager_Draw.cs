@@ -3,6 +3,7 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.XnaHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Linq;
 using Terraria;
 
@@ -15,18 +16,22 @@ namespace HamstarHelpers.Components.CustomEntity {
 			var entMngr = mymod.CustomEntMngr;
 			if( entMngr == null ) { return; }
 			if( entMngr.WorldEntitiesByIndexes.Count == 0 ) { return; }
-
-			var sb = Main.spriteBatch;
-			bool isBegun;
-			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) { return; }
-
-			if( !isBegun ) {
-				sb.Begin( SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.BackgroundViewMatrix.TransformationMatrix );
-			}
-			entMngr.DrawPostDrawAll( sb );
-			if( !isBegun ) {
-				sb.End();
-			}
+			
+			bool __;
+			XnaHelpers.DrawBatch(
+				(sb) => {
+					var mymod2 = ModHelpersMod.Instance;
+					mymod2.CustomEntMngr.DrawPostDrawAll( sb );
+				},
+				SpriteSortMode.Deferred,
+				BlendState.AlphaBlend,
+				Main.DefaultSamplerState,
+				DepthStencilState.None,
+				Main.instance.Rasterizer,
+				null,
+				Main.BackgroundViewMatrix.TransformationMatrix,
+				out __
+			);
 		}
 
 
@@ -41,7 +46,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 				if( drawComp == null ) { continue; }
 
 				Effect fx = drawComp.GetFx( ent );
-
+				
 				if( fx != null ) {
 					sb.End();
 					sb.Begin( SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, fx, Main.Transform );
