@@ -226,10 +226,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			if( Main.spriteBatch == null ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
-			if( mymod == null || mymod.Config == null || mymod.Config.DisableSupportLinks ) { return; }
+			if( mymod == null || mymod.Config == null || mymod.Config.DisableSupportLinks || Main.MenuUI == null ) { return; }
 
 			try {
-				if( Main.MenuUI?.CurrentState != null ) {
+				if( Main.MenuUI.CurrentState != null ) {
 					Type uiType = Main.MenuUI.CurrentState.GetType();
 
 					if( uiType.Name != "UIMods" && MenuContextService.ContainsMenuContexts( uiType.Name ) ) {

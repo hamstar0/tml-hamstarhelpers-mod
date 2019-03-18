@@ -11,11 +11,13 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		}
 
 
+
 		////////////////
 
 		private float Scale = 1f;
 
 		private Func<bool> OnTickGet;
+
 
 
 		////////////////
@@ -43,19 +45,19 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 		internal void Update() {
 			if( this.Scale == 1f ) { return; }
 
-			Music music = Main.music[Main.curMusic];
-			float fade = Main.musicFade[Main.curMusic];
+			Music music = Main.music[ Main.curMusic ];
+			float fade = Main.musicFade[ Main.curMusic ];
 
-			if( music.IsPlaying ) {
+			if( music != null && music.IsPlaying ) {
 				if( fade > this.Scale ) {
-					Main.musicFade[Main.curMusic] = Math.Max( 0f, fade - 0.01f );
+					Main.musicFade[ Main.curMusic ] = Math.Max( 0f, fade - 0.01f );
 				} else {
-					Main.musicFade[Main.curMusic] = Math.Min( 1f, fade + 0.01f );
+					Main.musicFade[ Main.curMusic ] = Math.Min( 1f, fade + 0.01f );
 				}
 				//music.SetVariable( "Volume", fade * Main.musicVolume * this.Scale );
 			}
-
-			this.Scale = Math.Min( 1f, this.Scale += 0.05f );
+			
+			this.Scale = Math.Min( 1f, this.Scale + 0.05f );
 		}
 	}
 }

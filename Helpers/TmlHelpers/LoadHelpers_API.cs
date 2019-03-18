@@ -57,14 +57,16 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 			if( mymod.Config.DebugModeHelpersInfo && !notSafelyPlayed ) {
 				if( Main.netMode != 2 && !Main.dedServ ) {
-					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
+					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, mymod, "ModHelpersPlayer" );
 
-					LogHelpers.WarnOnce( "StartupDelay: "+mymod.LoadHelpers.StartupDelay+" ("+(60 * 2)+"?)"
+					LogHelpers.LogOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
+						+ "StartupDelay: "+mymod.LoadHelpers.StartupDelay+" ("+(60 * 2)+"?)"
 						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsClientPlaying_Hackish+" (true?)"
 						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?)" );
 				} else {
 					var myworld = mymod.GetModWorld<ModHelpersWorld>();
-					LogHelpers.WarnOnce( "StartupDelay: "+mymod.LoadHelpers.StartupDelay
+					LogHelpers.LogOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
+						+ "StartupDelay: " +mymod.LoadHelpers.StartupDelay
 						+ ", IsModLoaded(): "+LoadHelpers.IsModLoaded()+" (true?)"
 						+ ", HasObsoleteId: "+myworld.HasObsoleteId+" (false?)"
 						+ ", HasServerBegunHavingPlayers_Hackish: " + mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish+" (true?)"

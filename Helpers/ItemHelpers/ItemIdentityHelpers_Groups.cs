@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.NPCHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.NPCHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
