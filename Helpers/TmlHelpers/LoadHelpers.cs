@@ -60,13 +60,13 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, mymod, "ModHelpersPlayer" );
 
 					LogHelpers.LogOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
-						+ "StartupDelay: "+mymod.LoadHelpers.StartupDelay+" ("+(60 * 2)+"?)"
+						+ "StartupDelay: "+(mymod.LoadHelpers.StartupDelay < (60 * 2))
 						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsClientPlaying_Hackish+" (true?)"
 						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?)" );
 				} else {
 					var myworld = mymod.GetModWorld<ModHelpersWorld>();
 					LogHelpers.LogOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
-						+ "StartupDelay: " +mymod.LoadHelpers.StartupDelay
+						+ "StartupDelay: "+(mymod.LoadHelpers.StartupDelay < (60 * 2))
 						+ ", IsModLoaded(): "+LoadHelpers.IsModLoaded()+" (true?)"
 						+ ", HasObsoleteId: "+myworld.HasObsoleteId+" (false?)"
 						+ ", HasServerBegunHavingPlayers_Hackish: " + mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish+" (true?)"

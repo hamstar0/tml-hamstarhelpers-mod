@@ -94,7 +94,7 @@ namespace HamstarHelpers {
 
 			GameInterfaceDrawMethod modlockLayerDraw = delegate {
 				try {
-					this.ModLockHelpers.DrawWarning( Main.spriteBatch );
+					this.ModLock.DrawWarning( Main.spriteBatch );
 				} catch( Exception e ) {
 					LogHelpers.Warn( "modlockLayerDraw - " + e.ToString() );
 				}

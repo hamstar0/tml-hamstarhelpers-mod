@@ -165,8 +165,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			if( !ModHelpersMod.Instance.Config.DisableJudgmentalTags ) {
 				int pivot = TagsMenuContextBase.FindPivotInTagsList( list.ToArray() );
-
-				list.Insert( pivot, m( "Low Effort", "Judgmental: Evident lack of effort involved." ) );
+				
+				list.Insert( pivot, m( "Unimaginative",			"Judgmental: Nothing special; exceedingly common, generic, or flavorless.") );
+				list.Insert( pivot, m( "Low Effort",			"Judgmental: Evident lack of effort involved.") );
 				list.Insert( pivot, m( "Unoriginal Content",	"Judgmental: Contains stolen or extensively-derived content.") );
 			}
 

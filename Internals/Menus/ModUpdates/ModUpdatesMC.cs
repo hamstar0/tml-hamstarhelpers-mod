@@ -88,10 +88,10 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			if( modInfo[ modName ].Item2 == modVersion ) { return; }
 
 			UIPanel uiModItem = null;
+			TmodFile tmod = null;
 
 			foreach( UIElement modItem in modList._items ) {
 				object mod;
-				TmodFile tmod;
 
 				ReflectionHelpers.Get( modItem, "mod", out mod );
 				ReflectionHelpers.Get( mod, "modFile", out tmod );
@@ -103,13 +103,20 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			}
 
 			if( uiModItem != null ) {
-				string newModVersion = modInfo[modName].Item2.ToString();
+				Version newModVersion = modInfo[modName].Item2;
+				string msg = newModVersion.ToString() + " On Mod Browser";
 
 //LogHelpers.Log( " name: "+name+", uiModItem: " + uiModItem.GetOuterDimensions().ToRectangle() );
-				var txt = new UIText( newModVersion + " On Mod Browser", 0.8f, true );
+				var txt = new UIText( msg, 0.8f, true );
 				txt.Top.Set( 24f, 0f );
 				txt.Left.Set( -184f, 0.5f );
-				txt.TextColor = Color.Gold;
+
+				if( newModVersion > modVersion ) {
+					txt.TextColor = Color.Gold;
+				} else {
+					txt.SetText( msg, 0.6f, true );
+					txt.TextColor = Color.Gray;
+				}
 
 				uiModItem.Append( txt );
 				uiModItem.Recalculate();

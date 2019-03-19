@@ -1,10 +1,6 @@
-﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.TmlHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+﻿using HamstarHelpers.Services.ModHelpers;
 using System;
-using System.Linq;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 
@@ -49,10 +45,10 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		}
 
 		private void ToggleModLock() {
-			if( !ModLockHelpers.IsWorldLocked() ) {
-				ModLockHelpers.LockWorld();
+			if( !ModLockService.IsWorldLocked() ) {
+				ModLockService.LockWorld();
 			} else {
-				ModLockHelpers.UnlockWorld();
+				ModLockService.UnlockWorld();
 			}
 
 			this.RefreshModLockButton();

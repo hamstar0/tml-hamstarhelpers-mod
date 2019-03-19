@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
+using HamstarHelpers.Services.ModHelpers;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -36,12 +36,12 @@ namespace HamstarHelpers.Commands {
 				}
 			}
 
-			if( ModLockHelpers.IsWorldLocked() ) {
+			if( ModLockService.IsWorldLocked() ) {
 				caller.Reply( "World unlocked.", Color.Lime );
-				ModLockHelpers.UnlockWorld();
+				ModLockService.UnlockWorld();
 			} else {
 				caller.Reply( "World locked.", Color.Lime );
-				ModLockHelpers.LockWorld();
+				ModLockService.LockWorld();
 			}
 		}
 	}

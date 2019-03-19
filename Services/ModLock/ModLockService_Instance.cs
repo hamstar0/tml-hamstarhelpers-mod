@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -11,8 +12,8 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
-	public partial class ModLockHelpers {
+namespace HamstarHelpers.Services.ModHelpers {
+	public partial class ModLockService {
 		internal IDictionary<string, ISet<string>> WorldModLocks { get; private set; }
 		private bool IsInitialized = false;
 		private bool IsMismatched = false;
@@ -27,11 +28,11 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		internal ModLockHelpers() {
+		internal ModLockService() {
 			this.WorldModLocks = new Dictionary<string, ISet<string>>();
 			this.MismatchBroadcastMade = false;
 
-			Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
+			Promises.Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		////////////////
@@ -80,7 +81,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				}
 			}
 
-			this.IsMismatched = ModLockHelpers.IsModMismatchFound();
+			this.IsMismatched = ModLockService.IsModMismatchFound();
 //LogHelpers.Log( "req_modNames:"+string.Join(",",req_modNames)+
 //", extra:"+string.Join(",",this.ExtraModNames)+
 //", found:"+string.Join(",",this.FoundModNames)+

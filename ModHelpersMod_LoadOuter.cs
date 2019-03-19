@@ -35,6 +35,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Services.ModHelpers;
 
 
 namespace HamstarHelpers {
@@ -55,6 +56,7 @@ namespace HamstarHelpers {
 		internal DataStore DataStore;
 		internal CustomHotkeys CustomHotkeys;
 		internal ServerInfo ServerInfo;
+		internal ModLockService ModLock;
 		//internal PlayerDataManager PlayerDataMngr;
 
 		// Helpers
@@ -71,7 +73,6 @@ namespace HamstarHelpers {
 		internal LoadHelpers LoadHelpers;
 		internal PlayerState PlayerState;
 		internal WorldStateHelpers WorldStateHelpers;
-		internal ModLockHelpers ModLockHelpers;
 		internal MusicHelpers MusicHelpers;
 		internal PlayerIdentityHelpers PlayerIdentityHelpers;
 		internal ReflectionHelpers ReflectionHelpers;
@@ -119,7 +120,7 @@ namespace HamstarHelpers {
 			this.PlayerState = new PlayerState();
 			this.WorldStateHelpers = new WorldStateHelpers();
 			this.ControlPanel = new UIControlPanel();
-			this.ModLockHelpers = new ModLockHelpers();
+			this.ModLock = new ModLockService();
 			this.EntityGroups = new EntityGroups();
 			this.PlayerMessages = new PlayerMessages();
 			this.Inbox = new InboxControl();
@@ -159,7 +160,7 @@ namespace HamstarHelpers {
 			this.GetModVersion = null;
 			this.GetModTags = null;
 			this.WorldStateHelpers = null;
-			this.ModLockHelpers = null;
+			this.ModLock = null;
 			this.EntityGroups = null;
 			this.AnimatedColors = null;
 			this.PlayerMessages = null;

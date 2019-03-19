@@ -1,14 +1,15 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
-	public partial class ModLockHelpers {
+namespace HamstarHelpers.Services.ModHelpers {
+	public partial class ModLockService {
 		public static bool IsWorldLocked() {
 			var mymod = ModHelpersMod.Instance;
-			var modlock = mymod.ModLockHelpers;
+			var modlock = mymod.ModLock;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			return modlock.WorldModLocks.ContainsKey( modworld.ObsoleteId2 );
@@ -16,7 +17,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		public static bool IsModMismatchFound() {
 			var mymod = ModHelpersMod.Instance;
-			var modlock = mymod.ModLockHelpers;
+			var modlock = mymod.ModLock;
 
 			if( modlock.MissingModNames.Count > 0 ) { return true; }
 			if( mymod.Config.WorldModLockMinimumOnly && modlock.ExtraModNames.Count > 0 ) { return true; }
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		public static void LockWorld() {
 			var mymod = ModHelpersMod.Instance;
-			var modlock = mymod.ModLockHelpers;
+			var modlock = mymod.ModLock;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			IEnumerable<Mod> allMods = ModListHelpers.GetAllLoadedModsPreferredOrder();
@@ -50,7 +51,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		public static void UnlockWorld() {
 			var mymod = ModHelpersMod.Instance;
-			var modlock = mymod.ModLockHelpers;
+			var modlock = mymod.ModLock;
 			var modworld = mymod.GetModWorld<ModHelpersWorld>();
 
 			modlock.WorldModLocks.Remove( modworld.ObsoleteId2 );

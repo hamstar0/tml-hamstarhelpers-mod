@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.Logic {
 		
 		private void UpdateSafelyLoaded() {
 			var mymod = ModHelpersMod.Instance;
-			mymod.ModLockHelpers.Update();
+			mymod.ModLock.Update();
 		}
 	}
 }

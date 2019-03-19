@@ -71,11 +71,11 @@ namespace HamstarHelpers {
 			}
 
 			//mymod.UserHelpers.Load( mymod, tags );
-			mymod.ModLockHelpers.Load( tags );
+			mymod.ModLock.Load( tags );
 
 			this.WorldLogic.LoadForWorld( tags );
 
-			mymod.ModLockHelpers.PostLoad( this );
+			mymod.ModLock.PostLoad( this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
 			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
@@ -92,7 +92,7 @@ namespace HamstarHelpers {
 			tags["world_id"] = this.ObsoleteId;
 
 			//mymod.UserHelpers.Save( mymod, tags );
-			mymod.ModLockHelpers.Save( tags );
+			mymod.ModLock.Save( tags );
 
 			this.WorldLogic.SaveForWorld( tags );
 

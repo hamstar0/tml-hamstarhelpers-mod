@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Services.ModHelpers;
 using Microsoft.Xna.Framework.Graphics;
 using System.Text;
 using Terraria;
@@ -279,7 +279,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public void RefreshModLockButton() {
 			var mymod = ModHelpersMod.Instance;
-			bool areModsLocked = ModLockHelpers.IsWorldLocked();
+			bool areModsLocked = ModLockService.IsWorldLocked();
 			string status = areModsLocked ? ": ON" : ": OFF";
 			bool isEnabled = true;
 

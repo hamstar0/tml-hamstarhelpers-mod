@@ -227,8 +227,7 @@
     <Compile Include="Helpers\TmlHelpers\Menus\MenuModHelper.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModListHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModHelpers.cs" />
-    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModLockHelpers_Instance.cs" />
-    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModLockHelpers.cs" />
+    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModLockHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData_Instance.cs" />
     <Compile Include="Helpers\TmlHelpers\ModMetaData.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlHelpers.cs" />
@@ -333,6 +332,8 @@
     <Compile Include="Services\Messages\InboxMessages.cs" />
     <Compile Include="Services\Messages\PlayerMessages.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
+    <Compile Include="Services\ModLock\ModLockService.cs" />
+    <Compile Include="Services\ModLock\ModLockService_Instance.cs" />
     <Compile Include="Services\Players\PlayerState.cs" />
     <Compile Include="Services\Promises\Promises.cs" />
     <Compile Include="Services\Promises\Promises_ContextAPI.cs" />
