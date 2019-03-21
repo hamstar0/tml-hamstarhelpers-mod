@@ -13,14 +13,25 @@ namespace HamstarHelpers.Components.UI.Elements {
 	public partial class UIModData : UIPanel {
 		public static Color GetTagColor( string tag ) {
 			switch( tag ) {
+			// Important tags:
+			case "MP Compatible":
+				return Color.Blue;
+			case "Needs New World":
+			case "Needs New Player":
+				return Color.SkyBlue;
+			// Negative tags:
 			case "May Lag":
+			case "Cheat-like":
 				return Color.Yellow;
 			case "Non-functional":
-			case "Cheat-like":
 				return Color.Red;
 			case "Misleading Info":
 			case "Buggy":
 				return Color.Purple;
+			case "Unimaginative":
+			case "Low Effort":
+			case "Unoriginal Content":
+				return Color.Tomato;
 			case "Unmaintained":
 			case "Unfinished":
 				return Color.SlateGray;

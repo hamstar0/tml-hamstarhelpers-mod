@@ -129,9 +129,10 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 		////////////////
 
-		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {	// Solely for Main.LocalPlayer?
+		private static void SetupPlayer( Player player ) {
 			ModPlayer[] modPlayers;
-			if( !ReflectionHelpers.Get(player, "modPlayers", out modPlayers) || modPlayers.Length == 0 ) {
+
+			if( !ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
 				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", ReflectionHelpers.MostAccess );
 				if( setupPlayerMethod == null ) {
 					throw new HamstarException( "Could not run SetupPlayer for " + ( player?.name ?? "null player" ) );
@@ -139,8 +140,17 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 				setupPlayerMethod.Invoke( null, new object[] { player } );
 			}
-			
+		}
+
+
+		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {    // Solely for Main.LocalPlayer?
+			TmlHelpers.SetupPlayer( player );
 			return player.GetModPlayer( mod, modPlayerName );
+		}
+
+		public static T SafelyGetModPlayer<T>( Player player ) where T : ModPlayer {
+			TmlHelpers.SetupPlayer( player );
+			return player.GetModPlayer<T>();
 		}
 	}
 }

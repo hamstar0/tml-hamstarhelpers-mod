@@ -21,6 +21,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		public const int VanillaAccessorySlotFirst = 3;
 
 
+
 		////////////////
 
 		public static ISet<int> AvailableInventorySlots( Player player ) {
