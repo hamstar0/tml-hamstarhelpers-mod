@@ -23,10 +23,10 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 
 			////
 
-			Func<QuadTree<T>, double> getDist = ( q ) => {
-				int diffX = q.X - x;
-				int diffY = q.Y - y;
-				return Math.Sqrt( ( diffX * diffX ) + ( diffY * diffY ) );
+			Func<QuadTree<T>, double> getDist = ( quad ) => {
+				int diffX = quad.X - x;
+				int diffY = quad.Y - y;
+				return Math.Sqrt( (diffX * diffX) + (diffY * diffY) );
 			};
 
 
@@ -83,7 +83,7 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 		////////////////
 
 		public QuadTree<T> GetDeepestTreeNearCoordinates( int x, int y, IDictionary<QuadTree<T>, bool> avoid ) {
-			if( x == this.X && y == this.Y ) {
+			if( x == this.X && y == this.Y && this.Width == 1 && this.Height == 1 ) {
 				return this;
 			}
 
@@ -93,19 +93,21 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			var trq = this.TopRightQuad;
 			var blq = this.BotLeftQuad;
 			var brq = this.BotRightQuad;
-
-			if( x < this.X && (tlq != null || blq != null) &&
+			
+			if( x < this.MidX && (tlq != null || blq != null) &&
 					(tlq == null || !avoid.GetOrDefault(tlq)) &&
-					(blq == null || !avoid.GetOrDefault(blq)) ) {
-				if( y < this.Y && tlq != null && !avoid.GetOrDefault( tlq ) ) {
+					(blq == null || !avoid.GetOrDefault(blq))
+			) {
+				if( y < this.MidY && tlq != null && !avoid.GetOrDefault( tlq ) ) {
 					quad = tlq.GetDeepestTreeNearCoordinates( x, y, avoid );
 				} else if( blq != null && !avoid.GetOrDefault( blq ) ) {
 					quad = blq.GetDeepestTreeNearCoordinates( x, y, avoid );
 				}
 			} else if( (trq != null || brq != null) &&
 					(trq == null || !avoid.GetOrDefault(trq)) &&
-					(brq == null || !avoid.GetOrDefault(brq)) ) {
-				if( y < this.Y && trq != null && !avoid.GetOrDefault( trq ) ) {
+					(brq == null || !avoid.GetOrDefault(brq))
+			) {
+				if( y < this.MidY && trq != null && !avoid.GetOrDefault( trq ) ) {
 					quad = trq.GetDeepestTreeNearCoordinates( x, y, avoid );
 				} else if( brq != null && !avoid.GetOrDefault( brq ) ) {
 					quad = brq.GetDeepestTreeNearCoordinates( x, y, avoid );

@@ -3,13 +3,48 @@ using HamstarHelpers.Helpers.DebugHelpers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections;
-using Terraria;
 
 
 namespace HamstarHelpers.Components.DataStructures.QuadTree {
 	public partial class QuadTree<T> : IEnumerable where T : class {
-		public int X { get; private set; }
-		public int Y { get; private set; }
+		public static Rectangle GetQuadRect( int x, int y, QuadTree<T> parent ) {
+			int myX, myY, myWid, myHei;
+			int midWid = Math.Max( 1, parent.Width / 2 );
+			int midHei = Math.Max( 1, parent.Height / 2 );
+			int rightX = parent.X + midWid;
+			int bottomY = parent.Y + midHei;
+
+			if( x != parent.X && x != rightX ) {
+				throw new HamstarException( "Invalid quad X at " + x + " (parent: " + parent.Rect.ToString() + ")" );
+			}
+			if( y != parent.Y && y != bottomY ) {
+				throw new HamstarException( "Invalid quad Y at " + y + " (parent: " + parent.Rect.ToString() + ")" );
+			}
+			if( midWid == parent.Width && midHei == parent.Height ) {
+				throw new HamstarException( "Invalid quad width/height " + midWid + ":" + midHei + " (" + parent.Rect.ToString() + ")" );
+			}
+
+			if( x == rightX ) {
+				myX = rightX;
+			} else {
+				myX = parent.X;
+			}
+			if( y == bottomY ) {
+				myY = bottomY;
+			} else {
+				myY = parent.Y;
+			}
+			myWid = midWid;
+			myHei = midHei;
+
+			return new Rectangle( myX, myY, myWid, myHei );
+		}
+
+
+
+		////////////////
+
+		private Rectangle Rect;
 
 		private QuadTree<T> Parent;
 		private QuadTree<T> TopLeftQuad;
@@ -20,6 +55,13 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 		public T Value;
 
 		////////////////
+
+		public int X => this.Rect.X;
+		public int Y => this.Rect.Y;
+		public int Width => this.Rect.Width;
+		public int Height => this.Rect.Height;
+		public int MidX => this.X + (this.Width / 2);
+		public int MidY => this.Y + (this.Height / 2);
 
 		public bool IsLeaf => this.TopLeftQuad == null
 			&& this.TopRightQuad == null
@@ -32,23 +74,33 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 
 		////////////////
 
-		public QuadTree( int x, int y ) : this( null, x, y ) {
-			if( x <= 0 || y <= 0 ) {
-				throw new HamstarException( "Positive integer coordinates required." );
-			}
+		public QuadTree( int width, int height ) {
+			int newWidth = 1, newHeight = 1;
+
+			do {
+				newWidth *= 2;
+			} while( width >= newWidth );
+			do {
+				newHeight *= 2;
+			} while( height >= newHeight );
+
+			this.Parent = null;
+			this.Rect = new Rectangle( 0, 0, newWidth, newHeight );
+			this.Count = 0;
 		}
+
 
 		private QuadTree( QuadTree<T> parent, int x, int y ) {
 			this.Parent = parent;
-			this.X = x;
-			this.Y = y;
+			this.Rect = QuadTree<T>.GetQuadRect( x, y, parent );
 			this.Count = 0;
+LogHelpers.Log( "   x:"+x+", y:"+y+", rect:"+this.Rect+", parent:"+parent.Rect );
 		}
 
 
 		////////////////
 
-		public void Clear( bool deep=false ) {
+		public void Clear( bool deep = false ) {
 			if( deep ) {
 				this.TopLeftQuad?.Clear( true );
 				this.TopRightQuad?.Clear( true );
@@ -65,6 +117,10 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 
 
 		////////////////
+
+		public Rectangle GetRectangle() {
+			return this.Rect;
+		}
 
 		public IEnumerator GetEnumerator() {
 			if( this.TopLeftQuad != null ) {
@@ -96,21 +152,35 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			}
 		}
 
-		////
 
-		public Rectangle GetRectangle() {
-			if( this.Parent == null ) {
-				return new Rectangle( 0, 0, this.X * 2, this.Y * 2 );
-			}
+		////////////////
 
-			int width = Math.Abs( this.Parent.X - this.X ) * 2;
-			int height = Math.Abs( this.Parent.Y - this.Y ) * 2;
-			int x = this.X - ( width / 2 );
-			int y = this.Y - ( height / 2 );
-			x = Utils.Clamp<int>( x, 0, this.Parent.X * 2 );
-			y = Utils.Clamp<int>( y, 0, this.Parent.Y * 2 );
+		public override string ToString() {
+			return this.ToStringAtLevel(0);
+		}
 
-			return new Rectangle( x, y, width, height );
+		internal string ToStringAtLevel( int level ) {
+			string indent = new String( '\t', level );
+			string valueStr = this.Value == null ?
+				"null" :
+				this.Value is string ?
+					("\"" + this.Value + "\"") :
+					this.Value.ToString();
+
+			level++;
+			string tlStr = this.TopLeftQuad?.ToStringAtLevel( level ) ?? "null";
+			string trStr = this.TopRightQuad?.ToStringAtLevel( level ) ?? "null";
+			string blStr = this.BotLeftQuad?.ToStringAtLevel( level ) ?? "null";
+			string brStr = this.BotRightQuad?.ToStringAtLevel( level ) ?? "null";
+
+			return "{\n"
+				+ indent + "\tRect: "+this.Rect.ToString()+ ",\n"
+				+ indent + "\tValue: "+valueStr+",\n"
+				+ indent + "\tTL: " + tlStr + ",\n"
+				+ indent + "\tTR: " + trStr + ",\n"
+				+ indent + "\tBL: " + blStr + ",\n"
+				+ indent + "\tBR: " + brStr + "\n"
+				+ indent + "}";
 		}
 	}
 }

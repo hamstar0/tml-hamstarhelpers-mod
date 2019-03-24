@@ -34,9 +34,9 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 		////////////////
 
-		public static IDictionary<string, float> GetVanillaBiomePercentsNear( int tileX, int tileY,
+		public static IDictionary<string, float> GetVanillaBiomePercentsNear( int midTileX, int midTileY,
 				out int totalTiles, out int unidenfiedTiles ) {
-			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( tileX, tileY );
+			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( midTileX, midTileY );
 
 			int holyTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaHolyTiles ) {

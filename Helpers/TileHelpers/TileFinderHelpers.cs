@@ -59,7 +59,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 		////
 
-		public static IDictionary<int, int> GetPlayerRangeTilesAt( int tileX, int tileY ) {
+		public static IDictionary<int, int> GetPlayerRangeTilesAt( int midTileX, int midTileY ) {
 			var tiles = new Dictionary<int, int>();
 
 			float minScreenTileWidth = 50f;
@@ -71,10 +71,10 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 				offscreenTiles = 23;
 			}*/
 
-			int leftTileX = tileX - (int)((offscreenTiles - minScreenTileWidth) * 0.5f) - 1;
-			int topTileY = tileY - (int)((offscreenTiles - minScreenTileHeight) * 0.5f) - 1;
-			int rightTileX = tileX + (int)((offscreenTiles + minScreenTileWidth) * 0.5f) + 1;
-			int botTileY = tileY + (int)((offscreenTiles + minScreenTileHeight) * 0.5f) + 1;
+			int leftTileX = midTileX - (int)((offscreenTiles + minScreenTileWidth) * 0.5f) - 1;
+			int topTileY = midTileY - (int)((offscreenTiles + minScreenTileHeight) * 0.5f) - 1;
+			int rightTileX = midTileX + (int)((offscreenTiles + minScreenTileWidth) * 0.5f) + 1;
+			int botTileY = midTileY + (int)((offscreenTiles + minScreenTileHeight) * 0.5f) + 1;
 			leftTileX = Utils.Clamp<int>( leftTileX, 5, Main.maxTilesX - 1 );
 			topTileY = Utils.Clamp<int>( topTileY, 5, Main.maxTilesY - 1 );
 			rightTileX = Utils.Clamp<int>( rightTileX, 5, Main.maxTilesX - 1 );

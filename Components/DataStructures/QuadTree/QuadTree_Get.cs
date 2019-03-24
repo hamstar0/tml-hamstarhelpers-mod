@@ -8,26 +8,26 @@ using System.Linq;
 namespace HamstarHelpers.Components.DataStructures.QuadTree {
 	public partial class QuadTree<T> where T : class {
 		public T Get( int x, int y ) {
-			if( this.X == x && this.Y == y ) {
+			if( this.X == x && this.Y == y && this.Width == 1 && this.Height == 1 ) {
 				return this.Value;
 			}
 
-			if( x < this.X ) {
-				if( y < this.Y ) {
+			if( x < this.MidX ) {
+				if( y < this.MidY ) {
 					return this.TopLeftQuad?.Get( x, y ) ?? null;
 				} else {
-					return this.TopRightQuad?.Get( x, y ) ?? null;
+					return this.BotLeftQuad?.Get( x, y ) ?? null;
 				}
 			} else {
-				if( y < this.Y ) {
-					return this.BotLeftQuad?.Get( x, y ) ?? null;
+				if( y < this.MidY ) {
+					return this.TopRightQuad?.Get( x, y ) ?? null;
 				} else {
 					return this.BotRightQuad?.Get( x, y ) ?? null;
 				}
 			}
 		}
 
-		public IEnumerable<Tuple<int, int, T>> GetAll() {
+		public IEnumerable<Tuple<int, int, T>> GetAllValues() {
 			var list = new List<Tuple<int, int, T>>();
 
 			if( this.Value != null ) {
@@ -35,22 +35,22 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			}
 			
 			if( this.TopLeftQuad != null ) {
-				foreach( var item in this.TopLeftQuad.GetAll() ) {
+				foreach( var item in this.TopLeftQuad.GetAllValues() ) {
 					list.Add( item );
 				}
 			}
 			if( this.TopRightQuad != null ) {
-				foreach( var item in this.TopRightQuad.GetAll() ) {
+				foreach( var item in this.TopRightQuad.GetAllValues() ) {
 					list.Add( item );
 				}
 			}
 			if( this.BotLeftQuad != null ) {
-				foreach( var item in this.BotLeftQuad.GetAll() ) {
+				foreach( var item in this.BotLeftQuad.GetAllValues() ) {
 					list.Add( item );
 				}
 			}
 			if( this.BotRightQuad != null ) {
-				foreach( var item in this.BotRightQuad.GetAll() ) {
+				foreach( var item in this.BotRightQuad.GetAllValues() ) {
 					list.Add( item );
 				}
 			}
