@@ -8,6 +8,13 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.RecipeHelpers {
 	public partial class RecipeHelpers {
+		public static bool CanRecipeBeCrafted( Player player, Recipe recipe ) {
+
+		}
+
+
+		////////////////
+
 		public static IList<Recipe> GetRecipesOfItem( int itemType ) {
 			var mymod = ModHelpersMod.Instance;
 

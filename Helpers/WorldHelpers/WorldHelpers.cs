@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 		[Obsolete("use `WorldHelpers.GetUniqueId()` (the 'seeds' part is not properly synced to clients)", false)]
 		public static string GetUniqueIdWithSeed() {
 			if( Main.netMode == 1 ) {
-				LogHelpers.Log( "!"+DebugHelpers.DebugHelpers.GetCurrentContext(2)+"Seeds are not conveyed from dedicated servers." );
+				LogHelpers.Log( "!"+DebugHelpers.DebugHelpers.GetCurrentContext(2)+" - Seeds are not seen by clients." );
 			} 
 			return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID + "." + Main.ActiveWorldFileData.Seed;
 		}

@@ -94,7 +94,7 @@ namespace HamstarHelpers.Components.DataStructures.QuadTree {
 			this.Parent = parent;
 			this.Rect = QuadTree<T>.GetQuadRect( x, y, parent );
 			this.Count = 0;
-LogHelpers.Log( "   x:"+x+", y:"+y+", rect:"+this.Rect+", parent:"+parent.Rect );
+//LogHelpers.Log( "   x:"+x+", y:"+y+", rect:"+this.Rect+", parent:"+parent.Rect );
 		}
 
 

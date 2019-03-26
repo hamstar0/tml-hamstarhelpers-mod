@@ -7,7 +7,7 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Services.DataStore {
-	public class DataStore {
+	public partial class DataStore {
 		private static object MyLock = new object();
 
 
@@ -80,25 +80,6 @@ namespace HamstarHelpers.Services.DataStore {
 					ds.Data[ key ] = (double)ds.Data[key] + val;
 				}
 			}
-		}
-		
-
-
-		////////////////
-
-		private IDictionary<object, object> Data = new Dictionary<object, object>();
-
-
-
-		////////////////
-
-		internal DataStore() { }
-
-
-		////////////////
-
-		public string Serialize() {
-			return JsonConvert.SerializeObject( DataStore.GetAll(), Formatting.Indented );
 		}
 	}
 }

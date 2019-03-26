@@ -4,7 +4,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.Players {
-	public class PlayerState {
+	public partial class PlayerState {
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
 			var playerState = ModHelpersMod.Instance.PlayerState;
 
@@ -55,13 +55,5 @@ namespace HamstarHelpers.Services.Players {
 				action.Value( player, slot, itemType );
 			}
 		}
-
-
-
-		////////////////
-
-		internal IDictionary<string, Action<Player, int>> BuffExpireHooks = new Dictionary<string, Action<Player, int>>();
-		internal IDictionary<string, Action<Player, int, Item>> ArmorEquipHooks = new Dictionary<string, Action<Player, int, Item>>();
-		internal IDictionary<string, Action<Player, int, int>> ArmorUnequipHooks = new Dictionary<string, Action<Player, int, int>>();
 	}
 }

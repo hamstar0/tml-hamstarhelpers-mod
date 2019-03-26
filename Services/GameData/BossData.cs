@@ -1,22 +1,23 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.NPCHelpers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 
 namespace HamstarHelpers.Services.GameData {
 	public class BossDataEntry {
+		[Obsolete("use `GetNpcId()`", true)]
 		public int NpcId {
 			get {
-				if( !NPCIdentityHelpers.NamesToIds.ContainsKey( this.Name ) ) {
-					LogHelpers.Log( "ModHelpers.BossDataEntry.NpcId - Could not find id of " + this.Name );
-					return 0;
-				}
-				return NPCIdentityHelpers.NamesToIds[this.Name];
+				int npcId;
+				bool found = this.GetNpcId( out npcId );
+				return npcId;
 			}
 		}
 
 		public int Order => BossData.BossMap[ this.Name ];
+
 
 		////
 
@@ -27,6 +28,14 @@ namespace HamstarHelpers.Services.GameData {
 		public bool IsPostPlantera => this.Order > BossData.Plantera.Order;
 		public bool IsPostGolem => this.Order > BossData.Golem.Order;
 		public bool IsPostMoonlord => this.Order > BossData.MoonLord.Order;
+
+
+
+		////////////////
+
+		public bool GetNpcId( out int npcId ) {
+			return NPCIdentityHelpers.NamesToIds.TryGetValue( this.Name, out npcId );
+		}
 	}
 
 

@@ -10,7 +10,7 @@ using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.
 
 namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
-		private IList<Tuple<string, string[], ItemMatcher>> DefineItemGroups() {
+		private static IList<Tuple<string, string[], ItemMatcher>> DefineItemGroups() {
 			var matchers = new List<Tuple<string, string[], ItemMatcher>>();
 
 			Action<string, string[], ItemMatcher> addItemGrpDef = ( name, grps, matcher ) => {
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private IList<Tuple<string, string[], NPCMatcher>> DefineNPCGroups() {
+		private static IList<Tuple<string, string[], NPCMatcher>> DefineNPCGroups() {
 			var matchers = new List<Tuple<string, string[], NPCMatcher>>();
 
 			Action<string, string[], NPCMatcher> addNpcGrpDef = ( name, dependencies, matcher ) => {
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private IList<Tuple<string, string[], ProjMatcher>> DefineProjectileGroups() {
+		private static IList<Tuple<string, string[], ProjMatcher>> DefineProjectileGroups() {
 			var matchers = new List<Tuple<string, string[], ProjMatcher>>();
 			return matchers;
 		}
