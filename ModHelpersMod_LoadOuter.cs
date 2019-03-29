@@ -36,6 +36,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Services.ModHelpers;
+using HamstarHelpers.Services.RecipeHack;
 
 
 namespace HamstarHelpers {
@@ -58,6 +59,7 @@ namespace HamstarHelpers {
 		internal ServerInfo ServerInfo;
 		internal ModLockService ModLock;
 		//internal PlayerDataManager PlayerDataMngr;
+		internal RecipeHack RecipeHack;
 
 		// Helpers
 		internal LogHelpers LogHelpers;
@@ -136,6 +138,7 @@ namespace HamstarHelpers {
 			this.ServerInfo = new ServerInfo();
 			//this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();
+			this.RecipeHack = new RecipeHack();
 		}
 
 
@@ -178,6 +181,7 @@ namespace HamstarHelpers {
 			this.ServerInfo = null;
 			//this.PlayerDataMngr = null;
 			this.SupportInfo = null;
+			this.RecipeHack = null;
 
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;

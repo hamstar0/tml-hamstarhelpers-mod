@@ -81,6 +81,14 @@ namespace HamstarHelpers {
 		}
 
 
+		private void LoadOuter() {
+			this.MyComponents = new ModHelpersComponents();
+			this.MyServices = new ModHelpersServices();
+			this.MyHelpers = new ModHelpersHelpers();
+			this.MyInternals = new ModHelpersInternals();
+		}
+
+
 		private void LoadHotkeys() {
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );

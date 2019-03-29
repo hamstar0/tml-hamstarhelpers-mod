@@ -40,19 +40,19 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 		
 		public static VanillaEventFlag GetCurrentEventTypeSet() {
 			int flags = 0;
-			int invType = (int)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
+			int invasionEventType = (int)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
 
-			if( (VanillaEventFlag)invType != VanillaEventFlag.None ) {
-				flags += invType;
+			if( ((VanillaEventFlag)invasionEventType & VanillaEventFlag.None) == 0 ) {
+				flags |= invasionEventType;
 			}
 
-			if( Sandstorm.Happening ) { flags += (int)VanillaEventFlag.Sandstorm; }
-			if( Main.bloodMoon ) { flags += (int)VanillaEventFlag.BloodMoon; }
-			if( Main.slimeRain ) { flags += (int)VanillaEventFlag.SlimeRain; }
-			if( Main.eclipse ) { flags += (int)VanillaEventFlag.SolarEclipse; }
-			if( Main.snowMoon ) { flags += (int)VanillaEventFlag.FrostMoon; }
-			if( Main.pumpkinMoon ) { flags += (int)VanillaEventFlag.PumpkinMoon; }
-			if( NPC.LunarApocalypseIsUp ) { flags += (int)VanillaEventFlag.LunarApocalypse; }
+			if( Sandstorm.Happening ) { flags |= (int)VanillaEventFlag.Sandstorm; }
+			if( Main.bloodMoon ) { flags |= (int)VanillaEventFlag.BloodMoon; }
+			if( Main.slimeRain ) { flags |= (int)VanillaEventFlag.SlimeRain; }
+			if( Main.eclipse ) { flags |= (int)VanillaEventFlag.SolarEclipse; }
+			if( Main.snowMoon ) { flags |= (int)VanillaEventFlag.FrostMoon; }
+			if( Main.pumpkinMoon ) { flags |= (int)VanillaEventFlag.PumpkinMoon; }
+			if( NPC.LunarApocalypseIsUp ) { flags |= (int)VanillaEventFlag.LunarApocalypse; }
 
 			return (VanillaEventFlag)flags;
 		}
