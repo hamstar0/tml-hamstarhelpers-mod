@@ -19,7 +19,6 @@ using HamstarHelpers.Services.CustomHotkeys;
 using HamstarHelpers.Services.Players;
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.NetHelpers;

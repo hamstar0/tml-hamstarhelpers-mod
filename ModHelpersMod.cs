@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Config;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Services.Messages;
@@ -17,17 +18,25 @@ namespace HamstarHelpers {
 		////////////////
 
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
-			LogHelpers.Log( "UNHANDLED crash? " + e.IsTerminating + " \nSender: " + sender.ToString() + " \nMessage: " + e.ExceptionObject.ToString() );
-			
+			LogHelpers.Log( "UNHANDLED crash? " + e.IsTerminating
+				+ " \nSender: " + sender.ToString()
+				+ " \nMessage: " + e.ExceptionObject.ToString() );
 		}
 
 
 
 		////////////////
 
-		public bool HasSetupContent { get; private set; }
-		public bool HasAddedRecipeGroups { get; private set; }
-		public bool HasAddedRecipes { get; private set; }
+		internal JsonConfig<HamstarHelpersConfigData> ConfigJson;
+		public HamstarHelpersConfigData Config => ConfigJson.Data;
+
+		////
+
+		private int LastSeenCPScreenWidth = -1;
+		private int LastSeenCPScreenHeight = -1;
+
+
+		private bool HasUnhandledExceptionLogger = false;
 
 
 
@@ -55,7 +64,8 @@ namespace HamstarHelpers {
 
 			InboxMessages.SetMessage( "ModHelpers:ControlPanelTags",
 				"Mod tag lists have now been added to the Control Panel. Mod tags can be modified in the Mod Info menu page via. the main menu.",
-				false );
+				false
+			);
 		}
 
 		////

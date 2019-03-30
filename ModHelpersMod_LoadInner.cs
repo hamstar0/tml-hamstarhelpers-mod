@@ -13,16 +13,9 @@ using System.Reflection;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
-		internal JsonConfig<HamstarHelpersConfigData> ConfigJson;
-		public HamstarHelpersConfigData Config { get { return ConfigJson.Data; } }
-
-		////
-
-		private int LastSeenCPScreenWidth = -1;
-		private int LastSeenCPScreenHeight = -1;
-
-
-		private bool HasUnhandledExceptionLogger = false;
+		public bool HasSetupContent { get; private set; }
+		public bool HasAddedRecipeGroups { get; private set; }
+		public bool HasAddedRecipes { get; private set; }
 
 
 
@@ -38,6 +31,7 @@ namespace HamstarHelpers {
 			);
 		}
 
+		////////////////
 
 		private void LoadInner() {
 			this.LoadConfigs();
@@ -48,6 +42,7 @@ namespace HamstarHelpers {
 			this.LoadDataSources();
 		}
 
+		////
 
 		private void LoadExceptionBehavior() {
 			if( this.Config.DebugModeDisableSilentLogging ) {
@@ -81,14 +76,6 @@ namespace HamstarHelpers {
 		}
 
 
-		private void LoadOuter() {
-			this.MyComponents = new ModHelpersComponents();
-			this.MyServices = new ModHelpersServices();
-			this.MyHelpers = new ModHelpersHelpers();
-			this.MyInternals = new ModHelpersInternals();
-		}
-
-
 		private void LoadHotkeys() {
 			if( !this.Config.DisableControlPanelHotkey ) {
 				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
@@ -112,27 +99,6 @@ namespace HamstarHelpers {
 
 				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId() + " (old uid: "+oldUid+")";
 			} );
-		}
-
-
-		////
-
-		private void UnloadInner() {
-			try {
-				this.Promises.FulfillModUnloadPromises();
-
-				this.UnloadModData();
-				this.UnloadOuter();
-			} catch( Exception e ) {
-				ErrorLogger.Log( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );
-			}
-
-			try {
-				if( this.HasUnhandledExceptionLogger ) {
-					this.HasUnhandledExceptionLogger = false;
-					AppDomain.CurrentDomain.UnhandledException -= ModHelpersMod.UnhandledLogger;
-				}
-			} catch { }
 		}
 
 
@@ -179,6 +145,27 @@ namespace HamstarHelpers {
 		private void OnWorldExit() {
 			var myworld = this.GetModWorld<ModHelpersWorld>();
 			myworld.OnWorldExit();
+		}
+
+
+		////////////////
+
+		private void UnloadInner() {
+			try {
+				this.Promises.FulfillModUnloadPromises();
+
+				this.UnloadModData();
+				this.UnloadOuter();
+			} catch( Exception e ) {
+				ErrorLogger.Log( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );
+			}
+
+			try {
+				if( this.HasUnhandledExceptionLogger ) {
+					this.HasUnhandledExceptionLogger = false;
+					AppDomain.CurrentDomain.UnhandledException -= ModHelpersMod.UnhandledLogger;
+				}
+			} catch { }
 		}
 	}
 }

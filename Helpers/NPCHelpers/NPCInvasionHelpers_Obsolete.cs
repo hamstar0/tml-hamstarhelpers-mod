@@ -6,6 +6,7 @@ using Terraria.GameContent.Events;
 
 namespace HamstarHelpers.Helpers.NPCHelpers {
 	[Obsolete( "use VanillaEventType" )]
+	[Flags]
 	public enum VanillaInvasionType {
 		None = 1,
 		Goblins = 2,

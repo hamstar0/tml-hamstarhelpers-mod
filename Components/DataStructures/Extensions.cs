@@ -79,5 +79,56 @@ namespace HamstarHelpers.Components.DataStructures {
 
 			return removed;
 		}
+
+
+		////////////////
+
+		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, short>> dict,
+				TKey1 key1, TKey2 key2, short value ) {
+			if( !dict.ContainsKey( key1 ) ) {
+				dict[key1] = new Dictionary<TKey2, short>();
+			}
+			if( dict[key1].ContainsKey( key2 ) ) {
+				dict[key1][key2] += value;
+			} else {
+				dict[key1][key2] = value;
+			}
+		}
+
+		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, int>> dict,
+				TKey1 key1, TKey2 key2, int value ) {
+			if( !dict.ContainsKey( key1 ) ) {
+				dict[key1] = new Dictionary<TKey2, int>();
+			}
+			if( dict[key1].ContainsKey(key2) ) {
+				dict[key1][key2] += value;
+			} else {
+				dict[key1][key2] = value;
+			}
+		}
+
+		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, float>> dict,
+				TKey1 key1, TKey2 key2, float value ) {
+			if( !dict.ContainsKey( key1 ) ) {
+				dict[key1] = new Dictionary<TKey2, float>();
+			}
+			if( dict[key1].ContainsKey( key2 ) ) {
+				dict[key1][key2] += value;
+			} else {
+				dict[key1][key2] = value;
+			}
+		}
+
+		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, double>> dict,
+				TKey1 key1, TKey2 key2, double value ) {
+			if( !dict.ContainsKey( key1 ) ) {
+				dict[key1] = new Dictionary<TKey2, double>();
+			}
+			if( dict[key1].ContainsKey( key2 ) ) {
+				dict[key1][key2] += value;
+			} else {
+				dict[key1][key2] = value;
+			}
+		}
 	}
 }

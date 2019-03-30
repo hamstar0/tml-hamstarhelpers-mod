@@ -1,8 +1,10 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.GameContent.Events;
 
 
 namespace HamstarHelpers.Helpers.NPCHelpers {
+	[Flags]
 	public enum VanillaEventFlag {
 		None = 1,
 		Goblins = 2,

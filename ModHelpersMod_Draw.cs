@@ -49,7 +49,7 @@ namespace HamstarHelpers {
 			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 			if( idx == -1 ) { return; }
 
-			GameInterfaceDrawMethod debugLayerDraw = delegate {
+			GameInterfaceDrawMethod debugDrawCallback = () => {
 				var sb = Main.spriteBatch;
 
 				try {
@@ -65,7 +65,7 @@ namespace HamstarHelpers {
 				return true;
 			};
 
-			GameInterfaceDrawMethod cpLayerDraw = delegate {
+			GameInterfaceDrawMethod cpDrawCallback = () => {
 				var sb = Main.spriteBatch;
 
 				try {
@@ -92,7 +92,7 @@ namespace HamstarHelpers {
 				return true;
 			};
 
-			GameInterfaceDrawMethod modlockLayerDraw = delegate {
+			GameInterfaceDrawMethod modlockDrawCallback = delegate {
 				try {
 					this.ModLock.DrawWarning( Main.spriteBatch );
 				} catch( Exception e ) {
@@ -101,18 +101,19 @@ namespace HamstarHelpers {
 				return true;
 			};
 
+			////
 
 			var debugLayer = new LegacyGameInterfaceLayer( "ModHelpers: Debug Display",
-				debugLayerDraw, InterfaceScaleType.UI );
+				debugDrawCallback, InterfaceScaleType.UI );
 			layers.Insert( idx, debugLayer );
 
 			var modlockLayer = new LegacyGameInterfaceLayer( "ModHelpers: Mod Lock",
-				modlockLayerDraw, InterfaceScaleType.UI );
+				modlockDrawCallback, InterfaceScaleType.UI );
 			layers.Insert( idx, modlockLayer );
 
 			if( !this.Config.DisableControlPanel ) {
 				var cpLayer = new LegacyGameInterfaceLayer( "ModHelpers: Control Panel",
-					cpLayerDraw, InterfaceScaleType.UI );
+					cpDrawCallback, InterfaceScaleType.UI );
 				layers.Insert( idx, cpLayer );
 			}
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );

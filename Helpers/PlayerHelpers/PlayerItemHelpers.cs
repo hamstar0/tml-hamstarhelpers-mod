@@ -27,7 +27,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		public static ISet<int> AvailableInventorySlots( Player player ) {
 			var myset = new HashSet<int>();
 
-			for( int i=0; i<PlayerItemHelpers.VanillaInventoryLastMainSlot; i++ ) {
+			for( int i = 0; i < PlayerItemHelpers.VanillaInventoryLastMainSlot; i++ ) {
 				if( player.inventory[i] != null && player.inventory[i].active && player.inventory[i].stack > 0 ) {
 					myset.Add( i );
 				}
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			return removed;
 		}
 
-		
+
 		public static void DropInventoryItem( Player player, int slot ) {
 			int _;
 			PlayerItemHelpers.DropInventoryItem( player, slot, 100, out _ );
@@ -89,7 +89,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
-			
+
 			item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
 			item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
 			item.noGrabDelay = noGrabDelay;
@@ -121,9 +121,9 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 				item.position = Main.item[ idx ].position;
 				Main.item[ idx ] = item;
-
+				
 				if( Main.netMode == 1 ) {   // Client
-					NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
+					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
 				}
 
 				player.miscEquips[ slot ] = new Item();
@@ -189,7 +189,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 					}
 				}
 			}
-			
+
 			player.noItems = true;
 
 			return isUnhanded;
@@ -208,7 +208,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 			// Accessory
 			for( int i = 0; i < accRange; i++ ) {
-				if( !player.armor[i].IsAir && (!player.hideVisual[3] || (player.hideVisual[3] && !canHide)) ) {
+				if( !player.armor[i].IsAir && ( !player.hideVisual[3] || ( player.hideVisual[3] && !canHide ) ) ) {
 					return false;
 				}
 			}
@@ -220,7 +220,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				}
 				// Vanity Accessory
 				for( int i = accRange + 3; i < 20; i++ ) {
-					if( !player.armor[i].IsAir && (!player.hideVisual[i] || (player.hideVisual[i] && !canHide)) ) {
+					if( !player.armor[i].IsAir && ( !player.hideVisual[i] || ( player.hideVisual[i] && !canHide ) ) ) {
 						return false;
 					}
 				}
@@ -250,7 +250,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 			int wid = Main.itemTexture[ item.type ].Width;
 			int length = wid;
-			
+
 			if( item.useStyle != 5 ) {
 				int hei = Main.itemTexture[ item.type ].Height;
 				length = (int)Math.Sqrt( wid * wid + hei * hei );
@@ -272,7 +272,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				return player.miscEquips[4];
 			}
 			for( int i = 0; i < PlayerItemHelpers.VanillaInventorySize; i++ ) {
-				if( Main.projHook[ player.inventory[i].shoot ] ) {
+				if( Main.projHook[player.inventory[i].shoot] ) {
 					return player.inventory[i];
 				}
 			}
@@ -291,6 +291,30 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 		public static bool IsVanitySlot( Player player, int slot ) {
 			return slot >= 8 + player.extraAccessorySlots;
+		}
+
+
+		////////////////
+
+		public static Item[] GetCurrentlyOpenChest( Player player, out bool? isPrivate ) {
+			if( player.chest != -1 ) {
+				if( player.chest >= 0 ) {
+					isPrivate = false;
+					return Main.chest[player.chest].item;
+				} else if( player.chest == -2 ) {
+					isPrivate = true;
+					return player.bank.item;
+				} else if( player.chest == -3 ) {
+					isPrivate = true;
+					return player.bank2.item;
+				} else if( player.chest == -4 ) {
+					isPrivate = true;
+					return player.bank3.item;
+				}
+			}
+
+			isPrivate = null;
+			return null;
 		}
 	}
 }

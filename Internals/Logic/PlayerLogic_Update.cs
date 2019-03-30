@@ -7,12 +7,10 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.Logic {
 	partial class PlayerLogic {
-		private void PreUpdatePlayer( Player player ) {
+		private void PreUpdateLocal( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
-				var modworld = mymod.GetModWorld<ModHelpersWorld>();
-
 				SimpleMessage.UpdateMessage();
 				mymod.PlayerMessages.Update();
 				this.DialogManager.Update();
@@ -28,11 +26,11 @@ namespace HamstarHelpers.Internals.Logic {
 		////////////////
 
 		public void PreUpdateSingle() {
-			this.PreUpdatePlayer( Main.LocalPlayer );
+			this.PreUpdateLocal( Main.LocalPlayer );
 		}
 
 		public void PreUpdateClient( Player player ) {
-			this.PreUpdatePlayer( player );
+			this.PreUpdateLocal( player );
 
 			var mymod = ModHelpersMod.Instance;
 

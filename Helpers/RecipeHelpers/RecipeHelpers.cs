@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,26 +23,35 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 	public partial class RecipeHelpers {
 		public static RecipeCraftFailReason GetRecipeFailReasons( Player player, Recipe recipe,
-				out int[] missingTile, out int[] missingItem,
-				Func<Player, IDictionary<int, int>> getAvailableIngredients = null
+				out int[] missingTile, out int[] missingItem, IEnumerable<Item> availableIngredients = null
 			) {
 			RecipeCraftFailReason reason = 0;
 			var missingTileList = new List<int>();
 			var missingItemList = new List<int>();
-			IDictionary<int, int> availItems;
 
 			// Get available item ingredients
-			if( getAvailableIngredients == null ) {
-				availItems = player.inventory
+			if( availableIngredients == null ) {
+				availableIngredients = player.inventory
 					.Take( 58 )
-					.Where( item => !item.IsAir )
-					.ToDictionary(
-						item => item.netID,
-						item => item.stack
-					);
-			} else {
-				availItems = getAvailableIngredients( player );
+					.Where( item => !item.IsAir );
+
+				bool? _;
+				Item[] chest = PlayerItemHelpers.GetCurrentlyOpenChest( player, out _ );
+				if( chest != null ) {
+					availableIngredients = availableIngredients.Concat( chest );
+				}
 			}
+
+			// Process ingredients list into id + stack map
+			IDictionary<int, int> availItemInfo = new Dictionary<int, int>( availableIngredients.Count() );
+			foreach( Item item in availableIngredients ) {
+				if( availItemInfo.ContainsKey( item.netID) ) {
+					availItemInfo[ item.netID ] += item.stack;
+				} else {
+					availItemInfo[ item.netID ] = item.stack;
+				}
+			}
+			//availItems.ToDictionary( kv => kv.netID, kv => kv.stack );
 
 			// Tiles
 			for( int i=0; i < Recipe.maxRequirements; i++ ) {
@@ -62,21 +72,25 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 				int reqStack = reqItem.stack;
 				bool hasCheckedGroups = false;
 
-				foreach( int availItemType in availItems.Keys ) {
-					if( recipe.useWood( availItemType, reqItem.type )
-							|| recipe.useSand( availItemType, reqItem.type )
-							|| recipe.useIronBar( availItemType, reqItem.type )
-							|| recipe.useFragment( availItemType, reqItem.type )
-							|| recipe.AcceptedByItemGroups( availItemType, reqItem.type )
-							|| recipe.usePressurePlate( availItemType, reqItem.type ) ) {
-						reqStack -= availItems[ availItemType ];
+				foreach( var kv in availItemInfo ) {
+					int itemType = kv.Key;
+					int itemStack = kv.Value;
+
+					if( recipe.useWood( itemType, reqItem.type )
+							|| recipe.useSand( itemType, reqItem.type )
+							|| recipe.useIronBar( itemType, reqItem.type )
+							|| recipe.useFragment( itemType, reqItem.type )
+							|| recipe.usePressurePlate( itemType, reqItem.type )
+							|| recipe.AcceptedByItemGroups( itemType, reqItem.type ) ) {
+						reqStack -= itemStack;
 						hasCheckedGroups = true;
 					}
 				}
-				if( !hasCheckedGroups && availItems.ContainsKey( reqItem.netID ) ) {
-					reqStack -= availItems[ reqItem.netID ];
+				if( !hasCheckedGroups && availItemInfo.ContainsKey(reqItem.netID) ) {
+					reqStack -= availItemInfo[ reqItem.netID ];
 				}
 
+				// Account for missing ingredients:
 				if( reqStack > 0 ) {
 					missingItemList.Add( reqItem.netID );
 					reason |= RecipeCraftFailReason.MissingItem;
