@@ -193,21 +193,5 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 		public static bool ItemHasIngredients( Item item, ISet<int> ingredients, int minStack ) {
 			return RecipeHelpers.ItemHasIngredients( item.type, ingredients, minStack );
 		}
-
-
-		////////////////
-
-		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
-			IDictionary<string, Tuple<string, ISet<int>>> dict = ItemIdentityHelpers.GetCommonItemGroups();
-			IDictionary<string, RecipeGroup> groups = dict.ToDictionary( kv => "HamstarHelpers:"+kv.Key,
-				kv => {
-					string grpName = kv.Value.Item1;
-					ISet<int> itemIds = kv.Value.Item2;
-					return new RecipeGroup( () => Lang.misc[37].ToString() + " " + grpName, itemIds.ToArray() );
-				}
-			);
-			
-			return groups;
-		}
 	}
 }

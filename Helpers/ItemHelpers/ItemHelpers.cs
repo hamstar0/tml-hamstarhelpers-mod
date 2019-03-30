@@ -80,6 +80,25 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		}
 
 		////////////////
+		
+		public static void ConsumeItems( IDictionary<int, int> consumeAmounts, Item[] sourceItems ) {
+			foreach( Item item in sourceItems ) {
+				if( consumeAmounts.ContainsKey(item.netID) ) {
+					if( consumeAmounts[item.netID] > item.stack ) {
+						consumeAmounts[item.netID] -= item.stack;
+						item.stack = 0;
+						item.active = false;
+					} else {
+						item.stack -= consumeAmounts[item.netID];
+						consumeAmounts.Remove( item.netID );
+					}
+				}
+			}
+		}
+
+
+
+		////////////////
 
 		public static int CalculateStandardUseTime( Item item ) {
 			int useTime;

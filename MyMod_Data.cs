@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	class HamstarHelpersData {
+	class ModHelpersData {
 		public string ControlPanelNewSince = "1.0.0";
 	}
 
@@ -11,14 +11,14 @@ namespace HamstarHelpers {
 
 
 	partial class ModHelpersMod : Mod {
-		internal HamstarHelpersData Data = new HamstarHelpersData();
+		internal ModHelpersData Data = new ModHelpersData();
 
 
 		////////////////
 
 		private bool LoadModData() {
 			bool success;
-			var data = DataFileHelpers.LoadJson<HamstarHelpersData>( this, "data", out success );
+			var data = DataFileHelpers.LoadJson<ModHelpersData>( this, "data", out success );
 
 			if( success && data != null ) {
 				this.Data = data;
@@ -29,9 +29,9 @@ namespace HamstarHelpers {
 
 
 		private void UnloadModData() {
-			DataFileHelpers.SaveAsJson<HamstarHelpersData>( this, "data", this.Data );
+			DataFileHelpers.SaveAsJson<ModHelpersData>( this, "data", this.Data );
 
-			this.Data = new HamstarHelpersData();
+			this.Data = new ModHelpersData();
 		}
 	}
 }

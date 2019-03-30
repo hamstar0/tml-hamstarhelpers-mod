@@ -34,11 +34,44 @@ namespace HamstarHelpers.Components.DataStructures {
 		}
 
 
+		////////////////
+
+		public static bool AddOrSet<TKey>( this IDictionary<TKey, int> dict, TKey key, int value ) {
+			if( dict.ContainsKey(key) ) {
+				dict[key] += value;
+				return true;
+			} else {
+				dict[key] = value;
+				return false;
+			}
+		}
+		public static bool AddOrSet<TKey>( this IDictionary<TKey, float> dict, TKey key, float value ) {
+			if( dict.ContainsKey( key ) ) {
+				dict[key] += value;
+				return true;
+			} else {
+				dict[key] = value;
+				return false;
+			}
+		}
+		public static bool AddOrSet<TKey>( this IDictionary<TKey, double> dict, TKey key, double value ) {
+			if( dict.ContainsKey( key ) ) {
+				dict[key] += value;
+				return true;
+			} else {
+				dict[key] = value;
+				return false;
+			}
+		}
+
+
+		////////////////
+
 		public static bool TryGetValue2D<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2, out TValue value ) {
 			IDictionary<TKey2, TValue> dict2;
-			if( !dict.TryGetValue(key1, out dict2) ) {
-				value = default(TValue);
+			if( !dict.TryGetValue( key1, out dict2 ) ) {
+				value = default( TValue );
 				return false;
 			}
 

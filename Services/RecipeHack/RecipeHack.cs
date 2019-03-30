@@ -1,5 +1,9 @@
-﻿using System;
+﻿using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.RecipeHelpers;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
@@ -17,7 +21,29 @@ namespace HamstarHelpers.Services.RecipeHack {
 			mymod.RecipeHack.IngredientOutsources.Remove( sourceName );
 		}
 
-		
+
+		////////////////
+
+		internal static bool ConsumeItemsFromSources( Player player, Item[] neededIngredients ) {
+			var mymod = ModHelpersMod.Instance;
+			if( mymod.RecipeHack.IngredientOutsources.Count == 0 ) {
+				return false;
+			}
+
+			IDictionary<int, int> ingredientAmounts = new Dictionary<int, int>();
+			foreach( Item item in neededIngredients ) {
+				ingredientAmounts.AddOrSet( item.netID, item.stack );
+			}
+			
+			Item[] outItems = mymod.RecipeHack.IngredientOutsources.Values
+				.SelectMany( src => src( player ) )
+				.ToArray();
+
+			ItemHelpers.ConsumeItems( ingredientAmounts, outItems );
+			return ingredientAmounts.Count == 0;
+		}
+
+
 		////////////////
 
 		private static void ForceAddRecipe( int recipeIdx ) {
