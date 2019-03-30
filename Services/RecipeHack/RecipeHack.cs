@@ -21,10 +21,14 @@ namespace HamstarHelpers.Services.RecipeHack {
 		////////////////
 
 		private static void ForceAddRecipe( int recipeIdx ) {
-			Main.numAvailableRecipes++;
+			float y = 0f;
+			if( Main.numAvailableRecipes > 0 ) {
+				y = Main.availableRecipeY[Main.numAvailableRecipes - 1] + 65f;
+			}
 
-			Main.availableRecipe[ Main.numAvailableRecipes ] = recipeIdx;
-			Main.availableRecipeY[ Main.numAvailableRecipes ] = Main.availableRecipeY[ Main.numAvailableRecipes-1 ] + 65f;
+			Main.availableRecipe[Main.numAvailableRecipes] = recipeIdx;
+			Main.availableRecipeY[Main.numAvailableRecipes] = y;
+			Main.numAvailableRecipes++;
 		}
 	}
 }

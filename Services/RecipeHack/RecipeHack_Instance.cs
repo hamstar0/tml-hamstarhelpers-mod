@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.ID;
 
 
 namespace HamstarHelpers.Services.RecipeHack {
@@ -60,12 +59,18 @@ namespace HamstarHelpers.Services.RecipeHack {
 				foreach( int idx in addedRecipeIndexes ) {
 					if( !availRecipeIdxSet.Contains( idx ) ) {
 						RecipeHack.ForceAddRecipe( idx );
+//LogHelpers.Log( " Added recipe "+Main.recipe[idx].createItem.Name+"{"+idx+"}" );
 					}
+//else {
+//LogHelpers.Log( " Redundant recipe "+Main.recipe[idx].createItem.Name+"{"+idx+"}" );
+//}
 				}
-if( availRecipeIdxSet.Count > 0 ) {
-Main.NewText("current recipes: "+string.Join(", ",Main.availableRecipe.Take(Main.numAvailableRecipes).Select(idx=>Main.recipe[idx].createItem.Name)) );
-Main.NewText("adding recipes: "+string.Join(", ",addedRecipeIndexes.Select(idx => Main.recipe[idx].createItem.Name)) );
-}
+//if( availRecipeIdxSet.Count > 0 ) {
+//LogHelpers.Log("current recipes ("+Main.numAvailableRecipes+":"+Recipe.maxRecipes+"): "+string.Join(", ", availRecipeIdxSet.Select(idx=>Main.recipe[idx].createItem.Name+"{"+idx+"}")) );
+//LogHelpers.Log("adding recipes: "+string.Join(", ",addedRecipeIndexes.Select(idx => Main.recipe[idx].createItem.Name+"{"+idx+"}")) );
+//LogHelpers.Log("now recipes: "+string.Join(", ",Main.availableRecipe.Take(Main.numAvailableRecipes).Select(idx=>Main.recipe[idx].createItem.Name+"{"+idx+"}")) );
+//LogHelpers.Log(" ");
+//}
 
 				if( this.OldFocusRecipe >= 0 ) {
 					int toIdx = Math.Min( this.OldFocusRecipe, Main.numAvailableRecipes );
@@ -95,10 +100,10 @@ Main.NewText("adding recipes: "+string.Join(", ",addedRecipeIndexes.Select(idx =
 				IEnumerable<Item> ingredients = src( Main.LocalPlayer );
 
 				RecipeCraftFailReason reason = RecipeHelpers.GetRecipeFailReasons( Main.LocalPlayer, recipe, out _, out _, ingredients );
-if( recipe.createItem.type == ItemID.WorkBench ) {
-DebugHelpers.Print( "EIEIO", "reason:"+Enum.GetName(typeof(RecipeCraftFailReason), reason)+" ("+(int)reason+") "+string.Join(",",_)
-	+ " in "+string.Join(",",ingredients.Select(item=>item.type)), 20 );
-}
+//if( recipe.createItem.type == ItemID.Torch ) {
+//DebugHelpers.Print( "EIEIO", "reason:"+Enum.GetName(typeof(RecipeCraftFailReason), reason)+" ("+(int)reason+") "+string.Join(",",_.Select(idx=>ItemIdentityHelpers.GetQualifiedName(idx)+"@"+idx ) )
+//	+ " in "+string.Join(",",ingredients.Select(item=>item.Name+"@"+item.type)), 20 );
+//}
 				if( reason == 0 ) {
 					return true;
 				}

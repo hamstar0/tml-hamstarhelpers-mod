@@ -160,7 +160,7 @@ namespace HamstarHelpers {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 
-		public override void PostUpdate() {
+		public override void PostUpdateRunSpeeds() {    //PostUpdate?
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
