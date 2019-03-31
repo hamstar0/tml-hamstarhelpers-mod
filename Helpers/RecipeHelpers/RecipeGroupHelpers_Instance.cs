@@ -7,7 +7,22 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.RecipeHelpers {
-	public partial class RecipeHelpers {
+	public partial class RecipeGroupHelpers {
+		public static IDictionary<string, RecipeGroup> Groups {
+			get {
+				var mymod = ModHelpersMod.Instance;
+
+				if( mymod.RecipeGroupHelpers._Groups == null ) {
+					mymod.RecipeGroupHelpers._Groups = RecipeGroupHelpers.CreateRecipeGroups();
+				}
+				return mymod.RecipeGroupHelpers._Groups;
+			}
+		}
+
+
+
+		////////////////
+
 		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
 			IDictionary<string, Tuple<string, ISet<int>>> dict = ItemIdentityHelpers.GetCommonItemGroups();
 			IDictionary<string, RecipeGroup> groups = dict.ToDictionary( kv => "HamstarHelpers:" + kv.Key,
@@ -25,21 +40,6 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 		////////////////
 
-		public static IDictionary<string, RecipeGroup> Groups {
-			get {
-				var mymod = ModHelpersMod.Instance;
-
-				if( mymod.RecipeHelpers._Groups == null ) {
-					mymod.RecipeHelpers._Groups = RecipeHelpers.CreateRecipeGroups();
-				}
-				return mymod.RecipeHelpers._Groups;
-			}
-		}
-
-
 		private IDictionary<string, RecipeGroup> _Groups = null;
-
-
-		private IDictionary<int, IList<Recipe>> RecipesByItem = new Dictionary<int, IList<Recipe>>();
 	}
 }

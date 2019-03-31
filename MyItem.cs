@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Services.DataStore;
+using HamstarHelpers.Services.RecipeHack;
 using HamstarHelpers.Tiles;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +8,23 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers {
 	class ModHelpersItem : GlobalItem {
+		internal int FromRecipeIdx = -1;
+
+		////////////////
+
+		public override bool InstancePerEntity => true;
+
+
+
+		////////////////
+
+		public override GlobalItem Clone( Item item, Item itemClone ) {
+			if( this.FromRecipeIdx >= 0 ) {
+				RecipeHack.AwaitCraft( Main.LocalPlayer, this.FromRecipeIdx );
+			}
+			return base.Clone( item, itemClone );
+		}
+
 		public override void SetDefaults( Item item ) {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+item.whoAmI+":"+item.type+"_A", 1 );
 			if( item.type == ItemID.Coal ) {

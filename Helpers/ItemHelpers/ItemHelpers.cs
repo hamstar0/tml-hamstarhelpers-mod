@@ -81,7 +81,7 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 
 		////////////////
 		
-		public static void ConsumeItems( IDictionary<int, int> consumeAmounts, Item[] sourceItems ) {
+		public static void ConsumeItems( IDictionary<int, int> consumeAmounts, IEnumerable<Item> sourceItems ) {
 			foreach( Item item in sourceItems ) {
 				if( consumeAmounts.ContainsKey(item.netID) ) {
 					if( consumeAmounts[item.netID] > item.stack ) {

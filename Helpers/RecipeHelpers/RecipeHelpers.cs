@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.ItemHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using System;
 using System.Collections.Generic;
@@ -23,11 +22,11 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 	public partial class RecipeHelpers {
 		public static RecipeCraftFailReason GetRecipeFailReasons( Player player, Recipe recipe,
-				out int[] missingTile, out int[] missingItem, IEnumerable<Item> availableIngredients = null
+				out int[] missingTile, out IDictionary<int, int> missingItemTypesStacks, IEnumerable<Item> availableIngredients = null
 			) {
 			RecipeCraftFailReason reason = 0;
 			var missingTileList = new List<int>();
-			var missingItemList = new List<int>();
+			missingItemTypesStacks = new Dictionary<int, int>();
 
 			// Get available item ingredients
 			if( availableIngredients == null ) {
@@ -92,7 +91,7 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 				// Account for missing ingredients:
 				if( reqStack > 0 ) {
-					missingItemList.Add( reqItem.netID );
+					missingItemTypesStacks[ reqItem.netID ] = reqStack;
 					reason |= RecipeCraftFailReason.MissingItem;
 				}
 			}
@@ -111,68 +110,12 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 			}
 
 			missingTile = missingTileList.ToArray();
-			missingItem = missingItemList.ToArray();
 			return reason;
 		}
 
 
 		////////////////
-
-		public static bool Equals( Recipe recipe1, Recipe recipe2 ) {
-			if( recipe1.needHoney != recipe2.needHoney ) { return false; }
-			if( recipe1.needLava != recipe2.needLava ) { return false; }
-			if( recipe1.needSnowBiome != recipe2.needSnowBiome ) { return false; }
-			if( recipe1.needWater != recipe2.needWater ) { return false; }
-
-			if( recipe1.alchemy != recipe2.alchemy ) { return false; }
-			if( recipe1.anyFragment != recipe2.anyFragment ) { return false; }
-			if( recipe1.anySand != recipe2.anySand ) { return false; }
-			if( recipe1.anyPressurePlate != recipe2.anyPressurePlate ) { return false; }
-			if( recipe1.anyIronBar != recipe2.anyIronBar ) { return false; }
-			if( recipe1.anyWood != recipe2.anyWood ) { return false; }
-
-			if( !recipe1.createItem.IsNotTheSameAs(recipe2.createItem) ) { return false; }
-
-			var reqTile1 = new HashSet<int>( recipe1.requiredTile );
-			var reqTile2 = new HashSet<int>( recipe2.requiredTile );
-			if( !reqTile1.Equals(reqTile2) ) { return false; }
-
-			var reqItem1 = new HashSet<Item>( recipe1.requiredItem );
-			var reqItem2 = new HashSet<Item>( recipe2.requiredItem );
-			if( !reqItem1.Equals( reqItem2 ) ) { return false; }
-
-			var reqAcceptedGrps1 = new HashSet<int>( recipe1.acceptedGroups );
-			var reqAcceptedGrps2 = new HashSet<int>( recipe2.acceptedGroups );
-			if( !reqAcceptedGrps1.Equals( reqAcceptedGrps2 ) ) { return false; }
-
-			return true;
-		}
-
-
-		public static IList<Recipe> GetRecipesOfItem( int itemType ) {
-			var mymod = ModHelpersMod.Instance;
-
-			if( mymod.RecipeHelpers.RecipesByItem.Count > 0 ) {
-				if( mymod.RecipeHelpers.RecipesByItem.ContainsKey(itemType) ) {
-					return mymod.RecipeHelpers.RecipesByItem[ itemType ];
-				}
-				return new List<Recipe>();
-			}
-
-			for( int i = 0; i < Main.recipe.Length; i++ ) {
-				Recipe recipe = Main.recipe[i];
-				int recipeItemType = recipe.createItem.type;
-
-				if( !mymod.RecipeHelpers.RecipesByItem.ContainsKey(recipeItemType) ) {
-					mymod.RecipeHelpers.RecipesByItem[ recipeItemType ] = new List<Recipe>();
-				}
-				mymod.RecipeHelpers.RecipesByItem[ recipeItemType ].Add( recipe );
-			}
-
-			return RecipeHelpers.GetRecipesOfItem( itemType );
-		}
-
-
+		
 		public static bool ItemHasIngredients( int itemType, ISet<int> ingredients, int minStack ) {
 			for( int i = 0; i < Main.recipe.Length; i++ ) {
 				Recipe recipe = Main.recipe[i];
@@ -187,11 +130,6 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 				}
 			}
 			return false;
-		}
-
-		[Obsolete( "use ItemHasIngredients(int, ISet<int>, int)" )]
-		public static bool ItemHasIngredients( Item item, ISet<int> ingredients, int minStack ) {
-			return RecipeHelpers.ItemHasIngredients( item.type, ingredients, minStack );
 		}
 	}
 }

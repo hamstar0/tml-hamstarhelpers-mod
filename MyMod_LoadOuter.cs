@@ -70,7 +70,8 @@ namespace HamstarHelpers {
 		internal ProjectileIdentityHelpers ProjectileIdentityHelpers;
 		internal BuffIdentityHelpers BuffIdentityHelpers;
 		internal NPCBannerHelpers NPCBannerHelpers;
-		internal RecipeHelpers RecipeHelpers;
+		internal RecipeIdentityHelpers RecipeIdentityHelpers;
+		internal RecipeGroupHelpers RecipeGroupHelpers;
 		internal LoadHelpers LoadHelpers;
 		internal PlayerState PlayerState;
 		internal WorldStateHelpers WorldStateHelpers;
@@ -117,7 +118,8 @@ namespace HamstarHelpers {
 			this.ProjectileIdentityHelpers = new ProjectileIdentityHelpers();
 			this.BuffIdentityHelpers = new BuffIdentityHelpers();
 			this.NPCBannerHelpers = new NPCBannerHelpers();
-			this.RecipeHelpers = new RecipeHelpers();
+			this.RecipeIdentityHelpers = new RecipeIdentityHelpers();
+			this.RecipeGroupHelpers = new RecipeGroupHelpers();
 			this.PlayerState = new PlayerState();
 			this.WorldStateHelpers = new WorldStateHelpers();
 			this.ControlPanel = new UIControlPanel();
@@ -156,7 +158,8 @@ namespace HamstarHelpers {
 			this.ProjectileIdentityHelpers = null;
 			this.BuffIdentityHelpers = null;
 			this.NPCBannerHelpers = null;
-			this.RecipeHelpers = null;
+			this.RecipeIdentityHelpers = null;
+			this.RecipeGroupHelpers = null;
 			this.PlayerState = null;
 			this.LoadHelpers = null;
 			this.GetModVersion = null;
@@ -208,7 +211,7 @@ namespace HamstarHelpers {
 		private void AddRecipeGroupsOuter() {
 			NPCBannerHelpers.InitializeBanners();
 
-			foreach( var kv in RecipeHelpers.Groups ) {
+			foreach( var kv in RecipeGroupHelpers.Groups ) {
 				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
 		}

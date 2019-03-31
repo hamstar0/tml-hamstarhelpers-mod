@@ -15,6 +15,21 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		////////////////
 
+		private static void ForceAddRecipe( int recipeIdx ) {
+			float y = 0f;
+			if( Main.numAvailableRecipes > 0 ) {
+				y = Main.availableRecipeY[Main.numAvailableRecipes - 1] + 65f;
+			}
+
+			Main.availableRecipe[Main.numAvailableRecipes] = recipeIdx;
+			Main.availableRecipeY[Main.numAvailableRecipes] = y;
+			Main.numAvailableRecipes++;
+		}
+
+
+
+		////////////////
+
 		private IDictionary<string, Func<Player, IEnumerable<Item>>> IngredientOutsources = new Dictionary<string, Func<Player, IEnumerable<Item>>>();
 		private int LastAvailableRecipeCount = -1;
 		private int RefreshTimer = 300;
@@ -24,7 +39,12 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		////////////////
 
-		internal RecipeHack() { }
+		internal RecipeHack() {
+			for( int i=0; i<Recipe.maxRecipes; i++ ) {
+				var myitem = Main.recipe[i].createItem.GetGlobalItem<ModHelpersItem>();
+				myitem.FromRecipeIdx = i;
+			}
+		}
 
 
 		////////////////
@@ -92,6 +112,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		private bool CheckRecipeAgainstIngredientSources( int recipeIdx ) {
 			int[] _;
+			IDictionary<int, int> __;
 
 			foreach( var src in this.IngredientOutsources.Values ) {
 				Recipe recipe = Main.recipe[ recipeIdx ];
@@ -99,7 +120,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 				IEnumerable<Item> ingredients = src( Main.LocalPlayer );
 
-				RecipeCraftFailReason reason = RecipeHelpers.GetRecipeFailReasons( Main.LocalPlayer, recipe, out _, out _, ingredients );
+				RecipeCraftFailReason reason = RecipeHelpers.GetRecipeFailReasons( Main.LocalPlayer, recipe, out _, out __, ingredients );
 //if( recipe.createItem.type == ItemID.Torch ) {
 //DebugHelpers.Print( "EIEIO", "reason:"+Enum.GetName(typeof(RecipeCraftFailReason), reason)+" ("+(int)reason+") "+string.Join(",",_.Select(idx=>ItemIdentityHelpers.GetQualifiedName(idx)+"@"+idx ) )
 //	+ " in "+string.Join(",",ingredients.Select(item=>item.Name+"@"+item.type)), 20 );

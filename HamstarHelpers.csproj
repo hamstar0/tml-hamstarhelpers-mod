@@ -209,7 +209,10 @@
     <Compile Include="Helpers\ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers_Instance.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
-    <Compile Include="Helpers\RecipeHelpers\RecipeHelpers_Instance.cs" />
+    <Compile Include="Helpers\RecipeHelpers\RecipeGroupHelpers_Instance.cs" />
+    <Compile Include="Helpers\RecipeHelpers\RecipeHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\RecipeHelpers\RecipeIdentityHelpers.cs" />
+    <Compile Include="Helpers\RecipeHelpers\RecipeIdentityHelpers_Instance.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileFinderHelpers.cs" />
     <Compile Include="Helpers\TileHelpers\TileHelpers.cs" />
@@ -348,6 +351,7 @@
     <Compile Include="Services\Promises\Promises_ContextAPI.cs" />
     <Compile Include="Services\Promises\Promises_CustomAPI.cs" />
     <Compile Include="Services\Promises\Promises_Fulfills.cs" />
+    <Compile Include="Services\RecipeHack\RecipeHack_Craft.cs" />
     <Compile Include="Services\RecipeHack\RecipeHack_Instance.cs" />
     <Compile Include="Services\RecipeHack\RecipeHack.cs" />
     <Compile Include="Services\ServerInfo\ServerInfo_Instance.cs" />
