@@ -41,30 +41,25 @@ namespace HamstarHelpers.Services.RecipeHack {
 			}
 
 			if( RecipeHack.AwaitingRecipeIdx == -1 || RecipeHack.AwaitingRecipeMissingIngredients == null ) {
-LogHelpers.Log("0");
 				return;
 			}
 			if( !RecipeIdentityHelpers.Equals( Main.recipe[RecipeHack.AwaitingRecipeIdx], recipe ) ) {
-LogHelpers.Log("1");
 				RecipeHack.AwaitingRecipeIdx = -1;
 				RecipeHack.AwaitingRecipeMissingIngredients = null;
 				return;
 			}
 			if( Main.mouseItem.IsNotTheSameAs( recipe.createItem ) ) {
-LogHelpers.Log("2");
 				RecipeHack.AwaitingRecipeIdx = -1;
 				RecipeHack.AwaitingRecipeMissingIngredients = null;
 				return;
 			}
 			
-LogHelpers.Log("3a");
 			IEnumerable<Item> outsourcedItems = RecipeHack.GetOutsourcedItems( player );
 
 			ItemHelpers.ConsumeItems( RecipeHack.AwaitingRecipeMissingIngredients, outsourcedItems );
 
 			RecipeHack.AwaitingRecipeIdx = -1;
 			RecipeHack.AwaitingRecipeMissingIngredients = null;
-LogHelpers.Log("3b "+recipe.createItem.HoverName);
 		}
 	}
 }

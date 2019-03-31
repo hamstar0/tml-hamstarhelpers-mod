@@ -15,6 +15,11 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		////////////////
 
+		internal static void BindRecipeItem( int recipeIdx ) {
+			var myitem = Main.recipe[ recipeIdx ].createItem.GetGlobalItem<ModHelpersItem>();
+			myitem.FromRecipeIdx = recipeIdx;
+		}
+
 		private static void ForceAddRecipe( int recipeIdx ) {
 			float y = 0f;
 			if( Main.numAvailableRecipes > 0 ) {
@@ -40,10 +45,13 @@ namespace HamstarHelpers.Services.RecipeHack {
 		////////////////
 
 		internal RecipeHack() {
-			for( int i=0; i<Recipe.maxRecipes; i++ ) {
-				var myitem = Main.recipe[i].createItem.GetGlobalItem<ModHelpersItem>();
-				myitem.FromRecipeIdx = i;
-			}
+			Promises.Promises.AddPostModLoadPromise( () => {
+				for( int i = 0; i < Recipe.maxRecipes; i++ ) {
+					if( Main.recipe[i].createItem.type == 0 ) { break; }
+
+					RecipeHack.BindRecipeItem( i );
+				}
+			} );
 		}
 
 
@@ -69,6 +77,9 @@ namespace HamstarHelpers.Services.RecipeHack {
 			try {
 				for( int i = 0; i < len; i++ ) {
 					if( Main.recipe[i].createItem.type == 0 ) { break; }
+
+					RecipeHack.BindRecipeItem( i );	// <- Paranoia measure; costs CPU, though
+
 					if( this.CheckRecipeAgainstIngredientSources(i) ) {
 						addedRecipeIndexes.Add( i );
 					}
