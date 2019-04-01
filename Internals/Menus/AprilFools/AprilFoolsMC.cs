@@ -83,11 +83,11 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		public void ApplyModRename( UIList modList, string modName, Version modVersion ) {
 			UIPanel uiModItem = null;
+			object mod = null;
+			object modProps = null;
 			TmodFile tmod = null;
 
 			foreach( UIElement modItem in modList._items ) {
-				object mod;
-
 				ReflectionHelpers.Get( modItem, "mod", out mod );
 				ReflectionHelpers.Get( mod, "modFile", out tmod );
 
@@ -99,12 +99,15 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 			if( uiModItem != null ) {
 				UIText modNameUI;
-				if( ReflectionHelpers.Get( uiModItem, "modName", out modNameUI ) ) {
-					if( modNameUI.Text == "Mod Helpers" ) {
-						modNameUI.SetText( "Hamburger Helpers" );
-					} else {
-						modNameUI.SetText( "Hamstar's " + modNameUI.Text );
-					}
+				string author = "";
+				ReflectionHelpers.Get( uiModItem, "modName", out modNameUI );
+				ReflectionHelpers.Get( mod, "properties", out modProps );
+				ReflectionHelpers.Get( modProps, "author", out author );
+
+				if( modNameUI.Text == "Mod Helpers v"+ModHelpersMod.Instance.Version.ToString() ) {
+					modNameUI.SetText( "Hamburger Helpers" );
+				} else if( author != "hamstar" ) {
+					modNameUI.SetText( "Hamstar's " + modNameUI.Text );
 				}
 				
 				uiModItem.Recalculate();
