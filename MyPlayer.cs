@@ -163,7 +163,7 @@ namespace HamstarHelpers {
 		public override void PostUpdateRunSpeeds() {    //PostUpdate?
 			var mymod = (ModHelpersMod)this.mod;
 
-			if( player.whoAmI == Main.myPlayer ) { // Current player
+			if( player.whoAmI == Main.myPlayer && Main.playerInventory ) { // Current player
 				mymod.RecipeHack.Update();
 			}
 		}

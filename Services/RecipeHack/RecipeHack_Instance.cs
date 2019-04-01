@@ -58,16 +58,16 @@ namespace HamstarHelpers.Services.RecipeHack {
 		////////////////
 
 		internal void Update() {
-			if( this.IngredientOutsources.Count > 0 ) {
-				if( this.LastAvailableRecipeCount != Main.numAvailableRecipes || this.RefreshTimer-- < 0 ) {
-					this.UpdateRecipes();
+			if( this.IngredientOutsources.Count == 0 ) { return; }
 
-					this.LastAvailableRecipeCount = Main.numAvailableRecipes;
-					this.RefreshTimer = 300;
-				}
+			if( this.LastAvailableRecipeCount != Main.numAvailableRecipes || this.RefreshTimer-- < 0 ) {
+				this.UpdateRecipes();
 
-				this.OldFocusRecipe = Main.focusRecipe;
+				this.LastAvailableRecipeCount = Main.numAvailableRecipes;
+				this.RefreshTimer = 300;
 			}
+
+			this.OldFocusRecipe = Main.focusRecipe;
 		}
 
 		private void UpdateRecipes() {
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 				for( int i = 0; i < len; i++ ) {
 					if( Main.recipe[i].createItem.type == 0 ) { break; }
 
-					RecipeHack.BindRecipeItem( i );	// <- Paranoia measure; costs CPU, though
+					//RecipeHack.BindRecipeItem( i );	// <- Paranoia measure; costs CPU, though
 
 					if( this.CheckRecipeAgainstIngredientSources(i) ) {
 						addedRecipeIndexes.Add( i );

@@ -261,6 +261,7 @@
     <Compile Include="Internals\Logic\PlayerLogic_Update.cs" />
     <Compile Include="Internals\Logic\WorldLogic_Data.cs" />
     <Compile Include="Internals\Logic\WorldLogic_Update.cs" />
+    <Compile Include="Internals\Menus\AprilFools\AprilFoolsMC.cs" />
     <Compile Include="Internals\Menus\Menus.cs" />
     <Compile Include="Internals\Menus\ModRecommendations\ModRecommendsMC.cs" />
     <Compile Include="Internals\Menus\ModRecommendations\ModRecommendsMC_Get.cs" />

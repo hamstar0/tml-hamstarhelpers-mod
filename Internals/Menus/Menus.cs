@@ -24,6 +24,9 @@ namespace HamstarHelpers.Internals.Menus {
 				ModBrowserTagsMenuContext.Initialize();
 				ModRecommendsMenuContext.Initialize();
 				ModUpdatesMenuContext.Initialize();
+				if( AprilFoolsMenuContext.IsAprilFools() ) {
+					AprilFoolsMenuContext.Initialize();
+				}
 			} );
 		}
 
