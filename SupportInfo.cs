@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		////////////////
 
-		internal SupportInfoDisplay( float width = 248f, float yBeg = 12f, float rowHeight = 30f, float scale = 0.8f ) {
+		internal SupportInfoDisplay( float width = 248f, float yBeg = 8f, float rowHeight = 30f, float scale = 0.8f ) {
 			if( Main.dedServ ) { return; }
 
 			float y = yBeg;
@@ -66,12 +66,12 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			this.ExtendTextUI = new UIText( "..." );
 			this.ExtendTextUI.Left.Set( -(width * 0.5f) - 16f, 1f );
-			this.ExtendTextUI.Top.Set( (-8f + y + rowHeight) * scale, 0f );
+			this.ExtendTextUI.Top.Set( (-14f + y + rowHeight) * scale, 0f );
 			this.ExtendTextUI.Recalculate();
 
 			////
 
-			y += 4f * scale;
+			y += 6f * scale;
 			row += 1;
 
 			this.ModderTextUI = new UIText( "Do you make mods?", 1f * scale );
@@ -178,7 +178,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				Main.screenWidth - (int)this.Width - 4,
 				4,
 				(int)this.Width,
-				(this.IsExtended ? 78 : 40 )   //104:40
+				(this.IsExtended ? 74 : 32 )   //104:40
 			);
 		}
 
@@ -212,8 +212,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			if( this.IsHovingBox && isClicking ) {
 				if( this.IsExtended ) { return; }
 				this.IsExtended = true;
-
+				
 				this.ExtendTextUI.Remove();
+				this.Elements.Remove( this.ExtendTextUI );
 				this.ExpandUI();
 			}
 		}
