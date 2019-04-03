@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 	public partial class ReflectionHelpers {
 		public static object SafeCall( MethodInfo method, object methodContext, object[] args ) {
 			var paramInfos = method.GetParameters();

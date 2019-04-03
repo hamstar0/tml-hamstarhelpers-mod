@@ -2,12 +2,11 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 	public partial class ReflectionHelpers {
 		public static IList<Type> GetTypesFromAssembly( string assemblyName, string typeName ) {
 			var typeList = new List<Type>();

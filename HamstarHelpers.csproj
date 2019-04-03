@@ -146,13 +146,14 @@
     <Compile Include="Helpers\DotNetHelpers\FileHelpers_Binary.cs" />
     <Compile Include="Helpers\DotNetHelpers\FileHelpers_Text.cs" />
     <Compile Include="Helpers\DotNetHelpers\LinqHelpers.cs" />
-    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Instance.cs" />
-    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Class.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Obsolete2.cs" />
-    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Methods.cs" />
-    <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_GetSet.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\ReflectionHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\DotNetHelpers\Reflection\ReflectionHelpers.cs" />
+    <Compile Include="Helpers\DotNetHelpers\Reflection\ReflectionHelpers_Class.cs" />
+    <Compile Include="Helpers\DotNetHelpers\Reflection\ReflectionHelpers_GetSet.cs" />
+    <Compile Include="Helpers\DotNetHelpers\Reflection\ReflectionHelpers_Instance.cs" />
+    <Compile Include="Helpers\DotNetHelpers\Reflection\ReflectionHelpers_Methods.cs" />
     <Compile Include="Helpers\DotNetHelpers\SimpleStringCipher.cs" />
     <Compile Include="Helpers\DotNetHelpers\SteamHelpers.cs" />
     <Compile Include="Helpers\DotNetHelpers\FormattingHelpers.cs" />
@@ -342,6 +343,7 @@
     <Compile Include="Services\Messages\PlayerMessages_Instance.cs" />
     <Compile Include="Services\Messages\PlayerMessages.cs" />
     <Compile Include="Services\Messages\SimpleMessage.cs" />
+    <Compile Include="Services\ModCompatibilities\kRPG.cs" />
     <Compile Include="Services\ModLock\ModLockService.cs" />
     <Compile Include="Services\ModLock\ModLockService_Instance.cs" />
     <Compile Include="Services\Players\PlayerState_Instance.cs" />

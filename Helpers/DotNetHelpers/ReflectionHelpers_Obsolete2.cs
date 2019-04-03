@@ -13,20 +13,9 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		[Obsolete( "use `bool Get<T>(Type, object, string, out T)`", true )]
 		public static bool GetField<T>( Type objType, Object instance, string fieldName, out T fieldVal ) {
-			MemberInfo rawMember = ReflectionHelpers.Instance.GetCachedInfoMember( objType, fieldName );
-			if( rawMember == null ) {
-				fieldVal = default( T );
-				return false;
-			}
-
-			FieldInfo field = rawMember as FieldInfo;
-			if( field == null ) {
-				fieldVal = default( T );
-				return false;
-			}
-
-			fieldVal = (T)field.GetValue( instance );
-			return true;
+			bool success;
+			fieldVal = (T)ReflectionHelpers.GetField( objType, instance, fieldName, ReflectionHelpers.MostAccess, out success );
+			return success;
 		}
 
 		////

@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 	public partial class ReflectionHelpers {
 		private static bool GetMemberValue<T>( MemberInfo member, object instance, out T result ) {
 			var field = member as FieldInfo;

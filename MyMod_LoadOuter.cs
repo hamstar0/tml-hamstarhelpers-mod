@@ -17,6 +17,8 @@ using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.ServerInfo;
 using HamstarHelpers.Services.CustomHotkeys;
 using HamstarHelpers.Services.Players;
+using HamstarHelpers.Services.ModHelpers;
+using HamstarHelpers.Services.RecipeHack;
 using HamstarHelpers.Helpers.MiscHelpers;
 using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
@@ -29,13 +31,11 @@ using HamstarHelpers.Helpers.ProjectileHelpers;
 using HamstarHelpers.Helpers.RecipeHelpers;
 using HamstarHelpers.Helpers.XnaHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Services.ModHelpers;
-using HamstarHelpers.Services.RecipeHack;
 
 
 namespace HamstarHelpers {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 	public partial class ReflectionHelpers {
 		public static ReflectionHelpers Instance => ModHelpersMod.Instance.ReflectionHelpers;
 
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 
 		////////////////
 
-		private MemberInfo GetCachedInfoMember( Type classType, string fieldOrPropName ) {
+		internal MemberInfo GetCachedInfoMember( Type classType, string fieldOrPropName ) {
 			string className = classType.FullName;
 			MemberInfo result;
 
