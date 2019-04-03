@@ -13,6 +13,7 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 		////////////////
 
 		private IDictionary<int, IList<Recipe>> RecipesByItem = new Dictionary<int, IList<Recipe>>();
+		private IDictionary<int, IList<int>> RecipeIndicesByItem = new Dictionary<int, IList<int>>();
 
 
 
@@ -31,6 +32,11 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 						this.RecipesByItem[recipeItemType] = new List<Recipe>();
 					}
 					this.RecipesByItem[recipeItemType].Add( recipe );
+
+					if( !this.RecipeIndicesByItem.ContainsKey( recipeItemType ) ) {
+						this.RecipeIndicesByItem[recipeItemType] = new List<int>();
+					}
+					this.RecipeIndicesByItem[recipeItemType].Add( i );
 				}
 			}
 		}

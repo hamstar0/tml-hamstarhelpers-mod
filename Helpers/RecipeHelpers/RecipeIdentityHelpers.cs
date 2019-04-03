@@ -41,13 +41,33 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 		////////////////
 
+		public static IList<int> GetRecipeIndicesOfItem( int itemType ) {
+			if( itemType == 0 ) {
+				throw new HamstarException( "Invalid item type" );
+			}
+
+			var mymod = ModHelpersMod.Instance;
+			IDictionary<int, IList<int>> ril = mymod.RecipeIdentityHelpers.RecipeIndicesByItem;
+
+			bool isCached = false;
+			lock( RecipeIdentityHelpers.MyLock ) {
+				isCached = ril.Count > 0;
+			}
+			if( !isCached ) {
+				mymod.RecipeIdentityHelpers.CacheRecipesOfItem( itemType );
+			}
+
+			return ril.GetOrDefault( itemType ) ?? new List<int>();
+		}
+
+
 		public static IList<Recipe> GetRecipesOfItem( int itemType ) {
 			if( itemType == 0 ) {
 				throw new HamstarException( "Invalid item type" );
 			}
 
 			var mymod = ModHelpersMod.Instance;
-			var rbi = mymod.RecipeIdentityHelpers.RecipesByItem;
+			IDictionary<int, IList<Recipe>> rbi = mymod.RecipeIdentityHelpers.RecipesByItem;
 
 			bool isCached = false;
 			lock( RecipeIdentityHelpers.MyLock ) {

@@ -112,10 +112,38 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 			missingTile = missingTileList.ToArray();
 			return reason;
 		}
+		
+		////////////////
+
+		public static IList<int> GetAvailableRecipesOfIngredients( Player player, IEnumerable<Item> ingredients ) {
+			int[] _;
+			IDictionary<int, int> __;
+			IList<int> addedRecipeIndexes = new List<int>();
+			ISet<int> possibleRecipeIdxs = new HashSet<int>();
+
+			foreach( Item ingredient in ingredients ) {
+				IEnumerable<int> ingredientRecipeIdxs = RecipeIdentityHelpers.GetRecipeIndicesOfItem( ingredient.netID );
+
+				foreach( int recipeIdx in ingredientRecipeIdxs ) {
+					possibleRecipeIdxs.Add( recipeIdx );
+				}
+			}
+
+			foreach( int recipeIdx in possibleRecipeIdxs ) {
+				Recipe recipe = Main.recipe[recipeIdx];
+				if( recipe.createItem.type == 0 ) { continue; } // Just in case?
+
+				if( RecipeHelpers.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
+					addedRecipeIndexes.Add( recipeIdx );
+				}
+			}
+
+			return addedRecipeIndexes;
+		}
 
 
 		////////////////
-		
+
 		public static bool ItemHasIngredients( int itemType, ISet<int> ingredients, int minStack ) {
 			for( int i = 0; i < Main.recipe.Length; i++ ) {
 				Recipe recipe = Main.recipe[i];

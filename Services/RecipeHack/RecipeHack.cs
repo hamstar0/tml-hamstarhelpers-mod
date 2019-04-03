@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.RecipeHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -20,9 +21,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 		////////////////
 
 		public static IEnumerable<Item> GetOutsourcedItems( Player player ) {
-			var mymod = ModHelpersMod.Instance;
-
-			return mymod.RecipeHack.IngredientOutsources.Values
+			return ModHelpersMod.Instance.RecipeHack.IngredientOutsources.Values
 				.SelectMany( src => src( player ) );
 		}
 	}

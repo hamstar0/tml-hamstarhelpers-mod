@@ -68,7 +68,7 @@ namespace HamstarHelpers.Services.GameData {
 
 		////
 
-		static BossData() {
+		static BossData() {	// WIP!
 			BossData._BossOrder = new List<BossDataEntry>();
 			BossData._BossMap = new Dictionary<string, int>();
 			BossData.BossOrder = ( (List<BossDataEntry>)BossData._BossOrder ).AsReadOnly();
