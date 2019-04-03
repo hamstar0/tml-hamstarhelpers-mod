@@ -3,7 +3,7 @@ using System;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventory {
+namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 	public partial class ExtensibleInventoryCompatibilities {
 		public static void ApplyCompats() {
 			Mod eiMod = ModLoader.GetMod( "ExtensibleInventory" );

@@ -92,6 +92,17 @@ namespace HamstarHelpers.Components.DataStructures {
 
 		////////////////
 
+		public static void Append2D<TKey, TCollection, TValue>( this IDictionary<TKey, TCollection> dict, TKey key, TValue value )
+				where TCollection : ICollection<TValue> {
+			if( !dict.ContainsKey( key ) ) {
+				dict[key] = (TCollection)Activator.CreateInstance( typeof( TCollection ) );
+			}
+			dict[key].Add( value );
+		}
+
+
+		////////////////
+
 		public static void Add2D<TKey>( this IDictionary<TKey, List<short>> dict, TKey key, int idx, short value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<short>( idx + 1 );
@@ -121,7 +132,7 @@ namespace HamstarHelpers.Components.DataStructures {
 			if( !dict.ContainsKey( key1 ) ) {
 				dict[key1] = new Dictionary<TKey2, int>();
 			}
-			if( dict[key1].ContainsKey(key2) ) {
+			if( dict[key1].ContainsKey( key2 ) ) {
 				dict[key1][key2] += value;
 			} else {
 				dict[key1][key2] = value;

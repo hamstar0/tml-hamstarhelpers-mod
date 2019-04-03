@@ -368,9 +368,6 @@
     <Compile Include="Tiles\CoalTile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ExtensibleInventory">
-      <HintPath>..\..\Inventory\ExtensibleInventory\bin\Release\ExtensibleInventory.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />

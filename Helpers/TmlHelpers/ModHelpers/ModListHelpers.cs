@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
@@ -48,7 +49,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			foreach( Mod mod in ModLoader.LoadedMods ) {
 				var editor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
 
-				mods.Set2D( editor.Author, mod );
+				mods.Append2D( editor.Author, mod );
 			}
 
 			return mods;

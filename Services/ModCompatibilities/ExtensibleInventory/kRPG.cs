@@ -1,25 +1,35 @@
-﻿using ExtensibleInventory;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using System;
+using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventory {
+namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 	public partial class ExtensibleInventoryCompatibilities {
-		private static string kRPGCompat() {
-			var eiConfig = ExtensibleInventoryAPI.GetModSettings();
-			var newConfig = new ExtensibleInventoryConfigData();
-			
-			if( eiConfig.BookPositionY == newConfig.BookPositionY ) {
-				eiConfig.BookPositionY += 112;
-			}
-			if( eiConfig.PagePositionY == newConfig.PagePositionY ) {
-				eiConfig.PagePositionY += 112;
-			}
-			if( eiConfig.PageTicksPositionY == newConfig.PageTicksPositionY ) {
-				eiConfig.PageTicksPositionY += 112;
-			}
+		private static void kRPGCompat() {  //TODO
+			Mod eiMod = ModLoader.GetMod( "ExtensibleInventory" );
+			object eiConfig = eiMod.Call( "GetModSettings" );
+			object newEIConifg = Activator.CreateInstance( eiMod.GetType().AssemblyQualifiedName, "ExtensibleInventoryConfigData" );
 
-			return null;
+			float bookPosY, pagePosY, pageTickPosY,
+				newBookPosY, newPagePosY, newPageTickPosY;
+
+			ReflectionHelpers.Get( eiConfig, "BookPositionY", out bookPosY );
+			ReflectionHelpers.Get( eiConfig, "PagePositionY", out pagePosY );
+			ReflectionHelpers.Get( eiConfig, "PageTicksPositionY", out pageTickPosY );
+			ReflectionHelpers.Get( newEIConifg, "BookPositionY", out newBookPosY );
+			ReflectionHelpers.Get( newEIConifg, "PagePositionY", out newPagePosY );
+			ReflectionHelpers.Get( newEIConifg, "PageTicksPositionY", out newPageTickPosY );
+			
+			if( bookPosY == newBookPosY ) {
+				ReflectionHelpers.Set( eiConfig, "BookPositionY", bookPosY + 112 );
+			}
+			if( pagePosY == newPagePosY ) {
+				ReflectionHelpers.Set( eiConfig, "PagePositionY", pagePosY + 112 );
+			}
+			if( pageTickPosY == newPageTickPosY ) {
+				ReflectionHelpers.Set( eiConfig, "PageTicksPositionY", pageTickPosY + 112 );
+			}
 		}
 	}
 }
