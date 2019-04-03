@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,15 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 	public partial class ReflectionHelpers {
-		public static IList<Type> GetTypesFromAssembly( string assemblyName, string typeName ) {
-			var typeList = new List<Type>();
+		public static IList<Type> GetTypesFromAssembly( string assemblyName, string className ) {
+			var rh = ModHelpersMod.Instance.ReflectionHelpers;
+			IList<Type> classTypeList;
+
+			if( rh.AssClassTypeMap.TryGetValue2D(assemblyName, className, out classTypeList) ) {
+				return classTypeList;
+			} else {
+				classTypeList = new List<Type>();
+			}
 
 			try {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -25,8 +33,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 					if( ass.GetName().Name != assemblyName ) { continue; }
 
 					foreach( Type t in selectMany( ass ) ) {
-						if( t.Name == typeName ) {
-							typeList.Add( t );
+						if( t.Name == className ) {
+							classTypeList.Add( t );
 						}
 					}
 					break;
@@ -36,7 +44,8 @@ namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 				LogHelpers.Warn( e.ToString() );
 			}
 
-			return typeList;
+			rh.AssClassTypeMap.Set2D( assemblyName, className, classTypeList );
+			return classTypeList;
 		}
 
 

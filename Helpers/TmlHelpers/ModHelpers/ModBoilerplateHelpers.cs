@@ -29,7 +29,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			Array.Copy( args, 1, newArgs, 0, args.Length - 1 );
 
 			try {
-				return ReflectionHelpers.SafeCall( methodInfo, null, newArgs );
+				return DotNetHelpers.Reflection.ReflectionHelpers.SafeCall( methodInfo, null, newArgs );
 			} catch( Exception e ) {
 				throw new HamstarException( apiClassType.Name+" failed to execute Call binding " +callType, e );
 			}

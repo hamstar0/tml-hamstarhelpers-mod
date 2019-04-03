@@ -1,12 +1,11 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria.ModLoader.UI;
 using Terraria.UI;
 

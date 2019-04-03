@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Timers;
 using System;

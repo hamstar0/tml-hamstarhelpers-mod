@@ -82,7 +82,9 @@
     <Compile Include="Components\CustomEntity\Internal\Overlay.cs" />
     <Compile Include="Components\CustomEntity\Internal\Converter.cs" />
     <Compile Include="Components\CustomEntity\Serializable.cs" />
-    <Compile Include="Components\DataStructures\Extensions.cs" />
+    <Compile Include="Components\DataStructures\Extensions_Dictionary_2D.cs" />
+    <Compile Include="Components\DataStructures\Extensions_Dictionary.cs" />
+    <Compile Include="Components\DataStructures\Extensions_Array.cs" />
     <Compile Include="Components\DataStructures\QuadTree\QuadTree_Test.cs" />
     <Compile Include="Components\DataStructures\QuadTree\QuadTree_Get.cs" />
     <Compile Include="Components\DataStructures\QuadTree\QuadTree_Set.cs" />

@@ -14,6 +14,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 
 		////////////////
 
+		private IDictionary<string, IDictionary<string, IList<Type>>> AssClassTypeMap = new ConcurrentDictionary<string, IDictionary<string, IList<Type>>>();
 		private IDictionary<string, IDictionary<string, MemberInfo>> FieldPropMap = new ConcurrentDictionary<string, IDictionary<string, MemberInfo>>();
 
 
@@ -24,7 +25,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 
 
 		////////////////
-
+		
 		internal MemberInfo GetCachedInfoMember( Type classType, string fieldOrPropName ) {
 			string className = classType.FullName;
 			MemberInfo result;

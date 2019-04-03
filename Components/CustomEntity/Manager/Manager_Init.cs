@@ -73,7 +73,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		private void InitializeEntityTypes() {
-			var entityTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomEntity ) );
+			var entityTypes = Helpers.DotNetHelpers.Reflection.ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomEntity ) );
 
 			foreach( Type entityType in entityTypes.OrderBy( e => e.Name ) ) {
 				this.CacheTypeIdInfo( entityType );
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Components.CustomEntity {
 
 
 		private void InitializeComponentTypes() {
-			var componentTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomEntityComponent ) );
+			var componentTypes = Helpers.DotNetHelpers.Reflection.ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomEntityComponent ) );
 
 			foreach( var componentType in componentTypes ) {
 				Type[] nestedTypes = componentType.GetNestedTypes( BindingFlags.Public | BindingFlags.NonPublic );

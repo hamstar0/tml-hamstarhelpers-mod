@@ -3,95 +3,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Components.DataStructures {
-	public static class ArrayExtensions {
-		public static T[] RemoveAt<T>( this T[] source, int index ) {
-			T[] dest = new T[source.Length - 1];
-			if( index > 0 )
-				Array.Copy( source, 0, dest, 0, index );
-
-			if( index < source.Length - 1 )
-				Array.Copy( source, index + 1, dest, index, source.Length - index - 1 );
-
-			return dest;
-		}
-
-
-		////////////////
-
-		public static T[] Copy<T>( this T[] source, int sourceIndex, int destinationIndex, int length ) {
-			T[] dest = new T[ length - destinationIndex ];
-
-			int srcLen = source.Length;
-			for( int i=sourceIndex; i<srcLen; i++ ) {
-				dest[i - sourceIndex] = source[i];
-			}
-			
-			return dest;
-		}
-
-		public static T[] Copy<T>( this T[] source, int length ) {
-			T[] dest = new T[ length ];
-
-			Array.Copy( source, dest, length );
-			return dest;
-		}
-
-		public static T[] Copy<T>( this T[] source ) {
-			return source.Copy( source.Length );
-		}
-	}
-
-
-
-
-	public static class DictionaryExtensions {
-		[Obsolete( "use `GetOrDefault(...)`", true)]
-		public static TValue HardGet<TKey, TValue>( this IDictionary<TKey, TValue> dict, TKey key ) {
-			return DictionaryExtensions.GetOrDefault( dict, key );
-		}
-
-		public static TValue GetOrDefault<TKey, TValue>( this IDictionary<TKey, TValue> dict, TKey key ) {
-			TValue val;
-			if( dict.TryGetValue( key, out val ) ) {
-				return val;
-			}
-			return default( TValue );
-		}
-
-
-		////////////////
-
-		public static bool AddOrSet<TKey>( this IDictionary<TKey, int> dict, TKey key, int value ) {
-			if( dict.ContainsKey(key) ) {
-				dict[key] += value;
-				return true;
-			} else {
-				dict[key] = value;
-				return false;
-			}
-		}
-		public static bool AddOrSet<TKey>( this IDictionary<TKey, float> dict, TKey key, float value ) {
-			if( dict.ContainsKey( key ) ) {
-				dict[key] += value;
-				return true;
-			} else {
-				dict[key] = value;
-				return false;
-			}
-		}
-		public static bool AddOrSet<TKey>( this IDictionary<TKey, double> dict, TKey key, double value ) {
-			if( dict.ContainsKey( key ) ) {
-				dict[key] += value;
-				return true;
-			} else {
-				dict[key] = value;
-				return false;
-			}
-		}
-
-
-		////////////////
-
+	public static partial class DictionaryExtensions {
 		public static bool TryGetValue2D<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2, out TValue value ) {
 			IDictionary<TKey2, TValue> dict2;
@@ -103,11 +15,12 @@ namespace HamstarHelpers.Components.DataStructures {
 			return dict2.TryGetValue( key2, out value );
 		}
 
+		////
 
 		public static TValue Get2DOrDefault<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2 ) {
 			if( !dict.ContainsKey( key1 ) ) {
-				return default(TValue);
+				return default( TValue );
 			}
 			if( !dict[key1].ContainsKey( key2 ) ) {
 				return default( TValue );
@@ -115,9 +28,12 @@ namespace HamstarHelpers.Components.DataStructures {
 			return dict[key1][key2];
 		}
 
+
+		////////////////
+
 		public static void Set2D<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2, TValue value ) {
-			if( !dict.ContainsKey(key1) ) {
+			if( !dict.ContainsKey( key1 ) ) {
 				dict[key1] = new Dictionary<TKey2, TValue>();
 			}
 			dict[key1][key2] = value;

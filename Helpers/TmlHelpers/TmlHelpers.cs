@@ -132,8 +132,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		private static void SetupPlayer( Player player ) {
 			ModPlayer[] modPlayers;
 
-			if( !ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
-				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", ReflectionHelpers.MostAccess );
+			if( !DotNetHelpers.Reflection.ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
+				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", DotNetHelpers.Reflection.ReflectionHelpers.MostAccess );
 				if( setupPlayerMethod == null ) {
 					throw new HamstarException( "Could not run SetupPlayer for " + ( player?.name ?? "null player" ) );
 				}
