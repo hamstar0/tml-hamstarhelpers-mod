@@ -6,14 +6,14 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.DotNetHelpers {
-	[Obsolete( "use DotNetHelpers.Reflection.ReflectionHelpers", true )]
+	[Obsolete( "use Helpers.DotNetHelpers.Reflection.ReflectionHelpers", true )]
 	[AttributeUsage( AttributeTargets.All, AllowMultiple = false, Inherited = true )]
 	public class NullableAttribute : Attribute { }
 
 
 
 
-	[Obsolete("use DotNetHelpers.Reflection.ReflectionHelpers", true)]
+	[Obsolete("use Helpers.DotNetHelpers.Reflection.ReflectionHelpers", true)]
 	public partial class ReflectionHelpers {
 		public static Reflection.ReflectionHelpers Instance => ModHelpersMod.Instance.ReflectionHelpers;
 		public readonly static BindingFlags MostAccess = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
@@ -71,9 +71,5 @@ namespace HamstarHelpers.Helpers.DotNetHelpers {
 		public static bool RunMethod<T>( Object instance, string methodName, BindingFlags flags, object[] args, out T returnVal ) {
 			return Reflection.ReflectionHelpers.RunMethod<T>( instance, methodName, flags, args, out returnVal );
 		}
-
-
-		////////////////
-
 	}
 }

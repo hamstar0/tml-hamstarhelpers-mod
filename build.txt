@@ -1,5 +1,5 @@
 author = hamstar
-version = 4.2.6.2
+version = 4.2.7
 displayName = Mod Helpers
 weakReferences = ExtensibleInventory@1.4.0.1
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*

@@ -1,17 +1,18 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Services.Tml {
 	public partial class BuildPropertiesEditor {
 		private static Type GetBuildPropertiesClassType() {
-			//IEnumerable<Type> bpClassTypes;
+			Type myClass;
+			if( DataStore.DataStore.Get( "BuildPropertiesClass", out myClass ) ) {
+				return myClass;
+			}
 
 			try {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -26,6 +27,7 @@ namespace HamstarHelpers.Services.Tml {
 				foreach( var ass in assemblies ) {
 					foreach( Type t in selectMany( ass ) ) {
 						if( t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties" ) {
+							DataStore.DataStore.Set( "BuildPropertiesClass", t );
 							return t;
 						}
 					}
@@ -43,6 +45,7 @@ namespace HamstarHelpers.Services.Tml {
 			//}
 
 			//return bpClassTypes.FirstOrDefault();
+			DataStore.DataStore.Set( "BuildPropertiesClass", null );
 			return null;
 		}
 

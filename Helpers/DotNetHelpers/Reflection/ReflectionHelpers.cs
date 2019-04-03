@@ -9,8 +9,7 @@ namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 	public class NullableAttribute : Attribute { }
 
 
-
-
+	
 
 	public partial class ReflectionHelpers {
 		public readonly static BindingFlags MostAccess = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;

@@ -14,6 +14,31 @@ namespace HamstarHelpers.Components.DataStructures {
 
 			return dest;
 		}
+
+
+		////////////////
+
+		public static T[] Copy<T>( this T[] source, int sourceIndex, int destinationIndex, int length ) {
+			T[] dest = new T[ length - destinationIndex ];
+
+			int srcLen = source.Length;
+			for( int i=sourceIndex; i<srcLen; i++ ) {
+				dest[i - sourceIndex] = source[i];
+			}
+			
+			return dest;
+		}
+
+		public static T[] Copy<T>( this T[] source, int length ) {
+			T[] dest = new T[ length ];
+
+			Array.Copy( source, dest, length );
+			return dest;
+		}
+
+		public static T[] Copy<T>( this T[] source ) {
+			return source.Copy( source.Length );
+		}
 	}
 
 

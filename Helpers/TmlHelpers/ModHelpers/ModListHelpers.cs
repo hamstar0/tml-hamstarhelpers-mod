@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Timers;
@@ -36,6 +36,19 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			foreach( var mod in ModLoader.LoadedMods ) {
 				if( modSet.Contains( mod.Name ) || mod.File == null ) { continue; }
 				mods.AddLast( mod );
+			}
+
+			return mods;
+		}
+
+
+		public static IDictionary<string, ISet<Mod>> GetModsByAuthor() {
+			var mods = new Dictionary<string, ISet<Mod>>();
+
+			foreach( Mod mod in ModLoader.LoadedMods ) {
+				var editor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+
+				mods.Set2D( editor.Author, mod );
 			}
 
 			return mods;
