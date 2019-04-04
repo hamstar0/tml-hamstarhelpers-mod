@@ -31,16 +31,16 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		public static IEnumerable<Item> GetOutsourcedItems( Player player ) {
 			return ModHelpersMod.Instance.RecipeHack.IngredientOutsources.Values
-				.SelectMany( src => src( player ) );
+					.SelectMany( src => src(player) );
 		}
 
 
 		////////////////
 
-		public static IList<int> GetAvailableRecipesOfIngredients( Player player, IEnumerable<Item> ingredients ) {
+		public static ISet<int> GetAvailableRecipesOfIngredients( Player player, IEnumerable<Item> ingredients ) {
 			int[] _;
 			IDictionary<int, int> __;
-			IList<int> addedRecipeIdxs = new List<int>();
+			ISet<int> addedRecipeIdxs = new HashSet<int>();
 			ISet<int> possibleRecipeIdxs = new HashSet<int>();
 
 			// Find all potential recipes of each individual ingredient

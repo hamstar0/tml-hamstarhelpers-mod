@@ -20,6 +20,8 @@ namespace HamstarHelpers.Services.RecipeHack {
 			myitem.FromRecipeIdx = recipeIdx;
 		}
 
+		////////////////
+
 		private static void ForceAddRecipe( int recipeIdx ) {
 			float y = 0f;
 			if( Main.numAvailableRecipes > 0 ) {
@@ -29,6 +31,27 @@ namespace HamstarHelpers.Services.RecipeHack {
 			Main.availableRecipe[Main.numAvailableRecipes] = recipeIdx;
 			Main.availableRecipeY[Main.numAvailableRecipes] = y;
 			Main.numAvailableRecipes++;
+		}
+
+		private static bool ForceRemoveRecipe( int recipeIdx ) {
+			int removeAt = -1;
+
+			for( int i=0; i<Main.numAvailableRecipes; i++ ) {
+				if( removeAt == -1 ) {
+					if( Main.availableRecipe[i] != recipeIdx ) {
+						continue;
+					}
+					removeAt = i;
+				}
+
+				Main.availableRecipeY[i] -= 65;
+				Main.availableRecipe[i] = Main.availableRecipe[i + 1];
+			}
+
+			if( removeAt != -1 ) {
+				Main.numAvailableRecipes--;
+			}
+			return removeAt != -1;
 		}
 
 
@@ -73,12 +96,18 @@ namespace HamstarHelpers.Services.RecipeHack {
 		private void UpdateRecipes() {
 			try {
 				IEnumerable<Item> ingredients = RecipeHack.GetOutsourcedItems( Main.LocalPlayer );
-				IEnumerable<int> addedRecipeIndexes = RecipeHack.GetAvailableRecipesOfIngredients( Main.LocalPlayer, ingredients );
-				ISet<int> availRecipeIdxSet = new HashSet<int>( Main.availableRecipe.Take(Main.numAvailableRecipes) );
-
-				addedRecipeIndexes = addedRecipeIndexes.Except( availRecipeIdxSet );
+				ISet<int> recipeIndexes = RecipeHack.GetAvailableRecipesOfIngredients( Main.LocalPlayer, ingredients );
 				
-				foreach( int idx in addedRecipeIndexes ) {
+				for( int i=0; i<Main.numAvailableRecipes; i++ ) {
+					if( !recipeIndexes.Contains(Main.availableRecipe[i]) ) {
+						while ( RecipeHack.ForceRemoveRecipe( Main.availableRecipe[i] ) ) {
+						}
+					} else {
+						recipeIndexes.Remove( Main.availableRecipe[i] );
+					}
+				}
+
+				foreach( int idx in recipeIndexes ) {
 					RecipeHack.ForceAddRecipe( idx );
 				}
 
