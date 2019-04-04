@@ -10,10 +10,23 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 	public partial class ReflectionHelpers {
 		public static IList<Type> GetTypesFromAssembly( string assemblyName, string className ) {
+			IList<Type> classTypeList = new List<Type>();
+			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+			foreach( var ass in assemblies ) {
+				if( ass.GetName().Name != assemblyName ) { continue; }
+				classTypeList = ReflectionHelpers.GetTypesFromAssembly( ass, className );
+				break;
+			}
+
+			return classTypeList;
+		}
+
+		public static IList<Type> GetTypesFromAssembly( Assembly assembly, string className ) {
 			var rh = ModHelpersMod.Instance.ReflectionHelpers;
 			IList<Type> classTypeList;
 
-			if( rh.AssClassTypeMap.TryGetValue2D(assemblyName, className, out classTypeList) ) {
+			if( rh.AssClassTypeMap.TryGetValue2D( assembly.FullName, className, out classTypeList) ) {
 				return classTypeList;
 			} else {
 				classTypeList = new List<Type>();
@@ -29,22 +42,17 @@ namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
 					}
 				};
 
-				foreach( var ass in assemblies ) {
-					if( ass.GetName().Name != assemblyName ) { continue; }
-
-					foreach( Type t in selectMany( ass ) ) {
-						if( t.Name == className ) {
-							classTypeList.Add( t );
-						}
+				foreach( Type t in selectMany( assembly ) ) {
+					if( t.Name == className ) {
+						classTypeList.Add( t );
 					}
-					break;
 				}
 
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
 			}
 
-			rh.AssClassTypeMap.Set2D( assemblyName, className, classTypeList );
+			rh.AssClassTypeMap.Set2D( assembly.FullName, className, classTypeList );
 			return classTypeList;
 		}
 

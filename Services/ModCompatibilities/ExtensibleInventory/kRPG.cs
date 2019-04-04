@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 	public partial class ExtensibleInventoryCompatibilities {
-		private static void kRPGCompat() {  //TODO
+		private static void kRPGCompat() {  //TODO use weak reference somehow
 			Mod eiMod = ModLoader.GetMod( "ExtensibleInventory" );
 			object eiConfig = eiMod.Call( "GetModSettings" );
 			object newEIConifg = Activator.CreateInstance( eiMod.GetType().AssemblyQualifiedName, "ExtensibleInventoryConfigData" );

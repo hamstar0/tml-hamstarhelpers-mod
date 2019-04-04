@@ -47,6 +47,10 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var mods = new Dictionary<string, ISet<Mod>>();
 
 			foreach( Mod mod in ModLoader.LoadedMods ) {
+				if( mod.File == null ) {
+					LogHelpers.Warn( "Mod " + mod.DisplayName + " has no file data." );
+					continue;
+				}
 				var editor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
 
 				mods.Append2D( editor.Author, mod );

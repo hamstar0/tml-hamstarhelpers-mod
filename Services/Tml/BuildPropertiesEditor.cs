@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -16,35 +17,22 @@ namespace HamstarHelpers.Services.Tml {
 
 			try {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-				Func<Assembly, IEnumerable<Type>> selectMany = delegate ( Assembly a ) {
-					try {
-						return a.GetTypes();
-					} catch {
-						return new List<Type>();
-					}
-				};
 
 				foreach( var ass in assemblies ) {
-					foreach( Type t in selectMany( ass ) ) {
+					IEnumerable<Type> types = ReflectionHelpers.GetTypesFromAssembly( ass, "BuildProperties" );
+
+					foreach( Type t in types ) {
 						if( t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties" ) {
 							DataStore.DataStore.Set( "BuildPropertiesClass", t );
 							return t;
 						}
 					}
 				}
-				//bpClassTypes = from t in assemblies.SelectMany( selectMany )
-				//				 where t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties"
-				//				 select t;
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
 				return (Type)null;
 			}
-
-			//if( bpClassTypes.Count() == 0 ) {
-			//	return (Type)null;
-			//}
-
-			//return bpClassTypes.FirstOrDefault();
+			
 			DataStore.DataStore.Set( "BuildPropertiesClass", null );
 			return null;
 		}

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -11,15 +12,15 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 
 		////////////////
-
-		private IDictionary<int, IList<Recipe>> RecipesByItem = new Dictionary<int, IList<Recipe>>();
-		private IDictionary<int, IList<int>> RecipeIndicesByItem = new Dictionary<int, IList<int>>();
+		
+		private IDictionary<int, ISet<int>> RecipeIndexesByItemNetID = new Dictionary<int, ISet<int>>();
+		private IDictionary<int, ISet<int>> RecipeIndexesOfIngredientNetIDs = new Dictionary<int, ISet<int>>();
 
 
 
 		////////////////
 
-		private void CacheRecipesOfItem( int itemType ) {
+		private void CacheItemRecipes() {
 			lock( RecipeIdentityHelpers.MyLock ) {
 				for( int i = 0; i < Main.recipe.Length; i++ ) {
 					Recipe recipe = Main.recipe[i];
@@ -27,16 +28,29 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 					if( recipeItemType == 0 ) {
 						break;
 					}
+					
+					this.RecipeIndexesByItemNetID.Append2D( recipeItemType, i );
+				}
+			}
+		}
 
-					if( !this.RecipesByItem.ContainsKey( recipeItemType ) ) {
-						this.RecipesByItem[recipeItemType] = new List<Recipe>();
-					}
-					this.RecipesByItem[recipeItemType].Add( recipe );
 
-					if( !this.RecipeIndicesByItem.ContainsKey( recipeItemType ) ) {
-						this.RecipeIndicesByItem[recipeItemType] = new List<int>();
+		private void CacheIngredientRecipes() {
+			lock( RecipeIdentityHelpers.MyLock ) {
+				for( int i = 0; i < Main.recipe.Length; i++ ) {
+					Recipe recipe = Main.recipe[i];
+					if( recipe.createItem.type == 0 ) {
+						break;
 					}
-					this.RecipeIndicesByItem[recipeItemType].Add( i );
+
+					for( int j=0; j<recipe.requiredItem.Length; j++ ) {
+						Item item = recipe.requiredItem[j];
+						if( item == null || item.IsAir ) {
+							break;
+						}
+
+						this.RecipeIndexesOfIngredientNetIDs.Append2D( item.netID, i );
+					}
 				}
 			}
 		}

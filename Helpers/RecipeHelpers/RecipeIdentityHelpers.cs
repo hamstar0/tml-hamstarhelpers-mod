@@ -3,6 +3,7 @@ using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
@@ -41,43 +42,48 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 
 		////////////////
 
-		public static IList<int> GetRecipeIndicesOfItem( int itemType ) {
-			if( itemType == 0 ) {
+		public static ISet<int> GetRecipeIndexesOfItem( int itemNetID ) {
+			if( itemNetID == 0 ) {
 				throw new HamstarException( "Invalid item type" );
 			}
 
 			var mymod = ModHelpersMod.Instance;
-			IDictionary<int, IList<int>> ril = mymod.RecipeIdentityHelpers.RecipeIndicesByItem;
-
-			bool isCached = false;
+			IDictionary<int, ISet<int>> recipeIdxLists = mymod.RecipeIdentityHelpers.RecipeIndexesByItemNetID;
+			
 			lock( RecipeIdentityHelpers.MyLock ) {
-				isCached = ril.Count > 0;
+				if( recipeIdxLists.Count == 0 ) {
+					mymod.RecipeIdentityHelpers.CacheItemRecipes();
+				}
+				return recipeIdxLists.GetOrDefault( itemNetID )
+					?? new HashSet<int>();
 			}
-			if( !isCached ) {
-				mymod.RecipeIdentityHelpers.CacheRecipesOfItem( itemType );
-			}
-
-			return ril.GetOrDefault( itemType ) ?? new List<int>();
 		}
 
 
-		public static IList<Recipe> GetRecipesOfItem( int itemType ) {
-			if( itemType == 0 ) {
+		public static IList<Recipe> GetRecipesOfItem( int itemNetID ) {
+			return RecipeIdentityHelpers.GetRecipeIndexesOfItem( itemNetID )
+				.Select( idx=>Main.recipe[idx] )
+				.ToList();
+		}
+
+
+		////////////////
+
+		public static ISet<int> GetRecipeIndexesUsingIngredient( int itemNetID ) {
+			if( itemNetID == 0 ) {
 				throw new HamstarException( "Invalid item type" );
 			}
 
 			var mymod = ModHelpersMod.Instance;
-			IDictionary<int, IList<Recipe>> rbi = mymod.RecipeIdentityHelpers.RecipesByItem;
+			IDictionary<int, ISet<int>> recipeIdxSets = mymod.RecipeIdentityHelpers.RecipeIndexesOfIngredientNetIDs;
 
-			bool isCached = false;
 			lock( RecipeIdentityHelpers.MyLock ) {
-				isCached = rbi.Count > 0;
+				if( recipeIdxSets.Count == 0 ) {
+					mymod.RecipeIdentityHelpers.CacheIngredientRecipes();
+				}
+				return recipeIdxSets.GetOrDefault( itemNetID )
+					?? new HashSet<int>();
 			}
-			if( !isCached ) {
-				mymod.RecipeIdentityHelpers.CacheRecipesOfItem( itemType );
-			}
-			
-			return rbi.GetOrDefault( itemType ) ?? new List<Recipe>();
 		}
 	}
 }

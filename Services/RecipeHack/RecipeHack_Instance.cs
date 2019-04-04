@@ -60,7 +60,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 		internal void Update() {
 			if( this.IngredientOutsources.Count == 0 ) { return; }
 
-			if( this.LastAvailableRecipeCount != Main.numAvailableRecipes || this.RefreshTimer-- < 0 ) {
+			if( this.LastAvailableRecipeCount != Main.numAvailableRecipes || this.RefreshTimer-- <= 0 ) {
 				this.UpdateRecipes();
 
 				this.LastAvailableRecipeCount = Main.numAvailableRecipes;
@@ -73,13 +73,13 @@ namespace HamstarHelpers.Services.RecipeHack {
 		private void UpdateRecipes() {
 			try {
 				IEnumerable<Item> ingredients = RecipeHack.GetOutsourcedItems( Main.LocalPlayer );
-				IList<int> addedRecipeIndexes = RecipeHack.GetAvailableRecipesOfIngredients( Main.LocalPlayer, ingredients );
+				IEnumerable<int> addedRecipeIndexes = RecipeHack.GetAvailableRecipesOfIngredients( Main.LocalPlayer, ingredients );
 				ISet<int> availRecipeIdxSet = new HashSet<int>( Main.availableRecipe.Take(Main.numAvailableRecipes) );
 
+				addedRecipeIndexes = addedRecipeIndexes.Except( availRecipeIdxSet );
+				
 				foreach( int idx in addedRecipeIndexes ) {
-					if( !availRecipeIdxSet.Contains( idx ) ) {
-						RecipeHack.ForceAddRecipe( idx );
-					}
+					RecipeHack.ForceAddRecipe( idx );
 				}
 
 				if( this.OldFocusRecipe >= 0 ) {
