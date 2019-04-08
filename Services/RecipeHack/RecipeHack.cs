@@ -52,7 +52,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 			// Filter potential recipes list to actual recipes only
 			foreach( int recipeIdx in possibleRecipeIdxs ) {
 				Recipe recipe = Main.recipe[recipeIdx];
-				if( recipe.createItem.type == 0 ) { continue; } // Just in case?
+				if( recipe == null || recipe.createItem.type == 0 ) { continue; } // Just in case?
 
 				if( RecipeHelpers.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
 					addedRecipeIdxs.Add( recipeIdx );

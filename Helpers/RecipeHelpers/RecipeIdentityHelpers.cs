@@ -58,8 +58,7 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 					?? new HashSet<int>();
 			}
 		}
-
-
+		
 		public static IList<Recipe> GetRecipesOfItem( int itemNetID ) {
 			return RecipeIdentityHelpers.GetRecipeIndexesOfItem( itemNetID )
 				.Select( idx=>Main.recipe[idx] )

@@ -83,8 +83,12 @@ namespace HamstarHelpers.Services.RecipeHack {
 		internal void Update() {
 			if( this.IngredientOutsources.Count == 0 ) { return; }
 
-			if( this.LastAvailableRecipeCount != Main.numAvailableRecipes || this.RefreshTimer-- <= 0 ) {
-				this.UpdateRecipes();
+			if( this.LastAvailableRecipeCount != Main.numAvailableRecipes || this.RefreshTimer-- < 0 ) {
+				try {
+					this.UpdateRecipes();
+				} catch( Exception e ) {
+					throw new HamstarException( "", e );
+				}
 
 				this.LastAvailableRecipeCount = Main.numAvailableRecipes;
 				this.RefreshTimer = 300;
@@ -94,35 +98,32 @@ namespace HamstarHelpers.Services.RecipeHack {
 		}
 
 		private void UpdateRecipes() {
-			try {
-				IEnumerable<Item> ingredients = RecipeHack.GetOutsourcedItems( Main.LocalPlayer );
-				ISet<int> recipeIndexes = RecipeHack.GetAvailableRecipesOfIngredients( Main.LocalPlayer, ingredients );
+			IEnumerable<Item> ingredients = RecipeHack.GetOutsourcedItems( Main.LocalPlayer );
+			ISet<int> recipeIndexes = RecipeHack.GetAvailableRecipesOfIngredients( Main.LocalPlayer, ingredients );
 				
+			for( int i=0; i<Main.numAvailableRecipes; i++ ) {
+				// Force-remove recipes that aren't within the current set
+				if( !recipeIndexes.Contains(Main.availableRecipe[i]) ) {
+					while ( RecipeHack.ForceRemoveRecipe( Main.availableRecipe[i] ) ) {
+					}
+				} else {
+					recipeIndexes.Remove( Main.availableRecipe[i] );
+				}
+			}
+
+			foreach( int idx in recipeIndexes ) {
+				RecipeHack.ForceAddRecipe( idx );
+			}
+
+			if( this.OldFocusRecipe >= 0 ) {
+				int toIdx = Math.Min( this.OldFocusRecipe, Main.numAvailableRecipes );
+				int shift = (Main.focusRecipe - toIdx) * 65;
+
 				for( int i=0; i<Main.numAvailableRecipes; i++ ) {
-					if( !recipeIndexes.Contains(Main.availableRecipe[i]) ) {
-						while ( RecipeHack.ForceRemoveRecipe( Main.availableRecipe[i] ) ) {
-						}
-					} else {
-						recipeIndexes.Remove( Main.availableRecipe[i] );
-					}
+					Main.availableRecipeY[i] += shift;
 				}
 
-				foreach( int idx in recipeIndexes ) {
-					RecipeHack.ForceAddRecipe( idx );
-				}
-
-				if( this.OldFocusRecipe >= 0 ) {
-					int toIdx = Math.Min( this.OldFocusRecipe, Main.numAvailableRecipes );
-					int shift = (Main.focusRecipe - toIdx) * 65;
-
-					for( int i=0; i<Main.numAvailableRecipes; i++ ) {
-						Main.availableRecipeY[i] += shift;
-					}
-
-					Main.focusRecipe = toIdx;
-				}
-			} catch( Exception e ) {
-				throw new HamstarException( "", e );
+				Main.focusRecipe = toIdx;
 			}
 		}
 	}

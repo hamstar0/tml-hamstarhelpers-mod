@@ -43,6 +43,7 @@
     <Compile Include="Commands\GetItemIdByNameCommand.cs" />
     <Compile Include="Commands\ModCallCommand.cs" />
     <Compile Include="Commands\ModIssueReportCommand.cs" />
+    <Compile Include="Commands\ModListCommand.cs" />
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />

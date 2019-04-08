@@ -296,24 +296,24 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 
 		////////////////
 
-		public static Item[] GetCurrentlyOpenChest( Player player, out bool? isPrivate ) {
+		public static Item[] GetCurrentlyOpenChest( Player player, out bool? isPersonalChest ) {
 			if( player.chest != -1 ) {
 				if( player.chest >= 0 ) {
-					isPrivate = false;
+					isPersonalChest = false;
 					return Main.chest[player.chest].item;
 				} else if( player.chest == -2 ) {
-					isPrivate = true;
+					isPersonalChest = true;
 					return player.bank.item;
 				} else if( player.chest == -3 ) {
-					isPrivate = true;
+					isPersonalChest = true;
 					return player.bank2.item;
 				} else if( player.chest == -4 ) {
-					isPrivate = true;
+					isPersonalChest = true;
 					return player.bank3.item;
 				}
 			}
 
-			isPrivate = null;
+			isPersonalChest = null;
 			return null;
 		}
 	}

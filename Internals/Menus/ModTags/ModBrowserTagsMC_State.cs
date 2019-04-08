@@ -29,12 +29,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		public override void Hide( UIState ui ) {
 			base.Hide( ui );
 
-			this.InfoDisplay.SetDefaultText( "" );
+			this.InfoDisplay?.SetDefaultText( "" );
 
 			this.ResetMenuObjects();
 
 			UIElement elem;
-			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", out elem ) ) {
+			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) && elem != null ) {
 				elem.Left.Pixels -= UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}

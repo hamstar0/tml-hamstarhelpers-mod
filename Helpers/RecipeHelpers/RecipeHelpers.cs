@@ -42,18 +42,17 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 			}
 
 			// Process ingredients list into id + stack map
-			IDictionary<int, int> availItemInfo = new Dictionary<int, int>( availableIngredients.Count() );
+			IDictionary<int, int> availIngredientInfo = new Dictionary<int, int>( availableIngredients.Count() );
 			foreach( Item item in availableIngredients ) {
-				if( availItemInfo.ContainsKey( item.netID) ) {
-					availItemInfo[ item.netID ] += item.stack;
+				if( availIngredientInfo.ContainsKey( item.netID) ) {
+					availIngredientInfo[ item.netID ] += item.stack;
 				} else {
-					availItemInfo[ item.netID ] = item.stack;
+					availIngredientInfo[ item.netID ] = item.stack;
 				}
 			}
-			//availItems.ToDictionary( kv => kv.netID, kv => kv.stack );
 
 			// Tiles
-			for( int i=0; i < Recipe.maxRequirements; i++ ) {
+			for( int i=0; i < recipe.requiredTile.Length; i++ ) {
 				int reqTileType = recipe.requiredTile[i];
 				if( reqTileType == -1 ) { break; }
 
@@ -64,14 +63,14 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 			}
 
 			// Items
-			for( int i = 0; i < Recipe.maxRequirements; i++ ) {
+			for( int i = 0; i < recipe.requiredItem.Length; i++ ) {
 				Item reqItem = recipe.requiredItem[i];
-				if( reqItem.type == 0 ) { break; }
+				if( reqItem == null || reqItem.type == 0 ) { break; }
 
 				int reqStack = reqItem.stack;
 				bool hasCheckedGroups = false;
 
-				foreach( var kv in availItemInfo ) {
+				foreach( var kv in availIngredientInfo ) {
 					int itemType = kv.Key;
 					int itemStack = kv.Value;
 
@@ -85,8 +84,8 @@ namespace HamstarHelpers.Helpers.RecipeHelpers {
 						hasCheckedGroups = true;
 					}
 				}
-				if( !hasCheckedGroups && availItemInfo.ContainsKey(reqItem.netID) ) {
-					reqStack -= availItemInfo[ reqItem.netID ];
+				if( !hasCheckedGroups && availIngredientInfo.ContainsKey(reqItem.netID) ) {
+					reqStack -= availIngredientInfo[ reqItem.netID ];
 				}
 
 				// Account for missing ingredients:

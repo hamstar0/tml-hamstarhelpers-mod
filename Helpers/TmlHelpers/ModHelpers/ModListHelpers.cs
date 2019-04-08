@@ -60,6 +60,23 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		}
 
 
+		public static IDictionary<Services.Tml.BuildPropertiesEditor, Mod> GetModsByBuildInfo() {
+			var mods = new Dictionary<Services.Tml.BuildPropertiesEditor, Mod>();
+
+			foreach( Mod mod in ModLoader.LoadedMods ) {
+				if( mod.File == null ) {
+					LogHelpers.Warn( "Mod " + mod.DisplayName + " has no file data." );
+					continue;
+				}
+				var editor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+
+				mods[editor] = mod;
+			}
+
+			return mods;
+		}
+
+
 		////////////////
 
 		public static void PromptModDownloads( string packTitle, List<string> modNames ) {
