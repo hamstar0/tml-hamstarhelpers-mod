@@ -8,6 +8,41 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Commands {
 	class ModListCommand : ModCommand {
+		public static string GetBasicModInfo( Mod mod, BuildPropertiesEditor editor ) {
+			string info = mod.DisplayName + " v" + mod.Version + " by " + editor.Author;
+			if( editor.Side != ModSide.Both ) {
+				info += " (" + Enum.GetName( typeof( ModSide ), editor.Side ) + " only)";
+			}
+
+			return info;
+		}
+
+		public static string GetVerboseModInfo( Mod mod, BuildPropertiesEditor editor ) {
+			string info = "";
+			
+			if( editor.ModReferences.Count > 0 ) {
+				IEnumerable<string> depMods = editor.ModReferences.SafeSelect( ( kv2 ) => {
+					string depMod = kv2.Key;
+					if( kv2.Value != default( Version ) ) {
+						depMod += "@" + kv2.Value.ToString();
+					}
+					return depMod;
+				} );
+
+				info += "mod dependencies: [" + string.Join( ", ", depMods ) + "]";
+			}
+
+			if( editor.DllReferences.Length > 0 ) {
+				info += ", dll dependencies: [" + string.Join( ", ", editor.DllReferences ) + "]";
+			}
+
+			return info;
+		}
+
+
+
+		////////////////
+
 		public override CommandType Type => CommandType.Chat | CommandType.Console;
 		public override string Command => "mh-modlist";
 		public override string Usage => "/" + this.Command + " true";
@@ -31,33 +66,16 @@ namespace HamstarHelpers.Commands {
 			IDictionary<BuildPropertiesEditor, Mod> modList = ModListHelpers.GetModsByBuildInfo();
 
 			foreach( var kv in modList ) {
-				BuildPropertiesEditor editor = kv.Key;
-				Mod mod = kv.Value;
-
-				string info = mod.DisplayName + " v" + mod.Version + " by " + editor.Author;
-				if( editor.Side != ModSide.Both ) {
-					info += " (" + Enum.GetName(typeof(ModSide), editor.Side) + " only)";
-				}
+				string modInfo = ModListCommand.GetBasicModInfo( kv.Value, kv.Key );
 
 				if( isVerbose ) {
-					if( editor.ModReferences.Count > 0 ) {
-						IEnumerable<string> depMods = editor.ModReferences.SafeSelect( ( kv2 ) => {
-							string depMod = kv2.Key;
-							if( kv2.Value != default( Version ) ) {
-								depMod += "@" + kv2.Value.ToString();
-							}
-							return depMod;
-						} );
-
-						info += ", mod dependencies: [" + string.Join(", ", depMods) + "]";
-					}
-
-					if( editor.DllReferences.Length > 0 ) {
-						info += ", dll dependencies: [" + string.Join(", ", editor.DllReferences) + "]";
+					string verboseModInfo = ModListCommand.GetVerboseModInfo( kv.Value, kv.Key );
+					if( !string.IsNullOrEmpty(verboseModInfo) ) {
+						modInfo += ", " + verboseModInfo;
 					}
 				}
 
-				reply.Add( info );
+				reply.Add( modInfo );
 			}
 
 			caller.Reply( string.Join("\n", reply) );

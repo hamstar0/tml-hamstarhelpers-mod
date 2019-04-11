@@ -13,10 +13,12 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public Mod CurrentMod = null;
 
 
+
 		////////////////
 
 		public ControlPanelLogic() { }
 
+		////////////////
 
 		public void SetCurrentMod( Mod mod ) {
 			this.CurrentMod = mod;

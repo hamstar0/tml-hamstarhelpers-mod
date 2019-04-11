@@ -12,6 +12,11 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
+		private static Version AlertSinceVersion = new Version( 2, 0, 0 );
+
+
+		////////////////
+
 		private static Vector2 TogglerPosition {
 			get {
 				var config = ModHelpersMod.Instance.Config;
@@ -21,8 +26,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return new Vector2( x, y );
 			}
 		}
-		private static Version AlertVersion = new Version( 2, 0, 0 );
-
+		
 
 
 		////////////////
@@ -77,7 +81,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			var ver = new Version( mymod.Data.ControlPanelNewSince );
 
-			if( ver < UIControlPanel.AlertVersion ) {
+			if( ver < UIControlPanel.AlertSinceVersion ) {
 				return true;
 			}
 
@@ -165,7 +169,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 								this.Open();
 
 								var mymod = ModHelpersMod.Instance;
-								mymod.Data.ControlPanelNewSince = UIControlPanel.AlertVersion.ToString();
+								mymod.Data.ControlPanelNewSince = UIControlPanel.AlertSinceVersion.ToString();
 							}
 						}
 

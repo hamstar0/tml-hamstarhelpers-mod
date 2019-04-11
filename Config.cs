@@ -14,7 +14,7 @@ namespace HamstarHelpers {
 
 		public string VersionSinceUpdate = new Version(0,0,0,0).ToString();
 
-		public bool DebugModeHelpersInfo = true;
+		public bool DebugModeHelpersInfo = false;
 		public bool DebugModeNetInfo = false;
 		public bool DebugModeUnhandledExceptionLogging = true;
 		public bool DebugModeDumpAlsoServer = false;
@@ -86,6 +86,9 @@ namespace HamstarHelpers {
 				if( this.ModIssueReportErrorLogMaxLines == 35 ) {
 					this.ModIssueReportErrorLogMaxLines = newConfig.ModIssueReportErrorLogMaxLines;
 				}
+			}
+			if( versSince < new Version(4,3,0) ) {
+				this.DebugModeHelpersInfo = false;
 			}
 
 			this.VersionSinceUpdate = mymod.Version.ToString();

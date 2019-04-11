@@ -36,13 +36,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 
 		////////////////
-		
+
 		private void InitializeComponents() {
-			var mymod = ModHelpersMod.Instance;
-			UIControlPanel self = this;
-			ControlPanelLogic logic = this.Logic;
-			float top = 0;
-			
 			this.OuterContainer = new UIElement();
 			this.OuterContainer.Width.Set( UIControlPanel.ContainerWidth, 0f );
 			this.OuterContainer.Height.Set( UIControlPanel.ContainerHeight, 0f );
@@ -61,6 +56,15 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.OuterContainer.Append( (UIElement)this.InnerContainer );
 
 			this.Theme.ApplyPanel( this.InnerContainer );
+		}
+
+		////
+		
+		private void InitializeControlPanelComponents() {
+			var mymod = ModHelpersMod.Instance;
+			UIControlPanel self = this;
+			ControlPanelLogic logic = this.Logic;
+			float top = 0;
 
 
 			////////
@@ -262,75 +266,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			};
 
 			return elem;
-		}
-
-
-		////////////////
-
-		public void RecalculateContainer() {
-			CalculatedStyle dim = this.OuterContainer.GetDimensions();
-
-			this.OuterContainer.Top.Set( ( dim.Height * -0.5f ) + 32, 0.5f );
-			this.OuterContainer.Left.Set( ( dim.Width * -0.5f ), 0.5f );
-		}
-
-
-		////////////////
-
-		public void RefreshModLockButton() {
-			var mymod = ModHelpersMod.Instance;
-			bool areModsLocked = ModLockService.IsWorldLocked();
-			string status = areModsLocked ? ": ON" : ": OFF";
-			bool isEnabled = true;
-
-			if( !mymod.Config.WorldModLockEnable ) {
-				status += " (disabled)";
-				isEnabled = false;
-			} else if( Main.netMode != 0 ) {
-				status += " (single-player only)";
-				isEnabled = false;
-			}
-
-			if( !isEnabled ) {
-				if( this.ModLockButton.IsEnabled ) {
-					this.ModLockButton.Disable();
-				}
-			} else {
-				if( !this.ModLockButton.IsEnabled ) {
-					this.ModLockButton.Enable();
-				}
-			}
-
-			this.ModLockButton.SetText( UIControlPanel.ModLockTitle + status );
-		}
-
-		public void RefreshApplyConfigButton() {
-			if( Main.netMode == 0 ) {
-				if( !this.ApplyConfigButton.IsEnabled ) {
-					this.ApplyConfigButton.Enable();
-				}
-			} else {
-				if( this.ApplyConfigButton.IsEnabled ) {
-					this.ApplyConfigButton.Disable();
-				}
-			}
-		}
-
-
-		////////////////
-
-		public void UpdateElements() {
-			var mymod = ModHelpersMod.Instance;
-
-			if( !mymod.Config.WorldModLockEnable ) {
-				if( this.ModLockButton.IsEnabled ) {
-					this.RefreshModLockButton();
-				}
-			} else {
-				if( !this.ModLockButton.IsEnabled ) {
-					this.RefreshModLockButton();
-				}
-			}
 		}
 	}
 }

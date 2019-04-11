@@ -20,6 +20,18 @@ namespace HamstarHelpers.Services.DataDumper {
 
 		////////////////
 
+		public static bool DumpToLocalFile( string data, out string fileName ) {
+			fileName = DataDumper.GetFileName( (DataDumper.Dumps++) + "" );
+			string relPath = DataDumper.GetRelativePath();
+			string fullFolder = Main.SavePath + Path.DirectorySeparatorChar + relPath;
+			string fullPath = fullFolder + Path.DirectorySeparatorChar + fileName;
+
+			DataDumper.PrepareDir();
+			return FileHelpers.SaveTextFile( data, fullPath, false, false );
+		}
+
+		////////////////
+
 		internal static IDictionary<string, Func<string>> GetDumpables() {
 			IDictionary<string, Func<string>> dumpables;
 			bool success = DataStore.DataStore.Get( DataDumper.MyDataStorekey, out dumpables );
@@ -119,13 +131,7 @@ namespace HamstarHelpers.Services.DataDumper {
 				);
 			}
 			
-			fileName = DataDumper.GetFileName( (DataDumper.Dumps++)+"" );
-			string relPath = DataDumper.GetRelativePath();
-			string fullFolder = Main.SavePath + Path.DirectorySeparatorChar + relPath;
-			string fullPath = fullFolder + Path.DirectorySeparatorChar + fileName;
-
-			DataDumper.PrepareDir();
-			bool success = FileHelpers.SaveTextFile( data, fullPath, false, false );
+			bool success = DataDumper.DumpToLocalFile( data, out fileName );
 
 			if( success ) {
 				// Allow admins to dump on behalf of server, also

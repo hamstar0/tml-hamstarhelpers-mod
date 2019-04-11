@@ -252,7 +252,8 @@
     <Compile Include="Helpers\XnaHelpers\XnaHelpers_Instance.cs" />
     <Compile Include="Helpers\XnaHelpers\XnaHelpers.cs" />
     <Compile Include="Internals\ControlPanel\ControlPanelLogic.cs" />
-    <Compile Include="Internals\ControlPanel\Inbox\InboxControl.cs" />
+    <Compile Include="Internals\ControlPanel\UIControlPanel_Refresh.cs" />
+    <Compile Include="Internals\Inbox\InboxControl.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel_Funcs.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel_Init.cs" />
@@ -314,6 +315,7 @@
     <Compile Include="Services\AnimatedColors\AnimatedColorsManager.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors_Instance.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
+    <Compile Include="Services\ControlPanel\ControlPanelTabs.cs" />
     <Compile Include="Services\CustomHotkeys\CustomHotkeys_Instance.cs" />
     <Compile Include="Services\CustomHotkeys\CustomHotkeys.cs" />
     <Compile Include="Services\DataDumper\DataDumper.cs" />
@@ -394,11 +396,11 @@
     <Content Include="icon.png" />
     <Content Include="Internals\ControlPanel\ControlPanelIcon.png" />
     <Content Include="Internals\ControlPanel\ControlPanelIconLit.png" />
-    <Content Include="Internals\ControlPanel\Inbox\ArrowLeft.png" />
-    <Content Include="Internals\ControlPanel\Inbox\ArrowRight.png" />
-    <Content Include="Internals\ControlPanel\Inbox\MiniIcon.png" />
-    <Content Include="Internals\ControlPanel\Inbox\MiniIconLit.png" />
-    <Content Include="Internals\ControlPanel\Inbox\MiniIconLit2.png" />
+    <Content Include="Internals\Inbox\ArrowLeft.png" />
+    <Content Include="Internals\Inbox\ArrowRight.png" />
+    <Content Include="Internals\Inbox\MiniIcon.png" />
+    <Content Include="Internals\Inbox\MiniIconLit.png" />
+    <Content Include="Internals\Inbox\MiniIconLit2.png" />
     <Content Include="Items\MagiTechScrapItem.png" />
     <Content Include="Tiles\CoalTile.png" />
   </ItemGroup>

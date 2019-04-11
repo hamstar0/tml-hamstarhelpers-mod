@@ -33,7 +33,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 				: base( UITheme.Vanilla, width, height, xCenterOffset, y ) {
 			this.MenuContext = mc;
 
-			this.Label = new UIText( "Recommendations:" );
+			this.Label = new UIText( "Also recommended:" );
 			this.Label.Left.Set( -6f, 0f );
 			this.Label.Top.Set( -6f, 0f );
 			this.Append( this.Label );

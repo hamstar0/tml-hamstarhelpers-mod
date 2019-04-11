@@ -47,6 +47,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var mods = new Dictionary<string, ISet<Mod>>();
 
 			foreach( Mod mod in ModLoader.LoadedMods ) {
+				if( mod.Name == "tModLoader" ) { continue; }
 				if( mod.File == null ) {
 					LogHelpers.Warn( "Mod " + mod.DisplayName + " has no file data." );
 					continue;
@@ -64,6 +65,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			var mods = new Dictionary<Services.Tml.BuildPropertiesEditor, Mod>();
 
 			foreach( Mod mod in ModLoader.LoadedMods ) {
+				if( mod.Name == "tModLoader" ) { continue; }
 				if( mod.File == null ) {
 					LogHelpers.Warn( "Mod " + mod.DisplayName + " has no file data." );
 					continue;

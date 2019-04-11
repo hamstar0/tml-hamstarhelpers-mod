@@ -31,13 +31,20 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private ControlPanelLogic Logic = new ControlPanelLogic();
 		private UserInterface Backend = null;
 
-		private IList<UIModData> ModDataList = new List<UIModData>();
-		private UIModData CurrentModListItem = null;
+		////
+
+		private IDictionary<string, UIPanel> Tabs;
+		private string CurrentTab = "";
+
+		////
 
 		private UIElement OuterContainer = null;
 		private UIPanel InnerContainer = null;
-		private UIList ModListElem = null;
 		private UITextPanelButton DialogClose = null;
+
+		////
+
+		private UIList ModListElem = null;
 
 		private UITextArea IssueTitleInput = null;
 		private UITextArea IssueBodyInput = null;
@@ -48,6 +55,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		private UIWebUrl TipUrl = null;
 		private UIWebUrl SupportUrl = null;
+
+		////
+
+		private IList<UIModData> ModDataList = new List<UIModData>();
+		private UIModData CurrentModListItem = null;
+
+		////
 
 		private bool HasClicked = false;
 		private bool ModListUpdateRequired = false;
@@ -79,11 +93,25 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			} );
 
 			this.InitializeComponents();
+			this.InitializeControlPanelComponents();
+
+			this.CurrentTab = "Control Panel";
+			this.Tabs[ this.CurrentTab ] = this.InnerContainer;
 		}
+
+		////
 
 		public override void OnActivate() {
 			base.OnActivate();
 
+			if( this.CurrentTab == "Control Panel" ) {
+				this.OnActivateControlPanel();
+			}
+		}
+
+		////
+
+		private void OnActivateControlPanel() {
 			this.RefreshApplyConfigButton();
 
 			int count;
@@ -113,6 +141,14 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				Main.LocalPlayer.mouseInterface = true;
 			}
 
+			if( this.CurrentTab == "Control Panel" ) {
+				this.UpdateControlPanel();
+			}
+		}
+
+		////
+
+		private void UpdateControlPanel() {
 			if( this.AwaitingReport || this.CurrentModListItem == null || !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) {
 				this.DisableIssueInput();
 			} else {
@@ -160,10 +196,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( !this.IsOpen ) { return; }
 
 			base.Draw( sb );
-			this.DrawHoverElements( sb );
+
+			if( this.CurrentTab == "Control Panel" ) {
+				this.DrawControlPanelHoverElements( sb );
+			}
 		}
 
-		public void DrawHoverElements( SpriteBatch sb ) {
+		public void DrawControlPanelHoverElements( SpriteBatch sb ) {
 			if( this.ModListElem.IsMouseHovering ) {
 				foreach( UIElement elem in this.ModListElem._items ) {
 					if( elem.IsMouseHovering ) {

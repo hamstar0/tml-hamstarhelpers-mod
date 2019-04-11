@@ -7,7 +7,7 @@ using ReLogic.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.Internals.ControlPanel.Inbox {
+namespace HamstarHelpers.Internals.Inbox {
 	class InboxControl {
 		private Texture2D ArrowLeft;
 		private Texture2D ArrowRight;
