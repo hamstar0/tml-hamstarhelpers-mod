@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 			mymod.AnimatedColors.Update();
 
-			UIModControlPanel.UpdateModList();
+			UIModControlPanelTab.UpdateModList();
 		}
 
 

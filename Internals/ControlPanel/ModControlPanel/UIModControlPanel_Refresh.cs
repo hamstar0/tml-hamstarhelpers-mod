@@ -1,10 +1,9 @@
 ﻿using HamstarHelpers.Services.ModHelpers;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	partial class UIModControlPanel : UIPanel {
+	partial class UIModControlPanelTab : UIControlPanelTab {
 		public void RefreshModLockButton() {
 			var mymod = ModHelpersMod.Instance;
 			bool areModsLocked = ModLockService.IsWorldLocked();
@@ -29,7 +28,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				}
 			}
 
-			this.ModLockButton.SetText( UIModControlPanel.ModLockTitle + status );
+			this.ModLockButton.SetText( UIModControlPanelTab.ModLockTitle + status );
 		}
 
 		public void RefreshApplyConfigButton() {

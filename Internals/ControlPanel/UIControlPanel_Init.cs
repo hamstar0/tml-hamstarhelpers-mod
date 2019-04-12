@@ -31,8 +31,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		private void InitializeComponents() {
-			var self = this;
-
 			this.OuterContainer = new UIElement();
 			this.OuterContainer.Width.Set( UIControlPanel.ContainerWidth, 0f );
 			this.OuterContainer.Height.Set( UIControlPanel.ContainerHeight, 0f );
@@ -52,7 +50,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			this.InnerContainer.Initialize();
 
-			ControlPanelTabs.InitializeTab( this.DefaultTab );
+			this.AddTabCloseButton( this.DefaultTab );
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.UI;
+using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,8 +21,9 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////
 
-		private IDictionary<string, UIPanel> Tabs = new Dictionary<string, UIPanel>();
+		private IDictionary<string, UIControlPanelTab> Tabs = new Dictionary<string, UIControlPanelTab>();
 		private string CurrentTabName = "";
+		private IList<UITextPanelButton> TabButtons = new List<UITextPanelButton>();
 
 		////
 
@@ -44,7 +46,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public UIControlPanel() {
 			this.CurrentTabName = UIControlPanel.DefaultTabName;
-			this.Tabs[this.CurrentTabName] = new UIModControlPanel( this.Theme );
+			this.Tabs[ this.CurrentTabName ] = new UIModControlPanelTab( this.Theme );
 
 			this.IsOpen = false;
 			this.InitializeToggler();

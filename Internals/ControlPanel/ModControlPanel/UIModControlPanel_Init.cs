@@ -1,6 +1,4 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Services.ModHelpers;
-using Microsoft.Xna.Framework.Graphics;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -10,7 +8,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	partial class UIModControlPanel : UIPanel {
+	partial class UIModControlPanelTab : UIControlPanelTab {
 		public static float ModListHeight = 300f;
 		
 		public readonly static string ModLockTitle = "Mods locked for current world";
@@ -21,7 +19,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		
 		private void InitializeComponents() {
 			var mymod = ModHelpersMod.Instance;
-			UIModControlPanel self = this;
+			UIModControlPanelTab self = this;
 			ModControlPanelLogic logic = this.Logic;
 			float top = 0;
 
@@ -48,7 +46,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			{
 				modListPanel.Top.Set( top, 0f );
 				modListPanel.Width.Set( 0f, 1f );
-				modListPanel.Height.Set( UIModControlPanel.ModListHeight, 0f );
+				modListPanel.Height.Set( UIModControlPanelTab.ModListHeight, 0f );
 				modListPanel.HAlign = 0f;
 				modListPanel.SetPadding( 4f );
 				modListPanel.PaddingTop = 0.0f;
@@ -65,7 +63,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 					this.ModListElem.SetPadding( 0f );
 					modListPanel.Append( (UIElement)this.ModListElem );
 
-					top += UIModControlPanel.ModListHeight + this.PaddingTop;
+					top += UIModControlPanelTab.ModListHeight + this.PaddingTop;
 
 					UIScrollbar scrollbar = new UIScrollbar();
 					{
@@ -138,7 +136,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			top += 30f;
 
-			this.ModLockButton = new UITextPanelButton( this.Theme, UIModControlPanel.ModLockTitle );
+			this.ModLockButton = new UITextPanelButton( this.Theme, UIModControlPanelTab.ModLockTitle );
 			this.ModLockButton.Top.Set( top, 0f );
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );
@@ -168,7 +166,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.InnerContainer.Append( serverbrowser_url );
 			serverbrowser_url.Left.Set( -serverbrowser_url.GetDimensions().Width * 0.5f, 0.5f );*/
 			
-			string supportMsg = UIModControlPanel.SupportMessages[ this.RandomSupportTextIdx ];
+			string supportMsg = UIModControlPanelTab.SupportMessages[ this.RandomSupportTextIdx ];
 			this.SupportUrl = new UIWebUrl( this.Theme, supportMsg, "https://www.patreon.com/hamstar0", false );
 			this.SupportUrl.Top.Set( top, 0f );
 			this.Append( this.SupportUrl );
@@ -180,7 +178,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		////////////////
 
 		public UIModData CreateModListItem( int i, Mod mod ) {
-			UIModControlPanel self = this;
+			UIModControlPanelTab self = this;
 			var elem = new UIModData( this.Theme, i, mod, false );
 
 			this.Theme.ApplyListItem( elem );

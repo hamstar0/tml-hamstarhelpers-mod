@@ -12,7 +12,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	partial class UIModControlPanel : UIPanel, UIControlPanelTab {
+	partial class UIModControlPanelTab : UIControlPanelTab {
 		private static object ModDataListLock = new object();
 
 		private static IList<string> SupportMessages = new List<string> {
@@ -49,8 +49,6 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		////
 
-		public UITheme Theme { get; private set; }
-
 		private bool ModListUpdateRequired = false;
 		public bool AwaitingReport { get; private set; }
 
@@ -64,7 +62,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		////////////////
 
-		public UIModControlPanel( UITheme theme ) {
+		public UIModControlPanelTab( UITheme theme ) {
 			this.Theme = theme;
 			this.AwaitingReport = false;
 		}
@@ -76,10 +74,11 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		////////////////
 
 		public override void OnInitialize() {
-			this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanel.SupportMessages.Count );
+			this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanelTab.SupportMessages.Count );
+
 			Promises.AddWorldUnloadEachPromise( () => {
-				this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanel.SupportMessages.Count );
-				this.SupportUrl.TextElem.SetText( UIModControlPanel.SupportMessages[this.RandomSupportTextIdx] );
+				this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanelTab.SupportMessages.Count );
+				this.SupportUrl.TextElem.SetText( UIModControlPanelTab.SupportMessages[this.RandomSupportTextIdx] );
 			} );
 			
 			this.InitializeComponents();
@@ -93,7 +92,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.RefreshApplyConfigButton();
 
 			int count;
-			lock( UIModControlPanel.ModDataListLock ) {
+			lock( UIModControlPanelTab.ModDataListLock ) {
 				count = this.ModDataList.Count;
 			}
 

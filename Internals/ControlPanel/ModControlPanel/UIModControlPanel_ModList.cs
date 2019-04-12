@@ -5,15 +5,14 @@ using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using System;
 using System.Linq;
 using System.Threading;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	partial class UIModControlPanel : UIPanel {
+	partial class UIModControlPanelTab : UIControlPanelTab {
 		public static void UpdateModList() {
 			var mymod = ModHelpersMod.Instance;
-			UIModControlPanel uiModCtrlPanel = mymod.ControlPanel.DefaultTab;
+			var uiModCtrlPanel = (UIModControlPanelTab)mymod.ControlPanel.DefaultTab;
 
 			if( uiModCtrlPanel == null || !uiModCtrlPanel.ModListUpdateRequired || !mymod.ControlPanel.IsOpen ) {
 				return;
@@ -21,7 +20,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			uiModCtrlPanel.ModListUpdateRequired = false;
 
-			lock( UIModControlPanel.ModDataListLock ) {
+			lock( UIModControlPanelTab.ModDataListLock ) {
 				try {
 					UIModData[] modDataList = uiModCtrlPanel.ModDataList.ToArray();
 
@@ -42,7 +41,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			ThreadPool.QueueUserWorkItem( _ => {
 				this.IsPopulatingList = true;
 
-				lock( UIModControlPanel.ModDataListLock ) {
+				lock( UIModControlPanelTab.ModDataListLock ) {
 					this.ModDataList.Clear();
 				}
 
@@ -52,7 +51,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				foreach( var mod in ModListHelpers.GetAllLoadedModsPreferredOrder() ) {
 					UIModData moditem = this.CreateModListItem( i++, mod );
 
-					lock( UIModControlPanel.ModDataListLock ) {
+					lock( UIModControlPanelTab.ModDataListLock ) {
 						this.ModDataList.Add( moditem );
 					}
 
@@ -93,7 +92,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		public int GetModUpdatesAvailable() {
 			int updates = 0;
 
-			lock( UIModControlPanel.ModDataListLock ) {
+			lock( UIModControlPanelTab.ModDataListLock ) {
 				foreach( var moditem in this.ModDataList ) {
 					if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
 						updates++;

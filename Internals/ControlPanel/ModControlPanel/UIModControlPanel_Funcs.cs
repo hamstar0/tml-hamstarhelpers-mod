@@ -1,10 +1,9 @@
 ﻿using HamstarHelpers.Services.ModHelpers;
 using System;
-using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	partial class UIModControlPanel : UIPanel {
+	partial class UIModControlPanelTab : UIControlPanelTab {
 		private void ApplyConfigChanges() {
 			this.Logic.ApplyConfigChanges();
 
