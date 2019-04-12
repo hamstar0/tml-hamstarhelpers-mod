@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Services.ModHelpers;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.UI;
 
@@ -34,24 +33,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			Main.InGameUI.SetState( (UIState)null );
 
 			this.Backend = null;
-		}
-
-		////////////////
-
-		private void ApplyConfigChanges() {
-			this.Logic.ApplyConfigChanges();
-
-			this.SetDialogToClose = true;
-		}
-
-		private void ToggleModLock() {
-			if( !ModLockService.IsWorldLocked() ) {
-				ModLockService.LockWorld();
-			} else {
-				ModLockService.UnlockWorld();
-			}
-
-			this.RefreshModLockButton();
 		}
 	}
 }

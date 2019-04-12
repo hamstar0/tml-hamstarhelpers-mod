@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Helpers.TmlHelpers;
-using Terraria.UI;
+using Terraria.GameContent.UI.Elements;
 
 
-namespace HamstarHelpers.Internals.ControlPanel {
-	partial class UIControlPanel : UIState {
+namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
+	partial class UIModControlPanel : UIPanel {
 		public void EnableIssueInput() {
 			if( !this.IssueTitleInput.IsEnabled ) {
 				this.IssueTitleInput.Enable();
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( this.CurrentModListItem == null ) { return; }
 			if( !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
 
-			UIControlPanel self = this;
+			UIModControlPanel self = this;
 			string issueTitle = this.IssueTitleInput.Text;
 			string issueBody = this.IssueBodyInput.Text;
 			if( string.IsNullOrEmpty( issueTitle ) || string.IsNullOrEmpty( issueBody ) ) { return; }

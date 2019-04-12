@@ -5,30 +5,30 @@ using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using System;
 using System.Linq;
 using System.Threading;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ControlPanel {
-	partial class UIControlPanel : UIState {
+namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
+	partial class UIModControlPanel : UIPanel {
 		public static void UpdateModList() {
 			var mymod = ModHelpersMod.Instance;
-			UIControlPanel ctrlPanel = mymod.ControlPanel;
+			var uiModCtrlPanel = (UIModControlPanel)mymod.ControlPanel.Tabs[ "Mod Control Panel" ];
 
-			if( ctrlPanel == null || !ctrlPanel.ModListUpdateRequired || !ctrlPanel.IsOpen ) {
+			if( uiModCtrlPanel == null || !uiModCtrlPanel.ModListUpdateRequired || !uiModCtrlPanel.IsOpen ) {
 				return;
 			}
 
-			ctrlPanel.ModListUpdateRequired = false;
+			uiModCtrlPanel.ModListUpdateRequired = false;
 
 			lock( UIControlPanel.ModDataListLock ) {
 				try {
-					UIModData[] modDataList = ctrlPanel.ModDataList.ToArray();
+					UIModData[] modDataList = uiModCtrlPanel.ModDataList.ToArray();
 
-					ctrlPanel.ModListElem.Clear();
+					uiModCtrlPanel.ModListElem.Clear();
 
 					if( modDataList.Length > 0 ) {
-						ctrlPanel.ModListElem.AddRange( modDataList );
+						uiModCtrlPanel.ModListElem.AddRange( modDataList );
 					}
 				} catch( Exception ) { }
 			}
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			ThreadPool.QueueUserWorkItem( _ => {
 				this.IsPopulatingList = true;
 
-				lock( UIControlPanel.ModDataListLock ) {
+				lock( UIModControlPanel.ModDataListLock ) {
 					this.ModDataList.Clear();
 				}
 
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				foreach( var mod in ModListHelpers.GetAllLoadedModsPreferredOrder() ) {
 					UIModData moditem = this.CreateModListItem( i++, mod );
 
-					lock( UIControlPanel.ModDataListLock ) {
+					lock( UIModControlPanel.ModDataListLock ) {
 						this.ModDataList.Add( moditem );
 					}
 

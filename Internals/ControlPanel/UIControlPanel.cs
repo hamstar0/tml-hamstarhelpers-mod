@@ -28,7 +28,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public bool IsOpen { get; private set; }
 
 		private UITheme Theme = UITheme.Vanilla;
-		private ControlPanelLogic Logic = new ControlPanelLogic();
 		private UserInterface Backend = null;
 
 		////
@@ -44,34 +43,9 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////
 
-		private UIList ModListElem = null;
-
-		private UITextArea IssueTitleInput = null;
-		private UITextArea IssueBodyInput = null;
-
-		private UITextPanelButton IssueSubmitButton = null;
-		private UITextPanelButton ApplyConfigButton = null;
-		private UITextPanelButton ModLockButton = null;
-
-		private UIWebUrl TipUrl = null;
-		private UIWebUrl SupportUrl = null;
-
-		////
-
-		private IList<UIModData> ModDataList = new List<UIModData>();
-		private UIModData CurrentModListItem = null;
-
-		////
-
 		private bool HasClicked = false;
-		private bool ModListUpdateRequired = false;
-		public bool AwaitingReport { get; private set; }
-
-		private bool ResetIssueInput = false;
-		private bool SetDialogToClose = false;
-		private bool IsPopulatingList = false;
 		
-		private int RandomSupportTextIdx = -1;
+		private bool SetDialogToClose = false;
 
 
 
@@ -86,12 +60,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public override void OnInitialize() {
-			this.RandomSupportTextIdx = Main.rand.Next( UIControlPanel.SupportMessages.Count );
-			Promises.AddWorldUnloadEachPromise( () => {
-				this.RandomSupportTextIdx = Main.rand.Next( UIControlPanel.SupportMessages.Count );
-				this.SupportUrl.TextElem.SetText( UIControlPanel.SupportMessages[this.RandomSupportTextIdx] );
-			} );
-
 			this.InitializeComponents();
 			this.InitializeControlPanelComponents();
 
@@ -106,21 +74,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			if( this.CurrentTab == "Control Panel" ) {
 				this.OnActivateControlPanel();
-			}
-		}
-
-		////
-
-		private void OnActivateControlPanel() {
-			this.RefreshApplyConfigButton();
-
-			int count;
-			lock( UIControlPanel.ModDataListLock ) {
-				count = this.ModDataList.Count;
-			}
-
-			if( count == 0 && !this.IsPopulatingList ) {
-				this.LoadModListAsync();
 			}
 		}
 
@@ -144,30 +97,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( this.CurrentTab == "Control Panel" ) {
 				this.UpdateControlPanel();
 			}
-		}
-
-		////
-
-		private void UpdateControlPanel() {
-			if( this.AwaitingReport || this.CurrentModListItem == null || !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) {
-				this.DisableIssueInput();
-			} else {
-				this.EnableIssueInput();
-			}
-
-			if( this.ResetIssueInput ) {
-				this.ResetIssueInput = false;
-				this.IssueTitleInput.SetText( "" );
-				this.IssueBodyInput.SetText( "" );
-			}
-
-			if( this.SetDialogToClose ) {
-				this.SetDialogToClose = false;
-				this.Close();
-				return;
-			}
-
-			this.UpdateElements();
 		}
 
 
@@ -196,33 +125,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( !this.IsOpen ) { return; }
 
 			base.Draw( sb );
-
-			if( this.CurrentTab == "Control Panel" ) {
-				this.DrawControlPanelHoverElements( sb );
-			}
-		}
-
-		public void DrawControlPanelHoverElements( SpriteBatch sb ) {
-			if( this.ModListElem.IsMouseHovering ) {
-				foreach( UIElement elem in this.ModListElem._items ) {
-					if( elem.IsMouseHovering ) {
-						( (UIModData)elem ).DrawHoverEffects( sb );
-						break;
-					}
-				}
-			}
-
-			if( this.TipUrl.IsMouseHovering ) {
-				if( !this.TipUrl.WillDrawOwnHoverUrl ) {
-					this.TipUrl.DrawHoverEffects( sb );
-				}
-			}
-
-			if( this.SupportUrl.IsMouseHovering ) {
-				if( !this.SupportUrl.WillDrawOwnHoverUrl ) {
-					this.SupportUrl.DrawHoverEffects( sb );
-				}
-			}
 		}
 	}
 }

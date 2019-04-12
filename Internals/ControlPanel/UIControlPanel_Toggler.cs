@@ -51,23 +51,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		private int ModUpdatesAvailable() {
-			int updates = 0;
-
-			lock( UIControlPanel.ModDataListLock ) {
-				foreach( var moditem in this.ModDataList ) {
-					if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
-						updates++;
-					}
-				}
-			}
-
-			return updates;
-		}
-
-
-		////////////////
-
 		public bool IsTogglerShown() {
 			return Main.playerInventory;
 		}
