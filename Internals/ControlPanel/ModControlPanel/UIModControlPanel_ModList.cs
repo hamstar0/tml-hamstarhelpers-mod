@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 	partial class UIModControlPanel : UIPanel {
 		public static void UpdateModList() {
 			var mymod = ModHelpersMod.Instance;
-			var uiModCtrlPanel = (UIModControlPanel)mymod.ControlPanel.GetTab( "Mod Control Panel" );
+			UIModControlPanel uiModCtrlPanel = mymod.ControlPanel.DefaultTab;
 
 			if( uiModCtrlPanel == null || !uiModCtrlPanel.ModListUpdateRequired || !mymod.ControlPanel.IsOpen ) {
 				return;

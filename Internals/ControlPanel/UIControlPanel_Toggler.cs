@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.IsTogglerLit = false;
 
 			Promises.AddWorldLoadEachPromise( () => {
-				var uiModCtrlPanel = (UIModControlPanel)this.GetTab( "Mod Control Panel" );
+				UIModControlPanel uiModCtrlPanel = ModHelpersMod.Instance.ControlPanel.DefaultTab;
 				int modUpdateCount = uiModCtrlPanel.GetModUpdatesAvailable();
 				
 				if( modUpdateCount > 0 ) {
@@ -70,7 +70,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return true;
 			}
 
-			var uiModCtrlPanel = (UIModControlPanel)this.GetTab( "Mod Control Panel" );
+			UIModControlPanel uiModCtrlPanel = mymod.ControlPanel.DefaultTab;
 			if( uiModCtrlPanel.GetModUpdatesAvailable() > 0 ) {
 				return true;
 			}

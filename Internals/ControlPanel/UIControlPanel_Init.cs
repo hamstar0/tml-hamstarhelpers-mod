@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
+using HamstarHelpers.Services.ControlPanel;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
@@ -31,6 +31,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		private void InitializeComponents() {
+			var self = this;
+
 			this.OuterContainer = new UIElement();
 			this.OuterContainer.Width.Set( UIControlPanel.ContainerWidth, 0f );
 			this.OuterContainer.Height.Set( UIControlPanel.ContainerHeight, 0f );
@@ -43,12 +45,14 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			this.RecalculateContainer();
 
-			this.InnerContainer = new UIModControlPanel();
+			this.InnerContainer = this.CurrentTab;
 			this.InnerContainer.Width.Set( 0f, 1f );
 			this.InnerContainer.Height.Set( 0f, 1f );
 			this.OuterContainer.Append( (UIElement)this.InnerContainer );
 
 			this.InnerContainer.Initialize();
+
+			ControlPanelTabs.InitializeTab( this.DefaultTab );
 		}
 	}
 }

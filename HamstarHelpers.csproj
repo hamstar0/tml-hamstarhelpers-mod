@@ -258,6 +258,7 @@
     <Compile Include="Internals\ControlPanel\ModControlPanel\UIModControlPanel_Issue.cs" />
     <Compile Include="Internals\ControlPanel\ModControlPanel\UIModControlPanel_ModList.cs" />
     <Compile Include="Internals\ControlPanel\ModControlPanel\UIModControlPanel_Refresh.cs" />
+    <Compile Include="Internals\ControlPanel\UIControlPanel_Tabs.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel_Refresh.cs" />
     <Compile Include="Internals\Inbox\InboxControl.cs" />
     <Compile Include="Internals\ControlPanel\UIControlPanel.cs" />

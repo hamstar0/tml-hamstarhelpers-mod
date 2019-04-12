@@ -12,7 +12,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	partial class UIModControlPanel : UIPanel {
+	partial class UIModControlPanel : UIPanel, UIControlPanelTab {
 		private static object ModDataListLock = new object();
 
 		private static IList<string> SupportMessages = new List<string> {
@@ -26,7 +26,6 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		////////////////
 
-		private UITheme Theme = UITheme.Vanilla;
 		private ModControlPanelLogic Logic = new ModControlPanelLogic();
 
 		////
@@ -49,7 +48,9 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		private UIModData CurrentModListItem = null;
 
 		////
-		
+
+		public UITheme Theme { get; private set; }
+
 		private bool ModListUpdateRequired = false;
 		public bool AwaitingReport { get; private set; }
 
@@ -63,8 +64,13 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		////////////////
 
-		public UIModControlPanel() {
+		public UIModControlPanel( UITheme theme ) {
+			this.Theme = theme;
 			this.AwaitingReport = false;
+		}
+
+		public void AddCloseButton( UITextPanelButton button ) {
+			this.Append( button );
 		}
 
 		////////////////

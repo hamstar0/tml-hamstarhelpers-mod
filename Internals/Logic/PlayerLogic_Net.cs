@@ -104,7 +104,7 @@ namespace HamstarHelpers.Internals.Logic {
 				LogHelpers.Alert();
 			}
 
-			var uiModCtrlPanel = (UIModControlPanel)mymod.ControlPanel.GetTab( "Mod Control Panel" );
+			UIModControlPanel uiModCtrlPanel = mymod.ControlPanel.DefaultTab;
 			uiModCtrlPanel.LoadModListAsync();
 
 			this.IsSynced = true;

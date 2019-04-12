@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Components.UI.Elements;
+﻿using HamstarHelpers.Components.UI;
+using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -10,6 +10,12 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
+		public const string DefaultTabName = "Mod Control Panel";
+
+
+
+		////////////////
+
 		private UserInterface Backend = null;
 
 		////
@@ -19,6 +25,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////
 
+		private UITheme Theme = UITheme.Vanilla;
 		private UIElement OuterContainer = null;
 		private UIPanel InnerContainer = null;
 
@@ -30,13 +37,15 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public bool IsOpen { get; private set; }
-		public UIPanel CurrentTab => this.Tabs.GetOrDefault( this.CurrentTabName );
 
 
 
 		////////////////
 
 		public UIControlPanel() {
+			this.CurrentTabName = UIControlPanel.DefaultTabName;
+			this.Tabs[this.CurrentTabName] = new UIModControlPanel( this.Theme );
+
 			this.IsOpen = false;
 			this.InitializeToggler();
 		}
@@ -45,16 +54,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public override void OnInitialize() {
 			this.InitializeComponents();
-
-			this.CurrentTabName = "Mod Control Panel";
-			this.Tabs[ this.CurrentTabName ] = this.InnerContainer;
-		}
-
-
-		////////////////
-
-		public UIPanel GetTab( string name ) {
-			return this.Tabs.GetOrDefault( name );
 		}
 
 
