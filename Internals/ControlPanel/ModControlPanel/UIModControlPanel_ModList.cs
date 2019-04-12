@@ -13,15 +13,15 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 	partial class UIModControlPanel : UIPanel {
 		public static void UpdateModList() {
 			var mymod = ModHelpersMod.Instance;
-			var uiModCtrlPanel = (UIModControlPanel)mymod.ControlPanel.Tabs[ "Mod Control Panel" ];
+			var uiModCtrlPanel = (UIModControlPanel)mymod.ControlPanel.GetTab( "Mod Control Panel" );
 
-			if( uiModCtrlPanel == null || !uiModCtrlPanel.ModListUpdateRequired || !uiModCtrlPanel.IsOpen ) {
+			if( uiModCtrlPanel == null || !uiModCtrlPanel.ModListUpdateRequired || !mymod.ControlPanel.IsOpen ) {
 				return;
 			}
 
 			uiModCtrlPanel.ModListUpdateRequired = false;
 
-			lock( UIControlPanel.ModDataListLock ) {
+			lock( UIModControlPanel.ModDataListLock ) {
 				try {
 					UIModData[] modDataList = uiModCtrlPanel.ModDataList.ToArray();
 
@@ -85,6 +85,23 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			} else {
 				this.EnableIssueInput();
 			}
+		}
+
+		
+		////////////////
+
+		public int GetModUpdatesAvailable() {
+			int updates = 0;
+
+			lock( UIModControlPanel.ModDataListLock ) {
+				foreach( var moditem in this.ModDataList ) {
+					if( moditem.LatestAvailableVersion > moditem.Mod.Version ) {
+						updates++;
+					}
+				}
+			}
+
+			return updates;
 		}
 	}
 }

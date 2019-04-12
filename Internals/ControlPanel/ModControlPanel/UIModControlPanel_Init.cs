@@ -48,7 +48,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			{
 				modListPanel.Top.Set( top, 0f );
 				modListPanel.Width.Set( 0f, 1f );
-				modListPanel.Height.Set( UIControlPanel.ModListHeight, 0f );
+				modListPanel.Height.Set( UIModControlPanel.ModListHeight, 0f );
 				modListPanel.HAlign = 0f;
 				modListPanel.SetPadding( 4f );
 				modListPanel.PaddingTop = 0.0f;
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 					this.ModListElem.SetPadding( 0f );
 					modListPanel.Append( (UIElement)this.ModListElem );
 
-					top += UIControlPanel.ModListHeight + this.PaddingTop;
+					top += UIModControlPanel.ModListHeight + this.PaddingTop;
 
 					UIScrollbar scrollbar = new UIScrollbar();
 					{
@@ -138,7 +138,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			top += 30f;
 
-			this.ModLockButton = new UITextPanelButton( this.Theme, UIControlPanel.ModLockTitle );
+			this.ModLockButton = new UITextPanelButton( this.Theme, UIModControlPanel.ModLockTitle );
 			this.ModLockButton.Top.Set( top, 0f );
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );

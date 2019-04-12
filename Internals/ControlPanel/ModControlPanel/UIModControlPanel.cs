@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Services.ControlPanel;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -54,6 +55,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		private bool ResetIssueInput = false;
 		private bool IsPopulatingList = false;
+		private bool RequestClose = false;
 		
 		private int RandomSupportTextIdx = -1;
 
@@ -63,7 +65,6 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		public UIModControlPanel() {
 			this.AwaitingReport = false;
-			this.InitializeToggler();
 		}
 
 		////////////////
@@ -82,12 +83,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		public override void OnActivate() {
 			base.OnActivate();
-			this.OnActivateControlPanel();
-		}
 
-		////
-
-		private void OnActivateControlPanel() {
 			this.RefreshApplyConfigButton();
 
 			int count;
@@ -105,7 +101,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		public override void Update( GameTime gameTime ) {
 			base.Update( gameTime );
-			
+
 			if( this.AwaitingReport || this.CurrentModListItem == null || !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) {
 				this.DisableIssueInput();
 			} else {
@@ -118,11 +114,11 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.IssueBodyInput.SetText( "" );
 			}
 
-			/*if( this.SetDialogToClose ) {
-				this.SetDialogToClose = false;
-				this.Close();
+			if( this.RequestClose ) {
+				this.RequestClose = false;
+				ControlPanelTabs.CloseDialog();
 				return;
-			}*/
+			}
 
 			this.UpdateElements();
 		}

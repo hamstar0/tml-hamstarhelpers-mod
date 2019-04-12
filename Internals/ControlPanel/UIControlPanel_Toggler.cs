@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Promises;
@@ -40,7 +41,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.IsTogglerLit = false;
 
 			Promises.AddWorldLoadEachPromise( () => {
-				int modUpdateCount = this.ModUpdatesAvailable();
+				var uiModCtrlPanel = (UIModControlPanel)this.GetTab( "Mod Control Panel" );
+				int modUpdateCount = uiModCtrlPanel.GetModUpdatesAvailable();
 				
 				if( modUpdateCount > 0 ) {
 					InboxMessages.SetMessage( "mod_updates", modUpdateCount + " mod updates available. See mod browser.", true );
@@ -58,7 +60,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public bool IsTogglerUpdateAlertShown() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.Data == null ) {
-				LogHelpers.LogOnce( "!ModHelpers.UIControlPanel.IsTogglerUpdateAlertShown - No mod data." );
+				LogHelpers.WarnOnce( "No mod data." );
 				return false;
 			}
 
@@ -68,7 +70,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return true;
 			}
 
-			if( this.ModUpdatesAvailable() > 0 ) {
+			var uiModCtrlPanel = (UIModControlPanel)this.GetTab( "Mod Control Panel" );
+			if( uiModCtrlPanel.GetModUpdatesAvailable() > 0 ) {
 				return true;
 			}
 

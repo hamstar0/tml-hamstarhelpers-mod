@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
@@ -103,7 +104,8 @@ namespace HamstarHelpers.Internals.Logic {
 				LogHelpers.Alert();
 			}
 
-			mymod.ControlPanel.LoadModListAsync();
+			var uiModCtrlPanel = (UIModControlPanel)mymod.ControlPanel.GetTab( "Mod Control Panel" );
+			uiModCtrlPanel.LoadModListAsync();
 
 			this.IsSynced = true;
 		}

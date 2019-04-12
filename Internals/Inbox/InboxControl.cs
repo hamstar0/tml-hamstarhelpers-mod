@@ -46,10 +46,10 @@ namespace HamstarHelpers.Internals.Inbox {
 
 			var mymod = ModHelpersMod.Instance;
 
-			this.Icon = mymod.GetTexture( "Internals/ControlPanel/Inbox/MiniIcon" );
-			this.IconLit = mymod.GetTexture( "Internals/ControlPanel/Inbox/MiniIconLit2" );
-			this.ArrowLeft = mymod.GetTexture( "Internals/ControlPanel/Inbox/ArrowLeft" );
-			this.ArrowRight = mymod.GetTexture( "Internals/ControlPanel/Inbox/ArrowRight" );
+			this.Icon = mymod.GetTexture( "Internals/Inbox/MiniIcon" );
+			this.IconLit = mymod.GetTexture( "Internals/Inbox/MiniIconLit2" );
+			this.ArrowLeft = mymod.GetTexture( "Internals/Inbox/ArrowLeft" );
+			this.ArrowRight = mymod.GetTexture( "Internals/Inbox/ArrowRight" );
 
 			this.MessageScrollPos = this.Messages.Current;
 

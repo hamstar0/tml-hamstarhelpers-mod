@@ -8,7 +8,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		private void ApplyConfigChanges() {
 			this.Logic.ApplyConfigChanges();
 
-			this.SetDialogToClose = true;
+			this.RequestClose = true;
 		}
 
 		private void ToggleModLock() {

@@ -61,7 +61,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			self.Logic.ReportIssue( self.CurrentModListItem.Mod, issueTitle, issueBody, delegate {
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
-				self.SetDialogToClose = true;
+				self.RequestClose = true;
 			} );
 		}
 	}

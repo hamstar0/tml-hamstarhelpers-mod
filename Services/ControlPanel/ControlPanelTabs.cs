@@ -7,7 +7,16 @@ namespace HamstarHelpers.Services.ControlPanel {
 		public static void AddTab( string title, UIPanel body ) {
 			var mymod = ModHelpersMod.Instance;
 
-			mymod.ControlPanel
+			//mymod.ControlPanel.AddTab( title, body );
+		}
+
+
+		public static void CloseDialog() {
+			var mymod = ModHelpersMod.Instance;
+
+			mymod.ControlPanel.Close();
+			//this.SetDialogToClose = false;
+			//this.Close();
 		}
 	}
 }

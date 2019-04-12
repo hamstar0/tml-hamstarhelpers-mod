@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Internals.ControlPanel;
-using HamstarHelpers.Helpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 			mymod.AnimatedColors.Update();
 
-			UIControlPanel.UpdateModList();
+			UIModControlPanel.UpdateModList();
 		}
 
 

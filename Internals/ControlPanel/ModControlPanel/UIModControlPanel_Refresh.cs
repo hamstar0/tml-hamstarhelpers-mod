@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				}
 			}
 
-			this.ModLockButton.SetText( UIControlPanel.ModLockTitle + status );
+			this.ModLockButton.SetText( UIModControlPanel.ModLockTitle + status );
 		}
 
 		public void RefreshApplyConfigButton() {

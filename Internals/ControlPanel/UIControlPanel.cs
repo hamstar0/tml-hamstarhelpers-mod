@@ -1,7 +1,5 @@
-﻿using HamstarHelpers.Components.UI;
+﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.TmlHelpers;
-using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -12,40 +10,27 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
-		private static object ModDataListLock = new object();
-
-		private static IList<string> SupportMessages = new List<string> {
-			"Buy me coffee for coding! :)",
-			"Did you know I make other mods?",
-			"Want more?",
-			"Please support Mod Helpers!"
-		};
-
-
-
-		////////////////
-
-		public bool IsOpen { get; private set; }
-
-		private UITheme Theme = UITheme.Vanilla;
 		private UserInterface Backend = null;
 
 		////
 
-		private IDictionary<string, UIPanel> Tabs;
-		private string CurrentTab = "";
+		private IDictionary<string, UIPanel> Tabs = new Dictionary<string, UIPanel>();
+		private string CurrentTabName = "";
 
 		////
 
 		private UIElement OuterContainer = null;
 		private UIPanel InnerContainer = null;
-		private UITextPanelButton DialogClose = null;
 
 		////
 
 		private bool HasClicked = false;
-		
-		private bool SetDialogToClose = false;
+
+
+		////////////////
+
+		public bool IsOpen { get; private set; }
+		public UIPanel CurrentTab => this.Tabs.GetOrDefault( this.CurrentTabName );
 
 
 
@@ -53,7 +38,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public UIControlPanel() {
 			this.IsOpen = false;
-			this.AwaitingReport = false;
 			this.InitializeToggler();
 		}
 
@@ -61,28 +45,22 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public override void OnInitialize() {
 			this.InitializeComponents();
-			this.InitializeControlPanelComponents();
 
-			this.CurrentTab = "Control Panel";
-			this.Tabs[ this.CurrentTab ] = this.InnerContainer;
+			this.CurrentTabName = "Mod Control Panel";
+			this.Tabs[ this.CurrentTabName ] = this.InnerContainer;
 		}
 
-		////
 
-		public override void OnActivate() {
-			base.OnActivate();
+		////////////////
 
-			if( this.CurrentTab == "Control Panel" ) {
-				this.OnActivateControlPanel();
-			}
+		public UIPanel GetTab( string name ) {
+			return this.Tabs.GetOrDefault( name );
 		}
 
 
 		////////////////
 
 		public override void Update( GameTime gameTime ) {
-			base.Update( gameTime );
-
 			if( !this.IsOpen ) { return; }
 
 			if( Main.playerInventory || Main.npcChatText != "" ) {
@@ -94,9 +72,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				Main.LocalPlayer.mouseInterface = true;
 			}
 
-			if( this.CurrentTab == "Control Panel" ) {
-				this.UpdateControlPanel();
-			}
+			base.Update( gameTime );
 		}
 
 
