@@ -78,7 +78,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			Promises.AddWorldUnloadEachPromise( () => {
 				this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanelTab.SupportMessages.Count );
-				this.SupportUrl.TextElem.SetText( UIModControlPanelTab.SupportMessages[this.RandomSupportTextIdx] );
+				this.SupportUrl.SetText( UIModControlPanelTab.SupportMessages[this.RandomSupportTextIdx] );
 			} );
 			
 			this.InitializeComponents();

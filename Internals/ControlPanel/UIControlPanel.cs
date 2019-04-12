@@ -1,5 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
+using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,8 +24,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////
 
 		private IDictionary<string, UIControlPanelTab> Tabs = new Dictionary<string, UIControlPanelTab>();
-		private string CurrentTabName = "";
+		private IDictionary<string, int> TabTitleOrder = new Dictionary<string, int>();
+
 		private IList<UITextPanelButton> TabButtons = new List<UITextPanelButton>();
+		private IList<bool> TabButtonHover = new List<bool>();
+
+		private string CurrentTabName = "";
+
 
 		////
 
@@ -33,6 +40,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////
 
+		private bool IsInitialized = false;
 		private bool HasClicked = false;
 
 
@@ -47,6 +55,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public UIControlPanel() {
 			this.CurrentTabName = UIControlPanel.DefaultTabName;
 			this.Tabs[ this.CurrentTabName ] = new UIModControlPanelTab( this.Theme );
+			this.TabTitleOrder[ this.CurrentTabName ] = this.TabTitleOrder.Count;
 
 			this.IsOpen = false;
 			this.InitializeToggler();
@@ -100,6 +109,30 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public override void Draw( SpriteBatch sb ) {
 			if( !this.IsOpen ) { return; }
+
+			for( int i=0; i<this.TabButtons.Count; i++ ) {
+				UITextPanelButton button = this.TabButtons[i];
+
+				if( !button.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
+					if( this.TabButtonHover[i] ) {
+						this.TabButtonHover[i] = false;
+						button.MouseOut( new UIMouseEvent( button, new Vector2(Main.mouseX, Main.mouseY) ) );
+					}
+					continue;
+				}
+
+				if( !this.TabButtonHover[i] ) {
+					this.TabButtonHover[i] = true;
+					ReflectionHelpers.Set( button, "_isMouseHovering", true );
+				}
+
+				var evt = new UIMouseEvent( button, new Vector2( Main.mouseX, Main.mouseY ) );
+				button.MouseOver( evt );
+
+				if( Main.mouseLeft && Main.mouseLeftRelease ) {
+					button.Click( evt );
+				}
+			}
 
 			base.Draw( sb );
 		}

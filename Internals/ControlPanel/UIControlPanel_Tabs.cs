@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -18,7 +19,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 
 	partial class UIControlPanel : UIState {
-		public static int TabWidth => 128;
+		public static int TabWidth => 160;
 		public static int TabHeight => 24;
 		
 
@@ -32,28 +33,37 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public UIPanel GetTab( string name ) {
+		public UIControlPanelTab GetTab( string name ) {
 			return this.Tabs.GetOrDefault( name );
+		}
+
+
+		////////////////
+
+		public void AddTab( string title, UIControlPanelTab tab ) {
+			this.Tabs[ title ] = tab;
+			this.TabTitleOrder[ title ] = this.TabTitleOrder.Count;
+
+			if( this.IsInitialized ) {
+				this.InitializeTab( title, tab );
+			}
 		}
 
 		////
 
-		public void AddTab( string title, UIControlPanelTab tab ) {
-			this.Tabs[ title ] = tab;
+		private void InitializeTab( string title, UIControlPanelTab tab ) {
+			tab.Width.Set( 0f, 1f );
+			tab.Height.Set( 0f, 1f );
 
-			this.AddTabCloseButton( tab );
-
-			if( this.Tabs.Count > 1 ) {
-				if( this.TabButtons.Count == 0 ) {
-					this.AddTabButton( UIControlPanel.DefaultTabName );
-				}
-				this.AddTabButton( title );
-			}
+			this.AddTabCloseButton( title );
+			this.AddTabButton( title );
 		}
+
 
 		////////////////
 
-		private void AddTabCloseButton( UIControlPanelTab tab ) {
+		private void AddTabCloseButton( string title ) {
+			UIControlPanelTab tab = this.Tabs[title];
 			var closeButton = new UITextPanelButton( tab.Theme, "X" );
 
 			closeButton.Top.Set( -8f, 0f );
@@ -76,17 +86,24 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		}
 
 		private void AddTabButton( string title ) {
-			UIControlPanelTab tab = this.Tabs[title];
-			int posX = UIControlPanel.TabWidth * ( this.Tabs.Count - 1 );
+			UIControlPanelTab tab = this.Tabs[ title ];
+			int idx = this.TabTitleOrder[ title ];
+
+			int posX = UIControlPanel.TabWidth * idx;
 
 			var button = new UITextPanelButton( tab.Theme, title );
-			button.Top.Set( -UIControlPanel.TabHeight, 0f );
 			button.Left.Set( (float)posX, 0f );
+			button.Top.Set( -UIControlPanel.TabHeight, 0f );
 			button.Width.Set( UIControlPanel.TabWidth, 0f );
 			button.Height.Set( UIControlPanel.TabHeight, 0f );
+			button.OnClick += ( _, __ ) => {
+Main.NewText( "hi "+title );
+			};
 
 			this.OuterContainer.Append( button );
+
 			this.TabButtons.Add( button );
+			this.TabButtonHover.Add( false );
 		}
 	}
 }

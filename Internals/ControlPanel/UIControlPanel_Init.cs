@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Services.ControlPanel;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 
@@ -49,8 +47,12 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.OuterContainer.Append( (UIElement)this.InnerContainer );
 
 			this.InnerContainer.Initialize();
+			
+			this.IsInitialized = true;
 
-			this.AddTabCloseButton( this.DefaultTab );
+			foreach( var kv in this.Tabs ) {
+				this.InitializeTab( kv.Key, kv.Value );
+			}
 		}
 	}
 }

@@ -12,6 +12,18 @@ using HamstarHelpers.Helpers.DebugHelpers;
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public class UIWebUrl : UIElement {
+		public static UIText GetLineElement( string label, float scale, bool large ) {
+			float underscoreLen = Main.fontMouseText.MeasureString("_").X;
+			float textLen = Main.fontMouseText.MeasureString( label ).X;
+			int lineLen = (int)Math.Max( 1f, Math.Round(textLen / (underscoreLen - 2)) );
+
+			return new UIText( new String('_', lineLen), scale, large );
+		}
+
+
+
+		////////////////
+
 		public UITheme Theme { get; protected set; }
 		public UIText TextElem { get; private set; }
 		public UIText LineElem { get; private set; }
@@ -21,30 +33,30 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		public bool IsVisited { get; private set; }
 
+		public float Scale { get; private set; }
+		public bool Large { get; private set; }
+
 
 
 		////////////////
-		
+
 		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f, bool large = false ) : base() {
 			this.Theme = theme;
 			this.IsVisited = false;
-
-			this.WillDrawOwnHoverUrl = hoverUrl;
 			this.Url = url;
+			this.WillDrawOwnHoverUrl = hoverUrl;
+			this.Scale = scale;
+			this.Large = large;
 
 			this.TextElem = new UIText( label, scale, large );
 			this.TextElem.TextColor = theme.UrlColor;
 			this.Append( this.TextElem );
 
-			CalculatedStyle labelSize = this.TextElem.GetDimensions();
-			float underscoreLen = Main.fontMouseText.MeasureString("_").X;
-			float textLen = Main.fontMouseText.MeasureString( label ).X;
-			int lineLen = (int)Math.Max( 1f, Math.Round(textLen / (underscoreLen - 2)) );
-
-			this.LineElem = new UIText( new String('_', lineLen), scale, large );
+			this.LineElem = UIWebUrl.GetLineElement( label, scale, large );
 			this.LineElem.TextColor = theme.UrlColor;
 			this.Append( this.LineElem );
 
+			CalculatedStyle labelSize = this.TextElem.GetDimensions();
 			this.Width.Set( labelSize.Width, 0f );
 			this.Height.Set( labelSize.Height, 0f );
 
@@ -77,6 +89,21 @@ namespace HamstarHelpers.Components.UI.Elements {
 					Main.NewText( e.Message );
 				}
 			};
+		}
+
+
+		////////////////
+
+		public void SetText( string text ) {
+			this.TextElem.SetText( text, this.Scale, this.Large );
+
+			this.RemoveChild( this.LineElem );
+			this.LineElem.Remove();
+
+			this.LineElem = UIWebUrl.GetLineElement( text, this.Scale, this.Large );
+			this.Append( this.LineElem );
+
+			this.Recalculate();
 		}
 
 
