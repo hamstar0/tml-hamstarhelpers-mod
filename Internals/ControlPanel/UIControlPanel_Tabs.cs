@@ -97,13 +97,41 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			button.Width.Set( UIControlPanel.TabWidth, 0f );
 			button.Height.Set( UIControlPanel.TabHeight, 0f );
 			button.OnClick += ( _, __ ) => {
-Main.NewText( "hi "+title );
+				this.ChangeToTab( title );
 			};
 
 			this.OuterContainer.Append( button );
 
 			this.TabButtons.Add( button );
 			this.TabButtonHover.Add( false );
+		}
+
+
+		////////////////
+
+		public bool ChangeToTab( string tabName ) {
+			if( tabName == this.CurrentTabName ) {
+				return true;
+			}
+
+			UIControlPanelTab tab;
+			if( !this.Tabs.TryGetValue(tabName, out tab) ) {
+				return false;
+			}
+
+			this.OuterContainer.RemoveChild( this.InnerContainer );
+			this.InnerContainer.Remove();
+
+			this.InnerContainer = tab;
+			this.OuterContainer.Append( this.InnerContainer );
+
+			this.Recalculate();
+			this.OuterContainer.Recalculate();
+			this.InnerContainer.Recalculate();
+
+			this.CurrentTabName = tabName;
+
+			return true;
 		}
 	}
 }

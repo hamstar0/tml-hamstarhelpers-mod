@@ -111,30 +111,37 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( !this.IsOpen ) { return; }
 
 			for( int i=0; i<this.TabButtons.Count; i++ ) {
-				UITextPanelButton button = this.TabButtons[i];
-
-				if( !button.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
-					if( this.TabButtonHover[i] ) {
-						this.TabButtonHover[i] = false;
-						button.MouseOut( new UIMouseEvent( button, new Vector2(Main.mouseX, Main.mouseY) ) );
-					}
-					continue;
-				}
-
-				if( !this.TabButtonHover[i] ) {
-					this.TabButtonHover[i] = true;
-					ReflectionHelpers.Set( button, "_isMouseHovering", true );
-				}
-
-				var evt = new UIMouseEvent( button, new Vector2( Main.mouseX, Main.mouseY ) );
-				button.MouseOver( evt );
-
-				if( Main.mouseLeft && Main.mouseLeftRelease ) {
-					button.Click( evt );
-				}
+				this.ApplyTabButtonMouseInteractivity( i );
 			}
 
 			base.Draw( sb );
+		}
+
+
+		////////////////
+
+		private void ApplyTabButtonMouseInteractivity( int idx ) {
+			UITextPanelButton button = this.TabButtons[idx];
+
+			if( !button.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
+				if( this.TabButtonHover[idx] ) {
+					this.TabButtonHover[idx] = false;
+					button.MouseOut( new UIMouseEvent(button, new Vector2(Main.mouseX, Main.mouseY)) );
+				}
+				return;
+			}
+
+			if( !this.TabButtonHover[idx] ) {
+				this.TabButtonHover[idx] = true;
+				ReflectionHelpers.Set( button, "_isMouseHovering", true );
+			}
+
+			var evt = new UIMouseEvent( button, new Vector2( Main.mouseX, Main.mouseY ) );
+			button.MouseOver( evt );
+
+			if( Main.mouseLeft && Main.mouseLeftRelease ) {
+				button.Click( evt );
+			}
 		}
 	}
 }
