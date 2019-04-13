@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.Logic {
 					this.HasBuffIds.Remove( buffId );
 					buffChange = true;
 
-					PlayerState.OnBuffExpire( player, buffId );
+					ExtendedPlayerHooks.OnBuffExpire( player, buffId );
 				}
 			}
 
@@ -72,19 +72,19 @@ namespace HamstarHelpers.Internals.Logic {
 
 					if( hadAnEquip ) {
 						if( item.type != this.EquipSlotsToItemTypes[i] ) {
-							PlayerState.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
-							PlayerState.OnArmorEquip( player, i, item );
+							ExtendedPlayerHooks.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
+							ExtendedPlayerHooks.OnArmorEquip( player, i, item );
 							this.EquipSlotsToItemTypes[i] = item.type;
 							equipChange = true;
 						}
 					} else {
 						this.EquipSlotsToItemTypes[i] = item.type;
-						PlayerState.OnArmorEquip( player, i, item );
+						ExtendedPlayerHooks.OnArmorEquip( player, i, item );
 						equipChange = true;
 					}
 				} else {
 					if( this.EquipSlotsToItemTypes.ContainsKey( i ) ) {
-						PlayerState.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
+						ExtendedPlayerHooks.OnArmorUnequip( player, i, this.EquipSlotsToItemTypes[i] );
 						this.EquipSlotsToItemTypes.Remove( i );
 						equipChange = true;
 					}

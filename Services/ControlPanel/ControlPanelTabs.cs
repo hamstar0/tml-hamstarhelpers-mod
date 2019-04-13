@@ -13,6 +13,11 @@ namespace HamstarHelpers.Services.ControlPanel {
 
 		////////////////
 
+		public static void ChangeTab( string tabName ) {
+
+		}
+
+
 		public static void CloseDialog() {
 			var mymod = ModHelpersMod.Instance;
 

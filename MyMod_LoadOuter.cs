@@ -73,7 +73,7 @@ namespace HamstarHelpers {
 		internal RecipeIdentityHelpers RecipeIdentityHelpers;
 		internal RecipeGroupHelpers RecipeGroupHelpers;
 		internal LoadHelpers LoadHelpers;
-		internal PlayerState PlayerState;
+		internal ExtendedPlayerHooks PlayerHooks;
 		internal WorldStateHelpers WorldStateHelpers;
 		internal MusicHelpers MusicHelpers;
 		internal PlayerIdentityHelpers PlayerIdentityHelpers;
@@ -120,7 +120,7 @@ namespace HamstarHelpers {
 			this.NPCBannerHelpers = new NPCBannerHelpers();
 			this.RecipeIdentityHelpers = new RecipeIdentityHelpers();
 			this.RecipeGroupHelpers = new RecipeGroupHelpers();
-			this.PlayerState = new PlayerState();
+			this.PlayerHooks = new PlayerHooks();
 			this.WorldStateHelpers = new WorldStateHelpers();
 			this.ControlPanel = new UIControlPanel();
 			this.ModLock = new ModLockService();
@@ -160,7 +160,7 @@ namespace HamstarHelpers {
 			this.NPCBannerHelpers = null;
 			this.RecipeIdentityHelpers = null;
 			this.RecipeGroupHelpers = null;
-			this.PlayerState = null;
+			this.PlayerHooks = null;
 			this.LoadHelpers = null;
 			this.GetModVersion = null;
 			this.GetModTags = null;

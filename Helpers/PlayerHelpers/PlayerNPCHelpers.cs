@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 
 
@@ -25,6 +26,8 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 			return false;
 		}
 
+
+		////////////////
 
 		public static bool HasUsedNurse( Player player ) {
 			return Main.npcChatText == Lang.dialog( 227, false ) ||
