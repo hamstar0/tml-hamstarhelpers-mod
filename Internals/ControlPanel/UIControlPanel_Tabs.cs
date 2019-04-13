@@ -3,7 +3,6 @@ using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -32,20 +31,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 
 	partial class UIControlPanel : UIState {
-		public static int TabWidth => 160;
-		public static int TabHeight => 24;
-		
-
-
-		////////////////
-
-		public UIControlPanelTab CurrentTab => this.Tabs.GetOrDefault( this.CurrentTabName );
-		public UIModControlPanelTab DefaultTab => (UIModControlPanelTab)this.Tabs[ UIControlPanel.DefaultTabName ];
-
-
-
-		////////////////
-
 		public UIControlPanelTab GetTab( string name ) {
 			return this.Tabs.GetOrDefault( name );
 		}

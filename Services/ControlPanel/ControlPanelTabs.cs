@@ -10,13 +10,22 @@ namespace HamstarHelpers.Services.ControlPanel {
 			mymod.ControlPanel.AddTab( title, tab );
 		}
 
-
 		////////////////
 
-		public static void ChangeTab( string tabName ) {
+		public static string GetCurrentTab() {
+			var mymod = ModHelpersMod.Instance;
 
+			return mymod.ControlPanel.CurrentTabName;
 		}
 
+		public static void ChangeToTab( string tabName ) {
+			var mymod = ModHelpersMod.Instance;
+
+			mymod.ControlPanel.ChangeToTab( tabName );
+		}
+
+
+		////////////////
 
 		public static void CloseDialog() {
 			var mymod = ModHelpersMod.Instance;

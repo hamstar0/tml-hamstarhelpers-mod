@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Components.UI;
+﻿using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
@@ -15,6 +16,11 @@ namespace HamstarHelpers.Internals.ControlPanel {
 	partial class UIControlPanel : UIState {
 		public const string DefaultTabName = "Mod Control Panel";
 
+		////////////////
+
+		public static int TabWidth => 160;
+		public static int TabHeight => 24;
+
 
 
 		////////////////
@@ -28,8 +34,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		private IList<UITextPanelButton> TabButtons = new List<UITextPanelButton>();
 		private IList<bool> TabButtonHover = new List<bool>();
-
-		private string CurrentTabName = "";
 
 
 		////
@@ -46,6 +50,11 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
+		public string CurrentTabName { get; private set; } = "";
+
+		public UIControlPanelTab CurrentTab => this.Tabs.GetOrDefault( this.CurrentTabName );
+		public UIModControlPanelTab DefaultTab => (UIModControlPanelTab)this.Tabs[UIControlPanel.DefaultTabName];
+		
 		public bool IsOpen { get; private set; }
 
 
