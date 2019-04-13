@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Players;
+﻿using HamstarHelpers.Services.ExtendedHooks;
 using System;
 using Terraria;
 

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using HamstarHelpers.Services.ExtendedHooks;
+using System;
 using Terraria;
 
 
 namespace HamstarHelpers.Services.Players {
-	[Obsolete("use PlayerHooks", true)]
+	[Obsolete( "use `Services.ExtendedHooks.ExtendedPlayerHooks`", true)]
 	public class PlayerState {
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
 			return ExtendedPlayerHooks.AddBuffExpireAction( which, action );

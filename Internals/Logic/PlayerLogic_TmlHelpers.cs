@@ -2,7 +2,7 @@
 using HamstarHelpers.Services.Timers;
 using System.Linq;
 using Terraria;
-using HamstarHelpers.Services.Players;
+using HamstarHelpers.Services.ExtendedHooks;
 
 
 namespace HamstarHelpers.Internals.Logic {

@@ -358,10 +358,10 @@
     <Compile Include="Services\ModCompatibilities\ExtensibleInventory\kRPG.cs" />
     <Compile Include="Services\ModLock\ModLockService.cs" />
     <Compile Include="Services\ModLock\ModLockService_Instance.cs" />
-    <Compile Include="Services\Players\ExtendedPlayerHooks_NPC.cs" />
-    <Compile Include="Services\Players\ExtendedPlayerHooks.cs" />
-    <Compile Include="Services\Players\ExtendedPlayerHooks_Instance.cs" />
-    <Compile Include="Services\Players\PlayerState.cs" />
+    <Compile Include="Services\ExtendedHooks\ExtendedPlayerHooks_NPC.cs" />
+    <Compile Include="Services\ExtendedHooks\ExtendedPlayerHooks.cs" />
+    <Compile Include="Services\ExtendedHooks\ExtendedPlayerHooks_Instance.cs" />
+    <Compile Include="Services\ExtendedHooks\_PlayerState.cs" />
     <Compile Include="Services\Promises\Promises_Instance.cs" />
     <Compile Include="Services\Promises\Promises.cs" />
     <Compile Include="Services\Promises\Promises_ContextAPI.cs" />

@@ -16,7 +16,7 @@ using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.ServerInfo;
 using HamstarHelpers.Services.CustomHotkeys;
-using HamstarHelpers.Services.Players;
+using HamstarHelpers.Services.ExtendedHooks;
 using HamstarHelpers.Services.ModHelpers;
 using HamstarHelpers.Services.RecipeHack;
 using HamstarHelpers.Helpers.MiscHelpers;
@@ -59,10 +59,11 @@ namespace HamstarHelpers {
 		internal ModLockService ModLock;
 		//internal PlayerDataManager PlayerDataMngr;
 		internal RecipeHack RecipeHack;
+		internal ExtendedPlayerHooks PlayerHooks;
 
 		// Helpers
-		internal LogHelpers LogHelpers;
 		internal ModMetaDataManager ModMetaDataMngr;
+		internal LogHelpers LogHelpers;
 		internal NetHelpers NetHelpers;
 		internal BuffHelpers BuffHelpers;
 		internal ItemIdentityHelpers ItemIdentityHelpers;
@@ -73,11 +74,11 @@ namespace HamstarHelpers {
 		internal RecipeIdentityHelpers RecipeIdentityHelpers;
 		internal RecipeGroupHelpers RecipeGroupHelpers;
 		internal LoadHelpers LoadHelpers;
-		internal ExtendedPlayerHooks PlayerHooks;
 		internal WorldStateHelpers WorldStateHelpers;
 		internal MusicHelpers MusicHelpers;
 		internal PlayerIdentityHelpers PlayerIdentityHelpers;
 		internal ReflectionHelpers ReflectionHelpers;
+		internal XnaHelpers XnaHelpers;
 
 		// Internals
 		internal InboxControl Inbox;
@@ -85,7 +86,6 @@ namespace HamstarHelpers {
 		internal GetModVersion GetModVersion;
 		internal UIControlPanel ControlPanel;
 		internal SupportInfoDisplay SupportInfo;
-		internal XnaHelpers XnaHelpers;
 
 		
 		public ModHotKey ControlPanelHotkey = null;
@@ -120,7 +120,7 @@ namespace HamstarHelpers {
 			this.NPCBannerHelpers = new NPCBannerHelpers();
 			this.RecipeIdentityHelpers = new RecipeIdentityHelpers();
 			this.RecipeGroupHelpers = new RecipeGroupHelpers();
-			this.PlayerHooks = new PlayerHooks();
+			this.PlayerHooks = new ExtendedPlayerHooks();
 			this.WorldStateHelpers = new WorldStateHelpers();
 			this.ControlPanel = new UIControlPanel();
 			this.ModLock = new ModLockService();

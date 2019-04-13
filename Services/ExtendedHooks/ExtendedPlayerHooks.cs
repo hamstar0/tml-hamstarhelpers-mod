@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Services.Players {
+namespace HamstarHelpers.Services.ExtendedHooks {
 	public partial class ExtendedPlayerHooks {
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;
