@@ -2,9 +2,8 @@
 using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.ItemHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
-using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Items;
+using HamstarHelpers.Services.ExtendedHooks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -73,15 +72,10 @@ namespace HamstarHelpers {
 				Player toPlayer = Main.player[npc.lastInteraction];
 
 				if( toPlayer != null && toPlayer.active ) {
-					Action<Player, NPC> killEvent = PlayerNPCHelpers.KillByPlayer;
-
-					if( killEvent != null ) {
-						killEvent( toPlayer, npc );
-					}
+					ExtendedPlayerHooks.RunNpcKillHooks( toPlayer, npc );
 				}
 			} else if( Main.netMode == 0 ) {
-				var myplayer = TmlHelpers.SafelyGetModPlayer<PlayerStatisticsPlayer>( Main.LocalPlayer );
-				myplayer.RegisterNpcKill( npc );
+				ExtendedPlayerHooks.RunNpcKillHooks( Main.LocalPlayer, npc );
 			}
 		}
 	}
