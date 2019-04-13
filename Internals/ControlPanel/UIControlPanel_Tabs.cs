@@ -13,6 +13,19 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ControlPanel {
 	public abstract class UIControlPanelTab : UIPanel {
 		public UITheme Theme { get; protected set; }
+		public bool IsInitialized { get; private set; }
+
+
+
+		////////////////
+
+		public sealed override void OnInitialize() {
+			this.OnInitializeMe();
+			this.IsInitialized = true;
+		}
+
+
+		public abstract void OnInitializeMe();
 	}
 
 
@@ -119,11 +132,18 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return false;
 			}
 
+			tab.Width.Set( 0f, 1f );
+			tab.Height.Set( 0f, 1f );
+
 			this.OuterContainer.RemoveChild( this.InnerContainer );
 			this.InnerContainer.Remove();
 
 			this.InnerContainer = tab;
 			this.OuterContainer.Append( this.InnerContainer );
+
+			if( !tab.IsInitialized ) {
+				tab.Initialize();
+			}
 
 			this.Recalculate();
 			this.OuterContainer.Recalculate();
