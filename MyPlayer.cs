@@ -6,7 +6,6 @@ using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.ControlPanel;
 using HamstarHelpers.Services.DataDumper;
-using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
 using System;
@@ -139,6 +138,8 @@ namespace HamstarHelpers {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 			ISet<CustomEntity> ents = CustomEntityManager.GetEntitiesByComponent<HitRadiusPlayerEntityComponent>();
+
+			mymod.ControlPanel.UpdateGlobal();
 
 			foreach( CustomEntity ent in ents ) {
 				var hitRadComp = ent.GetComponentByType<HitRadiusPlayerEntityComponent>();

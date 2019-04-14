@@ -79,11 +79,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public override void Update( GameTime gameTime ) {
+		public void UpdateGlobal() {
 			if( !Main.inFancyUI ) {
 				this.IsOpen = false;
 			}
+		}
 
+		public override void Update( GameTime gameTime ) {
 			if( !this.IsOpen ) { return; }
 
 			if( Main.playerInventory || Main.npcChatText != "" ) {
