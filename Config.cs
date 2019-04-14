@@ -51,6 +51,8 @@ namespace HamstarHelpers {
 		public int InboxIconPosX = 2;
 		public int InboxIconPosY = 80;
 
+		public int PingUpdateDelay = 60 * 15;	// 15 seconds
+
 		public bool IsServerGaugingAveragePing = true;
 		public bool IsCheckingModVersions = true;
 		public bool IsCheckingModTags = true;

@@ -15,13 +15,19 @@ namespace HamstarHelpers.Services.ControlPanel {
 		public static string GetCurrentTab() {
 			var mymod = ModHelpersMod.Instance;
 
-			return mymod.ControlPanel.CurrentTabName;
+			return mymod.ControlPanel?.CurrentTabName;
 		}
 
-		public static void ChangeToTab( string tabName ) {
+		public static void OpenTab( string tabName ) {
 			var mymod = ModHelpersMod.Instance;
 
-			mymod.ControlPanel.ChangeToTab( tabName );
+			if( mymod.ControlPanel != null ) {
+				if( !mymod.ControlPanel.IsOpen ) {
+					mymod.ControlPanel.Open();
+				}
+
+				mymod.ControlPanel.ChangeToTab( tabName );
+			}
 		}
 
 
@@ -30,7 +36,7 @@ namespace HamstarHelpers.Services.ControlPanel {
 		public static void CloseDialog() {
 			var mymod = ModHelpersMod.Instance;
 
-			mymod.ControlPanel.Close();
+			mymod.ControlPanel?.Close();
 			//this.SetDialogToClose = false;
 			//this.Close();
 		}

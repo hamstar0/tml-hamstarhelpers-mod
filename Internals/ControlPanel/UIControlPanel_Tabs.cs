@@ -135,7 +135,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			this.InnerContainer.Recalculate();
 
 			this.CurrentTabName = tabName;
-
+			
 			return true;
 		}
 	}

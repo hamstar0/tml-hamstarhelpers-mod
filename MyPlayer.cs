@@ -2,7 +2,9 @@
 using HamstarHelpers.Components.CustomEntity.Components;
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Services.ControlPanel;
 using HamstarHelpers.Services.DataDumper;
 using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Promises;
@@ -182,9 +184,9 @@ namespace HamstarHelpers {
 					} else {
 						if( mymod.ControlPanel != null ) {
 							if( mymod.ControlPanel.IsOpen ) {
-								mymod.ControlPanel.Open();
+								ControlPanelTabs.CloseDialog();
 							} else {
-								mymod.ControlPanel.Close();
+								ControlPanelTabs.OpenTab( UIControlPanel.DefaultTabName );
 							}
 						}
 					}

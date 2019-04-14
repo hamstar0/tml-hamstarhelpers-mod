@@ -19,7 +19,8 @@ namespace HamstarHelpers.Services.ServerInfo {
 			if( this.AveragePing == -1 ) {
 				this.AveragePing = ping;
 			} else {
-				this.AveragePing = (ping + ( this.AveragePing * 2 )) / 3;
+				//this.AveragePing = (ping + (this.AveragePing * 2)) / 3;
+				this.AveragePing = (ping + this.AveragePing) / 2;
 			}
 		}
 	}

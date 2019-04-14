@@ -80,6 +80,10 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public override void Update( GameTime gameTime ) {
+			if( !Main.inFancyUI ) {
+				this.IsOpen = false;
+			}
+
 			if( !this.IsOpen ) { return; }
 
 			if( Main.playerInventory || Main.npcChatText != "" ) {
