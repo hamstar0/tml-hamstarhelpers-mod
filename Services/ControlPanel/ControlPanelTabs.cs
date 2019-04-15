@@ -33,7 +33,7 @@ namespace HamstarHelpers.Services.ControlPanel {
 
 		////////////////
 
-		public bool IsDialogOpen() {
+		public static bool IsDialogOpen() {
 			return ModHelpersMod.Instance.ControlPanel?.IsOpen ?? false;
 		}
 

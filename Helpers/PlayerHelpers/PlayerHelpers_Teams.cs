@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		Green = 2,
 		Cyan = 4,
 		Yellow = 8,
-		Purple = 16
+		Pink = 16
 	}
 
 
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 				return PlayerTeamName.Yellow;
 			case 5:
 				color = new Color( 224, 100, 242 );
-				return PlayerTeamName.Purple;
+				return PlayerTeamName.Pink;
 			case 0:
 			default:
 				color = Color.White;
