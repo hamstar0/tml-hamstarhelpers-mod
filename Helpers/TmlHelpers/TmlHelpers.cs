@@ -1,8 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using Terraria;
@@ -13,53 +11,7 @@ using Terraria.Social;
 
 
 namespace HamstarHelpers.Helpers.TmlHelpers {
-	public static class TmlHelpers {
-		private static IDictionary<Mod, string> ModIds = new Dictionary<Mod, string>();
-
-
-
-		////////////////
-
-		public static string GetModUniqueName( Mod mod ) {
-			if( TmlHelpers.ModIds.ContainsKey( mod ) ) { return TmlHelpers.ModIds[mod]; }
-			TmlHelpers.ModIds[mod] = mod.Name + ":" + mod.Version;
-			return TmlHelpers.ModIds[mod];
-		}
-
-
-		public static IDictionary<Mod, Version> FindDependencyModMajorVersionMismatches( Mod mod ) {
-			Services.Tml.BuildPropertiesEditor buildEditor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
-			IDictionary<string, Version> modRefs = buildEditor.ModReferences;
-			var badModDeps = new Dictionary<Mod, Version>();
-
-			foreach( var kv in modRefs ) {
-				Mod depMod = ModLoader.GetMod( kv.Key );
-				if( depMod == null ) { continue; }
-
-				if( depMod.Version.Major != kv.Value.Major ) {
-					badModDeps[depMod] = kv.Value;
-				}
-			}
-
-			return badModDeps;
-		}
-
-
-		public static string ReportBadDependencyMods( Mod mod ) {
-			IDictionary<Mod, Version> badDepMods = TmlHelpers.FindDependencyModMajorVersionMismatches( mod );
-
-			if( badDepMods.Count != 0 ) {
-				IEnumerable<string> badDepModsList = badDepMods.SafeSelect(
-					kv => kv.Key.DisplayName + " (needs " + kv.Value.ToString() + ", is " + kv.Key.Version.ToString() + ")"
-				);
-				return mod.DisplayName + " (" + mod.Name + ") is out of date with its dependency mod(s): " + string.Join( ", \n", badDepModsList );
-			}
-			return null;
-		}
-
-
-		////////////////
-
+	public static partial class TmlHelpers {
 		public static void ExitToDesktop( bool save = true ) {
 			LogHelpers.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );
 
@@ -129,7 +81,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 
 		////////////////
 
-		private static void SetupPlayer( Player player ) {
+		private static void ForceSetupPlayer( Player player ) {
 			ModPlayer[] modPlayers;
 
 			if( !DotNetHelpers.Reflection.ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
@@ -142,14 +94,15 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			}
 		}
 
+		////
 
 		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {    // Solely for Main.LocalPlayer?
-			TmlHelpers.SetupPlayer( player );
+			TmlHelpers.ForceSetupPlayer( player );
 			return player.GetModPlayer( mod, modPlayerName );
 		}
 
 		public static T SafelyGetModPlayer<T>( Player player ) where T : ModPlayer {
-			TmlHelpers.SetupPlayer( player );
+			TmlHelpers.ForceSetupPlayer( player );
 			return player.GetModPlayer<T>();
 		}
 	}

@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			IEnumerable<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder();
 			string bodyInfo = string.Join( "\n \n", InfoHelpers.GetGameData( mods ).ToArray() );
 			string bodyErrors = string.Join( "\n", InfoHelpers.GetErrorLog( maxLines ).ToArray() );
-			
+
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "Reported from in-game: " + issueTitle;
 			string body = bodyInfo;

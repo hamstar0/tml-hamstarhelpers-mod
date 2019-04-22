@@ -1,34 +1,14 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
-	public static class ModHelpers {
-		[Obsolete( "use ModListHelpers.GetAllLoadedModsPreferredOrder()", true )]
-		public static IEnumerable<Mod> GetAllMods() {
-			return ModHelpers.GetAllPlayableModsPreferredOrder();
-		}
-
-		[Obsolete( "use ModListHelpers.GetAllLoadedModsPreferredOrder()", true )]
-		public static IEnumerable<Mod> GetAllPlayableModsPreferredOrder() {
-			return ModListHelpers.GetAllLoadedModsPreferredOrder();
-		}
-
-		[Obsolete( "use ModListHelpers.PromptModDownloads()", true )]
-		public static void PromptModDownloads( string packTitle, List<string> modNames ) {
-			ModListHelpers.PromptModDownloads( packTitle, modNames );
-		}
-
-
-		////////////////
-
+	public static partial class ModHelpers {
 		public static byte[] UnsafeLoadFileFromMod( TmodFile tmod, string fileName ) {
 			using( var fileStream = File.OpenRead( tmod.path ) )
 			using( var hReader = new BinaryReader( fileStream ) ) {

@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
 using System;
@@ -14,11 +15,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		internal void FilterMods() {
 			IList<string> modNames = new List<string>();
-			UIState myUid = this.MyUI;
+			UIState myUI = this.MyUI;
 
 			object items;
-			if( !ReflectionHelpers.Get( myUid, "items", out items ) ) {
-				throw new HamstarException( "No 'items' field in ui " + myUid );
+			if( !ReflectionHelpers.Get( myUI, "items", out items ) ) {
+				throw new HamstarException( "No 'items' field in ui " + myUI );
 			}
 
 			var itemsArr = (Array)items.GetType()
@@ -34,7 +35,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 			}
 
-			this.FilterModsAsync( modNames, ( isFiltered, filteredList, onTagCount, offTagCount ) => {
+			this.FilterModsAsync( modNames, ( isFiltered, filteredModNameList, onTagCount, offTagCount ) => {
 				string filterName = "Tags";
 				if( onTagCount > 0 || offTagCount > 0 ) {
 					filterName += " ";
@@ -50,8 +51,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					}
 				}
 
-				ReflectionHelpers.Set( myUid, "updateFilterMode", (UpdateFilter)0 );
-				MenuModHelper.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredList );
+				ReflectionHelpers.Set( myUI, "updateFilterMode", (UpdateFilter)0 );
+				MenuModHelper.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
 			} );
 		}
 
@@ -66,7 +67,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					return false;
 				}
 				
-				IList<string> filteredList = new List<string>();
+				IList<string> filteredModNameList = new List<string>();
 				ISet<string> onTags = this.GetTagsOfState( 1 );
 				ISet<string> offTags = this.GetTagsOfState( -1 );
 				bool isFiltered = onTags.Count > 0 || offTags.Count > 0;
@@ -79,12 +80,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 						if( modTags.Overlaps( offTags ) ) { continue; }
 						if( onTags.Count > 0 && !modTags.IsSupersetOf( onTags ) ) { continue; }
+						if( !ModIdentityHelpers.IsProperlyPresented(modName) ) { continue; }
 
-						filteredList.Add( modName );
+						filteredModNameList.Add( modName );
 					}
 				}
 
-				callback( isFiltered, filteredList, onTags.Count, offTags.Count );
+				callback( isFiltered, filteredModNameList, onTags.Count, offTags.Count );
 
 				return false;
 			} );

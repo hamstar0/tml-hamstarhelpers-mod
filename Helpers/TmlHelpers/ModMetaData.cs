@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Errors;
-using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 
