@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 
 				ReflectionHelpers.Set( myUI, "updateFilterMode", (UpdateFilter)0 );
-				MenuModHelper.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
+				ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
 			} );
 		}
 

@@ -40,7 +40,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		[Obsolete( "use `MenuModHelper.LoadMenuModDownloads`", true )]
 		public static void PromptModDownloads( string packTitle, List<string> modNames ) {
-			MenuModHelper.LoadMenuModDownloads( packTitle, modNames );
+			MainMenuHelpers.LoadMenuModDownloads( packTitle, modNames );
 		}
 	}
 }

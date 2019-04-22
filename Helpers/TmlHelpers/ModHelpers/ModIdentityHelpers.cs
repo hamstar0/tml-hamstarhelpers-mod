@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
+
 namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 	public class ModIdentityHelpers {
 		private static IDictionary<Mod, string> ModIds = new Dictionary<Mod, string>();
@@ -51,6 +52,54 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				return mod.DisplayName + " (" + mod.Name + ") is out of date with its dependency mod(s): " + string.Join( ", \n", badDepModsList );
 			}
 			return null;
+		}
+
+
+		////////////////
+
+		public static bool IsProperlyPresented( string modName ) {
+
+		}
+
+		public static bool IsProperlyPresented( string modName, string author, string description, string homepage ) {
+			if( description.Contains("Learn how to mod with tModLoader by exploring the source code for this mod.") ) { return false; }
+			if( description.Contains("Modify this file with a description of your mod.") ) { return false; }
+			if( description.Length < 16 ) { return false; }
+			if( homepage.Length < 16 ) { return false; }
+
+			homepage = homepage.ToLower();
+
+			if( homepage.Contains( "//discord.gg" ) ) { return false; }
+
+			if( homepage.Contains("//bit.ly") ) { return false; }
+			if( homepage.Contains("//bitly.com") ) { return false; }
+			if( homepage.Contains("//goo.gl") ) { return false; }
+			if( homepage.Contains("//tinyurl.com") ) { return false; }
+			if( homepage.Contains("//is.gd") ) { return false; }
+			if( homepage.Contains("//cli.gs") ) { return false; }
+			if( homepage.Contains("//pic.gd") ) { return false; }
+			if( homepage.Contains("//dwarfurl.com") ) { return false; }
+			if( homepage.Contains("//ow.ly") ) { return false; }
+			if( homepage.Contains("//yfrog.com") ) { return false; }
+			if( homepage.Contains("//migre.me") ) { return false; }
+			if( homepage.Contains("//ff.im") ) { return false; }
+			if( homepage.Contains("//tiny.cc") ) { return false; }
+			if( homepage.Contains("//url4.eu") ) { return false; }
+			if( homepage.Contains("//tr.im") ) { return false; }
+			if( homepage.Contains("//twit.ac") ) { return false; }
+			if( homepage.Contains("//su.pr") ) { return false; }
+			if( homepage.Contains("//twurl.nl") ) { return false; }
+			if( homepage.Contains("//snipurl.com") ) { return false; }
+			if( homepage.Contains("//budurl.com") ) { return false; }
+			if( homepage.Contains("//short.to") ) { return false; }
+			if( homepage.Contains("//ping.fm") ) { return false; }
+			if( homepage.Contains("//digg.com") ) { return false; }
+			if( homepage.Contains("//post.ly") ) { return false; }
+			if( homepage.Contains("//just.as") ) { return false; }
+			if( homepage.Contains("//redd.it") ) { return false; }
+			if( homepage.Contains("//to.ly") ) { return false; }	// Much much more remain...
+
+			return true;
 		}
 	}
 }

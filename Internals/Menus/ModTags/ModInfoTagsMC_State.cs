@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private void ShowGeneral( UIState ui ) {
-			string modName = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
+			string modName = ModMenuHelpers.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
 
 			this.InfoDisplay.SetDefaultText( "" );
 

@@ -109,7 +109,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 			}
 
 			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
-				string currModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(),
+				string currModName = ModMenuHelpers.GetModName( MenuContextService.GetPreviousMenuUI(),
 						this.MenuContext.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 
 				// Validate we're in the same UI

@@ -63,7 +63,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 
-			string modName = MenuModHelper.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
+			string modName = ModMenuHelpers.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
 			if( modName == null ) {
 				LogHelpers.Log( "Could not load mod recommendations; no mod found." );
 				return;
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 
 		private void PopulateList( string modName ) {
-			string currModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(),
+			string currModName = ModMenuHelpers.GetModName( MenuContextService.GetPreviousMenuUI(),
 					this.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 			if( modName != currModName ) {
 				return;

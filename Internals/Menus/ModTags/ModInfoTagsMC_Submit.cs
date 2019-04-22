@@ -14,7 +14,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal void SubmitTags() {
 			if( string.IsNullOrEmpty( this.CurrentModName ) ) {
-				this.CurrentModName = MenuModHelper.GetModName( MenuContextService.GetPreviousMenuUI(), MenuContextService.GetCurrentMenuUI() )
+				this.CurrentModName = ModMenuHelpers.GetModName( MenuContextService.GetPreviousMenuUI(), MenuContextService.GetCurrentMenuUI() )
 					?? "";
 				if( string.IsNullOrEmpty( this.CurrentModName ) ) {
 					throw new HamstarException( "Invalid mod name." );
