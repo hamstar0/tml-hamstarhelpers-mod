@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 	
 	class PostGithubModIssueReports {
 		public static void ReportIssue( Mod mod, string issueTitle, string issueBody, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
-			if( !ModMetaDataManager.HasGithub( mod ) ) {
+			if( !ModFeaturesHelpers.HasGithub( mod ) ) {
 				throw new HamstarException( "Mod is not eligable for submitting issues." );
 			}
 
@@ -43,8 +43,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 			body += "\n \n" + issueBody;
 
 			var json = new GithubModIssueReportData {
-				githubuser = ModMetaDataManager.GetGithubUserName( mod ),
-				githubproject = ModMetaDataManager.GetGithubProjectName( mod ),
+				githubuser = ModFeaturesHelpers.GetGithubUserName( mod ),
+				githubproject = ModFeaturesHelpers.GetGithubProjectName( mod ),
 				title = title,
 				body = body
 			};

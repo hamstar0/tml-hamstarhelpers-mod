@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Services.ControlPanel;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;
@@ -107,7 +107,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		public override void Update( GameTime gameTime ) {
 			base.Update( gameTime );
 
-			if( this.AwaitingReport || this.CurrentModListItem == null || !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) {
+			if( this.AwaitingReport || this.CurrentModListItem == null || !ModFeaturesHelpers.HasGithub( this.CurrentModListItem.Mod ) ) {
 				this.DisableIssueInput();
 			} else {
 				this.EnableIssueInput();

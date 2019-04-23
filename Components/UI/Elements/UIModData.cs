@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Internals.WebRequests;
 using System;
@@ -8,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using System.Collections.Generic;
 using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public void CheckForNewVersionAsync() {
 			Promises.AddValidatedPromise<ModInfoPromiseArguments>( GetModInfo.ModVersionPromiseValidator, ( args ) => {
 				if( args.Found && args.Info.ContainsKey(this.Mod.Name) ) {
-					this.LatestAvailableVersion = args.Info[ this.Mod.Name ].Item2;
+					this.LatestAvailableVersion = args.Info[ this.Mod.Name ].Version;
 				} else {
 					if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName+"'" ); //+ "': " + reason );
@@ -92,16 +92,16 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 			try {
 				// Prioritize github'd mods
-				if( ModMetaDataManager.HasGithub( this.Mod ) && !ModMetaDataManager.HasGithub( other.Mod ) ) {
+				if( ModFeaturesHelpers.HasGithub( this.Mod ) && !ModFeaturesHelpers.HasGithub( other.Mod ) ) {
 					return -1;
-				} else if( !ModMetaDataManager.HasGithub( this.Mod ) && ModMetaDataManager.HasGithub( other.Mod ) ) {
+				} else if( !ModFeaturesHelpers.HasGithub( this.Mod ) && ModFeaturesHelpers.HasGithub( other.Mod ) ) {
 					return 1;
 				}
 
 				// Prioritize config'd mods
-				if( ModMetaDataManager.HasConfig( this.Mod ) && !ModMetaDataManager.HasConfig( other.Mod ) ) {
+				if( ModFeaturesHelpers.HasConfig( this.Mod ) && !ModFeaturesHelpers.HasConfig( other.Mod ) ) {
 					return -1;
-				} else if( !ModMetaDataManager.HasConfig( this.Mod ) && ModMetaDataManager.HasConfig( other.Mod ) ) {
+				} else if( !ModFeaturesHelpers.HasConfig( this.Mod ) && ModFeaturesHelpers.HasConfig( other.Mod ) ) {
 					return 1;
 				}
 			} catch { }

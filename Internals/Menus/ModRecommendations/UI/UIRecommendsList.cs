@@ -125,7 +125,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 					string recommendedBecause = recomMod.Item2;
 
 					if( args.Info.ContainsKey( recomModName ) ) {
-						this.AddModEntry( args.Info[recomModName].Item1, recomModName, recommendedBecause );
+						this.AddModEntry( args.Info[recomModName].DisplayName, recomModName, recommendedBecause );
 					} else {
 						this.AddRawModEntry( null, recomModName, recommendedBecause );
 					}

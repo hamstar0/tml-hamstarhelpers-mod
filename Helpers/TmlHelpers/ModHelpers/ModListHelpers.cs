@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.Collections.Generic;

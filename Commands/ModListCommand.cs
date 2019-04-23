@@ -63,7 +63,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			IList<string> reply = new List<string>( ModLoader.LoadedMods.Length );
-			IDictionary<BuildPropertiesEditor, Mod> modList = ModListHelpers.GetModsByBuildInfo();
+			IDictionary<BuildPropertiesEditor, Mod> modList = ModListHelpers.GetLoadedModsByBuildInfo();
 
 			foreach( var kv in modList ) {
 				string modInfo = ModListCommand.GetBasicModInfo( kv.Value, kv.Key );

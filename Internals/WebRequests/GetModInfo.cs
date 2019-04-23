@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.NetHelpers;
 using HamstarHelpers.Services.Promises;
 using Newtonsoft.Json;
@@ -19,11 +20,21 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-	class BasicModInfoEntry {
-		public string DisplayName;
-		public Version Version;
-		public string Description;
-		public string Homepage;
+	public class BasicModInfoEntry {
+		public string DisplayName { get; private set; }
+		public IEnumerable<string> Authors { get; private set; }
+		public Version Version { get; private set; }
+		public string Description { get; private set; }
+		public string Homepage { get; private set; }
+
+
+		public BasicModInfoEntry( string displayName, IEnumerable<string> authors, Version version, string description, string homepage ) {
+			this.DisplayName = displayName;
+			this.Authors = authors;
+			this.Version = version;
+			this.Description = description;
+			this.Homepage = homepage;
+		}
 	}
 
 
@@ -96,10 +107,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, Tuple<string, Version>>, bool> onSuccess ) {
-			Func<string, Tuple<IDictionary<string, Tuple<string, Version>>, bool>> onResponse = ( string output ) => {
+		private static void RetrieveAllModVersionsAsync( Action<IDictionary<string, BasicModInfoEntry>, bool> onSuccess ) {
+			Func<string, Tuple<IDictionary<string, BasicModInfoEntry>, bool>> onResponse = ( string output ) => {
 				bool found = false;
-				IDictionary<string, Tuple<string, Version>> modVersions = new Dictionary<string, Tuple<string, Version>>();
+				IDictionary<string, BasicModInfoEntry> modVersions = new Dictionary<string, BasicModInfoEntry>();
 
 				JObject respJson = JObject.Parse( output );
 
@@ -114,22 +125,28 @@ namespace HamstarHelpers.Internals.WebRequests {
 					foreach( JToken modEntry in modList ) {
 						JToken modNameToken = modEntry.SelectToken( "name" );
 						JToken modDisplaynameToken = modEntry.SelectToken( "displayname" );
+						JToken modAuthorToken = modEntry.SelectToken( "author" );
 						JToken modVersRawToken = modEntry.SelectToken( "version" );
-						JToken hasDescRawToken = modEntry.SelectToken( "has_description" );
-						JToken homepageRawToken = modEntry.SelectToken( "homepage" );
+						//JToken modDescRawToken = modEntry.SelectToken( "hasdescription" );
+						//JToken modHomepageRawToken = modEntry.SelectToken( "homepage" );
 
-						if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null || hasDescRawToken == null
-								|| homepageRawToken == null ) {
+						if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null || modAuthorToken == null
+								/*|| hasDescRawToken == null || modHomepageRawToken == null*/ ) {
 							continue;
 						}
 
 						string modName = modNameToken.ToObject<string>();
 						string modDisplayName = modDisplaynameToken.ToObject<string>();
 						string modVersRaw = modVersRawToken.ToObject<string>();
+						//string modDesc = modDescRawToken?.ToObject<string>() ?? null;
+						//string modHomepage = modHomepageRawToken.ToObject<string>();
 
 						Version modVers = Version.Parse( modVersRaw.Substring( 1 ) );
+						IEnumerable<string> modAuthors = modAuthorToken.ToObject<string>()
+							.Split( ',' )
+							.SafeSelect( a => a.Trim() );
 
-						modVersions[ modName ] = Tuple.Create( modDisplayName, modVers );
+						modVersions[ modName ] = new BasicModInfoEntry( modDisplayName, modAuthors, modVers, null, null );	//modDesc, modHomepage
 					}
 
 					found = true;
@@ -148,9 +165,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			Action<IDictionary<string, Tuple<string, Version>>, bool> onCompletion = ( responseVal, success ) => {
+			Action<IDictionary<string, BasicModInfoEntry>, bool> onCompletion = ( responseVal, success ) => {
 				if( responseVal == null ) {
-					responseVal = new Dictionary<string, Tuple<string, Version>>();
+					responseVal = new Dictionary<string, BasicModInfoEntry>();
 				}
 
 				onSuccess( responseVal, success );

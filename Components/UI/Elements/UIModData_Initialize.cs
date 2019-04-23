@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -100,9 +100,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 			// Mod config button
 
-			if( ModMetaDataManager.HasConfig(mod) ) {
+			if( ModFeaturesHelpers.HasConfig(mod) ) {
 				if( Main.netMode == 0 ) {
-					if( ModMetaDataManager.HasConfigDefaultsReset( mod ) ) {
+					if( ModFeaturesHelpers.HasConfigDefaultsReset( mod ) ) {
 						this.ConfigResetButton = new UITextPanelButton( theme, "Reset Config File" );
 						this.ConfigResetButton.Width.Set( 160f, 0f );
 						this.ConfigResetButton.Left.Set( -320f, 1f );
@@ -112,7 +112,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 						this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
 							string msg = mod.DisplayName + " config file reset to defaults.";
 
-							ModMetaDataManager.ResetDefaultsConfig( mod );
+							ModFeaturesHelpers.ResetDefaultsConfig( mod );
 							Main.NewText( msg, Color.Lime );
 							LogHelpers.Log( msg );
 						};
@@ -125,7 +125,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 					this.Append( this.ConfigOpenButton );
 					
 					this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
-						string path = ModMetaDataManager.GetConfigRelativePath( mod );
+						string path = ModFeaturesHelpers.GetConfigRelativePath( mod );
 						string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;
 
 						try {

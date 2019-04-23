@@ -79,7 +79,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			this.Logic.SetCurrentMod( mod );
 
-			if( !ModMetaDataManager.HasGithub( mod ) ) {
+			if( !ModFeaturesHelpers.HasGithub( mod ) ) {
 				this.DisableIssueInput();
 			} else {
 				this.EnableIssueInput();

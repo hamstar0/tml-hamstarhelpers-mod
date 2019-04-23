@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Helpers.TmlHelpers;
-using Terraria.GameContent.UI.Elements;
+﻿using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
@@ -48,7 +47,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		private void SubmitIssue() {
 			if( this.CurrentModListItem == null ) { return; }
-			if( !ModMetaDataManager.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
+			if( !ModFeaturesHelpers.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
 
 			UIModControlPanelTab self = this;
 			string issueTitle = this.IssueTitleInput.Text;

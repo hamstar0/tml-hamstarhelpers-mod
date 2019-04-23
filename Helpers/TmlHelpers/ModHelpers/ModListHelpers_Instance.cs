@@ -43,7 +43,9 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				Services.Tml.BuildPropertiesEditor editor = kv.Key;
 				Mod mod = kv.Value;
 
-				mods.Append2D( editor.Author, mod );
+				foreach( string author in editor.Author.Split(',').Select(a=>a.Trim()) ) {
+					mods.Append2D( author, mod );
+				}
 			}
 
 			return mods;

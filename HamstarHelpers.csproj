@@ -183,6 +183,7 @@
     <Compile Include="Helpers\MiscHelpers\MusicHelpers_Instance.cs" />
     <Compile Include="Helpers\MiscHelpers\MusicHelpers.cs" />
     <Compile Include="Helpers\MiscHelpers\PaintHelpers.cs" />
+    <Compile Include="Helpers\MiscHelpers\WebHelpers.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Instance.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers.cs" />
     <Compile Include="Helpers\NetHelpers\NetHelpers_Requests.cs" />

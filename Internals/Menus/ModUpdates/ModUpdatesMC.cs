@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		////////////////
 
-		private void DisplayModListVersions( UIState ui, IDictionary<string, Tuple<string, Version>> modVersionInfo ) {
+		private void DisplayModListVersions( UIState ui, IDictionary<string, BasicModInfoEntry> modInfo ) {
 			object items;
 			if( !ReflectionHelpers.Get( ui, "items", out items ) ) {
 				LogHelpers.Warn( "No 'items' field in ui " + ui );
@@ -75,8 +75,8 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				TmodFile tmod;
 				ReflectionHelpers.Get<TmodFile>( mod, "modFile", out tmod );
 
-				if( modVersionInfo.ContainsKey(tmod.name) ) {
-					this.CheckVersion( tmod.name, modVersionInfo[tmod.name], list, tmod.version );
+				if( modInfo.ContainsKey(tmod.name) ) {
+					this.CheckVersion( tmod.name, modInfo[tmod.name], list, tmod.version );
 				}
 			}
 		}
@@ -84,9 +84,9 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		////////////////
 
-		public void CheckVersion( string modName, Tuple<string, Version> modInfo, UIList modList, Version modVersion ) {
+		public void CheckVersion( string modName, BasicModInfoEntry modInfo, UIList modList, Version modVersion ) {
 //LogHelpers.Log( "modInfo.Count:"+modInfo.Count+ ", name:"+name+", vers:"+vers);
-			if( modInfo.Item2 == modVersion ) { return; }
+			if( modInfo.Version == modVersion ) { return; }
 
 			UIPanel uiModItem = null;
 			TmodFile tmod = null;
@@ -104,7 +104,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			}
 
 			if( uiModItem != null ) {
-				Version newModVersion = modInfo.Item2;
+				Version newModVersion = modInfo.Version;
 				string msg = newModVersion.ToString() + " On Mod Browser";
 
 //LogHelpers.Log( " name: "+name+", uiModItem: " + uiModItem.GetOuterDimensions().ToRectangle() );
