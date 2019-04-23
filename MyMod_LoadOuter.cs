@@ -32,6 +32,7 @@ using HamstarHelpers.Helpers.RecipeHelpers;
 using HamstarHelpers.Helpers.XnaHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
+using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -62,7 +63,7 @@ namespace HamstarHelpers {
 		internal ExtendedPlayerHooks PlayerHooks;
 
 		// Helpers
-		internal ModMetaDataManager ModMetaDataMngr;
+		internal ModFeaturesHelpers ModFeaturesHelpers;
 		internal LogHelpers LogHelpers;
 		internal NetHelpers NetHelpers;
 		internal BuffHelpers BuffHelpers;
@@ -79,6 +80,7 @@ namespace HamstarHelpers {
 		internal PlayerIdentityHelpers PlayerIdentityHelpers;
 		internal ReflectionHelpers ReflectionHelpers;
 		internal XnaHelpers XnaHelpers;
+		internal ModListHelpers ModListHelpers;
 
 		// Internals
 		internal InboxControl Inbox;
@@ -108,7 +110,7 @@ namespace HamstarHelpers {
 
 			this.Timers = new Timers();
 			this.LogHelpers = new LogHelpers();
-			this.ModMetaDataMngr = new ModMetaDataManager();
+			this.ModFeaturesHelpers = new ModFeaturesHelpers();
 			this.PacketProtocolMngr = new PacketProtocolManager();
 
 			this.BuffHelpers = new BuffHelpers();
@@ -140,6 +142,7 @@ namespace HamstarHelpers {
 			//this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();
 			this.RecipeHack = new RecipeHack();
+			this.ModListHelpers = new ModListHelpers();
 		}
 
 
@@ -150,7 +153,7 @@ namespace HamstarHelpers {
 			this.Timers = null;
 			this.ConfigJson = null;
 			this.LogHelpers = null;
-			this.ModMetaDataMngr = null;
+			this.ModFeaturesHelpers = null;
 			this.BuffHelpers = null;
 			this.NetHelpers = null;
 			this.ItemIdentityHelpers = null;
@@ -184,6 +187,7 @@ namespace HamstarHelpers {
 			//this.PlayerDataMngr = null;
 			this.SupportInfo = null;
 			this.RecipeHack = null;
+			this.ModListHelpers = null;
 
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;
@@ -194,7 +198,7 @@ namespace HamstarHelpers {
 		private void PostSetupContentOuter() {
 			this.PacketProtocolMngr.OnPostSetupContent();
 			this.Promises.OnPostSetupContent();
-			this.ModMetaDataMngr.OnPostSetupContent();
+			this.ModFeaturesHelpers.OnPostSetupContent();
 			this.PlayerIdentityHelpers.OnPostSetupContent();
 
 			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {

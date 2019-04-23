@@ -236,11 +236,13 @@
     <Compile Include="Helpers\TmlHelpers\LoadHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\Menus\ModMenuHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModHelpers_Obsolete.cs" />
+    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModListHelpers_Instance.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModListHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\ModHelpers\ModLockHelpers_Obsolete.cs" />
-    <Compile Include="Helpers\TmlHelpers\ModMetaData_Instance.cs" />
-    <Compile Include="Helpers\TmlHelpers\ModMetaData.cs" />
+    <Compile Include="Helpers\TmlHelpers\_ModMetaData.cs" />
+    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModFeaturesHelpers_Instance.cs" />
+    <Compile Include="Helpers\TmlHelpers\ModHelpers\ModFeaturesHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlHelpers_Obsolete.cs" />
     <Compile Include="Helpers\TmlHelpers\TmlHelpers.cs" />
     <Compile Include="Helpers\TmlHelpers\_BuildPropertiesEditor.cs" />

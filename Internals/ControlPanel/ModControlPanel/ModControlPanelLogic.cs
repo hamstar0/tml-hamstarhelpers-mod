@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			ConfigsRefreshCommand.RefreshConfigs();
 
-			string modNames = string.Join( ", ", mymod.ModMetaDataMngr.ConfigMods.Keys.ToArray() );
+			string modNames = string.Join( ", ", mymod.ModFeaturesHelpers.ConfigMods.Keys.ToArray() );
 			string output = "Mod configs reloaded for " + modNames;
 
 			Main.NewText( output, Color.Yellow );

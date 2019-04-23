@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using Microsoft.Xna.Framework;
 using System.Linq;
 using Terraria;
@@ -14,8 +14,8 @@ namespace HamstarHelpers.Commands {
 
 			var mymod = ModHelpersMod.Instance;
 
-			foreach( var kv in mymod.ModMetaDataMngr.ConfigMods ) {
-				ModMetaDataManager.ReloadConfigFromFile( kv.Value );
+			foreach( var kv in mymod.ModFeaturesHelpers.ConfigMods ) {
+				ModFeaturesHelpers.ReloadConfigFromFile( kv.Value );
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Commands {
 
 			ConfigsRefreshCommand.RefreshConfigs();
 
-			string modNames = string.Join( ", ", mymod.ModMetaDataMngr.ConfigMods.Keys.ToArray() );
+			string modNames = string.Join( ", ", mymod.ModFeaturesHelpers.ConfigMods.Keys.ToArray() );
 			caller.Reply( "Mod configs reloaded for " + modNames, Color.Lime );
 		}
 	}
