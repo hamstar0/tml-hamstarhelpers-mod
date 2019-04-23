@@ -1,6 +1,8 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
@@ -57,15 +59,41 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 		////////////////
 
-		public static bool IsProperlyPresented( string modName ) {
+		public static bool IsLoadedModProperlyPresented( string modName ) {
 			Mod mod = ModLoader.GetMod( modName );
-			if( mod != null ) {
-				var modInfo = ModListHelpers.GetLoadedModsByBuildInfo();
-
-				string author = 
-				
-				return ModIdentityHelpers.IsProperlyPresented( mod.DisplayName, author, description, homepage );
+			if( mod == null ) {
+				LogHelpers.Alert( "Invalid mod "+modName );
+				return false;
 			}
+
+			IDictionary<string, Services.Tml.BuildPropertiesEditor> modInfos = ModListHelpers.GetLoadedModNamesWithBuildProps();
+			if( !modInfos.ContainsKey(modName) ) {
+				LogHelpers.Alert( "Missing mod "+modName );
+				return false;
+			}
+
+			string author = modInfos[modName].Author;
+			string description = modInfos[modName].Description;
+			string homepage = modInfos[modName].Homepage;
+
+			return ModIdentityHelpers.IsProperlyPresented( mod.DisplayName, author, description, homepage );
+		}
+
+		public static void IsListModProperlyPresented( string modName, Action<bool> callback ) {
+			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
+				if( args.Found && args.Info.ContainsKey( modName ) ) {
+					var modInfo = args.Info[ modName ];
+
+					bool isProper = ModIdentityHelpers.IsProperlyPresented( modInfo.;
+
+					callback( isProper );
+				} else {
+					if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
+						LogHelpers.Log( "Error retrieving mod data for '" + modName + "'" ); //+ "': " + reason );
+					}
+				}
+				return false;
+			} );
 		}
 
 		public static bool IsProperlyPresented( string displayName, string author, string description, string homepage ) {

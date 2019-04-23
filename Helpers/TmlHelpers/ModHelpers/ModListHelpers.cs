@@ -35,19 +35,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		}
 
 
-		public static IDictionary<string, ISet<Mod>> GetLoadedModsByAuthor() {
-			var mods = new Dictionary<string, ISet<Mod>>();
-
-			foreach( var kv in ModListHelpers.GetLoadedModsByBuildInfo() ) {
-				Services.Tml.BuildPropertiesEditor editor = kv.Key;
-				Mod mod = kv.Value;
-
-				mods.Append2D( editor.Author, mod );
-			}
-
-			return mods;
-		}
-
+		////////////////
 
 		public static IDictionary<Services.Tml.BuildPropertiesEditor, Mod> GetLoadedModsByBuildInfo() {
 			var mymod = ModHelpersMod.Instance;
@@ -55,7 +43,30 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				return mymod.ModListHelpers.ModsByBuildProps;
 			}
 
-			return mymod.ModListHelpers.CacheModsByBuildProps();
+			mymod.ModListHelpers.ModsByBuildProps = mymod.ModListHelpers.GetModsByBuildProps();
+			return mymod.ModListHelpers.ModsByBuildProps;
+		}
+
+		////////////////
+
+		public static IDictionary<string, Services.Tml.BuildPropertiesEditor> GetLoadedModNamesWithBuildProps() {
+			var mymod = ModHelpersMod.Instance;
+			if( mymod.ModListHelpers.BuildPropsByModNames != null ) {
+				return mymod.ModListHelpers.BuildPropsByModNames;
+			}
+
+			mymod.ModListHelpers.BuildPropsByModNames = mymod.ModListHelpers.GetBuildPropsByModName();
+			return mymod.ModListHelpers.BuildPropsByModNames;
+		}
+
+		public static IDictionary<string, ISet<Mod>> GetLoadedModsByAuthor() {
+			var mymod = ModHelpersMod.Instance;
+			if( mymod.ModListHelpers.ModsByBuildProps != null ) {
+				return mymod.ModListHelpers.ModsByAuthor;
+			}
+
+			mymod.ModListHelpers.ModsByAuthor = mymod.ModListHelpers.GetModsByAuthor();
+			return mymod.ModListHelpers.ModsByAuthor;
 		}
 	}
 }

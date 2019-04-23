@@ -19,6 +19,16 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
+	class BasicModInfo {
+		public string DisplayName;
+		public Version Version;
+		public string Description;
+		public string Homepage;
+	}
+
+
+
+
 	class GetModVersion {
 		public static string ModVersionUrl => "https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
 		//"://script.googleusercontent.com/macros/echo?user_content_key=Owhg1llbbzrzST1eMJvfeO2IxGCHpigWMQZOsv1llpGT7ySYkY8EIxaJk0AVD_8Aegr6CiO9znq24nrES8NyTgg99q5WPQbwm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBSjTGNl2m1Kws9l1N8jgtgHBs4_KqXHF12fqfuynNZuDJVLqqr8NLJ1-kzKtsTLVrxy_u9Yn2NR&lib=MLDmsgwwdl8rHsa0qIkfykg_ahli_ZfP5";
@@ -105,8 +115,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 						JToken modNameToken = modEntry.SelectToken( "name" );
 						JToken modDisplaynameToken = modEntry.SelectToken( "displayname" );
 						JToken modVersRawToken = modEntry.SelectToken( "version" );
-						
-						if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null ) {
+						JToken hasDescRawToken = modEntry.SelectToken( "has_description" );
+						JToken homepageRawToken = modEntry.SelectToken( "homepage" );
+
+						if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null || hasDescRawToken == null
+								|| homepageRawToken == null ) {
 							continue;
 						}
 
