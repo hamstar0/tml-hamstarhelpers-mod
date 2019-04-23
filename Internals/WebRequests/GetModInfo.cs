@@ -11,15 +11,15 @@ using System.Threading;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	class ModVersionPromiseArguments : PromiseArguments {
+	class ModInfoPromiseArguments : PromiseArguments {
 		public bool Found;
-		public IDictionary<string, Tuple<string, Version>> Info;
+		public IDictionary<string, BasicModInfoEntry> Info;
 	}
 
 
 
 
-	class BasicModInfo {
+	class BasicModInfoEntry {
 		public string DisplayName;
 		public Version Version;
 		public string Description;
@@ -29,8 +29,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-	class GetModVersion {
-		public static string ModVersionUrl => "https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
+	class GetModInfo {
+		public static string ModInfoUrl => "https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
 		//"://script.googleusercontent.com/macros/echo?user_content_key=Owhg1llbbzrzST1eMJvfeO2IxGCHpigWMQZOsv1llpGT7ySYkY8EIxaJk0AVD_8Aegr6CiO9znq24nrES8NyTgg99q5WPQbwm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBSjTGNl2m1Kws9l1N8jgtgHBs4_KqXHF12fqfuynNZuDJVLqqr8NLJ1-kzKtsTLVrxy_u9Yn2NR&lib=MLDmsgwwdl8rHsa0qIkfykg_ahli_ZfP5";
 
 		
@@ -44,9 +44,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 
-		static GetModVersion() {
-			GetModVersion.PromiseValidatorKey = new object();
-			GetModVersion.ModVersionPromiseValidator = new PromiseValidator( GetModVersion.PromiseValidatorKey );
+		static GetModInfo() {
+			GetModInfo.PromiseValidatorKey = new object();
+			GetModInfo.ModVersionPromiseValidator = new PromiseValidator( GetModInfo.PromiseValidatorKey );
 		}
 
 		
@@ -74,17 +74,17 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		internal static void CacheAllModVersionsAsync() {
 			ThreadPool.QueueUserWorkItem( _ => {
-				lock( GetModVersion.MyLock ) {
+				lock( GetModInfo.MyLock ) {
 					var mymod = ModHelpersMod.Instance;
-					var args = new ModVersionPromiseArguments {
+					var args = new ModInfoPromiseArguments {
 						Found = false
 					};
 					
-					GetModVersion.RetrieveAllModVersionsAsync( ( info, found ) => {
+					GetModInfo.RetrieveAllModVersionsAsync( ( info, found ) => {
 						args.Info = info;
 						args.Found = found;
 
-						Promises.TriggerValidatedPromise( GetModVersion.ModVersionPromiseValidator, GetModVersion.PromiseValidatorKey, args );
+						Promises.TriggerValidatedPromise( GetModInfo.ModVersionPromiseValidator, GetModInfo.PromiseValidatorKey, args );
 					} );
 				}
 			} );
@@ -156,7 +156,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onSuccess( responseVal, success );
 			};
 
-			NetHelpers.MakeGetRequestAsync( GetModVersion.ModVersionUrl, onResponse, onFail, onCompletion );
+			NetHelpers.MakeGetRequestAsync( GetModInfo.ModInfoUrl, onResponse, onFail, onCompletion );
 		}
 
 
@@ -165,7 +165,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		
 		internal void OnPostSetupContent() {
 			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
-				GetModVersion.CacheAllModVersionsAsync();
+				GetModInfo.CacheAllModVersionsAsync();
 				/*GetModVersion.CacheAllModVersionsAsync( () => {
 					LogHelpers.Log( "Mod versions successfully retrieved and cached." );
 				} );*/

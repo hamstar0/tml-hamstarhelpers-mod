@@ -307,7 +307,7 @@
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="Internals\NetProtocols\WorldDataProtocol.cs" />
     <Compile Include="Internals\WebRequests\GetModTags.cs" />
-    <Compile Include="Internals\WebRequests\GetModVersion.cs" />
+    <Compile Include="Internals\WebRequests\GetModInfo.cs" />
     <Compile Include="Internals\WebRequests\PostGithubModIssueReports.cs" />
     <Compile Include="Internals\WebRequests\PostModInfo.cs" />
     <Compile Include="Items\MagiTechScrapItem.cs" />

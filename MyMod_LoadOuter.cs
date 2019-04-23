@@ -85,7 +85,7 @@ namespace HamstarHelpers {
 		// Internals
 		internal InboxControl Inbox;
 		internal GetModTags GetModTags;
-		internal GetModVersion GetModVersion;
+		internal GetModInfo GetModInfo;
 		internal UIControlPanel ControlPanel;
 		internal SupportInfoDisplay SupportInfo;
 
@@ -129,7 +129,7 @@ namespace HamstarHelpers {
 			this.EntityGroups = new EntityGroups();
 			this.PlayerMessages = new PlayerMessages();
 			this.Inbox = new InboxControl();
-			this.GetModVersion = new GetModVersion();
+			this.GetModInfo = new GetModInfo();
 			this.GetModTags = new GetModTags();
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuContextMngr = new MenuContextServiceManager();
@@ -165,7 +165,7 @@ namespace HamstarHelpers {
 			this.RecipeGroupHelpers = null;
 			this.PlayerHooks = null;
 			this.LoadHelpers = null;
-			this.GetModVersion = null;
+			this.GetModInfo = null;
 			this.GetModTags = null;
 			this.WorldStateHelpers = null;
 			this.ModLock = null;
@@ -202,7 +202,7 @@ namespace HamstarHelpers {
 			this.PlayerIdentityHelpers.OnPostSetupContent();
 
 			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {
-				this.GetModVersion.OnPostSetupContent();
+				this.GetModInfo.OnPostSetupContent();
 				this.GetModTags.OnPostSetupContent();
 
 				Menus.OnPostSetupContent();

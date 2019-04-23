@@ -80,7 +80,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 		}
 
 		public static void IsListModProperlyPresented( string modName, Action<bool> callback ) {
-			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
+			Promises.AddValidatedPromise<ModInfoPromiseArguments>( GetModInfo.ModVersionPromiseValidator, ( args ) => {
 				if( args.Found && args.Info.ContainsKey( modName ) ) {
 					var modInfo = args.Info[ modName ];
 

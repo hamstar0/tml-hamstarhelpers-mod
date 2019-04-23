@@ -51,7 +51,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 
 		public void CheckForNewVersionAsync() {
-			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
+			Promises.AddValidatedPromise<ModInfoPromiseArguments>( GetModInfo.ModVersionPromiseValidator, ( args ) => {
 				if( args.Found && args.Info.ContainsKey(this.Mod.Name) ) {
 					this.LatestAvailableVersion = args.Info[ this.Mod.Name ].Item2;
 				} else {

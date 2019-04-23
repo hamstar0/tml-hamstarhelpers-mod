@@ -108,7 +108,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 				this.AddRawModEntry( mod?.DisplayName, recomModName, recommendedBecause );
 			}
 
-			Promises.AddValidatedPromise<ModVersionPromiseArguments>( GetModVersion.ModVersionPromiseValidator, ( args ) => {
+			Promises.AddValidatedPromise<ModInfoPromiseArguments>( GetModInfo.ModVersionPromiseValidator, ( args ) => {
 				string currModName = ModMenuHelpers.GetModName( MenuContextService.GetPreviousMenuUI(),
 						this.MenuContext.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 
