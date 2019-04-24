@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.MiscHelpers;
 using System;
 using System.Collections.Generic;
 
@@ -18,7 +17,12 @@ namespace HamstarHelpers.Services.Messages {
 	public partial class InboxMessages {
 		public static void SetMessage( string which, string msg, bool forceUnread, Action<bool> onRun=null ) {
 			Promises.Promises.AddPostWorldLoadOncePromise( () => {
-				InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
+				InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
+				if( inbox == null ) {
+					LogHelpers.Warn( "Inbox or Inbox.Messages is null" );
+					return;
+				}
+
 				int idx = inbox.Order.IndexOf( which );
 
 				inbox.Messages[ which ] = msg;

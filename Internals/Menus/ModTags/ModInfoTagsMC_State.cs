@@ -6,7 +6,6 @@ using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria.UI;
 
 

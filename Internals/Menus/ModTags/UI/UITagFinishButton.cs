@@ -133,6 +133,15 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
+		public override void Update( GameTime gameTime ) {
+			base.Update( gameTime );
+
+			this.MenuContext.UpdateMode( this.Text == "Submit Tags" );
+		}
+
+
+		////////////////
+
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 		}
