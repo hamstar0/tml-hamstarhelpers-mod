@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
 using System;

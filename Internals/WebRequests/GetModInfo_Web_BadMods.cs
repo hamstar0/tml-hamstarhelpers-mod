@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 				onSuccess( responseVal, success );
 			};
-
+			
 			NetHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, GetModInfo.HandleBadModsReceipt, onFail, onCompletion );
 		}
 
@@ -39,7 +39,6 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			JObject respJson = JObject.Parse( output );
 			bool found = respJson.Count > 0;
-LogHelpers.Log( "respJson: "+respJson.ToString() );
 
 			if( found ) {
 				badMods = respJson.ToObject<Dictionary<string, bool>>();

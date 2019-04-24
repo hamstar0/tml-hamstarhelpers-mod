@@ -2,6 +2,8 @@
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
+using HamstarHelpers.Internals.WebRequests;
+using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.GameContent.UI.Elements;
@@ -24,6 +26,17 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				elem.Left.Pixels += UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}
+
+			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+				Timers.SetTimer( "ModBrowserDefaultTagStates", 60*3, () => {
+					if( this.MyUI == ui ) {
+						UITagButton button = this.TagButtons["Misleading Info"];
+						button.SetTagState( -1 );
+					}
+					return false;
+				} );
+				return true;
+			} );
 		}
 
 		public override void Hide( UIState ui ) {
