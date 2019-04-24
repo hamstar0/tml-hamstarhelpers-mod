@@ -48,6 +48,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Reset Button", resetButtonWidgetCtx );
 			MenuContextService.AddMenuContext( uiClassName, contextName + " Blank Recommendations List", blankRecomWidgetCtx );
 			MenuContextService.AddMenuContext( uiClassName, contextName + " Blank Download Button", blankDlWidgetCtx );
+
+			UITagButton button = this.TagButtons["Misleading Info"];
+			button.SetTagState( -1 );
 		}
 
 

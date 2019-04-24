@@ -60,6 +60,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		static GetModInfo() {
 			GetModInfo.PromiseValidatorKey = new object();
 			GetModInfo.ModInfoListPromiseValidator = new PromiseValidator( GetModInfo.PromiseValidatorKey );
+			GetModInfo.BadModsListPromiseValidator = new PromiseValidator( GetModInfo.PromiseValidatorKey );
 		}
 
 

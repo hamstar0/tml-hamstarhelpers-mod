@@ -80,7 +80,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 						if( modTags.Overlaps( offTags ) ) { continue; }
 						if( onTags.Count > 0 && !modTags.IsSupersetOf( onTags ) ) { continue; }
-						if( !ModIdentityHelpers.IsProperlyPresented(modName) ) { continue; }
 
 						filteredModNameList.Add( modName );
 					}

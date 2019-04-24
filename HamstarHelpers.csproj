@@ -307,7 +307,9 @@
     <Compile Include="Internals\NetProtocols\PlayerOldIdProtocol.cs" />
     <Compile Include="Internals\NetProtocols\PlayerPermaDeathProtocol.cs" />
     <Compile Include="Internals\NetProtocols\WorldDataProtocol.cs" />
-    <Compile Include="Internals\WebRequests\GetModInfo_Web.cs" />
+    <Compile Include="Internals\WebRequests\GetModInfo_Web_BadMods.cs" />
+    <Compile Include="Internals\WebRequests\GetModInfo_Web_ModList.cs" />
+    <Compile Include="Internals\WebRequests\GetModTags_Web.cs" />
     <Compile Include="Internals\WebRequests\GetModTags.cs" />
     <Compile Include="Internals\WebRequests\GetModInfo.cs" />
     <Compile Include="Internals\WebRequests\PostGithubModIssueReports.cs" />
