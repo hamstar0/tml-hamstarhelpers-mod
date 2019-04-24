@@ -108,7 +108,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 				this.AddRawModEntry( mod?.DisplayName, recomModName, recommendedBecause );
 			}
 
-			Promises.AddValidatedPromise<ModInfoPromiseArguments>( GetModInfo.ModVersionPromiseValidator, ( args ) => {
+			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
 				string currModName = ModMenuHelpers.GetModName( MenuContextService.GetPreviousMenuUI(),
 						this.MenuContext.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 
@@ -124,8 +124,8 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 					string recomModName = recomMod.Item1;
 					string recommendedBecause = recomMod.Item2;
 
-					if( args.Info.ContainsKey( recomModName ) ) {
-						this.AddModEntry( args.Info[recomModName].DisplayName, recomModName, recommendedBecause );
+					if( args.ModInfo.ContainsKey( recomModName ) ) {
+						this.AddModEntry( args.ModInfo[recomModName].DisplayName, recomModName, recommendedBecause );
 					} else {
 						this.AddRawModEntry( null, recomModName, recommendedBecause );
 					}

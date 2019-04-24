@@ -38,8 +38,8 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			base.Show( ui );
 			
 			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, () => {
-				Promises.AddValidatedPromise<ModInfoPromiseArguments>( GetModInfo.ModVersionPromiseValidator, ( args ) => {
-					this.DisplayModListVersions( ui, args.Info );
+				Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+					this.DisplayModListVersions( ui, args.ModInfo );
 					return false;
 				} );
 				return false;

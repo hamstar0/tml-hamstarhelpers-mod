@@ -51,9 +51,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 
 		public void CheckForNewVersionAsync() {
-			Promises.AddValidatedPromise<ModInfoPromiseArguments>( GetModInfo.ModVersionPromiseValidator, ( args ) => {
-				if( args.Found && args.Info.ContainsKey(this.Mod.Name) ) {
-					this.LatestAvailableVersion = args.Info[ this.Mod.Name ].Version;
+			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+				if( args.Found && args.ModInfo.ContainsKey(this.Mod.Name) ) {
+					this.LatestAvailableVersion = args.ModInfo[ this.Mod.Name ].Version;
 				} else {
 					if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
 						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName+"'" ); //+ "': " + reason );
