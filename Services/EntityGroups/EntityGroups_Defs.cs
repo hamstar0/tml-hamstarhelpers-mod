@@ -27,7 +27,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			//EntityGroupDefs.DefineItemAccessoriesGroups2( addItemGrpDef );
 			EntityGroupDefs.DefineItemWeaponGroups2( addItemGrpDef );
 			EntityGroupDefs.DefineItemPlaceablesGroups2( addItemGrpDef );
-			//EntityGroupDefs.DefineItemMiscGroups2( addItemGrpDef );
+			EntityGroupDefs.DefineItemMiscGroups2( addItemGrpDef );
 
 			EntityGroupDefs.DefineItemEquipmentGroups3( addItemGrpDef );
 			//EntityGroupDefs.DefineItemAccessoriesGroups3( addItemGrpDef );

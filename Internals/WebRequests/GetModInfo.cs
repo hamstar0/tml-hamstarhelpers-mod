@@ -51,8 +51,6 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////
 
 		public static string ModInfoUrl => "https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
-		//v12?:	"https://script.google.com/macros/s/AKfycbyddPh79y6SwgYqOG-P7Pw0iCbi2tBgVCRvUfP9fJT_xrbHFzo/exec";
-		//v11:	"https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
 		public static string BadModsUrl => ModInfoUrl + "?bad_mods";
 
 

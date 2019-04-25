@@ -215,6 +215,7 @@
     <Compile Include="Helpers\ProjectileHelpers\ProjectileHelpers.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers_Instance.cs" />
     <Compile Include="Helpers\ProjectileHelpers\ProjectileIdentityHelpers.cs" />
+    <Compile Include="Helpers\RecipeHelpers\RecipeGroupHelpers.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeGroupHelpers_Instance.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeHelpers_Obsolete.cs" />
     <Compile Include="Helpers\RecipeHelpers\RecipeIdentityHelpers.cs" />
@@ -341,6 +342,7 @@
     <Compile Include="Services\EntityGroups\Defs\Items_Equipment4.cs" />
     <Compile Include="Services\EntityGroups\Defs\Items_Equipment3.cs" />
     <Compile Include="Services\EntityGroups\Defs\Items_Equipment2.cs" />
+    <Compile Include="Services\EntityGroups\Defs\Items_Misc2.cs" />
     <Compile Include="Services\EntityGroups\Defs\Items_Misc4.cs" />
     <Compile Include="Services\EntityGroups\Defs\Items_Misc3.cs" />
     <Compile Include="Services\EntityGroups\Defs\Items_Placeables2.cs" />

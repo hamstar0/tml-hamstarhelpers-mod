@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.ItemHelpers;
 using System;
-
+using Terraria.ID;
 using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
@@ -26,6 +26,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 			addDef( "Any Dye", null,
 				( item, grps ) => {
 					return item.dye != 0 || item.hairDye != 0;
+				} );
+
+			addDef( "Any Food", null,
+				( item, grps ) => {
+					return item.buffType == BuffID.WellFed;
 				} );
 		}
 	}
