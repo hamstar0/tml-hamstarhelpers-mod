@@ -100,7 +100,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				m( "Adds UI",                "Adds user interface components for mod functions."),
 				m( "Configurable",           "Provides options for configuring game settings (menu, config file, commands, etc.)."),
 				m( "Technical",              "May require a brain."),
-				m( "Misleading Info",        "Not what it says on the tin or contains missing information (e.g. poor mod description)."),
+				m( "Misleading Info",        "Contains bad or missing information (e.g. poor mod description, no homepage, etc.)."),
 				//{ "Rated R",                "Guess." },
 
 				m( "Accesses System",        "Priviledge: Accesses files, opens programs, uses system functions, etc."),

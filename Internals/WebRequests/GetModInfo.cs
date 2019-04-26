@@ -51,7 +51,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////
 
 		public static string ModInfoUrl => "https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
-		public static string BadModsUrl => ModInfoUrl + "?bad_mods";
+		public static string BadModsUrl => ModInfoUrl + "?route=bad_mods";
 
 
 		////////////////
@@ -92,6 +92,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( modInfoArgs2 ) => {
 				if( modInfoArgs2.Found ) {
 					GetModInfo.RetrieveBadModsAsync( ( badMods, found ) => {
+LogHelpers.Log( "bad mods: "+ (badMods == null ? "null" : string.Join(",", badMods.Keys)) );
 						if( found ) {
 							GetModInfo.RegisterBadMods( modInfoArgs2, badMods );
 						}
@@ -104,12 +105,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 			} );
 		}
 
-		private static void RegisterBadMods( ModInfoListPromiseArguments modInfoArgs, IDictionary<string, bool> badMods ) {
+		private static void RegisterBadMods( ModInfoListPromiseArguments modInfoArgs, IDictionary<string, int> badMods ) {
 			foreach( var kv in modInfoArgs.ModInfo ) {
 				string modName = kv.Key;
 				BasicModInfoEntry modInfo = kv.Value;
 
-				modInfo.IsBadMod = badMods.ContainsKey(modName) && badMods[modName];
+				modInfo.IsBadMod = badMods.ContainsKey(modName);
 			}
 		}
 

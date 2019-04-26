@@ -114,11 +114,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				//if( !ReflectionHelpers.GetField( item, "mod", out modName ) || modName == null ) {
 				//	throw new Exception( "Invalid modList._item["+i+"].mod" );
 				//}
-
+				
 				UIPanel modInfoButton;
-				if( !ReflectionHelpers.Get( item, "moreInfoButton", out modInfoButton )
-						|| modInfoButton == null ) {
-					LogHelpers.Log( "Invalid modList._item[" + i + "].moreInfoButton" );
+				if( !ReflectionHelpers.Get( item, "moreInfoButton", out modInfoButton ) || modInfoButton == null ) {
+					LogHelpers.Alert( "Invalid modList._item[" + i + "].moreInfoButton" );
 					continue;
 				}
 

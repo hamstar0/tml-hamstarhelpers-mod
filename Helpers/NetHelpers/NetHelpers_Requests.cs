@@ -97,7 +97,7 @@ namespace HamstarHelpers.Helpers.NetHelpers {
 		////
 		
 		public static string MakeGetRequest( string url, out bool success ) {
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
+			var request = (HttpWebRequest)WebRequest.Create( url );
 			request.Method = "GET";
 			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
 

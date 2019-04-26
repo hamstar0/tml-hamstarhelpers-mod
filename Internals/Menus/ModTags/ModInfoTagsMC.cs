@@ -6,6 +6,7 @@ using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -102,18 +103,28 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private void ApplyDefaultEditModeTags( IDictionary<string, BasicModInfoEntry> modInfos ) {
+LogHelpers.LogOnce( "mod: "+this.CurrentModName+", is found? "+modInfos.ContainsKey( this.CurrentModName ));
 			if( !modInfos.ContainsKey( this.CurrentModName ) ) {
 				return;
 			}
 
 			var modInfo = modInfos[this.CurrentModName];
-			if( !modInfo.IsBadMod ) {
-				return;
-			}
-
-			var button = this.TagButtons["Misleading Info"];
-			if( button.TagState != 1 ) {
-				button.SetTagState( 1 );
+LogHelpers.LogOnce( "is bad? "+modInfos[this.CurrentModName].IsBadMod);
+			if( modInfo.IsBadMod ) {
+				var button = this.TagButtons["Misleading Info"];
+				
+LogHelpers.LogOnce( "0 ModHelpersTagsEditDefaults "+(button?.TagState ?? -2) );
+				if( button.TagState != 1 ) {
+LogHelpers.LogOnce( "1 ModHelpersTagsEditDefaults" );
+					if( Timers.GetTimerTickDuration("ModHelpersTagsEditDefaults") <= 0 ) {
+LogHelpers.LogOnce( "2 ModHelpersTagsEditDefaults" );
+						Timers.SetTimer( "ModHelpersTagsEditDefaults", 60, () => {
+LogHelpers.LogOnce( "3 ModHelpersTagsEditDefaults" );
+							button.SetTagState( 1 );
+							return false;
+						} );
+					}
+				}
 			}
 		}
 	}
