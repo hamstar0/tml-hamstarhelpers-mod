@@ -28,12 +28,24 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			}
 
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
-				Timers.SetTimer( "ModBrowserDefaultTagStates", 60*3, () => {
-					if( this.MyUI == ui ) {
+				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
+					if( this.MyUI != ui ) {
+						return false;
+					}
+
+					bool isLoading;
+					if( !ReflectionHelpers.Get( this.MyUI, "loading", out isLoading ) ) {
+						LogHelpers.Warn( "ModBrowserTagsMenuContext - No 'loading'." );
+						return false;
+					}
+
+					if( isLoading ) {
+						return true;
+					} else {
 						UITagButton button = this.TagButtons["Misleading Info"];
 						button.SetTagState( -1 );
+						return false;
 					}
-					return false;
 				} );
 				return true;
 			} );

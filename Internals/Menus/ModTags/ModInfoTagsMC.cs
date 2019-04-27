@@ -91,35 +91,27 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		internal void UpdateMode( bool isEditing ) {
 			if( !isEditing ) { return; }
 
-			Func<ModInfoListPromiseArguments, bool> callback = ( modInfoArgs ) => {
+			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.BadModsListPromiseValidator, (modInfoArgs) => {
 				this.ApplyDefaultEditModeTags( modInfoArgs.ModInfo );
 				return false;
-			};
-
-			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.BadModsListPromiseValidator, callback );
+			} );
 		}
 
 
 		////////////////
 
 		private void ApplyDefaultEditModeTags( IDictionary<string, BasicModInfoEntry> modInfos ) {
-LogHelpers.LogOnce( "mod: "+this.CurrentModName+", is found? "+modInfos.ContainsKey( this.CurrentModName ));
 			if( !modInfos.ContainsKey( this.CurrentModName ) ) {
 				return;
 			}
 
 			var modInfo = modInfos[this.CurrentModName];
-LogHelpers.LogOnce( "is bad? "+modInfos[this.CurrentModName].IsBadMod);
 			if( modInfo.IsBadMod ) {
 				var button = this.TagButtons["Misleading Info"];
 				
-LogHelpers.LogOnce( "0 ModHelpersTagsEditDefaults "+(button?.TagState ?? -2) );
 				if( button.TagState != 1 ) {
-LogHelpers.LogOnce( "1 ModHelpersTagsEditDefaults" );
 					if( Timers.GetTimerTickDuration("ModHelpersTagsEditDefaults") <= 0 ) {
-LogHelpers.LogOnce( "2 ModHelpersTagsEditDefaults" );
 						Timers.SetTimer( "ModHelpersTagsEditDefaults", 60, () => {
-LogHelpers.LogOnce( "3 ModHelpersTagsEditDefaults" );
 							button.SetTagState( 1 );
 							return false;
 						} );
