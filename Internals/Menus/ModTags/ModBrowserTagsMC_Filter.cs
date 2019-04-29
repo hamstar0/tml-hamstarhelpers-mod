@@ -65,36 +65,43 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					callback( false, new List<string>(), 0, 0 );
 					return false;
 				}
-				
-				IList<string> filteredModNameList = new List<string>();
-				ISet<string> onTags = this.GetTagsOfState( 1 );
-				ISet<string> offTags = this.GetTagsOfState( -1 );
-				bool isFiltered = onTags.Count > 0 || offTags.Count > 0;
 
-				if( isFiltered ) {
-					foreach( string modName in modNames ) {
-						if( onTags.Count > 0 && !args.ModTags.ContainsKey( modName ) ) { continue; }
+				this.FilterMods_Promised( modNames, callback, args.ModTags );
+				return false;
+			} );
+		}
 
-						ISet<string> modHasTags = args.ModTags[modName];
+
+		private void FilterMods_Promised( IList<string> modNames, Action<bool, IList<string>, int, int> callback,
+				IDictionary<string, ISet<string>> modTags ) {
+			IList<string> filteredModNameList = new List<string>();
+			ISet<string> onTags = this.GetTagsOfState( 1 );
+			ISet<string> offTags = this.GetTagsOfState( -1 );
+			bool isFiltered = onTags.Count > 0 || offTags.Count > 0;
+
+			if( isFiltered ) {
+				foreach( string modName in modNames ) {
+					if( modTags.ContainsKey( modName ) ) {
+						ISet<string> modHasTags = modTags[modName];
 
 						if( modHasTags.Overlaps( offTags ) ) { continue; }
 						if( onTags.Count > 0 && !modHasTags.IsSupersetOf( onTags ) ) { continue; }
-
-						filteredModNameList.Add( modName );
+					} else if( onTags.Count > 0 ) {
+						continue;
 					}
+
+					filteredModNameList.Add( modName );
 				}
+			}
 
-				if( ModHelpersMod.Instance.Config.DebugModeHelpersInfo ) {
-					LogHelpers.Log( "Filtered to "+filteredModNameList.Count+" mods."
-						+(onTags.Count > 0 ? "\nWith tags: "+string.Join(", ",onTags) : "")
-						+(offTags.Count > 0 ? "\nWithout tags: "+string.Join(", ",offTags) : "")
-					);
-				}
+			if( ModHelpersMod.Instance.Config.DebugModeHelpersInfo ) {
+				LogHelpers.Log( "Filtered to " + filteredModNameList.Count + " mods."
+					+ ( onTags.Count > 0 ? "\nWith tags: " + string.Join( ", ", onTags ) : "" )
+					+ ( offTags.Count > 0 ? "\nWithout tags: " + string.Join( ", ", offTags ) : "" )
+				);
+			}
 
-				callback( isFiltered, filteredModNameList, onTags.Count, offTags.Count );
-
-				return false;
-			} );
+			callback( isFiltered, filteredModNameList, onTags.Count, offTags.Count );
 		}
 	}
 }
