@@ -73,12 +73,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 				if( isFiltered ) {
 					foreach( string modName in modNames ) {
-						if( !args.ModTags.ContainsKey( modName ) ) { continue; }
+						if( onTags.Count > 0 && !args.ModTags.ContainsKey( modName ) ) { continue; }
 
-						ISet<string> modTags = args.ModTags[modName];
+						ISet<string> modHasTags = args.ModTags[modName];
 
-						if( modTags.Overlaps( offTags ) ) { continue; }
-						if( onTags.Count > 0 && !modTags.IsSupersetOf( onTags ) ) { continue; }
+						if( modHasTags.Overlaps( offTags ) ) { continue; }
+						if( onTags.Count > 0 && !modHasTags.IsSupersetOf( onTags ) ) { continue; }
 
 						filteredModNameList.Add( modName );
 					}

@@ -152,7 +152,7 @@ namespace HamstarHelpers {
 
 		private void UnloadInner() {
 			try {
-				this.Promises.FulfillModUnloadPromises();
+				this.Promises?.FulfillModUnloadPromises();
 
 				this.UnloadModData();
 				this.UnloadOuter();
