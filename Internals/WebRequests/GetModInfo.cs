@@ -66,9 +66,19 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 
+		private static bool _IsCachedFailsafe = false;
+
 		internal static void CacheAllModInfoAsyncSafe() {
+			if( GetModInfo._IsCachedFailsafe ) { return; }
+			GetModInfo._IsCachedFailsafe = true;
+
+			bool isLocalCachedFailsafe = false;	// wtf
+
 			ThreadPool.QueueUserWorkItem( _ => {
 				lock( GetModInfo.MyLock ) {
+					if( isLocalCachedFailsafe ) { return; }
+					isLocalCachedFailsafe = true;
+
 					GetModInfo.CacheAllModInfoAsync();
 				}
 			} );
@@ -92,7 +102,6 @@ namespace HamstarHelpers.Internals.WebRequests {
 			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( modInfoArgs2 ) => {
 				if( modInfoArgs2.Found ) {
 					GetModInfo.RetrieveBadModsAsync( ( badMods, found ) => {
-LogHelpers.Log( "bad mods: "+ (badMods == null ? "null" : string.Join(",", badMods.Keys)) );
 						if( found ) {
 							GetModInfo.RegisterBadMods( modInfoArgs2, badMods );
 						}

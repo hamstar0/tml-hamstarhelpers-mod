@@ -84,6 +84,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					}
 				}
 
+				if( ModHelpersMod.Instance.Config.DebugModeHelpersInfo ) {
+					LogHelpers.Log( "Filtered to "+filteredModNameList.Count+" mods."
+						+(onTags.Count > 0 ? "\nWith tags: "+string.Join(", ",onTags) : "")
+						+(offTags.Count > 0 ? "\nWithout tags: "+string.Join(", ",offTags) : "")
+					);
+				}
+
 				callback( isFiltered, filteredModNameList, onTags.Count, offTags.Count );
 
 				return false;

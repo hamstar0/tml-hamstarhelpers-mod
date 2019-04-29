@@ -34,7 +34,6 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 		private static Tuple<IDictionary<string, int>, bool> HandleBadModsReceipt( string output ) {
-LogHelpers.Log( "output: "+output );
 			IDictionary<string, int> badMods = new Dictionary<string, int>();
 
 			JObject respJson = JObject.Parse( output );
