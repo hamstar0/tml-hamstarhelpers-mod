@@ -100,6 +100,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 			} );
 
 			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( modInfoArgs2 ) => {
+				Thread.Sleep( 2000 );
+
 				if( modInfoArgs2.Found ) {
 					GetModInfo.RetrieveBadModsAsync( ( badMods, found ) => {
 						if( found ) {

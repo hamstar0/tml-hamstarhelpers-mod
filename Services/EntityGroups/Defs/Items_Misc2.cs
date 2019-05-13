@@ -17,10 +17,10 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 
 						foreach( Recipe recipe in recipes ) {
 							for( int i=0; i<recipe.requiredItem.Length; i++ ) {
-								Item recipeItem = recipe.requiredItem[i];
-								if( recipeItem == null || recipeItem.IsAir ) { break; }
+								Item reqItem = recipe.requiredItem[i];
+								if( reqItem == null || reqItem.IsAir ) { continue; }
 
-								if( recipeItem.type == foodId ) {
+								if( reqItem.type == item.type ) {
 									return true;
 								}
 							}

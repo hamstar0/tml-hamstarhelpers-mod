@@ -51,10 +51,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				m( "NPC Stats",              "Mechanics: Modifies NPC attack, defense, and other intrinsic elements."),
 				m( "NPC Behavior",           "Mechanics: Modifies NPC AIs or state for new or altered behaviors."),
 
-				m( "Game Mode(s)",           "New game rules; added end goals, progression, setting, session, etc."),
-				m( "Quests",                 "Adds goals for player to progress the game or gain profit from."),
 				m( "Informational",          "Adds game state reports (time, weather, progress, scores, etc.)."),
 				m( "Specialized",            "Focuses on one main specific, well-defined function."),
+				m( "Technical",              "May require a brain."),
 				//{ "Multi-faceted",          "Does more than one thing, whether focusing mainly on one thing or not."),
 				m( "Replacements",           "Primarily meant as an alternative to something the game already provides."),
 				//{ "Esoteric",               "Does something uncommon or unexpected. Likely one-of-a-kind."),
@@ -63,6 +62,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				m( "PvP",                    "Player vs player (multiplayer)."),
 				m( "Coop",                   "Requires or involves direct player-to-player cooperation (multiplayer)."),
 				m( "Teams",                  "Requires or involves teams of players (multiplayer)."),
+				m( "Server Use",             "Player management tools, permissions, game rule changes, scheduled events, etc."),
 
 				////
 					
@@ -80,11 +80,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					
 				////
 					
-				m( "Adds Convenience",       "Reduces annoyances; auto-trashes junk items, centralizes storage, etc."),
+				m( "Game Mode(s)",           "New game rules; added end goals, progression, setting, session, etc."),
+				m( "Quests",                 "Adds goals for player to progress the game or gain profit from."),
 				m( "Creativity",             "Emphasizes building or artistic expression (as opposed to fighting and adventuring)."),
+				m( "Adds Convenience",       "Reduces annoyances; auto-trashes junk items, centralizes storage, etc."),
 				m( "Cheat-like",             "Significantly reduces or removes some game challenges; may be 'unfair'."),
 				m( "Challenge",              "Increases difficulty of specific elements: Time limits, harder boss AI, etc."),
-				m( "Easings",                "Decreases difficulty of specific elements: Stronger weapons, added player defense, etc."),
+				//m( "Easings",                "Decreases difficulty of specific elements: Stronger weapons, added player defense, etc."),
 				m( "Restrictions",           "Limits or removes elements of the game; may make things easier or harder."),
 				m( "Vanilla Balanced",       "Balanced around plain Terraria; progress will not happen faster than usual."),
 				m( "Loosely Balanced",       "Inconsistent or vague attempt to maintain balance, vanilla or otherwise."),
@@ -95,11 +97,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				m( "Affects Game State",     "Alters shop prices, activates invasion events, changes weather, etc."),
 				m( "Mod Interacting",        "Supplies data, alters behavior, provides APIs, or manages other mods."),
 				m( "Mod Collab",             "May be specifically paired with (an)other mod(s) to create a more-than-sum-of-parts result."),
-				m( "Server Use",             "Affects servers. Admin tools, scheduled events, game rule changes, etc."),
 				m( "May Lag",                "May use system resources or network bandwidth heavily. Good computer recommended."),
 				m( "Adds UI",                "Adds user interface components for mod functions."),
 				m( "Configurable",           "Provides options for configuring game settings (menu, config file, commands, etc.)."),
-				m( "Technical",              "May require a brain."),
 				m( "Misleading Info",        "Contains bad or missing information (e.g. poor mod description, no homepage, etc.)."),
 				//{ "Rated R",                "Guess." },
 
