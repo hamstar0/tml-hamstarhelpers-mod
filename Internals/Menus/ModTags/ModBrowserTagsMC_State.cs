@@ -27,6 +27,27 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				elem.Recalculate();
 			}
 
+			//this.ApplyDefaultFiltersAsync( ui );
+		}
+
+		public override void Hide( UIState ui ) {
+			base.Hide( ui );
+
+			this.InfoDisplay?.SetDefaultText( "" );
+
+			this.ResetMenuObjects();
+
+			UIElement elem;
+			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) && elem != null ) {
+				elem.Left.Pixels -= UITagButton.ColumnWidth;
+				elem.Recalculate();
+			}
+		}
+
+
+		////////////////
+
+		private void ApplyDefaultFiltersAsync( UIState ui ) {
 			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
 					if( this.MyUI != ui ) {
@@ -49,20 +70,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				} );
 				return true;
 			} );
-		}
-
-		public override void Hide( UIState ui ) {
-			base.Hide( ui );
-
-			this.InfoDisplay?.SetDefaultText( "" );
-
-			this.ResetMenuObjects();
-
-			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) && elem != null ) {
-				elem.Left.Pixels -= UITagButton.ColumnWidth;
-				elem.Recalculate();
-			}
 		}
 
 
