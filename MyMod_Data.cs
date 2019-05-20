@@ -29,7 +29,9 @@ namespace HamstarHelpers {
 
 
 		private void UnloadModData() {
-			DataFileHelpers.SaveAsJson<ModHelpersData>( this, "data", this.Data );
+			if( this.Data != null ) {
+				DataFileHelpers.SaveAsJson<ModHelpersData>( this, "data", this.Data );
+			}
 
 			this.Data = new ModHelpersData();
 		}

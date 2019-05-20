@@ -97,12 +97,12 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		private void InitializeOuter() {
+		private void InitializeModules() {
 			this.ExceptionMngr = new HamstarExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
 		}
 
-		private void LoadOuter() {
+		private void LoadModules() {
 			this.ReflectionHelpers = new ReflectionHelpers();
 			this.DataStore = new DataStore();
 			this.Promises = new Promises();
@@ -146,7 +146,7 @@ namespace HamstarHelpers {
 		}
 
 
-		public void UnloadOuter() {
+		public void UnloadModules() {
 			this.ReflectionHelpers = null;
 			this.PacketProtocolMngr = null;
 			this.ExceptionMngr = null;
@@ -195,7 +195,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		private void PostSetupContentOuter() {
+		private void PostSetupContentModules() {
 			this.PacketProtocolMngr.OnPostSetupContent();
 			this.Promises.OnPostSetupContent();
 			this.ModFeaturesHelpers.OnPostSetupContent();
@@ -212,7 +212,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		private void AddRecipeGroupsOuter() {
+		private void AddRecipeGroupsModules() {
 			NPCBannerHelpers.InitializeBanners();
 
 			foreach( var kv in RecipeGroupHelpers.Groups ) {
@@ -220,7 +220,7 @@ namespace HamstarHelpers {
 			}
 		}
 
-		private void PostAddRecipesOuter() {
+		private void PostAddRecipesModules() {
 			this.ItemIdentityHelpers.PopulateNames();
 			this.NPCIdentityHelpers.PopulateNames();
 			this.ProjectileIdentityHelpers.PopulateNames();

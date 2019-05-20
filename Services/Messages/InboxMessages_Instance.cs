@@ -44,17 +44,23 @@ namespace HamstarHelpers.Services.Messages {
 			var data = DataFileHelpers.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", out success );
 
 			if( success ) {
-				this.Data = data;
+				if( data != null ) {
+					this.Data = data;
 
-				foreach( string msgName in this.Data.Messages.Keys ) {
-					this.Data.MessageActions[ msgName ] = null;
+					foreach( string msgName in this.Data.Messages.Keys ) {
+						this.Data.MessageActions[msgName] = null;
+					}
+				} else {
+					success = false;
 				}
 			}
 			return success;
 		}
 
 		internal void SaveToFile() {
-			DataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", this.Data );
+			if( this.Data != null ) {
+				DataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", this.Data );
+			}
 		}
 	}
 }

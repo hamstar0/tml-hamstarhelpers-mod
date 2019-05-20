@@ -13,17 +13,7 @@ using System.Reflection;
 
 namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
-		public bool HasSetupContent { get; private set; }
-		public bool HasAddedRecipeGroups { get; private set; }
-		public bool HasAddedRecipes { get; private set; }
-
-
-
-		////////////////
-
-		private void InitializeInner() {
-			this.InitializeOuter();
-
+		private void PostInitializeInternal() {
 			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>(
 				HamstarHelpersConfigData.ConfigFileName,
 				ConfigurationDataBase.RelativePath,
@@ -31,18 +21,9 @@ namespace HamstarHelpers {
 			);
 		}
 
+
 		////////////////
-
-		private void LoadInner() {
-			this.LoadConfigs();
-			this.LoadExceptionBehavior();
-			this.LoadOuter();
-			this.LoadHotkeys();
-			this.LoadModData();
-			this.LoadDataSources();
-		}
-
-		////
+		
 
 		private void LoadExceptionBehavior() {
 			if( this.Config.DebugModeDisableSilentLogging ) {
@@ -86,31 +67,25 @@ namespace HamstarHelpers {
 
 		private void LoadDataSources() {
 			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
-				return "  " + WorldHelpers.GetUniqueIdWithSeed() + " (net mode: "+Main.netMode+")";
+				return "  " + WorldHelpers.GetUniqueIdWithSeed() + " (net mode: " + Main.netMode + ")";
 			} );
 
 			DataDumper.SetDumpSource( "PlayerUid", () => {
-				if( Main.myPlayer < 0 || Main.myPlayer >= (Main.player.Length - 1) ) {
+				if( Main.myPlayer < 0 || Main.myPlayer >= ( Main.player.Length - 1 ) ) {
 					return "  Unobtainable";
 				}
 
 				bool _;
 				string oldUid = PlayerIdentityHelpers._GetUniqueId( Main.LocalPlayer, out _ );
 
-				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId() + " (old uid: "+oldUid+")";
+				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId() + " (old uid: " + oldUid + ")";
 			} );
 		}
 
 
 		////////////////
-
-		private void PostSetupContentInner() {
-			this.PostSetupContentOuter();
-		}
-
-		////////////////
-
-		private void AddRecipesInner() {
+		
+		private void AddRecipesInternal() {
 			if( this.Config.AddCrimsonLeatherRecipe ) {
 				var vertebraeToLeather = new ModRecipe( this );
 
@@ -118,54 +93,6 @@ namespace HamstarHelpers {
 				vertebraeToLeather.SetResult( ItemID.Leather );
 				vertebraeToLeather.AddRecipe();
 			}
-		}
-
-		private void AddRecipeGroupsInner() {
-			this.AddRecipeGroupsOuter();
-		}
-
-		private void PostAddRecipesInner() {
-			this.PostAddRecipesOuter();
-		}
-
-
-		////////////////
-
-		private void PostLoadAll() {
-			Promises.AddWorldUnloadEachPromise( () => {
-				this.OnWorldExit();
-			} );
-
-			this.Promises.FulfillPostModLoadPromises();
-		}
-
-
-		////////////////
-
-		private void OnWorldExit() {
-			var myworld = this.GetModWorld<ModHelpersWorld>();
-			myworld.OnWorldExit();
-		}
-
-
-		////////////////
-
-		private void UnloadInner() {
-			try {
-				this.Promises?.FulfillModUnloadPromises();
-
-				this.UnloadModData();
-				this.UnloadOuter();
-			} catch( Exception e ) {
-				ErrorLogger.Log( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );
-			}
-
-			try {
-				if( this.HasUnhandledExceptionLogger ) {
-					this.HasUnhandledExceptionLogger = false;
-					AppDomain.CurrentDomain.UnhandledException -= ModHelpersMod.UnhandledLogger;
-				}
-			} catch { }
 		}
 	}
 }

@@ -88,6 +88,11 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 			string relDir = DataFileHelpers.GetRelativeDirectoryPath( mod );
 
+			if( data == null ) {
+				LogHelpers.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - Data is null." );
+				return;
+			}
+
 			try {
 				var jsonFile = new JsonConfig<T>( fileNameNoExt + ".json", relDir, data, jsonSettings );
 				jsonFile.SaveFile();
@@ -101,6 +106,11 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			DataFileHelpers.PrepareDir( mod );
 
 			string fullPath = DataFileHelpers.GetFullPath( mod, fileNameHasExt );
+
+			if( data == null ) {
+				LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
+				return;
+			}
 
 			try {
 				FileHelpers.SaveBinaryFile<T>( data, fullPath, isCloud, false, jsonSettings );

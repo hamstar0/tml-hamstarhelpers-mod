@@ -49,7 +49,8 @@ namespace HamstarHelpers {
 			this.HasAddedRecipeGroups = false;
 			this.HasAddedRecipes = false;
 
-			this.InitializeInner();
+			this.InitializeModules();
+			this.PostInitializeInternal();
 		}
 
 
@@ -60,7 +61,7 @@ namespace HamstarHelpers {
 				throw new FileNotFoundException( "Mod Helpers "+this.Version+" requires .NET Framework v4.6+ to work." );
 			}
 
-			this.LoadInner();
+			this.LoadFull();
 
 			InboxMessages.SetMessage( "ModHelpers:ControlPanelTags",
 				"Mod tag lists have now been added to the Control Panel. Mod tags can be modified in the Mod Info menu page via. the main menu.",
@@ -71,7 +72,7 @@ namespace HamstarHelpers {
 		////
 
 		public override void Unload() {
-			this.UnloadInner();
+			this.UnloadFull();
 
 			ModHelpersMod.Instance = null;
 		}
@@ -80,7 +81,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PostSetupContent() {
-			this.PostSetupContentInner();
+			this.PostSetupContentFull();
 
 			this.HasSetupContent = true;
 			this.CheckAndProcessLoadFinish();
@@ -89,18 +90,18 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void AddRecipes() {
-			this.AddRecipesInner();
+			this.AddRecipesFull();
 		}
 
 		public override void AddRecipeGroups() {
-			this.AddRecipeGroupsInner();
+			this.AddRecipeGroupsFull();
 
 			this.HasAddedRecipeGroups = true;
 			this.CheckAndProcessLoadFinish();
 		}
 
 		public override void PostAddRecipes() {
-			this.PostAddRecipesInner();
+			this.PostAddRecipesFull();
 
 			this.HasAddedRecipes = true;
 			this.CheckAndProcessLoadFinish();
@@ -114,7 +115,7 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipeGroups ) { return; }
 			if( !this.HasAddedRecipes ) { return; }
 
-			this.PostLoadAll();
+			this.PostLoadFull();
 /*DataDumper.SetDumpSource( "DEBUG", () => {
 	var data = Services.DataStore.DataStore.GetAll();
 	string str = "";

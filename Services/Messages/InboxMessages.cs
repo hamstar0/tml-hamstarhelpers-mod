@@ -47,7 +47,7 @@ namespace HamstarHelpers.Services.Messages {
 
 		public static int CountUnreadMessages() {
 			InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
-			if( inbox == null ) {
+			if( inbox == null || inbox.Messages == null ) {
 				return 0;
 			}
 
