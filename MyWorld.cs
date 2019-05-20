@@ -134,7 +134,6 @@ namespace HamstarHelpers {
 			XnaHelpers.DrawBatch(
 				(sb) => {
 					var mymod = (ModHelpersMod)this.mod;
-					mymod.CustomEntMngr?.DrawPostTilesAll( sb );
 					DebugHelpers.DrawAllRects( sb );
 				},
 				SpriteSortMode.Deferred,

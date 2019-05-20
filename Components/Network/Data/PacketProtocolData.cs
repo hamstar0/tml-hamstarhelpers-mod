@@ -82,7 +82,7 @@ namespace HamstarHelpers.Components.Network.Data {
 
 		protected abstract void OnClone();
 
-		internal void InternalOnClone() { this.OnClone(); }
+		protected void InternalOnClone() { this.OnClone(); }
 
 
 		////////////////

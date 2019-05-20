@@ -19,7 +19,7 @@ namespace HamstarHelpers {
 
 			try {
 				if( !Main.mapFullscreen && ( Main.mapStyle == 1 || Main.mapStyle == 2 ) ) {
-					this.DrawMiniMapForAll( sb );
+					//this.DrawMiniMapForAll( sb );
 				}
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
@@ -31,7 +31,7 @@ namespace HamstarHelpers {
 		public override void PostDrawFullscreenMap( ref string mouseText ) {
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			try {
-				this.DrawFullMapForAll( Main.spriteBatch );
+				//this.DrawFullMapForAll( Main.spriteBatch );
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
 				throw e;

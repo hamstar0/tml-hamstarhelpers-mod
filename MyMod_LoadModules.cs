@@ -6,7 +6,6 @@ using HamstarHelpers.Internals.Inbox;
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Components.CustomEntity;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
@@ -45,7 +44,6 @@ namespace HamstarHelpers {
 		internal HamstarExceptionManager ExceptionMngr;
 		internal MenuContextServiceManager MenuContextMngr;
 		internal MenuItemManager MenuItemMngr;
-		internal CustomEntityManager CustomEntMngr;
 		internal PacketProtocolManager PacketProtocolMngr;
 
 		// Services
@@ -135,7 +133,6 @@ namespace HamstarHelpers {
 			this.MenuContextMngr = new MenuContextServiceManager();
 			this.MusicHelpers = new MusicHelpers();
 			this.PlayerIdentityHelpers = new PlayerIdentityHelpers();
-			this.CustomEntMngr = new CustomEntityManager();
 			this.CustomHotkeys = new CustomHotkeys();
 			this.XnaHelpers = new XnaHelpers();
 			this.ServerInfo = new ServerInfo();
@@ -178,7 +175,6 @@ namespace HamstarHelpers {
 			this.MenuContextMngr = null;
 			this.MusicHelpers = null;
 			this.PlayerIdentityHelpers = null;
-			this.CustomEntMngr = null;
 			this.Promises = null;
 			this.DataStore = null;
 			this.CustomHotkeys = null;
