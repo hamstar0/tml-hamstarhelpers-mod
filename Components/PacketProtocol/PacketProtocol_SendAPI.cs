@@ -1,12 +1,11 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Components.PacketProtocol.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
-using System.Reflection;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private static void QuickSendToServerBase<T>( bool syncToClients )
 				where T : PacketProtocol {  //, new()
@@ -24,13 +23,13 @@ namespace HamstarHelpers.Components.Network {
 
 
 		////////////////
-		
-		
+
+
 		/// <summary>
 		/// Shorthand to send a default instance of this protocol's data to the server. Requires `SetClientDefaults()`
 		/// to be implemented.
 		/// </summary>
-		public static void QuickSendToServer<T>()
+		protected static void QuickSendToServer<T>()
 				where T : PacketProtocol {  //, new()
 			PacketProtocol.QuickSendToServerBase<T>( false );
 		}
@@ -39,7 +38,7 @@ namespace HamstarHelpers.Components.Network {
 		/// Shorthand to send a default instance of this protocol's data to everyone. Requires `SetClientDefaults()`
 		/// to be implemented.
 		/// </summary>
-		public static void QuickSyncToServerAndClients<T>()
+		protected static void QuickSyncToServerAndClients<T>()
 				where T : PacketProtocol {  //, new()
 			PacketProtocol.QuickSendToServerBase<T>( true );
 		}
@@ -51,7 +50,7 @@ namespace HamstarHelpers.Components.Network {
 		/// </summary>
 		/// <param name="toWho">Main.player index of player (client) receiving this data. -1 for all clients.</param>
 		/// <param name="ignoreWho">Main.player index of player (client) being ignored. -1 for no client.</param>
-		public static void QuickSendToClient<T>( int toWho, int ignoreWho )
+		protected static void QuickSendToClient<T>( int toWho, int ignoreWho )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Can only send as client." );

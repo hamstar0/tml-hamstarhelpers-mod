@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Components.PacketProtocol.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		internal static void HandlePacketOnClient( int protocolCode, BinaryReader reader, int playerWho ) {
 			var mymod = ModHelpersMod.Instance;

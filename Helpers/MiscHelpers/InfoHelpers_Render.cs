@@ -7,11 +7,6 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.MiscHelpers {
 	public static partial class InfoHelpers {
-		[Obsolete("use RenderMarkdownModTable", true)]
-		public static string RenderModTable( string[] mods ) {
-			return InfoHelpers.RenderMarkdownModTable( mods );
-		}
-
 		public static string RenderMarkdownModTable( string[] mods ) {
 			int len = mods.Length;
 

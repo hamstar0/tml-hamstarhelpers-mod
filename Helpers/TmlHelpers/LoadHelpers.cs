@@ -77,13 +77,5 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 			}
 			return notSafelyPlayed;
 		}
-
-
-		[Obsolete( "`PlayerIdentityHelpers.GetProperUniqueId(player) != null` might work better", true )]
-		public static bool IsPlayerLoaded( Player player ) {
-			var mymod = ModHelpersMod.Instance;
-			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-			return myplayer.Logic.HasLoadedOldUID;
-		}
 	}
 }

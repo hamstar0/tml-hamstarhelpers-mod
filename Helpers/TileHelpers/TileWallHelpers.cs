@@ -32,15 +32,5 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 			}
 			return false;
 		}
-
-
-
-		////////////////
-
-		[Obsolete( "use IsDungeon(Tile, out bool)" )]
-		public static bool IsDungeon( Tile tile ) {
-			bool _;
-			return TileWallHelpers.IsDungeon( tile, out _ );
-		}
 	}
 }

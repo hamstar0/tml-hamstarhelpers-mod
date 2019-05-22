@@ -25,12 +25,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			return checkNpc.life <= 0 || !checkNpc.active;
 		}
 
-
-		[Obsolete( "use NPCHelpers.RawHurt(...), true" )]
-		public static void Hurt( NPC npc, int damage ) {
-			NPCHelpers.RawHurt( npc, damage );
-		}
-
+		
 		public static void RawHurt( NPC npc, int damage ) {
 			if( damage >= npc.life ) {
 				NPCHelpers.Kill( npc );

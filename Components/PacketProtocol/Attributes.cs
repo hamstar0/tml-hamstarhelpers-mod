@@ -2,7 +2,7 @@
 using System;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	/// <summary>
 	/// Sets a field to be ignored by a protocol.
 	/// </summary>
@@ -18,11 +18,4 @@ namespace HamstarHelpers.Components.Network {
 	/// </summary>
 	[AttributeUsage( AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true )]
 	public class PacketProtocolWriteIgnoreServerAttribute : Attribute { }
-
-
-
-	[Obsolete( "use PacketProtocolWriteIgnoreServerAttribute", true )]
-	public class PacketProtocolReadIgnoreClientAttribute : Attribute { }
-	[Obsolete( "use PacketProtocolWriteIgnoreServerAttribute", true )]
-	public class PacketProtocolReadIgnoreServerAttribute : Attribute { }
 }

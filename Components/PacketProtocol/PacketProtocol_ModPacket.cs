@@ -1,12 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Components.PacketProtocol.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private ModPacket GetClientPacket( bool isRequest, bool syncToAll ) {
 			if( Main.netMode != 1 ) { throw new HamstarException( "Not a client"); }

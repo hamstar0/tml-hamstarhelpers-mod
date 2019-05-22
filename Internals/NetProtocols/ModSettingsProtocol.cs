@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.PacketProtocol.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

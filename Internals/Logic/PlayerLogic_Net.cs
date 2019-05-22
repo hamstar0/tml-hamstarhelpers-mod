@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.PacketProtocol;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;

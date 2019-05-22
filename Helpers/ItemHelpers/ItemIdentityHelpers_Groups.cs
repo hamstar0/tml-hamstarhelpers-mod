@@ -10,7 +10,9 @@ using Terraria.ID;
 namespace HamstarHelpers.Helpers.ItemHelpers {
 	public partial class ItemIdentityHelpers {
 		public static IDictionary<string, Tuple<string, ISet<int>>> GetCommonItemGroups() {
-			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemIdentityHelpers ).GetFields( BindingFlags.Static | BindingFlags.Public );
+			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemIdentityHelpers )
+				.GetFields( BindingFlags.Static | BindingFlags.Public );
+
 			itemGrpFields = itemGrpFields.Where( field => {
 				return field.FieldType == typeof( Tuple<string, ISet<int>> );
 			} );

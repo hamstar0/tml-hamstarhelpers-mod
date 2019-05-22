@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.PacketProtocol.Interfaces;
 using System;
 using Terraria;
 

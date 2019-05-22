@@ -4,7 +4,7 @@ using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Internals.Menus.Support;
 using HamstarHelpers.Internals.Inbox;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.PacketProtocol;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Network.Data;
+﻿using HamstarHelpers.Components.PacketProtocol.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		private void ReceiveWithEitherBase( BinaryReader reader, int fromWho ) {
 			var mymod = ModHelpersMod.Instance;

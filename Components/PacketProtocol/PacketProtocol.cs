@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Components.PacketProtocol.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using System;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	/// <summary>
 	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
 	/// </summary>
@@ -123,14 +123,6 @@ namespace HamstarHelpers.Components.Network {
 		/// </summary>
 		protected virtual void SetServerDefaults( int toWho ) {
 			throw new HamstarException( "No SetServerDefaults(int) implemented" );
-		}
-
-
-
-
-		[Obsolete( "use SetServerDefaults( int toWho )", false )]
-		protected virtual void SetServerDefaults() {
-			throw new HamstarException( "No SetServerDefaults(int)" );
 		}
 	}
 }

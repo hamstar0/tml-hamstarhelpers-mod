@@ -7,15 +7,6 @@ using System.Collections.ObjectModel;
 
 namespace HamstarHelpers.Services.GameData {
 	public class BossDataEntry {
-		[Obsolete("use `GetNpcId()`", true)]
-		public int NpcId {
-			get {
-				int npcId;
-				bool found = this.GetNpcId( out npcId );
-				return npcId;
-			}
-		}
-
 		public int Order => BossData.BossMap[ this.Name ];
 
 

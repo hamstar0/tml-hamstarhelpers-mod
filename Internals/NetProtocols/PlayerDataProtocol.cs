@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.PacketProtocol.Interfaces;
 using System;
 using System.Collections.Generic;
 using Terraria;

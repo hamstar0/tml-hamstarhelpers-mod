@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.PacketProtocol;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
@@ -107,13 +107,6 @@ namespace HamstarHelpers.Services.DataDumper {
 
 
 		////////////////
-
-		[Obsolete("use DumpToFile(out string)", true)]
-		public static string DumpToFile( out bool success ) {
-			string fileName;
-			success = DataDumper.DumpToFile( out fileName );
-			return fileName;
-		}
 
 		public static bool DumpToFile( out string fileName ) {
 			string data;

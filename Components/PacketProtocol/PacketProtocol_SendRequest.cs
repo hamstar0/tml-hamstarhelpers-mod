@@ -1,12 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network.Data;
+using HamstarHelpers.Components.PacketProtocol.Data;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	public abstract partial class PacketProtocol : PacketProtocolData {
 		internal void SendRequestToClient( int toWho, int ignoreWho, int retries ) {
 			var mymod = ModHelpersMod.Instance;

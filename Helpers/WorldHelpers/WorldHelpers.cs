@@ -15,14 +15,6 @@ namespace HamstarHelpers.Helpers.WorldHelpers {
 
 		////////////////
 
-		[Obsolete("use `WorldHelpers.GetUniqueId()` (the 'seeds' part is not properly synced to clients)", false)]
-		public static string GetUniqueIdWithSeed() {
-			if( Main.netMode == 1 ) {
-				LogHelpers.Log( "!"+DebugHelpers.DebugHelpers.GetCurrentContext(2)+" - Seeds are not seen by clients." );
-			} 
-			return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID + "." + Main.ActiveWorldFileData.Seed;
-		}
-
 		public static string GetUniqueId( bool asFileName ) {
 			if( asFileName ) {
 				return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID;

@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.PacketProtocol.Interfaces;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Services.DataDumper;

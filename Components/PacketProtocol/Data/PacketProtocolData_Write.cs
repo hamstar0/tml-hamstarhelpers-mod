@@ -11,7 +11,7 @@ using System.Reflection;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.Network.Data {
+namespace HamstarHelpers.Components.PacketProtocol.Data {
 	/// <summary>
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>

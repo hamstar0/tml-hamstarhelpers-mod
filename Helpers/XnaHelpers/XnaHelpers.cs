@@ -25,12 +25,7 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 		}
 
 		////////////////
-
-		[Obsolete( "use IsMainSpriteBatchBegun(out bool)" )]
-		public static bool IsMainSpriteBatchBegun() {
-			return (bool)ModHelpersMod.Instance?.XnaHelpers?.SpriteBatchBegunField?.GetValue( Main.spriteBatch );
-		}
-
+		
 		public static bool IsMainSpriteBatchBegun( out bool isBegun ) {
 			var mymod = ModHelpersMod.Instance;
 			object isBegunRaw = mymod?.XnaHelpers?.SpriteBatchBegunField?.GetValue( Main.spriteBatch );

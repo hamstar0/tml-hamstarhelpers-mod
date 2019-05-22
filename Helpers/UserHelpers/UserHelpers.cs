@@ -6,12 +6,6 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.UserHelpers {
 	public static class UserHelpers {
-		[Obsolete("use HasBasicServerPrivilege(Player)", true)]
-		public static bool HasBasicServerPrivilege( Player player, out bool success ) {
-			success = true;
-			return UserHelpers.HasBasicServerPrivilege( player );
-		}
-
 		public static bool HasBasicServerPrivilege( Player player ) {
 			if( Main.netMode == 0 && !Main.dedServ ) {
 				throw new HamstarException( "Not multiplayer." );

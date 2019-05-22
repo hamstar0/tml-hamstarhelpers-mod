@@ -1,8 +1,9 @@
 ﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.PacketProtocol.Interfaces;
 using Terraria;
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.TmlHelpers;
+
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerOldIdProtocol : PacketProtocolSentToEither {

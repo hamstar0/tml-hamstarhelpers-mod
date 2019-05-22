@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Components.Network {
+namespace HamstarHelpers.Components.PacketProtocol {
 	class PacketProtocolManager {
 		private static object MyLock = new object();
 

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.PacketProtocol.Interfaces;
 using HamstarHelpers.Helpers.TmlHelpers;
 using HamstarHelpers.Helpers.WorldHelpers;
 using Terraria;

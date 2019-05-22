@@ -136,13 +136,6 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 
 		////
 
-		[Obsolete( "use InfoHelpers.GetPlayerInfo( Main.LocalPlayer )", true )]
-		public static IList<string> GetCurrentPlayerInfo() {
-			IDictionary<string, string> dict = InfoHelpers.GetPlayerInfo( Main.LocalPlayer );
-			dict["Name"] = "`" + dict["Name"] + "`";
-			return dict.SafeSelect( kv => kv.Key + ": " + kv.Value ).ToList();
-		}
-
 		public static IDictionary<string, string> GetPlayerInfo( Player player ) {
 			var dict = new Dictionary<string, string> {
 				{ "Name", player.name },
@@ -164,12 +157,6 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 			return dict;
 		}
 
-
-		[Obsolete( "use InfoHelpers.GetPlayerEquipment( Main.LocalPlayer )", true )]
-		public static IList<string> GetCurrentPlayerEquipment() {
-			IDictionary<string, string> dict = InfoHelpers.GetPlayerEquipment( Main.LocalPlayer );
-			return dict.SafeSelect( kv => kv.Key + ": " + kv.Value ).ToList();
-		}
 
 		public static IDictionary<string, string> GetPlayerEquipment( Player player ) {
 			var dict = new Dictionary<string, string>();
