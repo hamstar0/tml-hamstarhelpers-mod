@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.PacketProtocol.Data;
+﻿using HamstarHelpers.Components.Protocol.Stream;
 using HamstarHelpers.Helpers.DebugHelpers;
 using Newtonsoft.Json;
 using System;
@@ -6,8 +6,8 @@ using System.IO;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Components.PacketProtocol {
-	public abstract partial class PacketProtocol : PacketProtocolData {
+namespace HamstarHelpers.Components.Protocol.Packet {
+	public abstract partial class PacketProtocol : StreamProtocol {
 		private void ReceiveWithEitherBase( BinaryReader reader, int fromWho ) {
 			var mymod = ModHelpersMod.Instance;
 			Type mytype = this.GetType();
@@ -50,8 +50,6 @@ namespace HamstarHelpers.Components.PacketProtocol {
 			}
 			
 			mymod.PacketProtocolMngr.FulfillRequest( protName );	// If any
-
-			string packetName = this.GetType().Name;
 		}
 
 
@@ -79,10 +77,7 @@ namespace HamstarHelpers.Components.PacketProtocol {
 			
 			this.SetClientDefaults();
 
-			bool skipSend = false;
-			//var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnClient" );
-			
-			skipSend = this.ReceiveRequestWithClient();
+			bool skipSend = this.ReceiveRequestWithClient();
 
 			if( !skipSend ) {
 				this.SendToServer( false );
@@ -98,17 +93,10 @@ namespace HamstarHelpers.Components.PacketProtocol {
 				string name = mytype.Namespace + "." + mytype.Name;
 				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnServer..." );
 			}
-
-			try {
-				this.SetServerDefaults( fromWho );
-			} catch( NotImplementedException ) {
-				this.SetServerDefaults();
-			}
-
-			bool skipSend = false;
-			var methodInfo = this.GetType().GetMethod( "ReceiveRequestOnServer" );
 			
-			skipSend = this.ReceiveRequestWithServer( fromWho );
+			this.SetServerDefaults( fromWho );
+
+			bool skipSend = this.ReceiveRequestWithServer( fromWho );
 
 			if( !skipSend ) {
 				this.SendToClient( fromWho, -1 );

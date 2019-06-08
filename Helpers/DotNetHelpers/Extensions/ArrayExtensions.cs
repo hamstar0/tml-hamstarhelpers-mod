@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Helpers.DotNetHelpers.Extensions {
 	public static class ArrayExtensions {
 		public static T[] RemoveAt<T>( this T[] source, int index ) {
 			T[] dest = new T[source.Length - 1];

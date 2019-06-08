@@ -1,24 +1,24 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.PacketProtocol.Data;
+using HamstarHelpers.Components.Protocol.Stream;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.PacketProtocol {
+namespace HamstarHelpers.Components.Protocol.Packet {
 	/// <summary>
 	/// Shorthand to send a request for a default instance of this protocol's data from a client.
 	/// Requires `SetClientDefaults()` to be implemented.
 	/// </summary>
 	/// <param name="toWho">Main.player index of player (client) being requested for this data. -1 for all clients.</param>
 	/// <param name="ignoreWho">Main.player index of player (client) being ignored. -1 for no client.</param>
-	public abstract partial class PacketProtocol : PacketProtocolData {
+	public abstract partial class PacketProtocol : StreamProtocol {
 		protected static void QuickRequestToClient<T>( int toWho, int ignoreWho, int retries ) where T : PacketProtocol {
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Not server." );
 			}
 
-			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			T t = (T)StreamProtocol.CreateInstance( typeof(T) );
 			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 			t.SendRequestToClient( toWho, ignoreWho, retries );
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.PacketProtocol {
 				throw new HamstarException( "Not a client." );
 			}
 			
-			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			T t = (T)StreamProtocol.CreateInstance( typeof(T) );
 			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 			t.SendRequestToServer( retries );

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.PacketProtocol;
+﻿using HamstarHelpers.Components.Protocol.Packet.Interfaces;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 	partial class PlayerLogic {
 		public void OnCurrentClientConnect( Player player ) {
-			PacketProtocolSentToEither.QuickSendToServer<PlayerNewIdProtocol>();
+			PacketProtocolSentToEither.QuickSendToTheServer<PlayerNewIdProtocol>();
 		}
 
 		public void OnServerConnect( Player player ) {

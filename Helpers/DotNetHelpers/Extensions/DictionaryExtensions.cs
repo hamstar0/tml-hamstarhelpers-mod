@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Helpers.DotNetHelpers.Extensions {
 	public static partial class DictionaryExtensions {
 		public static TValue GetOrDefault<TKey, TValue>( this IDictionary<TKey, TValue> dict, TKey key ) {
 			TValue val;

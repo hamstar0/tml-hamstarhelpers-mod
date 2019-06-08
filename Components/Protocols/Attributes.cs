@@ -2,20 +2,20 @@
 using System;
 
 
-namespace HamstarHelpers.Components.PacketProtocol {
+namespace HamstarHelpers.Components.Network {
 	/// <summary>
 	/// Sets a field to be ignored by a protocol.
 	/// </summary>
 	[AttributeUsage( AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true )]
-	public class PacketProtocolIgnoreAttribute : Attribute { }
+	public class ProtocolIgnoreAttribute : Attribute { }
 	/// <summary>
 	/// Sets a field to be not written by clients in a protocol.
 	/// </summary>
 	[AttributeUsage( AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true )]
-	public class PacketProtocolWriteIgnoreClientAttribute : Attribute { }
+	public class ProtocolWriteIgnoreClientAttribute : Attribute { }
 	/// <summary>
 	/// Sets a field to be not written by server in a protocol.
 	/// </summary>
 	[AttributeUsage( AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true )]
-	public class PacketProtocolWriteIgnoreServerAttribute : Attribute { }
+	public class ProtocolWriteIgnoreServerAttribute : Attribute { }
 }

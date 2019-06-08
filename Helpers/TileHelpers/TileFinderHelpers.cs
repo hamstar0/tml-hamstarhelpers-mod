@@ -6,15 +6,15 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.TileHelpers {
 	public static class TileFinderHelpers {
-		public static bool HasNearbySolid( int tileX, int tileY, int proximityInTiles ) {
-			int minX = Math.Max( tileX - proximityInTiles, 0 );
-			int maxX = Math.Min( tileX + proximityInTiles, Main.maxTilesX - 1 );
-			int minY = Math.Max( tileY - proximityInTiles, 0 );
-			int maxY = Math.Min( tileY + proximityInTiles, Main.maxTilesY - 1 );
+		public static bool HasNearbySolid( int tileX, int tileY, int squareRadius, bool isPlatformSolid = false, bool isActuatedSolid = false ) {
+			int minX = Math.Max( tileX - squareRadius, 0 );
+			int maxX = Math.Min( tileX + squareRadius, Main.maxTilesX - 1 );
+			int minY = Math.Max( tileY - squareRadius, 0 );
+			int maxY = Math.Min( tileY + squareRadius, Main.maxTilesY - 1 );
 
 			for( int i = minX; i <= maxX; i++ ) {
 				for( int j = minY; j <= maxY; j++ ) {
-					if( TileHelpers.IsSolid( Main.tile[i, j] ) ) {
+					if( TileHelpers.IsSolid( Main.tile[i, j], isPlatformSolid, isActuatedSolid ) ) {
 						return true;
 					}
 				}

@@ -1,19 +1,19 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.PacketProtocol.Data;
+using HamstarHelpers.Components.Protocol.Stream;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.PacketProtocol {
-	public abstract partial class PacketProtocol : PacketProtocolData {
+namespace HamstarHelpers.Components.Protocol.Packet {
+	public abstract partial class PacketProtocol : StreamProtocol {
 		private static void QuickSendToServerBase<T>( bool syncToClients )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 1 ) {
 				throw new HamstarException( "Can only send as client." );
 			}
 			
-			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			T t = (T)StreamProtocol.CreateInstance( typeof(T) );
 			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 			t.SetClientDefaults();
 			t.OnClone();
@@ -56,14 +56,10 @@ namespace HamstarHelpers.Components.PacketProtocol {
 				throw new HamstarException( "Can only send as client." );
 			}
 			
-			T t = (T)PacketProtocolData.CreateInstance( typeof(T) );
+			T t = (T)StreamProtocol.CreateInstance( typeof(T) );
 			//T t = (T)Activator.CreateInstance( typeof(T), BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
-
-			try {
-				t.SetServerDefaults( toWho );
-			} catch( NotImplementedException ) {
-				t.SetServerDefaults();
-			}
+			
+			t.SetServerDefaults( toWho );
 			t.OnClone();
 
 			t.SendToClient( toWho, ignoreWho );

@@ -1,5 +1,7 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Protocol.Packet;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using System;
@@ -11,12 +13,12 @@ using System.Reflection;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.PacketProtocol.Data {
+namespace HamstarHelpers.Components.Protocol.Stream {
 	/// <summary>
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
-	public abstract partial class PacketProtocolData {
-		private static void ReadStreamIntoContainer( BinaryReader reader, PacketProtocolData fieldContainer ) {
+	public abstract partial class StreamProtocol {
+		private static void ReadStreamIntoContainer( BinaryReader reader, StreamProtocol fieldContainer ) {
 			var mymod = ModHelpersMod.Instance;
 			IOrderedEnumerable<FieldInfo> orderedFields = fieldContainer.OrderedFields;
 			int i = 0;
@@ -29,14 +31,14 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 				i++;
 
 				Type fieldType = field.FieldType;
-				object fieldData = PacketProtocolData.ReadStreamValue( reader, fieldType );
+				object fieldData = StreamProtocol.ReadStreamValue( reader, fieldType );
 
 				if( Main.netMode == 1 ) {
-					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {
+					if( Attribute.IsDefined( field, typeof( ProtocolWriteIgnoreServerAttribute ) ) ) {
 						continue;
 					}
 				} else if( Main.netMode == 2 ) {
-					if( Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
+					if( Attribute.IsDefined( field, typeof( ProtocolWriteIgnoreClientAttribute ) ) ) {
 						continue;
 					}
 				}
@@ -102,7 +104,7 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 				rawVal = reader.ReadDecimal();
 				break;
 			case TypeCode.Object:
-				rawVal = PacketProtocolData.ReadStreamObjectValue( reader, fieldType );
+				rawVal = StreamProtocol.ReadStreamObjectValue( reader, fieldType );
 				break;
 			default:
 				rawVal = null;
@@ -132,8 +134,8 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 				}
 			}
 			
-			if( fieldType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-				var data = (PacketProtocol)PacketProtocolData.CreateInstance( fieldType );
+			if( fieldType.IsSubclassOf( typeof( StreamProtocol ) ) ) {
+				var data = (PacketProtocol)StreamProtocol.CreateInstance( fieldType );
 				//var data = (PacketProtocol)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				data.ReadStream( reader );
@@ -155,9 +157,9 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 				
 				Array arr = Array.CreateInstance( innerType, length );
 
-				if( innerType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+				if( innerType.IsSubclassOf( typeof( StreamProtocol ) ) ) {
 					for( int i = 0; i < length; i++ ) {
-						var item = (PacketProtocolData)PacketProtocolData.CreateInstance( fieldType );
+						var item = (StreamProtocol)StreamProtocol.CreateInstance( fieldType );
 						//var item = (PacketProtocolData)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 						item.ReadStream( reader );
@@ -167,7 +169,7 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 					}
 				} else {
 					for( int i = 0; i < length; i++ ) {
-						object item = PacketProtocolData.ReadStreamValue( reader, innerType );
+						object item = StreamProtocol.ReadStreamValue( reader, innerType );
 						arr.SetValue( item, i );
 					}
 				}

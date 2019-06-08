@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Components.PacketProtocol.Interfaces;
-using HamstarHelpers.Components.PacketProtocol;
+﻿using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Protocol.Packet.Interfaces;
+using HamstarHelpers.Helpers.DotNetHelpers;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -9,9 +9,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public long EndTime = -1;
 
 		
+
 		////////////////
 
-		[PacketProtocolIgnore]
+		[ProtocolIgnore]
 		public override bool IsVerbose => false;
 
 

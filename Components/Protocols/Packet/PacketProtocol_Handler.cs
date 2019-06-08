@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.PacketProtocol.Data;
+using HamstarHelpers.Components.Protocol.Stream;
 using HamstarHelpers.Helpers.DebugHelpers;
 using System;
 using System.IO;
@@ -7,8 +7,8 @@ using System.Reflection;
 using System.Threading;
 
 
-namespace HamstarHelpers.Components.PacketProtocol {
-	public abstract partial class PacketProtocol : PacketProtocolData {
+namespace HamstarHelpers.Components.Protocol.Packet {
+	public abstract partial class PacketProtocol : StreamProtocol {
 		internal static void HandlePacketOnClient( int protocolCode, BinaryReader reader, int playerWho ) {
 			var mymod = ModHelpersMod.Instance;
 			bool isRequest;
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Components.PacketProtocol {
 			}
 			
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateInstance( protocolType );
+				var protocol = (PacketProtocol)StreamProtocol.CreateInstance( protocolType );
 				//var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				if( isRequest ) {
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Components.PacketProtocol {
 			}
 			
 			try {
-				var protocol = (PacketProtocol)PacketProtocolData.CreateInstance( protocolType );
+				var protocol = (PacketProtocol)StreamProtocol.CreateInstance( protocolType );
 				//var protocol = (PacketProtocol)Activator.CreateInstance( protocolType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
 				if( isRequest ) {

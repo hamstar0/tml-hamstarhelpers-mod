@@ -92,7 +92,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				m( "Vanilla Balanced",      "Balanced around plain Terraria; progress will not happen faster than usual."),
 				m( "Loosely Balanced",      "Inconsistent or vague attempt to maintain balance, vanilla or otherwise."),
 				m( "Plus Balanced",         "Balanced in excess of vanilla; expect sequence breaks (e.g. killing powerful bosses early)."),
-				m( "Spoilers",				"Reveals information in advence about game or story elements, especially prematurely."),
+				m( "Spoilers",				"Reveals information in advance about game or story elements, especially prematurely."),
 				m( "Needs New World",       "Playing an existing world is difficult, problematic, or just impossible."),
 				m( "Needs New Player",      "Character must begin as a blank slate, similarly."),
 				m( "Affects World",         "Adds set pieces, alters biome shapes, adds new types of growth, etc."),

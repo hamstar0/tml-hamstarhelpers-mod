@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using Newtonsoft.Json;
@@ -11,17 +12,17 @@ using System.Reflection;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.PacketProtocol.Data {
+namespace HamstarHelpers.Components.Protocol.Stream {
 	/// <summary>
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
-	public abstract partial class PacketProtocolData {
-		private static void WriteStreamFromContainer( BinaryWriter writer, PacketProtocolData fieldContainer ) {
+	public abstract partial class StreamProtocol {
+		private static void WriteStreamFromContainer( BinaryWriter writer, StreamProtocol fieldContainer ) {
 			var mymod = ModHelpersMod.Instance;
 			IOrderedEnumerable<FieldInfo> orderedFields = fieldContainer.OrderedFields;
 			int i = 0;
 
-			if( !PacketProtocolData.ValidateConstructor(fieldContainer.GetType()) ) {
+			if( !StreamProtocol.ValidateConstructor(fieldContainer.GetType()) ) {
 				throw new HamstarException( "Invalid default constructor for "+fieldContainer.GetType().Name );
 			}
 
@@ -32,9 +33,9 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 			foreach( FieldInfo field in orderedFields ) {
 				i++;
 
-				if( Main.netMode == 1 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreClientAttribute ) ) ) {
+				if( Main.netMode == 1 && Attribute.IsDefined( field, typeof( ProtocolWriteIgnoreClientAttribute ) ) ) {
 					continue;
-				} else if( Main.netMode == 2 && Attribute.IsDefined( field, typeof( PacketProtocolWriteIgnoreServerAttribute ) ) ) {
+				} else if( Main.netMode == 2 && Attribute.IsDefined( field, typeof( ProtocolWriteIgnoreServerAttribute ) ) ) {
 					continue;
 				}
 
@@ -47,7 +48,7 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 						+ field.Name + ": " + DotNetHelpers.Stringify( rawFieldVal, 32 ) );
 				}
 
-				PacketProtocolData.WriteStreamValue( writer, field.FieldType, rawFieldVal );
+				StreamProtocol.WriteStreamValue( writer, field.FieldType, rawFieldVal );
 			}
 		}
 
@@ -99,7 +100,7 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 				writer.Write( (Decimal)rawVal );
 				break;
 			case TypeCode.Object:
-				PacketProtocolData.WriteStreamObjectValue( writer, fieldType, rawVal );
+				StreamProtocol.WriteStreamObjectValue( writer, fieldType, rawVal );
 				break;
 			}
 //LogHelpers.Log( " WriteStreamValue "+Type.GetTypeCode( fieldType ).ToString()+" - "+fieldType+": "+rawVal );
@@ -124,8 +125,8 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 				}
 			}
 
-			if( fieldType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
-				((PacketProtocolData)rawVal).WriteStream( writer );
+			if( fieldType.IsSubclassOf( typeof( StreamProtocol ) ) ) {
+				((StreamProtocol)rawVal).WriteStream( writer );
 
 			} else if( ( isEnumerable || typeof( IEnumerable ).IsAssignableFrom( fieldType ) )
 					&& ( !isDictionary && !typeof( IDictionary ).IsAssignableFrom( fieldType ) ) ) {
@@ -142,13 +143,13 @@ namespace HamstarHelpers.Components.PacketProtocol.Data {
 				
 				writer.Write( (ushort)collection.Count() );
 
-				if( innerType.IsSubclassOf( typeof( PacketProtocolData ) ) ) {
+				if( innerType.IsSubclassOf( typeof( StreamProtocol ) ) ) {
 					foreach( object item in collection ) {
-						((PacketProtocolData)item).WriteStream( writer );
+						((StreamProtocol)item).WriteStream( writer );
 					}
 				} else {
 					foreach( object item in collection ) {
-						PacketProtocolData.WriteStreamValue( writer, innerType, item );
+						StreamProtocol.WriteStreamValue( writer, innerType, item );
 					}
 				}
 

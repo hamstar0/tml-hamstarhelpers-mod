@@ -63,8 +63,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					if( isLoading ) {
 						return true;
 					} else {
-						UITagButton button = this.TagButtons["Misleading Info"];
-						button.SetTagState( -1 );
+						//UITagButton button = this.TagButtons["Misleading Info"];
+						//button.SetTagState( -1 );
 						return false;
 					}
 				} );

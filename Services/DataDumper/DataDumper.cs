@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.PacketProtocol;
-using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers;
 using HamstarHelpers.Helpers.UserHelpers;
 using HamstarHelpers.Internals.NetProtocols;

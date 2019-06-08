@@ -2,7 +2,7 @@
 using System;
 
 
-namespace HamstarHelpers.Components.PacketProtocol.Interfaces {
+namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 	public abstract class PacketProtocolSentToEither : PacketProtocol {
 		public static void QuickSendToAClient<T>( int toWho, int ignoreWho ) where T : PacketProtocolSendToClient {
 			PacketProtocol.QuickSendToClient<T>( toWho, ignoreWho );

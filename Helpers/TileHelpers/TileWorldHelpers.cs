@@ -29,7 +29,7 @@ namespace HamstarHelpers.Helpers.TileHelpers {
 
 			do {
 				y++;
-			} while( y <= (Main.maxTilesY - 42) && !TileHelpers.IsSolid( Framing.GetTileSafely( x, y ) ) );
+			} while( y <= (Main.maxTilesY - 42) && !TileHelpers.IsSolid( Framing.GetTileSafely(x, y) ) );
 			y--;
 
 			return new Vector2( worldPos.X, y * 16 );

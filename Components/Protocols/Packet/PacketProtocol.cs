@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.PacketProtocol.Data;
+using HamstarHelpers.Components.Network;
+using HamstarHelpers.Components.Protocol.Stream;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
 using System;
@@ -8,11 +9,11 @@ using System.Reflection;
 using System.Text;
 
 
-namespace HamstarHelpers.Components.PacketProtocol {
+namespace HamstarHelpers.Components.Protocol.Packet {
 	/// <summary>
 	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
 	/// </summary>
-	public abstract partial class PacketProtocol : PacketProtocolData {
+	public abstract partial class PacketProtocol : StreamProtocol {
 		/// <summary>
 		/// Gets a random integer as a code representing a given protocol (by name) to identify its
 		/// network packets.
@@ -39,18 +40,12 @@ namespace HamstarHelpers.Components.PacketProtocol {
 
 			foreach( Type subclassType in protocolTypes ) {
 				ConstructorInfo ctorInfo = subclassType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
-					new Type[] { typeof( PacketProtocolDataConstructorLock ) }, null );
-
-				if( ctorInfo == null ) {
-					ctorInfo = subclassType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
 						new Type[] { }, null );
-
-					if( ctorInfo == null ) {
-						throw new HamstarException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
-					}
-					if( ctorInfo.IsFamily ) {
-						throw new HamstarException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
-					}
+				if( ctorInfo == null ) {
+					throw new HamstarException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
+				}
+				if( ctorInfo.IsFamily ) {
+					throw new HamstarException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
 				}
 
 				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
@@ -78,20 +73,20 @@ namespace HamstarHelpers.Components.PacketProtocol {
 		/// <summary>
 		/// Indicates whether sent packets will be logged if the config specifies to do so. Defaults to true.
 		/// </summary>
-		[PacketProtocolIgnore]
+		[ProtocolIgnore]
 		public virtual bool IsVerbose => true;
 
 		/// <summary>
 		/// Indicates whether to handle stream encoding and decoding with a separate thread. Defaults to false.
 		/// </summary>
-		[PacketProtocolIgnore]
+		[ProtocolIgnore]
 		public virtual bool IsAsync => false;
 
 
 
 		////////////////
 
-		protected PacketProtocol( PacketProtocolDataConstructorLock _=null ) { }
+		protected PacketProtocol() { }
 
 		////////////////
 

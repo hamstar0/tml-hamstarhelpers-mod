@@ -2,10 +2,10 @@
 using System;
 
 
-namespace HamstarHelpers.Components.PacketProtocol.Interfaces {
-	public abstract class PacketProtocolSendToClient : PacketProtocol {
-		public static void QuickSend<T>( int toWho, int ignoreWho ) where T : PacketProtocolSendToClient {
-			PacketProtocol.QuickSendToClient<T>( toWho, ignoreWho );
+namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
+	public abstract class PacketProtocolRequestToServer : PacketProtocol {
+		public static void QuickRequest<T>( int retries ) where T : PacketProtocolRequestToServer {
+			PacketProtocolRequestToServer.QuickRequestToServer<T>( retries );
 		}
 
 
@@ -17,9 +17,9 @@ namespace HamstarHelpers.Components.PacketProtocol.Interfaces {
 			this.InitializeServerSendData( toWho );
 		}
 
-		protected abstract void Receive();
+		protected abstract void ReceiveReply();
 		protected sealed override void ReceiveWithClient() {
-			this.Receive();
+			this.ReceiveReply();
 		}
 
 
@@ -32,9 +32,6 @@ namespace HamstarHelpers.Components.PacketProtocol.Interfaces {
 			throw new HamstarException( "Not implemented" );
 		}
 		protected sealed override bool ReceiveRequestWithClient() {
-			throw new HamstarException( "Not implemented" );
-		}
-		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
 			throw new HamstarException( "Not implemented" );
 		}
 	}
