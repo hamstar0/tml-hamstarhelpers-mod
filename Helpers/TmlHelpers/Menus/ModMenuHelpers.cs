@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -9,7 +9,7 @@ using Terraria.ModLoader.UI;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
+namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	public static partial class ModMenuHelpers {
 		public static void ApplyModBrowserFilter( string filterName, bool isFiltered, List<string> modNames ) {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) )

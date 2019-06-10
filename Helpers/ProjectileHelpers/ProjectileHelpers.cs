@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.ProjectileHelpers {
+namespace HamstarHelpers.Helpers.Projectiles {
 	public static class ProjectileHelpers {
 		public static void Hit( Projectile proj ) {
 			if( proj.penetrate <= 0 ) {
@@ -19,7 +20,7 @@ namespace HamstarHelpers.Helpers.ProjectileHelpers {
 			Texture2D tex = Main.projectileTexture[proj.type];
 			int texHeight = tex.Height / Main.projFrames[proj.type];
 
-			Vector2 newpos = UIHelpers.UIHelpers.ConvertToScreenPosition( pos );
+			Vector2 newpos = UIHelpers.ConvertToScreenPosition( pos );
 			var rect = new Rectangle( 0, proj.frame * texHeight, tex.Width, texHeight );
 			var origin = new Vector2( tex.Width * 0.5f, (float)texHeight * 0.5f );
 			SpriteEffects dir = SpriteEffects.None;

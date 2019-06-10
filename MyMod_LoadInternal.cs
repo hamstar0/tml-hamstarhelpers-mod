@@ -1,13 +1,13 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Services.Promises;
-using HamstarHelpers.Helpers.WorldHelpers;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.World;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Services.DataDumper;
-using HamstarHelpers.Helpers.PlayerHelpers;
+using HamstarHelpers.Helpers.Players;
 using System.Reflection;
 
 
@@ -67,7 +67,7 @@ namespace HamstarHelpers {
 
 		private void LoadDataSources() {
 			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
-				return "  " + WorldHelpers.GetUniqueIdWithSeed() + " (net mode: " + Main.netMode + ")";
+				return "  " + WorldHelpers.GetUniqueId(true) + " (net mode: " + Main.netMode + ")";
 			} );
 
 			DataDumper.SetDumpSource( "PlayerUid", () => {
@@ -75,10 +75,7 @@ namespace HamstarHelpers {
 					return "  Unobtainable";
 				}
 
-				bool _;
-				string oldUid = PlayerIdentityHelpers._GetUniqueId( Main.LocalPlayer, out _ );
-
-				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId() + " (old uid: " + oldUid + ")";
+				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId();
 			} );
 		}
 

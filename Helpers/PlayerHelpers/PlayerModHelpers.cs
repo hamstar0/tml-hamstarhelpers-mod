@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.Players {
 	public static class PlayerModHelpers {
 		public static void ModdedExtensionsReset( Player player ) {
 			PlayerModHelpers.ModdedExtensionsReset( player, new HashSet<string>() );

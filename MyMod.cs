@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Components.PacketProtocol;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Services.Messages;
 using System;
 using System.IO;

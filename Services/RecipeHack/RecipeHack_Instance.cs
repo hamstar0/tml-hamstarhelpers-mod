@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.RecipeHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

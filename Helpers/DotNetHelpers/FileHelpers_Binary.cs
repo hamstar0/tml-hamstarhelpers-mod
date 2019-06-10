@@ -4,7 +4,7 @@ using Terraria.Social;
 using Terraria.Utilities;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNET {
 	public static partial class FileHelpers {
 		public static bool SaveBinaryFile<T>( T obj, string fullPath, bool isCloud, bool backupOld, JsonSerializerSettings jsonSettings )
 				where T : class {

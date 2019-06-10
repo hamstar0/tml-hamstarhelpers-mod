@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.Items {
 	public static partial class ItemFinderHelpers {
 		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 

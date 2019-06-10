@@ -1,11 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	public class ModBoilerplateHelpers {
 		public static object HandleModCall( Type apiClassType, params object[] args ) {
 			if( args == null || args.Length == 0 ) { throw new HamstarException( "Undefined call." ); }
@@ -29,7 +30,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 			Array.Copy( args, 1, newArgs, 0, args.Length - 1 );
 
 			try {
-				return DotNetHelpers.Reflection.ReflectionHelpers.SafeCall( methodInfo, null, newArgs );
+				return ReflectionHelpers.SafeCall( methodInfo, null, newArgs );
 			} catch( Exception e ) {
 				throw new HamstarException( apiClassType.Name+" failed to execute Call binding " +callType, e );
 			}

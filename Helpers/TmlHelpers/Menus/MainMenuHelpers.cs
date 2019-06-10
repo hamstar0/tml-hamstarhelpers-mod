@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers.Reflection;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Timers;
 using System;
@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.Menus {
+namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	public static class MainMenuHelpers {
 		public static void LoadMenuModDownloads( string packTitle, List<string> modNames ) {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );

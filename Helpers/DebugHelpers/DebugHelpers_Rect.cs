@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.HUD;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.DebugHelpers {
+namespace HamstarHelpers.Helpers.Debug {
 	public static partial class DebugHelpers {
 		private static object MyRectLock = new object();
 
@@ -69,7 +70,7 @@ namespace HamstarHelpers.Helpers.DebugHelpers {
 						color.R = color.G = color.B = color.A = (byte)Math.Max(shade, 16);
 					}
 
-					HudHelpers.HudHelpers.DrawBorderedRect( sb, null, color, rect, 1 );
+					HudHelpers.DrawBorderedRect( sb, null, color, rect, 1 );
 
 					if( DebugHelpers.RectsTime.ContainsKey(key) ) {
 						if( DebugHelpers.RectsTime[key] > 0 ) {

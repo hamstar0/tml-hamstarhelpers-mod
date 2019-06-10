@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.UserHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.User;
 using HamstarHelpers.Internals.NetProtocols;
 using System;
 using System.Collections.Generic;

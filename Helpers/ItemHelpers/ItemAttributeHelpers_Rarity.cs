@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.Items {
 	public static partial class ItemAttributeHelpers {
 		public const int HighestVanillaRarity = 11;
 		public const int JunkRarity = -1;

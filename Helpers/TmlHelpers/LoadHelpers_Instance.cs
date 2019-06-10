@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Promises;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TModLoader {
 	public partial class LoadHelpers {
 		internal int StartupDelay = 0;
 

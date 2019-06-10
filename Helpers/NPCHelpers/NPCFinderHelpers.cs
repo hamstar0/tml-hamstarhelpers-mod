@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCs {
 	public static class NPCFinderHelpers {
 		private static IDictionary<int, int> AnyWhoOfType = new Dictionary<int, int>();
 
@@ -14,7 +14,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			NPC npc = new NPC();
 			for( int i = Main.npcTexture.Length - 1; i >= 0; i-- ) {
 				npc.SetDefaults( i );
-				if( NPCIdentityHelpers.GetUniqueId(npc) == uid ) {
+				if( NPCIdentityHelpers.GetProperUniqueId(npc) == uid ) {    // used to be GetUniqueId
 					return i;
 				}
 			}

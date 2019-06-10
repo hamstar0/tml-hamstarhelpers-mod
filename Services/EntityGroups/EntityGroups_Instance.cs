@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;

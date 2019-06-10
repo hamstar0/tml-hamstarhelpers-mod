@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.XnaHelpers {
+namespace HamstarHelpers.Helpers.XNA {
 	public partial class XnaHelpers {
 		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
 			int i, j;
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 				Main.spriteBatch.End();
 			} else {
 				if( forceDraw ) {
-					LogHelpers.WarnOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
+					LogHelpers.WarnOnce( DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
 					try {
 						draw( Main.spriteBatch );
 					} catch( Exception e ) {
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Helpers.XnaHelpers {
 				Main.spriteBatch.End();
 			} else {
 				if( forceDraw ) {
-					LogHelpers.WarnOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
+					LogHelpers.WarnOnce( DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
 					try {
 						draw( Main.spriteBatch );
 					} catch( Exception e ) {

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
 using Terraria;
@@ -6,7 +6,7 @@ using Terraria.IO;
 using Terraria.Utilities;
 
 
-namespace HamstarHelpers.Helpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.Players {
 	public static class PlayerFileHelpers {
 		public static void ErasePlayer( PlayerFileData data ) {
 			try {

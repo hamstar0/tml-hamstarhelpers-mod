@@ -1,11 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.ItemHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Entities;
+using HamstarHelpers.Helpers.Items;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.Players {
 	public partial class PlayerIdentityHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;
@@ -57,7 +58,7 @@ namespace HamstarHelpers.Helpers.PlayerHelpers {
 		////////////////
 
 		public static int GetVanillaSnapshotHash( Player player, bool noContext, bool looksMatter ) {
-			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( player, noContext );
+			int hash = EntityHelpers.GetVanillaSnapshotHash( player, noContext );
 			int itemHash;
 
 			hash ^= ( "statLifeMax" + player.statLifeMax ).GetHashCode();

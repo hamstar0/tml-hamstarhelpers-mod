@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.WorldHelpers {
+namespace HamstarHelpers.Helpers.World {
 	public partial class WorldHelpers {
 		public static Point WorldSizeSmall => new Point( 4200, 1200 );
 		public static Point WorldSizeMedium => new Point( 6400, 1800 );	//6300?

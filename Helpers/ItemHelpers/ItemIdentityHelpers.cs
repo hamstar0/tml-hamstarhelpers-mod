@@ -1,11 +1,9 @@
-﻿using HamstarHelpers.Components.DataStructures;
-using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.Items {
 	public partial class ItemIdentityHelpers {
 		public static string GetProperUniqueId( int itemType ) {
 			var item = new Item();
@@ -23,12 +21,16 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 
 		////
 
-		public static string GetUniqueId( Item item ) {
+
+
+		////////////////
+
+		/*public static string GetUniqueId( Item item ) {
 			if( item.modItem != null ) {
 				return item.modItem.mod.Name + " " + item.Name;
 			}
 			return ""+ item.netID;
-		}
+		}*/
 
 
 		public static string GetQualifiedName( Item item ) {
@@ -43,10 +45,10 @@ namespace HamstarHelpers.Helpers.ItemHelpers {
 		////////////////
 
 		public static int GetVanillaSnapshotHash( Item item, bool noContext, bool minimal ) {
-			int hash = EntityHelpers.EntityHelpers.GetVanillaSnapshotHash( item, noContext );
+			int hash = Entities.EntityHelpers.GetVanillaSnapshotHash( item, noContext );
 
-			string id = ItemIdentityHelpers.GetUniqueId( item );
-			
+			string id = ItemIdentityHelpers.GetProperUniqueId( item );  // used to be GetUniqueId
+
 			hash ^= ( "id" + id ).GetHashCode();
 			hash ^= ( "prefix" + item.prefix ).GetHashCode();
 			hash ^= ( "stack" + item.stack ).GetHashCode();

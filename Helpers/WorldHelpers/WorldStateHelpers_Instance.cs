@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Helpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.TModLoader;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.WorldHelpers {
+namespace HamstarHelpers.Helpers.World {
 	public partial class WorldStateHelpers {
 		private bool IsDay;
 		private int HalfDaysElapsed;

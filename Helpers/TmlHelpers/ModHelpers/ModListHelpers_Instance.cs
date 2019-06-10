@@ -1,13 +1,13 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	public partial class ModListHelpers {
 		private IDictionary<Services.Tml.BuildPropertiesEditor, Mod> ModsByBuildProps = new Dictionary<Services.Tml.BuildPropertiesEditor, Mod>();
 		private IDictionary<string, ISet<Mod>> ModsByAuthor = new Dictionary<string, ISet<Mod>>();

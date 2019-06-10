@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNET {
 	public static class DotNetHelpers {
 		public const double RadDeg = Math.PI / 180d;
 		public const double DegRed = 180d / Math.PI;

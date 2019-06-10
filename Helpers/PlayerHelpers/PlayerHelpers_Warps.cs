@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.ItemHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.DataStore;
 using Microsoft.Xna.Framework;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.Players {
 	public static partial class PlayerHelpers {
 		public static void Evac( Player player ) {
 			player.grappling[0] = -1;

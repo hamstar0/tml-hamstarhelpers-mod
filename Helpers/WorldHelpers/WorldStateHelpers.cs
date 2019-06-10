@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.TModLoader;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.WorldHelpers {
+namespace HamstarHelpers.Helpers.World {
 	public partial class WorldStateHelpers {
 		public readonly static int VanillaDayDuration = 54000;
 		public readonly static int VanillaNightDuration = 32400;

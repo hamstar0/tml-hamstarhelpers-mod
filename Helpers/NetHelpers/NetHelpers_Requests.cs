@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
 using System.Net;
@@ -8,7 +8,7 @@ using System.Threading;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.NetHelpers {
+namespace HamstarHelpers.Helpers.Net {
 	public partial class NetHelpers {
 		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> onResponse, Action<Exception, string> onError, Action onCompletion=null ) {
 			ThreadPool.QueueUserWorkItem( _ => {

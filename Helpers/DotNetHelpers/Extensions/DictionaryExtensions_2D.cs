@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers.Extensions {
+namespace HamstarHelpers.Helpers.DotNET.Extensions {
 	public static partial class DictionaryExtensions {
 		public static bool TryGetValue2D<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, int idx, out TValue value ) {
 			IList<TValue> list2;

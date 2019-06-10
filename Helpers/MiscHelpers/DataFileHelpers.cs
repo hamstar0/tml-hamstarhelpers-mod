@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Config;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.Misc {
 	public partial class DataFileHelpers {
 		public static string BaseFolder => "Mod Specific Data";
 

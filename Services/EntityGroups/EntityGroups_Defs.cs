@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.EntityGroups.Defs;
 using System;
 using System.Collections.Generic;

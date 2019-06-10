@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.NPCHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Helpers.Players;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.Misc {
 	public static partial class InfoHelpers {
 		public static string GetVanillaProgress() {
 			if( NPC.downedMoonlord ) {

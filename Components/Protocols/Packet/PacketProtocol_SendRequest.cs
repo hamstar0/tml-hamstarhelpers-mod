@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Protocol.Stream;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.ModLoader;

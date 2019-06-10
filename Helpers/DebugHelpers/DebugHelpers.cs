@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DebugHelpers {
+namespace HamstarHelpers.Helpers.Debug {
 	public static partial class DebugHelpers {
 		public static string GetCurrentContext( int stackFrameIdx=1 ) {
 			try {

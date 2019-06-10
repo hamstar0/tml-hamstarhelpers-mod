@@ -1,13 +1,13 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
+namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	public partial class ReflectionHelpers {
 		public static IList<Type> GetTypesFromAssembly( string assemblyName, string className ) {
 			IList<Type> classTypeList = new List<Type>();

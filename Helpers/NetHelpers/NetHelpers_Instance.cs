@@ -1,12 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Timers;
 using System;
 using System.Net;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NetHelpers {
+namespace HamstarHelpers.Helpers.Net {
 	public partial class NetHelpers {
 		private string PublicIP = null;
 		

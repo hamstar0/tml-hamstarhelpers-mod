@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.TmlHelpers;
+﻿using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 
 

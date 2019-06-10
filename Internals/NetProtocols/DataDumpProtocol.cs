@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Protocol.Packet.Interfaces;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.UserHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.User;
 using HamstarHelpers.Services.DataDumper;
 using Terraria;
 

@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.TileHelpers {
+namespace HamstarHelpers.Helpers.Tiles {
 	public static class TileFinderHelpers {
 		public static bool HasNearbySolid( int tileX, int tileY, int squareRadius, bool isPlatformSolid = false, bool isActuatedSolid = false ) {
 			int minX = Math.Max( tileX - squareRadius, 0 );

@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.MiscHelpers;
-using HamstarHelpers.Helpers.NetHelpers;
-using HamstarHelpers.Helpers.TmlHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Misc;
+using HamstarHelpers.Helpers.Net;
+using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;

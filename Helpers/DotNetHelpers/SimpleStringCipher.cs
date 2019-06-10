@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNET {
 	// Credit: https://stackoverflow.com/a/10177020/6269494
 	public static class SimpleStringCipher {
 		// This constant is used to determine the keysize of the encryption algorithm in bits.

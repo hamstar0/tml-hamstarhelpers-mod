@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.PlayerHelpers;
+﻿using HamstarHelpers.Helpers.Players;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.Items {
 	public static partial class ItemHelpers {
 		public static IList<Item> GetActive() {
 			var list = new List<Item>();

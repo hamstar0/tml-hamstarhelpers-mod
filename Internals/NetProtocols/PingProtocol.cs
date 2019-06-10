@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Protocol.Packet.Interfaces;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

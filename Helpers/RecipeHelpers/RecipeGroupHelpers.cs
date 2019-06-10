@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.ItemHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.RecipeHelpers {
+namespace HamstarHelpers.Helpers.Recipes {
 	public partial class RecipeGroupHelpers {
 		public static RecipeGroup EvilBossDrops => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDrops"];
 		public static RecipeGroup EvilLightPet => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsEvilLightPet"];

@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Linq;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
+namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	public partial class ReflectionHelpers {
 		public static object SafeCall( MethodInfo method, object methodContext, object[] args ) {
 			var paramInfos = method.GetParameters();

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameContent.Events;
 
 
-namespace HamstarHelpers.Helpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCs {
 	[Flags]
 	public enum VanillaEventFlag {
 		None = 1,

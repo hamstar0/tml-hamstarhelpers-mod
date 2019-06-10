@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TModLoader {
 	public partial class LoadHelpers {
 		public static bool IsModLoaded() {
 			var mymod = ModHelpersMod.Instance;
@@ -59,13 +59,13 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 				if( Main.netMode != 2 && !Main.dedServ ) {
 					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, mymod, "ModHelpersPlayer" );
 
-					LogHelpers.LogOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
+					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
 						+ "StartupDelay: "+!(mymod.LoadHelpers.StartupDelay < (60 * 2))
 						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsClientPlaying_Hackish+" (true?)"
 						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?)" );
 				} else {
 					var myworld = mymod.GetModWorld<ModHelpersWorld>();
-					LogHelpers.LogOnce( DebugHelpers.DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
+					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
 						+ "StartupDelay: "+!(mymod.LoadHelpers.StartupDelay < (60 * 2))
 						+ ", IsModLoaded(): "+LoadHelpers.IsModLoaded()+" (true?)"
 						+ ", HasObsoleteId: "+myworld.HasObsoleteId+" (false?)"

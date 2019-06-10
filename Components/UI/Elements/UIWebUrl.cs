@@ -5,9 +5,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.UIHelpers;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Components.UI.Elements {

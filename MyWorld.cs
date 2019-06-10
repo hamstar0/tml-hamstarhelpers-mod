@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.WorldHelpers;
-using HamstarHelpers.Helpers.XnaHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.World;
+using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework.Graphics;

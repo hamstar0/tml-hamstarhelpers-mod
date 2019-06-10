@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.ItemHelpers;
-using HamstarHelpers.Helpers.RecipeHelpers;
+﻿using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
 using Terraria.ID;

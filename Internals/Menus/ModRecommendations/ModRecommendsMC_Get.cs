@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;
@@ -86,13 +87,13 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 
 		public IList<Tuple<string, string>> GetRecommendsFromUI( string modName, ref string err ) {
 			UIPanel msgBox;
-			if( this.MyUI == null || !Helpers.DotNetHelpers.Reflection.ReflectionHelpers.Get( this.MyUI, "modInfo", out msgBox ) ) {
+			if( this.MyUI == null || !ReflectionHelpers.Get( this.MyUI, "modInfo", out msgBox ) ) {
 				err = "No modInfo field.";
 				return new List<Tuple<string, string>>();
 			}
 
 			string modDesc;
-			if( !Helpers.DotNetHelpers.Reflection.ReflectionHelpers.Get( msgBox, "text", out modDesc ) ) {
+			if( !ReflectionHelpers.Get( msgBox, "text", out modDesc ) ) {
 				err = "No modInfo.text field.";
 				return new List<Tuple<string, string>>();
 			}

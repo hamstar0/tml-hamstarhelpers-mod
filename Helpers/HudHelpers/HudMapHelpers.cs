@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.UI;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.HudHelpers {
+namespace HamstarHelpers.Helpers.HUD {
 	public static partial class HudMapHelpers {
 		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Vector2 position ) {    //Main.mapFullscreen
 			return HudMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
@@ -11,7 +12,7 @@ namespace HamstarHelpers.Helpers.HudHelpers {
 
 		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Rectangle position ) {    //Main.mapFullscreen
 			float mapScale = Main.mapFullscreenScale / Main.UIScale;
-			var scrSize = UIHelpers.UIHelpers.GetScreenSize();
+			var scrSize = UIHelpers.GetScreenSize();
 
 			float offscrLitX = 10f * mapScale;
 			float offscrLitY = 10f * mapScale;
@@ -43,7 +44,7 @@ namespace HamstarHelpers.Helpers.HudHelpers {
 
 		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Rectangle position ) {    //Main.mapStyle == 2
 			float mapScale = Main.mapOverlayScale;
-			var scrSize = UIHelpers.UIHelpers.GetScreenSize();
+			var scrSize = UIHelpers.GetScreenSize();
 
 			float offscrLitX = 10f * mapScale;
 			float offscrLitY = 10f * mapScale;

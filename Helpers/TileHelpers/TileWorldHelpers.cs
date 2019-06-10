@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.TileHelpers {
+namespace HamstarHelpers.Helpers.Tiles {
 	public static class TileWorldHelpers {
 		public static bool IsWithinMap( int tileX, int tileY ) {
 			return (tileX > 41 && tileX < Main.maxTilesX - 42) && (tileY > 41 && tileY < Main.maxTilesY - 42);

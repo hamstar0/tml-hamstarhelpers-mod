@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Helpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.Misc {
 	public class WebHelpers {
 		public readonly static IReadOnlyList<string> UrlShorteners = new List<string> {
 			"bit.ly",

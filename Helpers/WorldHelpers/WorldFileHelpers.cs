@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
 using Terraria;
@@ -6,7 +6,7 @@ using Terraria.IO;
 using Terraria.Social;
 
 
-namespace HamstarHelpers.Helpers.WorldHelpers {
+namespace HamstarHelpers.Helpers.World {
 	public static class WorldFileHelpers {
 		/*public static void EraseWorld_WIN( int which ) {
 			WorldFileData data = Main.WorldList[which];

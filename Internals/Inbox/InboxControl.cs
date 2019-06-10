@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.UIHelpers;
+﻿using HamstarHelpers.Helpers.UI;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;

@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.MiscHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.Misc;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
 using System;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	public class ModIdentityHelpers {
 		private static IDictionary<Mod, string> ModIds = new Dictionary<Mod, string>();
 

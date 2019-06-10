@@ -7,7 +7,7 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.DebugHelpers {
+namespace HamstarHelpers.Helpers.Debug {
 	public static partial class DebugHelpers {
 		private static object MyPrintLock = new object();
 

@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TileHelpers {
+namespace HamstarHelpers.Helpers.Tiles {
 	public static partial class TileHelpers {
 		public static bool IsAir( Tile tile ) {
 			return tile == null || (!tile.active() && tile.wall == 0) /*|| tile.type == 0*/;

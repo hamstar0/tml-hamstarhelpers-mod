@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCs {
 	public static partial class NPCHelpers {
 		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale, Color color ) {
 			Texture2D tex = Main.npcTexture[ npc.type ];
@@ -73,7 +74,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 			float yOff = heightOffset + yOffset + npc.gfxOffY + 4f;
 			float x = position.X + ((float)npc.width / 2f) - (((float)tex.Width * scale) / 2f) + (origin.X * scale);
 			float y = position.Y + (float)npc.height - ((float)texHeight * scale) + (origin.Y * scale) + yOff;
-			Vector2 pos = UIHelpers.UIHelpers.ConvertToScreenPosition( new Vector2( x, y ) );
+			Vector2 pos = UIHelpers.ConvertToScreenPosition( new Vector2( x, y ) );
 			
 			sb.Draw( tex, pos, frameRect, color, rotation, origin, scale, fx, 1f );
 		}

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.NPCHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.NPCs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Reflection;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.Items {
 	public partial class ItemIdentityHelpers {
 		public static IDictionary<string, Tuple<string, ISet<int>>> GetCommonItemGroups() {
 			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemIdentityHelpers )

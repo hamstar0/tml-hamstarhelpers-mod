@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Terraria;
 using System;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System.Threading;
 
 

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.DotNetHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+﻿using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;

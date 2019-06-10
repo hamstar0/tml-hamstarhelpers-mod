@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	public partial class ModListHelpers {
 		public static IEnumerable<Mod> GetAllLoadedModsPreferredOrder() {
 			var mymod = ModHelpersMod.Instance;

@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Reflection;
 using System.Threading;
@@ -10,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.Social;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers {
+namespace HamstarHelpers.Helpers.TModLoader {
 	public static partial class TmlHelpers {
 		public static void ExitToDesktop( bool save = true ) {
 			LogHelpers.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );
@@ -84,8 +85,8 @@ namespace HamstarHelpers.Helpers.TmlHelpers {
 		private static void ForceSetupPlayer( Player player ) {
 			ModPlayer[] modPlayers;
 
-			if( !DotNetHelpers.Reflection.ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
-				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", DotNetHelpers.Reflection.ReflectionHelpers.MostAccess );
+			if( !ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
+				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", DotNET.Reflection.ReflectionHelpers.MostAccess );
 				if( setupPlayerMethod == null ) {
 					throw new HamstarException( "Could not run SetupPlayer for " + ( player?.name ?? "null player" ) );
 				}

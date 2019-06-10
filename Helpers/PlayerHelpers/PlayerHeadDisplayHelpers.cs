@@ -8,7 +8,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.Players {
 	public static class PlayerHeadDisplayHelpers {
 		public static Color QuickAlpha( Color oldColor, float alpha ) {
 			Color result = oldColor;

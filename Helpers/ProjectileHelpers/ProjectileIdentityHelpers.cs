@@ -1,10 +1,8 @@
 ﻿using HamstarHelpers.Components.DataStructures;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.ProjectileHelpers {
+namespace HamstarHelpers.Helpers.Projectiles {
 	public partial class ProjectileIdentityHelpers {
 		public static string GetProperUniqueId( int projType ) {
 			var proj = new Projectile();

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Promises;
 using HamstarHelpers.Internals.WebRequests;
 using System;
@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using System.Collections.Generic;
 using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Components.UI.Elements {

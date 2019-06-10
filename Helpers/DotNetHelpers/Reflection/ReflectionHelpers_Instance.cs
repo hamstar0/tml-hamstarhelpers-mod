@@ -1,12 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
+namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	public partial class ReflectionHelpers {
 		public static ReflectionHelpers Instance => ModHelpersMod.Instance.ReflectionHelpers;
 

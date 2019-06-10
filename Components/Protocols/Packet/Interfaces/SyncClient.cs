@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using System;
+using Terraria;
 
 
 namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
@@ -16,10 +17,14 @@ namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 		////////////////
 
 		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
-			this.InitializeServerSendData( fromWho );
-			this.OnClone();
+			for( int i = 0; i < Main.player.Length; i++ ) {
+				if( i == fromWho ) { continue; }
 
-			this.SendToClient( fromWho, -1 );
+				this.InitializeServerRequestReplyDataOfClient( fromWho, i );
+				this.OnClone();
+
+				this.SendToClient( fromWho, -1 );
+			}
 
 			return true;
 		}
@@ -31,9 +36,8 @@ namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 			this.InitializeClientSendData();
 		}
 
-		protected abstract void InitializeServerSendData( int toWho );
+		protected abstract void InitializeServerRequestReplyDataOfClient( int toWho, int fromWho );
 		protected sealed override void SetServerDefaults( int toWho ) {
-			this.InitializeServerSendData( toWho );
 		}
 
 		protected abstract void Receive( int fromWho );

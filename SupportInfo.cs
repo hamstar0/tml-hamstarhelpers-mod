@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.HudHelpers;
-using HamstarHelpers.Helpers.XnaHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Menus;
 using Microsoft.Xna.Framework;

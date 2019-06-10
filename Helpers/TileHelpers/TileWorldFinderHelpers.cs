@@ -2,7 +2,7 @@
 using System;
 
 
-namespace HamstarHelpers.Helpers.TileHelpers {
+namespace HamstarHelpers.Helpers.Tiles {
 	public static class TileWorldFinderHelpers {
 		public static Tuple<int, int> FindWithin( TileType tileType, Rectangle within ) {
 			return TileWorldFinderHelpers.FindWithin( tileType, within, 1, 1 );

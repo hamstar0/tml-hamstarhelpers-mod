@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Helpers.WorldHelpers {
+namespace HamstarHelpers.Helpers.World {
 	public enum VanillaBiomes {
 		Forest, Space, Ocean, Cave, Hell,
 		Desert, Cold, Mushroom, Jungle, Corruption, Crimson, Hallow,

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.HudHelpers {
+namespace HamstarHelpers.Helpers.HUD {
 	public static class HudHelpers {
 		public static void GetTopHeartPosition( Player player, ref int x, ref int y ) {
 			x = Main.screenWidth - 66;

@@ -4,7 +4,7 @@ using System.IO.Compression;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNET {
 	public static partial class FileHelpers {
 		public static string SanitizePath( string path ) {
 			char[] invChars = Path.GetInvalidFileNameChars();

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.TmlHelpers.CommandsHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+﻿using HamstarHelpers.Helpers.TModLoader.Commands;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;

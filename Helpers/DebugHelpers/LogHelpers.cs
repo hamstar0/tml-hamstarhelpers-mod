@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.DebugHelpers {
+namespace HamstarHelpers.Helpers.Debug {
 	public partial class LogHelpers {
 		public static void Log( string msg ) {
 			try {

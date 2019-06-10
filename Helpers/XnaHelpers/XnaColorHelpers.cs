@@ -2,7 +2,7 @@
 using System;
 
 
-namespace HamstarHelpers.Helpers.XnaHelpers {
+namespace HamstarHelpers.Helpers.XNA {
 	public static partial class XnaColorHelpers {
 		public static Color Add( Color c1, int amt, bool alsoAlpha ) {
 			byte cr = (byte)MathHelper.Clamp( (int)c1.R + amt, 0, 255 );

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.RecipeHelpers;
+﻿using HamstarHelpers.Helpers.Recipes;
 using System;
 
 using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;

@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNET;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.Misc {
 	public static partial class InfoHelpers {
 		public static string RenderMarkdownModTable( string[] mods ) {
 			int len = mods.Length;

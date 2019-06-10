@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria;

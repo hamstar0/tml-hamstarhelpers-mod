@@ -2,9 +2,9 @@
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.UI.Menus;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.TmlHelpers.Menus;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.Menus.ModRecommendations.UI;
 using HamstarHelpers.Services.Menus;
 using System;

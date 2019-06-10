@@ -1,5 +1,8 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DotNetHelpers;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Helpers.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +11,7 @@ using Terraria.GameContent;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.Misc {
 	public static partial class InfoHelpers {
 		public static IList<string> GetGameData( IEnumerable<Mod> mods ) {
 			var list = new List<string>();
@@ -18,11 +21,11 @@ namespace HamstarHelpers.Helpers.MiscHelpers {
 				.ToArray();
 			bool isDay = Main.dayTime;
 			double timeOfDay = Main.time;
-			int halfDays = WorldHelpers.WorldStateHelpers.GetElapsedHalfDays();
-			string worldSize = WorldHelpers.WorldHelpers.GetSize().ToString();
+			int halfDays = WorldStateHelpers.GetElapsedHalfDays();
+			string worldSize = WorldHelpers.GetSize().ToString();
 			string[] worldProg = InfoHelpers.GetWorldProgress().ToArray();
-			int activeItems = ItemHelpers.ItemHelpers.GetActive().Count;
-			int activeNpcs = NPCHelpers.NPCHelpers.GetActive().Count;
+			int activeItems = ItemHelpers.GetActive().Count;
+			int activeNpcs = NPCHelpers.GetActive().Count;
 			//string[] playerInfos = InfoHelpers.GetCurrentPlayerInfo().ToArray();
 			//string[] playerEquips = InfoHelpers.GetCurrentPlayerEquipment().ToArray();
 			int activePlayers = Main.ActivePlayersCount;

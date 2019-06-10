@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
+namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	public partial class ReflectionHelpers {
 		private static bool GetMemberValue<T>( MemberInfo member, object instance, out T result ) {
 			var field = member as FieldInfo;

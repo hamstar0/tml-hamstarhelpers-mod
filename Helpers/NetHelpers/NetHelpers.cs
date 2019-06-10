@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NetHelpers {
+namespace HamstarHelpers.Helpers.Net {
 	public partial class NetHelpers {
 		public static string GetPublicIP() {
 			var mymod = ModHelpersMod.Instance;

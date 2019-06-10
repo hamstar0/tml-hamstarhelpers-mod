@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNET {
 	public static class LinqHelpers {
 		public static IEnumerable<TResult> SafeSelect<TSource, TResult>( this IEnumerable<TSource> source, Func<TSource, TResult> selector ) {
 			IEnumerable<TResult> output = null;

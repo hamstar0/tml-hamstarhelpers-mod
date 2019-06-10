@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.RecipeHelpers {
+namespace HamstarHelpers.Helpers.Recipes {
 	public partial class RecipeIdentityHelpers {
 		private static object MyLock = new object();
 

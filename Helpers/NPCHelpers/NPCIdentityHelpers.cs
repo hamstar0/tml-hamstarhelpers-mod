@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCs {
 	public partial class NPCIdentityHelpers {
 		public static string GetProperUniqueId( int npcType ) {
 			var npc = new NPC();
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 
 		////
 
-		public static string GetUniqueId( NPC npc ) {
+		/*public static string GetUniqueId( NPC npc ) {
 			string id = npc.TypeName;
 
 			if( npc.HasGivenName ) { id = npc.GivenName + " " + id; }
@@ -28,9 +28,7 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 
 			if( id != "" ) { return id; }
 			return "" + npc.type;
-		}
-
-		// TODO: GetVanillaSnapshotHash
+		}*/
 
 
 		public static string GetQualifiedName( NPC npc ) {
@@ -40,6 +38,8 @@ namespace HamstarHelpers.Helpers.NPCHelpers {
 		public static string GetQualifiedName( int netid ) {    //npcType?
 			return Lang.GetNPCNameValue( netid );
 		}
+
+		// TODO: GetVanillaSnapshotHash
 
 
 

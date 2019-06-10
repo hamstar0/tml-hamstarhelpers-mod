@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCs {
 	public partial class NPCIdentityHelpers {
 		public static readonly ReadOnlySet<int> VanillaBloodMoonTypes;
 		public static readonly ReadOnlySet<int> VanillaGoblinArmyTypes;

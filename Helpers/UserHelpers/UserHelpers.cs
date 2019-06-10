@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.PlayerHelpers;
+using HamstarHelpers.Helpers.Players;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.UserHelpers {
+namespace HamstarHelpers.Helpers.User {
 	public static class UserHelpers {
 		public static bool HasBasicServerPrivilege( Player player ) {
 			if( Main.netMode == 0 && !Main.dedServ ) {

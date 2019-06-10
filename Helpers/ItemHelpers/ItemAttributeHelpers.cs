@@ -4,9 +4,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.ItemHelpers {
+namespace HamstarHelpers.Helpers.Items {
 	public static partial class ItemAttributeHelpers {
 		private static IDictionary<int, int> _ProjPene = new Dictionary<int, int>();
+
 
 
 		////////////////

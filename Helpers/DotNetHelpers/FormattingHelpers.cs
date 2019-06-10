@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNET {
 	public class FormattingHelpers {
 		public static string SanitizeMarkdown( string input ) {
 			return input.Replace( "*", "\\*" )

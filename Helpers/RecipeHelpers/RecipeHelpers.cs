@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Players;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.RecipeHelpers {
+namespace HamstarHelpers.Helpers.Recipes {
 	[Flags]
 	public enum RecipeCraftFailReason {
 		NeedsNearbyWater=1,

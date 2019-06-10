@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -7,7 +7,7 @@ using System.Text;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
+namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	public static partial class ModHelpers {
 		public static byte[] UnsafeLoadFileFromMod( TmodFile tmod, string fileName ) {
 			using( var fileStream = File.OpenRead( tmod.path ) )

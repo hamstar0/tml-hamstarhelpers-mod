@@ -5,7 +5,7 @@ using Terraria.Social;
 using Terraria.Utilities;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers {
+namespace HamstarHelpers.Helpers.DotNET {
 	public static partial class FileHelpers {
 		public static bool SaveTextFile( string data, string fullPath, bool isCloud, bool backupOld ) {
 			if( backupOld && FileUtilities.Exists( fullPath, isCloud ) ) {

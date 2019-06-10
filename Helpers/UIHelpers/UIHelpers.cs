@@ -4,7 +4,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.UIHelpers {
+namespace HamstarHelpers.Helpers.UI {
 	public static class UIHelpers {
 		public static readonly int MinScreenWidth = 800;
 		public static readonly int MinScreenHeight = 640;

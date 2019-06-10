@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.UI.Menus;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.UI;

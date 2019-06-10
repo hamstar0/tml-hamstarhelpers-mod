@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.HudHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.HUD;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

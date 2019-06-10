@@ -1,11 +1,12 @@
-﻿using HamstarHelpers.Helpers.ItemHelpers;
-using HamstarHelpers.Helpers.NPCHelpers;
-using HamstarHelpers.Helpers.ProjectileHelpers;
+﻿using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Helpers.Projectiles;
+using HamstarHelpers.Helpers.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.EntityHelpers {
+namespace HamstarHelpers.Helpers.Entities {
 	public static class EntityHelpers {
 		public static int GetVanillaSnapshotHash( Entity ent, bool noContext ) {
 			int hash = ("active"+ent.active).GetHashCode();
@@ -39,7 +40,7 @@ namespace HamstarHelpers.Helpers.EntityHelpers {
 
 		public static bool SimpleLineOfSight( Vector2 position, Entity to ) {
 			var trace = new Utils.PerLinePoint( delegate ( int tileX, int tileY ) {
-				return !TileHelpers.TileHelpers.IsSolid( Framing.GetTileSafely( tileX, tileY ) );
+				return !TileHelpers.IsSolid( Framing.GetTileSafely( tileX, tileY ) );
 			} );
 			return Utils.PlotTileLine( position, to.position, 1, trace );
 		}

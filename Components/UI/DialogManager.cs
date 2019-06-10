@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.TmlHelpers;
+using HamstarHelpers.Helpers.TModLoader;
 using Terraria;
 
 

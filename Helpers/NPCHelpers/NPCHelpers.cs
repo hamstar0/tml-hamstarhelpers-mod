@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.NPCHelpers {
+namespace HamstarHelpers.Helpers.NPCs {
 	public static partial class NPCHelpers {
 		public static IList<NPC> GetActive() {
 			var list = new List<NPC>();

@@ -1,7 +1,7 @@
 ﻿using Terraria.Localization;
 
 
-namespace HamstarHelpers.Helpers.MiscHelpers {
+namespace HamstarHelpers.Helpers.Misc {
 	public static partial class MiscHelpers {
 		public static string RenderMoney( int money ) {
 			string render = "";

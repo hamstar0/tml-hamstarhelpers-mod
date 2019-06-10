@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Protocol.Packet.Interfaces;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Players;
 using Terraria;
 
 

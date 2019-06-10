@@ -3,7 +3,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.PlayerHelpers {
+namespace HamstarHelpers.Helpers.Players {
 	public static class PlayerNPCHelpers {
 		public static bool IsPlayerNearBoss( Player player ) {
 			int x = ((int)player.Center.X - (Main.maxScreenW / 2)) / 16;

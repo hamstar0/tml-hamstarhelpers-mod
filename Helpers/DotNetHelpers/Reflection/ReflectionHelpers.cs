@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNetHelpers.Reflection {
+namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	[AttributeUsage( AttributeTargets.All, AllowMultiple = false, Inherited = true )]
 	public class NullableAttribute : Attribute { }
 
