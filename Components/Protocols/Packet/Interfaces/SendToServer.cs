@@ -4,7 +4,7 @@ using System;
 
 namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 	public abstract class PacketProtocolSendToServer : PacketProtocol {
-		public static void QuickSend<T>() where T : PacketProtocolSendToServer {
+		protected static void QuickSend<T>() where T : PacketProtocolSendToServer {
 			PacketProtocol.QuickSendToServer<T>();
 		}
 

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Items {
@@ -68,7 +69,7 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 
 			if( Main.netMode != 0 && item.owner == Main.myPlayer && item.whoAmI > 0 ) {
-				NetMessage.SendData( 21, -1, -1, null, item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
+				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
 			}
 		}
 

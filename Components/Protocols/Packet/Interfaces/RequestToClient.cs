@@ -4,7 +4,7 @@ using System;
 
 namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 	public abstract class PacketProtocolRequestToClient : PacketProtocol {
-		public static void QuickRequest<T>( int toWho, int ignoreWho, int retries ) where T : PacketProtocolRequestToClient {
+		protected static void QuickRequest<T>( int toWho, int ignoreWho, int retries ) where T : PacketProtocolRequestToClient {
 			PacketProtocol.QuickRequestToClient<T>( toWho, ignoreWho, retries );
 		}
 

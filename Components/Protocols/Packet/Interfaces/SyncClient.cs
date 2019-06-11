@@ -5,10 +5,10 @@ using Terraria;
 
 namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 	public abstract class PacketProtocolSyncClient : PacketProtocol {
-		public static void SyncFromMe<T>() where T : PacketProtocolSyncClient {
+		protected static void SyncFromMe<T>() where T : PacketProtocolSyncClient {
 			PacketProtocol.QuickSendToServer<T>();
 		}
-		public static void SyncToMe<T>( int retries ) where T : PacketProtocolSyncClient {
+		protected static void SyncToMe<T>( int retries ) where T : PacketProtocolSyncClient {
 			PacketProtocol.QuickRequestToServer<T>( retries );
 		}
 

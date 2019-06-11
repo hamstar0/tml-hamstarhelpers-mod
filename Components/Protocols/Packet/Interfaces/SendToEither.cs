@@ -4,15 +4,15 @@ using System;
 
 namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 	public abstract class PacketProtocolSentToEither : PacketProtocol {
-		public static void QuickSendToAClient<T>( int toWho, int ignoreWho ) where T : PacketProtocolSendToClient {
+		protected static void QuickSendToAClient<T>( int toWho, int ignoreWho ) where T : PacketProtocolSendToClient {
 			PacketProtocol.QuickSendToClient<T>( toWho, ignoreWho );
 		}
 
-		public static void QuickSendToTheServer<T>() where T : PacketProtocolSendToServer {
+		protected static void QuickSendToTheServer<T>() where T : PacketProtocolSendToServer {
 			PacketProtocol.QuickSendToServer<T>();
 		}
 
-		public static void QuickSyncToTheServerAndClients<T>() where T : PacketProtocolSendToServer {
+		protected static void QuickSyncToTheServerAndClients<T>() where T : PacketProtocolSendToServer {
 			PacketProtocol.QuickSyncToServerAndClients<T>();
 		}
 

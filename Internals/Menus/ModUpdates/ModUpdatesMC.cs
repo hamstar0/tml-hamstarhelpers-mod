@@ -39,7 +39,9 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			
 			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, () => {
 				Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
-					this.DisplayModListVersions( ui, args.ModInfo );
+					if( args != null ) {
+						this.DisplayModListVersions( ui, args.ModInfo );
+					}
 					return false;
 				} );
 				return false;
