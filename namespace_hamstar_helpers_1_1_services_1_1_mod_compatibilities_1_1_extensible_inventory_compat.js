@@ -1,0 +1,4 @@
+var namespace_hamstar_helpers_1_1_services_1_1_mod_compatibilities_1_1_extensible_inventory_compat =
+[
+    [ "ExtensibleInventoryCompatibilities", "class_hamstar_helpers_1_1_services_1_1_mod_compatibilities_1_1_extensible_inventory_compat_1_1_e3807db3241c8b751a61d191fea54a5be.html", "class_hamstar_helpers_1_1_services_1_1_mod_compatibilities_1_1_extensible_inventory_compat_1_1_e3807db3241c8b751a61d191fea54a5be" ]
+];

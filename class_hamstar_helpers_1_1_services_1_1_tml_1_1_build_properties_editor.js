@@ -1,0 +1,25 @@
+var class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor =
+[
+    [ "GetBuildPropertiesForModFile", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a4e41869caa086f982554b3e6e45cc0db", null ],
+    [ "GetField", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a8e8122b567ea268b9cba73a2e883d3c2", null ],
+    [ "Author", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a7139445ddee3ec19db288dd3500b7e7f", null ],
+    [ "Beta", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a3a69898abe387f9c33faa10d444135c9", null ],
+    [ "BuildIgnores", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a6210f5eefde28f9c24d8ea46c0035bd7", null ],
+    [ "Description", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#ab2f01f825fed5698c062c0eeb0b8f8b3", null ],
+    [ "DisplayName", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a8421dc0d4e1fe66deba361841583e990", null ],
+    [ "DllReferences", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a12cc6fc7536980b1e671d12150b67553", null ],
+    [ "EditAndContinue", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a66bb30c9241d7faea4ba2b29221621a6", null ],
+    [ "HideCode", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a5f456309ff1e679560a73d7afc029b63", null ],
+    [ "HideResources", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a5207fb8b244b00d63160169deee21d1a", null ],
+    [ "Homepage", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a8a6be58f52b284911f9056e1a9d73226", null ],
+    [ "IncludePDB", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#ae09d93ed249674420b1a278461c9c295", null ],
+    [ "IncludeSource", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a4cf4c5edc51975b2a542aec7ae2f6205", null ],
+    [ "LanguageVersion", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#ad615c45bda10a73ec79b7b6d238dfe08", null ],
+    [ "NoCompile", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a7c129b6e0136280ea16ba4b518326f13", null ],
+    [ "Side", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a7fa7d5f601e539bb9ab8efbad01c0607", null ],
+    [ "SortAfter", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#ad5147d5313685c20daca2438eef9ee06", null ],
+    [ "SortBefore", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a7b195d44e2785db2a0ce51bd2e64f169", null ],
+    [ "Version", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a48b6bec9d95e09a41017075bd812da3e", null ],
+    [ "ModReferences", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a740951870565ef65d59ac8405ca268b4", null ],
+    [ "WeakReferences", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html#a9b16554f3ca2efe95fc4d03344e4ba0a", null ]
+];

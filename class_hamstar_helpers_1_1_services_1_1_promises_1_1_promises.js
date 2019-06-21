@@ -1,0 +1,25 @@
+var class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises =
+[
+    [ "AddModUnloadPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a25f686c2b227abc8302974867b0a232d", null ],
+    [ "AddPostModLoadPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a5e73a76cda78cf5361a2e6fd355c53a2", null ],
+    [ "AddPostWorldLoadEachPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a83048de29e81f3c20c1430b8ad7f9853", null ],
+    [ "AddPostWorldLoadOncePromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#ad517cf765474f902ae960c09020dd134", null ],
+    [ "AddPostWorldUnloadEachPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a0023fd93d1e5a54d6b584480082f8f70", null ],
+    [ "AddPostWorldUnloadOncePromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a172b6b8c5d78de5b752ced27aff7a1cd", null ],
+    [ "AddSafeWorldLoadEachPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a9db806ce1b934ab0f942a229d21a8543", null ],
+    [ "AddSafeWorldLoadOncePromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#ad4f512e8d361626df00d1bc6227fd236", null ],
+    [ "AddValidatedPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a720054c8ea06626ad0156d400cfbf6a0", null ],
+    [ "AddValidatedPromise< T >", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#aecce971bba7ba4abb0f98748bde4bff3", null ],
+    [ "AddWorldInPlayEachPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#aa19e3f6fbcf1037c9e6d6c021e377bff", null ],
+    [ "AddWorldInPlayOncePromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#aa7a3e12a23bb28cd0ce219f4167a520a", null ],
+    [ "AddWorldLoadEachPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#af5970f9e5815cb900fb3391d180adfef", null ],
+    [ "AddWorldLoadOncePromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a720250664b0c6cc98bc39e8dc1bfd687", null ],
+    [ "AddWorldUnloadEachPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a2a9a212ae47e2ff3f33280d32f063b23", null ],
+    [ "AddWorldUnloadOncePromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a121efa39dbddbbccf7bd154020503732", null ],
+    [ "ClearValidatedPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a6c5d14ac189c152cefe320c9f8347965", null ],
+    [ "CountValidatedPromises", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#a23c4f528ffd974d5a1731289fafc70e5", null ],
+    [ "IsPromiseValidated", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#aa903e3a43e154a6a299f928ec2173b71", null ],
+    [ "TriggerValidatedPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#aa61285c776b171a8db761aa72034c5c0", null ],
+    [ "TriggerValidatedPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#aaf0507eb98d76238741f12b8f59eb93e", null ],
+    [ "UntriggerValidatedPromise", "class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html#ac3eebfd1a41ce9946540a3efe192a7d4", null ]
+];

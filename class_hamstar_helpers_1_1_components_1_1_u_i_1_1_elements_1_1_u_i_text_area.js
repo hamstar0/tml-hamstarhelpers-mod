@@ -1,0 +1,28 @@
+var class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area =
+[
+    [ "UITextArea", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a0106e399bc45bbd80b0834e05c167f9b", null ],
+    [ "Click", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#ae10c31e9332817dd94e57c5c55c2b5cc", null ],
+    [ "Disable", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a0012c07d085096b11c2666f8651812ad", null ],
+    [ "DrawSelf", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#aff257f87d41b43d099aee4c6a2a12f0d", null ],
+    [ "Enable", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a3a3eb5cfe0cfcc17702ca6b67d75e856", null ],
+    [ "Focus", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a2b3f9b75e1300bf23fab2566821c5adb", null ],
+    [ "GetFittedText", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#aa83457a72c4401667706b71f33a8fc42", null ],
+    [ "Recalculate", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a7d87f3ed60f4cf2521562ac7ad0a5da9", null ],
+    [ "RefreshTheme", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a26781fe56f4fa1f4dcf1ecc173abf8e3", null ],
+    [ "SetText", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a777e87f1c9c01ce2c1fbc4d04d390684", null ],
+    [ "TextChangeEvent", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a42ea3e48c9c1f2c569b44ebc4382b5dc", null ],
+    [ "Unfocus", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a4cafb5acbdbcaf25c308aa1d2e521f57", null ],
+    [ "Update", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a4e55cfa5e0b3bc5e0baaf77bb7c810e4", null ],
+    [ "HintColor", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#ace2620e45e94cee936567dedf77a0d81", null ],
+    [ "TextColor", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#af7f3686f3c716d4ff834da32811c1ac9", null ],
+    [ "CursorAnimation", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#af568d0c8fe7cb5ec6bc8b53b8fe3c0f3", null ],
+    [ "CursorPos", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#aed313a3973595901a05d14092d35a7af", null ],
+    [ "DisplayText", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a352bf85a935fba1734aa76606007b524", null ],
+    [ "HasFocus", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a194bebdbefc37715fc433b641405d51f", null ],
+    [ "Hint", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a8c65771eeed37a2e4432068a6c4fdf61", null ],
+    [ "IsEnabled", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a6016cfa24e0d5e540dc7e5c8969dc419", null ],
+    [ "MaxLength", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#ab299382139cd28153925d492eac97260", null ],
+    [ "Text", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a2ba2338c7d878ac26b8ff8bff2cc431b", null ],
+    [ "Theme", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#affcae6d24e0e83e13c1325ee20f3c3fd", null ],
+    [ "OnPreChange", "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a8389a9bd5e8caeddab1bb69324eb8975", null ]
+];
