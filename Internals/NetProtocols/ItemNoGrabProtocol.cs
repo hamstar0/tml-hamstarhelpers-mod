@@ -5,6 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class ItemNoGrabProtocol : PacketProtocolSendToServer {
 		public static void SendToServer( int itemWho, int noGrabDelayAmt ) {
 			var protocol = new ItemNoGrabProtocol( itemWho, noGrabDelayAmt );

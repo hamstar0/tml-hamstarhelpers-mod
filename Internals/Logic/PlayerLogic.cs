@@ -8,6 +8,7 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Internals.Logic {
+	/** @private */
 	partial class PlayerLogic {
 		internal readonly static object MyValidatorKey;
 		internal readonly static PromiseValidator ServerConnectValidator;

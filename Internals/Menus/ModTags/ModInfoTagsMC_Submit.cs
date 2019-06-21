@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
+	/** @private */
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal void SubmitTags() {
 			if( string.IsNullOrEmpty( this.CurrentModName ) ) {

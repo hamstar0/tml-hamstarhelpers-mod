@@ -8,6 +8,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags.UI {
+	/** @private */
 	partial class UITagFinishButton : UIMenuButton {
 		private readonly ModInfoTagsMenuContext MenuContext;
 

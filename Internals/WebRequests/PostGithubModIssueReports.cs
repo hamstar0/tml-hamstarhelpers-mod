@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Misc;
 using HamstarHelpers.Helpers.Net;
-using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,6 +13,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	/** @private */
 	public struct GithubModIssueReportData {
 		public string githubuser;
 		public string githubproject;
@@ -23,7 +23,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 	}
 
 
-	
+
+	/** @private */
 	class PostGithubModIssueReports {
 		public static void ReportIssue( Mod mod, string issueTitle, string issueBody, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
 			if( !ModFeaturesHelpers.HasGithub( mod ) ) {

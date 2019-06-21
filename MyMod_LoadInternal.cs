@@ -12,6 +12,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers {
+	/** @private */
 	partial class ModHelpersMod : Mod {
 		private void PostInitializeInternal() {
 			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>(

@@ -11,6 +11,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
+	/** @private */
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );

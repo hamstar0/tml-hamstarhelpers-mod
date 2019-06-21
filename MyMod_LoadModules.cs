@@ -4,7 +4,6 @@ using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Internals.Menus.Support;
 using HamstarHelpers.Internals.Inbox;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.PacketProtocol;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
@@ -36,9 +35,11 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using HamstarHelpers.Components.Protocol.Packet;
 
 
 namespace HamstarHelpers {
+	/** @private */
 	partial class ModHelpersMod : Mod {
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;

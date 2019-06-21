@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Components.PacketProtocol;
-using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Messages;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
+	/** @private */
 	partial class PlayerLogic {
 		private void PreUpdateLocal( Player player ) {
 			var mymod = ModHelpersMod.Instance;
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 			// Update ping every 15 seconds
 			if( mymod.Config.IsServerGaugingAveragePing && this.TestPing++ > mymod.Config.PingUpdateDelay ) {
-				PacketProtocolSentToEither.QuickSendToServer<PingProtocol>();
+				PingProtocol.QuickSendToServer();
 				this.TestPing = 0;
 			}
 		}

@@ -2,6 +2,7 @@
 
 
 namespace HamstarHelpers.Internals.Logic {
+	/** @private */
 	partial class WorldLogic {
 		public WorldLogic() { }
 		

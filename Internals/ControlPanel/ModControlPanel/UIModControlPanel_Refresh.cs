@@ -3,6 +3,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
+	/** @private */
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		public void RefreshModLockButton() {
 			var mymod = ModHelpersMod.Instance;

@@ -4,7 +4,6 @@ using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.Menus.ModRecommendations.UI;
 using HamstarHelpers.Services.Menus;
 using System;
@@ -14,6 +13,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
+	/** @private */
 	partial class ModRecommendsMenuContext : SessionMenuContext {
 		public static int Limit => 8;
 

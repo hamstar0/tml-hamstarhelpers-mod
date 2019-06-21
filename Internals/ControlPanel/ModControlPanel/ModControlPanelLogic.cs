@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
+	/** @private */
 	class ModControlPanelLogic {
 		public Mod CurrentMod = null;
 

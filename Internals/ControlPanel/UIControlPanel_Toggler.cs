@@ -12,6 +12,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
+	/** @private */
 	partial class UIControlPanel : UIState {
 		private static Version AlertSinceVersion = new Version( 2, 0, 0 );
 

@@ -6,6 +6,7 @@ using System.Threading;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	/** @private */
 	class ModTagsPromiseArguments : PromiseArguments {
 		public bool Found;
 		internal IDictionary<string, ISet<string>> ModTags = null;

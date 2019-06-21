@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
+	/** @private */
 	partial class ModHelpersMod : Mod {
 		public bool HasSetupContent { get; private set; }
 		public bool HasAddedRecipeGroups { get; private set; }

@@ -6,6 +6,7 @@ using HamstarHelpers.Components.Protocol.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class PlayerOldIdProtocol : PacketProtocolSentToEither {
 		public bool ClientHasUID = false;
 		public string ClientPrivateUID = "";

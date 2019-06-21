@@ -3,6 +3,7 @@ using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 
 
 namespace HamstarHelpers.Internals.Logic {
+	/** @private */
 	partial class WorldLogic {
 		private void PreUpdateShared() {
 			var mymod = ModHelpersMod.Instance;

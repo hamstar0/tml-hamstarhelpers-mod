@@ -8,6 +8,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
+	/** @private */
 	class PlayerLogicPromiseArguments : PromiseArguments {
 		public int Who;
 	}
@@ -15,6 +16,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 
 
+	/** @private */
 	partial class PlayerLogic {
 		public void OnCurrentClientConnect( Player player ) {
 			PacketProtocolSentToEither.QuickSendToTheServer<PlayerNewIdProtocol>();

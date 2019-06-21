@@ -2,6 +2,7 @@
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class ModSettingsProtocol : PacketProtocolRequestToServer {
 		public HamstarHelpersConfigData Data;
 

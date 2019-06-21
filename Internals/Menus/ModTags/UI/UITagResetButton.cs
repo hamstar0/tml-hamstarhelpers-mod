@@ -5,6 +5,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags.UI {
+	/** @private */
 	partial class UITagResetButton : UIMenuButton {
 		private readonly TagsMenuContextBase MenuContext;
 

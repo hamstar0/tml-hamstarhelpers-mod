@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
+	/** @private */
 	class ModHelpersItem : GlobalItem {
 		internal int FromRecipeIdx = -1;
 

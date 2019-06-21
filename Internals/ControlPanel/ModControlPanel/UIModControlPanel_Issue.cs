@@ -2,6 +2,7 @@
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
+	/** @private */
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		public void EnableIssueInput() {
 			if( !this.IssueTitleInput.IsEnabled ) {

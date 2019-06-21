@@ -7,6 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class DataDumpProtocol : PacketProtocolRequestToServer {
 		private DataDumpProtocol() { }
 		

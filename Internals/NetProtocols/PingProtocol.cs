@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class PingProtocol : PacketProtocolSentToEither {
 		public long StartTime = -1;
 		public long EndTime = -1;

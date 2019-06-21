@@ -10,6 +10,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags.UI {
+	/** @private */
 	internal class UITagButton : UIMenuButton {
 		public const float ColumnWidth = 102f;
 		public const float RowHeight = 16f;

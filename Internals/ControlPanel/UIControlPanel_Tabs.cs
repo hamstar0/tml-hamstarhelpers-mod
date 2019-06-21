@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
@@ -10,6 +9,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
+	/** @private */
 	public abstract class UIControlPanelTab : UIPanel {
 		public UITheme Theme { get; protected set; }
 		public bool IsInitialized { get; private set; }

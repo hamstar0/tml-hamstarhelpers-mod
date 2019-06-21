@@ -7,6 +7,7 @@ using HamstarHelpers.Components.Protocol.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class PlayerDataProtocol : PacketProtocolSentToEither {
 		public static void SyncToEveryone( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 			if( Main.netMode != 1 ) { throw new HamstarException( "Not client" ); }

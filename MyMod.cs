@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Components.PacketProtocol;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Services.Messages;
@@ -10,6 +9,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
+	/** @private */
 	partial class ModHelpersMod : Mod {
 		public static ModHelpersMod Instance;
 

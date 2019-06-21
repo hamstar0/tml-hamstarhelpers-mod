@@ -6,13 +6,13 @@ using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
+	/** @private */
 	partial class ModRecommendsMenuContext : SessionMenuContext {
 		private IList<Tuple<string, string>> GetRecommendsFromActiveMod( string modName ) {
 			Mod mod = ModLoader.GetMod( modName );

@@ -16,6 +16,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
+	/** @private */
 	internal class UIRecommendsList : UIMenuPanel {
 		private readonly ModRecommendsMenuContext MenuContext;
 

@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -9,6 +8,7 @@ using System.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	/** @private */
 	partial class GetModInfo {
 		private static void RetrieveBadModsAsync( Action<IDictionary<string, int>, bool> onSuccess ) {
 			Action<Exception, string> onFail = ( e, output ) => {

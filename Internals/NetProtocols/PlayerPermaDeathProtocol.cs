@@ -5,6 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class PlayerPermaDeathProtocol : PacketProtocolSentToEither {
 		public static void SendToAll( int playerDeadWho, string msg ) {
 			var protocol = new PlayerPermaDeathProtocol( playerDeadWho, msg );

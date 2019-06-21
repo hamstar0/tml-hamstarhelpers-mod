@@ -8,6 +8,7 @@ using System.Text;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	/** @private */
 	public struct PostModTagsData {
 		public string modname;
 		public string modtags;
@@ -15,6 +16,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
+	/** @private */
 	class PostModInfo {
 		public static void SubmitModInfo( string modName, ISet<string> modTags, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
 			string url = "http://hamstar.pw/hamstarhelpers/mod_info_submit/";

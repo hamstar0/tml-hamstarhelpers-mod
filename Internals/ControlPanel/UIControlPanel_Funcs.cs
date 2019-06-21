@@ -4,6 +4,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
+	/** @private */
 	partial class UIControlPanel : UIState {
 		public bool CanOpen() {
 			return !this.IsOpen && !Main.inFancyUI;

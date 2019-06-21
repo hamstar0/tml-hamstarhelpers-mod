@@ -10,6 +10,7 @@ using System.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	/** @private */
 	partial class GetModInfo {
 		private static void RetrieveAllModInfoAsync( Action<IDictionary<string, BasicModInfoEntry>, bool> onSuccess ) {
 			Action<Exception, string> onFail = ( e, output ) => {

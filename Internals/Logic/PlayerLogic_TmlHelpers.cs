@@ -6,6 +6,7 @@ using HamstarHelpers.Services.ExtendedHooks;
 
 
 namespace HamstarHelpers.Internals.Logic {
+	/** @private */
 	partial class PlayerLogic {
 		private bool CanUpdateData = true;
 

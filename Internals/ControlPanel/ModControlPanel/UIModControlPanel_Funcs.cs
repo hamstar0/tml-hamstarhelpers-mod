@@ -3,6 +3,7 @@ using System;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
+	/** @private */
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		private void ApplyConfigChanges() {
 			this.Logic.ApplyConfigChanges();

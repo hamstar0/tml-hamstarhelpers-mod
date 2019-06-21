@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
+	/** @private */
 	class ModHelpersData {
 		public string ControlPanelNewSince = "1.0.0";
 	}
@@ -10,6 +11,7 @@ namespace HamstarHelpers {
 
 
 
+	/** @private */
 	partial class ModHelpersMod : Mod {
 		internal ModHelpersData Data = new ModHelpersData();
 

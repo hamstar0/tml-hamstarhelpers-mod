@@ -6,6 +6,7 @@ using HamstarHelpers.Components.Protocol.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
+	/** @private */
 	class PlayerNewIdProtocol : PacketProtocolSentToEither {
 		public IDictionary<int, string> PlayerIds;
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
+	/** @private */
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		internal readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
 
