@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.TModLoader.Mods;
+﻿using HamstarHelpers.Helpers.ModHelpers;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {

@@ -47,6 +47,7 @@
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
+    <Compile Include="Components\Config\JsonConfig_Base.cs" />
     <Compile Include="Components\Config\JsonConfig_File.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Components\Protocols\Attributes.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Components\Protocols\Packet\PacketProtocol_Send.cs" />
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendRequest.cs" />
+    <Compile Include="Components\Protocols\XNAContractResolver.cs" />
     <Compile Include="Helpers\DotNET\Encoding\HashHelpers.cs" />
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions_2D.cs" />
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions.cs" />

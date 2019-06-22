@@ -6,8 +6,8 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 using System.Collections.Generic;
-using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.ModHelpers;
 
 
 namespace HamstarHelpers.Components.UI.Elements {

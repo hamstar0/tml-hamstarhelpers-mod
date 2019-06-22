@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Services.ControlPanel;
 using HamstarHelpers.Services.Promises;
 using Microsoft.Xna.Framework;

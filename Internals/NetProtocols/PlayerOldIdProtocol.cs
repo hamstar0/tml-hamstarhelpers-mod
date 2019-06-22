@@ -8,6 +8,18 @@ using HamstarHelpers.Components.Protocol.Packet.Interfaces;
 namespace HamstarHelpers.Internals.NetProtocols {
 	/** @private */
 	class PlayerOldIdProtocol : PacketProtocolSentToEither {
+		public static void QuickRequestToClient( int playerWho ) {
+			PacketProtocolSentToEither.QuickRequestToClient<PlayerOldIdProtocol>( playerWho, -1, -1 );
+		}
+
+		public static void QuickSendToServer() {
+			PlayerNewIdProtocol.QuickSendToServer<PlayerOldIdProtocol>();
+		}
+
+
+
+		////////////////
+
 		public bool ClientHasUID = false;
 		public string ClientPrivateUID = "";
 

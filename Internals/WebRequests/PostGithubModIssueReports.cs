@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Misc;
+using HamstarHelpers.Helpers.Info;
+using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using Newtonsoft.Json;
@@ -34,7 +35,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			int maxLines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
 
 			IEnumerable<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder();
-			string bodyInfo = string.Join( "\n \n", GameInfoHelpers.GetFormattedGameInfo( mods ).ToArray() );
+			string bodyInfo = string.Join( "\n \n", FormattedGameInfoHelpers.GetFormattedGameInfo( mods ).ToArray() );
 			string bodyErrors = string.Join( "\n", GameInfoHelpers.GetErrorLog( maxLines ).ToArray() );
 
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
@@ -76,7 +77,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onError( e, str );
 			};
 
-			NetPlayHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
+			WebConnectionHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
 		}
 	}
 }

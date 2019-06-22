@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Items;
+﻿using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using Terraria.ID;
 

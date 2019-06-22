@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.Logic {
 	/** @private */
 	partial class PlayerLogic {
 		public void OnCurrentClientConnect( Player player ) {
-			PacketProtocolSentToEither.QuickSendToTheServer<PlayerNewIdProtocol>();
+			PlayerNewIdProtocol.QuickSendToServer();
 		}
 
 		public void OnServerConnect( Player player ) {
@@ -32,8 +32,8 @@ namespace HamstarHelpers.Internals.Logic {
 			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
 			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
 
-			PacketProtocolSentToEither.QuickRequestToClient<PlayerOldIdProtocol>( player.whoAmI, -1, -1 );
-			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( player.whoAmI, -1, -1 );
+			PlayerOldIdProtocol.QuickRequestToClient( player.whoAmI );
+			PlayerNewIdProtocol.QuickRequestToClient( player.whoAmI );
 		}
 
 		////
@@ -64,12 +64,12 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 
 			// Send
-			PacketProtocolSendToServer.QuickSendToServer<PlayerOldIdProtocol>();
+			PlayerOldIdProtocol.QuickSendToServer();
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 
 			// Receive
-			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>( -1 );
-			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>( -1 );
+			ModSettingsProtocol.QuickRequest();
+			WorldDataProtocol.QuickRequest();
 		}
 
 

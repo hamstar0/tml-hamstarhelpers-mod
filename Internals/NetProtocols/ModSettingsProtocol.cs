@@ -4,6 +4,14 @@
 namespace HamstarHelpers.Internals.NetProtocols {
 	/** @private */
 	class ModSettingsProtocol : PacketProtocolRequestToServer {
+		public static void QuickRequest() {
+			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>( -1 );
+		}
+
+
+
+		////////////////
+
 		public HamstarHelpersConfigData Data;
 
 

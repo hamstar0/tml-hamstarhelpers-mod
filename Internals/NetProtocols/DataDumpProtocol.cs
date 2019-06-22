@@ -9,6 +9,14 @@ using Terraria;
 namespace HamstarHelpers.Internals.NetProtocols {
 	/** @private */
 	class DataDumpProtocol : PacketProtocolRequestToServer {
+		public static void QuickRequest() {
+			PacketProtocolRequestToServer.QuickRequest<DataDumpProtocol>( -1 );
+		}
+
+
+
+		////////////////
+
 		private DataDumpProtocol() { }
 		
 		protected override void InitializeServerSendData( int fromWho ) { }

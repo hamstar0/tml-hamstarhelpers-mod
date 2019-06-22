@@ -36,6 +36,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using HamstarHelpers.Components.Protocol.Packet;
+using HamstarHelpers.Helpers.ModHelpers;
 
 
 namespace HamstarHelpers {

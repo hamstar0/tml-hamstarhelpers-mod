@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Network;
 using HamstarHelpers.Components.Protocol.Packet;
+using HamstarHelpers.Components.Protocols;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using System;
@@ -205,7 +206,7 @@ namespace HamstarHelpers.Components.Protocol.Stream {
 					LogHelpers.Log( "    - ReadStreamObjectValue - type: "+fieldType.Name+", raw value ("+rawJson.Length+"): \n  "+rawJson );
 				}
 
-				var jsonVal = JsonConfig.Deserialize( rawJson, fieldType, XnaContractResolver.DefaultSettings );
+				var jsonVal = JsonConfigBase.Deserialize( rawJson, fieldType, XnaContractResolver.DefaultSettings );
 				//var jsonVal = JsonConvert.DeserializeObject( rawJson, fieldType );
 
 				return jsonVal;

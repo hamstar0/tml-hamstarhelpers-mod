@@ -2,6 +2,7 @@
 using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
