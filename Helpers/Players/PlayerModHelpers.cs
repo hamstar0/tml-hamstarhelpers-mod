@@ -7,11 +7,8 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to mod compatibility for players.</summary> */
 	public static class PlayerModHelpers {
-		public static void ModdedExtensionsReset( Player player ) {
-			PlayerModHelpers.ModdedExtensionsReset( player, new HashSet<string>() );
-		}
-		
 		public static void ModdedExtensionsReset( Player player, ISet<string> exemptMods ) {
 			foreach( Mod mod in ModLoader.LoadedMods ) {
 				if( exemptMods.Contains(mod.Name) ) { continue; }

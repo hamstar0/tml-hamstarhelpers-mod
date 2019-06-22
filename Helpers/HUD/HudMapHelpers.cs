@@ -5,9 +5,10 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.HUD {
-	public static partial class HudMapHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to the HUD map.</summary> */
+	public static partial class HUDMapHelpers {
 		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Vector2 position ) {    //Main.mapFullscreen
-			return HudMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
+			return HUDMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
 		}
 
 		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Rectangle position ) {    //Main.mapFullscreen
@@ -39,7 +40,7 @@ namespace HamstarHelpers.Helpers.HUD {
 
 
 		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Vector2 position ) {    //Main.mapStyle == 2
-			return HudMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
+			return HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
 		}
 
 		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Rectangle position ) {    //Main.mapStyle == 2
@@ -73,7 +74,7 @@ namespace HamstarHelpers.Helpers.HUD {
 
 
 		public static Tuple<Vector2, bool> GetMiniMapScreenPosition( Vector2 position ) {    //Main.mapStyle == 1
-			return HudMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
+			return HUDMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
 		}
 
 		public static Tuple<Vector2, bool> GetMiniMapScreenPosition( Rectangle position ) {    //Main.mapStyle == 1
@@ -112,8 +113,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;
 
-			Vector2 mapBasePos = HudMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).Item1;
-			Vector2 mapNewPos = HudMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).Item1;
+			Vector2 mapBasePos = HUDMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).Item1;
+			Vector2 mapNewPos = HUDMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).Item1;
 
 			return mapNewPos - mapBasePos;
 		}
@@ -122,8 +123,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;
 
-			Vector2 mapBasePos = HudMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).Item1;
-			Vector2 mapNewPos = HudMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).Item1;
+			Vector2 mapBasePos = HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).Item1;
+			Vector2 mapNewPos = HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).Item1;
 
 			return mapNewPos - mapBasePos;
 		}
@@ -132,8 +133,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;
 			
-			Vector2 mapBasePos = HudMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).Item1;
-			Vector2 mapNewPos = HudMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).Item1;
+			Vector2 mapBasePos = HUDMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).Item1;
+			Vector2 mapNewPos = HUDMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).Item1;
 
 			return mapNewPos - mapBasePos;
 		}

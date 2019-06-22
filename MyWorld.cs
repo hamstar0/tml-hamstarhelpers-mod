@@ -132,7 +132,7 @@ namespace HamstarHelpers {
 					RasterizerState.CullCounterClockwise : RasterizerState.CullClockwise;
 
 			bool _;
-			XnaHelpers.DrawBatch(
+			XNAHelpers.DrawBatch(
 				(sb) => {
 					var mymod = (ModHelpersMod)this.mod;
 					DebugHelpers.DrawAllRects( sb );

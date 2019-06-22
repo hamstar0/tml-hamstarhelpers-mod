@@ -44,7 +44,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onError( e, str );
 			};
 
-			NetHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
+			NetPlayHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
 		}
 	}
 }

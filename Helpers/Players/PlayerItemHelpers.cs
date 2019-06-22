@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Internals.NetProtocols;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,6 +9,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to player inventory or equips.</summary> */
 	public static partial class PlayerItemHelpers {
 		public const int VanillaInventorySize = 58;
 		public const int VanillaInventoryHotbarSize = 10;
@@ -229,6 +230,7 @@ namespace HamstarHelpers.Helpers.Players {
 			return true;
 		}
 
+
 		////////////////
 
 		public static long CountMoney( Player player ) {
@@ -239,6 +241,7 @@ namespace HamstarHelpers.Helpers.Players {
 			long bank3Count = Utils.CoinsCount( out _, player.bank3.item, new int[0] );
 			return Utils.CoinsCombineStacks( out _, new long[] { invCount, bankCount, bank2Count, bank3Count } );
 		}
+
 
 		////////////////
 
@@ -264,6 +267,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 			return pos + (player.itemRotation.ToRotationVector2() * reach);
 		}
+		
 
 		////////////////
 
@@ -278,6 +282,7 @@ namespace HamstarHelpers.Helpers.Players {
 			}
 			return null;
 		}
+
 
 		////////////////
 

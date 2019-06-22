@@ -4,6 +4,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to players relative to NPCs.</summary> */
 	public static class PlayerNPCHelpers {
 		public static bool IsPlayerNearBoss( Player player ) {
 			int x = ((int)player.Center.X - (Main.maxScreenW / 2)) / 16;

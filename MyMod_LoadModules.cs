@@ -64,7 +64,7 @@ namespace HamstarHelpers {
 		// Helpers
 		internal ModFeaturesHelpers ModFeaturesHelpers;
 		internal LogHelpers LogHelpers;
-		internal NetHelpers NetHelpers;
+		internal NetPlayHelpers NetHelpers;
 		internal BuffHelpers BuffHelpers;
 		internal ItemIdentityHelpers ItemIdentityHelpers;
 		internal NPCIdentityHelpers NPCIdentityHelpers;
@@ -78,7 +78,7 @@ namespace HamstarHelpers {
 		internal MusicHelpers MusicHelpers;
 		internal PlayerIdentityHelpers PlayerIdentityHelpers;
 		internal ReflectionHelpers ReflectionHelpers;
-		internal XnaHelpers XnaHelpers;
+		internal XNAHelpers XnaHelpers;
 		internal ModListHelpers ModListHelpers;
 
 		// Internals
@@ -113,7 +113,7 @@ namespace HamstarHelpers {
 			this.PacketProtocolMngr = new PacketProtocolManager();
 
 			this.BuffHelpers = new BuffHelpers();
-			this.NetHelpers = new NetHelpers();
+			this.NetHelpers = new NetPlayHelpers();
 			this.ItemIdentityHelpers = new ItemIdentityHelpers();
 			this.NPCIdentityHelpers = new NPCIdentityHelpers();
 			this.ProjectileIdentityHelpers = new ProjectileIdentityHelpers();
@@ -135,7 +135,7 @@ namespace HamstarHelpers {
 			this.MusicHelpers = new MusicHelpers();
 			this.PlayerIdentityHelpers = new PlayerIdentityHelpers();
 			this.CustomHotkeys = new CustomHotkeys();
-			this.XnaHelpers = new XnaHelpers();
+			this.XnaHelpers = new XNAHelpers();
 			this.ServerInfo = new ServerInfo();
 			//this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();

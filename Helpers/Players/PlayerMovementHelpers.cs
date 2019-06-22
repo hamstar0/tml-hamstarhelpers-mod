@@ -4,6 +4,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to player movement.</summary> */
 	public static class PlayerMovementHelpers {
 		public static bool IsRelaxed( Player player, bool notMounted = true, bool notGrappled = true,
 				bool notPulleyed = true, bool notFrozen = true, bool notInverted = true ) {

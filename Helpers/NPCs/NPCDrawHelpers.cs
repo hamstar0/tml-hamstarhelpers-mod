@@ -5,7 +5,8 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	public static partial class NPCHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to NPC drawing.</summary> */
+	public static partial class NPCDrawHelpers {
 		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale, Color color ) {
 			Texture2D tex = Main.npcTexture[ npc.type ];
 			int frameCount = Main.npcFrameCount[ npc.type ];

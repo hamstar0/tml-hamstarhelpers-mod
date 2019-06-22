@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Items {
+	/** <summary>Assorted static "helper" functions pertaining to item identification.</summary> */
 	public partial class ItemIdentityHelpers {
 		public static string GetProperUniqueId( int itemType ) {
 			var item = new Item();

@@ -7,6 +7,7 @@ using Terraria.Utilities;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to player file data (.plr, .tplr).</summary> */
 	public static class PlayerFileHelpers {
 		public static void ErasePlayer( PlayerFileData data ) {
 			try {

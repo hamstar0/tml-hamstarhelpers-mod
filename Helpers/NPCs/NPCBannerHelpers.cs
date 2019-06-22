@@ -6,6 +6,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
+	/** <summary>Assorted static "helper" functions pertaining to NPC-dropped banners.</summary> */
 	public partial class NPCBannerHelpers {
 		public static IDictionary<int, int> GetNpcToBannerItemTypes() {
 			IDictionary<int, int> npcTypesToBannerItemTypes = new Dictionary<int, int>();

@@ -10,6 +10,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Menus {
+	/** <summary>Assorted static "helper" functions pertaining to the mod list menu.</summary> */
 	public static partial class ModMenuHelpers {
 		public static void ApplyModBrowserFilter( string filterName, bool isFiltered, List<string> modNames ) {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) )

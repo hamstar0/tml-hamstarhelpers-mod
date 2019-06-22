@@ -9,7 +9,8 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Net {
-	public partial class NetHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to connecting to the web.</summary> */
+	public partial class WebConnectionHelpers {
 		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> onResponse, Action<Exception, string> onError, Action onCompletion=null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success;
@@ -17,7 +18,7 @@ namespace HamstarHelpers.Helpers.Net {
 
 				try {
 					//lock( NetHelpers.RequestMutex ) {
-					output = NetHelpers.MakePostRequest( url, bytes, out success );
+					output = WebConnectionHelpers.MakePostRequest( url, bytes, out success );
 					//}
 
 					if( success ) {
@@ -78,7 +79,7 @@ namespace HamstarHelpers.Helpers.Net {
 
 				try {
 					//lock( NetHelpers.RequestMutex ) {
-					output = NetHelpers.MakeGetRequest( url, out success );
+					output = WebConnectionHelpers.MakeGetRequest( url, out success );
 					//}
 
 					if( success ) {

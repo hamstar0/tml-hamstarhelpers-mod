@@ -3,24 +3,13 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
+	/** <summary>Assorted static "helper" functions pertaining to finding world NPCs.</summary> */
 	public static class NPCFinderHelpers {
 		private static IDictionary<int, int> AnyWhoOfType = new Dictionary<int, int>();
 
 
 
 		////////////////
-
-		public static int FindNpcTypeByUniqueId( string uid ) {
-			NPC npc = new NPC();
-			for( int i = Main.npcTexture.Length - 1; i >= 0; i-- ) {
-				npc.SetDefaults( i );
-				if( NPCIdentityHelpers.GetProperUniqueId(npc) == uid ) {    // used to be GetUniqueId
-					return i;
-				}
-			}
-			return -1;
-		}
-
 		
 		public static NPC FindFirstNpcByType( int type ) {
 			if( NPCFinderHelpers.AnyWhoOfType.Keys.Contains( type ) ) {

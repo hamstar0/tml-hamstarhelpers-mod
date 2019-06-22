@@ -205,7 +205,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			rect.Width -= 4;
 			rect.Height -= 5;
 
-			HudHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
+			HUDHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
 
 			base.Draw( sb );
 		}

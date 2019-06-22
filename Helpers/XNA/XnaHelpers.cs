@@ -6,7 +6,8 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.XNA {
-	public partial class XnaHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to XNA.</summary> */
+	public partial class XNAHelpers {
 		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
 			int i, j;
 
@@ -43,7 +44,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		////////////////
 
 		public static bool DrawBatch( Action<SpriteBatch> draw, out bool isBegun, bool forceDraw=true ) {
-			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+			if( !XNAHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
 				return false; // take no chances
 			}
 
@@ -83,7 +84,7 @@ namespace HamstarHelpers.Helpers.XNA {
 				out bool isBegun,
 				bool forceBeginAnew = false,
 				bool forceDraw = true ) {
-			if( !XnaHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+			if( !XNAHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
 				return false; // take no chances
 			}
 

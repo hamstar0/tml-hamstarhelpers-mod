@@ -6,6 +6,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
+	/** @private */
 	public partial class RecipeIdentityHelpers {
 		private static object MyLock = new object();
 

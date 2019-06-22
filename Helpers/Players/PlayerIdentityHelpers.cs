@@ -7,6 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to unique player identification.</summary> */
 	public partial class PlayerIdentityHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;

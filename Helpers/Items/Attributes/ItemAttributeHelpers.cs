@@ -4,7 +4,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Items {
+namespace HamstarHelpers.Helpers.Items.Attributes {
+	/** <summary>Assorted static "helper" functions pertaining to gameplay attributes of items.</summary> */
 	public static partial class ItemAttributeHelpers {
 		private static IDictionary<int, int> _ProjPene = new Dictionary<int, int>();
 

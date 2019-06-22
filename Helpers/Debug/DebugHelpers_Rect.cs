@@ -8,6 +8,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Debug {
+	/** <summary>Assorted static "helper" functions pertaining to debugging and debug outputs.</summary> */
 	public static partial class DebugHelpers {
 		private static object MyRectLock = new object();
 
@@ -70,7 +71,7 @@ namespace HamstarHelpers.Helpers.Debug {
 						color.R = color.G = color.B = color.A = (byte)Math.Max(shade, 16);
 					}
 
-					HudHelpers.DrawBorderedRect( sb, null, color, rect, 1 );
+					HUDHelpers.DrawBorderedRect( sb, null, color, rect, 1 );
 
 					if( DebugHelpers.RectsTime.ContainsKey(key) ) {
 						if( DebugHelpers.RectsTime[key] > 0 ) {

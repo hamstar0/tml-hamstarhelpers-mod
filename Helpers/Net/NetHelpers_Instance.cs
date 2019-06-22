@@ -7,7 +7,8 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Net {
-	public partial class NetHelpers {
+	/** @private */
+	public partial class NetPlayHelpers {
 		private string PublicIP = null;
 		
 		private int CurrentPing = -1;
@@ -16,7 +17,7 @@ namespace HamstarHelpers.Helpers.Net {
 
 		////////////////
 
-		internal NetHelpers() {
+		internal NetPlayHelpers() {
 			this.LoadIPAsync();
 
 			int attempts = 3;
@@ -54,7 +55,7 @@ namespace HamstarHelpers.Helpers.Net {
 				}
 			};
 
-			NetHelpers.MakeGetRequestAsync<object>( "http://checkip.dyndns.org/", onResponse, onFail );
+			WebConnectionHelpers.MakeGetRequestAsync<object>( "http://checkip.dyndns.org/", onResponse, onFail );
 			//NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", onSuccess, onFail );
 			//using( WebClient webClient = new WebClient() ) {
 			//	this.PublicIP = webClient.DownloadString( "http://ifconfig.me/ip" );

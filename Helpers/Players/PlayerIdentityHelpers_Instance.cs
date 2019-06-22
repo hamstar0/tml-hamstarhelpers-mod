@@ -7,6 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** @private */
 	public partial class PlayerIdentityHelpers {
 		internal IDictionary<int, string> PlayerIds = new Dictionary<int, string>();
 

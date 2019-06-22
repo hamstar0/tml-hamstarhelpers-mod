@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
 using System;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
+	/** <summary>Assorted static "helper" functions pertaining to the state of the game.</summary> */
 	public partial class LoadHelpers {
 		public static bool IsModLoaded() {
 			var mymod = ModHelpersMod.Instance;

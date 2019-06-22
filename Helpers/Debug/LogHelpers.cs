@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Debug {
+	/** <summary>Assorted static "helper" functions pertaining to log outputs.</summary> */
 	public partial class LogHelpers {
 		public static void Log( string msg ) {
 			try {

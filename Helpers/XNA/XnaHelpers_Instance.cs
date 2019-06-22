@@ -6,14 +6,15 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.XNA {
-	public partial class XnaHelpers {
+	/** @private */
+	public partial class XNAHelpers {
 		private FieldInfo SpriteBatchBegunField = null;
 
 
 
 		////////////////
 
-		internal XnaHelpers() {
+		internal XNAHelpers() {
 			if( Main.dedServ || Main.netMode == 2 ) { return; }
 
 			Type sbType = Main.spriteBatch.GetType();

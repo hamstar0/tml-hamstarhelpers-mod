@@ -6,6 +6,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
+	/** <summary>Assorted static "helper" functions pertaining to reflection.</summary> */
 	public partial class ReflectionHelpers {
 		private static bool GetMemberValue<T>( MemberInfo member, object instance, out T result ) {
 			var field = member as FieldInfo;

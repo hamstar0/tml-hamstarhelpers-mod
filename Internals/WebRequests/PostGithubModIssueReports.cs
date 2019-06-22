@@ -34,8 +34,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 			int maxLines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;
 
 			IEnumerable<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder();
-			string bodyInfo = string.Join( "\n \n", InfoHelpers.GetGameData( mods ).ToArray() );
-			string bodyErrors = string.Join( "\n", InfoHelpers.GetErrorLog( maxLines ).ToArray() );
+			string bodyInfo = string.Join( "\n \n", GameInfoHelpers.GetFormattedGameInfo( mods ).ToArray() );
+			string bodyErrors = string.Join( "\n", GameInfoHelpers.GetErrorLog( maxLines ).ToArray() );
 
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "Reported from in-game: " + issueTitle;
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onError( e, str );
 			};
 
-			NetHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
+			NetPlayHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
 		}
 	}
 }

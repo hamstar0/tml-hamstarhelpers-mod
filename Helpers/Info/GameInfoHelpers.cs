@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.NPCs;
 using HamstarHelpers.Helpers.Players;
 using System;
@@ -9,8 +8,9 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Misc {
-	public static partial class InfoHelpers {
+namespace HamstarHelpers.Helpers.Info {
+	/** <summary>Assorted static "helper" functions pertaining to game information.</summary> */
+	public static partial class GameInfoHelpers {
 		public static string GetVanillaProgress() {
 			if( NPC.downedMoonlord ) {
 				return "Post Moon Lord";

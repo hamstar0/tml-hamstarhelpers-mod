@@ -3,7 +3,8 @@ using System;
 
 
 namespace HamstarHelpers.Helpers.XNA {
-	public static partial class XnaColorHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to XNA's Color struct.</summary> */
+	public static partial class XNAColorHelpers {
 		public static Color Add( Color c1, int amt, bool alsoAlpha ) {
 			byte cr = (byte)MathHelper.Clamp( (int)c1.R + amt, 0, 255 );
 			byte cg = (byte)MathHelper.Clamp( (int)c1.G + amt, 0, 255 );
@@ -80,10 +81,10 @@ namespace HamstarHelpers.Helpers.XNA {
 		}
 
 		public static float AvgRGBA( Color c ) {
-			return (float)XnaColorHelpers.SumRGBA(c) * 0.25f;
+			return (float)XNAColorHelpers.SumRGBA(c) * 0.25f;
 		}
 		public static float AvgRGB( Color c ) {
-			return (float)XnaColorHelpers.SumRGB( c ) / 3f;
+			return (float)XNAColorHelpers.SumRGB( c ) / 3f;
 		}
 
 		

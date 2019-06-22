@@ -3,6 +3,7 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Commands {
+	/** <summary>Assorted static "helper" functions pertaining to (chat or console) commands.</summary> */
 	public static class CommandsHelpers {
 		public static string GetQuotedStringFromArgsAt( string[] args, int startPos, out int nextArgIdx ) {
 			nextArgIdx = -1;

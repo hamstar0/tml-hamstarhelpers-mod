@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using Terraria.ID;
 using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
@@ -13,11 +13,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 					return true;
 				} );
 
-			for( int i = -12; i <= ItemAttributeHelpers.HighestVanillaRarity; i++ ) {
+			for( int i = -12; i <= ItemRarityAttributeHelpers.HighestVanillaRarity; i++ ) {
 				if( i >= -10 && i <= -3 ) { i = -2; }
 
 				int tier = i;
-				addDef( "Any " + ItemAttributeHelpers.RarityColorText[i] + " Tier", null,
+				addDef( "Any " + ItemRarityAttributeHelpers.RarityColorText[i] + " Tier", null,
 					( item, grps ) => {
 						return item.rare == tier;
 					} );

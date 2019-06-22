@@ -5,7 +5,8 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
-	public static class LinqHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to LINQ.</summary> */
+	public static class LINQHelpers {
 		public static IEnumerable<TResult> SafeSelect<TSource, TResult>( this IEnumerable<TSource> source, Func<TSource, TResult> selector ) {
 			IEnumerable<TResult> output = null;
 			try {

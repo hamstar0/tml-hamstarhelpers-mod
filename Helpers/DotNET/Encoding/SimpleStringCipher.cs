@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNET {
-	// Credit: https://stackoverflow.com/a/10177020/6269494
+namespace HamstarHelpers.Helpers.DotNET.Encoding {
+	/** <summary>
+	 * Simple string cipher encrypting and decrypting.
+	 * Credit: https://stackoverflow.com/a/10177020/6269494
+	 * </summary>
+	 */
 	public static class SimpleStringCipher {
 		// This constant is used to determine the keysize of the encryption algorithm in bits.
 		// We divide this by 8 within the code below to get the equivalent number of bytes.
@@ -17,12 +20,14 @@ namespace HamstarHelpers.Helpers.DotNET {
 
 
 
+		////////////////
+
 		public static string Encrypt( string plainText, string passPhrase ) {
 			// Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
 			// so that the same Salt and IV values can be used when decrypting.  
 			byte[] saltStringBytes = SimpleStringCipher.Generate256BitsOfRandomEntropy();
 			byte[] ivStringBytes = SimpleStringCipher.Generate256BitsOfRandomEntropy();
-			byte[] plainTextBytes = Encoding.UTF8.GetBytes( plainText );
+			byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes( plainText );
 
 			using( var password = new Rfc2898DeriveBytes( passPhrase, saltStringBytes, SimpleStringCipher.DerivationIterations ) ) {
 				byte[] keyBytes = password.GetBytes( Keysize / 8 );
@@ -80,13 +85,16 @@ namespace HamstarHelpers.Helpers.DotNET {
 
 								memoryStream.Close();
 								cryptoStream.Close();
-								return Encoding.UTF8.GetString( plainTextBytes, 0, decryptedByteCount );
+								return System.Text.Encoding.UTF8.GetString( plainTextBytes, 0, decryptedByteCount );
 							}
 						}
 					}
 				}
 			}
 		}
+
+
+		////////////////
 
 		private static byte[] Generate256BitsOfRandomEntropy() {
 			var randomBytes = new byte[32]; // 32 Bytes will give us 256 bits.

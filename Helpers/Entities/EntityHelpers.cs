@@ -7,6 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Entities {
+	/** <summary>Assorted static "helper" functions pertaining to `Entity`s (parent class of Item, NPC, Player, and Projectile).</summary> */
 	public static class EntityHelpers {
 		public static int GetVanillaSnapshotHash( Entity ent, bool noContext ) {
 			int hash = ("active"+ent.active).GetHashCode();

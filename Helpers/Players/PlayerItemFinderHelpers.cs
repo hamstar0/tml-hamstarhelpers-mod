@@ -4,39 +4,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to unique player identification.</summary> */
 	public static class PlayerItemFinderHelpers {
-		public static ISet<int> FindPossiblePurchaseTypes( Player player, long spent ) {
-			ISet<int> possiblePurchases = new HashSet<int>();
-
-			if( Main.npcShop <= 0 || Main.npcShop > Main.instance.shop.Length ) {
-				return possiblePurchases;
-			}
-			Item[] shopItems = Main.instance.shop[Main.npcShop].item;
-
-			for( int i = 0; i < shopItems.Length; i++ ) {
-				Item shopItem = shopItems[i];
-				if( shopItem == null || shopItem.IsAir ) { continue; }
-
-				if( shopItem.value == spent ) {
-					// If shop item type occurs more than once, skip
-					int j;
-					for( j = 0; j < i; j++ ) {
-						if( shopItems[j].type == shopItem.type ) {
-							break;
-						}
-					}
-					if( j != i ) { continue; }
-
-					possiblePurchases.Add( shopItem.type );
-				}
-			}
-
-			return possiblePurchases;
-		}
-
-		////////////////
-
-		public static Item FindFirstOfItemFor( Player player, ISet<int> itemTypes ) {
+		public static Item FindFirstOfPossessedItemFor( Player player, ISet<int> itemTypes ) {
 			int found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, itemTypes );
 			if( found != -1 ) {
 				return player.inventory[found];

@@ -3,6 +3,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
+	/** <summary>Assorted static "helper" functions pertaining to NPC identification.</summary> */
 	public partial class NPCIdentityHelpers {
 		public static string GetProperUniqueId( int npcType ) {
 			var npc = new NPC();
@@ -41,6 +42,20 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		// TODO: GetVanillaSnapshotHash
 
+
+
+		////////////////
+
+		public static int FindNpcTypeByUniqueId( string uid ) {
+			NPC npc = new NPC();
+			for( int i = Main.npcTexture.Length - 1; i >= 0; i-- ) {
+				npc.SetDefaults( i );
+				if( NPCIdentityHelpers.GetProperUniqueId( npc ) == uid ) {    // used to be GetUniqueId
+					return i;
+				}
+			}
+			return -1;
+		}
 
 
 		////////////////

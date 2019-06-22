@@ -1,12 +1,14 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.DotNET.Formatting;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Misc {
-	public static partial class InfoHelpers {
+namespace HamstarHelpers.Helpers.Info {
+	/** <summary>Assorted static "helper" functions pertaining to game information formatted for output.</summary> */
+	public static partial class FormattedGameInfoHelpers {
 		public static string RenderMarkdownModTable( string[] mods ) {
 			int len = mods.Length;
 
@@ -35,10 +37,10 @@ namespace HamstarHelpers.Helpers.Misc {
 				Player plr = Main.player[i];
 				if( plr == null || !plr.active ) { continue; }
 
-				playerInfos = InfoHelpers.GetPlayerInfo(plr);
+				playerInfos = GameInfoHelpers.GetPlayerInfo(plr);
 				cols = playerInfos.Count > cols ? playerInfos.Count : cols;
 
-				playerInfos["Name"] = FormattingHelpers.SanitizeMarkdown( playerInfos["Name"] );
+				playerInfos["Name"] = StringFormattingHelpers.SanitizeMarkdown( playerInfos["Name"] );
 				
 				columns += "| " + string.Join(" | ", playerInfos.Values) + " |";
 			}
@@ -55,10 +57,10 @@ namespace HamstarHelpers.Helpers.Misc {
 
 
 		public static string RenderMarkdownPlayerEquipsTable( Player player ) {
-			IDictionary<string, string> playerEquips = InfoHelpers.GetPlayerEquipment( player );
+			IDictionary<string, string> playerEquips = GameInfoHelpers.GetPlayerEquipment( player );
 			int cols = playerEquips.Count;
 
-			string playerLabel = "**Player "+FormattingHelpers.SanitizeMarkdown(player.name)+"'s ("+player.whoAmI+") equipment:**";
+			string playerLabel = "**Player "+ StringFormattingHelpers.SanitizeMarkdown(player.name)+"'s ("+player.whoAmI+") equipment:**";
 
 			string equipsLabels = cols > 0 ? string.Join( " | ", playerEquips.Keys ) : "-";
 			string header = "| " + equipsLabels + " |";
@@ -72,7 +74,7 @@ namespace HamstarHelpers.Helpers.Misc {
 				subheader += " :--- |";
 			}
 
-			string equips = string.Join( " | ", playerEquips.Values.SafeSelect(e=>FormattingHelpers.SanitizeMarkdown(e)) );
+			string equips = string.Join( " | ", playerEquips.Values.SafeSelect(e=> StringFormattingHelpers.SanitizeMarkdown(e)) );
 			string equipsCols = cols > 0 ? equips : "-";
 			string columns = "| " + equipsCols + " |";
 

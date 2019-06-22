@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
+	/** <summary>Assorted static "helper" functions pertaining to tiles.</summary> */
 	public static partial class TileHelpers {
 		public static bool IsAir( Tile tile ) {
 			return tile == null || (!tile.active() && tile.wall == 0) /*|| tile.type == 0*/;

@@ -5,6 +5,7 @@ using Terraria.Utilities;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
+	/** <summary>Assorted static "helper" functions pertaining to basic file IO.</summary> */
 	public static partial class FileHelpers {
 		public static bool SaveBinaryFile<T>( T obj, string fullPath, bool isCloud, bool backupOld, JsonSerializerSettings jsonSettings )
 				where T : class {

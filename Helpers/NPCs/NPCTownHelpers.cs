@@ -2,11 +2,13 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.NetModules;
 using Terraria.ID;
 using Terraria.Localization;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
+	/** <summary>Assorted static "helper" functions pertaining to NPC townsfolk.</summary> */
 	public static class NPCTownHelpers {
 		public static void Spawn( int townNpcType, int tileX, int tileY ) {
 			int npcWho = NPC.NewNPC( tileX * 16, tileY * 16, townNpcType, 1, 0f, 0f, 0f, 0f, 255 );
@@ -39,21 +41,41 @@ namespace HamstarHelpers.Helpers.NPCs {
 		}
 
 
+		////////////////
+
 		public static void Leave( NPC npc, bool announce = true ) {
+			if( Main.netMode == 1 ) {
+				LogHelpers.Warn( "NPCTownHelpers.Leave() called on client." );
+			}
+
 			int whoami = npc.whoAmI;
+
 			if( announce ) {
 				string msg = Main.npc[whoami].GivenName + " the " + Main.npc[whoami].TypeName + " " + Lang.misc[35];
 
 				if( Main.netMode == 0 ) {
 					Main.NewText( msg, 50, 125, 255, false );
+				} else if( Main.netMode == 1 ) {
+					//NetMessage.SendChatMessageFromClient( new ChatMessage( msg ) );
 				} else if( Main.netMode == 2 ) {
-					NetMessage.SendData( 25, -1, -1, NetworkText.FromLiteral( msg ), 255, 50f, 125f, 255f, 0, 0, 0 );
+					NetMessage.BroadcastChatMessage( NetworkText.FromLiteral( msg ), new Color( 255, 50, 125 ) );
+					//NetMessage.SendData( MessageID.ChatText, -1, -1, NetworkText.FromLiteral( msg ), 255, 50f, 125f, 255f, 0, 0, 0 );
 				}
 			}
 			Main.npc[whoami].active = false;
 			Main.npc[whoami].netSkip = -1;
 			Main.npc[whoami].life = 0;
 			NetMessage.SendData( 23, -1, -1, null, whoami, 0f, 0f, 0f, 0, 0, 0 );
+		}
+
+
+		////////////////
+
+		public static Item[] GetCurrentShop() {
+			if( Main.npcShop <= 0 || Main.npcShop > Main.instance.shop.Length ) {
+				return null;
+			}
+			return Main.instance.shop[Main.npcShop].item;
 		}
 
 
@@ -112,6 +134,8 @@ namespace HamstarHelpers.Helpers.NPCs {
 		}
 
 
+		////////////////
+
 		public static ISet<int> GetFemaleTownNpcTypes() {
 			return new HashSet<int>( new int[] {
 				NPCID.Nurse,
@@ -126,9 +150,8 @@ namespace HamstarHelpers.Helpers.NPCs {
 		public static ISet<int> GetNonGenderedTownNpcTypes() {
 			return new HashSet<int>( new int[] {
 				NPCID.WitchDoctor,	// Indeterminable
-				//NPCID.TaxCollector,   // lol!
 				NPCID.Truffle,
-				//NPCID.Cyborg,	// Cyborgs still have fleshy bits
+				NPCID.Cyborg,	// Cyborgs still have fleshy bits?
 				//NPCID.SkeletonMerchant	// Dialog suggests male in past life
 			} );
 		}

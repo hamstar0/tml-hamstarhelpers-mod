@@ -5,7 +5,8 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Net {
-	public partial class NetHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to network play.</summary> */
+	public partial class NetPlayHelpers {
 		public static string GetPublicIP() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.NetHelpers.PublicIP == null ) {

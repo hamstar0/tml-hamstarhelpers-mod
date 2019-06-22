@@ -8,6 +8,7 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
+	/** <summary>Assorted static "helper" functions pertaining to mods.</summary> */
 	public static partial class ModHelpers {
 		public static byte[] UnsafeLoadFileFromMod( TmodFile tmod, string fileName ) {
 			using( var fileStream = File.OpenRead( tmod.path ) )

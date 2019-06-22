@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Internals.NetProtocols;
 using Terraria;
 using Terraria.DataStructures;
@@ -6,15 +7,11 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/** <summary>Assorted static "helper" functions pertaining to players.</summary> */
 	public static partial class PlayerHelpers {
 		public const int InventorySize = 58;
 		public const int InventoryHotbarSize = 10;
 		public const int InventoryMainSize = 40;
-
-
-		////////////////
-
-		private static object SpawnPointKey = new object();
 
 
 
@@ -87,10 +84,10 @@ namespace HamstarHelpers.Helpers.Players {
 				itemCount += 1;
 			}
 
-			float techFactor = tally / (itemCount * ItemAttributeHelpers.HighestVanillaRarity);
+			float techFactor = tally / (itemCount * ItemRarityAttributeHelpers.HighestVanillaRarity);
 			float defenseFactor = 1f + ((float)player.statDefense * 0.01f);
 			float vitality = (float)player.statLifeMax / 20f;
-			float vitalityFactor = (vitality / (4f * ItemAttributeHelpers.HighestVanillaRarity)) * defenseFactor;
+			float vitalityFactor = (vitality / (4f * ItemRarityAttributeHelpers.HighestVanillaRarity)) * defenseFactor;
 
 			return (techFactor + vitalityFactor) / 2f;
 		}

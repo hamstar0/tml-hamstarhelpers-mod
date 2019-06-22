@@ -2,7 +2,8 @@
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Mods {
+namespace HamstarHelpers.Helpers.ModHelpers {
+	/** @private */
 	public partial class ModFeaturesHelpers {
 		internal IDictionary<string, Mod> GithubMods;
 		internal IDictionary<string, Mod> ConfigMods;

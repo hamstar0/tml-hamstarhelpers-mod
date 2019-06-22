@@ -20,6 +20,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 
 
+	/** <summary>Assorted static "helper" functions pertaining to recipes.</summary> */
 	public partial class RecipeHelpers {
 		public static RecipeCraftFailReason GetRecipeFailReasons( Player player, Recipe recipe,
 				out int[] missingTile, out IDictionary<int, int> missingItemTypesStacks, IEnumerable<Item> availableIngredients = null

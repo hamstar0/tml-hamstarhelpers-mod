@@ -9,7 +9,8 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	public static class PlayerHeadDisplayHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to player head drawing.</summary> */
+	public static class PlayerHeadDrawHelpers {
 		public static Color QuickAlpha( Color oldColor, float alpha ) {
 			Color result = oldColor;
 			result.R = (byte)((float)result.R * alpha);
@@ -37,24 +38,24 @@ namespace HamstarHelpers.Helpers.Players {
 			drawInfo.hairShader = hairDye;
 
 			if( player.face > 0 && player.face < 9 ) {
-				PlayerHeadDisplayHelpers.LoadAccFace( (int)player.face );
+				PlayerHeadDrawHelpers.LoadAccFace( (int)player.face );
 			}
 			if( player.dye[0] != null ) {
 				shaderId = player.dye[0].dye;
 			}
 			drawInfo.armorShader = shaderId;
 
-			PlayerHeadDisplayHelpers.LoadHair( player.hair );
+			PlayerHeadDrawHelpers.LoadHair( player.hair );
 
-			Color color = PlayerHeadDisplayHelpers.QuickAlpha( Color.White, alpha );
+			Color color = PlayerHeadDrawHelpers.QuickAlpha( Color.White, alpha );
 			drawInfo.eyeWhiteColor = color;
-			Color color2 = PlayerHeadDisplayHelpers.QuickAlpha( player.eyeColor, alpha );
+			Color color2 = PlayerHeadDrawHelpers.QuickAlpha( player.eyeColor, alpha );
 			drawInfo.eyeColor = color2;
-			Color color3 = PlayerHeadDisplayHelpers.QuickAlpha( player.GetHairColor( false ), alpha );
+			Color color3 = PlayerHeadDrawHelpers.QuickAlpha( player.GetHairColor( false ), alpha );
 			drawInfo.hairColor = color3;
-			Color color4 = PlayerHeadDisplayHelpers.QuickAlpha( player.skinColor, alpha );
+			Color color4 = PlayerHeadDrawHelpers.QuickAlpha( player.skinColor, alpha );
 			drawInfo.skinColor = color4;
-			Color color5 = PlayerHeadDisplayHelpers.QuickAlpha( Color.White, alpha );
+			Color color5 = PlayerHeadDrawHelpers.QuickAlpha( Color.White, alpha );
 			drawInfo.armorColor = color5;
 
 			SpriteEffects spriteEffects = SpriteEffects.None;
@@ -80,10 +81,10 @@ namespace HamstarHelpers.Helpers.Players {
 			player.position.Y = player.position.Y - headOffset;
 
 			if( player.head > 0 && player.head < 214 ) {
-				PlayerHeadDisplayHelpers.LoadArmorHead( player.head );
+				PlayerHeadDrawHelpers.LoadArmorHead( player.head );
 			}
 			if( player.face > 0 && player.face < 9 ) {
-				PlayerHeadDisplayHelpers.LoadAccFace( player.face );
+				PlayerHeadDrawHelpers.LoadAccFace( player.face );
 			}
 
 			bool drawHair = false;
@@ -101,31 +102,31 @@ namespace HamstarHelpers.Helpers.Players {
 
 			for( int i = 0; i < drawLayers.Count; i++ ) {
 				if( drawLayers[i].ShouldDraw( drawLayers ) ) {
-					PlayerHeadDisplayHelpers.DrawCompleteLayer( player, drawLayers[i], ref position, ref bodyFrame, ref drawOrigin, ref drawInfo,
+					PlayerHeadDrawHelpers.DrawCompleteLayer( player, drawLayers[i], ref position, ref bodyFrame, ref drawOrigin, ref drawInfo,
 						ref color, ref color2, ref color3, ref color4, ref color5, drawHair, drawAltHair,
 						shaderId, skinVariant, hairDye, scale, spriteEffects );
 				}
 			}
-			PlayerHeadDisplayHelpers.PostDrawLayer( player, ref position, ref bodyFrame );
+			PlayerHeadDrawHelpers.PostDrawLayer( player, ref position, ref bodyFrame );
 		}
 
 
 		private static void DrawCompleteLayer( Player player, PlayerHeadLayer drawLayer, ref Vector2 position, ref Rectangle bodyFrame, ref Vector2 drawOrigin, ref PlayerHeadDrawInfo drawInfo, ref Color color, ref Color color2, ref Color color3, ref Color color4, ref Color color5, bool drawHair, bool drawAltHair, int shaderId, int skinVariant, short hairDye, float scale, SpriteEffects spriteEffects ) {
 			if( drawLayer == PlayerHeadLayer.Head ) {
-				PlayerHeadDisplayHelpers.DrawHeadLayer( player, skinVariant, ref drawOrigin, ref color4, ref color, ref color2, scale, spriteEffects );
+				PlayerHeadDrawHelpers.DrawHeadLayer( player, skinVariant, ref drawOrigin, ref color4, ref color, ref color2, scale, spriteEffects );
 			} else if( drawLayer == PlayerHeadLayer.Hair ) {
 				if( drawHair ) {
-					PlayerHeadDisplayHelpers.DrawHairLayer( player, shaderId, hairDye, ref color5, ref color3, ref drawOrigin, scale, spriteEffects );
+					PlayerHeadDrawHelpers.DrawHairLayer( player, shaderId, hairDye, ref color5, ref color3, ref drawOrigin, scale, spriteEffects );
 				}
 			} else if( drawLayer == PlayerHeadLayer.AltHair ) {
 				if( drawAltHair ) {
-					PlayerHeadDisplayHelpers.DrawAltHairLayer( player, hairDye, ref color3, ref drawOrigin, scale, spriteEffects );
+					PlayerHeadDrawHelpers.DrawAltHairLayer( player, hairDye, ref color3, ref drawOrigin, scale, spriteEffects );
 				}
 			} else if( drawLayer == PlayerHeadLayer.Armor ) {
-				PlayerHeadDisplayHelpers.DrawArmorLayer( player, shaderId, hairDye, ref color3, ref color5, ref drawOrigin, scale, spriteEffects );
+				PlayerHeadDrawHelpers.DrawArmorLayer( player, shaderId, hairDye, ref color3, ref color5, ref drawOrigin, scale, spriteEffects );
 			} else if( drawLayer == PlayerHeadLayer.FaceAcc ) {
 				if( player.face > 0 ) {
-					PlayerHeadDisplayHelpers.DrawFaceLayer( player, shaderId, ref color5, ref drawOrigin, scale, spriteEffects );
+					PlayerHeadDrawHelpers.DrawFaceLayer( player, shaderId, ref color5, ref drawOrigin, scale, spriteEffects );
 				}
 			} else {
 				drawLayer.Draw( ref drawInfo );

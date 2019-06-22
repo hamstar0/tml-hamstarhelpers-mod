@@ -7,6 +7,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
+	/** <summary>Assorted static "helper" functions pertaining to tile identification.</summary> */
 	public static class TileIdentityHelpers {
 		private static IDictionary<int, IDictionary<int, string>> VanillaTileNamesByTypeAndSubtype;
 		private static IDictionary<string, Tuple<int, List<int>>> VanillaTileTypeandSubtypeByName;

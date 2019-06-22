@@ -5,6 +5,7 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
+	/** <summary>Assorted static "helper" functions pertaining to .NET/C# functionality.</summary> */
 	public static class DotNetHelpers {
 		public const double RadDeg = Math.PI / 180d;
 		public const double DegRed = 180d / Math.PI;

@@ -4,6 +4,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.World {
+	/** <summary>Assorted static "helper" functions pertaining to the current world's state.</summary> */
 	public partial class WorldStateHelpers {
 		public readonly static int VanillaDayDuration = 54000;
 		public readonly static int VanillaNightDuration = 32400;

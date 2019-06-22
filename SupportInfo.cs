@@ -240,7 +240,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				}
 				
 				bool _;
-				XnaHelpers.DrawBatch( ( sb ) => {
+				XNAHelpers.DrawBatch( ( sb ) => {
 					mymod.SupportInfo?.Update();
 					mymod.SupportInfo?.Draw( sb );
 				}, out _ );
@@ -268,7 +268,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			//var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
 			var rect = this.GetInnerBox();
-			HudHelpers.DrawBorderedRect( sb, boxColor * colorMul, boxEdgeColor * colorMul, rect, 4 );
+			HUDHelpers.DrawBorderedRect( sb, boxColor * colorMul, boxEdgeColor * colorMul, rect, 4 );
 
 			if( this.SupportUrlUI != null ) {
 				this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.25f );

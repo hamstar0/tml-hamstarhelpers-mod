@@ -6,6 +6,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
+	/** <summary>Assorted static "helper" functions pertaining to reflection.</summary> */
 	public partial class ReflectionHelpers {
 		public static object SafeCall( MethodInfo method, object methodContext, object[] args ) {
 			var paramInfos = method.GetParameters();

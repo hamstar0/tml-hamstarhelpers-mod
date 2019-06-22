@@ -5,6 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Items {
+	/** <summary>Assorted static "helper" functions pertaining to finding items in collections.</summary> */
 	public static partial class ItemFinderHelpers {
 		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
 
@@ -176,16 +177,28 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
-		public static IList<int> FindMatches( Item[] collection, Func<Item, bool> matcher ) {
-			var matches = new List<int>();
+		public static ISet<int> FindPossiblePurchaseTypes( Item[] items, long spent ) {	// Use with NPCTownHelpers.GetCurrentShop()
+			ISet<int> possiblePurchases = new HashSet<int>();
 
-			for( int i=0; i<collection.Length; i++ ) {
-				if( matcher(collection[i]) ) {
-					matches.Add( i );
+			for( int i = 0; i < items.Length; i++ ) {
+				Item shopItem = items[i];
+				if( shopItem == null || shopItem.IsAir ) { continue; }
+
+				if( shopItem.value == spent ) {
+					// If shop item type occurs more than once, skip
+					int j;
+					for( j = 0; j < i; j++ ) {
+						if( items[j].type == shopItem.type ) {
+							break;
+						}
+					}
+					if( j != i ) { continue; }
+
+					possiblePurchases.Add( shopItem.type );
 				}
 			}
 
-			return matches;
+			return possiblePurchases;
 		}
 	}
 }

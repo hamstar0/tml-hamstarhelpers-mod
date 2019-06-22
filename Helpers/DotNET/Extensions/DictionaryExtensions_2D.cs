@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Extensions {
+	/** <summary>Assorted static extension "helper" functions pertaining to dictionaries with nested containers.</summary> */
 	public static partial class DictionaryExtensions {
 		public static bool TryGetValue2D<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, int idx, out TValue value ) {
 			IList<TValue> list2;

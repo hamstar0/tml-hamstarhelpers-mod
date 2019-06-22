@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
+	/** <summary>Assorted static "helper" functions pertaining to mod list building.</summary> */
 	public partial class ModListHelpers {
 		public static IEnumerable<Mod> GetAllLoadedModsPreferredOrder() {
 			var mymod = ModHelpersMod.Instance;

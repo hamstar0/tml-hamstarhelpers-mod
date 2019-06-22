@@ -1,11 +1,13 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.World {
+	/** <summary>Assorted static "helper" functions pertaining to the current world.</summary> */
 	public partial class WorldHelpers {
 		public static Point WorldSizeSmall => new Point( 4200, 1200 );
 		public static Point WorldSizeMedium => new Point( 6400, 1800 );	//6300?
@@ -85,6 +87,21 @@ namespace HamstarHelpers.Helpers.World {
 		public static bool IsBeachRegion( Vector2 worldPos ) {
 			Vector2 tilePos = worldPos / 16;
 			return tilePos.X < 380 || tilePos.X > (Main.maxTilesX - 380);
+		}
+
+
+		////////////////
+
+		public static Vector2 DropToGround( Vector2 worldPos ) {
+			int x = (int)worldPos.X / 16;
+			int y = (int)worldPos.Y / 16;
+
+			do {
+				y++;
+			} while( y <= ( Main.maxTilesY - 42 ) && !TileHelpers.IsSolid( Framing.GetTileSafely( x, y ) ) );
+			y--;
+
+			return new Vector2( worldPos.X, y * 16 );
 		}
 	}
 }

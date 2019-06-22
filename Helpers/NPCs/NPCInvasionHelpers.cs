@@ -23,6 +23,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 
 
+	/** <summary>Assorted static "helper" functions pertaining to NPC invasions.</summary> */
 	public static partial class NPCInvasionHelpers {
 		public static VanillaEventFlag GetEventTypeOfInvasionType( int which ) {
 			switch( which ) {

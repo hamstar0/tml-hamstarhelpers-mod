@@ -7,6 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
+	/** <summary>Assorted static "helper" functions pertaining to common recipe groups.</summary> */
 	public partial class RecipeGroupHelpers {
 		public static RecipeGroup EvilBossDrops => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDrops"];
 		public static RecipeGroup EvilLightPet => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsEvilLightPet"];

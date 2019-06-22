@@ -5,6 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.UI {
+	/** <summary>Assorted static "helper" functions pertaining to the in-game UI (positions, interactions, etc.).</summary> */
 	public static class UIHelpers {
 		public static readonly int MinScreenWidth = 800;
 		public static readonly int MinScreenHeight = 640;

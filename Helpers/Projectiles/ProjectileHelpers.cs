@@ -5,6 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Projectiles {
+	/** <summary>Assorted static "helper" functions pertaining to players relative to projectiles.</summary> */
 	public static class ProjectileHelpers {
 		public static void Hit( Projectile proj ) {
 			if( proj.penetrate <= 0 ) {

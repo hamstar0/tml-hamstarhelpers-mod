@@ -3,7 +3,8 @@ using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Mods {
+namespace HamstarHelpers.Helpers.ModHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to Mod Helpers control panel features.</summary> */
 	public partial class ModFeaturesHelpers {
 		private static PropertyInfo GetGithubUserNameProp( Mod mod ) {
 			return mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );
@@ -25,6 +26,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			return mod.GetType().GetMethod( "ResetConfigFromDefaults", BindingFlags.Static | BindingFlags.Public );
 		}
 		
+
 		////////////////
 
 		public static bool DetectGithub( Mod mod ) {

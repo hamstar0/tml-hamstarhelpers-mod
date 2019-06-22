@@ -6,6 +6,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Misc {
+	/** <summary>Assorted static "helper" functions pertaining to game music.</summary> */
 	public class PaintHelpers {
 		private static IDictionary<int, byte> CachedMatches = new Dictionary<int, byte>();	// Static; shouldn't expect to change
 
@@ -25,8 +26,8 @@ namespace HamstarHelpers.Helpers.Misc {
 
 			for( int i=1; i<=30; i++ ) {
 				Color compare = WorldGen.paintColor( i );
-				Color diff = XnaColorHelpers.DifferenceRGB( color, compare );
-				float diffAmt = Math.Abs( XnaColorHelpers.SumRGB( diff ) );
+				Color diff = XNAColorHelpers.DifferenceRGB( color, compare );
+				float diffAmt = Math.Abs( XNAColorHelpers.SumRGB( diff ) );
 
 				if( minVal > diffAmt ) {
 					minVal = diffAmt;

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Helpers.Net {
+	/** <summary>Assorted static "helper" functions pertaining to the web.</summary> */
 	public class WebHelpers {
-		public readonly static IReadOnlyList<string> UrlShorteners = new List<string> {
+		public readonly static IReadOnlyList<string> UrlShortenerList = new List<string> {
 			"bit.ly",
 			"goo.gl",
 			"tinyurl.com",

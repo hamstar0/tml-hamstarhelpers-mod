@@ -7,6 +7,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
+	/** <summary>Assorted static "helper" functions pertaining to tiles as relevant to biomes.</summary> */
 	public static class TileBiomeHelpers {
 		public readonly static ISet<int> VanillaHolyTiles = new ReadOnlySet<int>( new HashSet<int> { 109, 110, 113, 117, 116, 164, 403, 402 } );
 		public readonly static ISet<int> VanillaCorruptionTiles = new ReadOnlySet<int>( new HashSet<int> { 23, 24, 25, 32, 112, 163, 400, 398 } ); //-5 * screenTileCounts[27];

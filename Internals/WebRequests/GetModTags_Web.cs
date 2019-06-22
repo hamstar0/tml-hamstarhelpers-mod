@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onCompletion( responseVal, found );
 			};
 
-			NetHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, GetModTags.HandleModTagsReceipt, onGetFail, onGetCompletion );
+			NetPlayHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, GetModTags.HandleModTagsReceipt, onGetFail, onGetCompletion );
 		}
 
 

@@ -2,6 +2,7 @@
 
 
 namespace HamstarHelpers.Helpers.Misc {
+	/** <summary>Assorted static "helper" misc. functions.</summary> */
 	public static partial class MiscHelpers {
 		public static string RenderMoney( int money ) {
 			string render = "";

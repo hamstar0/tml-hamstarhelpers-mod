@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Debug {
+	/** @private */
 	public partial class LogHelpers {
 		private static object MyLock = new object();
 

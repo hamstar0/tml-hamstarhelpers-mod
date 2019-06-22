@@ -4,6 +4,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.Debug {
+	/** <summary>Assorted static "helper" functions pertaining to debugging and debug outputs.</summary> */
 	public static partial class DebugHelpers {
 		public static string GetCurrentContext( int stackFrameIdx=1 ) {
 			try {

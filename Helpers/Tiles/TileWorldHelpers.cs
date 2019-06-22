@@ -3,6 +3,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
+	/** <summary>Assorted static "helper" functions pertaining to tiles relative to the world.</summary> */
 	public static class TileWorldHelpers {
 		public static bool IsWithinMap( int tileX, int tileY ) {
 			return (tileX > 41 && tileX < Main.maxTilesX - 42) && (tileY > 41 && tileY < Main.maxTilesY - 42);
@@ -20,19 +21,6 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 
 			return avg / (i * j);
-		}
-
-
-		public static Vector2 DropToGround( Vector2 worldPos ) {
-			int x = (int)worldPos.X / 16;
-			int y = (int)worldPos.Y / 16;
-
-			do {
-				y++;
-			} while( y <= (Main.maxTilesY - 42) && !TileHelpers.IsSolid( Framing.GetTileSafely(x, y) ) );
-			y--;
-
-			return new Vector2( worldPos.X, y * 16 );
 		}
 	}
 }

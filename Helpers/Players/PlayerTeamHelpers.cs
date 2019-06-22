@@ -14,7 +14,8 @@ namespace HamstarHelpers.Helpers.Players {
 
 
 
-	public static partial class PlayerHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to player multiplayer teams.</summary> */
+	public partial class PlayerTeamHelpers {
 		public static PlayerTeamName GetTeamName( int team, out Color color ) {
 			switch( team ) {
 			case 1:

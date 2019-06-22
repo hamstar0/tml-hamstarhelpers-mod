@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Extensions {
+	/** <summary>Assorted static extension "helper" functions pertaining to arrays.</summary> */
 	public static class ArrayExtensions {
 		public static T[] RemoveAt<T>( this T[] source, int index ) {
 			T[] dest = new T[source.Length - 1];

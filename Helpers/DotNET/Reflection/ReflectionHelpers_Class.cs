@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
+	/** <summary>Assorted static "helper" functions pertaining to reflection.</summary> */
 	public partial class ReflectionHelpers {
 		public static IList<Type> GetTypesFromAssembly( string assemblyName, string className ) {
 			IList<Type> classTypeList = new List<Type>();

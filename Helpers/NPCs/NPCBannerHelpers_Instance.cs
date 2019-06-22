@@ -1,11 +1,10 @@
-﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
-using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
+	/** @private */
 	public partial class NPCBannerHelpers {
 		private IDictionary<int, int> NpcTypesToBannerItemTypes;
 		private ISet<int> BannerItemTypes;

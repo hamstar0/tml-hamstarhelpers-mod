@@ -4,6 +4,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
+	/** <summary>Assorted static "helper" functions pertaining to tile walls.</summary> */
 	public static class TileWallHelpers {
 		public static bool IsDungeon( Tile tile, out bool isLihzahrd ) {
 			if( tile == null ) {

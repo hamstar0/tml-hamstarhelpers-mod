@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Items {
+	/** @private */
 	public partial class ItemIdentityHelpers {
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get {

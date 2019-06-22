@@ -7,6 +7,7 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
+	/** <summary>Assorted static "helper" functions for alleviating tedious "boilerplate" code.</summary> */
 	public class ModBoilerplateHelpers {
 		public static object HandleModCall( Type apiClassType, params object[] args ) {
 			if( args == null || args.Length == 0 ) { throw new HamstarException( "Undefined call." ); }

@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Misc {
+	/** <summary>Assorted static "helper" functions pertaining to file IO for mod custom data.</summary> */
 	public partial class DataFileHelpers {
 		public static string BaseFolder => "Mod Specific Data";
 

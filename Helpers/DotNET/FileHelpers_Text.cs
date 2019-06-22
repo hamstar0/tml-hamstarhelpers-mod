@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using Terraria.Social;
 using Terraria.Utilities;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
+	/** <summary>Assorted static "helper" functions pertaining to basic file IO.</summary> */
 	public static partial class FileHelpers {
 		public static bool SaveTextFile( string data, string fullPath, bool isCloud, bool backupOld ) {
 			if( backupOld && FileUtilities.Exists( fullPath, isCloud ) ) {

@@ -12,6 +12,7 @@ using Terraria.Social;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
+	/** <summary>Assorted static "helper" functions pertaining to tModLoader.</summary> */
 	public static partial class TmlHelpers {
 		public static void ExitToDesktop( bool save = true ) {
 			LogHelpers.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );

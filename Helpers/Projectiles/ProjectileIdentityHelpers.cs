@@ -3,6 +3,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Projectiles {
+	/** <summary>Assorted static "helper" functions pertaining to players relative to projectile identification.</summary> */
 	public partial class ProjectileIdentityHelpers {
 		public static string GetProperUniqueId( int projType ) {
 			var proj = new Projectile();

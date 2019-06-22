@@ -4,6 +4,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Buffs {
+	/** @private */
 	public partial class BuffIdentityHelpers {
 		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 

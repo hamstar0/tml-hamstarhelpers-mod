@@ -5,6 +5,7 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
+	/** <summary>Assorted static "helper" functions pertaining to basic file IO.</summary> */
 	public static partial class FileHelpers {
 		public static string SanitizePath( string path ) {
 			char[] invChars = Path.GetInvalidFileNameChars();

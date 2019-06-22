@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
+	/** <summary>Assorted static "helper" functions pertaining to recipe identification.</summary> */
 	public partial class RecipeIdentityHelpers {
 		public static bool Equals( Recipe recipe1, Recipe recipe2 ) {
 			if( recipe1.needHoney != recipe2.needHoney ) { return false; }

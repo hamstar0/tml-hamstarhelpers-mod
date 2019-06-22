@@ -6,7 +6,27 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.HUD {
-	public static class HudHealthBarHelpers {
+	/** <summary>Assorted static "helper" functions pertaining to the HUD health bar.</summary> */
+	public static class HUDHealthBarHelpers {
+		public static void GetTopHeartPosition( Player player, ref int x, ref int y ) {
+			x = Main.screenWidth - 66;
+			y = 59;
+
+			int hp = player.statLifeMax2 <= 400 ? player.statLifeMax2 : ( player.statLifeMax2 - 400 ) * 4;
+			if( hp > 500 ) { hp = 500; }
+			int hearts = hp / 20;
+
+			if( hearts % 10 != 0 ) {
+				x -= ( 10 - ( hearts % 10 ) ) * 26;
+			}
+			if( hearts <= 10 ) {
+				y -= 27;
+			}
+		}
+
+
+		////////////////
+
 		public static Color GetHealthBarColor( int hp, int maxHp, float alpha ) {
 			if( hp <= 0 ) { return Color.Black; }
 

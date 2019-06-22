@@ -55,7 +55,7 @@ namespace HamstarHelpers.Components.UI.Menu {
 				this.MyAction();
 			} else {
 				bool _;
-				XnaHelpers.DrawBatch( (sb) => this.DrawMenuItem(),
+				XNAHelpers.DrawBatch( (sb) => this.DrawMenuItem(),
 					SpriteSortMode.Deferred,
 					BlendState.AlphaBlend,
 					SamplerState.LinearClamp,

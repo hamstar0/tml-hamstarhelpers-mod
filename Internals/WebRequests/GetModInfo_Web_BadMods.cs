@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onSuccess( responseVal, success );
 			};
 			
-			NetHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, GetModInfo.HandleBadModsReceipt, onFail, onCompletion );
+			NetPlayHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, GetModInfo.HandleBadModsReceipt, onFail, onCompletion );
 		}
 
 

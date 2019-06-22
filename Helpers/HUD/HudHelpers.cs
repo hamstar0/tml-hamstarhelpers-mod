@@ -4,31 +4,13 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.HUD {
-	public static class HudHelpers {
-		public static void GetTopHeartPosition( Player player, ref int x, ref int y ) {
-			x = Main.screenWidth - 66;
-			y = 59;
-
-			int hp = player.statLifeMax2 <= 400 ? player.statLifeMax2 : (player.statLifeMax2 - 400) * 4;
-			if( hp > 500 ) { hp = 500; }
-			int hearts = hp / 20;
-
-			if( hearts % 10 != 0 ) {
-				x -= (10 - (hearts % 10)) * 26;
-			}
-			if( hearts <= 10 ) {
-				y -= 27;
-			}
-		}
-
-
-		////////////////
-
+	/** <summary>Assorted static "helper" functions pertaining to general HUD.</summary> */
+	public static class HUDHelpers {
 		public static void DrawBorderedRect( SpriteBatch sb, Color color, Color borderColor, Vector2 position, Vector2 size, int borderWidth ) {
-			HudHelpers.DrawBorderedRect( sb, color, new Color?(borderColor), position, size, borderWidth );
+			HUDHelpers.DrawBorderedRect( sb, color, new Color?(borderColor), position, size, borderWidth );
 		}
 		public static void DrawBorderedRect( SpriteBatch sb, Color color, Color borderColor, Rectangle rect, int borderWidth ) {
-			HudHelpers.DrawBorderedRect( sb, color, new Color?(borderColor), rect, borderWidth );
+			HUDHelpers.DrawBorderedRect( sb, color, new Color?(borderColor), rect, borderWidth );
 		}
 
 		public static void DrawBorderedRect( SpriteBatch sb, Color? color, Color? borderColor, Vector2 position, Vector2 size, int borderWidth ) {
@@ -57,7 +39,7 @@ namespace HamstarHelpers.Helpers.HUD {
 
 		////////////////
 
-		public static void DrawGlowingString( string text, Vector2 pos, float scale ) {
+		public static void DrawTerrariaString( string text, Vector2 pos, float scale ) {
 			Color color = new Color( (int)Main.mouseTextColor, (int)Main.mouseTextColor, (int)Main.mouseTextColor, 255 );
 
 			Utils.DrawBorderStringFourWay( Main.spriteBatch, Main.fontMouseText, text, pos.X, pos.Y, color, Color.Black, default( Vector2 ), scale );

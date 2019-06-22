@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
+	/** <summary>Supplies identifying information usable by any given tile (WIP).</summary> */
 	public partial class TileType {
 		public readonly static TileType OpenWall = new TileType {
 			IsSolid = false,

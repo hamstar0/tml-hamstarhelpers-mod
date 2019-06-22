@@ -3,6 +3,7 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Items {
+	/** <summary>Assorted static "helper" functions pertaining to music box items.</summary> */
 	public static class MusicBoxHelpers {
 		public static ISet<int> GetVanillaMusicBoxItemIds() {
 			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,

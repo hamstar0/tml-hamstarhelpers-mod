@@ -3,6 +3,7 @@ using HamstarHelpers.Services.Promises;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
+	/** @private */
 	public partial class LoadHelpers {
 		internal int StartupDelay = 0;
 

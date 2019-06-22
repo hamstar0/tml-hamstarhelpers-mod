@@ -6,7 +6,9 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Items {
+	/** <summary>Assorted static functions pertaining to general use of item.</summary> */
 	public static partial class ItemHelpers {
+		/** <summary>Get all active items found lying around in the world.</summary> */
 		public static IList<Item> GetActive() {
 			var list = new List<Item>();
 
