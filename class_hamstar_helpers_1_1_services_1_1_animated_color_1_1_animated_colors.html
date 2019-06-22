@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services_1_1_animated_color.html">AnimatedColor</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -103,69 +83,71 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad73dc14c1253a103ad721f9044097d06"><td class="memItemLeft" align="right" valign="top"><a id="ad73dc14c1253a103ad721f9044097d06"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>AnimatedColors</b> (int colorDuration, Color[] colors)</td></tr>
 <tr class="separator:ad73dc14c1253a103ad721f9044097d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad73dc14c1253a103ad721f9044097d06"><td class="memItemLeft" align="right" valign="top"><a id="ad73dc14c1253a103ad721f9044097d06"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>AnimatedColors</b> (int colorDuration, Color[] colors)</td></tr>
+<tr class="separator:ad73dc14c1253a103ad721f9044097d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ea55a069d2ef5adfdc2f199e1fdd54c"><td class="memItemLeft" align="right" valign="top"><a id="a7ea55a069d2ef5adfdc2f199e1fdd54c"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> (int durationPerColor, Color[] colors)</td></tr>
 <tr class="separator:a7ea55a069d2ef5adfdc2f199e1fdd54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ea55a069d2ef5adfdc2f199e1fdd54c"><td class="memItemLeft" align="right" valign="top"><a id="a7ea55a069d2ef5adfdc2f199e1fdd54c"></a>
+static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> (int durationPerColor, Color[] colors)</td></tr>
+<tr class="separator:a7ea55a069d2ef5adfdc2f199e1fdd54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a35b0f9fc5bc3f0d785debf603f24c8b4"><td class="memItemLeft" align="right" valign="top"><a id="a35b0f9fc5bc3f0d785debf603f24c8b4"></a>
+<tr class="memitem:ae5de77a4b2f472083c5f0caaebf5b4b8"><td class="memItemLeft" align="right" valign="top"><a id="ae5de77a4b2f472083c5f0caaebf5b4b8"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Alert</b><code> [get]</code></td></tr>
-<tr class="separator:a35b0f9fc5bc3f0d785debf603f24c8b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cef30b53cd1a4906dee0098ab45ff24"><td class="memItemLeft" align="right" valign="top"><a id="a8cef30b53cd1a4906dee0098ab45ff24"></a>
+<tr class="separator:ae5de77a4b2f472083c5f0caaebf5b4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9deae9068820f8a5b287491477f42a6a"><td class="memItemLeft" align="right" valign="top"><a id="a9deae9068820f8a5b287491477f42a6a"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Strobe</b><code> [get]</code></td></tr>
-<tr class="separator:a8cef30b53cd1a4906dee0098ab45ff24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfa14ba3008f63328a5402083b326676"><td class="memItemLeft" align="right" valign="top"><a id="adfa14ba3008f63328a5402083b326676"></a>
+<tr class="separator:a9deae9068820f8a5b287491477f42a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3570577e2b50db23d878953fa9666a34"><td class="memItemLeft" align="right" valign="top"><a id="a3570577e2b50db23d878953fa9666a34"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Fire</b><code> [get]</code></td></tr>
-<tr class="separator:adfa14ba3008f63328a5402083b326676"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a719069c8777e18eeced10b790d16a95b"><td class="memItemLeft" align="right" valign="top"><a id="a719069c8777e18eeced10b790d16a95b"></a>
+<tr class="separator:a3570577e2b50db23d878953fa9666a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92d3a11b2161950e0142d40bf2f1bea6"><td class="memItemLeft" align="right" valign="top"><a id="a92d3a11b2161950e0142d40bf2f1bea6"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Water</b><code> [get]</code></td></tr>
-<tr class="separator:a719069c8777e18eeced10b790d16a95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a225ba8f28ab7a2968ffcbe5298564d68"><td class="memItemLeft" align="right" valign="top"><a id="a225ba8f28ab7a2968ffcbe5298564d68"></a>
+<tr class="separator:a92d3a11b2161950e0142d40bf2f1bea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6847e2357eaab6e30fbb7033040d207d"><td class="memItemLeft" align="right" valign="top"><a id="a6847e2357eaab6e30fbb7033040d207d"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Air</b><code> [get]</code></td></tr>
-<tr class="separator:a225ba8f28ab7a2968ffcbe5298564d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98465ffabd3361fdd6344f001f75a9da"><td class="memItemLeft" align="right" valign="top"><a id="a98465ffabd3361fdd6344f001f75a9da"></a>
+<tr class="separator:a6847e2357eaab6e30fbb7033040d207d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05929476cd11e125006df4036b63ddda"><td class="memItemLeft" align="right" valign="top"><a id="a05929476cd11e125006df4036b63ddda"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Ether</b><code> [get]</code></td></tr>
-<tr class="separator:a98465ffabd3361fdd6344f001f75a9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc4b4ddb4016eca41811d97ca498d2c5"><td class="memItemLeft" align="right" valign="top"><a id="adc4b4ddb4016eca41811d97ca498d2c5"></a>
+<tr class="separator:a05929476cd11e125006df4036b63ddda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9396e641fcab0bce288a9fa3b80467a4"><td class="memItemLeft" align="right" valign="top"><a id="a9396e641fcab0bce288a9fa3b80467a4"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Disco</b><code> [get]</code></td></tr>
-<tr class="separator:adc4b4ddb4016eca41811d97ca498d2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc0bce228d3e47ff3c7881acfeafbd71"><td class="memItemLeft" align="right" valign="top"><a id="abc0bce228d3e47ff3c7881acfeafbd71"></a>
+<tr class="separator:a9396e641fcab0bce288a9fa3b80467a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d37e7f1fc62863938c5e521ff037c1"><td class="memItemLeft" align="right" valign="top"><a id="ae2d37e7f1fc62863938c5e521ff037c1"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a>&#160;</td><td class="memItemRight" valign="bottom"><b>DiscoFast</b><code> [get]</code></td></tr>
-<tr class="separator:abc0bce228d3e47ff3c7881acfeafbd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac068330e95e25b36806d81e25c2a72f3"><td class="memItemLeft" align="right" valign="top"><a id="ac068330e95e25b36806d81e25c2a72f3"></a>
+<tr class="separator:ae2d37e7f1fc62863938c5e521ff037c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38e4989d183c47aac1f8b7b361fd078d"><td class="memItemLeft" align="right" valign="top"><a id="a38e4989d183c47aac1f8b7b361fd078d"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>ColorDuration</b><code> [get]</code></td></tr>
-<tr class="separator:ac068330e95e25b36806d81e25c2a72f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5b7cb4e0fd8af079d85a8ab2682c460"><td class="memItemLeft" align="right" valign="top"><a id="ad5b7cb4e0fd8af079d85a8ab2682c460"></a>
+<tr class="separator:a38e4989d183c47aac1f8b7b361fd078d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7047eebf362a6dbe0ce0d26c525f2bd"><td class="memItemLeft" align="right" valign="top"><a id="aa7047eebf362a6dbe0ce0d26c525f2bd"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>Progress</b><code> [get]</code></td></tr>
-<tr class="separator:ad5b7cb4e0fd8af079d85a8ab2682c460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afeabd18a8397bb10b36d9b61bd325870"><td class="memItemLeft" align="right" valign="top"><a id="afeabd18a8397bb10b36d9b61bd325870"></a>
+<tr class="separator:aa7047eebf362a6dbe0ce0d26c525f2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7048a3e07fbb36c7e42238ab2aef65b7"><td class="memItemLeft" align="right" valign="top"><a id="a7048a3e07fbb36c7e42238ab2aef65b7"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>CyclePosition</b><code> [get]</code></td></tr>
-<tr class="separator:afeabd18a8397bb10b36d9b61bd325870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a7048a3e07fbb36c7e42238ab2aef65b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff8c5d7d528b7bc0474762e204432e5a"><td class="memItemLeft" align="right" valign="top"><a id="aff8c5d7d528b7bc0474762e204432e5a"></a>
 Color []&#160;</td><td class="memItemRight" valign="bottom"><b>Colors</b><code> [get]</code></td></tr>
 <tr class="separator:aff8c5d7d528b7bc0474762e204432e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a053975d91801c04aedd85e54c884b66a"><td class="memItemLeft" align="right" valign="top"><a id="a053975d91801c04aedd85e54c884b66a"></a>
+<tr class="memitem:a009d92295f7e79ee244909ddecbda9fc"><td class="memItemLeft" align="right" valign="top"><a id="a009d92295f7e79ee244909ddecbda9fc"></a>
 Color&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentColor</b><code> [get]</code></td></tr>
-<tr class="separator:a053975d91801c04aedd85e54c884b66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a009d92295f7e79ee244909ddecbda9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>HamstarHelpers/Services/AnimatedColors/AnimatedColors.cs</li>
 <li>HamstarHelpers/Services/AnimatedColors/AnimatedColors_Instance.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services_1_1_animated_color.html">AnimatedColor</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html">AnimatedColors</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

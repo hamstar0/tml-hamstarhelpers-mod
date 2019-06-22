@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_menu_1_1_u_i_menu_button.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_components_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements.html">Elements</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_menu.html">Menu</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_menu_1_1_u_i_menu_button.html">UIMenuButton</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -102,12 +82,22 @@ Inheritance diagram for HamstarHelpers.Components.UI.Elements.Menu.UIMenuButton:
  <div class="center">
   <img src="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_menu_1_1_u_i_menu_button.png" usemap="#HamstarHelpers.Components.UI.Elements.Menu.UIMenuButton_map" alt=""/>
   <map id="HamstarHelpers.Components.UI.Elements.Menu.UIMenuButton_map" name="HamstarHelpers.Components.UI.Elements.Menu.UIMenuButton_map">
-<area href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html" alt="HamstarHelpers.Components.UI.Elements.UITextPanelButton" shape="rect" coords="0,56,362,80"/>
+<area href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html" alt="HamstarHelpers.Components.UI.Elements.UITextPanelButton" shape="rect" coords="186,56,548,80"/>
+<area href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html" alt="HamstarHelpers.Components.UI.Elements.UITextPanelButton" shape="rect" coords="930,56,1292,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a543695399df7ae4bb5cff04b686280a6"><td class="memItemLeft" align="right" valign="top"><a id="a543695399df7ae4bb5cff04b686280a6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UIMenuButton</b> (<a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a> theme, string text, float width, float height, float xCenterOffset, float y, float textScale=1f, bool largeText=false)</td></tr>
+<tr class="separator:a543695399df7ae4bb5cff04b686280a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8064dd37ee1f9799c8393f3881a4929d"><td class="memItemLeft" align="right" valign="top"><a id="a8064dd37ee1f9799c8393f3881a4929d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>RecalculatePos</b> ()</td></tr>
+<tr class="separator:a8064dd37ee1f9799c8393f3881a4929d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35ec94dc73fd9b6c3a2dab86cac25cd"><td class="memItemLeft" align="right" valign="top"><a id="af35ec94dc73fd9b6c3a2dab86cac25cd"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>Recalculate</b> ()</td></tr>
+<tr class="separator:af35ec94dc73fd9b6c3a2dab86cac25cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a543695399df7ae4bb5cff04b686280a6"><td class="memItemLeft" align="right" valign="top"><a id="a543695399df7ae4bb5cff04b686280a6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>UIMenuButton</b> (<a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a> theme, string text, float width, float height, float xCenterOffset, float y, float textScale=1f, bool largeText=false)</td></tr>
 <tr class="separator:a543695399df7ae4bb5cff04b686280a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,39 +120,47 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Disable</b> ()</td></
 <tr class="memitem:add2e4969da45fef16244fc6e8106eb04 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="add2e4969da45fef16244fc6e8106eb04"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>RefreshTheme</b> ()</td></tr>
 <tr class="separator:add2e4969da45fef16244fc6e8106eb04 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebe7724c7f49ef88bb166b5735377628 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="aebe7724c7f49ef88bb166b5735377628"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UITextPanelButton</b> (<a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a> theme, string label, float scale=1f, bool large=false)</td></tr>
+<tr class="separator:aebe7724c7f49ef88bb166b5735377628 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4945678314e7c80d54065e0b82fd1a15 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="a4945678314e7c80d54065e0b82fd1a15"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Enable</b> ()</td></tr>
+<tr class="separator:a4945678314e7c80d54065e0b82fd1a15 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3343fcb9990157d7eb577494ee7fffc9 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="a3343fcb9990157d7eb577494ee7fffc9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Disable</b> ()</td></tr>
+<tr class="separator:a3343fcb9990157d7eb577494ee7fffc9 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add2e4969da45fef16244fc6e8106eb04 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="add2e4969da45fef16244fc6e8106eb04"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>RefreshTheme</b> ()</td></tr>
+<tr class="separator:add2e4969da45fef16244fc6e8106eb04 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:aa973d299ffd7e035156c7e1607ae3e85"><td class="memItemLeft" align="right" valign="top"><a id="aa973d299ffd7e035156c7e1607ae3e85"></a>
+<tr class="memitem:a4e4c2cfa32d819fb064747a56d48c3d9"><td class="memItemLeft" align="right" valign="top"><a id="a4e4c2cfa32d819fb064747a56d48c3d9"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>XCenterOffset</b></td></tr>
-<tr class="separator:aa973d299ffd7e035156c7e1607ae3e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a356ca7951054f46415c5b0029e088945"><td class="memItemLeft" align="right" valign="top"><a id="a356ca7951054f46415c5b0029e088945"></a>
+<tr class="separator:a4e4c2cfa32d819fb064747a56d48c3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c2fc9895716f3e012bb2df5e31ac17d"><td class="memItemLeft" align="right" valign="top"><a id="a9c2fc9895716f3e012bb2df5e31ac17d"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>YPos</b></td></tr>
-<tr class="separator:a356ca7951054f46415c5b0029e088945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a9c2fc9895716f3e012bb2df5e31ac17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td colspan="2" onclick="javascript:toggleInherit('properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html">HamstarHelpers.Components.UI.Elements.UITextPanelButton</a></td></tr>
-<tr class="memitem:a4b5f82b5bf782194d1ffe8442854b87c inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="a4b5f82b5bf782194d1ffe8442854b87c"></a>
+<tr class="memitem:aa33f47714de344d351cac220538f92bf inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="aa33f47714de344d351cac220538f92bf"></a>
 <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Theme</b><code> [get, protected set]</code></td></tr>
-<tr class="separator:a4b5f82b5bf782194d1ffe8442854b87c inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04e437739db565dac2335a1037c3cce5 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="a04e437739db565dac2335a1037c3cce5"></a>
+<tr class="separator:aa33f47714de344d351cac220538f92bf inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ddb36a9d0594002799d13fd8a751ab inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memItemLeft" align="right" valign="top"><a id="a76ddb36a9d0594002799d13fd8a751ab"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsEnabled</b><code> [get]</code></td></tr>
-<tr class="separator:a04e437739db565dac2335a1037c3cce5 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a76ddb36a9d0594002799d13fd8a751ab inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>HamstarHelpers/Components/UI/Elements/Menu/UIMenuButton.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements.html">Elements</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_menu.html">Menu</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_menu_1_1_u_i_menu_button.html">UIMenuButton</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

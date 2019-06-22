@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services_1_1_promises.html">Promises</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html">Promises</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -164,6 +144,72 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>UntriggerValid
 <tr class="memitem:a6c5d14ac189c152cefe320c9f8347965"><td class="memItemLeft" align="right" valign="top"><a id="a6c5d14ac189c152cefe320c9f8347965"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearValidatedPromise</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator, object validatorKey)</td></tr>
 <tr class="separator:a6c5d14ac189c152cefe320c9f8347965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e73a76cda78cf5361a2e6fd355c53a2"><td class="memItemLeft" align="right" valign="top"><a id="a5e73a76cda78cf5361a2e6fd355c53a2"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddPostModLoadPromise</b> (Action action)</td></tr>
+<tr class="separator:a5e73a76cda78cf5361a2e6fd355c53a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f686c2b227abc8302974867b0a232d"><td class="memItemLeft" align="right" valign="top"><a id="a25f686c2b227abc8302974867b0a232d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddModUnloadPromise</b> (Action action)</td></tr>
+<tr class="separator:a25f686c2b227abc8302974867b0a232d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a720250664b0c6cc98bc39e8dc1bfd687"><td class="memItemLeft" align="right" valign="top"><a id="a720250664b0c6cc98bc39e8dc1bfd687"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddWorldLoadOncePromise</b> (Action action)</td></tr>
+<tr class="separator:a720250664b0c6cc98bc39e8dc1bfd687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad517cf765474f902ae960c09020dd134"><td class="memItemLeft" align="right" valign="top"><a id="ad517cf765474f902ae960c09020dd134"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddPostWorldLoadOncePromise</b> (Action action)</td></tr>
+<tr class="separator:ad517cf765474f902ae960c09020dd134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a121efa39dbddbbccf7bd154020503732"><td class="memItemLeft" align="right" valign="top"><a id="a121efa39dbddbbccf7bd154020503732"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddWorldUnloadOncePromise</b> (Action action)</td></tr>
+<tr class="separator:a121efa39dbddbbccf7bd154020503732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172b6b8c5d78de5b752ced27aff7a1cd"><td class="memItemLeft" align="right" valign="top"><a id="a172b6b8c5d78de5b752ced27aff7a1cd"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddPostWorldUnloadOncePromise</b> (Action action)</td></tr>
+<tr class="separator:a172b6b8c5d78de5b752ced27aff7a1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7a3e12a23bb28cd0ce219f4167a520a"><td class="memItemLeft" align="right" valign="top"><a id="aa7a3e12a23bb28cd0ce219f4167a520a"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddWorldInPlayOncePromise</b> (Action action)</td></tr>
+<tr class="separator:aa7a3e12a23bb28cd0ce219f4167a520a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4f512e8d361626df00d1bc6227fd236"><td class="memItemLeft" align="right" valign="top"><a id="ad4f512e8d361626df00d1bc6227fd236"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddSafeWorldLoadOncePromise</b> (Action action)</td></tr>
+<tr class="separator:ad4f512e8d361626df00d1bc6227fd236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5970f9e5815cb900fb3391d180adfef"><td class="memItemLeft" align="right" valign="top"><a id="af5970f9e5815cb900fb3391d180adfef"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddWorldLoadEachPromise</b> (Action action)</td></tr>
+<tr class="separator:af5970f9e5815cb900fb3391d180adfef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83048de29e81f3c20c1430b8ad7f9853"><td class="memItemLeft" align="right" valign="top"><a id="a83048de29e81f3c20c1430b8ad7f9853"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddPostWorldLoadEachPromise</b> (Action action)</td></tr>
+<tr class="separator:a83048de29e81f3c20c1430b8ad7f9853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a9a212ae47e2ff3f33280d32f063b23"><td class="memItemLeft" align="right" valign="top"><a id="a2a9a212ae47e2ff3f33280d32f063b23"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddWorldUnloadEachPromise</b> (Action action)</td></tr>
+<tr class="separator:a2a9a212ae47e2ff3f33280d32f063b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0023fd93d1e5a54d6b584480082f8f70"><td class="memItemLeft" align="right" valign="top"><a id="a0023fd93d1e5a54d6b584480082f8f70"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddPostWorldUnloadEachPromise</b> (Action action)</td></tr>
+<tr class="separator:a0023fd93d1e5a54d6b584480082f8f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa19e3f6fbcf1037c9e6d6c021e377bff"><td class="memItemLeft" align="right" valign="top"><a id="aa19e3f6fbcf1037c9e6d6c021e377bff"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddWorldInPlayEachPromise</b> (Action action)</td></tr>
+<tr class="separator:aa19e3f6fbcf1037c9e6d6c021e377bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db806ce1b934ab0f942a229d21a8543"><td class="memItemLeft" align="right" valign="top"><a id="a9db806ce1b934ab0f942a229d21a8543"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddSafeWorldLoadEachPromise</b> (Action action)</td></tr>
+<tr class="separator:a9db806ce1b934ab0f942a229d21a8543"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c4f528ffd974d5a1731289fafc70e5"><td class="memItemLeft" align="right" valign="top"><a id="a23c4f528ffd974d5a1731289fafc70e5"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>CountValidatedPromises</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator)</td></tr>
+<tr class="separator:a23c4f528ffd974d5a1731289fafc70e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa903e3a43e154a6a299f928ec2173b71"><td class="memItemLeft" align="right" valign="top"><a id="aa903e3a43e154a6a299f928ec2173b71"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsPromiseValidated</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator)</td></tr>
+<tr class="separator:aa903e3a43e154a6a299f928ec2173b71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecce971bba7ba4abb0f98748bde4bff3"><td class="memItemLeft" align="right" valign="top"><a id="aecce971bba7ba4abb0f98748bde4bff3"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddValidatedPromise&lt; T &gt;</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator, Func&lt; T, bool &gt; func)</td></tr>
+<tr class="separator:aecce971bba7ba4abb0f98748bde4bff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a720054c8ea06626ad0156d400cfbf6a0"><td class="memItemLeft" align="right" valign="top"><a id="a720054c8ea06626ad0156d400cfbf6a0"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddValidatedPromise</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator, Func&lt; bool &gt; action)</td></tr>
+<tr class="separator:a720054c8ea06626ad0156d400cfbf6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61285c776b171a8db761aa72034c5c0"><td class="memItemLeft" align="right" valign="top"><a id="aa61285c776b171a8db761aa72034c5c0"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>TriggerValidatedPromise</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator, object validatorKey, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_arguments.html">PromiseArguments</a> args)</td></tr>
+<tr class="separator:aa61285c776b171a8db761aa72034c5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf0507eb98d76238741f12b8f59eb93e"><td class="memItemLeft" align="right" valign="top"><a id="aaf0507eb98d76238741f12b8f59eb93e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>TriggerValidatedPromise</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator, object validatorKey)</td></tr>
+<tr class="separator:aaf0507eb98d76238741f12b8f59eb93e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3eebfd1a41ce9946540a3efe192a7d4"><td class="memItemLeft" align="right" valign="top"><a id="ac3eebfd1a41ce9946540a3efe192a7d4"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>UntriggerValidatedPromise</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator, object validatorKey)</td></tr>
+<tr class="separator:ac3eebfd1a41ce9946540a3efe192a7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c5d14ac189c152cefe320c9f8347965"><td class="memItemLeft" align="right" valign="top"><a id="a6c5d14ac189c152cefe320c9f8347965"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearValidatedPromise</b> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promise_validator.html">PromiseValidator</a> validator, object validatorKey)</td></tr>
+<tr class="separator:a6c5d14ac189c152cefe320c9f8347965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>HamstarHelpers/Services/Promises/Promises.cs</li>
@@ -173,15 +219,11 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearValidated
 <li>HamstarHelpers/Services/Promises/Promises_Fulfills.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services_1_1_promises.html">Promises</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_promises_1_1_promises.html">Promises</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

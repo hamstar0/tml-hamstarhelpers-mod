@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_components_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements.html">Elements</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs.html">Dialogs</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html">UIPromptDialog</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -103,12 +83,25 @@ Inheritance diagram for HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDi
  <div class="center">
   <img src="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.png" usemap="#HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog_map" alt=""/>
   <map id="HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog_map" name="HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog_map">
-<area href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html" alt="HamstarHelpers.Components.UI.Elements.UIDialog" shape="rect" coords="0,56,380,80"/>
+<area href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html" alt="HamstarHelpers.Components.UI.Elements.UIDialog" shape="rect" coords="195,56,575,80"/>
+<area href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html" alt="HamstarHelpers.Components.UI.Elements.UIDialog" shape="rect" coords="975,56,1355,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ac67002d7db9b5acc35e3717d0d7a4517"><td class="memItemLeft" align="right" valign="top"><a id="ac67002d7db9b5acc35e3717d0d7a4517"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UIPromptDialog</b> (<a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a> theme, int width, int height, string title, Action confirm, Action cancel=null)</td></tr>
+<tr class="separator:ac67002d7db9b5acc35e3717d0d7a4517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a624f10ff11b8705c46984d6f61739680"><td class="memItemLeft" align="right" valign="top"><a id="a624f10ff11b8705c46984d6f61739680"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeComponents</b> ()</td></tr>
+<tr class="separator:a624f10ff11b8705c46984d6f61739680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa31cc1bed46dcb4f4403d70042d68ead"><td class="memItemLeft" align="right" valign="top"><a id="aa31cc1bed46dcb4f4403d70042d68ead"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>Open</b> ()</td></tr>
+<tr class="separator:aa31cc1bed46dcb4f4403d70042d68ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ffe6c76671b29134ac8d1f1abb3bfb"><td class="memItemLeft" align="right" valign="top"><a id="ab2ffe6c76671b29134ac8d1f1abb3bfb"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>RefreshTheme</b> ()</td></tr>
+<tr class="separator:ab2ffe6c76671b29134ac8d1f1abb3bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac67002d7db9b5acc35e3717d0d7a4517"><td class="memItemLeft" align="right" valign="top"><a id="ac67002d7db9b5acc35e3717d0d7a4517"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>UIPromptDialog</b> (<a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a> theme, int width, int height, string title, Action confirm, Action cancel=null)</td></tr>
 <tr class="separator:ac67002d7db9b5acc35e3717d0d7a4517"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,67 +154,102 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTopPosition</b> (f
 <tr class="memitem:ae6b232ce26c3495c092cede6871670e7 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="ae6b232ce26c3495c092cede6871670e7"></a>
 override void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> (SpriteBatch sb)</td></tr>
 <tr class="separator:ae6b232ce26c3495c092cede6871670e7 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6ac6b58058b774ded3e6cb816b6a8d inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a6d6ac6b58058b774ded3e6cb816b6a8d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UIDialog</b> (<a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a> theme, int initialWidth, int initialHeight)</td></tr>
+<tr class="separator:a6d6ac6b58058b774ded3e6cb816b6a8d inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f3830a8cfbb2a270d245c5dd4bcb810 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a2f3830a8cfbb2a270d245c5dd4bcb810"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>OnActivate</b> ()</td></tr>
+<tr class="separator:a2f3830a8cfbb2a270d245c5dd4bcb810 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b8b8d8f9d240386eb9277a6f2d66345 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a1b8b8d8f9d240386eb9277a6f2d66345"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>OnInitialize</b> ()</td></tr>
+<tr class="separator:a1b8b8d8f9d240386eb9277a6f2d66345 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63012f94c3fba270cb07641a25ec6b28 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a63012f94c3fba270cb07641a25ec6b28"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitializeContainer</b> (int width, int height)</td></tr>
+<tr class="separator:a63012f94c3fba270cb07641a25ec6b28 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c98865bf5456c23c9345fba2f5ee61f inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a9c98865bf5456c23c9345fba2f5ee61f"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (GameTime gameTime)</td></tr>
+<tr class="separator:a9c98865bf5456c23c9345fba2f5ee61f inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74af73fa9efc8871d00217cf16dbc3a6 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a74af73fa9efc8871d00217cf16dbc3a6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RecalculateMe</b> ()</td></tr>
+<tr class="separator:a74af73fa9efc8871d00217cf16dbc3a6 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476011465013cea4f30b4a03fdc312bc inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a476011465013cea4f30b4a03fdc312bc"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>Recalculate</b> ()</td></tr>
+<tr class="separator:a476011465013cea4f30b4a03fdc312bc inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a5f82a029ce1fe937256e3d7772c2eb inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a1a5f82a029ce1fe937256e3d7772c2eb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RecalculateContainer</b> ()</td></tr>
+<tr class="separator:a1a5f82a029ce1fe937256e3d7772c2eb inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2a4c5d7e402327ea1329ba02f716099 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="ae2a4c5d7e402327ea1329ba02f716099"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanOpen</b> ()</td></tr>
+<tr class="separator:ae2a4c5d7e402327ea1329ba02f716099 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa76292b49cae8d8fd6940e9b65e9ff27 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="aa76292b49cae8d8fd6940e9b65e9ff27"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Close</b> ()</td></tr>
+<tr class="separator:aa76292b49cae8d8fd6940e9b65e9ff27 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84241d362ef7bc3d36a7b1c9c2d84c8e inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a84241d362ef7bc3d36a7b1c9c2d84c8e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLeftPosition</b> (float pixels, float percent, bool centered)</td></tr>
+<tr class="separator:a84241d362ef7bc3d36a7b1c9c2d84c8e inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aead0f2b84cfaa852e415abfe25d4deac inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="aead0f2b84cfaa852e415abfe25d4deac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTopPosition</b> (float pixels, float percent, bool centered)</td></tr>
+<tr class="separator:aead0f2b84cfaa852e415abfe25d4deac inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b232ce26c3495c092cede6871670e7 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="ae6b232ce26c3495c092cede6871670e7"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> (SpriteBatch sb)</td></tr>
+<tr class="separator:ae6b232ce26c3495c092cede6871670e7 inherit pub_methods_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a25a8f8d9d5a8055d09c0cc3b0deb0678"><td class="memItemLeft" align="right" valign="top"><a id="a25a8f8d9d5a8055d09c0cc3b0deb0678"></a>
+<tr class="memitem:a75057b75e539dae3e3343e520e7fa571"><td class="memItemLeft" align="right" valign="top"><a id="a75057b75e539dae3e3343e520e7fa571"></a>
 <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html">UITextPanelButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ConfirmButton</b></td></tr>
-<tr class="separator:a25a8f8d9d5a8055d09c0cc3b0deb0678"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1a731d1e2e2e7635d9d93d4f9a0be42"><td class="memItemLeft" align="right" valign="top"><a id="ab1a731d1e2e2e7635d9d93d4f9a0be42"></a>
+<tr class="separator:a75057b75e539dae3e3343e520e7fa571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d14bbf8cfcd7a7449da04efb40a847"><td class="memItemLeft" align="right" valign="top"><a id="a04d14bbf8cfcd7a7449da04efb40a847"></a>
 <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html">UITextPanelButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CancelButton</b></td></tr>
-<tr class="separator:ab1a731d1e2e2e7635d9d93d4f9a0be42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00834988e4ceb40c51356e07fe8a2407"><td class="memItemLeft" align="right" valign="top"><a id="a00834988e4ceb40c51356e07fe8a2407"></a>
+<tr class="separator:a04d14bbf8cfcd7a7449da04efb40a847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add1f428df32937141da30f55de994284"><td class="memItemLeft" align="right" valign="top"><a id="add1f428df32937141da30f55de994284"></a>
 Action&#160;</td><td class="memItemRight" valign="bottom"><b>ConfirmAction</b></td></tr>
-<tr class="separator:a00834988e4ceb40c51356e07fe8a2407"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed37550dd097ac2c6e08437e9c1d686b"><td class="memItemLeft" align="right" valign="top"><a id="aed37550dd097ac2c6e08437e9c1d686b"></a>
+<tr class="separator:add1f428df32937141da30f55de994284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a938637eb3e293acb569035f13d01785e"><td class="memItemLeft" align="right" valign="top"><a id="a938637eb3e293acb569035f13d01785e"></a>
 Action&#160;</td><td class="memItemRight" valign="bottom"><b>CancelAction</b></td></tr>
-<tr class="separator:aed37550dd097ac2c6e08437e9c1d686b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a938637eb3e293acb569035f13d01785e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html">HamstarHelpers.Components.UI.Elements.UIDialog</a></td></tr>
-<tr class="memitem:a22a0e645ca7d410a21b581bdd0b89e84 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a22a0e645ca7d410a21b581bdd0b89e84"></a>
+<tr class="memitem:ab0f9a7082debbd200306210836cfb78c inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="ab0f9a7082debbd200306210836cfb78c"></a>
 <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Theme</b></td></tr>
-<tr class="separator:a22a0e645ca7d410a21b581bdd0b89e84 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66a21103853c4c3fe1e42bb1f0075a90 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a66a21103853c4c3fe1e42bb1f0075a90"></a>
+<tr class="separator:ab0f9a7082debbd200306210836cfb78c inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a10bccbf77f7cb52b62eb4ffe001f8 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="ad9a10bccbf77f7cb52b62eb4ffe001f8"></a>
 UserInterface&#160;</td><td class="memItemRight" valign="bottom"><b>Backend</b> = null</td></tr>
-<tr class="separator:a66a21103853c4c3fe1e42bb1f0075a90 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1568dd9199a17a7d14b60be631de8214 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a1568dd9199a17a7d14b60be631de8214"></a>
+<tr class="separator:ad9a10bccbf77f7cb52b62eb4ffe001f8 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7881e37f6d1d990dd2cb8b674ea2bfd2 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a7881e37f6d1d990dd2cb8b674ea2bfd2"></a>
 UIElement&#160;</td><td class="memItemRight" valign="bottom"><b>OuterContainer</b> = null</td></tr>
-<tr class="separator:a1568dd9199a17a7d14b60be631de8214 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e102e02f299fb3f9e152c7c4f90770b inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a8e102e02f299fb3f9e152c7c4f90770b"></a>
+<tr class="separator:a7881e37f6d1d990dd2cb8b674ea2bfd2 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12b384f11293b61cdaac2b539e923305 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a12b384f11293b61cdaac2b539e923305"></a>
 UIPanel&#160;</td><td class="memItemRight" valign="bottom"><b>InnerContainer</b> = null</td></tr>
-<tr class="separator:a8e102e02f299fb3f9e152c7c4f90770b inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e1c9396ff50955db68718a3bb091933 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a8e1c9396ff50955db68718a3bb091933"></a>
+<tr class="separator:a12b384f11293b61cdaac2b539e923305 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1311464b6ea3c44b9b02e0a48af25735 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a1311464b6ea3c44b9b02e0a48af25735"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetDialogToClose</b> = false</td></tr>
-<tr class="separator:a8e1c9396ff50955db68718a3bb091933 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a1311464b6ea3c44b9b02e0a48af25735 inherit pro_attribs_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a37486164be7ef8368aa71b690a362308"><td class="memItemLeft" align="right" valign="top"><a id="a37486164be7ef8368aa71b690a362308"></a>
+<tr class="memitem:a1788105019dcea8c004370c985b71fc7"><td class="memItemLeft" align="right" valign="top"><a id="a1788105019dcea8c004370c985b71fc7"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>TitleText</b><code> [get]</code></td></tr>
-<tr class="separator:a37486164be7ef8368aa71b690a362308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a1788105019dcea8c004370c985b71fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td colspan="2" onclick="javascript:toggleInherit('properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html">HamstarHelpers.Components.UI.Elements.UIDialog</a></td></tr>
-<tr class="memitem:a19df73ee931a25929c7d226f9a38dd0a inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a19df73ee931a25929c7d226f9a38dd0a"></a>
+<tr class="memitem:a16270d74e61026ebb01fce91045b9d97 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a16270d74e61026ebb01fce91045b9d97"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>InitialContainerWidth</b><code> [get, protected set]</code></td></tr>
-<tr class="separator:a19df73ee931a25929c7d226f9a38dd0a inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a654014290517f1c9e4e7f012485c41ee inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a654014290517f1c9e4e7f012485c41ee"></a>
+<tr class="separator:a16270d74e61026ebb01fce91045b9d97 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fef7d640a395cb7b5ff51cc7e4a53f3 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="a2fef7d640a395cb7b5ff51cc7e4a53f3"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>InitialContainerHeight</b><code> [get, protected set]</code></td></tr>
-<tr class="separator:a654014290517f1c9e4e7f012485c41ee inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae7d72250b1f1c3672c3f2fe941a8c58 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="aae7d72250b1f1c3672c3f2fe941a8c58"></a>
+<tr class="separator:a2fef7d640a395cb7b5ff51cc7e4a53f3 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff222f1a01d4c5261e6a604f3d35d09b inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memItemLeft" align="right" valign="top"><a id="aff222f1a01d4c5261e6a604f3d35d09b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsOpen</b><code> [get]</code></td></tr>
-<tr class="separator:aae7d72250b1f1c3672c3f2fe941a8c58 inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aff222f1a01d4c5261e6a604f3d35d09b inherit properties_class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>HamstarHelpers/Components/UI/Elements/Dialogs/UIPromptDialog.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements.html">Elements</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs.html">Dialogs</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html">UIPromptDialog</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

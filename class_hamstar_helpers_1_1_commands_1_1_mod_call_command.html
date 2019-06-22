@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_commands_1_1_mod_call_command.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_commands_1_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_commands.html">Commands</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_commands_1_1_mod_call_command.html">ModCallCommand</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -109,27 +89,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e9a408df6696e2dfd24a1f586ea0436"><td class="memItemLeft" align="right" valign="top"><a id="a3e9a408df6696e2dfd24a1f586ea0436"></a>
 override void&#160;</td><td class="memItemRight" valign="bottom"><b>Action</b> (CommandCaller caller, string input, string[] args)</td></tr>
 <tr class="separator:a3e9a408df6696e2dfd24a1f586ea0436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e9a408df6696e2dfd24a1f586ea0436"><td class="memItemLeft" align="right" valign="top"><a id="a3e9a408df6696e2dfd24a1f586ea0436"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>Action</b> (CommandCaller caller, string input, string[] args)</td></tr>
+<tr class="separator:a3e9a408df6696e2dfd24a1f586ea0436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ad1fba4753f62a9afd2fc3b72faed9275"><td class="memItemLeft" align="right" valign="top"><a id="ad1fba4753f62a9afd2fc3b72faed9275"></a>
+<tr class="memitem:af512162c4953866063fffcb90f918cb1"><td class="memItemLeft" align="right" valign="top"><a id="af512162c4953866063fffcb90f918cb1"></a>
 override string&#160;</td><td class="memItemRight" valign="bottom"><b>Command</b> =&gt; &quot;mh-mod-call&quot;</td></tr>
-<tr class="separator:ad1fba4753f62a9afd2fc3b72faed9275"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a326e332b4b71afd28f60bd0cd8c3d9ec"><td class="memItemLeft" align="right" valign="top"><a id="a326e332b4b71afd28f60bd0cd8c3d9ec"></a>
+<tr class="separator:af512162c4953866063fffcb90f918cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4740035373e261a0613398b7273e0c76"><td class="memItemLeft" align="right" valign="top"><a id="a4740035373e261a0613398b7273e0c76"></a>
 override string&#160;</td><td class="memItemRight" valign="bottom"><b>Usage</b> =&gt; &quot;/&quot; + this.Command + &quot; MyModName ModAPIFunctionName unquotedstringparam 42 \&quot;quote-wrapped strings allow spaces\&quot; anotherparameter&quot;</td></tr>
-<tr class="separator:a326e332b4b71afd28f60bd0cd8c3d9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90937c7b2be34af5c72a460462844b39"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b></td></tr>
-<tr class="separator:a90937c7b2be34af5c72a460462844b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a4740035373e261a0613398b7273e0c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad42c50386c4573ef6938b605f7b777cf"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b></td></tr>
+<tr class="separator:ad42c50386c4573ef6938b605f7b777cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a292a6bd99167b55d4474b397b2ec9174"><td class="memItemLeft" align="right" valign="top"><a id="a292a6bd99167b55d4474b397b2ec9174"></a>
+<tr class="memitem:ab8d0d2964cf851a4d84b9d8564e3c9e1"><td class="memItemLeft" align="right" valign="top"><a id="ab8d0d2964cf851a4d84b9d8564e3c9e1"></a>
 override CommandType&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b><code> [get]</code></td></tr>
-<tr class="separator:a292a6bd99167b55d4474b397b2ec9174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab8d0d2964cf851a4d84b9d8564e3c9e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a90937c7b2be34af5c72a460462844b39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90937c7b2be34af5c72a460462844b39">&#9670;&nbsp;</a></span>Description</h2>
+<a id="ad42c50386c4573ef6938b605f7b777cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad42c50386c4573ef6938b605f7b777cf">&#9670;&nbsp;</a></span>Description</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -146,15 +129,11 @@ override CommandType&#160;</td><td class="memItemRight" valign="bottom"><b>Type<
 <li>HamstarHelpers/Commands/ModCallCommand.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_commands.html">Commands</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_commands_1_1_mod_call_command.html">ModCallCommand</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

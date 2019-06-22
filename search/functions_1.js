@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['quickrequesttoserver_3c_20t_20_3e',['QuickRequestToServer&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a035703e14b5aa52d2a6d318dc16cff05',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['quicksendtoclient_3c_20t_20_3e',['QuickSendToClient&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a1d579e475b755cc5a93b8fe785f6d452',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['quicksendtoserver_3c_20t_20_3e',['QuickSendToServer&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a4895c2ec0b3d8393a886a7fb69c41e92',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['quicksynctoserverandclients_3c_20t_20_3e',['QuickSyncToServerAndClients&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#ae683f89423489249574a2c6aeeb6957b',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]]
+  ['getactive',['GetActive',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a6df0f6f3a79c5833d1919585d32329eb',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
+  ['getpacketcode',['GetPacketCode',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#aa1c5f52124e44fa415041c9a9e3a8dbf',1,'HamstarHelpers.Components.Protocol.Packet.PacketProtocol.GetPacketCode()'],['../class_hamstar_helpers_1_1_components_1_1_network_1_1_packet_protocol.html#acd1e2d07be3b77b9c3b73752f697b4c5',1,'HamstarHelpers.Components.Network.PacketProtocol.GetPacketCode()']]],
+  ['getpacketname',['GetPacketName',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a241d30092921d6c05ab5d5fecd9503a9',1,'HamstarHelpers.Components.Protocol.Packet.PacketProtocol.GetPacketName()'],['../class_hamstar_helpers_1_1_components_1_1_network_1_1_packet_protocol.html#a11f02ea44ccf6e5950f3b7ea71c803cb',1,'HamstarHelpers.Components.Network.PacketProtocol.GetPacketName()']]]
 ];

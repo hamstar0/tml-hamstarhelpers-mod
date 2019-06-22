@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('struct_hamstar_helpers_1_1_internals_1_1_web_requests_1_1_github_mod_issue_report_data.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('struct_hamstar_helpers_1_1_internals_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals.html">Internals</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals_1_1_web_requests.html">WebRequests</a></li><li class="navelem"><a class="el" href="struct_hamstar_helpers_1_1_internals_1_1_web_requests_1_1_github_mod_issue_report_data.html">GithubModIssueReportData</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -98,32 +78,28 @@ $(document).ready(function(){initNavTree('struct_hamstar_helpers_1_1_internals_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ad3c64a7d85b42dc0311437675cb3b013"><td class="memItemLeft" align="right" valign="top"><a id="ad3c64a7d85b42dc0311437675cb3b013"></a>
+<tr class="memitem:a3a09724dabdc6456340b78ebcba0c5f1"><td class="memItemLeft" align="right" valign="top"><a id="a3a09724dabdc6456340b78ebcba0c5f1"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>githubuser</b></td></tr>
-<tr class="separator:ad3c64a7d85b42dc0311437675cb3b013"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b1a4f58026a4e37b38bc206ec778f92"><td class="memItemLeft" align="right" valign="top"><a id="a2b1a4f58026a4e37b38bc206ec778f92"></a>
+<tr class="separator:a3a09724dabdc6456340b78ebcba0c5f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc134a13f27e4551aeff1497639139a2"><td class="memItemLeft" align="right" valign="top"><a id="abc134a13f27e4551aeff1497639139a2"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>githubproject</b></td></tr>
-<tr class="separator:a2b1a4f58026a4e37b38bc206ec778f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3676d54bffb1580c3c56da46e66ee20b"><td class="memItemLeft" align="right" valign="top"><a id="a3676d54bffb1580c3c56da46e66ee20b"></a>
+<tr class="separator:abc134a13f27e4551aeff1497639139a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a011d8ddb16facf07116e90f3fff84f90"><td class="memItemLeft" align="right" valign="top"><a id="a011d8ddb16facf07116e90f3fff84f90"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>title</b></td></tr>
-<tr class="separator:a3676d54bffb1580c3c56da46e66ee20b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad220985f4f73de2fd1994714aa47abb6"><td class="memItemLeft" align="right" valign="top"><a id="ad220985f4f73de2fd1994714aa47abb6"></a>
+<tr class="separator:a011d8ddb16facf07116e90f3fff84f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7c5fc804f2688c9aef194bd68013976"><td class="memItemLeft" align="right" valign="top"><a id="ae7c5fc804f2688c9aef194bd68013976"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>body</b></td></tr>
-<tr class="separator:ad220985f4f73de2fd1994714aa47abb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ae7c5fc804f2688c9aef194bd68013976"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>HamstarHelpers/Internals/WebRequests/PostGithubModIssueReports.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals.html">Internals</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals_1_1_web_requests.html">WebRequests</a></li><li class="navelem"><a class="el" href="struct_hamstar_helpers_1_1_internals_1_1_web_requests_1_1_github_mod_issue_report_data.html">GithubModIssueReportData</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

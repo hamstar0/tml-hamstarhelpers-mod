@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['isasync',['IsAsync',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a26e997628a30e69bb808dc2b905291c2',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['isverbose',['IsVerbose',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#ace53d483011e1d2869f04db9102d1c2e',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['itemhelpers',['ItemHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html',1,'HamstarHelpers::Helpers::Items']]]
+  ['commandshelpers',['CommandsHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_commands_1_1_commands_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Commands']]],
+  ['convertdecimaltoradix',['ConvertDecimalToRadix',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html#a491799f7de1b4a973c18b571dbaca60d',1,'HamstarHelpers::Helpers::DotNET::Formatting::StringFormattingHelpers']]]
 ];

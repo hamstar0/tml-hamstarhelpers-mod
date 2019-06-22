@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['readstream',['ReadStream',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol.html#a5d5c0243888b6f5b7c234c2f2876c6b7',1,'HamstarHelpers::Components::Protocol::Stream::StreamProtocol']]],
-  ['receiverequestwithclient',['ReceiveRequestWithClient',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#ab30ca7c5af401829a0cb6b94b5cc88ae',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['receiverequestwithserver',['ReceiveRequestWithServer',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#ae3c5d9ee432c1384aa43634a61e810a2',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['receivewithclient',['ReceiveWithClient',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a445b43389fea1a81f3cdd6db16d19864',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['receivewithserver',['ReceiveWithServer',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a6e0896406476a306874a92a0c1d76157',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]]
+  ['gameinfohelpers',['GameInfoHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_info_1_1_game_info_helpers.html',1,'HamstarHelpers::Helpers::Info']]],
+  ['getactive',['GetActive',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a6df0f6f3a79c5833d1919585d32329eb',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
+  ['getpacketcode',['GetPacketCode',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#aa1c5f52124e44fa415041c9a9e3a8dbf',1,'HamstarHelpers.Components.Protocol.Packet.PacketProtocol.GetPacketCode()'],['../class_hamstar_helpers_1_1_components_1_1_network_1_1_packet_protocol.html#acd1e2d07be3b77b9c3b73752f697b4c5',1,'HamstarHelpers.Components.Network.PacketProtocol.GetPacketCode()']]],
+  ['getpacketname',['GetPacketName',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a241d30092921d6c05ab5d5fecd9503a9',1,'HamstarHelpers.Components.Protocol.Packet.PacketProtocol.GetPacketName()'],['../class_hamstar_helpers_1_1_components_1_1_network_1_1_packet_protocol.html#a11f02ea44ccf6e5950f3b7ea71c803cb',1,'HamstarHelpers.Components.Network.PacketProtocol.GetPacketName()']]]
 ];

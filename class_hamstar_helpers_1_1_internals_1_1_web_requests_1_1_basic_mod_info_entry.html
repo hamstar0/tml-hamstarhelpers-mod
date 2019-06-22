@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_internals_1_1_web_requests_1_1_basic_mod_info_entry.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_internals_1_
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals.html">Internals</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals_1_1_web_requests.html">WebRequests</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_internals_1_1_web_requests_1_1_basic_mod_info_entry.html">BasicModInfoEntry</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -102,41 +82,40 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab07d28bf694b2520c9d11f28789cea06"><td class="memItemLeft" align="right" valign="top"><a id="ab07d28bf694b2520c9d11f28789cea06"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BasicModInfoEntry</b> (string displayName, IEnumerable&lt; string &gt; authors, Version version, string description, string homepage)</td></tr>
 <tr class="separator:ab07d28bf694b2520c9d11f28789cea06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab07d28bf694b2520c9d11f28789cea06"><td class="memItemLeft" align="right" valign="top"><a id="ab07d28bf694b2520c9d11f28789cea06"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BasicModInfoEntry</b> (string displayName, IEnumerable&lt; string &gt; authors, Version version, string description, string homepage)</td></tr>
+<tr class="separator:ab07d28bf694b2520c9d11f28789cea06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a56a3903e3b534025a7c690ed4128faf6"><td class="memItemLeft" align="right" valign="top"><a id="a56a3903e3b534025a7c690ed4128faf6"></a>
+<tr class="memitem:a96318d19560b332e121ce72e2933b19c"><td class="memItemLeft" align="right" valign="top"><a id="a96318d19560b332e121ce72e2933b19c"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayName</b><code> [get]</code></td></tr>
-<tr class="separator:a56a3903e3b534025a7c690ed4128faf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae54248fef9b36e9a47b3aecb424eccfb"><td class="memItemLeft" align="right" valign="top"><a id="ae54248fef9b36e9a47b3aecb424eccfb"></a>
+<tr class="separator:a96318d19560b332e121ce72e2933b19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547d265abcee351e7be9ca6b388c3e74"><td class="memItemLeft" align="right" valign="top"><a id="a547d265abcee351e7be9ca6b388c3e74"></a>
 IEnumerable&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Authors</b><code> [get]</code></td></tr>
-<tr class="separator:ae54248fef9b36e9a47b3aecb424eccfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae61c3c1f1711b7700d6f9c93ea9cb657"><td class="memItemLeft" align="right" valign="top"><a id="ae61c3c1f1711b7700d6f9c93ea9cb657"></a>
+<tr class="separator:a547d265abcee351e7be9ca6b388c3e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7077cce58faef7df44d164268900ee6f"><td class="memItemLeft" align="right" valign="top"><a id="a7077cce58faef7df44d164268900ee6f"></a>
 Version&#160;</td><td class="memItemRight" valign="bottom"><b>Version</b><code> [get]</code></td></tr>
-<tr class="separator:ae61c3c1f1711b7700d6f9c93ea9cb657"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41b34018588579f3b5757e948dc37f24"><td class="memItemLeft" align="right" valign="top"><a id="a41b34018588579f3b5757e948dc37f24"></a>
+<tr class="separator:a7077cce58faef7df44d164268900ee6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58ecedb2e659f5360c961f228b8663f4"><td class="memItemLeft" align="right" valign="top"><a id="a58ecedb2e659f5360c961f228b8663f4"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><code> [get]</code></td></tr>
-<tr class="separator:a41b34018588579f3b5757e948dc37f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bd653a8f6577752fc6dbbb6b6819dbc"><td class="memItemLeft" align="right" valign="top"><a id="a1bd653a8f6577752fc6dbbb6b6819dbc"></a>
+<tr class="separator:a58ecedb2e659f5360c961f228b8663f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab54d9cc05dff319d5a090240ee048ee0"><td class="memItemLeft" align="right" valign="top"><a id="ab54d9cc05dff319d5a090240ee048ee0"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Homepage</b><code> [get]</code></td></tr>
-<tr class="separator:a1bd653a8f6577752fc6dbbb6b6819dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73d097da0c505f1b6b67d2beb08c0ac1"><td class="memItemLeft" align="right" valign="top"><a id="a73d097da0c505f1b6b67d2beb08c0ac1"></a>
+<tr class="separator:ab54d9cc05dff319d5a090240ee048ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a604675a3fccdbbe14f81366e43b4dd34"><td class="memItemLeft" align="right" valign="top"><a id="a604675a3fccdbbe14f81366e43b4dd34"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsBadMod</b><code> [get, set]</code></td></tr>
-<tr class="separator:a73d097da0c505f1b6b67d2beb08c0ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a604675a3fccdbbe14f81366e43b4dd34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>HamstarHelpers/Internals/WebRequests/GetModInfo.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals.html">Internals</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_internals_1_1_web_requests.html">WebRequests</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_internals_1_1_web_requests_1_1_basic_mod_info_entry.html">BasicModInfoEntry</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

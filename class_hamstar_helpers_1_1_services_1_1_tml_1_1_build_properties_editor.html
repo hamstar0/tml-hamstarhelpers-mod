@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services_1_1_tml.html">Tml</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html">BuildPropertiesEditor</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -104,9 +84,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e8122b567ea268b9cba73a2e883d3c2"><td class="memItemLeft" align="right" valign="top"><a id="a8e8122b567ea268b9cba73a2e883d3c2"></a>
 object&#160;</td><td class="memItemRight" valign="bottom"><b>GetField</b> (string propName)</td></tr>
 <tr class="separator:a8e8122b567ea268b9cba73a2e883d3c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e8122b567ea268b9cba73a2e883d3c2"><td class="memItemLeft" align="right" valign="top"><a id="a8e8122b567ea268b9cba73a2e883d3c2"></a>
+object&#160;</td><td class="memItemRight" valign="bottom"><b>GetField</b> (string propName)</td></tr>
+<tr class="separator:a8e8122b567ea268b9cba73a2e883d3c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a4e41869caa086f982554b3e6e45cc0db"><td class="memItemLeft" align="right" valign="top"><a id="a4e41869caa086f982554b3e6e45cc0db"></a>
+static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html">BuildPropertiesEditor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetBuildPropertiesForModFile</b> (TmodFile modfile)</td></tr>
+<tr class="separator:a4e41869caa086f982554b3e6e45cc0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e41869caa086f982554b3e6e45cc0db"><td class="memItemLeft" align="right" valign="top"><a id="a4e41869caa086f982554b3e6e45cc0db"></a>
 static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html">BuildPropertiesEditor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetBuildPropertiesForModFile</b> (TmodFile modfile)</td></tr>
 <tr class="separator:a4e41869caa086f982554b3e6e45cc0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,72 +111,68 @@ string []&#160;</td><td class="memItemRight" valign="bottom"><b>SortBefore</b> =
 <tr class="memitem:a6210f5eefde28f9c24d8ea46c0035bd7"><td class="memItemLeft" align="right" valign="top"><a id="a6210f5eefde28f9c24d8ea46c0035bd7"></a>
 string []&#160;</td><td class="memItemRight" valign="bottom"><b>BuildIgnores</b> =&gt; (string[])this.GetField( &quot;buildIgnores&quot; )</td></tr>
 <tr class="separator:a6210f5eefde28f9c24d8ea46c0035bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7139445ddee3ec19db288dd3500b7e7f"><td class="memItemLeft" align="right" valign="top"><a id="a7139445ddee3ec19db288dd3500b7e7f"></a>
+<tr class="memitem:aca4afb0e9341ee782d1b254dbc6a47bc"><td class="memItemLeft" align="right" valign="top"><a id="aca4afb0e9341ee782d1b254dbc6a47bc"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Author</b> =&gt; (string)this.GetField( &quot;author&quot; )</td></tr>
-<tr class="separator:a7139445ddee3ec19db288dd3500b7e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48b6bec9d95e09a41017075bd812da3e"><td class="memItemLeft" align="right" valign="top"><a id="a48b6bec9d95e09a41017075bd812da3e"></a>
+<tr class="separator:aca4afb0e9341ee782d1b254dbc6a47bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a759015bb346765c41e30d2a50106cab7"><td class="memItemLeft" align="right" valign="top"><a id="a759015bb346765c41e30d2a50106cab7"></a>
 Version&#160;</td><td class="memItemRight" valign="bottom"><b>Version</b> =&gt; (Version)this.GetField( &quot;version&quot; )</td></tr>
-<tr class="separator:a48b6bec9d95e09a41017075bd812da3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8421dc0d4e1fe66deba361841583e990"><td class="memItemLeft" align="right" valign="top"><a id="a8421dc0d4e1fe66deba361841583e990"></a>
+<tr class="separator:a759015bb346765c41e30d2a50106cab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7687d53d9a4392dae25f8ecfa1c2df00"><td class="memItemLeft" align="right" valign="top"><a id="a7687d53d9a4392dae25f8ecfa1c2df00"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayName</b> =&gt; (string)this.GetField( &quot;displayName&quot; )</td></tr>
-<tr class="separator:a8421dc0d4e1fe66deba361841583e990"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c129b6e0136280ea16ba4b518326f13"><td class="memItemLeft" align="right" valign="top"><a id="a7c129b6e0136280ea16ba4b518326f13"></a>
+<tr class="separator:a7687d53d9a4392dae25f8ecfa1c2df00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2851a4f90c4d4f0b99a69b9bb797b7d1"><td class="memItemLeft" align="right" valign="top"><a id="a2851a4f90c4d4f0b99a69b9bb797b7d1"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>NoCompile</b> =&gt; (bool)this.GetField( &quot;noCompile&quot; )</td></tr>
-<tr class="separator:a7c129b6e0136280ea16ba4b518326f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f456309ff1e679560a73d7afc029b63"><td class="memItemLeft" align="right" valign="top"><a id="a5f456309ff1e679560a73d7afc029b63"></a>
+<tr class="separator:a2851a4f90c4d4f0b99a69b9bb797b7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a075d24800126d8d6425a2dc871307bbb"><td class="memItemLeft" align="right" valign="top"><a id="a075d24800126d8d6425a2dc871307bbb"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>HideCode</b> =&gt; (bool)this.GetField( &quot;hideCode&quot; )</td></tr>
-<tr class="separator:a5f456309ff1e679560a73d7afc029b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5207fb8b244b00d63160169deee21d1a"><td class="memItemLeft" align="right" valign="top"><a id="a5207fb8b244b00d63160169deee21d1a"></a>
+<tr class="separator:a075d24800126d8d6425a2dc871307bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a324e7e73d801f88910b307ae5ca7298d"><td class="memItemLeft" align="right" valign="top"><a id="a324e7e73d801f88910b307ae5ca7298d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>HideResources</b> =&gt; (bool)this.GetField( &quot;hideResources&quot; )</td></tr>
-<tr class="separator:a5207fb8b244b00d63160169deee21d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cf4c5edc51975b2a542aec7ae2f6205"><td class="memItemLeft" align="right" valign="top"><a id="a4cf4c5edc51975b2a542aec7ae2f6205"></a>
+<tr class="separator:a324e7e73d801f88910b307ae5ca7298d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84233d3b83c026079c6f747abb534cfa"><td class="memItemLeft" align="right" valign="top"><a id="a84233d3b83c026079c6f747abb534cfa"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IncludeSource</b> =&gt; (bool)this.GetField( &quot;includeSource&quot; )</td></tr>
-<tr class="separator:a4cf4c5edc51975b2a542aec7ae2f6205"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae09d93ed249674420b1a278461c9c295"><td class="memItemLeft" align="right" valign="top"><a id="ae09d93ed249674420b1a278461c9c295"></a>
+<tr class="separator:a84233d3b83c026079c6f747abb534cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcc44f5da2c63606860cf596eeea18c9"><td class="memItemLeft" align="right" valign="top"><a id="adcc44f5da2c63606860cf596eeea18c9"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IncludePDB</b> =&gt; (bool)this.GetField( &quot;includePDB&quot; )</td></tr>
-<tr class="separator:ae09d93ed249674420b1a278461c9c295"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66bb30c9241d7faea4ba2b29221621a6"><td class="memItemLeft" align="right" valign="top"><a id="a66bb30c9241d7faea4ba2b29221621a6"></a>
+<tr class="separator:adcc44f5da2c63606860cf596eeea18c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78fad82c593be43c74738dd78118678b"><td class="memItemLeft" align="right" valign="top"><a id="a78fad82c593be43c74738dd78118678b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>EditAndContinue</b> =&gt; (bool)this.GetField( &quot;editAndContinue&quot; )</td></tr>
-<tr class="separator:a66bb30c9241d7faea4ba2b29221621a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a69898abe387f9c33faa10d444135c9"><td class="memItemLeft" align="right" valign="top"><a id="a3a69898abe387f9c33faa10d444135c9"></a>
+<tr class="separator:a78fad82c593be43c74738dd78118678b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56b213399ae66952661514902b985d5"><td class="memItemLeft" align="right" valign="top"><a id="ae56b213399ae66952661514902b985d5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Beta</b> =&gt; (bool)this.GetField( &quot;beta&quot; )</td></tr>
-<tr class="separator:a3a69898abe387f9c33faa10d444135c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad615c45bda10a73ec79b7b6d238dfe08"><td class="memItemLeft" align="right" valign="top"><a id="ad615c45bda10a73ec79b7b6d238dfe08"></a>
+<tr class="separator:ae56b213399ae66952661514902b985d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35b30024b7ae6a7bf26757f054971b4c"><td class="memItemLeft" align="right" valign="top"><a id="a35b30024b7ae6a7bf26757f054971b4c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>LanguageVersion</b> =&gt; (int)this.GetField( &quot;languageVersion&quot; )</td></tr>
-<tr class="separator:ad615c45bda10a73ec79b7b6d238dfe08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a6be58f52b284911f9056e1a9d73226"><td class="memItemLeft" align="right" valign="top"><a id="a8a6be58f52b284911f9056e1a9d73226"></a>
+<tr class="separator:a35b30024b7ae6a7bf26757f054971b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afabf4ee328da382e4b1a5bbb6f1391cf"><td class="memItemLeft" align="right" valign="top"><a id="afabf4ee328da382e4b1a5bbb6f1391cf"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Homepage</b> =&gt; (string)this.GetField( &quot;homepage&quot; )</td></tr>
-<tr class="separator:a8a6be58f52b284911f9056e1a9d73226"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2f01f825fed5698c062c0eeb0b8f8b3"><td class="memItemLeft" align="right" valign="top"><a id="ab2f01f825fed5698c062c0eeb0b8f8b3"></a>
+<tr class="separator:afabf4ee328da382e4b1a5bbb6f1391cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8359e246a9c5e93ed17cdadf2a527c48"><td class="memItemLeft" align="right" valign="top"><a id="a8359e246a9c5e93ed17cdadf2a527c48"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b> =&gt; (string)this.GetField( &quot;description&quot; )</td></tr>
-<tr class="separator:ab2f01f825fed5698c062c0eeb0b8f8b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fa7d5f601e539bb9ab8efbad01c0607"><td class="memItemLeft" align="right" valign="top"><a id="a7fa7d5f601e539bb9ab8efbad01c0607"></a>
+<tr class="separator:a8359e246a9c5e93ed17cdadf2a527c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a160e9f70a58acca84c0365c40daa1275"><td class="memItemLeft" align="right" valign="top"><a id="a160e9f70a58acca84c0365c40daa1275"></a>
 ModSide&#160;</td><td class="memItemRight" valign="bottom"><b>Side</b> =&gt; (ModSide)this.GetField( &quot;side&quot; )</td></tr>
-<tr class="separator:a7fa7d5f601e539bb9ab8efbad01c0607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a160e9f70a58acca84c0365c40daa1275"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a740951870565ef65d59ac8405ca268b4"><td class="memItemLeft" align="right" valign="top"><a id="a740951870565ef65d59ac8405ca268b4"></a>
+<tr class="memitem:abcf006368bb35902bc663c04f81705d8"><td class="memItemLeft" align="right" valign="top"><a id="abcf006368bb35902bc663c04f81705d8"></a>
 IDictionary&lt; string, Version &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ModReferences</b><code> [get]</code></td></tr>
-<tr class="separator:a740951870565ef65d59ac8405ca268b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b16554f3ca2efe95fc4d03344e4ba0a"><td class="memItemLeft" align="right" valign="top"><a id="a9b16554f3ca2efe95fc4d03344e4ba0a"></a>
+<tr class="separator:abcf006368bb35902bc663c04f81705d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd27a623259ae4eebc072edc15684d4c"><td class="memItemLeft" align="right" valign="top"><a id="abd27a623259ae4eebc072edc15684d4c"></a>
 IDictionary&lt; string, Version &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>WeakReferences</b><code> [get]</code></td></tr>
-<tr class="separator:a9b16554f3ca2efe95fc4d03344e4ba0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:abd27a623259ae4eebc072edc15684d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>HamstarHelpers/Services/Tml/BuildPropertiesEditor.cs</li>
 <li>HamstarHelpers/Services/Tml/BuildPropertiesEditor_Instance.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services.html">Services</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_services_1_1_tml.html">Tml</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_editor.html">BuildPropertiesEditor</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

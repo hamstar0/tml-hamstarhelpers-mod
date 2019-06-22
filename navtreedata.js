@@ -42,7 +42,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html#afc7031ae4460b3a2514f41640bee5251",
+"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#ab7603df878a936843ace6857b2e80654",
+"namespace_hamstar_helpers_1_1_helpers_1_1_dusts.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,7 +1,6 @@
 var class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers =
 [
     [ "CurrentPlayerKillsOfBannerNpc", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#ad8de05dc4677400e7ec6bd9b926c4672", null ],
-    [ "DrawSimple", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#ab469f2ff8f453c9abb90e808c96a96c7", null ],
     [ "GetActive", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#af27cf9de0b6396c5f203b64fb6618abc", null ],
     [ "GetKnockbackVector", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#a760180cf14bcdd902468aa3fd268cf80", null ],
     [ "IsNPCDead", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#a90e1fd34a8c72b44c4d6af6e29384efa", null ],

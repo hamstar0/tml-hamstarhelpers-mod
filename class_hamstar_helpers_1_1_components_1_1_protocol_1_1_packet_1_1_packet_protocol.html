@@ -143,6 +143,9 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a1ee11ea915f9cef5d8e421ac93b429d9"><td class="memItemLeft" align="right" valign="top"><a id="a1ee11ea915f9cef5d8e421ac93b429d9"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>OnClone</b> ()</td></tr>
+<tr class="separator:a1ee11ea915f9cef5d8e421ac93b429d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20ff12dc1b9843ea1f16505a2fd13ec6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a20ff12dc1b9843ea1f16505a2fd13ec6">SetClientDefaults</a> ()</td></tr>
 <tr class="memdesc:a20ff12dc1b9843ea1f16505a2fd13ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overridden for initializing the class to create a reply in a request to the client.  <a href="#a20ff12dc1b9843ea1f16505a2fd13ec6">More...</a><br /></td></tr>
 <tr class="separator:a20ff12dc1b9843ea1f16505a2fd13ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,6 +171,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:ae9101697c37944a925ee858cfe3a62d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the current packet to the client.  <a href="#ae9101697c37944a925ee858cfe3a62d8">More...</a><br /></td></tr>
 <tr class="separator:ae9101697c37944a925ee858cfe3a62d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol.html">HamstarHelpers.Components.Protocol.Stream.StreamProtocol</a></td></tr>
+<tr class="memitem:a3c22ddf2598332155a9e925e9ef3202d inherit pro_methods_class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol"><td class="memItemLeft" align="right" valign="top"><a id="a3c22ddf2598332155a9e925e9ef3202d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InternalOnClone</b> ()</td></tr>
+<tr class="separator:a3c22ddf2598332155a9e925e9ef3202d inherit pro_methods_class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d5c0243888b6f5b7c234c2f2876c6b7 inherit pro_methods_class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol.html#a5d5c0243888b6f5b7c234c2f2876c6b7">ReadStream</a> (BinaryReader reader)</td></tr>
 <tr class="memdesc:a5d5c0243888b6f5b7c234c2f2876c6b7 inherit pro_methods_class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements internal low level data reading for packet receipt.  <a href="class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol.html#a5d5c0243888b6f5b7c234c2f2876c6b7">More...</a><br /></td></tr>
 <tr class="separator:a5d5c0243888b6f5b7c234c2f2876c6b7 inherit pro_methods_class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,6 +183,9 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
+<tr class="memitem:af5fed300655748a69c6ddc08c5c57149"><td class="memItemLeft" align="right" valign="top"><a id="af5fed300655748a69c6ddc08c5c57149"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>QuickRequestToClient&lt; T &gt;</b> (int toWho, int ignoreWho, int retries)</td></tr>
+<tr class="separator:af5fed300655748a69c6ddc08c5c57149"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a035703e14b5aa52d2a6d318dc16cff05"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a035703e14b5aa52d2a6d318dc16cff05">QuickRequestToServer&lt; T &gt;</a> (int retries)</td></tr>
 <tr class="memdesc:a035703e14b5aa52d2a6d318dc16cff05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand to send a request for a default instance of this protocol's data from the server. Requires <code><a class="el" href="class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#ae41d10983afc8f14fe79a80054cf5674" title="Overridden for initializing the class to create a reply in a request to the server.">SetServerDefaults()</a></code> to be implemented.  <a href="#a035703e14b5aa52d2a6d318dc16cff05">More...</a><br /></td></tr>
 <tr class="separator:a035703e14b5aa52d2a6d318dc16cff05"><td class="memSeparator" colspan="2">&#160;</td></tr>

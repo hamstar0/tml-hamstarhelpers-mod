@@ -1,6 +1,27 @@
 var namespace_hamstar_helpers_1_1_helpers =
 [
-    [ "DotNET", "namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t.html", null ],
+    [ "Buffs", "namespace_hamstar_helpers_1_1_helpers_1_1_buffs.html", "namespace_hamstar_helpers_1_1_helpers_1_1_buffs" ],
+    [ "Debug", "namespace_hamstar_helpers_1_1_helpers_1_1_debug.html", "namespace_hamstar_helpers_1_1_helpers_1_1_debug" ],
+    [ "DotNET", "namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t.html", "namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t" ],
+    [ "DotNetHelpers", "namespace_hamstar_helpers_1_1_helpers_1_1_dot_net_helpers.html", null ],
+    [ "Dusts", "namespace_hamstar_helpers_1_1_helpers_1_1_dusts.html", "namespace_hamstar_helpers_1_1_helpers_1_1_dusts" ],
+    [ "Entities", "namespace_hamstar_helpers_1_1_helpers_1_1_entities.html", "namespace_hamstar_helpers_1_1_helpers_1_1_entities" ],
+    [ "HUD", "namespace_hamstar_helpers_1_1_helpers_1_1_h_u_d.html", "namespace_hamstar_helpers_1_1_helpers_1_1_h_u_d" ],
+    [ "Info", "namespace_hamstar_helpers_1_1_helpers_1_1_info.html", "namespace_hamstar_helpers_1_1_helpers_1_1_info" ],
     [ "Items", "namespace_hamstar_helpers_1_1_helpers_1_1_items.html", "namespace_hamstar_helpers_1_1_helpers_1_1_items" ],
-    [ "TModLoader", "namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader.html", null ]
+    [ "Misc", "namespace_hamstar_helpers_1_1_helpers_1_1_misc.html", "namespace_hamstar_helpers_1_1_helpers_1_1_misc" ],
+    [ "ModHelpers", "namespace_hamstar_helpers_1_1_helpers_1_1_mod_helpers.html", "namespace_hamstar_helpers_1_1_helpers_1_1_mod_helpers" ],
+    [ "Net", "namespace_hamstar_helpers_1_1_helpers_1_1_net.html", "namespace_hamstar_helpers_1_1_helpers_1_1_net" ],
+    [ "NPCs", "namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html", "namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs" ],
+    [ "Players", "namespace_hamstar_helpers_1_1_helpers_1_1_players.html", "namespace_hamstar_helpers_1_1_helpers_1_1_players" ],
+    [ "Projectiles", "namespace_hamstar_helpers_1_1_helpers_1_1_projectiles.html", "namespace_hamstar_helpers_1_1_helpers_1_1_projectiles" ],
+    [ "Recipes", "namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html", "namespace_hamstar_helpers_1_1_helpers_1_1_recipes" ],
+    [ "Steam", "namespace_hamstar_helpers_1_1_helpers_1_1_steam.html", "namespace_hamstar_helpers_1_1_helpers_1_1_steam" ],
+    [ "Tiles", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles" ],
+    [ "TmlHelpers", "namespace_hamstar_helpers_1_1_helpers_1_1_tml_helpers.html", null ],
+    [ "TModLoader", "namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader.html", "namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader" ],
+    [ "UI", "namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html", "namespace_hamstar_helpers_1_1_helpers_1_1_u_i" ],
+    [ "User", "namespace_hamstar_helpers_1_1_helpers_1_1_user.html", "namespace_hamstar_helpers_1_1_helpers_1_1_user" ],
+    [ "World", "namespace_hamstar_helpers_1_1_helpers_1_1_world.html", "namespace_hamstar_helpers_1_1_helpers_1_1_world" ],
+    [ "XNA", "namespace_hamstar_helpers_1_1_helpers_1_1_x_n_a.html", "namespace_hamstar_helpers_1_1_helpers_1_1_x_n_a" ]
 ];

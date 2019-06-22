@@ -9,14 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,23 +48,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -87,6 +62,11 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_components_1
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements.html">Elements</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs.html">Dialogs</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html">UIPromptPanel</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -118,74 +98,82 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>RefreshTheme<
 <tr class="memitem:a45d89aa17e701c262a4a34ad2e33e94d"><td class="memItemLeft" align="right" valign="top"><a id="a45d89aa17e701c262a4a34ad2e33e94d"></a>
 override void&#160;</td><td class="memItemRight" valign="bottom"><b>Recalculate</b> ()</td></tr>
 <tr class="separator:a45d89aa17e701c262a4a34ad2e33e94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747c35ba7b16c2eb22b98f9518efdf7d"><td class="memItemLeft" align="right" valign="top"><a id="a747c35ba7b16c2eb22b98f9518efdf7d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UIPromptPanel</b> (<a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a> theme, int width, int height, string title, Action confirm, Action cancel=null)</td></tr>
+<tr class="separator:a747c35ba7b16c2eb22b98f9518efdf7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bb7d763d168315236ddd054d9fc1776"><td class="memItemLeft" align="right" valign="top"><a id="a6bb7d763d168315236ddd054d9fc1776"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>OnInitialize</b> ()</td></tr>
+<tr class="separator:a6bb7d763d168315236ddd054d9fc1776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7c0fb7d17378d53951f43260d701e9"><td class="memItemLeft" align="right" valign="top"><a id="a7d7c0fb7d17378d53951f43260d701e9"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>RefreshTheme</b> ()</td></tr>
+<tr class="separator:a7d7c0fb7d17378d53951f43260d701e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45d89aa17e701c262a4a34ad2e33e94d"><td class="memItemLeft" align="right" valign="top"><a id="a45d89aa17e701c262a4a34ad2e33e94d"></a>
+override void&#160;</td><td class="memItemRight" valign="bottom"><b>Recalculate</b> ()</td></tr>
+<tr class="separator:a45d89aa17e701c262a4a34ad2e33e94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:abb6bce9bfa326390ae06696e7a397130"><td class="memItemLeft" align="right" valign="top"><a id="abb6bce9bfa326390ae06696e7a397130"></a>
+<tr class="memitem:a89506db6f6c38e1f5fc549fa6b13d1b0"><td class="memItemLeft" align="right" valign="top"><a id="a89506db6f6c38e1f5fc549fa6b13d1b0"></a>
 <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html">UITextPanelButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ConfirmButton</b></td></tr>
-<tr class="separator:abb6bce9bfa326390ae06696e7a397130"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ae8466e3fec43094d6dc1c96aaf45c1"><td class="memItemLeft" align="right" valign="top"><a id="a5ae8466e3fec43094d6dc1c96aaf45c1"></a>
+<tr class="separator:a89506db6f6c38e1f5fc549fa6b13d1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a889a86240832fe65828864a4658db1cb"><td class="memItemLeft" align="right" valign="top"><a id="a889a86240832fe65828864a4658db1cb"></a>
 <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html">UITextPanelButton</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CancelButton</b></td></tr>
-<tr class="separator:a5ae8466e3fec43094d6dc1c96aaf45c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d93352182a66cce061cbae4cb0a4aae"><td class="memItemLeft" align="right" valign="top"><a id="a4d93352182a66cce061cbae4cb0a4aae"></a>
+<tr class="separator:a889a86240832fe65828864a4658db1cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2035c15a856b33cc16c4d930b1429caa"><td class="memItemLeft" align="right" valign="top"><a id="a2035c15a856b33cc16c4d930b1429caa"></a>
 Action&#160;</td><td class="memItemRight" valign="bottom"><b>ConfirmAction</b></td></tr>
-<tr class="separator:a4d93352182a66cce061cbae4cb0a4aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54537e5199a82b9d2cb92bec78537ad3"><td class="memItemLeft" align="right" valign="top"><a id="a54537e5199a82b9d2cb92bec78537ad3"></a>
+<tr class="separator:a2035c15a856b33cc16c4d930b1429caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c8a46233f220b93d6b15b2220d496b9"><td class="memItemLeft" align="right" valign="top"><a id="a3c8a46233f220b93d6b15b2220d496b9"></a>
 Action&#160;</td><td class="memItemRight" valign="bottom"><b>CancelAction</b></td></tr>
-<tr class="separator:a54537e5199a82b9d2cb92bec78537ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa21153aa839a3e5e72f5a591f492d6ad"><td class="memItemLeft" align="right" valign="top"><a id="aa21153aa839a3e5e72f5a591f492d6ad"></a>
+<tr class="separator:a3c8a46233f220b93d6b15b2220d496b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64218029cd88bcb9ef50e974dc450927"><td class="memItemLeft" align="right" valign="top"><a id="a64218029cd88bcb9ef50e974dc450927"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetDialogToClose</b> = false</td></tr>
-<tr class="separator:aa21153aa839a3e5e72f5a591f492d6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adce85f08f4f9f99a11d2d38d52673d60"><td class="memItemLeft" align="right" valign="top"><a id="adce85f08f4f9f99a11d2d38d52673d60"></a>
+<tr class="separator:a64218029cd88bcb9ef50e974dc450927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac54a9094573c6ded6ba5559ed1c91cc1"><td class="memItemLeft" align="right" valign="top"><a id="ac54a9094573c6ded6ba5559ed1c91cc1"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>TopPixels</b> = 32f</td></tr>
-<tr class="separator:adce85f08f4f9f99a11d2d38d52673d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8445760958d986d152eff77a0c92339d"><td class="memItemLeft" align="right" valign="top"><a id="a8445760958d986d152eff77a0c92339d"></a>
+<tr class="separator:ac54a9094573c6ded6ba5559ed1c91cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42a8bea023e534796a5cba922def24a8"><td class="memItemLeft" align="right" valign="top"><a id="a42a8bea023e534796a5cba922def24a8"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>TopPercent</b> = 0.5f</td></tr>
-<tr class="separator:a8445760958d986d152eff77a0c92339d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bfa109a37d5fb44656a746be442a0a5"><td class="memItemLeft" align="right" valign="top"><a id="a2bfa109a37d5fb44656a746be442a0a5"></a>
+<tr class="separator:a42a8bea023e534796a5cba922def24a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66d1daff3b20c657b2b9a20c7f0cc6f"><td class="memItemLeft" align="right" valign="top"><a id="ab66d1daff3b20c657b2b9a20c7f0cc6f"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>LeftPixels</b> = 0f</td></tr>
-<tr class="separator:a2bfa109a37d5fb44656a746be442a0a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad613cc26d7467ac87ad8760a086af743"><td class="memItemLeft" align="right" valign="top"><a id="ad613cc26d7467ac87ad8760a086af743"></a>
+<tr class="separator:ab66d1daff3b20c657b2b9a20c7f0cc6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01fe92b879ff97f2ef01d001ecb6a2dc"><td class="memItemLeft" align="right" valign="top"><a id="a01fe92b879ff97f2ef01d001ecb6a2dc"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>LeftPercent</b> = 0.5f</td></tr>
-<tr class="separator:ad613cc26d7467ac87ad8760a086af743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae92a6f44766e836177cb514bd95d128f"><td class="memItemLeft" align="right" valign="top"><a id="ae92a6f44766e836177cb514bd95d128f"></a>
+<tr class="separator:a01fe92b879ff97f2ef01d001ecb6a2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad317fdcb37b307378779ba1df9c2be64"><td class="memItemLeft" align="right" valign="top"><a id="ad317fdcb37b307378779ba1df9c2be64"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>TopCentered</b> = true</td></tr>
-<tr class="separator:ae92a6f44766e836177cb514bd95d128f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c5ef3933b4785a77f8849b27a614723"><td class="memItemLeft" align="right" valign="top"><a id="a4c5ef3933b4785a77f8849b27a614723"></a>
+<tr class="separator:ad317fdcb37b307378779ba1df9c2be64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dfcde5c1c810fbba0375cad1e127b86"><td class="memItemLeft" align="right" valign="top"><a id="a1dfcde5c1c810fbba0375cad1e127b86"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>LeftCentered</b> = true</td></tr>
-<tr class="separator:a4c5ef3933b4785a77f8849b27a614723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a1dfcde5c1c810fbba0375cad1e127b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:aec8ebc2e339db45238bfdbea4450157c"><td class="memItemLeft" align="right" valign="top"><a id="aec8ebc2e339db45238bfdbea4450157c"></a>
+<tr class="memitem:af19bb5376a2878355dc0aa964702d727"><td class="memItemLeft" align="right" valign="top"><a id="af19bb5376a2878355dc0aa964702d727"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>MyWidth</b><code> [get]</code></td></tr>
-<tr class="separator:aec8ebc2e339db45238bfdbea4450157c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a86112b6cb179a92b094fa0b4844956"><td class="memItemLeft" align="right" valign="top"><a id="a1a86112b6cb179a92b094fa0b4844956"></a>
+<tr class="separator:af19bb5376a2878355dc0aa964702d727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add12774bacc8a56e03362c2f1fdf9a55"><td class="memItemLeft" align="right" valign="top"><a id="add12774bacc8a56e03362c2f1fdf9a55"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>MyHeight</b><code> [get]</code></td></tr>
-<tr class="separator:a1a86112b6cb179a92b094fa0b4844956"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadb2d56771be0ec0d4d2e40c160bcbef"><td class="memItemLeft" align="right" valign="top"><a id="aadb2d56771be0ec0d4d2e40c160bcbef"></a>
+<tr class="separator:add12774bacc8a56e03362c2f1fdf9a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ac11eb59e8f1029478657bddf74858c"><td class="memItemLeft" align="right" valign="top"><a id="a8ac11eb59e8f1029478657bddf74858c"></a>
 <a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html">UITheme</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Theme</b><code> [get, protected set]</code></td></tr>
-<tr class="separator:aadb2d56771be0ec0d4d2e40c160bcbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac90ef51ecaa31c309f56760d1e75a75d"><td class="memItemLeft" align="right" valign="top"><a id="ac90ef51ecaa31c309f56760d1e75a75d"></a>
+<tr class="separator:a8ac11eb59e8f1029478657bddf74858c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f70b0da21bd004b6c6031b730c2ac30"><td class="memItemLeft" align="right" valign="top"><a id="a6f70b0da21bd004b6c6031b730c2ac30"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>TitleText</b><code> [get]</code></td></tr>
-<tr class="separator:ac90ef51ecaa31c309f56760d1e75a75d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36575317672d5846830dbd4181650a85"><td class="memItemLeft" align="right" valign="top"><a id="a36575317672d5846830dbd4181650a85"></a>
+<tr class="separator:a6f70b0da21bd004b6c6031b730c2ac30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad769b2e350930b0a10144040ff884827"><td class="memItemLeft" align="right" valign="top"><a id="ad769b2e350930b0a10144040ff884827"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsOpen</b><code> [get]</code></td></tr>
-<tr class="separator:a36575317672d5846830dbd4181650a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ad769b2e350930b0a10144040ff884827"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>HamstarHelpers/Components/UI/Elements/UIPromptPanel.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements.html">Elements</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs.html">Dialogs</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html">UIPromptPanel</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

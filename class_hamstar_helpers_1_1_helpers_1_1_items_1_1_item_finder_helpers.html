@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <div class="title">HamstarHelpers.Helpers.Items.ItemFinderHelpers Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Assorted static "helper" functions pertaining to finding items in collections.  
+ <a href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -111,7 +114,7 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>CountTotalOfEac
 static IDictionary&lt; int, KeyValuePair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FilterByTypes</b> (IDictionary&lt; int, KeyValuePair&lt; int, int &gt;&gt; entries, ISet&lt; int &gt; types)</td></tr>
 <tr class="separator:af14440bff6eed03974a915a29f4124bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85858e11cc1088548768cd06a538127d"><td class="memItemLeft" align="right" valign="top"><a id="a85858e11cc1088548768cd06a538127d"></a>
-static <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindItemsByValue</b> (long sellValue, bool includeCoins=false)</td></tr>
+static ReadOnlySet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindItemsByValue</b> (long sellValue, bool includeCoins=false)</td></tr>
 <tr class="separator:a85858e11cc1088548768cd06a538127d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2cd339d3e35e70773b1e3deeba17a78"><td class="memItemLeft" align="right" valign="top"><a id="af2cd339d3e35e70773b1e3deeba17a78"></a>
 static Item&#160;</td><td class="memItemRight" valign="bottom"><b>FindFirstPlayerItemOfType</b> (Player player, int itemType)</td></tr>
@@ -125,11 +128,13 @@ static IDictionary&lt; int, bool &gt;&#160;</td><td class="memItemRight" valign=
 <tr class="memitem:a1b0474a29e1130004220dece291b18c4"><td class="memItemLeft" align="right" valign="top"><a id="a1b0474a29e1130004220dece291b18c4"></a>
 static IDictionary&lt; int, Item &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindChangesOf</b> (IDictionary&lt; int, Item &gt; changesAt, ISet&lt; int &gt; types)</td></tr>
 <tr class="separator:a1b0474a29e1130004220dece291b18c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa86cc1d10069e2305b565220cb0c41e9"><td class="memItemLeft" align="right" valign="top"><a id="aa86cc1d10069e2305b565220cb0c41e9"></a>
-static IList&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindMatches</b> (Item[] collection, Func&lt; Item, bool &gt; matcher)</td></tr>
-<tr class="separator:aa86cc1d10069e2305b565220cb0c41e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a963c636e76d369804d39b10e9defda14"><td class="memItemLeft" align="right" valign="top"><a id="a963c636e76d369804d39b10e9defda14"></a>
+static ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindPossiblePurchaseTypes</b> (Item[] items, long spent)</td></tr>
+<tr class="separator:a963c636e76d369804d39b10e9defda14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Assorted static "helper" functions pertaining to finding items in collections. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>HamstarHelpers/Helpers/Items/ItemFinderHelpers.cs</li>
 </ul>
 </div><!-- contents -->

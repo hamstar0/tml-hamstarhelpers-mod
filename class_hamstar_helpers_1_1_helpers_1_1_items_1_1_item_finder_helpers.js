@@ -9,5 +9,5 @@ var class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers =
     [ "FindIndexOfEach", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#a1becb12a9273abc69105781f20afe47f", null ],
     [ "FindIndexOfFirstOfItemInCollection", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#a19499aa18401f2736979f3070395a3f1", null ],
     [ "FindItemsByValue", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#a85858e11cc1088548768cd06a538127d", null ],
-    [ "FindMatches", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#aa86cc1d10069e2305b565220cb0c41e9", null ]
+    [ "FindPossiblePurchaseTypes", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#a963c636e76d369804d39b10e9defda14", null ]
 ];
