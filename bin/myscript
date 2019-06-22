@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd ../
+git add -A
+git commit
+git push origin gh-pages
