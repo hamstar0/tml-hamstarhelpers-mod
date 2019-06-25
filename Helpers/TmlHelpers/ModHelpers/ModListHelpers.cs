@@ -8,6 +8,11 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 	public partial class ModListHelpers {
 		public static IEnumerable<Mod> GetAllLoadedModsPreferredOrder() {
+			if( ModLoader.version >= new Version(0, 11) ) { return new List<Mod>(); }
+			return ModListHelpers._GetAllLoadedModsPreferredOrder();
+		}
+
+		private static IEnumerable<Mod> _GetAllLoadedModsPreferredOrder() {
 			var mymod = ModHelpersMod.Instance;
 			var self = mymod.ModFeaturesHelpers;
 			var mods = new LinkedList<Mod>();

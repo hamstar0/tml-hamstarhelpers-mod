@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
@@ -16,7 +17,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.Menus.ModUpdates {
 	partial class ModUpdatesMenuContext : SessionMenuContext {
 		public static void Initialize() {
-			if( ModHelpersMod.Instance.Config.DisableModMenuUpdates ) { return; }
+			if( ModLoader.version >= new Version(0, 11) || ModHelpersMod.Instance.Config.DisableModMenuUpdates ) { return; }
 			
 			var ctx = new ModUpdatesMenuContext();
 			MenuContextService.AddMenuContext( "UIMods", "ModHelpers: Mod Updates", ctx );

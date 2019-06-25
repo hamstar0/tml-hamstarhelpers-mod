@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -20,7 +21,7 @@ namespace HamstarHelpers.Commands {
 
 			var mymod = (ModHelpersMod)this.mod;
 
-			if( mymod.Config.DisableControlPanel ) {
+			if( ModLoader.version >= new Version(0, 11) || mymod.Config.DisableControlPanel ) {
 				caller.Reply( "Control panel disabled.", Color.Red );
 			} else {
 				ModHelpersMod.Instance.ControlPanel.Open();

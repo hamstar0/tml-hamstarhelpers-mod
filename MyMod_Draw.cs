@@ -69,14 +69,21 @@ namespace HamstarHelpers {
 				var sb = Main.spriteBatch;
 
 				try {
-					if( !this.Config.DisableControlPanel ) {
+					bool isCtrlPanelEnabled = ModLoader.version < new Version( 0, 11 )
+						&& !this.Config.DisableControlPanel;
+
+					if( isCtrlPanelEnabled ) {
 						this.ControlPanel.UpdateToggler();
 						this.ControlPanel.DrawToggler( sb );
 					}
+
 					if( this.LastSeenCPScreenWidth != Main.screenWidth || this.LastSeenCPScreenHeight != Main.screenHeight ) {
 						this.LastSeenCPScreenWidth = Main.screenWidth;
 						this.LastSeenCPScreenHeight = Main.screenHeight;
-						this.ControlPanel.RecalculateMe();
+
+						if( isCtrlPanelEnabled ) {
+							this.ControlPanel.RecalculateMe();
+						}
 					}
 
 					this.Inbox.Draw( sb );
@@ -110,12 +117,10 @@ namespace HamstarHelpers {
 			var modlockLayer = new LegacyGameInterfaceLayer( "ModHelpers: Mod Lock",
 				modlockDrawCallback, InterfaceScaleType.UI );
 			layers.Insert( idx, modlockLayer );
-
-			if( !this.Config.DisableControlPanel ) {
-				var cpLayer = new LegacyGameInterfaceLayer( "ModHelpers: Control Panel",
-					cpDrawCallback, InterfaceScaleType.UI );
-				layers.Insert( idx, cpLayer );
-			}
+			
+			var cpLayer = new LegacyGameInterfaceLayer( "ModHelpers: Control Panel",
+				cpDrawCallback, InterfaceScaleType.UI );
+			layers.Insert( idx, cpLayer );
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 	}

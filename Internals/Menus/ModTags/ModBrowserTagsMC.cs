@@ -4,12 +4,14 @@ using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.Menus;
+using System;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public static void Initialize() {
-			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
+			if( ModLoader.version >= new Version(0, 11) ||ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 			
 			var ctx = new ModBrowserTagsMenuContext();
 			MenuContextService.AddMenuContext( "UIModBrowser", "ModHelpers: Mod Browser", ctx );

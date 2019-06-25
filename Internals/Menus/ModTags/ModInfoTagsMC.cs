@@ -10,6 +10,7 @@ using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 
@@ -21,7 +22,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		public static void Initialize() {
-			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
+			if( ModLoader.version >= new Version(0, 11) ||ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			var ctx = new ModInfoTagsMenuContext();
 			MenuContextService.AddMenuContext( "UIModInfo", "ModHelpers: Mod Info", ctx );

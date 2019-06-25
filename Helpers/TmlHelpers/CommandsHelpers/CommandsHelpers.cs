@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.CommandsHelpers {
 		public static string GetQuotedStringFromArgsAt( string[] args, int startPos, out int nextArgIdx ) {
 			nextArgIdx = -1;
 
-			if( args[startPos].Length == 0 || args[startPos][0] != '"' ) {
+			if( startPos >= args.Length || args[startPos].Length == 0 || args[startPos][0] != '"' ) {
 				return "";
 			}
 

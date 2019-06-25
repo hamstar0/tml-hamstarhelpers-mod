@@ -4,12 +4,12 @@ using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.TmlHelpers.Menus;
-using HamstarHelpers.Helpers.TmlHelpers.ModHelpers;
 using HamstarHelpers.Internals.Menus.ModRecommendations.UI;
 using HamstarHelpers.Services.Menus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 		////////////////
 
 		public static void Initialize() {
-			if( ModHelpersMod.Instance.Config.DisableModRecommendations ) { return; }
+			if( ModLoader.version >= new Version(0, 11) || ModHelpersMod.Instance.Config.DisableModRecommendations ) { return; }
 			
 			var ctx = new ModRecommendsMenuContext();
 			MenuContextService.AddMenuContext( "UIModInfo", "ModHelpers: Mod Recommendations", ctx );
