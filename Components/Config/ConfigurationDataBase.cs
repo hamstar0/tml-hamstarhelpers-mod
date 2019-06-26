@@ -14,16 +14,14 @@ namespace HamstarHelpers.Components.Config {
 		public static string RelativePath => "Mod Configs";
 
 
-
-		////////////////
+		
 
 		public ConfigurationDataBase() { }
 
 		public ConfigurationDataBase Clone() {
 			return (ConfigurationDataBase)this.MemberwiseClone();
 		}
-
-		////
+		
 		
 		/**
 		 * <summary>Runs when the config is loaded from file or created anew.</summary>
@@ -35,8 +33,7 @@ namespace HamstarHelpers.Components.Config {
 		 */
 		public virtual void OnSave() { }
 
-
-		////////////////
+		
 		
 		public override string ToString() {
 			return JsonConvert.SerializeObject( this );

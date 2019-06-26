@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.InfoDisplay.SetDefaultText( "Click tags to filter the list. Right-click tags to filter without them." );
 
 			UIElement elem;
-			if( ReflectionHelpers.Get<UIElement>( ui, "uIElement", out elem ) ) {
+			if( ReflectionHelpers.Get(ui, "_rootElement", out elem) ) {
 				elem.Left.Pixels += UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.ResetMenuObjects();
 
 			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) && elem != null ) {
+			if( ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem != null ) {
 				elem.Left.Pixels -= UITagButton.ColumnWidth;
 				elem.Recalculate();
 			}
@@ -79,8 +79,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void BeginModBrowserPopulateCheck( UIState modBrowserUi ) {
 			UIList uiModList;
 
-			if( !ReflectionHelpers.Get( modBrowserUi, "modList", out uiModList ) ) {
-				throw new HamstarException( "Invalid modList" );
+			if( !ReflectionHelpers.Get( modBrowserUi, "ModList", out uiModList ) ) {
+				throw new HamstarException( "Invalid ModList" );
 			}
 			
 			if( this.IsModBrowserListPopulated( uiModList ) ) {
@@ -115,7 +115,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void ApplyModBrowserModInfoBindings( UIList uiModList ) {
 			object modList;
 
-			if( !ReflectionHelpers.Get( uiModList, "_items", out modList ) || modList == null ) {
+			if( !ReflectionHelpers.Get(uiModList, "_items", out modList) || modList == null ) {
 				throw new HamstarException( "Invalid modList._items" );
 			}
 
@@ -126,7 +126,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			for( int i = 0; i < itemsArr.Length; i++ ) {
 				var item = (UIElement)itemsArr.GetValue( i );
 				if( item == null ) {
-					LogHelpers.Warn( "Invalid modList._item[" + i + "]" );
+					LogHelpers.Warn( "Invalid modList._item[" + i + "] (out of "+itemsArr.Length+")" );
 					continue;
 				}
 
@@ -136,14 +136,16 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				//}
 				
 				UIPanel modInfoButton;
-				if( !ReflectionHelpers.Get( item, "moreInfoButton", out modInfoButton ) || modInfoButton == null ) {
-					LogHelpers.Alert( "Invalid modList._item[" + i + "].moreInfoButton" );
+				if( !ReflectionHelpers.Get(item, "_moreInfoButton", out modInfoButton) || modInfoButton == null ) {
+					LogHelpers.Alert( "Invalid modList._item[" + i + "]._moreInfoButton" );
 					continue;
 				}
 
-				modInfoButton.OnClick += ( evt, elem ) => {
+				modInfoButton.OnClick += (evt, elem) => {
 					if( this.MyUI == null ) { return; }
-					ReflectionHelpers.Set( this.MyUI, "selectedItem", item );
+					if( !ReflectionHelpers.Set( this.MyUI, "selectedItem", item ) ) {
+						LogHelpers.Alert( "Could not set selected item from the mod browser" );
+					}
 				};
 			}
 		}

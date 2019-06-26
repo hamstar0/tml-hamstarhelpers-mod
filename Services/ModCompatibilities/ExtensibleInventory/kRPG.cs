@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using Terraria.ModLoader;
@@ -22,13 +23,19 @@ namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 			ReflectionHelpers.Get( newEIConifg, "PageTicksPositionY", out newPageTickPosY );
 			
 			if( bookPosY == newBookPosY ) {
-				ReflectionHelpers.Set( eiConfig, "BookPositionY", bookPosY + 112 );
+				if( !ReflectionHelpers.Set( eiConfig, "BookPositionY", bookPosY + 112 ) ) {
+					LogHelpers.Alert( "Could not set BookPositionY for ExtensibleInventory" );
+				}
 			}
 			if( pagePosY == newPagePosY ) {
-				ReflectionHelpers.Set( eiConfig, "PagePositionY", pagePosY + 112 );
+				if( !ReflectionHelpers.Set( eiConfig, "PagePositionY", pagePosY + 112 ) ) {
+					LogHelpers.Alert( "Could not set PagePositionY for ExtensibleInventory" );
+				}
 			}
 			if( pageTickPosY == newPageTickPosY ) {
-				ReflectionHelpers.Set( eiConfig, "PageTicksPositionY", pageTickPosY + 112 );
+				if( !ReflectionHelpers.Set( eiConfig, "PageTicksPositionY", pageTickPosY + 112 ) ) {
+					LogHelpers.Alert( "Could not set PageTicksPositionY for ExtensibleInventory" );
+				}
 			}
 		}
 	}

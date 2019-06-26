@@ -6,7 +6,7 @@ using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Promises;
 using System;
 using System.Collections.Generic;
-using Terraria.ModLoader.UI;
+using Terraria.ModLoader.UI.ModBrowser;
 using Terraria.UI;
 
 
@@ -18,8 +18,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			UIState myUI = this.MyUI;
 
 			object items;
-			if( !ReflectionHelpers.Get( myUI, "items", out items ) ) {
-				throw new HamstarException( "No 'items' field in ui " + myUI );
+			if( !ReflectionHelpers.Get( myUI, "_items", out items ) ) {
+				LogHelpers.Warn( "No 'items' field in ui " + myUI );
+				return;
 			}
 
 			var itemsArr = (Array)items.GetType()
@@ -51,8 +52,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					}
 				}
 
-				ReflectionHelpers.Set( myUI, "updateFilterMode", (UpdateFilter)0 );
-				ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
+				if( ReflectionHelpers.Set( myUI, "updateFilterMode", (UpdateFilter)0 ) ) {
+					ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
+				} else {
+					LogHelpers.Alert( "Could not set updateFilterMode for the mod browser" );
+				}
 			} );
 		}
 

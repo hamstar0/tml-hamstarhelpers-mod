@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
@@ -24,8 +25,12 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 			//if( fileData == null ) {
 			//	return new List<Tuple<string, string>>();
 			//}
+			TmodFile modFile;
+			if( !ReflectionHelpers.Get(mod, "File", out modFile) || modFile == null ) {
+				return null;
+			}
 
-			var buildEdit = BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+			var buildEdit = BuildPropertiesEditor.GetBuildPropertiesForModFile( modFile );
 			string description = (string)buildEdit.GetField( "description" );
 			byte[] descData = Encoding.UTF8.GetBytes( string.IsNullOrEmpty( description ) ? "" : description );
 

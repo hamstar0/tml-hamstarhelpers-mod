@@ -19,8 +19,9 @@ For more additional modder-relevant features, [visit the modder section of the t
 For usage library code usage instructions and documentation, [visit the wiki](https://github.com/hamstar0/tml-hamstarhelpers-mod/wiki).
 
 
-# Credits:
-Nvar: Coal item's tile sprite sheet.
+**Credits:**
+
+* Nvar: Coal item's tile sprite sheet.
 
 
 [Please support my mods!](https://www.patreon.com/hamstar0)

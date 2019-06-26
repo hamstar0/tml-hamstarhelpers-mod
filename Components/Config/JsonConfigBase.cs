@@ -13,8 +13,7 @@ namespace HamstarHelpers.Components.Config {
 		protected static readonly object MyLock = new object();
 		protected static readonly object MyFileLock = new object();
 
-
-		////////////////
+		
 
 		/**
 		 * <summary>Serializes string data to a given object of the specified type.</summary>
@@ -29,8 +28,7 @@ namespace HamstarHelpers.Components.Config {
 			}
 		}
 
-
-		////////////////
+		
 
 		/**
 		 * <summary>Specifies the folder (under %DOCUMENTS%/My Games/Terraria/ModLoader) where all configs are saved.</summary>

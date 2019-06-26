@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\HamstarHelpers.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -36,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>6</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\HamstarHelpers.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Commands\ConfigsRefreshCommand.cs" />
@@ -47,7 +49,7 @@
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
-    <Compile Include="Components\Config\JsonConfig_Base.cs" />
+    <Compile Include="Components\Config\JsonConfigBase.cs" />
     <Compile Include="Components\Config\JsonConfig_File.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Components\Protocols\Attributes.cs" />
@@ -353,8 +355,9 @@
       <HintPath>..\..\..\References\Libraries\Steamworks.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+    <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
     <Reference Include="Terraria.Libraries.ReLogic.ReLogic">
       <HintPath>..\..\..\References\Libraries\Terraria.Libraries.ReLogic.ReLogic.dll</HintPath>

@@ -2,9 +2,9 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Services.Tml;
-using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
@@ -16,7 +16,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				return null;
 			}
 
-			var buildEdit = BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+			TmodFile modFile;
+			if( !ReflectionHelpers.Get(mod, "File", out modFile) || modFile == null ) {
+				return null;
+			}
+
+			var buildEdit = BuildPropertiesEditor.GetBuildPropertiesForModFile( modFile );
 			string data = (string)buildEdit.GetField( fieldName );
 
 			return string.IsNullOrEmpty( data ) ? "" : data;

@@ -62,7 +62,7 @@ namespace HamstarHelpers.Commands {
 				throw new UsageException( "Invalid 'verbose' argument supplied (must be boolean)." );
 			}
 
-			IList<string> reply = new List<string>( ModLoader.LoadedMods.Length );
+			IList<string> reply = new List<string>( ModLoader.Mods.Length );
 			IDictionary<BuildPropertiesEditor, Mod> modList = ModListHelpers.GetLoadedModsByBuildInfo();
 
 			foreach( var kv in modList ) {

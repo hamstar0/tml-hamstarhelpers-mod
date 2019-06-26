@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.Timers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -97,7 +98,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 				modInfoArgs.ModInfo = modInfo;
 				modInfoArgs.Found = found;
 
-				Promises.TriggerValidatedPromise( GetModInfo.ModInfoListPromiseValidator, GetModInfo.PromiseValidatorKey, modInfoArgs );
+				Timers.SetTimer( "CacheAllModInfoAsyncFailsafe", 2, () => {
+					if( GetModInfo.ModInfoListPromiseValidator == null ) { return true; }
+
+					Promises.TriggerValidatedPromise( GetModInfo.ModInfoListPromiseValidator, GetModInfo.PromiseValidatorKey, modInfoArgs );
+					return false;
+				} );
 			} );
 
 			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( modInfoArgs2 ) => {

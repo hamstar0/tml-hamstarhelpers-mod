@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader.Core;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
@@ -73,13 +74,19 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				object item = itemsArr.GetValue( i );
 
 				object mod;
-				ReflectionHelpers.Get( item, "mod", out mod );
+				if( !ReflectionHelpers.Get( item, "mod", out mod ) || mod == null ) {
+					LogHelpers.Warn( "Could not get Mod from list item " + item.ToString() );
+					continue;
+				}
 
-				TmodFile tmod;
-				ReflectionHelpers.Get<TmodFile>( mod, "modFile", out tmod );
+				TmodFile modFile;
+				if( !ReflectionHelpers.Get(mod, "modFile", out modFile) || modFile == null ) {
+					LogHelpers.Warn( "Could not get modFile from list item " + item.ToString()+"'s mod "+mod.ToString() );
+					continue;
+				}
 
-				if( modInfo.ContainsKey(tmod.name) ) {
-					this.CheckVersion( tmod.name, modInfo[tmod.name], list, tmod.version );
+				if( modInfo.ContainsKey(modFile.name) ) {
+					this.CheckVersion( modFile.name, modInfo[modFile.name], list, modFile.version );
 				}
 			}
 		}
@@ -92,15 +99,21 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			if( modInfo.Version == modVersion ) { return; }
 
 			UIPanel uiModItem = null;
-			TmodFile tmod = null;
 
 			foreach( UIElement modItem in modList._items ) {
 				object mod;
+				TmodFile modFile;
 
-				ReflectionHelpers.Get( modItem, "mod", out mod );
-				ReflectionHelpers.Get( mod, "modFile", out tmod );
+				if( !ReflectionHelpers.Get(modItem, "mod", out mod) || mod == null ) {
+					LogHelpers.Warn( "Could not get mod for version check from mod list item "+modItem.ToString() );
+					continue;
+				}
+				if( !ReflectionHelpers.Get(mod, "modFile", out modFile) || modFile == null ) {
+					LogHelpers.Warn( "Could not get mod file for version check from mod "+mod.ToString()+"'s list item " + modItem.ToString() );
+					continue;
+				}
 
-				if( tmod.name == modName ) {
+				if( modFile.name == modName ) {
 					uiModItem = (UIPanel)modItem;
 					break;
 				}

@@ -9,13 +9,8 @@ using HamstarHelpers.Components.Protocols;
 
 namespace HamstarHelpers.Components.Config {
 	[Obsolete( "use ModConfig", false )]
-	/**
-	 * <summary>Implements handling of json file loading and saving.</summary>
-	 * <typeparam name="T">Any class. Fields will map to JSON data.</typeparam>
-	 */
 	public partial class JsonConfig<T> : JsonConfigBase where T : class {
-		/**
-		 * <summary>Serializes data from the given class to a JSON string.</summary>
+		/** <summary>Serializes data from the given class to a JSON string.</summary>
 		 * <param name="data">Data object to serialize.</param>
 		 * <param name="jsonSettings">Allows for applying custom settings. Typically uses `XnaContractResolver.DefaultSettings`.</param>
 		 * <returns>Serialized JSON string of the given object.</returns>
@@ -55,9 +50,7 @@ namespace HamstarHelpers.Components.Config {
 		}
 
 
-
-		////////////////
-
+		
 		/** <summary>Name of the JSON file.</summary> */
 		public string FileName { get; private set; }
 		/** <summary>JSON file's (relative) path. Relative to ModLoader folder.</summary> */
@@ -68,9 +61,7 @@ namespace HamstarHelpers.Components.Config {
 		private JsonSerializerSettings JsonSettings = null;
 
 
-
-		////////////////
-
+		
 		/**
 		 * <param name="fileName">Name of JSON file (minus extension).</param>
 		 * <param name="relativePath">Path to JSON file (relative to ModLoader folder).</param>
@@ -112,8 +103,6 @@ namespace HamstarHelpers.Components.Config {
 		public JsonConfig( string fileName, string relativePath, T defaultsCopyOnly ) :
 			this( fileName, relativePath, defaultsCopyOnly, XnaContractResolver.DefaultSettings ) { }
 
-
-		////////////////
 
 		/**
 		 * <summary>Serializes our current object data into a JSON string.</summary>

@@ -1,11 +1,12 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ModLoader;
-
+using Terraria.ModLoader.Core;
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	/** @private */
@@ -21,13 +22,16 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		private IDictionary<Services.Tml.BuildPropertiesEditor, Mod> GetModsByBuildProps() {
 			var mods = this.ModsByBuildProps;
 
-			foreach( Mod mod in ModLoader.LoadedMods ) {
+			foreach( Mod mod in ModLoader.Mods ) {
 				if( mod.Name == "tModLoader" ) { continue; }
-				if( mod.File == null ) {
+				
+				TmodFile tmod;
+				if( !ReflectionHelpers.Get( mod, "modFile", out tmod ) || tmod == null ) {
 					LogHelpers.Warn( "Mod " + mod.DisplayName + " has no file data." );
 					continue;
 				}
-				var editor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
+
+				var editor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( tmod );
 
 				mods[editor] = mod;
 			}

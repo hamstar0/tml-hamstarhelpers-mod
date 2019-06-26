@@ -1,9 +1,10 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
-
+using Terraria.ModLoader.Core;
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	/** <summary>Assorted static "helper" functions pertaining to mod list building.</summary> */
@@ -20,14 +21,26 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 			// Order mods with configs first
 			foreach( var kv in self.ConfigMods ) {
-				if( kv.Key == mymod.Name || kv.Value.File == null ) { continue; }
+				if( kv.Key == mymod.Name ) { continue; }
+				TmodFile modFile;
+				if( !ReflectionHelpers.Get( kv.Value, "File", out modFile) || modFile == null ) {
+					LogHelpers.Warn( "Could not get mod file from mod "+kv.Key );
+					continue;
+				}
+
 				mods.AddLast( kv.Value );
 				modSet.Add( kv.Value.Name );
 			}
 
 			// Add remaining mods
-			foreach( var mod in ModLoader.LoadedMods ) {
-				if( modSet.Contains( mod.Name ) || mod.File == null ) { continue; }
+			foreach( var mod in ModLoader.Mods ) {
+				if( modSet.Contains( mod.Name ) ) { continue; }
+				TmodFile modFile;
+				if( !ReflectionHelpers.Get(mod, "File", out modFile) || modFile == null ) {
+					LogHelpers.Warn( "Could not get mod file from mod " + mod.Name );
+					continue;
+				}
+
 				mods.AddLast( mod );
 			}
 

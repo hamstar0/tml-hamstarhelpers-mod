@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.ModLoader.UI;
+using Terraria.ModLoader.Core;
+using Terraria.ModLoader.UI.ModBrowser;
 using Terraria.UI;
 
 
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				.GetType( "Terraria.ModLoader.Interface" );
 
 			UIState modBrowserUi;
-			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowser", out modBrowserUi ) ) {
+			if( !ReflectionHelpers.Get(interfaceType, null, "modBrowser", out modBrowserUi) ) {
 				LogHelpers.Warn( "Could not acquire mod browser UI." );
 				return;
 			}
@@ -25,15 +25,36 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 			Type uiType = modBrowserUi.GetType();
 			PropertyInfo specialFilterProp = uiType.GetProperty( "SpecialModPackFilter", BindingFlags.Instance | BindingFlags.Public );
 			PropertyInfo filterTitleProp = uiType.GetProperty( "SpecialModPackFilterTitle", BindingFlags.Instance | BindingFlags.NonPublic );
+			if( specialFilterProp == null ) {
+				LogHelpers.Warn( "Could not acquire mod browser UI 'SpecialModPackFilter'" );
+				return;
+			}
+			if( filterTitleProp == null ) {
+				LogHelpers.Warn( "Could not acquire mod browser UI 'SpecialModPackFilterTitle'" );
+				return;
+			}
 
 			object _;
-			ReflectionHelpers.RunMethod<object>( modBrowserUi, "Activate", new object[] { }, out _ );
-			ReflectionHelpers.Set( modBrowserUi, "updateNeeded", true );
-			ReflectionHelpers.Set( modBrowserUi, "updateFilterMode", (UpdateFilter)0 );
+			if( !ReflectionHelpers.RunMethod(modBrowserUi, "Activate", new object[] { }, out _) ) {
+				LogHelpers.Warn( "Could not acquire run method 'Activate' for mod browser" );
+				return;
+			}
+			if( !ReflectionHelpers.Set(modBrowserUi, "updateNeeded", true ) ) {
+				LogHelpers.Warn( "Could not acquire set 'updateNeeded' for mod browser" );
+				return;
+			}
+			if( !ReflectionHelpers.Set( modBrowserUi, "updateFilterMode", (UpdateFilter)0 ) ) {
+				LogHelpers.Warn( "Could not acquire set 'updateFilterMode' for mod browser" );
+				return;
+			}
 
 			UIElement inputTextUi;    //UIInputTextField
-			if( ReflectionHelpers.Get( modBrowserUi, "filterTextBox", out inputTextUi ) && inputTextUi != null ) {
-				ReflectionHelpers.Set( inputTextUi, "currentString", (object)"" );
+			if( ReflectionHelpers.Get(modBrowserUi, "filterTextBox", out inputTextUi) && inputTextUi != null ) {
+				if( !ReflectionHelpers.Set( inputTextUi, "currentString", (object)"" ) ) {
+					LogHelpers.Alert( "Could not acquire set 'currentString' of mod browser's filter box" );
+				}
+			} else {
+				LogHelpers.Alert( "Could not acquire get 'filterTextBox' from mod browser" );
 			}
 
 			//UIElement filterToggle;
@@ -53,10 +74,9 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		////////////////
 
 		public static TmodFile GetLocalMod( UIState ui ) {
-			Type uiType = ui.GetType();
-			FieldInfo uiLocalmodField = uiType.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
-			if( uiLocalmodField == null ) {
-				LogHelpers.Warn( "No 'localMod' field in " + uiType );
+			FieldInfo uiLocalmodField;// = uiType.GetField( "_localMod", BindingFlags.NonPublic | BindingFlags.Instance );
+			if( !ReflectionHelpers.Get(ui, "_localMod", out uiLocalmodField) || uiLocalmodField == null ) {
+				LogHelpers.Warn( "No '_localMod' field in " + ui.GetType() );
 				return null;
 			}
 
@@ -71,14 +91,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 
 		public static string GetModName( UIState prevUi, UIState currUi ) {
-			Type uiType = currUi.GetType();
-			FieldInfo uiLocalmodField = uiType.GetField( "localMod", BindingFlags.NonPublic | BindingFlags.Instance );
-			if( uiLocalmodField == null ) {
-				LogHelpers.Warn( "No 'localMod' field in " + uiType );
+			// = uiType.GetField( "_localMod", BindingFlags.NonPublic | BindingFlags.Instance );
+			object localmod;	// <- is a LocalMod class
+			if( !ReflectionHelpers.Get(currUi, "_localMod", out localmod) || localmod == null ) {
+				LogHelpers.Warn( "No '_localMod' field in " + currUi.GetType() );
 				return null;
 			}
-
-			object localmod = uiLocalmodField.GetValue( currUi );
 
 			if( localmod != null ) {
 				return ModMenuHelpers.GetLocalMod( localmod ).name;
@@ -98,12 +116,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		private static string GetSelectedModBrowserModName( UIState modBrowser ) {
 			object modListItem;
 			if( !ReflectionHelpers.Get( modBrowser, "selectedItem", out modListItem ) || modListItem == null ) {
-				LogHelpers.Warn( "No 'selectedItem' list item." );
+				LogHelpers.Warn( "No 'selectedItem' list item in "+modBrowser.GetType().ToString() );
 				return null;
 			}
 
 			string modName;
-			if( !ReflectionHelpers.Get( modListItem, "mod", out modName ) ) {
+			if( !ReflectionHelpers.Get(modListItem, "mod", out modName) ) {
 				LogHelpers.Warn( "Invalid 'mod' data in mod browser listed entry." );
 				return null;
 			}
@@ -113,7 +131,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 		private static TmodFile GetLocalMod( object localmod ) {
 			object rawModFile;
-			if( !ReflectionHelpers.Get( localmod, "modFile", out rawModFile ) ) {
+			if( !ReflectionHelpers.Get(localmod, "modFile", out rawModFile) || rawModFile == null ) {
 				LogHelpers.Warn( "Empty 'modFile' field" );
 				return null;
 			}

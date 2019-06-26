@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.ModHelpers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,15 +9,19 @@ using System.IO;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
+using Terraria.ModLoader.Core;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
 	public partial class UIModData : UIPanel {
-		private void InitializeMe( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
+		private bool InitializeMe( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			var self = this;
-			TmodFile modfile = mod.File;
+			TmodFile modfile;
+			if( !ReflectionHelpers.Get(mod, "File", out modfile) || modfile == null ) {
+				LogHelpers.Warn( "Could not find mod "+mod.Name+"'s File" );
+				return false;
+			}
 
 			this.Mod = mod;
 			this.WillDrawOwnHoverElements = willDrawOwnHoverElements;
@@ -80,7 +85,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			if( modfile != null && modfile.HasFile( "icon.png" ) ) {
 				if( !Main.dedServ ) {   //...?
 					try {
-						var stream = new MemoryStream( modfile.GetFile( "icon.png" ) );
+						var stream = new MemoryStream( modfile.GetBytes( "icon.png" ) );
 						var iconTex = Texture2D.FromStream( Main.graphics.GraphicsDevice, stream );
 
 						if( iconTex.Width == 80 && iconTex.Height == 80 ) {
@@ -141,6 +146,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 					};
 				}
 			}
+
+			return true;
 		}
 	}
 }

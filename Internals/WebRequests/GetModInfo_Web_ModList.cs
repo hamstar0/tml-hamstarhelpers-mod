@@ -13,21 +13,20 @@ namespace HamstarHelpers.Internals.WebRequests {
 	/** @private */
 	partial class GetModInfo {
 		private static void RetrieveAllModInfoAsync( Action<IDictionary<string, BasicModInfoEntry>, bool> onSuccess ) {
-			Action<Exception, string> onFail = ( e, output ) => {
+			Action<Exception, string> onFail = (e, output) => {
 				if( e is JsonReaderException ) {
 					LogHelpers.Alert( "Bad JSON: " + ( output.Length > 256 ? output.Substring( 0, 256 ) : output ) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( ( output ?? "" ) + " - " + e.Message );
+					LogHelpers.Alert( (output ?? "") + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( ( output ?? "" ) + " - " + e.ToString() );
+					LogHelpers.Alert( (output ?? "") + " - " + e.ToString() );
 				}
 			};
 
-			Action<IDictionary<string, BasicModInfoEntry>, bool> onCompletion = ( responseVal, success ) => {
+			Action<IDictionary<string, BasicModInfoEntry>, bool> onCompletion = (responseVal, success) => {
 				if( responseVal == null ) {
 					responseVal = new Dictionary<string, BasicModInfoEntry>();
 				}
-
 				onSuccess( responseVal, success );
 			};
 

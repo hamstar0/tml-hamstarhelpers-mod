@@ -4,7 +4,7 @@ using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria.ModLoader.IO;
+using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Services.Tml {
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Services.Tml {
 					IEnumerable<Type> types = ReflectionHelpers.GetTypesFromAssembly( ass, "BuildProperties" );
 
 					foreach( Type t in types ) {
-						if( t.IsClass && t.Namespace == "Terraria.ModLoader" && t.Name == "BuildProperties" ) {
+						if( t.IsClass && t.Namespace == "Terraria.ModLoader.Core" && t.Name == "BuildProperties" ) {
 							DataStore.DataStore.Set( "BuildPropertiesClass", t );
 							return t;
 						}
@@ -40,10 +40,16 @@ namespace HamstarHelpers.Services.Tml {
 
 		public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
 			Type buildPropType = BuildPropertiesEditor.GetBuildPropertiesClassType();
-			if( buildPropType == null ) { return (BuildPropertiesEditor)null; }
+			if( buildPropType == null ) {
+				LogHelpers.Alert( "Could not get `Type` of build properties classes (eventually to get "+modfile.name+" props)" );
+				return (BuildPropertiesEditor)null;
+			}
 
 			MethodInfo method = buildPropType.GetMethod( "ReadModFile", BindingFlags.NonPublic | BindingFlags.Static );
-			if( method == null ) { return (BuildPropertiesEditor)null; }
+			if( method == null ) {
+				LogHelpers.Alert( "Could not get ReadModFile method of build properties class for " + modfile.name );
+				return (BuildPropertiesEditor)null;
+			}
 
 			object buildProps = method.Invoke( null, new object[] { modfile } );
 			if( buildProps == null ) {

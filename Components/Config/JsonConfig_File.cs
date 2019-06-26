@@ -49,8 +49,7 @@ namespace HamstarHelpers.Components.Config {
 				return File.Exists( this.GetFullPath() );
 			}
 		}
-
-		////////////////
+		
 
 		/**
 		 * <summary>Loads the config data from file.</summary>
@@ -118,8 +117,7 @@ namespace HamstarHelpers.Components.Config {
 			return true;
 		}
 
-
-		////////////////
+		
 
 		/**
 		 * <summary>Loads the config data from file asynchronously.</summary>

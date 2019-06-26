@@ -26,7 +26,7 @@ namespace HamstarHelpers.Helpers.ModHelpers {
 			this.ConfigMods = new Dictionary<string, Mod>();
 			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();
 
-			foreach( Mod mod in ModLoader.LoadedMods ) {
+			foreach( Mod mod in ModLoader.Mods ) {
 				if( ModFeaturesHelpers.DetectGithub( mod ) ) {
 					this.GithubMods[mod.Name] = mod;
 				}

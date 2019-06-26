@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Terraria.ModLoader.IO;
+using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
