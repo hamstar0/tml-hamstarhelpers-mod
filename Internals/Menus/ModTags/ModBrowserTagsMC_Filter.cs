@@ -13,7 +13,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	/** @private */
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
-		internal void FilterMods() {
+		internal void ApplyModsFilter() {
 			IList<string> modNames = new List<string>();
 			UIState myUI = this.MyUI;
 
@@ -31,8 +31,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				object item = itemsArr.GetValue( i );
 				string modName;
 
-				if( ReflectionHelpers.Get( item, "mod", out modName ) ) {
+				if( ReflectionHelpers.Get(item, "ModName", out modName) ) {
 					modNames.Add( modName );
+				} else {
+					LogHelpers.Warn( "No 'ModName' field or property in mod browser list ('_items')." );
+					return;
 				}
 			}
 
@@ -52,10 +55,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					}
 				}
 
-				if( ReflectionHelpers.Set( myUI, "updateFilterMode", (UpdateFilter)0 ) ) {
+				if( ReflectionHelpers.Set( myUI, "UpdateFilterMode", (UpdateFilter)0 ) ) {
 					ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
 				} else {
-					LogHelpers.Alert( "Could not set updateFilterMode for the mod browser" );
+					LogHelpers.Alert( "Could not set UpdateFilterMode for the mod browser" );
 				}
 			} );
 		}
@@ -71,14 +74,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					return false;
 				}
 
-				this.FilterMods_Promised( modNames, callback, args.ModTags );
+				this.FilterMods( modNames, args.ModTags, callback );
 				return false;
 			} );
 		}
 
 
-		private void FilterMods_Promised( IList<string> modNames, Action<bool, IList<string>, int, int> callback,
-				IDictionary<string, ISet<string>> modTags ) {
+		private void FilterMods( IList<string> modNames, IDictionary<string, ISet<string>> modTagsOfModNames,
+				Action<bool, IList<string>, int, int> callback ) {
 			IList<string> filteredModNameList = new List<string>();
 			ISet<string> onTags = this.GetTagsOfState( 1 );
 			ISet<string> offTags = this.GetTagsOfState( -1 );
@@ -86,11 +89,15 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			if( isFiltered ) {
 				foreach( string modName in modNames ) {
-					if( modTags.ContainsKey( modName ) ) {
-						ISet<string> modHasTags = modTags[modName];
+					if( modTagsOfModNames.ContainsKey( modName ) ) {
+						ISet<string> myModsTags = modTagsOfModNames[modName];
 
-						if( modHasTags.Overlaps( offTags ) ) { continue; }
-						if( onTags.Count > 0 && !modHasTags.IsSupersetOf( onTags ) ) { continue; }
+						if( myModsTags.Overlaps( offTags ) ) {
+							continue;
+						}
+						if( onTags.Count > 0 && !myModsTags.IsSupersetOf( onTags ) ) {
+							continue;
+						}
 					} else if( onTags.Count > 0 ) {
 						continue;
 					}

@@ -39,22 +39,22 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				LogHelpers.Warn( "Could not acquire run method 'Activate' for mod browser" );
 				return;
 			}
-			if( !ReflectionHelpers.Set(modBrowserUi, "updateNeeded", true ) ) {
+			if( !ReflectionHelpers.Set(modBrowserUi, "UpdateNeeded", true) ) {
 				LogHelpers.Warn( "Could not acquire set 'updateNeeded' for mod browser" );
 				return;
 			}
-			if( !ReflectionHelpers.Set( modBrowserUi, "updateFilterMode", (UpdateFilter)0 ) ) {
-				LogHelpers.Warn( "Could not acquire set 'updateFilterMode' for mod browser" );
+			if( !ReflectionHelpers.Set(modBrowserUi, "UpdateFilterMode", (UpdateFilter)0) ) {
+				LogHelpers.Warn( "Could not acquire set 'UpdateFilterMode' for mod browser" );
 				return;
 			}
 
 			UIElement inputTextUi;    //UIInputTextField
-			if( ReflectionHelpers.Get(modBrowserUi, "filterTextBox", out inputTextUi) && inputTextUi != null ) {
+			if( ReflectionHelpers.Get(modBrowserUi, "FilterTextBox", out inputTextUi) && inputTextUi != null ) {
 				if( !ReflectionHelpers.Set( inputTextUi, "currentString", (object)"" ) ) {
 					LogHelpers.Alert( "Could not acquire set 'currentString' of mod browser's filter box" );
 				}
 			} else {
-				LogHelpers.Alert( "Could not acquire get 'filterTextBox' from mod browser" );
+				LogHelpers.Alert( "Could not acquire get 'FilterTextBox' from mod browser" );
 			}
 
 			//UIElement filterToggle;

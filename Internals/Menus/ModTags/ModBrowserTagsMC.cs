@@ -55,7 +55,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		public override void OnTagStateChange( UITagButton tagButton ) {
-			this.FilterMods();
+			this.ApplyModsFilter();
 
 			this.ResetButton.UpdateEnableState();
 		}
