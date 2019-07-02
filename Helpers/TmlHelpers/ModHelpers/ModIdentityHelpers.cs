@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 				return new Dictionary<Mod, Version>();
 			}
 
-			return ModIdentityHelpers.FindDependencyModMajorVersionMismatches( mod );
+			return ModIdentityHelpers._FindDependencyModMajorVersionMismatches( mod );
 		}
 
 
