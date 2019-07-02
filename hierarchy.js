@@ -25,10 +25,9 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Items.ItemHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Items.ItemIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Items.Attributes.ItemRarityAttributeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html", null ],
+    [ "HamstarHelpers.Components.Config.JsonConfig< T >", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html", null ],
     [ "HamstarHelpers.Components.Config.JsonConfig< HamstarHelpers.HamstarHelpersConfigData >", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html", null ],
-    [ "HamstarHelpers.Components.Config.JsonConfigBase", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config_base.html", [
-      [ "HamstarHelpers.Components.Config.JsonConfig< T >", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html", null ]
-    ] ],
+    [ "HamstarHelpers.Components.Config.JsonConfigBase", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config_base.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.LINQHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.LoadHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Debug.LogHelpers", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html", null ],
