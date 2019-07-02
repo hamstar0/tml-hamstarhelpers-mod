@@ -27,10 +27,15 @@ namespace HamstarHelpers.Helpers.TmlHelpers.ModHelpers {
 
 
 		public static IDictionary<Mod, Version> FindDependencyModMajorVersionMismatches( Mod mod ) {
-			if( ModLoader.version >= new Version(0, 11) ) {
+			if( ModLoader.version >= new Version( 0, 11 ) ) {
 				return new Dictionary<Mod, Version>();
 			}
 
+			return ModIdentityHelpers.FindDependencyModMajorVersionMismatches( mod );
+		}
+
+
+		private static IDictionary<Mod, Version> _FindDependencyModMajorVersionMismatches( Mod mod ) {
 			Services.Tml.BuildPropertiesEditor buildEditor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( mod.File );
 			IDictionary<string, Version> modRefs = buildEditor.ModReferences;
 			var badModDeps = new Dictionary<Mod, Version>();
