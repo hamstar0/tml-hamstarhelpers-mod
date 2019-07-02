@@ -34,18 +34,21 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Properties", "functions_prop.html", null ]
       ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html#afc7031ae4460b3a2514f41640bee5251",
-"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#ab7603df878a936843ace6857b2e80654",
-"namespace_hamstar_helpers_1_1_helpers_1_1_dusts.html"
+"_animated_colors_8cs_source.html",
+"_tile_type_8cs_source.html",
+"dir_78ec59d2a00cffb8bd8527af39d35803.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

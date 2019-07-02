@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -48,6 +56,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -62,11 +87,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_config.html">Config</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html">ConfigurationDataBase</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -76,6 +96,9 @@ $(function() {
 <div class="title">HamstarHelpers.Components.Config.ConfigurationDataBase Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class expected for config files (optional). Implements handy hooks and may eventually add ways to make more useful config handling in the future.  
+ <a href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for HamstarHelpers.Components.Config.ConfigurationDataBase:</div>
 <div class="dyncontent">
@@ -83,52 +106,134 @@ Inheritance diagram for HamstarHelpers.Components.Config.ConfigurationDataBase:<
   <img src="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.png" usemap="#HamstarHelpers.Components.Config.ConfigurationDataBase_map" alt=""/>
   <map id="HamstarHelpers.Components.Config.ConfigurationDataBase_map" name="HamstarHelpers.Components.Config.ConfigurationDataBase_map">
 <area href="class_hamstar_helpers_1_1_hamstar_helpers_config_data.html" title="Config file class. Fields define config settings." alt="HamstarHelpers.HamstarHelpersConfigData" shape="rect" coords="0,56,350,80"/>
-<area href="class_hamstar_helpers_1_1_hamstar_helpers_config_data.html" title="Config file class. Fields define config settings." alt="HamstarHelpers.HamstarHelpersConfigData" shape="rect" coords="360,56,710,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a34b52144abb7a408b8e54a0d3c183c41"><td class="memItemLeft" align="right" valign="top"><a id="a34b52144abb7a408b8e54a0d3c183c41"></a>
-<a class="el" href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html">ConfigurationDataBase</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Clone</b> ()</td></tr>
-<tr class="separator:a34b52144abb7a408b8e54a0d3c183c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd0542ad4782223bcebec5c2c6b9d3d5"><td class="memItemLeft" align="right" valign="top"><a id="afd0542ad4782223bcebec5c2c6b9d3d5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnLoad</b> (bool success)</td></tr>
+<tr class="memitem:afd0542ad4782223bcebec5c2c6b9d3d5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html#afd0542ad4782223bcebec5c2c6b9d3d5">OnLoad</a> (bool success)</td></tr>
+<tr class="memdesc:afd0542ad4782223bcebec5c2c6b9d3d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when the config is loaded from file or created anew.  <a href="#afd0542ad4782223bcebec5c2c6b9d3d5">More...</a><br /></td></tr>
 <tr class="separator:afd0542ad4782223bcebec5c2c6b9d3d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3979806d9c7f371c40ed3a3f33a5611"><td class="memItemLeft" align="right" valign="top"><a id="ad3979806d9c7f371c40ed3a3f33a5611"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnSave</b> ()</td></tr>
+<tr class="memitem:ad3979806d9c7f371c40ed3a3f33a5611"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html#ad3979806d9c7f371c40ed3a3f33a5611">OnSave</a> ()</td></tr>
+<tr class="memdesc:ad3979806d9c7f371c40ed3a3f33a5611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when the config is saved to file.  <a href="#ad3979806d9c7f371c40ed3a3f33a5611">More...</a><br /></td></tr>
 <tr class="separator:ad3979806d9c7f371c40ed3a3f33a5611"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacf4496504c68869464fef38f3075aa6"><td class="memItemLeft" align="right" valign="top"><a id="aacf4496504c68869464fef38f3075aa6"></a>
-override string&#160;</td><td class="memItemRight" valign="bottom"><b>ToString</b> ()</td></tr>
-<tr class="separator:aacf4496504c68869464fef38f3075aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34b52144abb7a408b8e54a0d3c183c41"><td class="memItemLeft" align="right" valign="top"><a id="a34b52144abb7a408b8e54a0d3c183c41"></a>
-<a class="el" href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html">ConfigurationDataBase</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Clone</b> ()</td></tr>
-<tr class="separator:a34b52144abb7a408b8e54a0d3c183c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd0542ad4782223bcebec5c2c6b9d3d5"><td class="memItemLeft" align="right" valign="top"><a id="afd0542ad4782223bcebec5c2c6b9d3d5"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnLoad</b> (bool success)</td></tr>
-<tr class="separator:afd0542ad4782223bcebec5c2c6b9d3d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3979806d9c7f371c40ed3a3f33a5611"><td class="memItemLeft" align="right" valign="top"><a id="ad3979806d9c7f371c40ed3a3f33a5611"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnSave</b> ()</td></tr>
-<tr class="separator:ad3979806d9c7f371c40ed3a3f33a5611"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacf4496504c68869464fef38f3075aa6"><td class="memItemLeft" align="right" valign="top"><a id="aacf4496504c68869464fef38f3075aa6"></a>
-override string&#160;</td><td class="memItemRight" valign="bottom"><b>ToString</b> ()</td></tr>
-<tr class="separator:aacf4496504c68869464fef38f3075aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:ade7dc947afa3801496d23702f0c211b0"><td class="memItemLeft" align="right" valign="top"><a id="ade7dc947afa3801496d23702f0c211b0"></a>
-static string&#160;</td><td class="memItemRight" valign="bottom"><b>RelativePath</b> =&gt; &quot;Mod Configs&quot;</td></tr>
-<tr class="separator:ade7dc947afa3801496d23702f0c211b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1a4e459816c5f04584423f27f7888d6"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html#aa1a4e459816c5f04584423f27f7888d6">RelativePath</a> =&gt; &quot;Mod Configs&quot;</td></tr>
+<tr class="memdesc:aa1a4e459816c5f04584423f27f7888d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the folder (under DOCUMENTS%/My Games/Terraria/ModLoader) where all configs are saved.  <a href="#aa1a4e459816c5f04584423f27f7888d6">More...</a><br /></td></tr>
+<tr class="separator:aa1a4e459816c5f04584423f27f7888d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class expected for config files (optional). Implements handy hooks and may eventually add ways to make more useful config handling in the future. </p>
+
+<p class="definition">Definition at line <a class="el" href="_configuration_data_base_8cs_source.html#l00010">10</a> of file <a class="el" href="_configuration_data_base_8cs_source.html">ConfigurationDataBase.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="afd0542ad4782223bcebec5c2c6b9d3d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd0542ad4782223bcebec5c2c6b9d3d5">&#9670;&nbsp;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void HamstarHelpers.Components.Config.ConfigurationDataBase.OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>success</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs when the config is loaded from file or created anew. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">success</td><td>Is set to <code>true</code> when load from file succeeds.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_configuration_data_base_8cs_source.html#l00030">30</a> of file <a class="el" href="_configuration_data_base_8cs_source.html">ConfigurationDataBase.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad3979806d9c7f371c40ed3a3f33a5611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3979806d9c7f371c40ed3a3f33a5611">&#9670;&nbsp;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void HamstarHelpers.Components.Config.ConfigurationDataBase.OnSave </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs when the config is saved to file. </p>
+
+<p class="definition">Definition at line <a class="el" href="_configuration_data_base_8cs_source.html#l00034">34</a> of file <a class="el" href="_configuration_data_base_8cs_source.html">ConfigurationDataBase.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa1a4e459816c5f04584423f27f7888d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1a4e459816c5f04584423f27f7888d6">&#9670;&nbsp;</a></span>RelativePath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string HamstarHelpers.Components.Config.ConfigurationDataBase.RelativePath =&gt; &quot;Mod Configs&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specifies the folder (under DOCUMENTS%/My Games/Terraria/ModLoader) where all configs are saved. </p>
+
+<p class="definition">Definition at line <a class="el" href="_configuration_data_base_8cs_source.html#l00014">14</a> of file <a class="el" href="_configuration_data_base_8cs_source.html">ConfigurationDataBase.cs</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>HamstarHelpers/Components/Config/ConfigurationDataBase.cs</li>
+<li>v5 (tML11)/HamstarHelpers/Components/Config/<a class="el" href="_configuration_data_base_8cs_source.html">ConfigurationDataBase.cs</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.15
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_hamstar_helpers.html">HamstarHelpers</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components.html">Components</a></li><li class="navelem"><a class="el" href="namespace_hamstar_helpers_1_1_components_1_1_config.html">Config</a></li><li class="navelem"><a class="el" href="class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html">ConfigurationDataBase</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
+  </ul>
+</div>
 </body>
 </html>

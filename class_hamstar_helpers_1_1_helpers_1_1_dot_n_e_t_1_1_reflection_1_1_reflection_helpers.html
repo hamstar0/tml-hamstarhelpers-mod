@@ -89,8 +89,6 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers Class Reference</div>  </div>
@@ -99,81 +97,16 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to reflection.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#details">More...</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af025588440e15258368a20506acdf27c"><td class="memItemLeft" align="right" valign="top"><a id="af025588440e15258368a20506acdf27c"></a>
-static IList&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTypesFromAssembly</b> (string assemblyName, string className)</td></tr>
-<tr class="separator:af025588440e15258368a20506acdf27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affa6fbb377b0aab6295ad1cd1a9d65bb"><td class="memItemLeft" align="right" valign="top"><a id="affa6fbb377b0aab6295ad1cd1a9d65bb"></a>
-static IList&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetTypesFromAssembly</b> (Assembly assembly, string className)</td></tr>
-<tr class="separator:affa6fbb377b0aab6295ad1cd1a9d65bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="memItemLeft" align="right" valign="top"><a id="a4a5b5f723bceb4c09b209ea6046e8ac7"></a>
-static IEnumerable&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAllAvailableSubTypesFromMods</b> (Type parentType)</td></tr>
-<tr class="separator:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc84762e36fcf1f6288f6fcce44a0573"><td class="memItemLeft" align="right" valign="top"><a id="afc84762e36fcf1f6288f6fcce44a0573"></a>
-static IEnumerable&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAllAvailableSubTypesFromAssemblies</b> (IEnumerable&lt; Assembly &gt; asses, Type parentType)</td></tr>
-<tr class="separator:afc84762e36fcf1f6288f6fcce44a0573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a931c7909f7628b414580af50c40e61cc"><td class="memItemLeft" align="right" valign="top"><a id="a931c7909f7628b414580af50c40e61cc"></a>
-static Type&#160;</td><td class="memItemRight" valign="bottom"><b>GetClassFromAssembly</b> (string assemblyName, string namespaceAndClassName)</td></tr>
-<tr class="separator:a931c7909f7628b414580af50c40e61cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7de17ea631086e6331126e13141cc8be"><td class="memItemLeft" align="right" valign="top"><a id="a7de17ea631086e6331126e13141cc8be"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>Get&lt; T &gt;</b> (object instance, string fieldOrPropName, out T result)</td></tr>
-<tr class="separator:a7de17ea631086e6331126e13141cc8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c7d091c79d35bdf4cf03d5cd1610624"><td class="memItemLeft" align="right" valign="top"><a id="a6c7d091c79d35bdf4cf03d5cd1610624"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>Get&lt; T &gt;</b> (Type objType, object instance, string fieldOrPropName, out T result)</td></tr>
-<tr class="separator:a6c7d091c79d35bdf4cf03d5cd1610624"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0aff7d9e41090e0465ff45c7de8d3b8e"><td class="memItemLeft" align="right" valign="top"><a id="a0aff7d9e41090e0465ff45c7de8d3b8e"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>Set</b> (object instance, string fieldOrPropName, object value)</td></tr>
-<tr class="separator:a0aff7d9e41090e0465ff45c7de8d3b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a831cbb8d242df5285222b16c2956cc9a"><td class="memItemLeft" align="right" valign="top"><a id="a831cbb8d242df5285222b16c2956cc9a"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>Set</b> (Type instanceType, object instance, string fieldOrPropName, object newValue)</td></tr>
-<tr class="separator:a831cbb8d242df5285222b16c2956cc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a415f445b43b6284aa45c489558aad201"><td class="memItemLeft" align="right" valign="top"><a id="a415f445b43b6284aa45c489558aad201"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeep&lt; T &gt;</b> (object instance, string concatenatedNames, out T result)</td></tr>
-<tr class="separator:a415f445b43b6284aa45c489558aad201"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dd353556e6d48675d70da0690e23388"><td class="memItemLeft" align="right" valign="top"><a id="a9dd353556e6d48675d70da0690e23388"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeep&lt; T &gt;</b> (object instance, string[] nestedNames, out T result)</td></tr>
-<tr class="separator:a9dd353556e6d48675d70da0690e23388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a520134227ef7613bf969f92126ac3eac"><td class="memItemLeft" align="right" valign="top"><a id="a520134227ef7613bf969f92126ac3eac"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetDeep&lt; T &gt;</b> (Type objType, object instance, string[] nestedNames, out T result)</td></tr>
-<tr class="separator:a520134227ef7613bf969f92126ac3eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0770964a38de7fee9e55a17aac919343"><td class="memItemLeft" align="right" valign="top"><a id="a0770964a38de7fee9e55a17aac919343"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetDeep</b> (object instance, string concatenatedNames, object value)</td></tr>
-<tr class="separator:a0770964a38de7fee9e55a17aac919343"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a082a01d290f166e45476da5aba30fb48"><td class="memItemLeft" align="right" valign="top"><a id="a082a01d290f166e45476da5aba30fb48"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetDeep</b> (object instance, string[] nestedNames, object value)</td></tr>
-<tr class="separator:a082a01d290f166e45476da5aba30fb48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55d4012ddf8ddf969ce7e93ceae48ca2"><td class="memItemLeft" align="right" valign="top"><a id="a55d4012ddf8ddf969ce7e93ceae48ca2"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetDeep</b> (Type instanceType, object instance, string[] nestedNames, object newValue)</td></tr>
-<tr class="separator:a55d4012ddf8ddf969ce7e93ceae48ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d1c3c080106a5c212cb69a517966342"><td class="memItemLeft" align="right" valign="top"><a id="a0d1c3c080106a5c212cb69a517966342"></a>
-static object&#160;</td><td class="memItemRight" valign="bottom"><b>SafeCall</b> (MethodInfo method, object methodContext, object[] args)</td></tr>
-<tr class="separator:a0d1c3c080106a5c212cb69a517966342"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af597e8fb6ac99eac9024b5eee113cad1"><td class="memItemLeft" align="right" valign="top"><a id="af597e8fb6ac99eac9024b5eee113cad1"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>RunMethod&lt; T &gt;</b> (Object instance, string methodName, object[] args, out T returnVal)</td></tr>
-<tr class="separator:af597e8fb6ac99eac9024b5eee113cad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac85e2b84e9973b8c1ecf7b5d5a7b2621"><td class="memItemLeft" align="right" valign="top"><a id="ac85e2b84e9973b8c1ecf7b5d5a7b2621"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>RunMethod&lt; T &gt;</b> (Object instance, string methodName, BindingFlags flags, object[] args, out T returnVal)</td></tr>
-<tr class="separator:ac85e2b84e9973b8c1ecf7b5d5a7b2621"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a5db1f331b550bb60c8233ab3b595b4e7"><td class="memItemLeft" align="right" valign="top"><a id="a5db1f331b550bb60c8233ab3b595b4e7"></a>
-static readonly BindingFlags&#160;</td><td class="memItemRight" valign="bottom"><b>MostAccess</b> = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static</td></tr>
-<tr class="separator:a5db1f331b550bb60c8233ab3b595b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9916f6af9c7fb9e55747ee70b6d9cba"><td class="memItemLeft" align="right" valign="top"><a id="ac9916f6af9c7fb9e55747ee70b6d9cba"></a>
-static <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html">ReflectionHelpers</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b> =&gt; ModHelpersMod.Instance.ReflectionHelpers</td></tr>
-<tr class="separator:ac9916f6af9c7fb9e55747ee70b6d9cba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to reflection. </p>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_reflection_helpers_8cs_source.html">ReflectionHelpers.cs</a>.</p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>HamstarHelpers/Helpers/DotNET/Reflection/ReflectionHelpers.cs</li>
-<li>HamstarHelpers/Helpers/DotNET/Reflection/ReflectionHelpers_Instance.cs</li>
-<li>HamstarHelpers/Helpers/DotNET/Reflection/ReflectionHelpers_Class.cs</li>
-<li>HamstarHelpers/Helpers/DotNET/Reflection/ReflectionHelpers_GetSet.cs</li>
-<li>HamstarHelpers/Helpers/DotNET/Reflection/ReflectionHelpers_Methods.cs</li>
+<li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers_8cs_source.html">ReflectionHelpers.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers___instance_8cs_source.html">ReflectionHelpers_Instance.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers___class_8cs_source.html">ReflectionHelpers_Class.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers___methods_8cs_source.html">ReflectionHelpers_Methods.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -89,7 +89,6 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Items.ItemFinderHelpers Class Reference</div>  </div>
@@ -98,44 +97,12 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to finding items in collections.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#details">More...</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a19499aa18401f2736979f3070395a3f1"><td class="memItemLeft" align="right" valign="top"><a id="a19499aa18401f2736979f3070395a3f1"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>FindIndexOfFirstOfItemInCollection</b> (Item[] collection, ISet&lt; int &gt; itemTypes)</td></tr>
-<tr class="separator:a19499aa18401f2736979f3070395a3f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1becb12a9273abc69105781f20afe47f"><td class="memItemLeft" align="right" valign="top"><a id="a1becb12a9273abc69105781f20afe47f"></a>
-static ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindIndexOfEach</b> (Item[] collection, ISet&lt; int &gt; itemTypes)</td></tr>
-<tr class="separator:a1becb12a9273abc69105781f20afe47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a332cfeb112e4a94ba65cae6c6db0776a"><td class="memItemLeft" align="right" valign="top"><a id="a332cfeb112e4a94ba65cae6c6db0776a"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>CountTotalOfEach</b> (Item[] collection, ISet&lt; int &gt; itemTypes)</td></tr>
-<tr class="separator:a332cfeb112e4a94ba65cae6c6db0776a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af14440bff6eed03974a915a29f4124bf"><td class="memItemLeft" align="right" valign="top"><a id="af14440bff6eed03974a915a29f4124bf"></a>
-static IDictionary&lt; int, KeyValuePair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FilterByTypes</b> (IDictionary&lt; int, KeyValuePair&lt; int, int &gt;&gt; entries, ISet&lt; int &gt; types)</td></tr>
-<tr class="separator:af14440bff6eed03974a915a29f4124bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85858e11cc1088548768cd06a538127d"><td class="memItemLeft" align="right" valign="top"><a id="a85858e11cc1088548768cd06a538127d"></a>
-static ReadOnlySet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindItemsByValue</b> (long sellValue, bool includeCoins=false)</td></tr>
-<tr class="separator:a85858e11cc1088548768cd06a538127d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2cd339d3e35e70773b1e3deeba17a78"><td class="memItemLeft" align="right" valign="top"><a id="af2cd339d3e35e70773b1e3deeba17a78"></a>
-static Item&#160;</td><td class="memItemRight" valign="bottom"><b>FindFirstPlayerItemOfType</b> (Player player, int itemType)</td></tr>
-<tr class="separator:af2cd339d3e35e70773b1e3deeba17a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a309c0234b8ecc7808a2cd132f2f3043e"><td class="memItemLeft" align="right" valign="top"><a id="a309c0234b8ecc7808a2cd132f2f3043e"></a>
-static Item&#160;</td><td class="memItemRight" valign="bottom"><b>FindFirstItemOfType</b> (Item[] items, int itemType)</td></tr>
-<tr class="separator:a309c0234b8ecc7808a2cd132f2f3043e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c292acbfb6970b54bfb7156781ed79b"><td class="memItemLeft" align="right" valign="top"><a id="a4c292acbfb6970b54bfb7156781ed79b"></a>
-static IDictionary&lt; int, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindChanges</b> (Item[] prevItems, Item[] currItems)</td></tr>
-<tr class="separator:a4c292acbfb6970b54bfb7156781ed79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b0474a29e1130004220dece291b18c4"><td class="memItemLeft" align="right" valign="top"><a id="a1b0474a29e1130004220dece291b18c4"></a>
-static IDictionary&lt; int, Item &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindChangesOf</b> (IDictionary&lt; int, Item &gt; changesAt, ISet&lt; int &gt; types)</td></tr>
-<tr class="separator:a1b0474a29e1130004220dece291b18c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a963c636e76d369804d39b10e9defda14"><td class="memItemLeft" align="right" valign="top"><a id="a963c636e76d369804d39b10e9defda14"></a>
-static ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>FindPossiblePurchaseTypes</b> (Item[] items, long spent)</td></tr>
-<tr class="separator:a963c636e76d369804d39b10e9defda14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to finding items in collections. </p>
+
+<p class="definition">Definition at line <a class="el" href="_item_finder_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_item_finder_helpers_8cs_source.html">ItemFinderHelpers.cs</a>.</p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>HamstarHelpers/Helpers/Items/ItemFinderHelpers.cs</li>
+<li>v5 (tML11)/HamstarHelpers/Helpers/Items/<a class="el" href="_item_finder_helpers_8cs_source.html">ItemFinderHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

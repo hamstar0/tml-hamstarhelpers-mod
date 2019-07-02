@@ -1,6 +1,6 @@
 var namespace_hamstar_helpers_1_1_components =
 [
-    [ "CustomEntity", "namespace_hamstar_helpers_1_1_components_1_1_custom_entity.html", null ],
+    [ "Config", "namespace_hamstar_helpers_1_1_components_1_1_config.html", "namespace_hamstar_helpers_1_1_components_1_1_config" ],
     [ "DataStructures", "namespace_hamstar_helpers_1_1_components_1_1_data_structures.html", "namespace_hamstar_helpers_1_1_components_1_1_data_structures" ],
     [ "Network", "namespace_hamstar_helpers_1_1_components_1_1_network.html", "namespace_hamstar_helpers_1_1_components_1_1_network" ],
     [ "Protocol", "namespace_hamstar_helpers_1_1_components_1_1_protocol.html", "namespace_hamstar_helpers_1_1_components_1_1_protocol" ],

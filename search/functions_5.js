@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['writestream',['WriteStream',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol.html#a2062ccad7fa6d64bfb0c92c0db86a994',1,'HamstarHelpers.Components.Protocol.Stream.StreamProtocol.WriteStream()'],['../class_hamstar_helpers_1_1_components_1_1_network_1_1_data_1_1_packet_protocol_data.html#aee30bfd34ec3bdfaeee477a24d5a232d',1,'HamstarHelpers.Components.Network.Data.PacketProtocolData.WriteStream()']]]
+  ['loadfile',['LoadFile',['../class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html#ae71e8bfd371116eb66917f8653564c88',1,'HamstarHelpers::Components::Config::JsonConfig']]],
+  ['loadfileasync',['LoadFileAsync',['../class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html#a145cca728fe4bd182ad3c4c4e9da0a0b',1,'HamstarHelpers::Components::Config::JsonConfig']]]
 ];

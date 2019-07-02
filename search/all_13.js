@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['xnacolorhelpers',['XNAColorHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html',1,'HamstarHelpers::Helpers::XNA']]],
-  ['xnahelpers',['XNAHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html',1,'HamstarHelpers::Helpers::XNA']]]
+  ['uihelpers',['UIHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html',1,'HamstarHelpers::Helpers::UI']]],
+  ['userhelpers',['UserHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_user_1_1_user_helpers.html',1,'HamstarHelpers::Helpers::User']]]
 ];
