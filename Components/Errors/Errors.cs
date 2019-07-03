@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Components.Errors {
+	/// @private
 	class HamstarExceptionManager {
 		internal static readonly object MyLock = new object();
 
@@ -13,11 +14,17 @@ namespace HamstarHelpers.Components.Errors {
 
 
 
+	/// <summary>
+	/// Specialized exception with added Mod Helpers logging behavior.
+	/// </summary>
 	public class HamstarException : Exception {
+		/// <param name="msg">Standard message to output.</param>
 		public HamstarException( string msg ) : base( msg ) {
 			this.Initialize( msg );
 		}
 
+		/// <param name="msg">Standard message to output.</param>
+		/// <param name="inner">Inner exception to wrap for further output.</param>
 		public HamstarException( string msg, Exception inner ) : base( msg, inner ) {
 			this.Initialize( msg );
 		}

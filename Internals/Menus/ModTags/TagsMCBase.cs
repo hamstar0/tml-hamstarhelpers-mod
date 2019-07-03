@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			for( int i=0; i<TagsMenuContextBase.Tags.Length; i++ ) {
 				string tagText = TagsMenuContextBase.Tags[i].Item1;
-				string tagDesc = TagsMenuContextBase.Tags[i].Item2;
+				string tagDesc = TagsMenuContextBase.Tags[i].Item3;
 				
 				this.TagButtons[ tagText ] = new UITagButton( this, i, tagText, tagDesc, this.CanDisableTags );
 			}

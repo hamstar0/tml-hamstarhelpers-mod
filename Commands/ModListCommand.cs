@@ -7,7 +7,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Commands {
-	class ModListCommand : ModCommand {
+	/// @private
+	public class ModListCommand : ModCommand {
+		/// @private
 		public static string GetBasicModInfo( Mod mod, BuildPropertiesEditor editor ) {
 			string info = mod.DisplayName + " v" + mod.Version + " by " + editor.Author;
 			if( editor.Side != ModSide.Both ) {
@@ -17,6 +19,7 @@ namespace HamstarHelpers.Commands {
 			return info;
 		}
 
+		/// @private
 		public static string GetVerboseModInfo( Mod mod, BuildPropertiesEditor editor ) {
 			string info = "";
 			
@@ -43,15 +46,20 @@ namespace HamstarHelpers.Commands {
 
 		////////////////
 
+		/// @private
 		public override CommandType Type => CommandType.Chat | CommandType.Console;
+		/// @private
 		public override string Command => "mh-modlist";
+		/// @private
 		public override string Usage => "/" + this.Command + " true";
+		/// @private
 		public override string Description => "Lists mods, but with more information."
 			+ "\n   Parameters: <verbose>";
 
 
 		////////////////
 
+		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( args.Length == 0 ) {
 				throw new UsageException( "No arguments supplied." );

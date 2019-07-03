@@ -9,7 +9,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Commands {
+	/// @private
 	public class ModCallCommand : ModCommand {
+		/// @private
 		public override CommandType Type {
 			get {
 				if( Main.netMode == 0 && !Main.dedServ ) {
@@ -18,8 +20,11 @@ namespace HamstarHelpers.Commands {
 				return CommandType.Console | CommandType.World;
 			}
 		}
+		/// @private
 		public override string Command => "mh-mod-call";
+		/// @private
 		public override string Usage => "/" + this.Command + " MyModName ModAPIFunctionName unquotedstringparam 42 \"quote-wrapped strings allow spaces\" anotherparameter";
+		/// @private
 		public override string Description => "Runs Mod.Call(). Use with care!"
 			+ "\n   Parameters: <mod name> <parameter 1> <parameter 2> etc...";
 
@@ -27,6 +32,7 @@ namespace HamstarHelpers.Commands {
 
 		////////////////
 
+		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == 1 ) {
 				LogHelpers.Warn( "Not supposed to run on client." );

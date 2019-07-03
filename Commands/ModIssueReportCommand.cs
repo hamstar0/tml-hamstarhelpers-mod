@@ -9,16 +9,22 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Commands {
+	/// @private
 	class ModIssueReportCommand : ModCommand {
+		/// @private
 		public override CommandType Type => CommandType.Chat | CommandType.Console;
+		/// @private
 		public override string Command => "mh-mod-issue";
+		/// @private
 		public override string Usage => "/" + this.Command + " 4 \"issue title\" \"issue description text\"";
+		/// @private
 		public override string Description => "Reports an issue for a mod. Only works for mods setup to do so (see Control Panel)." +
 					"\n   Parameters: <mod list index> \"<quote-wrapped issue title>\" \"<quote-wrapped issue description>\"";
 
 
 		////////////////
 
+		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			IList<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder().ToList();
 			int argIdx = 1;

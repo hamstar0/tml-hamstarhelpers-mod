@@ -50,7 +50,6 @@
     <Compile Include="Commands\MyUserIdCommand.cs" />
     <Compile Include="Components\Config\ConfigurationDataBase.cs" />
     <Compile Include="Components\Config\JsonConfigBase.cs" />
-    <Compile Include="Components\Config\JsonConfig_File.cs" />
     <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Components\Protocols\Attributes.cs" />
     <Compile Include="Components\Protocols\Packet\Interfaces\RequestToClient.cs" />
@@ -71,11 +70,6 @@
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions_2D.cs" />
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions.cs" />
     <Compile Include="Helpers\DotNET\Extensions\ArrayExtensions.cs" />
-    <Compile Include="Components\DataStructures\QuadTree\QuadTree_Test.cs" />
-    <Compile Include="Components\DataStructures\QuadTree\QuadTree_Get.cs" />
-    <Compile Include="Components\DataStructures\QuadTree\QuadTree_Set.cs" />
-    <Compile Include="Components\DataStructures\QuadTree\QuadTree_GetNear.cs" />
-    <Compile Include="Components\DataStructures\QuadTree\QuadTree.cs" />
     <Compile Include="Components\DataStructures\ReadOnlyDictionaryOfSets.cs" />
     <Compile Include="Components\DataStructures\ReadOnlySet.cs" />
     <Compile Include="Components\DataStructures\WorldDictionary.cs" />

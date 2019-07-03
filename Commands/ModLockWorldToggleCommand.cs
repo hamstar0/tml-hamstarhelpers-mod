@@ -7,7 +7,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Commands {
-	class ModLockWorldToggleCommand : ModCommand {
+	/// @private
+	public class ModLockWorldToggleCommand : ModCommand {
+		/// @private
 		public override CommandType Type {
 			get {
 				if( Main.netMode == 0 && !Main.dedServ ) {
@@ -16,13 +18,17 @@ namespace HamstarHelpers.Commands {
 				return CommandType.Console | CommandType.World;
 			}
 		}
+		/// @private
 		public override string Command => "mh-mod-lock-world-toggle";
+		/// @private
 		public override string Usage => "/" + this.Command;
+		/// @private
 		public override string Description => "Toggles locking mods for the current world.";
 
 
 		////////////////
 
+		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == 1 ) {
 				LogHelpers.Log( "ModLockWorldToggleCommand - Not supposed to run on client." );

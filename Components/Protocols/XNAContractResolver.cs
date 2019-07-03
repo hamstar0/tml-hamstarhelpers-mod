@@ -4,14 +4,21 @@ using System;
 
 
 namespace HamstarHelpers.Components.Protocols {
-	public class XnaContractResolver : DefaultContractResolver {
+	/// <summary>
+	/// Handy Newtonsoft serialization "contract resolver" for handling XNA fringe behavior.
+	/// </summary>
+	public class XNAContractResolver : DefaultContractResolver {
+		/// <summary>
+		/// Default instance of XNAContractResolver.
+		/// </summary>
 		public readonly static JsonSerializerSettings DefaultSettings = new JsonSerializerSettings() {
-			ContractResolver = new XnaContractResolver()
+			ContractResolver = new XNAContractResolver()
 		};
 
 
 		////////////////
 
+		/// @private
 		protected override JsonContract CreateContract( Type objectType ) {
 			switch( objectType.Name ) {
 			case "Rectangle":
