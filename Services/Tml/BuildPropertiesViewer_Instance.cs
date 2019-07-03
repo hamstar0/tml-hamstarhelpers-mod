@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Services.Tml {
-	public partial class BuildPropertiesEditor {
+	public partial class BuildPropertiesViewer {
 		public string[] DllReferences => (string[])this.GetField( "dllReferences" );
 		//public string[] ModReferences => ((object[])this.GetField( "modReferences" )).Select( m=>m.ToString() ).ToArray();
 		//public string[] WeakReferences => ((object[])this.GetField( "weakReferences" ) ).Select( m=>m.ToString() ).ToArray();
@@ -96,7 +96,7 @@ namespace HamstarHelpers.Services.Tml {
 
 		////////////////
 
-		internal BuildPropertiesEditor( object buildProps ) {
+		internal BuildPropertiesViewer( object buildProps ) {
 			this.BuildProps = buildProps;
 		}
 

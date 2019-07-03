@@ -6,6 +6,11 @@ using System.Collections.ObjectModel;
 
 
 namespace HamstarHelpers.Services.GameData {
+	/// <summary>
+	/// Supplies a table of all available bosses across vanilla Terraria and most major mods.
+	/// 
+	/// IMPORTANT: Not finished; untested.
+	/// </summary>
 	public class BossDataEntry {
 		public int Order => BossData.BossMap[ this.Name ];
 

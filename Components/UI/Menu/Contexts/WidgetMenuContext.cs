@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Menus;
+﻿using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
 
 

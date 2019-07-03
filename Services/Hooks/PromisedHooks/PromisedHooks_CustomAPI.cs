@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Services.Promises {
+namespace HamstarHelpers.Services.PromisedHooks {
 	sealed public class PromiseValidator {
 		internal object MyLock = new object();
 		internal object ValidatorKey;
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Services.Promises {
 
 
 
-	public partial class Promises {
+	public partial class PromisedHooks {
 		public static int CountValidatedPromises( PromiseValidator validator ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 		
 		public static void AddValidatedPromise( PromiseValidator validator, Func<bool> action ) {
-			Promises.AddValidatedPromise<PromiseArguments>( validator, _ => action() );
+			PromisedHooks.AddValidatedPromise<PromiseArguments>( validator, _ => action() );
 		}
 
 
@@ -122,7 +122,7 @@ namespace HamstarHelpers.Services.Promises {
 		}
 		
 		public static void TriggerValidatedPromise( PromiseValidator validator, object validatorKey ) {
-			Promises.TriggerValidatedPromise( validator, validatorKey, null );
+			PromisedHooks.TriggerValidatedPromise( validator, validatorKey, null );
 		}
 
 

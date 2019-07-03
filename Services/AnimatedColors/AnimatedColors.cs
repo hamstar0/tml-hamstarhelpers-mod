@@ -1,19 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Services.AnimatedColor {
+	/// <summary>
+	/// Supplies a simple, handy way to "animate" (lerp between) colors over time. Adjustable.
+	/// </summary>
 	public partial class AnimatedColors {
-		public static AnimatedColors Alert { get { return ModHelpersMod.Instance.AnimatedColors.Alert; } }
-		public static AnimatedColors Strobe { get { return ModHelpersMod.Instance.AnimatedColors.Strobe; } }
-		public static AnimatedColors Fire { get { return ModHelpersMod.Instance.AnimatedColors.Fire; } }
-		public static AnimatedColors Water { get { return ModHelpersMod.Instance.AnimatedColors.Water; } }
-		public static AnimatedColors Air { get { return ModHelpersMod.Instance.AnimatedColors.Air; } }
-		public static AnimatedColors Ether { get { return ModHelpersMod.Instance.AnimatedColors.Ether; } }
-		public static AnimatedColors Disco { get { return ModHelpersMod.Instance.AnimatedColors.Disco; } }
-		public static AnimatedColors DiscoFast { get { return ModHelpersMod.Instance.AnimatedColors.DiscoFast; } }
+		public static AnimatedColors Alert => ModHelpersMod.Instance.AnimatedColors.Alert;
+		public static AnimatedColors Strobe => ModHelpersMod.Instance.AnimatedColors.Strobe;
+		public static AnimatedColors Fire => ModHelpersMod.Instance.AnimatedColors.Fire;
+		public static AnimatedColors Water => ModHelpersMod.Instance.AnimatedColors.Water;
+		public static AnimatedColors Air => ModHelpersMod.Instance.AnimatedColors.Air;
+		public static AnimatedColors Ether => ModHelpersMod.Instance.AnimatedColors.Ether;
+		public static AnimatedColors Disco => ModHelpersMod.Instance.AnimatedColors.Disco;
+		public static AnimatedColors DiscoFast => ModHelpersMod.Instance.AnimatedColors.DiscoFast;
 
 
 

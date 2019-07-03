@@ -7,9 +7,6 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Components.Protocol.Packet {
-	/// <summary>
-	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
-	/// </summary>
 	public abstract partial class PacketProtocol : StreamProtocol {
 		private void ReceiveWithEitherBase( BinaryReader reader, int fromWho ) {
 			var mymod = ModHelpersMod.Instance;

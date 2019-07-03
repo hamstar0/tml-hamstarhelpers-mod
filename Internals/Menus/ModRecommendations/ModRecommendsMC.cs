@@ -5,7 +5,7 @@ using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.Menus.ModRecommendations.UI;
-using HamstarHelpers.Services.Menus;
+using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
 using System.Linq;

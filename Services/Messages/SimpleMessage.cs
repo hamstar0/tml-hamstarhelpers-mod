@@ -5,6 +5,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.Messages {
+	/// <summary>
+	/// A simple alternative to display text messages on-screen (loosely near the chat).
+	/// </summary>
 	public static class SimpleMessage {
 		public static int MessageDuration = 0;
 		public static string Message = "";

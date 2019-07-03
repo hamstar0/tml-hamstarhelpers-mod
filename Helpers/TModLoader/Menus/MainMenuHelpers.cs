@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Services.Menus;
 using HamstarHelpers.Services.Timers;
+using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

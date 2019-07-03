@@ -2,7 +2,7 @@
 using HamstarHelpers.Components.Protocol.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.User;
-using HamstarHelpers.Services.DataDumper;
+using HamstarHelpers.Services.Debug.DataDumper;
 using Terraria;
 
 

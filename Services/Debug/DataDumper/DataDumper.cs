@@ -9,7 +9,11 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.DataDumper {
+namespace HamstarHelpers.Services.Debug.DataDumper {
+	/// <summary>
+	/// Provides a service for supplying data sources that can be pulled from and collected into an on-demand dump as a file. Uses a dedicated
+	/// folder at "ModLoader/Logs/Dumps". Primarily used for debugging.
+	/// </summary>
 	public static class DataDumper {
 		private static object MyLock = new object();
 		internal static object MyDataStorekey = new object();

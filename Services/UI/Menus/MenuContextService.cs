@@ -5,7 +5,10 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Services.Menus {
+namespace HamstarHelpers.Services.UI.Menus {
+	/// <summary>
+	/// 
+	/// </summary>
 	public partial class MenuContextService {
 		public static bool ContainsMenuContexts( string uiClassName ) {
 			var mymod = ModHelpersMod.Instance;

@@ -6,7 +6,10 @@ using System.IO;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.EntityData {
+namespace HamstarHelpers.Services.Debug.EntityData {
+	/// <summary>
+	/// Provides functions for acquiring and dumping entity (NPC, Projectile, Item) data fields to file.
+	/// </summary>
 	public class EntityData {
 		protected static readonly object MyFileLock = new object();
 

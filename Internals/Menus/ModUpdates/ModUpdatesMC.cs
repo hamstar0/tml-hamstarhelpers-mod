@@ -1,16 +1,16 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Menus;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using HamstarHelpers.Services.Timers;
+using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.Core;
-using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			base.Show( ui );
 			
 			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, () => {
-				Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+				PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
 					if( args != null ) {
 						this.DisplayModListVersions( ui, args.ModInfo );
 					}
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		////////////////
 
-		private void DisplayModListVersions( UIState ui, IDictionary<string, BasicModInfoEntry> modInfo ) {
+		private void DisplayModListVersions( UIState ui, IDictionary<string, BasicModInfo> modInfo ) {
 			object items;
 			if( !ReflectionHelpers.Get( ui, "items", out items ) ) {
 				LogHelpers.Warn( "No 'items' field in ui " + ui );
@@ -94,7 +94,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		////////////////
 
-		public void CheckVersion( string modName, BasicModInfoEntry modInfo, UIList modList, Version modVersion ) {
+		public void CheckVersion( string modName, BasicModInfo modInfo, UIList modList, Version modVersion ) {
 //LogHelpers.Log( "modInfo.Count:"+modInfo.Count+ ", name:"+name+", vers:"+vers);
 			if( modInfo.Version == modVersion ) { return; }
 

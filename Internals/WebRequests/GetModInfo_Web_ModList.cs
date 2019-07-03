@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.Net;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -12,7 +13,7 @@ using System.Net;
 namespace HamstarHelpers.Internals.WebRequests {
 	/** @private */
 	partial class GetModInfo {
-		private static void RetrieveAllModInfoAsync( Action<IDictionary<string, BasicModInfoEntry>, bool> onSuccess ) {
+		private static void RetrieveAllModInfoAsync( Action<IDictionary<string, BasicModInfo>, bool> onSuccess ) {
 			Action<Exception, string> onFail = (e, output) => {
 				if( e is JsonReaderException ) {
 					LogHelpers.Alert( "Bad JSON: " + ( output.Length > 256 ? output.Substring( 0, 256 ) : output ) );
@@ -23,9 +24,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			Action<IDictionary<string, BasicModInfoEntry>, bool> onCompletion = (responseVal, success) => {
+			Action<IDictionary<string, BasicModInfo>, bool> onCompletion = (responseVal, success) => {
 				if( responseVal == null ) {
-					responseVal = new Dictionary<string, BasicModInfoEntry>();
+					responseVal = new Dictionary<string, BasicModInfo>();
 				}
 				onSuccess( responseVal, success );
 			};
@@ -34,8 +35,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 		}
 
 
-		private static Tuple<IDictionary<string, BasicModInfoEntry>, bool> HandleModInfoReceipt( string output ) {
-			IDictionary<string, BasicModInfoEntry> modInfos = new Dictionary<string, BasicModInfoEntry>();
+		private static Tuple<IDictionary<string, BasicModInfo>, bool> HandleModInfoReceipt( string output ) {
+			IDictionary<string, BasicModInfo> modInfos = new Dictionary<string, BasicModInfo>();
 
 			JObject respJson = JObject.Parse( output );
 			bool found = respJson.Count > 0;
@@ -72,7 +73,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 						.Split( ',' )
 						.SafeSelect( a => a.Trim() );
 
-					modInfos[modName] = new BasicModInfoEntry( modDisplayName, modAuthors, modVers, null, null );    //modDesc, modHomepage
+					modInfos[modName] = new BasicModInfo( modDisplayName, modAuthors, modVers, null, null );    //modDesc, modHomepage
 				}
 			}
 

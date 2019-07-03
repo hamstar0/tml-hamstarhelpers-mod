@@ -2,7 +2,10 @@
 using System;
 
 
-namespace HamstarHelpers.Services.ControlPanel {
+namespace HamstarHelpers.Services.UI.ControlPanel {
+	/// <summary>
+	/// Supplies an interface to add and manage control panel tabs.
+	/// </summary>
 	public class ControlPanelTabs {
 		public static void AddTab( string title, UIControlPanelTab tab ) {
 			var mymod = ModHelpersMod.Instance;

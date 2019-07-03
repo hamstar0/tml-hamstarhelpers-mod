@@ -3,8 +3,13 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.Promises {
-	public partial class Promises {
+namespace HamstarHelpers.Services.PromisedHooks {
+	/// <summary>
+	/// Provides delegate-based hooks for supplying actions that are performed upon events or conditions being satisfied. Actions are guaranteed
+	/// to run when the conditions come to pass, or whenever the action for already-active conditions is supplied (whichever comes first; useful
+	/// for asynchronous code). Preset hooks exist for major game loading and unloading events, but custom hooks may also be defined.
+	/// </summary>
+	public partial class PromisedHooks {
 		private static object PostModLoadLock = new object();
 		private static object ModUnloadLock = new object();
 		private static object WorldLoadOnceLock = new object();

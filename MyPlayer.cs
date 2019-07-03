@@ -2,9 +2,9 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Services.ControlPanel;
-using HamstarHelpers.Services.DataDumper;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.Debug.DataDumper;
+using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.UI.ControlPanel;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -101,7 +101,7 @@ namespace HamstarHelpers {
 
 				var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
 
-				Promises.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
+				PromisedHooks.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
 			} catch( Exception e ) {
 				if( !(e is HamstarException) ) {
 					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
@@ -118,7 +118,7 @@ namespace HamstarHelpers {
 
 				//PlayerData.SaveAll( this.player.whoAmI, tags );
 			
-				Promises.TriggerValidatedPromise( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
+				PromisedHooks.TriggerValidatedPromise( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
 
 				this.Logic.Save( tags );
 			} catch( Exception e ) {

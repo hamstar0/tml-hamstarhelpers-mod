@@ -10,7 +10,7 @@ namespace HamstarHelpers.Commands {
 	/// @private
 	public class ModListCommand : ModCommand {
 		/// @private
-		public static string GetBasicModInfo( Mod mod, BuildPropertiesEditor editor ) {
+		public static string GetBasicModInfo( Mod mod, BuildPropertiesViewer editor ) {
 			string info = mod.DisplayName + " v" + mod.Version + " by " + editor.Author;
 			if( editor.Side != ModSide.Both ) {
 				info += " (" + Enum.GetName( typeof( ModSide ), editor.Side ) + " only)";
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Commands {
 		}
 
 		/// @private
-		public static string GetVerboseModInfo( Mod mod, BuildPropertiesEditor editor ) {
+		public static string GetVerboseModInfo( Mod mod, BuildPropertiesViewer editor ) {
 			string info = "";
 			
 			if( editor.ModReferences.Count > 0 ) {
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			IList<string> reply = new List<string>( ModLoader.Mods.Length );
-			IDictionary<BuildPropertiesEditor, Mod> modList = ModListHelpers.GetLoadedModsByBuildInfo();
+			IDictionary<BuildPropertiesViewer, Mod> modList = ModListHelpers.GetLoadedModsByBuildInfo();
 
 			foreach( var kv in modList ) {
 				string modInfo = ModListCommand.GetBasicModInfo( kv.Value, kv.Key );

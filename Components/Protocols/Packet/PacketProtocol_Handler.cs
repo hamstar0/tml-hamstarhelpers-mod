@@ -3,14 +3,10 @@ using HamstarHelpers.Components.Protocol.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
-using System.Reflection;
 using System.Threading;
 
 
 namespace HamstarHelpers.Components.Protocol.Packet {
-	/// <summary>
-	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
-	/// </summary>
 	public abstract partial class PacketProtocol : StreamProtocol {
 		internal static void HandlePacketOnClient( int protocolCode, BinaryReader reader, int playerWho ) {
 			var mymod = ModHelpersMod.Instance;

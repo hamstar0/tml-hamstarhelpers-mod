@@ -3,15 +3,15 @@ using System;
 using System.Linq;
 
 
-namespace HamstarHelpers.Services.Promises {
-	public partial class Promises {
+namespace HamstarHelpers.Services.PromisedHooks {
+	public partial class PromisedHooks {
 		internal void FulfillPostModLoadPromises() {
 			if( this.PostModLoadPromiseConditionsMet ) { return; }
 			this.PostModLoadPromiseConditionsMet = true;
 
 			Action[] promises;
 
-			lock( Promises.PostModLoadLock ) {
+			lock( PromisedHooks.PostModLoadLock ) {
 				promises = this.PostModLoadPromises.ToArray();
 				this.PostModLoadPromises.Clear();
 			}
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Services.Promises {
 		internal void FulfillModUnloadPromises() {
 			Action[] promises;
 
-			lock( Promises.ModUnloadLock ) {
+			lock( PromisedHooks.ModUnloadLock ) {
 				promises = this.ModUnloadPromises.ToArray();
 				this.ModUnloadPromises.Clear();
 			}
@@ -44,18 +44,18 @@ namespace HamstarHelpers.Services.Promises {
 			Action[] postWorldLoadOncePromises;
 			Action[] postWorldLoadEachPromises;
 
-			lock( Promises.WorldLoadOnceLock ) {
+			lock( PromisedHooks.WorldLoadOnceLock ) {
 				worldLoadOncePromises = this.WorldLoadOncePromises.ToArray();
 				this.WorldLoadOncePromises.Clear();
 			}
-			lock( Promises.WorldLoadEachLock ) {
+			lock( PromisedHooks.WorldLoadEachLock ) {
 				worldLoadEachPromises = this.WorldLoadEachPromises.ToArray();
 			}
-			lock( Promises.PostWorldLoadOnceLock ) {
+			lock( PromisedHooks.PostWorldLoadOnceLock ) {
 				postWorldLoadOncePromises = this.PostWorldLoadOncePromises.ToArray();
 				this.PostWorldLoadOncePromises.Clear();
 			}
-			lock( Promises.PostWorldLoadEachLock ) {
+			lock( PromisedHooks.PostWorldLoadEachLock ) {
 				postWorldLoadEachPromises = this.PostWorldLoadEachPromises.ToArray();
 			}
 
@@ -81,11 +81,11 @@ namespace HamstarHelpers.Services.Promises {
 			Action[] inPlayOncePromises;
 			Action[] inPlayEachPromises;
 
-			lock( Promises.WorldInPlayOnceLock ) {
+			lock( PromisedHooks.WorldInPlayOnceLock ) {
 				inPlayOncePromises = this.WorldInPlayOncePromises.ToArray();
 				this.WorldInPlayOncePromises.Clear();
 			}
-			lock( Promises.WorldInPlayEachLock ) {
+			lock( PromisedHooks.WorldInPlayEachLock ) {
 				inPlayEachPromises = this.WorldInPlayEachPromises.ToArray();
 			}
 
@@ -105,11 +105,11 @@ namespace HamstarHelpers.Services.Promises {
 			Action[] safeWorldLoadOncePromises;
 			Action[] safeWorldLoadEachPromises;
 
-			lock( Promises.SafeWorldLoadOnceLock ) {
+			lock( PromisedHooks.SafeWorldLoadOnceLock ) {
 				safeWorldLoadOncePromises = this.SafeWorldLoadOncePromises.ToArray();
 				this.SafeWorldLoadOncePromises.Clear();
 			}
-			lock( Promises.SafeWorldLoadEachLock ) {
+			lock( PromisedHooks.SafeWorldLoadEachLock ) {
 				safeWorldLoadEachPromises = this.SafeWorldLoadEachPromises.ToArray();
 			}
 
@@ -129,11 +129,11 @@ namespace HamstarHelpers.Services.Promises {
 			Action[] worldUnloadOncePromises;
 			Action[] worldUnloadEachPromises;
 
-			lock( Promises.WorldUnloadOnceLock ) {
+			lock( PromisedHooks.WorldUnloadOnceLock ) {
 				worldUnloadOncePromises = this.WorldUnloadOncePromises.ToArray();
 				this.WorldUnloadOncePromises.Clear();
 			}
-			lock( Promises.WorldUnloadEachLock ) {
+			lock( PromisedHooks.WorldUnloadEachLock ) {
 				worldUnloadEachPromises = this.WorldUnloadEachPromises.ToArray();
 			}
 
@@ -153,11 +153,11 @@ namespace HamstarHelpers.Services.Promises {
 			Action[] postWorldUnloadOncePromises;
 			Action[] postWorldUnloadEachPromises;
 
-			lock( Promises.PostWorldUnloadOnceLock ) {
+			lock( PromisedHooks.PostWorldUnloadOnceLock ) {
 				postWorldUnloadOncePromises = this.PostWorldUnloadOncePromises.ToArray();
 				this.PostWorldUnloadOncePromises.Clear();
 			}
-			lock( Promises.PostWorldUnloadEachLock ) {
+			lock( PromisedHooks.PostWorldUnloadEachLock ) {
 				postWorldUnloadEachPromises = this.PostWorldUnloadEachPromises.ToArray();
 			}
 

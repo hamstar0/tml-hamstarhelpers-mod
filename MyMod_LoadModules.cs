@@ -5,18 +5,19 @@ using HamstarHelpers.Internals.Menus.Support;
 using HamstarHelpers.Internals.Inbox;
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI.Menu;
+using HamstarHelpers.Components.Protocol.Packet;
+using HamstarHelpers.Services.Debug.CustomHotkeys;
+using HamstarHelpers.Services.Hooks.ExtendedHooks;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Timers;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using HamstarHelpers.Services.DataStore;
-using HamstarHelpers.Services.Menus;
-using HamstarHelpers.Services.ServerInfo;
-using HamstarHelpers.Services.CustomHotkeys;
-using HamstarHelpers.Services.ExtendedHooks;
+using HamstarHelpers.Services.Server;
 using HamstarHelpers.Services.ModHelpers;
 using HamstarHelpers.Services.RecipeHack;
+using HamstarHelpers.Services.UI.Menus;
 using HamstarHelpers.Helpers.Misc;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.World;
@@ -29,14 +30,13 @@ using HamstarHelpers.Helpers.Projectiles;
 using HamstarHelpers.Helpers.Recipes;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using HamstarHelpers.Components.Protocol.Packet;
-using HamstarHelpers.Helpers.ModHelpers;
 
 
 namespace HamstarHelpers {
@@ -49,14 +49,14 @@ namespace HamstarHelpers {
 		internal PacketProtocolManager PacketProtocolMngr;
 
 		// Services
-		internal Promises Promises;
+		internal PromisedHooks Promises;
 		internal Timers Timers;
 		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
 		internal DataStore DataStore;
 		internal CustomHotkeys CustomHotkeys;
-		internal ServerInfo ServerInfo;
+		internal Server ServerInfo;
 		internal ModLockService ModLock;
 		//internal PlayerDataManager PlayerDataMngr;
 		internal RecipeHack RecipeHack;
@@ -105,7 +105,7 @@ namespace HamstarHelpers {
 		private void LoadModules() {
 			this.ReflectionHelpers = new ReflectionHelpers();
 			this.DataStore = new DataStore();
-			this.Promises = new Promises();
+			this.Promises = new PromisedHooks();
 			this.LoadHelpers = new LoadHelpers();
 
 			this.Timers = new Timers();
@@ -137,7 +137,7 @@ namespace HamstarHelpers {
 			this.PlayerIdentityHelpers = new PlayerIdentityHelpers();
 			this.CustomHotkeys = new CustomHotkeys();
 			this.XnaHelpers = new XNAHelpers();
-			this.ServerInfo = new ServerInfo();
+			this.ServerInfo = new Server();
 			//this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();
 			this.RecipeHack = new RecipeHack();

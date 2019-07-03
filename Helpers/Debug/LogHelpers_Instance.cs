@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Promises;
+﻿using HamstarHelpers.Services.PromisedHooks;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		internal LogHelpers() {
 			this.Reset();
 
-			Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
+			PromisedHooks.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		private void OnWorldExit() {

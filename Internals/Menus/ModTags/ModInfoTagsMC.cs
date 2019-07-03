@@ -2,11 +2,12 @@
 using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Menus;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using HamstarHelpers.Services.Timers;
+using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -92,7 +93,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		internal void UpdateMode( bool isEditing ) {
 			if( !isEditing ) { return; }
 
-			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.BadModsListPromiseValidator, (modInfoArgs) => {
+			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.BadModsListPromiseValidator, (modInfoArgs) => {
 				this.ApplyDefaultEditModeTags( modInfoArgs.ModInfo );
 				return false;
 			} );
@@ -101,7 +102,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private void ApplyDefaultEditModeTags( IDictionary<string, BasicModInfoEntry> modInfos ) {
+		private void ApplyDefaultEditModeTags( IDictionary<string, BasicModInfo> modInfos ) {
 			if( !modInfos.ContainsKey( this.CurrentModName ) ) {
 				return;
 			}

@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -75,7 +75,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				this._GroupsPerProj = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerProj );
 			}
 			
-			Promises.Promises.AddPostModLoadPromise( () => {
+			PromisedHooks.PromisedHooks.AddPostModLoadPromise( () => {
 				if( !this.IsEnabled ) { return; }
 
 				this.GetItemPool();
@@ -122,7 +122,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 							this.ProjPool = null;
 						}
 						
-						Promises.Promises.TriggerValidatedPromise( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
+						PromisedHooks.PromisedHooks.TriggerValidatedPromise( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
 						_check++;
 					} catch( Exception e ) {
 						LogHelpers.Warn( "Initialization failed (at #"+_check+"): "+e.ToString() );

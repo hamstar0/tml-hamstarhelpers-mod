@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Services.Menus {
+namespace HamstarHelpers.Services.UI.Menus {
 	class MenuContextServiceManager {
 		internal IDictionary<string, IDictionary<string, MenuContext>> Contexts = new Dictionary<string, IDictionary<string, MenuContext>>();
 

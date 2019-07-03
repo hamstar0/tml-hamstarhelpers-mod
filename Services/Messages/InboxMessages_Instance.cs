@@ -25,7 +25,7 @@ namespace HamstarHelpers.Services.Messages {
 		internal InboxMessages() {
 			this.Current = 0;
 			
-			Promises.Promises.AddWorldLoadEachPromise( () => {
+			PromisedHooks.PromisedHooks.AddWorldLoadEachPromise( () => {
 				bool success = this.LoadFromFile();
 			} );
 		}

@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Internals.NetProtocols;
+using HamstarHelpers.Services.Hooks.ExtendedHooks;
 using HamstarHelpers.Services.Timers;
 using System.Linq;
 using Terraria;
-using HamstarHelpers.Services.ExtendedHooks;
 
 
 namespace HamstarHelpers.Internals.Logic {

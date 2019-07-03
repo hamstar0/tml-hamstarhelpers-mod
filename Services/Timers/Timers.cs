@@ -1,14 +1,20 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 
 
 namespace HamstarHelpers.Services.Timers {
+	/// <summary>
+	/// Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function, MainOnTickGet() provides a way to
+	/// use Main.OnTick for running background tasks at 60FPS.
+	/// </summary>
 	public partial class Timers {
 		private readonly static object MyLock = new object();
-		
+
+
+
+		////////////////
 
 		public static Func<bool> MainOnTickGet() {
 			long then = DateTime.Now.Ticks;

@@ -3,7 +3,7 @@ using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
-using HamstarHelpers.Services.Menus;
+using HamstarHelpers.Services.UI.Menus;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {

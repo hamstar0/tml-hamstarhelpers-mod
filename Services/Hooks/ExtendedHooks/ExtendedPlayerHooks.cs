@@ -2,7 +2,10 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Services.ExtendedHooks {
+namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
+	/// <summary>
+	/// Supplies custom tModLoader-like, delegate-based hooks for assorted helpful functions not currently available in tModLoader.
+	/// </summary>
 	public partial class ExtendedPlayerHooks {
 		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;

@@ -1,14 +1,18 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 
 
-namespace HamstarHelpers.Services.ServerInfo {
-	public class ServerInfo {
+namespace HamstarHelpers.Services.Server {
+	/// <summary>
+	/// Supplies assorted server informations and tools.
+	/// </summary>
+	public class Server {
 		public int AveragePing { get; internal set; }
+
 
 
 		////////////////
 
-		internal ServerInfo() {
+		internal Server() {
 			this.AveragePing = -1;
 		}
 

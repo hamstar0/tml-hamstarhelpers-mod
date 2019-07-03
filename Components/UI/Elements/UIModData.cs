@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using HamstarHelpers.Internals.WebRequests;
 using System;
 using Terraria.GameContent.UI.Elements;
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			this.InitializeMe( theme, idx, mod, willDrawOwnHoverElements );
 
-			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+			PromisedHooks.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				ISet<string> modTags = args.ModTags?.GetOrDefault( mod.Name );
 				this.ModTags = modTags ?? this.ModTags;
 
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		////////////////
 
 		public void CheckForNewVersionAsync() {
-			Promises.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
 				if( args.Found && args.ModInfo.ContainsKey(this.Mod.Name) ) {
 					this.LatestAvailableVersion = args.ModInfo[ this.Mod.Name ].Version;
 				} else {

@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				return null;
 			}
 
-			var buildEdit = BuildPropertiesEditor.GetBuildPropertiesForModFile( modFile );
+			var buildEdit = BuildPropertiesViewer.GetBuildPropertiesForModFile( modFile );
 			string data = (string)buildEdit.GetField( fieldName );
 
 			return string.IsNullOrEmpty( data ) ? "" : data;

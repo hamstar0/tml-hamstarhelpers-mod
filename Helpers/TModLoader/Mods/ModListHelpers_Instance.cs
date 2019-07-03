@@ -8,18 +8,19 @@ using System.Linq;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
 
+
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	/** @private */
 	public partial class ModListHelpers {
-		private IDictionary<Services.Tml.BuildPropertiesEditor, Mod> ModsByBuildProps = new Dictionary<Services.Tml.BuildPropertiesEditor, Mod>();
+		private IDictionary<Services.Tml.BuildPropertiesViewer, Mod> ModsByBuildProps = new Dictionary<Services.Tml.BuildPropertiesViewer, Mod>();
 		private IDictionary<string, ISet<Mod>> ModsByAuthor = new Dictionary<string, ISet<Mod>>();
-		private IDictionary<string, Services.Tml.BuildPropertiesEditor> BuildPropsByModNames = new Dictionary<string, Services.Tml.BuildPropertiesEditor>();
+		private IDictionary<string, Services.Tml.BuildPropertiesViewer> BuildPropsByModNames = new Dictionary<string, Services.Tml.BuildPropertiesViewer>();
 
 
 
 		////////////////
 
-		private IDictionary<Services.Tml.BuildPropertiesEditor, Mod> GetModsByBuildProps() {
+		private IDictionary<Services.Tml.BuildPropertiesViewer, Mod> GetModsByBuildProps() {
 			var mods = this.ModsByBuildProps;
 
 			foreach( Mod mod in ModLoader.Mods ) {
@@ -31,7 +32,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 					continue;
 				}
 
-				var editor = Services.Tml.BuildPropertiesEditor.GetBuildPropertiesForModFile( tmod );
+				var editor = Services.Tml.BuildPropertiesViewer.GetBuildPropertiesForModFile( tmod );
 
 				mods[editor] = mod;
 			}
@@ -45,7 +46,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			var mods = new Dictionary<string, ISet<Mod>>();
 
 			foreach( var kv in ModListHelpers.GetLoadedModsByBuildInfo() ) {
-				Services.Tml.BuildPropertiesEditor editor = kv.Key;
+				Services.Tml.BuildPropertiesViewer editor = kv.Key;
 				Mod mod = kv.Value;
 
 				foreach( string author in editor.Author.Split(',').Select(a=>a.Trim()) ) {
@@ -56,7 +57,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			return mods;
 		}
 
-		private IDictionary<string, Services.Tml.BuildPropertiesEditor> GetBuildPropsByModName() {
+		private IDictionary<string, Services.Tml.BuildPropertiesViewer> GetBuildPropsByModName() {
 			return ModListHelpers.GetLoadedModsByBuildInfo()
 				.ToDictionary( kv=>kv.Value.Name, kv=>kv.Key );
 		}

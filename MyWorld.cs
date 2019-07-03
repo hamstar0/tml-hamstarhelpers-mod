@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -79,7 +79,7 @@ namespace HamstarHelpers {
 			mymod.ModLock.PostLoad( this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
-			Promises.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
+			PromisedHooks.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			this.HasObsoleteId = true;
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
@@ -97,7 +97,7 @@ namespace HamstarHelpers {
 
 			this.WorldLogic.SaveForWorld( tags );
 
-			Promises.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
+			PromisedHooks.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
 			
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 			return tags;

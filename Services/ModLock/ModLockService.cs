@@ -6,6 +6,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Services.ModHelpers {
+	/// <summary>
+	/// Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the Mod Helpers control panel.
+	/// </summary>
 	public partial class ModLockService {
 		public static bool IsWorldLocked() {
 			var mymod = ModHelpersMod.Instance;

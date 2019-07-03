@@ -8,7 +8,10 @@ using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Services.Tml {
-	public partial class BuildPropertiesEditor {
+	/// <summary>
+	/// Supplies a way to peek into other mods' build properties (build.txt) data.
+	/// </summary>
+	public partial class BuildPropertiesViewer {
 		private static Type GetBuildPropertiesClassType() {
 			Type myClass;
 			if( DataStore.DataStore.Get( "BuildPropertiesClass", out myClass ) ) {
@@ -38,26 +41,26 @@ namespace HamstarHelpers.Services.Tml {
 		}
 
 
-		public static BuildPropertiesEditor GetBuildPropertiesForModFile( TmodFile modfile ) {
-			Type buildPropType = BuildPropertiesEditor.GetBuildPropertiesClassType();
+		public static BuildPropertiesViewer GetBuildPropertiesForModFile( TmodFile modfile ) {
+			Type buildPropType = BuildPropertiesViewer.GetBuildPropertiesClassType();
 			if( buildPropType == null ) {
 				LogHelpers.Alert( "Could not get `Type` of build properties classes (eventually to get "+modfile.name+" props)" );
-				return (BuildPropertiesEditor)null;
+				return (BuildPropertiesViewer)null;
 			}
 
 			MethodInfo method = buildPropType.GetMethod( "ReadModFile", BindingFlags.NonPublic | BindingFlags.Static );
 			if( method == null ) {
 				LogHelpers.Alert( "Could not get ReadModFile method of build properties class for " + modfile.name );
-				return (BuildPropertiesEditor)null;
+				return (BuildPropertiesViewer)null;
 			}
 
 			object buildProps = method.Invoke( null, new object[] { modfile } );
 			if( buildProps == null ) {
 				LogHelpers.Log( "BuildProperties has changed." );
-				return (BuildPropertiesEditor)null;
+				return (BuildPropertiesViewer)null;
 			}
 
-			return new BuildPropertiesEditor( buildProps );
+			return new BuildPropertiesViewer( buildProps );
 		}
 	}
 }

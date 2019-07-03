@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Items;
 using HamstarHelpers.Items;
-using HamstarHelpers.Services.ExtendedHooks;
+using HamstarHelpers.Services.Hooks.ExtendedHooks;
 using System;
 using Terraria;
 using Terraria.ID;

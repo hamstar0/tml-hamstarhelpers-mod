@@ -6,7 +6,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Services.Menus {
+namespace HamstarHelpers.Services.UI.Menus {
 	public partial class MenuContextService {
 		public static UIElement GetMenuContainerOuter( UIState ui ) {
 			Type uiType = ui.GetType();

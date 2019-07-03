@@ -3,8 +3,8 @@ using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Menus;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.UI.Menus;
 using System.Collections.Generic;
 using Terraria.UI;
 
@@ -86,7 +86,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void SetCurrentMod( UIState ui, string modName ) {
 			this.CurrentModName = modName;
 
-			Promises.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+			PromisedHooks.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
 				if( !args.Found ) {
 					LogHelpers.Warn();
 					return false;

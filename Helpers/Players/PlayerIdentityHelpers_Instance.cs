@@ -1,9 +1,8 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using System;
 using System.Collections.Generic;
-using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
@@ -16,7 +15,7 @@ namespace HamstarHelpers.Helpers.Players {
 		////////////////
 
 		internal void OnPostSetupContent() {
-			Promises.AddPostWorldUnloadEachPromise( () => {
+			PromisedHooks.AddPostWorldUnloadEachPromise( () => {
 				this.PlayerIds = new Dictionary<int, string>();
 			} );
 		}

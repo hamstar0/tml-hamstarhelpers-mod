@@ -2,7 +2,7 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using System.Collections.Generic;
 using Terraria;
 
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.IsSynced = true;	// Technically this should only be set upon sync receipt of player's 'old' uid...
 
 			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
-			Promises.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
+			PromisedHooks.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
 
 			PlayerOldIdProtocol.QuickRequestToClient( player.whoAmI );
 			PlayerNewIdProtocol.QuickRequestToClient( player.whoAmI );

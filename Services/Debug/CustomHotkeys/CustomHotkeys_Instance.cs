@@ -4,7 +4,7 @@ using Terraria.GameInput;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Services.CustomHotkeys {
+namespace HamstarHelpers.Services.Debug.CustomHotkeys {
 	public partial class CustomHotkeys {
 		private readonly ModHotKey Key1;
 		private readonly ModHotKey Key2;

@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Services.ExtendedHooks {
+namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 	public partial class ExtendedPlayerHooks {
 		public static void AddNpcKillHook( Action<Player, NPC> action ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;

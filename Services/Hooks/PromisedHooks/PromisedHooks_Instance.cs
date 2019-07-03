@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.Promises {
-	public partial class Promises {
+namespace HamstarHelpers.Services.PromisedHooks {
+	public partial class PromisedHooks {
 		private IList<Action> PostModLoadPromises = new List<Action>();
 		private IList<Action> ModUnloadPromises = new List<Action>();
 		private IList<Action> WorldLoadOncePromises = new List<Action>();
@@ -38,14 +38,14 @@ namespace HamstarHelpers.Services.Promises {
 
 		////////////////
 
-		internal Promises() {
+		internal PromisedHooks() {
 			this.OnTickGet = Timers.Timers.MainOnTickGet();
-			Main.OnTick += Promises._Update;
+			Main.OnTick += PromisedHooks._Update;
 		}
 
-		~Promises() {
+		~PromisedHooks() {
 			try {
-				Main.OnTick -= Promises._Update;
+				Main.OnTick -= PromisedHooks._Update;
 
 				if( this.WorldLoadPromiseConditionsMet && !this.WorldUnloadPromiseConditionsMet ) {
 					this.FulfillWorldUnloadPromises();
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Services.Promises {
 
 
 		internal void OnPostSetupContent() {
-			Promises.AddWorldLoadEachPromise( () => {
+			PromisedHooks.AddWorldLoadEachPromise( () => {
 				this.WorldUnloadPromiseConditionsMet = false;
 				this.PostWorldUnloadPromiseConditionsMet = false;
 			} );

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.ExtendedHooks {
+namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 	public partial class ExtendedPlayerHooks {
 		private static object MyLock = new object();
 

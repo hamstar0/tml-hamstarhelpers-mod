@@ -7,6 +7,10 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.RecipeHack {
+	/// <summary>
+	/// Provides a method for forcing new recipes into the player's recipe selection list. May be unstable. Has known mod incompatibilities.
+	/// </summary>
+	[Obsolete("Will be replaced eventually")]
 	public partial class RecipeHack {
 		public static void ForceRecipeRefresh() {
 			var mymod = ModHelpersMod.Instance;

@@ -2,7 +2,7 @@
 using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Services.Menus;
+using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

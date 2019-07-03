@@ -9,6 +9,10 @@ using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.
 
 
 namespace HamstarHelpers.Services.EntityGroups {
+	/// <summary>
+	/// Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs, or projectiles.
+	/// Must be enabled on mod load to be used (note: collections may require memory).
+	/// </summary>
 	public partial class EntityGroups {
 		public static void Enable() {
 			var entGrps = ModHelpersMod.Instance.EntityGroups;

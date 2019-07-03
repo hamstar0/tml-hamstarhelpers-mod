@@ -2,15 +2,15 @@
 using System;
 
 
-namespace HamstarHelpers.Services.Promises {
-	public partial class Promises {
+namespace HamstarHelpers.Services.PromisedHooks {
+	public partial class PromisedHooks {
 		public static void AddPostModLoadPromise( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
 			if( mymod.Promises.PostModLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				lock( Promises.PostModLoadLock ) {
+				lock( PromisedHooks.PostModLoadLock ) {
 					mymod.Promises.PostModLoadPromises.Add( action );
 				}
 			}
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Services.Promises {
 		public static void AddModUnloadPromise( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
-			lock( Promises.ModUnloadLock ) {
+			lock( PromisedHooks.ModUnloadLock ) {
 				mymod.Promises.ModUnloadPromises.Add( action );
 			}
 		}
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				lock( Promises.WorldLoadOnceLock ) {
+				lock( PromisedHooks.WorldLoadOnceLock ) {
 					mymod.Promises.WorldLoadOncePromises.Add( action );
 				}
 			}
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				lock( Promises.PostWorldLoadOnceLock ) {
+				lock( PromisedHooks.PostWorldLoadOnceLock ) {
 					mymod.Promises.PostWorldLoadOncePromises.Add( action );
 				}
 			}
@@ -57,7 +57,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldUnloadPromiseConditionsMet ) {
 				action();
 			} else {
-				lock( Promises.WorldUnloadOnceLock ) {
+				lock( PromisedHooks.WorldUnloadOnceLock ) {
 					mymod.Promises.WorldUnloadOncePromises.Add( action );
 				}
 			}
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.PostWorldUnloadPromiseConditionsMet ) {
 				action();
 			} else {
-				lock( Promises.PostWorldUnloadOnceLock ) {
+				lock( PromisedHooks.PostWorldUnloadOnceLock ) {
 					mymod.Promises.PostWorldUnloadOncePromises.Add( action );
 				}
 			}
@@ -81,7 +81,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldInPlayPromiseConditionsMet ) {
 				action();
 			} else {
-				lock( Promises.WorldInPlayOnceLock ) {
+				lock( PromisedHooks.WorldInPlayOnceLock ) {
 					mymod.Promises.WorldInPlayOncePromises.Add( action );
 				}
 			}
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.SafeWorldLoadPromiseConditionsMet ) {
 				action();
 			} else {
-				lock( Promises.SafeWorldLoadOnceLock ) {
+				lock( PromisedHooks.SafeWorldLoadOnceLock ) {
 					mymod.Promises.SafeWorldLoadOncePromises.Add( action );
 				}
 			}
@@ -108,7 +108,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
 			}
-			lock( Promises.WorldLoadEachLock ) {
+			lock( PromisedHooks.WorldLoadEachLock ) {
 				mymod.Promises.WorldLoadEachPromises.Add( action );
 			}
 		}
@@ -119,7 +119,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldLoadPromiseConditionsMet ) {
 				action();
 			}
-			lock( Promises.PostWorldLoadEachLock ) {
+			lock( PromisedHooks.PostWorldLoadEachLock ) {
 				mymod.Promises.PostWorldLoadEachPromises.Add( action );
 			}
 		}
@@ -130,7 +130,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldUnloadPromiseConditionsMet ) {
 				action();
 			}
-			lock( Promises.WorldUnloadEachLock ) {
+			lock( PromisedHooks.WorldUnloadEachLock ) {
 				mymod.Promises.WorldUnloadEachPromises.Add( action );
 			}
 		}
@@ -141,7 +141,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.PostWorldUnloadPromiseConditionsMet ) {
 				action();
 			}
-			lock( Promises.PostWorldUnloadEachLock ) {
+			lock( PromisedHooks.PostWorldUnloadEachLock ) {
 				mymod.Promises.PostWorldUnloadEachPromises.Add( action );
 			}
 		}
@@ -152,7 +152,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.WorldInPlayPromiseConditionsMet ) {
 				action();
 			}
-			lock( Promises.WorldInPlayEachLock ) {
+			lock( PromisedHooks.WorldInPlayEachLock ) {
 				mymod.Promises.WorldInPlayEachPromises.Add( action );
 			}
 		}
@@ -163,7 +163,7 @@ namespace HamstarHelpers.Services.Promises {
 			if( mymod.Promises.SafeWorldLoadPromiseConditionsMet ) {
 				action();
 			}
-			lock( Promises.SafeWorldLoadEachLock ) {
+			lock( PromisedHooks.SafeWorldLoadEachLock ) {
 				mymod.Promises.SafeWorldLoadEachPromises.Add( action );
 			}
 		}

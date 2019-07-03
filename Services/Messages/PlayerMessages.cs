@@ -7,6 +7,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.Messages {
+	/// <summary>
+	/// Defines the parameters of a player message.
+	/// </summary>
 	public class PlayerLabelText {
 		public string Text;
 		public Color Color;
@@ -20,6 +23,9 @@ namespace HamstarHelpers.Services.Messages {
 
 
 
+	/// <summary>
+	/// Supplies a way to 'popup' informational text upon the player character in-game.
+	/// </summary>
 	public partial class PlayerMessages {
 		public static void AddPlayerLabel( Player player, string text, Color color, int duration, bool evaporates, bool following=true ) {
 			var pm = ModHelpersMod.Instance.PlayerMessages;

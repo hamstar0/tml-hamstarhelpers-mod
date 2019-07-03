@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using Terraria.GameInput;
-using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Services.CustomHotkeys {
+namespace HamstarHelpers.Services.Debug.CustomHotkeys {
+	/// <summary>
+	/// Provides a pair of hotkeys that may be dynamically bound with custom functions (mostly for debug use).
+	/// </summary>
 	public partial class CustomHotkeys {
 		public static void BindActionToKey1( string name, Action action ) {
 			ModHelpersMod.Instance.CustomHotkeys.Key1Actions[ name ] = action;

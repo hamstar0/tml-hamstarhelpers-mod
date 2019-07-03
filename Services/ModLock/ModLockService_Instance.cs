@@ -32,7 +32,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 			this.WorldModLocks = new Dictionary<string, ISet<string>>();
 			this.MismatchBroadcastMade = false;
 
-			Promises.Promises.AddWorldUnloadEachPromise( this.OnWorldExit );
+			PromisedHooks.PromisedHooks.AddWorldUnloadEachPromise( this.OnWorldExit );
 		}
 
 		////////////////

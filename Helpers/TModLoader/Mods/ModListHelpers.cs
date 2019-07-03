@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
 
+
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	/** <summary>Assorted static "helper" functions pertaining to mod list building.</summary> */
 	public partial class ModListHelpers {
@@ -50,7 +51,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 		////////////////
 
-		public static IDictionary<Services.Tml.BuildPropertiesEditor, Mod> GetLoadedModsByBuildInfo() {
+		public static IDictionary<Services.Tml.BuildPropertiesViewer, Mod> GetLoadedModsByBuildInfo() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.ModListHelpers.ModsByBuildProps != null ) {
 				return mymod.ModListHelpers.ModsByBuildProps;
@@ -62,7 +63,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 		////////////////
 
-		public static IDictionary<string, Services.Tml.BuildPropertiesEditor> GetLoadedModNamesWithBuildProps() {
+		public static IDictionary<string, Services.Tml.BuildPropertiesViewer> GetLoadedModNamesWithBuildProps() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.ModListHelpers.BuildPropsByModNames != null ) {
 				return mymod.ModListHelpers.BuildPropsByModNames;

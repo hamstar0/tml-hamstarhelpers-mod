@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 							}
 							args.Found = found;
 
-							Promises.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
+							PromisedHooks.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
 						} catch( Exception e ) {
 							LogHelpers.Alert( e.ToString() );
 						}

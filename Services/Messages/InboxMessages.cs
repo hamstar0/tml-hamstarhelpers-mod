@@ -14,9 +14,12 @@ namespace HamstarHelpers.Services.Messages {
 
 
 
+	/// <summary>
+	/// This service gives a way for mods to post persistent, non-obtrusive, in-game messages to players that can be re-read freely.
+	/// </summary>
 	public partial class InboxMessages {
 		public static void SetMessage( string which, string msg, bool forceUnread, Action<bool> onRun=null ) {
-			Promises.Promises.AddPostWorldLoadOncePromise( () => {
+			PromisedHooks.PromisedHooks.AddPostWorldLoadOncePromise( () => {
 				InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
 				if( inbox == null ) {
 					LogHelpers.Warn( "Inbox or Inbox.Messages is null" );

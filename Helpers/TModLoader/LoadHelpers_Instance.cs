@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Services.PromisedHooks;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
@@ -15,14 +15,14 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		////////////////
 
 		internal LoadHelpers() {
-			Promises.AddWorldLoadEachPromise( () => {
+			PromisedHooks.AddWorldLoadEachPromise( () => {
 				this.StartupDelay = 0;
 			} );
-			Promises.AddWorldUnloadEachPromise( () => {
+			PromisedHooks.AddWorldUnloadEachPromise( () => {
 				this.StartupDelay = 0;
 				this.IsClientPlaying_Hackish = false;
 			} );
-			Promises.AddPostWorldUnloadEachPromise( () => { // Redundant?
+			PromisedHooks.AddPostWorldUnloadEachPromise( () => { // Redundant?
 				this.StartupDelay = 0;
 				this.IsClientPlaying_Hackish = false;
 			} );
