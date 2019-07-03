@@ -54,13 +54,16 @@ namespace HamstarHelpers.Components.Protocol.Stream {
 
 		////////////////
 		
+		/// @private
 		protected StreamProtocol() { }
 
-		
+
 		////////////////
 
+		/// @private
 		protected abstract void OnClone();
 
+		/// @private
 		protected void InternalOnClone() { this.OnClone(); }
 
 

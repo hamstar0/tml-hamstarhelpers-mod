@@ -11,6 +11,9 @@ using HamstarHelpers.Helpers.ModHelpers;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
+	/// </summary>
 	public partial class UIModData : UIPanel {
 		public Mod Mod { get; private set; }
 		public string Author { get; private set; }

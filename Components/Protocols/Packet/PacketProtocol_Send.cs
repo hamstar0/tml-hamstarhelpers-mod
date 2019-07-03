@@ -9,10 +9,14 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Components.Protocol.Packet {
+	/// <summary>
+	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
+	/// </summary>
 	public abstract partial class PacketProtocol : StreamProtocol {
 		/// <summary>
 		/// Sends the current packet to the server.
 		/// </summary>
+		/// <param name="syncToClients">Indicates packet should resume being sent to each client.</param>
 		protected void SendToServer( bool syncToClients ) {
 			if( Main.netMode != 1 ) {
 				throw new HamstarException( "Not a client." );

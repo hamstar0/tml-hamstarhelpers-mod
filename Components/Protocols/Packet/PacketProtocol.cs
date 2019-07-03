@@ -15,8 +15,7 @@ namespace HamstarHelpers.Components.Protocol.Packet {
 	/// </summary>
 	public abstract partial class PacketProtocol : StreamProtocol {
 		/// <summary>
-		/// Gets a random integer as a code representing a given protocol (by name) to identify its
-		/// network packets.
+		/// Gets a random integer as a code representing a given protocol (by name) to identify it. Used for identifying packet types.
 		/// </summary>
 		/// <param name="str">A protocol's name. Internally uses class names.</param>
 		/// <returns>Random integer code.</returns>
@@ -71,7 +70,7 @@ namespace HamstarHelpers.Components.Protocol.Packet {
 		////////////////
 
 		/// <summary>
-		/// Indicates whether sent packets will be logged if the config specifies to do so. Defaults to true.
+		/// Indicates whether sent packets will be logged if DebugModeNetInfo is enabled. Defaults to true.
 		/// </summary>
 		[ProtocolIgnore]
 		public virtual bool IsVerbose => true;
@@ -86,10 +85,12 @@ namespace HamstarHelpers.Components.Protocol.Packet {
 
 		////////////////
 
+		/// @private
 		protected PacketProtocol() { }
 
 		////////////////
-
+		
+		/// @private
 		protected override void OnClone() { }   // Validations are handled internally
 		
 

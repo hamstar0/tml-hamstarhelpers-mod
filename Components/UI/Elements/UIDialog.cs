@@ -6,6 +6,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a UI dialog (stand-alone, centered panel) element.
+	/// </summary>
 	public class UIDialog : UIState {
 		public virtual int InitialContainerWidth { get; protected set; }
 		public virtual int InitialContainerHeight { get; protected set; }

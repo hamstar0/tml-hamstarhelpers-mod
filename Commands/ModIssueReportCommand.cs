@@ -29,14 +29,14 @@ namespace HamstarHelpers.Commands {
 			IList<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder().ToList();
 			int argIdx = 1;
 
-			string title = CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx );
-			if( argIdx == -1 ) {
+			string title;
+			if( !CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx, out title ) ) {
 				caller.Reply( "Invalid issue report title string", Color.Red );
 				return;
 			}
 
-			string body = CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx );
-			if( argIdx == -1 ) {
+			string body;
+			if( !CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx, out body ) ) {
 				caller.Reply( "Invalid issue report description string", Color.Red );
 				return;
 			}

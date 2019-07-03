@@ -7,6 +7,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a UI checkbox (toggleable button) element.
+	/// </summary>
 	public class UICheckbox : UIText {
 		public static Texture2D CheckboxTexture { get; private set; }
 		public static Texture2D CheckmarkTexture { get; private set; }

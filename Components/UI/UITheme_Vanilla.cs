@@ -2,7 +2,13 @@
 
 
 namespace HamstarHelpers.Components.UI {
+	/// <summary>
+	/// Defines a theme to use for common UI color and layout settings.
+	/// </summary>
 	public partial class UITheme {
+		/// <summary>
+		/// Default "vanilla Terraria" UI theme presets.
+		/// </summary>
 		public static UITheme Vanilla;
 
 		static UITheme() {

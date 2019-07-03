@@ -6,6 +6,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.Protocol.Packet {
+	/// <summary>
+	/// Implement to define a network protocol. Protocols define what data to transmit, and how and where it can be transmitted.
+	/// </summary>
 	public abstract partial class PacketProtocol : StreamProtocol {
 		private static void QuickSendToServerBase<T>( bool syncToClients )
 				where T : PacketProtocol {  //, new()

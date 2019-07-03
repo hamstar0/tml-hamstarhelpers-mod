@@ -28,12 +28,14 @@ namespace HamstarHelpers.Commands {
 			}
 
 			int _;
-			string itemName = CommandsHelpers.GetQuotedStringFromArgsAt( args, 0, out _ );
-			if( !ItemIdentityHelpers.NamesToIds.ContainsKey( itemName ) ) {
-				throw new UsageException( "Invalid item type." );
-			}
+			string itemName;
+			if( CommandsHelpers.GetQuotedStringFromArgsAt(args, 0, out _, out itemName) ) {
+				if( !ItemIdentityHelpers.NamesToIds.ContainsKey( itemName ) ) {
+					throw new UsageException( "Invalid item type." );
+				}
 
-			caller.Reply( "Item id for " + itemName + ": " + ItemIdentityHelpers.NamesToIds[itemName], Color.Lime );
+				caller.Reply( "Item id for " + itemName + ": " + ItemIdentityHelpers.NamesToIds[itemName], Color.Lime );
+			}
 		}
 	}
 }

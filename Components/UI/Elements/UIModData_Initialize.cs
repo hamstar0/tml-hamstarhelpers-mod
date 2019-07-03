@@ -14,6 +14,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
+	/// </summary>
 	public partial class UIModData : UIPanel {
 		private bool InitializeMe( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			var self = this;
