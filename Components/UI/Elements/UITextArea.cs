@@ -11,6 +11,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a focusable text area UI panel element with crop-to-fit text input. Does not currently implement multi-line support (yet).
+	/// </summary>
 	public class UITextArea : UIPanel {
 		public delegate void TextChangeEvent( StringBuilder newText );
 
@@ -190,7 +193,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 				}
 
 				if( this.HasFocus ) {
-					Vector2 imePos = new Vector2( (float)(Main.screenWidth / 2), (float)(this.GetDimensions().ToRectangle().Bottom + 32) );
+					var imePos = new Vector2( (float)(Main.screenWidth / 2), (float)(this.GetDimensions().ToRectangle().Bottom + 32) );
 					Main.instance.DrawWindowsIMEPanel( imePos, 0.5f );
 
 					if( (this.CursorAnimation %= 40) <= 20 ) {

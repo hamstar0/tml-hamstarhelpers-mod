@@ -5,6 +5,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Tiles {
+	/// <summary>
+	/// Supplies a tile type for coal items. Helps generalize their use as an inter-mod standardized item.
+	/// </summary>
 	public class CoalTile : ModTile {
 		public override void SetDefaults() {
 			Main.tileSolid[Type] = true;

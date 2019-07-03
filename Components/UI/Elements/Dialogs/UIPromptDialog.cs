@@ -4,6 +4,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements.Dialogs {
+	/// <summary>
+	/// Defines a 'Confirm'/'Cancel' prompting UI as a full dialog element. Forces modality.
+	/// </summary>
 	public class UIPromptDialog : UIDialog {
 		protected UITextPanelButton ConfirmButton;
 		protected UITextPanelButton CancelButton;

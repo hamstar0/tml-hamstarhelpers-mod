@@ -9,6 +9,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a custom event for UITextField use.
+	/// </summary>
 	public class TextInputEventArgs : EventArgs {
 		public string Text;
 
@@ -19,6 +22,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 
 
+	/// <summary>
+	/// Defines a simpler append-only text field input panel. Suited for main menu use.
+	/// </summary>
 	public class UITextField : UIPanel {
 		public delegate void EventHandler( Object sender, EventArgs e );
 

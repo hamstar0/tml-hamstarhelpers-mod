@@ -4,6 +4,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a common text panel button element.
+	/// </summary>
 	public class UITextPanelButton : UITextPanel<string> {
 		public UITheme Theme { get; protected set; }
 

@@ -3,6 +3,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.UI.Elements.Menu {
+	/// <summary>
+	/// Defines a main menu button element. Designed to work outside of a UIState context.
+	/// </summary>
 	internal class UIMenuButton : UITextPanelButton {
 		protected float XCenterOffset;
 		protected float YPos;

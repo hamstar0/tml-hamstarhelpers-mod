@@ -5,6 +5,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Items {
+	/// <summary>
+	/// Supplies a generic item as an ingredient for general, inter-mod magic/technology recipe/consummable use.
+	/// </summary>
 	public class MagiTechScrapItem : ModItem {
 		public static int Create( Vector2 pos, int stack ) {
 			return ItemHelpers.CreateItem( pos, ModHelpersMod.Instance.ItemType<MagiTechScrapItem>(), stack, 24, 24 );

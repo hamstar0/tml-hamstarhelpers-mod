@@ -4,6 +4,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Components.UI.Elements.Dialogs {
+	/// <summary>
+	/// Defines a simple, dialog-like 'Confirm'/'Cancel' prompt panel element.
+	/// </summary>
 	public class UIPromptPanel : UIPanel {
 		protected UITextPanelButton ConfirmButton;
 		protected UITextPanelButton CancelButton;

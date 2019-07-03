@@ -11,6 +11,9 @@ using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
+	/// <summary>
+	/// Defines a visitable web URL (hyperlink) as a UI element.
+	/// </summary>
 	public class UIWebUrl : UIElement {
 		public static UIText GetLineElement( string label, float scale, bool large ) {
 			float underscoreLen = Main.fontMouseText.MeasureString("_").X;
