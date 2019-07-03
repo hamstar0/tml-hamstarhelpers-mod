@@ -3,6 +3,9 @@ using System;
 
 
 namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
+	/// <summary>
+	/// Recommended PacketProtocol form for sending data to the server.
+	/// </summary>
 	public abstract class PacketProtocolSendToServer : PacketProtocol {
 		protected static void QuickSend<T>() where T : PacketProtocolSendToServer {
 			PacketProtocol.QuickSendToServer<T>();

@@ -4,6 +4,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
+	/// <summary>
+	/// Recommended PacketProtocol form for syncing data between clients and server.
+	/// </summary>
 	public abstract class PacketProtocolSyncClient : PacketProtocol {
 		protected static void SyncFromMe<T>() where T : PacketProtocolSyncClient {
 			PacketProtocol.QuickSendToServer<T>();
@@ -40,17 +43,21 @@ namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
 		protected sealed override void SetServerDefaults( int toWho ) {
 		}
 
-		protected abstract void Receive( int fromWho );
+		////////////////
+
+		protected abstract void ReceiveOnClient();
+		protected sealed override void ReceiveWithClient() {
+			this.ReceiveOnClient();
+		}
+
+		protected abstract void ReceiveOnServer( int fromWho );
 		protected sealed override void ReceiveWithServer( int fromWho ) {
-			this.Receive( fromWho );
+			this.ReceiveOnServer( fromWho );
 		}
 
 
 		////////////////
 
-		protected sealed override void ReceiveWithClient() {
-			throw new HamstarException( "Not implemented" );
-		}
 		protected sealed override bool ReceiveRequestWithClient() {
 			throw new HamstarException( "Not implemented" );
 		}

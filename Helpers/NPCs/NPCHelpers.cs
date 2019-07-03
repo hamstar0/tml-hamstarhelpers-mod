@@ -44,6 +44,16 @@ namespace HamstarHelpers.Helpers.NPCs {
 			NetMessage.SendData( 28, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
 		}
 
+		public static void Remove( NPC npc ) {
+			npc.active = false;
+
+			if( Main.netMode != 0 ) {   // == 2 only?
+				npc.netSkip = -1;
+				npc.life = 0;
+				NetMessage.SendData( MessageID.SyncNPC, -1, -1, null, npc.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
+			}
+		}
+
 		////////////////
 
 		public static Vector2 GetKnockbackVector( NPC npc, int dir, float knockback, bool crit, bool isKillingBlow ) {

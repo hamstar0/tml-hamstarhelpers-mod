@@ -7,16 +7,16 @@ using Terraria;
 namespace HamstarHelpers.Helpers.NPCs {
 	/** <summary>Assorted static "helper" functions pertaining to NPC drawing.</summary> */
 	public static partial class NPCDrawHelpers {
-		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale, Color color ) {
-			Texture2D tex = Main.npcTexture[ npc.type ];
-			int frameCount = Main.npcFrameCount[ npc.type ];
+		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale, Color color, bool applyZoom = false ) {
+			Texture2D tex = Main.npcTexture[npc.type];
+			int frameCount = Main.npcFrameCount[npc.type];
 			int texHeight = tex.Height / frameCount;
 
 			Rectangle frameRect = new Rectangle( 0, frame * texHeight, tex.Width, texHeight );
 
 			float yOffset = 0.0f;
 			float heightOffset = Main.NPCAddHeight( npc.whoAmI );
-			Vector2 origin = new Vector2( (float)(tex.Width / 2), (float)((tex.Height / frameCount) / 2) );
+			Vector2 origin = new Vector2( (float)( tex.Width / 2 ), (float)( ( tex.Height / frameCount ) / 2 ) );
 
 			if( npc.type == 108 || npc.type == 124 ) {
 				yOffset = 2f;
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 			} else if( npc.type == 288 ) {
 				heightOffset += 6f;
 			}
-			
+
 			//if( npc.aiStyle == 10 || npc.type == 72 )
 			//	color1 = Color.White;
 
@@ -73,10 +73,16 @@ namespace HamstarHelpers.Helpers.NPCs {
 			}
 
 			float yOff = heightOffset + yOffset + npc.gfxOffY + 4f;
-			float x = position.X + ((float)npc.width / 2f) - (((float)tex.Width * scale) / 2f) + (origin.X * scale);
-			float y = position.Y + (float)npc.height - ((float)texHeight * scale) + (origin.Y * scale) + yOff;
-			Vector2 pos = UIHelpers.ConvertToScreenPosition( new Vector2( x, y ) );
-			
+			float x = position.X + ( (float)npc.width / 2f ) - ( ( (float)tex.Width * scale ) / 2f ) + ( origin.X * scale );
+			float y = position.Y + (float)npc.height - ( (float)texHeight * scale ) + ( origin.Y * scale ) + yOff;
+
+			Vector2 pos;
+			if( applyZoom ) {
+				pos = UIHelpers.ConvertToScreenPosition( new Vector2( x, y ) );
+			} else {
+				pos = new Vector2( x, y ) - Main.screenPosition;
+			}
+
 			sb.Draw( tex, pos, frameRect, color, rotation, origin, scale, fx, 1f );
 		}
 	}

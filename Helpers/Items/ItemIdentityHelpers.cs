@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,6 +23,21 @@ namespace HamstarHelpers.Helpers.Items {
 
 		////
 
+		public static bool TryGetTypeByUid( string itemUid, out int itemId ) {
+			string[] split = itemUid.Split( '.' );
+
+			if( split[0] == "Terraria" ) {
+				return Int32.TryParse( split[1], out itemId );
+			} else {
+				Mod mod = ModLoader.GetMod( split[0] );
+				if( mod == null ) {
+					itemId = -1;
+					return false;
+				}
+				itemId = mod.ItemType( split[1] );
+				return true;
+			}
+		}
 
 
 		////////////////
