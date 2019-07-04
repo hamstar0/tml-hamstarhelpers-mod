@@ -1,12 +1,15 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
-using Newtonsoft.Json;
+using HamstarHelpers.Services.Debug.DataDumper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 
 namespace HamstarHelpers.Services.DataStore {
+	/// <summary>
+	/// Supplies a simple, global-use, object-based key-value dictionary for anyone to use. Nothing more.
+	/// </summary>
 	public partial class DataStore {
 		private static object MyLock = new object();
 
@@ -57,7 +60,7 @@ namespace HamstarHelpers.Services.DataStore {
 
 			lock( DataStore.MyLock ) {
 				clone = ds.Data.ToDictionary( kv => kv.Key, kv => kv.Value );
-				clone.Remove( DataDumper.DataDumper.MyDataStorekey );
+				clone.Remove( DataDumper.MyDataStorekey );
 			}
 			return clone;
 		}

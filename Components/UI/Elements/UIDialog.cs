@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
@@ -7,21 +8,37 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
-	/// Defines a UI dialog (stand-alone, centered panel) element.
+	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
 	/// </summary>
-	public class UIDialog : UIState {
+	public abstract class UIDialog : UIState {
+		/// <summary>
+		/// Recommended dialog width.
+		/// </summary>
 		public virtual int InitialContainerWidth { get; protected set; }
+		/// <summary>
+		/// Recommended dialog height.
+		/// </summary>
 		public virtual int InitialContainerHeight { get; protected set; }
 
+		/// <summary>
+		/// Indicates if dialog is open.
+		/// </summary>
 		public bool IsOpen { get; private set; }
 
+		/// <summary>
+		/// Appearance style.
+		/// </summary>
 		protected UITheme Theme;
 
+		/// @private
 		protected UserInterface Backend = null;
 
+		/// @private
 		protected UIElement OuterContainer = null;
+		/// @private
 		protected UIPanel InnerContainer = null;
 
+		/// @private
 		protected bool SetDialogToClose = false;
 
 		private float TopPixels = 32f;
@@ -35,6 +52,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <param name="theme">Appearance style.</param>
+		/// <param name="initialWidth">Recommended width.</param>
+		/// <param name="initialHeight">Recommended height.</param>
 		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) {
 			this.IsOpen = false;
 			this.Theme = theme;
@@ -43,17 +63,21 @@ namespace HamstarHelpers.Components.UI.Elements {
 		}
 
 		////////////////
-
-		public override void OnActivate() {
-			base.OnActivate();
-		}
-
+		
+		/// <summary>
+		/// Initializes containers and inner components.
+		/// </summary>
 		public override void OnInitialize() {
 			this.InitializeContainer( this.InitialContainerWidth, this.InitialContainerHeight );
 			this.InitializeComponents();
 		}
 
 
+		/// <summary>
+		/// Initializes inner (content-bearing) and outer (screen-positioned) containers.
+		/// </summary>
+		/// <param name="width">Outer container width.</param>
+		/// <param name="height">Outer container height.</param>
 		public void InitializeContainer( int width, int height ) {
 			this.OuterContainer = new UIElement();
 			this.OuterContainer.Width.Set( width, 0f );
@@ -63,7 +87,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.OuterContainer.HAlign = 0f;
 			this.Append( this.OuterContainer );
 
-			this.RecalculateContainer();
+			this.RecalculateOuterContainer();
 
 			this.InnerContainer = new UIPanel();
 			this.InnerContainer.Width.Set( 0f, 1f );
@@ -74,11 +98,18 @@ namespace HamstarHelpers.Components.UI.Elements {
 		}
 
 
-		public virtual void InitializeComponents() { }
+		/// <summary>
+		/// Used to initialize dialog's contents.
+		/// </summary>
+		public abstract void InitializeComponents();
 
 
 		////////////////
 
+		/// <summary>
+		/// Updates state.
+		/// </summary>
+		/// <param name="gameTime">Unused.</param>
 		public override void Update( GameTime gameTime ) {
 			base.Update( gameTime );
 
@@ -104,7 +135,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		public void RecalculateMe() {	// Call this instead of Recalculate
+		/// <summary>
+		/// Intended to replace `Recalculate()` for technical reasons. Recalculates positions of dialog elements.
+		/// </summary>
+		public virtual void RecalculateMe() {	// Call this instead of Recalculate
 			if( this.Backend != null ) {
 				this.Backend.Recalculate();
 			} else {
@@ -112,15 +146,20 @@ namespace HamstarHelpers.Components.UI.Elements {
 			}
 		}
 
-		public override void Recalculate() {
+		/// @private
+		[Obsolete("use RecalculateMe()")]
+		public sealed override void Recalculate() {
 			base.Recalculate();
 
 			if( this.OuterContainer != null ) {
-				this.RecalculateContainer();
+				this.RecalculateOuterContainer();
 			}
 		}
 
-		public void RecalculateContainer() {
+		/// <summary>
+		/// Recalculates position of outer container
+		/// </summary>
+		public void RecalculateOuterContainer() {
 			CalculatedStyle dim = this.OuterContainer.GetDimensions();
 			float offsetX = this.LeftPixels;
 			float offsetY = this.TopPixels;
@@ -139,12 +178,16 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <returns>`true` if dialog can be opened (UI not otherwise captured, no other dialogs, etc.).</returns>
 		public virtual bool CanOpen() {
 			return !this.IsOpen && !Main.inFancyUI &&
 				(DialogManager.Instance != null && DialogManager.Instance.CurrentDialog == null);
 		}
 
 
+		/// <summary>
+		/// Opens the dialog. All input and UI context is captured.
+		/// </summary>
 		public virtual void Open() {
 			this.IsOpen = true;
 
@@ -165,6 +208,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 		}
 
 
+		/// <summary>
+		/// Closes the current dialog. All UI context is reverted to the game's normal state.
+		/// </summary>
 		public virtual void Close() {
 			this.IsOpen = false;
 
@@ -179,23 +225,38 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Repositions the dialog horizontally (via standard `StyleDimension.Set(...)`).
+		/// </summary>
+		/// <param name="pixels">Pixel amount from the left.</param>
+		/// <param name="percent">Percent amount from the left.</param>
+		/// <param name="centered">Subtracts half the screen width from the pixel amount.</param>
 		public void SetLeftPosition( float pixels, float percent, bool centered ) {
 			this.LeftPixels = pixels;
 			this.LeftPercent = percent;
 			this.LeftCentered = centered;
-			this.RecalculateContainer();
+			this.RecalculateOuterContainer();
 		}
 
+		/// <summary>
+		/// Repositions the dialog vertically (via standard `StyleDimension.Set(...)`).
+		/// </summary>
+		/// <param name="pixels">Pixel amount from the top.</param>
+		/// <param name="percent">Percent amount from the top.</param>
+		/// <param name="centered">Subtracts half the screen height from the pixel amount.</param>
 		public void SetTopPosition( float pixels, float percent, bool centered ) {
 			this.TopPixels = pixels;
 			this.TopPercent = percent;
 			this.TopCentered = centered;
-			this.RecalculateContainer();
+			this.RecalculateOuterContainer();
 		}
 
 
 		////////////////
 
+		/// <summary>
+		/// Refreshes visual theming.
+		/// </summary>
 		public virtual void RefreshTheme() {
 			this.Theme.ApplyPanel( this.InnerContainer );
 		}
@@ -203,6 +264,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Draws the dialog if it's open.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		public override void Draw( SpriteBatch sb ) {
 			if( !this.IsOpen ) {
 				return;

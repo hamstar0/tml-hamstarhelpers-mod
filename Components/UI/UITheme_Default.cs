@@ -2,9 +2,6 @@
 
 
 namespace HamstarHelpers.Components.UI {
-	/// <summary>
-	/// Defines a theme to use for common UI color and layout settings.
-	/// </summary>
 	public partial class UITheme {
 		/// <summary></summary>
 		public Color ModListBgColor = new Color( 0, 0, 0, 128 );

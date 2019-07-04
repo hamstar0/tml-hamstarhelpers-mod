@@ -5,7 +5,7 @@ using Terraria.GameContent.UI.Elements;
 
 namespace HamstarHelpers.Components.UI {
 	/// <summary>
-	/// Defines a theme to use for common UI color and layout settings.
+	/// Defines a theme to use for common UI color and layout settings. Default values are a Mod Helpers custom theme.
 	/// </summary>
 	public partial class UITheme {
 		/// <returns>Clone of the current object.</returns>

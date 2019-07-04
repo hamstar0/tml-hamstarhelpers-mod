@@ -11,7 +11,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// Defines a UI checkbox (toggleable button) element.
 	/// </summary>
 	public class UICheckbox : UIText {
+		/// <summary></summary>
 		public static Texture2D CheckboxTexture { get; private set; }
+		/// <summary></summary>
 		public static Texture2D CheckmarkTexture { get; private set; }
 
 
@@ -30,12 +32,27 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Hooks changes to the button state.
+		/// </summary>
 		public event Action OnSelectedChanged = null;
+		/// <summary>
+		/// Allows defining a custom sort order value (for putting in an ordered list).
+		/// </summary>
 		public float Order = 0f;
+		/// <summary>
+		/// Enables mouse interactivity.
+		/// </summary>
 		public bool IsClickable = true;
+		/// <summary>
+		/// Mouse hover popup label.
+		/// </summary>
 		public string Title = "";
 
 		private bool _selected = false;
+		/// <summary>
+		/// Indicates if the box is "checked".
+		/// </summary>
 		public bool Selected {
 			get { return this._selected; }
 			set {
@@ -51,6 +68,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <param name="label">Display text next to checkbox control.</param>
+		/// <param name="title">Mouse hover popup label.</param>
+		/// <param name="isClickable">Enables mouse interactivity.</param>
+		/// <param name="textScale">Multiplies label text size.</param>
+		/// <param name="large">Uses 'large' label text style.</param>
 		public UICheckbox( string label, string title, bool isClickable = true, float textScale = 1, bool large = false )
 				: base( label, textScale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
@@ -64,6 +86,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.Recalculate();
 		}
 
+		/// <summary>
+		/// Called on click. Can be called manually.
+		/// </summary>
+		/// <param name="evt">Unused.</param>
 		public override void Click( UIMouseEvent evt ) {
 			if( this.IsClickable ) {
 				this.Selected = !this.Selected;
@@ -74,6 +100,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 		
+		/// @private
 		protected override void DrawSelf( SpriteBatch sb ) {
 			CalculatedStyle innerPos = base.GetInnerDimensions();
 			Vector2 pos = new Vector2( innerPos.X, innerPos.Y - 5 );
@@ -94,6 +121,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Decides sort order in a list.
+		/// </summary>
+		/// <param name="obj">Object to compare rank to.</param>
+		/// <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
 		public override int CompareTo( object obj ) {
 			try {
 				UICheckbox other = obj as UICheckbox;
