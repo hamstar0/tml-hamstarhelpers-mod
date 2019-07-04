@@ -4,9 +4,6 @@ using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Components.UI.Elements.Menu {
-	/// <summary>
-	/// Defines a main menu info panel UI element.
-	/// </summary>
 	internal class UIMenuPanel : UIPanel {
 		protected float XCenterOffset;
 		protected float YPos;

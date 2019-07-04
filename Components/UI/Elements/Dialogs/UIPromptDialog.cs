@@ -8,26 +8,38 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 	/// Defines a 'Confirm'/'Cancel' prompting UI as a full dialog element. Forces modality.
 	/// </summary>
 	public class UIPromptDialog : UIDialog {
+		/// @private
 		protected UITextPanelButton ConfirmButton;
+		/// @private
 		protected UITextPanelButton CancelButton;
 
-		protected Action ConfirmAction;
-		protected Action CancelAction;
+		/// @private
+		protected Action<bool> OnReply;
 
+		/// <summary>
+		/// Prompt message (title) to display.
+		/// </summary>
 		public string TitleText { get; private set; }
 
 
 		////////////////
 
-		public UIPromptDialog( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null )
+		/// <param name="theme">Visual appearance.</param>
+		/// <param name="width">Recommended width.</param>
+		/// <param name="height">Recommended height.</param>
+		/// <param name="title">Prompt message (title) to display.</param>
+		/// <param name="onReply">Action to perform on pressing a button.</param>
+		public UIPromptDialog( UITheme theme, int width, int height, string title, Action<bool> onReply )
 				: base( theme, width, height ) {
 			this.TitleText = title;
-			this.ConfirmAction = confirm;
-			this.CancelAction = cancel;
+			this.OnReply = onReply;
 		}
 
 		////////////////
-
+		
+		/// <summary>
+		/// Initializes components.
+		/// </summary>
 		public override void InitializeComponents() {
 			var self = this;
 
@@ -39,7 +51,7 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 			this.ConfirmButton.Left.Set( -192f, 0.5f );
 			this.ConfirmButton.Width.Set( 128f, 0f );
 			this.ConfirmButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
-				self.ConfirmAction();
+				self.OnReply( true );
 				self.SetDialogToClose = true;
 				DialogManager.Instance.UnsetForcedModality();
 			};
@@ -50,9 +62,7 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 			this.CancelButton.Left.Set( 64f, 0.5f );
 			this.CancelButton.Width.Set( 128f, 0f );
 			this.CancelButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
-				if( self.CancelAction != null ) {
-					self.CancelAction.Invoke();
-				}
+				self.OnReply( false );
 				self.SetDialogToClose = true;
 				DialogManager.Instance.UnsetForcedModality();
 			};
@@ -62,15 +72,21 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 
 		////////////////
 
+		/// <summary>
+		/// Opens the dialog, and keeps it open.
+		/// </summary>
 		public override void Open() {
 			base.Open();
 
-			DialogManager.Instance.SetForcedModality();
+			DialogManager.Instance.SetForcedPersistence();
 		}
 
 
 		////////////////
 
+		/// <summary>
+		/// Refreshes visual theming.
+		/// </summary>
 		public override void RefreshTheme() {
 			base.RefreshTheme();
 

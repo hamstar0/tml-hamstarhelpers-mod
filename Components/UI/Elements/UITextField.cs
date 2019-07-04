@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Helpers.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -13,8 +12,12 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// Defines a custom event for UITextField use.
 	/// </summary>
 	public class TextInputEventArgs : EventArgs {
+		/// <summary>
+		/// Input text.
+		/// </summary>
 		public string Text;
 
+		/// <param name="text">Input text.</param>
 		public TextInputEventArgs( string text ) : base() {
 			this.Text = text;
 		}
@@ -22,28 +25,48 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 
 
+
 	/// <summary>
 	/// Defines a simpler append-only text field input panel. Suited for main menu use.
 	/// </summary>
 	public class UITextField : UIPanel {
+		/// <summary>
+		/// Event handler for text input events
+		/// </summary>
+		/// <param name="sender">Context of text change (AKA current element).</param>
+		/// <param name="e">Changed text (wrapped).</param>
 		public delegate void EventHandler( Object sender, EventArgs e );
 
 
+		/// <summary>
+		/// Appearance style.
+		/// </summary>
 		public UITheme Theme { get; protected set; }
 
+		/// <summary>
+		/// Fires on text change.
+		/// </summary>
 		public event EventHandler OnTextChange;
+		/// <summary>
+		/// Text color.
+		/// </summary>
 		public Color TextColor;
 
+		/// <summary>
+		/// "Default" text. Appears when no text is input. Not counted as input.
+		/// </summary>
 		private string HintText;
-		internal string Text = "";
-		private uint CursorAnimation;
 
+		private string Text = "";
+		private uint CursorAnimation;
 		private bool IsSelected = false;
 
 
 
 		////////////////
 
+		/// <param name="theme">Appearance style.</param>
+		/// <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
 		public UITextField( UITheme theme, string hintText ) {
 			this.Theme = theme;
 			this.HintText = hintText;
@@ -55,6 +78,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Refreshes visual theming.
+		/// </summary>
 		public virtual void RefreshTheme() {
 			this.Theme.ApplyInput( this );
 		}
@@ -62,6 +88,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Draws element. Also handles text input changes.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
 			

@@ -15,19 +15,55 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
 	/// </summary>
 	public partial class UIModData : UIPanel {
+		/// <summary>
+		/// Mod represented by this element.
+		/// </summary>
 		public Mod Mod { get; private set; }
+		/// <summary>
+		/// Mod's author.
+		/// </summary>
 		public string Author { get; private set; }
+		/// <summary>
+		/// Mod's homepage.
+		/// </summary>
 		public string HomepageUrl { get; private set; }
+		/// <summary>
+		/// Latest version of the mod on the mod browser.
+		/// </summary>
 		public Version LatestAvailableVersion { get; private set; }
 
+		/// <summary>
+		/// Mod's icon.
+		/// </summary>
 		public UIImage IconElem { get; private set; }
+		/// <summary>
+		/// Mod title text.
+		/// </summary>
 		public UIElement TitleElem { get; private set; }
+		/// <summary>
+		/// Mod author text.
+		/// </summary>
 		public UIElement AuthorElem { get; private set; }
+		/// <summary>
+		/// Config file reset button for the mod.
+		/// </summary>
 		public UITextPanelButton ConfigResetButton { get; private set; }
+		/// <summary>
+		/// Config file open button.
+		/// </summary>
 		public UITextPanelButton ConfigOpenButton { get; private set; }
+		/// <summary>
+		/// Version update alert element.
+		/// </summary>
 		public UIElement VersionAlertElem { get; private set; }
 
+		/// <summary>
+		/// Indicates if mod's icon is loaded.
+		/// </summary>
 		public bool HasIconLoaded { get; private set; }
+		/// <summary>
+		/// Indicates if this element draws its own mouse-hover elements.
+		/// </summary>
 		public bool WillDrawOwnHoverElements { get; private set; }
 
 		private ISet<string> ModTags = new HashSet<string>();
@@ -36,9 +72,16 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <param name="theme">Visual appearance.</param>
+		/// <param name="mod">Mod represented by this element.</param>
+		/// <param name="willDrawOwnHoverElements">Indicates if this element draws its own mouse-hover elements.</param>
 		public UIModData( UITheme theme, Mod mod, bool willDrawOwnHoverElements = true )
 				: this( theme, null, mod, willDrawOwnHoverElements ) { }
 
+		/// <param name="theme">Visual appearance.</param>
+		/// <param name="idx">ID number assigned to this element in its list.</param>
+		/// <param name="mod">Mod represented by this element.</param>
+		/// <param name="willDrawOwnHoverElements">Indicates if this element draws its own mouse-hover elements.</param></param>
 		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			this.InitializeMe( theme, idx, mod, willDrawOwnHoverElements );
 
@@ -53,6 +96,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Checks if the mod has new versions available from the mod browser, then updates it's overlay accordingly.
+		/// </summary>
 		public void CheckForNewVersionAsync() {
 			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
 				if( args.Found && args.ModInfo.ContainsKey(this.Mod.Name) ) {
@@ -80,6 +126,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Defines the sort order position of this element relative to another object (typically another UIModData element).
+		/// </summary>
+		/// <param name="obj">Other object to compare rank against.</param>
+		/// <returns>Greater than (+1), less than (-1), or equal to (0) comparison status.</returns>
 		public override int CompareTo( object obj ) {
 			var other = obj as UIModData;
 			if( other == null ) {   // Other object types are always sorted less than UIModData

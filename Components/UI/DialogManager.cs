@@ -18,27 +18,27 @@ namespace HamstarHelpers.Components.UI {
 
 		////////////////
 
-		public bool ForcedModalDialog { get; private set; }
+		public bool ForcedPersistenceDialog { get; private set; }
 		public UIDialog CurrentDialog { get; private set; }
 
 
 		////////////////
 
 		public DialogManager() {
-			this.ForcedModalDialog = false;
+			this.ForcedPersistenceDialog = false;
 			this.CurrentDialog = null;
 		}
 
 		////////////////
 
-		internal void SetForcedModality() {
+		internal void SetForcedPersistence() {
 			if( this.CurrentDialog != null ) {
-				this.ForcedModalDialog = true;
+				this.ForcedPersistenceDialog = true;
 			}
 		}
 
 		internal void UnsetForcedModality() {
-			this.ForcedModalDialog = false;
+			this.ForcedPersistenceDialog = false;
 		}
 
 
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Components.UI {
 			}
 			
 			if( !this.CurrentDialog.IsOpen ) {
-				if( this.ForcedModalDialog ) {
+				if( this.ForcedPersistenceDialog ) {
 					this.CurrentDialog.Open();
 				} else {
 					this.CurrentDialog = null;

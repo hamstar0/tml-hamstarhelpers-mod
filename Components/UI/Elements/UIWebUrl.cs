@@ -15,6 +15,13 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// Defines a visitable web URL (hyperlink) as a UI element.
 	/// </summary>
 	public class UIWebUrl : UIElement {
+		/// <summary>
+		/// Generates a UIText element of the URL's underline (a set of underscores). Used to render together with URL text.
+		/// </summary>
+		/// <param name="label">Label to generate underline based on.</param>
+		/// <param name="scale">Size multipler of text label.</param>
+		/// <param name="large">Label as 'large' text.</param>
+		/// <returns>UIText underline element.</returns>
 		public static UIText GetLineElement( string label, float scale, bool large ) {
 			float underscoreLen = Main.fontMouseText.MeasureString("_").X;
 			float textLen = Main.fontMouseText.MeasureString( label ).X;
@@ -27,22 +34,52 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Appearance style.
+		/// </summary>
 		public UITheme Theme { get; protected set; }
+		/// <summary>
+		/// Element holding the display text.
+		/// </summary>
 		public UIText TextElem { get; private set; }
+		/// <summary>
+		/// Element holding the display text's underline.
+		/// </summary>
 		public UIText LineElem { get; private set; }
 
+		/// <summary>
+		/// URL to browse to when element is clicked.
+		/// </summary>
 		public string Url { get; private set; }
+		/// <summary>
+		/// Indicates if the current element handles its own mouse hover URL display behavior.
+		/// </summary>
 		public bool WillDrawOwnHoverUrl { get; private set; }
 
+		/// <summary>
+		/// Indicates if the link has been visited (e.g. clicked on).
+		/// </summary>
 		public bool IsVisited { get; private set; }
 
+		/// <summary>
+		/// Size multiplier of display text.
+		/// </summary>
 		public float Scale { get; private set; }
+		/// <summary>
+		/// 'Large' state of display text.
+		/// </summary>
 		public bool Large { get; private set; }
 
 
 
 		////////////////
 
+		/// <param name="theme">Appearance style.</param>
+		/// <param name="label">Display text.</param>
+		/// <param name="url">URL.</param>
+		/// <param name="hoverUrl">Indicates if the current element handles its own mouse hover URL display behavior.</param>
+		/// <param name="scale">Size multiplier of display text.</param>
+		/// <param name="large">'Large' state of display text.</param>
 		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f, bool large = false ) : base() {
 			this.Theme = theme;
 			this.IsVisited = false;
@@ -97,6 +134,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Sets the display text.
+		/// </summary>
+		/// <param name="text">New display text.</param>
 		public void SetText( string text ) {
 			this.TextElem.SetText( text, this.Scale, this.Large );
 
@@ -112,6 +153,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Draws the element. Handles mouse hover behavior.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Usually `Main.spriteBatch`.</param>
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 			
@@ -122,6 +167,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 			}
 		}
 
+		/// <summary>
+		/// Default mouse hover URL drawing.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Usually `Main.spriteBatch`.</param>
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( !string.IsNullOrEmpty(this.Url) ) {
 				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
@@ -131,6 +180,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Refreshes visual theming.
+		/// </summary>
 		public virtual void RefreshTheme() {
 			if( this.IsVisited ) {
 				this.TextElem.TextColor = this.Theme.UrlVisitColor;

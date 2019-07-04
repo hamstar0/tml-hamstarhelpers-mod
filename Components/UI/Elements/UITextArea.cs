@@ -15,32 +15,75 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// Defines a focusable text area UI panel element with crop-to-fit text input. Does not currently implement multi-line support (yet).
 	/// </summary>
 	public class UITextArea : UIPanel {
+		/// <summary>
+		/// Event type that fires every time the text changes.
+		/// </summary>
+		/// <param name="newText">Changed text.</param>
 		public delegate void TextChangeEvent( StringBuilder newText );
 
 
 		////////////////
 
+		/// <summary>
+		/// Appearance style.
+		/// </summary>
 		public UITheme Theme { get; protected set; }
 		
+		/// <summary>
+		/// Current text.
+		/// </summary>
 		public string Text { get; private set; }
+		/// <summary>
+		/// Text in its displayed form (includes cursor).
+		/// </summary>
 		public string DisplayText { get; private set; }
+		/// <summary>
+		/// "Default" text. Appears when no text is input. Not counted as input.
+		/// </summary>
 		public string Hint { get; private set; }
+		/// <summary>
+		/// Maximum length of text input.
+		/// </summary>
 		public int MaxLength { get; private set; }
 
+		/// <summary>
+		/// Fires as the text input changes.
+		/// </summary>
 		public event TextChangeEvent OnPreChange;
 
+		/// <summary>
+		/// Color of input text.
+		/// </summary>
 		public Color TextColor = Color.White;
+		/// <summary>
+		/// Color of mouse hover text.
+		/// </summary>
 		public Color HintColor = Color.Gray;
 
+		/// <summary>
+		/// Position of input cursor in input string.
+		/// </summary>
 		public int CursorPos { get; private set; }
+		/// <summary>
+		/// State of input cursor flashing animation.
+		/// </summary>
 		public int CursorAnimation { get; private set; }
 
+		/// <summary>
+		/// Indicates text is being input.
+		/// </summary>
 		public bool HasFocus { get; private set; }
+		/// <summary>
+		/// Indicates element is able to be edited.
+		/// </summary>
 		public bool IsEnabled { get; private set; }
 
 
 		////////////////
-		
+
+		/// <param name="theme">Appearance style.</param>
+		/// <param name="hint">Default text. Overridden with any input text.</param>
+		/// <param name="maxLength">Maximum length of text input.</param>
 		public UITextArea( UITheme theme, string hint, int maxLength=2024 ) {
 			// TODO Add multiline support
 
@@ -61,6 +104,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 		
+		/// <summary>
+		/// Manually sets the input text, accommodating cursor position.
+		/// </summary>
+		/// <param name="text">New text.</param>
 		public void SetText( string text ) {
 			var strBldr = new StringBuilder( text );
 			if( this.OnPreChange != null ) {
@@ -81,6 +128,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Updates state of input, including cursor animation.
+		/// </summary>
+		/// <param name="gameTime">Unused.</param>
 		public override void Update( GameTime gameTime ) {
 			if( this.HasFocus ) {
 				Main.blockInput = true;	// Force the point!
@@ -111,6 +162,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 			base.Update( gameTime );
 		}
 
+		/// <summary>
+		/// Recalculates element positions.
+		/// </summary>
 		public override void Recalculate() {
 			this.SetText( this.Text );
 			base.Recalculate();
@@ -119,6 +173,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Implements click behavior. Focuses on the input element.
+		/// </summary>
+		/// <param name="evt">Mouse event.</param>
 		public override void Click( UIMouseEvent evt ) {
 			this.Focus();
 			base.Click( evt );
@@ -126,6 +184,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Sets input to be captured by the current element.
+		/// </summary>
+		/// <returns>`true` if able to capture focus.</returns>
 		public bool Focus() {
 			if( !this.IsEnabled ) { return false; }
 			if( this.HasFocus ) { return false; }
@@ -139,6 +201,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 			return true;
 		}
 
+		/// <summary>
+		/// Removes input capture.
+		/// </summary>
+		/// <returns></returns>
 		public bool Unfocus() {
 			if( !this.HasFocus ) { return false; }
 			this.HasFocus = false;
@@ -151,6 +217,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Disables the text area (prevents text input).
+		/// </summary>
 		public void Disable() {
 			this.IsEnabled = false;
 
@@ -161,6 +230,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.RefreshTheme();
 		}
 
+		/// <summary>
+		/// Enables the text area.
+		/// </summary>
 		public void Enable() {
 			this.IsEnabled = true;
 
@@ -170,6 +242,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Refreshes visual theming.
+		/// </summary>
 		public virtual void RefreshTheme() {
 			if( this.IsEnabled ) {
 				this.Theme.ApplyInput( this );
@@ -181,6 +256,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Draws the element. Animates cursor, draws hint text.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
 
@@ -217,6 +296,13 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Applies a cursor to a given string.
+		/// </summary>
+		/// <param name="text">Input string.</param>
+		/// <param name="cursorPos">Cursor's position.</param>
+		/// <param name="width">Width of input.</param>
+		/// <returns>Cursor-added input string.</returns>
 		public static string GetFittedText( string text, int cursorPos, float width ) {
 			int start = 0;
 			int end = text.Length;

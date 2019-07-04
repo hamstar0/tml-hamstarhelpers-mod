@@ -14,6 +14,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
 	/// </summary>
 	public partial class UIModData : UIPanel {
+		/// <summary>
+		/// Matches a color with a given mod tag. Used to represent tags that should be emphasized.
+		/// </summary>
+		/// <param name="tag">Mod tag</param>
+		/// <returns>Color of tag.</returns>
 		public static Color GetTagColor( string tag ) {
 			switch( tag ) {
 			// Important tags:
@@ -47,6 +52,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
+		/// <summary>
+		/// Expands on base.Draw(...) to implement custom mouse hover effects (if applicable).
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		public override void Draw( SpriteBatch sb ) {
 			base.Draw( sb );
 
@@ -54,7 +63,11 @@ namespace HamstarHelpers.Components.UI.Elements {
 				this.DrawHoverEffects( sb );
 			}
 		}
-		
+
+		/// <summary>
+		/// Expands on base.Draw to add version overlay and render mod tags.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
 
@@ -97,6 +110,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 		}
 
 
+		/// <summary>
+		/// Draws mouse hover title.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( this.TitleElem.IsMouseHovering ) {
 				if( this.TitleElem is UIWebUrl ) {

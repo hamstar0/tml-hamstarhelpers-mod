@@ -8,35 +8,67 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 	/// Defines a simple, dialog-like 'Confirm'/'Cancel' prompt panel element.
 	/// </summary>
 	public class UIPromptPanel : UIPanel {
+		/// @private
 		protected UITextPanelButton ConfirmButton;
+		/// @private
 		protected UITextPanelButton CancelButton;
 
+		/// @private
 		protected Action ConfirmAction;
+		/// @private
 		protected Action CancelAction;
 
+		/// @private
 		protected bool SetDialogToClose = false;
 
+		/// @private
 		protected float TopPixels = 32f;
+		/// @private
 		protected float TopPercent = 0.5f;
+		/// @private
 		protected float LeftPixels = 0f;
+		/// @private
 		protected float LeftPercent = 0.5f;
+		/// @private
 		protected bool TopCentered = true;
+		/// @private
 		protected bool LeftCentered = true;
 
 		////////////////
 
+		/// <summary>
+		/// Recommended width.
+		/// </summary>
 		public int MyWidth { get; private set; }  //600, 112
+		/// <summary>
+		/// Recommended height.
+		/// </summary>
 		public int MyHeight { get; private set; }
 
+		/// <summary>
+		/// Appearance style.
+		/// </summary>
 		public UITheme Theme { get; protected set; }
+		/// <summary>
+		/// Mouse hover text.
+		/// </summary>
 		public string TitleText { get; private set; }
 		
+		/// <summary>
+		/// Prompt is open.
+		/// </summary>
 		public bool IsOpen { get; private set; }
 
 
 
 		////////////////
 
+		/// <param name="theme">Appearance style.</param>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <param name="title"></param>
+		/// <param name="confirm"></param>
+		/// <param name="cancel"></param>
 		public UIPromptPanel( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null ) {
 			this.Theme = theme;
 			this.MyWidth = width;
@@ -48,6 +80,9 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 
 		////////////////
 
+		/// <summary>
+		/// Initializes elements of this prompt.
+		/// </summary>
 		public override void OnInitialize() {
 			this.Width.Set( this.MyWidth, 0f );
 			this.Height.Set( this.MyHeight, 0f );
@@ -88,6 +123,9 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 
 		////////////////
 
+		/// <summary>
+		/// Refreshes visual theming.
+		/// </summary>
 		public virtual void RefreshTheme() {
 			this.CancelButton.RefreshTheme();
 			this.ConfirmButton.RefreshTheme();
@@ -96,6 +134,9 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 
 		////////////////
 
+		/// <summary>
+		/// Recalculates positions of elements.
+		/// </summary>
 		public override void Recalculate() {
 			base.Recalculate();
 
