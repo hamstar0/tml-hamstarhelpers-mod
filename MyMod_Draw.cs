@@ -58,8 +58,6 @@ namespace HamstarHelpers {
 					SimpleMessage.DrawMessage( sb );
 
 					DebugHelpers.PrintAll( sb );
-					DebugHelpers.Once = false;
-					DebugHelpers.OnceInAWhile--;
 				} catch( Exception e ) {
 					LogHelpers.Warn( "debugLayerDraw - " + e.ToString() );
 				}

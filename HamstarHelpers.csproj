@@ -66,6 +66,7 @@
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendRequest.cs" />
     <Compile Include="Components\Protocols\XNAContractResolver.cs" />
+    <Compile Include="Helpers\Debug\LogHelpers_Output.cs" />
     <Compile Include="Helpers\DotNET\Encoding\HashHelpers.cs" />
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions_2D.cs" />
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions.cs" />
@@ -339,6 +340,9 @@
     <Compile Include="Tiles\CoalTile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\..\..\My Games\Terraria\ModLoader\references\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />

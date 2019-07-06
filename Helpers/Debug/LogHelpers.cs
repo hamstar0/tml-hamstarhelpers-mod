@@ -4,60 +4,30 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Debug {
-	/** <summary>Assorted static "helper" functions pertaining to log outputs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to log outputs.
+	/// </summary>
 	public partial class LogHelpers {
-		public static void Log( string msg ) {
-			try {
+		public static void Log( string msg="" ) {
+			lock( LogHelpers.MyLock ) {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
-				var logHelpers = mymod.LogHelpers;
-
-				double nowSeconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds - logHelpers.StartTime;
-
-				string nowSecondsWhole = ( (int)nowSeconds ).ToString( "D6" );
-				string nowSecondsDecimal = ( nowSeconds - (int)nowSeconds ).ToString( "N2" );
-				string now = nowSecondsWhole + "." + ( nowSecondsDecimal.Length > 2 ? nowSecondsDecimal.Substring( 2 ) : nowSecondsDecimal );
-
-				string from = Main.myPlayer.ToString( "D3" );
-				string logged = Main.netMode + ":" + from + ":" + logHelpers.LoggedMessages.ToString( "D5" ) + " - " + now;
-				if( logged.Length < 26 ) {
-					logged += new String( ' ', 26 - logged.Length );
-				} else {
-					logged += "  ";
-				}
-
-				if( mymod.Config.UseCustomLogging ) {
-					logHelpers.OutputDirect( logHelpers.GetHourlyLogFileName(), logged + msg );
-
-					if( mymod.Config.UseCustomLoggingPerNetMode ) {
-						logHelpers.OutputDirect( logHelpers.GetModalLogFileName(), logged + msg );
-					}
-
-					if( mymod.Config.UseAlsoNormalLogging ) {
-						lock( LogHelpers.MyLock ) {
-							ErrorLogger.Log( logged + msg );
-						}
-					}
-				} else {
-					lock( LogHelpers.MyLock ) {
-						ErrorLogger.Log( logged + msg );
-					}
-				}
-
-				logHelpers.LoggedMessages++;
-			} catch( Exception e ) {
-				try {
-					lock( LogHelpers.MyLock ) {
-						ErrorLogger.Log( "FALLBACK LOGGER 2 (" + e.GetType().Name + ") " + msg );
-					}
-				} catch { }
+				mymod.Logger.Info( LogHelpers.FormatMessage( msg ) );
 			}
 		}
 
 		public static void Alert( string msg="" ) {
+			lock( LogHelpers.MyLock ) {
+				ModHelpersMod mymod = ModHelpersMod.Instance;
+				mymod.Logger.Error( LogHelpers.FormatMessage( msg ) );
+			}
 			LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg : "") );
 		}
 
 		public static void Warn( string msg="" ) {
+			lock( LogHelpers.MyLock ) {
+				ModHelpersMod mymod = ModHelpersMod.Instance;
+				mymod.Logger.Fatal( LogHelpers.FormatMessage( msg ) );
+			}
 			LogHelpers.Log( "!" + DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg: "") );
 		}
 

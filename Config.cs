@@ -24,10 +24,6 @@ namespace HamstarHelpers {
 		public bool DebugModeDisableSilentLogging = false;
 		public bool DebugModePacketInfo = false;
 
-		public bool UseCustomLogging = false;
-		public bool UseCustomLoggingPerNetMode = false;
-		public bool UseAlsoNormalLogging = false;
-
 		public bool DisableControlPanel = false;
 		public bool DisableControlPanelHotkey = false;
 		public int ControlPanelIconX = 0;

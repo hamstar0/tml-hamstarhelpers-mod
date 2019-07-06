@@ -8,46 +8,36 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Debug {
-	/** <summary>Assorted static "helper" functions pertaining to debugging and debug outputs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to debugging and debug outputs.
+	/// </summary>
 	public static partial class DebugHelpers {
 		private static object MyPrintLock = new object();
 
 		////////////////
 
-		internal static bool Once;
-		internal static int OnceInAWhile;
+		private static IDictionary<string, string> Texts = new Dictionary<string, string>();
+		private static IDictionary<string, int> TextTimes = new Dictionary<string, int>();
+		private static IDictionary<string, int> TextTimeStart = new Dictionary<string, int>();
+		private static IDictionary<string, int> TextShade = new Dictionary<string, int>();
 
-		public static IDictionary<string, string> Texts = new Dictionary<string, string>();
-		public static IDictionary<string, int> TextTimes = new Dictionary<string, int>();
-		public static IDictionary<string, int> TextTimeStart = new Dictionary<string, int>();
-		public static IDictionary<string, int> TextShade = new Dictionary<string, int>();
-
-
-
-		////////////////
-
-		public static void MsgOnce( string msg ) {
-			if( DebugHelpers.Once ) { return; }
-			DebugHelpers.Once = true;
-
-			Main.NewText( msg );
-		}
-
-		public static void MsgOnceInAWhile( string msg ) {
-			if( DebugHelpers.OnceInAWhile > 0 ) { return; }
-			DebugHelpers.OnceInAWhile = 60 * 10;
-
-			Main.NewText( msg );
-		}
 
 
 		////////////////
 		
-		public static void Print( string msgLabel, string msg, int duration ) {
+		/// <summary>
+		/// Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
+		/// given label merely update that existing message.
+		/// </summary>
+		/// <param name="msgLabel">Identifier of the given message. Calling `Print(...)` with this same identifier replaces any existing
+		/// displayed message of this identifier.</param>
+		/// <param name="msg">Message to display.</param>
+		/// <param name="tickDuration">Tick duration to display the given message.</param>
+		public static void Print( string msgLabel, string msg, int tickDuration ) {
 			lock( DebugHelpers.MyPrintLock ) {
 				DebugHelpers.Texts[msgLabel] = msg;
-				DebugHelpers.TextTimes[msgLabel] = duration;
-				DebugHelpers.TextTimeStart[msgLabel] = duration;
+				DebugHelpers.TextTimes[msgLabel] = tickDuration;
+				DebugHelpers.TextTimeStart[msgLabel] = tickDuration;
 				DebugHelpers.TextShade[msgLabel] = 255;
 
 				if( DebugHelpers.Texts.Count > 16 ) {
@@ -84,6 +74,7 @@ namespace HamstarHelpers.Helpers.Debug {
 							DebugHelpers.TextShade[key]--;
 						}
 						color.R = color.G = color.B = color.A = (byte)Math.Max(shade, 16);
+						color.R = (byte)Math.Min( (int)((float)color.R * 1.25f), 255 );
 					}
 
 					sb.DrawString( Main.fontMouseText, msg, new Vector2( 8, (Main.screenHeight - 32) - yPos ), color );

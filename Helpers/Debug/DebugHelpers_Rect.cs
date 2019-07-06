@@ -8,16 +8,18 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Debug {
-	/** <summary>Assorted static "helper" functions pertaining to debugging and debug outputs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to debugging and debug outputs.
+	/// </summary>
 	public static partial class DebugHelpers {
 		private static object MyRectLock = new object();
 
 		////////////////
-		
-		public static IDictionary<string, Rectangle> Rects = new Dictionary<string, Rectangle>();
-		public static IDictionary<string, int> RectsTime = new Dictionary<string, int>();
-		public static IDictionary<string, int> RectsTimeStart = new Dictionary<string, int>();
-		public static IDictionary<string, int> RectsShade = new Dictionary<string, int>();
+
+		private static IDictionary<string, Rectangle> Rects = new Dictionary<string, Rectangle>();
+		private static IDictionary<string, int> RectsTime = new Dictionary<string, int>();
+		private static IDictionary<string, int> RectsTimeStart = new Dictionary<string, int>();
+		private static IDictionary<string, int> RectsShade = new Dictionary<string, int>();
 
 
 

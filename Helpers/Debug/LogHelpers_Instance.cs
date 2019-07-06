@@ -14,8 +14,7 @@ namespace HamstarHelpers.Helpers.Debug {
 
 
 		////////////////
-
-		private int LoggedMessages;
+		
 		private DateTime StartTimeBase;
 		private double StartTime;
 
@@ -36,7 +35,6 @@ namespace HamstarHelpers.Helpers.Debug {
 		}
 
 		internal void Reset() {
-			this.LoggedMessages = 0;
 			this.StartTimeBase = DateTime.UtcNow;
 			this.StartTime = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds;
 		}
