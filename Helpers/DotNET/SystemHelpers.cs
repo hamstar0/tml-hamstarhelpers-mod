@@ -1,17 +1,25 @@
 ﻿using HamstarHelpers.Components.Errors;
 using System;
 using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Text;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
-	/** <summary>Assorted static "helper" functions pertaining to system-level functions.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to system-level functions.
+	/// </summary>
 	public static class SystemHelpers {
+		/// <summary>
+		/// Returns a timestamp spanning between 1970 and the present.
+		/// </summary>
+		/// <returns>The time span.</returns>
 		public static TimeSpan TimeStamp() {
 			return ( DateTime.UtcNow - new DateTime( 1970, 1, 1, 0, 0, 0 ) );
 		}
 
+		/// <summary>
+		/// Returns a timestamp measured in seconds spanning between 1970 and the present.
+		/// </summary>
+		/// <returns>Seconds of the time span.</returns>
 		public static long TimeStampInSeconds() {
 			//return DateTime.UtcNow.Ticks / TimeSpan.TicksPerSecond;
 			TimeSpan span = ( DateTime.UtcNow - new DateTime( 1970, 1, 1, 0, 0, 0 ) );
@@ -19,6 +27,10 @@ namespace HamstarHelpers.Helpers.DotNET {
 		}
 		
 
+		/// <summary>
+		/// Opens a given URL with the OS default program (typially your default web browser).
+		/// </summary>
+		/// <param name="url">URL to open.</param>
 		public static void OpenUrl( string url ) {
 			try {
 				Process.Start( url );

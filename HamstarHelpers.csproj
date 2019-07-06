@@ -66,8 +66,10 @@
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendRequest.cs" />
     <Compile Include="Components\Protocols\XNAContractResolver.cs" />
+    <Compile Include="Helpers\Debug\LogHelpers_Once.cs" />
     <Compile Include="Helpers\Debug\LogHelpers_Output.cs" />
     <Compile Include="Helpers\DotNET\Encoding\HashHelpers.cs" />
+    <Compile Include="Helpers\DotNET\Extensions\BinaryReaderExtensions.cs" />
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions_2D.cs" />
     <Compile Include="Helpers\DotNET\Extensions\DictionaryExtensions.cs" />
     <Compile Include="Helpers\DotNET\Extensions\ArrayExtensions.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Helpers\Debug\LogHelpers_Instance.cs" />
     <Compile Include="Helpers\Debug\LogHelpers.cs" />
     <Compile Include="Helpers\DotNET\DotNetHelpers.cs" />
+    <Compile Include="Helpers\DotNET\StreamHelpers.cs" />
     <Compile Include="Helpers\DotNET\FileHelpers.cs" />
     <Compile Include="Helpers\DotNET\FileHelpers_Binary.cs" />
     <Compile Include="Helpers\DotNET\FileHelpers_Text.cs" />

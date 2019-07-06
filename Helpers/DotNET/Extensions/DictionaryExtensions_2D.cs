@@ -3,8 +3,21 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Extensions {
-	/** <summary>Assorted static extension "helper" functions pertaining to dictionaries with nested containers.</summary> */
+	/// <summary>
+	/// Assorted static extension "helper" functions pertaining to dictionaries.
+	/// </summary>
 	public static partial class DictionaryExtensions {
+		/// <summary>
+		/// Safely attempts to get a value (akin to the usual TryGetValue) by index within a nested collection in a dictionary
+		/// at a given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public static bool TryGetValue2D<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, int idx, out TValue value ) {
 			IList<TValue> list2;
 			if( !dict.TryGetValue( key, out list2 ) ) {
@@ -14,6 +27,18 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 			value = list2[idx];
 			return true;
 		}
+		/// <summary>
+		/// Safely attempts to get a value (akin to the usual TryGetValue) by key within a nested dictionary in the parent
+		/// dictionary at a given key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public static bool TryGetValue2D<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2, out TValue value ) {
 			IDictionary<TKey2, TValue> dict2;
@@ -27,12 +52,33 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 
 		////
 
+		/// <summary>
+		/// Safely attempts to get a value (returning a default on failure) by index within a nested collection in a dictionary
+		/// at a given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <returns></returns>
 		public static TValue Get2DOrDefault<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, int idx ) {
 			if( !dict.ContainsKey( key ) ) {
 				return default( TValue );
 			}
 			return dict[key][idx];
 		}
+		/// <summary>
+		/// Safely attempts to get a value (returning a default on failure) by key within a nested dictionary in the parent
+		/// dictionary at a given key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <returns></returns>
 		public static TValue Get2DOrDefault<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2 ) {
 			if( !dict.ContainsKey( key1 ) ) {
@@ -47,12 +93,31 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 
 		////////////////
 
+		/// <summary>
+		/// Sets a value in a nested collection at a given dictionary key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <param name="value"></param>
 		public static void Set2D<TKey, TValue>( this IDictionary<TKey, List<TValue>> dict, TKey key, int idx, TValue value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<TValue>();
 			}
 			dict[key][idx] = value;
 		}
+		/// <summary>
+		/// Sets a value in a nested dictionary at a given dictionary key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <param name="value"></param>
 		public static void Set2D<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2, TValue value ) {
 			if( !dict.ContainsKey( key1 ) ) {
@@ -61,6 +126,15 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 			dict[key1][key2] = value;
 		}
 
+		/// <summary>
+		/// Removes a value in a nested collection at a given dictionary key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <returns></returns>
 		public static bool Remove2D<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, int idx ) {
 			bool removed = false;
 
@@ -75,6 +149,16 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 
 			return removed;
 		}
+		/// <summary>
+		/// Removes a value in a nested dictionary at a given dictionary key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <returns></returns>
 		public static bool Remove2D<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
 				TKey1 key1, TKey2 key2 ) {
 			bool removed = false;
@@ -93,6 +177,14 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 
 		////////////////
 
+		/// <summary>
+		/// Appends a value to a nested collection in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
 		public static void Append2D<TKey, TValue>( this IDictionary<TKey, TValue[]> dict, TKey key, TValue value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new TValue[] { value };
@@ -102,12 +194,28 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 				dict[key][len] = value;
 			}
 		}
+		/// <summary>
+		/// Appends a value to a nested collection in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
 		public static void Append2D<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, TValue value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<TValue>();
 			}
 			dict[key].Add( value );
 		}
+		/// <summary>
+		/// Appends a value to a nested collection in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
 		public static void Append2D<TKey, TValue>( this IDictionary<TKey, ISet<TValue>> dict, TKey key, TValue value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new HashSet<TValue>();
@@ -118,12 +226,29 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 
 		////////////////
 
+		/// <summary>
+		/// Adds to a value to a nested collection in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey>( this IDictionary<TKey, List<short>> dict, TKey key, int idx, short value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<short>( idx + 1 );
 			}
 			dict[key][idx] += value;
 		}
+		/// <summary>
+		/// Adds to a value to a nested dictionary in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, short>> dict,
 				TKey1 key1, TKey2 key2, short value ) {
 			if( !dict.ContainsKey( key1 ) ) {
@@ -136,12 +261,29 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 			}
 		}
 
+		/// <summary>
+		/// Adds to a value to a nested collection in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey>( this IDictionary<TKey, List<int>> dict, TKey key, int idx, int value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<int>( idx + 1 );
 			}
 			dict[key][idx] += value;
 		}
+		/// <summary>
+		/// Adds to a value to a nested dictionary in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, int>> dict,
 				TKey1 key1, TKey2 key2, int value ) {
 			if( !dict.ContainsKey( key1 ) ) {
@@ -154,12 +296,29 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 			}
 		}
 
+		/// <summary>
+		/// Adds to a value to a nested collection in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey>( this IDictionary<TKey, List<float>> dict, TKey key, int idx, float value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<float>( idx + 1 );
 			}
 			dict[key][idx] += value;
 		}
+		/// <summary>
+		/// Adds to a value to a nested dictionary in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, float>> dict,
 				TKey1 key1, TKey2 key2, float value ) {
 			if( !dict.ContainsKey( key1 ) ) {
@@ -172,12 +331,29 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 			}
 		}
 
+		/// <summary>
+		/// Adds to a value to a nested collection in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="idx"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey>( this IDictionary<TKey, List<double>> dict, TKey key, int idx, double value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<double>( idx + 1 );
 			}
 			dict[key][idx] += value;
 		}
+		/// <summary>
+		/// Adds to a value to a nested dictionary in the given dictionary at the given key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <param name="value"></param>
 		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, double>> dict,
 				TKey1 key1, TKey2 key2, double value ) {
 			if( !dict.ContainsKey( key1 ) ) {

@@ -5,8 +5,19 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
-	/** <summary>Assorted static "helper" functions pertaining to LINQ.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to LINQ.
+	/// </summary>
 	public static class LINQHelpers {
+		/// <summary>
+		/// Wraps a LINQ `Select(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="selector"></param>
+		/// <returns></returns>
 		public static IEnumerable<TResult> SafeSelect<TSource, TResult>( this IEnumerable<TSource> source, Func<TSource, TResult> selector ) {
 			IEnumerable<TResult> output = null;
 			try {
@@ -17,6 +28,15 @@ namespace HamstarHelpers.Helpers.DotNET {
 			}
 			return output;
 		}
+		/// <summary>
+		/// Wraps a LINQ `Select(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="selector"></param>
+		/// <returns></returns>
 		public static IEnumerable<TResult> SafeSelect<TSource, TResult>( this IEnumerable<TSource> source, Func<TSource, int, TResult> selector ) {
 			IEnumerable<TResult> output = null;
 			try {
@@ -29,6 +49,15 @@ namespace HamstarHelpers.Helpers.DotNET {
 		}
 
 
+		/// <summary>
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="selector"></param>
+		/// <returns></returns>
 		public static IEnumerable<TResult> SafeSelectMany<TSource, TResult>( this IEnumerable<TSource> source, Func<TSource, IEnumerable<TResult>> selector ) {
 			IEnumerable<TResult> output = null;
 			try {
@@ -39,6 +68,17 @@ namespace HamstarHelpers.Helpers.DotNET {
 			}
 			return output;
 		}
+		/// <summary>
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TCollection"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="collectionSelector"></param>
+		/// <param name="resultSelector"></param>
+		/// <returns></returns>
 		public static IEnumerable<TResult> SafeSelectMany<TSource, TCollection, TResult>( this IEnumerable<TSource> source, Func<TSource, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector ) {
 			IEnumerable<TResult> output = null;
 			try {
@@ -49,6 +89,17 @@ namespace HamstarHelpers.Helpers.DotNET {
 			}
 			return output;
 		}
+		/// <summary>
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TCollection"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="collectionSelector"></param>
+		/// <param name="resultSelector"></param>
+		/// <returns></returns>
 		public static IEnumerable<TResult> SafeSelectMany<TSource, TCollection, TResult>( this IEnumerable<TSource> source, Func<TSource, int, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector ) {
 			IEnumerable<TResult> output = null;
 			try {
@@ -59,6 +110,15 @@ namespace HamstarHelpers.Helpers.DotNET {
 			}
 			return output;
 		}
+		/// <summary>
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="selector"></param>
+		/// <returns></returns>
 		public static IEnumerable<TResult> SafeSelectMany<TSource, TResult>( this IEnumerable<TSource> source, Func<TSource, int, IEnumerable<TResult>> selector ) {
 			IEnumerable<TResult> output = null;
 			try {
@@ -71,6 +131,14 @@ namespace HamstarHelpers.Helpers.DotNET {
 		}
 
 
+		/// <summary>
+		/// Wraps a LINQ `Where(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="predicate"></param>
+		/// <returns></returns>
 		public static IEnumerable<TSource> SafeWhere<TSource>( this IEnumerable<TSource> source, Func<TSource, int, bool> predicate ) {
 			IEnumerable<TSource> output = null;
 			try {
@@ -81,6 +149,14 @@ namespace HamstarHelpers.Helpers.DotNET {
 			}
 			return output;
 		}
+		/// <summary>
+		/// Wraps a LINQ `Where(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="predicate"></param>
+		/// <returns></returns>
 		public static IEnumerable<TSource> SafeWhere<TSource>( this IEnumerable<TSource> source, Func<TSource, bool> predicate ) {
 			IEnumerable<TSource> output = null;
 			try {
@@ -92,7 +168,17 @@ namespace HamstarHelpers.Helpers.DotNET {
 			return output;
 		}
 
-		
+
+		/// <summary>
+		/// Wraps a LINQ `OrderBy(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="keySelector"></param>
+		/// <param name="comparer"></param>
+		/// <returns></returns>
 		public static IOrderedEnumerable<TSource> SafeOrderBy<TSource, TKey>( this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer ) {
 			IOrderedEnumerable<TSource> output = null;
 			try {
@@ -103,6 +189,15 @@ namespace HamstarHelpers.Helpers.DotNET {
 			}
 			return output;
 		}
+		/// <summary>
+		/// Wraps a LINQ `OrderBy(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
+		/// empty collection to not interrupt program flow.
+		/// </summary>
+		/// <typeparam name="TSource"></typeparam>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="keySelector"></param>
+		/// <returns></returns>
 		public static IOrderedEnumerable<TSource> SafeOrderBy<TSource, TKey>( this IEnumerable<TSource> source, Func<TSource, TKey> keySelector ) {
 			IOrderedEnumerable<TSource> output = null;
 			try {

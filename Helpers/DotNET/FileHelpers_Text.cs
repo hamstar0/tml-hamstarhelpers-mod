@@ -5,8 +5,18 @@ using Terraria.Utilities;
 
 
 namespace HamstarHelpers.Helpers.DotNET {
-	/** <summary>Assorted static "helper" functions pertaining to basic file IO.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to basic file IO.
+	/// </summary>
 	public static partial class FileHelpers {
+		/// <summary>
+		/// Saves string data to a text file.
+		/// </summary>
+		/// <param name="data">Text file's data.</param>
+		/// <param name="fullPath">System path to file.</param>
+		/// <param name="isCloud">Indicates to save on the cloud.</param>
+		/// <param name="backupOld">Performs a backup of any existing file (with .bak extension).</param>
+		/// <returns>`true` on success.</returns>
 		public static bool SaveTextFile( string data, string fullPath, bool isCloud, bool backupOld ) {
 			if( backupOld && FileUtilities.Exists( fullPath, isCloud ) ) {
 				FileUtilities.Copy( fullPath, fullPath + ".bak", isCloud );
@@ -32,6 +42,12 @@ namespace HamstarHelpers.Helpers.DotNET {
 		}
 
 
+		/// <summary>
+		/// Gets a text file.
+		/// </summary>
+		/// <param name="fullPath">System path to text file.</param>
+		/// <param name="isCloud">Indicates to look on the cloud.</param>
+		/// <returns>String data of text file encoded as UTF8.</returns>
 		public static string LoadTextFile( string fullPath, bool isCloud ) {
 			if( !FileUtilities.Exists( fullPath, isCloud ) ) {
 				return null;
