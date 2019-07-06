@@ -6,8 +6,17 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
-	/** <summary>Assorted static "helper" functions pertaining to reflection.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to reflection
+	/// </summary>
 	public partial class ReflectionHelpers {
+		/// <summary>
+		/// Invokes a method, first validating the supplied parameters for type consistency.
+		/// </summary>
+		/// <param name="method">Reflected method to invoke.</param>
+		/// <param name="methodContext">Object instance containing of the given method. Use `null` for static methods.</param>
+		/// <param name="args">Parameters to pass to the given method.</param>
+		/// <returns>Results from invoking the method.</returns>
 		public static object SafeCall( MethodInfo method, object methodContext, object[] args ) {
 			var paramInfos = method.GetParameters();
 			
@@ -30,35 +39,43 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 			return method.Invoke( methodContext, args );
 		}
-		
+
 		////////////////
-		
+
+		/// <summary>
+		/// Invokes a method of a given class.
+		/// </summary>
+		/// <typeparam name="T">Invoked method's return value type.</typeparam>
+		/// <param name="instance">Class instance of class of method.</param>
+		/// <param name="methodName">Method's name.</param>
+		/// <param name="args">Method's arguments (will be validated before invoking).</param>
+		/// <param name="returnVal">Return value of method.</param>
+		/// <returns>`true` if method found and invoked successfully.</returns>
 		public static bool RunMethod<T>( Object instance, string methodName, object[] args, out T returnVal ) {
-			returnVal = default( T );
-			if( instance == null ) { return false; }
-
-			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
-				?? new Type[] { };
-
-			Type objtype = instance.GetType();
-			//MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess );
-			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess, null, paramTypes, null );
-			if( method == null ) { return false; }
-
-			returnVal = (T)ReflectionHelpers.SafeCall( method, instance, args );
-			return true;
+			if( instance == null ) {
+				returnVal = default( T );
+				return false;
+			}
+			return ReflectionHelpers.RunMethod<T>( instance.GetType(), instance, methodName, args, out returnVal );
 		}
-
-		public static bool RunMethod<T>( Object instance, string methodName, BindingFlags flags, object[] args, out T returnVal ) {
+		
+		/// <summary>
+		/// Invokes a method of a given class. May invoke static methods if the given `instance` parameter is `null`.
+		/// </summary>
+		/// <typeparam name="T">Invoked method's return value type.</typeparam>
+		/// <param name="classType">Class type of method.</param>
+		/// <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
+		/// <param name="methodName">Method's name.</param>
+		/// <param name="args">Method's arguments (will be validated before invoking).</param>
+		/// <param name="returnVal">Return value of method.</param>
+		/// <returns>`true` if method found and invoked successfully.</returns>
+		public static bool RunMethod<T>( Type classType, Object instance, string methodName, object[] args, out T returnVal ) {
 			returnVal = default( T );
-			if( instance == null ) { return false; }
 
 			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
 				?? new Type[] { };
 
-			Type objtype = instance.GetType();
-			//MethodInfo method = objtype.GetMethod( methodName, flags );
-			MethodInfo method = objtype.GetMethod( methodName, ReflectionHelpers.MostAccess, null, new Type[] { typeof( int ) }, null );
+			MethodInfo method = classType.GetMethod( methodName, ReflectionHelpers.MostAccess, null, new Type[] { typeof( int ) }, null );
 			if( method == null ) { return false; }
 
 			returnVal = (T)ReflectionHelpers.SafeCall( method, instance, args );

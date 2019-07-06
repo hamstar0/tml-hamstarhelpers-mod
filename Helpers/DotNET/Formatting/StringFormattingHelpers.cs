@@ -3,8 +3,15 @@ using System;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Formatting {
-	/** <summary>Assorted static "helper" functions pertaining to formatting string data.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to formatting string data.
+	/// </summary>
 	public class StringFormattingHelpers {
+		/// <summary>
+		/// Escapes common markdown formatting characters.
+		/// </summary>
+		/// <param name="input"></param>
+		/// <returns>String sanitized for markdown use with no formatting.</returns>
 		public static string SanitizeMarkdown( string input ) {
 			return input.Replace( "*", "\\*" )
 				.Replace( "|", "\\|" )
@@ -21,14 +28,12 @@ namespace HamstarHelpers.Helpers.DotNET.Formatting {
 		}
 
 
-		/** <summary>
-		* Converts the given decimal number to the numeral system with the
-		* specified radix (in the range [2, 36]).
-		* </summary>
-		* <param name="number">The number to convert.</param>
-		* <param name="radix">The radix of the destination numeral system (in the range [2, 36]).</param>
-		* <returns></returns>
-		*/
+		/// <summary>
+		/// Converts the given decimal number to the numeral system with the specified radix (in the range [2, 36]).
+		/// </summary>
+		/// <param name="number">The number to convert.</param>
+		/// <param name="radix">The radix of the destination numeral system (in the range [2, 36]).</param>
+		/// <returns>Converted number.</returns>
 		public static string ConvertDecimalToRadix( long number, int radix ) {
 			const int bitsInLong = 64;
 			const string digits = "0123456789abcdefghijklmnopqrstuvwxyz";

@@ -7,7 +7,9 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
-	/** @private */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to reflection
+	/// </summary>
 	public partial class ReflectionHelpers {
 		public static ReflectionHelpers Instance => ModHelpersMod.Instance.ReflectionHelpers;
 

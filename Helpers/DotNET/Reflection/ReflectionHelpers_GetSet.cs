@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
@@ -7,7 +6,9 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
-	/** <summary>Assorted static "helper" functions pertaining to reflection.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to reflection
+	/// </summary>
 	public partial class ReflectionHelpers {
 		private static bool GetMemberValue<T>( MemberInfo member, object instance, out T result ) {
 			var field = member as FieldInfo;
@@ -44,13 +45,30 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 
 		////////////////
-		
+
+		/// <summary>
+		/// General use getter for fields or properties.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="instance">Instance of the object to get the member value of.</param>
+		/// <param name="fieldOrPropName"></param>
+		/// <param name="result"></param>
+		/// <returns>`true` if field or property exist.</returns>
 		public static bool Get<T>( object instance, string fieldOrPropName, out T result ) {
 			return ReflectionHelpers.Get<T>( instance.GetType(), instance, fieldOrPropName, out result );
 		}
 
-		public static bool Get<T>( Type objType, object instance, string fieldOrPropName, out T result ) {
-			MemberInfo rawMember = ReflectionHelpers.Instance.GetCachedInfoMember( objType, fieldOrPropName );
+		/// <summary>
+		/// General use getter for fields or properties. Accepts a `Type` parameter for static members.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="classType">Type of the object bearing the member to be set.</param>
+		/// <param name="instance">Instance of the object to set the member value of. Use `null` for static.</param>
+		/// <param name="fieldOrPropName"></param>
+		/// <param name="result"></param>
+		/// <returns>`true` if field or property exist.</returns>
+		public static bool Get<T>( Type classType, object instance, string fieldOrPropName, out T result ) {
+			MemberInfo rawMember = ReflectionHelpers.Instance.GetCachedInfoMember( classType, fieldOrPropName );
 			if( rawMember == null ) {
 				result = default( T );
 				return false;
@@ -61,12 +79,27 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 		////////////////
 
+		/// <summary>
+		/// Sets field or property.
+		/// </summary>
+		/// <param name="instance">Instance of the object to set the member value of.</param>
+		/// <param name="fieldOrPropName"></param>
+		/// <param name="value"></param>
+		/// <returns>`true` if member exists.</returns>
 		public static bool Set( object instance, string fieldOrPropName, object value ) {
 			return ReflectionHelpers.Set( instance.GetType(), instance, fieldOrPropName, value );
 		}
 
-		public static bool Set( Type instanceType, object instance, string fieldOrPropName, object newValue ) {
-			MemberInfo rawMember = ReflectionHelpers.Instance.GetCachedInfoMember( instanceType, fieldOrPropName );
+		/// <summary>
+		/// Sets field or property. Accepts a `Type` parameter for static members.
+		/// </summary>
+		/// <param name="classType">Type of the object bearing the member to be set.</param>
+		/// <param name="instance">Instance of the object to set the member value of. Use `null` for static.</param>
+		/// <param name="fieldOrPropName"></param>
+		/// <param name="newValue"></param>
+		/// <returns>`true` if member exists.</returns>
+		public static bool Set( Type classType, object instance, string fieldOrPropName, object newValue ) {
+			MemberInfo rawMember = ReflectionHelpers.Instance.GetCachedInfoMember( classType, fieldOrPropName );
 			if( rawMember == null ) {
 				return false;
 			}
@@ -77,15 +110,27 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 		////////////////
 
+		/// <summary>
+		/// Digs through a nested succession of (non-static) fields or properties of a given class to get a member's value.
+		/// </summary>
+		/// <typeparam name="T">Type of the value to obtain.</typeparam>
+		/// <param name="instance">Top level class to start digging through.</param>
+		/// <param name="concatenatedNames">Succession of member names at each level of the dig.</param>
+		/// <param name="result">Deepest member's value.</param>
+		/// <returns>`true` if member is found.</returns>
 		public static bool GetDeep<T>( object instance, string concatenatedNames, out T result ) {
-			return ReflectionHelpers.GetDeep<T>( instance.GetType(), instance, concatenatedNames.Split('.'), out result );
+			return ReflectionHelpers.GetDeep<T>( instance, concatenatedNames.Split('.'), out result );
 		}
 
+		/// <summary>
+		/// Digs through a nested succession of (non-static) fields or properties of a given class to get a member's value.
+		/// </summary>
+		/// <typeparam name="T">Type of the value to obtain.</typeparam>
+		/// <param name="instance">Top level class to start digging through.</param>
+		/// <param name="nestedNames">Succession of member names at each level of the dig.</param>
+		/// <param name="result">Deepest member's value.</param>
+		/// <returns>`true` if member is found.</returns>
 		public static bool GetDeep<T>( object instance, string[] nestedNames, out T result ) {
-			return ReflectionHelpers.GetDeep<T>( instance.GetType(), instance, nestedNames, out result );
-		}
-
-		public static bool GetDeep<T>( Type objType, object instance, string[] nestedNames, out T result ) {
 			object prevObj = instance;
 
 			int len = nestedNames.Length;
@@ -104,27 +149,37 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 		////////////////
 
+		/// <summary>
+		/// Digs through a nested succession of (non-static) fields or properties of a given class to set a member's value.
+		/// </summary>
+		/// <param name="instance">Top level class to start digging through.</param>
+		/// <param name="concatenatedNames">Succession of member names at each level of the dig.</param>
+		/// <param name="value"></param>
+		/// <returns>`true` if member is found.</returns>
 		public static bool SetDeep( object instance, string concatenatedNames, object value ) {
-			return ReflectionHelpers.SetDeep( instance.GetType(), instance, concatenatedNames.Split('.'), value );
+			return ReflectionHelpers.SetDeep( instance, concatenatedNames.Split('.'), value );
 		}
 
-		public static bool SetDeep( object instance, string[] nestedNames, object value ) {
-			return ReflectionHelpers.SetDeep( instance.GetType(), instance, nestedNames, value );
-		}
-
-		public static bool SetDeep( Type instanceType, object instance, string[] nestedNames, object newValue ) {
+		/// <summary>
+		/// Digs through a nested succession of (non-static) fields or properties of a given class to set a member's value.
+		/// </summary>
+		/// <param name="instance">Top level class to start digging through.</param>
+		/// <param name="nestedNames">Succession of member names at each level of the dig.</param>
+		/// <param name="newValue"></param>
+		/// <returns>`true` if member is found.</returns>
+		public static bool SetDeep( object instance, string[] nestedNames, object newValue ) {
 			int namesLenCropped = nestedNames.Length - 1;
 			object finalObj = instance;
 
 			if( namesLenCropped > 0 ) {
 				string[] nestedNamesCropped = nestedNames.Copy( namesLenCropped );
 
-				if( !ReflectionHelpers.GetDeep( instanceType, instance, nestedNamesCropped, out finalObj ) ) {
+				if( !ReflectionHelpers.GetDeep( instance, nestedNamesCropped, out finalObj ) ) {
 					return false;
 				}
 			}
 
-			return ReflectionHelpers.Set( instanceType, finalObj, nestedNames[namesLenCropped], newValue );
+			return ReflectionHelpers.Set( finalObj, nestedNames[namesLenCropped], newValue );
 		}
 	}
 }

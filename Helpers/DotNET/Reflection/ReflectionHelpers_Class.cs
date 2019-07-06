@@ -9,8 +9,16 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
-	/** <summary>Assorted static "helper" functions pertaining to reflection.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to reflection
+	/// </summary>
 	public partial class ReflectionHelpers {
+		/// <summary>
+		/// Gets all types from a given assembly using a given class name.
+		/// </summary>
+		/// <param name="assemblyName"></param>
+		/// <param name="className"></param>
+		/// <returns></returns>
 		public static IList<Type> GetTypesFromAssembly( string assemblyName, string className ) {
 			IList<Type> classTypeList = new List<Type>();
 			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -24,6 +32,12 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			return classTypeList;
 		}
 
+		/// <summary>
+		/// Gets all types from a given assembly using a given class name.
+		/// </summary>
+		/// <param name="assembly"></param>
+		/// <param name="className"></param>
+		/// <returns></returns>
 		public static IList<Type> GetTypesFromAssembly( Assembly assembly, string className ) {
 			var rh = ModHelpersMod.Instance.ReflectionHelpers;
 			IList<Type> classTypeList;
@@ -59,11 +73,22 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		}
 
 
+		/// <summary>
+		/// Gets all available sub-types (immedaite sub-classes) of a given parent type from each loaded mod.
+		/// </summary>
+		/// <param name="parentType"></param>
+		/// <returns></returns>
 		public static IEnumerable<Type> GetAllAvailableSubTypesFromMods( Type parentType ) {
 			IEnumerable<Assembly> asses = ModLoader.Mods.SafeSelect( mod => mod.GetType().Assembly );
 			return ReflectionHelpers.GetAllAvailableSubTypesFromAssemblies( asses, parentType );
 		}
 
+		/// <summary>
+		/// Gets all available sub-types (immedaite sub-classes) of a given parent type from each assembly.
+		/// </summary>
+		/// <param name="asses"></param>
+		/// <param name="parentType"></param>
+		/// <returns></returns>
 		public static IEnumerable<Type> GetAllAvailableSubTypesFromAssemblies( IEnumerable<Assembly> asses, Type parentType ) {
 			var subclasses = new List<Type>();
 
@@ -87,6 +112,12 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		
 		////////////////
 
+		/// <summary>
+		/// Gets a class's type by it's proper name from a given assembly.
+		/// </summary>
+		/// <param name="assemblyName"></param>
+		/// <param name="namespaceAndClassName"></param>
+		/// <returns></returns>
 		public static Type GetClassFromAssembly( string assemblyName, string namespaceAndClassName ) {
 			string newAssemblyName = namespaceAndClassName + assemblyName.Substring( assemblyName.IndexOf( ',' ) );
 			return Type.GetType( newAssemblyName );
