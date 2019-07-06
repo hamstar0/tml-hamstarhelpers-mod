@@ -56,7 +56,7 @@ namespace HamstarHelpers {
 		internal PlayerMessages PlayerMessages;
 		internal DataStore DataStore;
 		internal CustomHotkeys CustomHotkeys;
-		internal Server ServerInfo;
+		internal Server Server;
 		internal ModLockService ModLock;
 		//internal PlayerDataManager PlayerDataMngr;
 		internal RecipeHack RecipeHack;
@@ -137,7 +137,7 @@ namespace HamstarHelpers {
 			this.PlayerIdentityHelpers = new PlayerIdentityHelpers();
 			this.CustomHotkeys = new CustomHotkeys();
 			this.XnaHelpers = new XNAHelpers();
-			this.ServerInfo = new Server();
+			this.Server = new Server();
 			//this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();
 			this.RecipeHack = new RecipeHack();
@@ -181,7 +181,7 @@ namespace HamstarHelpers {
 			this.DataStore = null;
 			this.CustomHotkeys = null;
 			this.XnaHelpers = null;
-			this.ServerInfo = null;
+			this.Server = null;
 			//this.PlayerDataMngr = null;
 			this.SupportInfo = null;
 			this.RecipeHack = null;

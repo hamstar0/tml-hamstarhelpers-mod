@@ -13,8 +13,15 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Info {
-	/** <summary>Assorted static "helper" functions pertaining to game information formatted for output.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to game information formatted for output
+	/// </summary>
 	public static partial class FormattedGameInfoHelpers {
+		/// <summary>
+		/// Gets a list of assorted game data statistics, formatted for (markdown) output.
+		/// </summary>
+		/// <param name="mods">Mods to display in this list. Typically only the set of loaded mods (ModLoader.Mods`).</param>
+		/// <returns></returns>
 		public static IList<string> GetFormattedGameInfo( IEnumerable<Mod> mods ) {
 			var list = new List<string>();
 
@@ -25,7 +32,7 @@ namespace HamstarHelpers.Helpers.Info {
 			double timeOfDay = Main.time;
 			int halfDays = WorldStateHelpers.GetElapsedHalfDays();
 			string worldSize = WorldHelpers.GetSize().ToString();
-			string[] worldProg = GameInfoHelpers.GetWorldProgress().ToArray();
+			string[] worldProg = GameInfoHelpers.GetVanillaProgressList().ToArray();
 			int activeItems = ItemHelpers.GetActive().Count;
 			int activeNpcs = NPCHelpers.GetActive().Count;
 			//string[] playerInfos = InfoHelpers.GetCurrentPlayerInfo().ToArray();

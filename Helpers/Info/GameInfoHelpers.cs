@@ -9,8 +9,14 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Info {
-	/** <summary>Assorted static "helper" functions pertaining to game information.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to game information.
+	/// </summary>
 	public static partial class GameInfoHelpers {
+		/// <summary>
+		/// Gets the current world's (vanilla) progress stage in human-readable form.
+		/// </summary>
+		/// <returns></returns>
 		public static string GetVanillaProgress() {
 			if( NPC.downedMoonlord ) {
 				return "Post Moon Lord";
@@ -51,8 +57,38 @@ namespace HamstarHelpers.Helpers.Info {
 			}
 			return "Start of game";
 		}
+		
+		/// <summary>
+		/// Gets a list of all (vanilla) bosses killed in a human-readable form.
+		/// </summary>
+		/// <returns></returns>
+		public static IList<string> GetVanillaProgressList() {
+			var list = new List<string>();
+
+			if( NPC.downedBoss1 ) { list.Add( "Eye of Cthulhu killed" ); }
+			if( NPC.downedSlimeKing ) { list.Add( "King Slime killed" ); }
+			if( NPC.downedQueenBee ) { list.Add( "Queen Bee killed" ); }
+			if( NPC.downedBoss2 && !WorldGen.crimson ) { list.Add( "Eater of Worlds killed" ); }
+			if( NPC.downedBoss2 && WorldGen.crimson ) { list.Add( "Brain of Cthulhu killed" ); }
+			if( NPC.downedBoss3 ) { list.Add( "Skeletron killed" ); }
+			if( Main.hardMode ) { list.Add( "Wall of Flesh killed" ); }
+			if( NPC.downedMechBoss1 ) { list.Add( "Destroyer killed" ); }
+			if( NPC.downedMechBoss2 ) { list.Add( "Twins killed" ); }
+			if( NPC.downedMechBoss3 ) { list.Add( "Skeletron Prime killed" ); }
+			if( NPC.downedPlantBoss ) { list.Add( "Plantera killed" ); }
+			if( NPC.downedGolemBoss ) { list.Add( "Golem killed" ); }
+			if( NPC.downedFishron ) { list.Add( "Duke Fishron killed" ); }
+			if( NPC.downedAncientCultist ) { list.Add( "Ancient Cultist killed" ); }
+			if( NPC.downedMoonlord ) { list.Add( "Moon Lord killed" ); }
+
+			return list;
+		}
 
 
+		/// <summary>
+		/// Gets a list of currently active (vanilla) world events.
+		/// </summary>
+		/// <returns></returns>
 		public static IList<string> GetCurrentVanillaEvents() {
 			VanillaEventFlag flags = NPCInvasionHelpers.GetCurrentEventTypeSet();
 
@@ -111,31 +147,13 @@ namespace HamstarHelpers.Helpers.Info {
 		}
 
 
-		public static IList<string> GetWorldProgress() {
-			var list = new List<string>();
-
-			if( NPC.downedBoss1 ) { list.Add( "Eye of Cthulhu killed" ); }
-			if( NPC.downedSlimeKing ) { list.Add( "King Slime killed" ); }
-			if( NPC.downedQueenBee ) { list.Add( "Queen Bee killed" ); }
-			if( NPC.downedBoss2 && !WorldGen.crimson ) { list.Add( "Eater of Worlds killed" ); }
-			if( NPC.downedBoss2 && WorldGen.crimson ) { list.Add( "Brain of Cthulhu killed" ); }
-			if( NPC.downedBoss3 ) { list.Add( "Skeletron killed" ); }
-			if( Main.hardMode ) { list.Add( "Wall of Flesh killed" ); }
-			if( NPC.downedMechBoss1 ) { list.Add( "Destroyer killed" ); }
-			if( NPC.downedMechBoss2 ) { list.Add( "Twins killed" ); }
-			if( NPC.downedMechBoss3 ) { list.Add( "Skeletron Prime killed" ); }
-			if( NPC.downedPlantBoss ) { list.Add( "Plantera killed" ); }
-			if( NPC.downedGolemBoss ) { list.Add( "Golem killed" ); }
-			if( NPC.downedFishron ) { list.Add( "Duke Fishron killed" ); }
-			if( NPC.downedAncientCultist ) { list.Add( "Ancient Cultist killed" ); }
-			if( NPC.downedMoonlord ) { list.Add( "Moon Lord killed" ); }
-
-			return list;
-		}
-
-
 		////
 
+		/// <summary>
+		/// Gets a formatted collection of basic player statistics.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static IDictionary<string, string> GetPlayerInfo( Player player ) {
 			var dict = new Dictionary<string, string> {
 				{ "Name", player.name },
@@ -158,6 +176,11 @@ namespace HamstarHelpers.Helpers.Info {
 		}
 
 
+		/// <summary>
+		/// Gets a formatted collection of a player's body equipment.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static IDictionary<string, string> GetPlayerEquipment( Player player ) {
 			var dict = new Dictionary<string, string>();
 			int acc = 1;
@@ -195,17 +218,26 @@ namespace HamstarHelpers.Helpers.Info {
 
 		////////////////
 
+		/// <summary>
+		/// Gets the server's current (averaged) ping.
+		/// </summary>
+		/// <returns></returns>
 		public static int GetAveragePingOfServer() {
 			if( Main.netMode != 2 ) {
 				throw new HamstarException("Server-side only.");
 			}
 
-			return ModHelpersMod.Instance.ServerInfo.AveragePing;
+			return ModHelpersMod.Instance.Server.AveragePing;
 		}
 
 
 		////////////////
 
+		/// <summary>
+		/// Gets the most recent error logs into a list.
+		/// </summary>
+		/// <param name="maxLines">Highest amount of lines of the log to return.</param>
+		/// <returns></returns>
 		public static IList<string> GetErrorLog( int maxLines ) {
 			if( maxLines > 150 ) { maxLines = 150; }
 

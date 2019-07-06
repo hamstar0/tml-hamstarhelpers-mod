@@ -7,8 +7,15 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Info {
-	/** <summary>Assorted static "helper" functions pertaining to game information formatted for output.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to game information formatted for output.
+	/// </summary>
 	public static partial class FormattedGameInfoHelpers {
+		/// <summary>
+		/// Renders a list of mod names into a markdown table.
+		/// </summary>
+		/// <param name="mods"></param>
+		/// <returns></returns>
 		public static string RenderMarkdownModTable( string[] mods ) {
 			int len = mods.Length;
 
@@ -28,6 +35,10 @@ namespace HamstarHelpers.Helpers.Info {
 
 		////
 
+		/// <summary>
+		/// Renders a list of players into a markdown table.
+		/// </summary>
+		/// <returns></returns>
 		public static string RenderMarkdownPlayersTable() {
 			IDictionary<string, string> playerInfos = null;
 			string columns = "";
@@ -56,6 +67,11 @@ namespace HamstarHelpers.Helpers.Info {
 		}
 
 
+		/// <summary>
+		/// Renders a list of players with their body equips into a markdown table.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static string RenderMarkdownPlayerEquipsTable( Player player ) {
 			IDictionary<string, string> playerEquips = GameInfoHelpers.GetPlayerEquipment( player );
 			int cols = playerEquips.Count;
