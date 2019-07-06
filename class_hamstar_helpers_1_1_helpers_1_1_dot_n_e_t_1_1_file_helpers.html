@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.DotNET.FileHelpers Class Reference</div>  </div>
@@ -97,11 +98,288 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to basic file IO.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:abf76393ab615c90788e44cae0a6eb5ed"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#abf76393ab615c90788e44cae0a6eb5ed">SanitizePath</a> (string path)</td></tr>
+<tr class="memdesc:abf76393ab615c90788e44cae0a6eb5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sanitizes a string to work correctly as a file path.  <a href="#abf76393ab615c90788e44cae0a6eb5ed">More...</a><br /></td></tr>
+<tr class="separator:abf76393ab615c90788e44cae0a6eb5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67fa0ee3515626bf5f58dc6276212c52"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a67fa0ee3515626bf5f58dc6276212c52">SaveBinaryFile</a> (byte[] data, string fullPath, bool isCloud, bool backupOld)</td></tr>
+<tr class="memdesc:a67fa0ee3515626bf5f58dc6276212c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a byte array to file as binary data.  <a href="#a67fa0ee3515626bf5f58dc6276212c52">More...</a><br /></td></tr>
+<tr class="separator:a67fa0ee3515626bf5f58dc6276212c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6723a0cfea5ef87d5cc42266abae490f"><td class="memItemLeft" align="right" valign="top">static byte []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6723a0cfea5ef87d5cc42266abae490f">LoadBinaryFile&lt; T &gt;</a> (string fullPath, bool isCloud)</td></tr>
+<tr class="memdesc:a6723a0cfea5ef87d5cc42266abae490f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a binary file into the given object type.  <a href="#a6723a0cfea5ef87d5cc42266abae490f">More...</a><br /></td></tr>
+<tr class="separator:a6723a0cfea5ef87d5cc42266abae490f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad260aeb7ef5602e378fbf5145212a144"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#ad260aeb7ef5602e378fbf5145212a144">SaveTextFile</a> (string data, string fullPath, bool isCloud, bool backupOld)</td></tr>
+<tr class="memdesc:ad260aeb7ef5602e378fbf5145212a144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves string data to a text file.  <a href="#ad260aeb7ef5602e378fbf5145212a144">More...</a><br /></td></tr>
+<tr class="separator:ad260aeb7ef5602e378fbf5145212a144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c49a09f75cd582c707efca7157e9a3b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6c49a09f75cd582c707efca7157e9a3b">LoadTextFile</a> (string fullPath, bool isCloud)</td></tr>
+<tr class="memdesc:a6c49a09f75cd582c707efca7157e9a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a text file.  <a href="#a6c49a09f75cd582c707efca7157e9a3b">More...</a><br /></td></tr>
+<tr class="separator:a6c49a09f75cd582c707efca7157e9a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to basic file IO. </p>
 
-<p class="definition">Definition at line <a class="el" href="_file_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_file_helpers_8cs_source.html">FileHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_file_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_file_helpers_8cs_source.html">FileHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6723a0cfea5ef87d5cc42266abae490f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6723a0cfea5ef87d5cc42266abae490f">&#9670;&nbsp;</a></span>LoadBinaryFile&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static byte [] HamstarHelpers.Helpers.DotNET.FileHelpers.LoadBinaryFile&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fullPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCloud</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Loads a binary file into the given object type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fullPath</td><td>System path to the file.</td></tr>
+    <tr><td class="paramname">isCloud</td><td>Stores the file on the cloud.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A byte array of the input file's data. <code>null</code> if file does not exist, or error.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_file_helpers___binary_8cs_source.html#l00053">53</a> of file <a class="el" href="_file_helpers___binary_8cs_source.html">FileHelpers_Binary.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6c49a09f75cd582c707efca7157e9a3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c49a09f75cd582c707efca7157e9a3b">&#9670;&nbsp;</a></span>LoadTextFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.DotNET.FileHelpers.LoadTextFile </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fullPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCloud</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a text file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fullPath</td><td>System path to text file.</td></tr>
+    <tr><td class="paramname">isCloud</td><td>Indicates to look on the cloud.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>String data of text file encoded as UTF8.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_file_helpers___text_8cs_source.html#l00051">51</a> of file <a class="el" href="_file_helpers___text_8cs_source.html">FileHelpers_Text.cs</a>.</p>
+
+</div>
+</div>
+<a id="abf76393ab615c90788e44cae0a6eb5ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf76393ab615c90788e44cae0a6eb5ed">&#9670;&nbsp;</a></span>SanitizePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.DotNET.FileHelpers.SanitizePath </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sanitizes a string to work correctly as a file path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_file_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_file_helpers_8cs_source.html">FileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a67fa0ee3515626bf5f58dc6276212c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67fa0ee3515626bf5f58dc6276212c52">&#9670;&nbsp;</a></span>SaveBinaryFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.FileHelpers.SaveBinaryFile </td>
+          <td>(</td>
+          <td class="paramtype">byte []&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fullPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCloud</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>backupOld</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs a byte array to file as binary data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Object to output.</td></tr>
+    <tr><td class="paramname">fullPath</td><td>System path to the file.</td></tr>
+    <tr><td class="paramname">isCloud</td><td>Stores the file on the cloud.</td></tr>
+    <tr><td class="paramname">backupOld</td><td>Writes any existing file to a .bak backup file, but still overrides the current file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <code>true</code> if file wrote successfully.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_file_helpers___binary_8cs_source.html#l00020">20</a> of file <a class="el" href="_file_helpers___binary_8cs_source.html">FileHelpers_Binary.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad260aeb7ef5602e378fbf5145212a144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad260aeb7ef5602e378fbf5145212a144">&#9670;&nbsp;</a></span>SaveTextFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.FileHelpers.SaveTextFile </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fullPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isCloud</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>backupOld</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Saves string data to a text file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Text file's data.</td></tr>
+    <tr><td class="paramname">fullPath</td><td>System path to file.</td></tr>
+    <tr><td class="paramname">isCloud</td><td>Indicates to save on the cloud.</td></tr>
+    <tr><td class="paramname">backupOld</td><td>Performs a backup of any existing file (with .bak extension).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> on success.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_file_helpers___text_8cs_source.html#l00020">20</a> of file <a class="el" href="_file_helpers___text_8cs_source.html">FileHelpers_Text.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/<a class="el" href="_file_helpers_8cs_source.html">FileHelpers.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/<a class="el" href="_file_helpers___binary_8cs_source.html">FileHelpers_Binary.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/<a class="el" href="_file_helpers___text_8cs_source.html">FileHelpers_Text.cs</a></li>

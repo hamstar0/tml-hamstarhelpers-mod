@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers Class Reference</div>  </div>
@@ -97,11 +98,327 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to the <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_h_u_d.html">HUD</a> health bar.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ad3f1a2a3fc951e8c890a8565a7386ae4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#ad3f1a2a3fc951e8c890a8565a7386ae4">GetTopHeartPosition</a> (int life, ref int x, ref int y)</td></tr>
+<tr class="memdesc:ad3f1a2a3fc951e8c890a8565a7386ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the screen coordinates of the last non-empty heart in the vanilla life bar.  <a href="#ad3f1a2a3fc951e8c890a8565a7386ae4">More...</a><br /></td></tr>
+<tr class="separator:ad3f1a2a3fc951e8c890a8565a7386ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f1c988d4d9db211c8f91c7f9d501196"><td class="memItemLeft" align="right" valign="top">static Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a9f1c988d4d9db211c8f91c7f9d501196">GetHealthBarColor</a> (int hp, int maxHp, float alpha)</td></tr>
+<tr class="memdesc:a9f1c988d4d9db211c8f91c7f9d501196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of an entity's health bar with the given HP and max HP.  <a href="#a9f1c988d4d9db211c8f91c7f9d501196">More...</a><br /></td></tr>
+<tr class="separator:a9f1c988d4d9db211c8f91c7f9d501196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a432de21106d7b7c1c7af7a83d16be15e"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a432de21106d7b7c1c7af7a83d16be15e">MeasureHealthText</a> (string text)</td></tr>
+<tr class="memdesc:a432de21106d7b7c1c7af7a83d16be15e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns dimensions of a string representing a health value.  <a href="#a432de21106d7b7c1c7af7a83d16be15e">More...</a><br /></td></tr>
+<tr class="separator:a432de21106d7b7c1c7af7a83d16be15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b01b3d1b9e6e432a1ce9cf5d617dc3a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a3b01b3d1b9e6e432a1ce9cf5d617dc3a">DrawHealthText</a> (SpriteBatch sb, float x, float y, int hp, Color color)</td></tr>
+<tr class="memdesc:a3b01b3d1b9e6e432a1ce9cf5d617dc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a given health value at a given position and color.  <a href="#a3b01b3d1b9e6e432a1ce9cf5d617dc3a">More...</a><br /></td></tr>
+<tr class="separator:a3b01b3d1b9e6e432a1ce9cf5d617dc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a3399e601cd83e9bb9009417e9f6c66"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a5a3399e601cd83e9bb9009417e9f6c66">DrawHealthBar</a> (SpriteBatch sb, float x, float y, int hp, int maxHp, Color color, float scale=1f)</td></tr>
+<tr class="memdesc:a5a3399e601cd83e9bb9009417e9f6c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a health bar at a given position, color, and scale.  <a href="#a5a3399e601cd83e9bb9009417e9f6c66">More...</a><br /></td></tr>
+<tr class="separator:a5a3399e601cd83e9bb9009417e9f6c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to the <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_h_u_d.html">HUD</a> health bar. </p>
 
-<p class="definition">Definition at line <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html#l00012">12</a> of file <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5a3399e601cd83e9bb9009417e9f6c66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a3399e601cd83e9bb9009417e9f6c66">&#9670;&nbsp;</a></span>DrawHealthBar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers.DrawHealthBar </td>
+          <td>(</td>
+          <td class="paramtype">SpriteBatch&#160;</td>
+          <td class="paramname"><em>sb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxHp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Color&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>1f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws a health bar at a given position, color, and scale. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sb</td><td>The spriteBatch to draw to. Typically <code>Main.spriteBatch</code>.</td></tr>
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+    <tr><td class="paramname">hp</td><td></td></tr>
+    <tr><td class="paramname">maxHp</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
+    <tr><td class="paramname">scale</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html#l00115">115</a> of file <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3b01b3d1b9e6e432a1ce9cf5d617dc3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b01b3d1b9e6e432a1ce9cf5d617dc3a">&#9670;&nbsp;</a></span>DrawHealthText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers.DrawHealthText </td>
+          <td>(</td>
+          <td class="paramtype">SpriteBatch&#160;</td>
+          <td class="paramname"><em>sb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Color&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws a given health value at a given position and color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sb</td><td>The spriteBatch to draw to. Typically <code>Main.spriteBatch</code>.</td></tr>
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+    <tr><td class="paramname">hp</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html#l00093">93</a> of file <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9f1c988d4d9db211c8f91c7f9d501196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f1c988d4d9db211c8f91c7f9d501196">&#9670;&nbsp;</a></span>GetHealthBarColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Color HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers.GetHealthBarColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxHp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>alpha</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Color of an entity's health bar with the given HP and max HP. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hp</td><td></td></tr>
+    <tr><td class="paramname">maxHp</td><td></td></tr>
+    <tr><td class="paramname">alpha</td><td>Alpha value. Multiplies RGBA for multiply-based opacity.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html#l00045">45</a> of file <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad3f1a2a3fc951e8c890a8565a7386ae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3f1a2a3fc951e8c890a8565a7386ae4">&#9670;&nbsp;</a></span>GetTopHeartPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers.GetTopHeartPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>life</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ref int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the screen coordinates of the last non-empty heart in the vanilla life bar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">life</td><td>Life value of the life bar.</td></tr>
+    <tr><td class="paramname">x</td><td>Horizontal screen coordinate.</td></tr>
+    <tr><td class="paramname">y</td><td>Vertical screen coordinate.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a432de21106d7b7c1c7af7a83d16be15e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a432de21106d7b7c1c7af7a83d16be15e">&#9670;&nbsp;</a></span>MeasureHealthText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector2 HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers.MeasureHealthText </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns dimensions of a string representing a health value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html#l00080">80</a> of file <a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/HUD/<a class="el" href="_h_u_d_health_bar_helpers_8cs_source.html">HUDHealthBarHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

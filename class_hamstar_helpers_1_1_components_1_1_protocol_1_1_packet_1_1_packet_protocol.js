@@ -2,6 +2,7 @@ var class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_prot
 [
     [ "GetPacketCode", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#aa1c5f52124e44fa415041c9a9e3a8dbf", null ],
     [ "GetPacketName", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a241d30092921d6c05ab5d5fecd9503a9", null ],
+    [ "QuickRequestToClient< T >", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#af5fed300655748a69c6ddc08c5c57149", null ],
     [ "QuickRequestToServer< T >", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a035703e14b5aa52d2a6d318dc16cff05", null ],
     [ "QuickSendToClient< T >", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a1d579e475b755cc5a93b8fe785f6d452", null ],
     [ "QuickSendToServer< T >", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a4895c2ec0b3d8393a886a7fb69c41e92", null ],

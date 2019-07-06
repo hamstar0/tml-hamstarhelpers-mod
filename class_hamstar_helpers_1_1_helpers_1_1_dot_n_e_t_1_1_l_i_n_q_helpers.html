@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.DotNET.LINQHelpers Class Reference</div>  </div>
@@ -97,11 +98,617 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to LINQ.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ace182693b3fdbdfb519b8a89e017d9cd"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#ace182693b3fdbdfb519b8a89e017d9cd">SafeSelect&lt; TSource, TResult &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, TResult &gt; selector)</td></tr>
+<tr class="memdesc:ace182693b3fdbdfb519b8a89e017d9cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>Select(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#ace182693b3fdbdfb519b8a89e017d9cd">More...</a><br /></td></tr>
+<tr class="separator:ace182693b3fdbdfb519b8a89e017d9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac89882c2bc4318becaef21410c00b11d"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#ac89882c2bc4318becaef21410c00b11d">SafeSelect&lt; TSource, TResult &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, int, TResult &gt; selector)</td></tr>
+<tr class="memdesc:ac89882c2bc4318becaef21410c00b11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>Select(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#ac89882c2bc4318becaef21410c00b11d">More...</a><br /></td></tr>
+<tr class="separator:ac89882c2bc4318becaef21410c00b11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad2a0dd6396b3b737462fc1bf3d4d7a"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a6ad2a0dd6396b3b737462fc1bf3d4d7a">SafeSelectMany&lt; TSource, TResult &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, IEnumerable&lt; TResult &gt;&gt; selector)</td></tr>
+<tr class="memdesc:a6ad2a0dd6396b3b737462fc1bf3d4d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#a6ad2a0dd6396b3b737462fc1bf3d4d7a">More...</a><br /></td></tr>
+<tr class="separator:a6ad2a0dd6396b3b737462fc1bf3d4d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fd94a4f81f7d18458b1a8485553af96"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a4fd94a4f81f7d18458b1a8485553af96">SafeSelectMany&lt; TSource, TCollection, TResult &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, IEnumerable&lt; TCollection &gt;&gt; collectionSelector, Func&lt; TSource, TCollection, TResult &gt; resultSelector)</td></tr>
+<tr class="memdesc:a4fd94a4f81f7d18458b1a8485553af96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#a4fd94a4f81f7d18458b1a8485553af96">More...</a><br /></td></tr>
+<tr class="separator:a4fd94a4f81f7d18458b1a8485553af96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523ab3825055ca535513d43daf1bc877"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a523ab3825055ca535513d43daf1bc877">SafeSelectMany&lt; TSource, TCollection, TResult &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, int, IEnumerable&lt; TCollection &gt;&gt; collectionSelector, Func&lt; TSource, TCollection, TResult &gt; resultSelector)</td></tr>
+<tr class="memdesc:a523ab3825055ca535513d43daf1bc877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#a523ab3825055ca535513d43daf1bc877">More...</a><br /></td></tr>
+<tr class="separator:a523ab3825055ca535513d43daf1bc877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee2134386f47d648c052da97522f093"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TResult &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#adee2134386f47d648c052da97522f093">SafeSelectMany&lt; TSource, TResult &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, int, IEnumerable&lt; TResult &gt;&gt; selector)</td></tr>
+<tr class="memdesc:adee2134386f47d648c052da97522f093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#adee2134386f47d648c052da97522f093">More...</a><br /></td></tr>
+<tr class="separator:adee2134386f47d648c052da97522f093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7b24493ae19ebebdf0e2ff89f1d4c62"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TSource &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#aa7b24493ae19ebebdf0e2ff89f1d4c62">SafeWhere&lt; TSource &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, int, bool &gt; predicate)</td></tr>
+<tr class="memdesc:aa7b24493ae19ebebdf0e2ff89f1d4c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>Where(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#aa7b24493ae19ebebdf0e2ff89f1d4c62">More...</a><br /></td></tr>
+<tr class="separator:aa7b24493ae19ebebdf0e2ff89f1d4c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d76c689049d63cce73ff5e4e1a7bb5b"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; TSource &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a8d76c689049d63cce73ff5e4e1a7bb5b">SafeWhere&lt; TSource &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, bool &gt; predicate)</td></tr>
+<tr class="memdesc:a8d76c689049d63cce73ff5e4e1a7bb5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>Where(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#a8d76c689049d63cce73ff5e4e1a7bb5b">More...</a><br /></td></tr>
+<tr class="separator:a8d76c689049d63cce73ff5e4e1a7bb5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe55e71d0ef97e192a43d48d526740d"><td class="memItemLeft" align="right" valign="top">static IOrderedEnumerable&lt; TSource &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a6fe55e71d0ef97e192a43d48d526740d">SafeOrderBy&lt; TSource, TKey &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, TKey &gt; keySelector, IComparer&lt; TKey &gt; comparer)</td></tr>
+<tr class="memdesc:a6fe55e71d0ef97e192a43d48d526740d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>OrderBy(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#a6fe55e71d0ef97e192a43d48d526740d">More...</a><br /></td></tr>
+<tr class="separator:a6fe55e71d0ef97e192a43d48d526740d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac570641202f483d6a292ca05fd3883be"><td class="memItemLeft" align="right" valign="top">static IOrderedEnumerable&lt; TSource &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#ac570641202f483d6a292ca05fd3883be">SafeOrderBy&lt; TSource, TKey &gt;</a> (this IEnumerable&lt; TSource &gt; source, Func&lt; TSource, TKey &gt; keySelector)</td></tr>
+<tr class="memdesc:ac570641202f483d6a292ca05fd3883be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wraps a LINQ <code>OrderBy(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow.  <a href="#ac570641202f483d6a292ca05fd3883be">More...</a><br /></td></tr>
+<tr class="separator:ac570641202f483d6a292ca05fd3883be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to LINQ. </p>
 
-<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6fe55e71d0ef97e192a43d48d526740d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe55e71d0ef97e192a43d48d526740d">&#9670;&nbsp;</a></span>SafeOrderBy&lt; TSource, TKey &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IOrderedEnumerable&lt;TSource&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeOrderBy&lt; TSource, TKey &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, TKey &gt;&#160;</td>
+          <td class="paramname"><em>keySelector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IComparer&lt; TKey &gt;&#160;</td>
+          <td class="paramname"><em>comparer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>OrderBy(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">keySelector</td><td></td></tr>
+    <tr><td class="paramname">comparer</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00182">182</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac570641202f483d6a292ca05fd3883be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac570641202f483d6a292ca05fd3883be">&#9670;&nbsp;</a></span>SafeOrderBy&lt; TSource, TKey &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IOrderedEnumerable&lt;TSource&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeOrderBy&lt; TSource, TKey &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, TKey &gt;&#160;</td>
+          <td class="paramname"><em>keySelector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>OrderBy(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TKey</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">keySelector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00201">201</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ace182693b3fdbdfb519b8a89e017d9cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace182693b3fdbdfb519b8a89e017d9cd">&#9670;&nbsp;</a></span>SafeSelect&lt; TSource, TResult &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TResult&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelect&lt; TSource, TResult &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, TResult &gt;&#160;</td>
+          <td class="paramname"><em>selector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>Select(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TResult</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">selector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac89882c2bc4318becaef21410c00b11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac89882c2bc4318becaef21410c00b11d">&#9670;&nbsp;</a></span>SafeSelect&lt; TSource, TResult &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TResult&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelect&lt; TSource, TResult &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, int, TResult &gt;&#160;</td>
+          <td class="paramname"><em>selector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>Select(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TResult</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">selector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00040">40</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4fd94a4f81f7d18458b1a8485553af96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fd94a4f81f7d18458b1a8485553af96">&#9670;&nbsp;</a></span>SafeSelectMany&lt; TSource, TCollection, TResult &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TResult&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany&lt; TSource, TCollection, TResult &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, IEnumerable&lt; TCollection &gt;&gt;&#160;</td>
+          <td class="paramname"><em>collectionSelector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, TCollection, TResult &gt;&#160;</td>
+          <td class="paramname"><em>resultSelector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TCollection</td><td></td></tr>
+    <tr><td class="paramname">TResult</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">collectionSelector</td><td></td></tr>
+    <tr><td class="paramname">resultSelector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00082">82</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a523ab3825055ca535513d43daf1bc877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a523ab3825055ca535513d43daf1bc877">&#9670;&nbsp;</a></span>SafeSelectMany&lt; TSource, TCollection, TResult &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TResult&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany&lt; TSource, TCollection, TResult &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, int, IEnumerable&lt; TCollection &gt;&gt;&#160;</td>
+          <td class="paramname"><em>collectionSelector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, TCollection, TResult &gt;&#160;</td>
+          <td class="paramname"><em>resultSelector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TCollection</td><td></td></tr>
+    <tr><td class="paramname">TResult</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">collectionSelector</td><td></td></tr>
+    <tr><td class="paramname">resultSelector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00103">103</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6ad2a0dd6396b3b737462fc1bf3d4d7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad2a0dd6396b3b737462fc1bf3d4d7a">&#9670;&nbsp;</a></span>SafeSelectMany&lt; TSource, TResult &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TResult&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany&lt; TSource, TResult &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, IEnumerable&lt; TResult &gt;&gt;&#160;</td>
+          <td class="paramname"><em>selector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TResult</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">selector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00061">61</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="adee2134386f47d648c052da97522f093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adee2134386f47d648c052da97522f093">&#9670;&nbsp;</a></span>SafeSelectMany&lt; TSource, TResult &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TResult&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany&lt; TSource, TResult &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, int, IEnumerable&lt; TResult &gt;&gt;&#160;</td>
+          <td class="paramname"><em>selector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>SelectMany(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+    <tr><td class="paramname">TResult</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">selector</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00122">122</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa7b24493ae19ebebdf0e2ff89f1d4c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b24493ae19ebebdf0e2ff89f1d4c62">&#9670;&nbsp;</a></span>SafeWhere&lt; TSource &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TSource&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeWhere&lt; TSource &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, int, bool &gt;&#160;</td>
+          <td class="paramname"><em>predicate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>Where(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">predicate</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00142">142</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8d76c689049d63cce73ff5e4e1a7bb5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d76c689049d63cce73ff5e4e1a7bb5b">&#9670;&nbsp;</a></span>SafeWhere&lt; TSource &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;TSource&gt; HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeWhere&lt; TSource &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IEnumerable&lt; TSource &gt;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; TSource, bool &gt;&#160;</td>
+          <td class="paramname"><em>predicate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wraps a LINQ <code>Where(...)</code> call with an exception catcher that both pipes the exception as a log error, and returns an empty collection to not interrupt program flow. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TSource</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+    <tr><td class="paramname">predicate</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_l_i_n_q_helpers_8cs_source.html#l00160">160</a> of file <a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/<a class="el" href="_l_i_n_q_helpers_8cs_source.html">LINQHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

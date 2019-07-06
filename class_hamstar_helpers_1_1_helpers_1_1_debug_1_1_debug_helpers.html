@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Debug.DebugHelpers Class Reference</div>  </div>
@@ -97,11 +98,113 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to debugging and debug outputs.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a6ae3310473d64362a8d6265cc8bfd870"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a6ae3310473d64362a8d6265cc8bfd870">GetCurrentContext</a> (int stackFrameIdx=1)</td></tr>
+<tr class="memdesc:a6ae3310473d64362a8d6265cc8bfd870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current method call (context) of a stack trace at the specified frame (stack depth).  <a href="#a6ae3310473d64362a8d6265cc8bfd870">More...</a><br /></td></tr>
+<tr class="separator:a6ae3310473d64362a8d6265cc8bfd870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ee72761edd87e1c7eb6295073b348dd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a2ee72761edd87e1c7eb6295073b348dd">Print</a> (string msgLabel, string msg, int tickDuration)</td></tr>
+<tr class="memdesc:a2ee72761edd87e1c7eb6295073b348dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a given label merely update that existing message.  <a href="#a2ee72761edd87e1c7eb6295073b348dd">More...</a><br /></td></tr>
+<tr class="separator:a2ee72761edd87e1c7eb6295073b348dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to debugging and debug outputs. </p>
 
-<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00008">8</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6ae3310473d64362a8d6265cc8bfd870"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae3310473d64362a8d6265cc8bfd870">&#9670;&nbsp;</a></span>GetCurrentContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.Debug.DebugHelpers.GetCurrentContext </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stackFrameIdx</em> = <code>1</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current method call (context) of a stack trace at the specified frame (stack depth). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stackFrameIdx</td><td>Depth within the current call stack.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Method, class, and namespace of the given frame of the current call stack.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2ee72761edd87e1c7eb6295073b348dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ee72761edd87e1c7eb6295073b348dd">&#9670;&nbsp;</a></span>Print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Debug.DebugHelpers.Print </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msgLabel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tickDuration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a given label merely update that existing message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msgLabel</td><td>Identifier of the given message. Calling <code>Print(...)</code> with this same identifier replaces any existing displayed message of this identifier.</td></tr>
+    <tr><td class="paramname">msg</td><td>Message to display.</td></tr>
+    <tr><td class="paramname">tickDuration</td><td>Tick duration to display the given message.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_debug_helpers___print_8cs_source.html#l00036">36</a> of file <a class="el" href="_debug_helpers___print_8cs_source.html">DebugHelpers_Print.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Debug/<a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Debug/<a class="el" href="_debug_helpers___print_8cs_source.html">DebugHelpers_Print.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Debug/<a class="el" href="_debug_helpers___rect_8cs_source.html">DebugHelpers_Rect.cs</a></li>

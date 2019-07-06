@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['quickrequesttoserver_3c_20t_20_3e',['QuickRequestToServer&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a035703e14b5aa52d2a6d318dc16cff05',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['quicksendtoclient_3c_20t_20_3e',['QuickSendToClient&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a1d579e475b755cc5a93b8fe785f6d452',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['quicksendtoserver_3c_20t_20_3e',['QuickSendToServer&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#a4895c2ec0b3d8393a886a7fb69c41e92',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]],
-  ['quicksynctoserverandclients_3c_20t_20_3e',['QuickSyncToServerAndClients&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html#ae683f89423489249574a2c6aeeb6957b',1,'HamstarHelpers::Components::Protocol::Packet::PacketProtocol']]]
+  ['fileexists',['FileExists',['../class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html#abd139dcf8b19f9080c68ef205dc4e0f4',1,'HamstarHelpers::Components::Config::JsonConfig']]],
+  ['flagstocollection_3c_20t_20_3e',['FlagsToCollection&lt; T &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#a58559dc69e084e30c4a74122c199b627',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
+  ['focus',['Focus',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a2b3f9b75e1300bf23fab2566821c5adb',1,'HamstarHelpers::Components::UI::Elements::UITextArea']]],
+  ['formatmessage',['FormatMessage',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#adeaebe355ce68e30c8229f5f637be53c',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
+  ['fromstreamtobytes',['FromStreamToBytes',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html#a1d315f127552d2937b944d6b0a088f01',1,'HamstarHelpers::Helpers::DotNET::StreamHelpers']]],
+  ['fromstreamtostring',['FromStreamToString',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html#ae228d5ae8c64ff6413dd149d227a37e7',1,'HamstarHelpers::Helpers::DotNET::StreamHelpers']]]
 ];

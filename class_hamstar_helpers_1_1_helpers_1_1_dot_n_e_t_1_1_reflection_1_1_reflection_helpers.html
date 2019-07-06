@@ -89,19 +89,1012 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Assorted static "helper" functions pertaining to reflection.  
+<p>Assorted static "helper" functions pertaining to reflection  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af025588440e15258368a20506acdf27c"><td class="memItemLeft" align="right" valign="top">static IList&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#af025588440e15258368a20506acdf27c">GetTypesFromAssembly</a> (string assemblyName, string className)</td></tr>
+<tr class="memdesc:af025588440e15258368a20506acdf27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all types from a given assembly using a given class name.  <a href="#af025588440e15258368a20506acdf27c">More...</a><br /></td></tr>
+<tr class="separator:af025588440e15258368a20506acdf27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa6fbb377b0aab6295ad1cd1a9d65bb"><td class="memItemLeft" align="right" valign="top">static IList&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#affa6fbb377b0aab6295ad1cd1a9d65bb">GetTypesFromAssembly</a> (Assembly assembly, string className)</td></tr>
+<tr class="memdesc:affa6fbb377b0aab6295ad1cd1a9d65bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all types from a given assembly using a given class name.  <a href="#affa6fbb377b0aab6295ad1cd1a9d65bb">More...</a><br /></td></tr>
+<tr class="separator:affa6fbb377b0aab6295ad1cd1a9d65bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a4a5b5f723bceb4c09b209ea6046e8ac7">GetAllAvailableSubTypesFromMods</a> (Type parentType)</td></tr>
+<tr class="memdesc:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available sub-types (immedaite sub-classes) of a given parent type from each loaded mod.  <a href="#a4a5b5f723bceb4c09b209ea6046e8ac7">More...</a><br /></td></tr>
+<tr class="separator:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc84762e36fcf1f6288f6fcce44a0573"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#afc84762e36fcf1f6288f6fcce44a0573">GetAllAvailableSubTypesFromAssemblies</a> (IEnumerable&lt; Assembly &gt; asses, Type parentType)</td></tr>
+<tr class="memdesc:afc84762e36fcf1f6288f6fcce44a0573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available sub-types (immedaite sub-classes) of a given parent type from each assembly.  <a href="#afc84762e36fcf1f6288f6fcce44a0573">More...</a><br /></td></tr>
+<tr class="separator:afc84762e36fcf1f6288f6fcce44a0573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931c7909f7628b414580af50c40e61cc"><td class="memItemLeft" align="right" valign="top">static Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a931c7909f7628b414580af50c40e61cc">GetClassFromAssembly</a> (string assemblyName, string namespaceAndClassName)</td></tr>
+<tr class="memdesc:a931c7909f7628b414580af50c40e61cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a class's type by it's proper name from a given assembly.  <a href="#a931c7909f7628b414580af50c40e61cc">More...</a><br /></td></tr>
+<tr class="separator:a931c7909f7628b414580af50c40e61cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7de17ea631086e6331126e13141cc8be"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a7de17ea631086e6331126e13141cc8be">Get&lt; T &gt;</a> (object instance, string fieldOrPropName, out T result)</td></tr>
+<tr class="memdesc:a7de17ea631086e6331126e13141cc8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">General use getter for fields or properties.  <a href="#a7de17ea631086e6331126e13141cc8be">More...</a><br /></td></tr>
+<tr class="separator:a7de17ea631086e6331126e13141cc8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4465e0c081f851073966a285789feb79"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a4465e0c081f851073966a285789feb79">Get&lt; T &gt;</a> (Type classType, object instance, string fieldOrPropName, out T result)</td></tr>
+<tr class="memdesc:a4465e0c081f851073966a285789feb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">General use getter for fields or properties. Accepts a <code>Type</code> parameter for static members.  <a href="#a4465e0c081f851073966a285789feb79">More...</a><br /></td></tr>
+<tr class="separator:a4465e0c081f851073966a285789feb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aff7d9e41090e0465ff45c7de8d3b8e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a0aff7d9e41090e0465ff45c7de8d3b8e">Set</a> (object instance, string fieldOrPropName, object value)</td></tr>
+<tr class="memdesc:a0aff7d9e41090e0465ff45c7de8d3b8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets field or property.  <a href="#a0aff7d9e41090e0465ff45c7de8d3b8e">More...</a><br /></td></tr>
+<tr class="separator:a0aff7d9e41090e0465ff45c7de8d3b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3341ea6c4b3b809d76134aa4c397f75c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a3341ea6c4b3b809d76134aa4c397f75c">Set</a> (Type classType, object instance, string fieldOrPropName, object newValue)</td></tr>
+<tr class="memdesc:a3341ea6c4b3b809d76134aa4c397f75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets field or property. Accepts a <code>Type</code> parameter for static members.  <a href="#a3341ea6c4b3b809d76134aa4c397f75c">More...</a><br /></td></tr>
+<tr class="separator:a3341ea6c4b3b809d76134aa4c397f75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a415f445b43b6284aa45c489558aad201"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a415f445b43b6284aa45c489558aad201">GetDeep&lt; T &gt;</a> (object instance, string concatenatedNames, out T result)</td></tr>
+<tr class="memdesc:a415f445b43b6284aa45c489558aad201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Digs through a nested succession of (non-static) fields or properties of a given class to get a member's value.  <a href="#a415f445b43b6284aa45c489558aad201">More...</a><br /></td></tr>
+<tr class="separator:a415f445b43b6284aa45c489558aad201"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd353556e6d48675d70da0690e23388"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a9dd353556e6d48675d70da0690e23388">GetDeep&lt; T &gt;</a> (object instance, string[] nestedNames, out T result)</td></tr>
+<tr class="memdesc:a9dd353556e6d48675d70da0690e23388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Digs through a nested succession of (non-static) fields or properties of a given class to get a member's value.  <a href="#a9dd353556e6d48675d70da0690e23388">More...</a><br /></td></tr>
+<tr class="separator:a9dd353556e6d48675d70da0690e23388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0770964a38de7fee9e55a17aac919343"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a0770964a38de7fee9e55a17aac919343">SetDeep</a> (object instance, string concatenatedNames, object value)</td></tr>
+<tr class="memdesc:a0770964a38de7fee9e55a17aac919343"><td class="mdescLeft">&#160;</td><td class="mdescRight">Digs through a nested succession of (non-static) fields or properties of a given class to set a member's value.  <a href="#a0770964a38de7fee9e55a17aac919343">More...</a><br /></td></tr>
+<tr class="separator:a0770964a38de7fee9e55a17aac919343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae95da01a90bcc63384f9ed23aca92ee9"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#ae95da01a90bcc63384f9ed23aca92ee9">SetDeep</a> (object instance, string[] nestedNames, object newValue)</td></tr>
+<tr class="memdesc:ae95da01a90bcc63384f9ed23aca92ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Digs through a nested succession of (non-static) fields or properties of a given class to set a member's value.  <a href="#ae95da01a90bcc63384f9ed23aca92ee9">More...</a><br /></td></tr>
+<tr class="separator:ae95da01a90bcc63384f9ed23aca92ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d1c3c080106a5c212cb69a517966342"><td class="memItemLeft" align="right" valign="top">static object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a0d1c3c080106a5c212cb69a517966342">SafeCall</a> (MethodInfo method, object methodContext, object[] args)</td></tr>
+<tr class="memdesc:a0d1c3c080106a5c212cb69a517966342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes a method, first validating the supplied parameters for type consistency.  <a href="#a0d1c3c080106a5c212cb69a517966342">More...</a><br /></td></tr>
+<tr class="separator:a0d1c3c080106a5c212cb69a517966342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af597e8fb6ac99eac9024b5eee113cad1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#af597e8fb6ac99eac9024b5eee113cad1">RunMethod&lt; T &gt;</a> (Object instance, string methodName, object[] args, out T returnVal)</td></tr>
+<tr class="memdesc:af597e8fb6ac99eac9024b5eee113cad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes a method of a given class.  <a href="#af597e8fb6ac99eac9024b5eee113cad1">More...</a><br /></td></tr>
+<tr class="separator:af597e8fb6ac99eac9024b5eee113cad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02e235ac3f0cbe8bb523ae3ed9323f17"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a02e235ac3f0cbe8bb523ae3ed9323f17">RunMethod&lt; T &gt;</a> (Type classType, Object instance, string methodName, object[] args, out T returnVal)</td></tr>
+<tr class="memdesc:a02e235ac3f0cbe8bb523ae3ed9323f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes a method of a given class. May invoke static methods if the given <code>instance</code> parameter is <code>null</code>.  <a href="#a02e235ac3f0cbe8bb523ae3ed9323f17">More...</a><br /></td></tr>
+<tr class="separator:a02e235ac3f0cbe8bb523ae3ed9323f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a5db1f331b550bb60c8233ab3b595b4e7"><td class="memItemLeft" align="right" valign="top">static readonly BindingFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a5db1f331b550bb60c8233ab3b595b4e7">MostAccess</a> = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static</td></tr>
+<tr class="memdesc:a5db1f331b550bb60c8233ab3b595b4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handy preset for accessing any member of the given name (regardless of access restrictions).  <a href="#a5db1f331b550bb60c8233ab3b595b4e7">More...</a><br /></td></tr>
+<tr class="separator:a5db1f331b550bb60c8233ab3b595b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Assorted static "helper" functions pertaining to reflection. </p>
+<div class="textblock"><p>Assorted static "helper" functions pertaining to reflection </p>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_reflection_helpers_8cs_source.html">ReflectionHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers_8cs_source.html#l00020">20</a> of file <a class="el" href="_reflection_helpers_8cs_source.html">ReflectionHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7de17ea631086e6331126e13141cc8be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7de17ea631086e6331126e13141cc8be">&#9670;&nbsp;</a></span>Get&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.Get&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fieldOrPropName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>General use getter for fields or properties. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Instance of the object to get the member value of.</td></tr>
+    <tr><td class="paramname">fieldOrPropName</td><td></td></tr>
+    <tr><td class="paramname">result</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if field or property exist.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00057">57</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4465e0c081f851073966a285789feb79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4465e0c081f851073966a285789feb79">&#9670;&nbsp;</a></span>Get&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.Get&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fieldOrPropName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>General use getter for fields or properties. Accepts a <code>Type</code> parameter for static members. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classType</td><td>Type of the object bearing the member to be set.</td></tr>
+    <tr><td class="paramname">instance</td><td>Instance of the object to set the member value of. Use <code>null</code> for static.</td></tr>
+    <tr><td class="paramname">fieldOrPropName</td><td></td></tr>
+    <tr><td class="paramname">result</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if field or property exist.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00070">70</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<a id="afc84762e36fcf1f6288f6fcce44a0573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc84762e36fcf1f6288f6fcce44a0573">&#9670;&nbsp;</a></span>GetAllAvailableSubTypesFromAssemblies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;Type&gt; HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetAllAvailableSubTypesFromAssemblies </td>
+          <td>(</td>
+          <td class="paramtype">IEnumerable&lt; Assembly &gt;&#160;</td>
+          <td class="paramname"><em>asses</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>parentType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all available sub-types (immedaite sub-classes) of a given parent type from each assembly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">asses</td><td></td></tr>
+    <tr><td class="paramname">parentType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___class_8cs_source.html#l00092">92</a> of file <a class="el" href="_reflection_helpers___class_8cs_source.html">ReflectionHelpers_Class.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4a5b5f723bceb4c09b209ea6046e8ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a5b5f723bceb4c09b209ea6046e8ac7">&#9670;&nbsp;</a></span>GetAllAvailableSubTypesFromMods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IEnumerable&lt;Type&gt; HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetAllAvailableSubTypesFromMods </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>parentType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all available sub-types (immedaite sub-classes) of a given parent type from each loaded mod. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parentType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___class_8cs_source.html#l00081">81</a> of file <a class="el" href="_reflection_helpers___class_8cs_source.html">ReflectionHelpers_Class.cs</a>.</p>
+
+</div>
+</div>
+<a id="a931c7909f7628b414580af50c40e61cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931c7909f7628b414580af50c40e61cc">&#9670;&nbsp;</a></span>GetClassFromAssembly()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Type HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetClassFromAssembly </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>assemblyName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>namespaceAndClassName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a class's type by it's proper name from a given assembly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assemblyName</td><td></td></tr>
+    <tr><td class="paramname">namespaceAndClassName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___class_8cs_source.html#l00121">121</a> of file <a class="el" href="_reflection_helpers___class_8cs_source.html">ReflectionHelpers_Class.cs</a>.</p>
+
+</div>
+</div>
+<a id="a415f445b43b6284aa45c489558aad201"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a415f445b43b6284aa45c489558aad201">&#9670;&nbsp;</a></span>GetDeep&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetDeep&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>concatenatedNames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Digs through a nested succession of (non-static) fields or properties of a given class to get a member's value. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the value to obtain.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Top level class to start digging through.</td></tr>
+    <tr><td class="paramname">concatenatedNames</td><td>Succession of member names at each level of the dig.</td></tr>
+    <tr><td class="paramname">result</td><td>Deepest member's value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00121">121</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9dd353556e6d48675d70da0690e23388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dd353556e6d48675d70da0690e23388">&#9670;&nbsp;</a></span>GetDeep&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetDeep&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>nestedNames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Digs through a nested succession of (non-static) fields or properties of a given class to get a member's value. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Type of the value to obtain.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Top level class to start digging through.</td></tr>
+    <tr><td class="paramname">nestedNames</td><td>Succession of member names at each level of the dig.</td></tr>
+    <tr><td class="paramname">result</td><td>Deepest member's value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00133">133</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<a id="af025588440e15258368a20506acdf27c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af025588440e15258368a20506acdf27c">&#9670;&nbsp;</a></span>GetTypesFromAssembly() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IList&lt;Type&gt; HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetTypesFromAssembly </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>assemblyName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>className</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all types from a given assembly using a given class name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assemblyName</td><td></td></tr>
+    <tr><td class="paramname">className</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___class_8cs_source.html#l00022">22</a> of file <a class="el" href="_reflection_helpers___class_8cs_source.html">ReflectionHelpers_Class.cs</a>.</p>
+
+</div>
+</div>
+<a id="affa6fbb377b0aab6295ad1cd1a9d65bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa6fbb377b0aab6295ad1cd1a9d65bb">&#9670;&nbsp;</a></span>GetTypesFromAssembly() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IList&lt;Type&gt; HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetTypesFromAssembly </td>
+          <td>(</td>
+          <td class="paramtype">Assembly&#160;</td>
+          <td class="paramname"><em>assembly</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>className</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all types from a given assembly using a given class name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assembly</td><td></td></tr>
+    <tr><td class="paramname">className</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___class_8cs_source.html#l00041">41</a> of file <a class="el" href="_reflection_helpers___class_8cs_source.html">ReflectionHelpers_Class.cs</a>.</p>
+
+</div>
+</div>
+<a id="af597e8fb6ac99eac9024b5eee113cad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af597e8fb6ac99eac9024b5eee113cad1">&#9670;&nbsp;</a></span>RunMethod&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.RunMethod&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>methodName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object []&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>returnVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invokes a method of a given class. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Invoked method's return value type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Class instance of class of method.</td></tr>
+    <tr><td class="paramname">methodName</td><td>Method's name.</td></tr>
+    <tr><td class="paramname">args</td><td>Method's arguments (will be validated before invoking).</td></tr>
+    <tr><td class="paramname">returnVal</td><td>Return value of method.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if method found and invoked successfully.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___methods_8cs_source.html#l00054">54</a> of file <a class="el" href="_reflection_helpers___methods_8cs_source.html">ReflectionHelpers_Methods.cs</a>.</p>
+
+</div>
+</div>
+<a id="a02e235ac3f0cbe8bb523ae3ed9323f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02e235ac3f0cbe8bb523ae3ed9323f17">&#9670;&nbsp;</a></span>RunMethod&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.RunMethod&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>methodName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object []&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>returnVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invokes a method of a given class. May invoke static methods if the given <code>instance</code> parameter is <code>null</code>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Invoked method's return value type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classType</td><td>Class type of method.</td></tr>
+    <tr><td class="paramname">instance</td><td>Class instance of class of method. Use <code>null</code> for static methods.</td></tr>
+    <tr><td class="paramname">methodName</td><td>Method's name.</td></tr>
+    <tr><td class="paramname">args</td><td>Method's arguments (will be validated before invoking).</td></tr>
+    <tr><td class="paramname">returnVal</td><td>Return value of method.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if method found and invoked successfully.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___methods_8cs_source.html#l00072">72</a> of file <a class="el" href="_reflection_helpers___methods_8cs_source.html">ReflectionHelpers_Methods.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0d1c3c080106a5c212cb69a517966342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d1c3c080106a5c212cb69a517966342">&#9670;&nbsp;</a></span>SafeCall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static object HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.SafeCall </td>
+          <td>(</td>
+          <td class="paramtype">MethodInfo&#160;</td>
+          <td class="paramname"><em>method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>methodContext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object []&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invokes a method, first validating the supplied parameters for type consistency. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>Reflected method to invoke.</td></tr>
+    <tr><td class="paramname">methodContext</td><td>Object instance containing of the given method. Use <code>null</code> for static methods.</td></tr>
+    <tr><td class="paramname">args</td><td>Parameters to pass to the given method.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Results from invoking the method.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___methods_8cs_source.html#l00020">20</a> of file <a class="el" href="_reflection_helpers___methods_8cs_source.html">ReflectionHelpers_Methods.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0aff7d9e41090e0465ff45c7de8d3b8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aff7d9e41090e0465ff45c7de8d3b8e">&#9670;&nbsp;</a></span>Set() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.Set </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fieldOrPropName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets field or property. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Instance of the object to set the member value of.</td></tr>
+    <tr><td class="paramname">fieldOrPropName</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if member exists.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00089">89</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3341ea6c4b3b809d76134aa4c397f75c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3341ea6c4b3b809d76134aa4c397f75c">&#9670;&nbsp;</a></span>Set() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.Set </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>fieldOrPropName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>newValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets field or property. Accepts a <code>Type</code> parameter for static members. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classType</td><td>Type of the object bearing the member to be set.</td></tr>
+    <tr><td class="paramname">instance</td><td>Instance of the object to set the member value of. Use <code>null</code> for static.</td></tr>
+    <tr><td class="paramname">fieldOrPropName</td><td></td></tr>
+    <tr><td class="paramname">newValue</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if member exists.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00101">101</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0770964a38de7fee9e55a17aac919343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0770964a38de7fee9e55a17aac919343">&#9670;&nbsp;</a></span>SetDeep() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.SetDeep </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>concatenatedNames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Digs through a nested succession of (non-static) fields or properties of a given class to set a member's value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Top level class to start digging through.</td></tr>
+    <tr><td class="paramname">concatenatedNames</td><td>Succession of member names at each level of the dig.</td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00159">159</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae95da01a90bcc63384f9ed23aca92ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95da01a90bcc63384f9ed23aca92ee9">&#9670;&nbsp;</a></span>SetDeep() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.SetDeep </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>nestedNames</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>newValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Digs through a nested succession of (non-static) fields or properties of a given class to set a member's value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instance</td><td>Top level class to start digging through.</td></tr>
+    <tr><td class="paramname">nestedNames</td><td>Succession of member names at each level of the dig.</td></tr>
+    <tr><td class="paramname">newValue</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00170">170</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5db1f331b550bb60c8233ab3b595b4e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5db1f331b550bb60c8233ab3b595b4e7">&#9670;&nbsp;</a></span>MostAccess</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly BindingFlags HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.MostAccess = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handy preset for accessing any member of the given name (regardless of access restrictions). </p>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers_8cs_source.html#l00024">24</a> of file <a class="el" href="_reflection_helpers_8cs_source.html">ReflectionHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers_8cs_source.html">ReflectionHelpers.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers___instance_8cs_source.html">ReflectionHelpers_Instance.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/DotNET/Reflection/<a class="el" href="_reflection_helpers___class_8cs_source.html">ReflectionHelpers_Class.cs</a></li>
