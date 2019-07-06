@@ -6,13 +6,21 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.HUD {
-	/** <summary>Assorted static "helper" functions pertaining to the HUD health bar.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to the HUD health bar.
+	/// </summary>
 	public static class HUDHealthBarHelpers {
-		public static void GetTopHeartPosition( Player player, ref int x, ref int y ) {
+		/// <summary>
+		/// Gets the screen coordinates of the last non-empty heart in the vanilla life bar.
+		/// </summary>
+		/// <param name="life">Life value of the life bar.</param>
+		/// <param name="x">Horizontal screen coordinate.</param>
+		/// <param name="y">Vertical screen coordinate.</param>
+		public static void GetTopHeartPosition( int life, ref int x, ref int y ) {
 			x = Main.screenWidth - 66;
 			y = 59;
 
-			int hp = player.statLifeMax2 <= 400 ? player.statLifeMax2 : ( player.statLifeMax2 - 400 ) * 4;
+			int hp = life <= 400 ? life : ( life - 400 ) * 4;
 			if( hp > 500 ) { hp = 500; }
 			int hearts = hp / 20;
 
@@ -27,6 +35,13 @@ namespace HamstarHelpers.Helpers.HUD {
 
 		////////////////
 
+		/// <summary>
+		/// Color of an entity's health bar with the given HP and max HP.
+		/// </summary>
+		/// <param name="hp"></param>
+		/// <param name="maxHp"></param>
+		/// <param name="alpha">Alpha value. Multiplies RGBA for multiply-based opacity.</param>
+		/// <returns></returns>
 		public static Color GetHealthBarColor( int hp, int maxHp, float alpha ) {
 			if( hp <= 0 ) { return Color.Black; }
 
@@ -57,11 +72,24 @@ namespace HamstarHelpers.Helpers.HUD {
 		}
 
 
+		/// <summary>
+		/// Returns dimensions of a string representing a health value.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <returns></returns>
 		public static Vector2 MeasureHealthText( string text ) {
 			return Main.fontItemStack.MeasureString( text ) * 0.75f;
 		}
 
 
+		/// <summary>
+		/// Draws a given health value at a given position and color.
+		/// </summary>
+		/// <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <param name="hp"></param>
+		/// <param name="color"></param>
 		public static void DrawHealthText( SpriteBatch sb, float x, float y, int hp, Color color ) {
 			int offsetX = (int)((Math.Log10( (double)hp ) + 1d) * 3.3d);
 			//byte c = (byte)MathHelper.Clamp( (alpha+0.2f) * 254f, 0f, 255f );
@@ -74,6 +102,16 @@ namespace HamstarHelpers.Helpers.HUD {
 		}
 
 
+		/// <summary>
+		/// Draws a health bar at a given position, color, and scale.
+		/// </summary>
+		/// <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <param name="hp"></param>
+		/// <param name="maxHp"></param>
+		/// <param name="color"></param>
+		/// <param name="scale"></param>
 		public static void DrawHealthBar( SpriteBatch sb, float x, float y, int hp, int maxHp, Color color, float scale = 1f ) {
 			if( hp <= 0 ) { return; }
 

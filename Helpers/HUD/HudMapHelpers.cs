@@ -5,13 +5,27 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.HUD {
-	/** <summary>Assorted static "helper" functions pertaining to the HUD map.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to the HUD map.
+	/// </summary>
 	public static partial class HUDMapHelpers {
-		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Vector2 position ) {    //Main.mapFullscreen
-			return HUDMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
+		/// <summary>
+		/// Returns a screen position of a given world position as if projected onto the fullscreen map.
+		/// </summary>
+		/// <param name="worldPosition"></param>
+		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+		/// boundaries.</returns>
+		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Vector2 worldPosition ) {    //Main.mapFullscreen
+			return HUDMapHelpers.GetFullMapScreenPosition( new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 ) );
 		}
 
-		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Rectangle position ) {    //Main.mapFullscreen
+		/// <summary>
+		/// Returns a screen position of a given world position as if projected onto the fullscreen map.
+		/// </summary>
+		/// <param name="worldPosition"></param>
+		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+		/// boundaries.</returns>
+		public static Tuple<Vector2, bool> GetFullMapScreenPosition( Rectangle worldPosition ) {    //Main.mapFullscreen
 			float mapScale = Main.mapFullscreenScale / Main.UIScale;
 			var scrSize = UIHelpers.GetScreenSize();
 
@@ -23,8 +37,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float mapX = -mapFullscrX + (float)(Main.screenWidth / 2);
 			float mapY = -mapFullscrY + (float)(Main.screenHeight / 2);
 
-			float originMidX = (position.X / 16f) * mapScale;
-			float originMidY = (position.Y / 16f) * mapScale;
+			float originMidX = (worldPosition.X / 16f) * mapScale;
+			float originMidY = (worldPosition.Y / 16f) * mapScale;
 
 			originMidX += mapX;
 			originMidY += mapY;
@@ -39,11 +53,23 @@ namespace HamstarHelpers.Helpers.HUD {
 		}
 
 
-		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Vector2 position ) {    //Main.mapStyle == 2
-			return HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
+		/// <summary>
+		/// Returns a screen position of a given world position as if projected onto the overlay map.
+		/// </summary>
+		/// <param name="worldPosition"></param>
+		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+		/// boundaries.</returns>
+		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Vector2 worldPosition ) {    //Main.mapStyle == 2
+			return HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 ) );
 		}
 
-		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Rectangle position ) {    //Main.mapStyle == 2
+		/// <summary>
+		/// Returns a screen position of a given world position as if projected onto the overlay map.
+		/// </summary>
+		/// <param name="worldPosition"></param>
+		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+		/// boundaries.</returns>
+		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Rectangle worldPosition ) {    //Main.mapStyle == 2
 			float mapScale = Main.mapOverlayScale;
 			var scrSize = UIHelpers.GetScreenSize();
 
@@ -57,8 +83,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float mapX = -scrWrldPosMidX + (float)(Main.screenWidth / 2);
 			float mapY = -scrWrldPosMidY + (float)(Main.screenHeight / 2);
 
-			float originMidX = (position.X / 16f) * mapScale;
-			float originMidY = (position.Y / 16f) * mapScale;
+			float originMidX = (worldPosition.X / 16f) * mapScale;
+			float originMidY = (worldPosition.Y / 16f) * mapScale;
 
 			originMidX += mapX;
 			originMidY += mapY;
@@ -73,11 +99,23 @@ namespace HamstarHelpers.Helpers.HUD {
 		}
 
 
-		public static Tuple<Vector2, bool> GetMiniMapScreenPosition( Vector2 position ) {    //Main.mapStyle == 1
-			return HUDMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)position.X, (int)position.Y, 0, 0 ) );
+		/// <summary>
+		/// Returns a screen position of a given world position as if projected onto the mini-map.
+		/// </summary>
+		/// <param name="worldPosition"></param>
+		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+		/// boundaries.</returns>
+		public static Tuple<Vector2, bool> GetMiniMapScreenPosition( Vector2 worldPosition ) {    //Main.mapStyle == 1
+			return HUDMapHelpers.GetMiniMapScreenPosition( new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 ) );
 		}
 
-		public static Tuple<Vector2, bool> GetMiniMapScreenPosition( Rectangle position ) {    //Main.mapStyle == 1
+		/// <summary>
+		/// Returns a screen position of a given world position as if projected onto the mini-map.
+		/// </summary>
+		/// <param name="worldPosition"></param>
+		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+		/// boundaries.</returns>
+		public static Tuple<Vector2, bool> GetMiniMapScreenPosition( Rectangle worldPosition ) {    //Main.mapStyle == 1
 			float mapScale = Main.mapMinimapScale;
 
 			float wldScreenPosX = ( Main.screenPosition.X + (float)( Main.screenWidth / 2 ) ) / 16f;
@@ -89,8 +127,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float floatRemainderX = ( wldScreenPosX - (float)( (int)wldScreenPosX ) ) * mapScale;
 			float floatRemainderY = ( wldScreenPosY - (float)( (int)wldScreenPosY ) ) * mapScale;
 
-			float originX = position.X + (float)( position.Width * 0.5f );
-			float originY = position.Y + (float)( position.Height * 0.5f );
+			float originX = worldPosition.X + (float)( worldPosition.Width * 0.5f );
+			float originY = worldPosition.Y + (float)( worldPosition.Height * 0.5f );
 			float originXRelativeToMap = ( ( originX / 16f ) - minimapWorldX ) * mapScale;
 			float originYRelativeToMap = ( ( originY / 16f ) - minimapWorldY ) * mapScale;
 			float originXScreenPos = originXRelativeToMap + (float)Main.miniMapX;
@@ -109,6 +147,12 @@ namespace HamstarHelpers.Helpers.HUD {
 
 		////////////////
 
+		/// <summary>
+		/// Gets the scaled dimensions of a given width and height as if projectected onto the full screen map.
+		/// </summary>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <returns></returns>
 		public static Vector2 GetSizeOnFullMap( float width, float height ) {   //Main.mapFullscreen 
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;
@@ -119,6 +163,12 @@ namespace HamstarHelpers.Helpers.HUD {
 			return mapNewPos - mapBasePos;
 		}
 
+		/// <summary>
+		/// Gets the scaled dimensions of a given width and height as if projectected onto the overlay map.
+		/// </summary>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <returns></returns>
 		public static Vector2 GetSizeOnOverlayMap( float width, float height ) {    //Main.mapStyle == 2
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;
@@ -129,6 +179,12 @@ namespace HamstarHelpers.Helpers.HUD {
 			return mapNewPos - mapBasePos;
 		}
 
+		/// <summary>
+		/// Gets the scaled dimensions of a given width and height as if projectected onto the mini-map.
+		/// </summary>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <returns></returns>
 		public static Vector2 GetSizeOnMinimap( float width, float height ) {   //Main.mapStyle == 1
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;

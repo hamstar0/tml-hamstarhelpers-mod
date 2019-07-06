@@ -4,18 +4,46 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.HUD {
-	/** <summary>Assorted static "helper" functions pertaining to general HUD.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to general HUD.
+	/// </summary>
 	public static class HUDHelpers {
-		public static void DrawBorderedRect( SpriteBatch sb, Color color, Color borderColor, Vector2 position, Vector2 size, int borderWidth ) {
-			HUDHelpers.DrawBorderedRect( sb, color, new Color?(borderColor), position, size, borderWidth );
+		/// <summary>
+		/// Draws a bordered rectangle.
+		/// </summary>
+		/// <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="bgColor">Fill color.</param>
+		/// <param name="borderColor"></param>
+		/// <param name="position"></param>
+		/// <param name="size"></param>
+		/// <param name="borderWidth"></param>
+		public static void DrawBorderedRect( SpriteBatch sb, Color bgColor, Color borderColor, Vector2 position, Vector2 size, int borderWidth ) {
+			HUDHelpers.DrawBorderedRect( sb, bgColor, new Color?(borderColor), position, size, borderWidth );
 		}
-		public static void DrawBorderedRect( SpriteBatch sb, Color color, Color borderColor, Rectangle rect, int borderWidth ) {
-			HUDHelpers.DrawBorderedRect( sb, color, new Color?(borderColor), rect, borderWidth );
+		/// <summary>
+		/// Draws a bordered rectangle.
+		/// </summary>
+		/// <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="bgColor">Fill color.</param>
+		/// <param name="borderColor"></param>
+		/// <param name="rect">Position and dimensions of rectangle.</param>
+		/// <param name="borderWidth"></param>
+		public static void DrawBorderedRect( SpriteBatch sb, Color bgColor, Color borderColor, Rectangle rect, int borderWidth ) {
+			HUDHelpers.DrawBorderedRect( sb, bgColor, new Color?(borderColor), rect, borderWidth );
 		}
 
-		public static void DrawBorderedRect( SpriteBatch sb, Color? color, Color? borderColor, Vector2 position, Vector2 size, int borderWidth ) {
-			if( color != null ) {
-				sb.Draw( Main.magicPixel, new Rectangle( (int)position.X, (int)position.Y, (int)size.X, (int)size.Y ), (Color)color );
+		/// <summary>
+		/// Draws a rectangle with an optional border or optional fill color.
+		/// </summary>
+		/// <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="bgColor">Fill color. Use `null` for transparent.</param>
+		/// <param name="borderColor">Border color. User `null for transparent.</param>
+		/// <param name="position"></param>
+		/// <param name="size"></param>
+		/// <param name="borderWidth"></param>
+		public static void DrawBorderedRect( SpriteBatch sb, Color? bgColor, Color? borderColor, Vector2 position, Vector2 size, int borderWidth ) {
+			if( bgColor != null ) {
+				sb.Draw( Main.magicPixel, new Rectangle( (int)position.X, (int)position.Y, (int)size.X, (int)size.Y ), (Color)bgColor );
 			}
 			if( borderColor != null ) {
 				sb.Draw( Main.magicPixel, new Rectangle( (int)position.X - borderWidth, (int)position.Y - borderWidth, (int)size.X + borderWidth * 2, borderWidth ), (Color)borderColor );
@@ -24,9 +52,17 @@ namespace HamstarHelpers.Helpers.HUD {
 				sb.Draw( Main.magicPixel, new Rectangle( (int)position.X + (int)size.X, (int)position.Y, borderWidth, (int)size.Y ), (Color)borderColor );
 			}
 		}
-		public static void DrawBorderedRect( SpriteBatch sb, Color? color, Color? borderColor, Rectangle rect, int borderWidth ) {
-			if( color != null ) {
-				sb.Draw( Main.magicPixel, rect, (Color)color );
+		/// <summary>
+		/// Draws a rectangle with an optional border or optional fill color.
+		/// </summary>
+		/// <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="bgColor">Fill color. Use `null` for transparent.</param>
+		/// <param name="borderColor">Border color. User `null for transparent.</param>
+		/// <param name="rect">Position and dimensions of rectangle.</param>
+		/// <param name="borderWidth"></param>
+		public static void DrawBorderedRect( SpriteBatch sb, Color? bgColor, Color? borderColor, Rectangle rect, int borderWidth ) {
+			if( bgColor != null ) {
+				sb.Draw( Main.magicPixel, rect, (Color)bgColor );
 			}
 			if( borderColor != null ) {
 				sb.Draw( Main.magicPixel, new Rectangle( rect.X - borderWidth, rect.Y - borderWidth, rect.Width + borderWidth * 2, borderWidth ), (Color)borderColor );
@@ -39,6 +75,12 @@ namespace HamstarHelpers.Helpers.HUD {
 
 		////////////////
 
+		/// <summary>
+		/// Draws a "Terraria style" string, complete with pulsing and black border.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="pos"></param>
+		/// <param name="scale"></param>
 		public static void DrawTerrariaString( string text, Vector2 pos, float scale ) {
 			Color color = new Color( (int)Main.mouseTextColor, (int)Main.mouseTextColor, (int)Main.mouseTextColor, 255 );
 
