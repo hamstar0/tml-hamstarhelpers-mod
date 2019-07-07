@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Components.Protocol.Stream {
+namespace HamstarHelpers.Components.Protocols.Stream {
 	/// <summary>
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>

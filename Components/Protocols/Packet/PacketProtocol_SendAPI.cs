@@ -1,11 +1,11 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocol.Stream;
+using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.Protocol.Packet {
+namespace HamstarHelpers.Components.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		private static void QuickSendToServerBase<T>( bool syncToClients )
 				where T : PacketProtocol {  //, new()

@@ -3,7 +3,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
+namespace HamstarHelpers.Components.Protocols.Packet.Interfaces {
 	/// <summary>
 	/// Recommended PacketProtocol form for syncing data between clients and server.
 	/// </summary>

@@ -2,7 +2,7 @@
 using System;
 
 
-namespace HamstarHelpers.Components.Protocol.Packet.Interfaces {
+namespace HamstarHelpers.Components.Protocols.Packet.Interfaces {
 	/// <summary>
 	/// Recommended PacketProtocol form for sending requests to the server.
 	/// </summary>

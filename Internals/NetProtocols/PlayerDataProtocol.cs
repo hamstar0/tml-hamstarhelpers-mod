@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocol.Packet.Interfaces;
+using HamstarHelpers.Components.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

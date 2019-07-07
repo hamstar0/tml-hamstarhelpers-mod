@@ -5,7 +5,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Items {
-	/** @private */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to item identification.
+	/// </summary>
 	public partial class ItemIdentityHelpers {
 		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
 			get {

@@ -8,7 +8,9 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Items {
-	/** <summary>Assorted static "helper" functions pertaining to item identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to item identification.
+	/// </summary>
 	public partial class ItemIdentityHelpers {
 		public static IDictionary<string, Tuple<string, ISet<int>>> GetCommonItemGroups() {
 			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemIdentityHelpers )

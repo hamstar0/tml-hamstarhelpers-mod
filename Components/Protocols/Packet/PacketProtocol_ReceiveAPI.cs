@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocol.Stream;
+using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
 
 
-namespace HamstarHelpers.Components.Protocol.Packet {
+namespace HamstarHelpers.Components.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		/// <summary>
 		/// Runs when data received on client (class's own fields).

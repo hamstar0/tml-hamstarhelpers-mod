@@ -2,7 +2,7 @@
 using Terraria;
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Components.Protocol.Packet.Interfaces;
+using HamstarHelpers.Components.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

@@ -5,7 +5,7 @@ using HamstarHelpers.Internals.Menus.Support;
 using HamstarHelpers.Internals.Inbox;
 using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Components.Protocol.Packet;
+using HamstarHelpers.Components.Protocols.Packet;
 using HamstarHelpers.Services.Debug.CustomHotkeys;
 using HamstarHelpers.Services.Hooks.ExtendedHooks;
 using HamstarHelpers.Services.AnimatedColor;

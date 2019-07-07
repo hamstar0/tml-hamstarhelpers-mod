@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Protocol.Packet.Interfaces;
-using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.PromisedHooks;
