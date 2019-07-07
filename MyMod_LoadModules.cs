@@ -37,6 +37,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Items.Attributes;
 
 
 namespace HamstarHelpers {
@@ -81,6 +82,7 @@ namespace HamstarHelpers {
 		internal ReflectionHelpers ReflectionHelpers;
 		internal XNAHelpers XnaHelpers;
 		internal ModListHelpers ModListHelpers;
+		internal ItemAttributeHelpers ItemAttributeHelpers;
 
 		// Internals
 		internal InboxControl Inbox;
@@ -142,6 +144,7 @@ namespace HamstarHelpers {
 			this.SupportInfo = new SupportInfoDisplay();
 			this.RecipeHack = new RecipeHack();
 			this.ModListHelpers = new ModListHelpers();
+			this.ItemAttributeHelpers = new ItemAttributeHelpers();
 		}
 
 
@@ -186,6 +189,7 @@ namespace HamstarHelpers {
 			this.SupportInfo = null;
 			this.RecipeHack = null;
 			this.ModListHelpers = null;
+			this.ItemAttributeHelpers = null;
 
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;

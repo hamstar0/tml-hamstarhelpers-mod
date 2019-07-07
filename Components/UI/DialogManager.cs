@@ -22,6 +22,7 @@ namespace HamstarHelpers.Components.UI {
 		public UIDialog CurrentDialog { get; private set; }
 
 
+
 		////////////////
 
 		public DialogManager() {

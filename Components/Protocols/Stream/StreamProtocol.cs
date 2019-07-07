@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;

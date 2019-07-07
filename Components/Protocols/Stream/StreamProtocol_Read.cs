@@ -1,8 +1,5 @@
-﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Network;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Protocol.Packet;
-using HamstarHelpers.Components.Protocols;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using System;

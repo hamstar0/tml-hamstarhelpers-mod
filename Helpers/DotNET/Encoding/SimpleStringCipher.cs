@@ -5,11 +5,11 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Encoding {
-	/** <summary>
-	 * Simple string cipher encrypting and decrypting.
-	 * Credit: https://stackoverflow.com/a/10177020/6269494
-	 * </summary>
-	 */
+	/// <summary>
+	/// Simple string cipher encrypting and decrypting.
+	/// 
+	/// Credit: https://stackoverflow.com/a/10177020/6269494
+	/// </summary>
 	public static class SimpleStringCipher {
 		// This constant is used to determine the keysize of the encryption algorithm in bits.
 		// We divide this by 8 within the code below to get the equivalent number of bytes.
@@ -22,6 +22,12 @@ namespace HamstarHelpers.Helpers.DotNET.Encoding {
 
 		////////////////
 
+		/// <summary>
+		/// Encrypts a given plain text string upon a hidden given pass phrase.
+		/// </summary>
+		/// <param name="plainText"></param>
+		/// <param name="passPhrase"></param>
+		/// <returns>Encrypted string.</returns>
 		public static string Encrypt( string plainText, string passPhrase ) {
 			// Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
 			// so that the same Salt and IV values can be used when decrypting.  
@@ -58,6 +64,12 @@ namespace HamstarHelpers.Helpers.DotNET.Encoding {
 			}
 		}
 
+		/// <summary>
+		/// Decrypts a given cipher text into its original plain text form.
+		/// </summary>
+		/// <param name="cipherText"></param>
+		/// <param name="passPhrase"></param>
+		/// <returns>Plain text string.</returns>
 		public static string Decrypt( string cipherText, string passPhrase ) {
 			// Get the complete stream of bytes that represent:
 			// [32 bytes of Salt] + [32 bytes of IV] + [n bytes of CipherText]

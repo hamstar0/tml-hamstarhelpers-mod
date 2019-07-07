@@ -1,18 +1,20 @@
-﻿using HamstarHelpers.Components.DataStructures;
+﻿using HamstarHelpers.Components.Errors;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Items {
-	/** <summary>Assorted static "helper" functions pertaining to finding items in collections.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to finding items in collections.
+	/// </summary>
 	public static partial class ItemFinderHelpers {
-		private static IDictionary<long, ISet<int>> SellItems = new Dictionary<long, ISet<int>>();
-
-
-
-		////////////////
-
+		/// <summary>
+		/// Finds index of the first valid item of a set of item types within a given collection.
+		/// </summary>
+		/// <param name="collection"></param>
+		/// <param name="itemTypes"></param>
+		/// <returns>Index within the given collection.</returns>
 		public static int FindIndexOfFirstOfItemInCollection( Item[] collection, ISet<int> itemTypes ) {
 			for( int i = 0; i < collection.Length; i++ ) {
 				Item item = collection[i];
@@ -22,7 +24,13 @@ namespace HamstarHelpers.Helpers.Items {
 			return -1;
 		}
 
-		
+
+		/// <summary>
+		/// Finds each valid item of a set of item types within a given collection.
+		/// </summary>
+		/// <param name="collection"></param>
+		/// <param name="itemTypes"></param>
+		/// <returns>Set of indices within the given collection.</returns>
 		public static ISet<int> FindIndexOfEach( Item[] collection, ISet<int> itemTypes ) {
 			var set = new SortedSet<int>();
 
@@ -35,7 +43,36 @@ namespace HamstarHelpers.Helpers.Items {
 			return set;
 		}
 
-		
+
+		/// <summary>
+		/// Finds each valid item of a set of item types within a given collection.
+		/// </summary>
+		/// <param name="indexedCollection"></param>
+		/// <param name="itemTypes"></param>
+		/// <returns></returns>
+		public static IDictionary<int, Item> FindIndexOfEach( IDictionary<int, Item> indexedCollection, ISet<int> itemTypes ) {
+			IDictionary<int, Item> found = new Dictionary<int, Item>();
+
+			foreach( var whereItem in indexedCollection ) {
+				int where = whereItem.Key;
+				Item item = whereItem.Value;
+				if( item == null || item.IsAir ) { continue; }
+
+				if( itemTypes.Contains( item.type ) ) {
+					found[where] = item;
+				}
+			}
+
+			return found;
+		}	// <- Used to be 'FindChangesAt'
+
+
+		/// <summary>
+		/// Counts total valid items of a set of item types within a given collection.
+		/// </summary>
+		/// <param name="collection"></param>
+		/// <param name="itemTypes"></param>
+		/// <returns></returns>
 		public static int CountTotalOfEach( Item[] collection, ISet<int> itemTypes ) {
 			var set = ItemFinderHelpers.FindIndexOfEach( collection, itemTypes );
 			int total = 0;
@@ -47,17 +84,25 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
+		/// <summary>
+		/// Filters a given collection of item types (mapped typically to inventory indices) by a set of filter types.
+		/// </summary>
+		/// <param name="entries">Collection to build a filtered collection from. Keys are typically inventory indices, values are
+		/// item types and stack sizes.</param>
+		/// <param name="types">Item types to filter by.</param>
+		/// <returns>A new collection (of the same format as the parameter), filtered by the given filter set.</returns>
 		public static IDictionary<int, KeyValuePair<int, int>> FilterByTypes(
 				IDictionary<int, KeyValuePair<int, int>> entries,
 				ISet<int> types ) {
 			IDictionary<int, KeyValuePair<int, int>> found = new Dictionary<int, KeyValuePair<int, int>>();
 
 			foreach( var whereItem in entries ) {
-				int where = whereItem.Key;
-				int iType = whereItem.Value.Key;
+				int invIdx = whereItem.Key;
+				int itemType = whereItem.Value.Key;
+				int itemStack = whereItem.Value.Value;
 
-				if( types.Contains( iType ) ) {
-					found[where] = whereItem.Value;
+				if( types.Contains( itemType ) ) {
+					found[ invIdx ] = whereItem.Value;
 				}
 			}
 
@@ -65,94 +110,123 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
-		public static ReadOnlySet<int> FindItemsByValue( long sellValue, bool includeCoins = false ) {
-			if( !ItemFinderHelpers.SellItems.Keys.Contains( sellValue ) ) {
-				ItemFinderHelpers.SellItems[sellValue] = new HashSet<int>();
-			} else {
-				return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sellValue] );
+		/// <summary>
+		/// Finds first item of a given type belonging to a player (including their bank storage).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="itemType"></param>
+		/// <param name="skipArmors"></param>
+		/// <param name="skipBanks"></param>
+		/// <returns></returns>
+		public static Item FindFirstPlayerItemOfType( Player player, int itemType, bool skipArmors=false, bool skipBanks=false ) {
+			int itemIdx;
+			var itemTypeSet = new HashSet<int> { itemType };
+
+			itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, itemTypeSet );
+			if( itemIdx != -1 ) {
+				return player.inventory[ itemIdx ];
 			}
 
-			for( int i = 0; i < Main.itemTexture.Length; i++ ) {
-				if( !includeCoins && i == 71 ) { i = 75; }
-
-				Item item = new Item();
-				item.SetDefaults( i );
-				if( item.value <= 0 ) { continue; }
-
-				if( sellValue % item.value == 0 ) {
-					ItemFinderHelpers.SellItems[sellValue].Add( i );
+			if( !skipArmors ) {
+				itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.armor, itemTypeSet );
+				if( itemIdx != -1 ) {
+					return player.armor[itemIdx];
 				}
 			}
 
-			return new ReadOnlySet<int>( ItemFinderHelpers.SellItems[sellValue] );
-		}
-
-
-		public static Item FindFirstPlayerItemOfType( Player player, int itemType ) {
-			Item item = ItemFinderHelpers.FindFirstItemOfType( player.inventory, itemType );
-			if( item != null ) { return item; }
-
-			if( player.chest >= 0 ) {   // Player's current chest
-				item = ItemFinderHelpers.FindFirstItemOfType( Main.chest[player.chest].item, itemType );
-				if( item != null ) { return item; }
-			}
-			if( player.chest == -2 ) {  // Piggy bank
-				item = ItemFinderHelpers.FindFirstItemOfType( player.bank.item, itemType );
-				if( item != null ) { return item; }
-			}
-			if( player.chest == -3 ) {  // Safe
-				item = ItemFinderHelpers.FindFirstItemOfType( player.bank2.item, itemType );
-				if( item != null ) { return item; }
-			}
-			if( player.chest == -4 ) {  // ..whatever this is
-				item = ItemFinderHelpers.FindFirstItemOfType( player.bank3.item, itemType );
-				if( item != null ) { return item; }
+			if( !skipBanks ) {
+				if( player.chest >= 0 ) {   // Player's current chest
+					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( Main.chest[player.chest].item, itemTypeSet );
+					if( itemIdx != -1 ) {
+						return Main.chest[player.chest].item[itemIdx];
+					}
+				}
+				if( player.chest == -2 ) {  // Piggy bank
+					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank.item, itemTypeSet );
+					if( itemIdx != -1 ) {
+						return player.bank.item[itemIdx];
+					}
+				}
+				if( player.chest == -3 ) {  // Safe
+					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank2.item, itemTypeSet );
+					if( itemIdx != -1 ) {
+						return player.bank2.item[itemIdx];
+					}
+				}
+				if( player.chest == -4 ) {  // ..whatever this is
+					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank3.item, itemTypeSet );
+					if( itemIdx != -1 ) {
+						return player.bank3.item[itemIdx];
+					}
+				}
 			}
 
 			return null;
 		}
 
-		public static Item FindFirstItemOfType( Item[] items, int itemType ) {
-			for( int i = 0; i < items.Length; i++ ) {
-				Item item = items[i];
-				if( item.type == itemType && item.stack > 0 ) {
-					return item;
-				}
+
+		/// <summary>
+		/// Finds changes between 2 same-sized arrays of items.
+		/// </summary>
+		/// <param name="prevItems"></param>
+		/// <param name="currItems"></param>
+		/// <param name="skipCoins"></param>
+		/// <returns>Set of array indices of changed items between the 2 collections. Mapped to a "direction" indicator of
+		/// changes.</returns>
+		public static IDictionary<int, int> FindChanges( Item[] prevItems, Item[] currItems, bool skipCoins=true ) {
+			if( prevItems.Length != currItems.Length ) {
+				throw new HamstarException( "Mismatched item array sizes." );
 			}
-			return null;
-		}
 
-
-		public static IDictionary<int, bool> FindChanges( Item[] prevItems, Item[] currItems ) {
-			IDictionary<int, bool> changes = new Dictionary<int, bool>();
+			IDictionary<int, int> changes = new Dictionary<int, int>();
 			int len = currItems.Length;
+			Item prevItem, currItem;
 
 			for( int i = 0; i < len; i++ ) {
-				Item prevItem = prevItems[i];
-				Item currItem = currItems[i];
+				prevItem = prevItems[i];
+				currItem = currItems[i];
 
 				if( prevItem == null ) {
-					if( currItem != null ) { changes[i] = true; }
+					if( currItem != null ) {
+						changes[i] = 1;
+					}
 					continue;
 				} else if( currItem == null ) {
-					if( prevItem != null ) { changes[i] = false; }
+					if( prevItem != null ) {
+						changes[i] = -1;
+					}
 					continue;
 				}
 
-				if( prevItem.type != currItem.type || prevItem.stack != currItem.stack ) {
-					changes[i] = prevItem.IsAir || prevItem.stack < currItem.stack;
-
-					// Skip coins
-					if( changes[i] ) {
-						if( currItem.type == 71 || currItem.type == 72
-						|| currItem.type == 73 || currItem.type == 74 ) {
-							changes.Remove( i );
-						}
+				if( (prevItem.type != currItem.type || prevItem.stack != currItem.stack) && prevItem.IsAir != currItem.IsAir ) {
+					if( prevItem.IsAir ) {
+						changes[i] = 1;
+					} else if( currItem.IsAir ) {
+						changes[i] = -1;
 					} else {
-						if( prevItem.type == 71 || prevItem.type == 72
-						|| prevItem.type == 73 || prevItem.type == 74 ) {
-							changes.Remove( i );
+						changes[i] = prevItem.stack < currItem.stack ? 1 : -1;
+					}
+				}
+			}
+
+			if( skipCoins ) {
+				foreach( var kv in changes ) {
+					int itemIdx = kv.Key;
+					int changeDir = kv.Value;
+
+					currItem = currItems[itemIdx];
+					prevItem = prevItems[itemIdx];
+
+					if( currItem == null || currItem.IsAir ) {
+						if( prevItem.type >= 71 && prevItem.type <= 74 ) {
+							changes.Remove( itemIdx );
+							continue;
 						}
+					}
+
+					if( currItems[itemIdx].type >= 71 || currItems[itemIdx].type <= 74 ) {
+						changes.Remove( itemIdx );
+						continue;
 					}
 				}
 			}
@@ -161,41 +235,21 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
-		public static IDictionary<int, Item> FindChangesOf( IDictionary<int, Item> changesAt, ISet<int> types ) {
-			IDictionary<int, Item> found = new Dictionary<int, Item>();
-
-			foreach( var whereItem in changesAt ) {
-				int where = whereItem.Key;
-				Item item = whereItem.Value;
-
-				if( types.Contains( item.type ) ) {
-					found[where] = item;
-				}
-			}
-
-			return found;
-		}
-
-
-		public static ISet<int> FindPossiblePurchaseTypes( Item[] items, long spent ) {	// Use with NPCTownHelpers.GetCurrentShop()
+		/// <summary>
+		/// Finds all items of a given array with a given buy value.
+		/// </summary>
+		/// <param name="items"></param>
+		/// <param name="buyValue"></param>
+		/// <returns></returns>
+		public static ISet<int> FindPossiblePurchaseTypes( Item[] items, long buyValue ) {	// Use with NPCTownHelpers.GetCurrentShop()
 			ISet<int> possiblePurchases = new HashSet<int>();
 
 			for( int i = 0; i < items.Length; i++ ) {
 				Item shopItem = items[i];
 				if( shopItem == null || shopItem.IsAir ) { continue; }
-
-				if( shopItem.value == spent ) {
-					// If shop item type occurs more than once, skip
-					int j;
-					for( j = 0; j < i; j++ ) {
-						if( items[j].type == shopItem.type ) {
-							break;
-						}
-					}
-					if( j != i ) { continue; }
-
-					possiblePurchases.Add( shopItem.type );
-				}
+				if( shopItem.value != buyValue ) { continue; }
+				
+				possiblePurchases.Add( shopItem.type );
 			}
 
 			return possiblePurchases;

@@ -3,8 +3,15 @@ using System.Security.Cryptography;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Encoding {
-	/** <summary>Assorted static "helper" functions pertaining to hash codes.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to hash codes.
+	/// </summary>
 	public class HashHelpers {
+		/// <summary>
+		/// Produces a SHA256 hash from a given input string.
+		/// </summary>
+		/// <param name="str"></param>
+		/// <returns></returns>
 		public static string ComputeSHA256Hash( string str ) {
 			var crypt = new SHA256Managed();
 			byte[] hashBytes = crypt.ComputeHash( System.Text.Encoding.UTF8.GetBytes( str ) );

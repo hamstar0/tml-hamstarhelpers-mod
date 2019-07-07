@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.Components.DataStructures;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Items.Attributes {
-	/** <summary>Assorted static "helper" functions pertaining to gameplay attributes of items.</summary> */
-	public static partial class ItemAttributeHelpers {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to gameplay attributes of items.
+	/// </summary>
+	public partial class ItemAttributeHelpers {
 		private static IDictionary<int, int> _ProjPene = new Dictionary<int, int>();
 
 
@@ -147,6 +150,37 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 				return new int[] { ItemID.Present };
 			}
 			return new int[] { };
+		}
+
+
+		/// <summary>
+		/// Finds all item types of a given sell value.
+		/// </summary>
+		/// <param name="buyValue"></param>
+		/// <param name="includeCoins">Includes coin items (defaults to `false`).</param>
+		/// <returns></returns>
+		public static ReadOnlySet<int> FindItemsByValue( long buyValue, bool includeCoins = false ) {
+			ItemAttributeHelpers itemAttr = ModHelpersMod.Instance.ItemAttributeHelpers;
+
+			if( !itemAttr.PurchasableItems.Keys.Contains(buyValue) ) {
+				itemAttr.PurchasableItems[buyValue] = new HashSet<int>();
+			} else {
+				return new ReadOnlySet<int>( itemAttr.PurchasableItems[buyValue] );
+			}
+
+			for( int i = 0; i < Main.itemTexture.Length; i++ ) {
+				if( !includeCoins && i == 71 ) { i = 75; }
+
+				Item item = new Item();
+				item.SetDefaults( i );
+				if( item.value <= 0 ) { continue; }
+
+				if( (buyValue % item.value) == 0 ) {
+					itemAttr.PurchasableItems[ buyValue ].Add( i );
+				}
+			}
+
+			return new ReadOnlySet<int>( itemAttr.PurchasableItems[buyValue] );
 		}
 	}
 }

@@ -48,9 +48,6 @@
     <Compile Include="Commands\ModListCommand.cs" />
     <Compile Include="Commands\ModLockWorldToggleCommand.cs" />
     <Compile Include="Commands\MyUserIdCommand.cs" />
-    <Compile Include="Components\Config\ConfigurationDataBase.cs" />
-    <Compile Include="Components\Config\JsonConfigBase.cs" />
-    <Compile Include="Components\Config\JsonConfig.cs" />
     <Compile Include="Components\Protocols\Attributes.cs" />
     <Compile Include="Components\Protocols\Packet\Interfaces\RequestToClient.cs" />
     <Compile Include="Components\Protocols\Packet\Interfaces\RequestToServer.cs" />
@@ -127,6 +124,7 @@
     <Compile Include="Helpers\DotNET\Reflection\ReflectionHelpers_Instance.cs" />
     <Compile Include="Helpers\DotNET\Reflection\ReflectionHelpers_Methods.cs" />
     <Compile Include="Helpers\DotNET\Encoding\SimpleStringCipher.cs" />
+    <Compile Include="Helpers\Items\Attributes\ItemAttributeHelpers_Instance.cs" />
     <Compile Include="Helpers\Steam\SteamHelpers.cs" />
     <Compile Include="Helpers\DotNET\Formatting\StringFormattingHelpers.cs" />
     <Compile Include="Helpers\DotNET\SystemHelpers.cs" />
