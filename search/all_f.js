@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['packetprotocol',['PacketProtocol',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html',1,'HamstarHelpers::Components::Protocol::Packet']]],
-  ['packetprotocolrequesttoclient',['PacketProtocolRequestToClient',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html',1,'HamstarHelpers::Components::Protocol::Packet::Interfaces']]],
-  ['packetprotocolrequesttoserver',['PacketProtocolRequestToServer',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html',1,'HamstarHelpers::Components::Protocol::Packet::Interfaces']]],
-  ['packetprotocolsendtoclient',['PacketProtocolSendToClient',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_client.html',1,'HamstarHelpers::Components::Protocol::Packet::Interfaces']]],
-  ['packetprotocolsendtoserver',['PacketProtocolSendToServer',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html',1,'HamstarHelpers::Components::Protocol::Packet::Interfaces']]],
-  ['packetprotocolsenttoeither',['PacketProtocolSentToEither',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html',1,'HamstarHelpers::Components::Protocol::Packet::Interfaces']]],
-  ['packetprotocolsyncclient',['PacketProtocolSyncClient',['../class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html',1,'HamstarHelpers::Components::Protocol::Packet::Interfaces']]],
+  ['packetprotocol',['PacketProtocol',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html',1,'HamstarHelpers::Components::Protocols::Packet']]],
+  ['packetprotocolrequesttoclient',['PacketProtocolRequestToClient',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
+  ['packetprotocolrequesttoserver',['PacketProtocolRequestToServer',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
+  ['packetprotocolsendtoclient',['PacketProtocolSendToClient',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_client.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
+  ['packetprotocolsendtoserver',['PacketProtocolSendToServer',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
+  ['packetprotocolsenttoeither',['PacketProtocolSentToEither',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
+  ['packetprotocolsyncclient',['PacketProtocolSyncClient',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
   ['painthelpers',['PaintHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_paint_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
+  ['paints',['Paints',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a009a9866171ef04e6ee4a92fa4ba5235',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
   ['parsetoinferredprimitivetype',['ParseToInferredPrimitiveType',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#aae940705f7e2975436376d02b2f6f5f2',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
-  ['pathname',['PathName',['../class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html#a76e26c5dd39e0c02c9dfbee7661869b2',1,'HamstarHelpers::Components::Config::JsonConfig']]],
+  ['pirates',['Pirates',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da281a66b1f4a1ded6214bdbd1a35f8e1f',1,'HamstarHelpers::Helpers::NPCs']]],
   ['playerfilehelpers',['PlayerFileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_file_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerheaddrawhelpers',['PlayerHeadDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_head_draw_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerhelpers',['PlayerHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
@@ -27,7 +28,8 @@ var searchData=
   ['projectilehelpers',['ProjectileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_helpers.html',1,'HamstarHelpers::Helpers::Projectiles']]],
   ['projectileidentityhelpers',['ProjectileIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html',1,'HamstarHelpers::Helpers::Projectiles']]],
   ['promisedhooks',['PromisedHooks',['../class_hamstar_helpers_1_1_services_1_1_promised_hooks_1_1_promised_hooks.html',1,'HamstarHelpers::Services::PromisedHooks']]],
-  ['protocolignoreattribute',['ProtocolIgnoreAttribute',['../class_hamstar_helpers_1_1_components_1_1_network_1_1_protocol_ignore_attribute.html',1,'HamstarHelpers::Components::Network']]],
-  ['protocolwriteignoreclientattribute',['ProtocolWriteIgnoreClientAttribute',['../class_hamstar_helpers_1_1_components_1_1_network_1_1_protocol_write_ignore_client_attribute.html',1,'HamstarHelpers::Components::Network']]],
-  ['protocolwriteignoreserverattribute',['ProtocolWriteIgnoreServerAttribute',['../class_hamstar_helpers_1_1_components_1_1_network_1_1_protocol_write_ignore_server_attribute.html',1,'HamstarHelpers::Components::Network']]]
+  ['protocolignoreattribute',['ProtocolIgnoreAttribute',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_ignore_attribute.html',1,'HamstarHelpers::Components::Protocols']]],
+  ['protocolwriteignoreclientattribute',['ProtocolWriteIgnoreClientAttribute',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_client_attribute.html',1,'HamstarHelpers::Components::Protocols']]],
+  ['protocolwriteignoreserverattribute',['ProtocolWriteIgnoreServerAttribute',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_server_attribute.html',1,'HamstarHelpers::Components::Protocols']]],
+  ['pumpkinmoon',['PumpkinMoon',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da5aa3ae9152acb613289caec44071fc49',1,'HamstarHelpers::Helpers::NPCs']]]
 ];

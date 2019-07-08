@@ -25,7 +25,11 @@ var NAVTREE =
 [
   [ "Mod Helpers", "index.html", [
     [ "Packages", "namespaces.html", [
-      [ "Packages", "namespaces.html", "namespaces_dup" ]
+      [ "Packages", "namespaces.html", "namespaces_dup" ],
+      [ "Package Functions", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -49,9 +53,10 @@ var NAVTREEINDEX =
 [
 "_animated_colors_8cs_source.html",
 "_tile_wall_helpers_8cs_source.html",
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a6d6ac6b58058b774ded3e6cb816b6a8d",
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html#ae228d5ae8c64ff6413dd149d227a37e7",
-"functions_func_r.html"
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ad5ec9ba6083250ab6f563a7faa1af661",
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a2124bf1836c23fa4066541817ea0eda2",
+"class_hamstar_helpers_1_1_items_1_1_magi_tech_scrap_item.html",
+"namespace_hamstar_helpers_1_1_helpers_1_1_user.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

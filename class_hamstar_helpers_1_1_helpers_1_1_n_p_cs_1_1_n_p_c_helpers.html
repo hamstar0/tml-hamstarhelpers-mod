@@ -89,19 +89,338 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.NPCs.NPCHelpers Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Assorted static "helper" functions pertaining to <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html">NPCs</a>.  
+<p>Assorted static "helper" functions pertaining to NPCs.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af27cf9de0b6396c5f203b64fb6618abc"><td class="memItemLeft" align="right" valign="top">static IList&lt; NPC &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#af27cf9de0b6396c5f203b64fb6618abc">GetActive</a> ()</td></tr>
+<tr class="memdesc:af27cf9de0b6396c5f203b64fb6618abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all active NPCs in the world.  <a href="#af27cf9de0b6396c5f203b64fb6618abc">More...</a><br /></td></tr>
+<tr class="separator:af27cf9de0b6396c5f203b64fb6618abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a234987f8b7ff6e9018002929243b73ed"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#a234987f8b7ff6e9018002929243b73ed">RawHurt</a> (NPC npc, int damage)</td></tr>
+<tr class="memdesc:a234987f8b7ff6e9018002929243b73ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies damage to an NPC, killing it if need be. Synced.  <a href="#a234987f8b7ff6e9018002929243b73ed">More...</a><br /></td></tr>
+<tr class="separator:a234987f8b7ff6e9018002929243b73ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55456f33b8e3c377d96c00307fb6f1fa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#a55456f33b8e3c377d96c00307fb6f1fa">Kill</a> (NPC npc)</td></tr>
+<tr class="memdesc:a55456f33b8e3c377d96c00307fb6f1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills an NPC. Synced.  <a href="#a55456f33b8e3c377d96c00307fb6f1fa">More...</a><br /></td></tr>
+<tr class="separator:a55456f33b8e3c377d96c00307fb6f1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ef309c530fc18f183d28087a5ab1f4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#a25ef309c530fc18f183d28087a5ab1f4">Remove</a> (NPC npc)</td></tr>
+<tr class="memdesc:a25ef309c530fc18f183d28087a5ab1f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a given NPC. Synced.  <a href="#a25ef309c530fc18f183d28087a5ab1f4">More...</a><br /></td></tr>
+<tr class="separator:a25ef309c530fc18f183d28087a5ab1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a760180cf14bcdd902468aa3fd268cf80"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#a760180cf14bcdd902468aa3fd268cf80">GetKnockbackVector</a> (NPC npc, int dir, float knockback, bool crit, bool isKillingBlow)</td></tr>
+<tr class="memdesc:a760180cf14bcdd902468aa3fd268cf80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predicts the knockback travel vector (velocity) of a given knockback-inducing hit, according to vanilla Terraria's expected behavior.  <a href="#a760180cf14bcdd902468aa3fd268cf80">More...</a><br /></td></tr>
+<tr class="separator:a760180cf14bcdd902468aa3fd268cf80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecd4c9b9b99dc633122ac96fd2a290fd"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#aecd4c9b9b99dc633122ac96fd2a290fd">LooselyAssessThreat</a> (NPC npc)</td></tr>
+<tr class="memdesc:aecd4c9b9b99dc633122ac96fd2a290fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes an (unsophisticated) attempt at assessing an NPC's threat level. Factors include damage, defense, life, tile collide, knockback resist, and 'value' (money dropped).  <a href="#aecd4c9b9b99dc633122ac96fd2a290fd">More...</a><br /></td></tr>
+<tr class="separator:aecd4c9b9b99dc633122ac96fd2a290fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8de05dc4677400e7ec6bd9b926c4672"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#ad8de05dc4677400e7ec6bd9b926c4672">CurrentPlayerKillsOfBannerNpc</a> (int npcType)</td></tr>
+<tr class="memdesc:ad8de05dc4677400e7ec6bd9b926c4672"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills counted towards earning banners for a given NPC type.  <a href="#ad8de05dc4677400e7ec6bd9b926c4672">More...</a><br /></td></tr>
+<tr class="separator:ad8de05dc4677400e7ec6bd9b926c4672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Assorted static "helper" functions pertaining to <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html">NPCs</a>. </p>
+<div class="textblock"><p>Assorted static "helper" functions pertaining to NPCs. </p>
 
-<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00012">12</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad8de05dc4677400e7ec6bd9b926c4672"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8de05dc4677400e7ec6bd9b926c4672">&#9670;&nbsp;</a></span>CurrentPlayerKillsOfBannerNpc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Helpers.NPCs.NPCHelpers.CurrentPlayerKillsOfBannerNpc </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>npcType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kills counted towards earning banners for a given NPC type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">npcType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00175">175</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="af27cf9de0b6396c5f203b64fb6618abc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af27cf9de0b6396c5f203b64fb6618abc">&#9670;&nbsp;</a></span>GetActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IList&lt;NPC&gt; HamstarHelpers.Helpers.NPCs.NPCHelpers.GetActive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all active NPCs in the world. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a760180cf14bcdd902468aa3fd268cf80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760180cf14bcdd902468aa3fd268cf80">&#9670;&nbsp;</a></span>GetKnockbackVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector2 HamstarHelpers.Helpers.NPCs.NPCHelpers.GetKnockbackVector </td>
+          <td>(</td>
+          <td class="paramtype">NPC&#160;</td>
+          <td class="paramname"><em>npc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>knockback</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>crit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isKillingBlow</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Predicts the knockback travel vector (velocity) of a given knockback-inducing hit, according to vanilla Terraria's expected behavior. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">npc</td><td></td></tr>
+    <tr><td class="paramname">dir</td><td></td></tr>
+    <tr><td class="paramname">knockback</td><td></td></tr>
+    <tr><td class="paramname">crit</td><td></td></tr>
+    <tr><td class="paramname">isKillingBlow</td><td>Adds power.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00084">84</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a55456f33b8e3c377d96c00307fb6f1fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55456f33b8e3c377d96c00307fb6f1fa">&#9670;&nbsp;</a></span>Kill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.NPCs.NPCHelpers.Kill </td>
+          <td>(</td>
+          <td class="paramtype">NPC&#160;</td>
+          <td class="paramname"><em>npc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kills an NPC. Synced. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">npc</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00051">51</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aecd4c9b9b99dc633122ac96fd2a290fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecd4c9b9b99dc633122ac96fd2a290fd">&#9670;&nbsp;</a></span>LooselyAssessThreat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float HamstarHelpers.Helpers.NPCs.NPCHelpers.LooselyAssessThreat </td>
+          <td>(</td>
+          <td class="paramtype">NPC&#160;</td>
+          <td class="paramname"><em>npc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes an (unsophisticated) attempt at assessing an NPC's threat level. Factors include damage, defense, life, tile collide, knockback resist, and 'value' (money dropped). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">npc</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00144">144</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a234987f8b7ff6e9018002929243b73ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a234987f8b7ff6e9018002929243b73ed">&#9670;&nbsp;</a></span>RawHurt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.NPCs.NPCHelpers.RawHurt </td>
+          <td>(</td>
+          <td class="paramtype">NPC&#160;</td>
+          <td class="paramname"><em>npc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>damage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Applies damage to an NPC, killing it if need be. Synced. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">npc</td><td></td></tr>
+    <tr><td class="paramname">damage</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00037">37</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a25ef309c530fc18f183d28087a5ab1f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25ef309c530fc18f183d28087a5ab1f4">&#9670;&nbsp;</a></span>Remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.NPCs.NPCHelpers.Remove </td>
+          <td>(</td>
+          <td class="paramtype">NPC&#160;</td>
+          <td class="paramname"><em>npc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes a given NPC. Synced. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">npc</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_helpers_8cs_source.html#l00062">62</a> of file <a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/NPCs/<a class="el" href="_n_p_c_helpers_8cs_source.html">NPCHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

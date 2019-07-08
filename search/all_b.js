@@ -2,6 +2,7 @@ var searchData=
 [
   ['large',['Large',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#aa366b71b8e7d615a69ba0adf9d4a0d1a',1,'HamstarHelpers::Components::UI::Elements::UIWebUrl']]],
   ['latestavailableversion',['LatestAvailableVersion',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a7976a5ea1cc875550a11bba8f45c3a87',1,'HamstarHelpers::Components::UI::Elements::UIModData']]],
+  ['leave',['Leave',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers.html#a538552f7efc4c8c54ae303cb45ec16b1',1,'HamstarHelpers::Helpers::NPCs::NPCTownHelpers']]],
   ['lineelem',['LineElem',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#a3ddae0aa3bec9c34b9b50c67239f78e8',1,'HamstarHelpers::Components::UI::Elements::UIWebUrl']]],
   ['linqhelpers',['LINQHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html',1,'HamstarHelpers::Helpers::DotNET']]],
   ['listbgcolor',['ListBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a146a4fda65249c0dead6b6ab72c6f22b',1,'HamstarHelpers::Components::UI::UITheme']]],
@@ -12,12 +13,17 @@ var searchData=
   ['listitemedgecolor',['ListItemEdgeColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a23563e18e78c70fb7fcbeb61963d846f',1,'HamstarHelpers::Components::UI::UITheme']]],
   ['listitemedgelitcolor',['ListItemEdgeLitColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a84063536795b6fd1e0fd1d7022edc25f',1,'HamstarHelpers::Components::UI::UITheme']]],
   ['listitemedgeselectedcolor',['ListItemEdgeSelectedColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#abc16f5648206a963b1ca4faf610c3519',1,'HamstarHelpers::Components::UI::UITheme']]],
-  ['loadbinaryfile_3c_20t_20_3e',['LoadBinaryFile&lt; T &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6723a0cfea5ef87d5cc42266abae490f',1,'HamstarHelpers::Helpers::DotNET::FileHelpers']]],
-  ['loadfile',['LoadFile',['../class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html#ae71e8bfd371116eb66917f8653564c88',1,'HamstarHelpers::Components::Config::JsonConfig']]],
-  ['loadfileasync',['LoadFileAsync',['../class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html#a145cca728fe4bd182ad3c4c4e9da0a0b',1,'HamstarHelpers::Components::Config::JsonConfig']]],
+  ['loadbinaryfile',['LoadBinaryFile',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a809e448146791a6950e2594c92abf650',1,'HamstarHelpers::Helpers::DotNET::FileHelpers']]],
+  ['loadbinaryjson_3c_20t_20_3e',['LoadBinaryJson&lt; T &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#ae12d9256d0a373d92a4f934071b449eb',1,'HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.LoadBinaryJson&lt; T &gt;(Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings)'],['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a25438b72d8480057d113e653756d369e',1,'HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.LoadBinaryJson&lt; T &gt;(Mod mod, string fileNameHasExt)']]],
   ['loadhelpers',['LoadHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html',1,'HamstarHelpers::Helpers::TModLoader']]],
+  ['loadjson_3c_20t_20_3e',['LoadJson&lt; T &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a68908ca0c0cd3c8f24b05a3eea1e5685',1,'HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.LoadJson&lt; T &gt;(Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings)'],['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a8d5828536e19a2334f7c04e489ec019a',1,'HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.LoadJson&lt; T &gt;(Mod mod, string fileNameNoExt)']]],
   ['loadtextfile',['LoadTextFile',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6c49a09f75cd582c707efca7157e9a3b',1,'HamstarHelpers::Helpers::DotNET::FileHelpers']]],
+  ['lockdownplayerpertick',['LockdownPlayerPerTick',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a1e1c1870e9e503db990fe60d95d924d0',1,'HamstarHelpers::Helpers::Players::PlayerHelpers']]],
   ['log',['Log',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae141f63955b55fae280ffdb3c4a19f8e',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['loghelpers',['LogHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html',1,'HamstarHelpers::Helpers::Debug']]],
-  ['logonce',['LogOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae74866022df1221b810f0c9399944d5d',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]]
+  ['logonce',['LogOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae74866022df1221b810f0c9399944d5d',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
+  ['looselyappraise',['LooselyAppraise',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#a48791356605dea4bf93e46490c1bdefe',1,'HamstarHelpers::Helpers::Items::Attributes::ItemAttributeHelpers']]],
+  ['looselyassesspower',['LooselyAssessPower',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a9d22e8084900c77460eb8b1917d15977',1,'HamstarHelpers::Helpers::Players::PlayerHelpers']]],
+  ['looselyassessthreat',['LooselyAssessThreat',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#aecd4c9b9b99dc633122ac96fd2a290fd',1,'HamstarHelpers::Helpers::NPCs::NPCHelpers']]],
+  ['lunarapocalypse',['LunarApocalypse',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da8c0b911107397b97922fe61b73e1c930',1,'HamstarHelpers::Helpers::NPCs']]]
 ];

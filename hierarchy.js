@@ -9,13 +9,9 @@ var hierarchy =
     [ "HamstarHelpers.Services.Tml.BuildPropertiesViewer", "class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html", null ],
     [ "HamstarHelpers.Tiles.CoalTile", "class_hamstar_helpers_1_1_tiles_1_1_coal_tile.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Commands.CommandsHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_commands_1_1_commands_helpers.html", null ],
-    [ "HamstarHelpers.Components.Config.ConfigurationDataBase", "class_hamstar_helpers_1_1_components_1_1_config_1_1_configuration_data_base.html", [
-      [ "HamstarHelpers.HamstarHelpersConfigData", "class_hamstar_helpers_1_1_hamstar_helpers_config_data.html", null ]
-    ] ],
     [ "HamstarHelpers.Services.UI.ControlPanel.ControlPanelTabs", "class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html", null ],
     [ "HamstarHelpers.Services.Debug.CustomHotkeys.CustomHotkeys", "class_hamstar_helpers_1_1_services_1_1_debug_1_1_custom_hotkeys_1_1_custom_hotkeys.html", null ],
     [ "HamstarHelpers.Services.Debug.DataDumper.DataDumper", "class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html", null ],
-    [ "HamstarHelpers.Helpers.Misc.DataFileHelpers", "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_data_file_helpers.html", null ],
     [ "HamstarHelpers.Services.DataStore.DataStore", "class_hamstar_helpers_1_1_services_1_1_data_store_1_1_data_store.html", null ],
     [ "HamstarHelpers.Helpers.Debug.DebugHelpers", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html", null ],
@@ -30,6 +26,7 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Info.FormattedGameInfoHelpers", "class_hamstar_helpers_1_1_helpers_1_1_info_1_1_formatted_game_info_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Info.GameInfoHelpers", "class_hamstar_helpers_1_1_helpers_1_1_info_1_1_game_info_helpers.html", null ],
     [ "HamstarHelpers.Components.Errors.HamstarException", "class_hamstar_helpers_1_1_components_1_1_errors_1_1_hamstar_exception.html", null ],
+    [ "HamstarHelpers.HamstarHelpersConfigData", "class_hamstar_helpers_1_1_hamstar_helpers_config_data.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Encoding.HashHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_hash_helpers.html", null ],
     [ "HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html", null ],
     [ "HamstarHelpers.Helpers.HUD.HUDHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html", null ],
@@ -40,10 +37,6 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Items.ItemHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Items.ItemIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Items.Attributes.ItemRarityAttributeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html", null ],
-    [ "HamstarHelpers.Components.Config.JsonConfig< HamstarHelpers.HamstarHelpersConfigData >", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html", null ],
-    [ "HamstarHelpers.Components.Config.JsonConfigBase", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config_base.html", [
-      [ "HamstarHelpers.Components.Config.JsonConfig< T >", "class_hamstar_helpers_1_1_components_1_1_config_1_1_json_config.html", null ]
-    ] ],
     [ "HamstarHelpers.Helpers.DotNET.LINQHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.LoadHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Debug.LogHelpers", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html", null ],
@@ -52,6 +45,7 @@ var hierarchy =
     [ "HamstarHelpers.Services.UI.Menus.MenuContextService", "class_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus_1_1_menu_context_service.html", null ],
     [ "HamstarHelpers.Helpers.Misc.MiscHelpers", "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Mods.ModBoilerplateHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_boilerplate_helpers.html", null ],
+    [ "HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers", "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html", null ],
     [ "HamstarHelpers.Helpers.ModHelpers.ModFeaturesHelpers", "class_hamstar_helpers_1_1_helpers_1_1_mod_helpers_1_1_mod_features_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Mods.ModHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Mods.ModIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_identity_helpers.html", null ],
@@ -87,9 +81,9 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Projectiles.ProjectileHelpers", "class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html", null ],
     [ "HamstarHelpers.Services.PromisedHooks.PromisedHooks", "class_hamstar_helpers_1_1_services_1_1_promised_hooks_1_1_promised_hooks.html", null ],
-    [ "HamstarHelpers.Components.Network.ProtocolIgnoreAttribute", "class_hamstar_helpers_1_1_components_1_1_network_1_1_protocol_ignore_attribute.html", null ],
-    [ "HamstarHelpers.Components.Network.ProtocolWriteIgnoreClientAttribute", "class_hamstar_helpers_1_1_components_1_1_network_1_1_protocol_write_ignore_client_attribute.html", null ],
-    [ "HamstarHelpers.Components.Network.ProtocolWriteIgnoreServerAttribute", "class_hamstar_helpers_1_1_components_1_1_network_1_1_protocol_write_ignore_server_attribute.html", null ],
+    [ "HamstarHelpers.Components.Protocols.ProtocolIgnoreAttribute", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_ignore_attribute.html", null ],
+    [ "HamstarHelpers.Components.Protocols.ProtocolWriteIgnoreClientAttribute", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_client_attribute.html", null ],
+    [ "HamstarHelpers.Components.Protocols.ProtocolWriteIgnoreServerAttribute", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_server_attribute.html", null ],
     [ "HamstarHelpers.Components.DataStructures.ReadOnlyDictionaryOfSets< K, V >", "class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_dictionary_of_sets.html", null ],
     [ "HamstarHelpers.Components.DataStructures.ReadOnlyDictionaryOfSets< string, int >", "class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_dictionary_of_sets.html", null ],
     [ "HamstarHelpers.Components.DataStructures.ReadOnlySet< T >", "class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html", null ],
@@ -104,23 +98,23 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.DotNET.Encoding.SimpleStringCipher", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_simple_string_cipher.html", null ],
     [ "HamstarHelpers.Helpers.Steam.SteamHelpers", "class_hamstar_helpers_1_1_helpers_1_1_steam_1_1_steam_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.StreamHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html", null ],
-    [ "HamstarHelpers.Components.Protocol.Stream.StreamProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_stream_1_1_stream_protocol.html", [
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", [
-        [ "HamstarHelpers.Components.Protocol.Packet.Interfaces.PacketProtocolRequestToClient", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html", null ],
-        [ "HamstarHelpers.Components.Protocol.Packet.Interfaces.PacketProtocolRequestToServer", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html", null ],
-        [ "HamstarHelpers.Components.Protocol.Packet.Interfaces.PacketProtocolSendToClient", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_client.html", null ],
-        [ "HamstarHelpers.Components.Protocol.Packet.Interfaces.PacketProtocolSendToServer", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html", null ],
-        [ "HamstarHelpers.Components.Protocol.Packet.Interfaces.PacketProtocolSentToEither", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html", null ],
-        [ "HamstarHelpers.Components.Protocol.Packet.Interfaces.PacketProtocolSyncClient", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html", null ]
+    [ "HamstarHelpers.Components.Protocols.Stream.StreamProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_stream_1_1_stream_protocol.html", [
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", [
+        [ "HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolRequestToClient", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html", null ],
+        [ "HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolRequestToServer", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html", null ],
+        [ "HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolSendToClient", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_client.html", null ],
+        [ "HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolSendToServer", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html", null ],
+        [ "HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolSentToEither", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html", null ],
+        [ "HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolSyncClient", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html", null ]
       ] ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ],
-      [ "HamstarHelpers.Components.Protocol.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocol_1_1_packet_1_1_packet_protocol.html", null ]
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ],
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ],
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ],
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ],
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ],
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ],
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ],
+      [ "HamstarHelpers.Components.Protocols.Packet.PacketProtocol", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html", null ]
     ] ],
     [ "HamstarHelpers.Helpers.DotNET.Formatting.StringFormattingHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.SystemHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html", null ],

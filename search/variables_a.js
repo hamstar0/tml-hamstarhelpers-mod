@@ -1,8 +1,15 @@
 var searchData=
 [
-  ['text',['Text',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_text_input_event_args.html#a461171d26a9ca9ec81a6e703699e1f8b',1,'HamstarHelpers::Components::UI::Elements::TextInputEventArgs']]],
-  ['textcolor',['TextColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#af7f3686f3c716d4ff834da32811c1ac9',1,'HamstarHelpers.Components.UI.Elements.UITextArea.TextColor()'],['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_field.html#ab8d7f6b8beff166ed5087f7874421206',1,'HamstarHelpers.Components.UI.Elements.UITextField.TextColor()']]],
-  ['theme',['Theme',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a22a0e645ca7d410a21b581bdd0b89e84',1,'HamstarHelpers::Components::UI::Elements::UIDialog']]],
-  ['this_5bk_20key_5d',['this[K key]',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#ad466756982d2030e4a1c0a4de28caaba',1,'HamstarHelpers::Components::DataStructures::ReadOnlyDictionaryOfSets']]],
-  ['title',['Title',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#ae450545232d1a233072b0221c51d5e51',1,'HamstarHelpers::Components::UI::Elements::UICheckbox']]]
+  ['magicmirrors',['MagicMirrors',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ab7b524461775bc3e704d882b03b3fbd3',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
+  ['mainbgcolor',['MainBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#ab2fe9e10fd0cadd09c71c94059053463',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['mainedgecolor',['MainEdgeColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#ab8c84741fbc907e1ca120badfb0345b5',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistbgcolor',['ModListBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#aec9094bc044f4b300531f055de709861',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistedgecolor',['ModListEdgeColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#afec06516c9dc2cc1755f52b6038f445c',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistitembgcolor',['ModListItemBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#ae79575c1cde8da3c25244578967307e8',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistitembglitcolor',['ModListItemBgLitColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a9e5128650a25b002b97da7fa3fec5897',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistitembgselectedcolor',['ModListItemBgSelectedColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a7f634c8143af7d0280d5dbe6ed0ae0ee',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistitemedgecolor',['ModListItemEdgeColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a1a774e651ec7ff378c95b0d31cd60c60',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistitemedgelitcolor',['ModListItemEdgeLitColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#ad5a8c337331270483201d8ad71c7fb41',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['modlistitemedgeselectedcolor',['ModListItemEdgeSelectedColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#aca4eddc84b2dabc53b571185294fbc94',1,'HamstarHelpers::Components::UI::UITheme']]],
+  ['mostaccess',['MostAccess',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a5db1f331b550bb60c8233ab3b595b4e7',1,'HamstarHelpers::Helpers::DotNET::Reflection::ReflectionHelpers']]]
 ];

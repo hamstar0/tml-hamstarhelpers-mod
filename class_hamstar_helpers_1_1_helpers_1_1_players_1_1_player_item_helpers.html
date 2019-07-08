@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Players.PlayerItemHelpers Class Reference</div>  </div>
@@ -97,11 +99,832 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to player inventory or equips.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a55b3cc742f3ea7e80dd8ca601dbd1f0e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a55b3cc742f3ea7e80dd8ca601dbd1f0e">RemoveInventoryItemQuantity</a> (Player player, int itemType, int quantity)</td></tr>
+<tr class="memdesc:a55b3cc742f3ea7e80dd8ca601dbd1f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a quantity of a given item type from the player's inventory.  <a href="#a55b3cc742f3ea7e80dd8ca601dbd1f0e">More...</a><br /></td></tr>
+<tr class="separator:a55b3cc742f3ea7e80dd8ca601dbd1f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d3ac6e8e0b772eeffa3487ab741e89e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a9d3ac6e8e0b772eeffa3487ab741e89e">DropInventoryItem</a> (Player player, int slot, int noGrabDelay=100)</td></tr>
+<tr class="memdesc:a9d3ac6e8e0b772eeffa3487ab741e89e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops a given inventory item to the ground.  <a href="#a9d3ac6e8e0b772eeffa3487ab741e89e">More...</a><br /></td></tr>
+<tr class="separator:a9d3ac6e8e0b772eeffa3487ab741e89e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d66b094ede068fe3f02ed0675421abe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a4d66b094ede068fe3f02ed0675421abe">DropEquippedArmorItem</a> (Player player, int slot, int noGrabDelay=100)</td></tr>
+<tr class="memdesc:a4d66b094ede068fe3f02ed0675421abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops a given armor item to the ground.  <a href="#a4d66b094ede068fe3f02ed0675421abe">More...</a><br /></td></tr>
+<tr class="separator:a4d66b094ede068fe3f02ed0675421abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ae0929b414d6ed5bb3c63256a8194ee"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a6ae0929b414d6ed5bb3c63256a8194ee">DropEquippedMiscItem</a> (Player player, int slot, int noGrabDelay=100)</td></tr>
+<tr class="memdesc:a6ae0929b414d6ed5bb3c63256a8194ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops a given misc item to the ground.  <a href="#a6ae0929b414d6ed5bb3c63256a8194ee">More...</a><br /></td></tr>
+<tr class="separator:a6ae0929b414d6ed5bb3c63256a8194ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94304f4787df39c9362aca9952217c4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#ab94304f4787df39c9362aca9952217c4">UnhandItem</a> (Player player)</td></tr>
+<tr class="memdesc:ab94304f4787df39c9362aca9952217c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops player's currently equipped item.  <a href="#ab94304f4787df39c9362aca9952217c4">More...</a><br /></td></tr>
+<tr class="separator:ab94304f4787df39c9362aca9952217c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb916e60333f9bf611beba993e9e788"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#abcb916e60333f9bf611beba993e9e788">IsPlayerNaked</a> (Player player, bool alsoVanity=false, bool canHide=true)</td></tr>
+<tr class="memdesc:abcb916e60333f9bf611beba993e9e788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if player is not wearing any items.  <a href="#abcb916e60333f9bf611beba993e9e788">More...</a><br /></td></tr>
+<tr class="separator:abcb916e60333f9bf611beba993e9e788"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05220aa8889d74d1c94c5651eff28dd8"><td class="memItemLeft" align="right" valign="top">static long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a05220aa8889d74d1c94c5651eff28dd8">CountMoney</a> (Player player, bool includeBanks)</td></tr>
+<tr class="memdesc:a05220aa8889d74d1c94c5651eff28dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Totals up player's money.  <a href="#a05220aa8889d74d1c94c5651eff28dd8">More...</a><br /></td></tr>
+<tr class="separator:a05220aa8889d74d1c94c5651eff28dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c8ad1af053a64581cdb5778d4868802"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a4c8ad1af053a64581cdb5778d4868802">TipOfHeldItem</a> (Player player)</td></tr>
+<tr class="memdesc:a4c8ad1af053a64581cdb5778d4868802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets world position of the tip of a player's weilded item.  <a href="#a4c8ad1af053a64581cdb5778d4868802">More...</a><br /></td></tr>
+<tr class="separator:a4c8ad1af053a64581cdb5778d4868802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a987b1fc96a7a05b58a164cb6579df13e"><td class="memItemLeft" align="right" valign="top">static Item&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a987b1fc96a7a05b58a164cb6579df13e">GetGrappleItem</a> (Player player)</td></tr>
+<tr class="memdesc:a987b1fc96a7a05b58a164cb6579df13e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the player's grappling item.  <a href="#a987b1fc96a7a05b58a164cb6579df13e">More...</a><br /></td></tr>
+<tr class="separator:a987b1fc96a7a05b58a164cb6579df13e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f4148959012a4f8fd7b59baf5306803"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a6f4148959012a4f8fd7b59baf5306803">IsArmorSlot</a> (int slot)</td></tr>
+<tr class="memdesc:a6f4148959012a4f8fd7b59baf5306803"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given slot position is an armor slot (in <code>player.armor</code>).  <a href="#a6f4148959012a4f8fd7b59baf5306803">More...</a><br /></td></tr>
+<tr class="separator:a6f4148959012a4f8fd7b59baf5306803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51f8dffe849041692001891f1305487"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#ac51f8dffe849041692001891f1305487">IsAccessorySlot</a> (Player player, int slot)</td></tr>
+<tr class="memdesc:ac51f8dffe849041692001891f1305487"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given slot position is an accessory slot (in <code>player.armor</code>).  <a href="#ac51f8dffe849041692001891f1305487">More...</a><br /></td></tr>
+<tr class="separator:ac51f8dffe849041692001891f1305487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedb183bba94fcb0494b2125557d08abe"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#aedb183bba94fcb0494b2125557d08abe">IsVanitySlot</a> (Player player, int slot)</td></tr>
+<tr class="memdesc:aedb183bba94fcb0494b2125557d08abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given slot position is a vanity slot (in <code>player.armor</code>).  <a href="#aedb183bba94fcb0494b2125557d08abe">More...</a><br /></td></tr>
+<tr class="separator:aedb183bba94fcb0494b2125557d08abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2654f7ec0bdbcc5d565c456028f68655"><td class="memItemLeft" align="right" valign="top">static Item []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a2654f7ec0bdbcc5d565c456028f68655">GetCurrentlyOpenChest</a> (Player player, out bool? isPersonalChest)</td></tr>
+<tr class="memdesc:a2654f7ec0bdbcc5d565c456028f68655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses items of a player's currently opened chest.  <a href="#a2654f7ec0bdbcc5d565c456028f68655">More...</a><br /></td></tr>
+<tr class="separator:a2654f7ec0bdbcc5d565c456028f68655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a96d2ab24268f57344c6e485068f857aa"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a96d2ab24268f57344c6e485068f857aa">VanillaInventorySize</a> = 58</td></tr>
+<tr class="separator:a96d2ab24268f57344c6e485068f857aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a849563c8b9c3ef4684b3e54ae46e51b0"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a849563c8b9c3ef4684b3e54ae46e51b0">VanillaInventoryHotbarSize</a> = 10</td></tr>
+<tr class="separator:a849563c8b9c3ef4684b3e54ae46e51b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abeb5c3837b2352d370d6afdb6cfafad3"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#abeb5c3837b2352d370d6afdb6cfafad3">VanillaInventoryMainSize</a> = 40</td></tr>
+<tr class="separator:abeb5c3837b2352d370d6afdb6cfafad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b17d4b1b25798cdbca1339877154d74"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a9b17d4b1b25798cdbca1339877154d74">VanillaInventoryLastMainSlot</a> = 49</td></tr>
+<tr class="separator:a9b17d4b1b25798cdbca1339877154d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ae6d14b78e7859af55e79403906cf8"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a87ae6d14b78e7859af55e79403906cf8">VanillaInventoryLastCoinSlot</a> = 53</td></tr>
+<tr class="separator:a87ae6d14b78e7859af55e79403906cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4a73a42953e9fbce4993a02b7a55934"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#af4a73a42953e9fbce4993a02b7a55934">VanillaInventoryLastAmmolot</a> = 57</td></tr>
+<tr class="separator:af4a73a42953e9fbce4993a02b7a55934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08b430f9af6e0fd15edf108caa1f739b"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a08b430f9af6e0fd15edf108caa1f739b">VanillaInventorySelectedSlot</a> = 58</td></tr>
+<tr class="separator:a08b430f9af6e0fd15edf108caa1f739b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc34677e9c9eca826ef49aa6e6211c8"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a7dc34677e9c9eca826ef49aa6e6211c8">VanillaAccessorySlotFirst</a> = 3</td></tr>
+<tr class="separator:a7dc34677e9c9eca826ef49aa6e6211c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to player inventory or equips. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a05220aa8889d74d1c94c5651eff28dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05220aa8889d74d1c94c5651eff28dd8">&#9670;&nbsp;</a></span>CountMoney()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static long HamstarHelpers.Helpers.Players.PlayerItemHelpers.CountMoney </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>includeBanks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Totals up player's money. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">includeBanks</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00273">273</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4d66b094ede068fe3f02ed0675421abe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d66b094ede068fe3f02ed0675421abe">&#9670;&nbsp;</a></span>DropEquippedArmorItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Players.PlayerItemHelpers.DropEquippedArmorItem </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>noGrabDelay</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drops a given armor item to the ground. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">slot</td><td></td></tr>
+    <tr><td class="paramname">noGrabDelay</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00128">128</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6ae0929b414d6ed5bb3c63256a8194ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae0929b414d6ed5bb3c63256a8194ee">&#9670;&nbsp;</a></span>DropEquippedMiscItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Players.PlayerItemHelpers.DropEquippedMiscItem </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>noGrabDelay</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drops a given misc item to the ground. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">slot</td><td></td></tr>
+    <tr><td class="paramname">noGrabDelay</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00152">152</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9d3ac6e8e0b772eeffa3487ab741e89e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d3ac6e8e0b772eeffa3487ab741e89e">&#9670;&nbsp;</a></span>DropInventoryItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Helpers.Players.PlayerItemHelpers.DropInventoryItem </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>noGrabDelay</em> = <code>100</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drops a given inventory item to the ground. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">slot</td><td></td></tr>
+    <tr><td class="paramname">noGrabDelay</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>World item index (in <code>Main.item</code> array). -1 if none.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00079">79</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2654f7ec0bdbcc5d565c456028f68655"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2654f7ec0bdbcc5d565c456028f68655">&#9670;&nbsp;</a></span>GetCurrentlyOpenChest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Item [] HamstarHelpers.Helpers.Players.PlayerItemHelpers.GetCurrentlyOpenChest </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out bool?&#160;</td>
+          <td class="paramname"><em>isPersonalChest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Accesses items of a player's currently opened chest. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">isPersonalChest</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00378">378</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a987b1fc96a7a05b58a164cb6579df13e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a987b1fc96a7a05b58a164cb6579df13e">&#9670;&nbsp;</a></span>GetGrappleItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Item HamstarHelpers.Helpers.Players.PlayerItemHelpers.GetGrappleItem </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the player's grappling item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00325">325</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac51f8dffe849041692001891f1305487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac51f8dffe849041692001891f1305487">&#9670;&nbsp;</a></span>IsAccessorySlot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Players.PlayerItemHelpers.IsAccessorySlot </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given slot position is an accessory slot (in <code>player.armor</code>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">slot</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00355">355</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6f4148959012a4f8fd7b59baf5306803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f4148959012a4f8fd7b59baf5306803">&#9670;&nbsp;</a></span>IsArmorSlot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Players.PlayerItemHelpers.IsArmorSlot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given slot position is an armor slot (in <code>player.armor</code>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">slot</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00345">345</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="abcb916e60333f9bf611beba993e9e788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcb916e60333f9bf611beba993e9e788">&#9670;&nbsp;</a></span>IsPlayerNaked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Players.PlayerItemHelpers.IsPlayerNaked </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>alsoVanity</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>canHide</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if player is not wearing any items. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">alsoVanity</td><td></td></tr>
+    <tr><td class="paramname">canHide</td><td>Indicates items can be hidden to not count against being "naked".</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00233">233</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aedb183bba94fcb0494b2125557d08abe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedb183bba94fcb0494b2125557d08abe">&#9670;&nbsp;</a></span>IsVanitySlot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Players.PlayerItemHelpers.IsVanitySlot </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>slot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given slot position is a vanity slot (in <code>player.armor</code>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">slot</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00365">365</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a55b3cc742f3ea7e80dd8ca601dbd1f0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55b3cc742f3ea7e80dd8ca601dbd1f0e">&#9670;&nbsp;</a></span>RemoveInventoryItemQuantity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Helpers.Players.PlayerItemHelpers.RemoveInventoryItemQuantity </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>itemType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>quantity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes a quantity of a given item type from the player's inventory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">itemType</td><td></td></tr>
+    <tr><td class="paramname">quantity</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Amount removed.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00045">45</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4c8ad1af053a64581cdb5778d4868802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c8ad1af053a64581cdb5778d4868802">&#9670;&nbsp;</a></span>TipOfHeldItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector2 HamstarHelpers.Helpers.Players.PlayerItemHelpers.TipOfHeldItem </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets world position of the tip of a player's weilded item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00294">294</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab94304f4787df39c9362aca9952217c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94304f4787df39c9362aca9952217c4">&#9670;&nbsp;</a></span>UnhandItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Players.PlayerItemHelpers.UnhandItem </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drops player's currently equipped item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00177">177</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7dc34677e9c9eca826ef49aa6e6211c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dc34677e9c9eca826ef49aa6e6211c8">&#9670;&nbsp;</a></span>VanillaAccessorySlotFirst</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaAccessorySlotFirst = 3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00032">32</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a849563c8b9c3ef4684b3e54ae46e51b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a849563c8b9c3ef4684b3e54ae46e51b0">&#9670;&nbsp;</a></span>VanillaInventoryHotbarSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventoryHotbarSize = 10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="af4a73a42953e9fbce4993a02b7a55934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4a73a42953e9fbce4993a02b7a55934">&#9670;&nbsp;</a></span>VanillaInventoryLastAmmolot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventoryLastAmmolot = 57</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00027">27</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a87ae6d14b78e7859af55e79403906cf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ae6d14b78e7859af55e79403906cf8">&#9670;&nbsp;</a></span>VanillaInventoryLastCoinSlot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventoryLastCoinSlot = 53</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00025">25</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9b17d4b1b25798cdbca1339877154d74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b17d4b1b25798cdbca1339877154d74">&#9670;&nbsp;</a></span>VanillaInventoryLastMainSlot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventoryLastMainSlot = 49</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00023">23</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="abeb5c3837b2352d370d6afdb6cfafad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeb5c3837b2352d370d6afdb6cfafad3">&#9670;&nbsp;</a></span>VanillaInventoryMainSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventoryMainSize = 40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a08b430f9af6e0fd15edf108caa1f739b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b430f9af6e0fd15edf108caa1f739b">&#9670;&nbsp;</a></span>VanillaInventorySelectedSlot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventorySelectedSlot = 58</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00029">29</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a96d2ab24268f57344c6e485068f857aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96d2ab24268f57344c6e485068f857aa">&#9670;&nbsp;</a></span>VanillaInventorySize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventorySize = 58</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Players/<a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

@@ -1,6 +1,8 @@
 var searchData=
 [
+  ['basefolder',['BaseFolder',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a9dda480b8c7f6e7377fd862f7eb02b94',1,'HamstarHelpers::Helpers::Misc::ModCustomDataFileHelpers']]],
   ['binaryreaderextensions',['BinaryReaderExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
+  ['bloodmoon',['BloodMoon',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da7ce38b6c90a9d12ada855c5b8d395987',1,'HamstarHelpers::Helpers::NPCs']]],
   ['bossdataentry',['BossDataEntry',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html',1,'HamstarHelpers::Services::GameData']]],
   ['buffhelpers',['BuffHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buffidentityhelpers',['BuffIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_identity_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],

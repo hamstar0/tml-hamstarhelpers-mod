@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['readonlydictionaryofsets',['ReadOnlyDictionaryOfSets',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_dictionary_of_sets.html',1,'HamstarHelpers::Components::DataStructures']]],
-  ['readonlydictionaryofsets_3c_20string_2c_20int_20_3e',['ReadOnlyDictionaryOfSets&lt; string, int &gt;',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_dictionary_of_sets.html',1,'HamstarHelpers::Components::DataStructures']]],
-  ['readonlyset',['ReadOnlySet',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html',1,'HamstarHelpers::Components::DataStructures']]],
-  ['readonlyset_3c_20int_20_3e',['ReadOnlySet&lt; int &gt;',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html',1,'HamstarHelpers::Components::DataStructures']]],
-  ['recipegrouphelpers',['RecipeGroupHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html',1,'HamstarHelpers::Helpers::Recipes']]],
-  ['recipehack',['RecipeHack',['../class_hamstar_helpers_1_1_services_1_1_recipe_hack_1_1_recipe_hack.html',1,'HamstarHelpers::Services::RecipeHack']]],
-  ['recipehelpers',['RecipeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers.html',1,'HamstarHelpers::Helpers::Recipes']]],
-  ['recipeidentityhelpers',['RecipeIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_identity_helpers.html',1,'HamstarHelpers::Helpers::Recipes']]],
-  ['reflectionhelpers',['ReflectionHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html',1,'HamstarHelpers::Helpers::DotNET::Reflection']]]
+  ['server',['Server',['../class_hamstar_helpers_1_1_services_1_1_server_1_1_server.html',1,'HamstarHelpers::Services::Server']]],
+  ['simplemessage',['SimpleMessage',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_message.html',1,'HamstarHelpers::Services::Messages']]],
+  ['simplestringcipher',['SimpleStringCipher',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_simple_string_cipher.html',1,'HamstarHelpers::Helpers::DotNET::Encoding']]],
+  ['steamhelpers',['SteamHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_steam_1_1_steam_helpers.html',1,'HamstarHelpers::Helpers::Steam']]],
+  ['streamhelpers',['StreamHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html',1,'HamstarHelpers::Helpers::DotNET']]],
+  ['streamprotocol',['StreamProtocol',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_stream_1_1_stream_protocol.html',1,'HamstarHelpers::Components::Protocols::Stream']]],
+  ['stringformattinghelpers',['StringFormattingHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html',1,'HamstarHelpers::Helpers::DotNET::Formatting']]],
+  ['systemhelpers',['SystemHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html',1,'HamstarHelpers::Helpers::DotNET']]]
 ];

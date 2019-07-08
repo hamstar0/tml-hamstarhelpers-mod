@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Players.PlayerHelpers Class Reference</div>  </div>
@@ -97,11 +99,445 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to players.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:acb85ff3779fa4bf6d4c3af36f14c2c51"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#acb85ff3779fa4bf6d4c3af36f14c2c51">ComputeImpendingFallDamage</a> (Player player)</td></tr>
+<tr class="memdesc:acb85ff3779fa4bf6d4c3af36f14c2c51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predicts impending fall damage amount for a given player at the current time (if any).  <a href="#acb85ff3779fa4bf6d4c3af36f14c2c51">More...</a><br /></td></tr>
+<tr class="separator:acb85ff3779fa4bf6d4c3af36f14c2c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d22e8084900c77460eb8b1917d15977"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a9d22e8084900c77460eb8b1917d15977">LooselyAssessPower</a> (Player player)</td></tr>
+<tr class="memdesc:a9d22e8084900c77460eb8b1917d15977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loosely assesses player's relative level of power. Factors include appraisals of inventory items, player's defense, and player's life.  <a href="#a9d22e8084900c77460eb8b1917d15977">More...</a><br /></td></tr>
+<tr class="separator:a9d22e8084900c77460eb8b1917d15977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce28fdb619836839b5a905b8d1c80f2"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a4ce28fdb619836839b5a905b8d1c80f2">IsIncapacitated</a> (Player player, bool freedomNeeded=false, bool armsNeeded=false, bool sightNeeded=false, bool sanityNeeded=false)</td></tr>
+<tr class="memdesc:a4ce28fdb619836839b5a905b8d1c80f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if player counts as 'incapacitated'.  <a href="#a4ce28fdb619836839b5a905b8d1c80f2">More...</a><br /></td></tr>
+<tr class="separator:a4ce28fdb619836839b5a905b8d1c80f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b62ad6330d175f82c63925a87c33732"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a3b62ad6330d175f82c63925a87c33732">RawHurt</a> (Player player, PlayerDeathReason deathReason, int damage, int direction, bool pvp=false, bool quiet=false, bool crit=false)</td></tr>
+<tr class="memdesc:a3b62ad6330d175f82c63925a87c33732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply armor-bypassing damage to player, killing if needed.  <a href="#a3b62ad6330d175f82c63925a87c33732">More...</a><br /></td></tr>
+<tr class="separator:a3b62ad6330d175f82c63925a87c33732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08bca72ffe2572ae0409d3107a41e5f7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a08bca72ffe2572ae0409d3107a41e5f7">KillWithPermadeath</a> (Player player, string deathMsg)</td></tr>
+<tr class="memdesc:a08bca72ffe2572ae0409d3107a41e5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills a player permanently (as if hardcore mode).  <a href="#a08bca72ffe2572ae0409d3107a41e5f7">More...</a><br /></td></tr>
+<tr class="separator:a08bca72ffe2572ae0409d3107a41e5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cb3b3ca216055fad6241dceefc4e958"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a9cb3b3ca216055fad6241dceefc4e958">FullVanillaReset</a> (Player player)</td></tr>
+<tr class="memdesc:a9cb3b3ca216055fad6241dceefc4e958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a player back to (vanilla) factory defaults.  <a href="#a9cb3b3ca216055fad6241dceefc4e958">More...</a><br /></td></tr>
+<tr class="separator:a9cb3b3ca216055fad6241dceefc4e958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1c1870e9e503db990fe60d95d924d0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a1e1c1870e9e503db990fe60d95d924d0">LockdownPlayerPerTick</a> (Player player)</td></tr>
+<tr class="memdesc:a1e1c1870e9e503db990fe60d95d924d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">For just the current game tick, the player is under complete lockdown: No movement, actions, or damage taken.  <a href="#a1e1c1870e9e503db990fe60d95d924d0">More...</a><br /></td></tr>
+<tr class="separator:a1e1c1870e9e503db990fe60d95d924d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a67c67d2c3b64e39c6150b934131ee7ed"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a67c67d2c3b64e39c6150b934131ee7ed">InventorySize</a> = 58</td></tr>
+<tr class="separator:a67c67d2c3b64e39c6150b934131ee7ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ca30dfd5f70bfd67030482efb2901ce"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a6ca30dfd5f70bfd67030482efb2901ce">InventoryHotbarSize</a> = 10</td></tr>
+<tr class="separator:a6ca30dfd5f70bfd67030482efb2901ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abab4dfb9b09d8a374978addae679534f"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#abab4dfb9b09d8a374978addae679534f">InventoryMainSize</a> = 40</td></tr>
+<tr class="separator:abab4dfb9b09d8a374978addae679534f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to players. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="acb85ff3779fa4bf6d4c3af36f14c2c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb85ff3779fa4bf6d4c3af36f14c2c51">&#9670;&nbsp;</a></span>ComputeImpendingFallDamage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Helpers.Players.PlayerHelpers.ComputeImpendingFallDamage </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Predicts impending fall damage amount for a given player at the current time (if any). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00030">30</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9cb3b3ca216055fad6241dceefc4e958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cb3b3ca216055fad6241dceefc4e958">&#9670;&nbsp;</a></span>FullVanillaReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Players.PlayerHelpers.FullVanillaReset </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets a player back to (vanilla) factory defaults. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00186">186</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4ce28fdb619836839b5a905b8d1c80f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ce28fdb619836839b5a905b8d1c80f2">&#9670;&nbsp;</a></span>IsIncapacitated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Players.PlayerHelpers.IsIncapacitated </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>freedomNeeded</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>armsNeeded</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sightNeeded</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>sanityNeeded</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if player counts as 'incapacitated'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">freedomNeeded</td><td>Pulley, grappling, or minecarting count as incapacitation. Default <code>false</code>.</td></tr>
+    <tr><td class="paramname">armsNeeded</td><td>Use of arms (e.g. no Cursed debuff) count as incapacitation. Default <code>false</code>.</td></tr>
+    <tr><td class="paramname">sightNeeded</td><td>Visual occlusion (e.g. Blackout debuff) counts as incapacitation. Default <code>false</code>.</td></tr>
+    <tr><td class="paramname">sanityNeeded</td><td>Control complications (e.g. Confused debuff) counts as incapacition. Default <code>false</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00127">127</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a08bca72ffe2572ae0409d3107a41e5f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08bca72ffe2572ae0409d3107a41e5f7">&#9670;&nbsp;</a></span>KillWithPermadeath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Players.PlayerHelpers.KillWithPermadeath </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>deathMsg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kills a player permanently (as if hardcore mode). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">deathMsg</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00166">166</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1e1c1870e9e503db990fe60d95d924d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e1c1870e9e503db990fe60d95d924d0">&#9670;&nbsp;</a></span>LockdownPlayerPerTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Players.PlayerHelpers.LockdownPlayerPerTick </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>For just the current game tick, the player is under complete lockdown: No movement, actions, or damage taken. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00240">240</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9d22e8084900c77460eb8b1917d15977"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d22e8084900c77460eb8b1917d15977">&#9670;&nbsp;</a></span>LooselyAssessPower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float HamstarHelpers.Helpers.Players.PlayerHelpers.LooselyAssessPower </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Loosely assesses player's relative level of power. Factors include appraisals of inventory items, player's defense, and player's life. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00075">75</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3b62ad6330d175f82c63925a87c33732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b62ad6330d175f82c63925a87c33732">&#9670;&nbsp;</a></span>RawHurt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Players.PlayerHelpers.RawHurt </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PlayerDeathReason&#160;</td>
+          <td class="paramname"><em>deathReason</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>damage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>pvp</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>quiet</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>crit</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply armor-bypassing damage to player, killing if needed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">deathReason</td><td></td></tr>
+    <tr><td class="paramname">damage</td><td></td></tr>
+    <tr><td class="paramname">direction</td><td></td></tr>
+    <tr><td class="paramname">pvp</td><td></td></tr>
+    <tr><td class="paramname">quiet</td><td></td></tr>
+    <tr><td class="paramname">crit</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00151">151</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a6ca30dfd5f70bfd67030482efb2901ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ca30dfd5f70bfd67030482efb2901ce">&#9670;&nbsp;</a></span>InventoryHotbarSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerHelpers.InventoryHotbarSize = 10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="abab4dfb9b09d8a374978addae679534f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abab4dfb9b09d8a374978addae679534f">&#9670;&nbsp;</a></span>InventoryMainSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerHelpers.InventoryMainSize = 40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a67c67d2c3b64e39c6150b934131ee7ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c67d2c3b64e39c6150b934131ee7ed">&#9670;&nbsp;</a></span>InventorySize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerHelpers.InventorySize = 58</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Players/<a class="el" href="_player_helpers_8cs_source.html">PlayerHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

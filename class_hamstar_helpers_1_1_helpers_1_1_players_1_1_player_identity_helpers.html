@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Players.PlayerIdentityHelpers Class Reference</div>  </div>
@@ -97,11 +99,251 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to unique player identification.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ab282c2befe9f30e00121e27bd308b7a0"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#ab282c2befe9f30e00121e27bd308b7a0">GetUniqueId</a> ()</td></tr>
+<tr class="memdesc:ab282c2befe9f30e00121e27bd308b7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a code to uniquely identify the current player.  <a href="#ab282c2befe9f30e00121e27bd308b7a0">More...</a><br /></td></tr>
+<tr class="separator:ab282c2befe9f30e00121e27bd308b7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19d6ec1e7f793c7b612caedf9ed93e1d"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a19d6ec1e7f793c7b612caedf9ed93e1d">GetUniqueId</a> (Player player)</td></tr>
+<tr class="memdesc:a19d6ec1e7f793c7b612caedf9ed93e1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a code to uniquely identify a given player. These are synced to the server in multiplayer.  <a href="#a19d6ec1e7f793c7b612caedf9ed93e1d">More...</a><br /></td></tr>
+<tr class="separator:a19d6ec1e7f793c7b612caedf9ed93e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad492c67fa4554a7fad991666a43b8f95"><td class="memItemLeft" align="right" valign="top">static Player&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#ad492c67fa4554a7fad991666a43b8f95">GetPlayerByUniqueId</a> (string uid)</td></tr>
+<tr class="memdesc:ad492c67fa4554a7fad991666a43b8f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an active player by a given unique id (if present).  <a href="#ad492c67fa4554a7fad991666a43b8f95">More...</a><br /></td></tr>
+<tr class="separator:ad492c67fa4554a7fad991666a43b8f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02245dc3b7bbc683e1ceb34a2e4e131b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a02245dc3b7bbc683e1ceb34a2e4e131b">GetVanillaSnapshotHash</a> (Player player, bool noContext, bool looksMatter)</td></tr>
+<tr class="memdesc:a02245dc3b7bbc683e1ceb34a2e4e131b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a unique code for a player's current state. Useful for detecting state changes.  <a href="#a02245dc3b7bbc683e1ceb34a2e4e131b">More...</a><br /></td></tr>
+<tr class="separator:a02245dc3b7bbc683e1ceb34a2e4e131b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a67875ec7091bd9b42308213b138a270d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a67875ec7091bd9b42308213b138a270d">InventorySize</a> = 58</td></tr>
+<tr class="separator:a67875ec7091bd9b42308213b138a270d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51689dc9041511f5b11143c5b0c91a35"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a51689dc9041511f5b11143c5b0c91a35">InventoryHotbarSize</a> = 10</td></tr>
+<tr class="separator:a51689dc9041511f5b11143c5b0c91a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11d3ef2300784a8aa5f475ce8f586400"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a11d3ef2300784a8aa5f475ce8f586400">InventoryMainSize</a> = 40</td></tr>
+<tr class="separator:a11d3ef2300784a8aa5f475ce8f586400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to unique player identification. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad492c67fa4554a7fad991666a43b8f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad492c67fa4554a7fad991666a43b8f95">&#9670;&nbsp;</a></span>GetPlayerByUniqueId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Player HamstarHelpers.Helpers.Players.PlayerIdentityHelpers.GetPlayerByUniqueId </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>uid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets an active player by a given unique id (if present). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uid</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00065">65</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab282c2befe9f30e00121e27bd308b7a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab282c2befe9f30e00121e27bd308b7a0">&#9670;&nbsp;</a></span>GetUniqueId() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.Players.PlayerIdentityHelpers.GetUniqueId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a code to uniquely identify the current player. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00029">29</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a19d6ec1e7f793c7b612caedf9ed93e1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19d6ec1e7f793c7b612caedf9ed93e1d">&#9670;&nbsp;</a></span>GetUniqueId() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.Players.PlayerIdentityHelpers.GetUniqueId </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a code to uniquely identify a given player. These are synced to the server in multiplayer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00043">43</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a02245dc3b7bbc683e1ceb34a2e4e131b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02245dc3b7bbc683e1ceb34a2e4e131b">&#9670;&nbsp;</a></span>GetVanillaSnapshotHash()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Helpers.Players.PlayerIdentityHelpers.GetVanillaSnapshotHash </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>noContext</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>looksMatter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a unique code for a player's current state. Useful for detecting state changes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">noContext</td><td>Omits team, pvp state, and name.</td></tr>
+    <tr><td class="paramname">looksMatter</td><td>Includes appearance elements.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00091">91</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a51689dc9041511f5b11143c5b0c91a35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51689dc9041511f5b11143c5b0c91a35">&#9670;&nbsp;</a></span>InventoryHotbarSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerIdentityHelpers.InventoryHotbarSize = 10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a11d3ef2300784a8aa5f475ce8f586400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11d3ef2300784a8aa5f475ce8f586400">&#9670;&nbsp;</a></span>InventoryMainSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerIdentityHelpers.InventoryMainSize = 40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a67875ec7091bd9b42308213b138a270d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67875ec7091bd9b42308213b138a270d">&#9670;&nbsp;</a></span>InventorySize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Players.PlayerIdentityHelpers.InventorySize = 58</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_player_identity_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Players/<a class="el" href="_player_identity_helpers_8cs_source.html">PlayerIdentityHelpers.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Players/<a class="el" href="_player_identity_helpers___instance_8cs_source.html">PlayerIdentityHelpers_Instance.cs</a></li>
 </ul>

@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers Class Reference</div>  </div>
@@ -97,11 +98,223 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to unique player identification.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae2f518c2814500022e32d212a83113e6"><td class="memItemLeft" align="right" valign="top">static Item&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers.html#ae2f518c2814500022e32d212a83113e6">FindFirstOfPossessedItemFor</a> (Player player, ISet&lt; int &gt; itemTypes, bool includeBanks)</td></tr>
+<tr class="memdesc:ae2f518c2814500022e32d212a83113e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds first of any of a set of item types currently in the player's position.  <a href="#ae2f518c2814500022e32d212a83113e6">More...</a><br /></td></tr>
+<tr class="separator:ae2f518c2814500022e32d212a83113e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e65e1dbb645d481bb2dd9ab5d72cf24"><td class="memItemLeft" align="right" valign="top">static IDictionary&lt; int, KeyValuePair&lt; int, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers.html#a4e65e1dbb645d481bb2dd9ab5d72cf24">FindInventoryChanges</a> (Player player, KeyValuePair&lt; int, int &gt; prevMouseInfo, IDictionary&lt; int, KeyValuePair&lt; int, int &gt;&gt; prevInv)</td></tr>
+<tr class="memdesc:a4e65e1dbb645d481bb2dd9ab5d72cf24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find item changes in a given player's inventory between a previous snapshot.  <a href="#a4e65e1dbb645d481bb2dd9ab5d72cf24">More...</a><br /></td></tr>
+<tr class="separator:a4e65e1dbb645d481bb2dd9ab5d72cf24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecbfd1eefb664ea403e38bfd9b862c67"><td class="memItemLeft" align="right" valign="top">static Item&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers.html#aecbfd1eefb664ea403e38bfd9b862c67">GetCurrentAmmo</a> (Player player, Item weapon)</td></tr>
+<tr class="memdesc:aecbfd1eefb664ea403e38bfd9b862c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current ammo item of a given player expected to be in use by a given weapon item.  <a href="#aecbfd1eefb664ea403e38bfd9b862c67">More...</a><br /></td></tr>
+<tr class="separator:aecbfd1eefb664ea403e38bfd9b862c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8b1a657400216ea6c088a4892225085"><td class="memItemLeft" align="right" valign="top">static ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers.html#ab8b1a657400216ea6c088a4892225085">UnusedInventorySlots</a> (Player player)</td></tr>
+<tr class="memdesc:ab8b1a657400216ea6c088a4892225085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all unoccupied inventory slot indices.  <a href="#ab8b1a657400216ea6c088a4892225085">More...</a><br /></td></tr>
+<tr class="separator:ab8b1a657400216ea6c088a4892225085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to unique player identification. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_finder_helpers_8cs_source.html#l00008">8</a> of file <a class="el" href="_player_item_finder_helpers_8cs_source.html">PlayerItemFinderHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_player_item_finder_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_player_item_finder_helpers_8cs_source.html">PlayerItemFinderHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae2f518c2814500022e32d212a83113e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f518c2814500022e32d212a83113e6">&#9670;&nbsp;</a></span>FindFirstOfPossessedItemFor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Item HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers.FindFirstOfPossessedItemFor </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ISet&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>itemTypes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>includeBanks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds first of any of a set of item types currently in the player's position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">itemTypes</td><td></td></tr>
+    <tr><td class="paramname">includeBanks</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_finder_helpers_8cs_source.html#l00018">18</a> of file <a class="el" href="_player_item_finder_helpers_8cs_source.html">PlayerItemFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4e65e1dbb645d481bb2dd9ab5d72cf24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e65e1dbb645d481bb2dd9ab5d72cf24">&#9670;&nbsp;</a></span>FindInventoryChanges()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IDictionary&lt;int, KeyValuePair&lt;int, int&gt; &gt; HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers.FindInventoryChanges </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">KeyValuePair&lt; int, int &gt;&#160;</td>
+          <td class="paramname"><em>prevMouseInfo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IDictionary&lt; int, KeyValuePair&lt; int, int &gt;&gt;&#160;</td>
+          <td class="paramname"><em>prevInv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find item changes in a given player's inventory between a previous snapshot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">prevMouseInfo</td><td>Mouse item type and stack size.</td></tr>
+    <tr><td class="paramname">prevInv</td><td>Map of inventory slots and their item types and sizes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Map of inventory slots with changes and their item types and sizes. Mouse items count as the -1 slot.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_finder_helpers_8cs_source.html#l00060">60</a> of file <a class="el" href="_player_item_finder_helpers_8cs_source.html">PlayerItemFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aecbfd1eefb664ea403e38bfd9b862c67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecbfd1eefb664ea403e38bfd9b862c67">&#9670;&nbsp;</a></span>GetCurrentAmmo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Item HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers.GetCurrentAmmo </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Item&#160;</td>
+          <td class="paramname"><em>weapon</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current ammo item of a given player expected to be in use by a given weapon item. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">weapon</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_finder_helpers_8cs_source.html#l00092">92</a> of file <a class="el" href="_player_item_finder_helpers_8cs_source.html">PlayerItemFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab8b1a657400216ea6c088a4892225085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8b1a657400216ea6c088a4892225085">&#9670;&nbsp;</a></span>UnusedInventorySlots()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ISet&lt;int&gt; HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers.UnusedInventorySlots </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all unoccupied inventory slot indices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_finder_helpers_8cs_source.html#l00120">120</a> of file <a class="el" href="_player_item_finder_helpers_8cs_source.html">PlayerItemFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Players/<a class="el" href="_player_item_finder_helpers_8cs_source.html">PlayerItemFinderHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Net.WebConnectionHelpers Class Reference</div>  </div>
@@ -97,11 +98,246 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to connecting to the web.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a7baa48bc7858ee5711efa1c689432841"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a7baa48bc7858ee5711efa1c689432841">MakePostRequestAsync</a> (string url, string jsonData, Action&lt; Exception, string &gt; onError, Action&lt; bool, string &gt; onCompletion=null)</td></tr>
+<tr class="memdesc:a7baa48bc7858ee5711efa1c689432841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a POST request to a website asynchronously.  <a href="#a7baa48bc7858ee5711efa1c689432841">More...</a><br /></td></tr>
+<tr class="separator:a7baa48bc7858ee5711efa1c689432841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c26ddbef8902581c60d8959d90050e0"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a6c26ddbef8902581c60d8959d90050e0">MakePostRequest</a> (string url, string jsonData, out string output)</td></tr>
+<tr class="memdesc:a6c26ddbef8902581c60d8959d90050e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a POST request to a website. May tie up the current thread awaiting a response.  <a href="#a6c26ddbef8902581c60d8959d90050e0">More...</a><br /></td></tr>
+<tr class="separator:a6c26ddbef8902581c60d8959d90050e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6fe864a108e641c9a16869d2498082c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#ac6fe864a108e641c9a16869d2498082c">MakeGetRequestAsync</a> (string url, Action&lt; Exception, string &gt; onError, Action&lt; bool, string &gt; onCompletion=null)</td></tr>
+<tr class="memdesc:ac6fe864a108e641c9a16869d2498082c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a GET request to a website.  <a href="#ac6fe864a108e641c9a16869d2498082c">More...</a><br /></td></tr>
+<tr class="separator:ac6fe864a108e641c9a16869d2498082c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523bd15783c6b2f9a50e9a1c58e551da"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a523bd15783c6b2f9a50e9a1c58e551da">MakeGetRequest</a> (string url, out string output)</td></tr>
+<tr class="memdesc:a523bd15783c6b2f9a50e9a1c58e551da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a GET request to a website. May tie up the current thread awaiting a response.  <a href="#a523bd15783c6b2f9a50e9a1c58e551da">More...</a><br /></td></tr>
+<tr class="separator:a523bd15783c6b2f9a50e9a1c58e551da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to connecting to the web. </p>
 
-<p class="definition">Definition at line <a class="el" href="_web_connection_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_web_connection_helpers_8cs_source.html">WebConnectionHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_web_connection_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_web_connection_helpers_8cs_source.html">WebConnectionHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a523bd15783c6b2f9a50e9a1c58e551da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a523bd15783c6b2f9a50e9a1c58e551da">&#9670;&nbsp;</a></span>MakeGetRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakeGetRequest </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out string&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes a GET request to a website. May tie up the current thread awaiting a response. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">url</td><td>Website URL.</td></tr>
+    <tr><td class="paramname">output</td><td>Data returned from the website.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if response code is 400; success.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_web_connection_helpers_8cs_source.html#l00121">121</a> of file <a class="el" href="_web_connection_helpers_8cs_source.html">WebConnectionHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac6fe864a108e641c9a16869d2498082c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6fe864a108e641c9a16869d2498082c">&#9670;&nbsp;</a></span>MakeGetRequestAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakeGetRequestAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; Exception, string &gt;&#160;</td>
+          <td class="paramname"><em>onError</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; bool, string &gt;&#160;</td>
+          <td class="paramname"><em>onCompletion</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes a GET request to a website. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">url</td><td>Website URL.</td></tr>
+    <tr><td class="paramname">onError</td><td>Called on error. Receives an <code>Exception</code> and the site's output (if any).</td></tr>
+    <tr><td class="paramname">onCompletion</td><td>Called regardless of success. Receives processed output (if any) from <code>onSuccess</code>, and a boolean indicating if the site request succeeded.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_web_connection_helpers_8cs_source.html#l00090">90</a> of file <a class="el" href="_web_connection_helpers_8cs_source.html">WebConnectionHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6c26ddbef8902581c60d8959d90050e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c26ddbef8902581c60d8959d90050e0">&#9670;&nbsp;</a></span>MakePostRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakePostRequest </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>jsonData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out string&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes a POST request to a website. May tie up the current thread awaiting a response. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">url</td><td>Website URL.</td></tr>
+    <tr><td class="paramname">jsonData</td><td>JSON-formatted string data.</td></tr>
+    <tr><td class="paramname">output</td><td>Data returned from the website.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if response code is 400; success.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_web_connection_helpers_8cs_source.html#l00054">54</a> of file <a class="el" href="_web_connection_helpers_8cs_source.html">WebConnectionHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7baa48bc7858ee5711efa1c689432841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7baa48bc7858ee5711efa1c689432841">&#9670;&nbsp;</a></span>MakePostRequestAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakePostRequestAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>jsonData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; Exception, string &gt;&#160;</td>
+          <td class="paramname"><em>onError</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; bool, string &gt;&#160;</td>
+          <td class="paramname"><em>onCompletion</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends a POST request to a website asynchronously. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">url</td><td>Website URL.</td></tr>
+    <tr><td class="paramname">jsonData</td><td>JSON-formatted string data.</td></tr>
+    <tr><td class="paramname">onError</td><td>Called on error. Receives an <code>Exception</code> and the site's output (if any).</td></tr>
+    <tr><td class="paramname">onCompletion</td><td>Called regardless of success. Receives processed output (if any) from <code>onSuccess</code>, and a boolean indicating if the site request succeeded.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_web_connection_helpers_8cs_source.html#l00024">24</a> of file <a class="el" href="_web_connection_helpers_8cs_source.html">WebConnectionHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Net/<a class="el" href="_web_connection_helpers_8cs_source.html">WebConnectionHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->
