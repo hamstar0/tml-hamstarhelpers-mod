@@ -11,8 +11,8 @@ using System.Net;
 namespace HamstarHelpers.Internals.WebRequests {
 	/// @private
 	partial class GetModTags {
-		private static void RetrieveAllModTagsAsync( Action<IDictionary<string, ISet<string>>, bool> onCompletion ) {
-			Action<Exception, string> onGetFail = ( e, output ) => {
+		private static void RetrieveAllModTagsAsync( Action<bool, ModTagsDatabase> onCompletion ) {
+			Action<Exception, string> onError = ( e, output ) => {
 				if( e is JsonReaderException ) {
 					LogHelpers.Alert( "Bad JSON: " + (output.Length > 256 ? output.Substring(0, 256) : output) );
 				} else if( e is WebException || e is NullReferenceException ) {
@@ -22,23 +22,32 @@ namespace HamstarHelpers.Internals.WebRequests {
 				}
 			};
 
-			Action<IDictionary<string, ISet<string>>, bool> onGetCompletion = ( responseVal, found ) => {
-				if( responseVal == null ) {
-					responseVal = new Dictionary<string, ISet<string>>();
+			Action<bool, string> onWrappedCompletion = ( success, jsonStr ) => {
+				ModTagsDatabase modTagSet;
+
+				if( success ) {
+					try {
+						success = GetModTags.HandleModTagsReceipt( jsonStr, out modTagSet );
+					} catch( Exception e ) {
+						modTagSet = new ModTagsDatabase();
+						onError( e, jsonStr );
+					}
+				} else {
+					modTagSet = new ModTagsDatabase();
 				}
 
-				onCompletion( responseVal, found );
+				onCompletion( success, modTagSet );
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, GetModTags.HandleModTagsReceipt, onGetFail, onGetCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, onError, onWrappedCompletion );
 		}
 
 
-		private static Tuple<IDictionary<string, ISet<string>>, bool> HandleModTagsReceipt( string output ) {
+		private static bool HandleModTagsReceipt( string jsonData, out ModTagsDatabase modTagsDb ) {
 			bool found = false;
-			IDictionary<string, ISet<string>> modTagSet = new Dictionary<string, ISet<string>>();
+			modTagsDb = new ModTagsDatabase();
 
-			JObject respJson = JObject.Parse( output );
+			JObject respJson = JObject.Parse( jsonData );
 
 			if( respJson.Count > 0 ) {
 				JToken tagListToken = respJson.SelectToken( "modlist" );
@@ -59,12 +68,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 					string modTagsRaw = modTagsToken.ToObject<string>();
 					string[] modTags = modTagsRaw.Split( ',' );
 
-					modTagSet[modName] = new HashSet<string>( modTags );
+					modTagsDb[ modName ] = new HashSet<string>( modTags );
 				}
 				found = true;
 			}
 
-			return Tuple.Create( modTagSet, found );
+			return found;
 		}
 	}
 }

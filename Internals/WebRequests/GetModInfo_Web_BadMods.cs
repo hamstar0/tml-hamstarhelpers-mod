@@ -3,50 +3,59 @@ using HamstarHelpers.Helpers.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
 	/// @private
 	partial class GetModInfo {
-		private static void RetrieveBadModsAsync( Action<IDictionary<string, int>, bool> onSuccess ) {
-			Action<Exception, string> onFail = ( e, output ) => {
+		private static void RetrieveBadModsAsync( Action<bool, BadModsDatabase> onCompletion ) {
+			Action<Exception, string> onError = ( e, jsonStr ) => {
 				if( e is JsonReaderException ) {
-					LogHelpers.Alert( "Bad JSON: " + ( output.Length > 256 ? output.Substring( 0, 256 ) : output ) );
+					LogHelpers.Alert( "Bad JSON: " + ( jsonStr.Length > 256 ? jsonStr.Substring( 0, 256 ) : jsonStr ) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( ( output ?? "" ) + " - " + e.Message );
+					LogHelpers.Alert( ( jsonStr ?? "" ) + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( ( output ?? "" ) + " - " + e.ToString() );
+					LogHelpers.Alert( ( jsonStr ?? "" ) + " - " + e.ToString() );
 				}
 			};
 
-			Action<IDictionary<string, int>, bool> onCompletion = ( responseVal, success ) => {
-				if( responseVal == null ) {
-					responseVal = new Dictionary<string, int>();
+			Action<bool, string> onWrappedCompletion = ( success, jsonStr ) => {
+				BadModsDatabase badModsDb;
+
+				if( success ) {
+					try {
+						success = GetModInfo.HandleBadModsReceipt( jsonStr, out badModsDb );
+					} catch( Exception e ) {
+						badModsDb = new BadModsDatabase();
+						onError( e, jsonStr );
+					}
+				} else {
+					badModsDb = new BadModsDatabase();
 				}
 
-				onSuccess( responseVal, success );
+				onCompletion( success, badModsDb );
 			};
 			
-			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, GetModInfo.HandleBadModsReceipt, onFail, onCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, onError, onWrappedCompletion );
 		}
 
 
-		private static Tuple<IDictionary<string, int>, bool> HandleBadModsReceipt( string output ) {
-			IDictionary<string, int> badMods = new Dictionary<string, int>();
+		private static bool HandleBadModsReceipt( string jsonStr, out BadModsDatabase badModsDb ) {
+			badModsDb = new BadModsDatabase();
 
-			JObject respJson = JObject.Parse( output );
-			bool found = respJson.Count > 0;
+			JObject respJson = JObject.Parse( jsonStr );
 
-			if( found ) {
-				badMods = respJson.ToObject<Dictionary<string, int>>();
-				if( badMods == null ) {
-					throw new NullReferenceException( "No bad mods found" );
-				}
+			if( respJson.Count == 0 ) {
+				return false;
 			}
 
-			return Tuple.Create( badMods, found );
+			badModsDb = respJson.ToObject<BadModsDatabase>();
+			if( badModsDb == null ) {
+				throw new NullReferenceException( "No bad mods found" );
+			}
+
+			return true;
 		}
 	}
 }

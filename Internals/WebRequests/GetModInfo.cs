@@ -3,19 +3,33 @@ using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Services.PromisedHooks;
 using HamstarHelpers.Services.Timers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Threading;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	class BasicModInfoDatabase : Dictionary<string, BasicModInfo>,
+		IDictionary<string, BasicModInfo>, ICollection<KeyValuePair<string, BasicModInfo>>, IDictionary, ICollection,
+		IReadOnlyDictionary<string, BasicModInfo>, IReadOnlyCollection<KeyValuePair<string, BasicModInfo>>,
+		IEnumerable<KeyValuePair<string, BasicModInfo>>, IEnumerable, ISerializable, IDeserializationCallback { }
+	class BadModsDatabase : Dictionary<string, int>,
+		IDictionary<string, int>, ICollection<KeyValuePair<string, int>>, IDictionary, ICollection, IReadOnlyDictionary<string, int>,
+		IReadOnlyCollection<KeyValuePair<string, int>>, IEnumerable<KeyValuePair<string, int>>, IEnumerable, ISerializable,
+		IDeserializationCallback { }
+
+
+
+
 	/// @private
 	class ModInfoListPromiseArguments : PromiseArguments {
 		public bool Found;
-		public IDictionary<string, BasicModInfo> ModInfo;
+		public BasicModInfoDatabase ModInfo;
 
 		public ModInfoListPromiseArguments() {
 			this.Found = false;
-			this.ModInfo = new Dictionary<string, BasicModInfo>();
+			this.ModInfo = new BasicModInfoDatabase();
 		}
 	}
 
@@ -73,7 +87,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			var mymod = ModHelpersMod.Instance;
 			var modInfoArgs = new ModInfoListPromiseArguments();
 
-			GetModInfo.RetrieveAllModInfoAsync( ( modInfo, found ) => {
+			GetModInfo.RetrieveAllModInfoAsync( ( found, modInfo ) => {
 				modInfoArgs.ModInfo = modInfo;
 				modInfoArgs.Found = found;
 
@@ -89,7 +103,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				Thread.Sleep( 2000 );
 
 				if( modInfoArgs2.Found ) {
-					GetModInfo.RetrieveBadModsAsync( ( badMods, found ) => {
+					GetModInfo.RetrieveBadModsAsync( ( found, badMods ) => {
 						if( found ) {
 							GetModInfo.RegisterBadMods( modInfoArgs2, badMods );
 						}
@@ -102,7 +116,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			} );
 		}
 
-		private static void RegisterBadMods( ModInfoListPromiseArguments modInfoArgs, IDictionary<string, int> badMods ) {
+		private static void RegisterBadMods( ModInfoListPromiseArguments modInfoArgs, BadModsDatabase badMods ) {
 			foreach( var kv in modInfoArgs.ModInfo ) {
 				string modName = kv.Key;
 				BasicModInfo modInfo = kv.Value;

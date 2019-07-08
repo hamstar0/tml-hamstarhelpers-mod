@@ -1,11 +1,23 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.PromisedHooks;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Threading;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
+	/// @private
+	class ModTagsDatabase : Dictionary<string, ISet<string>>,
+		IDictionary<string, ISet<string>>, ICollection<KeyValuePair<string, ISet<string>>>, IDictionary, ICollection,
+		IReadOnlyDictionary<string, ISet<string>>, IReadOnlyCollection<KeyValuePair<string, ISet<string>>>,
+		IEnumerable<KeyValuePair<string, ISet<string>>>, IEnumerable, ISerializable, IDeserializationCallback { }
+
+
+
+
+
 	/// @private
 	class ModTagsPromiseArguments : PromiseArguments {
 		public bool Found;
@@ -15,7 +27,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 
-		internal void SetTagMods( IDictionary<string, ISet<string>> modTags ) {
+		internal void SetTagMods( ModTagsDatabase modTags ) {
 			this.ModTags = modTags;
 			this.TagMods = new Dictionary<string, ISet<string>>();
 
@@ -38,7 +50,6 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-	
 	partial class GetModTags {
 		private readonly static object MyLock = new object();
 
@@ -70,12 +81,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 						Found = false
 					};
 					
-					GetModTags.RetrieveAllModTagsAsync( ( modTags, found ) => {
+					GetModTags.RetrieveAllModTagsAsync( ( success, modTags ) => {
 						try {
-							if( found ) {
+							if( success ) {
 								args.SetTagMods( modTags );
 							}
-							args.Found = found;
+							args.Found = success;
 
 							PromisedHooks.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
 						} catch( Exception e ) {

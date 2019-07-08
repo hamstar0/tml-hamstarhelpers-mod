@@ -32,9 +32,9 @@ namespace HamstarHelpers.Helpers.Net {
 		
 
 		private void LoadIPAsync() {
-			Func<string, Tuple<object, bool>> onResponse = ( string output ) => {
+			Action<bool, string> onCompletion = ( success, output ) => {
 				if( this.PublicIP != null ) {
-					return null;
+					return;
 				}
 
 				string[] a = output.Split( ':' );
@@ -43,8 +43,6 @@ namespace HamstarHelpers.Helpers.Net {
 				string a4 = a3[0];
 
 				this.PublicIP = a4;
-
-				return Tuple.Create( (object)null, true );
 			};
 
 			Action<Exception, string> onFail = delegate ( Exception e, string output ) {
@@ -55,7 +53,7 @@ namespace HamstarHelpers.Helpers.Net {
 				}
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync<object>( "http://checkip.dyndns.org/", onResponse, onFail );
+			WebConnectionHelpers.MakeGetRequestAsync( "http://checkip.dyndns.org/", onFail, onCompletion );
 			//NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", onSuccess, onFail );
 			//using( WebClient webClient = new WebClient() ) {
 			//	this.PublicIP = webClient.DownloadString( "http://ifconfig.me/ip" );

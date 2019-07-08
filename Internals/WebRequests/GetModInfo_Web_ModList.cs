@@ -13,71 +13,81 @@ using System.Net;
 namespace HamstarHelpers.Internals.WebRequests {
 	/// @private
 	partial class GetModInfo {
-		private static void RetrieveAllModInfoAsync( Action<IDictionary<string, BasicModInfo>, bool> onSuccess ) {
-			Action<Exception, string> onFail = (e, output) => {
+		private static void RetrieveAllModInfoAsync( Action<bool, BasicModInfoDatabase> onCompletion ) {
+			Action<Exception, string> onError = (e, jsonStr) => {
 				if( e is JsonReaderException ) {
-					LogHelpers.Alert( "Bad JSON: " + ( output.Length > 256 ? output.Substring( 0, 256 ) : output ) );
+					LogHelpers.Alert( "Bad JSON: " + ( jsonStr.Length > 256 ? jsonStr.Substring( 0, 256 ) : jsonStr ) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( (output ?? "") + " - " + e.Message );
+					LogHelpers.Alert( (jsonStr ?? "") + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( (output ?? "") + " - " + e.ToString() );
+					LogHelpers.Alert( (jsonStr ?? "") + " - " + e.ToString() );
 				}
 			};
 
-			Action<IDictionary<string, BasicModInfo>, bool> onCompletion = (responseVal, success) => {
-				if( responseVal == null ) {
-					responseVal = new Dictionary<string, BasicModInfo>();
+			Action<bool, string> onWrappedCompletion = ( success, jsonStr ) => {
+				BasicModInfoDatabase modInfoDb;
+
+				if( success ) {
+					try {
+						success = GetModInfo.HandleModInfoReceipt( jsonStr, out modInfoDb );
+					} catch( Exception e ) {
+						modInfoDb = new BasicModInfoDatabase();
+						onError( e, jsonStr );
+					}
+				} else {
+					modInfoDb = new BasicModInfoDatabase();
 				}
-				onSuccess( responseVal, success );
+
+				onCompletion( success, modInfoDb );
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.ModInfoUrl, GetModInfo.HandleModInfoReceipt, onFail, onCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.ModInfoUrl, onError, onWrappedCompletion );
 		}
 
 
-		private static Tuple<IDictionary<string, BasicModInfo>, bool> HandleModInfoReceipt( string output ) {
-			IDictionary<string, BasicModInfo> modInfos = new Dictionary<string, BasicModInfo>();
+		private static bool HandleModInfoReceipt( string jsonStr, out BasicModInfoDatabase modInfoDb ) {
+			modInfoDb = new BasicModInfoDatabase();
 
-			JObject respJson = JObject.Parse( output );
-			bool found = respJson.Count > 0;
-
-			if( found ) {
-				JToken modListToken = respJson.SelectToken( "modlist" );
-				if( modListToken == null ) {
-					throw new NullReferenceException( "No modlist" );
-				}
-
-				JToken[] modList = modListToken.ToArray();
-
-				foreach( JToken modEntry in modList ) {
-					JToken modNameToken = modEntry.SelectToken( "name" );
-					JToken modDisplaynameToken = modEntry.SelectToken( "displayname" );
-					JToken modAuthorToken = modEntry.SelectToken( "author" );
-					JToken modVersRawToken = modEntry.SelectToken( "version" );
-					//JToken modDescRawToken = modEntry.SelectToken( "hasdescription" );
-					//JToken modHomepageRawToken = modEntry.SelectToken( "homepage" );
-
-					if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null || modAuthorToken == null
-							/*|| hasDescRawToken == null || modHomepageRawToken == null*/ ) {
-						continue;
-					}
-
-					string modName = modNameToken.ToObject<string>();
-					string modDisplayName = modDisplaynameToken.ToObject<string>();
-					string modVersRaw = modVersRawToken.ToObject<string>();
-					//string modDesc = modDescRawToken?.ToObject<string>() ?? null;
-					//string modHomepage = modHomepageRawToken.ToObject<string>();
-
-					Version modVers = Version.Parse( modVersRaw.Substring( 1 ) );
-					IEnumerable<string> modAuthors = modAuthorToken.ToObject<string>()
-						.Split( ',' )
-						.SafeSelect( a => a.Trim() );
-
-					modInfos[modName] = new BasicModInfo( modDisplayName, modAuthors, modVers, null, null );    //modDesc, modHomepage
-				}
+			JObject respJson = JObject.Parse( jsonStr );
+			if( respJson.Count == 0 ) {
+				return false;
+			}
+			
+			JToken modListToken = respJson.SelectToken( "modlist" );
+			if( modListToken == null ) {
+				throw new NullReferenceException( "No modlist" );
 			}
 
-			return Tuple.Create( modInfos, found );
+			JToken[] modList = modListToken.ToArray();
+
+			foreach( JToken modEntry in modList ) {
+				JToken modNameToken = modEntry.SelectToken( "name" );
+				JToken modDisplaynameToken = modEntry.SelectToken( "displayname" );
+				JToken modAuthorToken = modEntry.SelectToken( "author" );
+				JToken modVersRawToken = modEntry.SelectToken( "version" );
+				//JToken modDescRawToken = modEntry.SelectToken( "hasdescription" );
+				//JToken modHomepageRawToken = modEntry.SelectToken( "homepage" );
+
+				if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null || modAuthorToken == null
+						/*|| hasDescRawToken == null || modHomepageRawToken == null*/ ) {
+					continue;
+				}
+
+				string modName = modNameToken.ToObject<string>();
+				string modDisplayName = modDisplaynameToken.ToObject<string>();
+				string modVersRaw = modVersRawToken.ToObject<string>();
+				//string modDesc = modDescRawToken?.ToObject<string>() ?? null;
+				//string modHomepage = modHomepageRawToken.ToObject<string>();
+
+				Version modVers = Version.Parse( modVersRaw.Substring( 1 ) );
+				IEnumerable<string> modAuthors = modAuthorToken.ToObject<string>()
+					.Split( ',' )
+					.SafeSelect( a => a.Trim() );
+
+				modInfoDb[modName] = new BasicModInfo( modDisplayName, modAuthors, modVers, null, null );    //modDesc, modHomepage
+			}
+
+			return true;
 		}
 	}
 }
