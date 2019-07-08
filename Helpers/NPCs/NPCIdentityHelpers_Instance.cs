@@ -5,7 +5,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/// @private
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to NPC identification.
+	/// </summary>
 	public partial class NPCIdentityHelpers {
 		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 

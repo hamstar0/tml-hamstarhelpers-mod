@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Helpers.Debug;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -7,8 +8,16 @@ using Terraria.Localization;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** <summary>Assorted static "helper" functions pertaining to NPC townsfolk.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to NPC townsfolk.
+	/// </summary>
 	public static class NPCTownHelpers {
+		/// <summary>
+		/// Spawns a town NPC at a given position, alerting the world of their arrival.
+		/// </summary>
+		/// <param name="townNpcType"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
 		public static void Spawn( int townNpcType, int tileX, int tileY ) {
 			int npcWho = NPC.NewNPC( tileX * 16, tileY * 16, townNpcType, 1, 0f, 0f, 0f, 0f, 255 );
 			NPC npc = Main.npc[ npcWho ];
@@ -42,6 +51,11 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		////////////////
 
+		/// <summary>
+		/// Makes a given town NPC leave, optionally alerting the world of their departure.
+		/// </summary>
+		/// <param name="npc"></param>
+		/// <param name="announce"></param>
 		public static void Leave( NPC npc, bool announce = true ) {
 			if( Main.netMode == 1 ) {
 				LogHelpers.Warn( "NPCTownHelpers.Leave() called on client." );
@@ -70,7 +84,14 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		////////////////
 
+		/// <summary>
+		/// Gets the item array of the current shop being perused by the current player.
+		/// </summary>
+		/// <returns></returns>
 		public static Item[] GetCurrentShop() {
+			if( Main.netMode == 2 ) {
+				throw new HamstarException("Single or client only.");
+			}
 			if( Main.npcShop <= 0 || Main.npcShop > Main.instance.shop.Length ) {
 				return null;
 			}
@@ -78,6 +99,11 @@ namespace HamstarHelpers.Helpers.NPCs {
 		}
 
 
+		/// <summary>
+		/// Gets the shop of a given NPC type.
+		/// </summary>
+		/// <param name="npcType"></param>
+		/// <returns></returns>
 		public static Chest GetShop( int npcType ) {
 			if( Main.instance == null ) {
 				LogHelpers.Log( "No main instance." );
@@ -135,6 +161,10 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		////////////////
 
+		/// <summary>
+		/// Get female town NPC types.
+		/// </summary>
+		/// <returns></returns>
 		public static ISet<int> GetFemaleTownNpcTypes() {
 			return new HashSet<int>( new int[] {
 				NPCID.Nurse,
@@ -146,6 +176,10 @@ namespace HamstarHelpers.Helpers.NPCs {
 			} );
 		}
 
+		/// <summary>
+		/// Get non-gendered town NPC types.
+		/// </summary>
+		/// <returns></returns>
 		public static ISet<int> GetNonGenderedTownNpcTypes() {
 			return new HashSet<int>( new int[] {
 				NPCID.WitchDoctor,	// Indeterminable

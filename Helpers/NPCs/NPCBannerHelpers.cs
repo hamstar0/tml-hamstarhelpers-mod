@@ -6,8 +6,14 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** <summary>Assorted static "helper" functions pertaining to NPC-dropped banners.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to NPC-dropped banners.
+	/// </summary>
 	public partial class NPCBannerHelpers {
+		/// <summary>
+		/// Gets table of npc types to their respective banner item types.
+		/// </summary>
+		/// <returns></returns>
 		public static IDictionary<int, int> GetNpcToBannerItemTypes() {
 			IDictionary<int, int> npcTypesToBannerItemTypes = new Dictionary<int, int>();
 
@@ -34,12 +40,21 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		////////////////
 
+		/// <summary>
+		/// Gets all banner item types.
+		/// </summary>
+		/// <returns></returns>
 		public static ReadOnlySet<int> GetBannerItemTypes() {
 			var npcBannerHelpers = ModHelpersMod.Instance.NPCBannerHelpers;
 
 			return new ReadOnlySet<int>( npcBannerHelpers.BannerItemTypes );
 		}
 
+		/// <summary>
+		/// Gets the banner item type of a given NPC type.
+		/// </summary>
+		/// <param name="npcType"></param>
+		/// <returns></returns>
 		public static int GetBannerItemTypeOfNpcType( int npcType ) {
 			var npcBannerHelpers = ModHelpersMod.Instance.NPCBannerHelpers;
 
@@ -47,6 +62,11 @@ namespace HamstarHelpers.Helpers.NPCs {
 			return npcBannerHelpers.NpcTypesToBannerItemTypes[ npcType ];
 		}
 
+		/// <summary>
+		/// Gets all NPC types of a given banner item type.
+		/// </summary>
+		/// <param name="itemType"></param>
+		/// <returns></returns>
 		public static ReadOnlySet<int> GetNpcTypesOfBannerItemType( int itemType ) {
 			var npcBannerHelpers = ModHelpersMod.Instance.NPCBannerHelpers;
 

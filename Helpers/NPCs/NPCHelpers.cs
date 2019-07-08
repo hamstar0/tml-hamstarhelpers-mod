@@ -6,8 +6,14 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** <summary>Assorted static "helper" functions pertaining to NPCs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to NPCs.
+	/// </summary>
 	public static partial class NPCHelpers {
+		/// <summary>
+		/// Gets all active NPCs in the world.
+		/// </summary>
+		/// <returns></returns>
 		public static IList<NPC> GetActive() {
 			var list = new List<NPC>();
 
@@ -20,13 +26,14 @@ namespace HamstarHelpers.Helpers.NPCs {
 			return list;
 		}
 
+
 		////////////////
-
-		public static bool IsNPCDead( NPC checkNpc ) {
-			return checkNpc.life <= 0 || !checkNpc.active;
-		}
-
 		
+		/// <summary>
+		/// Applies damage to an NPC, killing it if need be. Synced.
+		/// </summary>
+		/// <param name="npc"></param>
+		/// <param name="damage"></param>
 		public static void RawHurt( NPC npc, int damage ) {
 			if( damage >= npc.life ) {
 				NPCHelpers.Kill( npc );
@@ -37,13 +44,21 @@ namespace HamstarHelpers.Helpers.NPCs {
 		}
 
 
+		/// <summary>
+		/// Kills an NPC. Synced.
+		/// </summary>
+		/// <param name="npc"></param>
 		public static void Kill( NPC npc ) {
 			npc.life = 0;
 			npc.checkDead();
 			npc.active = false;
-			NetMessage.SendData( 28, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
+			NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
 		}
 
+		/// <summary>
+		/// Removes a given NPC. Synced.
+		/// </summary>
+		/// <param name="npc"></param>
 		public static void Remove( NPC npc ) {
 			npc.active = false;
 
@@ -56,6 +71,16 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		////////////////
 
+		/// <summary>
+		/// Predicts the knockback travel vector (velocity) of a given knockback-inducing hit, according to vanilla Terraria's
+		/// expected behavior.
+		/// </summary>
+		/// <param name="npc"></param>
+		/// <param name="dir"></param>
+		/// <param name="knockback"></param>
+		/// <param name="crit"></param>
+		/// <param name="isKillingBlow">Adds power.</param>
+		/// <returns></returns>
 		public static Vector2 GetKnockbackVector( NPC npc, int dir, float knockback, bool crit, bool isKillingBlow ) {
 			float force = knockback * npc.knockBackResist;
 			Vector2 forceVector = npc.velocity;
@@ -110,6 +135,12 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		////////////////
 
+		/// <summary>
+		/// Makes an (unsophisticated) attempt at assessing an NPC's threat level. Factors include damage, defense, life, tile
+		/// collide, knockback resist, and 'value' (money dropped).
+		/// </summary>
+		/// <param name="npc"></param>
+		/// <returns></returns>
 		public static float LooselyAssessThreat( NPC npc ) {
 			float damageFactor = (npc.damage / 100f) * (npc.coldDamage ? 1.2f : 1f);
 			float defenseFactor = 1f + (npc.defense * 0.01f);
@@ -136,6 +167,11 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		////////////////
 
+		/// <summary>
+		/// Kills counted towards earning banners for a given NPC type.
+		/// </summary>
+		/// <param name="npcType"></param>
+		/// <returns></returns>
 		public static int CurrentPlayerKillsOfBannerNpc( int npcType ) {
 			int npcBannerType = Item.NPCtoBanner( npcType );
 			if( npcBannerType == 0 ) { return -1; }

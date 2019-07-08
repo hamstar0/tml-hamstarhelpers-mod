@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/// @private
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to NPC-dropped banners.
+	/// </summary>
 	public partial class NPCBannerHelpers {
 		private IDictionary<int, int> NpcTypesToBannerItemTypes;
 		private ISet<int> BannerItemTypes;

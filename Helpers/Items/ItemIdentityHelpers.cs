@@ -21,7 +21,7 @@ namespace HamstarHelpers.Helpers.Items {
 				return "Terraria " + ItemID.Search.GetName( itemType );
 			} else {
 				var item = new Item();
-				item.SetDefaults( itemType );
+				item.SetDefaults( itemType, true );
 
 				if( item.modItem != null ) {
 					return item.modItem.mod.Name + " " + item.modItem.Name;

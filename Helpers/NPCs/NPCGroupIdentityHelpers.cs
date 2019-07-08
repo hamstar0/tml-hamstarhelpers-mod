@@ -4,20 +4,35 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** <summary>Assorted static "helper" functions pertaining to identifying common groups of NPCs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to identifying common groups of NPCs.
+	/// </summary>
 	public partial class NPCGroupIdentityHelpers {
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaBloodMoonTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaGoblinArmyTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaFrostLegionTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaPirateTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaMartianTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaSolarEclipseTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaPumpkingMoonTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaFrostMoonTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaOldOnesArmyTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaSolarPillarTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaNebulaPillarTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaVortexPillarTypes;
+		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaStardustPillarTypes;
 
 

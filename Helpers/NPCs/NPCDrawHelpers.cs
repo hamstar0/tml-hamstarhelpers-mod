@@ -5,9 +5,23 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** <summary>Assorted static "helper" functions pertaining to NPC drawing.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to NPC drawing.
+	/// </summary>
 	public static partial class NPCDrawHelpers {
-		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale, Color color, bool applyZoom = false ) {
+		/// <summary>
+		/// Draws an NPC.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="npc">NPC to draw.</param>
+		/// <param name="frame">Frame of the NPC's animation to draw.</param>
+		/// <param name="position"></param>
+		/// <param name="rotation"></param>
+		/// <param name="scale"></param>
+		/// <param name="color"></param>
+		/// <param name="applyZoom">Whether to convert to current zoom amount of the screen.</param>
+		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale,
+					Color color, bool applyZoom = false ) {
 			Texture2D tex = Main.npcTexture[npc.type];
 			int frameCount = Main.npcFrameCount[npc.type];
 			int texHeight = tex.Height / frameCount;

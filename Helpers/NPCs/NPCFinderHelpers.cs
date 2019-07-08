@@ -3,14 +3,21 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** <summary>Assorted static "helper" functions pertaining to finding world NPCs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to finding world NPCs.
+	/// </summary>
 	public static class NPCFinderHelpers {
 		private static IDictionary<int, int> AnyWhoOfType = new Dictionary<int, int>();
 
 
 
 		////////////////
-		
+
+		/// <summary>
+		/// Finds first active, world NPC of the given type.
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
 		public static NPC FindFirstNpcByType( int type ) {
 			if( NPCFinderHelpers.AnyWhoOfType.Keys.Contains( type ) ) {
 				NPC npc = Main.npc[NPCFinderHelpers.AnyWhoOfType[type]];
