@@ -125,6 +125,8 @@
     <Compile Include="Helpers\DotNET\Reflection\ReflectionHelpers_Methods.cs" />
     <Compile Include="Helpers\DotNET\Encoding\SimpleStringCipher.cs" />
     <Compile Include="Helpers\Items\Attributes\ItemAttributeHelpers_Instance.cs" />
+    <Compile Include="Helpers\Misc\ModCustomDataFileHelpers_Save.cs" />
+    <Compile Include="Helpers\Misc\ModCustomDataFileHelpers_Load.cs" />
     <Compile Include="Helpers\Steam\SteamHelpers.cs" />
     <Compile Include="Helpers\DotNET\Formatting\StringFormattingHelpers.cs" />
     <Compile Include="Helpers\DotNET\SystemHelpers.cs" />
@@ -141,7 +143,7 @@
     <Compile Include="Helpers\Items\ItemIdentityHelpers.cs" />
     <Compile Include="Helpers\Items\ItemIdentityHelpers_Groups.cs" />
     <Compile Include="Helpers\Items\MusicBoxHelpers.cs" />
-    <Compile Include="Helpers\Misc\DataFileHelpers.cs" />
+    <Compile Include="Helpers\Misc\ModCustomDataFileHelpers.cs" />
     <Compile Include="Helpers\Info\FormattedGameInfoHelpers.cs" />
     <Compile Include="Helpers\Info\FormattedGameInfoHelpers_Markdown.cs" />
     <Compile Include="Helpers\Info\GameInfoHelpers.cs" />

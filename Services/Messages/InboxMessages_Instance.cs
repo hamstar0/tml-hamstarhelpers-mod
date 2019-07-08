@@ -41,7 +41,7 @@ namespace HamstarHelpers.Services.Messages {
 
 		internal bool LoadFromFile() {
 			bool success;
-			var data = DataFileHelpers.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", out success );
+			var data = ModCustomDataFileHelpers.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", out success );
 
 			if( success ) {
 				if( data != null ) {
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Services.Messages {
 
 		internal void SaveToFile() {
 			if( this.Data != null ) {
-				DataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", this.Data );
+				ModCustomDataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", this.Data );
 			}
 		}
 	}
