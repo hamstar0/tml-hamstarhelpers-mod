@@ -16,6 +16,11 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates an item produces a penetrating projectile.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static bool IsPenetrator( Item item ) {
 			if( item.shoot <= 0 ) { return false; }
 
@@ -31,6 +36,11 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		}
 
 
+		/// <summary>
+		/// Indicates an item is a tool.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static bool IsTool( Item item ) {
 			return ( item.useStyle > 0 ||
 					item.damage > 0 ||
@@ -52,6 +62,11 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		}
 
 
+		/// <summary>
+		/// Indicates an item is an armor piece.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static bool IsArmor( Item item ) {
 			return ( item.headSlot != -1 ||
 					item.bodySlot != -1 ||
@@ -63,11 +78,21 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		}
 
 
+		/// <summary>
+		/// Indicates an item is a grapple item.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static bool IsGrapple( Item item ) {
 			return Main.projHook[item.shoot];
 		}
 
 
+		/// <summary>
+		/// Indicates an item is a type of yoyo.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static bool IsYoyo( Item item ) {
 			if( item.shoot > 0 && item.useStyle == 5 && item.melee && item.channel ) {
 				var proj = new Projectile();
@@ -79,6 +104,13 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		}
 
 
+		/// <summary>
+		/// Indicates an item is "gameplay relevant" (not vanity, passive, or purely cosmetic).
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="toysRelevant">"Toy" items are counted as gameplay relevant.</param>
+		/// <param name="junkRelevant">"Junk" items are counted as gameplay relevant.</param>
+		/// <returns></returns>
 		public static bool IsGameplayRelevant( Item item, bool toysRelevant = false, bool junkRelevant = false ) {
 			if( !toysRelevant ) {
 				switch( item.type ) {
@@ -88,22 +120,39 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 					return false;
 				}
 			}
-			if( junkRelevant && item.rare < 0 ) { return false; }
+			if( !junkRelevant && item.rare < 0 ) {
+				return false;
+			}
 			return !item.vanity && item.dye <= 0 && item.hairDye <= 0 && item.paint == 0 && !Main.vanityPet[item.buffType];
 		}
 
 
+		/// <summary>
+		/// "Appraises" an item's "value" based on its sell value and rarity, as if to rank items by a general metric (loosely).
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static float LooselyAppraise( Item item ) {
-			float appraisal = item.rare;
+			var cloneItem = new Item();
+			cloneItem.SetDefaults( item.type, true );
+
+			float appraisal = (float)(item.rare + item.rare + cloneItem.rare) / 3f;
+
 			if( item.value > 0 ) {
 				float value = (float)item.value / 8000f;
 				appraisal = ( ( appraisal * 4f ) + value ) / 5f;
 			}
+
 			return appraisal;
 		}
 
 
-		public static string GetContainerContext( Item item ) {
+		/// <summary>
+		/// Gets the context name of a container item (bag, box, present, etc.).
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public static string GetVanillaContainerContext( Item item ) {
 			if( ( item.type >= 3318 && item.type <= 3332 )
 					|| item.type == 3860 || item.type == 3862 || item.type == 3861
 					|| ItemLoader.IsModBossBag( item ) ) {
@@ -126,30 +175,6 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 				return "present";
 			}
 			return "";
-		}
-
-		public static int[] GetContainerItemTypes( string context ) {
-			if( context == "bossBag" ) {
-				return new int[] { 3318, 3319, 3320, 3321, 3322, 3323, 3324, 3325, 3326, 3327, 3328, 3329, 3330, 3331, 3332,
-					3860, 3862, 3861 };
-			}
-			if( context == "crate" ) {
-				return new int[] { 2334, 2335, 2336,
-					3203, 3204, 3205, 3206, 3207, 3208 };
-			}
-			if( context == "herbBag" ) {
-				return new int[] { ItemID.HerbBag };
-			}
-			if( context == "goodieBag" ) {
-				return new int[] { ItemID.GoodieBag };
-			}
-			if( context == "lockBox" ) {
-				return new int[] { ItemID.LockBox };
-			}
-			if( context == "present" ) {
-				return new int[] { ItemID.Present };
-			}
-			return new int[] { };
 		}
 
 

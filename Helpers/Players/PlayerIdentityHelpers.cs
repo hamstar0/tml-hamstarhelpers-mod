@@ -17,18 +17,22 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 		
-		public static string GetMyProperUniqueId() {
+		public static string GetUniqueId() {
+			if( Main.netMode == 2 ) {
+				throw new HamstarException( "No 'current' player on a server." );
+			}
+
 			int hash = Math.Abs( Main.ActivePlayerFileData.Path.GetHashCode() ^ Main.ActivePlayerFileData.IsCloudSave.GetHashCode() );
 			return Main.clientUUID + "_" + hash;
 		}
 
-		public static string GetProperUniqueId( Player player ) {
+		public static string GetUniqueId( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 			string id;
 
 			if( !mymod.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
 				if( Main.netMode != 2 && player.whoAmI == Main.myPlayer ) {
-					id = PlayerIdentityHelpers.GetMyProperUniqueId();
+					id = PlayerIdentityHelpers.GetUniqueId();
 					mymod.PlayerIdentityHelpers.PlayerIds[ player.whoAmI ] = id;
 				} else {
 					//throw new HamstarException( "!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player " + player.name + "'s id." );
@@ -39,7 +43,7 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
-		public static Player GetPlayerByProperId( string uid ) {
+		public static Player GetPlayerByUniqueId( string uid ) {
 			int len = Main.player.Length;
 
 			for( int i=0; i<len; i++ ) {
@@ -47,7 +51,7 @@ namespace HamstarHelpers.Helpers.Players {
 //LogHelpers.Log( "GetPlayerByProperId: "+PlayerIdentityHelpers.GetProperUniqueId( plr )+" == "+uid+": "+plr.name+" ("+plr.whoAmI+")" );
 				if( plr == null /*|| !plr.active*/ ) { continue; }	// <- This is WEIRD!
 				
-				if( PlayerIdentityHelpers.GetProperUniqueId(plr) == uid ) {
+				if( PlayerIdentityHelpers.GetUniqueId(plr) == uid ) {
 					return plr;
 				}
 			}

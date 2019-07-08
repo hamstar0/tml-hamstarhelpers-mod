@@ -3,16 +3,18 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Projectiles {
-	/** <summary>Assorted static "helper" functions pertaining to players relative to projectile identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to players relative to projectile identification
+	/// </summary>
 	public partial class ProjectileIdentityHelpers {
-		public static string GetProperUniqueId( int projType ) {
+		public static string GetUniqueId( int projType ) {
 			var proj = new Projectile();
 			proj.SetDefaults( projType );
 
-			return ProjectileIdentityHelpers.GetProperUniqueId( proj );
+			return ProjectileIdentityHelpers.GetUniqueId( proj );
 		}
 
-		public static string GetProperUniqueId( Projectile proj ) {
+		public static string GetUniqueId( Projectile proj ) {
 			if( proj.modProjectile == null ) {
 				return "Terraria." + proj.type;
 			}

@@ -5,14 +5,23 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Items.Attributes {
-	/** <summary>Assorted static "helper" functions pertaining to the "rarity" attribute of items.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to the "rarity" attribute of items.
+	/// </summary>
 	public static partial class ItemRarityAttributeHelpers {
+		/// <summary></summary>
 		public const int HighestVanillaRarity = 11;
+		/// <summary></summary>
 		public const int JunkRarity = -1;
+		/// <summary></summary>
 		public const int QuestItemRarity = -11;
+
 
 		////////////////
 		
+		/// <summary>
+		/// The color values corresponding to each vanilla rarity type.
+		/// </summary>
 		public static readonly IReadOnlyDictionary<int, Color> RarityColor = new ReadOnlyDictionary<int, Color>(
 			new Dictionary<int, Color> {
 				{ -12, new Color( 255, 175, 0 ) },
@@ -33,6 +42,9 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 				{ 11, new Color( 180, 40, 255 ) }
 			}
 		);
+		/// <summary>
+		/// The color name of each vanilla rarity type.
+		/// </summary>
 		public static readonly IReadOnlyDictionary<int, string> RarityColorText = new ReadOnlyDictionary<int, string>(
 			new Dictionary<int, string> {
 				{ -12, "Rainbow" },
@@ -53,6 +65,9 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 				{ 11, "Purple" }
 			}
 		);
+		/// <summary>
+		/// The game context of each vanilla rarity.
+		/// </summary>
 		public static readonly IReadOnlyDictionary<int, string> RarityLabel = new ReadOnlyDictionary<int, string>(
 			new Dictionary<int, string> {
 				{ -12, "Expert" },

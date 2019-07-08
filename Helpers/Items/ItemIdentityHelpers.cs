@@ -9,22 +9,51 @@ namespace HamstarHelpers.Helpers.Items {
 	/// Assorted static "helper" functions pertaining to item identification.
 	/// </summary>
 	public partial class ItemIdentityHelpers {
-		public static string GetProperUniqueId( int itemType ) {
-			var item = new Item();
-			item.SetDefaults( itemType );
+		/// <summary>
+		/// Gets the identifier of an item. For Terraria items, this is `Terraria IronPickaxe`, with the portion after "Terraria"
+		/// being the item's field name in `ItemID`. For modded items, the format is ItemModName ModdedItemInternalName; the mod
+		/// name first, and the modded item's internal `Name` after.
+		/// </summary>
+		/// <param name="itemType"></param>
+		/// <returns></returns>
+		public static string GetUniqueId( int itemType ) {
+			if( ItemID.Search.ContainsId(itemType) ) {
+				return "Terraria " + ItemID.Search.GetName( itemType );
+			} else {
+				var item = new Item();
+				item.SetDefaults( itemType );
 
-			return ItemIdentityHelpers.GetProperUniqueId( item );
+				if( item.modItem != null ) {
+					return item.modItem.mod.Name + " " + item.modItem.Name;
+				}
+			}
+
+			return ""+itemType;
 		}
 
-		public static string GetProperUniqueId( Item item ) {
+		/// <summary>
+		/// Gets the identifier of an item. For Terraria items, this is `Terraria IronPickaxe`, with the portion after "Terraria"
+		/// being the item's field name in `ItemID`. For modded items, the format is ItemModName ModdedItemInternalName; the mod
+		/// name first, and the modded item's internal `Name` after.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public static string GetUniqueId( Item item ) {
 			if( item.modItem == null ) {
-				return "Terraria." + item.type;
+				return "Terraria " + ItemID.Search.GetName( item.type );
+			} else {
+				return item.modItem.mod.Name + " " + item.modItem.Name;
 			}
-			return item.modItem.mod.Name + "." + item.modItem.Name;
 		}
 
 		////
 
+		/// <summary>
+		/// Attempts to get an item's type (id) by a given identifier (see `GetUniqueId(...)`).
+		/// </summary>
+		/// <param name="itemUid"></param>
+		/// <param name="itemId">Outputs as the item's `type`.</param>
+		/// <returns>`true` if itemUid identifies as a value item proper name.</returns>
 		public static bool TryGetTypeByUid( string itemUid, out int itemId ) {
 			string[] split = itemUid.Split( '.' );
 
@@ -51,11 +80,20 @@ namespace HamstarHelpers.Helpers.Items {
 			return ""+ item.netID;
 		}*/
 
-
+		/// <summary>
+		/// Gets an item's qualified (human readable) name.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static string GetQualifiedName( Item item ) {
 			return Lang.GetItemNameValue( item.type );  // not netID?
 		}
 
+		/// <summary>
+		/// Gets an item's qualified (human readable) name.
+		/// </summary>
+		/// <param name="itemType"></param>
+		/// <returns></returns>
 		public static string GetQualifiedName( int itemType ) {
 			return Lang.GetItemNameValue( itemType );
 		}
@@ -63,10 +101,17 @@ namespace HamstarHelpers.Helpers.Items {
 
 		////////////////
 
+		/// <summary>
+		/// Generates a hash value to uniquely identify a (vanilla) item instance by its field values.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="noContext">Omits `owner`, `netID`, and `favorited` fields.</param>
+		/// <param name="minimal">Uses only the item's unique ID (`GetUniqueId(...)`), `prefix`, and `stack`.</param>
+		/// <returns></returns>
 		public static int GetVanillaSnapshotHash( Item item, bool noContext, bool minimal ) {
 			int hash = Entities.EntityHelpers.GetVanillaSnapshotHash( item, noContext );
 
-			string id = ItemIdentityHelpers.GetProperUniqueId( item );  // used to be GetUniqueId
+			string id = ItemIdentityHelpers.GetUniqueId( item );  // used to be GetUniqueId
 
 			hash ^= ( "id" + id ).GetHashCode();
 			hash ^= ( "prefix" + item.prefix ).GetHashCode();
@@ -187,6 +232,14 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
+		////////////////
+
+		/// <summary>
+		/// Gets an item's type by it's internal name (ItemID static field name or `ModItem.Name`), and it's origin mod (if any).
+		/// </summary>
+		/// <param name="name">Item's internal name: For vanilla, ItemID static field name. For mods, `ModItem.Name`.</param>
+		/// <param name="mod"></param>
+		/// <returns></returns>
 		public static int GetTypeByName( string name, Mod mod=null ) {
 			if( mod == null ) {
 				if( !ItemID.Search.ContainsName( name ) )

@@ -12,6 +12,10 @@ namespace HamstarHelpers.Helpers.Items {
 	/// Assorted static "helper" functions pertaining to item identification.
 	/// </summary>
 	public partial class ItemIdentityHelpers {
+		/// <summary>
+		/// Gets a set of "common" item groups (i.e. for RecipeGroup use).
+		/// </summary>
+		/// <returns>Group names mapped to group description and a set of item ids.</returns>
 		public static IDictionary<string, Tuple<string, ISet<int>>> GetCommonItemGroups() {
 			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemIdentityHelpers )
 				.GetFields( BindingFlags.Static | BindingFlags.Public );
@@ -42,6 +46,9 @@ namespace HamstarHelpers.Helpers.Items {
 
 		////////////////
 
+		/// <summary>
+		/// All NPC banner items.
+		/// </summary>
 		public static Tuple<string, ISet<int>> MobBanners {
 			get {
 				return Tuple.Create(
@@ -51,6 +58,9 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 		}
 
+		/// <summary>
+		/// All vanilla recorded music boxes.
+		/// </summary>
 		public static Tuple<string, ISet<int>> VanillaRecordedMusicBoxes {
 			get {
 				return Tuple.Create(
@@ -60,27 +70,42 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 		}
 
+		/// <summary>
+		/// The special drops of each "evil" biome (Eater of Worlds and Brain of Cthulhu).
+		/// </summary>
 		public static Tuple<string, ISet<int>> EvilBiomeBossChunks = Tuple.Create(
 			"Evil Biome Boss Chunk",
 			(ISet<int>)( new HashSet<int>( new int[] { ItemID.ShadowScale, ItemID.TissueSample } ) )
 		);
 
+		/// <summary>
+		/// Each type of "evil" biome-originating light-emitting pet (Crimson Heart and Shadow Orb).
+		/// </summary>
 		public static Tuple<string, ISet<int>> EvilBiomeLightPets = Tuple.Create(
 			"Evil Biome Light Pet",
 			(ISet<int>)( new HashSet<int>( new int[] { ItemID.CrimsonHeart, ItemID.ShadowOrb } ) )
 		);
 
+		/// <summary>
+		/// Each vanilla variant of a Magic Mirror.
+		/// </summary>
 		public static Tuple<string, ISet<int>> MagicMirrors = Tuple.Create(
 			"Magic Mirrors",
 			(ISet<int>)( new HashSet<int>( new int[] { ItemID.MagicMirror, ItemID.IceMirror } ) )
 		);
 
+		/// <summary>
+		/// Each potion that performs non-random player warping.
+		/// </summary>
 		public static Tuple<string, ISet<int>> WarpPotions = Tuple.Create(
-			"Warp Mirrors",
+			"Warp Potions",
 			(ISet<int>)( new HashSet<int>( new int[] { ItemID.RecallPotion, ItemID.WormholePotion } ) )
 		);
 
 
+		/// <summary>
+		/// Each vanilla passive animal type.
+		/// </summary>
 		public static Tuple<string, ISet<int>> VanillaAnimals = Tuple.Create(
 			"Live Animal (vanilla)",
 			(ISet<int>)( new HashSet<int>( new int[] {
@@ -92,6 +117,9 @@ namespace HamstarHelpers.Helpers.Items {
 			} ) )
 		);
 		
+		/// <summary>
+		/// Each vanilla passive bug type (including the Truffle Worm).
+		/// </summary>
 		public static Tuple<string, ISet<int>> VanillaBugs = Tuple.Create(
 			"Live Bug (vanilla)",
 			(ISet<int>)( new HashSet<int>( new int[] {
@@ -106,6 +134,9 @@ namespace HamstarHelpers.Helpers.Items {
 			} ) )
 		);
 		
+		/// <summary>
+		/// Each banilla butterfly type.
+		/// </summary>
 		public static Tuple<string, ISet<int>> VanillaButterflies = Tuple.Create(
 			"Butterflies (vanilla)",
 			(ISet<int>)( new HashSet<int>( new int[] {
@@ -115,6 +146,9 @@ namespace HamstarHelpers.Helpers.Items {
 			} ) )
 		);
 		
+		/// <summary>
+		/// Each vanilla gold critter variant.
+		/// </summary>
 		public static Tuple<string, ISet<int>> VanillaGoldCritters = Tuple.Create(
 			"Gold Critters (vanilla)",
 			(ISet<int>)( new HashSet<int>( new int[] {
@@ -123,19 +157,28 @@ namespace HamstarHelpers.Helpers.Items {
 			} ) )
 		);
 		
-		public static Tuple<string, ISet<int>> AlchemyHerbs = Tuple.Create(
+		/// <summary>
+		/// Each vanilla alchemy herb.
+		/// </summary>
+		public static Tuple<string, ISet<int>> VanillaAlchemyHerbs = Tuple.Create(
 			"Alchemy Herbs (vanilla)",
 			(ISet<int>)( new HashSet<int>( new int[] {
 				ItemID.Daybloom, ItemID.Blinkroot, ItemID.Moonglow, ItemID.Deathweed, ItemID.Fireblossom, ItemID.Shiverthorn
 			} ) )
 		);
-		public static Tuple<string, ISet<int>> StrangePlants = Tuple.Create(
+		/// <summary>
+		/// Each vanilla 'strange plant'.
+		/// </summary>
+		public static Tuple<string, ISet<int>> VanillaStrangePlants = Tuple.Create(
 			"Strange Plant",
 			(ISet<int>)( new HashSet<int>( new int[] {
 				ItemID.StrangePlant1, ItemID.StrangePlant2, ItemID.StrangePlant3, ItemID.StrangePlant4
 			} ) )
 		);
 		
+		/// <summary>
+		/// All pressure plates.
+		/// </summary>
 		public static Tuple<string, ISet<int>> AllPressurePlates = Tuple.Create(
 			"Pressure Plates",
 			(ISet<int>)( new HashSet<int>( new int[] {
@@ -145,6 +188,9 @@ namespace HamstarHelpers.Helpers.Items {
 				ItemID.WeightedPressurePlatePurple, ItemID.ProjectilePressurePad
 			} ) )
 		);
+		/// <summary>
+		/// All weighted pressure plates.
+		/// </summary>
 		public static Tuple<string, ISet<int>> WeightPressurePlates = Tuple.Create(
 			"Weighted Pressure Plates",
 			(ISet<int>)( new HashSet<int>( new int[] {
@@ -152,11 +198,17 @@ namespace HamstarHelpers.Helpers.Items {
 				ItemID.WeightedPressurePlatePurple
 			} ) )
 		);
+		/// <summary>
+		/// All conveyor belts.
+		/// </summary>
 		public static Tuple<string, ISet<int>> ConveyorBeltPair = Tuple.Create(
 			"Conveyor Belts",
 			(ISet<int>)( new HashSet<int>( new int[] { ItemID.ConveyorBeltLeft, ItemID.ConveyorBeltRight } ) )
 		);
 		
+		/// <summary>
+		/// All paints cans.
+		/// </summary>
 		public static Tuple<string, ISet<int>> Paints = Tuple.Create(
 			"Paints",
 			(ISet<int>)( new HashSet<int>( new int[] {
@@ -169,6 +221,9 @@ namespace HamstarHelpers.Helpers.Items {
 				ItemID.TealPaint, ItemID.VioletPaint, ItemID.WhitePaint, ItemID.YellowPaint
 			} ) )
 		);
+		/// <summary>
+		/// All vanilla dyes.
+		/// </summary>
 		public static Tuple<string, ISet<int>> VanillaDyes = Tuple.Create(
 			"Dyes (vanilla)",
 			(ISet<int>)(new HashSet<int>( new int[] {
@@ -196,5 +251,37 @@ namespace HamstarHelpers.Helpers.Items {
 				ItemID.GrimDye, ItemID.LokisDye, ItemID.ShadowflameHadesDye
 			} ))
 		);
+
+
+		////////////////
+
+		/// <summary>
+		/// Gets all vanilla item types of a given "container context".
+		/// </summary>
+		/// <param name="context">Contexts include: bossBag, crate, herbBag, goodieBag, lockBox, present</param>
+		/// <returns></returns>
+		public static int[] GetVanillaContainerItemTypes( string context ) {
+			if( context == "bossBag" ) {
+				return new int[] { 3318, 3319, 3320, 3321, 3322, 3323, 3324, 3325, 3326, 3327, 3328, 3329, 3330, 3331, 3332,
+					3860, 3862, 3861 };
+			}
+			if( context == "crate" ) {
+				return new int[] { 2334, 2335, 2336,
+					3203, 3204, 3205, 3206, 3207, 3208 };
+			}
+			if( context == "herbBag" ) {
+				return new int[] { ItemID.HerbBag };
+			}
+			if( context == "goodieBag" ) {
+				return new int[] { ItemID.GoodieBag };
+			}
+			if( context == "lockBox" ) {
+				return new int[] { ItemID.LockBox };
+			}
+			if( context == "present" ) {
+				return new int[] { ItemID.Present };
+			}
+			return new int[] { };
+		}
 	}
 }

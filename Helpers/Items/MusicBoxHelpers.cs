@@ -7,6 +7,10 @@ namespace HamstarHelpers.Helpers.Items {
 	/// Assorted static "helper" functions pertaining to music box items.
 	/// </summary>
 	public static class MusicBoxHelpers {
+		/// <summary>
+		/// Gets a set of all vanilla music box item ids.
+		/// </summary>
+		/// <returns></returns>
 		public static ISet<int> GetVanillaMusicBoxItemIds() {
 			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,
 				ItemID.MusicBoxAltUnderground,
@@ -50,6 +54,11 @@ namespace HamstarHelpers.Helpers.Items {
 				ItemID.MusicBoxUndergroundHallow };
 		}
 
+		/// <summary>
+		/// Gets the "music type" (internal identifier) of a given vanilla music box by its item id.
+		/// </summary>
+		/// <param name="itemType"></param>
+		/// <returns></returns>
 		public static int GetMusicTypeOfVanillaMusicBox( int itemType ) {
 			switch( itemType ) {
 			case ItemID.MusicBoxOverworldDay:

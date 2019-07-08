@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.User {
 				return false;
 			}
 
-			return ModHelpersMod.Instance.Config.PrivilegedUserId == PlayerIdentityHelpers.GetMyProperUniqueId();
+			return ModHelpersMod.Instance.Config.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId();
 		}
 	}
 }

@@ -3,16 +3,18 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** <summary>Assorted static "helper" functions pertaining to NPC identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to NPC identification
+	/// </summary>
 	public partial class NPCIdentityHelpers {
-		public static string GetProperUniqueId( int npcType ) {
+		public static string GetUniqueId( int npcType ) {
 			var npc = new NPC();
 			npc.SetDefaults( npcType );
 
-			return NPCIdentityHelpers.GetProperUniqueId( npc );
+			return NPCIdentityHelpers.GetUniqueId( npc );
 		}
 
-		public static string GetProperUniqueId( NPC npc ) {
+		public static string GetUniqueId( NPC npc ) {
 			if( npc.modNPC == null ) {
 				return "Terraria." + npc.type;
 			}
@@ -50,7 +52,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 			NPC npc = new NPC();
 			for( int i = Main.npcTexture.Length - 1; i >= 0; i-- ) {
 				npc.SetDefaults( i );
-				if( NPCIdentityHelpers.GetProperUniqueId( npc ) == uid ) {    // used to be GetUniqueId
+				if( NPCIdentityHelpers.GetUniqueId( npc ) == uid ) {    // used to be GetUniqueId
 					return i;
 				}
 			}

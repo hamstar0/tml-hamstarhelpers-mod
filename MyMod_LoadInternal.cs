@@ -75,7 +75,7 @@ namespace HamstarHelpers {
 					return "  Unobtainable";
 				}
 
-				return "  " + PlayerIdentityHelpers.GetMyProperUniqueId();
+				return "  " + PlayerIdentityHelpers.GetUniqueId();
 			} );
 		}
 
