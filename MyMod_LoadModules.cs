@@ -41,7 +41,7 @@ using HamstarHelpers.Helpers.Items.Attributes;
 
 
 namespace HamstarHelpers {
-	/** @private */
+	/// @private
 	partial class ModHelpersMod : Mod {
 		// Components
 		internal HamstarExceptionManager ExceptionMngr;

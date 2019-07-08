@@ -5,7 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
-	/** @private */
+	/// @private
 	public partial class RecipeGroupHelpers {
 		private IDictionary<string, RecipeGroup> _Groups = null;
 	}

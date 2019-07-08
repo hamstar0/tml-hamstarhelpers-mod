@@ -13,7 +13,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
-	/** @private */
+	/// @private
 	partial class UIControlPanel : UIState {
 		public const string DefaultTabName = "Mod Control Panel";
 

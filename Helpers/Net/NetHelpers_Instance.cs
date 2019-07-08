@@ -7,7 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Net {
-	/** @private */
+	/// @private
 	public partial class NetPlayHelpers {
 		private string PublicIP = null;
 		

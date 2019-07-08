@@ -13,6 +13,14 @@ namespace HamstarHelpers.Helpers.Misc {
 	/// Assorted static "helper" functions pertaining to file IO for mod custom data.
 	/// </summary>
 	public partial class ModCustomDataFileHelpers {
+		/// <summary>
+		/// Loads a custom data JSON file of a given mod.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="mod"></param>
+		/// <param name="fileNameNoExt"></param>
+		/// <param name="jsonSettings"></param>
+		/// <returns></returns>
 		public static T LoadJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings )
 				where T : class {
 			ModCustomDataFileHelpers.PrepareDir( mod );
@@ -35,13 +43,28 @@ namespace HamstarHelpers.Helpers.Misc {
 			}
 		}
 
+		/// <summary>
+		/// Loads a custom data JSON file of a given mod.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="mod"></param>
+		/// <param name="fileNameNoExt"></param>
+		/// <returns></returns>
 		public static T LoadJson<T>( Mod mod, string fileNameNoExt ) where T : class {
 			return ModCustomDataFileHelpers.LoadJson<T>( mod, fileNameNoExt, new JsonSerializerSettings() );
 		}
 
 
 		////////////////
-		
+
+		/// <summary>
+		/// Loads a binary custom data JSON file of a given mod.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="mod"></param>
+		/// <param name="fileNameWithExt"></param>
+		/// <param name="jsonSettings"></param>
+		/// <returns></returns>
 		public static T LoadBinaryJson<T>( Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings ) where T : class {
 			ModCustomDataFileHelpers.PrepareDir( mod );
 
@@ -64,6 +87,13 @@ namespace HamstarHelpers.Helpers.Misc {
 			}
 		}
 
+		/// <summary>
+		/// Loads a binary custom data JSON file of a given mod.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="mod"></param>
+		/// <param name="fileNameHasExt"></param>
+		/// <returns></returns>
 		public static T LoadBinaryJson<T>( Mod mod, string fileNameHasExt ) where T : class {
 			return ModCustomDataFileHelpers.LoadBinaryJson<T>( mod, fileNameHasExt, new JsonSerializerSettings() );
 		}

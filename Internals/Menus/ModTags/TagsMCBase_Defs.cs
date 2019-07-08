@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	/** @private */
+	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		public readonly static Tuple<string, string, string>[] Tags;
 		public readonly static int TagColumnPivot;

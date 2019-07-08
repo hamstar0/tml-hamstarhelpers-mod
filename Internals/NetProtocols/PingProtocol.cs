@@ -4,7 +4,7 @@ using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/** @private */
+	/// @private
 	class PingProtocol : PacketProtocolSentToEither {
 		public static void QuickSendToServer() {
 			PacketProtocolSentToEither.QuickSendToServer<PingProtocol>();

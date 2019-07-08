@@ -8,7 +8,7 @@ using System.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	/** @private */
+	/// @private
 	partial class GetModInfo {
 		private static void RetrieveBadModsAsync( Action<IDictionary<string, int>, bool> onSuccess ) {
 			Action<Exception, string> onFail = ( e, output ) => {

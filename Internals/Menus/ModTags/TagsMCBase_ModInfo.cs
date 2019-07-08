@@ -8,7 +8,7 @@ using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	/** @private */
+	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		public string GetModDataFromActiveMod( string modName, string fieldName ) {
 			Mod mod = ModLoader.GetMod( modName );

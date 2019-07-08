@@ -8,7 +8,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Inbox {
-	/** @private */
+	/// @private
 	class InboxControl {
 		private Texture2D ArrowLeft;
 		private Texture2D ArrowRight;

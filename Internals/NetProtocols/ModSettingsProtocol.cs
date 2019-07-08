@@ -2,7 +2,7 @@
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/** @private */
+	/// @private
 	class ModSettingsProtocol : PacketProtocolRequestToServer {
 		public static void QuickRequest() {
 			PacketProtocolRequestToServer.QuickRequest<ModSettingsProtocol>( -1 );

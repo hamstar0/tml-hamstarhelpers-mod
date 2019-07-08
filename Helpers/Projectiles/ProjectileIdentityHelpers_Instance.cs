@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Projectiles {
-	/** @private */
+	/// @private
 	public partial class ProjectileIdentityHelpers {
 		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 

@@ -9,95 +9,116 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Net {
-	/** <summary>Assorted static "helper" functions pertaining to connecting to the web.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to connecting to the web.
+	/// </summary>
 	public partial class WebConnectionHelpers {
-		public static void MakePostRequestAsync( string url, byte[] bytes, Action<string> onResponse, Action<Exception, string> onError, Action onCompletion=null ) {
+		/// <summary>
+		/// Sends a POST request to a website asynchronously. 
+		/// </summary>
+		/// <param name="url">Website URL.</param>
+		/// <param name="jsonData">JSON-formatted string data.</param>
+		/// <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
+		/// <param name="onCompletion">Called regardless of success. Receives processed output (if any) from `onSuccess`, and
+		/// a boolean indicating if the site request succeeded.</param>
+		public static void MakePostRequestAsync( string url, string jsonData,
+					Action<Exception, string> onError,
+					Action<bool, string> onCompletion=null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
-				bool success;
+				bool success = false;
 				string output = null;
 
 				try {
-					//lock( NetHelpers.RequestMutex ) {
-					output = WebConnectionHelpers.MakePostRequest( url, bytes, out success );
-					//}
+					success = WebConnectionHelpers.MakePostRequest( url, jsonData, out output );
 
-					if( success ) {
-						onResponse( output );
-					} else {
-						output = null;
+					if( !success ) {
+						output = "";
 						throw new HamstarException( "POST request unsuccessful (url: "+url+")" );
 					}
 				} catch( Exception e ) {
 					onError?.Invoke( e, output );
 				}
 
-				onCompletion?.Invoke();
+				onCompletion?.Invoke( success, output );
 			} );
 		}
 
-		
-		public static string MakePostRequest( string url, byte[] bytes, out bool success ) {
+
+		/// <summary>
+		/// Makes a POST request to a website. May tie up the current thread awaiting a response.
+		/// </summary>
+		/// <param name="url">Website URL.</param>
+		/// <param name="jsonData">JSON-formatted string data.</param>
+		/// <param name="output">Data returned from the website.</param>
+		/// <returns>`true` if response code is 400; success.</returns>
+		public static bool MakePostRequest( string url, string jsonData, out string output ) {
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
 			request.Method = "POST";
 			request.ContentType = "application/json";   //"application/vnd.github.v3+json";
-			request.ContentLength = bytes.Length;
+			request.ContentLength = jsonData.Length;
 			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
 
 			using( Stream dataStream = request.GetRequestStream() ) {
+				byte[] bytes = Encoding.UTF8.GetBytes( jsonData );
+				
 				dataStream.Write( bytes, 0, bytes.Length );
 				dataStream.Close();
 			}
 
 			HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
 			int statusCode = (int)resp.StatusCode;
-			string respData;
-
-			success = statusCode >= 200 && statusCode < 300;
 
 			using( Stream respDataStream = resp.GetResponseStream() ) {
 				var streamRead = new StreamReader( respDataStream, Encoding.UTF8 );
-				respData = streamRead.ReadToEnd();
+				output = streamRead.ReadToEnd();
 				respDataStream.Close();
 			}
 
-			return respData;
+			return statusCode >= 200 && statusCode < 300;
 		}
 
 
 		////////////////
 
-		public static void MakeGetRequestAsync<T>( string url,
-				Func<string, Tuple<T, bool>> onResponse,
-				Action<Exception, string> onError,
-				Action<T, bool> onCompletion = null ) where T : class {
-
+		/// <summary>
+		/// Makes a GET request to a website.
+		/// </summary>
+		/// <param name="url">Website URL.</param>
+		/// <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
+		/// <param name="onCompletion">Called regardless of success. Receives processed output (if any) from `onSuccess`, and
+		/// a boolean indicating if the site request succeeded.</param>
+		public static void MakeGetRequestAsync( string url,
+					Action<Exception, string> onError,
+					Action<bool, string> onCompletion = null ) {
 			ThreadPool.QueueUserWorkItem( _ => {
 				bool success = false;
 				string output = null;
 
-				var responseVal = Tuple.Create( (T)null, false );
-
 				try {
 					//lock( NetHelpers.RequestMutex ) {
-					output = WebConnectionHelpers.MakeGetRequest( url, out success );
+					success = WebConnectionHelpers.MakeGetRequest( url, out output );
 					//}
 
-					if( success ) {
-						responseVal = onResponse( output );
-					} else {
-						onError?.Invoke( new Exception( "GET request unsuccessful (url: " + url + ")" ), output ?? "" );
+					if( !success ) {
+						output = "";
+						throw new HamstarException( "GET request unsuccessful (url: " + url + ")" );
 					}
 				} catch( Exception e ) {
 					onError?.Invoke( e, output ?? "" );
 				}
 				
-				onCompletion?.Invoke( responseVal.Item1, (success && responseVal.Item2) );
+				onCompletion?.Invoke( success, output );
 			} );
 		}
 
-		////
-		
-		public static string MakeGetRequest( string url, out bool success ) {
+
+		/// <summary>
+		/// Makes a GET request to a website. May tie up the current thread awaiting a response.
+		/// </summary>
+		/// <param name="url">Website URL.</param>
+		/// <param name="output">Data returned from the website.</param>
+		/// <returns>`true` if response code is 400; success.</returns>
+		public static bool MakeGetRequest( string url, out string output ) {
 			var request = (HttpWebRequest)WebRequest.Create( url );
 			request.Method = "GET";
 			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
@@ -105,23 +126,19 @@ namespace HamstarHelpers.Helpers.Net {
 			HttpWebResponse resp = null;
 			try {
 				resp = (HttpWebResponse)request.GetResponse();
-			} catch( WebException e ) {
-				success = false;
-				return "";
+			} catch( WebException _ ) {
+				output = "";
+				return false;
 			}
- 
-			int statusCode = (int)resp.StatusCode;
-			string respData = "";
-
-			success = statusCode >= 200 && statusCode < 300;
 
 			using( Stream respDataStream = resp.GetResponseStream() ) {
 				var streamRead = new StreamReader( respDataStream, Encoding.UTF8 );
-				respData = streamRead.ReadToEnd();
+				output = streamRead.ReadToEnd();
 				respDataStream.Close();
 			}
 
-			return respData;
+			int statusCode = (int)resp.StatusCode;
+			return statusCode >= 200 && statusCode < 300;
 		}
 	}
 }

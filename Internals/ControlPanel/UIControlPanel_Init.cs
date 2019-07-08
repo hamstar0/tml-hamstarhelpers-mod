@@ -4,7 +4,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
-	/** @private */
+	/// @private
 	partial class UIControlPanel : UIState {
 		public static float ContainerWidth = 600f;
 		public static float ContainerHeight = 520f;

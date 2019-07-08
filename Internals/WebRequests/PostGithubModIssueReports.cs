@@ -9,12 +9,11 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	/** @private */
+	/// @private
 	public struct GithubModIssueReportData {
 		public string githubuser;
 		public string githubproject;
@@ -25,9 +24,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-	/** @private */
+	/// @private
 	class PostGithubModIssueReports {
-		public static void ReportIssue( Mod mod, string issueTitle, string issueBody, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
+		public static void ReportIssue( Mod mod, string issueTitle, string issueBody,
+					Action<Exception, string> onError,
+					Action<bool, string> onCompletion ) {
 			if( !ModFeaturesHelpers.HasGithub( mod ) ) {
 				throw new HamstarException( "Mod is not eligable for submitting issues." );
 			}
@@ -51,25 +52,31 @@ namespace HamstarHelpers.Internals.WebRequests {
 				body = body
 			};
 			string jsonStr = JsonConvert.SerializeObject( json, Formatting.Indented );
-			byte[] jsonBytes = Encoding.UTF8.GetBytes( jsonStr );
 
-			Action<String> onResponse = ( output ) => {
-				JObject respJson = JObject.Parse( output );
-				//JToken data = respJson.SelectToken( "Data.html_url" );
-				JToken msg = respJson.SelectToken( "Msg" );
+			Action<bool, string> wrappedOnCompletion = ( success, output ) => {
+				string processedOutput = "";
 
-				/*if( data != null ) {
-					string post_at_url = data.ToObject<string>();
-					if( !string.IsNullOrEmpty( post_at_url ) ) {
-						SystemHelpers.Start( post_at_url );
+				if( success ) {
+					JObject respJson = JObject.Parse( output );
+					//JToken data = respJson.SelectToken( "Data.html_url" );
+					JToken msg = respJson.SelectToken( "Msg" );
+
+					/*if( data != null ) {
+						string post_at_url = data.ToObject<string>();
+						if( !string.IsNullOrEmpty( post_at_url ) ) {
+							SystemHelpers.Start( post_at_url );
+						}
+					}*/
+
+					success = msg != null;
+					if( success ) {
+						processedOutput = msg.ToObject<string>();
+					} else {
+						processedOutput = "Failure.";
 					}
-				}*/
-
-				if( msg == null ) {
-					onSuccess( "Failure." );
-				} else {
-					onSuccess( msg.ToObject<string>() );
 				}
+
+				onCompletion( success, processedOutput );
 			};
 
 			Action<Exception, string> wrappedOnError = ( Exception e, string str ) => {
@@ -77,7 +84,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onError( e, str );
 			};
 
-			WebConnectionHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
+			WebConnectionHelpers.MakePostRequestAsync( url, jsonStr, wrappedOnError, wrappedOnCompletion );
 		}
 	}
 }

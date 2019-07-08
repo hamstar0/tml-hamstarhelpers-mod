@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** @private */
+	/// @private
 	public partial class PlayerIdentityHelpers {
 		internal IDictionary<int, string> PlayerIds = new Dictionary<int, string>();
 

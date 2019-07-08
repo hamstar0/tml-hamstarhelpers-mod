@@ -8,7 +8,7 @@ using System.Threading;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	/** @private */
+	/// @private
 	class ModInfoListPromiseArguments : PromiseArguments {
 		public bool Found;
 		public IDictionary<string, BasicModInfo> ModInfo;

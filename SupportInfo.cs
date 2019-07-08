@@ -16,7 +16,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.Support {
-	/** @private */
+	/// @private
 	internal class SupportInfoDisplay {
 		private readonly UIText HeadTextUI;
 		private readonly UIWebUrl HeadUrlUI;

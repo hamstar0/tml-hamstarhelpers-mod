@@ -3,7 +3,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
-	/** @private */
+	/// @private
 	public partial class TileType {
 		public bool? IsWire { get; private set; }
 

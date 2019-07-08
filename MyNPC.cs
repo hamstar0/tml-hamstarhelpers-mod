@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	/** @private */
+	/// @private
 	class ModHelpersNPC : GlobalNPC {
 		public override void NPCLoot( NPC npc ) {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+npc.whoAmI+":"+npc.type+"_A", 1 );

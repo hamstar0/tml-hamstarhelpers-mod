@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	/** @private */
+	/// @private
 	partial class ModHelpersMod : Mod {
 		public static ModHelpersMod Instance;
 

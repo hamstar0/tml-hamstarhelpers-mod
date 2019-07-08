@@ -3,7 +3,7 @@ using HamstarHelpers.Services.PromisedHooks;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
-	/** @private */
+	/// @private
 	public partial class LoadHelpers {
 		internal int StartupDelay = 0;
 

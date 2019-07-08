@@ -9,7 +9,7 @@ using System.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	/** @private */
+	/// @private
 	partial class GetModTags {
 		private static void RetrieveAllModTagsAsync( Action<IDictionary<string, ISet<string>>, bool> onCompletion ) {
 			Action<Exception, string> onGetFail = ( e, output ) => {

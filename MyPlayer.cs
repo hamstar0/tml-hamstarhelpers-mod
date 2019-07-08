@@ -14,14 +14,14 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
-	/** @private */
+	/// @private
 	class PlayerPromiseArguments : PromiseArguments {
 		public int Who;
 	}
 
 
 
-	/** @private */
+	/// @private
 	class ModHelpersPlayer : ModPlayer {
 		internal readonly static object MyValidatorKey;
 		internal readonly static PromiseValidator LoadValidator;

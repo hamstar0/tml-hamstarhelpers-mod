@@ -6,14 +6,21 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Misc {
-	/** <summary>Assorted static "helper" functions pertaining to game music.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to game music.
+	/// </summary>
 	public class PaintHelpers {
-		private static IDictionary<int, byte> CachedMatches = new Dictionary<int, byte>();	// Static; shouldn't expect to change
+		private static IDictionary<int, byte> CachedMatches = new Dictionary<int, byte>();  // Static; shouldn't expect to change
 
 
 
 		////////////////
-		
+
+		/// <summary>
+		/// Gets a paint type of the color with the nearest approximation of the given color.
+		/// </summary>
+		/// <param name="color"></param>
+		/// <returns>Internal paint id (not item id).</returns>
 		public static byte GetNearestPaintType( Color color ) {
 			int colorCode = (((int)color.R >> 3) << 3) + (((int)color.G >> 3) << 11) + (((int)color.B >> 3) << 19 );
 

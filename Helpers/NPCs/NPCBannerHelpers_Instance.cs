@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** @private */
+	/// @private
 	public partial class NPCBannerHelpers {
 		private IDictionary<int, int> NpcTypesToBannerItemTypes;
 		private ISet<int> BannerItemTypes;

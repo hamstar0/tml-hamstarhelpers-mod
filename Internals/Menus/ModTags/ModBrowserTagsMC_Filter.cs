@@ -11,7 +11,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	/** @private */
+	/// @private
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		internal void ApplyModsFilter() {
 			IList<string> modNames = new List<string>();

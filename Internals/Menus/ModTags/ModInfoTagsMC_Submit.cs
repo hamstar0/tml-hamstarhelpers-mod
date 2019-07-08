@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.WebRequests;
@@ -7,11 +6,10 @@ using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	/** @private */
+	/// @private
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal void SubmitTags() {
 			if( string.IsNullOrEmpty( this.CurrentModName ) ) {
@@ -22,12 +20,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 			}
 
-			Action<string> onSuccess = delegate ( string output ) {
-				this.InfoDisplay?.SetText( output, Color.Lime );
-				ErrorLogger.Log( "Mod info submit result: " + output );
+			Action<bool, string> onCompletion = ( success, output ) => {
+				if( success ) {
+					this.InfoDisplay?.SetText( output, Color.Lime );
+					LogHelpers.Log( "Mod info submit result: " + output );
+				}
 			};
 
-			Action<Exception, string> onFail = ( e, output ) => {
+			Action<Exception, string> onError = ( e, output ) => {
 				this.InfoDisplay?.SetText( "Error: " + (string.IsNullOrEmpty(output)?e.Message:output), Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				this.AllModTagsSnapshot[this.CurrentModName] = newTags;
 			}
 
-			PostModInfo.SubmitModInfo( this.CurrentModName, newTags, onSuccess, onFail );
+			PostModInfo.SubmitModInfo( this.CurrentModName, newTags, onError, onCompletion );
 
 			this.FinishButton.Lock();
 			this.ResetButton.Lock();

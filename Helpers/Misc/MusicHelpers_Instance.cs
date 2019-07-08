@@ -5,7 +5,7 @@ using Terraria.ModLoader.Audio;
 
 
 namespace HamstarHelpers.Helpers.Misc {
-	/** @private */
+	/// @private
 	public partial class MusicHelpers {
 		private float Scale = 1f;
 

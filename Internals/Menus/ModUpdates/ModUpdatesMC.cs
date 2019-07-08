@@ -15,7 +15,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModUpdates {
-	/** @private */
+	/// @private
 	partial class ModUpdatesMenuContext : SessionMenuContext {
 		public static void Initialize() {
 			if( ModHelpersMod.Instance.Config.DisableModMenuUpdates ) { return; }

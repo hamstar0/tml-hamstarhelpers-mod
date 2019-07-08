@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	/** @private */
+	/// @private
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		public static void UpdateModList() {
 			var mymod = ModHelpersMod.Instance;

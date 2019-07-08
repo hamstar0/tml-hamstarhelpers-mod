@@ -11,7 +11,7 @@ using HamstarHelpers.Services.Debug.DataDumper;
 
 
 namespace HamstarHelpers {
-	/** @private */
+	/// @private
 	partial class ModHelpersMod : Mod {
 		private void PostInitializeInternal() {
 			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>(

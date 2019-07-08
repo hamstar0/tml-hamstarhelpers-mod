@@ -8,7 +8,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	/** @private */
+	/// @private
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		public static float ModListHeight = 300f;
 		

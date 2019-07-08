@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
-	/** @private */
+	/// @private
 	public partial class NPCIdentityHelpers {
 		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 

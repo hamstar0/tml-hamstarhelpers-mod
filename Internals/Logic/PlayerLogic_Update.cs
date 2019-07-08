@@ -5,7 +5,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
-	/** @private */
+	/// @private
 	partial class PlayerLogic {
 		private void PreUpdateLocal( Player player ) {
 			var mymod = ModHelpersMod.Instance;

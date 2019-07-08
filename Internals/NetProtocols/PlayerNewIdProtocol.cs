@@ -6,7 +6,7 @@ using HamstarHelpers.Components.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/** @private */
+	/// @private
 	class PlayerNewIdProtocol : PacketProtocolSentToEither {
 		public static void QuickRequestToClient( int playerWho ) {
 			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( playerWho, -1, -1 );

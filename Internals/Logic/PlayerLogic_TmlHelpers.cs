@@ -6,7 +6,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
-	/** @private */
+	/// @private
 	partial class PlayerLogic {
 		private bool CanUpdateData = true;
 

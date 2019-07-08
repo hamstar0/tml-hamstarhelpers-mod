@@ -13,7 +13,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModRecommendations {
-	/** @private */
+	/// @private
 	partial class ModRecommendsMenuContext : SessionMenuContext {
 		public static int Limit => 8;
 

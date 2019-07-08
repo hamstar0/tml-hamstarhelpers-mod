@@ -8,7 +8,7 @@ using System.Text;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
-	/** @private */
+	/// @private
 	public struct PostModTagsData {
 		public string modname;
 		public string modtags;
@@ -16,9 +16,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 
-	/** @private */
+	/// @private
 	class PostModInfo {
-		public static void SubmitModInfo( string modName, ISet<string> modTags, Action<string> onSuccess, Action<Exception, string> onError, Action onCompletion=null ) {
+		public static void SubmitModInfo( string modName, ISet<string> modTags,
+					Action<Exception, string> onError,
+					Action<bool, string> onCompletion=null ) {
 			string url = "http://hamstar.pw/hamstarhelpers/mod_info_submit/";
 			var json = new PostModTagsData {
 				modname = modName,
@@ -26,17 +28,23 @@ namespace HamstarHelpers.Internals.WebRequests {
 			};
 
 			string jsonStr = JsonConvert.SerializeObject( json, Formatting.Indented );
-			byte[] jsonBytes = Encoding.UTF8.GetBytes( jsonStr );
 
-			Action<String> onResponse = ( output ) => {
-				JObject respJson = JObject.Parse( output );
-				JToken msg = respJson.SelectToken( "Msg" );
+			Action<bool, string> wrappedOnCompletion = ( success, output ) => {
+				string processedOutput = "";
 
-				if( msg == null ) {
-					onSuccess( "Failure." );
-				} else {
-					onSuccess( msg.ToObject<string>() );
+				if( success ) {
+					JObject respJson = JObject.Parse( output );
+					JToken msg = respJson.SelectToken( "Msg" );
+
+					success = msg != null;
+					if( success ) {
+						processedOutput = msg.ToObject<string>();
+					} else {
+						processedOutput = "Failure.";
+					}
 				}
+
+				onCompletion( success, processedOutput );
 			};
 
 			Action<Exception, string> wrappedOnError = ( Exception e, string str ) => {
@@ -44,7 +52,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onError( e, str );
 			};
 
-			WebConnectionHelpers.MakePostRequestAsync( url, jsonBytes, onResponse, wrappedOnError, onCompletion );
+			WebConnectionHelpers.MakePostRequestAsync( url, jsonStr, wrappedOnError, wrappedOnCompletion );
 		}
 	}
 }

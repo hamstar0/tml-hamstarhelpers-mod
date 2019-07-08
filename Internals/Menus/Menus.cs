@@ -14,7 +14,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus {
-	/** @private */
+	/// @private
 	class Menus {
 		public static void OnPostSetupContent() {
 			if( Main.dedServ ) { return; }

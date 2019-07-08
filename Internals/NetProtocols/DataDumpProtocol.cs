@@ -7,7 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/** @private */
+	/// @private
 	class DataDumpProtocol : PacketProtocolRequestToServer {
 		public static void QuickRequest() {
 			PacketProtocolRequestToServer.QuickRequest<DataDumpProtocol>( -1 );

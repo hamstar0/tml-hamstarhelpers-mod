@@ -7,7 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
-	/** @private */
+	/// @private
 	class PlayerLogicPromiseArguments : PromiseArguments {
 		public int Who;
 	}
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 
 
-	/** @private */
+	/// @private
 	partial class PlayerLogic {
 		public void OnCurrentClientConnect( Player player ) {
 			PlayerNewIdProtocol.QuickSendToServer();

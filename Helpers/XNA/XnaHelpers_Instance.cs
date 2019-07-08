@@ -6,7 +6,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.XNA {
-	/** @private */
+	/// @private
 	public partial class XNAHelpers {
 		private FieldInfo SpriteBatchBegunField = null;
 

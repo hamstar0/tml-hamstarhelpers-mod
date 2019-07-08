@@ -10,7 +10,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers {
-	/** @private */
+	/// @private
 	partial class ModHelpersMod : Mod {
 		public override void PostDrawInterface( SpriteBatch sb ) {
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );

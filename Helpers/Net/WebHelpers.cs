@@ -3,8 +3,13 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Helpers.Net {
-	/** <summary>Assorted static "helper" functions pertaining to the web.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to the web.
+	/// </summary>
 	public class WebHelpers {
+		/// <summary>
+		/// List of known popular(?) URL shorteners.
+		/// </summary>
 		public readonly static IReadOnlyList<string> UrlShortenerList = new List<string> {
 			"bit.ly",
 			"goo.gl",

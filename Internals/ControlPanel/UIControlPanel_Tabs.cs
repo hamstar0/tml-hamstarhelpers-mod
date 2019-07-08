@@ -10,7 +10,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
-	/** @private */
+	/// @private
 	public abstract class UIControlPanelTab : UIPanel {
 		public UITheme Theme { get; protected set; }
 		public bool IsInitialized { get; private set; }

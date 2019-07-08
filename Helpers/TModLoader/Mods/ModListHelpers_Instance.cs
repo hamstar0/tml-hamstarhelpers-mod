@@ -10,7 +10,7 @@ using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
-	/** @private */
+	/// @private
 	public partial class ModListHelpers {
 		private IDictionary<Services.Tml.BuildPropertiesViewer, Mod> ModsByBuildProps = new Dictionary<Services.Tml.BuildPropertiesViewer, Mod>();
 		private IDictionary<string, ISet<Mod>> ModsByAuthor = new Dictionary<string, ISet<Mod>>();

@@ -15,7 +15,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
-	/** @private */
+	/// @private
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 

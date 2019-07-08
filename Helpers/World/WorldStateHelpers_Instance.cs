@@ -6,7 +6,7 @@ using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers.Helpers.World {
-	/** @private */
+	/// @private
 	public partial class WorldStateHelpers {
 		private bool IsDay;
 		private int HalfDaysElapsed;

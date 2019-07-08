@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
-	/** @private */
+	/// @private
 	class ModHelpersRecipe : GlobalRecipe {
 		public override void OnCraft( Item item, Recipe recipe ) {
 			RecipeHack.ConfirmCraft( Main.LocalPlayer, recipe );

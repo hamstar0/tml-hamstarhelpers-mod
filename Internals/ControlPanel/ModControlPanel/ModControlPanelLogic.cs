@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
-	/** @private */
+	/// @private
 	class ModControlPanelLogic {
 		public Mod CurrentMod = null;
 
@@ -37,21 +37,25 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			string output = "Mod configs reloaded for " + modNames;
 
 			Main.NewText( output, Color.Yellow );
-			ErrorLogger.Log( output );
+			LogHelpers.Log( output );
 		}
 
 
 		public void ReportIssue( Mod mod, string issueTitle, string issueBody, Action onCompletion ) {
-			Action<string> onSuccess = delegate ( string output ) {
-				Main.NewText( "Issue submit result: " + output, Color.Yellow );
-				ErrorLogger.Log( "Issue submit result: " + output );
+			Action<bool, string> wrappedOnCompletion = ( success, output ) => {
+				if( success ) {
+					Main.NewText( "Issue submit result: " + output, Color.Yellow );
+					LogHelpers.Log( "Issue submit result: " + output );
+				}
+				onCompletion();
 			};
-			Action<Exception, string> onFail = ( e, output ) => {
+
+			Action<Exception, string> onError = ( e, output ) => {
 				Main.NewText( "Issue submit error: " + e.Message, Color.Red );
 				LogHelpers.Log( e.ToString() );
 			};
 
-			PostGithubModIssueReports.ReportIssue( mod, issueTitle, issueBody, onSuccess, onFail, onCompletion );
+			PostGithubModIssueReports.ReportIssue( mod, issueTitle, issueBody, onError, wrappedOnCompletion );
 		}
 	}
 }

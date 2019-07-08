@@ -4,7 +4,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
-	/** @private */
+	/// @private
 	partial class UIControlPanel : UIState {
 		public void RecalculateContainer() {
 			CalculatedStyle dim = this.OuterContainer.GetDimensions();
