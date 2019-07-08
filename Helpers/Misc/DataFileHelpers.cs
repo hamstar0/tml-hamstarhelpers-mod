@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using Newtonsoft.Json;
@@ -10,7 +9,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Misc {
-	/** <summary>Assorted static "helper" functions pertaining to file IO for mod custom data.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to file IO for mod custom data.
+	/// </summary>
 	public partial class DataFileHelpers {
 		public static string BaseFolder => "Mod Specific Data";
 
@@ -48,17 +49,19 @@ namespace HamstarHelpers.Helpers.Misc {
 
 		////////////////
 
-		public static T LoadJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings, out bool success ) where T : class {
+		public static T LoadJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings )
+				where T : class {
 			DataFileHelpers.PrepareDir( mod );
 
-			string relDir = DataFileHelpers.GetRelativeDirectoryPath( mod );
-			success = false;
-
 			try {
-				var jsonFile = new JsonConfig<T>( fileNameNoExt + ".json", relDir, jsonSettings );
-				success = jsonFile.LoadFile();
+				string fullPath = DataFileHelpers.GetFullPath( mod, fileNameNoExt + ".json" );
+				string dataStr = FileHelpers.LoadTextFile( fullPath, false );
 
-				return jsonFile.Data;
+				if( dataStr != null ) {
+					return JsonConvert.DeserializeObject<T>( dataStr, jsonSettings );
+				} else {
+					return null;
+				}
 			} catch( IOException e ) {
 				string fullDir = DataFileHelpers.GetFullDirectoryPath( mod );
 				LogHelpers.Warn( "Failed to load json file " + fileNameNoExt + " at " + fullDir + " - " + e.ToString() );
@@ -68,79 +71,96 @@ namespace HamstarHelpers.Helpers.Misc {
 			}
 		}
 
-		public static T LoadBinary<T>( Mod mod, string fileNameHasExt, bool isCloud, JsonSerializerSettings jsonSettings ) where T : class {
-			DataFileHelpers.PrepareDir( mod );
-
-			string fullPath = DataFileHelpers.GetFullPath( mod, fileNameHasExt );
-
-			try {
-				return FileHelpers.LoadBinaryFile<T>( fullPath, isCloud, jsonSettings );
-			} catch( IOException e ) {
-				string fullDir = DataFileHelpers.GetFullDirectoryPath( mod );
-				LogHelpers.Warn( "Failed to load binary file " + fileNameHasExt + " at " + fullDir + " - " + e.ToString() );
-				throw new IOException( "Failed to load binary file "+fileNameHasExt+" at " + fullDir, e );
-			}
+		public static T LoadJson<T>( Mod mod, string fileNameNoExt ) where T : class {
+			return DataFileHelpers.LoadJson<T>( mod, fileNameNoExt, new JsonSerializerSettings() );
 		}
 
+
 		////////////////
-		
-		public static void SaveAsJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings, T data ) where T : class {
+
+		public static bool SaveAsJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings, bool overrides, T data )
+				where T : class {
 			DataFileHelpers.PrepareDir( mod );
 
 			string relDir = DataFileHelpers.GetRelativeDirectoryPath( mod );
 
 			if( data == null ) {
 				LogHelpers.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - Data is null." );
-				return;
+				return false;
 			}
 
 			try {
-				var jsonFile = new JsonConfig<T>( fileNameNoExt + ".json", relDir, data, jsonSettings );
-				jsonFile.SaveFile();
+				string fullPath = DataFileHelpers.GetFullPath( mod, fileNameNoExt + ".json" );
+				string dataJson = JsonConvert.SerializeObject( data, jsonSettings );
+
+				return FileHelpers.SaveTextFile( dataJson, fullPath, false, !overrides );
 			} catch( IOException e ) {
 				LogHelpers.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - " + e.ToString() );
 				throw new IOException( "Failed to save json file " + fileNameNoExt + " at " + relDir, e );
 			}
 		}
 
-		public static void SaveAsBinary<T>( Mod mod, string fileNameHasExt, bool isCloud, JsonSerializerSettings jsonSettings, T data ) where T : class {
+		public static bool SaveAsJson<T>( Mod mod, string fileNameNoExt, bool overrides, T data ) where T : class {
+			return DataFileHelpers.SaveAsJson<T>( mod, fileNameNoExt, new JsonSerializerSettings(), overrides, data );
+		}
+
+
+		////////////////
+		
+		public static T LoadBinaryJson<T>( Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings ) where T : class {
 			DataFileHelpers.PrepareDir( mod );
 
-			string fullPath = DataFileHelpers.GetFullPath( mod, fileNameHasExt );
-
-			if( data == null ) {
-				LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
-				return;
-			}
-
 			try {
-				FileHelpers.SaveBinaryFile<T>( data, fullPath, isCloud, false, jsonSettings );
+				string fullPath = DataFileHelpers.GetFullPath( mod, fileNameWithExt );
+				byte[] dataBytes = FileHelpers.LoadBinaryFile( fullPath, false );
+				string dataJson = System.Text.Encoding.UTF8.GetString( dataBytes );
+
+				if( dataBytes != null ) {
+					return JsonConvert.DeserializeObject<T>( dataJson, jsonSettings );
+				} else {
+					return null;
+				}
 			} catch( IOException e ) {
 				string fullDir = DataFileHelpers.GetFullDirectoryPath( mod );
-				LogHelpers.Warn( "Failed to save binary file " + fileNameHasExt + " at " + fullDir + " - " + e.ToString() );
-				throw new IOException( "Failed to save binary file " + fileNameHasExt + " at " + fullDir, e );
+				LogHelpers.Warn( "Failed to load binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
+				throw new IOException( "Failed to load binary file " + fileNameWithExt + " at " + fullDir, e );
+			} catch( Exception e ) {
+				throw new HamstarException( "From " + fileNameWithExt + " (" + typeof( T ).Name + ")", e );
 			}
 		}
 
+		public static T LoadBinaryJson<T>( Mod mod, string fileNameHasExt ) where T : class {
+			return DataFileHelpers.LoadBinaryJson<T>( mod, fileNameHasExt, new JsonSerializerSettings() );
+		}
+
 
 		////////////////
 
-		public static T LoadJson<T>( Mod mod, string fileNameNoExt, out bool success ) where T : class {
-			return DataFileHelpers.LoadJson<T>( mod, fileNameNoExt, new JsonSerializerSettings(), out success );
+		public static void SaveAsBinaryJson<T>( Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings, bool overrides,
+				T data ) where T : class {
+			DataFileHelpers.PrepareDir( mod );
+
+			try {
+				string fullPath = DataFileHelpers.GetFullPath( mod, fileNameWithExt );
+
+				if( data == null ) {
+					LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
+					return;
+				}
+
+				string dataJson = JsonConvert.SerializeObject( data, jsonSettings );
+				byte[] dataBytes = System.Text.Encoding.UTF8.GetBytes( dataJson );
+
+				FileHelpers.SaveBinaryFile( dataBytes, fullPath, false, !overrides );
+			} catch( IOException e ) {
+				string fullDir = DataFileHelpers.GetFullDirectoryPath( mod );
+				LogHelpers.Warn( "Failed to save binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
+				throw new IOException( "Failed to save binary file " + fileNameWithExt + " at " + fullDir, e );
+			}
 		}
 
-		public static T LoadBinary<T>( Mod mod, string fileNameHasExt, bool isCloud ) where T : class {
-			return DataFileHelpers.LoadBinary<T>( mod, fileNameHasExt, isCloud, new JsonSerializerSettings() );
-		}
-
-		////////////////
-
-		public static void SaveAsJson<T>( Mod mod, string fileNameNoExt, T data ) where T : class {
-			DataFileHelpers.SaveAsJson<T>( mod, fileNameNoExt, new JsonSerializerSettings(), data );
-		}
-
-		public static void SaveAsBinary<T>( Mod mod, string fileNameHasExt, bool isCloud, T data ) where T : class {
-			DataFileHelpers.SaveAsBinary<T>( mod, fileNameHasExt, isCloud, new JsonSerializerSettings(), data );
+		public static void SaveAsBinaryJson<T>( Mod mod, string fileNameWithExt, bool overrides, T data ) where T : class {
+			DataFileHelpers.SaveAsBinaryJson<T>( mod, fileNameWithExt, new JsonSerializerSettings(), overrides, data );
 		}
 	}
 }

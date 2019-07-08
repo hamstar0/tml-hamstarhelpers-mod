@@ -50,7 +50,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 		/// <param name="fullPath">System path to the file.</param>
 		/// <param name="isCloud">Stores the file on the cloud.</param>
 		/// <returns>A byte array of the input file's data. `null` if file does not exist, or error.</returns>
-		public static byte[] LoadBinaryFile<T>( string fullPath, bool isCloud ) {
+		public static byte[] LoadBinaryFile( string fullPath, bool isCloud ) {
 			if( !FileUtilities.Exists( fullPath, isCloud ) ) {
 				return null;
 			}
