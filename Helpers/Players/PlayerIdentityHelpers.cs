@@ -7,16 +7,25 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to unique player identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to unique player identification.
+	/// </summary>
 	public partial class PlayerIdentityHelpers {
+		/// <summary></summary>
 		public const int InventorySize = 58;
+		/// <summary></summary>
 		public const int InventoryHotbarSize = 10;
+		/// <summary></summary>
 		public const int InventoryMainSize = 40;
 
 
 
 		////////////////
 		
+		/// <summary>
+		/// Gets a code to uniquely identify the current player.
+		/// </summary>
+		/// <returns></returns>
 		public static string GetUniqueId() {
 			if( Main.netMode == 2 ) {
 				throw new HamstarException( "No 'current' player on a server." );
@@ -26,6 +35,11 @@ namespace HamstarHelpers.Helpers.Players {
 			return Main.clientUUID + "_" + hash;
 		}
 
+		/// <summary>
+		/// Gets a code to uniquely identify a given player. These are synced to the server in multiplayer.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static string GetUniqueId( Player player ) {
 			var mymod = ModHelpersMod.Instance;
 			string id;
@@ -43,6 +57,11 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		/// <summary>
+		/// Gets an active player by a given unique id (if present).
+		/// </summary>
+		/// <param name="uid"></param>
+		/// <returns></returns>
 		public static Player GetPlayerByUniqueId( string uid ) {
 			int len = Main.player.Length;
 
@@ -62,6 +81,13 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
+		/// <summary>
+		/// Gets a unique code for a player's current state. Useful for detecting state changes.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="noContext">Omits team, pvp state, and name.</param>
+		/// <param name="looksMatter">Includes appearance elements.</param>
+		/// <returns></returns>
 		public static int GetVanillaSnapshotHash( Player player, bool noContext, bool looksMatter ) {
 			int hash = EntityHelpers.GetVanillaSnapshotHash( player, noContext );
 			int itemHash;

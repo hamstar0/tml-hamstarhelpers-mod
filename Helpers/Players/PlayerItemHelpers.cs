@@ -9,34 +9,39 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to player inventory or equips.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to player inventory or equips.
+	/// </summary>
 	public static partial class PlayerItemHelpers {
+		/// <summary></summary>
 		public const int VanillaInventorySize = 58;
+		/// <summary></summary>
 		public const int VanillaInventoryHotbarSize = 10;
+		/// <summary></summary>
 		public const int VanillaInventoryMainSize = 40;
+		/// <summary></summary>
 		public const int VanillaInventoryLastMainSlot = 49;
+		/// <summary></summary>
 		public const int VanillaInventoryLastCoinSlot = 53;
+		/// <summary></summary>
 		public const int VanillaInventoryLastAmmolot = 57;
+		/// <summary></summary>
 		public const int VanillaInventorySelectedSlot = 58;
 
+		/// <summary></summary>
 		public const int VanillaAccessorySlotFirst = 3;
 
 
 
 		////////////////
 
-		public static ISet<int> AvailableInventorySlots( Player player ) {
-			var myset = new HashSet<int>();
-
-			for( int i = 0; i < PlayerItemHelpers.VanillaInventoryLastMainSlot; i++ ) {
-				if( player.inventory[i] != null && player.inventory[i].active && player.inventory[i].stack > 0 ) {
-					myset.Add( i );
-				}
-			}
-
-			return myset;
-		}
-
+		/// <summary>
+		/// Removes a quantity of a given item type from the player's inventory.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="itemType"></param>
+		/// <param name="quantity"></param>
+		/// <returns>Amount removed.</returns>
 		public static int RemoveInventoryItemQuantity( Player player, int itemType, int quantity ) {
 			int removed = 0;
 
@@ -62,16 +67,16 @@ namespace HamstarHelpers.Helpers.Players {
 			return removed;
 		}
 
-
-		public static void DropInventoryItem( Player player, int slot ) {
-			int _;
-			PlayerItemHelpers.DropInventoryItem( player, slot, 100, out _ );
-		}
-		public static void DropInventoryItem( Player player, int slot, int noGrabDelay, out int idx ) {
-			idx = PlayerItemHelpers.DropInventoryItem( player, slot, noGrabDelay );
-		}
-
-		public static int DropInventoryItem( Player player, int slot, int noGrabDelay ) {
+		////
+		
+		/// <summary>
+		/// Drops a given inventory item to the ground.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="slot"></param>
+		/// <param name="noGrabDelay"></param>
+		/// <returns>World item index (in `Main.item` array). -1 if none.</returns>
+		public static int DropInventoryItem( Player player, int slot, int noGrabDelay=100 ) {
 			Item item = player.inventory[ slot ];
 			if( item == null || item.IsAir ) {
 				return -1;
@@ -114,15 +119,46 @@ namespace HamstarHelpers.Helpers.Players {
 			//player.QuickSpawnClonedItem( player.inventory[slot], player.inventory[slot].stack );
 		}
 
-		public static void DropEquippedMiscItem( Player player, int slot ) {
+		/// <summary>
+		/// Drops a given armor item to the ground.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="slot"></param>
+		/// <param name="noGrabDelay"></param>
+		public static void DropEquippedArmorItem( Player player, int slot, int noGrabDelay = 100 ) {
+			Item item = player.armor[slot];
+
+			if( item != null && !item.IsAir ) {
+				int itemIdx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
+
+				item.position = Main.item[itemIdx].position;
+				item.noGrabDelay = noGrabDelay;
+				Main.item[itemIdx] = item;
+
+				if( Main.netMode == 1 ) {   // Client
+					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, itemIdx, 1f, 0f, 0f, 0, 0, 0 );
+				}
+
+				player.armor[slot] = new Item();
+			}
+		}
+
+		/// <summary>
+		/// Drops a given misc item to the ground.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="slot"></param>
+		/// <param name="noGrabDelay"></param>
+		public static void DropEquippedMiscItem( Player player, int slot, int noGrabDelay = 100 ) {
 			Item item = player.miscEquips[ slot ];
 
 			if( item != null && !item.IsAir ) {
 				int idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
 
 				item.position = Main.item[ idx ].position;
+				item.noGrabDelay = noGrabDelay;
 				Main.item[ idx ] = item;
-				
+
 				if( Main.netMode == 1 ) {   // Client
 					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
 				}
@@ -131,25 +167,13 @@ namespace HamstarHelpers.Helpers.Players {
 			}
 		}
 
+		////
 
-		public static void DropEquippedItem( Player player, int slot ) {
-			Item item = player.armor[slot];
-
-			if( item != null && !item.IsAir ) {
-				int idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
-
-				item.position = Main.item[idx].position;
-				Main.item[idx] = item;
-
-				if( Main.netMode == 1 ) {   // Client
-					NetMessage.SendData( 21, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
-				}
-
-				player.armor[slot] = new Item();
-			}
-		}
-
-
+		/// <summary>
+		/// Drops player's currently equipped item.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static bool UnhandItem( Player player ) {
 			bool isUnhanded = false;
 
@@ -199,6 +223,13 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates if player is not wearing any items.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="alsoVanity"></param>
+		/// <param name="canHide">Indicates items can be hidden to not count against being "naked".</param>
+		/// <returns></returns>
 		public static bool IsPlayerNaked( Player player, bool alsoVanity = false, bool canHide = true ) {
 			// Armor
 			for( int i = 0; i < 3; i++ ) {
@@ -233,18 +264,33 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
-		public static long CountMoney( Player player ) {
+		/// <summary>
+		/// Totals up player's money.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="includeBanks"></param>
+		/// <returns></returns>
+		public static long CountMoney( Player player, bool includeBanks ) {
 			bool _;
 			long invCount = Utils.CoinsCount( out _, player.inventory, new int[] { 58, 57, 56, 55, 54 } );
-			long bankCount = Utils.CoinsCount( out _, player.bank.item, new int[0] );
-			long bank2Count = Utils.CoinsCount( out _, player.bank2.item, new int[0] );
-			long bank3Count = Utils.CoinsCount( out _, player.bank3.item, new int[0] );
+			long bankCount = 0, bank2Count = 0, bank3Count = 0;
+
+			if( includeBanks ) {
+				bankCount = Utils.CoinsCount( out _, player.bank.item, new int[0] );
+				bank2Count = Utils.CoinsCount( out _, player.bank2.item, new int[0] );
+				bank3Count = Utils.CoinsCount( out _, player.bank3.item, new int[0] );
+			}
 			return Utils.CoinsCombineStacks( out _, new long[] { invCount, bankCount, bank2Count, bank3Count } );
 		}
 
 
 		////////////////
 
+		/// <summary>
+		/// Gets world position of the tip of a player's weilded item.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static Vector2 TipOfHeldItem( Player player ) {
 			Item item = player.HeldItem;
 			if( item == null || item.IsAir ) { return Vector2.Zero; }
@@ -271,6 +317,11 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
+		/// <summary>
+		/// Gets the player's grappling item.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static Item GetGrappleItem( Player player ) {
 			if( ItemAttributeHelpers.IsGrapple( player.miscEquips[4] ) ) {
 				return player.miscEquips[4];
@@ -286,14 +337,31 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates if a given slot position is an armor slot (in `player.armor`).
+		/// </summary>
+		/// <param name="slot"></param>
+		/// <returns></returns>
 		public static bool IsArmorSlot( int slot ) {
 			return slot < PlayerItemHelpers.VanillaAccessorySlotFirst;
 		}
 
+		/// <summary>
+		/// Indicates if a given slot position is an accessory slot (in `player.armor`).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="slot"></param>
+		/// <returns></returns>
 		public static bool IsAccessorySlot( Player player, int slot ) {
 			return slot >= PlayerItemHelpers.VanillaAccessorySlotFirst && slot < 8 + player.extraAccessorySlots;
 		}
 
+		/// <summary>
+		/// Indicates if a given slot position is a vanity slot (in `player.armor`).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="slot"></param>
+		/// <returns></returns>
 		public static bool IsVanitySlot( Player player, int slot ) {
 			return slot >= 8 + player.extraAccessorySlots;
 		}
@@ -301,6 +369,12 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
+		/// <summary>
+		/// Accesses items of a player's currently opened chest.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="isPersonalChest"></param>
+		/// <returns></returns>
 		public static Item[] GetCurrentlyOpenChest( Player player, out bool? isPersonalChest ) {
 			if( player.chest != -1 ) {
 				if( player.chest >= 0 ) {

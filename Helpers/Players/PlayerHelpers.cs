@@ -7,16 +7,26 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to players.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to players.
+	/// </summary>
 	public static partial class PlayerHelpers {
+		/// <summary></summary>
 		public const int InventorySize = 58;
+		/// <summary></summary>
 		public const int InventoryHotbarSize = 10;
+		/// <summary></summary>
 		public const int InventoryMainSize = 40;
 
 
 
 		////////////////
 
+		/// <summary>
+		/// Predicts impending fall damage amount for a given player at the current time (if any).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static int ComputeImpendingFallDamage( Player player ) {
 			if( player.mount.CanFly ) {
 				return 0;
@@ -56,46 +66,66 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		/// <summary>
+		/// Loosely assesses player's relative level of power. Factors include appraisals of inventory items, player's defense,
+		/// and player's life.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static float LooselyAssessPower( Player player ) {
-			float itemCount = 0;
-			float tally = 0;
+			float armorCount=0, miscCount=0;
+			float hotbarTech=0, armorTech=0, miscTech=0;
 
 			for( int i=0; i<PlayerHelpers.InventoryHotbarSize; i++ ) {
 				Item item = player.inventory[i];
 				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant(item) ) { continue; }
 
-				tally += ItemAttributeHelpers.LooselyAppraise( item );
-				itemCount += 1;
+				float tech = ItemAttributeHelpers.LooselyAppraise( item );
+				hotbarTech = hotbarTech > tech ? hotbarTech : tech;
 			}
 
-			for( int i=0; i<player.armor.Length; i++ ) {
+			int maxArmorSlot = 8 + player.extraAccessorySlots;
+			for( int i=0; i<maxArmorSlot; i++ ) {
 				Item item = player.inventory[i];
 				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
 
-				tally += ItemAttributeHelpers.LooselyAppraise( item );
-				itemCount += 1;
+				armorTech += ItemAttributeHelpers.LooselyAppraise( item );
+				armorCount += 1;
 			}
 
 			for( int i = 0; i < player.miscEquips.Length; i++ ) {
 				Item item = player.miscEquips[i];
 				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
 
-				tally += ItemAttributeHelpers.LooselyAppraise( item );
-				itemCount += 1;
+				miscTech += ItemAttributeHelpers.LooselyAppraise( item );
+				miscCount += 1;
 			}
 
-			float techFactor = tally / (itemCount * ItemRarityAttributeHelpers.HighestVanillaRarity);
-			float defenseFactor = 1f + ((float)player.statDefense * 0.01f);
-			float vitality = (float)player.statLifeMax / 20f;
-			float vitalityFactor = (vitality / (4f * ItemRarityAttributeHelpers.HighestVanillaRarity)) * defenseFactor;
+			float techFactor = armorTech / (armorCount * ItemRarityAttributeHelpers.HighestVanillaRarity);
+			techFactor += miscTech / (miscCount * ItemRarityAttributeHelpers.HighestVanillaRarity);
+			techFactor += hotbarTech + hotbarTech;
+			techFactor /= 4;
 
-			return (techFactor + vitalityFactor) / 2f;
+			float defenseFactor = 1f + ((float)player.statDefense * 0.01f);
+			float addedVitality = (float)player.statLifeMax / 20f;
+			float vitalityFactor = addedVitality * defenseFactor;
+
+			return (techFactor + techFactor + vitalityFactor) / 3f;
 		}
 
 		////
 
+		/// <summary>
+		/// Indicates if player counts as 'incapacitated'.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="freedomNeeded">Pulley, grappling, or minecarting count as incapacitation. Default `false`.</param>
+		/// <param name="armsNeeded">Use of arms (e.g. no Cursed debuff) count as incapacitation. Default `false`.</param>
+		/// <param name="sightNeeded">Visual occlusion (e.g. Blackout debuff) counts as incapacitation. Default `false`.</param>
+		/// <param name="sanityNeeded">Control complications (e.g. Confused debuff) counts as incapacition. Default `false`.</param>
+		/// <returns></returns>
 		public static bool IsIncapacitated( Player player, bool freedomNeeded=false, bool armsNeeded=false, bool sightNeeded=false,
-				bool sanityNeeded=false ) {
+					bool sanityNeeded=false ) {
 			if( player == null || !player.active || player.dead || player.stoned || player.frozen || player.ghost ||
 				player.gross || player.webbed || player.mapFullScreen ) { return true; }
 			if( freedomNeeded && (player.pulley || player.grappling[0] >= 0 || player.mount.Cart) ) { return true; }
@@ -108,6 +138,16 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////
 
+		/// <summary>
+		/// Apply armor-bypassing damage to player, killing if needed.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="deathReason"></param>
+		/// <param name="damage"></param>
+		/// <param name="direction"></param>
+		/// <param name="pvp"></param>
+		/// <param name="quiet"></param>
+		/// <param name="crit"></param>
 		public static void RawHurt( Player player, PlayerDeathReason deathReason, int damage, int direction, bool pvp=false, bool quiet=false, bool crit=false ) {
 			int def = player.statDefense;
 
@@ -118,6 +158,11 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////
 
+		/// <summary>
+		/// Kills a player permanently (as if hardcore mode).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="deathMsg"></param>
 		public static void KillWithPermadeath( Player player, string deathMsg ) {
 			if( Main.netMode != 0 ) {
 				PlayerPermaDeathProtocol.SendToAll( player.whoAmI, deathMsg );
@@ -134,6 +179,10 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////
 
+		/// <summary>
+		/// Resets a player back to (vanilla) factory defaults.
+		/// </summary>
+		/// <param name="player"></param>
 		public static void FullVanillaReset( Player player ) {
 			for( int i = 0; i < player.inventory.Length; i++ ) {
 				player.inventory[i] = new Item();
@@ -184,6 +233,10 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////
 
+		/// <summary>
+		/// For just the current game tick, the player is under complete lockdown: No movement, actions, or damage taken.
+		/// </summary>
+		/// <param name="player"></param>
 		public static void LockdownPlayerPerTick( Player player ) {
 			player.noItems = true;
 			player.noBuilding = true;

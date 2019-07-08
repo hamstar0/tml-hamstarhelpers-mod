@@ -9,9 +9,11 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to player head drawing.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to player head drawing.
+	/// </summary>
 	public static class PlayerHeadDrawHelpers {
-		public static Color QuickAlpha( Color oldColor, float alpha ) {
+		private static Color QuickAlpha( Color oldColor, float alpha ) {
 			Color result = oldColor;
 			result.R = (byte)((float)result.R * alpha);
 			result.G = (byte)((float)result.G * alpha);
@@ -21,6 +23,17 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		////////////////
+
+		/// <summary>
+		/// Draws a player's head.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+		/// <param name="player"></param>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <param name="alpha"></param>
+		/// <param name="scale"></param>
 		public static void DrawPlayerHead( SpriteBatch sb, Player player, float x, float y, float alpha = 1f, float scale = 1f ) {
 			PlayerHeadDrawInfo drawInfo = new PlayerHeadDrawInfo {
 				spriteBatch = sb,
@@ -98,7 +111,7 @@ namespace HamstarHelpers.Helpers.Players {
 			ItemLoader.DrawHair( player, ref drawHair, ref drawAltHair );
 			drawInfo.drawHair = drawHair;
 			drawInfo.drawAltHair = drawAltHair;
-			List<PlayerHeadLayer> drawLayers = Terraria.ModLoader.PlayerHooks.GetDrawHeadLayers( player );
+			List<PlayerHeadLayer> drawLayers = PlayerHooks.GetDrawHeadLayers( player );
 
 			for( int i = 0; i < drawLayers.Count; i++ ) {
 				if( drawLayers[i].ShouldDraw( drawLayers ) ) {
@@ -345,20 +358,22 @@ namespace HamstarHelpers.Helpers.Players {
 
 		private static void LoadHair( int i ) {
 			if( !Main.hairLoaded[i] ) {
-				Main.playerHairTexture[i] = Main.instance.OurLoad<Texture2D>( string.Concat( new object[]
-						{
-							"Images",
-							Path.DirectorySeparatorChar,
-							"Player_Hair_",
-							i + 1
-						} ) );
-				Main.playerHairAltTexture[i] = Main.instance.OurLoad<Texture2D>( string.Concat( new object[]
-						{
-							"Images",
-							Path.DirectorySeparatorChar,
-							"Player_HairAlt_",
-							i + 1
-						} ) );
+				Main.playerHairTexture[i] = Main.instance.OurLoad<Texture2D>(
+					string.Concat( new object[] {
+						"Images",
+						Path.DirectorySeparatorChar,
+						"Player_Hair_",
+						i + 1
+					} )
+				);
+				Main.playerHairAltTexture[i] = Main.instance.OurLoad<Texture2D>(
+					string.Concat( new object[] {
+						"Images",
+						Path.DirectorySeparatorChar,
+						"Player_HairAlt_",
+						i + 1
+					} )
+				);
 				Main.hairLoaded[i] = true;
 			}
 		}

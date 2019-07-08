@@ -4,16 +4,45 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to unique player identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to unique player identification.
+	/// </summary>
 	public static class PlayerItemFinderHelpers {
-		public static Item FindFirstOfPossessedItemFor( Player player, ISet<int> itemTypes ) {
+		/// <summary>
+		/// Finds first of any of a set of item types currently in the player's position.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="itemTypes"></param>
+		/// <param name="includeBanks"></param>
+		/// <returns></returns>
+		public static Item FindFirstOfPossessedItemFor( Player player, ISet<int> itemTypes, bool includeBanks ) {
 			int found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, itemTypes );
 			if( found != -1 ) {
 				return player.inventory[found];
-			} else {
-				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.armor, itemTypes );
+			}
+
+			found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.armor, itemTypes );
+			if( found != -1 ) {
+				return player.armor[found];
+			}
+
+			found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.miscEquips, itemTypes );
+			if( found != -1 ) {
+				return player.miscEquips[found];
+			}
+
+			if( includeBanks ) {
+				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank.item, itemTypes );
 				if( found != -1 ) {
-					return player.armor[found];
+					return player.bank.item[found];
+				}
+				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank2.item, itemTypes );
+				if( found != -1 ) {
+					return player.bank2.item[found];
+				}
+				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank3.item, itemTypes );
+				if( found != -1 ) {
+					return player.bank3.item[found];
 				}
 			}
 
@@ -21,9 +50,16 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		/// <summary>
+		/// Find item changes in a given player's inventory between a previous snapshot.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="prevMouseInfo">Mouse item type and stack size.</param>
+		/// <param name="prevInv">Map of inventory slots and their item types and sizes.</param>
+		/// <returns>Map of inventory slots with changes and their item types and sizes. Mouse items count as the -1 slot.</returns>
 		public static IDictionary<int, KeyValuePair<int, int>> FindInventoryChanges( Player player,
-				KeyValuePair<int, int> prevMouseInfo,
-				IDictionary<int, KeyValuePair<int, int>> prevInv ) {
+					KeyValuePair<int, int> prevMouseInfo,
+					IDictionary<int, KeyValuePair<int, int>> prevInv ) {
 			IDictionary<int, KeyValuePair<int, int>> changes = new Dictionary<int, KeyValuePair<int, int>>();
 			int len = player.inventory.Length;
 
@@ -47,6 +83,12 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		/// <summary>
+		/// Gets the current ammo item of a given player expected to be in use by a given weapon item.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="weapon"></param>
+		/// <returns></returns>
 		public static Item GetCurrentAmmo( Player player, Item weapon ) {
 			if( weapon.useAmmo == 0 ) { return null; }
 
@@ -67,6 +109,24 @@ namespace HamstarHelpers.Helpers.Players {
 			}
 
 			return null;
+		}
+
+
+		/// <summary>
+		/// Gets all unoccupied inventory slot indices.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
+		public static ISet<int> UnusedInventorySlots( Player player ) {
+			var myset = new HashSet<int>();
+
+			for( int i = 0; i < PlayerItemHelpers.VanillaInventoryLastMainSlot; i++ ) {
+				if( player.inventory[i] == null || player.inventory[i].IsAir ) {
+					myset.Add( i );
+				}
+			}
+
+			return myset;
 		}
 	}
 }
