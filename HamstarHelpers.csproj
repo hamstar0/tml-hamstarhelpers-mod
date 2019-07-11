@@ -152,8 +152,8 @@
     <Compile Include="Helpers\Misc\MusicHelpers.cs" />
     <Compile Include="Helpers\Misc\PaintHelpers.cs" />
     <Compile Include="Helpers\Net\WebHelpers.cs" />
-    <Compile Include="Helpers\Net\NetHelpers_Instance.cs" />
-    <Compile Include="Helpers\Net\NetHelpers.cs" />
+    <Compile Include="Helpers\Net\NetPlayHelpers_Instance.cs" />
+    <Compile Include="Helpers\Net\NetPlayHelpers.cs" />
     <Compile Include="Helpers\Net\WebConnectionHelpers.cs" />
     <Compile Include="Helpers\NPCs\NPCBannerHelpers_Instance.cs" />
     <Compile Include="Helpers\NPCs\NPCBannerHelpers.cs" />

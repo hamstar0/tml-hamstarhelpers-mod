@@ -7,8 +7,15 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to mod compatibility for players.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to mod compatibility for players.
+	/// </summary>
 	public static class PlayerModHelpers {
+		/// <summary>
+		/// Clears mod data for a player.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="exemptMods">Names of mods to skip (internal names).</param>
 		public static void ModdedExtensionsReset( Player player, ISet<string> exemptMods ) {
 			foreach( Mod mod in ModLoader.Mods ) {
 				if( exemptMods.Contains(mod.Name) ) { continue; }

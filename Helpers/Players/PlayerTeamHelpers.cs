@@ -3,19 +3,34 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
+	/// <summary></summary>
 	public enum PlayerTeamName {
+		/// <summary></summary>
 		White = 0,
+		/// <summary></summary>
 		Red = 1,
+		/// <summary></summary>
 		Green = 2,
+		/// <summary></summary>
 		Cyan = 4,
+		/// <summary></summary>
 		Yellow = 8,
+		/// <summary></summary>
 		Pink = 16
 	}
 
 
 
-	/** <summary>Assorted static "helper" functions pertaining to player multiplayer teams.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to player multiplayer teams.
+	/// </summary>
 	public partial class PlayerTeamHelpers {
+		/// <summary>
+		/// Gets the team name and color by a given player team code number.
+		/// </summary>
+		/// <param name="team"></param>
+		/// <param name="color"></param>
+		/// <returns></returns>
 		public static PlayerTeamName GetTeamName( int team, out Color color ) {
 			switch( team ) {
 			case 1:

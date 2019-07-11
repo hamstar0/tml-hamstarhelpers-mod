@@ -6,7 +6,9 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to player warping/teleporting/spawn return.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to player warping/teleporting/spawn return.
+	/// </summary>
 	public partial class PlayerWarpHelpers {
 		private static object SpawnPointKey = new object();
 
@@ -14,6 +16,10 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
+		/// <summary>
+		/// "Evacs" a player back to their bed or default spawn.
+		/// </summary>
+		/// <param name="player"></param>
 		public static void Evac( Player player ) {
 			player.grappling[0] = -1;
 			player.grapCount = 0;
@@ -32,6 +38,12 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		/// <summary>
+		/// Teleports a player to a given position.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="pos"></param>
+		/// <param name="style">"Style" of teleportation (visual, sound, etc.).</param>
 		public static void Teleport( Player player, Vector2 pos, int style = -1 ) {
 			player.grappling[0] = -1;
 			player.grapCount = 0;
@@ -51,6 +63,11 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		/// <summary>
+		/// Gets the position of the player's spawn point.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static Vector2 GetSpawnPoint( Player player ) {
 			var pos = new Vector2();
 
@@ -66,6 +83,12 @@ namespace HamstarHelpers.Helpers.Players {
 		}
 
 
+		/// <summary>
+		/// Sets a player's spawn point to a given arbitrary tile position.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
 		public static void SetSpawnPoint( Player player, int tileX, int tileY ) {
 			IDictionary<string, IDictionary<int, int>> spawnMap;
 			bool success = DataStore.Get( PlayerWarpHelpers.SpawnPointKey, out spawnMap );

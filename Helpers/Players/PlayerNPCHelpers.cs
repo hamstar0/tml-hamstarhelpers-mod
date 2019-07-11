@@ -1,11 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-
+using Terraria.Localization;
 
 namespace HamstarHelpers.Helpers.Players {
-	/** <summary>Assorted static "helper" functions pertaining to players relative to NPCs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to players relative to NPCs.
+	/// </summary>
 	public static class PlayerNPCHelpers {
+		/// <summary>
+		/// Indicates if a player is 'near' a boss (5000 radius).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static bool IsPlayerNearBoss( Player player ) {
 			int x = ((int)player.Center.X - (Main.maxScreenW / 2)) / 16;
 			int y = ((int)player.Center.Y - (Main.maxScreenH / 2)) / 16;
@@ -30,6 +37,11 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates if a player has just healed with a nurse (via. chat message).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static bool HasUsedNurse( Player player ) {
 			return Main.npcChatText == Lang.dialog( 227, false ) ||
 					Main.npcChatText == Lang.dialog( 228, false ) ||

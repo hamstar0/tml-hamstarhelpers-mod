@@ -19,8 +19,8 @@ namespace HamstarHelpers.Helpers.Net {
 		/// <param name="url">Website URL.</param>
 		/// <param name="jsonData">JSON-formatted string data.</param>
 		/// <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
-		/// <param name="onCompletion">Called regardless of success. Receives processed output (if any) from `onSuccess`, and
-		/// a boolean indicating if the site request succeeded.</param>
+		/// <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
+		/// and the output (if any).</param>
 		public static void MakePostRequestAsync( string url, string jsonData,
 					Action<Exception, string> onError,
 					Action<bool, string> onCompletion=null ) {
@@ -85,8 +85,8 @@ namespace HamstarHelpers.Helpers.Net {
 		/// </summary>
 		/// <param name="url">Website URL.</param>
 		/// <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
-		/// <param name="onCompletion">Called regardless of success. Receives processed output (if any) from `onSuccess`, and
-		/// a boolean indicating if the site request succeeded.</param>
+		/// <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
+		/// and the output (if any).</param>
 		public static void MakeGetRequestAsync( string url,
 					Action<Exception, string> onError,
 					Action<bool, string> onCompletion = null ) {

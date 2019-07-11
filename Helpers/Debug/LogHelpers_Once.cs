@@ -36,7 +36,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		////
 
 		/// <summary>
-		/// Outputs a plain log message "once" (or rather, once every log10 = 0 times).
+		/// Outputs a plain log message "once" (or rather, once every log10 % 1 == 0 times).
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void LogOnce( string msg ) {
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		}
 
 		/// <summary>
-		/// Outputs an "alert" log message "once" (or rather, once every log10 = 0 times).
+		/// Outputs an "alert" log message "once" (or rather, once every log10 % 1 == 0 times).
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void AlertOnce( string msg = "" ) {
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		}
 
 		/// <summary>
-		/// Outputs a "warning" log message "once" (or rather, once every log10 = 0 times).
+		/// Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void WarnOnce( string msg = "" ) {
@@ -68,24 +68,15 @@ namespace HamstarHelpers.Helpers.Debug {
 		////
 
 		/// <summary>
-		/// Resets a given "once" log message.
+		/// Resets a given "once" log, alert, or warn messages.
 		/// </summary>
 		/// <param name="msg"></param>
-		public static bool ResetOnceLogMessage( string msg ) {
-			lock( LogHelpers.MyLock ) {
-				return ModHelpersMod.Instance.LogHelpers.UniqueMessages.Remove( "~" + msg );
-			}
-		}
-
-		/// <summary>
-		/// Resets a given "once" warn message.
-		/// </summary>
-		/// <param name="msg"></param>
-		public static bool ResetOnceAlertOrWarnMessage( string msg ) {
+		public static void ResetOnceMessage( string msg ) {
 			lock( LogHelpers.MyLock ) {
 				string fmtMsg = LogHelpers.FormatMessage( msg, true );
 
-				return ModHelpersMod.Instance.LogHelpers.UniqueMessages.Remove( "~" + fmtMsg );
+				ModHelpersMod.Instance.LogHelpers.UniqueMessages.Remove( "~" + msg );
+				ModHelpersMod.Instance.LogHelpers.UniqueMessages.Remove( "~" + fmtMsg );
 			}
 		}
 	}

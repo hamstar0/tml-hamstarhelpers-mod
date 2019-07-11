@@ -8,7 +8,7 @@ namespace HamstarHelpers.Helpers.Debug {
 	/// </summary>
 	public partial class LogHelpers {
 		/// <summary>
-		/// Formats a given message as it woudl appear in the log output.
+		/// Formats a given message as it would appear in the log output.
 		/// </summary>
 		/// <param name="msg"></param>
 		/// <param name="addContext">Prefixes the caller's namespace, class, and method "context".</param>
