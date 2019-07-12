@@ -4,22 +4,33 @@ using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
+	/// <summary>
+	/// Very basic informational representation of a given mod.
+	/// </summary>
 	public class BasicModInfo {
+		/// <summary></summary>
 		public string DisplayName { get; private set; }
+		/// <summary></summary>
 		public IEnumerable<string> Authors { get; private set; }
+		/// <summary></summary>
 		public Version Version { get; private set; }
+		/// <summary></summary>
 		public string Description { get; private set; }
+		/// <summary></summary>
 		public string Homepage { get; private set; }
 
+		/// <summary></summary>
 		public bool IsBadMod { get; internal set; }
 
 
+		/// <summary></summary>
 		public BasicModInfo( string displayName, IEnumerable<string> authors, Version version, string description, string homepage ) {
 			this.DisplayName = displayName;
 			this.Authors = authors;
@@ -32,25 +43,16 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 
 
-	/** <summary>Assorted static "helper" functions pertaining to mod identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to mod identification.
+	/// </summary>
 	public class ModIdentityHelpers {
-		private static IDictionary<Mod, string> ModIds = new Dictionary<Mod, string>();
-
-
-
-		////////////////
-
-		public static string GetModUniqueName( Mod mod ) {
-			if( ModIdentityHelpers.ModIds.ContainsKey( mod ) ) {
-				return ModIdentityHelpers.ModIds[mod];
-			}
-			ModIdentityHelpers.ModIds[mod] = mod.Name + ":" + mod.Version;
-			return ModIdentityHelpers.ModIds[mod];
-		}
-
-
-		////////////////
-
+		/// <summary>
+		/// Reports whether a given mod (by the given internal name) is "properly presented": Has a valid description,
+		/// homepage, and any other needed checks (in future considerations).
+		/// </summary>
+		/// <param name="modName"></param>
+		/// <returns></returns>
 		public static bool IsLoadedModProperlyPresented( string modName ) {
 			Mod mod = ModLoader.GetMod( modName );
 			if( mod == null ) {
@@ -58,7 +60,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 				return false;
 			}
 
-			IDictionary<string, Services.Tml.BuildPropertiesViewer> modInfos = ModListHelpers.GetLoadedModNamesWithBuildProps();
+			IDictionary<string, BuildPropertiesViewer> modInfos = ModListHelpers.GetLoadedModNamesWithBuildProps();
 			if( !modInfos.ContainsKey(modName) ) {
 				LogHelpers.Alert( "Missing mod "+modName );
 				return false;
@@ -73,6 +75,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		}
 
 
+		/// <summary>
+		/// Reports whether a given mod (by the given internal name), once loaded, is "properly presented": Has a valid
+		/// description, homepage, and any other needed checks (in future considerations).
+		/// </summary>
+		/// <param name="modName"></param>
+		/// <param name="callback"></param>
 		public static void IsListModProperlyPresented( string modName, Action<bool> callback ) {
 			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
 				if( args.Found && args.ModInfo.ContainsKey( modName ) ) {
@@ -93,6 +101,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 		////
 
+		/// <summary>
+		/// Reports whether a given mod (by the given mod information entry) is "properly presented": Has a valid description,
+		/// homepage, and any other needed checks (in future considerations).
+		/// </summary>
+		/// <param name="modInfo"></param>
+		/// <returns></returns>
 		public static bool IsProperlyPresented( BasicModInfo modInfo ) {
 			if( modInfo.Description != null && modInfo.Description.Length < 16 ) { return false; }
 			if( modInfo.Homepage.Length < 10 ) { return false; }

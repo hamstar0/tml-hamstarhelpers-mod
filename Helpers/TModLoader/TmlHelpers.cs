@@ -12,8 +12,14 @@ using Terraria.Social;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
-	/** <summary>Assorted static "helper" functions pertaining to tModLoader.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to tModLoader.
+	/// </summary>
 	public static partial class TmlHelpers {
+		/// <summary>
+		/// Exits the game to desktop.
+		/// </summary>
+		/// <param name="save">Saves settings or world state.</param>
 		public static void ExitToDesktop( bool save = true ) {
 			LogHelpers.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );
 
@@ -29,6 +35,10 @@ namespace HamstarHelpers.Helpers.TModLoader {
 			}
 		}
 
+		/// <summary>
+		/// Exits to the main menu.
+		/// </summary>
+		/// <param name="save">Saves settings or world state.</param>
 		public static void ExitToMenu( bool save = true ) {
 			IngameOptions.Close();
 			Main.menuMode = 10;
@@ -98,11 +108,26 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 		////
 
+		/// <summary>
+		/// Provides an alternative to `Player.GetModPlayer(...)` to ensure the given player is properly loaded. Addresses some
+		/// confusing types of errors.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="mod"></param>
+		/// <param name="modPlayerName"></param>
+		/// <returns></returns>
 		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {    // Solely for Main.LocalPlayer?
 			TmlHelpers.ForceSetupPlayer( player );
 			return player.GetModPlayer( mod, modPlayerName );
 		}
 
+		/// <summary>
+		/// Provides an alternative to `Player.GetModPlayer(...)` to ensure the given player is properly loaded. Addresses some
+		/// confusing types of errors.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static T SafelyGetModPlayer<T>( Player player ) where T : ModPlayer {
 			TmlHelpers.ForceSetupPlayer( player );
 			return player.GetModPlayer<T>();

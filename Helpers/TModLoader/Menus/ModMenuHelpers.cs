@@ -10,8 +10,16 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Menus {
-	/** <summary>Assorted static "helper" functions pertaining to the mod list menu.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to the mod list menu.
+	/// </summary>
 	public static partial class ModMenuHelpers {
+		/// <summary>
+		/// Filters the mod browser mod list to a specific set of mods, or none.
+		/// </summary>
+		/// <param name="filterName">Name of the filter (appears on the Download All button).</param>
+		/// <param name="isFiltered">Indicates whether to simply clear the filter list and filtered state.</param>
+		/// <param name="modNames">List of (internal) mod names to filter the list to.</param>
 		public static void ApplyModBrowserFilter( string filterName, bool isFiltered, List<string> modNames ) {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) )
 				.GetType( "Terraria.ModLoader.Interface" );
@@ -73,7 +81,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 		////////////////
 
-		public static TmodFile GetLocalMod( UIState ui ) {
+		/// <summary>
+		/// Retrieves the file data for a given mod within a given mod-representing menu UI (typically the Mod Info menu page).
+		/// </summary>
+		/// <param name="ui"></param>
+		/// <returns></returns>
+		public static TmodFile GetModFile( UIState ui ) {
 			FieldInfo uiLocalmodField;// = uiType.GetField( "_localMod", BindingFlags.NonPublic | BindingFlags.Instance );
 			if( !ReflectionHelpers.Get(ui, "_localMod", out uiLocalmodField) || uiLocalmodField == null ) {
 				LogHelpers.Warn( "No '_localMod' field in " + ui.GetType() );
@@ -90,6 +103,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		}
 
 
+		/// <summary>
+		/// Gets the mod name of a mod-representing menu UI (sometimes needs the previous UI for context).
+		/// </summary>
+		/// <param name="prevUi"></param>
+		/// <param name="currUi"></param>
+		/// <returns></returns>
 		public static string GetModName( UIState prevUi, UIState currUi ) {
 			// = uiType.GetField( "_localMod", BindingFlags.NonPublic | BindingFlags.Instance );
 			object localmod;	// <- is a LocalMod class

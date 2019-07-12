@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations {
 
 			this.DownloadButton = new UIMenuButton( UITheme.Vanilla, "Download All", 198f, 26f, 202f, 172f );
 			this.DownloadButton.OnClick += ( evt, elem ) => {
-				MainMenuHelpers.LoadMenuModDownloads( "Recommended", (List<string>)this.RecommendsList.GetModNames() );
+				MainMenuHelpers.LoadModBrowserModDownloads( "Recommended", (List<string>)this.RecommendsList.GetModNames() );
 			};
 		}
 

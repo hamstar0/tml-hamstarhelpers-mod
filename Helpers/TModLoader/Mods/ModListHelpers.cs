@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
@@ -8,8 +9,14 @@ using Terraria.ModLoader.Core;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
-	/** <summary>Assorted static "helper" functions pertaining to mod list building.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to mod list building.
+	/// </summary>
 	public partial class ModListHelpers {
+		/// <summary>
+		/// Gets the "preferred" order of all loaded mods for listing use (subjective; not relevant to internal load order).
+		/// </summary>
+		/// <returns></returns>
 		public static IEnumerable<Mod> GetAllLoadedModsPreferredOrder() {
 			var mymod = ModHelpersMod.Instance;
 			var self = mymod.ModFeaturesHelpers;
@@ -51,7 +58,11 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 		////////////////
 
-		public static IDictionary<Services.Tml.BuildPropertiesViewer, Mod> GetLoadedModsByBuildInfo() {
+		/// <summary>
+		/// Gets a map of loaded mods with their build information.
+		/// </summary>
+		/// <returns></returns>
+		public static IDictionary<BuildPropertiesViewer, Mod> GetLoadedModsAndBuildInfo() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.ModListHelpers.ModsByBuildProps != null ) {
 				return mymod.ModListHelpers.ModsByBuildProps;
@@ -63,7 +74,11 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 		////////////////
 
-		public static IDictionary<string, Services.Tml.BuildPropertiesViewer> GetLoadedModNamesWithBuildProps() {
+		/// <summary>
+		/// Gets a map of all loaded mods by name with their build information.
+		/// </summary>
+		/// <returns></returns>
+		public static IDictionary<string, BuildPropertiesViewer> GetLoadedModNamesWithBuildProps() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.ModListHelpers.BuildPropsByModNames != null ) {
 				return mymod.ModListHelpers.BuildPropsByModNames;
@@ -73,6 +88,10 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			return mymod.ModListHelpers.BuildPropsByModNames;
 		}
 
+		/// <summary>
+		/// Gets a map of loaded mods with their authors.
+		/// </summary>
+		/// <returns></returns>
 		public static IDictionary<string, ISet<Mod>> GetLoadedModsByAuthor() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.ModListHelpers.ModsByBuildProps != null ) {

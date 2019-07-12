@@ -45,7 +45,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		private IDictionary<string, ISet<Mod>> GetModsByAuthor() {
 			var mods = new Dictionary<string, ISet<Mod>>();
 
-			foreach( var kv in ModListHelpers.GetLoadedModsByBuildInfo() ) {
+			foreach( var kv in ModListHelpers.GetLoadedModsAndBuildInfo() ) {
 				Services.Tml.BuildPropertiesViewer editor = kv.Key;
 				Mod mod = kv.Value;
 
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		}
 
 		private IDictionary<string, Services.Tml.BuildPropertiesViewer> GetBuildPropsByModName() {
-			return ModListHelpers.GetLoadedModsByBuildInfo()
+			return ModListHelpers.GetLoadedModsAndBuildInfo()
 				.ToDictionary( kv=>kv.Value.Name, kv=>kv.Key );
 		}
 	}

@@ -4,8 +4,14 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
-	/** <summary>Assorted static "helper" functions pertaining to the state of the game.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to the state of the game.
+	/// </summary>
 	public partial class LoadHelpers {
+		/// <summary>
+		/// Indicates if mods Mod Helpers is fully loaded (recipes, content, etc.).
+		/// </summary>
+		/// <returns></returns>
 		public static bool IsModLoaded() {
 			var mymod = ModHelpersMod.Instance;
 
@@ -17,6 +23,10 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		}
 
 		
+		/// <summary>
+		/// Indicates if the current world has finished loading, and is ready for play.
+		/// </summary>
+		/// <returns></returns>
 		public static bool IsWorldLoaded() {
 			if( !LoadHelpers.IsModLoaded() ) { return false; }
 
@@ -28,6 +38,10 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		}
 
 
+		/// <summary>
+		/// Indicates if a given world is being played at present (at least 1 active player).
+		/// </summary>
+		/// <returns></returns>
 		public static bool IsWorldBeingPlayed() {
 			var mymod = ModHelpersMod.Instance;
 
@@ -51,6 +65,11 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		}
 
 
+		/// <summary>
+		/// Indicates if a given world is being played (at least 1 active player), and that player has finished all of their
+		/// own in-game "loading" stuff (attempts to account for any Terraria/mod hidden loading behaviors).
+		/// </summary>
+		/// <returns></returns>
 		public static bool IsWorldSafelyBeingPlayed() {
 			var mymod = ModHelpersMod.Instance;
 			bool notSafelyPlayed = mymod.LoadHelpers.StartupDelay >= ( 60 * 2 );

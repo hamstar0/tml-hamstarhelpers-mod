@@ -7,8 +7,17 @@ using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
-	/** <summary>Assorted static "helper" functions for alleviating tedious "boilerplate" code.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions for alleviating tedious "boilerplate" code.
+	/// </summary>
 	public class ModBoilerplateHelpers {
+		/// <summary>
+		/// Allows using a class to bind its public static methods as `Mod.Call(...)` bindings (complete with parameter
+		/// validations). Meant to be called within `Mod.Call(...)`.
+		/// </summary>
+		/// <param name="apiClassType">`Type` of class to use for defining API bindings.</param>
+		/// <param name="args"></param>
+		/// <returns>API binding call return result. Should be piped out from `Mod.Call(...)` in turn.</returns>
 		public static object HandleModCall( Type apiClassType, params object[] args ) {
 			if( args == null || args.Length == 0 ) { throw new HamstarException( "Undefined call." ); }
 

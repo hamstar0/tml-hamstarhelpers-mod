@@ -2,8 +2,18 @@
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Commands {
-	/** <summary>Assorted static "helper" functions pertaining to (chat or console) commands.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to (chat or console) commands.
+	/// </summary>
 	public static class CommandsHelpers {
+		/// <summary>
+		/// Parses the next quote-wrapped input string from a sequence of input argument strings.
+		/// </summary>
+		/// <param name="args">Input arguments. Typically an array split by spaces.</param>
+		/// <param name="argStartIdx">Position in the `args` array to begin parsing.</param>
+		/// <param name="argNextIdx">Position after last checked argument.</param>
+		/// <param name="output">Parsed argument (minus quotes).</param>
+		/// <returns>`true` if a quote wrapped string was found and properly formed.</returns>
 		public static bool GetQuotedStringFromArgsAt( string[] args, int argStartIdx, out int argNextIdx, out string output ) {
 			argNextIdx = 0;
 
