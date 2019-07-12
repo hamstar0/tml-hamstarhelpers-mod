@@ -6,17 +6,32 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.XNA {
-	/** <summary>Assorted static "helper" functions pertaining to XNA.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to XNA.
+	/// </summary>
 	public partial class XNAHelpers {
-		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle notrect ) {
+		/// <summary>
+		/// "Scans" a rectangle with a provided custom function, returning on the function reporting success. Skips over
+		/// another given rectangle, if overlapping.
+		/// </summary>
+		/// <param name="scanner"></param>
+		/// <param name="rect"></param>
+		/// <param name="notRect"></param>
+		public static void ScanRectangleWithout( Func<int, int, bool> scanner, Rectangle rect, Rectangle? notRect ) {
 			int i, j;
+			Rectangle nRect = notRect.HasValue ? notRect.Value : default(Rectangle);
 
-			for( i = rect.X; i < ( rect.X + rect.Width ); i++ ) {
-				for( j = rect.Y; j < ( rect.Y + rect.Height ); j++ ) {
-					if( i > notrect.X && i <= ( notrect.X + notrect.Width ) ) {
-						if( j > notrect.Y && j <= ( notrect.Y + notrect.Height ) ) {
-							i = notrect.X + notrect.Width;
-							if( i >= ( rect.X + rect.Width ) ) { break; }
+			for( i = rect.X; i < (rect.X + rect.Width); i++ ) {
+				for( j = rect.Y; j < (rect.Y + rect.Height); j++ ) {
+					if( notRect.HasValue ) {
+						if( i > nRect.X && i <= (nRect.X + nRect.Width) ) {
+							if( j > nRect.Y && j <= (nRect.Y + nRect.Height) ) {
+								j = nRect.Y + nRect.Height;
+
+								if( j >= (rect.Y + rect.Height) ) {
+									break;
+								}
+							}
 						}
 					}
 
@@ -27,6 +42,11 @@ namespace HamstarHelpers.Helpers.XNA {
 
 		////////////////
 		
+		/// <summary>
+		/// Reports if `Main.SpriteBatch` has begun drawing.
+		/// </summary>
+		/// <param name="isBegun"></param>
+		/// <returns>Could not determine one way or the other.</returns>
 		public static bool IsMainSpriteBatchBegun( out bool isBegun ) {
 			var mymod = ModHelpersMod.Instance;
 			object isBegunRaw = mymod?.XnaHelpers?.SpriteBatchBegunField?.GetValue( Main.spriteBatch );
@@ -43,6 +63,14 @@ namespace HamstarHelpers.Helpers.XNA {
 
 		////////////////
 
+		/// <summary>
+		/// Draws to the main SpriteBatch by way of a callback. Attempts to resolve when to draw based on the SpriteBatch's
+		/// `Begun()` state.
+		/// </summary>
+		/// <param name="draw"></param>
+		/// <param name="isBegun">Indicates that the SpriteBatch was already `Begun()`.</param>
+		/// <param name="forceDraw">Forces drawing even wehn the SpriteBatch is already `Begun()`.</param>
+		/// <returns>`true` if no issues occurred with the drawing.</returns>
 		public static bool DrawBatch( Action<SpriteBatch> draw, out bool isBegun, bool forceDraw=true ) {
 			if( !XNAHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
 				return false; // take no chances
@@ -73,6 +101,22 @@ namespace HamstarHelpers.Helpers.XNA {
 		}
 
 
+		/// <summary>
+		/// Draws to the main SpriteBatch by way of a callback. Attempts to resolve when to draw based on the SpriteBatch's
+		/// `Begun()` state. If the SpriteBatch needs to be begun anew, the given set of relevant parameters will be applied.
+		/// </summary>
+		/// <param name="draw"></param>
+		/// <param name="sortMode"></param>
+		/// <param name="blendState"></param>
+		/// <param name="samplerState"></param>
+		/// <param name="depthStencilState"></param>
+		/// <param name="rasterizerState"></param>
+		/// <param name="effect"></param>
+		/// <param name="transformMatrix"></param>
+		/// <param name="isBegun">Indicates that the SpriteBatch was already `Begun()`.</param>
+		/// <param name="forceBeginAnew">Forces the SpriteBatch to `Begin()`.</param>
+		/// <param name="forceDraw">Forces drawing even wehn the SpriteBatch is already `Begun()`.</param>
+		/// <returns></returns>
 		public static bool DrawBatch( Action<SpriteBatch> draw,
 				SpriteSortMode sortMode,
 				BlendState blendState,
@@ -86,6 +130,11 @@ namespace HamstarHelpers.Helpers.XNA {
 				bool forceDraw = true ) {
 			if( !XNAHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
 				return false; // take no chances
+			}
+
+			if( isBegun && forceBeginAnew ) {
+				isBegun = false;
+				Main.spriteBatch.End();
 			}
 
 			if( !isBegun ) {
