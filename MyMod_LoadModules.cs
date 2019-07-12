@@ -18,6 +18,7 @@ using HamstarHelpers.Services.Server;
 using HamstarHelpers.Services.ModHelpers;
 using HamstarHelpers.Services.RecipeHack;
 using HamstarHelpers.Services.UI.Menus;
+using HamstarHelpers.Services.Hooks.WorldHooks;
 using HamstarHelpers.Helpers.Misc;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.World;
@@ -33,11 +34,11 @@ using HamstarHelpers.Helpers.Players;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Items.Attributes;
 
 
 namespace HamstarHelpers {
@@ -62,6 +63,7 @@ namespace HamstarHelpers {
 		//internal PlayerDataManager PlayerDataMngr;
 		internal RecipeHack RecipeHack;
 		internal ExtendedPlayerHooks PlayerHooks;
+		internal WorldTimeHooks WorldTimeHooks;
 
 		// Helpers
 		internal ModFeaturesHelpers ModFeaturesHelpers;
@@ -125,6 +127,7 @@ namespace HamstarHelpers {
 			this.RecipeIdentityHelpers = new RecipeIdentityHelpers();
 			this.RecipeGroupHelpers = new RecipeGroupHelpers();
 			this.PlayerHooks = new ExtendedPlayerHooks();
+			this.WorldTimeHooks = new WorldTimeHooks();
 			this.WorldStateHelpers = new WorldStateHelpers();
 			this.ControlPanel = new UIControlPanel();
 			this.ModLock = new ModLockService();
@@ -190,6 +193,7 @@ namespace HamstarHelpers {
 			this.RecipeHack = null;
 			this.ModListHelpers = null;
 			this.ItemAttributeHelpers = null;
+			this.WorldTimeHooks = null;
 
 			this.ControlPanelHotkey = null;
 			this.DataDumpHotkey = null;

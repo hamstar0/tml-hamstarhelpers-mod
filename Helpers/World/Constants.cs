@@ -2,36 +2,152 @@
 
 
 namespace HamstarHelpers.Helpers.World {
+	/// <summary></summary>
 	public enum VanillaBiomes {
-		Forest, Space, Ocean, Cave, Hell,
-		Desert, Cold, Mushroom, Jungle, Corruption, Crimson, Hallow,
-		Granite, Marble, SpiderNest, Dungeon, Temple
+		/// <summary></summary>
+		Forest,
+		/// <summary></summary>
+		Space,
+		/// <summary></summary>
+		Ocean,
+		/// <summary></summary>
+		Cave,
+		/// <summary></summary>
+		Hell,
+		/// <summary></summary>
+		Desert,
+		/// <summary></summary>
+		Cold,
+		/// <summary></summary>
+		Mushroom,
+		/// <summary></summary>
+		Jungle,
+		/// <summary></summary>
+		Corruption,
+		/// <summary></summary>
+		Crimson,
+		/// <summary></summary>
+		Hallow,
+		/// <summary></summary>
+		Granite,
+		/// <summary></summary>
+		Marble,
+		/// <summary></summary>
+		SpiderNest,
+		/// <summary></summary>
+		Dungeon,
+		/// <summary></summary>
+		Temple
 	}
+	/// <summary></summary>
 	public enum VanillaSectionalBiomes {
-		Forest, Space, Ocean, Cave, Hell
+		/// <summary></summary>
+		Forest,
+		/// <summary></summary>
+		Space,
+		/// <summary></summary>
+		Ocean,
+		/// <summary></summary>
+		Cave,
+		/// <summary></summary>
+		Hell
 	}
+	/// <summary></summary>
 	public enum VanillaSurfaceBiomes {
-		Forest, Desert, Cold, Mushroom, Jungle, Ocean, Space, Corruption, Crimson, Hallow
+		/// <summary></summary>
+		Forest,
+		/// <summary></summary>
+		Desert,
+		/// <summary></summary>
+		Cold,
+		/// <summary></summary>
+		Mushroom,
+		/// <summary></summary>
+		Jungle,
+		/// <summary></summary>
+		Ocean,
+		/// <summary></summary>
+		Space,
+		/// <summary></summary>
+		Corruption,
+		/// <summary></summary>
+		Crimson,
+		/// <summary></summary>
+		Hallow
 	}
+	/// <summary></summary>
 	public enum VanillaUndergroundBiomes {
-		Cave, Desert, Cold, Mushroom, Granite, Marble, SpiderNest, Dungeon, Jungle, Temple, Corruption, Crimson, Hallow, Hell
+		/// <summary></summary>
+		Cave,
+		/// <summary></summary>
+		Desert,
+		/// <summary></summary>
+		Cold,
+		/// <summary></summary>
+		Mushroom,
+		/// <summary></summary>
+		Granite,
+		/// <summary></summary>
+		Marble,
+		/// <summary></summary>
+		SpiderNest,
+		/// <summary></summary>
+		Dungeon,
+		/// <summary></summary>
+		Jungle,
+		/// <summary></summary>
+		Temple,
+		/// <summary></summary>
+		Corruption,
+		/// <summary></summary>
+		Crimson,
+		/// <summary></summary>
+		Hallow,
+		/// <summary></summary>
+		Hell
 	}
+	/// <summary></summary>
 	public enum VanillaHardModeSurfaceBiomes {
-		Corruption, Crimson, Hallow
+		/// <summary></summary>
+		Corruption,
+		/// <summary></summary>
+		Crimson,
+		/// <summary></summary>
+		Hallow
 	}
+	/// <summary></summary>
 	public enum VanillaHardModeUndergroundBiomes {
-		Temple, Corruption, Crimson, Hallow
+		/// <summary></summary>
+		Temple,
+		/// <summary></summary>
+		Corruption,
+		/// <summary></summary>
+		Crimson,
+		/// <summary></summary>
+		Hallow
 	}
+	/// <summary></summary>
 	public enum VanillaHardModeConvertibleBiomes {
-		Cave, Desert, Cold
+		/// <summary></summary>
+		Cave,
+		/// <summary></summary>
+		Desert,
+		/// <summary></summary>
+		Cold
 	}
 
 
+	/// <summary></summary>
 	public enum WorldSize {
+		/// <summary></summary>
 		SubSmall,
+		/// <summary></summary>
 		Small,
+		/// <summary></summary>
 		Medium,
+		/// <summary></summary>
 		Large,
+		/// <summary></summary>
 		SuperLarge
 	}
 }

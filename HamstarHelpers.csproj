@@ -286,6 +286,8 @@
     <Compile Include="Services\AnimatedColors\AnimatedColorsManager.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors_Instance.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
+    <Compile Include="Services\Hooks\WorldHooks\WorldTimeHooks.cs" />
+    <Compile Include="Services\Hooks\WorldHooks\WorldTimeHooks_Instance.cs" />
     <Compile Include="Services\UI\ControlPanel\ControlPanelTabs.cs" />
     <Compile Include="Services\Debug\CustomHotkeys\CustomHotkeys_Instance.cs" />
     <Compile Include="Services\Debug\CustomHotkeys\CustomHotkeys.cs" />

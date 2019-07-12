@@ -7,8 +7,10 @@ using Terraria.Social;
 
 
 namespace HamstarHelpers.Helpers.World {
-	/** <summary>Assorted static "helper" functions pertaining to world files (.wld or .twld).</summary> */
-	public static class WorldFileHelpers {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to world files (.wld or .twld).
+	/// </summary>
+	public class WorldFileHelpers {
 		/*public static void EraseWorld_WIN( int which ) {
 			WorldFileData data = Main.WorldList[which];
 
@@ -34,6 +36,11 @@ namespace HamstarHelpers.Helpers.World {
 		}*/
 
 		
+		/// <summary>
+		/// Deletes a given world file. Use with care.
+		/// </summary>
+		/// <param name="data"></param>
+		/// <param name="alsoBak"></param>
 		public static void EraseWorld( WorldFileData data, bool alsoBak=true ) {
 			try {
 				if( !data.IsCloudSave ) {

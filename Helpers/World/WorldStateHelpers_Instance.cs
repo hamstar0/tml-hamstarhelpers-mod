@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Helpers.TModLoader;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;
 
@@ -11,9 +10,6 @@ namespace HamstarHelpers.Helpers.World {
 		private bool IsDay;
 		private int HalfDaysElapsed;
 		private long TicksElapsed;
-
-		internal IDictionary<string, Action> DayHooks = new Dictionary<string, Action>();
-		internal IDictionary<string, Action> NightHooks = new Dictionary<string, Action>();
 
 
 
@@ -57,12 +53,6 @@ namespace HamstarHelpers.Helpers.World {
 			} else {
 				if( this.IsDay != Main.dayTime ) {
 					this.HalfDaysElapsed++;
-
-					if( !this.IsDay ) {
-						foreach( var kv in mymod.WorldStateHelpers.DayHooks ) { kv.Value(); }
-					} else {
-						foreach( var kv in mymod.WorldStateHelpers.NightHooks ) { kv.Value(); }
-					}
 				}
 
 				this.IsDay = Main.dayTime;

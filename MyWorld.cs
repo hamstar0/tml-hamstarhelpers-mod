@@ -46,7 +46,7 @@ namespace HamstarHelpers {
 			var mymod = (ModHelpersMod)this.mod;
 
 			this.ObsoleteId = Guid.NewGuid().ToString( "D" );
-			this.ObsoleteId2 = WorldHelpers.GetUniqueId( false );
+			this.ObsoleteId2 = WorldHelpers.GetUniqueIdForCurrentWorld( false );
 			this.HasObsoleteId = false;  // 'Load()' decides if no pre-existing one is found
 
 			this.WorldLogic = new WorldLogic();
