@@ -7,6 +7,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
+	/// <summary></summary>
 	[Flags]
 	public enum RecipeCraftFailReason {
 		NeedsNearbyWater=1,
@@ -20,10 +21,23 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 
 
-	/** <summary>Assorted static "helper" functions pertaining to recipes.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to recipes.
+	/// </summary>
 	public partial class RecipeHelpers {
+		/// <summary>
+		/// Reports all the reasons a given recipe for a givne player will fail with a given set of ingredients (defaults to
+		/// the player's inventory).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="recipe"></param>
+		/// <param name="missingTile">Returns the tile IDs (crafting stations) needed for the recipe.</param>
+		/// <param name="missingItemTypesStacks">Returns the missing item ids and amounts for the recipe.</param>
+		/// <param name="availableIngredients"></param>
+		/// <returns></returns>
 		public static RecipeCraftFailReason GetRecipeFailReasons( Player player, Recipe recipe,
-				out int[] missingTile, out IDictionary<int, int> missingItemTypesStacks, IEnumerable<Item> availableIngredients = null
+				out int[] missingTile, out IDictionary<int, int> missingItemTypesStacks,
+				IEnumerable<Item> availableIngredients = null
 			) {
 			RecipeCraftFailReason reason = 0;
 			var missingTileList = new List<int>();
@@ -115,6 +129,12 @@ namespace HamstarHelpers.Helpers.Recipes {
 		
 		////////////////
 
+		/// <summary>
+		/// Gets available recipes of a given set of ingredient items for a given player.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="ingredients"></param>
+		/// <returns></returns>
 		public static IList<int> GetAvailableRecipesOfIngredients( Player player, IEnumerable<Item> ingredients ) {
 			int[] _;
 			IDictionary<int, int> __;
@@ -144,15 +164,27 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 		////////////////
 
-		public static bool ItemHasIngredients( int itemType, ISet<int> ingredients, int minStack ) {
+		/// <summary>
+		/// Indicates if a given item type has the ingredients it needs to be crafted from any of its recipes. Does not check
+		/// tile requirements.
+		/// </summary>
+		/// <param name="itemType">Item type to find recipes for.</param>
+		/// <param name="ingredients">Ingredient item types and their stack sizes.</param>
+		/// <returns></returns>
+		public static bool ItemHasIngredients( int itemType, IDictionary<int, int> ingredients ) {
 			for( int i = 0; i < Main.recipe.Length; i++ ) {
 				Recipe recipe = Main.recipe[i];
 				if( recipe.createItem.type != itemType ) { continue; }
 
 				for( int j = 0; j < recipe.requiredItem.Length; j++ ) {
 					Item reqitem = recipe.requiredItem[j];
-					if( reqitem.stack < minStack ) { continue; }
-					if( ingredients.Contains( reqitem.type ) ) {
+
+					//if( reqitem.stack < minStack ) { continue; }
+					if( ingredients.ContainsKey( reqitem.type ) ) {
+						if( reqitem.stack < ingredients[reqitem.type] ) {
+							continue;
+						}
+
 						return true;
 					}
 				}

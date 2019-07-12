@@ -28,8 +28,6 @@ namespace HamstarHelpers.Helpers.Items {
 				field => field.Name,
 				field => (Tuple<string, ISet<int>>)field.GetValue( null )
 			);
-			groups["EvilBossDrops"] = groups["EvilBiomeBossChunks"];
-			groups["EvilLightPet"] = groups["EvilBiomeLightPets"];
 			groups["EvilBiomeBossDrops"] = groups["EvilBiomeBossChunks"];
 			groups["EvilBiomeLightPet"] = groups["EvilBiomeLightPets"];
 			groups["VanillaButterfly"] = groups["VanillaButterflies"];
@@ -73,8 +71,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// The special drops of each "evil" biome (Eater of Worlds and Brain of Cthulhu).
 		/// </summary>
-		public static Tuple<string, ISet<int>> EvilBiomeBossChunks = Tuple.Create(
-			"Evil Biome Boss Chunk",
+		public static Tuple<string, ISet<int>> EvilBiomeBossDrops = Tuple.Create(
+			"Evil Biome Boss Drops",
 			(ISet<int>)( new HashSet<int>( new int[] { ItemID.ShadowScale, ItemID.TissueSample } ) )
 		);
 
