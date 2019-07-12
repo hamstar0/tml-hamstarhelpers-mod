@@ -64,10 +64,11 @@ namespace HamstarHelpers.Helpers.Entities {
 		/// </summary>
 		/// <param name="position"></param>
 		/// <param name="ent"></param>
+		/// <param name="blockingTilePatten"></param>
 		/// <returns></returns>
-		public static bool SimpleLineOfSight( Vector2 position, Entity ent ) {
+		public static bool SimpleLineOfSight( Vector2 position, Entity ent, TilePattern blockingTilePatten ) {
 			var trace = new Utils.PerLinePoint( delegate ( int tileX, int tileY ) {
-				return !TileHelpers.IsSolid( Framing.GetTileSafely(tileX, tileY) );
+				return !blockingTilePatten.Check( tileX, tileY );
 			} );
 			return Utils.PlotTileLine( position, ent.Center, 1, trace );
 		}

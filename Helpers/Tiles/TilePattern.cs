@@ -3,13 +3,13 @@
 
 namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
-	/// Supplies identifying information usable by any given tile (WIP).
+	/// Identifies a type of tile by its attributes.
 	/// </summary>
-	public partial class TileType {
+	public partial class TilePattern {
 		/// <summary>
 		/// Preset for walls, no tiles.
 		/// </summary>
-		public readonly static TileType OpenWall = new TileType {
+		public readonly static TilePattern OpenWall = new TilePattern {
 			IsSolid = false,
 			HasWall = true
 		};
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <summary>
 		/// Preset for common solid tiles.
 		/// </summary>
-		public readonly static TileType CommonSolid = new TileType {
+		public readonly static TilePattern CommonSolid = new TilePattern {
 			IsSolid = true,
 			IsActuatedSolid = false,
 			IsPlatformSolid = false

@@ -4,9 +4,9 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
-	/// Supplies identifying information usable by any given tile (WIP).
+	/// Identifies a type of tile by its attributes.
 	/// </summary>
-	public partial class TileType {
+	public partial class TilePattern {
 		/// <summary></summary>
 		public bool? HasWire1 { get; private set; }
 		/// <summary></summary>

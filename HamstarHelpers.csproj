@@ -190,8 +190,8 @@
     <Compile Include="Helpers\Tiles\TileHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileBiomeHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileIdentityHelpers.cs" />
-    <Compile Include="Helpers\Tiles\TileType_Instance.cs" />
-    <Compile Include="Helpers\Tiles\TileType.cs" />
+    <Compile Include="Helpers\Tiles\TilePattern_Instance.cs" />
+    <Compile Include="Helpers\Tiles\TilePattern.cs" />
     <Compile Include="Helpers\Tiles\TileWallHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileWorldHelpers.cs" />
     <Compile Include="Helpers\TModLoader\Menus\MainMenuHelpers.cs" />

@@ -79,7 +79,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="foundX">Returns found X tile coordinate.</param>
 		/// <param name="foundY">Returns found Y tile coordinate.</param>
 		/// <returns>`true` if tile match found.</returns>
-		public static bool FindNearbyRandomMatch( TileType pattern, int tileX, int tileY, int radius, int retries,
+		public static bool FindNearbyRandomMatch( TilePattern pattern, int tileX, int tileY, int radius, int retries,
 					out int foundX, out int foundY ) {
 			int wtf = 0;
 
@@ -122,7 +122,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="foundX">Returns found X tile coordinate.</param>
 		/// <param name="foundY">Returns found Y tile coordinate.</param>
 		/// <returns>`true` if matching area found.</returns>
-		public static bool FindAreaMatchWithin( TileType pattern, Rectangle within, int width, int height,
+		public static bool FindAreaMatchWithin( TilePattern pattern, Rectangle within, int width, int height,
 					out int foundX, out int foundY ) {
 			int maxX = within.X + within.Width - width;
 			int maxY = within.Y + within.Height - height;
@@ -152,7 +152,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="foundX">Returns found X tile coordinate.</param>
 		/// <param name="foundY">Returns found Y tile coordinate.</param>
 		/// <returns>`true` if matching area found.</returns>
-		public static bool FindNearbyAreaFromCenter( TileType tileType, Rectangle within, int width, int height,
+		public static bool FindNearbyAreaFromCenter( TilePattern tileType, Rectangle within, int width, int height,
 					out int foundX, out int foundY ) {
 			int midX = within.X + ( within.Width / 2 ) - ( width / 2 );
 			int midY = within.Y + ( within.Height / 2 ) - ( height / 2 );
