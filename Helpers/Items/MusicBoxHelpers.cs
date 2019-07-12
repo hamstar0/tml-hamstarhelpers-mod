@@ -6,7 +6,7 @@ namespace HamstarHelpers.Helpers.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to music box items.
 	/// </summary>
-	public static class MusicBoxHelpers {
+	public class MusicBoxHelpers {
 		/// <summary>
 		/// Gets a set of all vanilla music box item ids.
 		/// </summary>

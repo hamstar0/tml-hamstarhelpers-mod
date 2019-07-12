@@ -8,7 +8,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the "rarity" attribute of items.
 	/// </summary>
-	public static partial class ItemRarityAttributeHelpers {
+	public partial class ItemRarityAttributeHelpers {
 		/// <summary></summary>
 		public const int HighestVanillaRarity = 11;
 		/// <summary></summary>

@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player movement.
 	/// </summary>
-	public static class PlayerMovementHelpers {
+	public class PlayerMovementHelpers {
 		/// <summary>
 		/// Indicates if player is "relaxed".
 		/// </summary>

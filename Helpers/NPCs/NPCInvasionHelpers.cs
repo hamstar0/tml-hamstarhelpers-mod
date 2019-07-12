@@ -39,7 +39,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC invasions
 	/// </summary>
-	public static partial class NPCInvasionHelpers {
+	public partial class NPCInvasionHelpers {
 		/// <summary>
 		/// Gets an enum flag type representing a given invasion type (internal code).
 		/// </summary>

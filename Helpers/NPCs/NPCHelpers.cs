@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPCs.
 	/// </summary>
-	public static partial class NPCHelpers {
+	public partial class NPCHelpers {
 		/// <summary>
 		/// Gets all active NPCs in the world.
 		/// </summary>

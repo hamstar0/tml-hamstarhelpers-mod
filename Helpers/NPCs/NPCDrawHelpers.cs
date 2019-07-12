@@ -8,7 +8,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC drawing.
 	/// </summary>
-	public static partial class NPCDrawHelpers {
+	public partial class NPCDrawHelpers {
 		/// <summary>
 		/// Draws an NPC.
 		/// </summary>
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <param name="rotation"></param>
 		/// <param name="scale"></param>
 		/// <param name="color"></param>
-		/// <param name="applyZoom">Whether to convert to current zoom amount of the screen.</param>
+		/// <param name="applyZoom">Whether to convert to current zoom amount or draw it directly.</param>
 		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale,
 					Color color, bool applyZoom = false ) {
 			Texture2D tex = Main.npcTexture[npc.type];

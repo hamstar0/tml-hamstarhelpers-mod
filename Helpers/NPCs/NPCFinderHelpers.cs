@@ -6,7 +6,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to finding world NPCs.
 	/// </summary>
-	public static class NPCFinderHelpers {
+	public class NPCFinderHelpers {
 		private static IDictionary<int, int> AnyWhoOfType = new Dictionary<int, int>();
 
 

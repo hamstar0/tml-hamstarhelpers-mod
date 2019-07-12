@@ -11,7 +11,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC townsfolk.
 	/// </summary>
-	public static class NPCTownHelpers {
+	public class NPCTownHelpers {
 		/// <summary>
 		/// Spawns a town NPC at a given position, alerting the world of their arrival.
 		/// </summary>

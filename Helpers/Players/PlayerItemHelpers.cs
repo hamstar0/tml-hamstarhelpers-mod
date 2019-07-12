@@ -3,7 +3,6 @@ using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Internals.NetProtocols;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
@@ -12,7 +11,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player inventory or equips.
 	/// </summary>
-	public static partial class PlayerItemHelpers {
+	public partial class PlayerItemHelpers {
 		/// <summary></summary>
 		public const int VanillaInventorySize = 58;
 		/// <summary></summary>

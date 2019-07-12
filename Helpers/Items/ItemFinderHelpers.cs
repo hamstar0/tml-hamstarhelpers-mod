@@ -8,7 +8,7 @@ namespace HamstarHelpers.Helpers.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to finding items in collections.
 	/// </summary>
-	public static partial class ItemFinderHelpers {
+	public partial class ItemFinderHelpers {
 		/// <summary>
 		/// Finds index of the first valid item of a set of item types within a given collection.
 		/// </summary>

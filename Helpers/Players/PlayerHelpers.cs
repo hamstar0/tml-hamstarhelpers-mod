@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players.
 	/// </summary>
-	public static partial class PlayerHelpers {
+	public partial class PlayerHelpers {
 		/// <summary></summary>
 		public const int InventorySize = 58;
 		/// <summary></summary>

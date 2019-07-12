@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to mod compatibility for players.
 	/// </summary>
-	public static class PlayerModHelpers {
+	public class PlayerModHelpers {
 		/// <summary>
 		/// Clears mod data for a player.
 		/// </summary>

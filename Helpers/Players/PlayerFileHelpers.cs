@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player file data (.plr, .tplr).
 	/// </summary>
-	public static class PlayerFileHelpers {
+	public class PlayerFileHelpers {
 		/// <summary>
 		/// Erases a given player file.
 		/// </summary>

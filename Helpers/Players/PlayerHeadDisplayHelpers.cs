@@ -12,7 +12,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player head drawing.
 	/// </summary>
-	public static class PlayerHeadDrawHelpers {
+	public class PlayerHeadDrawHelpers {
 		private static Color QuickAlpha( Color oldColor, float alpha ) {
 			Color result = oldColor;
 			result.R = (byte)((float)result.R * alpha);
@@ -123,6 +123,8 @@ namespace HamstarHelpers.Helpers.Players {
 			PlayerHeadDrawHelpers.PostDrawLayer( player, ref position, ref bodyFrame );
 		}
 
+
+		////////////////
 
 		private static void DrawCompleteLayer( Player player, PlayerHeadLayer drawLayer, ref Vector2 position, ref Rectangle bodyFrame, ref Vector2 drawOrigin, ref PlayerHeadDrawInfo drawInfo, ref Color color, ref Color color2, ref Color color3, ref Color color4, ref Color color5, bool drawHair, bool drawAltHair, int shaderId, int skinVariant, short hairDye, float scale, SpriteEffects spriteEffects ) {
 			if( drawLayer == PlayerHeadLayer.Head ) {

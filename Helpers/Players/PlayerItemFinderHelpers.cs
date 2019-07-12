@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to unique player identification.
 	/// </summary>
-	public static class PlayerItemFinderHelpers {
+	public class PlayerItemFinderHelpers {
 		/// <summary>
 		/// Finds first of any of a set of item types currently in the player's position.
 		/// </summary>
