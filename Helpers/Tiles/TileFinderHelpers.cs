@@ -6,8 +6,10 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
-	/** <summary>Assorted static "helper" functions pertaining to tile finding.</summary> */
-	public static class TileFinderHelpers {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to tile finding.
+	/// </summary>
+	public class TileFinderHelpers {f
 		public static bool HasNearbySolid( int tileX, int tileY, int squareRadius, bool isPlatformSolid = false, bool isActuatedSolid = false ) {
 			int minX = Math.Max( tileX - squareRadius, 0 );
 			int maxX = Math.Min( tileX + squareRadius, Main.maxTilesX - 1 );

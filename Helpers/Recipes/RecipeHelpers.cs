@@ -10,12 +10,18 @@ namespace HamstarHelpers.Helpers.Recipes {
 	/// <summary></summary>
 	[Flags]
 	public enum RecipeCraftFailReason {
-		NeedsNearbyWater=1,
-		NeedsNearbyHoney=2,
-		NeedsNearbyLava=4,
-		NeedsNearbySnowBiome=8,
-		MissingTile=16,
-		MissingItem=32
+		/// <summary></summary>
+		NeedsNearbyWater = 1,
+		/// <summary></summary>
+		NeedsNearbyHoney = 2,
+		/// <summary></summary>
+		NeedsNearbyLava = 4,
+		/// <summary></summary>
+		NeedsNearbySnowBiome = 8,
+		/// <summary></summary>
+		MissingTile = 16,
+		/// <summary></summary>
+		MissingItem = 32
 	}
 
 

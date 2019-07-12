@@ -7,37 +7,70 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
-	/** <summary>Assorted static "helper" functions pertaining to tiles as relevant to biomes.</summary> */
-	public static class TileBiomeHelpers {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to tiles as relevant to biomes.
+	/// </summary>
+	public class TileBiomeHelpers {
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaHolyTiles = new ReadOnlySet<int>( new HashSet<int> { 109, 110, 113, 117, 116, 164, 403, 402 } );
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaCorruptionTiles = new ReadOnlySet<int>( new HashSet<int> { 23, 24, 25, 32, 112, 163, 400, 398 } ); //-5 * screenTileCounts[27];
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaCrimsonTiles = new ReadOnlySet<int>( new HashSet<int> { 199, 203, 200, 401, 399, 234, 352 } ); //-5 * screenTileCounts[27];
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaSnowTiles = new ReadOnlySet<int>( new HashSet<int> { 147, 148, 161, 162, 164, 163, 200 } );
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaJungleTiles = new ReadOnlySet<int>( new HashSet<int> { 60, 61, 62, 74, 226 } );
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaShroomTiles = new ReadOnlySet<int>( new HashSet<int> { 70, 71, 72 } );
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaMeteorTiles = new ReadOnlySet<int>( new HashSet<int> { 37 } );
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaDungeonTiles = new ReadOnlySet<int>( new HashSet<int> { 41, 43, 44 } );
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaDesertTiles = new ReadOnlySet<int>( new HashSet<int> { 53, 112, 116, 234, 397, 398, 402, 399, 396, 400, 403, 401 } );
+		/// <summary></summary>
 		public readonly static ISet<int> VanillaLihzahrdTiles = new ReadOnlySet<int>( new HashSet<int> { TileID.LihzahrdBrick } );
 
+		/// <summary></summary>
 		public readonly static int VanillaHolyMinTiles = 100;
+		/// <summary></summary>
 		public readonly static int VanillaCorruptionMinTiles = 200;
+		/// <summary></summary>
 		public readonly static int VanillaCrimsonMinTiles = 200;
+		/// <summary></summary>
 		public readonly static int VanillaMeteorMinTiles = 50;
+		/// <summary></summary>
 		public readonly static int VanillaJungleMinTiles = 80;
+		/// <summary></summary>
 		public readonly static int VanillaSnowMinTiles = 300;
+		/// <summary></summary>
 		public readonly static int VanillaDesertMinTiles = 1000;
+		/// <summary></summary>
 		public readonly static int VanillaShroomMinTiles = 100;
+		/// <summary></summary>
 		public readonly static int VanillaDungeonMinTiles = 250;
+		/// <summary></summary>
 		public readonly static int VanillaLihzahrdMinTiles = 250;
 
 
 
 		////////////////
 
-		public static IDictionary<string, float> GetVanillaBiomePercentsNear( int midTileX, int midTileY,
-				out int totalTiles, out int unidenfiedTiles ) {
-			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( midTileX, midTileY );
+		/// <summary>
+		/// Gets percent values indicating how much of each vanilla biome type is near a given tile position. See
+		/// `GetPlayerRangeTilesAt(...)` for the specification of the tile checking range. Percent values indicate how much
+		/// of the *minimum* percent of tiles exist nearby to count as being within the given biome.
+		/// </summary>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="totalTiles">Returns a count of non-air tiles in total.</param>
+		/// <param name="unidenfiedTiles">Returns all non-air tiles not identified with a specific biome.</param>
+		/// <returns></returns>
+		public static IDictionary<string, float> GetVanillaBiomePercentsNear( int tileX, int tileY,
+					out int totalTiles,
+					out int unidenfiedTiles ) {
+			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( tileX, tileY );
 
 			int holyTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaHolyTiles ) {

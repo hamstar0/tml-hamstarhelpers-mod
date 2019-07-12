@@ -4,8 +4,16 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
-	/** <summary>Assorted static "helper" functions pertaining to tile walls.</summary> */
-	public static class TileWallHelpers {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to tile walls.
+	/// </summary>
+	public class TileWallHelpers {
+		/// <summary>
+		/// Indicates if a given wall is dungeon or temple "biome" wall.
+		/// </summary>
+		/// <param name="tile"></param>
+		/// <param name="isLihzahrd"></param>
+		/// <returns></returns>
 		public static bool IsDungeon( Tile tile, out bool isLihzahrd ) {
 			if( tile == null ) {
 				isLihzahrd = false;

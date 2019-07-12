@@ -7,8 +7,10 @@ using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
-	/** <summary>Assorted static "helper" functions pertaining to tile identification.</summary> */
-	public static class TileIdentityHelpers {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to tile identification.
+	/// </summary>
+	public class TileIdentityHelpers {
 		private static IDictionary<int, IDictionary<int, string>> VanillaTileNamesByTypeAndSubtype;
 		private static IDictionary<string, Tuple<int, List<int>>> VanillaTileTypeandSubtypeByName;
 
@@ -2954,6 +2956,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 		////////////////
 
+		/// <summary>
+		/// Gets all vanilla tile names of each subtype of a given tile type.
+		/// </summary>
+		/// <param name="tileType"></param>
+		/// <returns></returns>
 		public static KeyValuePair<int, string>[] GetVanillaTileNames( int tileType ) {
 			if( !TileIdentityHelpers.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ) {
 				return new KeyValuePair<int, string>[0];
@@ -2961,6 +2968,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 			return TileIdentityHelpers.VanillaTileNamesByTypeAndSubtype[ tileType ].ToArray();
 		}
 
+		/// <summary>
+		/// Gets the specific tile name of a given type type and subtype.
+		/// </summary>
+		/// <param name="tileType"></param>
+		/// <param name="subType"></param>
+		/// <returns></returns>
 		public static string GetVanillaTileName( int tileType, int subType=-1 ) {
 			if( !TileIdentityHelpers.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ||
 				!TileIdentityHelpers.VanillaTileNamesByTypeAndSubtype[ tileType ].ContainsKey( subType ) ) {
@@ -2971,6 +2984,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates if a given tile type is an "object" (container, sign, station, etc.).
+		/// </summary>
+		/// <param name="tileType"></param>
+		/// <returns></returns>
 		public static bool IsObject( int tileType ) {
 			return Main.tileFrameImportant[tileType]
 				|| Main.tileContainer[tileType]

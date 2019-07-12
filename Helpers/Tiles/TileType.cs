@@ -2,8 +2,10 @@
 
 
 namespace HamstarHelpers.Helpers.Tiles {
-	/** <summary>Supplies identifying information usable by any given tile (WIP).</summary> */
-	public partial class TileType {
+	/// <summary>
+	/// Supplies identifying information usable by any given tile (WIP).
+	/// </summary>
+	public partial class TileType {f
 		public readonly static TileType OpenWall = new TileType {
 			IsSolid = false,
 			HasWall = true
