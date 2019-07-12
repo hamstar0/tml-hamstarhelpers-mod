@@ -10,12 +10,26 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TileHelpers {
 		/// <summary>
-		/// Indicates if a given tile is "air".
+		/// Indicates if a given tile is purely "air" (nothing in it at all).
 		/// </summary>
 		/// <param name="tile"></param>
+		/// <param name="isWireAir"></param>
+		/// <param name="isLiquidAir"></param>
 		/// <returns></returns>
-		public static bool IsAir( Tile tile ) {
-			return tile == null || (!tile.active() && tile.wall == 0) /*|| tile.type == 0*/;
+		public static bool IsAir( Tile tile, bool isWireAir = false, bool isLiquidAir = false ) {
+			if( tile == null ) {
+				return true;
+			}
+			if( (!tile.active() && tile.wall == 0) ) {/*|| tile.type == 0*/
+				if( !isWireAir && TileHelpers.IsWire(tile) ) {
+					return false;
+				}
+				if( !isLiquidAir && tile.liquid != 0 ) {
+					return false;
+				}
+				return true;
+			}
+			return false;
 		}
 
 		
@@ -27,8 +41,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuatedSolid"></param>
 		/// <returns></returns>
 		public static bool IsSolid( Tile tile, bool isPlatformSolid = false, bool isActuatedSolid = false ) {
-			if( tile == null || !tile.active() ) { return false; }
-			if( !Main.tileSolid[ tile.type ] ) { return false; }
+			if( TileHelpers.IsAir(tile) ) { return false; }
+			if( !Main.tileSolid[tile.type] ) { return false; }
 
 			bool isTopSolid = Main.tileSolidTop[ tile.type ];
 			bool isPassable = tile.inActive();
@@ -44,13 +58,10 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// Indicates if a given tile has wires.
 		/// </summary>
 		/// <param name="tile"></param>
-		/// <returns>A bit flag set representing which wire types exist (of the 4). If 0, no wires set.</returns>
-		public static byte IsWire( Tile tile ) {
-			if( tile == null /*|| !tile.active()*/ ) { return 0; }
-			return (byte)((tile.wire() ? 1 : 0)
-				+ (tile.wire2() ? 2 : 0)
-				+ (tile.wire3() ? 4 : 0)
-				+ (tile.wire4() ? 8 : 0));
+		/// <returns></returns>
+		public static bool IsWire( Tile tile ) {
+			if( tile == null /*|| !tile.active()*/ ) { return false; }
+			return tile.wire() || tile.wire2() || tile.wire3() || tile.wire4();
 		}
 
 

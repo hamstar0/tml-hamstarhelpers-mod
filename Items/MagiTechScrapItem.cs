@@ -9,6 +9,10 @@ namespace HamstarHelpers.Items {
 	/// Supplies a generic item as an ingredient for general, inter-mod magic/technology recipe/consummable use.
 	/// </summary>
 	public class MagiTechScrapItem : ModItem {
+		/// <summary></summary>
+		/// <param name="pos"></param>
+		/// <param name="stack"></param>
+		/// <returns></returns>
 		public static int Create( Vector2 pos, int stack ) {
 			return ItemHelpers.CreateItem( pos, ModHelpersMod.Instance.ItemType<MagiTechScrapItem>(), stack, 24, 24 );
 		}
@@ -17,6 +21,7 @@ namespace HamstarHelpers.Items {
 
 		////////////////
 
+		/// @private
 		public override void SetStaticDefaults() {
 			var mymod = (ModHelpersMod)this.mod;
 
@@ -25,6 +30,7 @@ namespace HamstarHelpers.Items {
 		}
 
 
+		/// @private
 		public override void SetDefaults() {
 			this.item.maxStack = 999;
 			this.item.width = 24;
@@ -45,6 +51,7 @@ namespace HamstarHelpers.Items {
 		}
 
 
+		/// @private
 		public override void AddRecipes() {
 			/*var mymod = (ModHelpersMod)this.mod;
 

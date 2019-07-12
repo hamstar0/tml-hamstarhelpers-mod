@@ -67,7 +67,7 @@ namespace HamstarHelpers.Helpers.Entities {
 		/// <returns></returns>
 		public static bool SimpleLineOfSight( Vector2 position, Entity ent ) {
 			var trace = new Utils.PerLinePoint( delegate ( int tileX, int tileY ) {
-				return !TileHelpers.IsSolid( Framing.GetTileSafely( tileX, tileY ) );
+				return !TileHelpers.IsSolid( Framing.GetTileSafely(tileX, tileY) );
 			} );
 			return Utils.PlotTileLine( position, ent.Center, 1, trace );
 		}
