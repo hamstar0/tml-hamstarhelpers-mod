@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['scale',['Scale',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#aac579fc7d671faf7a48bade0b331f641',1,'HamstarHelpers::Components::UI::Elements::UIWebUrl']]],
-  ['selected',['Selected',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#ae33c568760cce9d5822e728248875f91',1,'HamstarHelpers::Components::UI::Elements::UICheckbox']]]
+  ['namestoids',['NamesToIds',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_identity_helpers.html#a7cb4fea0eb1b293136099cbe4576906a',1,'HamstarHelpers.Helpers.Buffs.BuffIdentityHelpers.NamesToIds()'],['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#ad07b97a664c3d1548070202cf314315c',1,'HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.NamesToIds()']]]
 ];

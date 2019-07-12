@@ -6,9 +6,14 @@ var searchData=
   ['entitygroups',['EntityGroups',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html',1,'HamstarHelpers::Services::EntityGroups']]],
   ['entityhelpers',['EntityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html',1,'HamstarHelpers::Helpers::Entities']]],
   ['eraseplayer',['ErasePlayer',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_file_helpers.html#a6b93a53f569981a3a10404820ff1c136',1,'HamstarHelpers::Helpers::Players::PlayerFileHelpers']]],
+  ['eraseworld',['EraseWorld',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_file_helpers.html#aaa9273ec0fbe3dbaca6e79568d986231',1,'HamstarHelpers::Helpers::World::WorldFileHelpers']]],
+  ['evac',['Evac',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#aa9126e2c781c485c7bb03eda176cd736',1,'HamstarHelpers::Helpers::Players::PlayerWarpHelpers']]],
   ['eventhandler',['EventHandler',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_field.html#a3114e9cdb118cae49f282fd777389d84',1,'HamstarHelpers::Components::UI::Elements::UITextField']]],
-  ['evilbiomebosschunks',['EvilBiomeBossChunks',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a24a7a908968afc12728375acb68399f4',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
+  ['evilbiomebossdrops',['EvilBiomeBossDrops',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a9ea1d9d2282f18f9739b31ec86db54ba',1,'HamstarHelpers.Helpers.Items.ItemIdentityHelpers.EvilBiomeBossDrops()'],['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a42a2208d609336c366b3d80addd8f330',1,'HamstarHelpers.Helpers.Recipes.RecipeGroupHelpers.EvilBiomeBossDrops()']]],
+  ['evilbiomelightpet',['EvilBiomeLightPet',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#aadac74d0edc3117cc9cadf9e84a346c1',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],
   ['evilbiomelightpets',['EvilBiomeLightPets',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a461f228aab5020e2d1034ff239130071',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
+  ['exittodesktop',['ExitToDesktop',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#a52292877daa46040b84380edaec7b1d9',1,'HamstarHelpers::Helpers::TModLoader::TmlHelpers']]],
+  ['exittomenu',['ExitToMenu',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#aeeaa275d69e91bce256dc7537ae497f4',1,'HamstarHelpers::Helpers::TModLoader::TmlHelpers']]],
   ['extendedplayerhooks',['ExtendedPlayerHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html',1,'HamstarHelpers::Services::Hooks::ExtendedHooks']]],
   ['extensibleinventorycompatibilities',['ExtensibleInventoryCompatibilities',['../class_hamstar_helpers_1_1_services_1_1_mod_compatibilities_1_1_extensible_inventory_compat_1_1_e3807db3241c8b751a61d191fea54a5be.html',1,'HamstarHelpers::Services::ModCompatibilities::ExtensibleInventoryCompat']]]
 ];

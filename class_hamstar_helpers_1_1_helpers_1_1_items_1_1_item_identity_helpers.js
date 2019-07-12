@@ -11,7 +11,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers =
     [ "TryGetTypeByUid", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ad9f522056b6d863c1eeda7d0e877709b", null ],
     [ "AllPressurePlates", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a3b6d812aff6fedf310030023e979404b", null ],
     [ "ConveyorBeltPair", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#afc74e67308884b6f56d17283fd0100e4", null ],
-    [ "EvilBiomeBossChunks", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a24a7a908968afc12728375acb68399f4", null ],
+    [ "EvilBiomeBossDrops", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a9ea1d9d2282f18f9739b31ec86db54ba", null ],
     [ "EvilBiomeLightPets", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a461f228aab5020e2d1034ff239130071", null ],
     [ "MagicMirrors", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ab7b524461775bc3e704d882b03b3fbd3", null ],
     [ "Paints", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a009a9866171ef04e6ee4a92fa4ba5235", null ],

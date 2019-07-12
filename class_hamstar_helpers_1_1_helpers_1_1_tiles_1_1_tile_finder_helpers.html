@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Tiles.TileFinderHelpers Class Reference</div>  </div>
@@ -97,11 +98,311 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to tile finding.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ac28223573e44b7483b1edd8a38759e06"><td class="memItemLeft" align="right" valign="top">static IDictionary&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#ac28223573e44b7483b1edd8a38759e06">GetPlayerRangeTilesAt</a> (int midTileX, int midTileY)</td></tr>
+<tr class="memdesc:ac28223573e44b7483b1edd8a38759e06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts tile types within the player's vicinity (used for checking biomes and stuff).  <a href="#ac28223573e44b7483b1edd8a38759e06">More...</a><br /></td></tr>
+<tr class="separator:ac28223573e44b7483b1edd8a38759e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4d2a07e419c78ec6cedc98de93b03c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a8d4d2a07e419c78ec6cedc98de93b03c">FindNearbyRandomMatch</a> (<a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a> pattern, int tileX, int tileY, int radius, int retries, out int foundX, out int foundY)</td></tr>
+<tr class="memdesc:a8d4d2a07e419c78ec6cedc98de93b03c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to randomly search within a spherical area (via. <code>radius</code>) for any matching tiles (via. <code>pattern</code>).  <a href="#a8d4d2a07e419c78ec6cedc98de93b03c">More...</a><br /></td></tr>
+<tr class="separator:a8d4d2a07e419c78ec6cedc98de93b03c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c50e64406062ee59d344dd8930702aa"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a6c50e64406062ee59d344dd8930702aa">FindAreaMatchWithin</a> (<a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a> pattern, Rectangle within, int width, int height, out int foundX, out int foundY)</td></tr>
+<tr class="memdesc:a6c50e64406062ee59d344dd8930702aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to find an area within an area of a given matching tile pattern.  <a href="#a6c50e64406062ee59d344dd8930702aa">More...</a><br /></td></tr>
+<tr class="separator:a6c50e64406062ee59d344dd8930702aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1da59b7d565e7b40c4b7ea0736acd7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aaf1da59b7d565e7b40c4b7ea0736acd7">FindNearbyAreaFromCenter</a> (<a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a> tileType, Rectangle within, int width, int height, out int foundX, out int foundY)</td></tr>
+<tr class="memdesc:aaf1da59b7d565e7b40c4b7ea0736acd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to find an area within an area of a given matching tile pattern. Search begins from the center.  <a href="#aaf1da59b7d565e7b40c4b7ea0736acd7">More...</a><br /></td></tr>
+<tr class="separator:aaf1da59b7d565e7b40c4b7ea0736acd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tile finding. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_tile_finder_helpers_8cs_source.html">TileFinderHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers_8cs_source.html#l00012">12</a> of file <a class="el" href="_tile_finder_helpers_8cs_source.html">TileFinderHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6c50e64406062ee59d344dd8930702aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c50e64406062ee59d344dd8930702aa">&#9670;&nbsp;</a></span>FindAreaMatchWithin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindAreaMatchWithin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>pattern</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Rectangle&#160;</td>
+          <td class="paramname"><em>within</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>foundX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>foundY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to find an area within an area of a given matching tile pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pattern</td><td></td></tr>
+    <tr><td class="paramname">within</td><td></td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">foundX</td><td>Returns found X tile coordinate.</td></tr>
+    <tr><td class="paramname">foundY</td><td>Returns found Y tile coordinate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if matching area found.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers_8cs_source.html#l00125">125</a> of file <a class="el" href="_tile_finder_helpers_8cs_source.html">TileFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aaf1da59b7d565e7b40c4b7ea0736acd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf1da59b7d565e7b40c4b7ea0736acd7">&#9670;&nbsp;</a></span>FindNearbyAreaFromCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindNearbyAreaFromCenter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>tileType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Rectangle&#160;</td>
+          <td class="paramname"><em>within</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>foundX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>foundY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to find an area within an area of a given matching tile pattern. Search begins from the center. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileType</td><td></td></tr>
+    <tr><td class="paramname">within</td><td></td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">foundX</td><td>Returns found X tile coordinate.</td></tr>
+    <tr><td class="paramname">foundY</td><td>Returns found Y tile coordinate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if matching area found.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers_8cs_source.html#l00155">155</a> of file <a class="el" href="_tile_finder_helpers_8cs_source.html">TileFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8d4d2a07e419c78ec6cedc98de93b03c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d4d2a07e419c78ec6cedc98de93b03c">&#9670;&nbsp;</a></span>FindNearbyRandomMatch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindNearbyRandomMatch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>pattern</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>retries</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>foundX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>foundY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to randomly search within a spherical area (via. <code>radius</code>) for any matching tiles (via. <code>pattern</code>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pattern</td><td></td></tr>
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">radius</td><td></td></tr>
+    <tr><td class="paramname">retries</td><td></td></tr>
+    <tr><td class="paramname">foundX</td><td>Returns found X tile coordinate.</td></tr>
+    <tr><td class="paramname">foundY</td><td>Returns found Y tile coordinate.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if tile match found.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers_8cs_source.html#l00082">82</a> of file <a class="el" href="_tile_finder_helpers_8cs_source.html">TileFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac28223573e44b7483b1edd8a38759e06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac28223573e44b7483b1edd8a38759e06">&#9670;&nbsp;</a></span>GetPlayerRangeTilesAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IDictionary&lt;int, int&gt; HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetPlayerRangeTilesAt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>midTileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>midTileY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Counts tile types within the player's vicinity (used for checking biomes and stuff). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">midTileX</td><td></td></tr>
+    <tr><td class="paramname">midTileY</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers_8cs_source.html#l00020">20</a> of file <a class="el" href="_tile_finder_helpers_8cs_source.html">TileFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Tiles/<a class="el" href="_tile_finder_helpers_8cs_source.html">TileFinderHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

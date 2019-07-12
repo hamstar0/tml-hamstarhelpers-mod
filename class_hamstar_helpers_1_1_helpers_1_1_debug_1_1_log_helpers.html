@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:adeaebe355ce68e30c8229f5f637be53c"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#adeaebe355ce68e30c8229f5f637be53c">FormatMessage</a> (string msg, bool addContext)</td></tr>
-<tr class="memdesc:adeaebe355ce68e30c8229f5f637be53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats a given message as it woudl appear in the log output.  <a href="#adeaebe355ce68e30c8229f5f637be53c">More...</a><br /></td></tr>
+<tr class="memdesc:adeaebe355ce68e30c8229f5f637be53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats a given message as it would appear in the log output.  <a href="#adeaebe355ce68e30c8229f5f637be53c">More...</a><br /></td></tr>
 <tr class="separator:adeaebe355ce68e30c8229f5f637be53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae141f63955b55fae280ffdb3c4a19f8e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae141f63955b55fae280ffdb3c4a19f8e">Log</a> (string msg=&quot;&quot;)</td></tr>
 <tr class="memdesc:ae141f63955b55fae280ffdb3c4a19f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a plain log message.  <a href="#ae141f63955b55fae280ffdb3c4a19f8e">More...</a><br /></td></tr>
@@ -114,20 +114,17 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6ea1feb593e0a83f7bc29628e09030db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a warning log message (TML considers it a fatal-type message).  <a href="#a6ea1feb593e0a83f7bc29628e09030db">More...</a><br /></td></tr>
 <tr class="separator:a6ea1feb593e0a83f7bc29628e09030db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae74866022df1221b810f0c9399944d5d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae74866022df1221b810f0c9399944d5d">LogOnce</a> (string msg)</td></tr>
-<tr class="memdesc:ae74866022df1221b810f0c9399944d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a plain log message "once" (or rather, once every log10 = 0 times).  <a href="#ae74866022df1221b810f0c9399944d5d">More...</a><br /></td></tr>
+<tr class="memdesc:ae74866022df1221b810f0c9399944d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a plain log message "once" (or rather, once every log10 % 1 == 0 times).  <a href="#ae74866022df1221b810f0c9399944d5d">More...</a><br /></td></tr>
 <tr class="separator:ae74866022df1221b810f0c9399944d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ffc50b1461dd296b95199b7007c4602"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a7ffc50b1461dd296b95199b7007c4602">AlertOnce</a> (string msg=&quot;&quot;)</td></tr>
-<tr class="memdesc:a7ffc50b1461dd296b95199b7007c4602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs an "alert" log message "once" (or rather, once every log10 = 0 times).  <a href="#a7ffc50b1461dd296b95199b7007c4602">More...</a><br /></td></tr>
+<tr class="memdesc:a7ffc50b1461dd296b95199b7007c4602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs an "alert" log message "once" (or rather, once every log10 % 1 == 0 times).  <a href="#a7ffc50b1461dd296b95199b7007c4602">More...</a><br /></td></tr>
 <tr class="separator:a7ffc50b1461dd296b95199b7007c4602"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40930a3f028fad258de84ba729639694"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a40930a3f028fad258de84ba729639694">WarnOnce</a> (string msg=&quot;&quot;)</td></tr>
-<tr class="memdesc:a40930a3f028fad258de84ba729639694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a "warning" log message "once" (or rather, once every log10 = 0 times).  <a href="#a40930a3f028fad258de84ba729639694">More...</a><br /></td></tr>
+<tr class="memdesc:a40930a3f028fad258de84ba729639694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).  <a href="#a40930a3f028fad258de84ba729639694">More...</a><br /></td></tr>
 <tr class="separator:a40930a3f028fad258de84ba729639694"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afce59a12595bf250afd18790b5082805"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#afce59a12595bf250afd18790b5082805">ResetOnceLogMessage</a> (string msg)</td></tr>
-<tr class="memdesc:afce59a12595bf250afd18790b5082805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a given "once" log message.  <a href="#afce59a12595bf250afd18790b5082805">More...</a><br /></td></tr>
-<tr class="separator:afce59a12595bf250afd18790b5082805"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0da7374436cc6d61b2b71bc64d981af0"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a0da7374436cc6d61b2b71bc64d981af0">ResetOnceAlertOrWarnMessage</a> (string msg)</td></tr>
-<tr class="memdesc:a0da7374436cc6d61b2b71bc64d981af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a given "once" warn message.  <a href="#a0da7374436cc6d61b2b71bc64d981af0">More...</a><br /></td></tr>
-<tr class="separator:a0da7374436cc6d61b2b71bc64d981af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9434f59b02765fbda2a598028335652"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ac9434f59b02765fbda2a598028335652">ResetOnceMessage</a> (string msg)</td></tr>
+<tr class="memdesc:ac9434f59b02765fbda2a598028335652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a given "once" log, alert, or warn messages.  <a href="#ac9434f59b02765fbda2a598028335652">More...</a><br /></td></tr>
+<tr class="separator:ac9434f59b02765fbda2a598028335652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to log outputs. </p>
@@ -194,7 +191,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Outputs an "alert" log message "once" (or rather, once every log10 = 0 times). </p>
+<p>Outputs an "alert" log message "once" (or rather, once every log10 % 1 == 0 times). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td></td></tr>
@@ -240,7 +237,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Formats a given message as it woudl appear in the log output. </p>
+<p>Formats a given message as it would appear in the log output. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td></td></tr>
@@ -314,7 +311,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Outputs a plain log message "once" (or rather, once every log10 = 0 times). </p>
+<p>Outputs a plain log message "once" (or rather, once every log10 % 1 == 0 times). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td></td></tr>
@@ -326,8 +323,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0da7374436cc6d61b2b71bc64d981af0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0da7374436cc6d61b2b71bc64d981af0">&#9670;&nbsp;</a></span>ResetOnceAlertOrWarnMessage()</h2>
+<a id="ac9434f59b02765fbda2a598028335652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9434f59b02765fbda2a598028335652">&#9670;&nbsp;</a></span>ResetOnceMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -336,7 +333,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool HamstarHelpers.Helpers.Debug.LogHelpers.ResetOnceAlertOrWarnMessage </td>
+          <td class="memname">static void HamstarHelpers.Helpers.Debug.LogHelpers.ResetOnceMessage </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>msg</em></td><td>)</td>
@@ -350,43 +347,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Resets a given "once" warn message. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">msg</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00084">84</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
-
-</div>
-</div>
-<a id="afce59a12595bf250afd18790b5082805"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afce59a12595bf250afd18790b5082805">&#9670;&nbsp;</a></span>ResetOnceLogMessage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool HamstarHelpers.Helpers.Debug.LogHelpers.ResetOnceLogMessage </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Resets a given "once" log message. </p>
+<p>Resets a given "once" log, alert, or warn messages. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td></td></tr>
@@ -458,7 +419,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Outputs a "warning" log message "once" (or rather, once every log10 = 0 times). </p>
+<p>Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td></td></tr>

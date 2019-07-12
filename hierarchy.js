@@ -2,6 +2,7 @@ var hierarchy =
 [
     [ "HamstarHelpers.Services.AnimatedColor.AnimatedColors", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.ArrayExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_array_extensions.html", null ],
+    [ "HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.BinaryReaderExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions.html", null ],
     [ "HamstarHelpers.Services.GameData.BossDataEntry", "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html", null ],
     [ "HamstarHelpers.Helpers.Buffs.BuffHelpers", "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html", null ],
@@ -123,7 +124,7 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Tiles.TileFinderHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Tiles.TileHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Tiles.TileIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html", null ],
-    [ "HamstarHelpers.Helpers.Tiles.TileType", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_type.html", null ],
+    [ "HamstarHelpers.Helpers.Tiles.TilePattern", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html", null ],
     [ "HamstarHelpers.Helpers.Tiles.TileWallHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Tiles.TileWorldHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html", null ],
     [ "HamstarHelpers.Services.Timers.Timers", "class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html", null ],

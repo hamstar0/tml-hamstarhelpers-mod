@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['namestoids',['NamesToIds',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_identity_helpers.html#a7cb4fea0eb1b293136099cbe4576906a',1,'HamstarHelpers.Helpers.Buffs.BuffIdentityHelpers.NamesToIds()'],['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a4981fc11b1445fb988c2584c4ab200ac',1,'HamstarHelpers.Helpers.NPCs.NPCIdentityHelpers.NamesToIds()']]],
+  ['namestoids',['NamesToIds',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_identity_helpers.html#a7cb4fea0eb1b293136099cbe4576906a',1,'HamstarHelpers.Helpers.Buffs.BuffIdentityHelpers.NamesToIds()'],['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a4981fc11b1445fb988c2584c4ab200ac',1,'HamstarHelpers.Helpers.NPCs.NPCIdentityHelpers.NamesToIds()'],['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#ad07b97a664c3d1548070202cf314315c',1,'HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.NamesToIds()']]],
+  ['needsnearbyhoney',['NeedsNearbyHoney',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa6108237b8ea0cc91b1556e77c1700122',1,'HamstarHelpers::Helpers::Recipes']]],
+  ['needsnearbylava',['NeedsNearbyLava',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa1e3c09ad012b733e996f41b04ce7aabe',1,'HamstarHelpers::Helpers::Recipes']]],
+  ['needsnearbysnowbiome',['NeedsNearbySnowBiome',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aad5f266a63adfe5d47fa3e6f2eed34879',1,'HamstarHelpers::Helpers::Recipes']]],
+  ['needsnearbywater',['NeedsNearbyWater',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa6f23c923b3206575993b4ccb99cad3d0',1,'HamstarHelpers::Helpers::Recipes']]],
   ['netplayhelpers',['NetPlayHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_net_play_helpers.html',1,'HamstarHelpers::Helpers::Net']]],
   ['none',['None',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da6adf97f83acf6453d4a6a4b1070f3754',1,'HamstarHelpers::Helpers::NPCs']]],
   ['npcbannerhelpers',['NPCBannerHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_banner_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],
+  ['npcbanners',['NpcBanners',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a4e965425920414e72591c9a74f85a8a9',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],
   ['npcdrawhelpers',['NPCDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_draw_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],
   ['npcfinderhelpers',['NPCFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_finder_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],
   ['npcgroupidentityhelpers',['NPCGroupIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],

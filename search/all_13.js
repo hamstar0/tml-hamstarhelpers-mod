@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['teleport',['Teleport',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#ab910b6c5d6ba8f39370f2012cca69c61',1,'HamstarHelpers::Helpers::Players::PlayerWarpHelpers']]],
+  ['temple',['Temple',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a2bf13217295d75ae2fa2734d9ee4ef37a54026e80aeaf32220fe0b10441eaca0d',1,'HamstarHelpers.Helpers.World.Temple()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a84bdde1b2d6ce1b05cf8834a1413fe43a54026e80aeaf32220fe0b10441eaca0d',1,'HamstarHelpers.Helpers.World.Temple()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#ac51206d892b05ee40805a3ec9330faaaa54026e80aeaf32220fe0b10441eaca0d',1,'HamstarHelpers.Helpers.World.Temple()']]],
   ['text',['Text',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a2ba2338c7d878ac26b8ff8bff2cc431b',1,'HamstarHelpers.Components.UI.Elements.UITextArea.Text()'],['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_text_input_event_args.html#a461171d26a9ca9ec81a6e703699e1f8b',1,'HamstarHelpers.Components.UI.Elements.TextInputEventArgs.Text()']]],
   ['textchangeevent',['TextChangeEvent',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a42ea3e48c9c1f2c569b44ebc4382b5dc',1,'HamstarHelpers::Components::UI::Elements::UITextArea']]],
   ['textcolor',['TextColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#af7f3686f3c716d4ff834da32811c1ac9',1,'HamstarHelpers.Components.UI.Elements.UITextArea.TextColor()'],['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_field.html#ab8d7f6b8beff166ed5087f7874421206',1,'HamstarHelpers.Components.UI.Elements.UITextField.TextColor()']]],
@@ -12,7 +14,7 @@ var searchData=
   ['tilefinderhelpers',['TileFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilehelpers',['TileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tileidentityhelpers',['TileIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
-  ['tiletype',['TileType',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_type.html',1,'HamstarHelpers::Helpers::Tiles']]],
+  ['tilepattern',['TilePattern',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilewallhelpers',['TileWallHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tileworldhelpers',['TileWorldHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['timers',['Timers',['../class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html',1,'HamstarHelpers::Services::Timers']]],

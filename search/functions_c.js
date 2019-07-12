@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['oninitialize',['OnInitialize',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a1b8b8d8f9d240386eb9277a6f2d66345',1,'HamstarHelpers.Components.UI.Elements.UIDialog.OnInitialize()'],['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a6bb7d763d168315236ddd054d9fc1776',1,'HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptPanel.OnInitialize()']]],
-  ['open',['Open',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html#aa31cc1bed46dcb4f4403d70042d68ead',1,'HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptDialog.Open()'],['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#adfb2739fce67c5733d519089ae1d4256',1,'HamstarHelpers.Components.UI.Elements.UIDialog.Open()']]],
-  ['openurl',['OpenUrl',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html#a6bde655b24ac67549096b6679b759791',1,'HamstarHelpers::Helpers::DotNET::SystemHelpers']]],
-  ['overlaps',['Overlaps',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html#afc92dd7cac6d139d92676be34eaffd1b',1,'HamstarHelpers::Components::DataStructures::ReadOnlySet']]]
+  ['makegetrequest',['MakeGetRequest',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a523bd15783c6b2f9a50e9a1c58e551da',1,'HamstarHelpers::Helpers::Net::WebConnectionHelpers']]],
+  ['makegetrequestasync',['MakeGetRequestAsync',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#ac6fe864a108e641c9a16869d2498082c',1,'HamstarHelpers::Helpers::Net::WebConnectionHelpers']]],
+  ['makepostrequest',['MakePostRequest',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a6c26ddbef8902581c60d8959d90050e0',1,'HamstarHelpers::Helpers::Net::WebConnectionHelpers']]],
+  ['makepostrequestasync',['MakePostRequestAsync',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a7baa48bc7858ee5711efa1c689432841',1,'HamstarHelpers::Helpers::Net::WebConnectionHelpers']]],
+  ['measurehealthtext',['MeasureHealthText',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a432de21106d7b7c1c7af7a83d16be15e',1,'HamstarHelpers::Helpers::HUD::HUDHealthBarHelpers']]],
+  ['minimumrunspeed',['MinimumRunSpeed',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_movement_helpers.html#aa129a1949665feb06e6e7476f5bd8d7b',1,'HamstarHelpers::Helpers::Players::PlayerMovementHelpers']]],
+  ['moddedextensionsreset',['ModdedExtensionsReset',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_mod_helpers.html#aa0391c29beb2e0badf9da19c09570fa4',1,'HamstarHelpers::Helpers::Players::PlayerModHelpers']]],
+  ['mouseinrectangle',['MouseInRectangle',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ac596e3a6454e577bf963f5c123999b6e',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
+  ['mul',['Mul',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a964f330200204f6560a986448f2af52b',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]]
 ];

@@ -71,5 +71,6 @@ var searchData=
   ['user',['User',['../namespace_hamstar_helpers_1_1_helpers_1_1_user.html',1,'HamstarHelpers::Helpers']]],
   ['webrequests',['WebRequests',['../namespace_hamstar_helpers_1_1_internals_1_1_web_requests.html',1,'HamstarHelpers::Internals']]],
   ['world',['World',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html',1,'HamstarHelpers::Helpers']]],
+  ['worldhooks',['WorldHooks',['../namespace_hamstar_helpers_1_1_services_1_1_hooks_1_1_world_hooks.html',1,'HamstarHelpers::Services::Hooks']]],
   ['xna',['XNA',['../namespace_hamstar_helpers_1_1_helpers_1_1_x_n_a.html',1,'HamstarHelpers::Helpers']]]
 ];

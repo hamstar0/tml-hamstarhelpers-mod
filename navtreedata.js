@@ -52,11 +52,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animated_colors_8cs_source.html",
-"_tile_wall_helpers_8cs_source.html",
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ad5ec9ba6083250ab6f563a7faa1af661",
-"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a2124bf1836c23fa4066541817ea0eda2",
-"class_hamstar_helpers_1_1_items_1_1_magi_tech_scrap_item.html",
-"namespace_hamstar_helpers_1_1_helpers_1_1_user.html"
+"_tile_pattern___instance_8cs_source.html",
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ac3ed32e57af869004beb9b144dd75147",
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a193caa6b65c1cf816f79e29ae20fa742",
+"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a4e965425920414e72591c9a74f85a8a9",
+"dir_942318d452827e626b5597765f204b50.html",
+"namespace_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"_tile_pattern___instance_8cs_source.html":[2,0,0,0,2,16,5],
 "_tile_wall_helpers_8cs_source.html":[2,0,0,0,2,16,6],
 "_tile_world_helpers_8cs_source.html":[2,0,0,0,2,16,7],
 "_timers_8cs_source.html":[2,0,0,0,6,11,0],
@@ -52,6 +53,8 @@ var NAVTREEINDEX1 =
 "_world_logic___update_8cs_source.html":[2,0,0,0,3,2,5],
 "_world_state_helpers_8cs_source.html":[2,0,0,0,2,20,3],
 "_world_state_helpers___instance_8cs_source.html":[2,0,0,0,2,20,4],
+"_world_time_hooks_8cs_source.html":[2,0,0,0,6,5,2,0],
+"_world_time_hooks___instance_8cs_source.html":[2,0,0,0,6,5,2,1],
 "_x_n_a_color_helpers_8cs_source.html":[2,0,0,0,2,21,0],
 "_x_n_a_contract_resolver_8cs_source.html":[2,0,0,0,1,2,3],
 "_x_n_a_helpers_8cs_source.html":[2,0,0,0,2,21,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a8269dac0a5ed683b5df8218d9d517361":[1,0,0,0,3,0,5,1],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#aae607443be34bdd2da4077aab9a3d3f6":[1,0,0,0,3,0,5,10],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ab5b7b4fed24f5d9470d9ca24402bef61":[1,0,0,0,3,0,5,2],
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#abac563af4067344707869d7e1502bb11":[1,0,0,0,3,0,5,13],
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ac3ed32e57af869004beb9b144dd75147":[1,0,0,0,3,0,5,17],
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ad3324b6103276bd42edd2cb4fd09223d":[1,0,0,0,3,0,5,6],
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ad511c69462deb5ccb93b0a0004b03539":[1,0,0,0,3,0,5,3]
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#abac563af4067344707869d7e1502bb11":[1,0,0,0,3,0,5,13]
 };

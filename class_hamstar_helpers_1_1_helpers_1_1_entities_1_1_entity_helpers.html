@@ -107,9 +107,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e0782c8797728fbf62c31863ad4c9b3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html#a8e0782c8797728fbf62c31863ad4c9b3">ApplyForce</a> (Entity ent, Vector2 worldPosFrom, float force, bool sync)</td></tr>
 <tr class="memdesc:a8e0782c8797728fbf62c31863ad4c9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a given amount of force to the given entity from a given outside point.  <a href="#a8e0782c8797728fbf62c31863ad4c9b3">More...</a><br /></td></tr>
 <tr class="separator:a8e0782c8797728fbf62c31863ad4c9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b7bc694528bf804a989fbf37184d4f0"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html#a6b7bc694528bf804a989fbf37184d4f0">SimpleLineOfSight</a> (Vector2 position, Entity ent)</td></tr>
-<tr class="memdesc:a6b7bc694528bf804a989fbf37184d4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts a basic trace to see if a given entity is visible from a given point by line of sight (no obstructing tiles).  <a href="#a6b7bc694528bf804a989fbf37184d4f0">More...</a><br /></td></tr>
-<tr class="separator:a6b7bc694528bf804a989fbf37184d4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a91b809f8e7f3de3979ecc28a708049"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html#a7a91b809f8e7f3de3979ecc28a708049">SimpleLineOfSight</a> (Vector2 position, Entity ent, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a> blockingTilePatten)</td></tr>
+<tr class="memdesc:a7a91b809f8e7f3de3979ecc28a708049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts a basic trace to see if a given entity is visible from a given point by line of sight (no obstructing tiles).  <a href="#a7a91b809f8e7f3de3979ecc28a708049">More...</a><br /></td></tr>
+<tr class="separator:a7a91b809f8e7f3de3979ecc28a708049"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa675d77763bc1b2af0eba05586e6abee"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html#aa675d77763bc1b2af0eba05586e6abee">GetQualifiedName</a> (Entity ent)</td></tr>
 <tr class="memdesc:aa675d77763bc1b2af0eba05586e6abee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the "qualified" name (the name the player sees) of a given entity.  <a href="#aa675d77763bc1b2af0eba05586e6abee">More...</a><br /></td></tr>
 <tr class="separator:aa675d77763bc1b2af0eba05586e6abee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,7 +213,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_helpers_8cs_source.html#l00083">83</a> of file <a class="el" href="_entity_helpers_8cs_source.html">EntityHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_helpers_8cs_source.html#l00084">84</a> of file <a class="el" href="_entity_helpers_8cs_source.html">EntityHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -265,8 +265,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6b7bc694528bf804a989fbf37184d4f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b7bc694528bf804a989fbf37184d4f0">&#9670;&nbsp;</a></span>SimpleLineOfSight()</h2>
+<a id="a7a91b809f8e7f3de3979ecc28a708049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a91b809f8e7f3de3979ecc28a708049">&#9670;&nbsp;</a></span>SimpleLineOfSight()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,7 +284,13 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Entity&#160;</td>
-          <td class="paramname"><em>ent</em>&#160;</td>
+          <td class="paramname"><em>ent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>blockingTilePatten</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -304,12 +310,13 @@ Static Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">position</td><td></td></tr>
     <tr><td class="paramname">ent</td><td></td></tr>
+    <tr><td class="paramname">blockingTilePatten</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_helpers_8cs_source.html#l00068">68</a> of file <a class="el" href="_entity_helpers_8cs_source.html">EntityHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_helpers_8cs_source.html#l00069">69</a> of file <a class="el" href="_entity_helpers_8cs_source.html">EntityHelpers.cs</a>.</p>
 
 </div>
 </div>

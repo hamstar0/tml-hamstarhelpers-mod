@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_boilerplate_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.TModLoader.Mods.ModBoilerplateHelpers Class Reference</div>  </div>
@@ -97,11 +98,67 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions for alleviating tedious "boilerplate" code.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_boilerplate_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af6cc29d3b249910719e6270233d18f66"><td class="memItemLeft" align="right" valign="top">static object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_boilerplate_helpers.html#af6cc29d3b249910719e6270233d18f66">HandleModCall</a> (Type apiClassType, params object[] args)</td></tr>
+<tr class="memdesc:af6cc29d3b249910719e6270233d18f66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows using a class to bind its public static methods as <code>Mod.Call(...)</code> bindings (complete with parameter validations). Meant to be called within <code>Mod.Call(...)</code>.  <a href="#af6cc29d3b249910719e6270233d18f66">More...</a><br /></td></tr>
+<tr class="separator:af6cc29d3b249910719e6270233d18f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions for alleviating tedious "boilerplate" code. </p>
 
-<p class="definition">Definition at line <a class="el" href="_mod_boilerplate_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_mod_boilerplate_helpers_8cs_source.html">ModBoilerplateHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_mod_boilerplate_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_mod_boilerplate_helpers_8cs_source.html">ModBoilerplateHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af6cc29d3b249910719e6270233d18f66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6cc29d3b249910719e6270233d18f66">&#9670;&nbsp;</a></span>HandleModCall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static object HamstarHelpers.Helpers.TModLoader.Mods.ModBoilerplateHelpers.HandleModCall </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>apiClassType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">params object []&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allows using a class to bind its public static methods as <code>Mod.Call(...)</code> bindings (complete with parameter validations). Meant to be called within <code>Mod.Call(...)</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apiClassType</td><td><code>Type</code> of class to use for defining API bindings.</td></tr>
+    <tr><td class="paramname">args</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>API binding call return result. Should be piped out from <code>Mod.Call(...)</code> in turn.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_mod_boilerplate_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_mod_boilerplate_helpers_8cs_source.html">ModBoilerplateHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/TModLoader/Mods/<a class="el" href="_mod_boilerplate_helpers_8cs_source.html">ModBoilerplateHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

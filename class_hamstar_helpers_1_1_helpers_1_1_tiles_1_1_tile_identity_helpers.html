@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Tiles.TileIdentityHelpers Class Reference</div>  </div>
@@ -97,11 +98,147 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to tile identification.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a9a1dfef6b95e0c9c64f9b1affe706383"><td class="memItemLeft" align="right" valign="top">static KeyValuePair&lt; int, string &gt; []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html#a9a1dfef6b95e0c9c64f9b1affe706383">GetVanillaTileNames</a> (int tileType)</td></tr>
+<tr class="memdesc:a9a1dfef6b95e0c9c64f9b1affe706383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all vanilla tile names of each subtype of a given tile type.  <a href="#a9a1dfef6b95e0c9c64f9b1affe706383">More...</a><br /></td></tr>
+<tr class="separator:a9a1dfef6b95e0c9c64f9b1affe706383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e642063a39474bc39ecdfea21fea730"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html#a7e642063a39474bc39ecdfea21fea730">GetVanillaTileName</a> (int tileType, int subType=-1)</td></tr>
+<tr class="memdesc:a7e642063a39474bc39ecdfea21fea730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specific tile name of a given type type and subtype.  <a href="#a7e642063a39474bc39ecdfea21fea730">More...</a><br /></td></tr>
+<tr class="separator:a7e642063a39474bc39ecdfea21fea730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66f7f76e5375e9c60fd705d93ceb3cb6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html#a66f7f76e5375e9c60fd705d93ceb3cb6">IsObject</a> (int tileType)</td></tr>
+<tr class="memdesc:a66f7f76e5375e9c60fd705d93ceb3cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given tile type is an "object" (container, sign, station, etc.).  <a href="#a66f7f76e5375e9c60fd705d93ceb3cb6">More...</a><br /></td></tr>
+<tr class="separator:a66f7f76e5375e9c60fd705d93ceb3cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tile identification. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_identity_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_tile_identity_helpers_8cs_source.html">TileIdentityHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_tile_identity_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_tile_identity_helpers_8cs_source.html">TileIdentityHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7e642063a39474bc39ecdfea21fea730"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e642063a39474bc39ecdfea21fea730">&#9670;&nbsp;</a></span>GetVanillaTileName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.Tiles.TileIdentityHelpers.GetVanillaTileName </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>subType</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the specific tile name of a given type type and subtype. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileType</td><td></td></tr>
+    <tr><td class="paramname">subType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_identity_helpers_8cs_source.html#l02977">2977</a> of file <a class="el" href="_tile_identity_helpers_8cs_source.html">TileIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9a1dfef6b95e0c9c64f9b1affe706383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a1dfef6b95e0c9c64f9b1affe706383">&#9670;&nbsp;</a></span>GetVanillaTileNames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static KeyValuePair&lt;int, string&gt; [] HamstarHelpers.Helpers.Tiles.TileIdentityHelpers.GetVanillaTileNames </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all vanilla tile names of each subtype of a given tile type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_identity_helpers_8cs_source.html#l02964">2964</a> of file <a class="el" href="_tile_identity_helpers_8cs_source.html">TileIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a66f7f76e5375e9c60fd705d93ceb3cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66f7f76e5375e9c60fd705d93ceb3cb6">&#9670;&nbsp;</a></span>IsObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileIdentityHelpers.IsObject </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given tile type is an "object" (container, sign, station, etc.). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_identity_helpers_8cs_source.html#l02992">2992</a> of file <a class="el" href="_tile_identity_helpers_8cs_source.html">TileIdentityHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Tiles/<a class="el" href="_tile_identity_helpers_8cs_source.html">TileIdentityHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

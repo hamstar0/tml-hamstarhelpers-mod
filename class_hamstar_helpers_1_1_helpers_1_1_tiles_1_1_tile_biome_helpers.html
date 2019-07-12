@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Tiles.TileBiomeHelpers Class Reference</div>  </div>
@@ -97,11 +99,645 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to tiles as relevant to biomes.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ac389110bff8c4fe7d1be07c50bd710ca"><td class="memItemLeft" align="right" valign="top">static IDictionary&lt; string, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ac389110bff8c4fe7d1be07c50bd710ca">GetVanillaBiomePercentsNear</a> (int tileX, int tileY, out int totalTiles, out int unidenfiedTiles)</td></tr>
+<tr class="memdesc:ac389110bff8c4fe7d1be07c50bd710ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets percent values indicating how much of each vanilla biome type is near a given tile position. See <code>GetPlayerRangeTilesAt(...)</code> for the specification of the tile checking range. Percent values indicate how much of the <em>minimum</em> percent of tiles exist nearby to count as being within the given biome.  <a href="#ac389110bff8c4fe7d1be07c50bd710ca">More...</a><br /></td></tr>
+<tr class="separator:ac389110bff8c4fe7d1be07c50bd710ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aaeffe381af2807b41a83e751aee9ee27"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#aaeffe381af2807b41a83e751aee9ee27">VanillaHolyTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 109, 110, 113, 117, 116, 164, 403, 402 } )</td></tr>
+<tr class="separator:aaeffe381af2807b41a83e751aee9ee27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b1538fb0d34fbc71a6319630b4e0c7c"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a4b1538fb0d34fbc71a6319630b4e0c7c">VanillaCorruptionTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 23, 24, 25, 32, 112, 163, 400, 398 } )</td></tr>
+<tr class="separator:a4b1538fb0d34fbc71a6319630b4e0c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9804ecae44c02f9e3635ce20e9f7d9f5"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a9804ecae44c02f9e3635ce20e9f7d9f5">VanillaCrimsonTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 199, 203, 200, 401, 399, 234, 352 } )</td></tr>
+<tr class="separator:a9804ecae44c02f9e3635ce20e9f7d9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47fa47bfe9c2d315c017400d5f4edadd"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a47fa47bfe9c2d315c017400d5f4edadd">VanillaSnowTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 147, 148, 161, 162, 164, 163, 200 } )</td></tr>
+<tr class="separator:a47fa47bfe9c2d315c017400d5f4edadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50ea4a630c2655e7fcd4e5dfbf3b98d"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ac50ea4a630c2655e7fcd4e5dfbf3b98d">VanillaJungleTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 60, 61, 62, 74, 226 } )</td></tr>
+<tr class="separator:ac50ea4a630c2655e7fcd4e5dfbf3b98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43df2daac25c8124691b74cd99fca8af"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a43df2daac25c8124691b74cd99fca8af">VanillaShroomTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 70, 71, 72 } )</td></tr>
+<tr class="separator:a43df2daac25c8124691b74cd99fca8af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade36717e354881845d0821b4fb8e1cbb"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ade36717e354881845d0821b4fb8e1cbb">VanillaMeteorTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 37 } )</td></tr>
+<tr class="separator:ade36717e354881845d0821b4fb8e1cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c896505a0747d270a183069c6eb38a"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#aa0c896505a0747d270a183069c6eb38a">VanillaDungeonTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 41, 43, 44 } )</td></tr>
+<tr class="separator:aa0c896505a0747d270a183069c6eb38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fc8090273c14b5513b94e0d7be7caf7"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a4fc8090273c14b5513b94e0d7be7caf7">VanillaDesertTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 53, 112, 116, 234, 397, 398, 402, 399, 396, 400, 403, 401 } )</td></tr>
+<tr class="separator:a4fc8090273c14b5513b94e0d7be7caf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ac0fe12156c5798a35682e870fb4cc"><td class="memItemLeft" align="right" valign="top">static readonly ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a15ac0fe12156c5798a35682e870fb4cc">VanillaLihzahrdTiles</a> = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { TileID.LihzahrdBrick } )</td></tr>
+<tr class="separator:a15ac0fe12156c5798a35682e870fb4cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66a8b7c9dc6d87c12b9fa9e16bddd231"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a66a8b7c9dc6d87c12b9fa9e16bddd231">VanillaHolyMinTiles</a> = 100</td></tr>
+<tr class="separator:a66a8b7c9dc6d87c12b9fa9e16bddd231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a401e5689f71f1f23b8fca709ee8bf9de"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a401e5689f71f1f23b8fca709ee8bf9de">VanillaCorruptionMinTiles</a> = 200</td></tr>
+<tr class="separator:a401e5689f71f1f23b8fca709ee8bf9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae45c55ec9cc6416ad3d5b38c3772dba4"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ae45c55ec9cc6416ad3d5b38c3772dba4">VanillaCrimsonMinTiles</a> = 200</td></tr>
+<tr class="separator:ae45c55ec9cc6416ad3d5b38c3772dba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf90e59171417a61716eb783192442ec"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#adf90e59171417a61716eb783192442ec">VanillaMeteorMinTiles</a> = 50</td></tr>
+<tr class="separator:adf90e59171417a61716eb783192442ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea90015e385627149c5a56672a86f7df"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#aea90015e385627149c5a56672a86f7df">VanillaJungleMinTiles</a> = 80</td></tr>
+<tr class="separator:aea90015e385627149c5a56672a86f7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a656fe2e34d9ace4fb8b50ecbde8eed8d"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a656fe2e34d9ace4fb8b50ecbde8eed8d">VanillaSnowMinTiles</a> = 300</td></tr>
+<tr class="separator:a656fe2e34d9ace4fb8b50ecbde8eed8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a911e11b02e2475f13f65e59a3eb7799c"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a911e11b02e2475f13f65e59a3eb7799c">VanillaDesertMinTiles</a> = 1000</td></tr>
+<tr class="separator:a911e11b02e2475f13f65e59a3eb7799c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6237b969e21558643ddfc5e38331be4c"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a6237b969e21558643ddfc5e38331be4c">VanillaShroomMinTiles</a> = 100</td></tr>
+<tr class="separator:a6237b969e21558643ddfc5e38331be4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c425a39561e7a41e2f7782b119cd30"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#af7c425a39561e7a41e2f7782b119cd30">VanillaDungeonMinTiles</a> = 250</td></tr>
+<tr class="separator:af7c425a39561e7a41e2f7782b119cd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f323769c2c33c8120e2dbbbd0273310"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a1f323769c2c33c8120e2dbbbd0273310">VanillaLihzahrdMinTiles</a> = 250</td></tr>
+<tr class="separator:a1f323769c2c33c8120e2dbbbd0273310"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tiles as relevant to biomes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac389110bff8c4fe7d1be07c50bd710ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac389110bff8c4fe7d1be07c50bd710ca">&#9670;&nbsp;</a></span>GetVanillaBiomePercentsNear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IDictionary&lt;string, float&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.GetVanillaBiomePercentsNear </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>totalTiles</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>unidenfiedTiles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets percent values indicating how much of each vanilla biome type is near a given tile position. See <code>GetPlayerRangeTilesAt(...)</code> for the specification of the tile checking range. Percent values indicate how much of the <em>minimum</em> percent of tiles exist nearby to count as being within the given biome. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">totalTiles</td><td>Returns a count of non-air tiles in total.</td></tr>
+    <tr><td class="paramname">unidenfiedTiles</td><td>Returns all non-air tiles not identified with a specific biome.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00070">70</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a401e5689f71f1f23b8fca709ee8bf9de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a401e5689f71f1f23b8fca709ee8bf9de">&#9670;&nbsp;</a></span>VanillaCorruptionMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaCorruptionMinTiles = 200</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00038">38</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4b1538fb0d34fbc71a6319630b4e0c7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b1538fb0d34fbc71a6319630b4e0c7c">&#9670;&nbsp;</a></span>VanillaCorruptionTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaCorruptionTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 23, 24, 25, 32, 112, 163, 400, 398 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae45c55ec9cc6416ad3d5b38c3772dba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae45c55ec9cc6416ad3d5b38c3772dba4">&#9670;&nbsp;</a></span>VanillaCrimsonMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaCrimsonMinTiles = 200</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00040">40</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9804ecae44c02f9e3635ce20e9f7d9f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9804ecae44c02f9e3635ce20e9f7d9f5">&#9670;&nbsp;</a></span>VanillaCrimsonTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaCrimsonTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 199, 203, 200, 401, 399, 234, 352 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a911e11b02e2475f13f65e59a3eb7799c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a911e11b02e2475f13f65e59a3eb7799c">&#9670;&nbsp;</a></span>VanillaDesertMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaDesertMinTiles = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00048">48</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4fc8090273c14b5513b94e0d7be7caf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fc8090273c14b5513b94e0d7be7caf7">&#9670;&nbsp;</a></span>VanillaDesertTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaDesertTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 53, 112, 116, 234, 397, 398, 402, 399, 396, 400, 403, 401 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00031">31</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="af7c425a39561e7a41e2f7782b119cd30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7c425a39561e7a41e2f7782b119cd30">&#9670;&nbsp;</a></span>VanillaDungeonMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaDungeonMinTiles = 250</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00052">52</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa0c896505a0747d270a183069c6eb38a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0c896505a0747d270a183069c6eb38a">&#9670;&nbsp;</a></span>VanillaDungeonTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaDungeonTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 41, 43, 44 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00029">29</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a66a8b7c9dc6d87c12b9fa9e16bddd231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66a8b7c9dc6d87c12b9fa9e16bddd231">&#9670;&nbsp;</a></span>VanillaHolyMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaHolyMinTiles = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00036">36</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aaeffe381af2807b41a83e751aee9ee27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeffe381af2807b41a83e751aee9ee27">&#9670;&nbsp;</a></span>VanillaHolyTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaHolyTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 109, 110, 113, 117, 116, 164, 403, 402 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aea90015e385627149c5a56672a86f7df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea90015e385627149c5a56672a86f7df">&#9670;&nbsp;</a></span>VanillaJungleMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaJungleMinTiles = 80</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00044">44</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac50ea4a630c2655e7fcd4e5dfbf3b98d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac50ea4a630c2655e7fcd4e5dfbf3b98d">&#9670;&nbsp;</a></span>VanillaJungleTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaJungleTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 60, 61, 62, 74, 226 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00023">23</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1f323769c2c33c8120e2dbbbd0273310"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f323769c2c33c8120e2dbbbd0273310">&#9670;&nbsp;</a></span>VanillaLihzahrdMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaLihzahrdMinTiles = 250</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00054">54</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a15ac0fe12156c5798a35682e870fb4cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ac0fe12156c5798a35682e870fb4cc">&#9670;&nbsp;</a></span>VanillaLihzahrdTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaLihzahrdTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { TileID.LihzahrdBrick } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00033">33</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="adf90e59171417a61716eb783192442ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf90e59171417a61716eb783192442ec">&#9670;&nbsp;</a></span>VanillaMeteorMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaMeteorMinTiles = 50</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00042">42</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ade36717e354881845d0821b4fb8e1cbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade36717e354881845d0821b4fb8e1cbb">&#9670;&nbsp;</a></span>VanillaMeteorTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaMeteorTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 37 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00027">27</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6237b969e21558643ddfc5e38331be4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6237b969e21558643ddfc5e38331be4c">&#9670;&nbsp;</a></span>VanillaShroomMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaShroomMinTiles = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00050">50</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a43df2daac25c8124691b74cd99fca8af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43df2daac25c8124691b74cd99fca8af">&#9670;&nbsp;</a></span>VanillaShroomTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaShroomTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 70, 71, 72 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00025">25</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a656fe2e34d9ace4fb8b50ecbde8eed8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a656fe2e34d9ace4fb8b50ecbde8eed8d">&#9670;&nbsp;</a></span>VanillaSnowMinTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaSnowMinTiles = 300</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00046">46</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a47fa47bfe9c2d315c017400d5f4edadd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47fa47bfe9c2d315c017400d5f4edadd">&#9670;&nbsp;</a></span>VanillaSnowTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileBiomeHelpers.VanillaSnowTiles = new <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt;int&gt;( new HashSet&lt;int&gt; { 147, 148, 161, 162, 164, 163, 200 } )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_biome_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Tiles/<a class="el" href="_tile_biome_helpers_8cs_source.html">TileBiomeHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

@@ -5,7 +5,7 @@ var searchData=
   ['tilefinderhelpers',['TileFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilehelpers',['TileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tileidentityhelpers',['TileIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
-  ['tiletype',['TileType',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_type.html',1,'HamstarHelpers::Helpers::Tiles']]],
+  ['tilepattern',['TilePattern',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilewallhelpers',['TileWallHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tileworldhelpers',['TileWorldHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['timers',['Timers',['../class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html',1,'HamstarHelpers::Services::Timers']]],

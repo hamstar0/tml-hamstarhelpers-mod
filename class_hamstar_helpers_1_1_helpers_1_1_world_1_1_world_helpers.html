@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.World.WorldHelpers Class Reference</div>  </div>
@@ -97,11 +99,555 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to the current world.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:abb31a3ccb3c459566c554df8b5b8450a"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#abb31a3ccb3c459566c554df8b5b8450a">GetUniqueIdForCurrentWorld</a> (bool asFileName)</td></tr>
+<tr class="memdesc:abb31a3ccb3c459566c554df8b5b8450a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a unique identifier for the current loaded world.  <a href="#abb31a3ccb3c459566c554df8b5b8450a">More...</a><br /></td></tr>
+<tr class="separator:abb31a3ccb3c459566c554df8b5b8450a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b6ea3206b893c1b8e7314ec1cdd7bb2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a8beedfa3dcac7b50bc266189a21be91e">WorldSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a7b6ea3206b893c1b8e7314ec1cdd7bb2">GetSize</a> ()</td></tr>
+<tr class="memdesc:a7b6ea3206b893c1b8e7314ec1cdd7bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size (range) of the current world.  <a href="#a7b6ea3206b893c1b8e7314ec1cdd7bb2">More...</a><br /></td></tr>
+<tr class="separator:a7b6ea3206b893c1b8e7314ec1cdd7bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82f846235f7b728369a48767ad76f381"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a82f846235f7b728369a48767ad76f381">IsRockLayer</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:a82f846235f7b728369a48767ad76f381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is within the underground rock layer.  <a href="#a82f846235f7b728369a48767ad76f381">More...</a><br /></td></tr>
+<tr class="separator:a82f846235f7b728369a48767ad76f381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1382ddb5787e2d6a258636562fa0f1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a8e1382ddb5787e2d6a258636562fa0f1">IsDirtLayer</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:a8e1382ddb5787e2d6a258636562fa0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is within the underground dirt layer (beneath elevation 0, above the rock layer).  <a href="#a8e1382ddb5787e2d6a258636562fa0f1">More...</a><br /></td></tr>
+<tr class="separator:a8e1382ddb5787e2d6a258636562fa0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b2f30de75698c8add6a86390908ecae"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a2b2f30de75698c8add6a86390908ecae">IsAboveWorldSurface</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:a2b2f30de75698c8add6a86390908ecae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is above the world's surface.  <a href="#a2b2f30de75698c8add6a86390908ecae">More...</a><br /></td></tr>
+<tr class="separator:a2b2f30de75698c8add6a86390908ecae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1b2b409c698dc1396af1fd13a528067"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ab1b2b409c698dc1396af1fd13a528067">IsOverworld</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:ab1b2b409c698dc1396af1fd13a528067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is above the world's surface, but not in the sky.  <a href="#ab1b2b409c698dc1396af1fd13a528067">More...</a><br /></td></tr>
+<tr class="separator:ab1b2b409c698dc1396af1fd13a528067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a363fa3463e6be11e0b753b5c456ada47"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a363fa3463e6be11e0b753b5c456ada47">IsSky</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:a363fa3463e6be11e0b753b5c456ada47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is in the sky/space.  <a href="#a363fa3463e6be11e0b753b5c456ada47">More...</a><br /></td></tr>
+<tr class="separator:a363fa3463e6be11e0b753b5c456ada47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f64827fe0487aefa2e8068b808c681"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a75f64827fe0487aefa2e8068b808c681">IsWithinUnderworld</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:a75f64827fe0487aefa2e8068b808c681"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is within the underworld.  <a href="#a75f64827fe0487aefa2e8068b808c681">More...</a><br /></td></tr>
+<tr class="separator:a75f64827fe0487aefa2e8068b808c681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef123faa5b70bf4703be89a9353ec33"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#afef123faa5b70bf4703be89a9353ec33">IsBeach</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:afef123faa5b70bf4703be89a9353ec33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is at a beach/ocean area.  <a href="#afef123faa5b70bf4703be89a9353ec33">More...</a><br /></td></tr>
+<tr class="separator:afef123faa5b70bf4703be89a9353ec33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a71850c8bcaa251afb3ac713cd3984"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a40a71850c8bcaa251afb3ac713cd3984">IsBeachRegion</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:a40a71850c8bcaa251afb3ac713cd3984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is within the region of a beach (regardless of elevation).  <a href="#a40a71850c8bcaa251afb3ac713cd3984">More...</a><br /></td></tr>
+<tr class="separator:a40a71850c8bcaa251afb3ac713cd3984"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0105d0911a0d19172867c1b82e1cc94"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#af0105d0911a0d19172867c1b82e1cc94">DropToGround</a> (Vector2 worldPos, bool invertGravity, out Vector2 groundPos)</td></tr>
+<tr class="memdesc:af0105d0911a0d19172867c1b82e1cc94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops from a given point to the ground.  <a href="#af0105d0911a0d19172867c1b82e1cc94">More...</a><br /></td></tr>
+<tr class="separator:af0105d0911a0d19172867c1b82e1cc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a0a760f5e678427a909ae4f749abec97d"><td class="memItemLeft" align="right" valign="top">static Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d">WorldSizeSmall</a> =&gt; new Point( 4200, 1200 )</td></tr>
+<tr class="separator:a0a760f5e678427a909ae4f749abec97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da7daacfb34b919e1ca492e7c31e9c1"><td class="memItemLeft" align="right" valign="top">static Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a4da7daacfb34b919e1ca492e7c31e9c1">WorldSizeMedium</a> =&gt; new Point( 6400, 1800 )</td></tr>
+<tr class="separator:a4da7daacfb34b919e1ca492e7c31e9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adae016ee3e2e430e567289e1db7880c1"><td class="memItemLeft" align="right" valign="top">static Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#adae016ee3e2e430e567289e1db7880c1">WorldSizeLarge</a> =&gt; new Point( 8400, 2400 )</td></tr>
+<tr class="separator:adae016ee3e2e430e567289e1db7880c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to the current world. </p>
 
-<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af0105d0911a0d19172867c1b82e1cc94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0105d0911a0d19172867c1b82e1cc94">&#9670;&nbsp;</a></span>DropToGround()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.DropToGround </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>invertGravity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out Vector2&#160;</td>
+          <td class="paramname"><em>groundPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Drops from a given point to the ground. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+    <tr><td class="paramname">invertGravity</td><td></td></tr>
+    <tr><td class="paramname">groundPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if a ground point was found within world boundaries.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00156">156</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7b6ea3206b893c1b8e7314ec1cdd7bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b6ea3206b893c1b8e7314ec1cdd7bb2">&#9670;&nbsp;</a></span>GetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a8beedfa3dcac7b50bc266189a21be91e">WorldSize</a> HamstarHelpers.Helpers.World.WorldHelpers.GetSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the size (range) of the current world. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00045">45</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="abb31a3ccb3c459566c554df8b5b8450a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb31a3ccb3c459566c554df8b5b8450a">&#9670;&nbsp;</a></span>GetUniqueIdForCurrentWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.World.WorldHelpers.GetUniqueIdForCurrentWorld </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>asFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a unique identifier for the current loaded world. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">asFileName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00030">30</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2b2f30de75698c8add6a86390908ecae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2f30de75698c8add6a86390908ecae">&#9670;&nbsp;</a></span>IsAboveWorldSurface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsAboveWorldSurface </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is above the world's surface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00089">89</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="afef123faa5b70bf4703be89a9353ec33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afef123faa5b70bf4703be89a9353ec33">&#9670;&nbsp;</a></span>IsBeach()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsBeach </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is at a beach/ocean area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00129">129</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a40a71850c8bcaa251afb3ac713cd3984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a71850c8bcaa251afb3ac713cd3984">&#9670;&nbsp;</a></span>IsBeachRegion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsBeachRegion </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is within the region of a beach (regardless of elevation). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00141">141</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8e1382ddb5787e2d6a258636562fa0f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e1382ddb5787e2d6a258636562fa0f1">&#9670;&nbsp;</a></span>IsDirtLayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsDirtLayer </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is within the underground dirt layer (beneath elevation 0, above the rock layer). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00079">79</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab1b2b409c698dc1396af1fd13a528067"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1b2b409c698dc1396af1fd13a528067">&#9670;&nbsp;</a></span>IsOverworld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsOverworld </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is above the world's surface, but not in the sky. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00099">99</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a82f846235f7b728369a48767ad76f381"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82f846235f7b728369a48767ad76f381">&#9670;&nbsp;</a></span>IsRockLayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsRockLayer </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is within the underground rock layer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00069">69</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a363fa3463e6be11e0b753b5c456ada47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a363fa3463e6be11e0b753b5c456ada47">&#9670;&nbsp;</a></span>IsSky()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsSky </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is in the sky/space. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00109">109</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a75f64827fe0487aefa2e8068b808c681"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f64827fe0487aefa2e8068b808c681">&#9670;&nbsp;</a></span>IsWithinUnderworld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.World.WorldHelpers.IsWithinUnderworld </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the given position is within the underworld. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00119">119</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="adae016ee3e2e430e567289e1db7880c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adae016ee3e2e430e567289e1db7880c1">&#9670;&nbsp;</a></span>WorldSizeLarge</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Point HamstarHelpers.Helpers.World.WorldHelpers.WorldSizeLarge =&gt; new Point( 8400, 2400 )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4da7daacfb34b919e1ca492e7c31e9c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4da7daacfb34b919e1ca492e7c31e9c1">&#9670;&nbsp;</a></span>WorldSizeMedium</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Point HamstarHelpers.Helpers.World.WorldHelpers.WorldSizeMedium =&gt; new Point( 6400, 1800 )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0a760f5e678427a909ae4f749abec97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a760f5e678427a909ae4f749abec97d">&#9670;&nbsp;</a></span>WorldSizeSmall</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Point HamstarHelpers.Helpers.World.WorldHelpers.WorldSizeSmall =&gt; new Point( 4200, 1200 )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/World/<a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.TModLoader.Menus.ModMenuHelpers Class Reference</div>  </div>
@@ -97,11 +98,164 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to the mod list menu.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a7a13f9448e46c8c562bb486775a71156"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#a7a13f9448e46c8c562bb486775a71156">ApplyModBrowserFilter</a> (string filterName, bool isFiltered, List&lt; string &gt; modNames)</td></tr>
+<tr class="memdesc:a7a13f9448e46c8c562bb486775a71156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters the mod browser mod list to a specific set of mods, or none.  <a href="#a7a13f9448e46c8c562bb486775a71156">More...</a><br /></td></tr>
+<tr class="separator:a7a13f9448e46c8c562bb486775a71156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a40e3689c22f03522df06b25350086b"><td class="memItemLeft" align="right" valign="top">static TmodFile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#a4a40e3689c22f03522df06b25350086b">GetModFile</a> (UIState ui)</td></tr>
+<tr class="memdesc:a4a40e3689c22f03522df06b25350086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the file data for a given mod within a given mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (typically the Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_info.html">Info</a> menu page).  <a href="#a4a40e3689c22f03522df06b25350086b">More...</a><br /></td></tr>
+<tr class="separator:a4a40e3689c22f03522df06b25350086b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7958059b0cd2869764916c08956ce160"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#a7958059b0cd2869764916c08956ce160">GetModName</a> (UIState prevUi, UIState currUi)</td></tr>
+<tr class="memdesc:a7958059b0cd2869764916c08956ce160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mod name of a mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (sometimes needs the previous <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> for context).  <a href="#a7958059b0cd2869764916c08956ce160">More...</a><br /></td></tr>
+<tr class="separator:a7958059b0cd2869764916c08956ce160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to the mod list menu. </p>
 
-<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00014">14</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7a13f9448e46c8c562bb486775a71156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a13f9448e46c8c562bb486775a71156">&#9670;&nbsp;</a></span>ApplyModBrowserFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.TModLoader.Menus.ModMenuHelpers.ApplyModBrowserFilter </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filterName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isFiltered</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>modNames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Filters the mod browser mod list to a specific set of mods, or none. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filterName</td><td>Name of the filter (appears on the Download All button).</td></tr>
+    <tr><td class="paramname">isFiltered</td><td>Indicates whether to simply clear the filter list and filtered state.</td></tr>
+    <tr><td class="paramname">modNames</td><td>List of (internal) mod names to filter the list to.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00023">23</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4a40e3689c22f03522df06b25350086b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a40e3689c22f03522df06b25350086b">&#9670;&nbsp;</a></span>GetModFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static TmodFile HamstarHelpers.Helpers.TModLoader.Menus.ModMenuHelpers.GetModFile </td>
+          <td>(</td>
+          <td class="paramtype">UIState&#160;</td>
+          <td class="paramname"><em>ui</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves the file data for a given mod within a given mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (typically the Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_info.html">Info</a> menu page). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ui</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00089">89</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7958059b0cd2869764916c08956ce160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7958059b0cd2869764916c08956ce160">&#9670;&nbsp;</a></span>GetModName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.TModLoader.Menus.ModMenuHelpers.GetModName </td>
+          <td>(</td>
+          <td class="paramtype">UIState&#160;</td>
+          <td class="paramname"><em>prevUi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">UIState&#160;</td>
+          <td class="paramname"><em>currUi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the mod name of a mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (sometimes needs the previous <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> for context). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prevUi</td><td></td></tr>
+    <tr><td class="paramname">currUi</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00112">112</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/TModLoader/Menus/<a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

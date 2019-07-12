@@ -89,19 +89,513 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.UI.UIHelpers Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Assorted static "helper" functions pertaining to the in-game UI (positions, interactions, etc.).  
+<p>Assorted static "helper" functions pertaining to the in-game <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (positions, interactions, etc.).  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a5040bfbe20f10a945644883652f27ae1"><td class="memItemLeft" align="right" valign="top">static Tuple&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a5040bfbe20f10a945644883652f27ae1">GetScreenSize</a> ()</td></tr>
+<tr class="memdesc:a5040bfbe20f10a945644883652f27ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current screen size, factoring zoom.  <a href="#a5040bfbe20f10a945644883652f27ae1">More...</a><br /></td></tr>
+<tr class="separator:a5040bfbe20f10a945644883652f27ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2a84e77634d6e7f74b345e076d1470"><td class="memItemLeft" align="right" valign="top">static Rectangle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a4a2a84e77634d6e7f74b345e076d1470">GetWorldFrameOfScreen</a> ()</td></tr>
+<tr class="memdesc:a4a2a84e77634d6e7f74b345e076d1470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the screen dimensions (factoring zoom) within world space.  <a href="#a4a2a84e77634d6e7f74b345e076d1470">More...</a><br /></td></tr>
+<tr class="separator:a4a2a84e77634d6e7f74b345e076d1470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafa5e493477bbc2985a5d27b1004b78a"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#aafa5e493477bbc2985a5d27b1004b78a">ConvertToScreenPosition</a> (Vector2 worldPos)</td></tr>
+<tr class="memdesc:aafa5e493477bbc2985a5d27b1004b78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a given screen position to world coordinates (factoring zoom).  <a href="#aafa5e493477bbc2985a5d27b1004b78a">More...</a><br /></td></tr>
+<tr class="separator:aafa5e493477bbc2985a5d27b1004b78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91f2bc846cc4fd297f151c608e9a1a3f"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a91f2bc846cc4fd297f151c608e9a1a3f">GetWorldMousePosition</a> ()</td></tr>
+<tr class="memdesc:a91f2bc846cc4fd297f151c608e9a1a3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the mouse to world coordinates (factoring screen zoom).  <a href="#a91f2bc846cc4fd297f151c608e9a1a3f">More...</a><br /></td></tr>
+<tr class="separator:a91f2bc846cc4fd297f151c608e9a1a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e00ac6558ce577e080495580b1fad1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a65e00ac6558ce577e080495580b1fad1">JustPressedKey</a> (Keys key)</td></tr>
+<tr class="memdesc:a65e00ac6558ce577e080495580b1fad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether a given keyboard key was just pressed. Used primarily for text field inputs.  <a href="#a65e00ac6558ce577e080495580b1fad1">More...</a><br /></td></tr>
+<tr class="separator:a65e00ac6558ce577e080495580b1fad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6707f41ca95484651ab8152408a86a3"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ae6707f41ca95484651ab8152408a86a3">GetHoverTipPosition</a> (string str)</td></tr>
+<tr class="memdesc:ae6707f41ca95484651ab8152408a86a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the position to use to display a given string of text near the mouse position so as to fit on screen.  <a href="#ae6707f41ca95484651ab8152408a86a3">More...</a><br /></td></tr>
+<tr class="separator:ae6707f41ca95484651ab8152408a86a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac596e3a6454e577bf963f5c123999b6e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ac596e3a6454e577bf963f5c123999b6e">MouseInRectangle</a> (Rectangle rect)</td></tr>
+<tr class="memdesc:ac596e3a6454e577bf963f5c123999b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the mouse is within a given screen rectangle.  <a href="#ac596e3a6454e577bf963f5c123999b6e">More...</a><br /></td></tr>
+<tr class="separator:ac596e3a6454e577bf963f5c123999b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ac9f02f83f94c8f50a73c9f57832b2db0"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ac9f02f83f94c8f50a73c9f57832b2db0">MinScreenWidth</a> = 800</td></tr>
+<tr class="separator:ac9f02f83f94c8f50a73c9f57832b2db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5495f2298db48d07e3f10d24b6333633"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a5495f2298db48d07e3f10d24b6333633">MinScreenHeight</a> = 640</td></tr>
+<tr class="separator:a5495f2298db48d07e3f10d24b6333633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a672ae29c8b22220be9fec4a7df1f97ac"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a672ae29c8b22220be9fec4a7df1f97ac">MaxScreenWidth</a> = 1920</td></tr>
+<tr class="separator:a672ae29c8b22220be9fec4a7df1f97ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a574afdf16d7f0edd752eb8660ec322af"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a574afdf16d7f0edd752eb8660ec322af">MaxScreenHeight</a> = 1080</td></tr>
+<tr class="separator:a574afdf16d7f0edd752eb8660ec322af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b8ad28a25a94c0409bdcddfaf10ea41"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a6b8ad28a25a94c0409bdcddfaf10ea41">MinScreenWidthTiles</a> = 80</td></tr>
+<tr class="separator:a6b8ad28a25a94c0409bdcddfaf10ea41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00626865fdc0099d0177859eb0d7eba4"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a00626865fdc0099d0177859eb0d7eba4">MinScreenHeightTiles</a> = 40</td></tr>
+<tr class="separator:a00626865fdc0099d0177859eb0d7eba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7e134ed17142f6eddc4d786f997aab2"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#af7e134ed17142f6eddc4d786f997aab2">MaxScreenWidthTiles</a> = 124</td></tr>
+<tr class="separator:af7e134ed17142f6eddc4d786f997aab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a977f9b8ea4ad4c98173163f0338f6e14"><td class="memItemLeft" align="right" valign="top">static readonly int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a977f9b8ea4ad4c98173163f0338f6e14">MaxScreenHeightTiles</a> = 70</td></tr>
+<tr class="separator:a977f9b8ea4ad4c98173163f0338f6e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Assorted static "helper" functions pertaining to the in-game UI (positions, interactions, etc.). </p>
+<div class="textblock"><p>Assorted static "helper" functions pertaining to the in-game <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (positions, interactions, etc.). </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aafa5e493477bbc2985a5d27b1004b78a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafa5e493477bbc2985a5d27b1004b78a">&#9670;&nbsp;</a></span>ConvertToScreenPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector2 HamstarHelpers.Helpers.UI.UIHelpers.ConvertToScreenPosition </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a given screen position to world coordinates (factoring zoom). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPos</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00062">62</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae6707f41ca95484651ab8152408a86a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6707f41ca95484651ab8152408a86a3">&#9670;&nbsp;</a></span>GetHoverTipPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector2 HamstarHelpers.Helpers.UI.UIHelpers.GetHoverTipPosition </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the position to use to display a given string of text near the mouse position so as to fit on screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00103">103</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5040bfbe20f10a945644883652f27ae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5040bfbe20f10a945644883652f27ae1">&#9670;&nbsp;</a></span>GetScreenSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Tuple&lt;int, int&gt; HamstarHelpers.Helpers.UI.UIHelpers.GetScreenSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current screen size, factoring zoom. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00037">37</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4a2a84e77634d6e7f74b345e076d1470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a2a84e77634d6e7f74b345e076d1470">&#9670;&nbsp;</a></span>GetWorldFrameOfScreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Rectangle HamstarHelpers.Helpers.UI.UIHelpers.GetWorldFrameOfScreen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the screen dimensions (factoring zoom) within world space. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00048">48</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a91f2bc846cc4fd297f151c608e9a1a3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91f2bc846cc4fd297f151c608e9a1a3f">&#9670;&nbsp;</a></span>GetWorldMousePosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector2 HamstarHelpers.Helpers.UI.UIHelpers.GetWorldMousePosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the mouse to world coordinates (factoring screen zoom). </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00073">73</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a65e00ac6558ce577e080495580b1fad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65e00ac6558ce577e080495580b1fad1">&#9670;&nbsp;</a></span>JustPressedKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.UI.UIHelpers.JustPressedKey </td>
+          <td>(</td>
+          <td class="paramtype">Keys&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports whether a given keyboard key was just pressed. Used primarily for text field inputs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00092">92</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac596e3a6454e577bf963f5c123999b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac596e3a6454e577bf963f5c123999b6e">&#9670;&nbsp;</a></span>MouseInRectangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.UI.UIHelpers.MouseInRectangle </td>
+          <td>(</td>
+          <td class="paramtype">Rectangle&#160;</td>
+          <td class="paramname"><em>rect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the mouse is within a given screen rectangle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00122">122</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a574afdf16d7f0edd752eb8660ec322af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a574afdf16d7f0edd752eb8660ec322af">&#9670;&nbsp;</a></span>MaxScreenHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MaxScreenHeight = 1080</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a977f9b8ea4ad4c98173163f0338f6e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a977f9b8ea4ad4c98173163f0338f6e14">&#9670;&nbsp;</a></span>MaxScreenHeightTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MaxScreenHeightTiles = 70</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00027">27</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a672ae29c8b22220be9fec4a7df1f97ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a672ae29c8b22220be9fec4a7df1f97ac">&#9670;&nbsp;</a></span>MaxScreenWidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MaxScreenWidth = 1920</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="af7e134ed17142f6eddc4d786f997aab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e134ed17142f6eddc4d786f997aab2">&#9670;&nbsp;</a></span>MaxScreenWidthTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MaxScreenWidthTiles = 124</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00025">25</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5495f2298db48d07e3f10d24b6333633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5495f2298db48d07e3f10d24b6333633">&#9670;&nbsp;</a></span>MinScreenHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MinScreenHeight = 640</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a00626865fdc0099d0177859eb0d7eba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00626865fdc0099d0177859eb0d7eba4">&#9670;&nbsp;</a></span>MinScreenHeightTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MinScreenHeightTiles = 40</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00023">23</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac9f02f83f94c8f50a73c9f57832b2db0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9f02f83f94c8f50a73c9f57832b2db0">&#9670;&nbsp;</a></span>MinScreenWidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MinScreenWidth = 800</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6b8ad28a25a94c0409bdcddfaf10ea41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b8ad28a25a94c0409bdcddfaf10ea41">&#9670;&nbsp;</a></span>MinScreenWidthTiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly int HamstarHelpers.Helpers.UI.UIHelpers.MinScreenWidthTiles = 80</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/UI/<a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

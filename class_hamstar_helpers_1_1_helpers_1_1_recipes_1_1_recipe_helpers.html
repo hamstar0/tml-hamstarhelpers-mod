@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Recipes.RecipeHelpers Class Reference</div>  </div>
@@ -97,11 +98,190 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to recipes.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a96739a83a78ee975d18949e4bbfc9304"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33a">RecipeCraftFailReason</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers.html#a96739a83a78ee975d18949e4bbfc9304">GetRecipeFailReasons</a> (Player player, Recipe recipe, out int[] missingTile, out IDictionary&lt; int, int &gt; missingItemTypesStacks, IEnumerable&lt; Item &gt; availableIngredients=null)</td></tr>
+<tr class="memdesc:a96739a83a78ee975d18949e4bbfc9304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports all the reasons a given recipe for a givne player will fail with a given set of ingredients (defaults to the player's inventory).  <a href="#a96739a83a78ee975d18949e4bbfc9304">More...</a><br /></td></tr>
+<tr class="separator:a96739a83a78ee975d18949e4bbfc9304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ddd161592a268df07903ac93ad4183c"><td class="memItemLeft" align="right" valign="top">static IList&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers.html#a9ddd161592a268df07903ac93ad4183c">GetAvailableRecipesOfIngredients</a> (Player player, IEnumerable&lt; Item &gt; ingredients)</td></tr>
+<tr class="memdesc:a9ddd161592a268df07903ac93ad4183c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets available recipes of a given set of ingredient items for a given player.  <a href="#a9ddd161592a268df07903ac93ad4183c">More...</a><br /></td></tr>
+<tr class="separator:a9ddd161592a268df07903ac93ad4183c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd4681b57fbe43e3d3ea3e80b3c4624"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers.html#abbd4681b57fbe43e3d3ea3e80b3c4624">ItemHasIngredients</a> (int itemType, IDictionary&lt; int, int &gt; ingredients)</td></tr>
+<tr class="memdesc:abbd4681b57fbe43e3d3ea3e80b3c4624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given item type has the ingredients it needs to be crafted from any of its recipes. Does not check tile requirements.  <a href="#abbd4681b57fbe43e3d3ea3e80b3c4624">More...</a><br /></td></tr>
+<tr class="separator:abbd4681b57fbe43e3d3ea3e80b3c4624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to recipes. </p>
 
-<p class="definition">Definition at line <a class="el" href="_recipe_helpers_8cs_source.html#l00024">24</a> of file <a class="el" href="_recipe_helpers_8cs_source.html">RecipeHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_recipe_helpers_8cs_source.html#l00033">33</a> of file <a class="el" href="_recipe_helpers_8cs_source.html">RecipeHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9ddd161592a268df07903ac93ad4183c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ddd161592a268df07903ac93ad4183c">&#9670;&nbsp;</a></span>GetAvailableRecipesOfIngredients()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IList&lt;int&gt; HamstarHelpers.Helpers.Recipes.RecipeHelpers.GetAvailableRecipesOfIngredients </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; Item &gt;&#160;</td>
+          <td class="paramname"><em>ingredients</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets available recipes of a given set of ingredient items for a given player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">ingredients</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_recipe_helpers_8cs_source.html#l00144">144</a> of file <a class="el" href="_recipe_helpers_8cs_source.html">RecipeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a96739a83a78ee975d18949e4bbfc9304"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96739a83a78ee975d18949e4bbfc9304">&#9670;&nbsp;</a></span>GetRecipeFailReasons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33a">RecipeCraftFailReason</a> HamstarHelpers.Helpers.Recipes.RecipeHelpers.GetRecipeFailReasons </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Recipe&#160;</td>
+          <td class="paramname"><em>recipe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int []&#160;</td>
+          <td class="paramname"><em>missingTile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out IDictionary&lt; int, int &gt;&#160;</td>
+          <td class="paramname"><em>missingItemTypesStacks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IEnumerable&lt; Item &gt;&#160;</td>
+          <td class="paramname"><em>availableIngredients</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports all the reasons a given recipe for a givne player will fail with a given set of ingredients (defaults to the player's inventory). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+    <tr><td class="paramname">recipe</td><td></td></tr>
+    <tr><td class="paramname">missingTile</td><td>Returns the tile IDs (crafting stations) needed for the recipe.</td></tr>
+    <tr><td class="paramname">missingItemTypesStacks</td><td>Returns the missing item ids and amounts for the recipe.</td></tr>
+    <tr><td class="paramname">availableIngredients</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_recipe_helpers_8cs_source.html#l00044">44</a> of file <a class="el" href="_recipe_helpers_8cs_source.html">RecipeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="abbd4681b57fbe43e3d3ea3e80b3c4624"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbd4681b57fbe43e3d3ea3e80b3c4624">&#9670;&nbsp;</a></span>ItemHasIngredients()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Recipes.RecipeHelpers.ItemHasIngredients </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>itemType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IDictionary&lt; int, int &gt;&#160;</td>
+          <td class="paramname"><em>ingredients</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given item type has the ingredients it needs to be crafted from any of its recipes. Does not check tile requirements. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">itemType</td><td>Item type to find recipes for.</td></tr>
+    <tr><td class="paramname">ingredients</td><td>Ingredient item types and their stack sizes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_recipe_helpers_8cs_source.html#l00180">180</a> of file <a class="el" href="_recipe_helpers_8cs_source.html">RecipeHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Recipes/<a class="el" href="_recipe_helpers_8cs_source.html">RecipeHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->

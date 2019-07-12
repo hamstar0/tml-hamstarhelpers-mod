@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['goblins',['Goblins',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da50833bc56023c454a3f3f8340eddaadc',1,'HamstarHelpers::Helpers::NPCs']]]
+  ['desert',['Desert',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a2bf13217295d75ae2fa2734d9ee4ef37a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a324a198aae961133fd834a8e56efe2f9a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a84bdde1b2d6ce1b05cf8834a1413fe43a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5d4d11b0dbe838ed25423d9aa0946ca7a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()']]],
+  ['dungeon',['Dungeon',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a2bf13217295d75ae2fa2734d9ee4ef37acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a84bdde1b2d6ce1b05cf8834a1413fe43acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['kill',['Kill',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#a55456f33b8e3c377d96c00307fb6f1fa',1,'HamstarHelpers::Helpers::NPCs::NPCHelpers']]],
-  ['killwithpermadeath',['KillWithPermadeath',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a08bca72ffe2572ae0409d3107a41e5f7',1,'HamstarHelpers::Helpers::Players::PlayerHelpers']]]
+  ['joinserver',['JoinServer',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_net_play_helpers.html#a74db286713275e0db2b8d1c34252080f',1,'HamstarHelpers::Helpers::Net::NetPlayHelpers']]],
+  ['justpressedkey',['JustPressedKey',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a65e00ac6558ce577e080495580b1fad1',1,'HamstarHelpers::Helpers::UI::UIHelpers']]]
 ];

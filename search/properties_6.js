@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['maxlength',['MaxLength',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#ab299382139cd28153925d492eac97260',1,'HamstarHelpers::Components::UI::Elements::UITextArea']]],
-  ['mobbanners',['MobBanners',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#aa0584e714c7a106606b725114a1edccc',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
-  ['mod',['Mod',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a28090ed582a4914e70ae717d59042bf5',1,'HamstarHelpers::Components::UI::Elements::UIModData']]],
-  ['myheight',['MyHeight',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a1a86112b6cb179a92b094fa0b4844956',1,'HamstarHelpers::Components::UI::Elements::Dialogs::UIPromptPanel']]],
-  ['mywidth',['MyWidth',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#aec8ebc2e339db45238bfdbea4450157c',1,'HamstarHelpers::Components::UI::Elements::Dialogs::UIPromptPanel']]]
+  ['large',['Large',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#aa366b71b8e7d615a69ba0adf9d4a0d1a',1,'HamstarHelpers::Components::UI::Elements::UIWebUrl']]],
+  ['latestavailableversion',['LatestAvailableVersion',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a7976a5ea1cc875550a11bba8f45c3a87',1,'HamstarHelpers::Components::UI::Elements::UIModData']]],
+  ['lineelem',['LineElem',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#a3ddae0aa3bec9c34b9b50c67239f78e8',1,'HamstarHelpers::Components::UI::Elements::UIWebUrl']]]
 ];

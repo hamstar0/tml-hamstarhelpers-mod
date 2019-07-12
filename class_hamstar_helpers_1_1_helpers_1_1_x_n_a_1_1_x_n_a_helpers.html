@@ -89,19 +89,294 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.XNA.XNAHelpers Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Assorted static "helper" functions pertaining to XNA.  
+<p>Assorted static "helper" functions pertaining to <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_x_n_a.html">XNA</a>.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a04e0d6ec9aa31b7df7d18f375b4b50c2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#a04e0d6ec9aa31b7df7d18f375b4b50c2">ScanRectangleWithout</a> (Func&lt; int, int, bool &gt; scanner, Rectangle rect, Rectangle? notRect)</td></tr>
+<tr class="memdesc:a04e0d6ec9aa31b7df7d18f375b4b50c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Scans" a rectangle with a provided custom function, returning on the function reporting success. Skips over another given rectangle, if overlapping.  <a href="#a04e0d6ec9aa31b7df7d18f375b4b50c2">More...</a><br /></td></tr>
+<tr class="separator:a04e0d6ec9aa31b7df7d18f375b4b50c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa47a761a86770bb6ac6fd835e7ddfc1c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#aa47a761a86770bb6ac6fd835e7ddfc1c">IsMainSpriteBatchBegun</a> (out bool isBegun)</td></tr>
+<tr class="memdesc:aa47a761a86770bb6ac6fd835e7ddfc1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if <code>Main.SpriteBatch</code> has begun drawing.  <a href="#aa47a761a86770bb6ac6fd835e7ddfc1c">More...</a><br /></td></tr>
+<tr class="separator:aa47a761a86770bb6ac6fd835e7ddfc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7ea225e8ea08ef159fff075f7dec2cb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#af7ea225e8ea08ef159fff075f7dec2cb">DrawBatch</a> (Action&lt; SpriteBatch &gt; draw, out bool isBegun, bool forceDraw=true)</td></tr>
+<tr class="memdesc:af7ea225e8ea08ef159fff075f7dec2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws to the main SpriteBatch by way of a callback. Attempts to resolve when to draw based on the SpriteBatch's <code>Begun()</code> state.  <a href="#af7ea225e8ea08ef159fff075f7dec2cb">More...</a><br /></td></tr>
+<tr class="separator:af7ea225e8ea08ef159fff075f7dec2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b2a20a319c7c748d8657889d2b70f30"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#a3b2a20a319c7c748d8657889d2b70f30">DrawBatch</a> (Action&lt; SpriteBatch &gt; draw, SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, RasterizerState rasterizerState, Effect effect, Matrix transformMatrix, out bool isBegun, bool forceBeginAnew=false, bool forceDraw=true)</td></tr>
+<tr class="memdesc:a3b2a20a319c7c748d8657889d2b70f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws to the main SpriteBatch by way of a callback. Attempts to resolve when to draw based on the SpriteBatch's <code>Begun()</code> state. If the SpriteBatch needs to be begun anew, the given set of relevant parameters will be applied.  <a href="#a3b2a20a319c7c748d8657889d2b70f30">More...</a><br /></td></tr>
+<tr class="separator:a3b2a20a319c7c748d8657889d2b70f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Assorted static "helper" functions pertaining to XNA. </p>
+<div class="textblock"><p>Assorted static "helper" functions pertaining to <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_x_n_a.html">XNA</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_x_n_a_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_x_n_a_helpers_8cs_source.html">XNAHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_x_n_a_helpers_8cs_source.html#l00012">12</a> of file <a class="el" href="_x_n_a_helpers_8cs_source.html">XNAHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af7ea225e8ea08ef159fff075f7dec2cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7ea225e8ea08ef159fff075f7dec2cb">&#9670;&nbsp;</a></span>DrawBatch() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.XNA.XNAHelpers.DrawBatch </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; SpriteBatch &gt;&#160;</td>
+          <td class="paramname"><em>draw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out bool&#160;</td>
+          <td class="paramname"><em>isBegun</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceDraw</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws to the main SpriteBatch by way of a callback. Attempts to resolve when to draw based on the SpriteBatch's <code>Begun()</code> state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">draw</td><td></td></tr>
+    <tr><td class="paramname">isBegun</td><td>Indicates that the SpriteBatch was already <code>Begun()</code>.</td></tr>
+    <tr><td class="paramname">forceDraw</td><td>Forces drawing even wehn the SpriteBatch is already <code>Begun()</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if no issues occurred with the drawing.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_x_n_a_helpers_8cs_source.html#l00074">74</a> of file <a class="el" href="_x_n_a_helpers_8cs_source.html">XNAHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3b2a20a319c7c748d8657889d2b70f30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b2a20a319c7c748d8657889d2b70f30">&#9670;&nbsp;</a></span>DrawBatch() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.XNA.XNAHelpers.DrawBatch </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; SpriteBatch &gt;&#160;</td>
+          <td class="paramname"><em>draw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SpriteSortMode&#160;</td>
+          <td class="paramname"><em>sortMode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BlendState&#160;</td>
+          <td class="paramname"><em>blendState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SamplerState&#160;</td>
+          <td class="paramname"><em>samplerState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DepthStencilState&#160;</td>
+          <td class="paramname"><em>depthStencilState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">RasterizerState&#160;</td>
+          <td class="paramname"><em>rasterizerState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Effect&#160;</td>
+          <td class="paramname"><em>effect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Matrix&#160;</td>
+          <td class="paramname"><em>transformMatrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out bool&#160;</td>
+          <td class="paramname"><em>isBegun</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceBeginAnew</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceDraw</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws to the main SpriteBatch by way of a callback. Attempts to resolve when to draw based on the SpriteBatch's <code>Begun()</code> state. If the SpriteBatch needs to be begun anew, the given set of relevant parameters will be applied. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">draw</td><td></td></tr>
+    <tr><td class="paramname">sortMode</td><td></td></tr>
+    <tr><td class="paramname">blendState</td><td></td></tr>
+    <tr><td class="paramname">samplerState</td><td></td></tr>
+    <tr><td class="paramname">depthStencilState</td><td></td></tr>
+    <tr><td class="paramname">rasterizerState</td><td></td></tr>
+    <tr><td class="paramname">effect</td><td></td></tr>
+    <tr><td class="paramname">transformMatrix</td><td></td></tr>
+    <tr><td class="paramname">isBegun</td><td>Indicates that the SpriteBatch was already <code>Begun()</code>.</td></tr>
+    <tr><td class="paramname">forceBeginAnew</td><td>Forces the SpriteBatch to <code>Begin()</code>.</td></tr>
+    <tr><td class="paramname">forceDraw</td><td>Forces drawing even wehn the SpriteBatch is already <code>Begun()</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_x_n_a_helpers_8cs_source.html#l00120">120</a> of file <a class="el" href="_x_n_a_helpers_8cs_source.html">XNAHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa47a761a86770bb6ac6fd835e7ddfc1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa47a761a86770bb6ac6fd835e7ddfc1c">&#9670;&nbsp;</a></span>IsMainSpriteBatchBegun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.XNA.XNAHelpers.IsMainSpriteBatchBegun </td>
+          <td>(</td>
+          <td class="paramtype">out bool&#160;</td>
+          <td class="paramname"><em>isBegun</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports if <code>Main.SpriteBatch</code> has begun drawing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isBegun</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Could not determine one way or the other.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_x_n_a_helpers_8cs_source.html#l00050">50</a> of file <a class="el" href="_x_n_a_helpers_8cs_source.html">XNAHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a04e0d6ec9aa31b7df7d18f375b4b50c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e0d6ec9aa31b7df7d18f375b4b50c2">&#9670;&nbsp;</a></span>ScanRectangleWithout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.XNA.XNAHelpers.ScanRectangleWithout </td>
+          <td>(</td>
+          <td class="paramtype">Func&lt; int, int, bool &gt;&#160;</td>
+          <td class="paramname"><em>scanner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Rectangle&#160;</td>
+          <td class="paramname"><em>rect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Rectangle?&#160;</td>
+          <td class="paramname"><em>notRect</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>"Scans" a rectangle with a provided custom function, returning on the function reporting success. Skips over another given rectangle, if overlapping. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scanner</td><td></td></tr>
+    <tr><td class="paramname">rect</td><td></td></tr>
+    <tr><td class="paramname">notRect</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_x_n_a_helpers_8cs_source.html#l00020">20</a> of file <a class="el" href="_x_n_a_helpers_8cs_source.html">XNAHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/XNA/<a class="el" href="_x_n_a_helpers_8cs_source.html">XNAHelpers.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Helpers/XNA/<a class="el" href="_x_n_a_helpers___instance_8cs_source.html">XNAHelpers_Instance.cs</a></li>
 </ul>

@@ -159,8 +159,8 @@ var NAVTREEINDEX0 =
 "_n_p_c_invasion_helpers_8cs_source.html":[2,0,0,0,2,11,8],
 "_n_p_c_town_helpers_8cs_source.html":[2,0,0,0,2,11,9],
 "_n_p_cs_8cs_source.html":[2,0,0,0,6,3,0,13],
-"_net_helpers_8cs_source.html":[2,0,0,0,2,10,0],
-"_net_helpers___instance_8cs_source.html":[2,0,0,0,2,10,1],
+"_net_play_helpers_8cs_source.html":[2,0,0,0,2,10,0],
+"_net_play_helpers___instance_8cs_source.html":[2,0,0,0,2,10,1],
 "_packet_protocol_8cs_source.html":[2,0,0,0,1,2,0,1],
 "_packet_protocol___handler_8cs_source.html":[2,0,0,0,1,2,0,2],
 "_packet_protocol___mod_packet_8cs_source.html":[2,0,0,0,1,2,0,3],
@@ -198,8 +198,9 @@ var NAVTREEINDEX0 =
 "_post_github_mod_issue_reports_8cs_source.html":[2,0,0,0,3,5,5],
 "_post_mod_info_8cs_source.html":[2,0,0,0,3,5,6],
 "_projectile_helpers_8cs_source.html":[2,0,0,0,2,13,0],
-"_projectile_identity_helpers_8cs_source.html":[2,0,0,0,2,13,1],
-"_projectile_identity_helpers___instance_8cs_source.html":[2,0,0,0,2,13,2],
+"_projectile_helpers___draw_8cs_source.html":[2,0,0,0,2,13,1],
+"_projectile_identity_helpers_8cs_source.html":[2,0,0,0,2,13,2],
+"_projectile_identity_helpers___instance_8cs_source.html":[2,0,0,0,2,13,3],
 "_promised_hooks_8cs_source.html":[2,0,0,0,6,5,1,0],
 "_promised_hooks___context_a_p_i_8cs_source.html":[2,0,0,0,6,5,1,1],
 "_promised_hooks___custom_a_p_i_8cs_source.html":[2,0,0,0,6,5,1,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "_tile_finder_helpers_8cs_source.html":[2,0,0,0,2,16,1],
 "_tile_helpers_8cs_source.html":[2,0,0,0,2,16,2],
 "_tile_identity_helpers_8cs_source.html":[2,0,0,0,2,16,3],
-"_tile_type_8cs_source.html":[2,0,0,0,2,16,4],
-"_tile_type___instance_8cs_source.html":[2,0,0,0,2,16,5]
+"_tile_pattern_8cs_source.html":[2,0,0,0,2,16,4]
 };

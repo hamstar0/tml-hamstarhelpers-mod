@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Tiles.TileHelpers Class Reference</div>  </div>
@@ -97,11 +98,349 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 
 <p>Assorted static "helper" functions pertaining to tiles.  
  <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a7a9dc4c96cc3bf84dd3a6abee7a13ef7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a7a9dc4c96cc3bf84dd3a6abee7a13ef7">IsAir</a> (Tile tile, bool isWireAir=false, bool isLiquidAir=false)</td></tr>
+<tr class="memdesc:a7a9dc4c96cc3bf84dd3a6abee7a13ef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given tile is purely "air" (nothing in it at all).  <a href="#a7a9dc4c96cc3bf84dd3a6abee7a13ef7">More...</a><br /></td></tr>
+<tr class="separator:a7a9dc4c96cc3bf84dd3a6abee7a13ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad89583ebd6a6f445cc64bb59de57cf92"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ad89583ebd6a6f445cc64bb59de57cf92">IsSolid</a> (Tile tile, bool isPlatformSolid=false, bool isActuatedSolid=false)</td></tr>
+<tr class="memdesc:ad89583ebd6a6f445cc64bb59de57cf92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given tile is "solid".  <a href="#ad89583ebd6a6f445cc64bb59de57cf92">More...</a><br /></td></tr>
+<tr class="separator:ad89583ebd6a6f445cc64bb59de57cf92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83630e8e6b61358be2a592a321a23158"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a83630e8e6b61358be2a592a321a23158">IsWire</a> (Tile tile)</td></tr>
+<tr class="memdesc:a83630e8e6b61358be2a592a321a23158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given tile has wires.  <a href="#a83630e8e6b61358be2a592a321a23158">More...</a><br /></td></tr>
+<tr class="separator:a83630e8e6b61358be2a592a321a23158"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62dbea2ad4ef2cd90531f295604fdf5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ac62dbea2ad4ef2cd90531f295604fdf5">IsNotVanillaBombable</a> (int tileX, int tileY)</td></tr>
+<tr class="memdesc:ac62dbea2ad4ef2cd90531f295604fdf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given tile cannot be destroyed by vanilla explosives.  <a href="#ac62dbea2ad4ef2cd90531f295604fdf5">More...</a><br /></td></tr>
+<tr class="separator:ac62dbea2ad4ef2cd90531f295604fdf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4861d7d7804289ec5f444661d962caf4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a4861d7d7804289ec5f444661d962caf4">IsNotVanillaBombableType</a> (int tileType)</td></tr>
+<tr class="memdesc:a4861d7d7804289ec5f444661d962caf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given tile type cannot be destroyed by vanilla explosives.  <a href="#a4861d7d7804289ec5f444661d962caf4">More...</a><br /></td></tr>
+<tr class="separator:a4861d7d7804289ec5f444661d962caf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763cb83d149dbd586c13cd5b5ddac0c8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a763cb83d149dbd586c13cd5b5ddac0c8">PlaceTile</a> (int tileX, int tileY, int tileType, int placeStyle=0, bool muted=false, bool forced=false, int plrWho=-1)</td></tr>
+<tr class="memdesc:a763cb83d149dbd586c13cd5b5ddac0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Places a given tile of a given type. Synced.  <a href="#a763cb83d149dbd586c13cd5b5ddac0c8">More...</a><br /></td></tr>
+<tr class="separator:a763cb83d149dbd586c13cd5b5ddac0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tiles. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7a9dc4c96cc3bf84dd3a6abee7a13ef7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a9dc4c96cc3bf84dd3a6abee7a13ef7">&#9670;&nbsp;</a></span>IsAir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileHelpers.IsAir </td>
+          <td>(</td>
+          <td class="paramtype">Tile&#160;</td>
+          <td class="paramname"><em>tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isWireAir</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isLiquidAir</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given tile is purely "air" (nothing in it at all). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tile</td><td></td></tr>
+    <tr><td class="paramname">isWireAir</td><td></td></tr>
+    <tr><td class="paramname">isLiquidAir</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac62dbea2ad4ef2cd90531f295604fdf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac62dbea2ad4ef2cd90531f295604fdf5">&#9670;&nbsp;</a></span>IsNotVanillaBombable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileHelpers.IsNotVanillaBombable </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given tile cannot be destroyed by vanilla explosives. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00074">74</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4861d7d7804289ec5f444661d962caf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4861d7d7804289ec5f444661d962caf4">&#9670;&nbsp;</a></span>IsNotVanillaBombableType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileHelpers.IsNotVanillaBombableType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given tile type cannot be destroyed by vanilla explosives. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00084">84</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad89583ebd6a6f445cc64bb59de57cf92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89583ebd6a6f445cc64bb59de57cf92">&#9670;&nbsp;</a></span>IsSolid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileHelpers.IsSolid </td>
+          <td>(</td>
+          <td class="paramtype">Tile&#160;</td>
+          <td class="paramname"><em>tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isPlatformSolid</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isActuatedSolid</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given tile is "solid". </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tile</td><td></td></tr>
+    <tr><td class="paramname">isPlatformSolid</td><td></td></tr>
+    <tr><td class="paramname">isActuatedSolid</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00043">43</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a83630e8e6b61358be2a592a321a23158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83630e8e6b61358be2a592a321a23158">&#9670;&nbsp;</a></span>IsWire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileHelpers.IsWire </td>
+          <td>(</td>
+          <td class="paramtype">Tile&#160;</td>
+          <td class="paramname"><em>tile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if a given tile has wires. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tile</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00062">62</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a763cb83d149dbd586c13cd5b5ddac0c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a763cb83d149dbd586c13cd5b5ddac0c8">&#9670;&nbsp;</a></span>PlaceTile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>placeStyle</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>muted</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forced</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>plrWho</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Places a given tile of a given type. Synced. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">tileType</td><td></td></tr>
+    <tr><td class="paramname">placeStyle</td><td></td></tr>
+    <tr><td class="paramname">muted</td><td></td></tr>
+    <tr><td class="paramname">forced</td><td></td></tr>
+    <tr><td class="paramname">plrWho</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00114">114</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/Tiles/<a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a></li>
 </ul>
 </div><!-- contents -->
