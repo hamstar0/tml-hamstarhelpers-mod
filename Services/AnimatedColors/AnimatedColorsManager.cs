@@ -50,6 +50,13 @@ namespace HamstarHelpers.Services.AnimatedColor {
 
 		////////////////
 
+		public void AddAnimation( AnimatedColors animation ) {
+			this.Defs.Add( animation );
+		}
+
+
+		////////////////
+
 		private static void _Update() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.AnimatedColors == null ) { return; }

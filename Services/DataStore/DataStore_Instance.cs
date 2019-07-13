@@ -3,10 +3,10 @@ using HamstarHelpers.Helpers.Debug;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace HamstarHelpers.Services.DataStore {
+	/// @private
 	public partial class DataStore {
 		private IDictionary<object, object> Data = new Dictionary<object, object>();
 

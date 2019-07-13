@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Services.Debug.CustomHotkeys {
+	/// @private
 	public partial class CustomHotkeys {
 		private readonly ModHotKey Key1;
 		private readonly ModHotKey Key2;
@@ -23,7 +24,7 @@ namespace HamstarHelpers.Services.Debug.CustomHotkeys {
 
 		////////////////
 
-		public void ProcessTriggers( TriggersSet triggersSet ) {
+		internal void ProcessTriggers( TriggersSet triggersSet ) {
 			if( this.Key1.JustPressed ) {
 				foreach( Action act in this.Key1Actions.Values ) {
 					act();

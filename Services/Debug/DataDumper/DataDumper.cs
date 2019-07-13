@@ -23,11 +23,15 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 
 		////////////////
 
-		public static bool DumpToLocalFile( string data, out string fileName ) {
-			fileName = DataDumper.GetFileName( (DataDumper.Dumps++) + "" );
+		/// <summary></summary>
+		/// <param name="data"></param>
+		/// <param name="fileNameWithExtension"></param>
+		/// <returns></returns>
+		public static bool DumpToLocalFile( string data, out string fileNameWithExtension ) {
+			fileNameWithExtension = DataDumper.GetFileName( (DataDumper.Dumps++) + "" );
 			string relPath = DataDumper.GetRelativePath();
 			string fullFolder = Main.SavePath + Path.DirectorySeparatorChar + relPath;
-			string fullPath = fullFolder + Path.DirectorySeparatorChar + fileName;
+			string fullPath = fullFolder + Path.DirectorySeparatorChar + fileNameWithExtension;
 
 			DataDumper.PrepareDir();
 			return FileHelpers.SaveTextFile( data, fullPath, false, false );
@@ -78,6 +82,10 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 			return prefix + "_"+netmode +"_"+now + "_dump.txt";
 		}
 
+		/// <summary>
+		/// Folder path of dump files relative to ModLoader: Logs/Dumps 
+		/// </summary>
+		/// <returns></returns>
 		public static string GetRelativePath() {
 			return "Logs" + Path.DirectorySeparatorChar + "Dumps";
 		}
@@ -100,6 +108,11 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 
 		////////////////
 
+		/// <summary>
+		/// Sets a callback as a data source to output within the dump file with the given label (`name`).
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="dump"></param>
 		public static void SetDumpSource( string name, Func<string> dump ) {
 			var dumpables = DataDumper.GetDumpables();
 
@@ -111,6 +124,11 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 
 		////////////////
 
+		/// <summary>
+		/// Dumps the outputs to a dump file.
+		/// </summary>
+		/// <param name="fileName"></param>
+		/// <returns></returns>
 		public static bool DumpToFile( out string fileName ) {
 			string data;
 			IDictionary<string, Func<string>> dumpables = DataDumper.GetDumpables();

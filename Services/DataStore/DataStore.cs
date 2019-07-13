@@ -17,12 +17,24 @@ namespace HamstarHelpers.Services.DataStore {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates if data is stored with the given key.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public static bool Has( object key ) {
 			lock( DataStore.MyLock ) {
 				return ModHelpersMod.Instance.DataStore.Data.ContainsKey( key );
 			}
 		}
 
+		/// <summary>
+		/// Gets data stored with the given key, if found.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="key"></param>
+		/// <param name="val"></param>
+		/// <returns>`true` if found.</returns>
 		public static bool Get<T>( object key, out T val ) {
 			val = default(T);
 			object rawVal = null;
@@ -41,12 +53,22 @@ namespace HamstarHelpers.Services.DataStore {
 			return success;
 		}
 
+		/// <summary>
+		/// Sets data under a given key.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="val"></param>
 		public static void Set( object key, object val ) {
 			lock( DataStore.MyLock ) {
 				ModHelpersMod.Instance.DataStore.Data[ key ] = val;
 			}
 		}
 
+		/// <summary>
+		/// Removes data at a given key.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public static bool Remove( object key ) {
 			return ModHelpersMod.Instance.DataStore.Data.Remove( key );
 		}
@@ -68,7 +90,12 @@ namespace HamstarHelpers.Services.DataStore {
 
 		////////////////
 
-		public static void Add( object key, double val ) {
+		/// <summary>
+		/// Adds the given amount to any data stored under the given key, if applicable (numeric).
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="val"></param>
+		public static bool Add( object key, double val ) {
 			var ds = ModHelpersMod.Instance.DataStore;
 
 			lock( DataStore.MyLock ) {
@@ -78,11 +105,19 @@ namespace HamstarHelpers.Services.DataStore {
 					Type dst = ds.Data[key].GetType();
 
 					if( !dst.IsValueType || Type.GetTypeCode(dst) == TypeCode.Boolean ) {
-						throw new HamstarException( "Cannot use Add with non-numeric values." );
+						return false;
 					}
-					ds.Data[ key ] = (double)ds.Data[key] + val;
+					double amt = (double)ds.Data[key] + val;
+
+					if( dst == typeof(double) ) {
+						ds.Data[key] = amt;
+					} else {
+						ds.Data[key] = Convert.ChangeType( amt, dst );
+					}
 				}
 			}
+
+			return true;
 		}
 	}
 }

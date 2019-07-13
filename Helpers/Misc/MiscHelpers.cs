@@ -2,8 +2,15 @@
 
 
 namespace HamstarHelpers.Helpers.Misc {
-	/** <summary>Assorted static "helper" misc. functions.</summary> */
-	public static partial class MiscHelpers {
+	/// <summary>
+	/// Assorted static "helper" misc. functions.
+	/// </summary>
+	public partial class MiscHelpers {
+		/// <summary>
+		/// Generates an English-formatted string indicating an amount of money.
+		/// </summary>
+		/// <param name="money"></param>
+		/// <returns></returns>
 		public static string RenderMoney( int money ) {
 			string render = "";
 			string labelCopper = Language.GetTextValue( "CopperCoin" );    //Lang.inter[18];
