@@ -28,10 +28,6 @@ namespace HamstarHelpers.Services.LoadHooks {
 		private bool WorldInPlayHookConditionsMet = false;
 		private bool SafeWorldLoadHookConditionsMet = false;
 
-		private IDictionary<CustomLoadHookValidator, List<Func<CustomLoadHookArguments, bool>>> CustomHooks = new Dictionary<CustomLoadHookValidator, List<Func<CustomLoadHookArguments, bool>>>();
-		private ISet<CustomLoadHookValidator> CustomHookConditionsMet = new HashSet<CustomLoadHookValidator>();
-		private IDictionary<CustomLoadHookValidator, CustomLoadHookArguments> CustomHookArgs = new Dictionary<CustomLoadHookValidator, CustomLoadHookArguments>();
-
 		private Func<bool> OnTickGet;
 
 

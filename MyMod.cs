@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Components.Protocols.Packet;
+﻿using HamstarHelpers.Components.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Services.Messages;
@@ -100,7 +99,7 @@ namespace HamstarHelpers {
 			this.HasAddedRecipeGroups = true;
 			this.CheckAndProcessLoadFinish();
 		}
-
+		
 		public override void PostAddRecipes() {
 			this.PostAddRecipesFull();
 

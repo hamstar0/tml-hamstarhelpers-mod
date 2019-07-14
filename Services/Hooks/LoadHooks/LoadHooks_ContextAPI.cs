@@ -4,6 +4,10 @@ using System;
 
 namespace HamstarHelpers.Services.LoadHooks {
 	public partial class LoadHooks {
+		/// <summary>
+		/// Declares an action to run after mods are loaded (PostSetupContent, PostAddRecipes, AddRecipeGroups).
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddPostModLoadHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -16,6 +20,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run as mods are unloading.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddModUnloadHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -27,6 +35,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		////////////////
 
+		/// <summary>
+		/// Declares an action to run as the current world loads. Action does not run for subsequent world loads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddWorldLoadOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -39,6 +51,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run after the current world loads. Action does not run for subsequent world loads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddPostWorldLoadOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -51,6 +67,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run as the current world unloads. Action does not run for subsequent world unloads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddWorldUnloadOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -63,6 +83,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run after the current world unloads. Action does not run for subsequent world unloads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddPostWorldUnloadOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -75,6 +99,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run once the current world is in play. Action does not run for subsequent worlds.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddWorldInPlayOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -87,6 +115,11 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run after the current world is "safely" loaded (waits a few seconds to help avoid confusing
+		/// errors). Action does not run for subsequent worlds.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddSafeWorldLoadOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -102,6 +135,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		////////////////
 
+		/// <summary>
+		/// Declares an action to run as the current world loads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddWorldLoadEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -113,6 +150,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run after the current world loads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddPostWorldLoadEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -124,6 +165,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run as the current world unloads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddWorldUnloadEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -135,6 +180,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run after the current world unloads.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddPostWorldUnloadEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -146,6 +195,10 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run once the current world is in play.
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddWorldInPlayEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -157,6 +210,11 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Declares an action to run after the current world is "safely" loaded (waits a few seconds to help avoid confusing
+		/// errors).
+		/// </summary>
+		/// <param name="action"></param>
 		public static void AddSafeWorldLoadEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
 

@@ -52,6 +52,7 @@ namespace HamstarHelpers {
 
 		// Services
 		internal LoadHooks LoadHooks;
+		internal CustomLoadHooks CustomLoadHooks;
 		internal Timers Timers;
 		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
@@ -110,6 +111,7 @@ namespace HamstarHelpers {
 			this.ReflectionHelpers = new ReflectionHelpers();
 			this.DataStore = new DataStore();
 			this.LoadHooks = new LoadHooks();
+			this.CustomLoadHooks = new CustomLoadHooks();
 			this.LoadHelpers = new LoadHelpers();
 
 			this.Timers = new Timers();
@@ -184,6 +186,7 @@ namespace HamstarHelpers {
 			this.MusicHelpers = null;
 			this.PlayerIdentityHelpers = null;
 			this.LoadHooks = null;
+			this.CustomLoadHooks = null;
 			this.DataStore = null;
 			this.CustomHotkeys = null;
 			this.XnaHelpers = null;
