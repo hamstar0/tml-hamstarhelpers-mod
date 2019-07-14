@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <summary>
 		/// Loads a custom data JSON file of a given mod.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="T">Object type to deserialize from JSON into.</typeparam>
 		/// <param name="mod"></param>
 		/// <param name="fileNameNoExt"></param>
 		/// <param name="jsonSettings"></param>
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <summary>
 		/// Loads a custom data JSON file of a given mod.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="T">Object type to deserialize from JSON into.</typeparam>
 		/// <param name="mod"></param>
 		/// <param name="fileNameNoExt"></param>
 		/// <returns></returns>
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <summary>
 		/// Loads a binary custom data JSON file of a given mod.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="T">Object type to deserialize from JSON into.</typeparam>
 		/// <param name="mod"></param>
 		/// <param name="fileNameWithExt"></param>
 		/// <param name="jsonSettings"></param>
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <summary>
 		/// Loads a binary custom data JSON file of a given mod.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="T">Object type to deserialize from JSON into.</typeparam>
 		/// <param name="mod"></param>
 		/// <param name="fileNameHasExt"></param>
 		/// <returns></returns>

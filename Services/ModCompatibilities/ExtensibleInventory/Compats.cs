@@ -8,6 +8,7 @@ namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 	/// Defines functions for applying any needed inter-mod compatibility adjustments for the Extensible Inventory mod (if active).
 	/// </summary>
 	public partial class ExtensibleInventoryCompatibilities {
+		/// <summary></summary>
 		public static void ApplyCompats() {
 			Mod eiMod = ModLoader.GetMod( "ExtensibleInventory" );
 			if( eiMod == null ) {

@@ -329,7 +329,6 @@
     <Compile Include="Services\Messages\InboxMessages.cs" />
     <Compile Include="Services\Messages\PlayerMessages_Instance.cs" />
     <Compile Include="Services\Messages\PlayerMessages.cs" />
-    <Compile Include="Services\Messages\SimpleMessage.cs" />
     <Compile Include="Services\ModCompatibilities\ExtensibleInventory\Compats.cs" />
     <Compile Include="Services\ModCompatibilities\ExtensibleInventory\kRPG.cs" />
     <Compile Include="Services\ModLock\ModLockService.cs" />

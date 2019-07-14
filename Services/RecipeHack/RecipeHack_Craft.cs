@@ -3,10 +3,15 @@ using HamstarHelpers.Helpers.Items;
 using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
 namespace HamstarHelpers.Services.RecipeHack {
+	/// <summary>
+	/// Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the
+	/// Mod Helpers control panel.
+	/// </summary>
 	public partial class RecipeHack {
 		private static int AwaitingRecipeIdx = -1;
 		private static IDictionary<int, int> AwaitingRecipeMissingIngredients = null;
@@ -54,9 +59,10 @@ namespace HamstarHelpers.Services.RecipeHack {
 				return;
 			}
 			
-			IEnumerable<Item> outsourcedItems = RecipeHack.GetOutsourcedItems( player );
+			IDictionary<int, int> outsourcedItemTypeAmounts = RecipeHack.GetOutsourcedItems( player )
+				.ToDictionary( item=>item.type, _=>1 );
 
-			ItemHelpers.ConsumeItems( RecipeHack.AwaitingRecipeMissingIngredients, outsourcedItems );
+			ItemHelpers.ConsumeItems( RecipeHack.AwaitingRecipeMissingIngredients, outsourcedItemTypeAmounts, true );
 
 			RecipeHack.AwaitingRecipeIdx = -1;
 			RecipeHack.AwaitingRecipeMissingIngredients = null;

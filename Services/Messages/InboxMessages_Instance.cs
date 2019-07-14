@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Services.Messages {
+	/// <summary>
+	/// This service gives a way for mods to post persistent, non-obtrusive, in-game messages to players that can be
+	/// re-read freely.
+	/// </summary>
 	public partial class InboxMessages {
 		private InboxMessageData Data = new InboxMessageData();
 
@@ -13,7 +17,7 @@ namespace HamstarHelpers.Services.Messages {
 		private IDictionary<string, string> Messages => this.Data.Messages;
 		private IDictionary<string, Action<bool>> MessageActions => this.Data.MessageActions;
 		private List<string> Order => this.Data.Order;
-		public int Current {
+		internal int Current {
 			get { return this.Data.Current; }
 			set { this.Data.Current = value; }
 		}
@@ -40,26 +44,23 @@ namespace HamstarHelpers.Services.Messages {
 		////////////////
 
 		internal bool LoadFromFile() {
-			bool success;
-			var data = ModCustomDataFileHelpers.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", out success );
-
-			if( success ) {
-				if( data != null ) {
-					this.Data = data;
-
-					foreach( string msgName in this.Data.Messages.Keys ) {
-						this.Data.MessageActions[msgName] = null;
-					}
-				} else {
-					success = false;
-				}
+			var data = ModCustomDataFileHelpers.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox" );
+			if( data == null ) {
+				return false;
 			}
-			return success;
+
+			this.Data = data;
+
+			foreach( string msgName in this.Data.Messages.Keys ) {
+				this.Data.MessageActions[msgName] = null;
+			}
+
+			return true;
 		}
 
 		internal void SaveToFile() {
 			if( this.Data != null ) {
-				ModCustomDataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", this.Data );
+				ModCustomDataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", true, this.Data );
 			}
 		}
 	}

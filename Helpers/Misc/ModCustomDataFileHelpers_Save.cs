@@ -23,7 +23,8 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="overrides">Replaces any existing files.</param>
 		/// <param name="data"></param>
 		/// <returns></returns>
-		public static bool SaveAsJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings, bool overrides, T data )
+		public static bool SaveAsJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings,
+				bool overrides, T data )
 				where T : class {
 			ModCustomDataFileHelpers.PrepareDir( mod );
 

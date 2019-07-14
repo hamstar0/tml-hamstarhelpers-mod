@@ -6,6 +6,9 @@ using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
+	/// <summary>
+	/// Defines functions for applying any needed inter-mod compatibility adjustments for the Extensible Inventory mod (if active).
+	/// </summary>
 	public partial class ExtensibleInventoryCompatibilities {
 		private static void kRPGCompat() {  //TODO use weak reference somehow
 			Mod eiMod = ModLoader.GetMod( "ExtensibleInventory" );

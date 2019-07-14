@@ -124,9 +124,10 @@ namespace HamstarHelpers.Helpers.Items {
 		/// </summary>
 		/// <param name="sourceItems"></param>
 		/// <param name="consumeAmounts"></param>
-		/// <param name="allOrNothing"></param>
+		/// <param name="allOrNothing">Consumes the given amount of items only if all of them are present.</param>
 		/// <returns>`true` if all items consumed in full.</returns>
-		public static bool ConsumeItems( IEnumerable<Item> sourceItems, IDictionary<int, int> consumeAmounts, bool allOrNothing ) {
+		public static bool ConsumeItems( IEnumerable<Item> sourceItems, IDictionary<int, int> consumeAmounts,
+					bool allOrNothing ) {
 			var testConsumeAmounts = new Dictionary<int, int>( consumeAmounts );
 
 			foreach( Item item in sourceItems ) {

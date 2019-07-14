@@ -7,9 +7,14 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Services.ModHelpers {
 	/// <summary>
-	/// Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the Mod Helpers control panel.
+	/// Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the
+	/// Mod Helpers control panel.
 	/// </summary>
 	public partial class ModLockService {
+		/// <summary>
+		/// Indicates if the current world is "locked".
+		/// </summary>
+		/// <returns></returns>
 		public static bool IsWorldLocked() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;
@@ -18,17 +23,29 @@ namespace HamstarHelpers.Services.ModHelpers {
 			return modlock.WorldModLocks.ContainsKey( modworld.ObsoleteId2 );
 		}
 
+		/// <summary>
+		/// Indicates if the current mod loadout does not match the current world's "locked" set (or exceeds it, if
+		/// the `WorldModLockMininmumOnly` setting is `true`).
+		/// </summary>
+		/// <returns></returns>
 		public static bool IsModMismatchFound() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;
 
-			if( modlock.MissingModNames.Count > 0 ) { return true; }
-			if( mymod.Config.WorldModLockMinimumOnly && modlock.ExtraModNames.Count > 0 ) { return true; }
+			if( modlock.MissingModNames.Count > 0 ) {
+				return true;
+			}
+			if( mymod.Config.WorldModLockMinimumOnly && modlock.ExtraModNames.Count > 0 ) {
+				return true;
+			}
 
 			return false;
 		}
 
 
+		/// <summary>
+		/// Locks the current world.
+		/// </summary>
 		public static void LockWorld() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;
@@ -52,6 +69,9 @@ namespace HamstarHelpers.Services.ModHelpers {
 			}
 		}
 
+		/// <summary>
+		/// Unlocks the current world.
+		/// </summary>
 		public static void UnlockWorld() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;

@@ -15,9 +15,18 @@ namespace HamstarHelpers.Services.Messages {
 
 
 	/// <summary>
-	/// This service gives a way for mods to post persistent, non-obtrusive, in-game messages to players that can be re-read freely.
+	/// This service gives a way for mods to post persistent, non-obtrusive, in-game messages to players that can be
+	/// re-read freely.
 	/// </summary>
 	public partial class InboxMessages {
+		/// <summary>
+		/// Creates an inbox message. New unread messages will be visible by an inventory screen icon until opened.
+		/// Past messages can be viewed.
+		/// </summary>
+		/// <param name="which">Identifier of a given message. Overrides messages with the given identifier.</param>
+		/// <param name="msg">Message body. Plain text only, for now.</param>
+		/// <param name="forceUnread">If the message has been read, this will force it to be "unread" again.</param>
+		/// <param name="onRun">Code to activate when a given message is read. Parameter `true` if message is unread.</param>
 		public static void SetMessage( string which, string msg, bool forceUnread, Action<bool> onRun=null ) {
 			LoadHooks.LoadHooks.AddPostWorldLoadOnceHook( () => {
 				InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
@@ -48,6 +57,10 @@ namespace HamstarHelpers.Services.Messages {
 		}
 
 
+		/// <summary>
+		/// Indicates total unread messages.
+		/// </summary>
+		/// <returns></returns>
 		public static int CountUnreadMessages() {
 			InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
 			if( inbox == null || inbox.Messages == null ) {
@@ -58,6 +71,10 @@ namespace HamstarHelpers.Services.Messages {
 		}
 
 
+		/// <summary>
+		/// "Reads" latest message. Will trigger message's `onRun` function, if any.
+		/// </summary>
+		/// <returns></returns>
 		public static string DequeueMessage() {
 			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 			
@@ -66,7 +83,7 @@ namespace HamstarHelpers.Services.Messages {
 			}
 
 			string which = inbox.Order[ inbox.Current++ ];
-			string msg = null;
+			string msg;
 
 			if( inbox.Messages.TryGetValue( which, out msg ) ) {
 				inbox.MessageActions[ which ]?.Invoke( true );
@@ -76,36 +93,50 @@ namespace HamstarHelpers.Services.Messages {
 		}
 
 
-		public static string GetMessageAt( int idx, out bool isUnread ) {
+		/// <summary>
+		/// Retrieves a given message by it's order position. Does not "read" the message.
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <param name="msg">The message. Returns `null` if no message found.</param>
+		/// <returns>`true` if unread.</returns>
+		public static bool GetMessageAt( int pos, out string msg ) {
 			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
-			isUnread = false;
+			bool isUnread = false;
 
-			if( idx < 0 || idx >= inbox.Order.Count ) {
-				return null;
+			if( pos < 0 || pos >= inbox.Order.Count ) {
+				msg = null;
+				return false;
 			}
 
-			string which = inbox.Order[ idx ];
-			string msg = null;
+			string which = inbox.Order[ pos ];
 
 			if( inbox.Messages.TryGetValue( which, out msg ) ) {
-				isUnread = idx >= inbox.Current;
+				isUnread = pos >= inbox.Current;
 				inbox.MessageActions[ which ]?.Invoke( isUnread );
 			}
 
-			return msg;
+			return isUnread;
 		}
 
 
-		public static string ReadMessage( string which ) {
+		/// <summary>
+		/// Reads a given message.
+		/// </summary>
+		/// <param name="which">Identifier of message to read.</param>
+		/// <param name="msg">The message. Returns `null` if no message found.</param>
+		/// <returns>`true` if unread.</returns>
+		public static bool ReadMessage( string which, out string msg ) {
 			InboxMessages inbox = ModHelpersMod.Instance.Inbox.Messages;
 
 			int idx = inbox.Order.IndexOf( which );
-			if( idx == -1 ) { return null; }
+			if( idx == -1 ) {
+				msg = null;
+				return false;
+			}
 			
-			string msg = null;
-
 			if( !inbox.Messages.TryGetValue( which, out msg ) ) {
-				return null;
+				msg = null;
+				return false;
 			}
 
 			bool isUnread = idx >= inbox.Current;
@@ -119,8 +150,8 @@ namespace HamstarHelpers.Services.Messages {
 				}
 				inbox.Current++;
 			}
-			
-			return msg;
+
+			return isUnread;
 		}
 	}
 }

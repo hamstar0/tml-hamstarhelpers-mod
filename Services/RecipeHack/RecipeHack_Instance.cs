@@ -8,6 +8,10 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.RecipeHack {
+	/// <summary>
+	/// Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the
+	/// Mod Helpers control panel.
+	/// </summary>
 	public partial class RecipeHack {
 		private static object MyLock = new object();
 

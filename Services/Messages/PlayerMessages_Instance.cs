@@ -7,6 +7,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.Messages {
+	/// <summary>
+	/// Supplies a way to 'popup' informational text upon the player character in-game.
+	/// </summary>
 	public partial class PlayerMessages {
 		private IDictionary<int, IList<PlayerLabelText>> PlayerTexts = new Dictionary<int, IList<PlayerLabelText>>();
 
