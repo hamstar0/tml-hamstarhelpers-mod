@@ -287,6 +287,11 @@
     <Compile Include="Services\AnimatedColors\AnimatedColors_Instance.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
     <Compile Include="Services\EntityGroups\Classes.cs" />
+    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks.cs" />
+    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_ContextAPI.cs" />
+    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_CustomAPI.cs" />
+    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_Fulfills.cs" />
+    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_Instance.cs" />
     <Compile Include="Services\Hooks\WorldHooks\WorldTimeHooks.cs" />
     <Compile Include="Services\Hooks\WorldHooks\WorldTimeHooks_Instance.cs" />
     <Compile Include="Services\UI\ControlPanel\ControlPanelTabs.cs" />
@@ -330,11 +335,6 @@
     <Compile Include="Services\Hooks\ExtendedHooks\ExtendedPlayerHooks_NPC.cs" />
     <Compile Include="Services\Hooks\ExtendedHooks\ExtendedPlayerHooks.cs" />
     <Compile Include="Services\Hooks\ExtendedHooks\ExtendedPlayerHooks_Instance.cs" />
-    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_Instance.cs" />
-    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks.cs" />
-    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_ContextAPI.cs" />
-    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_CustomAPI.cs" />
-    <Compile Include="Services\Hooks\PromisedHooks\PromisedHooks_Fulfills.cs" />
     <Compile Include="Services\RecipeHack\RecipeHack_Craft.cs" />
     <Compile Include="Services\RecipeHack\RecipeHack_Instance.cs" />
     <Compile Include="Services\RecipeHack\RecipeHack.cs" />

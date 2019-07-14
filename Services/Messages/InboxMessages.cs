@@ -19,7 +19,7 @@ namespace HamstarHelpers.Services.Messages {
 	/// </summary>
 	public partial class InboxMessages {
 		public static void SetMessage( string which, string msg, bool forceUnread, Action<bool> onRun=null ) {
-			PromisedHooks.PromisedHooks.AddPostWorldLoadOncePromise( () => {
+			LoadHooks.LoadHooks.AddPostWorldLoadOnceHook( () => {
 				InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
 				if( inbox == null ) {
 					LogHelpers.Warn( "Inbox or Inbox.Messages is null" );

@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.GameContent.UI.Elements;
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private void ApplyDefaultFiltersAsync( UIState ui ) {
-			PromisedHooks.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+			LoadHooks.AddCustomHook<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
 					if( this.MyUI != ui ) {
 						return false;

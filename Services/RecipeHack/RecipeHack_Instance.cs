@@ -68,7 +68,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 		////////////////
 
 		internal RecipeHack() {
-			PromisedHooks.PromisedHooks.AddPostModLoadPromise( () => {
+			LoadHooks.LoadHooks.AddPostModLoadHook( () => {
 				for( int i = 0; i < Recipe.maxRecipes; i++ ) {
 					if( Main.recipe[i].createItem.type == 0 ) { break; }
 

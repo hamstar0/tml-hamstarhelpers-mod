@@ -2,7 +2,7 @@
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Messages;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private void InitializeToggler() {
 			this.IsTogglerLit = false;
 
-			PromisedHooks.AddWorldLoadEachPromise( () => {
+			LoadHooks.AddWorldLoadEachHook( () => {
 				var uiModCtrlPanel = (UIModControlPanelTab)ModHelpersMod.Instance.ControlPanel.DefaultTab;
 				int modUpdateCount = uiModCtrlPanel.GetModUpdatesAvailable();
 				

@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 	/// @private
-	class ModTagsPromiseArguments : PromiseArguments {
+	class ModTagsLoadHookArguments : CustomLoadHookArguments {
 		public bool Found;
 		internal IDictionary<string, ISet<string>> ModTags = null;
 		internal IDictionary<string, ISet<string>> TagMods = null;
@@ -53,8 +53,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 	partial class GetModTags {
 		private readonly static object MyLock = new object();
 
-		internal readonly static object PromiseValidatorKey;
-		public readonly static PromiseValidator TagsReceivedPromiseValidator;
+		internal readonly static object TagsReceivedHookValidatorKey;
+		public readonly static CustomLoadHookValidator TagsReceivedHookValidator;
 
 		////////////////
 
@@ -65,8 +65,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		static GetModTags() {
-			GetModTags.PromiseValidatorKey = new object();
-			GetModTags.TagsReceivedPromiseValidator = new PromiseValidator( GetModTags.PromiseValidatorKey );
+			GetModTags.TagsReceivedHookValidatorKey = new object();
+			GetModTags.TagsReceivedHookValidator = new CustomLoadHookValidator( GetModTags.TagsReceivedHookValidatorKey );
 		}
 		
 		
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			ThreadPool.QueueUserWorkItem( _ => {
 				lock( GetModTags.MyLock ) {
 					var mymod = ModHelpersMod.Instance;
-					var args = new ModTagsPromiseArguments {
+					var args = new ModTagsLoadHookArguments {
 						Found = false
 					};
 					
@@ -88,7 +88,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 							}
 							args.Found = success;
 
-							PromisedHooks.TriggerValidatedPromise( GetModTags.TagsReceivedPromiseValidator, GetModTags.PromiseValidatorKey, args );
+							LoadHooks.TriggerCustomHook( GetModTags.TagsReceivedHookValidator, GetModTags.TagsReceivedHookValidatorKey, args );
 						} catch( Exception e ) {
 							LogHelpers.Alert( e.ToString() );
 						}

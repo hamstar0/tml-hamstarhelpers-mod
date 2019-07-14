@@ -147,7 +147,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void PreSaveAndQuit() {
-			this.Promises.PreSaveAndExit();
+			this.LoadHooks.PreSaveAndExit();
 		}
 
 

@@ -28,7 +28,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 				hooks = this.ModUnloadHooks.ToArray();
 				this.ModUnloadHooks.Clear();
 			}
-
+			
 			foreach( Action hook in hooks ) {
 				hook();
 			}

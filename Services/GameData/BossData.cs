@@ -6,29 +6,37 @@ using System.Collections.ObjectModel;
 
 
 namespace HamstarHelpers.Services.GameData {
-	/// <summary>
-	/// Supplies a table of all available bosses across vanilla Terraria and most major mods.
-	/// 
-	/// IMPORTANT: Not finished; untested.
-	/// </summary>
+	/// <summary></summary>
 	public class BossDataEntry {
+		/// <summary></summary>
 		public int Order => BossData.BossMap[ this.Name ];
 
 
 		////
 
+		/// <summary></summary>
 		public string Name;
 
+		/// <summary></summary>
 		public bool IsHardmode => this.Order > BossData.WallOfFlesh.Order;
+		/// <summary></summary>
 		public bool IsPostMechBoss => this.Order > BossData.SkeletronPrime.Order;
+		/// <summary></summary>
 		public bool IsPostPlantera => this.Order > BossData.Plantera.Order;
+		/// <summary></summary>
 		public bool IsPostGolem => this.Order > BossData.Golem.Order;
+		/// <summary></summary>
 		public bool IsPostMoonlord => this.Order > BossData.MoonLord.Order;
 
 
 
 		////////////////
 
+		/// <summary>
+		/// Gets the NPC id of a given boss.
+		/// </summary>
+		/// <param name="npcId"></param>
+		/// <returns></returns>
 		public bool GetNpcId( out int npcId ) {
 			return NPCIdentityHelpers.NamesToIds.TryGetValue( this.Name, out npcId );
 		}
@@ -37,28 +45,55 @@ namespace HamstarHelpers.Services.GameData {
 
 
 
+	/// <summary>
+	/// Supplies a table of all available bosses across vanilla Terraria and most major mods.
+	/// 
+	/// IMPORTANT: Not finished; untested.
+	/// </summary>
 	public class BossData {
 		private static IList<BossDataEntry> _BossOrder;
 		private static IDictionary<string, int> _BossMap;
 
+		/// <summary>
+		/// Orders bosses by guesstimations of sequence.
+		/// </summary>
 		public static IReadOnlyList<BossDataEntry> BossOrder { get; }
+		/// <summary>
+		/// Maps bosses (by name) to their (loosely) expected progression order.
+		/// </summary>
 		public static IReadOnlyDictionary<string, int> BossMap { get; }
 
+		/// <summary></summary>
 		public static BossDataEntry KingSlime;
+		/// <summary></summary>
 		public static BossDataEntry EyeOfCthulhu;
+		/// <summary></summary>
 		public static BossDataEntry EaterOfWorlds;
+		/// <summary></summary>
 		public static BossDataEntry BrainOfCthulhu;
+		/// <summary></summary>
 		public static BossDataEntry QueenBee;
+		/// <summary></summary>
 		public static BossDataEntry Skeletron;
+		/// <summary></summary>
 		public static BossDataEntry WallOfFlesh;
+		/// <summary></summary>
 		public static BossDataEntry TheDestroyer;
+		/// <summary></summary>
 		public static BossDataEntry Retinazer;
+		/// <summary></summary>
 		public static BossDataEntry Spazmatism;
+		/// <summary></summary>
 		public static BossDataEntry SkeletronPrime;
+		/// <summary></summary>
 		public static BossDataEntry Plantera;
+		/// <summary></summary>
 		public static BossDataEntry Golem;
+		/// <summary></summary>
 		public static BossDataEntry DukeFishron;
+		/// <summary></summary>
 		public static BossDataEntry Betsy;
+		/// <summary></summary>
 		public static BossDataEntry MoonLord;
 
 
@@ -69,16 +104,16 @@ namespace HamstarHelpers.Services.GameData {
 			BossData._BossMap = new Dictionary<string, int>();
 			BossData.BossOrder = ( (List<BossDataEntry>)BossData._BossOrder ).AsReadOnly();
 			BossData.BossMap = new ReadOnlyDictionary<string, int>( BossData._BossMap );
-
+			
 			 BossData.AppendBoss( "Ersion", "Giant Slime" );
 			 BossData.AppendBoss( "ThoriumMod", "The Grand Thunderbird" );
 			 BossData.AppendBoss( "SpiritMod", "Scarabeus" );
 			 BossData.AppendBoss( "Exodus", "Abomination" );
-			BossData.KingSlime = BossData.AppendBoss( "Vanilla", "King Slime" );
+			BossData.KingSlime = BossData.AppendBoss( "Terraria", "Terraria KingSlime" );
 			 BossData.AppendBoss( "Exodus", "Evil Blob" );
 			 BossData.AppendBoss( "W1KModRedux", "Yian Kut Ku" );
 			 BossData.AppendBoss( "CalamityMod", "Desert Scourge" );
-			BossData.EyeOfCthulhu = BossData.AppendBoss( "Vanilla", "Eye of Cthulhu" );
+			BossData.EyeOfCthulhu = BossData.AppendBoss( "Terraria", "Terraria EyeofCthulhu" );
 			 BossData.AppendBoss( "Split", "Spirit" );
 			 BossData.AppendBoss( "Exodus", "Master of Possession" );
 			 BossData.AppendBoss( "Exodus", "Sludge Heart" );
@@ -94,8 +129,8 @@ namespace HamstarHelpers.Services.GameData {
 			 BossData.AppendBoss( "GabeHasWonsMod", "Empress Fly" );
 			 BossData.AppendBoss( "TrueEater", "Antlion Queen" );
 			 BossData.AppendBoss( "CalamityMod", "Crabulon" );
-			BossData.EaterOfWorlds = BossData.AppendBoss( "Vanilla", "Eater of Worlds" );
-			BossData.BrainOfCthulhu = BossData.AppendBoss( "Vanilla", "Brain of Cthulhu" );
+			BossData.EaterOfWorlds = BossData.AppendBoss( "Terraria", "Terraria EaterofWorldsHead" );
+			BossData.BrainOfCthulhu = BossData.AppendBoss( "Terraria", "Terraria BrainofCthulhu" );
 			 BossData.AppendBoss( "Split", "One-Shot" );
 			 BossData.AppendBoss( "SpiritMod", "Vinewrath Bane" );
 			 BossData.AppendBoss( "GabeHasWonsMod", "The Murk" );
@@ -111,12 +146,12 @@ namespace HamstarHelpers.Services.GameData {
 			 BossData.AppendBoss( "Exodus", "Desert Emperor" );
 			 BossData.AppendBoss( "ThoriumMod", "The Queen Jellyfish" );
 			 BossData.AppendBoss( "ThoriumMod", "Viscount" );
-			BossData.QueenBee = BossData.AppendBoss( "Vanilla", "Queen Bee" );
+			BossData.QueenBee = BossData.AppendBoss( "Terraria", "Terraria QueenBee" );
 			 BossData.AppendBoss( "SacredTools", "The Flaming Pumpkin" );
 			 BossData.AppendBoss( "Antiaris", "Antlion Queen" );
 			 BossData.AppendBoss( "TrueEater", "Clampula" );
 			 BossData.AppendBoss( "SpiritMod", "Ancient Flyer" );
-			BossData.Skeletron = BossData.AppendBoss( "Vanilla", "Skeletron" );
+			BossData.Skeletron = BossData.AppendBoss( "Terraria", "Terraria SkeletronHead" );
 			 BossData.AppendBoss( "W1KModRedux", "Aquatix" );
 			 BossData.AppendBoss( "W1KModRedux", "Ardorix" );
 			 BossData.AppendBoss( "W1KModRedux", "Arborix" );
@@ -130,7 +165,7 @@ namespace HamstarHelpers.Services.GameData {
 			 BossData.AppendBoss( "CalamityMod", "The Slime God" );
 			 BossData.AppendBoss( "Tremor", "Heater of Worlds" );
 			 BossData.AppendBoss( "Tremor", "Fungus Beetle" );
-			BossData.WallOfFlesh = BossData.AppendBoss( "Vanilla", "Wall of Flesh" );	// HM
+			BossData.WallOfFlesh = BossData.AppendBoss( "Terraria", "Terraria WallofFlesh" );	// HM
 			 BossData.AppendBoss( "SacredTools", "Harpy Queen Raynare" );
 			 BossData.AppendBoss( "Antiaris", "Tower Keeper" );
 			 BossData.AppendBoss( "W1KModRedux", "Ivy Plant" );
@@ -145,17 +180,17 @@ namespace HamstarHelpers.Services.GameData {
 			 BossData.AppendBoss( "W1KModRedux", "Ridley" );
 			 BossData.AppendBoss( "W1KModRedux", "Death" );
 			 BossData.AppendBoss( "EpicnessMod", "Pixie King" );
-			BossData.Retinazer = BossData.AppendBoss( "Vanilla", "Retinazer" );
-			BossData.Spazmatism = BossData.AppendBoss( "Vanilla", "Spazmatism" );
+			BossData.Retinazer = BossData.AppendBoss( "Terraria", "Terraria Retinazer" );
+			BossData.Spazmatism = BossData.AppendBoss( "Terraria", "Terraria Spazmatism" );
 			 BossData.AppendBoss( "SpiritMod", "Dusking" );
 			 BossData.AppendBoss( "SpiritMod", "Ethereal Umbra" );
 			 BossData.AppendBoss( "CalamityMod", "Brimstone Elemental" );
 			 BossData.AppendBoss( "MinimgMod", "Infected Eye" );
-			BossData.TheDestroyer = BossData.AppendBoss( "Vanilla", "The Destroyer" );
+			BossData.TheDestroyer = BossData.AppendBoss( "Terraria", "Terraria TheDestroyer" );
 			 BossData.AppendBoss( "CalamityMod", "Aquatic Scourge" );
 			 BossData.AppendBoss( "Tremor", "Motherboard" );
 			 BossData.AppendBoss( "Elerium", "The Controller" );
-			BossData.SkeletronPrime = BossData.AppendBoss( "Vanilla", "Skeletron Prime" );
+			BossData.SkeletronPrime = BossData.AppendBoss( "Terraria", "Terraria SkeletronPrime" );
 			 BossData.AppendBoss( "Laugicality", "The Annihilator" );
 			 BossData.AppendBoss( "Laugicality", "Slybertron" );
 			 BossData.AppendBoss( "Laugicality", "Steam Train" );
@@ -169,7 +204,7 @@ namespace HamstarHelpers.Services.GameData {
 			 BossData.AppendBoss( "TrueEater", "Master Drone" );
 			 BossData.AppendBoss( "NecronaquensMod", "Probe Queen" );
 			 BossData.AppendBoss( "EpicnessMod", "Argoth, The Demon Lord" );
-			BossData.Plantera = BossData.AppendBoss( "Vanilla", "Plantera" );
+			BossData.Plantera = BossData.AppendBoss( "Terraria", "Terraria Plantera" );
 			 BossData.AppendBoss( "Laugicality", "Etheria" );
 			 BossData.AppendBoss( "SpiritMod", "Illuminant Master" );
 			 BossData.AppendBoss( "Elerium", "The War King" );
@@ -180,25 +215,25 @@ namespace HamstarHelpers.Services.GameData {
 			 BossData.AppendBoss( "Grealm", "The Horde (Barbarian)" );
 			 BossData.AppendBoss( "Tremor", "Frost King" );
 			 BossData.AppendBoss( "Tremor", "Wall of Shadows" );
-			BossData.Golem = BossData.AppendBoss( "Vanilla", "Golem" );
+			BossData.Golem = BossData.AppendBoss( "Terraria", "Terraria Golem" );
 			 BossData.AppendBoss( "Tremor", "Cog Lord" );
 			 BossData.AppendBoss( "Tremor", "Mothership" );
 			 BossData.AppendBoss( "Tremor", "Cyber King" );
 			 BossData.AppendBoss( "ThoriumMod", "Abyssion, The Forgotten One" );
 			 BossData.AppendBoss( "CalamityMod", "The Plaguebringer Goliath" );
-			BossData.Betsy = BossData.AppendBoss( "Vanilla", "Betsy" );
+			BossData.Betsy = BossData.AppendBoss( "Terraria", "Terraria DD2Betsy" );
 			 BossData.AppendBoss( "TrueEater", "Behemoth" );
 			 BossData.AppendBoss( "Crystillium", "The Crystal King" );
 			 BossData.AppendBoss( "TrueEater", "Gimimmick" );
 			 BossData.AppendBoss( "MinimgMod", "Vlitch Cleaver" );
-			BossData.DukeFishron = BossData.AppendBoss( "Vanilla", "Duke Fishron" );
+			BossData.DukeFishron = BossData.AppendBoss( "Terraria", "Terraria DukeFishron" );
 			 BossData.AppendBoss( "SpiritMod", "Atlas" );
 			 BossData.AppendBoss( "EpicnessMod", "Derpatron" );
 			 BossData.AppendBoss( "Pumpking", "The Pumpking’s Horseman" );
 			 BossData.AppendBoss( "BlueMagic", "The Abomination" );
 			 BossData.AppendBoss( "CalamityMod", "Ravagers" );
-			BossData.DukeFishron = BossData.AppendBoss( "Vanilla", "Lunatic Cultist" );
-			BossData.MoonLord = BossData.AppendBoss( "Vanilla", "Moon Lord's Core" );  //MoonLordHead?
+			BossData.DukeFishron = BossData.AppendBoss( "Terraria", "Terraria CultistBoss" );
+			BossData.MoonLord = BossData.AppendBoss( "Terraria", "Terraria MoonLordCore" );  //MoonLordHead?
 			 BossData.AppendBoss( "SacredTools", "Abaddon, the Emissary of Nightmares" );
 			 BossData.AppendBoss( "TrueEater", "The Void Marshall" );
 			 BossData.AppendBoss( "EpicnessMod", "Dark Nebula" );
@@ -249,9 +284,19 @@ namespace HamstarHelpers.Services.GameData {
 			return entry;
 		}
 
-		public static BossDataEntry AddBoss( string sourceMod, string name, string betterThan ) {
-			var entry = new BossDataEntry { Name = name };
-			int order = BossData.BossMap[ betterThan ];
+
+		////
+
+		/// <summary>
+		/// Adds a boss definition relative to another boss in progression order.
+		/// </summary>
+		/// <param name="sourceMod"></param>
+		/// <param name="bossName"></param>
+		/// <param name="betterThanBossOfName"></param>
+		/// <returns></returns>
+		public static BossDataEntry AddBoss( string sourceMod, string bossName, string betterThanBossOfName ) {
+			var entry = new BossDataEntry { Name = bossName };
+			int order = BossData.BossMap[ betterThanBossOfName ];
 
 			BossData._BossOrder.Insert( order, entry );
 
@@ -260,8 +305,9 @@ namespace HamstarHelpers.Services.GameData {
 			return entry;
 		}
 
-		////
-
+		/// <summary>
+		/// Refreshes boss progression order.
+		/// </summary>
 		public static void UpdateOrder() {
 			int count = BossData.BossOrder.Count;
 

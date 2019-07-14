@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +11,14 @@ namespace HamstarHelpers.Internals.Logic {
 	/// @private
 	partial class PlayerLogic {
 		internal readonly static object MyValidatorKey;
-		internal readonly static PromiseValidator ServerConnectValidator;
+		internal readonly static CustomLoadHookValidator ServerConnectHookValidator;
 
 
 		////////////////
 
 		static PlayerLogic() {
 			PlayerLogic.MyValidatorKey = new object();
-			PlayerLogic.ServerConnectValidator = new PromiseValidator( PlayerLogic.MyValidatorKey );
+			PlayerLogic.ServerConnectHookValidator = new CustomLoadHookValidator( PlayerLogic.MyValidatorKey );
 		}
 
 

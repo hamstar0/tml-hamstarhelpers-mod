@@ -12,7 +12,7 @@ using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages;
 using HamstarHelpers.Services.Timers;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Server;
 using HamstarHelpers.Services.ModHelpers;
@@ -51,7 +51,7 @@ namespace HamstarHelpers {
 		internal PacketProtocolManager PacketProtocolMngr;
 
 		// Services
-		internal PromisedHooks Promises;
+		internal LoadHooks LoadHooks;
 		internal Timers Timers;
 		internal EntityGroups EntityGroups;
 		internal AnimatedColorsManager AnimatedColors;
@@ -109,7 +109,7 @@ namespace HamstarHelpers {
 		private void LoadModules() {
 			this.ReflectionHelpers = new ReflectionHelpers();
 			this.DataStore = new DataStore();
-			this.Promises = new PromisedHooks();
+			this.LoadHooks = new LoadHooks();
 			this.LoadHelpers = new LoadHelpers();
 
 			this.Timers = new Timers();
@@ -183,7 +183,7 @@ namespace HamstarHelpers {
 			this.MenuContextMngr = null;
 			this.MusicHelpers = null;
 			this.PlayerIdentityHelpers = null;
-			this.Promises = null;
+			this.LoadHooks = null;
 			this.DataStore = null;
 			this.CustomHotkeys = null;
 			this.XnaHelpers = null;
@@ -203,7 +203,7 @@ namespace HamstarHelpers {
 
 		private void PostSetupContentModules() {
 			this.PacketProtocolMngr.OnPostSetupContent();
-			this.Promises.OnPostSetupContent();
+			this.LoadHooks.OnPostSetupContent();
 			this.ModFeaturesHelpers.OnPostSetupContent();
 			this.PlayerIdentityHelpers.OnPostSetupContent();
 

@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		/// <param name="modName"></param>
 		/// <param name="callback"></param>
 		public static void IsListModProperlyPresented( string modName, Action<bool> callback ) {
-			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 				if( args.Found && args.ModInfo.ContainsKey( modName ) ) {
 					BasicModInfo modInfo = args.ModInfo[modName];
 

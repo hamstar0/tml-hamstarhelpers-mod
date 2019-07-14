@@ -1,14 +1,14 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using System.Collections.Generic;
 using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
 	/// @private
-	class PlayerLogicPromiseArguments : PromiseArguments {
+	class PlayerLogicLoadHookArguments : CustomLoadHookArguments {
 		public int Who;
 	}
 
@@ -28,8 +28,8 @@ namespace HamstarHelpers.Internals.Logic {
 			this.HasSyncedWorldData = true;
 			this.IsSynced = true;	// Technically this should only be set upon sync receipt of player's 'old' uid...
 
-			var args = new PlayerLogicPromiseArguments { Who = player.whoAmI };
-			PromisedHooks.TriggerValidatedPromise( PlayerLogic.ServerConnectValidator, PlayerLogic.MyValidatorKey, args );
+			var args = new PlayerLogicLoadHookArguments { Who = player.whoAmI };
+			LoadHooks.TriggerCustomHook( PlayerLogic.ServerConnectHookValidator, PlayerLogic.MyValidatorKey, args );
 
 			PlayerOldIdProtocol.QuickRequestToClient( player.whoAmI );
 			PlayerNewIdProtocol.QuickRequestToClient( player.whoAmI );

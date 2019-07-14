@@ -5,7 +5,7 @@ using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		internal void UpdateMode( bool isEditing ) {
 			if( !isEditing ) { return; }
 
-			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.BadModsListPromiseValidator, (modInfoArgs) => {
+			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.BadModsListLoadHookValidator, (modInfoArgs) => {
 				this.ApplyDefaultEditModeTags( modInfoArgs.ModInfo );
 				return false;
 			} );

@@ -4,7 +4,7 @@ using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Internals.Menus.ModRecommendations;
 using HamstarHelpers.Internals.Menus.ModTags;
 using HamstarHelpers.Internals.Menus.ModUpdates;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Diagnostics;
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.Menus {
 		public static void OnPostSetupContent() {
 			if( Main.dedServ ) { return; }
 
-			PromisedHooks.AddPostModLoadPromise( () => {
+			LoadHooks.AddPostModLoadHook( () => {
 				Menus.InitializeOpenConfigButton();
 				ModInfoTagsMenuContext.Initialize();
 				ModBrowserTagsMenuContext.Initialize();

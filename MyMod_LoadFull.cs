@@ -50,9 +50,9 @@ namespace HamstarHelpers {
 		////////////////
 
 		private void PostLoadFull() {
-			this.Promises.FulfillPostModLoadPromises();
+			this.LoadHooks.FulfillPostModLoadHooks();
 
-			Services.PromisedHooks.PromisedHooks.AddWorldUnloadEachPromise( () => {
+			Services.LoadHooks.LoadHooks.AddWorldUnloadEachHook( () => {
 				var myworld = this.GetModWorld<ModHelpersWorld>();
 				myworld.OnWorldExit();
 			} );
@@ -63,12 +63,12 @@ namespace HamstarHelpers {
 
 		private void UnloadFull() {
 			try {
-				this.Promises?.FulfillModUnloadPromises();
+				this.LoadHooks?.FulfillModUnloadHooks();
 
 				this.UnloadModData();
 				this.UnloadModules();
 			} catch( Exception e ) {
-				ErrorLogger.Log( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );
+				this.Logger.Error( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );
 			}
 
 			try {

@@ -4,37 +4,64 @@ using Terraria;
 
 namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 	/// <summary>
-	/// Supplies custom tModLoader-like, delegate-based hooks for assorted helpful functions not currently available in tModLoader.
+	/// Supplies custom tModLoader-like, delegate-based hooks for player-relevant functions not currently available in
+	/// tModLoader.
 	/// </summary>
 	public partial class ExtendedPlayerHooks {
-		public static bool AddBuffExpireAction( string which, Action<Player, int> action ) {
+		/// <summary>
+		/// Runs when a buff expires.
+		/// </summary>
+		/// <param name="hookName">Identifier of the hook.</param>
+		/// <param name="action">Action to run. Includes the player and buff type id as parameters.</param>
+		/// <returns>`false` if hook is already defined.</returns>
+		public static bool AddBuffExpireAction( string hookName, Action<Player, int> action ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;
 
 			lock( ExtendedPlayerHooks.MyLock ) {
-				if( playerHooks.BuffExpireHooks.ContainsKey( which ) ) { return false; }
-				playerHooks.BuffExpireHooks[which] = action;
+				if( playerHooks.BuffExpireHooks.ContainsKey( hookName ) ) {
+					return false;
+				}
+				playerHooks.BuffExpireHooks[hookName] = action;
 			}
 
 			return true;
 		}
 
-		public static bool AddArmorEquipAction( string which, Action<Player, int, Item> action ) {
+		/// <summary>
+		/// Runs when an armor item is equipped.
+		/// </summary>
+		/// <param name="hookName">Identifier of the hook.</param>
+		/// <param name="action">Action to run. Includes the player, `player.armor` index, and the armor `Item` as
+		/// parameters.</param>
+		/// <returns>`false` if hook is already defined.</returns>
+		public static bool AddArmorEquipAction( string hookName, Action<Player, int, Item> action ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;
 
 			lock( ExtendedPlayerHooks.MyLock ) {
-				if( playerHooks.ArmorEquipHooks.ContainsKey( which ) ) { return false; }
-				playerHooks.ArmorEquipHooks[ which ] = action;
+				if( playerHooks.ArmorEquipHooks.ContainsKey( hookName ) ) {
+					return false;
+				}
+				playerHooks.ArmorEquipHooks[ hookName ] = action;
 			}
 
 			return true;
 		}
 
-		public static bool AddArmorUnequipAction( string which, Action<Player, int, int> action ) {
+		/// <summary>
+		/// Runs when an armor item is unequipped.
+		/// </summary>
+		/// <param name="hookName">Identifier of the hook.</param>
+		/// <param name="action">Action to run. Includes the player, `player.armor` index, and the armor `Item` as
+		/// parameters.</param>
+		/// <returns>`false` if hook is already defined.</returns>
+		public static bool AddArmorUnequipAction( string hookName, Action<Player, int, int> action ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;
 
 			lock( ExtendedPlayerHooks.MyLock ) {
-				if( playerHooks.ArmorUnequipHooks.ContainsKey( which ) ) { return false; }
-				playerHooks.ArmorUnequipHooks[ which ] = action;
+				if( playerHooks.ArmorUnequipHooks.ContainsKey( hookName ) ) {
+					return false;
+				}
+				playerHooks.ArmorUnequipHooks[ hookName ] = action;
 			}
 
 			return true;

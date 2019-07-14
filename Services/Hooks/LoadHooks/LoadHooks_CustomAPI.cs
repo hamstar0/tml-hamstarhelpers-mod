@@ -42,7 +42,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 				return ModHelpersMod.Instance.LoadHooks.CustomHookConditionsMet.Contains( validator );
 			}
 		}
-
+		
 		////////////////
 
 		public static void AddCustomHook<T>( CustomLoadHookValidator validator, Func<T, bool> func )
@@ -50,14 +50,14 @@ namespace HamstarHelpers.Services.LoadHooks {
 			var mymod = ModHelpersMod.Instance;
 			bool conditionsMet;
 			T args;
-
+			
 			lock( validator ) {
 				conditionsMet = mymod.LoadHooks.CustomHookConditionsMet.Contains( validator );
 			}
 
 			if( conditionsMet ) {
 				lock( validator ) {
-					args = (T)mymod.LoadHooks.CustomHookArgs[validator];
+					args = (T)mymod.LoadHooks.CustomHookArgs[ validator ];
 				}
 
 				if( !func( args ) ) {
@@ -72,7 +72,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 				mymod.LoadHooks.CustomHooks[validator].Add( U => func( (T)U ) );
 			}
 		}
-
+		
 		public static void AddCustomHook( CustomLoadHookValidator validator, Func<bool> action ) {
 			LoadHooks.AddCustomHook<CustomLoadHookArguments>( validator, _ => action() );
 		}
@@ -96,7 +96,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 			lock( validator.MyLock ) {
 				mymod.LoadHooks.CustomHookConditionsMet.Add( validator );
-				mymod.LoadHooks.CustomHookArgs[validator] = args;
+				mymod.LoadHooks.CustomHookArgs[ validator ] = args;
 				isValidated = mymod.LoadHooks.CustomHooks.ContainsKey( validator );
 			}
 
@@ -105,13 +105,13 @@ namespace HamstarHelpers.Services.LoadHooks {
 				int count;
 
 				lock( validator.MyLock ) {
-					funcList = mymod.LoadHooks.CustomHooks[validator];
+					funcList = mymod.LoadHooks.CustomHooks[ validator ];
 					count = funcList.Count;
 				}
 
 				for( int i = 0; i < funcList.Count; i++ ) {
 					lock( validator.MyLock ) {
-						isEach = funcList[i]( args );
+						isEach = funcList[ i ]( args );
 					}
 
 					if( !isEach ) {
@@ -121,7 +121,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 				}
 			}
 		}
-
+		
 		public static void TriggerCustomHook( CustomLoadHookValidator validator, object validatorKey ) {
 			LoadHooks.TriggerCustomHook( validator, validatorKey, null );
 		}

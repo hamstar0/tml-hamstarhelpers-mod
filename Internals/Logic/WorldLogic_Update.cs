@@ -9,18 +9,18 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 
 			if( LoadHelpers.IsWorldLoaded() ) {
-				mymod.Promises.FulfillWorldLoadPromises();
+				mymod.LoadHooks.FulfillWorldLoadHooks();
 			}
 
 			if( LoadHelpers.IsWorldBeingPlayed() ) {
-				mymod.Promises.FulfillWorldInPlayPromises();
+				mymod.LoadHooks.FulfillWorldInPlayHooks();
 				mymod.LoadHelpers.UpdateUponWorldBeingPlayed();
 				mymod.WorldStateHelpers.UpdateUponWorldBeingPlayed();
 			}
 
 			if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 				this.UpdateSafelyLoaded();
-				mymod.Promises.FulfillSafeWorldLoadPromises();
+				mymod.LoadHooks.FulfillSafeWorldLoadHook();
 			}
 		}
 

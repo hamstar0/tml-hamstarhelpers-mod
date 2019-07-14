@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		public override void OnInitializeMe() {
 			this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanelTab.SupportMessages.Count );
 
-			PromisedHooks.AddWorldUnloadEachPromise( () => {
+			LoadHooks.AddWorldUnloadEachHook( () => {
 				this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanelTab.SupportMessages.Count );
 				this.SupportUrl.SetText( UIModControlPanelTab.SupportMessages[this.RandomSupportTextIdx] );
 			} );

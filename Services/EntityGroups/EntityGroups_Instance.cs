@@ -1,9 +1,8 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading;
 using Terraria;
 using Terraria.ModLoader;
@@ -20,9 +19,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		private readonly static object MyValidatorKey;
 		/// <summary>
-		/// Used as the identifier object for binding events ("promises") to entity group loading completion.
+		/// Used as the identifier object for binding events (cusom load hooks) to entity group loading completion.
 		/// </summary>
-		public readonly static PromiseValidator LoadedAllValidator;
+		public readonly static CustomLoadHookValidator LoadedAllValidator;
 
 
 
@@ -30,7 +29,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		static EntityGroups() {
 			EntityGroups.MyValidatorKey = new object();
-			EntityGroups.LoadedAllValidator = new PromiseValidator( EntityGroups.MyValidatorKey );
+			EntityGroups.LoadedAllValidator = new CustomLoadHookValidator( EntityGroups.MyValidatorKey );
 		}
 
 
@@ -60,7 +59,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		////////////////
 
 		internal EntityGroups() {
-			PromisedHooks.PromisedHooks.AddPostModLoadPromise( () => {
+			LoadHooks.LoadHooks.AddPostModLoadHook( () => {
 				if( !this.IsEnabled ) { return; }
 
 				this.GetItemPool();
@@ -84,18 +83,18 @@ namespace HamstarHelpers.Services.EntityGroups {
 							_check++;
 						}
 
-						this.ComputeGroups<Item>( itemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						this.ComputeGroups<Item>( itemMatchers, ref this.ItemGroups, ref this.GroupsPerItem );
 						_check++;
-						this.ComputeGroups<NPC>( npcMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						this.ComputeGroups<NPC>( npcMatchers, ref this.NPCGroups, ref this.GroupsPerNPC );
 						_check++;
-						this.ComputeGroups<Projectile>( projMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+						this.ComputeGroups<Projectile>( projMatchers, ref this.ProjGroups, ref this.GroupsPerProj );
 						_check++;
 
-						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this._RawItemGroups, ref this._RawGroupsPerItem );
+						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this.ItemGroups, ref this.GroupsPerItem );
 						_check++;
-						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this._RawNPCGroups, ref this._RawGroupsPerNPC );
+						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this.NPCGroups, ref this.GroupsPerNPC );
 						_check++;
-						this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this._RawProjGroups, ref this._RawGroupsPerProj );
+						this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this.ProjGroups, ref this.GroupsPerProj );
 						_check++;
 
 						lock( EntityGroups.MyLock ) {
@@ -107,7 +106,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 							this.ProjPool = null;
 						}
 						
-						PromisedHooks.PromisedHooks.TriggerValidatedPromise( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
+						LoadHooks.LoadHooks.TriggerCustomHook( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
 						_check++;
 					} catch( Exception e ) {
 						LogHelpers.Warn( "Initialization failed (at #"+_check+"): "+e.ToString() );

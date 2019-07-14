@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Debug.DataDumper;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
 using Microsoft.Xna.Framework;
 using System;
@@ -15,7 +15,7 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	/// @private
-	class PlayerPromiseArguments : PromiseArguments {
+	class PlayerLoadHookArguments : CustomLoadHookArguments {
 		public int Who;
 	}
 
@@ -24,16 +24,16 @@ namespace HamstarHelpers {
 	/// @private
 	class ModHelpersPlayer : ModPlayer {
 		internal readonly static object MyValidatorKey;
-		internal readonly static PromiseValidator LoadValidator;
-		internal readonly static PromiseValidator SaveValidator;
+		internal readonly static CustomLoadHookValidator LoadValidator;
+		internal readonly static CustomLoadHookValidator SaveValidator;
 
 
 		////////////////
 
 		static ModHelpersPlayer() {
 			ModHelpersPlayer.MyValidatorKey = new object();
-			ModHelpersPlayer.LoadValidator = new PromiseValidator( ModHelpersPlayer.MyValidatorKey );
-			ModHelpersPlayer.SaveValidator = new PromiseValidator( ModHelpersPlayer.MyValidatorKey );
+			ModHelpersPlayer.LoadValidator = new CustomLoadHookValidator( ModHelpersPlayer.MyValidatorKey );
+			ModHelpersPlayer.SaveValidator = new CustomLoadHookValidator( ModHelpersPlayer.MyValidatorKey );
 		}
 
 
@@ -99,9 +99,9 @@ namespace HamstarHelpers {
 
 				this.Logic.Load( tags );
 
-				var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
+				var args = new PlayerLoadHookArguments { Who = this.player.whoAmI };
 
-				PromisedHooks.TriggerValidatedPromise( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
+				LoadHooks.TriggerCustomHook( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
 			} catch( Exception e ) {
 				if( !(e is HamstarException) ) {
 					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
@@ -114,11 +114,11 @@ namespace HamstarHelpers {
 		public override TagCompound Save() {
 			var tags = new TagCompound();
 			try {
-				var args = new PlayerPromiseArguments { Who = this.player.whoAmI };
+				var args = new PlayerLoadHookArguments { Who = this.player.whoAmI };
 
 				//PlayerData.SaveAll( this.player.whoAmI, tags );
 			
-				PromisedHooks.TriggerValidatedPromise( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
+				LoadHooks.TriggerCustomHook( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
 
 				this.Logic.Save( tags );
 			} catch( Exception e ) {

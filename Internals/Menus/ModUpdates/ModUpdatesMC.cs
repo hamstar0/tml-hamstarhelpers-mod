@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			base.Show( ui );
 			
 			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, () => {
-				PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+				LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 					if( args != null ) {
 						this.DisplayModListVersions( ui, args.ModInfo );
 					}

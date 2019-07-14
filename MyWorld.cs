@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -15,16 +15,16 @@ namespace HamstarHelpers {
 	/// @private
 	class ModHelpersWorld : ModWorld {
 		private readonly static object MyValidatorKey;
-		internal readonly static PromiseValidator LoadValidator;
-		internal readonly static PromiseValidator SaveValidator;
+		internal readonly static CustomLoadHookValidator LoadValidator;
+		internal readonly static CustomLoadHookValidator SaveValidator;
 
 
 		////////////////
 
 		static ModHelpersWorld() {
 			ModHelpersWorld.MyValidatorKey = new object();
-			ModHelpersWorld.LoadValidator = new PromiseValidator( ModHelpersWorld.MyValidatorKey );
-			ModHelpersWorld.SaveValidator = new PromiseValidator( ModHelpersWorld.MyValidatorKey );
+			ModHelpersWorld.LoadValidator = new CustomLoadHookValidator( ModHelpersWorld.MyValidatorKey );
+			ModHelpersWorld.SaveValidator = new CustomLoadHookValidator( ModHelpersWorld.MyValidatorKey );
 		}
 
 
@@ -79,7 +79,7 @@ namespace HamstarHelpers {
 			mymod.ModLock.PostLoad( this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
-			PromisedHooks.TriggerValidatedPromise( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
+			LoadHooks.TriggerCustomHook( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
 
 			this.HasObsoleteId = true;
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
@@ -97,7 +97,7 @@ namespace HamstarHelpers {
 
 			this.WorldLogic.SaveForWorld( tags );
 
-			PromisedHooks.TriggerValidatedPromise( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
+			LoadHooks.TriggerCustomHook( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
 			
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 			return tags;

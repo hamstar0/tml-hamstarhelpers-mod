@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Internals.WebRequests;
 using System;
 using Terraria.GameContent.UI.Elements;
@@ -85,7 +85,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			this.InitializeMe( theme, idx, mod, willDrawOwnHoverElements );
 
-			PromisedHooks.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+			LoadHooks.AddCustomHook<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				ISet<string> modTags = args.ModTags?.GetOrDefault( mod.Name );
 				this.ModTags = modTags ?? this.ModTags;
 
@@ -100,7 +100,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// Checks if the mod has new versions available from the mod browser, then updates it's overlay accordingly.
 		/// </summary>
 		public void CheckForNewVersionAsync() {
-			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 				if( args.Found && args.ModInfo.ContainsKey(this.Mod.Name) ) {
 					this.LatestAvailableVersion = args.ModInfo[ this.Mod.Name ].Version;
 				} else {

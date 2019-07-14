@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader.UI.ModBrowser;
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		public void FilterModsAsync( IList<string> modNames, Action<bool, IList<string>, int, int> callback ) {
-			PromisedHooks.AddValidatedPromise<ModTagsPromiseArguments>( GetModTags.TagsReceivedPromiseValidator, ( args ) => {
+			LoadHooks.AddCustomHook<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				if( !args.Found ) {
 					this.InfoDisplay?.SetText( "Could not acquire mod data." );
 					callback( false, new List<string>(), 0, 0 );

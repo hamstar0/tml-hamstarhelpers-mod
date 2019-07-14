@@ -24,6 +24,6 @@ namespace HamstarHelpers.Services.LoadHooks {
 		private static object WorldInPlayEachHookLock = new object();
 		private static object SafeWorldLoadOnceHookLock = new object();
 		private static object SafeWorldLoadEachHookLock = new object();
-		private static object ValidatedHookLock = new object();
+		 private static object ValidatedHookLock = new object();
 	}
 }

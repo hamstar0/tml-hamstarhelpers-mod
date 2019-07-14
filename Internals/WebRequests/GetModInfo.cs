@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using System;
 using System.Collections;
@@ -23,11 +23,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 	/// @private
-	class ModInfoListPromiseArguments : PromiseArguments {
+	class ModInfoListLoadHookArguments : CustomLoadHookArguments {
 		public bool Found;
 		public BasicModInfoDatabase ModInfo;
 
-		public ModInfoListPromiseArguments() {
+		public ModInfoListLoadHookArguments() {
 			this.Found = false;
 			this.ModInfo = new BasicModInfoDatabase();
 		}
@@ -39,9 +39,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 	partial class GetModInfo {
 		private readonly static object MyLock = new object();
 
-		internal readonly static object PromiseValidatorKey;
-		public readonly static PromiseValidator ModInfoListPromiseValidator;
-		public readonly static PromiseValidator BadModsListPromiseValidator;
+		internal readonly static object LoadHookValidatorKey;
+		public readonly static CustomLoadHookValidator ModInfoListLoadHookValidator;
+		public readonly static CustomLoadHookValidator BadModsListLoadHookValidator;
 
 		////
 
@@ -52,9 +52,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 
 		static GetModInfo() {
-			GetModInfo.PromiseValidatorKey = new object();
-			GetModInfo.ModInfoListPromiseValidator = new PromiseValidator( GetModInfo.PromiseValidatorKey );
-			GetModInfo.BadModsListPromiseValidator = new PromiseValidator( GetModInfo.PromiseValidatorKey );
+			GetModInfo.LoadHookValidatorKey = new object();
+			GetModInfo.ModInfoListLoadHookValidator = new CustomLoadHookValidator( GetModInfo.LoadHookValidatorKey );
+			GetModInfo.BadModsListLoadHookValidator = new CustomLoadHookValidator( GetModInfo.LoadHookValidatorKey );
 		}
 
 
@@ -85,21 +85,21 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		private static void CacheAllModInfoAsync() {
 			var mymod = ModHelpersMod.Instance;
-			var modInfoArgs = new ModInfoListPromiseArguments();
+			var modInfoArgs = new ModInfoListLoadHookArguments();
 
 			GetModInfo.RetrieveAllModInfoAsync( ( found, modInfo ) => {
 				modInfoArgs.ModInfo = modInfo;
 				modInfoArgs.Found = found;
 
 				Timers.SetTimer( "CacheAllModInfoAsyncFailsafe", 2, () => {
-					if( GetModInfo.ModInfoListPromiseValidator == null ) { return true; }
+					if( GetModInfo.ModInfoListLoadHookValidator == null ) { return true; }
 
-					PromisedHooks.TriggerValidatedPromise( GetModInfo.ModInfoListPromiseValidator, GetModInfo.PromiseValidatorKey, modInfoArgs );
+					LoadHooks.TriggerCustomHook( GetModInfo.ModInfoListLoadHookValidator, GetModInfo.LoadHookValidatorKey, modInfoArgs );
 					return false;
 				} );
 			} );
 
-			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( modInfoArgs2 ) => {
+			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( modInfoArgs2 ) => {
 				Thread.Sleep( 2000 );
 
 				if( modInfoArgs2.Found ) {
@@ -108,7 +108,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 							GetModInfo.RegisterBadMods( modInfoArgs2, badMods );
 						}
 						
-						PromisedHooks.TriggerValidatedPromise( GetModInfo.BadModsListPromiseValidator, GetModInfo.PromiseValidatorKey, modInfoArgs2 );
+						LoadHooks.TriggerCustomHook( GetModInfo.BadModsListLoadHookValidator, GetModInfo.LoadHookValidatorKey, modInfoArgs2 );
 					} );
 				}
 
@@ -116,7 +116,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			} );
 		}
 
-		private static void RegisterBadMods( ModInfoListPromiseArguments modInfoArgs, BadModsDatabase badMods ) {
+		private static void RegisterBadMods( ModInfoListLoadHookArguments modInfoArgs, BadModsDatabase badMods ) {
 			foreach( var kv in modInfoArgs.ModInfo ) {
 				string modName = kv.Key;
 				BasicModInfo modInfo = kv.Value;

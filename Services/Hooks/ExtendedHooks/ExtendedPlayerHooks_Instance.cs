@@ -4,6 +4,7 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
+	/// @private
 	public partial class ExtendedPlayerHooks {
 		private static object MyLock = new object();
 

@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Helpers.Players {
 		////////////////
 
 		internal void OnPostSetupContent() {
-			PromisedHooks.AddPostWorldUnloadEachPromise( () => {
+			LoadHooks.AddPostWorldUnloadEachHook( () => {
 				this.PlayerIds = new Dictionary<int, string>();
 			} );
 		}

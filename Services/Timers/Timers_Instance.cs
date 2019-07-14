@@ -23,7 +23,7 @@ namespace HamstarHelpers.Services.Timers {
 			Main.OnTick += Timers._Update;
 //TICKSTART = DateTime.Now.Ticks;
 
-			PromisedHooks.PromisedHooks.AddWorldUnloadEachPromise( () => {
+			LoadHooks.LoadHooks.AddWorldUnloadEachHook( () => {
 				lock( Timers.MyLock ) {
 					foreach( var kv in this.Running ) {
 						LogHelpers.Log( "Aborted timer " + kv.Key );

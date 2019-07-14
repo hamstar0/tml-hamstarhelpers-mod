@@ -3,7 +3,7 @@ using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.PromisedHooks;
+using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using System;
@@ -109,7 +109,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 				this.AddRawModEntry( mod?.DisplayName, recomModName, recommendedBecause );
 			}
 
-			PromisedHooks.AddValidatedPromise<ModInfoListPromiseArguments>( GetModInfo.ModInfoListPromiseValidator, ( args ) => {
+			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 				string currModName = ModMenuHelpers.GetModName( MenuContextService.GetPreviousMenuUI(),
 						this.MenuContext.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 
