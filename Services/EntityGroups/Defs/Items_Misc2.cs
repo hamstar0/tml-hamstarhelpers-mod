@@ -3,20 +3,20 @@ using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
 	partial class EntityGroupDefs {
-		internal static void DefineItemMiscGroups2( Action<string, string[], Matcher> addDef ) {
-			addDef( "Any Food Ingredient",
+		internal static void DefineItemMiscGroups2( IList<EntityGroupMatcherDefinition<Item>> defs ) {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Food Ingredient",
 				new string[] { "Any Food" },
-				( item, grps ) => {
+				new ItemGroupMatcher( ( item, grps ) => {
 					foreach( int foodId in grps["Any Food"] ) {
 						IEnumerable<Recipe> recipes = RecipeIdentityHelpers.GetRecipesOfItem( foodId );
 
 						foreach( Recipe recipe in recipes ) {
-							for( int i=0; i<recipe.requiredItem.Length; i++ ) {
+							for( int i = 0; i < recipe.requiredItem.Length; i++ ) {
 								Item reqItem = recipe.requiredItem[i];
 								if( reqItem == null || reqItem.IsAir ) { continue; }
 
@@ -27,7 +27,8 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						}
 					}
 					return false;
-				} );
+				} )
+			) );
 		}
 	}
 }

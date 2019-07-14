@@ -2,64 +2,57 @@
 using HamstarHelpers.Services.EntityGroups.Defs;
 using System;
 using System.Collections.Generic;
-
-using ItemMatcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
-using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
-using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using Terraria;
 
 
 namespace HamstarHelpers.Services.EntityGroups {
+	/// <summary>
+	/// Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs,
+	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
+	/// </summary>
 	public partial class EntityGroups {
-		private static IList<Tuple<string, string[], ItemMatcher>> DefineItemGroups() {
-			var matchers = new List<Tuple<string, string[], ItemMatcher>>();
+		private static IList<EntityGroupMatcherDefinition<Item>> DefineItemGroups() {
+			var matchers = new List<EntityGroupMatcherDefinition<Item>>();
 
-			Action<string, string[], ItemMatcher> addItemGrpDef = ( name, grps, matcher ) => {
-				matchers.Add( new Tuple<string, string[], ItemMatcher>( name, grps, matcher ) );
-			};
-			
-			EntityGroupDefs.DefineItemEquipmentGroups1( addItemGrpDef );
-			EntityGroupDefs.DefineItemAccessoriesGroups1( addItemGrpDef );
-			EntityGroupDefs.DefineItemWeaponGroups1( addItemGrpDef );
-			EntityGroupDefs.DefineItemPlaceablesGroups1( addItemGrpDef );
-			EntityGroupDefs.DefineItemMiscGroups1( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups1( matchers );
+			EntityGroupDefs.DefineItemAccessoriesGroups1( matchers );
+			EntityGroupDefs.DefineItemWeaponGroups1( matchers );
+			EntityGroupDefs.DefineItemPlaceablesGroups1( matchers );
+			EntityGroupDefs.DefineItemMiscGroups1( matchers );
 
-			EntityGroupDefs.DefineItemEquipmentGroups2( addItemGrpDef );
-			//EntityGroupDefs.DefineItemAccessoriesGroups2( addItemGrpDef );
-			EntityGroupDefs.DefineItemWeaponGroups2( addItemGrpDef );
-			EntityGroupDefs.DefineItemPlaceablesGroups2( addItemGrpDef );
-			EntityGroupDefs.DefineItemMiscGroups2( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups2( matchers );
+			//EntityGroupDefs.DefineItemAccessoriesGroups2( matchers );
+			EntityGroupDefs.DefineItemWeaponGroups2( matchers );
+			EntityGroupDefs.DefineItemPlaceablesGroups2( matchers );
+			EntityGroupDefs.DefineItemMiscGroups2( matchers );
 
-			EntityGroupDefs.DefineItemEquipmentGroups3( addItemGrpDef );
-			//EntityGroupDefs.DefineItemAccessoriesGroups3( addItemGrpDef );
-			//EntityGroupDefs.DefineItemWeaponGroups3( addItemGrpDef );
-			//EntityGroupDefs.DefineItemPlaceablesGroups3( addItemGrpDef );
-			EntityGroupDefs.DefineItemMiscGroups3( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups3( matchers );
+			//EntityGroupDefs.DefineItemAccessoriesGroups3( matchers );
+			//EntityGroupDefs.DefineItemWeaponGroups3( matchers );
+			//EntityGroupDefs.DefineItemPlaceablesGroups3( matchers );
+			EntityGroupDefs.DefineItemMiscGroups3( matchers );
 
-			EntityGroupDefs.DefineItemEquipmentGroups4( addItemGrpDef );
-			//EntityGroupDefs.DefineItemAccessoriesGroups4( addItemGrpDef );
-			//EntityGroupDefs.DefineItemWeaponGroups4( addItemGrpDef );
-			//EntityGroupDefs.DefineItemPlaceablesGroups4( addItemGrpDef );
-			EntityGroupDefs.DefineItemMiscGroups4( addItemGrpDef );
+			EntityGroupDefs.DefineItemEquipmentGroups4( matchers );
+			//EntityGroupDefs.DefineItemAccessoriesGroups4( matchers );
+			//EntityGroupDefs.DefineItemWeaponGroups4( matchers );
+			//EntityGroupDefs.DefineItemPlaceablesGroups4( matchers );
+			EntityGroupDefs.DefineItemMiscGroups4( matchers );
 			
 			return matchers;
 		}
 
 
-		private static IList<Tuple<string, string[], NPCMatcher>> DefineNPCGroups() {
-			var matchers = new List<Tuple<string, string[], NPCMatcher>>();
+		private static IList<EntityGroupMatcherDefinition<NPC>> DefineNPCGroups() {
+			var matchers = new List<EntityGroupMatcherDefinition<NPC>>();
 
-			Action<string, string[], NPCMatcher> addNpcGrpDef = ( name, dependencies, matcher ) => {
-				matchers.Add( new Tuple<string, string[], NPCMatcher>( name, dependencies, matcher ) );
-			};
-
-			EntityGroupDefs.DefineNPCGroups1( addNpcGrpDef );
+			EntityGroupDefs.DefineNPCGroups1( matchers );
 
 			return matchers;
 		}
 
 
-		private static IList<Tuple<string, string[], ProjMatcher>> DefineProjectileGroups() {
-			var matchers = new List<Tuple<string, string[], ProjMatcher>>();
+		private static IList<EntityGroupMatcherDefinition<Projectile>> DefineProjectileGroups() {
+			var matchers = new List<EntityGroupMatcherDefinition<Projectile>>();
 			return matchers;
 		}
 	}

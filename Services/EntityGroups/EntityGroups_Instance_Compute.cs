@@ -7,34 +7,36 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.EntityGroups {
+	/// <summary>
+	/// Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs,
+	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
+	/// </summary>
 	public partial class EntityGroups {
-		private void ComputeGroups<T>( IList<Tuple<string, string[], Func<T, IDictionary<string, ISet<int>>, bool>>> matchers,
-				ref IDictionary<string, ReadOnlySet<int>> groups,
-				ref IDictionary<int, ReadOnlySet<string>> groupsPerEnt ) where T : Entity {
+		private void ComputeGroups<T>( IList<EntityGroupMatcherDefinition<T>> matchers,
+					ref IDictionary<string, ReadOnlySet<int>> groups,
+					ref IDictionary<int, ReadOnlySet<string>> groupsPerEnt ) where T : Entity {
 			var rawGroupsPerEnt = new Dictionary<int, ISet<string>>();
 			
 			IList<T> pool = this.GetPool<T>();
 
 			for( int i=0; i<matchers.Count; i++ ) {
-				string grpName = matchers[i].Item1;
-				string[] dependencies = matchers[i].Item2;
-				var matcherFunc = matchers[i].Item3;
+				EntityGroupMatcherDefinition<T> matcher = matchers[i];
 				ISet<int> grp;
 
-				if( !this.ComputeGroupMatch( pool, grpName, dependencies, matcherFunc, out grp ) ) {
+				if( !this.ComputeGroupMatch( pool, matcher, out grp ) ) {
 					matchers.Add( matchers[i] );
 					continue;
 				}
 
 				lock( EntityGroups.MyLock ) {
-					groups[ grpName ] = new ReadOnlySet<int>( grp );
+					groups[ matcher.GroupName ] = new ReadOnlySet<int>( grp );
 				}
 
 				foreach( int idx in grp ) {
 					if( !rawGroupsPerEnt.ContainsKey( idx ) ) {
 						rawGroupsPerEnt[ idx ] = new HashSet<string>();
 					}
-					rawGroupsPerEnt[ idx ].Add( grpName );
+					rawGroupsPerEnt[ idx ].Add( matcher.GroupName );
 				}
 			}
 
@@ -47,23 +49,21 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 
 		private bool ComputeGroupMatch<T>( IList<T> entityPool,
-				string groupName,
-				string[] dependencies,
-				Func<T, IDictionary<string, ISet<int>>, bool> matcherFunc,
-				out ISet<int> entityIdsOfGroup )
-				where T : Entity {
+					EntityGroupMatcherDefinition<T> matcher,
+					out ISet<int> entityIdsOfGroup )
+					where T : Entity {
 			entityIdsOfGroup = new HashSet<int>();
-			IDictionary<string, ISet<int>> deps = this.GetGroups<T>( groupName, dependencies );
+			EntityGroupDependencies deps = this.GetGroups<T>( matcher.GroupName, matcher.GroupDependencies );
 
 			for( int i = 1; i < entityPool.Count; i++ ) {
 				try {
 					lock( EntityGroups.MyLock ) {
-						if( matcherFunc( entityPool[i], deps ) ) {
+						if( matcher.Matcher.MatcherFunc(entityPool[i], deps) ) {
 							entityIdsOfGroup.Add( i );
 						}
 					}
 				} catch( Exception ) {
-					LogHelpers.Alert( "Compute fail for '"+groupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
+					LogHelpers.Alert( "Compute fail for '"+matcher.GroupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
 				}
 			}
 
@@ -75,22 +75,22 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		private ISet<string> _AlreadyRequeued = new HashSet<string>();
 
-		private IDictionary<string, ISet<int>> GetGroups<T>( string groupName, string[] dependencies )
-				where T : Entity {
-			var deps = new Dictionary<string, ISet<int>>();
+		private EntityGroupDependencies GetGroups<T>( string groupName, string[] dependencies )
+					where T : Entity {
+			var deps = new EntityGroupDependencies();
 			if( dependencies == null ) { return deps; }
 
-			IReadOnlyDictionary<string, ReadOnlySet<int>> entityGroups;
+			IDictionary<string, ReadOnlySet<int>> entityGroups;
 
-			switch( typeof( T ).Name ) {
+			switch( typeof(T).Name ) {
 			case "Item":
-				entityGroups = this._ItemGroups;
+				entityGroups = this.ItemGroups;
 				break;
 			case "NPC":
-				entityGroups = this._NPCGroups;
+				entityGroups = this.NPCGroups;
 				break;
 			case "Projectile":
-				entityGroups = this._ProjGroups;
+				entityGroups = this.ProjGroups;
 				break;
 			default:
 				throw new NotImplementedException( "Invalid Entity type " + typeof( T ).Name );

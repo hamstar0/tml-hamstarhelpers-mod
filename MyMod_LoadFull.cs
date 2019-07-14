@@ -50,12 +50,12 @@ namespace HamstarHelpers {
 		////////////////
 
 		private void PostLoadFull() {
+			this.Promises.FulfillPostModLoadPromises();
+
 			Services.PromisedHooks.PromisedHooks.AddWorldUnloadEachPromise( () => {
 				var myworld = this.GetModWorld<ModHelpersWorld>();
 				myworld.OnWorldExit();
 			} );
-
-			this.Promises.FulfillPostModLoadPromises();
 		}
 
 

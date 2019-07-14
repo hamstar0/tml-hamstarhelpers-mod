@@ -1,21 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
-
-using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
 	partial class EntityGroupDefs {
-		internal static void DefineItemAccessoriesGroups1( Action<string, string[], Matcher> addDef ) {
+		internal static void DefineItemAccessoriesGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			// Accessory Classes
-
-			addDef( "Any Wing Accessory", null,
-				( item, grps ) => {
+			
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Wing Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					return item.wingSlot > 0;
-				} );
-			addDef( "Any Vanilla Movement Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Movement Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.Aglet:
@@ -68,9 +71,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Combat Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Combat Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.AdhesiveBandage:
@@ -142,9 +147,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Yoyo Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Yoyo Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.YoyoBag:
@@ -174,9 +181,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Health Or Mana Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Health Or Mana Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.BandofRegeneration:
@@ -193,9 +202,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Construction Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Construction Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.Toolbelt:
@@ -209,9 +220,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Information Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Information Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.CopperWatch:
@@ -242,9 +255,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Fishing Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Fishing Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.HighTestFishingLine:
@@ -254,9 +269,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Music Box Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Music Box Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.MusicBox:
@@ -303,9 +320,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
-			addDef( "Any Vanilla Expert Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Expert Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.RoyalGel:
@@ -319,7 +338,8 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
+				} )
+			) );
 		}
 	}
 }

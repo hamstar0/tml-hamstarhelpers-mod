@@ -1,13 +1,14 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Items.Attributes;
 using System;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
-using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
 	partial class EntityGroupDefs {
-		internal static void DefineItemMiscGroups1( Action<string, string[], Matcher> addDef ) {
+		internal static void DefineItemMiscGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			addDef( "Any Item", null,
 				( item, grps ) => {
 					return true;

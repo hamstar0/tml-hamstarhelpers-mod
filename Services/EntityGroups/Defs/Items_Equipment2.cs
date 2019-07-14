@@ -1,20 +1,21 @@
 ﻿using System;
-
-using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using System.Collections.Generic;
+using Terraria;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
 	partial class EntityGroupDefs {
-		internal static void DefineItemEquipmentGroups2( Action<string, string[], Matcher> addDef ) {
-			addDef( "Any Equipment",
+		internal static void DefineItemEquipmentGroups2( IList<EntityGroupMatcherDefinition<Item>> defs ) {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Equipment",
 				new string[] { "Any Weapon", "Any Tool", "Any Accessory", "Any Armor" },
-				( item, grps ) => {
+				new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Weapon"].Contains( item.type ) ||
 						grps["Any Tool"].Contains( item.type ) ||
 						grps["Any Accessory"].Contains( item.type ) ||
 						grps["Any Armor"].Contains( item.type );
-				}
-			);
+				} )
+			) );
 		}
 	}
 }

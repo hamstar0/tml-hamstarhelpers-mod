@@ -1,23 +1,28 @@
 ﻿using HamstarHelpers.Helpers.Items.Attributes;
 using System;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
-
-using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
 	partial class EntityGroupDefs {
-		internal static void DefineItemEquipmentGroups1( Action<string, string[], Matcher> addDef ) {
-			addDef( "Any Weapon", null,
-				( item, grps ) => {
+		internal static void DefineItemEquipmentGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Weapon", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.damage > 0;
-				} );
-			addDef( "Any Tool", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Tool", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsTool( item );
-				} );
-			addDef( "Any Vanilla Explosive", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanilla Explosive", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Bomb:
 					case ItemID.StickyBomb:
@@ -45,41 +50,55 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 					return false;
-				} );
+				} )
+			) );
 
-			addDef( "Any Accessory", null,
-				( item, grps ) => {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.accessory && !item.vanity;
-				} );
-			addDef( "Any Armor", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Armor", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsArmor( item );
-				} );
-			addDef( "Any Garment", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Garment", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;
-				} );
-			addDef( "Any Potion", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Potion", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.potion;
-				} );
+				} )
+			) );
 
 			// Vanity Classes
 
-			addDef( "Any Vanity", null,
-				( item, grps ) => {
+			defs.Add( new EntityGroupMatcherDefinition<Item>( "Any Vanity", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.vanity;
-				} );
-			addDef( "Any Vanity Accessory", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanity Accessory", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.accessory;
-				} );
-			addDef( "Any Vanity Garment", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Vanity Garment", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;
-				} );
+				} )
+			) );
 		}
 	}
 }

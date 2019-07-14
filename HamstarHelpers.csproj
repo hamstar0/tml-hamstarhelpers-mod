@@ -286,6 +286,7 @@
     <Compile Include="Services\AnimatedColors\AnimatedColorsManager.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors_Instance.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
+    <Compile Include="Services\EntityGroups\Classes.cs" />
     <Compile Include="Services\Hooks\WorldHooks\WorldTimeHooks.cs" />
     <Compile Include="Services\Hooks\WorldHooks\WorldTimeHooks_Instance.cs" />
     <Compile Include="Services\UI\ControlPanel\ControlPanelTabs.cs" />

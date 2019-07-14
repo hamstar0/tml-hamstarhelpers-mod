@@ -1,24 +1,30 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using System;
-
-using Matcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
+using System.Collections.Generic;
+using Terraria;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Defs {
 	partial class EntityGroupDefs {
-		internal static void DefineItemPlaceablesGroups1( Action<string, string[], Matcher> addDef ) {
-			addDef( "Any Placeable", null,
-				( item, grps ) => {
+		internal static void DefineItemPlaceablesGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Placeable", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile != -1 || item.createWall != -1;
-				} );
-			addDef( "Any Tile", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Tile", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile != -1;
-				} );
-			addDef( "Any Wall", null,
-				( item, grps ) => {
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Wall", null,
+				new ItemGroupMatcher( ( item, grps ) => {
 					return item.createWall != -1;
-				} );
+				} )
+			) );
 		}
 	}
 }

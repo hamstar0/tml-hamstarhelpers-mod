@@ -9,16 +9,19 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-using ItemMatcher = System.Func<Terraria.Item, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
-using NPCMatcher = System.Func<Terraria.NPC, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
-using ProjMatcher = System.Func<Terraria.Projectile, System.Collections.Generic.IDictionary<string, System.Collections.Generic.ISet<int>>, bool>;
-
 
 namespace HamstarHelpers.Services.EntityGroups {
+	/// <summary>
+	/// Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs,
+	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
+	/// </summary>
 	public partial class EntityGroups {
 		private readonly static object MyLock = new object();
 
 		private readonly static object MyValidatorKey;
+		/// <summary>
+		/// Used as the identifier object for binding events ("promises") to entity group loading completion.
+		/// </summary>
 		public readonly static PromiseValidator LoadedAllValidator;
 
 
@@ -36,25 +39,17 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		private bool IsEnabled = false;
 
-		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ItemGroups = null;
-		private IReadOnlyDictionary<string, ReadOnlySet<int>> _NPCGroups = null;
-		private IReadOnlyDictionary<string, ReadOnlySet<int>> _ProjGroups = null;
+		private IDictionary<string, ReadOnlySet<int>> ItemGroups = new Dictionary<string, ReadOnlySet<int>>();
+		private IDictionary<string, ReadOnlySet<int>> NPCGroups = new Dictionary<string, ReadOnlySet<int>>();
+		private IDictionary<string, ReadOnlySet<int>> ProjGroups = new Dictionary<string, ReadOnlySet<int>>();
 
-		private IReadOnlyDictionary<int, ReadOnlySet<string>> _GroupsPerItem = null;
-		private IReadOnlyDictionary<int, ReadOnlySet<string>> _GroupsPerNPC = null;
-		private IReadOnlyDictionary<int, ReadOnlySet<string>> _GroupsPerProj = null;
+		private IDictionary<int, ReadOnlySet<string>> GroupsPerItem = new Dictionary<int, ReadOnlySet<string>>();
+		private IDictionary<int, ReadOnlySet<string>> GroupsPerNPC = new Dictionary<int, ReadOnlySet<string>>();
+		private IDictionary<int, ReadOnlySet<string>> GroupsPerProj = new Dictionary<int, ReadOnlySet<string>>();
 
-		private IDictionary<string, ReadOnlySet<int>> _RawItemGroups = new Dictionary<string, ReadOnlySet<int>>();
-		private IDictionary<string, ReadOnlySet<int>> _RawNPCGroups = new Dictionary<string, ReadOnlySet<int>>();
-		private IDictionary<string, ReadOnlySet<int>> _RawProjGroups = new Dictionary<string, ReadOnlySet<int>>();
-
-		private IDictionary<int, ReadOnlySet<string>> _RawGroupsPerItem = new Dictionary<int, ReadOnlySet<string>>();
-		private IDictionary<int, ReadOnlySet<string>> _RawGroupsPerNPC = new Dictionary<int, ReadOnlySet<string>>();
-		private IDictionary<int, ReadOnlySet<string>> _RawGroupsPerProj = new Dictionary<int, ReadOnlySet<string>>();
-
-		private IList<Tuple<string, string[], ItemMatcher>> CustomItemMatchers = new List<Tuple<string, string[], ItemMatcher>>();
-		private IList<Tuple<string, string[], NPCMatcher>> CustomNPCMatchers = new List<Tuple<string, string[], NPCMatcher>>();
-		private IList<Tuple<string, string[], ProjMatcher>> CustomProjMatchers = new List<Tuple<string, string[], ProjMatcher>>();
+		private IList<EntityGroupMatcherDefinition<Item>> CustomItemMatchers = new List<EntityGroupMatcherDefinition<Item>>();
+		private IList<EntityGroupMatcherDefinition<NPC>> CustomNPCMatchers = new List<EntityGroupMatcherDefinition<NPC>>();
+		private IList<EntityGroupMatcherDefinition<Projectile>> CustomProjMatchers = new List<EntityGroupMatcherDefinition<Projectile>>();
 
 		private IList<Item> ItemPool = null;
 		private IList<NPC> NPCPool = null;
@@ -65,16 +60,6 @@ namespace HamstarHelpers.Services.EntityGroups {
 		////////////////
 
 		internal EntityGroups() {
-			lock( EntityGroups.MyLock ) {
-				this._ItemGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawItemGroups );
-				this._NPCGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawNPCGroups );
-				this._ProjGroups = new ReadOnlyDictionary<string, ReadOnlySet<int>>( this._RawProjGroups );
-
-				this._GroupsPerItem = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerItem );
-				this._GroupsPerNPC = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerNPC );
-				this._GroupsPerProj = new ReadOnlyDictionary<int, ReadOnlySet<string>>( this._RawGroupsPerProj );
-			}
-			
 			PromisedHooks.PromisedHooks.AddPostModLoadPromise( () => {
 				if( !this.IsEnabled ) { return; }
 
@@ -86,9 +71,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 					int _check = 0;
 
 					try {
-						IList<Tuple<string, string[], ItemMatcher>> itemMatchers;
-						IList<Tuple<string, string[], NPCMatcher>> npcMatchers;
-						IList<Tuple<string, string[], ProjMatcher>> projMatchers;
+						IList<EntityGroupMatcherDefinition<Item>> itemMatchers;
+						IList<EntityGroupMatcherDefinition<NPC>> npcMatchers;
+						IList<EntityGroupMatcherDefinition<Projectile>> projMatchers;
 
 						lock( EntityGroups.MyLock ) {
 							itemMatchers = EntityGroups.DefineItemGroups();
@@ -131,6 +116,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			} );
 		}
 
+		/// @private
 		~EntityGroups() {
 			lock( EntityGroups.MyLock ) { }
 		}
