@@ -4,6 +4,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.LoadHooks {
+	/// <summary>
+	/// Allows defining load hooks. These are of a set of presets corresponding to important game code "load" events.
+	/// </summary>
 	public partial class LoadHooks {
 		private static object PostModLoadHookLock = new object();
 		private static object ModUnloadHookLock = new object();

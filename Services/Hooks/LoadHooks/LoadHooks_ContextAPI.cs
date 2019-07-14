@@ -3,6 +3,9 @@ using System;
 
 
 namespace HamstarHelpers.Services.LoadHooks {
+	/// <summary>
+	/// Allows defining load hooks. These are of a set of presets corresponding to important game code "load" events.
+	/// </summary>
 	public partial class LoadHooks {
 		/// <summary>
 		/// Declares an action to run after mods are loaded (PostSetupContent, PostAddRecipes, AddRecipeGroups).

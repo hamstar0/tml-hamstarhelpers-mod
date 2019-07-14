@@ -42,6 +42,12 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		////////////////
 
+		/// <summary>
+		/// Add a custom hook.
+		/// </summary>
+		/// <param name="validator">Validator used to identify the hook and validate what can trigger it.</param>
+		/// <param name="func">The hook. Accepts an object containing its arguments (type validated). Returns `true`
+		/// if it's meant to be repeatably called (when the conditions clear up and then later come to pass).</param>
 		public static void AddHook( CustomLoadHookValidator validator, Func<object, bool> func ) {
 			var mymod = ModHelpersMod.Instance;
 			bool conditionsMet;
@@ -53,7 +59,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 			if( conditionsMet ) {
 				lock( validator ) {
-					args = mymod.CustomLoadHooks.HookArgs[ validator ];
+					args = mymod.CustomLoadHooks.HookArgs[validator];
 				}
 
 				if( validator.ArgType == null && args != null ) {
@@ -79,13 +85,26 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
-		public static void AddHook( CustomLoadHookValidator validator, Func<bool> action ) {
-			CustomLoadHooks.AddHook( validator, _ => action() );
+		/// <summary>
+		/// Add a custom hook.
+		/// </summary>
+		/// <param name="validator">Validator used to identify the hook and validate what can trigger it.</param>
+		/// <param name="func">The hook. Returns `true` if it's meant to be repeatably called (when the conditions
+		/// clear up and then later come to pass).</param>
+		public static void AddHook( CustomLoadHookValidator validator, Func<bool> func ) {
+			CustomLoadHooks.AddHook( validator, _ => func() );
 		}
 
 
 		////////////////
 
+		/// <summary>
+		/// Triggers all of a given hook. A `validatorKey` must be provided matching the `validator`'s key (loosely
+		/// guards against mis-triggering hooks).
+		/// </summary>
+		/// <param name="validator">Validator used to identify the hook and validate what can trigger it.</param>
+		/// <param name="validatorKey">A key that must match the `validator`'s own key.</param>
+		/// <param name="args">Arguments passed to each hook. Must match the `validator`'s expected argument `Type`.</param>
 		public static void TriggerHook( CustomLoadHookValidator validator, object validatorKey, object args ) {
 			var mymod = ModHelpersMod.Instance;
 			bool isValidated, isEach;
@@ -100,7 +119,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 				throw new HamstarException( "Validation failed." );
 			}
 			if( validator.ArgType == null && args != null ) {
-				throw new HamstarException( "Invalid argument type: `null` expected, found "+args.GetType().Name );
+				throw new HamstarException( "Invalid argument type: `null` expected, found " + args.GetType().Name );
 			}
 			if( validator.ArgType != args.GetType() ) {
 				throw new HamstarException( "Invalid argument type: Expected "
@@ -136,11 +155,23 @@ namespace HamstarHelpers.Services.LoadHooks {
 			}
 		}
 
+		/// <summary>
+		/// Triggers all of a given hook. A `validatorKey` must be provided matching the `validator`'s key (loosely
+		/// guards against mis-triggering hooks).
+		/// </summary>
+		/// <param name="validator">Validator used to identify the hook and validate what can trigger it.</param>
+		/// <param name="validatorKey">A key that must match the `validator`'s own key.</param>
 		public static void TriggerHook( CustomLoadHookValidator validator, object validatorKey ) {
 			CustomLoadHooks.TriggerHook( validator, validatorKey, null );
 		}
 
 
+		/// <summary>
+		/// Untriggers all of a given hook, allowing for reuse. A `validatorKey` must be provided matching the
+		/// `validator`'s key (loosely guards against mis-triggering hooks).
+		/// </summary>
+		/// <param name="validator">Validator used to identify the hook and validate what can trigger it.</param>
+		/// <param name="validatorKey">A key that must match the `validator`'s own key.</param>
 		public static void UntriggerHook( CustomLoadHookValidator validator, object validatorKey ) {
 			var mymod = ModHelpersMod.Instance;
 
@@ -157,6 +188,12 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		////////////////
 
+		/// <summary>
+		/// Clears all of a given hook. A `validatorKey` must be provided matching the `validator`'s key (loosely guards
+		/// against mis-triggering hooks).
+		/// </summary>
+		/// <param name="validator">Validator used to identify the hook and validate what can trigger it.</param>
+		/// <param name="validatorKey">A key that must match the `validator`'s own key.</param>
 		public static void ClearHook( CustomLoadHookValidator validator, object validatorKey ) {
 			var mymod = ModHelpersMod.Instance;
 

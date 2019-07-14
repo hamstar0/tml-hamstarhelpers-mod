@@ -5,6 +5,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.LoadHooks {
+	/// <summary>
+	/// Allows defining load hooks. These are of a set of presets corresponding to important game code "load" events.
+	/// </summary>
 	public partial class LoadHooks {
 		private IList<Action> PostModLoadHooks = new List<Action>();
 		private IList<Action> ModUnloadHooks = new List<Action>();
@@ -39,6 +42,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 			Main.OnTick += LoadHooks._Update;
 		}
 
+		/// @private
 		~LoadHooks() {
 			try {
 				Main.OnTick -= LoadHooks._Update;
