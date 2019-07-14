@@ -89,19 +89,226 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Services.Timers.Timers Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function, MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS.  
+<p>Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#afac1184365684da5f13cc8e9600f2d4e" title="Returns a delegate that returns true when at least 1/60th second (1 60FPS &#39;tick&#39;) has fully elapsed s...">MainOnTickGet()</a> provides a way to use Main.OnTick for running background tasks at 60FPS.  
  <a href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:afac1184365684da5f13cc8e9600f2d4e"><td class="memItemLeft" align="right" valign="top">static Func&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#afac1184365684da5f13cc8e9600f2d4e">MainOnTickGet</a> ()</td></tr>
+<tr class="memdesc:afac1184365684da5f13cc8e9600f2d4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a delegate that returns true when at least 1/60th second (1 60FPS 'tick') has fully elapsed since the last time the delegate returned true.  <a href="#afac1184365684da5f13cc8e9600f2d4e">More...</a><br /></td></tr>
+<tr class="separator:afac1184365684da5f13cc8e9600f2d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af57b9f7064163825446e002675dac45b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#af57b9f7064163825446e002675dac45b">SetTimer</a> (string name, int tickDuration, Func&lt; bool &gt; action)</td></tr>
+<tr class="memdesc:af57b9f7064163825446e002675dac45b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded, but does not obstruct current thread.  <a href="#af57b9f7064163825446e002675dac45b">More...</a><br /></td></tr>
+<tr class="separator:af57b9f7064163825446e002675dac45b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae651c264eae0a0a11bd63c23dcc239f2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#ae651c264eae0a0a11bd63c23dcc239f2">GetTimerTickDuration</a> (string name)</td></tr>
+<tr class="memdesc:ae651c264eae0a0a11bd63c23dcc239f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates time remaining for the given 'timer'.  <a href="#ae651c264eae0a0a11bd63c23dcc239f2">More...</a><br /></td></tr>
+<tr class="separator:ae651c264eae0a0a11bd63c23dcc239f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ba0fac9f7e9f13a1c0c81a86f2a5d9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#aa4ba0fac9f7e9f13a1c0c81a86f2a5d9">UnsetTimer</a> (string name)</td></tr>
+<tr class="memdesc:aa4ba0fac9f7e9f13a1c0c81a86f2a5d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a given 'timer'.  <a href="#aa4ba0fac9f7e9f13a1c0c81a86f2a5d9">More...</a><br /></td></tr>
+<tr class="separator:aa4ba0fac9f7e9f13a1c0c81a86f2a5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a629971232b7d1e0259b333c3d5d519d7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#a629971232b7d1e0259b333c3d5d519d7">ResetAll</a> ()</td></tr>
+<tr class="memdesc:a629971232b7d1e0259b333c3d5d519d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends all 'timers'.  <a href="#a629971232b7d1e0259b333c3d5d519d7">More...</a><br /></td></tr>
+<tr class="separator:a629971232b7d1e0259b333c3d5d519d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function, MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS. </p>
+<div class="textblock"><p>Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#afac1184365684da5f13cc8e9600f2d4e" title="Returns a delegate that returns true when at least 1/60th second (1 60FPS &#39;tick&#39;) has fully elapsed s...">MainOnTickGet()</a> provides a way to use Main.OnTick for running background tasks at 60FPS. </p>
 
 <p class="definition">Definition at line <a class="el" href="_timers_8cs_source.html#l00012">12</a> of file <a class="el" href="_timers_8cs_source.html">Timers.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae651c264eae0a0a11bd63c23dcc239f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae651c264eae0a0a11bd63c23dcc239f2">&#9670;&nbsp;</a></span>GetTimerTickDuration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Services.Timers.Timers.GetTimerTickDuration </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates time remaining for the given 'timer'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Identifier of timer.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_timers_8cs_source.html#l00076">76</a> of file <a class="el" href="_timers_8cs_source.html">Timers.cs</a>.</p>
+
+</div>
+</div>
+<a id="afac1184365684da5f13cc8e9600f2d4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afac1184365684da5f13cc8e9600f2d4e">&#9670;&nbsp;</a></span>MainOnTickGet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Func&lt;bool&gt; HamstarHelpers.Services.Timers.Timers.MainOnTickGet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a delegate that returns true when at least 1/60th second (1 60FPS 'tick') has fully elapsed since the last time the delegate returned true. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_timers_8cs_source.html#l00024">24</a> of file <a class="el" href="_timers_8cs_source.html">Timers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a629971232b7d1e0259b333c3d5d519d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a629971232b7d1e0259b333c3d5d519d7">&#9670;&nbsp;</a></span>ResetAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Timers.Timers.ResetAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ends all 'timers'. </p>
+
+<p class="definition">Definition at line <a class="el" href="_timers_8cs_source.html#l00111">111</a> of file <a class="el" href="_timers_8cs_source.html">Timers.cs</a>.</p>
+
+</div>
+</div>
+<a id="af57b9f7064163825446e002675dac45b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af57b9f7064163825446e002675dac45b">&#9670;&nbsp;</a></span>SetTimer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Timers.Timers.SetTimer </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tickDuration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; bool &gt;&#160;</td>
+          <td class="paramname"><em>action</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded, but does not obstruct current thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Identifier of timer. Re-assigning with this identifier replaces any existing timer.</td></tr>
+    <tr><td class="paramname">tickDuration</td><td></td></tr>
+    <tr><td class="paramname">action</td><td>Action to run. Returns <code>true</code> to make the action repeat after another period of the given tick duration.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_timers_8cs_source.html#l00059">59</a> of file <a class="el" href="_timers_8cs_source.html">Timers.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa4ba0fac9f7e9f13a1c0c81a86f2a5d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ba0fac9f7e9f13a1c0c81a86f2a5d9">&#9670;&nbsp;</a></span>UnsetTimer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Timers.Timers.UnsetTimer </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ends a given 'timer'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Identifier of timer.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_timers_8cs_source.html#l00094">94</a> of file <a class="el" href="_timers_8cs_source.html">Timers.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Services/Timers/<a class="el" href="_timers_8cs_source.html">Timers.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Services/Timers/<a class="el" href="_timers___instance_8cs_source.html">Timers_Instance.cs</a></li>
 </ul>

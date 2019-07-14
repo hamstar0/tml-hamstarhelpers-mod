@@ -89,6 +89,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Services.EntityGroups.EntityGroups Class Reference</div>  </div>
@@ -97,11 +99,558 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <p>Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs, or projectiles. Must be enabled on mod load to be used (note: collections may require memory).  
  <a href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a805a151c480189639038ac57c5e779bf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a805a151c480189639038ac57c5e779bf">Enable</a> ()</td></tr>
+<tr class="memdesc:a805a151c480189639038ac57c5e779bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables entity groups. Must be called before all mod load and setup functions are called.  <a href="#a805a151c480189639038ac57c5e779bf">More...</a><br /></td></tr>
+<tr class="separator:a805a151c480189639038ac57c5e779bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a048523215339d0e13031baa766b80145"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a048523215339d0e13031baa766b80145">AddCustomItemGroup</a> (string groupName, string[] groupDependencies, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html">ItemGroupMatcher</a> matcher)</td></tr>
+<tr class="memdesc:a048523215339d0e13031baa766b80145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a custom item group to add to the database. Must be called after entity groups loaded, but before mods finish loading (PostSetupContent, etc.).  <a href="#a048523215339d0e13031baa766b80145">More...</a><br /></td></tr>
+<tr class="separator:a048523215339d0e13031baa766b80145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a370746016a41449f2ae18084e08a24e0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a370746016a41449f2ae18084e08a24e0">AddCustomNPCGroup</a> (string groupName, string[] groupDependencies, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_n_p_c_group_matcher.html">NPCGroupMatcher</a> matcher)</td></tr>
+<tr class="memdesc:a370746016a41449f2ae18084e08a24e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a custom NPC group to add to the database. Must be called after entity groups loaded, but before mods finish loading (PostSetupContent, etc.).  <a href="#a370746016a41449f2ae18084e08a24e0">More...</a><br /></td></tr>
+<tr class="separator:a370746016a41449f2ae18084e08a24e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4da73f9081280134114373da5befc70"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#aa4da73f9081280134114373da5befc70">AddCustomProjectileGroup</a> (string groupName, string[] groupDependencies, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html">ProjectileGroupMatcher</a> matcher)</td></tr>
+<tr class="memdesc:aa4da73f9081280134114373da5befc70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a custom Projectile group to add to the database. Must be called after entity groups loaded, but before mods finish loading (PostSetupContent, etc.).  <a href="#aa4da73f9081280134114373da5befc70">More...</a><br /></td></tr>
+<tr class="separator:aa4da73f9081280134114373da5befc70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79901d50a02f9501740c580d8b442437"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a79901d50a02f9501740c580d8b442437">TryGetItemGroup</a> (string name, out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; int &gt; group)</td></tr>
+<tr class="memdesc:a79901d50a02f9501740c580d8b442437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an item group by its name.  <a href="#a79901d50a02f9501740c580d8b442437">More...</a><br /></td></tr>
+<tr class="separator:a79901d50a02f9501740c580d8b442437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1d0709114c289dd7dc7ebf52125bd4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ace1d0709114c289dd7dc7ebf52125bd4">TryGetNpcGroup</a> (string name, out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; int &gt; group)</td></tr>
+<tr class="memdesc:ace1d0709114c289dd7dc7ebf52125bd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an NPC group by its name.  <a href="#ace1d0709114c289dd7dc7ebf52125bd4">More...</a><br /></td></tr>
+<tr class="separator:ace1d0709114c289dd7dc7ebf52125bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec95622b450b5cedd5c0f451f8d9eed"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a6ec95622b450b5cedd5c0f451f8d9eed">TryGetProjectileGroup</a> (string name, out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; int &gt; group)</td></tr>
+<tr class="memdesc:a6ec95622b450b5cedd5c0f451f8d9eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a projectile group by its name.  <a href="#a6ec95622b450b5cedd5c0f451f8d9eed">More...</a><br /></td></tr>
+<tr class="separator:a6ec95622b450b5cedd5c0f451f8d9eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c14f32ac78da093fdd90ad180f36063"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a9c14f32ac78da093fdd90ad180f36063">TryGetGroupsPerItem</a> (int itemType, out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; string &gt; groupNames)</td></tr>
+<tr class="memdesc:a9c14f32ac78da093fdd90ad180f36063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves all groups (names) of a given item (type).  <a href="#a9c14f32ac78da093fdd90ad180f36063">More...</a><br /></td></tr>
+<tr class="separator:a9c14f32ac78da093fdd90ad180f36063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b78be75898c7b076b25be07503c1671"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a4b78be75898c7b076b25be07503c1671">TryGetGroupsPerNPC</a> (int npcType, out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; string &gt; groupNames)</td></tr>
+<tr class="memdesc:a4b78be75898c7b076b25be07503c1671"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves all groups (names) of a given NPC (type).  <a href="#a4b78be75898c7b076b25be07503c1671">More...</a><br /></td></tr>
+<tr class="separator:a4b78be75898c7b076b25be07503c1671"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4c6a545ad6925c161ef3b14f20360d1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ac4c6a545ad6925c161ef3b14f20360d1">TryGetGroupsPerProjectile</a> (int projType, out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; string &gt; groupNames)</td></tr>
+<tr class="memdesc:ac4c6a545ad6925c161ef3b14f20360d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves all groups (names) of a given projectile (type).  <a href="#ac4c6a545ad6925c161ef3b14f20360d1">More...</a><br /></td></tr>
+<tr class="separator:ac4c6a545ad6925c161ef3b14f20360d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a6cae085639b86693f7a0b7ebbe75bf20"><td class="memItemLeft" align="right" valign="top">static readonly <a class="el" href="class_hamstar_helpers_1_1_services_1_1_load_hooks_1_1_custom_load_hook_validator.html">CustomLoadHookValidator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a6cae085639b86693f7a0b7ebbe75bf20">LoadedAllValidator</a></td></tr>
+<tr class="memdesc:a6cae085639b86693f7a0b7ebbe75bf20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used as the identifier object for binding events (cusom load hooks) to entity group loading completion.  <a href="#a6cae085639b86693f7a0b7ebbe75bf20">More...</a><br /></td></tr>
+<tr class="separator:a6cae085639b86693f7a0b7ebbe75bf20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs, or projectiles. Must be enabled on mod load to be used (note: collections may require memory). </p>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00016">16</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00013">13</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a048523215339d0e13031baa766b80145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a048523215339d0e13031baa766b80145">&#9670;&nbsp;</a></span>AddCustomItemGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.EntityGroups.EntityGroups.AddCustomItemGroup </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>groupName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>groupDependencies</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html">ItemGroupMatcher</a>&#160;</td>
+          <td class="paramname"><em>matcher</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defines a custom item group to add to the database. Must be called after entity groups loaded, but before mods finish loading (PostSetupContent, etc.). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">groupName</td><td></td></tr>
+    <tr><td class="paramname">groupDependencies</td><td>Other groups the current group references.</td></tr>
+    <tr><td class="paramname">matcher</td><td>Function to use to match items for this group.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00037">37</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="a370746016a41449f2ae18084e08a24e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a370746016a41449f2ae18084e08a24e0">&#9670;&nbsp;</a></span>AddCustomNPCGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.EntityGroups.EntityGroups.AddCustomNPCGroup </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>groupName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>groupDependencies</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_n_p_c_group_matcher.html">NPCGroupMatcher</a>&#160;</td>
+          <td class="paramname"><em>matcher</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defines a custom NPC group to add to the database. Must be called after entity groups loaded, but before mods finish loading (PostSetupContent, etc.). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">groupName</td><td></td></tr>
+    <tr><td class="paramname">groupDependencies</td><td>Other groups the current group references.</td></tr>
+    <tr><td class="paramname">matcher</td><td>Function to use to match NPCs for this group.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00055">55</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa4da73f9081280134114373da5befc70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4da73f9081280134114373da5befc70">&#9670;&nbsp;</a></span>AddCustomProjectileGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.EntityGroups.EntityGroups.AddCustomProjectileGroup </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>groupName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string []&#160;</td>
+          <td class="paramname"><em>groupDependencies</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html">ProjectileGroupMatcher</a>&#160;</td>
+          <td class="paramname"><em>matcher</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Defines a custom Projectile group to add to the database. Must be called after entity groups loaded, but before mods finish loading (PostSetupContent, etc.). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">groupName</td><td></td></tr>
+    <tr><td class="paramname">groupDependencies</td><td>Other groups the current group references.</td></tr>
+    <tr><td class="paramname">matcher</td><td>Function to use to match NPCs for this group.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00073">73</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="a805a151c480189639038ac57c5e779bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a805a151c480189639038ac57c5e779bf">&#9670;&nbsp;</a></span>Enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.EntityGroups.EntityGroups.Enable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enables entity groups. Must be called before all mod load and setup functions are called. </p>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00017">17</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9c14f32ac78da093fdd90ad180f36063"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c14f32ac78da093fdd90ad180f36063">&#9670;&nbsp;</a></span>TryGetGroupsPerItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetGroupsPerItem </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>itemType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>groupNames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves all groups (names) of a given item (type). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">itemType</td><td></td></tr>
+    <tr><td class="paramname">groupNames</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00129">129</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4b78be75898c7b076b25be07503c1671"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b78be75898c7b076b25be07503c1671">&#9670;&nbsp;</a></span>TryGetGroupsPerNPC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetGroupsPerNPC </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>npcType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>groupNames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves all groups (names) of a given NPC (type). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">npcType</td><td></td></tr>
+    <tr><td class="paramname">groupNames</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00140">140</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac4c6a545ad6925c161ef3b14f20360d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4c6a545ad6925c161ef3b14f20360d1">&#9670;&nbsp;</a></span>TryGetGroupsPerProjectile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetGroupsPerProjectile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>projType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>groupNames</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves all groups (names) of a given projectile (type). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">projType</td><td></td></tr>
+    <tr><td class="paramname">groupNames</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00151">151</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="a79901d50a02f9501740c580d8b442437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79901d50a02f9501740c580d8b442437">&#9670;&nbsp;</a></span>TryGetItemGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetItemGroup </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>group</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves an item group by its name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">group</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00095">95</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="ace1d0709114c289dd7dc7ebf52125bd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1d0709114c289dd7dc7ebf52125bd4">&#9670;&nbsp;</a></span>TryGetNpcGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetNpcGroup </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>group</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves an NPC group by its name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">group</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00106">106</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6ec95622b450b5cedd5c0f451f8d9eed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ec95622b450b5cedd5c0f451f8d9eed">&#9670;&nbsp;</a></span>TryGetProjectileGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetProjectileGroup </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html">ReadOnlySet</a>&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>group</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves a projectile group by its name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">group</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00117">117</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a6cae085639b86693f7a0b7ebbe75bf20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cae085639b86693f7a0b7ebbe75bf20">&#9670;&nbsp;</a></span>LoadedAllValidator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="class_hamstar_helpers_1_1_services_1_1_load_hooks_1_1_custom_load_hook_validator.html">CustomLoadHookValidator</a> HamstarHelpers.Services.EntityGroups.EntityGroups.LoadedAllValidator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used as the identifier object for binding events (cusom load hooks) to entity group loading completion. </p>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups___instance_8cs_source.html#l00024">24</a> of file <a class="el" href="_entity_groups___instance_8cs_source.html">EntityGroups_Instance.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Services/EntityGroups/<a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Services/EntityGroups/<a class="el" href="_entity_groups___instance_8cs_source.html">EntityGroups_Instance.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Services/EntityGroups/<a class="el" href="_entity_groups___instance___compute_8cs_source.html">EntityGroups_Instance_Compute.cs</a></li>

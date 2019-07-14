@@ -14,6 +14,7 @@ var searchData=
   ['isbeach',['IsBeach',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#afef123faa5b70bf4703be89a9353ec33',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['isbeachregion',['IsBeachRegion',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a40a71850c8bcaa251afb3ac713cd3984',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['isbeinginvaded',['IsBeingInvaded',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_state_helpers.html#aa7a7169c3dd1af4fba8edae6cbc3aa48',1,'HamstarHelpers::Helpers::World::WorldStateHelpers']]],
+  ['isdialogopen',['IsDialogOpen',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html#a7a3381dc9a9aef9811a5fd221d1fc454',1,'HamstarHelpers::Services::UI::ControlPanel::ControlPanelTabs']]],
   ['isdirtlayer',['IsDirtLayer',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a8e1382ddb5787e2d6a258636562fa0f1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['isdungeon',['IsDungeon',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html#a269db42c9f8eef951a0beb42e8d01097',1,'HamstarHelpers::Helpers::Tiles::TileWallHelpers']]],
   ['isflying',['IsFlying',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_movement_helpers.html#a27dc43a00d1c6c97586b178ee7fd9790',1,'HamstarHelpers::Helpers::Players::PlayerMovementHelpers']]],
@@ -25,6 +26,7 @@ var searchData=
   ['isloadedmodproperlypresented',['IsLoadedModProperlyPresented',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_identity_helpers.html#a6235be8c8c90e6bf97447b72dc5644dc',1,'HamstarHelpers::Helpers::TModLoader::Mods::ModIdentityHelpers']]],
   ['ismainspritebatchbegun',['IsMainSpriteBatchBegun',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#aa47a761a86770bb6ac6fd835e7ddfc1c',1,'HamstarHelpers::Helpers::XNA::XNAHelpers']]],
   ['ismodloaded',['IsModLoaded',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html#afafecff3e89a4b096f7417f910839168',1,'HamstarHelpers::Helpers::TModLoader::LoadHelpers']]],
+  ['ismodmismatchfound',['IsModMismatchFound',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#a22cdf8674215f3a60917fa9a92f94d3c',1,'HamstarHelpers::Services::ModHelpers::ModLockService']]],
   ['isnotvanillabombable',['IsNotVanillaBombable',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ac62dbea2ad4ef2cd90531f295604fdf5',1,'HamstarHelpers::Helpers::Tiles::TileHelpers']]],
   ['isnotvanillabombabletype',['IsNotVanillaBombableType',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a4861d7d7804289ec5f444661d962caf4',1,'HamstarHelpers::Helpers::Tiles::TileHelpers']]],
   ['isobject',['IsObject',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html#a66f7f76e5375e9c60fd705d93ceb3cb6',1,'HamstarHelpers::Helpers::Tiles::TileIdentityHelpers']]],
@@ -50,7 +52,9 @@ var searchData=
   ['iswithinunderworld',['IsWithinUnderworld',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a75f64827fe0487aefa2e8068b808c681',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['isworldbeingplayed',['IsWorldBeingPlayed',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html#a88e4ffe6ddbab6d488419e867a684a99',1,'HamstarHelpers::Helpers::TModLoader::LoadHelpers']]],
   ['isworldloaded',['IsWorldLoaded',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html#abc7cac389fceabfd6e4b6fa0fd6907a8',1,'HamstarHelpers::Helpers::TModLoader::LoadHelpers']]],
+  ['isworldlocked',['IsWorldLocked',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#a04cbdeb58c78985397fb390fe81865bb',1,'HamstarHelpers::Services::ModHelpers::ModLockService']]],
   ['isworldsafelybeingplayed',['IsWorldSafelyBeingPlayed',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html#abfa3e4a871eccb65d8791f0a1c043123',1,'HamstarHelpers::Helpers::TModLoader::LoadHelpers']]],
   ['isyoyo',['IsYoyo',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#ac4b67968e1a1a164f3d0c461bf2e15be',1,'HamstarHelpers::Helpers::Items::Attributes::ItemAttributeHelpers']]],
+  ['itemgroupmatcher',['ItemGroupMatcher',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html#a531847850ef6b13c3bc283085e5e2669',1,'HamstarHelpers::Services::EntityGroups::ItemGroupMatcher']]],
   ['itemhasingredients',['ItemHasIngredients',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers.html#abbd4681b57fbe43e3d3ea3e80b3c4624',1,'HamstarHelpers::Helpers::Recipes::RecipeHelpers']]]
 ];

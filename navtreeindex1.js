@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"_tile_identity_helpers_8cs_source.html":[2,0,0,0,2,16,3],
+"_tile_pattern_8cs_source.html":[2,0,0,0,2,16,4],
 "_tile_pattern___instance_8cs_source.html":[2,0,0,0,2,16,5],
 "_tile_wall_helpers_8cs_source.html":[2,0,0,0,2,16,6],
 "_tile_world_helpers_8cs_source.html":[2,0,0,0,2,16,7],
@@ -55,10 +57,10 @@ var NAVTREEINDEX1 =
 "_world_state_helpers___instance_8cs_source.html":[2,0,0,0,2,20,4],
 "_world_time_hooks_8cs_source.html":[2,0,0,0,6,5,2,0],
 "_world_time_hooks___instance_8cs_source.html":[2,0,0,0,6,5,2,1],
-"_x_n_a_color_helpers_8cs_source.html":[2,0,0,0,2,21,0],
 "_x_n_a_contract_resolver_8cs_source.html":[2,0,0,0,1,2,3],
-"_x_n_a_helpers_8cs_source.html":[2,0,0,0,2,21,1],
-"_x_n_a_helpers___instance_8cs_source.html":[2,0,0,0,2,21,2],
+"_xna_color_helpers_8cs_source.html":[2,0,0,0,2,21,0],
+"_xna_helpers_8cs_source.html":[2,0,0,0,2,21,1],
+"_xna_helpers___instance_8cs_source.html":[2,0,0,0,2,21,2],
 "annotated.html":[1,0],
 "class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_dictionary_of_sets.html":[1,0,0,0,0,0],
 "class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#a22c7c7e0bb3a0156942482c64d926ec7":[1,0,0,0,0,0,4],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a73d2424bf86d2b1ba86a73e71fb3505c":[1,0,0,0,3,0,5,9],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a7976a5ea1cc875550a11bba8f45c3a87":[1,0,0,0,3,0,5,15],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a8269dac0a5ed683b5df8218d9d517361":[1,0,0,0,3,0,5,1],
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#aae607443be34bdd2da4077aab9a3d3f6":[1,0,0,0,3,0,5,10],
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ab5b7b4fed24f5d9470d9ca24402bef61":[1,0,0,0,3,0,5,2],
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#abac563af4067344707869d7e1502bb11":[1,0,0,0,3,0,5,13]
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#aae607443be34bdd2da4077aab9a3d3f6":[1,0,0,0,3,0,5,10]
 };

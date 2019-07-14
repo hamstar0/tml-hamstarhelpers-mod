@@ -7,6 +7,7 @@ var searchData=
   ['loadmodbrowsermoddownloads',['LoadModBrowserModDownloads',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html#a0a5524c8d2c8805a6ad698eb77dda224',1,'HamstarHelpers::Helpers::TModLoader::Menus::MainMenuHelpers']]],
   ['loadtextfile',['LoadTextFile',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6c49a09f75cd582c707efca7157e9a3b',1,'HamstarHelpers::Helpers::DotNET::FileHelpers']]],
   ['lockdownplayerpertick',['LockdownPlayerPerTick',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a1e1c1870e9e503db990fe60d95d924d0',1,'HamstarHelpers::Helpers::Players::PlayerHelpers']]],
+  ['lockworld',['LockWorld',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#ad5f214fdaf40fa50de91c6b085541a5d',1,'HamstarHelpers::Services::ModHelpers::ModLockService']]],
   ['log',['Log',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae141f63955b55fae280ffdb3c4a19f8e',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['logonce',['LogOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae74866022df1221b810f0c9399944d5d',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['looselyappraise',['LooselyAppraise',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#a48791356605dea4bf93e46490c1bdefe',1,'HamstarHelpers::Helpers::Items::Attributes::ItemAttributeHelpers']]],

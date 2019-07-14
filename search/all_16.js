@@ -1,8 +1,11 @@
 var searchData=
 [
+  ['wallofflesh',['WallOfFlesh',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#aa57b3c253a57ce546bea9f2f71011fe6',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['warn',['Warn',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a6ea1feb593e0a83f7bc29628e09030db',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['warnonce',['WarnOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a40930a3f028fad258de84ba729639694',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['warppotions',['WarpPotions',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a8932fd0701bb027414784195ffbe637a',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
+  ['water',['Water',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a719069c8777e18eeced10b790d16a95b',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
+  ['weakreferences',['WeakReferences',['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html#a9673582cfd0e0dfe9a23707dbe002418',1,'HamstarHelpers::Services::Tml::BuildPropertiesViewer']]],
   ['webconnectionhelpers',['WebConnectionHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html',1,'HamstarHelpers::Helpers::Net']]],
   ['webhelpers',['WebHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_helpers.html',1,'HamstarHelpers::Helpers::Net']]],
   ['weightedpressureplates',['WeightedPressurePlates',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#ae8685a7a77d0da4d68d161be784b673b',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],
@@ -18,5 +21,6 @@ var searchData=
   ['worldsizemedium',['WorldSizeMedium',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a4da7daacfb34b919e1ca492e7c31e9c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizesmall',['WorldSizeSmall',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldstatehelpers',['WorldStateHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_state_helpers.html',1,'HamstarHelpers::Helpers::World']]],
+  ['worldtimehooks',['WorldTimeHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_world_hooks_1_1_world_time_hooks.html',1,'HamstarHelpers::Services::Hooks::WorldHooks']]],
   ['writestream',['WriteStream',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_stream_1_1_stream_protocol.html#a582dfabdeb1ce8cdafa38e557aa00e72',1,'HamstarHelpers::Components::Protocols::Stream::StreamProtocol']]]
 ];

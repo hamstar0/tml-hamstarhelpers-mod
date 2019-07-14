@@ -21,9 +21,9 @@ var searchData=
   ['playernpchelpers',['PlayerNPCHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_n_p_c_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerteamhelpers',['PlayerTeamHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_team_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerwarphelpers',['PlayerWarpHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
+  ['projectilegroupmatcher',['ProjectileGroupMatcher',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html',1,'HamstarHelpers::Services::EntityGroups']]],
   ['projectilehelpers',['ProjectileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_helpers.html',1,'HamstarHelpers::Helpers::Projectiles']]],
   ['projectileidentityhelpers',['ProjectileIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html',1,'HamstarHelpers::Helpers::Projectiles']]],
-  ['promisedhooks',['PromisedHooks',['../class_hamstar_helpers_1_1_services_1_1_promised_hooks_1_1_promised_hooks.html',1,'HamstarHelpers::Services::PromisedHooks']]],
   ['protocolignoreattribute',['ProtocolIgnoreAttribute',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_ignore_attribute.html',1,'HamstarHelpers::Components::Protocols']]],
   ['protocolwriteignoreclientattribute',['ProtocolWriteIgnoreClientAttribute',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_client_attribute.html',1,'HamstarHelpers::Components::Protocols']]],
   ['protocolwriteignoreserverattribute',['ProtocolWriteIgnoreServerAttribute',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_server_attribute.html',1,'HamstarHelpers::Components::Protocols']]]

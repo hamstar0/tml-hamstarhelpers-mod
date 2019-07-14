@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Services.Debug.DataDumper.DataDumper Class Reference</div>  </div>
@@ -97,11 +98,189 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <p>Provides a service for supplying data sources that can be pulled from and collected into an on-demand dump as a file. Uses a dedicated folder at "ModLoader/Logs/Dumps". Primarily used for debugging.  
  <a href="class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a2fb095a7ce701e139e1fefa503e0d010"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a2fb095a7ce701e139e1fefa503e0d010">DumpToLocalFile</a> (string data, out string fileNameWithExtension)</td></tr>
+<tr class="separator:a2fb095a7ce701e139e1fefa503e0d010"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6caee33f65c8066b26f3d91aac29bf4b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a6caee33f65c8066b26f3d91aac29bf4b">GetRelativePath</a> ()</td></tr>
+<tr class="memdesc:a6caee33f65c8066b26f3d91aac29bf4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Folder path of dump files relative to ModLoader: Logs/Dumps  <a href="#a6caee33f65c8066b26f3d91aac29bf4b">More...</a><br /></td></tr>
+<tr class="separator:a6caee33f65c8066b26f3d91aac29bf4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b473d8de9bbb0fb1ac3918f04bb002"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a76b473d8de9bbb0fb1ac3918f04bb002">SetDumpSource</a> (string name, Func&lt; string &gt; dump)</td></tr>
+<tr class="memdesc:a76b473d8de9bbb0fb1ac3918f04bb002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a callback as a data source to output within the dump file with the given label (<code>name</code>).  <a href="#a76b473d8de9bbb0fb1ac3918f04bb002">More...</a><br /></td></tr>
+<tr class="separator:a76b473d8de9bbb0fb1ac3918f04bb002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd8cbf54b06c0d0294bb8eacff11528"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#adcd8cbf54b06c0d0294bb8eacff11528">DumpToFile</a> (out string fileName)</td></tr>
+<tr class="memdesc:adcd8cbf54b06c0d0294bb8eacff11528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dumps the outputs to a dump file.  <a href="#adcd8cbf54b06c0d0294bb8eacff11528">More...</a><br /></td></tr>
+<tr class="separator:adcd8cbf54b06c0d0294bb8eacff11528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides a service for supplying data sources that can be pulled from and collected into an on-demand dump as a file. Uses a dedicated folder at "ModLoader/Logs/Dumps". Primarily used for debugging. </p>
 
 <p class="definition">Definition at line <a class="el" href="_data_dumper_8cs_source.html#l00017">17</a> of file <a class="el" href="_data_dumper_8cs_source.html">DataDumper.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="adcd8cbf54b06c0d0294bb8eacff11528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcd8cbf54b06c0d0294bb8eacff11528">&#9670;&nbsp;</a></span>DumpToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.Debug.DataDumper.DataDumper.DumpToFile </td>
+          <td>(</td>
+          <td class="paramtype">out string&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dumps the outputs to a dump file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_data_dumper_8cs_source.html#l00132">132</a> of file <a class="el" href="_data_dumper_8cs_source.html">DataDumper.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2fb095a7ce701e139e1fefa503e0d010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fb095a7ce701e139e1fefa503e0d010">&#9670;&nbsp;</a></span>DumpToLocalFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.Debug.DataDumper.DataDumper.DumpToLocalFile </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out string&#160;</td>
+          <td class="paramname"><em>fileNameWithExtension</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td></td></tr>
+    <tr><td class="paramname">fileNameWithExtension</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_data_dumper_8cs_source.html#l00030">30</a> of file <a class="el" href="_data_dumper_8cs_source.html">DataDumper.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6caee33f65c8066b26f3d91aac29bf4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6caee33f65c8066b26f3d91aac29bf4b">&#9670;&nbsp;</a></span>GetRelativePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Services.Debug.DataDumper.DataDumper.GetRelativePath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Folder path of dump files relative to ModLoader: Logs/Dumps </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_data_dumper_8cs_source.html#l00089">89</a> of file <a class="el" href="_data_dumper_8cs_source.html">DataDumper.cs</a>.</p>
+
+</div>
+</div>
+<a id="a76b473d8de9bbb0fb1ac3918f04bb002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76b473d8de9bbb0fb1ac3918f04bb002">&#9670;&nbsp;</a></span>SetDumpSource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Debug.DataDumper.DataDumper.SetDumpSource </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>dump</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a callback as a data source to output within the dump file with the given label (<code>name</code>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">dump</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_data_dumper_8cs_source.html#l00116">116</a> of file <a class="el" href="_data_dumper_8cs_source.html">DataDumper.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>v5 (tML11)/HamstarHelpers/Services/Debug/DataDumper/<a class="el" href="_data_dumper_8cs_source.html">DataDumper.cs</a></li>
 </ul>
 </div><!-- contents -->

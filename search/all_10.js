@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['queenbee',['QueenBee',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#aa99a25d6a29274761a2f0ac71b2d1566',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['questitemrarity',['QuestItemRarity',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html#a913a4a2152182447d7356c7e69d47280',1,'HamstarHelpers::Helpers::Items::Attributes::ItemRarityAttributeHelpers']]],
   ['quickrequest_3c_20t_20_3e',['QuickRequest&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html#ada0adb61b2634bc31a0609d0777918ab',1,'HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolRequestToClient.QuickRequest&lt; T &gt;()'],['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html#a7f352cfabf45c5d09d2b89a51b75c88f',1,'HamstarHelpers.Components.Protocols.Packet.Interfaces.PacketProtocolRequestToServer.QuickRequest&lt; T &gt;()']]],
   ['quickrequesttoclient_3c_20t_20_3e',['QuickRequestToClient&lt; T &gt;',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a55f8648c95830c06a2f76086593bc039',1,'HamstarHelpers::Components::Protocols::Packet::PacketProtocol']]],

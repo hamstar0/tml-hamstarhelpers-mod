@@ -4,6 +4,7 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.DotNET.Extensions.ArrayExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_array_extensions.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.BinaryReaderExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions.html", null ],
+    [ "HamstarHelpers.Services.GameData.BossData", "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html", null ],
     [ "HamstarHelpers.Services.GameData.BossDataEntry", "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html", null ],
     [ "HamstarHelpers.Helpers.Buffs.BuffHelpers", "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Buffs.BuffIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_identity_helpers.html", null ],
@@ -12,6 +13,8 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.TModLoader.Commands.CommandsHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_commands_1_1_commands_helpers.html", null ],
     [ "HamstarHelpers.Services.UI.ControlPanel.ControlPanelTabs", "class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html", null ],
     [ "HamstarHelpers.Services.Debug.CustomHotkeys.CustomHotkeys", "class_hamstar_helpers_1_1_services_1_1_debug_1_1_custom_hotkeys_1_1_custom_hotkeys.html", null ],
+    [ "HamstarHelpers.Services.LoadHooks.CustomLoadHooks", "class_hamstar_helpers_1_1_services_1_1_load_hooks_1_1_custom_load_hooks.html", null ],
+    [ "HamstarHelpers.Services.LoadHooks.CustomLoadHookValidator", "class_hamstar_helpers_1_1_services_1_1_load_hooks_1_1_custom_load_hook_validator.html", null ],
     [ "HamstarHelpers.Services.Debug.DataDumper.DataDumper", "class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html", null ],
     [ "HamstarHelpers.Services.DataStore.DataStore", "class_hamstar_helpers_1_1_services_1_1_data_store_1_1_data_store.html", null ],
     [ "HamstarHelpers.Helpers.Debug.DebugHelpers", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html", null ],
@@ -19,6 +22,17 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.DotNET.DotNetHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Dusts.DustHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html", null ],
     [ "HamstarHelpers.Services.Debug.EntityData.EntityData", "class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html", null ],
+    [ "HamstarHelpers.Services.EntityGroups.EntityGroupDependencies", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_dependencies.html", null ],
+    [ "HamstarHelpers.Services.EntityGroups.EntityGroupMatcher< T >", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_matcher.html", null ],
+    [ "HamstarHelpers.Services.EntityGroups.EntityGroupMatcher< Item >", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_matcher.html", [
+      [ "HamstarHelpers.Services.EntityGroups.ItemGroupMatcher", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html", null ]
+    ] ],
+    [ "HamstarHelpers.Services.EntityGroups.EntityGroupMatcher< NPC >", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_matcher.html", [
+      [ "HamstarHelpers.Services.EntityGroups.NPCGroupMatcher", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_n_p_c_group_matcher.html", null ]
+    ] ],
+    [ "HamstarHelpers.Services.EntityGroups.EntityGroupMatcher< Projectile >", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_matcher.html", [
+      [ "HamstarHelpers.Services.EntityGroups.ProjectileGroupMatcher", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html", null ]
+    ] ],
     [ "HamstarHelpers.Services.EntityGroups.EntityGroups", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html", null ],
     [ "HamstarHelpers.Helpers.Entities.EntityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html", null ],
     [ "HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks", "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html", null ],
@@ -27,7 +41,6 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Info.FormattedGameInfoHelpers", "class_hamstar_helpers_1_1_helpers_1_1_info_1_1_formatted_game_info_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Info.GameInfoHelpers", "class_hamstar_helpers_1_1_helpers_1_1_info_1_1_game_info_helpers.html", null ],
     [ "HamstarHelpers.Components.Errors.HamstarException", "class_hamstar_helpers_1_1_components_1_1_errors_1_1_hamstar_exception.html", null ],
-    [ "HamstarHelpers.HamstarHelpersConfigData", "class_hamstar_helpers_1_1_hamstar_helpers_config_data.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Encoding.HashHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_hash_helpers.html", null ],
     [ "HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html", null ],
     [ "HamstarHelpers.Helpers.HUD.HUDHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html", null ],
@@ -40,6 +53,7 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Items.Attributes.ItemRarityAttributeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.LINQHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.LoadHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html", null ],
+    [ "HamstarHelpers.Services.LoadHooks.LoadHooks", "class_hamstar_helpers_1_1_services_1_1_load_hooks_1_1_load_hooks.html", null ],
     [ "HamstarHelpers.Helpers.Debug.LogHelpers", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html", null ],
     [ "HamstarHelpers.Items.MagiTechScrapItem", "class_hamstar_helpers_1_1_items_1_1_magi_tech_scrap_item.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Menus.MainMenuHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html", null ],
@@ -81,7 +95,6 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Players.PlayerWarpHelpers", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Projectiles.ProjectileHelpers", "class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html", null ],
-    [ "HamstarHelpers.Services.PromisedHooks.PromisedHooks", "class_hamstar_helpers_1_1_services_1_1_promised_hooks_1_1_promised_hooks.html", null ],
     [ "HamstarHelpers.Components.Protocols.ProtocolIgnoreAttribute", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_ignore_attribute.html", null ],
     [ "HamstarHelpers.Components.Protocols.ProtocolWriteIgnoreClientAttribute", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_client_attribute.html", null ],
     [ "HamstarHelpers.Components.Protocols.ProtocolWriteIgnoreServerAttribute", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_protocol_write_ignore_server_attribute.html", null ],
@@ -95,7 +108,6 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Recipes.RecipeIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_identity_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html", null ],
     [ "HamstarHelpers.Services.Server.Server", "class_hamstar_helpers_1_1_services_1_1_server_1_1_server.html", null ],
-    [ "HamstarHelpers.Services.Messages.SimpleMessage", "class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_message.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Encoding.SimpleStringCipher", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_simple_string_cipher.html", null ],
     [ "HamstarHelpers.Helpers.Steam.SteamHelpers", "class_hamstar_helpers_1_1_helpers_1_1_steam_1_1_steam_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.StreamHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html", null ],
@@ -149,6 +161,7 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.World.WorldFileHelpers", "class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_file_helpers.html", null ],
     [ "HamstarHelpers.Helpers.World.WorldHelpers", "class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html", null ],
     [ "HamstarHelpers.Helpers.World.WorldStateHelpers", "class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_state_helpers.html", null ],
+    [ "HamstarHelpers.Services.Hooks.WorldHooks.WorldTimeHooks", "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_world_hooks_1_1_world_time_hooks.html", null ],
     [ "HamstarHelpers.Helpers.XNA.XNAColorHelpers", "class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html", null ],
     [ "HamstarHelpers.Components.Protocols.XNAContractResolver", "class_hamstar_helpers_1_1_components_1_1_protocols_1_1_x_n_a_contract_resolver.html", null ],
     [ "HamstarHelpers.Helpers.XNA.XNAHelpers", "class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html", null ]

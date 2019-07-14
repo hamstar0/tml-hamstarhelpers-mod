@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ab5b7b4fed24f5d9470d9ca24402bef61":[1,0,0,0,3,0,5,2],
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#abac563af4067344707869d7e1502bb11":[1,0,0,0,3,0,5,13],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ac3ed32e57af869004beb9b144dd75147":[1,0,0,0,3,0,5,17],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ad3324b6103276bd42edd2cb4fd09223d":[1,0,0,0,3,0,5,6],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ad511c69462deb5ccb93b0a0004b03539":[1,0,0,0,3,0,5,3],
@@ -119,7 +121,6 @@ var NAVTREEINDEX2 =
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#aefb3fee06ed6552b738385666b75482a":[1,0,0,0,3,2,27],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#af33a48a3ea497a4fee5fe87c48848192":[1,0,0,0,3,2,14],
 "class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#afec06516c9dc2cc1755f52b6038f445c":[1,0,0,0,3,2,42],
-"class_hamstar_helpers_1_1_hamstar_helpers_config_data.html":[1,0,0,6],
 "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html":[1,0,0,1,0,0],
 "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html#a199cc64a5d360d4464f264a86decd031":[1,0,0,1,0,0,1],
 "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html#a695a59e0e25c0bad4f567ec1cf17b06a":[1,0,0,1,0,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html#a20585fd9c3b3250acefdc425f5825687":[1,0,0,1,5,1,4],
 "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html#a63b9a3573e680adbee42502f0cfe22dc":[1,0,0,1,5,1,0],
 "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html#aa378de0c1c472d5f7910372fae767811":[1,0,0,1,5,1,3],
-"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html#ade43f3a4e04ee71ad3389d1d90b6e462":[1,0,0,1,5,1,2],
-"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html":[1,0,0,1,5,2]
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html#ade43f3a4e04ee71ad3389d1d90b6e462":[1,0,0,1,5,1,2]
 };

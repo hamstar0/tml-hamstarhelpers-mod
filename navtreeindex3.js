@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html":[1,0,0,1,5,2],
 "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a193caa6b65c1cf816f79e29ae20fa742":[1,0,0,1,5,2,3],
 "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a1cde47ee71819947a47a390ae2b00e82":[1,0,0,1,5,2,6],
 "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a2124bf1836c23fa4066541817ea0eda2":[1,0,0,1,5,2,5],
@@ -88,6 +89,7 @@ var NAVTREEINDEX3 =
 "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_music_box_helpers.html#a78ea6012ccb21213c2d4b29c58165339":[1,0,0,1,7,4,0],
 "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_music_box_helpers.html#aa5925e58b931b2168f157a3c74693385":[1,0,0,1,7,4,1],
 "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html":[1,0,0,1,8,0],
+"class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a7eeb5926bc108dc53d476a2a98c74aeb":[1,0,0,1,8,0,0],
 "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html":[1,0,0,1,8,1],
 "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a0c6843885d608fabe1525003a8dfa0e4":[1,0,0,1,8,1,10],
 "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a25438b72d8480057d113e653756d369e":[1,0,0,1,8,1,4],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#ad07b97a664c3d1548070202cf314315c":[1,0,0,1,13,1,4],
 "class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#adcb73ed26956424a02c96a8ce3b064d5":[1,0,0,1,13,1,3],
 "class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html":[1,0,0,1,14,0],
-"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a11dfb53b9c93b9a1b6ea05185eb4e106":[1,0,0,1,14,0,5],
-"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a1693b8eee02e25c8e01ea20dd07f3b7b":[1,0,0,1,14,0,0],
-"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a42a2208d609336c366b3d80addd8f330":[1,0,0,1,14,0,1]
+"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a11dfb53b9c93b9a1b6ea05185eb4e106":[1,0,0,1,14,0,5]
 };

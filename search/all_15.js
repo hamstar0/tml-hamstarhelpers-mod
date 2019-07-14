@@ -63,6 +63,6 @@ var searchData=
   ['vanillasurfacebiomes',['VanillaSurfaceBiomes',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a324a198aae961133fd834a8e56efe2f9',1,'HamstarHelpers::Helpers::World']]],
   ['vanillaundergroundbiomes',['VanillaUndergroundBiomes',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a84bdde1b2d6ce1b05cf8834a1413fe43',1,'HamstarHelpers::Helpers::World']]],
   ['vanillavortexpillartypes',['VanillaVortexPillarTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a7875873e5086bf79b74b1d0a32108bd8',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
-  ['version',['Version',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#ac2004f561bf97096d05c125722db980b',1,'HamstarHelpers::Helpers::TModLoader::Mods::BasicModInfo']]],
+  ['version',['Version',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#ac2004f561bf97096d05c125722db980b',1,'HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo.Version()'],['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html#a3ae5845a05e4ddb290bd5c1d21ecf8cf',1,'HamstarHelpers.Services.Tml.BuildPropertiesViewer.Version()']]],
   ['versionalertelem',['VersionAlertElem',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ae438084d043bab4a28f559c95ab089ef',1,'HamstarHelpers::Components::UI::Elements::UIModData']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['decrypt',['Decrypt',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_simple_string_cipher.html#a194215e974c359a66b827911d64185cd',1,'HamstarHelpers::Helpers::DotNET::Encoding::SimpleStringCipher']]],
+  ['dequeuemessage',['DequeueMessage',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_inbox_messages.html#a4cec80415103e9bf3f8b858c4b4ca68f',1,'HamstarHelpers::Services::Messages::InboxMessages']]],
   ['destroyitem',['DestroyItem',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a88a295467bff6b5f0e0d7d47032535c0',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
   ['destroyworlditem',['DestroyWorldItem',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a5d763fd05187c502d80d4a637d98a1ce',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
   ['differencergb',['DifferenceRGB',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#ab6bd5ff862de32570ff5e96478b79065',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
@@ -19,5 +20,10 @@ var searchData=
   ['dropequippedarmoritem',['DropEquippedArmorItem',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a4d66b094ede068fe3f02ed0675421abe',1,'HamstarHelpers::Helpers::Players::PlayerItemHelpers']]],
   ['dropequippedmiscitem',['DropEquippedMiscItem',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a6ae0929b414d6ed5bb3c63256a8194ee',1,'HamstarHelpers::Helpers::Players::PlayerItemHelpers']]],
   ['dropinventoryitem',['DropInventoryItem',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a9d3ac6e8e0b772eeffa3487ab741e89e',1,'HamstarHelpers::Helpers::Players::PlayerItemHelpers']]],
-  ['droptoground',['DropToGround',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#af0105d0911a0d19172867c1b82e1cc94',1,'HamstarHelpers::Helpers::World::WorldHelpers']]]
+  ['droptoground',['DropToGround',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#af0105d0911a0d19172867c1b82e1cc94',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
+  ['dumpallitemdatatojson',['DumpAllItemDataToJson',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#a8e02761aa0a0c66dfbfbc278acfd31db',1,'HamstarHelpers::Services::Debug::EntityData::EntityData']]],
+  ['dumpallnpcdatatojson',['DumpAllNpcDataToJson',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#a025dc0eeabf3804d8468abdf38fb991e',1,'HamstarHelpers::Services::Debug::EntityData::EntityData']]],
+  ['dumpallprojectiledatatojson',['DumpAllProjectileDataToJson',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#ac3ee36d8959f36605b90bd534f596729',1,'HamstarHelpers::Services::Debug::EntityData::EntityData']]],
+  ['dumptofile',['DumpToFile',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#adcd8cbf54b06c0d0294bb8eacff11528',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]],
+  ['dumptolocalfile',['DumpToLocalFile',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a2fb095a7ce701e139e1fefa503e0d010',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]]
 ];

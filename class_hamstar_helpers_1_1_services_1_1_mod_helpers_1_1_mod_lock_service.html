@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Services.ModHelpers.ModLockService Class Reference</div>  </div>
@@ -97,11 +98,146 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <p>Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers.html">Helpers</a> control panel.  
  <a href="class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a04cbdeb58c78985397fb390fe81865bb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#a04cbdeb58c78985397fb390fe81865bb">IsWorldLocked</a> ()</td></tr>
+<tr class="memdesc:a04cbdeb58c78985397fb390fe81865bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the current world is "locked".  <a href="#a04cbdeb58c78985397fb390fe81865bb">More...</a><br /></td></tr>
+<tr class="separator:a04cbdeb58c78985397fb390fe81865bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22cdf8674215f3a60917fa9a92f94d3c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#a22cdf8674215f3a60917fa9a92f94d3c">IsModMismatchFound</a> ()</td></tr>
+<tr class="memdesc:a22cdf8674215f3a60917fa9a92f94d3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the current mod loadout does not match the current world's "locked" set (or exceeds it, if the <code>WorldModLockMininmumOnly</code> setting is <code>true</code>).  <a href="#a22cdf8674215f3a60917fa9a92f94d3c">More...</a><br /></td></tr>
+<tr class="separator:a22cdf8674215f3a60917fa9a92f94d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f214fdaf40fa50de91c6b085541a5d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#ad5f214fdaf40fa50de91c6b085541a5d">LockWorld</a> ()</td></tr>
+<tr class="memdesc:ad5f214fdaf40fa50de91c6b085541a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locks the current world.  <a href="#ad5f214fdaf40fa50de91c6b085541a5d">More...</a><br /></td></tr>
+<tr class="separator:ad5f214fdaf40fa50de91c6b085541a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a660e936429f431139ed521f8a1dcf831"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#a660e936429f431139ed521f8a1dcf831">UnlockWorld</a> ()</td></tr>
+<tr class="memdesc:a660e936429f431139ed521f8a1dcf831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlocks the current world.  <a href="#a660e936429f431139ed521f8a1dcf831">More...</a><br /></td></tr>
+<tr class="separator:a660e936429f431139ed521f8a1dcf831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers.html">Helpers</a> control panel. </p>
 
-<p class="definition">Definition at line <a class="el" href="_mod_lock_service_8cs_source.html#l00012">12</a> of file <a class="el" href="_mod_lock_service_8cs_source.html">ModLockService.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_mod_lock_service_8cs_source.html#l00013">13</a> of file <a class="el" href="_mod_lock_service_8cs_source.html">ModLockService.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a22cdf8674215f3a60917fa9a92f94d3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22cdf8674215f3a60917fa9a92f94d3c">&#9670;&nbsp;</a></span>IsModMismatchFound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.ModHelpers.ModLockService.IsModMismatchFound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the current mod loadout does not match the current world's "locked" set (or exceeds it, if the <code>WorldModLockMininmumOnly</code> setting is <code>true</code>). </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_mod_lock_service_8cs_source.html#l00031">31</a> of file <a class="el" href="_mod_lock_service_8cs_source.html">ModLockService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a04cbdeb58c78985397fb390fe81865bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04cbdeb58c78985397fb390fe81865bb">&#9670;&nbsp;</a></span>IsWorldLocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.ModHelpers.ModLockService.IsWorldLocked </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates if the current world is "locked". </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_mod_lock_service_8cs_source.html#l00018">18</a> of file <a class="el" href="_mod_lock_service_8cs_source.html">ModLockService.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad5f214fdaf40fa50de91c6b085541a5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f214fdaf40fa50de91c6b085541a5d">&#9670;&nbsp;</a></span>LockWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.ModHelpers.ModLockService.LockWorld </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Locks the current world. </p>
+
+<p class="definition">Definition at line <a class="el" href="_mod_lock_service_8cs_source.html#l00049">49</a> of file <a class="el" href="_mod_lock_service_8cs_source.html">ModLockService.cs</a>.</p>
+
+</div>
+</div>
+<a id="a660e936429f431139ed521f8a1dcf831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a660e936429f431139ed521f8a1dcf831">&#9670;&nbsp;</a></span>UnlockWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.ModHelpers.ModLockService.UnlockWorld </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unlocks the current world. </p>
+
+<p class="definition">Definition at line <a class="el" href="_mod_lock_service_8cs_source.html#l00075">75</a> of file <a class="el" href="_mod_lock_service_8cs_source.html">ModLockService.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Services/ModLock/<a class="el" href="_mod_lock_service_8cs_source.html">ModLockService.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Services/ModLock/<a class="el" href="_mod_lock_service___instance_8cs_source.html">ModLockService_Instance.cs</a></li>
 </ul>

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['color',['Color',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_label_text.html#a04f07d2b83185ce65bce3c22f07e4ab4',1,'HamstarHelpers::Services::Messages::PlayerLabelText']]],
   ['commonsolid',['CommonSolid',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html#a9767b927045ccfe27eac448b8ec1cf3c',1,'HamstarHelpers::Helpers::Tiles::TilePattern']]],
   ['conveyorbeltpair',['ConveyorBeltPair',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#afc74e67308884b6f56d17283fd0100e4',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
   ['conveyorbelts',['ConveyorBelts',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a1693b8eee02e25c8e01ea20dd07f3b7b',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],

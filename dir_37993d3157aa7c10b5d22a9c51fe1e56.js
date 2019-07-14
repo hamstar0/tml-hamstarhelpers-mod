@@ -8,7 +8,7 @@ var dir_37993d3157aa7c10b5d22a9c51fe1e56 =
     [ "FileHelpers.cs", "_file_helpers_8cs_source.html", null ],
     [ "FileHelpers_Binary.cs", "_file_helpers___binary_8cs_source.html", null ],
     [ "FileHelpers_Text.cs", "_file_helpers___text_8cs_source.html", null ],
-    [ "LINQHelpers.cs", "_l_i_n_q_helpers_8cs_source.html", null ],
+    [ "LinqHelpers.cs", "_linq_helpers_8cs_source.html", null ],
     [ "StreamHelpers.cs", "_stream_helpers_8cs_source.html", null ],
     [ "SystemHelpers.cs", "_system_helpers_8cs_source.html", null ]
 ];

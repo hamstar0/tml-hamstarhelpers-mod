@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['headbgcolor',['HeadBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#aad3d61d208447c4f210199920b4b90c5',1,'HamstarHelpers::Components::UI::UITheme']]],
-  ['headedgecolor',['HeadEdgeColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a048a04a9269a8e122ddb8f79b5b92ea4',1,'HamstarHelpers::Components::UI::UITheme']]],
-  ['highestvanillararity',['HighestVanillaRarity',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html#ab6a726955094503acf282cb1c0cd370a',1,'HamstarHelpers::Helpers::Items::Attributes::ItemRarityAttributeHelpers']]],
-  ['hintcolor',['HintColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#ace2620e45e94cee936567dedf77a0d81',1,'HamstarHelpers::Components::UI::Elements::UITextArea']]]
+  ['fire',['Fire',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#adfa14ba3008f63328a5402083b326676',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
+  ['following',['Following',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_label_text.html#a0e5fb3e92bbd752af163ea41dfe2d159',1,'HamstarHelpers::Services::Messages::PlayerLabelText']]]
 ];

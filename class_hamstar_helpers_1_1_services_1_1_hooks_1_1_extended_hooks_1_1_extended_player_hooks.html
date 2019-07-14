@@ -89,19 +89,217 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Supplies custom tModLoader-like, delegate-based hooks for assorted helpful functions not currently available in tModLoader.  
+<p>Supplies custom tModLoader-like, delegate-based hooks for player-relevant functions not currently available in tModLoader.  
  <a href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae8c32925197435ddf9d42dbcad5b1aec"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#ae8c32925197435ddf9d42dbcad5b1aec">AddBuffExpireAction</a> (string hookName, Action&lt; Player, int &gt; action)</td></tr>
+<tr class="memdesc:ae8c32925197435ddf9d42dbcad5b1aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when a buff expires.  <a href="#ae8c32925197435ddf9d42dbcad5b1aec">More...</a><br /></td></tr>
+<tr class="separator:ae8c32925197435ddf9d42dbcad5b1aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6be2915a113e87d4d2de80924dde2c6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#aa6be2915a113e87d4d2de80924dde2c6">AddArmorEquipAction</a> (string hookName, Action&lt; Player, int, Item &gt; action)</td></tr>
+<tr class="memdesc:aa6be2915a113e87d4d2de80924dde2c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when an armor item is equipped.  <a href="#aa6be2915a113e87d4d2de80924dde2c6">More...</a><br /></td></tr>
+<tr class="separator:aa6be2915a113e87d4d2de80924dde2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb6c7af3621a8202153843ee32f9ad86"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#adb6c7af3621a8202153843ee32f9ad86">AddArmorUnequipAction</a> (string hookName, Action&lt; Player, int, int &gt; action)</td></tr>
+<tr class="memdesc:adb6c7af3621a8202153843ee32f9ad86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when an armor item is unequipped.  <a href="#adb6c7af3621a8202153843ee32f9ad86">More...</a><br /></td></tr>
+<tr class="separator:adb6c7af3621a8202153843ee32f9ad86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea9318b54956a8a34d0f7e6286580e4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#a1ea9318b54956a8a34d0f7e6286580e4">AddNpcKillHook</a> (Action&lt; Player, NPC &gt; action)</td></tr>
+<tr class="memdesc:a1ea9318b54956a8a34d0f7e6286580e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares an action to run when an NPC is killed by a given player.  <a href="#a1ea9318b54956a8a34d0f7e6286580e4">More...</a><br /></td></tr>
+<tr class="separator:a1ea9318b54956a8a34d0f7e6286580e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Supplies custom tModLoader-like, delegate-based hooks for assorted helpful functions not currently available in tModLoader. </p>
+<div class="textblock"><p>Supplies custom tModLoader-like, delegate-based hooks for player-relevant functions not currently available in tModLoader. </p>
 
-<p class="definition">Definition at line <a class="el" href="_extended_player_hooks_8cs_source.html#l00009">9</a> of file <a class="el" href="_extended_player_hooks_8cs_source.html">ExtendedPlayerHooks.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<p class="definition">Definition at line <a class="el" href="_extended_player_hooks_8cs_source.html#l00010">10</a> of file <a class="el" href="_extended_player_hooks_8cs_source.html">ExtendedPlayerHooks.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa6be2915a113e87d4d2de80924dde2c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6be2915a113e87d4d2de80924dde2c6">&#9670;&nbsp;</a></span>AddArmorEquipAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks.AddArmorEquipAction </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>hookName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; Player, int, Item &gt;&#160;</td>
+          <td class="paramname"><em>action</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs when an armor item is equipped. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hookName</td><td>Identifier of the hook.</td></tr>
+    <tr><td class="paramname">action</td><td>Action to run. Includes the player, <code>player.armor</code> index, and the armor <code>Item</code> as parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code> if hook is already defined.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_extended_player_hooks_8cs_source.html#l00037">37</a> of file <a class="el" href="_extended_player_hooks_8cs_source.html">ExtendedPlayerHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="adb6c7af3621a8202153843ee32f9ad86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb6c7af3621a8202153843ee32f9ad86">&#9670;&nbsp;</a></span>AddArmorUnequipAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks.AddArmorUnequipAction </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>hookName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; Player, int, int &gt;&#160;</td>
+          <td class="paramname"><em>action</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs when an armor item is unequipped. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hookName</td><td>Identifier of the hook.</td></tr>
+    <tr><td class="paramname">action</td><td>Action to run. Includes the player, <code>player.armor</code> index, and the armor <code>Item</code> as parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code> if hook is already defined.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_extended_player_hooks_8cs_source.html#l00057">57</a> of file <a class="el" href="_extended_player_hooks_8cs_source.html">ExtendedPlayerHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae8c32925197435ddf9d42dbcad5b1aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8c32925197435ddf9d42dbcad5b1aec">&#9670;&nbsp;</a></span>AddBuffExpireAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks.AddBuffExpireAction </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>hookName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&lt; Player, int &gt;&#160;</td>
+          <td class="paramname"><em>action</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs when a buff expires. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hookName</td><td>Identifier of the hook.</td></tr>
+    <tr><td class="paramname">action</td><td>Action to run. Includes the player and buff type id as parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code> if hook is already defined.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_extended_player_hooks_8cs_source.html#l00017">17</a> of file <a class="el" href="_extended_player_hooks_8cs_source.html">ExtendedPlayerHooks.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1ea9318b54956a8a34d0f7e6286580e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ea9318b54956a8a34d0f7e6286580e4">&#9670;&nbsp;</a></span>AddNpcKillHook()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks.AddNpcKillHook </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; Player, NPC &gt;&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Declares an action to run when an NPC is killed by a given player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action</td><td>Action to run. Includes the Player (killer) and killed NPC as parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_extended_player_hooks___n_p_c_8cs_source.html#l00015">15</a> of file <a class="el" href="_extended_player_hooks___n_p_c_8cs_source.html">ExtendedPlayerHooks_NPC.cs</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Services/Hooks/ExtendedHooks/<a class="el" href="_extended_player_hooks_8cs_source.html">ExtendedPlayerHooks.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Services/Hooks/ExtendedHooks/<a class="el" href="_extended_player_hooks___instance_8cs_source.html">ExtendedPlayerHooks_Instance.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Services/Hooks/ExtendedHooks/<a class="el" href="_extended_player_hooks___n_p_c_8cs_source.html">ExtendedPlayerHooks_NPC.cs</a></li>

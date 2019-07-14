@@ -38,7 +38,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Properties", "functions_prop.html", null ],
         [ "Events", "functions_evnt.html", null ]
       ] ]
@@ -52,12 +52,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animated_colors_8cs_source.html",
-"_tile_pattern___instance_8cs_source.html",
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ac3ed32e57af869004beb9b144dd75147",
-"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a193caa6b65c1cf816f79e29ae20fa742",
-"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a4e965425920414e72591c9a74f85a8a9",
-"dir_942318d452827e626b5597765f204b50.html",
-"namespace_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus.html"
+"_tile_identity_helpers_8cs_source.html",
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ab5b7b4fed24f5d9470d9ca24402bef61",
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html",
+"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a1693b8eee02e25c8e01ea20dd07f3b7b",
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a942901a433e120d520bb43592e866851",
+"functions_k.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
