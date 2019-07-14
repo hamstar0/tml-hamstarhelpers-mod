@@ -53,7 +53,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 			if( conditionsMet ) {
 				lock( validator ) {
-					args = mymod.CustomLoadHooks.HookArgs[validator];
+					args = mymod.CustomLoadHooks.HookArgs[ validator ];
 				}
 
 				if( validator.ArgType == null && args != null ) {
@@ -100,7 +100,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 				throw new HamstarException( "Validation failed." );
 			}
 			if( validator.ArgType == null && args != null ) {
-				throw new HamstarException( "Invalid argument type: `null` expected, found " + args.GetType().Name );
+				throw new HamstarException( "Invalid argument type: `null` expected, found "+args.GetType().Name );
 			}
 			if( validator.ArgType != args.GetType() ) {
 				throw new HamstarException( "Invalid argument type: Expected "

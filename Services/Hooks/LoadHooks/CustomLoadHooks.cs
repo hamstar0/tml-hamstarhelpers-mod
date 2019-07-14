@@ -25,7 +25,11 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 
 
+	/// <summary>
+	/// Allows defining custom load hooks. Like the preset load hooks, these will activate when conditions are triggered
+	/// for hooks that are later added.
+	/// </summary>
 	public partial class CustomLoadHooks {
-		private static object CustomHookLock = new object();
+		//private static object HookLock = new object();
 	}
 }
