@@ -322,7 +322,7 @@
     <Compile Include="Services\EntityGroups\Defs\Items_Weapons1.cs" />
     <Compile Include="Services\EntityGroups\Defs\NPCs.cs" />
     <Compile Include="Services\GameData\BossData.cs" />
-    <Compile Include="Services\UI\Menus\MenuContextService_Instance.cs" />
+    <Compile Include="Services\UI\Menus\MenuContextServiceManager.cs" />
     <Compile Include="Services\UI\Menus\MenuContextService.cs" />
     <Compile Include="Services\UI\Menus\MenuContextService_UI.cs" />
     <Compile Include="Services\Messages\InboxMessages_Instance.cs" />

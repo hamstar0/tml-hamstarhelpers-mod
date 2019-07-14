@@ -6,6 +6,7 @@ namespace HamstarHelpers.Services.Server {
 	/// Supplies assorted server informations and tools.
 	/// </summary>
 	public class Server {
+		/// <summary></summary>
 		public int AveragePing { get; internal set; }
 
 

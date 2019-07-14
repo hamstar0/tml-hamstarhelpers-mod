@@ -3,7 +3,6 @@ using HamstarHelpers.Helpers.Items;
 using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 
 
@@ -59,13 +58,12 @@ namespace HamstarHelpers.Services.RecipeHack {
 				return;
 			}
 			
-			IDictionary<int, int> outsourcedItemTypeAmounts = RecipeHack.GetOutsourcedItems( player )
-				.ToDictionary( item=>item.type, _=>1 );
+			IEnumerable<Item> outsourcedItemTypeAmounts = RecipeHack.GetOutsourcedItems( player );
 
-			ItemHelpers.ConsumeItems( RecipeHack.AwaitingRecipeMissingIngredients, outsourcedItemTypeAmounts, true );
-
-			RecipeHack.AwaitingRecipeIdx = -1;
-			RecipeHack.AwaitingRecipeMissingIngredients = null;
+			if( ItemHelpers.ConsumeItems( outsourcedItemTypeAmounts, RecipeHack.AwaitingRecipeMissingIngredients, true ) ) {
+				RecipeHack.AwaitingRecipeIdx = -1;
+				RecipeHack.AwaitingRecipeMissingIngredients = null;
+			}
 		}
 	}
 }

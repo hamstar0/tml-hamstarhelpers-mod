@@ -6,6 +6,10 @@ using Terraria;
 
 
 namespace HamstarHelpers.Services.Timers {
+	/// <summary>
+	/// Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function,
+	/// MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS.
+	/// </summary>
 	public partial class Timers {
 		private IDictionary<string, KeyValuePair<Func<bool>, int>> Running = new Dictionary<string, KeyValuePair<Func<bool>, int>>();
 		private IDictionary<string, int> Elapsed = new Dictionary<string, int>();

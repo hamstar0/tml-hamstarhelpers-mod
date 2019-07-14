@@ -41,6 +41,11 @@ namespace HamstarHelpers.Services.Tml {
 		}
 
 
+		/// <summary>
+		/// Produces a 'viewer' object for a mod file's build.txt data.
+		/// </summary>
+		/// <param name="modfile"></param>
+		/// <returns></returns>
 		public static BuildPropertiesViewer GetBuildPropertiesForModFile( TmodFile modfile ) {
 			Type buildPropType = BuildPropertiesViewer.GetBuildPropertiesClassType();
 			if( buildPropType == null ) {
