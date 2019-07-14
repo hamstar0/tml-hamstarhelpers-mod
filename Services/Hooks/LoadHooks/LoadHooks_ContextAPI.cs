@@ -29,7 +29,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		public static void AddWorldLoadOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
-			
+
 			if( mymod.LoadHooks.WorldLoadHookConditionsMet ) {
 				action();
 			} else {
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		public static void AddWorldInPlayOnceHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
-			
+
 			if( mymod.LoadHooks.WorldInPlayHookConditionsMet ) {
 				action();
 			} else {
@@ -104,7 +104,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		public static void AddWorldLoadEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
-			
+
 			if( mymod.LoadHooks.WorldLoadHookConditionsMet ) {
 				action();
 			}
@@ -148,7 +148,7 @@ namespace HamstarHelpers.Services.LoadHooks {
 
 		public static void AddWorldInPlayEachHook( Action action ) {
 			var mymod = ModHelpersMod.Instance;
-			
+
 			if( mymod.LoadHooks.WorldInPlayHookConditionsMet ) {
 				action();
 			}

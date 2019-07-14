@@ -20,14 +20,14 @@ namespace HamstarHelpers.Services.LoadHooks {
 		private IList<Action> WorldInPlayEachHooks = new List<Action>();
 		private IList<Action> SafeWorldLoadOnceHooks = new List<Action>();
 		private IList<Action> SafeWorldLoadEachHooks = new List<Action>();
-		
+
 		private bool PostModLoadHookConditionsMet = false;
 		private bool WorldLoadHookConditionsMet = false;
 		private bool WorldUnloadHookConditionsMet = false;
 		private bool PostWorldUnloadHookConditionsMet = false;
 		private bool WorldInPlayHookConditionsMet = false;
 		private bool SafeWorldLoadHookConditionsMet = false;
-		
+
 		private IDictionary<CustomLoadHookValidator, List<Func<CustomLoadHookArguments, bool>>> CustomHooks = new Dictionary<CustomLoadHookValidator, List<Func<CustomLoadHookArguments, bool>>>();
 		private ISet<CustomLoadHookValidator> CustomHookConditionsMet = new HashSet<CustomLoadHookValidator>();
 		private IDictionary<CustomLoadHookValidator, CustomLoadHookArguments> CustomHookArgs = new Dictionary<CustomLoadHookValidator, CustomLoadHookArguments>();
@@ -75,8 +75,8 @@ namespace HamstarHelpers.Services.LoadHooks {
 		private static void _Update() { // <- Just in case references are doing something funky...
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.LoadHooks == null ) { return; }
-			
-			if( mymod.LoadHooks.OnTickGet() ) {	// <- Throttles to 60fps
+
+			if( mymod.LoadHooks.OnTickGet() ) { // <- Throttles to 60fps
 				mymod.LoadHooks.Update();
 			}
 		}
