@@ -11,14 +11,14 @@ namespace HamstarHelpers.Internals.Logic {
 	/// @private
 	partial class PlayerLogic {
 		internal readonly static object MyValidatorKey;
-		internal readonly static CustomLoadHookValidator ServerConnectHookValidator;
+		internal readonly static CustomLoadHookValidator<object> ServerConnectHookValidator;
 
 
 		////////////////
 
 		static PlayerLogic() {
 			PlayerLogic.MyValidatorKey = new object();
-			PlayerLogic.ServerConnectHookValidator = new CustomLoadHookValidator( PlayerLogic.MyValidatorKey );
+			PlayerLogic.ServerConnectHookValidator = new CustomLoadHookValidator<object>( PlayerLogic.MyValidatorKey );
 		}
 
 

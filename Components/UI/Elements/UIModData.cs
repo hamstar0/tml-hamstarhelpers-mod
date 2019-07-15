@@ -85,7 +85,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			this.InitializeMe( theme, idx, mod, willDrawOwnHoverElements );
 
-			LoadHooks.AddCustomHook<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidator, ( args ) => {
+			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				ISet<string> modTags = args.ModTags?.GetOrDefault( mod.Name );
 				this.ModTags = modTags ?? this.ModTags;
 
@@ -100,7 +100,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// Checks if the mod has new versions available from the mod browser, then updates it's overlay accordingly.
 		/// </summary>
 		public void CheckForNewVersionAsync() {
-			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
+			CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 				if( args.Found && args.ModInfo.ContainsKey(this.Mod.Name) ) {
 					this.LatestAvailableVersion = args.ModInfo[ this.Mod.Name ].Version;
 				} else {
@@ -149,13 +149,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 				if( ModFeaturesHelpers.HasGithub( this.Mod ) && !ModFeaturesHelpers.HasGithub( other.Mod ) ) {
 					return -1;
 				} else if( !ModFeaturesHelpers.HasGithub( this.Mod ) && ModFeaturesHelpers.HasGithub( other.Mod ) ) {
-					return 1;
-				}
-
-				// Prioritize config'd mods
-				if( ModFeaturesHelpers.HasConfig( this.Mod ) && !ModFeaturesHelpers.HasConfig( other.Mod ) ) {
-					return -1;
-				} else if( !ModFeaturesHelpers.HasConfig( this.Mod ) && ModFeaturesHelpers.HasConfig( other.Mod ) ) {
 					return 1;
 				}
 			} catch { }

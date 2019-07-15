@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
@@ -15,25 +16,18 @@ using Terraria.ModLoader.IO;
 
 namespace HamstarHelpers {
 	/// @private
-	class PlayerLoadHookArguments : CustomLoadHookArguments {
-		public int Who;
-	}
-
-
-
-	/// @private
 	class ModHelpersPlayer : ModPlayer {
 		internal readonly static object MyValidatorKey;
-		internal readonly static CustomLoadHookValidator LoadValidator;
-		internal readonly static CustomLoadHookValidator SaveValidator;
+		internal readonly static CustomLoadHookValidator<int> LoadValidator;
+		internal readonly static CustomLoadHookValidator<int> SaveValidator;
 
 
 		////////////////
 
 		static ModHelpersPlayer() {
 			ModHelpersPlayer.MyValidatorKey = new object();
-			ModHelpersPlayer.LoadValidator = new CustomLoadHookValidator( ModHelpersPlayer.MyValidatorKey );
-			ModHelpersPlayer.SaveValidator = new CustomLoadHookValidator( ModHelpersPlayer.MyValidatorKey );
+			ModHelpersPlayer.LoadValidator = new CustomLoadHookValidator<int>( ModHelpersPlayer.MyValidatorKey );
+			ModHelpersPlayer.SaveValidator = new CustomLoadHookValidator<int>( ModHelpersPlayer.MyValidatorKey );
 		}
 
 
@@ -99,9 +93,11 @@ namespace HamstarHelpers {
 
 				this.Logic.Load( tags );
 
-				var args = new PlayerLoadHookArguments { Who = this.player.whoAmI };
-
-				LoadHooks.TriggerCustomHook( ModHelpersPlayer.LoadValidator, ModHelpersPlayer.MyValidatorKey, args );
+				CustomLoadHooks.TriggerHook(
+					ModHelpersPlayer.LoadValidator,
+					ModHelpersPlayer.MyValidatorKey,
+					this.player.whoAmI
+				);
 			} catch( Exception e ) {
 				if( !(e is HamstarException) ) {
 					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
@@ -114,11 +110,13 @@ namespace HamstarHelpers {
 		public override TagCompound Save() {
 			var tags = new TagCompound();
 			try {
-				var args = new PlayerLoadHookArguments { Who = this.player.whoAmI };
-
 				//PlayerData.SaveAll( this.player.whoAmI, tags );
 			
-				LoadHooks.TriggerCustomHook( ModHelpersPlayer.SaveValidator, ModHelpersPlayer.MyValidatorKey, args );
+				CustomLoadHooks.TriggerHook(
+					ModHelpersPlayer.SaveValidator,
+					ModHelpersPlayer.MyValidatorKey,
+					this.player.whoAmI
+				);
 
 				this.Logic.Save( tags );
 			} catch( Exception e ) {

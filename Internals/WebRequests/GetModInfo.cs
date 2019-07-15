@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 	/// @private
-	class ModInfoListLoadHookArguments : CustomLoadHookArguments {
+	class ModInfoListLoadHookArguments {
 		public bool Found;
 		public BasicModInfoDatabase ModInfo;
 
@@ -40,8 +40,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private readonly static object MyLock = new object();
 
 		internal readonly static object LoadHookValidatorKey;
-		public readonly static CustomLoadHookValidator ModInfoListLoadHookValidator;
-		public readonly static CustomLoadHookValidator BadModsListLoadHookValidator;
+		public readonly static CustomLoadHookValidator<ModInfoListLoadHookArguments> ModInfoListLoadHookValidator;
+		public readonly static CustomLoadHookValidator<ModInfoListLoadHookArguments> BadModsListLoadHookValidator;
 
 		////
 
@@ -53,8 +53,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		static GetModInfo() {
 			GetModInfo.LoadHookValidatorKey = new object();
-			GetModInfo.ModInfoListLoadHookValidator = new CustomLoadHookValidator( GetModInfo.LoadHookValidatorKey );
-			GetModInfo.BadModsListLoadHookValidator = new CustomLoadHookValidator( GetModInfo.LoadHookValidatorKey );
+			GetModInfo.ModInfoListLoadHookValidator = new CustomLoadHookValidator<ModInfoListLoadHookArguments>(
+				GetModInfo.LoadHookValidatorKey
+			);
+			GetModInfo.BadModsListLoadHookValidator = new CustomLoadHookValidator<ModInfoListLoadHookArguments>(
+				GetModInfo.LoadHookValidatorKey
+			);
 		}
 
 
@@ -94,12 +98,16 @@ namespace HamstarHelpers.Internals.WebRequests {
 				Timers.SetTimer( "CacheAllModInfoAsyncFailsafe", 2, () => {
 					if( GetModInfo.ModInfoListLoadHookValidator == null ) { return true; }
 
-					LoadHooks.TriggerCustomHook( GetModInfo.ModInfoListLoadHookValidator, GetModInfo.LoadHookValidatorKey, modInfoArgs );
+					CustomLoadHooks.TriggerHook(
+						GetModInfo.ModInfoListLoadHookValidator,
+						GetModInfo.LoadHookValidatorKey,
+						modInfoArgs
+					);
 					return false;
 				} );
 			} );
 
-			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( modInfoArgs2 ) => {
+			CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( modInfoArgs2 ) => {
 				Thread.Sleep( 2000 );
 
 				if( modInfoArgs2.Found ) {
@@ -108,7 +116,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 							GetModInfo.RegisterBadMods( modInfoArgs2, badMods );
 						}
 						
-						LoadHooks.TriggerCustomHook( GetModInfo.BadModsListLoadHookValidator, GetModInfo.LoadHookValidatorKey, modInfoArgs2 );
+						CustomLoadHooks.TriggerHook(
+							GetModInfo.BadModsListLoadHookValidator,
+							GetModInfo.LoadHookValidatorKey,
+							modInfoArgs2
+						);
 					} );
 				}
 

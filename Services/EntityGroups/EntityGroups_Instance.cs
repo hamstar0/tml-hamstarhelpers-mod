@@ -21,7 +21,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <summary>
 		/// Used as the identifier object for binding events (cusom load hooks) to entity group loading completion.
 		/// </summary>
-		public readonly static CustomLoadHookValidator LoadedAllValidator;
+		public readonly static CustomLoadHookValidator<object> LoadedAllValidator;
 
 
 
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		static EntityGroups() {
 			EntityGroups.MyValidatorKey = new object();
-			EntityGroups.LoadedAllValidator = new CustomLoadHookValidator( EntityGroups.MyValidatorKey );
+			EntityGroups.LoadedAllValidator = new CustomLoadHookValidator<object>( EntityGroups.MyValidatorKey );
 		}
 
 
@@ -106,7 +106,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 							this.ProjPool = null;
 						}
 						
-						LoadHooks.LoadHooks.TriggerCustomHook( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
+						CustomLoadHooks.TriggerHook( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
 						_check++;
 					} catch( Exception e ) {
 						LogHelpers.Warn( "Initialization failed (at #"+_check+"): "+e.ToString() );

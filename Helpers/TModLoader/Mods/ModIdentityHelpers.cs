@@ -82,7 +82,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		/// <param name="modName"></param>
 		/// <param name="callback"></param>
 		public static void IsListModProperlyPresented( string modName, Action<bool> callback ) {
-			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
+			CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 				if( args.Found && args.ModInfo.ContainsKey( modName ) ) {
 					BasicModInfo modInfo = args.ModInfo[modName];
 

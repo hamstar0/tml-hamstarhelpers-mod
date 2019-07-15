@@ -109,7 +109,7 @@ namespace HamstarHelpers.Internals.Menus.ModRecommendations.UI {
 				this.AddRawModEntry( mod?.DisplayName, recomModName, recommendedBecause );
 			}
 
-			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
+			CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 				string currModName = ModMenuHelpers.GetModName( MenuContextService.GetPreviousMenuUI(),
 						this.MenuContext.MyUI ?? MenuContextService.GetCurrentMenuUI() );
 

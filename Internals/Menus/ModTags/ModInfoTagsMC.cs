@@ -93,7 +93,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		internal void UpdateMode( bool isEditing ) {
 			if( !isEditing ) { return; }
 
-			LoadHooks.AddCustomHook<ModInfoListLoadHookArguments>( GetModInfo.BadModsListLoadHookValidator, (modInfoArgs) => {
+			CustomLoadHooks.AddHook( GetModInfo.BadModsListLoadHookValidator, (modInfoArgs) => {
 				this.ApplyDefaultEditModeTags( modInfoArgs.ModInfo );
 				return false;
 			} );

@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Components.Config;
-using HamstarHelpers.Helpers.World;
+﻿using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using Terraria;

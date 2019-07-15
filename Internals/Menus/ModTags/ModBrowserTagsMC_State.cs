@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private void ApplyDefaultFiltersAsync( UIState ui ) {
-			LoadHooks.AddCustomHook<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidator, ( args ) => {
+			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
 					if( this.MyUI != ui ) {
 						return false;

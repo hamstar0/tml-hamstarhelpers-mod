@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		public void FilterModsAsync( IList<string> modNames, Action<bool, IList<string>, int, int> callback ) {
-			LoadHooks.AddCustomHook<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidator, ( args ) => {
+			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				if( !args.Found ) {
 					this.InfoDisplay?.SetText( "Could not acquire mod data." );
 					callback( false, new List<string>(), 0, 0 );

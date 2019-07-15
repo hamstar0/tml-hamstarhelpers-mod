@@ -15,16 +15,16 @@ namespace HamstarHelpers {
 	/// @private
 	class ModHelpersWorld : ModWorld {
 		private readonly static object MyValidatorKey;
-		internal readonly static CustomLoadHookValidator LoadValidator;
-		internal readonly static CustomLoadHookValidator SaveValidator;
+		internal readonly static CustomLoadHookValidator<object> LoadValidator;
+		internal readonly static CustomLoadHookValidator<object> SaveValidator;
 
 
 		////////////////
 
 		static ModHelpersWorld() {
 			ModHelpersWorld.MyValidatorKey = new object();
-			ModHelpersWorld.LoadValidator = new CustomLoadHookValidator( ModHelpersWorld.MyValidatorKey );
-			ModHelpersWorld.SaveValidator = new CustomLoadHookValidator( ModHelpersWorld.MyValidatorKey );
+			ModHelpersWorld.LoadValidator = new CustomLoadHookValidator<object>( ModHelpersWorld.MyValidatorKey );
+			ModHelpersWorld.SaveValidator = new CustomLoadHookValidator<object>( ModHelpersWorld.MyValidatorKey );
 		}
 
 
@@ -79,7 +79,7 @@ namespace HamstarHelpers {
 			mymod.ModLock.PostLoad( this );
 			//mymod.UserHelpers.OnWorldLoad( this );
 
-			LoadHooks.TriggerCustomHook( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey, null );
+			CustomLoadHooks.TriggerHook( ModHelpersWorld.LoadValidator, ModHelpersWorld.MyValidatorKey );
 
 			this.HasObsoleteId = true;
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
@@ -97,7 +97,7 @@ namespace HamstarHelpers {
 
 			this.WorldLogic.SaveForWorld( tags );
 
-			LoadHooks.TriggerCustomHook( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey, null );
+			CustomLoadHooks.TriggerHook( ModHelpersWorld.SaveValidator, ModHelpersWorld.MyValidatorKey );
 			
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 			return tags;

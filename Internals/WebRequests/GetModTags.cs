@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 
 	/// @private
-	class ModTagsLoadHookArguments : CustomLoadHookArguments {
+	class ModTagsLoadHookArguments {
 		public bool Found;
 		internal IDictionary<string, ISet<string>> ModTags = null;
 		internal IDictionary<string, ISet<string>> TagMods = null;
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private readonly static object MyLock = new object();
 
 		internal readonly static object TagsReceivedHookValidatorKey;
-		public readonly static CustomLoadHookValidator TagsReceivedHookValidator;
+		public readonly static CustomLoadHookValidator<ModTagsLoadHookArguments> TagsReceivedHookValidator;
 
 		////////////////
 
@@ -66,7 +66,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		static GetModTags() {
 			GetModTags.TagsReceivedHookValidatorKey = new object();
-			GetModTags.TagsReceivedHookValidator = new CustomLoadHookValidator( GetModTags.TagsReceivedHookValidatorKey );
+			GetModTags.TagsReceivedHookValidator = new CustomLoadHookValidator<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidatorKey );
 		}
 		
 		
@@ -88,7 +88,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 							}
 							args.Found = success;
 
-							LoadHooks.TriggerCustomHook( GetModTags.TagsReceivedHookValidator, GetModTags.TagsReceivedHookValidatorKey, args );
+							CustomLoadHooks.TriggerHook( GetModTags.TagsReceivedHookValidator, GetModTags.TagsReceivedHookValidatorKey, args );
 						} catch( Exception e ) {
 							LogHelpers.Alert( e.ToString() );
 						}

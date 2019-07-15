@@ -62,7 +62,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 
 		/// <summary>
-		/// Indicates if a given player is "floying" (using rocket boots or wings).
+		/// Indicates if a given player is "flying" (using rocket boots or wings).
 		/// </summary>
 		/// <param name="player"></param>
 		/// <returns></returns>

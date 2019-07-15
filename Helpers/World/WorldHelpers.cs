@@ -151,9 +151,10 @@ namespace HamstarHelpers.Helpers.World {
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <param name="invertGravity"></param>
+		/// <param name="ground">Tile pattern checker to define what "ground" is.</param>
 		/// <param name="groundPos"></param>
 		/// <returns>`true` if a ground point was found within world boundaries.</returns>
-		public static bool DropToGround( Vector2 worldPos, bool invertGravity, out Vector2 groundPos ) { f
+		public static bool DropToGround( Vector2 worldPos, bool invertGravity, TilePattern ground, out Vector2 groundPos ) {
 			bool hitGround = true;
 			int x = (int)worldPos.X / 16;
 			int y = (int)worldPos.Y / 16;
@@ -165,7 +166,7 @@ namespace HamstarHelpers.Helpers.World {
 						hitGround = false;
 						break;
 					}
-				} while( !TileHelpers.IsSolid( Framing.GetTileSafely(x, y) ) );
+				} while( !ground.Check(x, y) );
 			} else {
 				do {
 					y++;
@@ -173,7 +174,7 @@ namespace HamstarHelpers.Helpers.World {
 						hitGround = false;
 						break;
 					}
-				} while( !TileHelpers.IsSolid( Framing.GetTileSafely(x, y) ) );
+				} while( !ground.Check(x, y) );
 			}
 
 			groundPos = new Vector2( worldPos.X, y * 16 );

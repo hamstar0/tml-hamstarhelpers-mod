@@ -5,7 +5,7 @@ using Terraria;
 
 namespace HamstarHelpers.Services.AnimatedColor {
 	/// <summary>
-	/// Supplies a simple, handy way to "animate" (lerp between) colors to make animations. Adjustable.
+	/// Supplies a handy way to "animate" (lerp between) colors to make animations. Adjustable.
 	/// </summary>
 	public partial class AnimatedColors {
 		/// <summary>

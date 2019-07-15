@@ -86,7 +86,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void SetCurrentMod( UIState ui, string modName ) {
 			this.CurrentModName = modName;
 
-			LoadHooks.AddCustomHook<ModTagsLoadHookArguments>( GetModTags.TagsReceivedHookValidator, ( args ) => {
+			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				if( !args.Found ) {
 					LogHelpers.Warn();
 					return false;

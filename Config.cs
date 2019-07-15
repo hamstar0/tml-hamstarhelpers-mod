@@ -1,12 +1,10 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Components.Config;
 using System;
 using Terraria;
 using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers {
-	/** <summary>Config file class. Fields define config settings.</summary> */
 	public class HamstarHelpersConfigData : ConfigurationDataBase {
 		public static string ConfigFileName => "Mod Helpers Config.json";
 
