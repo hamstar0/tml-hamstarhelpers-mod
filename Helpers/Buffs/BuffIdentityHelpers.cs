@@ -2,7 +2,9 @@
 
 
 namespace HamstarHelpers.Helpers.Buffs {
-	/** <summary>Assorted static "helper" functions pertaining to buff identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to buff identification.
+	/// </summary>
 	public partial class BuffIdentityHelpers {
 		/// <summary>
 		/// A map of buff names to their Terraria IDs.

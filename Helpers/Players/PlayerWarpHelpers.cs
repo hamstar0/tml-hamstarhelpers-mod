@@ -57,6 +57,10 @@ namespace HamstarHelpers.Helpers.Players {
 			if( Main.netMode <= 1 ) {
 				player.Teleport( pos, style );
 			} else {
+				if( Main.netMode == 2 ) {
+					RemoteClient.CheckSection( player.whoAmI, pos );
+				}
+
 				style = style == -1 ? 1 : style;
 				NetMessage.SendData( MessageID.Teleport, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, style, 0, 0 );
 			}

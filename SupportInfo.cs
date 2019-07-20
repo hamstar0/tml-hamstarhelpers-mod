@@ -255,20 +255,20 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				elem.Recalculate();
 			}
 
-			var boxColor = new Color( 256, 0, 32 );
-			var boxEdgeColor = new Color( 255, 224, 224 );
-			float colorMul = 0.25f;
+			//var boxColor = new Color( 256, 0, 32 );
+			//var boxEdgeColor = new Color( 255, 224, 224 );
+			//float colorMul = 0.25f;
 
 			if( this.IsHovingBox ) {
 				this.ExtendTextUI.TextColor = Color.White;
-				colorMul = 0.3f;
+				//colorMul = 0.3f;
 			} else {
 				this.ExtendTextUI.TextColor = AnimatedColors.Air.CurrentColor;
 			}
 
-			//var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
-			var rect = this.GetInnerBox();
-			HUDHelpers.DrawBorderedRect( sb, boxColor * colorMul, boxEdgeColor * colorMul, rect, 4 );
+			////var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
+			//var rect = this.GetInnerBox();
+			//HUDHelpers.DrawBorderedRect( sb, boxColor * colorMul, boxEdgeColor * colorMul, rect, 4 );
 
 			if( this.SupportUrlUI != null ) {
 				this.SupportUrlUI.Theme.UrlColor = Color.Lerp( UITheme.Vanilla.UrlColor, AnimatedColors.Ether.CurrentColor, 0.25f );

@@ -63,6 +63,7 @@
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendAPI.cs" />
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendRequest.cs" />
     <Compile Include="Components\Protocols\XNAContractResolver.cs" />
+    <Compile Include="Helpers\Buffs\BuffAttributesHelpers.cs" />
     <Compile Include="Helpers\Debug\LogHelpers_Once.cs" />
     <Compile Include="Helpers\Debug\LogHelpers_Output.cs" />
     <Compile Include="Helpers\DotNET\Encoding\HashHelpers.cs" />
