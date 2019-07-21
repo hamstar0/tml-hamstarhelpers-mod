@@ -9,37 +9,48 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// Assorted static "helper" functions pertaining to wall identification.
 	/// </summary>
 	public class TileWallIdentityHelpers {
-		private static readonly IdDictionary Search = IdDictionary.Create<WallID, short>();
+		private static readonly IdDictionary WallIdSearch = IdDictionary.Create<WallID, short>();
 
 
 
 		////////////////
 
 		/// <summary>
-		/// Gets the readable unique key for a given wall (e.g. for ModConfig fields).
+		/// Gets a (human readable) unique key from a given wall type.
 		/// </summary>
-		/// <param name="wallType"></param>
+		/// <param name="type"></param>
 		/// <returns></returns>
-		public static string GetReadableUniqueKey( int wallType ) {
-			if( TileWallIdentityHelpers.Search.ContainsId( wallType ) ) {
-				return "Terraria " + TileWallIdentityHelpers.Search.GetName( wallType );
+		public static string GetUniqueKey( int type ) {
+			if( type < 0 || type >= WallLoader.WallCount ) {
+				throw new ArgumentOutOfRangeException( "Invalid type: " + type );
+			}
+			if( type < WallID.Count ) {
+				return "Terraria " + TileWallIdentityHelpers.WallIdSearch.GetName( type );
 			}
 
-			ModWall modWall = WallLoader.GetWall( wallType );
-			if( modWall != null ) {
-				return TileWallIdentityHelpers.GetReadableUniqueKey( modWall );
-			}
-
-			throw new ArgumentOutOfRangeException( "Invalid wall type value." );
+			ModWall modWall = WallLoader.GetWall( type );
+			return $"{modWall.mod.Name} {modWall.Name}";
 		}
 
+		////
+
 		/// <summary>
-		/// Gets the readable unique key for a given wall (e.g. for ModConfig fields).
+		/// Gets a wall type from a given unique key.
 		/// </summary>
-		/// <param name="wall"></param>
+		/// <param name="key"></param>
 		/// <returns></returns>
-		public static string GetReadableUniqueKey( ModWall wall ) {
-			return wall.mod.Name + " " + wall.Name;
+		public static int TypeFromUniqueKey( string key ) {
+			string[] parts = key.Split( new char[] { ' ' }, 2 );
+			if( parts.Length != 2 )
+				return 0;
+			if( parts[0] == "Terraria" ) {
+				if( !TileWallIdentityHelpers.WallIdSearch.ContainsName( parts[1] ) ) {
+					return 0;
+				}
+				return TileWallIdentityHelpers.WallIdSearch.GetId( parts[1] );
+			}
+
+			return ModLoader.GetMod( parts[0] )?.WallType( parts[1] ) ?? 0;
 		}
 	}
 }

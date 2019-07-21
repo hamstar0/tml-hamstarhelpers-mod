@@ -3,6 +3,7 @@ using HamstarHelpers.Components.DataStructures;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
@@ -11,54 +12,53 @@ namespace HamstarHelpers.Helpers.NPCs {
 	/// </summary>
 	public partial class NPCIdentityHelpers {
 		/// <summary>
-		/// Gets the identifier of an NPC. For Terraria NPCs, this is `Terraria ZombieDoctor`, with the portion after "Terraria"
-		/// being the NPC's field name in `NPCID`. For modded items, the format is NPCModName ModdedNPCInternalName; the mod
-		/// name first, and the modded NPC's internal `Name` after.
+		/// Gets a (human readable) unique key from a given NPC type.
 		/// </summary>
-		/// <param name="npcType"></param>
+		/// <param name="type"></param>
 		/// <returns></returns>
-		public static string GetUniqueId( int npcType ) {
-			if( NPCID.Search.ContainsId( npcType ) ) {
-				return "Terraria " + NPCID.Search.GetName( npcType );
-			} else {
-				var npc = new NPC();
-				npc.SetDefaults( npcType );
-
-				if( npc.modNPC != null ) {
-					return npc.modNPC.mod.Name + " " + npc.modNPC.Name;
-				}
+		public static string GetUniqueKey( int type ) {
+			if( type < -65 || type >= NPCLoader.NPCCount ) {
+				throw new ArgumentOutOfRangeException( "Invalid type: " + type );
+			}
+			if( type < NPCID.Count ) {
+				return "Terraria " + NPCID.Search.GetName( type );
 			}
 
-			return "" + npcType;
+			var modNPC = NPCLoader.GetNPC( type );
+			return $"{modNPC.mod.Name} {modNPC.Name}";
 		}
 
 		/// <summary>
-		/// Gets the identifier of an NPC. For Terraria NPCs, this is `Terraria ZombieDoctor`, with the portion after "Terraria"
-		/// being the NPC's field name in `NPCID`. For modded items, the format is NPCModName ModdedNPCInternalName; the mod
-		/// name first, and the modded NPC's internal `Name` after.
+		/// Gets a (human readable) unique key from a given NPC.
 		/// </summary>
 		/// <param name="npc"></param>
 		/// <returns></returns>
-		public static string GetUniqueId( NPC npc ) {
-			if( npc.modNPC == null ) {
-				return "Terraria " + NPCID.Search.GetName( npc.type );
-			} else {
-				return npc.modNPC.mod.Name + " " + npc.modNPC.Name;
-			}
-		}
+		public static string GetUniqueKey( NPC npc ) => GetUniqueKey( npc.type );
 
 		////
 
-		/*public static string GetUniqueId( NPC npc ) {
-			string id = npc.TypeName;
+		/// <summary>
+		/// Gets an NPC type from a given unique key.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public static int TypeFromUniqueKey( string key ) {
+			string[] parts = key.Split( new char[] { ' ' }, 2 );
 
-			if( npc.HasGivenName ) { id = npc.GivenName + " " + id; }
-			if( npc.modNPC != null ) { id = npc.modNPC.mod.Name + " " + id; }
+			if( parts.Length != 2 ) {
+				return 0;
+			}
+			if( parts[0] == "Terraria" ) {
+				if( !NPCID.Search.ContainsName( parts[1] ) ) {
+					return 0;
+				}
+				return NPCID.Search.GetId( parts[1] );
+			}
+			return ModLoader.GetMod( parts[0] )?.NPCType( parts[1] ) ?? 0;
+		}
 
-			if( id != "" ) { return id; }
-			return "" + npc.type;
-		}*/
 
+		////////////////
 
 		/// <summary>
 		/// Gets an NPC's qualified (human readable) name.

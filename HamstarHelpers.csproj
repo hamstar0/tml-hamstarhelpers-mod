@@ -129,6 +129,7 @@
     <Compile Include="Helpers\Misc\ModCustomDataFileHelpers_Save.cs" />
     <Compile Include="Helpers\Misc\ModCustomDataFileHelpers_Load.cs" />
     <Compile Include="Helpers\ParticleFx\ParticleFxHelpers.cs" />
+    <Compile Include="Helpers\Projectiles\ProjectileAttributeHelpers.cs" />
     <Compile Include="Helpers\Projectiles\ProjectileHelpers_Draw.cs" />
     <Compile Include="Helpers\Steam\SteamHelpers.cs" />
     <Compile Include="Helpers\DotNET\Formatting\StringFormattingHelpers.cs" />

@@ -10,75 +10,54 @@ namespace HamstarHelpers.Helpers.Items {
 	/// </summary>
 	public partial class ItemIdentityHelpers {
 		/// <summary>
-		/// Gets the identifier of an item. For Terraria items, this is `Terraria IronPickaxe`, with the portion after "Terraria"
-		/// being the item's field name in `ItemID`. For modded items, the format is ItemModName ModdedItemInternalName; the mod
-		/// name first, and the modded item's internal `Name` after.
+		/// Gets a (human readable) unique key from a given item type.
 		/// </summary>
 		/// <param name="itemType"></param>
 		/// <returns></returns>
-		public static string GetUniqueId( int itemType ) {
-			if( ItemID.Search.ContainsId(itemType) ) {
+		public static string GetUniqueKey( int itemType ) {
+			if( itemType < 0 || itemType >= ItemLoader.ItemCount ) {
+				throw new ArgumentOutOfRangeException( "Invalid type: " + itemType );
+			}
+			if( itemType < ItemID.Count ) {
 				return "Terraria " + ItemID.Search.GetName( itemType );
-			} else {
-				var item = new Item();
-				item.SetDefaults( itemType, true );
-
-				if( item.modItem != null ) {
-					return item.modItem.mod.Name + " " + item.modItem.Name;
-				}
 			}
 
-			return ""+itemType;
+			var modItem = ItemLoader.GetItem( itemType );
+			return $"{modItem.mod.Name} {modItem.Name}";
 		}
 
 		/// <summary>
-		/// Gets the identifier of an item. For Terraria items, this is `Terraria IronPickaxe`, with the portion after "Terraria"
-		/// being the item's field name in `ItemID`. For modded items, the format is ItemModName ModdedItemInternalName; the mod
-		/// name first, and the modded item's internal `Name` after.
+		/// Gets a (human readable) unique key from a given item.
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static string GetUniqueId( Item item ) {
-			if( item.modItem == null ) {
-				return "Terraria " + ItemID.Search.GetName( item.type );
-			} else {
-				return item.modItem.mod.Name + " " + item.modItem.Name;
-			}
-		}
+		public static string GetUniqueKey( Item item ) => GetUniqueKey( item.type );
+
 
 		////
 
 		/// <summary>
-		/// Attempts to get an item's type (id) by a given identifier (see `GetUniqueId(...)`).
+		/// Gets an item type from a given unique key.
 		/// </summary>
-		/// <param name="itemUid"></param>
-		/// <param name="itemId">Outputs as the item's `type`.</param>
-		/// <returns>`true` if itemUid identifies as a value item proper name.</returns>
-		public static bool TryGetTypeByUid( string itemUid, out int itemId ) {
-			string[] split = itemUid.Split( '.' );
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public static int TypeFromUniqueKey( string key ) {
+			string[] parts = key.Split( new char[] { ' ' }, 2 );
 
-			if( split[0] == "Terraria" ) {
-				return Int32.TryParse( split[1], out itemId );
-			} else {
-				Mod mod = ModLoader.GetMod( split[0] );
-				if( mod == null ) {
-					itemId = -1;
-					return false;
-				}
-				itemId = mod.ItemType( split[1] );
-				return true;
+			if( parts.Length != 2 ) {
+				return 0;
 			}
+			if( parts[0] == "Terraria" ) {
+				if( !ItemID.Search.ContainsName( parts[1] ) ) {
+					return 0;
+				}
+				return ItemID.Search.GetId( parts[1] );
+			}
+			return ModLoader.GetMod( parts[0] )?.ItemType( parts[1] ) ?? 0;
 		}
 
 
 		////////////////
-
-		/*public static string GetUniqueId( Item item ) {
-			if( item.modItem != null ) {
-				return item.modItem.mod.Name + " " + item.Name;
-			}
-			return ""+ item.netID;
-		}*/
 
 		/// <summary>
 		/// Gets an item's qualified (human readable) name.
@@ -106,12 +85,12 @@ namespace HamstarHelpers.Helpers.Items {
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="noContext">Omits `owner`, `netID`, and `favorited` fields.</param>
-		/// <param name="minimal">Uses only the item's unique ID (`GetUniqueId(...)`), `prefix`, and `stack`.</param>
+		/// <param name="minimal">Uses only the item's unique ID (`GetUniqueKey(...)`), `prefix`, and `stack`.</param>
 		/// <returns></returns>
 		public static int GetVanillaSnapshotHash( Item item, bool noContext, bool minimal ) {
 			int hash = Entities.EntityHelpers.GetVanillaSnapshotHash( item, noContext );
 
-			string id = ItemIdentityHelpers.GetUniqueId( item );  // used to be GetUniqueId
+			string id = ItemIdentityHelpers.GetUniqueKey( item );
 
 			hash ^= ( "id" + id ).GetHashCode();
 			hash ^= ( "prefix" + item.prefix ).GetHashCode();
