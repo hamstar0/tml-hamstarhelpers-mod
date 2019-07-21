@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.Buffs {
 		/// <summary>
 		/// A map of buff names to their Terraria IDs.
 		/// </summary>
-		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
+		public static ReadOnlyDictionaryOfSets<string, int> DisplayNamesToIds {
 			get { return ModHelpersMod.Instance.BuffIdentityHelpers._NamesToIds; }
 		}
 	}

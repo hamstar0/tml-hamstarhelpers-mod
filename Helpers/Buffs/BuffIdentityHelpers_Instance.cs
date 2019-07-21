@@ -15,7 +15,7 @@ namespace HamstarHelpers.Helpers.Buffs {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < Main.buffTexture.Length; i++ ) {
-				string name = Lang.GetBuffName( i );
+				string name = BuffAttributesHelpers.GetBuffDisplayName( i );
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );

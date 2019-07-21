@@ -96,18 +96,19 @@ namespace HamstarHelpers {
 			////
 
 			var debugLayer = new LegacyGameInterfaceLayer( "ModHelpers: Debug Display",
-				debugDrawCallback, InterfaceScaleType.UI );
+				debugDrawCallback,
+				InterfaceScaleType.UI );
 			layers.Insert( idx, debugLayer );
 
 			var modlockLayer = new LegacyGameInterfaceLayer( "ModHelpers: Mod Lock",
-				modlockDrawCallback, InterfaceScaleType.UI );
+				modlockDrawCallback,
+				InterfaceScaleType.UI );
 			layers.Insert( idx, modlockLayer );
 
-			if( !this.Config.DisableControlPanel ) {
-				var cpLayer = new LegacyGameInterfaceLayer( "ModHelpers: Control Panel",
-					cpDrawCallback, InterfaceScaleType.UI );
-				layers.Insert( idx, cpLayer );
-			}
+			var cpLayer = new LegacyGameInterfaceLayer( "ModHelpers: Control Panel",
+				cpDrawCallback,
+				InterfaceScaleType.UI );
+			layers.Insert( idx, cpLayer );
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 	}
