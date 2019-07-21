@@ -292,6 +292,7 @@
     <Compile Include="Services\AnimatedColors\AnimatedColors_Instance.cs" />
     <Compile Include="Services\AnimatedColors\AnimatedColors.cs" />
     <Compile Include="Services\EntityGroups\Classes.cs" />
+    <Compile Include="Services\EntityGroups\Defs\Projectile.cs" />
     <Compile Include="Services\Hooks\LoadHooks\CustomLoadHooks.cs" />
     <Compile Include="Services\Hooks\LoadHooks\CustomLoadHooks_API.cs" />
     <Compile Include="Services\Hooks\LoadHooks\LoadHooks.cs" />

@@ -53,6 +53,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		private static IList<EntityGroupMatcherDefinition<Projectile>> DefineProjectileGroups() {
 			var matchers = new List<EntityGroupMatcherDefinition<Projectile>>();
+
+			EntityGroupDefs.DefineProjectileGroups1( matchers );
+
 			return matchers;
 		}
 	}

@@ -9,7 +9,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 		internal static void DefineNPCGroups1( IList<EntityGroupMatcherDefinition<NPC>> defs ) {
 			// General
 
-			defs.Add( new EntityGroupMatcherDefinition<NPC>( 
+			defs.Add( new EntityGroupMatcherDefinition<NPC>(
 				"Any Friendly NPC", null,
 				new NPCGroupMatcher( ( npc, grp ) => {
 					return npc.friendly;
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
 				"Any Boss", null,
 				new NPCGroupMatcher( ( npc, grp ) => {
-					if( npc.type == NPCID.EaterofWorldsHead ) { return true; }	// special case
+					if( npc.type == NPCID.EaterofWorldsHead ) { return true; }  // special case
 					return npc.boss;
 				} )
 			) );
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				new NPCGroupMatcher( ( npc, grp ) => {
 					if( npc.aiStyle == 1 ) {
 						switch( npc.netID ) {
-						case NPCID.HoppinJack:	//?
+						case NPCID.HoppinJack:  //?
 						case NPCID.Grasshopper:
 						case NPCID.GoldGrasshopper:
 							return false;

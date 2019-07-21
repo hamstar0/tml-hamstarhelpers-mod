@@ -21,6 +21,7 @@ namespace HamstarHelpers.Helpers.Buffs {
 		/// </summary>
 		/// <param name="buffType"></param>
 		/// <returns></returns>
+		[Obsolete( "use BuffID.GetUniqueKey(int)" )]
 		public static string GetUniqueKey( int buffType ) {
 			if( buffType < 1 || buffType >= BuffLoader.BuffCount ) {
 				throw new ArgumentOutOfRangeException( "Invalid type: " + buffType );
@@ -39,6 +40,7 @@ namespace HamstarHelpers.Helpers.Buffs {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
+		[Obsolete( "use BuffID.TypeFromUniqueKey(string)" )]
 		public static int TypeFromUniqueKey( string key ) {
 			string[] parts = key.Split( new char[] { ' ' }, 2 );
 

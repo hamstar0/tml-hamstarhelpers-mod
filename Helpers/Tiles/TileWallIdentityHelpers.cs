@@ -20,6 +20,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
+		[Obsolete( "use WallID.GetUniqueKey(int)" )]
 		public static string GetUniqueKey( int type ) {
 			if( type < 0 || type >= WallLoader.WallCount ) {
 				throw new ArgumentOutOfRangeException( "Invalid type: " + type );
@@ -39,10 +40,13 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
+		[Obsolete( "use WallID.TypeFromUniqueKey(string)" )]
 		public static int TypeFromUniqueKey( string key ) {
 			string[] parts = key.Split( new char[] { ' ' }, 2 );
-			if( parts.Length != 2 )
+
+			if( parts.Length != 2 ) {
 				return 0;
+			}
 			if( parts[0] == "Terraria" ) {
 				if( !TileWallIdentityHelpers.WallIdSearch.ContainsName( parts[1] ) ) {
 					return 0;

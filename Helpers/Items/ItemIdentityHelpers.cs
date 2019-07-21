@@ -14,6 +14,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// </summary>
 		/// <param name="itemType"></param>
 		/// <returns></returns>
+		[Obsolete( "use ItemID.GetUniqueKey(int)" )]
 		public static string GetUniqueKey( int itemType ) {
 			if( itemType < 0 || itemType >= ItemLoader.ItemCount ) {
 				throw new ArgumentOutOfRangeException( "Invalid type: " + itemType );
@@ -31,7 +32,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static string GetUniqueKey( Item item ) => GetUniqueKey( item.type );
+		[Obsolete( "use ItemID.GetUniqueKey(NPC)" )]
+		public static string GetUniqueKey( Item item ) => ItemIdentityHelpers.GetUniqueKey( item.type );
 
 
 		////
@@ -41,6 +43,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
+		[Obsolete( "use ItemID.TypeFromUniqueKey(string)" )]
 		public static int TypeFromUniqueKey( string key ) {
 			string[] parts = key.Split( new char[] { ' ' }, 2 );
 

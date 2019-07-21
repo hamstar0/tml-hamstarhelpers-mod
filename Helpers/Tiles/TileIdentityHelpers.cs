@@ -21,6 +21,7 @@ namespace DestructibleTiles.Helpers.TileHelpers {
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
+		[Obsolete( "use TileID.GetUniqueKey(int)" )]
 		public static string GetUniqueKey( int type ) {
 			if( type < 0 || type >= TileLoader.TileCount ) {
 				throw new ArgumentOutOfRangeException( "Invalid type: " + type );
@@ -41,6 +42,7 @@ namespace DestructibleTiles.Helpers.TileHelpers {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
+		[Obsolete( "use TileID.TypeFromUniqueKey(string)" )]
 		public static int TypeFromUniqueKey( string key ) {
 			string[] parts = key.Split( new char[] { ' ' }, 2 );
 

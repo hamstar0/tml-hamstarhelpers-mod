@@ -16,6 +16,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
+		[Obsolete( "use NPCID.GetUniqueKey(int)" )]
 		public static string GetUniqueKey( int type ) {
 			if( type < -65 || type >= NPCLoader.NPCCount ) {
 				throw new ArgumentOutOfRangeException( "Invalid type: " + type );
@@ -33,7 +34,8 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// </summary>
 		/// <param name="npc"></param>
 		/// <returns></returns>
-		public static string GetUniqueKey( NPC npc ) => GetUniqueKey( npc.type );
+		[Obsolete( "use NPCID.GetUniqueKey(NPC)" )]
+		public static string GetUniqueKey( NPC npc ) => NPCIdentityHelpers.GetUniqueKey( npc.type );
 
 		////
 
@@ -42,6 +44,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
+		[Obsolete( "use NPCID.TypeFromUniqueKey(string)" )]
 		public static int TypeFromUniqueKey( string key ) {
 			string[] parts = key.Split( new char[] { ' ' }, 2 );
 
