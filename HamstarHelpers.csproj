@@ -188,11 +188,12 @@
     <Compile Include="Helpers\Recipes\RecipeIdentityHelpers.cs" />
     <Compile Include="Helpers\Recipes\RecipeIdentityHelpers_Instance.cs" />
     <Compile Include="Helpers\Recipes\RecipeHelpers.cs" />
+    <Compile Include="Helpers\Tiles\TileAttributeHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileFinderHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileBiomeHelpers.cs" />
+    <Compile Include="Helpers\Tiles\TileAttributeHelpers_Name.cs" />
     <Compile Include="Helpers\Tiles\TileIdentityHelpers.cs" />
-    <Compile Include="Helpers\Tiles\TileIdentityHelpers_UID.cs" />
     <Compile Include="Helpers\Tiles\TilePattern_Instance.cs" />
     <Compile Include="Helpers\Tiles\TilePattern.cs" />
     <Compile Include="Helpers\Tiles\TileWallHelpers.cs" />
