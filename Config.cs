@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.User;
+﻿using HamstarHelpers.Helpers.User;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader.Config;
@@ -24,33 +23,39 @@ namespace HamstarHelpers {
 		/// Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only.
 		/// </summary>
 		[Header( "Debug settings" )]
-		[Label("Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only.")]
+		[Label("Debug Mode - Helpers Info")]
+		[Tooltip("Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only.")]
 		public bool DebugModeHelpersInfo = false;
 		/// <summary>
 		/// Outputs (to log) network message information (sends and receives of PacketProtocol).
 		/// </summary>
-		[Label("Outputs (to log) network message information (sends and receives of PacketProtocol).")]
+		[Label( "Debug Mode - Net Info" )]
+		[Tooltip( "Outputs (to log) network message information (sends and receives of PacketProtocol).")]
 		public bool DebugModeNetInfo = false;
 		/// <summary>
 		/// Catches and logs unhandled exceptions (before crash).
 		/// </summary>
-		[Label("Catches and logs unhandled exceptions (before crash).")]
+		[Label( "Debug Mode - Unhandled Exception Logging" )]
+		[Tooltip( "Catches and logs unhandled exceptions (before crash).")]
 		[DefaultValue(true)]
 		public bool DebugModeUnhandledExceptionLogging = true;
 		/// <summary>
 		/// Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).
 		/// </summary>
-		[Label("Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).")]
+		[Label( "Debug Mode - Also Server" )]
+		[Tooltip( "Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).")]
 		public bool DebugModeDumpAlsoServer = false;
 		/// <summary>
-		/// Silences silent logging.
+		/// Disables logging of "silenced" exceptions.
 		/// </summary>
-		[Label("Silences silent logging.")]
+		[Label( "Debug Mode - Silent Logging" )]
+		[Tooltip( "Silences silent logging.")]
 		public bool DebugModeDisableSilentLogging = false;
 		/// <summary>
 		/// Logs PacketProtocol payload content.
 		/// </summary>
-		[Label("Logs PacketProtocol payload content.")]
+		[Label( "Debug Mode - Packet Info" )]
+		[Tooltip( "Logs PacketProtocol payload content.")]
 		public bool DebugModePacketInfo = false;
 
 
@@ -58,49 +63,58 @@ namespace HamstarHelpers {
 		/// Disables control panel outright.
 		/// </summary>
 		[Header("Control panel settings")]
-		[Label("Disables control panel outright.")]
+		[Label( "Disable Control Panel" )]
+		[Tooltip( "Disables control panel outright.")]
 		public bool DisableControlPanel = false;
 		/// <summary>
 		/// Control panel icon's X coordinate on screen. Negative values align the button from the right edge.
 		/// </summary>
-		[Label("Control panel icon's X coordinate on screen. Negative values align the button from the right edge.")]
+		[Label( "Control Panel Icon X" )]
+		[Tooltip( "Control panel icon's X coordinate on screen. Negative values align the button from the right edge.")]
 		public int ControlPanelIconX = 0;
 		/// <summary>
 		/// Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge.
 		/// </summary>
-		[Label("Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge.")]
+		[Label( "Control Panel Icon Y" )]
+		[Tooltip( "Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge.")]
 		public int ControlPanelIconY = 0;
 
 		/// <summary>
 		/// Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge.
 		/// </summary>
-		[Label("Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge.")]
-		public int InboxIconPosX = 2;
+		[Label( "Inbox Icon X" )]
+		[Tooltip( "Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge.")]
+		public int InboxIconX = 2;
 		/// <summary>
 		/// Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge.
 		/// </summary>
-		[Label("Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge.")]
-		public int InboxIconPosY = 80;
+		[Label( "Inbox Icon Y" )]
+		[Tooltip( "Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge.")]
+		public int InboxIconY = 80;
 
 		/// <summary>
 		/// Quantity of the latest log entries to pass along with issue reports.
 		/// </summary>
-		[Label("Quantity of the latest log entries to pass along with issue reports.")]
+		[Label( "Mod Issue Report Error Log Max Lines" )]
+		[Tooltip( "Quantity of the latest log entries to pass along with issue reports.")]
 		public int ModIssueReportErrorLogMaxLines = 100;
 
 		/// <summary>
 		/// Enables mod locking per world (prevents playing a world with missing mods).
 		/// </summary>
-		[Label("Enables mod locking per world (prevents playing a world with missing mods).")]
+		[Label( "World Mod Lock Enable" )]
+		[Tooltip( "Enables mod locking per world (prevents playing a world with missing mods).")]
 		public bool WorldModLockEnable = true;
 		/// <summary>
 		/// Sets mod locking to expect only the exact set of mods it was locked with, and no more.
 		/// </summary>
-		[Label("Sets mod locking to expect only the exact set of mods it was locked with, and no more.")]
+		[Label( "World Mod Lock Minimum Only" )]
+		[Tooltip( "Sets mod locking to expect only the exact set of mods it was locked with, and no more.")]
 		public bool WorldModLockMinimumOnly = true;
 
 
 		[Header( "Mod Helpers functions settings" )]
+		[Label( "Mod Call Command Enabled" )]
 		[ReloadRequired]
 		public bool ModCallCommandEnabled = false;
 
@@ -109,12 +123,16 @@ namespace HamstarHelpers {
 		//public bool IsServerPromptingUsersBeforeListingOnBrowser = true;
 		////public int ServerBrowserCustomPort = -1;
 
-		public int PacketRequestRetryDuration = 60 * 4;	// 5 seconds
+		[Label( "Packet Request Retry Duration" )]
+		public int PacketRequestRetryDuration = 60 * 4; // 5 seconds
 
-		public int PingUpdateDelay = 60 * 15;	// 15 seconds
+		[Label( "Is Server Gauging Average Ping" )]
 		public bool IsServerGaugingAveragePing = true;
+		[Label( "Ping Update Delay" )]
+		public int PingUpdateDelay = 60 * 15;   // 15 seconds
 
-		[ReloadRequired]
+		//[ReloadRequired]
+		[Label( "Privileged User Id (internal UID)" )]
 		public string PrivilegedUserId = "";
 
 

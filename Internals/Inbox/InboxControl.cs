@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.Inbox {
 		private Vector2 IconAreaPos {
 			get {
 				var config = ModHelpersMod.Instance.Config;
-				return new Vector2( config.InboxIconPosX, config.InboxIconPosY );
+				return new Vector2( config.InboxIconX, config.InboxIconY );
 			}
 		}
 		private Vector2 IconPos {

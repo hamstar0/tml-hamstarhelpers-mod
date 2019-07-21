@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.Items {
 				field => field.Name,
 				field => (Tuple<string, ISet<int>>)field.GetValue( null )
 			);
-			groups["EvilBiomeBossDrops"] = groups["EvilBiomeBossChunks"];
+			groups["EvilBiomeBossChunks"] = groups["EvilBiomeBossDrops"];
 			groups["EvilBiomeLightPet"] = groups["EvilBiomeLightPets"];
 			groups["VanillaButterfly"] = groups["VanillaButterflies"];
 			groups["VanillaGoldCritter"] = groups["VanillaGoldCritters"];
