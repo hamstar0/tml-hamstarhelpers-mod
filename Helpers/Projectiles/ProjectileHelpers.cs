@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Projectiles {
@@ -9,26 +10,31 @@ namespace HamstarHelpers.Helpers.Projectiles {
 		/// <summary>
 		/// Applies projectile "hits", as if to make the effect of impacting something (including consuming penetrations).
 		/// </summary>
-		/// <param name="proj"></param>
-		public static void Hit( Projectile proj ) {
-			if( proj.penetrate <= 0 ) {
-				proj.Kill();
+		/// <param name="projectile"></param>
+		public static void Hit( Projectile projectile ) {
+			if( projectile.penetrate <= 0 ) {
+				projectile.Kill();
 			} else {
-				proj.penetrate--;
-				proj.netUpdate = true;
+				projectile.penetrate--;
+				projectile.netUpdate = true;
 			}
 		}
 
 
-		public static Rectangle GetProjectileDimensions( Projectile proj ) {
+		/// <summary>
+		/// Gets the (vanilla) dimensions of a projectile, adjusted by specific projectile idiosyncracies or AIs.
+		/// </summary>
+		/// <param name="projectile"></param>
+		/// <returns></returns>
+		public static Rectangle GetVanillaProjectileDimensions( Projectile projectile ) {
 			Vector2? dimScale = null;
-			int width = proj.width, height = proj.height;
+			int width = projectile.width, height = projectile.height;
 
-			switch( proj.type ) {
+			switch( projectile.type ) {
 			case 28:
-				if( proj.aiStyle == 29 || proj.aiStyle == 49 ) {
-					width = proj.width - 8;
-					height = proj.height - 8;
+				if( projectile.aiStyle == 29 || projectile.aiStyle == 49 ) {
+					width = projectile.width - 8;
+					height = projectile.height - 8;
 				}
 				break;
 			case 3:
@@ -42,7 +48,7 @@ namespace HamstarHelpers.Helpers.Projectiles {
 				break;
 			case 308:
 				width = 26;
-				height = proj.height;
+				height = projectile.height;
 				break;
 			case 663:
 			case 665:
@@ -54,13 +60,13 @@ namespace HamstarHelpers.Helpers.Projectiles {
 			case 692:
 			case 693:
 				width = 16;
-				height = proj.height;
+				height = projectile.height;
 				break;
 			case 688:
 			case 689:
 			case 690:
 				width = 16;
-				height = proj.height;
+				height = projectile.height;
 				dimScale = new Vector2?( new Vector2( 0.5f, 1f ) );
 				break;
 			case 669:
@@ -123,13 +129,13 @@ namespace HamstarHelpers.Helpers.Projectiles {
 			case 229:
 			case 237:
 			case 243:
-				width = proj.width - 20;
-				height = proj.height - 20;
+				width = projectile.width - 20;
+				height = projectile.height - 20;
 				break;
 			case 533:
-				if( proj.ai[0] >= 6f ) {
-					width = proj.width + 6;
-					height = proj.height + 6;
+				if( projectile.ai[0] >= 6f ) {
+					width = projectile.width + 6;
+					height = projectile.height + 6;
 				}
 				break;
 			case 582:
@@ -139,44 +145,50 @@ namespace HamstarHelpers.Helpers.Projectiles {
 				height = 8;
 				break;
 			case 617:
-				width = (int)(20f * proj.scale);
-				height = (int)(20f * proj.scale);
+				width = (int)(20f * projectile.scale);
+				height = (int)(20f * projectile.scale);
 				break;
 			default:
-				if( proj.aiStyle == 29 || proj.type == 28 || proj.aiStyle == 49 ) {
-					width = proj.width - 8;
-					height = proj.height - 8;
-				} else if( proj.aiStyle == 18 || proj.type == 254 ) {
-					width = proj.width - 36;
-					height = proj.height - 36;
-				} else if( proj.aiStyle == 27 ) {
-					width = proj.width - 12;
-					height = proj.height - 12;
+				if( projectile.aiStyle == 29 || projectile.type == 28 || projectile.aiStyle == 49 ) {
+					width = projectile.width - 8;
+					height = projectile.height - 8;
+				} else if( projectile.aiStyle == 18 || projectile.type == 254 ) {
+					width = projectile.width - 36;
+					height = projectile.height - 36;
+				} else if( projectile.aiStyle == 27 ) {
+					width = projectile.width - 12;
+					height = projectile.height - 12;
 				}
 				break;
 			}
 
 			int x, y;
 
-			if( height != proj.height || width != proj.width ) {
+			if( height != projectile.height || width != projectile.width ) {
 				if( dimScale.HasValue ) {
-					Vector2 position = proj.Center - new Vector2( (float)width, (float)height ) * dimScale.Value;
+					Vector2 position = projectile.Center - new Vector2( (float)width, (float)height ) * dimScale.Value;
 					x = (int)position.X;
 					y = (int)position.Y;
 				} else {
-					x = (int)(proj.position.X + (proj.width >> 1) - (width >> 1));
-					y = (int)(proj.position.Y + (proj.height >> 1) - (height >> 1));
+					x = (int)(projectile.position.X + (projectile.width >> 1) - (width >> 1));
+					y = (int)(projectile.position.Y + (projectile.height >> 1) - (height >> 1));
 				}
 			} else {
-				x = (int)proj.position.X;
-				y = (int)proj.position.Y;
+				x = (int)projectile.position.X;
+				y = (int)projectile.position.Y;
 			}
 
 			return new Rectangle( x, y, width, height );
 		}
 
 
-		public static bool VanillaProjectileRespectsPlatforms( Projectile projectile, out bool onlySometimes ) {
+		/// <summary>
+		/// Indicates if a given vanilla projectile collides with a platform.
+		/// </summary>
+		/// <param name="projectile"></param>
+		/// <param name="onlySometimes">Indicates if AI behavior can override collisions occasionally.</param>
+		/// <returns></returns>
+		public static bool DoesVanillaProjectileHitPlatforms( Projectile projectile, out bool onlySometimes ) {
 			if( Main.projPet[projectile.type] ) {
 				onlySometimes = true;
 				return true;
