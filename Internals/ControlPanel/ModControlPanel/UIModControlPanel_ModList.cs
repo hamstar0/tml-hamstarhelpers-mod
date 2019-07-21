@@ -56,7 +56,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 						this.ModDataList.Add( moditem );
 					}
 
-					if( mymod.Config.IsCheckingModVersions ) {
+					if( !mymod.Config.DisableModMenuUpdates ) {
 						moditem.CheckForNewVersionAsync();
 					}
 				}

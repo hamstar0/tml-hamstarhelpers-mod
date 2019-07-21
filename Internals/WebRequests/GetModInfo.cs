@@ -142,7 +142,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 		
 		internal void OnPostSetupContent() {
-			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
+			if( !ModHelpersMod.Instance.Config.DisableModMenuUpdates ) {
 				GetModInfo.CacheAllModInfoAsyncSafe();
 				/*GetModVersion.CacheAllModVersionsAsync( () => {
 					LogHelpers.Log( "Mod versions successfully retrieved and cached." );

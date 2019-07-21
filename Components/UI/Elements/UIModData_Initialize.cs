@@ -34,7 +34,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.HasIconLoaded = false;
 			this.LatestAvailableVersion = default( Version );
 
-			if( ModHelpersMod.Instance.Config.IsCheckingModVersions ) {
+			if( !ModHelpersMod.Instance.Config.DisableModMenuUpdates ) {
 				Services.Tml.BuildPropertiesViewer props = modfile != null ?
 					Services.Tml.BuildPropertiesViewer.GetBuildPropertiesForModFile( modfile ) :
 					(Services.Tml.BuildPropertiesViewer)null;
