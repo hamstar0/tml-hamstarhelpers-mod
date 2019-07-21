@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Components.UI.Menus;
+using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Internals.Menus.ModRecommendations;
 using HamstarHelpers.Internals.Menus.ModTags;
 using HamstarHelpers.Internals.Menus.ModUpdates;
@@ -39,7 +40,7 @@ namespace HamstarHelpers.Internals.Menus {
 			button.Width.Set( 208f, 0f );
 			button.Height.Set( 20f, 0f );
 			button.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				string fullpath = Main.SavePath + Path.DirectorySeparatorChar + HamstarHelpersConfigData.RelativePath;
+				string fullpath = Main.SavePath + Path.DirectorySeparatorChar + TmlHelpers.ConfigRelativeFolder;
 
 				try {
 					Process.Start( fullpath );

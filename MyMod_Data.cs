@@ -19,20 +19,19 @@ namespace HamstarHelpers {
 		////////////////
 
 		private bool LoadModData() {
-			bool success;
-			var data = ModCustomDataFileHelpers.LoadJson<ModHelpersData>( this, "data", out success );
+			var data = ModCustomDataFileHelpers.LoadJson<ModHelpersData>( this, "data" );
 
-			if( success && data != null ) {
+			if( data != null ) {
 				this.Data = data;
+				return true;
 			}
-
-			return success;
+			return false;
 		}
 
 
 		private void UnloadModData() {
 			if( this.Data != null ) {
-				ModCustomDataFileHelpers.SaveAsJson<ModHelpersData>( this, "data", this.Data );
+				ModCustomDataFileHelpers.SaveAsJson<ModHelpersData>( this, "data", true, this.Data );
 			}
 
 			this.Data = new ModHelpersData();

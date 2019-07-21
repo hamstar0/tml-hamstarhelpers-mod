@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Services.Messages;
 using Terraria;
 
 
@@ -11,7 +10,6 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
-				SimpleMessage.UpdateMessage();
 				mymod.PlayerMessages.Update();
 				this.DialogManager.Update();
 			}

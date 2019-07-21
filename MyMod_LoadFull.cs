@@ -15,7 +15,6 @@ namespace HamstarHelpers {
 		////////////////
 
 		private void LoadFull() {
-			this.LoadConfigs();
 			this.LoadExceptionBehavior();
 
 			this.LoadModules();

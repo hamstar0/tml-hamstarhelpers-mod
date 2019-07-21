@@ -51,7 +51,7 @@ namespace HamstarHelpers.Commands {
 				return;
 			}
 
-			Action<string> onSuccess = delegate ( string output ) {
+			Action<bool, string> onCompletion = ( success, output ) => {
 				if( output != "Done?" ) {
 					caller.Reply( output, Color.Lime );
 				} else {
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Commands {
 				caller.Reply( e.Message, Color.Red );
 			};
 
-			PostGithubModIssueReports.ReportIssue( mods[modIdx - 1], title, body, onSuccess, onFail );
+			PostGithubModIssueReports.ReportIssue( mods[modIdx - 1], title, body, onFail, onCompletion );
 		}
 	}
 }

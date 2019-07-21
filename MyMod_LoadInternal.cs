@@ -12,21 +12,9 @@ using HamstarHelpers.Services.Debug.DataDumper;
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
-		private void PostInitializeInternal() {
-			this.ConfigJson = new JsonConfig<HamstarHelpersConfigData>(
-				HamstarHelpersConfigData.ConfigFileName,
-				ConfigurationDataBase.RelativePath,
-				new HamstarHelpersConfigData()
-			);
-		}
-
-
-		////////////////
-		
-
 		private void LoadExceptionBehavior() {
 			if( this.Config.DebugModeDisableSilentLogging ) {
-				var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+				var flags = Helpers.DotNET.Reflection.ReflectionHelpers.MostAccess;
 				FieldInfo fceField = typeof( AppDomain ).GetField( "FirstChanceException", flags );
 				if( fceField == null ) {
 					fceField = typeof( AppDomain ).GetField( "_firstChanceException", flags );
@@ -44,22 +32,8 @@ namespace HamstarHelpers {
 		}
 
 
-		private void LoadConfigs() {
-			if( !this.ConfigJson.LoadFile() ) {
-				this.ConfigJson.SaveFile();
-			}
-
-			if( this.Config.UpdateToLatestVersion() ) {
-				ErrorLogger.Log( "Mod Helpers updated to " + this.Version.ToString() );
-				this.ConfigJson.SaveFile();
-			}
-		}
-
-
 		private void LoadHotkeys() {
-			if( !this.Config.DisableControlPanelHotkey ) {
-				this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
-			}
+			this.ControlPanelHotkey = this.RegisterHotKey( "Toggle Control Panel", "O" );
 			this.DataDumpHotkey = this.RegisterHotKey( "Dump Debug Data", "P" );
 		}
 

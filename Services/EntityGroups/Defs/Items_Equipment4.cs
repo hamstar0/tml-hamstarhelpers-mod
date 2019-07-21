@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
@@ -11,8 +12,11 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				"Any Wood Equipment",
 				new string[] { "Any Equipment", "Any Wood" },
 				new ItemGroupMatcher( ( item, grps ) => {
-					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, grps["Any Equipment"], 1 );
-					bool hasWood = RecipeHelpers.ItemHasIngredients( item.type, grps["Any Wood"], 1 );
+					IDictionary<int, int> anyEquipGrp = grps["Any Equipment"].ToDictionary( id=>id, id=>1 );
+					IDictionary<int, int> anyWoodGrp = grps["Any Wood"].ToDictionary( id => id, id => 1 );
+
+					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipGrp );
+					bool hasWood = RecipeHelpers.ItemHasIngredients( item.type, anyWoodGrp );
 					if( !hasEquip || !hasWood ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} )

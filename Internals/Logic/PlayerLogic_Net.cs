@@ -29,15 +29,9 @@ namespace HamstarHelpers.Internals.Logic {
 		////
 
 		public void OnSingleEnterWorld( Player player ) {
-			var mymod = ModHelpersMod.Instance;
-
 			if( !this.HasLoadedOldUID ) {
 				LogHelpers.Warn( "No (old) UID for " + player.name + " (" + player.whoAmI + ")" );
 				this.HasLoadedOldUID = true;	// Ugly failsafe; don't really know why data from ModPlayer.Load isn't available here
-			}
-
-			if( !mymod.ConfigJson.LoadFile() ) {
-				mymod.ConfigJson.SaveFile();
 			}
 			
 			this.FinishModSettingsSyncOnClient();
@@ -58,7 +52,6 @@ namespace HamstarHelpers.Internals.Logic {
 			PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 
 			// Receive
-			ModSettingsProtocol.QuickRequest();
 			WorldDataProtocol.QuickRequest();
 		}
 

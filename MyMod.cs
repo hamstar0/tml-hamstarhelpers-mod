@@ -27,8 +27,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		internal JsonConfig<HamstarHelpersConfigData> ConfigJson;
-		public HamstarHelpersConfigData Config => ConfigJson.Data;
+		public ModHelpersConfig Config { get; private set; }
 
 		////
 
@@ -50,11 +49,12 @@ namespace HamstarHelpers {
 			this.HasAddedRecipes = false;
 
 			this.InitializeModules();
-			this.PostInitializeInternal();
 		}
 
 
 		public override void Load() {
+			this.Config = new ModHelpersConfig();
+
 			//ErrorLogger.Log( "Loading Mod Helpers. Ensure you have .NET Framework v4.6+ installed, if you're having problems." );
 			if( Environment.Version < new Version( 4, 0, 30319, 42000 ) ) {
 				SystemHelpers.OpenUrl( "https://dotnet.microsoft.com/download/dotnet-framework-runtime" );

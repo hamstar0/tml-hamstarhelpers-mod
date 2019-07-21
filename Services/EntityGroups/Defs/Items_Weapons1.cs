@@ -149,7 +149,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 
-					var has = RecipeHelpers.ItemHasIngredients( item.type, new HashSet<int> { ItemID.SpellTome }, 1 );
+					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ {ItemID.SpellTome, 1} } );
 					if( has ) { return true; }
 
 					string name = ItemIdentityHelpers.GetQualifiedName( item );

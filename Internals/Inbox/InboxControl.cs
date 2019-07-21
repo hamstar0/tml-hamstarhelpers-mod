@@ -65,13 +65,12 @@ namespace HamstarHelpers.Internals.Inbox {
 		////////////////
 
 		public bool ReadOldMessage( int pos ) {
-			bool isUnread;
-			string msg = InboxMessages.GetMessageAt( pos, out isUnread );
-
-			if( msg != null && !isUnread ) {
+			string msg;
+			if( !InboxMessages.GetMessageAt(pos, out msg) || msg != null ) {
 				Main.NewText( "Message "+(pos+1)+"/"+this.Messages.Current+": " + msg, Color.Gray );
 				return true;
 			}
+
 			return false;
 		}
 

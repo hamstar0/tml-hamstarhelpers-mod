@@ -17,6 +17,15 @@ namespace HamstarHelpers.Helpers.TModLoader {
 	/// </summary>
 	public static partial class TmlHelpers {
 		/// <summary>
+		/// Path to config files.
+		/// </summary>
+		public static string ConfigRelativeFolder => "Mod Configs";
+
+
+
+		////////////////
+
+		/// <summary>
 		/// Exits the game to desktop.
 		/// </summary>
 		/// <param name="save">Saves settings or world state.</param>

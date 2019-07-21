@@ -158,7 +158,6 @@ namespace HamstarHelpers {
 			this.PacketProtocolMngr = null;
 			this.ExceptionMngr = null;
 			this.Timers = null;
-			this.ConfigJson = null;
 			this.LogHelpers = null;
 			this.ModFeaturesHelpers = null;
 			this.BuffHelpers = null;

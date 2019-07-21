@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
@@ -164,15 +163,11 @@ namespace HamstarHelpers {
 
 			try {
 				if( mymod.ControlPanelHotkey != null && mymod.ControlPanelHotkey.JustPressed ) {
-					if( mymod.Config.DisableControlPanelHotkey ) {
-						Main.NewText( "Control panel hotkey disabled.", Color.Red );
-					} else {
-						if( mymod.ControlPanel != null ) {
-							if( mymod.ControlPanel.IsOpen ) {
-								ControlPanelTabs.CloseDialog();
-							} else {
-								ControlPanelTabs.OpenTab( UIControlPanel.DefaultTabName );
-							}
+					if( mymod.ControlPanel != null ) {
+						if( mymod.ControlPanel.IsOpen ) {
+							ControlPanelTabs.CloseDialog();
+						} else {
+							ControlPanelTabs.OpenTab( UIControlPanel.DefaultTabName );
 						}
 					}
 				}

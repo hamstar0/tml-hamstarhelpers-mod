@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Services.Messages;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -55,7 +54,6 @@ namespace HamstarHelpers {
 
 				try {
 					this.PlayerMessages.Draw( sb );
-					SimpleMessage.DrawMessage( sb );
 
 					DebugHelpers.PrintAll( sb );
 				} catch( Exception e ) {
@@ -83,11 +81,6 @@ namespace HamstarHelpers {
 					LogHelpers.Warn( "cpLayerDraw - " + e.ToString() );
 				}
 
-//sb.DrawString( Main.fontDeathText, "ALERT", new Vector2(128, 128), this.AnimatedColors.Alert.CurrentColor );
-//sb.DrawString( Main.fontDeathText, "STROBE", new Vector2(128, 256), this.AnimatedColors.Strobe.CurrentColor );
-//sb.DrawString( Main.fontDeathText, "FIRE", new Vector2(128, 320), this.AnimatedColors.Fire.CurrentColor );
-//sb.DrawString( Main.fontDeathText, "WATER", new Vector2(128, 384), this.AnimatedColors.Water.CurrentColor );
-//sb.DrawString( Main.fontDeathText, "AIR", new Vector2(128, 448), this.AnimatedColors.Air.CurrentColor );
 				return true;
 			};
 

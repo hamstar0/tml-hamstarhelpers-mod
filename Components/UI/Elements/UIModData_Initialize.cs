@@ -106,50 +106,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 				}
 			}
 
-			// Mod config button
-
-			if( ModFeaturesHelpers.HasConfig(mod) ) {
-				if( Main.netMode == 0 ) {
-					if( ModFeaturesHelpers.HasConfigDefaultsReset( mod ) ) {
-						this.ConfigResetButton = new UITextPanelButton( theme, "Reset Config File" );
-						this.ConfigResetButton.Width.Set( 160f, 0f );
-						this.ConfigResetButton.Left.Set( -320f, 1f );
-						this.ConfigResetButton.Top.Set( 28, 0f );
-						this.Append( this.ConfigResetButton );
-
-						this.ConfigResetButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
-							string msg = mod.DisplayName + " config file reset to defaults.";
-
-							ModFeaturesHelpers.ResetDefaultsConfig( mod );
-							Main.NewText( msg, Color.Lime );
-							LogHelpers.Log( msg );
-						};
-					}
-
-					this.ConfigOpenButton = new UITextPanelButton( theme, "Open Config File" );
-					this.ConfigOpenButton.Width.Set( 160f, 0f );
-					this.ConfigOpenButton.Top.Set( 28, 0f );
-					this.ConfigOpenButton.HAlign = 1f;
-					this.Append( this.ConfigOpenButton );
-					
-					this.ConfigOpenButton.OnClick += delegate ( UIMouseEvent evt, UIElement fromElem ) {
-						string path = ModFeaturesHelpers.GetConfigRelativePath( mod );
-						string fullpath = Main.SavePath + Path.DirectorySeparatorChar + path;
-
-						try {
-							Process.Start( fullpath );
-						} catch( Exception e ) {
-							try {
-								string dir = new FileInfo( fullpath ).Directory.FullName;
-								Process.Start( dir );
-							} catch( Exception ) { }
-
-							Main.NewText( "Couldn't open config file " + path + ": " + e.Message, Color.Red );
-						}
-					};
-				}
-			}
-
 			return true;
 		}
 	}

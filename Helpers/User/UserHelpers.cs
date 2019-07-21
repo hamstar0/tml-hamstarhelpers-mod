@@ -20,12 +20,14 @@ namespace HamstarHelpers.Helpers.User {
 			if( Main.netMode == 0 && !Main.dedServ ) {
 				throw new HamstarException( "Not multiplayer." );
 			}
-			
-			if( string.IsNullOrEmpty( ModHelpersMod.Instance.Config.PrivilegedUserId ) ) {
+
+			var mymod = ModHelpersMod.Instance;
+
+			if( string.IsNullOrEmpty(mymod.Config.PrivilegedUserId) ) {
 				return false;
 			}
 
-			return ModHelpersMod.Instance.Config.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId();
+			return mymod.Config.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId( player );
 		}
 	}
 }
