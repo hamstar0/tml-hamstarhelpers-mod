@@ -2,7 +2,9 @@
 
 
 namespace HamstarHelpers.Helpers.Buffs {
-	/** <summary>Assorted static "helper" functions pertaining to buffs.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to buffs.
+	/// </summary>
 	public partial class BuffHelpers {
 		/// <summary>
 		/// Adds a permanent buff to a player. Will persist across saves.

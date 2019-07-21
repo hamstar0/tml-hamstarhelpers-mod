@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile identification.
 	/// </summary>
-	public class TileIdentityHelpers {
+	public partial class TileIdentityHelpers {
 		private static IDictionary<int, IDictionary<int, string>> VanillaTileNamesByTypeAndSubtype;
 		private static IDictionary<string, Tuple<int, List<int>>> VanillaTileTypeandSubtypeByName;
 
@@ -2961,7 +2961,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// </summary>
 		/// <param name="tileType"></param>
 		/// <returns></returns>
-		public static KeyValuePair<int, string>[] GetVanillaTileNames( int tileType ) {
+		public static KeyValuePair<int, string>[] GetVanillaTileDisplayNames( int tileType ) {
 			if( !TileIdentityHelpers.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ) {
 				return new KeyValuePair<int, string>[0];
 			}
@@ -2974,7 +2974,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="tileType"></param>
 		/// <param name="subType"></param>
 		/// <returns></returns>
-		public static string GetVanillaTileName( int tileType, int subType=-1 ) {
+		public static string GetVanillaTileDisplayName( int tileType, int subType=-1 ) {
 			if( !TileIdentityHelpers.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ||
 				!TileIdentityHelpers.VanillaTileNamesByTypeAndSubtype[ tileType ].ContainsKey( subType ) ) {
 				return "";

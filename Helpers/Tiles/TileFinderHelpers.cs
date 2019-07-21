@@ -70,16 +70,21 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 		/// <summary>
 		/// Attempts to randomly search within a spherical area (via. `radius`) for any matching tiles (via. `pattern`).
+		/// Checks for non-zero tile "brightness" to skip over unloaded tiles.
 		/// </summary>
 		/// <param name="pattern"></param>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
 		/// <param name="radius"></param>
 		/// <param name="retries"></param>
+		/// <param name="skipDarkness"></param>
 		/// <param name="foundX">Returns found X tile coordinate.</param>
 		/// <param name="foundY">Returns found Y tile coordinate.</param>
 		/// <returns>`true` if tile match found.</returns>
-		public static bool FindNearbyRandomMatch( TilePattern pattern, int tileX, int tileY, int radius, int retries,
+		public static bool FindNearbyRandomMatch( TilePattern pattern, int tileX, int tileY,
+					int radius,
+					int retries,
+					bool skipDarkness,
 					out int foundX, out int foundY ) {
 			int wtf = 0;
 
@@ -106,14 +111,14 @@ namespace HamstarHelpers.Helpers.Tiles {
 					foundY = 0;
 					return false;
 				}
-			} while( !pattern.Check( foundX, foundY ) || Lighting.Brightness( foundX, foundX ) == 0 );
+			} while( !pattern.Check(foundX, foundY) || (!skipDarkness && Lighting.Brightness(foundX, foundX) == 0) );
 
 			return true;
 		}
 
 
 		/// <summary>
-		/// Attempts to find an area within an area of a given matching tile pattern.
+		/// Attempts to find an area of contiguous matching tiles within a larger area.
 		/// </summary>
 		/// <param name="pattern"></param>
 		/// <param name="within"></param>
@@ -217,6 +222,91 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 			foundX = foundY = 0;
 			return false;
+		}
+
+
+		/// <summary>
+		/// Gets all tiles of a given pattern within a given area.
+		/// </summary>
+		/// <param name="worldRect"></param>
+		/// <param name="pattern"></param>
+		/// <returns></returns>
+		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern pattern ) {
+			int projRight = worldRect.X + worldRect.Width;
+			int projBottom = worldRect.Y + worldRect.Height;
+
+			IDictionary<int, int> hits = new Dictionary<int, int>();
+
+			for( int i = (worldRect.X >> 4); (i << 4) <= projRight; i++ ) {
+				if( i < 0 || i > Main.maxTilesX - 1 ) { continue; }
+
+				for( int j = (worldRect.Y >> 4); (j << 4) <= projBottom; j++ ) {
+					if( j < 0 || j > Main.maxTilesY - 1 ) { continue; }
+
+					Tile tile = Main.tile[i, j];
+
+					if( TileHelpers.IsAir( tile ) ) { continue; }
+					if( !pattern.Check(i, j) ) { continue; }
+
+					hits[i] = j;
+				}
+			}
+
+			return hits;
+		}
+
+
+		/// <summary>
+		/// Gets the nearest matching tile to a given point.
+		/// </summary>
+		/// <param name="worldPos"></param>
+		/// <param name="pattern"></param>
+		/// <param name="maxRadius"></param>
+		/// <returns></returns>
+		public static Point? GetNearestTile( Vector2 worldPos, TilePattern pattern, int maxRadius = Int32.MaxValue ) {
+			int midX = (int)Math.Round( worldPos.X );
+			int midY = (int)Math.Round( worldPos.Y );
+			int tileX = midX >> 4;
+			int tileY = midY >> 4;
+
+			if( pattern.Check(tileX, tileY) ) {
+				return new Point( tileX, tileY );
+			}
+
+			int max = Math.Max( Main.maxTilesX - 1, Main.maxTilesY - 1 ) * 16;
+			max = Math.Min( maxRadius, max );
+
+			for( int radius = 16; radius < max; radius += 16 ) {
+				double radMin = radius - 8;
+				double radMax = radius + 8;
+				radMin *= radMin;
+				radMax *= radMax;
+
+				for( double inX = -radius; inX <= radius; inX += 16 ) {
+					for( double inY = -radius; inY <= radius; inY += 16 ) {
+						double distSqr = (inX * inX) + (inY * inY);
+						if( distSqr < radMin || distSqr > radMax ) {
+							continue;
+						}
+
+						tileX = (midX + (int)inX) >> 4;
+						if( tileX < 0 || tileX >= (Main.maxTilesX - 1) ) {
+							continue;
+						}
+
+						tileY = (midY + (int)inY) >> 4;
+						if( tileY < 0 || tileY >= (Main.maxTilesY - 1) ) {
+							continue;
+						}
+
+						if( pattern.Check(tileX, tileY) ) {
+							return new Point( tileX, tileY );
+						}
+					}
+				}
+			}
+
+			return null;
 		}
 	}
 }

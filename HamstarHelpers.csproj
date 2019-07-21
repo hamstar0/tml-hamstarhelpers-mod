@@ -63,6 +63,7 @@
     <Compile Include="Components\Protocols\Packet\PacketProtocol_SendRequest.cs" />
     <Compile Include="Components\Protocols\XNAContractResolver.cs" />
     <Compile Include="Helpers\Buffs\BuffAttributesHelpers.cs" />
+    <Compile Include="Helpers\Collisions\CollisionHelpers.cs" />
     <Compile Include="Helpers\Debug\LogHelpers_Once.cs" />
     <Compile Include="Helpers\Debug\LogHelpers_Output.cs" />
     <Compile Include="Helpers\DotNET\Encoding\HashHelpers.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Helpers\Items\Attributes\ItemAttributeHelpers_Instance.cs" />
     <Compile Include="Helpers\Misc\ModCustomDataFileHelpers_Save.cs" />
     <Compile Include="Helpers\Misc\ModCustomDataFileHelpers_Load.cs" />
+    <Compile Include="Helpers\ParticleFx\ParticleFxHelpers.cs" />
     <Compile Include="Helpers\Projectiles\ProjectileHelpers_Draw.cs" />
     <Compile Include="Helpers\Steam\SteamHelpers.cs" />
     <Compile Include="Helpers\DotNET\Formatting\StringFormattingHelpers.cs" />
@@ -190,9 +192,11 @@
     <Compile Include="Helpers\Tiles\TileHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileBiomeHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileIdentityHelpers.cs" />
+    <Compile Include="Helpers\Tiles\TileIdentityHelpers_UID.cs" />
     <Compile Include="Helpers\Tiles\TilePattern_Instance.cs" />
     <Compile Include="Helpers\Tiles\TilePattern.cs" />
     <Compile Include="Helpers\Tiles\TileWallHelpers.cs" />
+    <Compile Include="Helpers\Tiles\TileWallIdentityHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileWorldHelpers.cs" />
     <Compile Include="Helpers\TModLoader\Menus\MainMenuHelpers.cs" />
     <Compile Include="Helpers\TModLoader\Mods\ModIdentityHelpers.cs" />
