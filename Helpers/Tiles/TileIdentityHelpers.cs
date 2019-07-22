@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace DestructibleTiles.Helpers.TileHelpers {
+namespace HamstarHelpers.Helpers.TileHelpers {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile identification.
 	/// </summary>

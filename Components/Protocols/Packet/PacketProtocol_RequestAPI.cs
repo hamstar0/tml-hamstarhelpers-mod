@@ -13,6 +13,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// </summary>
 		/// <param name="toWho">Main.player index of player (client) being requested for this data. -1 for all clients.</param>
 		/// <param name="ignoreWho">Main.player index of player (client) being ignored. -1 for no client.</param>
+		/// <param name="retries"></param>
 		protected static void QuickRequestToClient<T>( int toWho, int ignoreWho, int retries ) where T : PacketProtocol {
 			if( Main.netMode != 2 ) {
 				throw new HamstarException( "Not server." );

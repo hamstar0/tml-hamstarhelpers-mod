@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace DestructibleTiles.Helpers.Collisions {
+namespace HamstarHelpers.Helpers.Collisions {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to collisions between objects and/or tiles.
 	/// </summary>
-	public class CollisionHelpers {
+	public class TileCollisionHelpers {
 		/// <summary>
 		/// Measures world distance to a given tile from a given point and heading.
 		/// </summary>

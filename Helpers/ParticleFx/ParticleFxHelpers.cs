@@ -3,7 +3,7 @@ using System;
 using Terraria;
 
 
-namespace DestructibleTiles.Helpers.ParticleFx {
+namespace HamstarHelpers.Helpers.ParticleFx {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to visual particle and dust effects.
 	/// </summary>
