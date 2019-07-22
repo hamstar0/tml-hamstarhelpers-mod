@@ -7,38 +7,6 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
 	public partial class TilePattern {
-		/// <summary></summary>
-		public bool? HasWire1 { get; private set; }
-		/// <summary></summary>
-		public bool? HasWire2 { get; private set; }
-		/// <summary></summary>
-		public bool? HasWire3 { get; private set; }
-		/// <summary></summary>
-		public bool? HasWire4 { get; private set; }
-
-		/// <summary></summary>
-		public bool? IsSolid { get; private set; }
-		/// <summary></summary>
-		public bool IsPlatformSolid { get; private set; }
-		/// <summary></summary>
-		public bool IsActuatedSolid { get; private set; }
-		/// <summary></summary>
-		public bool IsVanillaBombable { get; private set; }
-
-		/// <summary></summary>
-		public bool? HasWall { get; private set; }
-
-		/// <summary></summary>
-		public bool? HasWater { get; private set; }
-		/// <summary></summary>
-		public bool? HasHoney { get; private set; }
-		/// <summary></summary>
-		public bool? HasLava { get; private set; }
-
-
-
-		////////////////
-
 		/// <summary>
 		/// Tests a given tile against the current settings.
 		/// </summary>

@@ -195,6 +195,7 @@
     <Compile Include="Helpers\Tiles\TileBiomeHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileAttributeHelpers_Name.cs" />
     <Compile Include="Helpers\Tiles\TileIdentityHelpers.cs" />
+    <Compile Include="Helpers\Tiles\TilePattern_Instance_Ctor.cs" />
     <Compile Include="Helpers\Tiles\TilePattern_Instance.cs" />
     <Compile Include="Helpers\Tiles\TilePattern.cs" />
     <Compile Include="Helpers\Tiles\TileWallHelpers.cs" />
