@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Misc;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 
@@ -29,7 +30,7 @@ namespace HamstarHelpers.Services.Messages {
 		internal InboxMessages() {
 			this.Current = 0;
 			
-			LoadHooks.LoadHooks.AddWorldLoadEachHook( () => {
+			LoadHooks.AddWorldLoadEachHook( () => {
 				bool success = this.LoadFromFile();
 			} );
 		}

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Services.LoadHooks {
+namespace HamstarHelpers.Services.Hooks.LoadHooks {
 	/// <summary>
 	/// Allows defining custom load hooks. Like the preset load hooks, these will activate when conditions are triggered
 	/// for hooks that are later added.

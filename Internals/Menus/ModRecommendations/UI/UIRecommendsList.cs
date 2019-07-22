@@ -3,7 +3,7 @@ using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using System;

@@ -2,7 +2,7 @@
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Messages;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;

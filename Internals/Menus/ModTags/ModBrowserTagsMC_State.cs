@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.GameContent.UI.Elements;

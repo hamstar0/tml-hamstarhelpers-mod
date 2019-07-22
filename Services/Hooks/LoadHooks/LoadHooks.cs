@@ -3,7 +3,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.LoadHooks {
+namespace HamstarHelpers.Services.Hooks.LoadHooks {
 	/// <summary>
 	/// Allows defining load hooks. These are of a set of presets corresponding to important game code "load" events.
 	/// </summary>

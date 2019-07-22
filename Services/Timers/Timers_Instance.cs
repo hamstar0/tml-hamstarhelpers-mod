@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Services.Timers {
 			Main.OnTick += Timers._Update;
 //TICKSTART = DateTime.Now.Ticks;
 
-			LoadHooks.LoadHooks.AddWorldUnloadEachHook( () => {
+			LoadHooks.AddWorldUnloadEachHook( () => {
 				lock( Timers.MyLock ) {
 					foreach( var kv in this.Running ) {
 						LogHelpers.Log( "Aborted timer " + kv.Key );
@@ -40,6 +41,7 @@ namespace HamstarHelpers.Services.Timers {
 			} );
 		}
 
+		/// @private
 		~Timers() {
 		//internal void Unload() {
 			try {

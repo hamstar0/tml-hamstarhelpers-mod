@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Services.Timers;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader.Config;
@@ -245,6 +246,17 @@ namespace HamstarHelpers {
 				return false;
 			}
 			return true;
+		}
+
+		/// @private
+		public override void OnChanged() {
+			string oldVal = this.PrivilegedUserId;
+			this.PrivilegedUserId = "";
+
+			Timers.SetTimer( "ModHelpersConfigSyncPrevention", 1, () => {
+				this.PrivilegedUserId = oldVal;
+				return false;
+			} );
 		}
 	}
 }

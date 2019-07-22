@@ -5,7 +5,7 @@ using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Internals.Menus.ModRecommendations;
 using HamstarHelpers.Internals.Menus.ModTags;
 using HamstarHelpers.Internals.Menus.ModUpdates;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Diagnostics;

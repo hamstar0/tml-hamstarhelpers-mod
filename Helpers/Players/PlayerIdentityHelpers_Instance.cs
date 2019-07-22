@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 

@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;

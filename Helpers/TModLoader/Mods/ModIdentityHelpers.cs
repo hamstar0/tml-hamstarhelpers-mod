@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Tml;
 using System;
 using System.Collections.Generic;

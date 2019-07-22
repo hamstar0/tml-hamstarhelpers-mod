@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Debug.DataDumper;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
 using Microsoft.Xna.Framework;
 using System;

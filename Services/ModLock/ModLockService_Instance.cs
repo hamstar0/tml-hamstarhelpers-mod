@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -36,7 +37,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 			this.WorldModLocks = new Dictionary<string, ISet<string>>();
 			this.MismatchBroadcastMade = false;
 
-			LoadHooks.LoadHooks.AddWorldUnloadEachHook( this.OnWorldExit );
+			LoadHooks.AddWorldUnloadEachHook( this.OnWorldExit );
 		}
 
 		////////////////

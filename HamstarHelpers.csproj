@@ -361,18 +361,18 @@
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\References\Libraries\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\My Games\Terraria\ModLoader\references\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ReLogic">
+      <HintPath>..\..\..\..\..\..\My Games\Terraria\ModLoader\references\ReLogic.dll</HintPath>
     </Reference>
     <Reference Include="Steamworks.NET">
-      <HintPath>..\..\..\References\Libraries\Steamworks.NET.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\My Games\Terraria\ModLoader\references\Steamworks.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Terraria, Version=1.3.5.1, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-    </Reference>
-    <Reference Include="Terraria.Libraries.ReLogic.ReLogic">
-      <HintPath>..\..\..\References\Libraries\Terraria.Libraries.ReLogic.ReLogic.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

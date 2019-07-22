@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Internals.WebRequests;
 using System;
 using Terraria.GameContent.UI.Elements;
@@ -81,7 +81,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="theme">Visual appearance.</param>
 		/// <param name="idx">ID number assigned to this element in its list.</param>
 		/// <param name="mod">Mod represented by this element.</param>
-		/// <param name="willDrawOwnHoverElements">Indicates if this element draws its own mouse-hover elements.</param></param>
+		/// <param name="willDrawOwnHoverElements">Indicates if this element draws its own mouse-hover elements.</param>
 		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			this.InitializeMe( theme, idx, mod, willDrawOwnHoverElements );
 

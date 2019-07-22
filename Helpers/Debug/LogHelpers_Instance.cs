@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.LoadHooks;
+﻿using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,8 +41,8 @@ namespace HamstarHelpers.Helpers.Debug {
 
 		////////////////
 
-		public string GetLogPath() {
-			string basePath = ErrorLogger.LogPath + Path.DirectorySeparatorChar;
+		internal string GetLogPath() {
+			string basePath = Logging.LogDir + Path.DirectorySeparatorChar;
 			string fullPath = basePath + "History" + Path.DirectorySeparatorChar;
 
 			Directory.CreateDirectory( basePath );
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Helpers.Debug {
 			return fullPath;
 		}
 
-		public string GetHourlyLogFileName() {
+		internal string GetHourlyLogFileName() {
 			DateTime currHour = this.StartTimeBase;
 			currHour.AddMinutes( -currHour.Minute );
 			currHour.AddSeconds( -currHour.Second );
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Helpers.Debug {
 			return "Log Any " + when + ".txt";
 		}
 
-		public string GetModalLogFileName() {
+		internal string GetModalLogFileName() {
 			string mode = "";
 
 			if( Main.dedServ ) {
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Helpers.Debug {
 
 		////////////////
 
-		public void OutputDirect( string fileName, string logEntry ) {
+		internal void OutputDirect( string fileName, string logEntry ) {
 			lock( LogHelpers.MyLock ) {
 				string path = this.GetLogPath();
 
@@ -102,7 +102,7 @@ namespace HamstarHelpers.Helpers.Debug {
 						writer.WriteLine( logEntry );
 					}
 				} catch( Exception e ) {
-					ErrorLogger.Log( "FALLBACK LOGGER (" + e.GetType().Name + "; " + fileName + ") - " + logEntry );
+					ModHelpersMod.Instance.Logger.Info( "FALLBACK LOGGER (" + e.GetType().Name + "; " + fileName + ") - " + logEntry );
 				}
 			}
 		}

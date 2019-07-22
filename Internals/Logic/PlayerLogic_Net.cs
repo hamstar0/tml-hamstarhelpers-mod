@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System.Collections.Generic;
 using Terraria;
 

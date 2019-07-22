@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;

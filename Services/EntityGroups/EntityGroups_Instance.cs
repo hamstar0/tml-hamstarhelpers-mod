@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.DataStructures;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		////////////////
 
 		internal EntityGroups() {
-			LoadHooks.LoadHooks.AddPostModLoadHook( () => {
+			LoadHooks.AddPostModLoadHook( () => {
 				if( !this.IsEnabled ) { return; }
 
 				this.GetItemPool();

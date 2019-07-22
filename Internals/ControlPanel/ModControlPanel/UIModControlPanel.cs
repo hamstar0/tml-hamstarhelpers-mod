@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Services.LoadHooks;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

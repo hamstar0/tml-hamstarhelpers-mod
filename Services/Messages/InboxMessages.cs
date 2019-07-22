@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 
@@ -28,7 +29,7 @@ namespace HamstarHelpers.Services.Messages {
 		/// <param name="forceUnread">If the message has been read, this will force it to be "unread" again.</param>
 		/// <param name="onRun">Code to activate when a given message is read. Parameter `true` if message is unread.</param>
 		public static void SetMessage( string which, string msg, bool forceUnread, Action<bool> onRun=null ) {
-			LoadHooks.LoadHooks.AddPostWorldLoadOnceHook( () => {
+			LoadHooks.AddPostWorldLoadOnceHook( () => {
 				InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
 				if( inbox == null ) {
 					LogHelpers.Warn( "Inbox or Inbox.Messages is null" );

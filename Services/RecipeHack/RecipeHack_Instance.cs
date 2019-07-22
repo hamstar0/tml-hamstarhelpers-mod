@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -70,7 +71,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 		////////////////
 
 		internal RecipeHack() {
-			LoadHooks.LoadHooks.AddPostModLoadHook( () => {
+			LoadHooks.AddPostModLoadHook( () => {
 				for( int i = 0; i < Recipe.maxRecipes; i++ ) {
 					if( Main.recipe[i].createItem.type == 0 ) { break; }
 

@@ -3,7 +3,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.LoadHooks {
+namespace HamstarHelpers.Services.Hooks.LoadHooks {
 	/// @private
 	public interface ICustomLoadHookValidator { }
 
