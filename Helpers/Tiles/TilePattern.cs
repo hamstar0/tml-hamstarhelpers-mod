@@ -19,8 +19,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// </summary>
 		public readonly static TilePattern CommonSolid = new TilePattern {
 			IsSolid = true,
-			IsActuatedSolid = false,
-			IsPlatformSolid = false
+			IsActuated = false,
+			IsPlatform = false
 		};
 
 
@@ -39,11 +39,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <summary></summary>
 		public bool? IsSolid { get; private set; }
 		/// <summary></summary>
-		public bool IsPlatformSolid { get; private set; }
+		public bool? IsPlatform { get; private set; }
 		/// <summary></summary>
-		public bool IsActuatedSolid { get; private set; }
+		public bool? IsActuated { get; private set; }
 		/// <summary></summary>
-		public bool IsVanillaBombable { get; private set; }
+		public bool? IsVanillaBombable { get; private set; }
 		
 		/// <summary></summary>
 		public bool? HasWall { get; private set; }

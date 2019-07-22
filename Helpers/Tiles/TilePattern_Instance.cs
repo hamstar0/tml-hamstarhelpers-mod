@@ -69,7 +69,19 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 
 			if( this.IsSolid.HasValue ) {
-				if( TileHelpers.IsSolid(tile, this.IsPlatformSolid, this.IsActuatedSolid) != this.IsSolid.Value ) {
+				if( TileHelpers.IsSolid(tile, this.IsPlatform.GetValueOrDefault(), this.IsActuated.GetValueOrDefault() ) != this.IsSolid.Value ) {
+					return false;
+				}
+			}
+
+			if( this.IsPlatform.HasValue ) {
+				if( Main.tileSolidTop[tile.type] != this.IsPlatform ) {
+					return false;
+				}
+			}
+
+			if( this.IsActuated.HasValue ) {
+				if( tile.inActive() != this.IsActuated ) {
 					return false;
 				}
 			}
