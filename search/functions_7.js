@@ -6,5 +6,5 @@ var searchData=
   ['hasbasicserverprivilege',['HasBasicServerPrivilege',['../class_hamstar_helpers_1_1_helpers_1_1_user_1_1_user_helpers.html#a4df16b8b2dfe2e2ef00ded7a35c94527',1,'HamstarHelpers::Helpers::User::UserHelpers']]],
   ['hasgithub',['HasGithub',['../class_hamstar_helpers_1_1_helpers_1_1_mod_helpers_1_1_mod_features_helpers.html#aac33ae5b7b8a4e8bbaaaa6e17bf14ba8',1,'HamstarHelpers::Helpers::ModHelpers::ModFeaturesHelpers']]],
   ['hasusednurse',['HasUsedNurse',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_n_p_c_helpers.html#a3730c271df247a43fad32bfbea72ccaf',1,'HamstarHelpers::Helpers::Players::PlayerNPCHelpers']]],
-  ['hit',['Hit',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_helpers.html#ac27287075f0db2c1500825d8da698e73',1,'HamstarHelpers::Helpers::Projectiles::ProjectileHelpers']]]
+  ['hit',['Hit',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_helpers.html#ad7e9bf541c1d1d906be25b9fad132eb0',1,'HamstarHelpers::Helpers::Projectiles::ProjectileHelpers']]]
 ];

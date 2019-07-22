@@ -8,6 +8,7 @@ var searchData=
   ['modcustomdatafilehelpers',['ModCustomDataFileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
   ['modfeatureshelpers',['ModFeaturesHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_mod_helpers_1_1_mod_features_helpers.html',1,'HamstarHelpers::Helpers::ModHelpers']]],
   ['modhelpers',['ModHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
+  ['modhelpersconfig',['ModHelpersConfig',['../class_hamstar_helpers_1_1_mod_helpers_config.html',1,'HamstarHelpers']]],
   ['modidentityhelpers',['ModIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_identity_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
   ['modlisthelpers',['ModListHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_list_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
   ['modlockservice',['ModLockService',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html',1,'HamstarHelpers::Services::ModHelpers']]],

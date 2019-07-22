@@ -1,6 +1,7 @@
 var searchData=
 [
   ['magicmirrors',['MagicMirrors',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ab7b524461775bc3e704d882b03b3fbd3',1,'HamstarHelpers::Helpers::Items::ItemIdentityHelpers']]],
+  ['magitechscrapmechbossdropsenabled',['MagiTechScrapMechBossDropsEnabled',['../class_hamstar_helpers_1_1_mod_helpers_config.html#af9d0c598db3c102b0c5277ddae5da5af',1,'HamstarHelpers::ModHelpersConfig']]],
   ['mainbgcolor',['MainBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#ab2fe9e10fd0cadd09c71c94059053463',1,'HamstarHelpers::Components::UI::UITheme']]],
   ['mainedgecolor',['MainEdgeColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#ab8c84741fbc907e1ca120badfb0345b5',1,'HamstarHelpers::Components::UI::UITheme']]],
   ['matcherfunc',['MatcherFunc',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_matcher.html#ab3f109e2848a84c537958b6cc30e6bd5',1,'HamstarHelpers::Services::EntityGroups::EntityGroupMatcher']]],
@@ -12,6 +13,8 @@ var searchData=
   ['minscreenheighttiles',['MinScreenHeightTiles',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a00626865fdc0099d0177859eb0d7eba4',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
   ['minscreenwidth',['MinScreenWidth',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ac9f02f83f94c8f50a73c9f57832b2db0',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
   ['minscreenwidthtiles',['MinScreenWidthTiles',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a6b8ad28a25a94c0409bdcddfaf10ea41',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
+  ['modcallcommandenabled',['ModCallCommandEnabled',['../class_hamstar_helpers_1_1_mod_helpers_config.html#ac73e3ac7679d7f5bbd5c3adabe377892',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['modissuereporterrorlogmaxlines',['ModIssueReportErrorLogMaxLines',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a590865787f449d25672a6a062bce146e',1,'HamstarHelpers::ModHelpersConfig']]],
   ['modlistbgcolor',['ModListBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#aec9094bc044f4b300531f055de709861',1,'HamstarHelpers::Components::UI::UITheme']]],
   ['modlistedgecolor',['ModListEdgeColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#afec06516c9dc2cc1755f52b6038f445c',1,'HamstarHelpers::Components::UI::UITheme']]],
   ['modlistitembgcolor',['ModListItemBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#ae79575c1cde8da3c25244578967307e8',1,'HamstarHelpers::Components::UI::UITheme']]],

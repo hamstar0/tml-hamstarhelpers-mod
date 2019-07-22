@@ -14,6 +14,7 @@ var searchData=
   ['bossorder',['BossOrder',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a40e46be13224fb9c500d44c018afe5f6',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['brainofcthulhu',['BrainOfCthulhu',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e50af473b7eceb77801afce85d5ca4b',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['brightnessrgb',['BrightnessRGB',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#aabfd8b6e3ea9ae0c24f06c3d7ac159d1',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
+  ['buffattributeshelpers',['BuffAttributesHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_attributes_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buffhelpers',['BuffHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buffidentityhelpers',['BuffIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_identity_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buildignores',['BuildIgnores',['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html#a1934730713e31bd7fa14e5c442129b7e',1,'HamstarHelpers::Services::Tml::BuildPropertiesViewer']]],

@@ -4,6 +4,7 @@ var searchData=
   ['binaryreaderextensions',['BinaryReaderExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
   ['bossdata',['BossData',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html',1,'HamstarHelpers::Services::GameData']]],
   ['bossdataentry',['BossDataEntry',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html',1,'HamstarHelpers::Services::GameData']]],
+  ['buffattributeshelpers',['BuffAttributesHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_attributes_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buffhelpers',['BuffHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buffidentityhelpers',['BuffIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_identity_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buildpropertiesviewer',['BuildPropertiesViewer',['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html',1,'HamstarHelpers::Services::Tml']]]

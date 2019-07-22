@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['inboxiconx',['InboxIconX',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a7436d188ce77da03f4a0ab400fbe7adf',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['inboxicony',['InboxIconY',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a6a6edafd58c99d8068a5453aad279ee7',1,'HamstarHelpers::ModHelpersConfig']]],
   ['includepdb',['IncludePDB',['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html#a599232799870ffa865c9ea6e94bed216',1,'HamstarHelpers::Services::Tml::BuildPropertiesViewer']]],
   ['includesource',['IncludeSource',['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html#a07fe2d20ccb56c1f96280aabe6e2efd5',1,'HamstarHelpers::Services::Tml::BuildPropertiesViewer']]],
   ['inputbgcolor',['InputBgColor',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_u_i_theme.html#a4dab7c6ed8862bcf0e422a58d3ebe6ba',1,'HamstarHelpers::Components::UI::UITheme']]],
@@ -19,5 +21,6 @@ var searchData=
   ['ispostmoonlord',['IsPostMoonlord',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#a692d7c5eff7d897fe7a6d5a065bf37ac',1,'HamstarHelpers::Services::GameData::BossDataEntry']]],
   ['ispostplantera',['IsPostPlantera',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#abe8309e2d22d88afde959dc95131b2a1',1,'HamstarHelpers::Services::GameData::BossDataEntry']]],
   ['isreadonly',['IsReadOnly',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html#a11c21ad93a9ef92be0af3f55b6d37d1e',1,'HamstarHelpers::Components::DataStructures::ReadOnlySet']]],
+  ['isservergaugingaverageping',['IsServerGaugingAveragePing',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a3b44be454aae193fd4a05c06452976c2',1,'HamstarHelpers::ModHelpersConfig']]],
   ['isverbose',['IsVerbose',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_packet_protocol.html#af46bcd86e86d27125d6a692fbf0b55ad',1,'HamstarHelpers::Components::Protocols::Packet::PacketProtocol']]]
 ];

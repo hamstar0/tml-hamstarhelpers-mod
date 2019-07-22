@@ -52,12 +52,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animated_colors_8cs_source.html",
-"_tile_identity_helpers_8cs_source.html",
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ab5b7b4fed24f5d9470d9ca24402bef61",
-"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html",
-"class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a1693b8eee02e25c8e01ea20dd07f3b7b",
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a942901a433e120d520bb43592e866851",
-"functions_k.html"
+"_tile_pattern_8cs_source.html",
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a0d459a84359248a2bc50c84d08dd8b8b",
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a3b01b3d1b9e6e432a1ce9cf5d617dc3a",
+"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#ab910b6c5d6ba8f39370f2012cca69c61",
+"class_hamstar_helpers_1_1_services_1_1_debug_1_1_custom_hotkeys_1_1_custom_hotkeys.html",
+"dir_d44ff73006a8d4df0985d3a4af26eb13.html",
+"namespace_hamstar_helpers_1_1_services_1_1_server.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

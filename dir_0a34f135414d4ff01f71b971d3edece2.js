@@ -1,6 +1,7 @@
 var dir_0a34f135414d4ff01f71b971d3edece2 =
 [
     [ "Buffs", "dir_d44ff73006a8d4df0985d3a4af26eb13.html", "dir_d44ff73006a8d4df0985d3a4af26eb13" ],
+    [ "Collisions", "dir_45bdb3b3a09f1951ecd6dc04e4a6a883.html", "dir_45bdb3b3a09f1951ecd6dc04e4a6a883" ],
     [ "Debug", "dir_a02082694dc6df7ab08ac506f54151fa.html", "dir_a02082694dc6df7ab08ac506f54151fa" ],
     [ "DotNET", "dir_37993d3157aa7c10b5d22a9c51fe1e56.html", "dir_37993d3157aa7c10b5d22a9c51fe1e56" ],
     [ "Dusts", "dir_15528897a4de1003827c41bd0bbcee3b.html", "dir_15528897a4de1003827c41bd0bbcee3b" ],
@@ -12,6 +13,7 @@ var dir_0a34f135414d4ff01f71b971d3edece2 =
     [ "ModHelpers", "dir_3b94e01ca7504244519212a3f79b3162.html", "dir_3b94e01ca7504244519212a3f79b3162" ],
     [ "Net", "dir_cd103933309c070ca50891f31e047fd4.html", "dir_cd103933309c070ca50891f31e047fd4" ],
     [ "NPCs", "dir_50c9497b23a54e025bdf6be9736525a2.html", "dir_50c9497b23a54e025bdf6be9736525a2" ],
+    [ "ParticleFx", "dir_9afaf50c6177e47fa11f322ba3b6c7ef.html", "dir_9afaf50c6177e47fa11f322ba3b6c7ef" ],
     [ "Players", "dir_e7d11e0429edc6496b5056bf865c1fe0.html", "dir_e7d11e0429edc6496b5056bf865c1fe0" ],
     [ "Projectiles", "dir_034407f5eb6017a568c7428360d6d3fe.html", "dir_034407f5eb6017a568c7428360d6d3fe" ],
     [ "Recipes", "dir_5b5765bbdf37f459e1ca525f13a20147.html", "dir_5b5765bbdf37f459e1ca525f13a20147" ],

@@ -1,5 +1,6 @@
 var dir_034407f5eb6017a568c7428360d6d3fe =
 [
+    [ "ProjectileAttributeHelpers.cs", "_projectile_attribute_helpers_8cs_source.html", null ],
     [ "ProjectileHelpers.cs", "_projectile_helpers_8cs_source.html", null ],
     [ "ProjectileHelpers_Draw.cs", "_projectile_helpers___draw_8cs_source.html", null ],
     [ "ProjectileIdentityHelpers.cs", "_projectile_identity_helpers_8cs_source.html", null ],

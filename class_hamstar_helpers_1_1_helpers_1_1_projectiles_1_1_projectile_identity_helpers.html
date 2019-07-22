@@ -102,12 +102,15 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:acd1cb09d9f19fb914373ecf22a14614f"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#acd1cb09d9f19fb914373ecf22a14614f">GetUniqueId</a> (int projType)</td></tr>
-<tr class="memdesc:acd1cb09d9f19fb914373ecf22a14614f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the identifier of a projectile. For Terraria projectiles, this is <code>Terraria WoodArrow</code>, with the portion after "Terraria" being the NPC's field name in <code>NPCID</code>. For modded items, the format is NPCModName ModdedNPCInternalName; the mod name first, and the modded NPC's internal <code>Name</code> after.  <a href="#acd1cb09d9f19fb914373ecf22a14614f">More...</a><br /></td></tr>
-<tr class="separator:acd1cb09d9f19fb914373ecf22a14614f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcb73ed26956424a02c96a8ce3b064d5"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#adcb73ed26956424a02c96a8ce3b064d5">GetUniqueId</a> (Projectile proj)</td></tr>
-<tr class="memdesc:adcb73ed26956424a02c96a8ce3b064d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the identifier of a projectile. For Terraria projectiles, this is <code>Terraria WoodArrow</code>, with the portion after "Terraria" being the NPC's field name in <code>NPCID</code>. For modded items, the format is NPCModName ModdedNPCInternalName; the mod name first, and the modded NPC's internal <code>Name</code> after.  <a href="#adcb73ed26956424a02c96a8ce3b064d5">More...</a><br /></td></tr>
-<tr class="separator:adcb73ed26956424a02c96a8ce3b064d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a585b28271279d60984a9a859158c3215"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#a585b28271279d60984a9a859158c3215">GetUniqueKey</a> (int projType)</td></tr>
+<tr class="memdesc:a585b28271279d60984a9a859158c3215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a (human readable) unique key from a given projectile type.  <a href="#a585b28271279d60984a9a859158c3215">More...</a><br /></td></tr>
+<tr class="separator:a585b28271279d60984a9a859158c3215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ffbb5439a4105f6b1c8d5527578eb42"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#a5ffbb5439a4105f6b1c8d5527578eb42">GetUniqueKey</a> (Projectile projectile)</td></tr>
+<tr class="memdesc:a5ffbb5439a4105f6b1c8d5527578eb42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a (human readable) unique key from a given projectile.  <a href="#a5ffbb5439a4105f6b1c8d5527578eb42">More...</a><br /></td></tr>
+<tr class="separator:a5ffbb5439a4105f6b1c8d5527578eb42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac48ff61d8a59ba390e4e59fe6d0cb7cc"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#ac48ff61d8a59ba390e4e59fe6d0cb7cc">TypeFromUniqueKey</a> (string key)</td></tr>
+<tr class="memdesc:ac48ff61d8a59ba390e4e59fe6d0cb7cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a projectile type from a given unique key.  <a href="#ac48ff61d8a59ba390e4e59fe6d0cb7cc">More...</a><br /></td></tr>
+<tr class="separator:ac48ff61d8a59ba390e4e59fe6d0cb7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd5d69ff6cb6c3ac23308eb49092534b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html#abd5d69ff6cb6c3ac23308eb49092534b">GetQualifiedName</a> (Projectile proj)</td></tr>
 <tr class="memdesc:abd5d69ff6cb6c3ac23308eb49092534b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the "qualified" (human readable) name of a given projectile.  <a href="#abd5d69ff6cb6c3ac23308eb49092534b">More...</a><br /></td></tr>
 <tr class="separator:abd5d69ff6cb6c3ac23308eb49092534b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,7 +127,7 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to players relative to projectile identification </p>
 
-<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abd5d69ff6cb6c3ac23308eb49092534b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd5d69ff6cb6c3ac23308eb49092534b">&#9670;&nbsp;</a></span>GetQualifiedName() <span class="overload">[1/2]</span></h2>
@@ -159,7 +162,7 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00063">63</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00077">77</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -196,12 +199,12 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00072">72</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00086">86</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
 
 </div>
 </div>
-<a id="acd1cb09d9f19fb914373ecf22a14614f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd1cb09d9f19fb914373ecf22a14614f">&#9670;&nbsp;</a></span>GetUniqueId() <span class="overload">[1/2]</span></h2>
+<a id="a585b28271279d60984a9a859158c3215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a585b28271279d60984a9a859158c3215">&#9670;&nbsp;</a></span>GetUniqueKey() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,7 +213,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static string HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.GetUniqueId </td>
+          <td class="memname">static string HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.GetUniqueKey </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>projType</em></td><td>)</td>
@@ -224,7 +227,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the identifier of a projectile. For Terraria projectiles, this is <code>Terraria WoodArrow</code>, with the portion after "Terraria" being the NPC's field name in <code>NPCID</code>. For modded items, the format is NPCModName ModdedNPCInternalName; the mod name first, and the modded NPC's internal <code>Name</code> after. </p>
+<p>Gets a (human readable) unique key from a given projectile type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">projType</td><td></td></tr>
@@ -233,12 +236,12 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00025">25</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00026">26</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
 
 </div>
 </div>
-<a id="adcb73ed26956424a02c96a8ce3b064d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcb73ed26956424a02c96a8ce3b064d5">&#9670;&nbsp;</a></span>GetUniqueId() <span class="overload">[2/2]</span></h2>
+<a id="a5ffbb5439a4105f6b1c8d5527578eb42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ffbb5439a4105f6b1c8d5527578eb42">&#9670;&nbsp;</a></span>GetUniqueKey() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -247,10 +250,10 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static string HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.GetUniqueId </td>
+          <td class="memname">static string HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.GetUniqueKey </td>
           <td>(</td>
           <td class="paramtype">Projectile&#160;</td>
-          <td class="paramname"><em>proj</em></td><td>)</td>
+          <td class="paramname"><em>projectile</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -261,16 +264,51 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the identifier of a projectile. For Terraria projectiles, this is <code>Terraria WoodArrow</code>, with the portion after "Terraria" being the NPC's field name in <code>NPCID</code>. For modded items, the format is NPCModName ModdedNPCInternalName; the mod name first, and the modded NPC's internal <code>Name</code> after. </p>
+<p>Gets a (human readable) unique key from a given projectile. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">proj</td><td></td></tr>
+    <tr><td class="paramname">projectile</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00047">47</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
+</div>
+</div>
+<a id="ac48ff61d8a59ba390e4e59fe6d0cb7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac48ff61d8a59ba390e4e59fe6d0cb7cc">&#9670;&nbsp;</a></span>TypeFromUniqueKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.TypeFromUniqueKey </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a projectile type from a given unique key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00054">54</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -297,7 +335,7 @@ Properties</h2></td></tr>
 
 <p>Provides a map of (qualified) projectile names to their IDs. </p>
 
-<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00085">85</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_projectile_identity_helpers_8cs_source.html#l00099">99</a> of file <a class="el" href="_projectile_identity_helpers_8cs_source.html">ProjectileIdentityHelpers.cs</a>.</p>
 
 </div>
 </div>

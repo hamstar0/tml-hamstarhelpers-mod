@@ -119,12 +119,70 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a763cb83d149dbd586c13cd5b5ddac0c8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a763cb83d149dbd586c13cd5b5ddac0c8">PlaceTile</a> (int tileX, int tileY, int tileType, int placeStyle=0, bool muted=false, bool forced=false, int plrWho=-1)</td></tr>
 <tr class="memdesc:a763cb83d149dbd586c13cd5b5ddac0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Places a given tile of a given type. Synced.  <a href="#a763cb83d149dbd586c13cd5b5ddac0c8">More...</a><br /></td></tr>
 <tr class="separator:a763cb83d149dbd586c13cd5b5ddac0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558e66e2007b912c7c9f70ee9ec647c6"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a558e66e2007b912c7c9f70ee9ec647c6">GetDamageScale</a> (Tile tile, float baseDamage, out bool isAbsolute)</td></tr>
+<tr class="memdesc:a558e66e2007b912c7c9f70ee9ec647c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the damage scale (amount to multiply a pickaxe hit by) of a given tile.  <a href="#a558e66e2007b912c7c9f70ee9ec647c6">More...</a><br /></td></tr>
+<tr class="separator:a558e66e2007b912c7c9f70ee9ec647c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tiles. </p>
 
 <p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a558e66e2007b912c7c9f70ee9ec647c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a558e66e2007b912c7c9f70ee9ec647c6">&#9670;&nbsp;</a></span>GetDamageScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static float HamstarHelpers.Helpers.Tiles.TileHelpers.GetDamageScale </td>
+          <td>(</td>
+          <td class="paramtype">Tile&#160;</td>
+          <td class="paramname"><em>tile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>baseDamage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out bool&#160;</td>
+          <td class="paramname"><em>isAbsolute</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the damage scale (amount to multiply a pickaxe hit by) of a given tile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tile</td><td></td></tr>
+    <tr><td class="paramname">baseDamage</td><td>Amount of damage (e.g. pickaxe power) applied to the tile.</td></tr>
+    <tr><td class="paramname">isAbsolute</td><td>Returns indication that tile will guarantee destruction on this hit.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00140">140</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="a7a9dc4c96cc3bf84dd3a6abee7a13ef7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a9dc4c96cc3bf84dd3a6abee7a13ef7">&#9670;&nbsp;</a></span>IsAir()</h2>
 

@@ -1,0 +1,4 @@
+var class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hook_validator =
+[
+    [ "CustomLoadHookValidator", "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hook_validator.html#aa923da05fce3dbc81a753db84742d2ca", null ]
+];

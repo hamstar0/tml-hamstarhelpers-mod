@@ -1,5 +1,6 @@
 var class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers =
 [
+    [ "GetDamageScale", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a558e66e2007b912c7c9f70ee9ec647c6", null ],
     [ "IsAir", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a7a9dc4c96cc3bf84dd3a6abee7a13ef7", null ],
     [ "IsNotVanillaBombable", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ac62dbea2ad4ef2cd90531f295604fdf5", null ],
     [ "IsNotVanillaBombableType", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a4861d7d7804289ec5f444661d962caf4", null ],

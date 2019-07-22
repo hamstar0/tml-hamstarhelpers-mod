@@ -1,6 +1,8 @@
 var searchData=
 [
   ['iconelem',['IconElem',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#adf3943c4e20e669b227f7dd4817142eb',1,'HamstarHelpers::Components::UI::Elements::UIModData']]],
+  ['inboxiconx',['InboxIconX',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a7436d188ce77da03f4a0ab400fbe7adf',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['inboxicony',['InboxIconY',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a6a6edafd58c99d8068a5453aad279ee7',1,'HamstarHelpers::ModHelpersConfig']]],
   ['inboxmessages',['InboxMessages',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_inbox_messages.html',1,'HamstarHelpers::Services::Messages']]],
   ['includepdb',['IncludePDB',['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html#a599232799870ffa865c9ea6e94bed216',1,'HamstarHelpers::Services::Tml::BuildPropertiesViewer']]],
   ['includesource',['IncludeSource',['../class_hamstar_helpers_1_1_services_1_1_tml_1_1_build_properties_viewer.html#a07fe2d20ccb56c1f96280aabe6e2efd5',1,'HamstarHelpers::Services::Tml::BuildPropertiesViewer']]],
@@ -37,6 +39,7 @@ var searchData=
   ['isdirtlayer',['IsDirtLayer',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a8e1382ddb5787e2d6a258636562fa0f1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['isdungeon',['IsDungeon',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html#a269db42c9f8eef951a0beb42e8d01097',1,'HamstarHelpers::Helpers::Tiles::TileWallHelpers']]],
   ['isenabled',['IsEnabled',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a6016cfa24e0d5e540dc7e5c8969dc419',1,'HamstarHelpers.Components.UI.Elements.UITextArea.IsEnabled()'],['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html#a04e437739db565dac2335a1037c3cce5',1,'HamstarHelpers.Components.UI.Elements.UITextPanelButton.IsEnabled()']]],
+  ['isexplosive',['IsExplosive',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_attribute_helpers.html#ab1eb9105d508b8f2c6590c7aadf47bb1',1,'HamstarHelpers::Helpers::Projectiles::ProjectileAttributeHelpers']]],
   ['isflying',['IsFlying',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_movement_helpers.html#a27dc43a00d1c6c97586b178ee7fd9790',1,'HamstarHelpers::Helpers::Players::PlayerMovementHelpers']]],
   ['isgameplayrelevant',['IsGameplayRelevant',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#a2e7c93d395c94bd7cc970b6337de65eb',1,'HamstarHelpers::Helpers::Items::Attributes::ItemAttributeHelpers']]],
   ['isgrapple',['IsGrapple',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#af68edfce994ad4eeb687a6606631c3ec',1,'HamstarHelpers::Helpers::Items::Attributes::ItemAttributeHelpers']]],
@@ -51,7 +54,7 @@ var searchData=
   ['ismodmismatchfound',['IsModMismatchFound',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#a22cdf8674215f3a60917fa9a92f94d3c',1,'HamstarHelpers::Services::ModHelpers::ModLockService']]],
   ['isnotvanillabombable',['IsNotVanillaBombable',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ac62dbea2ad4ef2cd90531f295604fdf5',1,'HamstarHelpers::Helpers::Tiles::TileHelpers']]],
   ['isnotvanillabombabletype',['IsNotVanillaBombableType',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a4861d7d7804289ec5f444661d962caf4',1,'HamstarHelpers::Helpers::Tiles::TileHelpers']]],
-  ['isobject',['IsObject',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_identity_helpers.html#a66f7f76e5375e9c60fd705d93ceb3cb6',1,'HamstarHelpers::Helpers::Tiles::TileIdentityHelpers']]],
+  ['isobject',['IsObject',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_attribute_helpers.html#a72799f5d634cca045e02573c4c352ec6',1,'HamstarHelpers::Helpers::Tiles::TileAttributeHelpers']]],
   ['isonfloor',['IsOnFloor',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_movement_helpers.html#aada3735095dd2305bc624e122177a051',1,'HamstarHelpers::Helpers::Players::PlayerMovementHelpers']]],
   ['isopen',['IsOpen',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#aae7d72250b1f1c3672c3f2fe941a8c58',1,'HamstarHelpers.Components.UI.Elements.UIDialog.IsOpen()'],['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a36575317672d5846830dbd4181650a85',1,'HamstarHelpers.Components.UI.Elements.Dialogs.UIPromptPanel.IsOpen()']]],
   ['isoverworld',['IsOverworld',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ab1b2b409c698dc1396af1fd13a528067',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
@@ -69,6 +72,7 @@ var searchData=
   ['isreadonly',['IsReadOnly',['../class_hamstar_helpers_1_1_components_1_1_data_structures_1_1_read_only_set.html#a11c21ad93a9ef92be0af3f55b6d37d1e',1,'HamstarHelpers::Components::DataStructures::ReadOnlySet']]],
   ['isrelaxed',['IsRelaxed',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_movement_helpers.html#a15c8866455404c6d4cd8a1afea7e174a',1,'HamstarHelpers::Helpers::Players::PlayerMovementHelpers']]],
   ['isrocklayer',['IsRockLayer',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a82f846235f7b728369a48767ad76f381',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
+  ['isservergaugingaverageping',['IsServerGaugingAveragePing',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a3b44be454aae193fd4a05c06452976c2',1,'HamstarHelpers::ModHelpersConfig']]],
   ['issky',['IsSky',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a363fa3463e6be11e0b753b5c456ada47',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['issolid',['IsSolid',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html#ac27526717962187352c9ccb30f9cd199',1,'HamstarHelpers.Helpers.Tiles.TilePattern.IsSolid()'],['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ad89583ebd6a6f445cc64bb59de57cf92',1,'HamstarHelpers.Helpers.Tiles.TileHelpers.IsSolid()']]],
   ['issubclassofrawgeneric',['IsSubclassOfRawGeneric',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#a041ce3018af5d5543aca675b1b2d10a6',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],

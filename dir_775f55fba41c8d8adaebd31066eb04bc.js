@@ -1,6 +1,5 @@
 var dir_775f55fba41c8d8adaebd31066eb04bc =
 [
-    [ "ConfigsRefreshCommand.cs", "_configs_refresh_command_8cs_source.html", null ],
     [ "ControlPanelOpenCommand.cs", "_control_panel_open_command_8cs_source.html", null ],
     [ "GetItemIdByNameCommand.cs", "_get_item_id_by_name_command_8cs_source.html", null ],
     [ "ModCallCommand.cs", "_mod_call_command_8cs_source.html", null ],

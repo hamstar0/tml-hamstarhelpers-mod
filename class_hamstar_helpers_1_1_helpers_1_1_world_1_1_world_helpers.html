@@ -132,9 +132,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a40a71850c8bcaa251afb3ac713cd3984"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a40a71850c8bcaa251afb3ac713cd3984">IsBeachRegion</a> (Vector2 worldPos)</td></tr>
 <tr class="memdesc:a40a71850c8bcaa251afb3ac713cd3984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the given position is within the region of a beach (regardless of elevation).  <a href="#a40a71850c8bcaa251afb3ac713cd3984">More...</a><br /></td></tr>
 <tr class="separator:a40a71850c8bcaa251afb3ac713cd3984"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0105d0911a0d19172867c1b82e1cc94"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#af0105d0911a0d19172867c1b82e1cc94">DropToGround</a> (Vector2 worldPos, bool invertGravity, out Vector2 groundPos)</td></tr>
-<tr class="memdesc:af0105d0911a0d19172867c1b82e1cc94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops from a given point to the ground.  <a href="#af0105d0911a0d19172867c1b82e1cc94">More...</a><br /></td></tr>
-<tr class="separator:af0105d0911a0d19172867c1b82e1cc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a2b8ae750afcefffe5a68ac30e3f02"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ab2a2b8ae750afcefffe5a68ac30e3f02">DropToGround</a> (Vector2 worldPos, bool invertGravity, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a> ground, out Vector2 groundPos)</td></tr>
+<tr class="memdesc:ab2a2b8ae750afcefffe5a68ac30e3f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops from a given point to the ground.  <a href="#ab2a2b8ae750afcefffe5a68ac30e3f02">More...</a><br /></td></tr>
+<tr class="separator:ab2a2b8ae750afcefffe5a68ac30e3f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -150,8 +150,8 @@ Static Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="af0105d0911a0d19172867c1b82e1cc94"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0105d0911a0d19172867c1b82e1cc94">&#9670;&nbsp;</a></span>DropToGround()</h2>
+<a id="ab2a2b8ae750afcefffe5a68ac30e3f02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2a2b8ae750afcefffe5a68ac30e3f02">&#9670;&nbsp;</a></span>DropToGround()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,6 +170,12 @@ Static Public Attributes</h2></td></tr>
           <td></td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>invertGravity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>ground</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -195,13 +201,14 @@ Static Public Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">worldPos</td><td></td></tr>
     <tr><td class="paramname">invertGravity</td><td></td></tr>
+    <tr><td class="paramname">ground</td><td>Tile pattern checker to define what "ground" is.</td></tr>
     <tr><td class="paramname">groundPos</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if a ground point was found within world boundaries.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00156">156</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_world_helpers_8cs_source.html#l00157">157</a> of file <a class="el" href="_world_helpers_8cs_source.html">WorldHelpers.cs</a>.</p>
 
 </div>
 </div>
