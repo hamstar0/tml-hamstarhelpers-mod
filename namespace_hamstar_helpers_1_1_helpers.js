@@ -1,6 +1,7 @@
 var namespace_hamstar_helpers_1_1_helpers =
 [
     [ "Buffs", "namespace_hamstar_helpers_1_1_helpers_1_1_buffs.html", "namespace_hamstar_helpers_1_1_helpers_1_1_buffs" ],
+    [ "Collisions", "namespace_hamstar_helpers_1_1_helpers_1_1_collisions.html", "namespace_hamstar_helpers_1_1_helpers_1_1_collisions" ],
     [ "Debug", "namespace_hamstar_helpers_1_1_helpers_1_1_debug.html", "namespace_hamstar_helpers_1_1_helpers_1_1_debug" ],
     [ "DotNET", "namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t.html", "namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t" ],
     [ "Dusts", "namespace_hamstar_helpers_1_1_helpers_1_1_dusts.html", "namespace_hamstar_helpers_1_1_helpers_1_1_dusts" ],
@@ -12,10 +13,12 @@ var namespace_hamstar_helpers_1_1_helpers =
     [ "ModHelpers", "namespace_hamstar_helpers_1_1_helpers_1_1_mod_helpers.html", "namespace_hamstar_helpers_1_1_helpers_1_1_mod_helpers" ],
     [ "Net", "namespace_hamstar_helpers_1_1_helpers_1_1_net.html", "namespace_hamstar_helpers_1_1_helpers_1_1_net" ],
     [ "NPCs", "namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html", "namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs" ],
+    [ "ParticleFx", "namespace_hamstar_helpers_1_1_helpers_1_1_particle_fx.html", "namespace_hamstar_helpers_1_1_helpers_1_1_particle_fx" ],
     [ "Players", "namespace_hamstar_helpers_1_1_helpers_1_1_players.html", "namespace_hamstar_helpers_1_1_helpers_1_1_players" ],
     [ "Projectiles", "namespace_hamstar_helpers_1_1_helpers_1_1_projectiles.html", "namespace_hamstar_helpers_1_1_helpers_1_1_projectiles" ],
     [ "Recipes", "namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html", "namespace_hamstar_helpers_1_1_helpers_1_1_recipes" ],
     [ "Steam", "namespace_hamstar_helpers_1_1_helpers_1_1_steam.html", "namespace_hamstar_helpers_1_1_helpers_1_1_steam" ],
+    [ "TileHelpers", "namespace_hamstar_helpers_1_1_helpers_1_1_tile_helpers.html", "namespace_hamstar_helpers_1_1_helpers_1_1_tile_helpers" ],
     [ "Tiles", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles" ],
     [ "TModLoader", "namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader.html", "namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader" ],
     [ "UI", "namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html", "namespace_hamstar_helpers_1_1_helpers_1_1_u_i" ],

@@ -15,7 +15,6 @@ var NAVTREEINDEX0 =
 "_build_properties_viewer___instance_8cs_source.html":[2,0,0,0,5,12,1],
 "_classes_8cs_source.html":[2,0,0,0,5,3,1],
 "_coal_tile_8cs_source.html":[2,0,0,0,6,0],
-"_collision_helpers_8cs_source.html":[2,0,0,0,2,1,0],
 "_commands_helpers_8cs_source.html":[2,0,0,0,2,19,0,0],
 "_compats_8cs_source.html":[2,0,0,0,5,7,0,0],
 "_config_8cs_source.html":[2,0,0,0,7],
@@ -247,6 +246,7 @@ var NAVTREEINDEX0 =
 "_tile_attribute_helpers_8cs_source.html":[2,0,0,0,2,18,0],
 "_tile_attribute_helpers___name_8cs_source.html":[2,0,0,0,2,18,1],
 "_tile_biome_helpers_8cs_source.html":[2,0,0,0,2,18,2],
+"_tile_collision_helpers_8cs_source.html":[2,0,0,0,2,1,0],
 "_tile_finder_helpers_8cs_source.html":[2,0,0,0,2,18,3],
 "_tile_helpers_8cs_source.html":[2,0,0,0,2,18,4],
 "_tile_identity_helpers_8cs_source.html":[2,0,0,0,2,18,5]

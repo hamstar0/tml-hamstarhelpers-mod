@@ -8,7 +8,7 @@ var searchData=
   ['packetprotocolsenttoeither',['PacketProtocolSentToEither',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
   ['packetprotocolsyncclient',['PacketProtocolSyncClient',['../class_hamstar_helpers_1_1_components_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html',1,'HamstarHelpers::Components::Protocols::Packet::Interfaces']]],
   ['painthelpers',['PaintHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_paint_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
-  ['particlefxhelpers',['ParticleFxHelpers',['../class_destructible_tiles_1_1_helpers_1_1_particle_fx_1_1_particle_fx_helpers.html',1,'DestructibleTiles::Helpers::ParticleFx']]],
+  ['particlefxhelpers',['ParticleFxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_particle_fx_1_1_particle_fx_helpers.html',1,'HamstarHelpers::Helpers::ParticleFx']]],
   ['playerfilehelpers',['PlayerFileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_file_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerheaddrawhelpers',['PlayerHeadDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_head_draw_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerhelpers',['PlayerHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html',1,'HamstarHelpers::Helpers::Players']]],

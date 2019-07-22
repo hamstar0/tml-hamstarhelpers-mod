@@ -53,12 +53,12 @@ var NAVTREEINDEX =
 [
 "_animated_colors_8cs_source.html",
 "_tile_pattern_8cs_source.html",
-"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a0d459a84359248a2bc50c84d08dd8b8b",
-"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a3b01b3d1b9e6e432a1ce9cf5d617dc3a",
-"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#ab910b6c5d6ba8f39370f2012cca69c61",
+"class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#ab5b7b4fed24f5d9470d9ca24402bef61",
+"class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html",
+"class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_attribute_helpers.html#a43d3d218129de8734f35f3d8a4dbf536",
 "class_hamstar_helpers_1_1_services_1_1_debug_1_1_custom_hotkeys_1_1_custom_hotkeys.html",
 "dir_d44ff73006a8d4df0985d3a4af26eb13.html",
-"namespace_hamstar_helpers_1_1_services_1_1_server.html"
+"namespace_hamstar_helpers_1_1_services_1_1_tml.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

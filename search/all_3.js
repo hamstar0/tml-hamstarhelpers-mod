@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['collisions',['Collisions',['../namespace_destructible_tiles_1_1_helpers_1_1_collisions.html',1,'DestructibleTiles::Helpers']]],
   ['datadumper',['DataDumper',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html',1,'HamstarHelpers::Services::Debug::DataDumper']]],
   ['datastore',['DataStore',['../class_hamstar_helpers_1_1_services_1_1_data_store_1_1_data_store.html',1,'HamstarHelpers::Services::DataStore']]],
   ['debughelpers',['DebugHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html',1,'HamstarHelpers::Helpers::Debug']]],
@@ -18,7 +17,6 @@ var searchData=
   ['desert',['Desert',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a2bf13217295d75ae2fa2734d9ee4ef37a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a324a198aae961133fd834a8e56efe2f9a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a84bdde1b2d6ce1b05cf8834a1413fe43a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5d4d11b0dbe838ed25423d9aa0946ca7a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()']]],
   ['destroyitem',['DestroyItem',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a88a295467bff6b5f0e0d7d47032535c0',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
   ['destroyworlditem',['DestroyWorldItem',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a5d763fd05187c502d80d4a637d98a1ce',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
-  ['destructibletiles',['DestructibleTiles',['../namespace_destructible_tiles.html',1,'']]],
   ['dictionaryextensions',['DictionaryExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
   ['differencergb',['DifferenceRGB',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#ab6bd5ff862de32570ff5e96478b79065',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
   ['differencergba',['DifferenceRGBA',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a3b88f7b21db5f1581318d5fa72c55e6b',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
@@ -59,8 +57,5 @@ var searchData=
   ['dumptolocalfile',['DumpToLocalFile',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a2fb095a7ce701e139e1fefa503e0d010',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]],
   ['dungeon',['Dungeon',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a2bf13217295d75ae2fa2734d9ee4ef37acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a84bdde1b2d6ce1b05cf8834a1413fe43acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()']]],
   ['duration',['Duration',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_label_text.html#a2412ed54f34c6c060efd7f7aae4e9ce2',1,'HamstarHelpers::Services::Messages::PlayerLabelText']]],
-  ['dusthelpers',['DustHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html',1,'HamstarHelpers::Helpers::Dusts']]],
-  ['helpers',['Helpers',['../namespace_destructible_tiles_1_1_helpers.html',1,'DestructibleTiles']]],
-  ['particlefx',['ParticleFx',['../namespace_destructible_tiles_1_1_helpers_1_1_particle_fx.html',1,'DestructibleTiles::Helpers']]],
-  ['tilehelpers',['TileHelpers',['../namespace_destructible_tiles_1_1_helpers_1_1_tile_helpers.html',1,'DestructibleTiles::Helpers']]]
+  ['dusthelpers',['DustHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html',1,'HamstarHelpers::Helpers::Dusts']]]
 ];
