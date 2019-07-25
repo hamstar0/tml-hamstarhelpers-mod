@@ -201,6 +201,7 @@
     <Compile Include="Helpers\Tiles\TileWallHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileWallIdentityHelpers.cs" />
     <Compile Include="Helpers\Tiles\TileWorldHelpers.cs" />
+    <Compile Include="Helpers\TModLoader\Configs\PrimitiveDefinitions.cs" />
     <Compile Include="Helpers\TModLoader\Menus\MainMenuHelpers.cs" />
     <Compile Include="Helpers\TModLoader\Mods\ModIdentityHelpers.cs" />
     <Compile Include="Helpers\TModLoader\Mods\ModBoilerplateHelpers.cs" />

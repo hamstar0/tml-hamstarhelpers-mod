@@ -2,6 +2,35 @@
 
 
 namespace HamstarHelpers.Helpers.Tiles {
+	/// <summary></summary>
+	public enum TileSlopeType {
+		/// <summary></summary>
+		None,
+		/// <summary></summary>
+		Any,
+		/// <summary></summary>
+		Top,
+		/// <summary></summary>
+		Bottom,
+		/// <summary></summary>
+		Left,
+		/// <summary></summary>
+		Right,
+		/// <summary></summary>
+		HalfBrick,
+		/// <summary></summary>
+		TopRightSlope,
+		/// <summary></summary>
+		TopLeftSlope,
+		/// <summary></summary>
+		BottomRightSlope,
+		/// <summary></summary>
+		BottomLeftSlope
+	}
+
+
+
+
 	/// <summary>
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
@@ -54,5 +83,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 		public bool? HasHoney { get; private set; }
 		/// <summary></summary>
 		public bool? HasLava { get; private set; }
+
+		/// <summary></summary>
+		public TileSlopeType? Slope { get; private set; }
 	}
 }

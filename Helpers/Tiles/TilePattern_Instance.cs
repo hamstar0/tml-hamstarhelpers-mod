@@ -107,6 +107,44 @@ namespace HamstarHelpers.Helpers.Tiles {
 					return false;
 				}
 			}
+			
+			if( this.Slope.HasValue ) {
+				switch( this.Slope.Value ) {
+				case TileSlopeType.None:
+					if( tile.slope() != 0 ) { return false; }
+					break;
+				case TileSlopeType.Any:
+					if( tile.slope() == 0 ) { return false; }
+					break;
+				case TileSlopeType.HalfBrick:
+					if( !tile.halfBrick() ) { return false; }
+					break;
+				case TileSlopeType.TopRightSlope:
+					if( tile.slope() == 1 ) { return false; }
+					break;
+				case TileSlopeType.TopLeftSlope:
+					if( tile.slope() == 2 ) { return false; }
+					break;
+				case TileSlopeType.BottomRightSlope:
+					if( tile.slope() == 3 ) { return false; }
+					break;
+				case TileSlopeType.BottomLeftSlope:
+					if( tile.slope() == 4 ) { return false; }
+					break;
+				case TileSlopeType.Top:
+					if( !tile.topSlope() ) { return false; }
+					break;
+				case TileSlopeType.Bottom:
+					if( !tile.bottomSlope() ) { return false; }
+					break;
+				case TileSlopeType.Left:
+					if( !tile.leftSlope() ) { return false; }
+					break;
+				case TileSlopeType.Right:
+					if( !tile.rightSlope() ) { return false; }
+					break;
+				}
+			}
 
 			return true;
 		}

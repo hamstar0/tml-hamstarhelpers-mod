@@ -21,6 +21,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuated"></param>
 		/// <param name="isVanillaBombable"></param>
 		/// <param name="hasWall"></param>
+		/// <param name="slope"></param>
 		/// <param name="hasWater"></param>
 		/// <param name="hasHoney"></param>
 		/// <param name="hasLava"></param>
@@ -30,6 +31,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				bool? isActuated,
 				bool? isVanillaBombable,
 				bool? hasWall,
+				TileSlopeType? slope,
 				bool? hasWater, bool? hasHoney, bool? hasLava ) {
 			this.HasWire1 = hasWire1;
 			this.HasWire2 = hasWire2;
@@ -40,6 +42,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			this.IsActuated = isActuated;
 			this.IsVanillaBombable = isVanillaBombable;
 			this.HasWall = hasWall;
+			this.Slope = slope;
 			this.HasWater = hasWater;
 			this.HasHoney = hasHoney;
 			this.HasLava = hasLava;
@@ -53,6 +56,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuated"></param>
 		/// <param name="isVanillaBombable"></param>
 		/// <param name="hasWall"></param>
+		/// <param name="slope"></param>
 		/// <param name="hasWater"></param>
 		/// <param name="hasHoney"></param>
 		/// <param name="hasLava"></param>
@@ -61,6 +65,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				bool? isActuated,
 				bool? isVanillaBombable,
 				bool? hasWall,
+				TileSlopeType? slope,
 				bool? hasWater, bool? hasHoney, bool? hasLava )
 			: this( null, null, null, null,
 				isSolid,
@@ -68,6 +73,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				isActuated,
 				isVanillaBombable,
 				hasWall,
+				slope,
 				hasWater, hasHoney, hasLava ) {
 		}
 
@@ -79,16 +85,19 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuated"></param>
 		/// <param name="isVanillaBombable"></param>
 		/// <param name="hasWall"></param>
+		/// <param name="slope"></param>
 		public TilePattern( bool? isSolid,
 				bool? isPlatform,
 				bool? isActuated,
 				bool? isVanillaBombable,
-				bool? hasWall )
+				bool? hasWall,
+				TileSlopeType? slope )
 			: this( isSolid,
 				isPlatform,
 				isActuated,
 				isVanillaBombable,
 				hasWall,
+				slope,
 				null, null, null ) {
 		}
 
@@ -108,6 +117,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuated"></param>
 		/// <param name="isVanillaBombable"></param>
 		/// <param name="hasWall"></param>
+		/// <param name="slope"></param>
 		/// <param name="hasWater"></param>
 		/// <param name="hasHoney"></param>
 		/// <param name="hasLava"></param>
@@ -118,6 +128,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				bool? isActuated,
 				bool? isVanillaBombable,
 				bool? hasWall,
+				TileSlopeType? slope,
 				bool? hasWater, bool? hasHoney, bool? hasLava )
 			: this( hasWire1, hasWire2, hasWire3, hasWire4,
 				isSolid,
@@ -125,6 +136,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				isActuated,
 				isVanillaBombable,
 				hasWall,
+				slope,
 				hasWater, hasHoney, hasLava ) {
 			this.HasWire1 = this.HasWire1 ?? baseModel.HasWire1;
 			this.HasWire2 = this.HasWire2 ?? baseModel.HasWire2;
@@ -146,6 +158,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuated"></param>
 		/// <param name="isVanillaBombable"></param>
 		/// <param name="hasWall"></param>
+		/// <param name="slope"></param>
 		/// <param name="hasWater"></param>
 		/// <param name="hasHoney"></param>
 		/// <param name="hasLava"></param>
@@ -155,6 +168,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				bool? isActuated,
 				bool? isVanillaBombable,
 				bool? hasWall,
+				TileSlopeType? slope,
 				bool? hasWater, bool? hasHoney, bool? hasLava )
 			: this( baseModel,
 				baseModel.HasWire1, baseModel.HasWire2, baseModel.HasWire3, baseModel.HasWire4,
@@ -163,6 +177,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				isActuated,
 				isVanillaBombable,
 				hasWall,
+				slope,
 				hasWater, hasHoney, hasLava ) {
 		}
 
@@ -175,12 +190,14 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuated"></param>
 		/// <param name="isVanillaBombable"></param>
 		/// <param name="hasWall"></param>
+		/// <param name="slope"></param>
 		public TilePattern( TilePattern baseModel,
 				bool? isSolid,
 				bool? isPlatform,
 				bool? isActuated,
 				bool? isVanillaBombable,
-				bool? hasWall )
+				bool? hasWall,
+				TileSlopeType? slope )
 			: this( baseModel,
 				baseModel.HasWire1, baseModel.HasWire2, baseModel.HasWire3, baseModel.HasWire4,
 				isSolid,
@@ -188,6 +205,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				isActuated,
 				isVanillaBombable,
 				hasWall,
+				slope,
 				baseModel.HasWater, baseModel.HasHoney, baseModel.HasLava ) {
 		}
 	}
