@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Services.Messages {
+namespace HamstarHelpers.Services.Messages.Inbox {
 	class InboxMessageData {
 		public IDictionary<string, string> Messages = new Dictionary<string, string>();
 		internal IDictionary<string, Action<bool>> MessageActions = new Dictionary<string, Action<bool>>();

@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.UI;
-using HamstarHelpers.Services.Messages;
+using HamstarHelpers.Services.Messages.Inbox;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

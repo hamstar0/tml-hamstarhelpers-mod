@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.Messages {
+namespace HamstarHelpers.Services.Messages.Player {
 	/// <summary>
 	/// Defines the parameters of a player message.
 	/// </summary>
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Services.Messages {
 		/// <param name="duration"></param>
 		/// <param name="evaporates"></param>
 		/// <param name="following">Tracks with the player.</param>
-		public static void AddPlayerLabel( Player player, string text, Color color, int duration, bool evaporates,
+		public static void AddPlayerLabel( Terraria.Player player, string text, Color color, int duration, bool evaporates,
 					bool following=true ) {
 			var pm = ModHelpersMod.Instance.PlayerMessages;
 

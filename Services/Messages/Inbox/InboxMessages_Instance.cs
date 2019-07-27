@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Services.Messages {
+namespace HamstarHelpers.Services.Messages.Inbox {
 	/// <summary>
 	/// This service gives a way for mods to post persistent, non-obtrusive, in-game messages to players that can be
 	/// re-read freely.

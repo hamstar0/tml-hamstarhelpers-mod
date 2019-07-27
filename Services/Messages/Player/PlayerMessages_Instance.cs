@@ -6,7 +6,7 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.Messages {
+namespace HamstarHelpers.Services.Messages.Player {
 	/// <summary>
 	/// Supplies a way to 'popup' informational text upon the player character in-game.
 	/// </summary>
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Services.Messages {
 			foreach( var kv in this.PlayerTexts.ToArray() ) {
 				int who = kv.Key;
 				IList<PlayerLabelText> list = kv.Value;
-				Player player = Main.player[who];
+				Terraria.Player player = Main.player[who];
 
 				if( player == null || !player.active ) {
 					this.PlayerTexts.Remove( who );
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Services.Messages {
 			foreach( var kv in this.PlayerTexts ) {
 				int who = kv.Key;
 				IList<PlayerLabelText> list = kv.Value;
-				Player player = Main.player[who];
+				Terraria.Player player = Main.player[who];
 
 				if( player == null || !player.active || player.dead ) { continue; }
 

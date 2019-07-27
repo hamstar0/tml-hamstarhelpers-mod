@@ -12,7 +12,7 @@ using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Hooks.WorldHooks;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.EntityGroups;
-using HamstarHelpers.Services.Messages;
+using HamstarHelpers.Services.Messages.Player;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.DataStore;
 using HamstarHelpers.Services.Server;
