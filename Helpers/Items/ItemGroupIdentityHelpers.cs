@@ -10,7 +10,7 @@ using Terraria.ID;
 
 namespace HamstarHelpers.Helpers.Items {
 	/// <summary></summary>
-	public class ItemTypesGroupDefinition {
+	public class ItemGroupDefinition {
 		/// <summary></summary>
 		public string GroupName { get; }
 		/// <summary></summary>
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary></summary>
 		/// <param name="groupName"></param>
 		/// <param name="group"></param>
-		public ItemTypesGroupDefinition( string groupName, ISet<int> group ) {
+		public ItemGroupDefinition( string groupName, ISet<int> group ) {
 			this.GroupName = groupName;
 			this.Group = new ReadOnlySet<int>( group );
 		}
@@ -32,22 +32,22 @@ namespace HamstarHelpers.Helpers.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to item identification.
 	/// </summary>
-	public partial class ItemIdentityHelpers {
+	public partial class ItemGroupIdentityHelpers {
 		/// <summary>
 		/// Gets a set of "common" item groups (i.e. for RecipeGroup use).
 		/// </summary>
 		/// <returns>Group names mapped to group description and a set of item ids.</returns>
-		public static IDictionary<string, ItemTypesGroupDefinition> GetCommonItemGroups() {
-			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemIdentityHelpers )
+		public static IDictionary<string, ItemGroupDefinition> GetCommonItemGroups() {
+			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemGroupIdentityHelpers )
 					.GetFields( BindingFlags.Static | BindingFlags.Public );
 
 			itemGrpFields = itemGrpFields.Where( field => {
-				return field.FieldType == typeof( ItemTypesGroupDefinition );
+				return field.FieldType == typeof( ItemGroupDefinition );
 			} );
 
 			var groups = itemGrpFields.ToDictionary(
 				field => field.Name,
-				field => (ItemTypesGroupDefinition)field.GetValue( null )
+				field => (ItemGroupDefinition)field.GetValue( null )
 			);
 			/*groups["EvilBiomeBossChunks"] = groups["EvilBiomeBossDrops"];
 			groups["EvilBiomeLightPet"] = groups["EvilBiomeLightPets"];
@@ -55,9 +55,9 @@ namespace HamstarHelpers.Helpers.Items {
 			groups["VanillaGoldCritter"] = groups["VanillaGoldCritters"];
 			groups["PressurePlates"] = groups["AllPressurePlates"];
 			groups["WeightedPressurePlates"] = groups["WeightPressurePlates"];
-			groups["ConveyorBelts"] = groups["ConveyorBeltPair"];*/
-			groups["NpcBanners"] = ItemIdentityHelpers.MobBanners;
-			groups["VanillaRecordedMusicBoxes"] = ItemIdentityHelpers.VanillaRecordedMusicBoxes;
+			groups["ConveyorBelts"] = groups["ConveyorBeltPair"];
+			groups["NpcBanners"] = ItemGroupIdentityHelpers.MobBanners;
+			groups["VanillaRecordedMusicBoxes"] = ItemGroupIdentityHelpers.VanillaRecordedMusicBoxes;*/
 
 			return groups;
 		}
@@ -68,8 +68,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// All NPC banner items.
 		/// </summary>
-		public static ItemTypesGroupDefinition MobBanners =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition MobBanners =>
+			new ItemGroupDefinition(
 				"Mob Banners",
 				NPCBannerHelpers.GetBannerItemTypes()
 			);
@@ -77,8 +77,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// All vanilla recorded music boxes.
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaRecordedMusicBoxes =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaRecordedMusicBoxes =>
+			new ItemGroupDefinition(
 				"Recorded Music Box (vanilla)",
 				MusicBoxHelpers.GetVanillaMusicBoxItemIds()
 			);
@@ -86,8 +86,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// The special drops of each "evil" biome (Eater of Worlds and Brain of Cthulhu).
 		/// </summary>
-		public static ItemTypesGroupDefinition EvilBiomeBossDrops =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition EvilBiomeBossDrops =>
+			new ItemGroupDefinition(
 				"Evil Biome Boss Drops",
 				new HashSet<int>( new int[] { ItemID.ShadowScale, ItemID.TissueSample } )
 			);
@@ -95,8 +95,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each type of "evil" biome-originating light-emitting pet (Crimson Heart and Shadow Orb).
 		/// </summary>
-		public static ItemTypesGroupDefinition EvilBiomeLightPets =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition EvilBiomeLightPets =>
+			new ItemGroupDefinition(
 				"Evil Biome Light Pet",
 				new HashSet<int>( new int[] { ItemID.CrimsonHeart, ItemID.ShadowOrb } )
 			);
@@ -104,8 +104,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each vanilla variant of a Magic Mirror.
 		/// </summary>
-		public static ItemTypesGroupDefinition MagicMirrors =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition MagicMirrors =>
+			new ItemGroupDefinition(
 				"Magic Mirrors",
 				new HashSet<int>( new int[] { ItemID.MagicMirror, ItemID.IceMirror } )
 			);
@@ -113,8 +113,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each potion that performs non-random player warping.
 		/// </summary>
-		public static ItemTypesGroupDefinition WarpPotions =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition WarpPotions =>
+			new ItemGroupDefinition(
 				"Warp Potions",
 				new HashSet<int>( new int[] { ItemID.RecallPotion, ItemID.WormholePotion } )
 			);
@@ -123,8 +123,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each vanilla passive animal type.
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaAnimals =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaAnimals =>
+			new ItemGroupDefinition(
 				"Live Animal (vanilla)",
 				new HashSet<int>( new int[] {
 					ItemID.Bird, ItemID.BlueJay, ItemID.Cardinal,
@@ -138,8 +138,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each vanilla passive bug type (including the Truffle Worm).
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaBugs =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaBugs =>
+			new ItemGroupDefinition(
 				"Live Bug (vanilla)",
 				new HashSet<int>( new int[] {
 					ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
@@ -156,8 +156,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each banilla butterfly type.
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaButterflies =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaButterflies =>
+			new ItemGroupDefinition(
 				"Butterflies (vanilla)",
 				new HashSet<int>( new int[] {
 					ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly,
@@ -169,8 +169,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each vanilla gold critter variant.
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaGoldCritters =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaGoldCritters =>
+			new ItemGroupDefinition(
 				"Gold Critters (vanilla)",
 				new HashSet<int>( new int[] {
 					ItemID.GoldBunny, ItemID.GoldMouse, ItemID.SquirrelGold, ItemID.GoldBird, ItemID.GoldFrog,
@@ -181,8 +181,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each vanilla alchemy herb.
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaAlchemyHerbs =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaAlchemyHerbs =>
+			new ItemGroupDefinition(
 				"Alchemy Herbs (vanilla)",
 				new HashSet<int>( new int[] {
 					ItemID.Daybloom, ItemID.Blinkroot, ItemID.Moonglow, ItemID.Deathweed, ItemID.Fireblossom, ItemID.Shiverthorn
@@ -191,8 +191,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// Each vanilla 'strange plant'.
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaStrangePlants =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaStrangePlants =>
+			new ItemGroupDefinition(
 				"Strange Plant",
 				new HashSet<int>( new int[] {
 					ItemID.StrangePlant1, ItemID.StrangePlant2, ItemID.StrangePlant3, ItemID.StrangePlant4
@@ -202,8 +202,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// All pressure plates.
 		/// </summary>
-		public static ItemTypesGroupDefinition AllPressurePlates =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition AllPressurePlates =>
+			new ItemGroupDefinition(
 				"Pressure Plates",
 				new HashSet<int>( new int[] {
 					ItemID.BluePressurePlate, ItemID.BrownPressurePlate, ItemID.GrayPressurePlate, ItemID.GreenPressurePlate,
@@ -215,8 +215,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// All weighted pressure plates.
 		/// </summary>
-		public static ItemTypesGroupDefinition WeightPressurePlates =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition WeightPressurePlates =>
+			new ItemGroupDefinition(
 				"Weighted Pressure Plates",
 				new HashSet<int>( new int[] {
 					ItemID.WeightedPressurePlateCyan, ItemID.WeightedPressurePlateOrange, ItemID.WeightedPressurePlatePink,
@@ -226,8 +226,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// All conveyor belts.
 		/// </summary>
-		public static ItemTypesGroupDefinition ConveyorBeltPair =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition ConveyorBeltPair =>
+			new ItemGroupDefinition(
 				"Conveyor Belts",
 				new HashSet<int>( new int[] { ItemID.ConveyorBeltLeft, ItemID.ConveyorBeltRight } )
 			);
@@ -235,8 +235,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// All paints cans.
 		/// </summary>
-		public static ItemTypesGroupDefinition Paints =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition Paints =>
+			new ItemGroupDefinition(
 				"Paints",
 				new HashSet<int>( new int[] {
 					ItemID.BlackPaint, ItemID.BluePaint, ItemID.BrownPaint, ItemID.CyanPaint,
@@ -251,8 +251,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <summary>
 		/// All vanilla dyes.
 		/// </summary>
-		public static ItemTypesGroupDefinition VanillaDyes =>
-			new ItemTypesGroupDefinition(
+		public static ItemGroupDefinition VanillaDyes =>
+			new ItemGroupDefinition(
 				"Dyes (vanilla)",
 				new HashSet<int>( new int[] {
 					ItemID.RedDye, ItemID.RedDye, ItemID.OrangeDye, ItemID.YellowDye, ItemID.LimeDye, ItemID.BrightTealDye, ItemID.BrightCyanDye,

@@ -56,7 +56,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 		////////////////
 
 		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
-			IDictionary<string, ItemTypesGroupDefinition> commonItemGrps = ItemIdentityHelpers.GetCommonItemGroups();
+			IDictionary<string, ItemGroupDefinition> commonItemGrps = ItemGroupIdentityHelpers.GetCommonItemGroups();
 
 			IDictionary<string, RecipeGroup> groups = commonItemGrps.ToDictionary(
 				kv => {
