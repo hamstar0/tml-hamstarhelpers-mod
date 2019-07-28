@@ -92,7 +92,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="name"></param>
 		/// <param name="group"></param>
 		/// <returns></returns>
-		public static bool TryGetItemGroup( string name, out ReadOnlySet<int> group ) {
+		public static bool TryGetItemGroup( string name, out IReadOnlySet<int> group ) {
 			lock( EntityGroups.MyLock ) {
 				return ModHelpersMod.Instance.EntityGroups.ItemGroups.TryGetValue( name, out group );
 			}
@@ -103,7 +103,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="name"></param>
 		/// <param name="group"></param>
 		/// <returns></returns>
-		public static bool TryGetNpcGroup( string name, out ReadOnlySet<int> group ) {
+		public static bool TryGetNpcGroup( string name, out IReadOnlySet<int> group ) {
 			lock( EntityGroups.MyLock ) {
 				return ModHelpersMod.Instance.EntityGroups.NPCGroups.TryGetValue( name, out group );
 			}
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="name"></param>
 		/// <param name="group"></param>
 		/// <returns></returns>
-		public static bool TryGetProjectileGroup( string name, out ReadOnlySet<int> group ) {
+		public static bool TryGetProjectileGroup( string name, out IReadOnlySet<int> group ) {
 			lock( EntityGroups.MyLock ) {
 				return ModHelpersMod.Instance.EntityGroups.ProjGroups.TryGetValue( name, out group );
 			}
@@ -126,7 +126,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="itemType"></param>
 		/// <param name="groupNames"></param>
 		/// <returns></returns>
-		public static bool TryGetGroupsPerItem( int itemType, out ReadOnlySet<string> groupNames ) {
+		public static bool TryGetGroupsPerItem( int itemType, out IReadOnlySet<string> groupNames ) {
 			lock( EntityGroups.MyLock ) {
 				return ModHelpersMod.Instance.EntityGroups.GroupsPerItem.TryGetValue( itemType, out groupNames );
 			}
@@ -137,7 +137,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="npcType"></param>
 		/// <param name="groupNames"></param>
 		/// <returns></returns>
-		public static bool TryGetGroupsPerNPC( int npcType, out ReadOnlySet<string> groupNames ) {
+		public static bool TryGetGroupsPerNPC( int npcType, out IReadOnlySet<string> groupNames ) {
 			lock( EntityGroups.MyLock ) {
 				return ModHelpersMod.Instance.EntityGroups.GroupsPerNPC.TryGetValue( npcType, out groupNames );
 			}
@@ -148,7 +148,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="projType"></param>
 		/// <param name="groupNames"></param>
 		/// <returns></returns>
-		public static bool TryGetGroupsPerProjectile( int projType, out ReadOnlySet<string> groupNames ) {
+		public static bool TryGetGroupsPerProjectile( int projType, out IReadOnlySet<string> groupNames ) {
 			lock( EntityGroups.MyLock ) {
 				return ModHelpersMod.Instance.EntityGroups.GroupsPerProj.TryGetValue( projType, out groupNames );
 			}

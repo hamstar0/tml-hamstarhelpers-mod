@@ -38,13 +38,13 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		private bool IsEnabled = false;
 
-		private IDictionary<string, ReadOnlySet<int>> ItemGroups = new Dictionary<string, ReadOnlySet<int>>();
-		private IDictionary<string, ReadOnlySet<int>> NPCGroups = new Dictionary<string, ReadOnlySet<int>>();
-		private IDictionary<string, ReadOnlySet<int>> ProjGroups = new Dictionary<string, ReadOnlySet<int>>();
+		private IDictionary<string, IReadOnlySet<int>> ItemGroups = new Dictionary<string, IReadOnlySet<int>>();
+		private IDictionary<string, IReadOnlySet<int>> NPCGroups = new Dictionary<string, IReadOnlySet<int>>();
+		private IDictionary<string, IReadOnlySet<int>> ProjGroups = new Dictionary<string, IReadOnlySet<int>>();
 
-		private IDictionary<int, ReadOnlySet<string>> GroupsPerItem = new Dictionary<int, ReadOnlySet<string>>();
-		private IDictionary<int, ReadOnlySet<string>> GroupsPerNPC = new Dictionary<int, ReadOnlySet<string>>();
-		private IDictionary<int, ReadOnlySet<string>> GroupsPerProj = new Dictionary<int, ReadOnlySet<string>>();
+		private IDictionary<int, IReadOnlySet<string>> GroupsPerItem = new Dictionary<int, IReadOnlySet<string>>();
+		private IDictionary<int, IReadOnlySet<string>> GroupsPerNPC = new Dictionary<int, IReadOnlySet<string>>();
+		private IDictionary<int, IReadOnlySet<string>> GroupsPerProj = new Dictionary<int, IReadOnlySet<string>>();
 
 		private IList<EntityGroupMatcherDefinition<Item>> CustomItemMatchers = new List<EntityGroupMatcherDefinition<Item>>();
 		private IList<EntityGroupMatcherDefinition<NPC>> CustomNPCMatchers = new List<EntityGroupMatcherDefinition<NPC>>();

@@ -5,11 +5,18 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Components.DataStructures {
+	/// <summary></summary>
+	/// <typeparam name="T"></typeparam>
+	public interface IReadOnlySet<T> : ISet<T> { }
+
+
+
+
 	/// <summary>
 	/// Wraps a set to ensure a read-only interface. Some ISet interface members disabled.
 	/// </summary>
 	/// <typeparam name="T">Type stored in wrapped set.</typeparam>
-	public class ReadOnlySet<T> : ISet<T> {
+	public class ReadOnlySet<T> : IReadOnlySet<T> {
 		private ISet<T> MySet;
 
 

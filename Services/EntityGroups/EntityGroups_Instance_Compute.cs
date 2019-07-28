@@ -13,8 +13,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 	/// </summary>
 	public partial class EntityGroups {
 		private void ComputeGroups<T>( IList<EntityGroupMatcherDefinition<T>> matchers,
-					ref IDictionary<string, ReadOnlySet<int>> groups,
-					ref IDictionary<int, ReadOnlySet<string>> groupsPerEnt ) where T : Entity {
+					ref IDictionary<string, IReadOnlySet<int>> groups,
+					ref IDictionary<int, IReadOnlySet<string>> groupsPerEnt ) where T : Entity {
 			var rawGroupsPerEnt = new Dictionary<int, ISet<string>>();
 			
 			IList<T> pool = this.GetPool<T>();
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			var deps = new EntityGroupDependencies();
 			if( dependencies == null ) { return deps; }
 
-			IDictionary<string, ReadOnlySet<int>> entityGroups;
+			IDictionary<string, IReadOnlySet<int>> entityGroups;
 
 			switch( typeof(T).Name ) {
 			case "Item":
