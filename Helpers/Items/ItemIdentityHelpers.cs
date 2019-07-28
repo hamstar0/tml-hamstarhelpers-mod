@@ -35,6 +35,23 @@ namespace HamstarHelpers.Helpers.Items {
 		[Obsolete( "use ItemID.GetUniqueKey(NPC)" )]
 		public static string GetUniqueKey( Item item ) => ItemIdentityHelpers.GetUniqueKey( item.type );
 
+		/// <summary>
+		/// Gets a (human readable) unique key (as segments) from a given item type.
+		/// </summary>
+		/// <param name="itemType"></param>
+		/// <returns></returns>
+		public static Tuple<string, string> GetUniqueKeySegs( int itemType ) {
+			if( itemType < 0 || itemType >= ItemLoader.ItemCount ) {
+				throw new ArgumentOutOfRangeException( "Invalid type: " + itemType );
+			}
+			if( itemType < ItemID.Count ) {
+				return Tuple.Create( "Terraria", ItemID.Search.GetName( itemType ) );
+			}
+
+			var modItem = ItemLoader.GetItem( itemType );
+			return Tuple.Create( modItem.mod.Name, modItem.Name );
+		}
+
 
 		////
 
@@ -50,13 +67,24 @@ namespace HamstarHelpers.Helpers.Items {
 			if( parts.Length != 2 ) {
 				return 0;
 			}
-			if( parts[0] == "Terraria" ) {
-				if( !ItemID.Search.ContainsName( parts[1] ) ) {
+			return ItemIdentityHelpers.TypeFromUniqueKey( parts[0], parts[1] );
+		}
+
+		/// <summary>
+		/// Gets an item type from a given unique key.
+		/// </summary>
+		/// <param name="mod"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		[Obsolete( "use ItemID.TypeFromUniqueKey(string, string)" )]
+		public static int TypeFromUniqueKey( string mod, string name ) {
+			if( mod == "Terraria" ) {
+				if( !ItemID.Search.ContainsName( name ) ) {
 					return 0;
 				}
-				return ItemID.Search.GetId( parts[1] );
+				return ItemID.Search.GetId( name );
 			}
-			return ModLoader.GetMod( parts[0] )?.ItemType( parts[1] ) ?? 0;
+			return ModLoader.GetMod( mod )?.NPCType( name ) ?? 0;
 		}
 
 

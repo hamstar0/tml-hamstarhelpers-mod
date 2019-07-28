@@ -37,6 +37,23 @@ namespace HamstarHelpers.Helpers.NPCs {
 		[Obsolete( "use NPCID.GetUniqueKey(NPC)" )]
 		public static string GetUniqueKey( NPC npc ) => NPCIdentityHelpers.GetUniqueKey( npc.type );
 
+		/// <summary>
+		/// Gets a (human readable) unique key (as segments) from a given NPC type.
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public static Tuple<string, string> GetUniqueKeySegs( int type ) {
+			if( type < -65 || type >= NPCLoader.NPCCount ) {
+				throw new ArgumentOutOfRangeException( "Invalid type: " + type );
+			}
+			if( type < NPCID.Count ) {
+				return Tuple.Create( "Terraria", NPCID.Search.GetName( type ) );
+			}
+
+			var modNPC = NPCLoader.GetNPC( type );
+			return Tuple.Create( modNPC.mod.Name, modNPC.Name );
+		}
+
 		////
 
 		/// <summary>
@@ -51,13 +68,24 @@ namespace HamstarHelpers.Helpers.NPCs {
 			if( parts.Length != 2 ) {
 				return 0;
 			}
-			if( parts[0] == "Terraria" ) {
-				if( !NPCID.Search.ContainsName( parts[1] ) ) {
+			return NPCIdentityHelpers.TypeFromUniqueKey( parts[0], parts[1] );
+		}
+
+		/// <summary>
+		/// Gets an NPC type from a given unique key.
+		/// </summary>
+		/// <param name="mod"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		[Obsolete( "use NPCID.TypeFromUniqueKey(string, string)" )]
+		public static int TypeFromUniqueKey( string mod, string name ) {
+			if( mod == "Terraria" ) {
+				if( !NPCID.Search.ContainsName( name ) ) {
 					return 0;
 				}
-				return NPCID.Search.GetId( parts[1] );
+				return NPCID.Search.GetId( name );
 			}
-			return ModLoader.GetMod( parts[0] )?.NPCType( parts[1] ) ?? 0;
+			return ModLoader.GetMod( mod )?.NPCType( name ) ?? 0;
 		}
 
 

@@ -43,6 +43,23 @@ namespace HamstarHelpers.Helpers.Projectiles {
 		[Obsolete( "use ProjectileID.GetUniqueKey(Projectile)" )]
 		public static string GetUniqueKey( Projectile projectile ) => ProjectileIdentityHelpers.GetUniqueKey( projectile.type );
 
+		/// <summary>
+		/// Gets a (human readable) unique key (as segments) from a given projectile type.
+		/// </summary>
+		/// <param name="projType"></param>
+		/// <returns></returns>
+		public static Tuple<string, string> GetUniqueKeySegs( int projType ) {
+			if( projType < 0 || projType >= ProjectileLoader.ProjectileCount ) {
+				throw new ArgumentOutOfRangeException( "Invalid type: " + projType );
+			}
+			if( projType < ProjectileID.Count ) {
+				return Tuple.Create( "Terraria", ProjectileIdentityHelpers.ProjectileIdSearch.GetName( projType ) );
+			}
+
+			var modProjectile = ProjectileLoader.GetProjectile( projType );
+			return Tuple.Create( modProjectile.mod.Name, modProjectile.Name );
+		}
+
 		////
 
 		/// <summary>
@@ -57,13 +74,24 @@ namespace HamstarHelpers.Helpers.Projectiles {
 			if( parts.Length != 2 ) {
 				return 0;
 			}
-			if( parts[0] == "Terraria" ) {
-				if( !ProjectileIdentityHelpers.ProjectileIdSearch.ContainsName( parts[1] ) ) {
+			return ProjectileIdentityHelpers.TypeFromUniqueKey( parts[0], parts[1] );
+		}
+
+		/// <summary>
+		/// Gets a projectile type from a given unique key.
+		/// </summary>
+		/// <param name="mod"></param>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		[Obsolete( "use ProjectileID.TypeFromUniqueKey(string)" )]
+		public static int TypeFromUniqueKey( string mod, string name ) {
+			if( mod == "Terraria" ) {
+				if( !ProjectileIdentityHelpers.ProjectileIdSearch.ContainsName( name ) ) {
 					return 0;
 				}
-				return ProjectileIdentityHelpers.ProjectileIdSearch.GetId( parts[1] );
+				return ProjectileIdentityHelpers.ProjectileIdSearch.GetId( name );
 			}
-			return ModLoader.GetMod( parts[0] )?.ProjectileType( parts[1] ) ?? 0;
+			return ModLoader.GetMod( mod )?.NPCType( name ) ?? 0;
 		}
 
 
