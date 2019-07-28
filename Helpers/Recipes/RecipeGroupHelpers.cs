@@ -56,12 +56,16 @@ namespace HamstarHelpers.Helpers.Recipes {
 		////////////////
 
 		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
-			IDictionary<string, Tuple<string, ISet<int>>> commonItemGrps = ItemIdentityHelpers.GetCommonItemGroups();
+			IDictionary<string, ItemTypesGroupDefinition> commonItemGrps = ItemIdentityHelpers.GetCommonItemGroups();
+
 			IDictionary<string, RecipeGroup> groups = commonItemGrps.ToDictionary(
-				kv => "HamstarHelpers:" + kv.Key,
 				kv => {
-					string grpName = kv.Value.Item1;
-					ISet<int> itemIds = kv.Value.Item2;
+					string internalGrpName = kv.Key;
+					return "HamstarHelpers:" + internalGrpName;
+				},
+				kv => {
+					string grpName = kv.Value.GroupName;
+					ISet<int> itemIds = kv.Value.Group;
 
 					return new RecipeGroup(
 						() => Lang.misc[37].ToString() + " " + grpName,

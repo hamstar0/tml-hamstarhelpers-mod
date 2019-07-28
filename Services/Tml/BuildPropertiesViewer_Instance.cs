@@ -7,7 +7,7 @@ using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Services.Tml {
+namespace HamstarHelpers.Services.TML {
 	/// <summary>
 	/// Supplies a way to peek into other mods' build properties (build.txt) data.
 	/// </summary>

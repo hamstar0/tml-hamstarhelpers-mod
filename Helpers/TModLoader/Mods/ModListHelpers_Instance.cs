@@ -12,15 +12,15 @@ using Terraria.ModLoader.Core;
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	/// @private
 	public partial class ModListHelpers {
-		private IDictionary<Services.Tml.BuildPropertiesViewer, Mod> ModsByBuildProps = new Dictionary<Services.Tml.BuildPropertiesViewer, Mod>();
+		private IDictionary<Services.TML.BuildPropertiesViewer, Mod> ModsByBuildProps = new Dictionary<Services.TML.BuildPropertiesViewer, Mod>();
 		private IDictionary<string, ISet<Mod>> ModsByAuthor = new Dictionary<string, ISet<Mod>>();
-		private IDictionary<string, Services.Tml.BuildPropertiesViewer> BuildPropsByModNames = new Dictionary<string, Services.Tml.BuildPropertiesViewer>();
+		private IDictionary<string, Services.TML.BuildPropertiesViewer> BuildPropsByModNames = new Dictionary<string, Services.TML.BuildPropertiesViewer>();
 
 
 
 		////////////////
 
-		private IDictionary<Services.Tml.BuildPropertiesViewer, Mod> GetModsByBuildProps() {
+		private IDictionary<Services.TML.BuildPropertiesViewer, Mod> GetModsByBuildProps() {
 			var mods = this.ModsByBuildProps;
 
 			foreach( Mod mod in ModLoader.Mods ) {
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 					continue;
 				}
 
-				var editor = Services.Tml.BuildPropertiesViewer.GetBuildPropertiesForModFile( tmod );
+				var editor = Services.TML.BuildPropertiesViewer.GetBuildPropertiesForModFile( tmod );
 
 				mods[editor] = mod;
 			}
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			var mods = new Dictionary<string, ISet<Mod>>();
 
 			foreach( var kv in ModListHelpers.GetLoadedModsAndBuildInfo() ) {
-				Services.Tml.BuildPropertiesViewer editor = kv.Key;
+				Services.TML.BuildPropertiesViewer editor = kv.Key;
 				Mod mod = kv.Value;
 
 				foreach( string author in editor.Author.Split(',').Select(a=>a.Trim()) ) {
@@ -57,7 +57,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			return mods;
 		}
 
-		private IDictionary<string, Services.Tml.BuildPropertiesViewer> GetBuildPropsByModName() {
+		private IDictionary<string, Services.TML.BuildPropertiesViewer> GetBuildPropsByModName() {
 			return ModListHelpers.GetLoadedModsAndBuildInfo()
 				.ToDictionary( kv=>kv.Value.Name, kv=>kv.Key );
 		}

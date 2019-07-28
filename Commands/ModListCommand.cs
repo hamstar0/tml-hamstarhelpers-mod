@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Services.Tml;
+using HamstarHelpers.Services.TML;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;

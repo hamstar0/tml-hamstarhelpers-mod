@@ -1,10 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.ModHelpers;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -35,9 +32,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.LatestAvailableVersion = default( Version );
 
 			if( !ModHelpersMod.Instance.Config.DisableModMenuUpdates ) {
-				Services.Tml.BuildPropertiesViewer props = modfile != null ?
-					Services.Tml.BuildPropertiesViewer.GetBuildPropertiesForModFile( modfile ) :
-					(Services.Tml.BuildPropertiesViewer)null;
+				Services.TML.BuildPropertiesViewer props = modfile != null ?
+					Services.TML.BuildPropertiesViewer.GetBuildPropertiesForModFile( modfile ) :
+					(Services.TML.BuildPropertiesViewer)null;
 				if( props != null ) {
 					this.Author = (string)props.GetField( "author" );
 					this.HomepageUrl = (string)props.GetField( "homepage" );

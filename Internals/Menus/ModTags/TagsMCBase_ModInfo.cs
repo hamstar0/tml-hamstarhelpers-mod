@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Services.Tml;
+using HamstarHelpers.Services.TML;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
