@@ -15,7 +15,4 @@
     <None Remove=".gitignore" />
     <None Remove="icon.pdn" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Components\Errors\Exception.cs" />
-  </ItemGroup>
 </Project>
