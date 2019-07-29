@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace HamstarHelpers.Components.DataStructures {
 		/// <param name="myset">Set to wrap.</param>
 		public ReadOnlySet( ISet<T> myset ) {
 			if( myset == null ) {
-				throw new HamstarException( "Base set not defined." );
+				throw new ModHelpersException( "Base set not defined." );
 			}
 			this.MySet = myset;
 		}

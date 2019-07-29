@@ -3,7 +3,7 @@ using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Internals.Menus.Support;
 using HamstarHelpers.Internals.Inbox;
-using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.Protocols.Packet;
 using HamstarHelpers.Services.Debug.CustomHotkeys;
@@ -45,7 +45,7 @@ namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
 		// Components
-		internal HamstarExceptionManager ExceptionMngr;
+		internal ModHelpersExceptionManager ExceptionMngr;
 		internal MenuContextServiceManager MenuContextMngr;
 		internal MenuItemManager MenuItemMngr;
 		internal PacketProtocolManager PacketProtocolMngr;
@@ -103,7 +103,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		private void InitializeModules() {
-			this.ExceptionMngr = new HamstarExceptionManager();
+			this.ExceptionMngr = new ModHelpersExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
 		}
 

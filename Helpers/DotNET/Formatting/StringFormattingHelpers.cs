@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 
 
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Helpers.DotNET.Formatting {
 			const string digits = "0123456789abcdefghijklmnopqrstuvwxyz";
 
 			if( radix < 2 || radix > digits.Length ) {
-				throw new HamstarException( "The radix must be >= 2 and <= " + digits.Length.ToString() );
+				throw new ModHelpersException( "The radix must be >= 2 and <= " + digits.Length.ToString() );
 			}
 
 			if( number == 0 ) {

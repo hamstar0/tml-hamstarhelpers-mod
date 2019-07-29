@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 
 
@@ -43,15 +43,15 @@ namespace HamstarHelpers.Components.Protocols.Packet.Interfaces {
 
 		/// @private
 		protected sealed override void SetClientDefaults() {
-			throw new HamstarException( "Not implemented" );
+			throw new ModHelpersException( "Not implemented" );
 		}
 		/// @private
 		protected sealed override void ReceiveWithServer( int fromWho ) {
-			throw new HamstarException( "Not implemented" );
+			throw new ModHelpersException( "Not implemented" );
 		}
 		/// @private
 		protected sealed override bool ReceiveRequestWithClient() {
-			throw new HamstarException( "Not implemented" );
+			throw new ModHelpersException( "Not implemented" );
 		}
 	}
 }

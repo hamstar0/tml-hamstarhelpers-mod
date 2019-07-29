@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.TModLoader;
 using System;
 using Terraria;
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		public static void Enable() {
 			var mymod = ModHelpersMod.Instance;
 			if( LoadHelpers.IsModLoaded() ) {
-				throw new HamstarException( "Entity Groups must be enabled before mods finish loading." );
+				throw new ModHelpersException( "Entity Groups must be enabled before mods finish loading." );
 			}
 
 			var entGrps = mymod.EntityGroups;
@@ -36,8 +36,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="matcher">Function to use to match items for this group.</param>
 		public static void AddCustomItemGroup( string groupName, string[] groupDependencies, ItemGroupMatcher matcher ) {
 			var entGrps = ModHelpersMod.Instance.EntityGroups;
-			if( !entGrps.IsEnabled ) { throw new HamstarException( "Entity groups not enabled." ); }
-			if( entGrps.CustomItemMatchers == null ) { throw new HamstarException( "Mods loaded; cannot add new groups." ); }
+			if( !entGrps.IsEnabled ) { throw new ModHelpersException( "Entity groups not enabled." ); }
+			if( entGrps.CustomItemMatchers == null ) { throw new ModHelpersException( "Mods loaded; cannot add new groups." ); }
 
 			lock( EntityGroups.MyLock ) {
 				var entry = new EntityGroupMatcherDefinition<Item>( groupName, groupDependencies, matcher );

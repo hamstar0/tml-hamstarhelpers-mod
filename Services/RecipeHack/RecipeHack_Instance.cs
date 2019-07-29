@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 				try {
 					this.UpdateRecipes();
 				} catch( Exception e ) {
-					throw new HamstarException( "", e );
+					throw new ModHelpersException( "", e );
 				}
 
 				this.LastAvailableRecipeCount = Main.numAvailableRecipes;

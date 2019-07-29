@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using Terraria;
-using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Components.Protocols.Packet.Interfaces;
 
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override bool ReceiveRequestWithServer( int fromWho ) {
-			throw new HamstarException( "Not implemented." );
+			throw new ModHelpersException( "Not implemented." );
 		}
 
 		////

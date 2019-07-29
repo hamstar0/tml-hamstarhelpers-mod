@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 using System.Diagnostics;
 

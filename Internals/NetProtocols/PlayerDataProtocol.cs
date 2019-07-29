@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
-using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Packet.Interfaces;
 
 
@@ -10,7 +10,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	class PlayerDataProtocol : PacketProtocolSentToEither {
 		public static void SyncToEveryone( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
-			if( Main.netMode != 1 ) { throw new HamstarException( "Not client" ); }
+			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not client" ); }
 			
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
 			
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		protected override void ReceiveOnClient() {
 			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
 				//throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
-				throw new HamstarException( "Invalid player index " + this.PlayerWho );
+				throw new ModHelpersException( "Invalid player index " + this.PlayerWho );
 			}
 
 			Player player = Main.player[ this.PlayerWho ];

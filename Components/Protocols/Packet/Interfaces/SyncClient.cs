@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 using Terraria;
 
@@ -88,7 +88,7 @@ namespace HamstarHelpers.Components.Protocols.Packet.Interfaces {
 
 		/// @private
 		protected sealed override bool ReceiveRequestWithClient() {
-			throw new HamstarException( "Not implemented" );
+			throw new ModHelpersException( "Not implemented" );
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// <param name="retries"></param>
 		protected static void QuickRequestToClient<T>( int toWho, int ignoreWho, int retries ) where T : PacketProtocol {
 			if( Main.netMode != 2 ) {
-				throw new HamstarException( "Not server." );
+				throw new ModHelpersException( "Not server." );
 			}
 
 			T t = (T)StreamProtocol.CreateInstance( typeof(T) );
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// </summary>
 		protected static void QuickRequestToServer<T>( int retries ) where T : PacketProtocol {  //, new()
 			if( Main.netMode != 1 ) {
-				throw new HamstarException( "Not a client." );
+				throw new ModHelpersException( "Not a client." );
 			}
 			
 			T t = (T)StreamProtocol.CreateInstance( typeof(T) );

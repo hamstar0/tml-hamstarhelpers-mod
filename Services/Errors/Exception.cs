@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Components.Errors {
+namespace HamstarHelpers.Services.Errors {
 	/// @private
-	class HamstarExceptionManager {
+	class ModHelpersExceptionManager {
 		internal static readonly object MyLock = new object();
 
 		internal readonly IDictionary<string, int> MsgCount = new Dictionary<string, int>();
@@ -17,15 +17,15 @@ namespace HamstarHelpers.Components.Errors {
 	/// <summary>
 	/// Specialized exception with added Mod Helpers logging behavior.
 	/// </summary>
-	public class HamstarException : Exception {
+	public class ModHelpersException : Exception {
 		/// <param name="msg">Standard message to output.</param>
-		public HamstarException( string msg ) : base( msg ) {
+		public ModHelpersException( string msg ) : base( msg ) {
 			this.Initialize( msg );
 		}
 
 		/// <param name="msg">Standard message to output.</param>
 		/// <param name="inner">Inner exception to wrap for further output.</param>
-		public HamstarException( string msg, Exception inner ) : base( msg, inner ) {
+		public ModHelpersException( string msg, Exception inner ) : base( msg, inner ) {
 			this.Initialize( msg );
 		}
 
@@ -37,7 +37,7 @@ namespace HamstarHelpers.Components.Errors {
 			var msgCount = ModHelpersMod.Instance.ExceptionMngr.MsgCount;
 			int count = 0;
 
-			lock( HamstarExceptionManager.MyLock ) {
+			lock( ModHelpersExceptionManager.MyLock ) {
 				if( msgCount.TryGetValue( msg, out count ) ) {
 					if( count > 10 && (Math.Log10( count ) % 1) != 0 ) {
 						return;

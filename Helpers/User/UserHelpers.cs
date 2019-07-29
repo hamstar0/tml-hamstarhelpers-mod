@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Players;
 using System;
 using Terraria;
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.User {
 		/// <returns></returns>
 		public static bool HasBasicServerPrivilege( Player player ) {
 			if( Main.netMode == 0 && !Main.dedServ ) {
-				throw new HamstarException( "Not multiplayer." );
+				throw new ModHelpersException( "Not multiplayer." );
 			}
 
 			var mymod = ModHelpersMod.Instance;

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using Newtonsoft.Json;
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Components.Protocols.Stream {
 			int i = 0;
 
 			if( !StreamProtocol.ValidateConstructor(fieldContainer.GetType()) ) {
-				throw new HamstarException( "Invalid default constructor for "+fieldContainer.GetType().Name );
+				throw new ModHelpersException( "Invalid default constructor for "+fieldContainer.GetType().Name );
 			}
 
 			if( mymod.Config.DebugModePacketInfo ) {

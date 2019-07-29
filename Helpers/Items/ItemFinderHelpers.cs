@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -175,7 +175,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// changes.</returns>
 		public static IDictionary<int, int> FindChanges( Item[] prevItems, Item[] currItems, bool skipCoins=true ) {
 			if( prevItems.Length != currItems.Length ) {
-				throw new HamstarException( "Mismatched item array sizes." );
+				throw new ModHelpersException( "Mismatched item array sizes." );
 			}
 
 			IDictionary<int, int> changes = new Dictionary<int, int>();

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Reflection;
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		/// <param name="args"></param>
 		/// <returns>API binding call return result. Should be piped out from `Mod.Call(...)` in turn.</returns>
 		public static object HandleModCall( Type apiClassType, params object[] args ) {
-			if( args == null || args.Length == 0 ) { throw new HamstarException( "Undefined call." ); }
+			if( args == null || args.Length == 0 ) { throw new ModHelpersException( "Undefined call." ); }
 
 			string callType = args[0] as string;
 			if( callType == null ) {
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			try {
 				return ReflectionHelpers.SafeCall( methodInfo, null, newArgs );
 			} catch( Exception e ) {
-				throw new HamstarException( apiClassType.Name+" failed to execute Call binding " +callType, e );
+				throw new ModHelpersException( apiClassType.Name+" failed to execute Call binding " +callType, e );
 			}
 		}
 	}

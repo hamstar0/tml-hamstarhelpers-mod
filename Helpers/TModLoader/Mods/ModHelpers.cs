@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			using( var fileStream = File.OpenRead( tmod.path ) ) {
 			using( var hReader = new BinaryReader( fileStream ) ) {
 				if( Encoding.UTF8.GetString( hReader.ReadBytes( 4 ) ) != "TMOD" ) {
-					throw new HamstarException( "Magic Header != \"TMOD\"" );
+					throw new ModHelpersException( "Magic Header != \"TMOD\"" );
 				}
 
 				var _tmlVers = new Version( hReader.ReadString() );

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 		public static ISet<int> GetRecipeIndexesOfItem( int itemNetID ) {
 			if( itemNetID == 0 ) {
-				throw new HamstarException( "Invalid item type" );
+				throw new ModHelpersException( "Invalid item type" );
 			}
 
 			var mymod = ModHelpersMod.Instance;
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 		public static ISet<int> GetRecipeIndexesUsingIngredient( int itemNetID ) {
 			if( itemNetID == 0 ) {
-				throw new HamstarException( "Invalid item type" );
+				throw new ModHelpersException( "Invalid item type" );
 			}
 
 			var mymod = ModHelpersMod.Instance;

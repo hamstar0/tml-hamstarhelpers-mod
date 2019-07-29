@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <returns></returns>
 		public static Item[] GetCurrentShop() {
 			if( Main.netMode == 2 ) {
-				throw new HamstarException("Single or client only.");
+				throw new ModHelpersException("Single or client only.");
 			}
 			if( Main.npcShop <= 0 || Main.npcShop > Main.instance.shop.Length ) {
 				return null;

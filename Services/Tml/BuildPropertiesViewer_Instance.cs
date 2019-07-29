@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Services.TML {
 
 				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
 					//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReferences" );
-					throw new HamstarException( "Invalid modReferences" );
+					throw new ModHelpersException( "Invalid modReferences" );
 				}
 				
 				var dict = new Dictionary<string, Version>( length );
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Services.TML {
 					object modRef;
 					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
 						//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReference array value "+i );
-						throw new HamstarException( "Invalid modReference array value " + i );
+						throw new ModHelpersException( "Invalid modReference array value " + i );
 					}
 
 					if( !ReflectionHelpers.Get( modRef, "mod", out name ) ) { continue; }
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Services.TML {
 
 				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
 					//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReferences" );
-					throw new HamstarException( "Invalid modReferences" );
+					throw new ModHelpersException( "Invalid modReferences" );
 				}
 
 				var dict = new Dictionary<string, Version>( length );
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Services.TML {
 					object modRef;
 					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
 						//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReference array value " + i );
-						throw new HamstarException( "Invalid modReference array value " + i );
+						throw new ModHelpersException( "Invalid modReference array value " + i );
 					}
 
 					if( !ReflectionHelpers.Get( modRef, "mod", out name ) ) { continue; }

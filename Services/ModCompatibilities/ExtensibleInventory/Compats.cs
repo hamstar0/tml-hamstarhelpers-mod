@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 using Terraria.ModLoader;
 
@@ -12,7 +12,7 @@ namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 		public static void ApplyCompats() {
 			Mod eiMod = ModLoader.GetMod( "ExtensibleInventory" );
 			if( eiMod == null ) {
-				throw new HamstarException( "Missing Extensible Inventory mod." );
+				throw new ModHelpersException( "Missing Extensible Inventory mod." );
 			}
 			
 			if( ModLoader.GetMod( "kRPG" ) != null ) {

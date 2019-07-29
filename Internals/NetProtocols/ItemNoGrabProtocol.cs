@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Packet.Interfaces;
 using System;
 using Terraria;
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			Item item = Main.item[ this.ItemWho ];
 			if( item == null /*|| !item.active*/ ) {
 				//throw new HamstarException( "!ModHelpers.ItemNoGrabProtocol.ReceiveWithServer - Invalid item indexed at "+this.ItemWho );
-				throw new HamstarException( "Invalid item indexed at "+this.ItemWho );
+				throw new ModHelpersException( "Invalid item indexed at "+this.ItemWho );
 			}
 
 			item.noGrabDelay = this.NoGrabDelayAmt;

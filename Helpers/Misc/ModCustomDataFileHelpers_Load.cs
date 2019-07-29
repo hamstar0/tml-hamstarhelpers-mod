@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using Newtonsoft.Json;
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Helpers.Misc {
 				LogHelpers.Warn( "Failed to load json file " + fileNameNoExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to load json file " + fileNameNoExt + " at " + fullDir, e );
 			} catch( Exception e ) {
-				throw new HamstarException( "From "+fileNameNoExt+" ("+typeof(T).Name+")", e );
+				throw new ModHelpersException( "From "+fileNameNoExt+" ("+typeof(T).Name+")", e );
 			}
 		}
 
@@ -83,7 +83,7 @@ namespace HamstarHelpers.Helpers.Misc {
 				LogHelpers.Warn( "Failed to load binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to load binary file " + fileNameWithExt + " at " + fullDir, e );
 			} catch( Exception e ) {
-				throw new HamstarException( "From " + fileNameWithExt + " (" + typeof( T ).Name + ")", e );
+				throw new ModHelpersException( "From " + fileNameWithExt + " (" + typeof( T ).Name + ")", e );
 			}
 		}
 

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			UIList uiModList;
 
 			if( !ReflectionHelpers.Get( modBrowserUi, "ModList", out uiModList ) ) {
-				throw new HamstarException( "Invalid ModList" );
+				throw new ModHelpersException( "Invalid ModList" );
 			}
 			
 			if( this.IsModBrowserListPopulated( uiModList ) ) {
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			int count;
 
 			if( !ReflectionHelpers.Get( uiModList, "Count", out count ) ) {
-				throw new HamstarException( "Invalid modList.Count" );
+				throw new ModHelpersException( "Invalid modList.Count" );
 			}
 
 			return count > 0;
@@ -116,7 +116,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			object modList;
 
 			if( !ReflectionHelpers.Get(uiModList, "_items", out modList) || modList == null ) {
-				throw new HamstarException( "Invalid modList._items" );
+				throw new ModHelpersException( "Invalid modList._items" );
 			}
 
 			var itemsArr = (Array)modList.GetType()

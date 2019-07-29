@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			foreach( string dependency in dependencies ) {
 				if( !entityGroups.ContainsKey( dependency ) ) {
 					if( this._AlreadyRequeued.Contains( groupName ) ) {
-						throw new HamstarException( "Entity group " + groupName + " could not find dependency " + dependency + "." );
+						throw new ModHelpersException( "Entity group " + groupName + " could not find dependency " + dependency + "." );
 					}
 					this._AlreadyRequeued.Add( groupName );
 

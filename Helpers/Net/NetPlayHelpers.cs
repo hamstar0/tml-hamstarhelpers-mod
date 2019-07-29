@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using Terraria;
@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.Net {
 		public static string GetPublicIP() {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.NetHelpers.PublicIP == null ) {
-				throw new HamstarException( "Public IP not yet acquired." );
+				throw new ModHelpersException( "Public IP not yet acquired." );
 			}
 			return mymod.NetHelpers.PublicIP;
 		}
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Helpers.Net {
 		/// <returns></returns>
 		public static int GetServerPing() {
 			if( Main.netMode != 1 ) {
-				throw new HamstarException( "Only clients can gauge ping." );
+				throw new ModHelpersException( "Only clients can gauge ping." );
 			}
 
 			return ModHelpersMod.Instance.NetHelpers.CurrentPing;

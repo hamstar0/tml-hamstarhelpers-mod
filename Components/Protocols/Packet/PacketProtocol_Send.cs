@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using Newtonsoft.Json;
@@ -16,7 +16,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// <param name="syncToClients">Indicates packet should resume being sent to each client.</param>
 		protected void SendToServer( bool syncToClients ) {
 			if( Main.netMode != 1 ) {
-				throw new HamstarException( "Not a client." );
+				throw new ModHelpersException( "Not a client." );
 			}
 
 			var mymod = ModHelpersMod.Instance;
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// </summary>
 		protected void SendToClient( int toWho, int ignoreWho ) {
 			if( Main.netMode != 2 ) {
-				throw new HamstarException( "Not server." );
+				throw new ModHelpersException( "Not server." );
 			}
 
 			var mymod = ModHelpersMod.Instance;

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
@@ -98,9 +98,9 @@ namespace HamstarHelpers {
 					this.player.whoAmI
 				);
 			} catch( Exception e ) {
-				if( !(e is HamstarException) ) {
+				if( !(e is ModHelpersException) ) {
 					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
-					throw new HamstarException( e.ToString() );
+					throw new ModHelpersException( e.ToString() );
 				}
 			}
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
@@ -119,8 +119,8 @@ namespace HamstarHelpers {
 
 				this.Logic.Save( tags );
 			} catch( Exception e ) {
-				if( !(e is HamstarException) ) {
-					throw new HamstarException( e.ToString() );
+				if( !(e is ModHelpersException) ) {
+					throw new ModHelpersException( e.ToString() );
 				}
 			}
 

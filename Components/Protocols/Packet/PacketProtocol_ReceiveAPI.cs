@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
@@ -10,7 +10,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// Runs when data received on client (class's own fields).
 		/// </summary>
 		protected virtual void ReceiveWithClient() {
-			throw new HamstarException( "No ReceiveWithClient" );
+			throw new ModHelpersException( "No ReceiveWithClient" );
 		}
 
 		/// <summary>
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// </summary>
 		/// <param name="fromWho">Main.player index of the player (client) sending us our data.</param>
 		protected virtual void ReceiveWithServer( int fromWho ) {
-			throw new HamstarException( "No ReceiveWithServer" );
+			throw new ModHelpersException( "No ReceiveWithServer" );
 		}
 
 

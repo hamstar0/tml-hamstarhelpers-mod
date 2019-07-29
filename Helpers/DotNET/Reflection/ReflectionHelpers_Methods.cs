@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			var paramInfos = method.GetParameters();
 			
 			if( args.Length != paramInfos.Length ) {
-				throw new HamstarException( "Mismatched input argument quantity. (for call " + method.Name + ")" );
+				throw new ModHelpersException( "Mismatched input argument quantity. (for call " + method.Name + ")" );
 			}
 			
 			for( int i = 0; i < paramInfos.Length; i++ ) {
@@ -30,10 +30,10 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 				if( args[i] == null ) {
 					if( !paramType.IsClass || paramInfos[i].GetCustomAttribute<NullableAttribute>() == null ) {
-						throw new HamstarException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null (for call "+method.Name+")" );
+						throw new ModHelpersException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null (for call "+method.Name+")" );
 					}
 				} else if( argType.Name != paramType.Name && !argType.IsSubclassOf( paramType ) ) {
-					throw new HamstarException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+argType.Name+" (for call "+method.Name+")" );
+					throw new ModHelpersException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+argType.Name+" (for call "+method.Name+")" );
 				}
 			}
 

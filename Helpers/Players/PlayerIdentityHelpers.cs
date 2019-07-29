@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Entities;
 using HamstarHelpers.Helpers.Items;
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <returns></returns>
 		public static string GetUniqueId() {
 			if( Main.netMode == 2 ) {
-				throw new HamstarException( "No 'current' player on a server." );
+				throw new ModHelpersException( "No 'current' player on a server." );
 			}
 
 			int hash = Math.Abs( Main.ActivePlayerFileData.Path.GetHashCode() ^ Main.ActivePlayerFileData.IsCloudSave.GetHashCode() );

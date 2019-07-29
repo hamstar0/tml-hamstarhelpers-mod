@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.User;
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Commands {
 			Mod callmod = null;
 			try {
 				callmod = ModLoader.GetMod( args[0] );
-				if( callmod == null ) { throw new HamstarException("Bad call mod."); }
+				if( callmod == null ) { throw new ModHelpersException("Bad call mod."); }
 			} catch( Exception ) {
 				throw new UsageException( "Invald mod name " + args[0] );
 			}

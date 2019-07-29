@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
@@ -40,10 +40,10 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 				ConstructorInfo ctorInfo = subclassType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
 						new Type[] { }, null );
 				if( ctorInfo == null ) {
-					throw new HamstarException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
+					throw new ModHelpersException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
 				}
 				if( ctorInfo.IsFamily ) {
-					throw new HamstarException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
+					throw new ModHelpersException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
 				}
 
 				if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
@@ -110,14 +110,14 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		/// Overridden for initializing the class to create a reply in a request to the client.
 		/// </summary>
 		protected virtual void SetClientDefaults() {
-			throw new HamstarException( "No SetClientDefaults implemented" );
+			throw new ModHelpersException( "No SetClientDefaults implemented" );
 		}
 
 		/// <summary>
 		/// Overridden for initializing the class to create a reply in a request to the server.
 		/// </summary>
 		protected virtual void SetServerDefaults( int toWho ) {
-			throw new HamstarException( "No SetServerDefaults(int) implemented" );
+			throw new ModHelpersException( "No SetServerDefaults(int) implemented" );
 		}
 	}
 }

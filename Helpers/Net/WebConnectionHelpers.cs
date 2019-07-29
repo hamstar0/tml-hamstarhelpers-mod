@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.Net {
 
 					if( !success ) {
 						output = "";
-						throw new HamstarException( "POST request unsuccessful (url: "+url+")" );
+						throw new ModHelpersException( "POST request unsuccessful (url: "+url+")" );
 					}
 				} catch( Exception e ) {
 					onError?.Invoke( e, output );
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Helpers.Net {
 
 					if( !success ) {
 						output = "";
-						throw new HamstarException( "GET request unsuccessful (url: " + url + ")" );
+						throw new ModHelpersException( "GET request unsuccessful (url: " + url + ")" );
 					}
 				} catch( Exception e ) {
 					onError?.Invoke( e, output ?? "" );

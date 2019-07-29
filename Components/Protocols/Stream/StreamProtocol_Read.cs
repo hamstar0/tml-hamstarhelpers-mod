@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
@@ -190,7 +190,7 @@ namespace HamstarHelpers.Components.Protocols.Stream {
 					try {
 						return Activator.CreateInstance( fieldType, new object[] { arr } );
 					} catch( Exception e ) {
-						throw new HamstarException( "Invalid container type " + fieldType.Name, e );
+						throw new ModHelpersException( "Invalid container type " + fieldType.Name, e );
 					}
 				}
 

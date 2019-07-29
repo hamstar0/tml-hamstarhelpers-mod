@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Info;
 using HamstarHelpers.Helpers.ModHelpers;
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 					Action<Exception, string> onError,
 					Action<bool, string> onCompletion ) {
 			if( !ModFeaturesHelpers.HasGithub( mod ) ) {
-				throw new HamstarException( "Mod is not eligable for submitting issues." );
+				throw new ModHelpersException( "Mod is not eligable for submitting issues." );
 			}
 
 			int maxLines = ModHelpersMod.Instance.Config.ModIssueReportErrorLogMaxLines;

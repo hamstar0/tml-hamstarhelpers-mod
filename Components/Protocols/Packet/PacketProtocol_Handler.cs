@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
@@ -14,13 +14,13 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 
 			Type protocolType = mymod.PacketProtocolMngr.GetProtocolType( protocolCode );
 			if( protocolType == null ) {
-				throw new HamstarException( "Invalid protocol (hash: " + protocolCode + ")" );
+				throw new ModHelpersException( "Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
 			try {
 				isRequest = reader.ReadBoolean();
 			} catch( Exception e ) {
-				throw new HamstarException( "Could not read data for protocol " + protocolType.Namespace+"."+protocolType.Name+" - "+e.ToString() );
+				throw new ModHelpersException( "Could not read data for protocol " + protocolType.Namespace+"."+protocolType.Name+" - "+e.ToString() );
 			}
 			
 			try {
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 					}
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( "Error handling " + protocolType.Namespace + "." + protocolType.Name + " - " + e.ToString() );
+				throw new ModHelpersException( "Error handling " + protocolType.Namespace + "." + protocolType.Name + " - " + e.ToString() );
 			}
 		}
 
@@ -51,14 +51,14 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 
 			Type protocolType = mymod.PacketProtocolMngr.GetProtocolType( protocolCode );
 			if( protocolType == null ) {
-				throw new HamstarException( "Invalid protocol (hash: " + protocolCode + ")" );
+				throw new ModHelpersException( "Invalid protocol (hash: " + protocolCode + ")" );
 			}
 
 			try {
 				isRequest = reader.ReadBoolean();
 				isSyncedToClients = reader.ReadBoolean();
 			} catch( Exception e ) {
-				throw new HamstarException( "Could not read data for protocol " + protocolType.Namespace+"."+protocolType.Name+" - "+e.ToString() );
+				throw new ModHelpersException( "Could not read data for protocol " + protocolType.Namespace+"."+protocolType.Name+" - "+e.ToString() );
 			}
 			
 			try {
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 					}
 				}
 			} catch( Exception e ) {
-				throw new HamstarException( "Error handling " + protocolType.Namespace + "." + protocolType.Name + " - " + e.ToString() );
+				throw new ModHelpersException( "Error handling " + protocolType.Namespace + "." + protocolType.Name + " - " + e.ToString() );
 			}
 		}
 

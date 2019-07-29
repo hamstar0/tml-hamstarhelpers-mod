@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.XNA;
@@ -52,7 +52,7 @@ namespace HamstarHelpers {
 			this.WorldLogic = new WorldLogic();
 
 			if( String.IsNullOrEmpty( this.ObsoleteId2 ) ) {
-				throw new HamstarException( "UID not defined." );
+				throw new ModHelpersException( "UID not defined." );
 			}
 		}
 

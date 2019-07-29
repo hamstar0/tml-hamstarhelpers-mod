@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
@@ -10,7 +10,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		private static void QuickSendToServerBase<T>( bool syncToClients )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 1 ) {
-				throw new HamstarException( "Can only send as client." );
+				throw new ModHelpersException( "Can only send as client." );
 			}
 			
 			T t = (T)StreamProtocol.CreateInstance( typeof(T) );
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 		protected static void QuickSendToClient<T>( int toWho, int ignoreWho )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != 2 ) {
-				throw new HamstarException( "Can only send as client." );
+				throw new ModHelpersException( "Can only send as client." );
 			}
 			
 			T t = (T)StreamProtocol.CreateInstance( typeof(T) );

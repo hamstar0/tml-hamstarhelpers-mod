@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using System;
 using System.Collections.Generic;
 
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Components.Protocols.Packet {
 			lock( PacketProtocolManager.MyLock ) {
 				if( !this.PacketProtocolTypesByCode.ContainsKey( protocolCode ) ) {
 					//throw new HamstarException( "PacketProtocol.HandlePacketOnServer - Unrecognized packet." );
-					throw new HamstarException( "Unrecognized packet." );
+					throw new ModHelpersException( "Unrecognized packet." );
 				}
 
 				this.PacketProtocolTypesByCode.TryGetValue( protocolCode, out protocolType );

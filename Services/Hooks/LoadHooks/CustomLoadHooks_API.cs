@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Services.Errors;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
@@ -64,12 +64,12 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 
 				if( args != null ) {
 					if( argType != args.GetType() ) {
-						throw new HamstarException( "Invalid argument type: Expected "
+						throw new ModHelpersException( "Invalid argument type: Expected "
 							+ argType.Name + ", found "
 							+ args.GetType().Name );
 					}
 				} else {
-					throw new HamstarException( "Invalid argument type: "+argType.Name+" expected, found `null`" );
+					throw new ModHelpersException( "Invalid argument type: "+argType.Name+" expected, found `null`" );
 				}
 
 				if( !func( args ) ) {
@@ -103,20 +103,20 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 			bool isValidated, isEach;
 
 			if( mymod.LoadHooks == null ) {
-				throw new HamstarException( "Custom hooks not loaded." );
+				throw new ModHelpersException( "Custom hooks not loaded." );
 			}
 			if( validatorKey == null ) {
-				throw new HamstarException( "No validation key specified." );
+				throw new ModHelpersException( "No validation key specified." );
 			}
 			if( validator.ValidatorKey != validatorKey ) {
-				throw new HamstarException( "Validation failed." );
+				throw new ModHelpersException( "Validation failed." );
 			}
 			if( args == null ) {
-				throw new HamstarException( "Invalid argument type: Expected "
+				throw new ModHelpersException( "Invalid argument type: Expected "
 					+ argType.Name + ", found `null`" );
 			}
 			if( argType != args.GetType() ) {
-				throw new HamstarException( "Invalid argument type: Expected "
+				throw new ModHelpersException( "Invalid argument type: Expected "
 					+ argType.Name + ", found "
 					+ args.GetType().Name );
 			}
@@ -171,7 +171,7 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 			var mymod = ModHelpersMod.Instance;
 
 			if( validator.ValidatorKey != validatorKey ) {
-				throw new HamstarException( "Validation failed." );
+				throw new ModHelpersException( "Validation failed." );
 			}
 
 			lock( validator ) {
@@ -194,7 +194,7 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 			var mymod = ModHelpersMod.Instance;
 
 			if( validator.ValidatorKey != validatorKey ) {
-				throw new HamstarException( "Validation failed." );
+				throw new ModHelpersException( "Validation failed." );
 			}
 
 			lock( validator ) {
