@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Components.DataStructures;
-using HamstarHelpers.Services.Errors;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.TModLoader;
 using System;
 using Terraria;

@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using Terraria;
-using HamstarHelpers.Services.Errors;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Components.Protocols.Packet.Interfaces;
 

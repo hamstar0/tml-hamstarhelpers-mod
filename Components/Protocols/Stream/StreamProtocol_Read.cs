@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;

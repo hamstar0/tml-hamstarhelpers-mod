@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.Players;
 using System;
 using Terraria;

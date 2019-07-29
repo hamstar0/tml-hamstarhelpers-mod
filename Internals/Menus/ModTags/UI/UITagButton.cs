@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Helpers.Debug;

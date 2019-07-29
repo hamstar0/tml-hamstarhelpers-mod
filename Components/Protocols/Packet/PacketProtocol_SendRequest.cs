@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Timers;

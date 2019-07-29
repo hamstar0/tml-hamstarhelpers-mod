@@ -3,7 +3,7 @@ using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Internals.Menus.Support;
 using HamstarHelpers.Internals.Inbox;
-using HamstarHelpers.Services.Errors;
+using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Components.UI.Menu;
 using HamstarHelpers.Components.Protocols.Packet;
 using HamstarHelpers.Services.Debug.CustomHotkeys;

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Errors;
+﻿using HamstarHelpers.Components.Errors;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Formatting;
 using System;

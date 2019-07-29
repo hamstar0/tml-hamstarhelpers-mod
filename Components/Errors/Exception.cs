@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Services.Errors {
+namespace HamstarHelpers.Components.Errors {
 	/// @private
 	class ModHelpersExceptionManager {
 		internal static readonly object MyLock = new object();
