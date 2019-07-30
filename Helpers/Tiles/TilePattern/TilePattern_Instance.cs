@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Helpers.Tiles.TilePattern {
 	/// <summary>
 	/// Identifies a type of tile by its attributes.
 	/// </summary>

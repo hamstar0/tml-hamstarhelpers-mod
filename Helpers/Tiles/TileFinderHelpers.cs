@@ -81,7 +81,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="foundX">Returns found X tile coordinate.</param>
 		/// <param name="foundY">Returns found Y tile coordinate.</param>
 		/// <returns>`true` if tile match found.</returns>
-		public static bool FindNearbyRandomMatch( TilePattern pattern, int tileX, int tileY,
+		public static bool FindNearbyRandomMatch( TilePattern.TilePattern pattern, int tileX, int tileY,
 					int radius,
 					int retries,
 					bool skipDarkness,
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="foundX">Returns found X tile coordinate.</param>
 		/// <param name="foundY">Returns found Y tile coordinate.</param>
 		/// <returns>`true` if matching area found.</returns>
-		public static bool FindAreaMatchWithin( TilePattern pattern, Rectangle within, int width, int height,
+		public static bool FindAreaMatchWithin( TilePattern.TilePattern pattern, Rectangle within, int width, int height,
 					out int foundX, out int foundY ) {
 			int maxX = within.X + within.Width - width;
 			int maxY = within.Y + within.Height - height;
@@ -157,7 +157,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="foundX">Returns found X tile coordinate.</param>
 		/// <param name="foundY">Returns found Y tile coordinate.</param>
 		/// <returns>`true` if matching area found.</returns>
-		public static bool FindNearbyAreaFromCenter( TilePattern tileType, Rectangle within, int width, int height,
+		public static bool FindNearbyAreaFromCenter( TilePattern.TilePattern tileType, Rectangle within, int width, int height,
 					out int foundX, out int foundY ) {
 			int midX = within.X + ( within.Width / 2 ) - ( width / 2 );
 			int midY = within.Y + ( within.Height / 2 ) - ( height / 2 );
@@ -231,7 +231,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="worldRect"></param>
 		/// <param name="pattern"></param>
 		/// <returns></returns>
-		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern pattern ) {
+		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern.TilePattern pattern ) {
 			int projRight = worldRect.X + worldRect.Width;
 			int projBottom = worldRect.Y + worldRect.Height;
 
@@ -263,7 +263,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <param name="maxRadius"></param>
 		/// <returns></returns>
-		public static Point? GetNearestTile( Vector2 worldPos, TilePattern pattern, int maxRadius = Int32.MaxValue ) {
+		public static Point? GetNearestTile( Vector2 worldPos, TilePattern.TilePattern pattern, int maxRadius = Int32.MaxValue ) {
 			int midX = (int)Math.Round( worldPos.X );
 			int midY = (int)Math.Round( worldPos.Y );
 			int tileX = midX >> 4;

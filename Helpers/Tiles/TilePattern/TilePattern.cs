@@ -1,7 +1,7 @@
 ﻿using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Helpers.Tiles.TilePattern {
 	/// <summary></summary>
 	public enum TileSlopeType {
 		/// <summary></summary>
