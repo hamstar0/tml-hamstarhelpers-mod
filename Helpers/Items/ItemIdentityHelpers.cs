@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using Terraria.ModLoader.Config;
 
 namespace HamstarHelpers.Helpers.Items {
 	/// <summary>
@@ -50,6 +50,14 @@ namespace HamstarHelpers.Helpers.Items {
 
 			var modItem = ItemLoader.GetItem( itemType );
 			return Tuple.Create( modItem.mod.Name, modItem.Name );
+		}
+
+
+		////
+
+		public static ItemDefinition GetItemDefinition( string uniqueKey ) {
+			string[] segs = uniqueKey.Split( new char[] { ' ' }, 2 );
+			return new ItemDefinition( segs[0], segs[1] );
 		}
 
 

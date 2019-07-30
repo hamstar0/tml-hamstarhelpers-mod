@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DotNET.Reflection;
 using Newtonsoft.Json;
 using System;
-using System.Globalization;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,26 +9,29 @@ using Terraria.ModLoader.Config;
 
 namespace HamstarHelpers.Helpers.TModLoader.Configs {
 	public class ConfigHelpers {
-		public static bool SyncConfigToServer( ModConfig config ) {
+		public static bool SyncConfig( ModConfig config ) {	//untested
 			if( config.Mode != ConfigScope.ServerSide ) {
-				return false;
-			}
-			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				return false;
 			}
 
 			string json = JsonConvert.SerializeObject( config, ConfigManager.serializerSettings );
 
-			var requestChanges = (ModPacket)Activator.CreateInstance( typeof(ModPacket),
+			var requestChanges = (ModPacket)Activator.CreateInstance( typeof( ModPacket ),
 				ReflectionHelpers.MostAccess,
 				null,
-				new object[] { NetmodeID.MultiplayerClient },
-				CultureInfo.CurrentCulture
+				new object[] { MessageID.InGameChangeConfig },
+				null
 			);
+
+			if( Main.netMode == 2 ) {
+				requestChanges.Write( true );
+				requestChanges.Write( "ConfigHelpers.SyncConfig syncing..." );
+			}
 
 			requestChanges.Write( config.mod.Name );
 			requestChanges.Write( config.Name );
 			requestChanges.Write( json );
+
 			requestChanges.Send();
 
 			return true;

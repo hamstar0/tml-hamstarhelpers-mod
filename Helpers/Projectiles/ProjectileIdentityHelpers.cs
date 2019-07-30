@@ -60,6 +60,15 @@ namespace HamstarHelpers.Helpers.Projectiles {
 			return Tuple.Create( modProjectile.mod.Name, modProjectile.Name );
 		}
 
+
+		////
+
+		public static ProjectileDefinition GetProjectileDefinition( string uniqueKey ) {
+			string[] segs = uniqueKey.Split( new char[] { ' ' }, 2 );
+			return new ProjectileDefinition( segs[0], segs[1] );
+		}
+
+
 		////
 
 		/// <summary>

@@ -54,6 +54,15 @@ namespace HamstarHelpers.Helpers.NPCs {
 			return Tuple.Create( modNPC.mod.Name, modNPC.Name );
 		}
 
+
+		////
+
+		public static NPCDefinition GetNPCDefinition( string uniqueKey ) {
+			string[] segs = uniqueKey.Split( new char[] { ' ' }, 2 );
+			return new NPCDefinition( segs[0], segs[1] );
+		}
+
+
 		////
 
 		/// <summary>

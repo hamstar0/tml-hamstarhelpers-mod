@@ -36,11 +36,44 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TilePattern {
 		/// <summary>
+		/// Preset for completely empty space.
+		/// </summary>
+		public readonly static TilePattern AbsoluteAir = new TilePattern {
+			HasWire1 = false,
+			HasWire2 = false,
+			HasWire3 = false,
+			HasWire4 = false,
+			IsSolid = false,
+			HasWall = false,
+			HasWater = false,
+			HasHoney = false,
+			HasLava = false
+		};
+
+		/// <summary>
 		/// Preset for walls, no tiles.
 		/// </summary>
 		public readonly static TilePattern OpenWall = new TilePattern {
 			IsSolid = false,
 			HasWall = true
+		};
+
+		/// <summary>
+		/// Preset for any non-solid tiles.
+		/// </summary>
+		public readonly static TilePattern NonSolid = new TilePattern {
+			IsSolid = false,
+			IsActuated = false
+		};
+
+		/// <summary>
+		/// Preset for any non-"filled" space (no solids, no liquids).
+		/// </summary>
+		public readonly static TilePattern NonFilled = new TilePattern {
+			IsSolid = false,
+			HasWater = false,
+			HasHoney = false,
+			HasLava = false
 		};
 
 		/// <summary>
@@ -55,7 +88,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 		////////////////
-		
+
 		/// <summary></summary>
 		public bool? HasWire1 { get; private set; }
 		/// <summary></summary>
