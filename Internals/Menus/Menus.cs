@@ -2,7 +2,6 @@
 using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Components.UI.Menus;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Internals.Menus.ModRecommendations;
 using HamstarHelpers.Internals.Menus.ModTags;
 using HamstarHelpers.Internals.Menus.ModUpdates;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -24,7 +23,6 @@ namespace HamstarHelpers.Internals.Menus {
 				Menus.InitializeOpenConfigButton();
 				ModInfoTagsMenuContext.Initialize( true );
 				ModBrowserTagsMenuContext.Initialize( true );
-				ModRecommendsMenuContext.Initialize();
 				ModUpdatesMenuContext.Initialize();
 				//if( AprilFoolsMenuContext.IsAprilFools() ) {
 				//	AprilFoolsMenuContext.Initialize();

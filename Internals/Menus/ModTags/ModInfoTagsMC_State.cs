@@ -40,9 +40,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			
 			
 			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) ) {
+			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
 				elem.Left.Pixels += UITagButton.ColumnWidth;
 				elem.Recalculate();
+			} else {
+				LogHelpers.Warn( "Could not get uiElement for mod info tags context "+ui.GetType().Name );
 			}
 		}
 
@@ -54,9 +56,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.ResetMenuObjects();
 
 			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "uIElement", out elem ) ) {
+			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
 				elem.Left.Pixels -= UITagButton.ColumnWidth;
 				elem.Recalculate();
+			} else {
+				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
 			}
 		}
 

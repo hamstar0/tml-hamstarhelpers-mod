@@ -50,13 +50,21 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private ModInfoTagsMenuContext() : base( false ) {
 			Func<Rectangle> getRect = () => {
 				UIElement homepageButton;
-				ReflectionHelpers.Get( this.MyUI, "modHomepageButton", out homepageButton );
-				return homepageButton?.GetOuterDimensions().ToRectangle() ?? new Rectangle(-1,-1,0,0);
+				if( ReflectionHelpers.Get( this.MyUI, "_modHomepageButton", out homepageButton ) ) {
+					return homepageButton?.GetOuterDimensions().ToRectangle() ?? new Rectangle( -1, -1, 0, 0 );
+				} else {
+					LogHelpers.Warn( "Could not get _modHomepageButton" );
+					return default( Rectangle );
+				}
 			};
+
 			Action onHover = () => {
 				string url;
-				ReflectionHelpers.Get( this.MyUI, "url", out url );
-				this.InfoDisplay?.SetText( ""+url );
+				if( ReflectionHelpers.Get( this.MyUI, "_url", out url ) ) {
+					this.InfoDisplay?.SetText( "" + url );
+				} else {
+					LogHelpers.Warn( "Could not get url" );
+				}
 			};
 			Action onExit = () => {
 				this.InfoDisplay?.SetText( "" );
