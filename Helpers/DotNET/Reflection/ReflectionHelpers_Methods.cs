@@ -75,8 +75,13 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
 				?? new Type[] { };
 
-			MethodInfo method = classType.GetMethod( methodName, ReflectionHelpers.MostAccess, null, new Type[] { typeof( int ) }, null );
-			if( method == null ) { return false; }
+			MethodInfo method = classType.GetMethod( methodName, ReflectionHelpers.MostAccess, null, paramTypes, null );
+			if( method == null ) {
+				if( classType.BaseType != null ) {
+					return ReflectionHelpers.RunMethod<T>( classType.BaseType, instance, methodName, args, out returnVal );
+				}
+				return false;
+			}
 
 			returnVal = (T)ReflectionHelpers.SafeCall( method, instance, args );
 			return true;

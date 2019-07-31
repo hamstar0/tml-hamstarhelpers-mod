@@ -50,7 +50,6 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			if( this.CurrentModListItem == null ) { return; }
 			if( !ModFeaturesHelpers.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
 
-			UIModControlPanelTab self = this;
 			string issueTitle = this.IssueTitleInput.Text;
 			string issueBody = this.IssueBodyInput.Text;
 			if( string.IsNullOrEmpty( issueTitle ) || string.IsNullOrEmpty( issueBody ) ) { return; }
@@ -58,7 +57,8 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.AwaitingReport = true;
 			this.DisableIssueInput();
 
-			self.Logic.ReportIssue( self.CurrentModListItem.Mod, issueTitle, issueBody, delegate {
+			UIModControlPanelTab self = this;
+			this.Logic.ReportIssue( this.CurrentModListItem.Mod, issueTitle, issueBody, delegate {
 				self.AwaitingReport = false;
 				self.ResetIssueInput = true;
 				self.RequestClose = true;

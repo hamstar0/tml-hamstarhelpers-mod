@@ -17,6 +17,47 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	/// </summary>
 	public static class MainMenuHelpers {
 		/// <summary>
+		/// Loads the mod browser menu.
+		/// </summary>
+		public static void LoadModBrowser() {
+			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+
+			int modBrowserMenuMode;
+			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowserID", out modBrowserMenuMode ) ) {
+				LogHelpers.Warn( "Could not switch to mod browser menu context." );
+				return;
+			}
+
+			Main.PlaySound( SoundID.MenuTick );
+			Main.menuMode = modBrowserMenuMode;
+
+			UIState modBrowserUi;
+			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowser", out modBrowserUi ) ) {
+				LogHelpers.Warn( "Could not acquire mod browser UI." );
+				return;
+			}
+
+			Timers.SetTimer( "ModHelpersModDownloadPrompt", 5, () => {
+				if( MenuContextService.GetCurrentMenuUI()?.GetType().Name != "UIModBrowser" ) {
+					return false;
+				}
+
+				bool isLoading;
+				if( !ReflectionHelpers.Get( modBrowserUi, "loading", out isLoading ) ) {
+					return false;
+				}
+
+				if( isLoading ) {
+					return true;
+				}
+
+				ModMenuHelpers.ApplyModBrowserFilter( "", false, new List<string>() );
+				return false;
+			} );
+		}
+
+
+		/// <summary>
 		/// Loads the mod browser menu with a given set of mods to one-click bulk download
 		/// (via. `ModMenuHelpers.ApplyModBrowserFilter(...)`).
 		/// </summary>

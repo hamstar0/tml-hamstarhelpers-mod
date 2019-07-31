@@ -22,8 +22,8 @@ namespace HamstarHelpers.Internals.Menus {
 
 			LoadHooks.AddPostModLoadHook( () => {
 				Menus.InitializeOpenConfigButton();
-				ModInfoTagsMenuContext.Initialize();
-				ModBrowserTagsMenuContext.Initialize();
+				ModInfoTagsMenuContext.Initialize( true );
+				ModBrowserTagsMenuContext.Initialize( true );
 				ModRecommendsMenuContext.Initialize();
 				ModUpdatesMenuContext.Initialize();
 				//if( AprilFoolsMenuContext.IsAprilFools() ) {

@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.NPCs;
 using HamstarHelpers.Helpers.Projectiles;
 using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Helpers.Tiles.TilePattern;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -173,7 +173,10 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="sb">SpriteBatch to draw to. Usually `Main.spriteBatch`.</param>
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( !string.IsNullOrEmpty(this.Url) ) {
-				sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
+				Vector2 pos = UIHelpers.GetHoverTipPosition( this.Url );
+				
+				Utils.DrawBorderStringFourWay( sb, Main.fontMouseText, this.Url, pos.X, pos.Y, Color.White, Color.Black, default(Vector2) );
+				//sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );
 			}
 		}
 

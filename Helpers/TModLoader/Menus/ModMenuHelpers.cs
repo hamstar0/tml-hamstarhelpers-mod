@@ -25,7 +25,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				.GetType( "Terraria.ModLoader.Interface" );
 
 			UIState modBrowserUi;
-			if( !ReflectionHelpers.Get(interfaceType, null, "modBrowser", out modBrowserUi) ) {
+			if( !ReflectionHelpers.Get(interfaceType, null, "modBrowser", out modBrowserUi) || modBrowserUi == null ) {
 				LogHelpers.Warn( "Could not acquire mod browser UI." );
 				return;
 			}
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 			object _;
 			if( !ReflectionHelpers.RunMethod(modBrowserUi, "Activate", new object[] { }, out _) ) {
-				LogHelpers.Warn( "Could not acquire run method 'Activate' for mod browser" );
+				LogHelpers.Warn( "Could not acquire run method 'Activate' for mod browser");
 				return;
 			}
 			if( !ReflectionHelpers.Set(modBrowserUi, "UpdateNeeded", true) ) {

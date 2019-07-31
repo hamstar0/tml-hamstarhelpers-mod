@@ -9,11 +9,13 @@ using HamstarHelpers.Services.UI.Menus;
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	/// @private
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
-		public static void Initialize() {
+		public static void Initialize( bool onModLoad ) {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
-			
-			var ctx = new ModBrowserTagsMenuContext();
-			MenuContextService.AddMenuContext( "UIModBrowser", "ModHelpers: Mod Browser", ctx );
+
+			if( !onModLoad ) {
+				var ctx = new ModBrowserTagsMenuContext();
+				MenuContextService.AddMenuContext( "UIModBrowser", "ModHelpers: Mod Browser", ctx );
+			}
 		}
 
 

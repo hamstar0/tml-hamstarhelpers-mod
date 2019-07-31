@@ -39,7 +39,7 @@ namespace HamstarHelpers.Helpers.Debug {
 			}
 
 			if( addContext ) {
-				output = DebugHelpers.GetCurrentContext( 2 ) + ( ( output != "" ) ? " - " + output : "" );
+				output = DebugHelpers.GetCurrentContext( 3 ) + ( ( output != "" ) ? " - " + output : "" );
 			}
 
 			return output;

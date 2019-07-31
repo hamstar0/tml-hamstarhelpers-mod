@@ -22,11 +22,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		public static void Initialize() {
+		public static void Initialize( bool onModLoad ) {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
-			var ctx = new ModInfoTagsMenuContext();
-			MenuContextService.AddMenuContext( "UIModInfo", "ModHelpers: Mod Info", ctx );
+			if( !onModLoad ) {
+				var ctx = new ModInfoTagsMenuContext();
+				MenuContextService.AddMenuContext( "UIModInfo", "ModHelpers: Mod Info", ctx );
+			}
 		}
 
 

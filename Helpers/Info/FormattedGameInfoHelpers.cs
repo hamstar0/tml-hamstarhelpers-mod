@@ -53,6 +53,7 @@ namespace HamstarHelpers.Helpers.Info {
 			float gameZoom = Main.GameZoomTarget;
 			float uiZoom = Main.UIScale;
 
+			list.Add( "tModLoader version: " + ModLoader.version.ToString() );
 			list.Add( FormattedGameInfoHelpers.RenderMarkdownModTable( modsList ) );
 			list.Add( FormattedGameInfoHelpers.RenderMarkdownPlayersTable() );
 
