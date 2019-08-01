@@ -25,6 +25,7 @@ namespace HamstarHelpers {
 				this.Data = data;
 				return true;
 			}
+
 			return false;
 		}
 

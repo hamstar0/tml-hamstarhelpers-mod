@@ -1,6 +1,4 @@
-﻿using HamstarHelpers.Services.ModHelpers;
-using Terraria;
-using Terraria.UI;
+﻿using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {

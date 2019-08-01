@@ -119,5 +119,7 @@ namespace HamstarHelpers.Helpers.Tiles.TilePattern {
 
 		/// <summary></summary>
 		public TileSlopeType? Slope { get; private set; }
+
+		public bool? IsModded { get; private set; }
 	}
 }

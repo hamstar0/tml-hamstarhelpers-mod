@@ -37,8 +37,8 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		private UITextArea IssueBodyInput = null;
 
 		private UITextPanelButton IssueSubmitButton = null;
-		private UITextPanelButton ApplyConfigButton = null;
 		private UITextPanelButton ModLockButton = null;
+		private UITextPanelButton CleanupModTiles = null;
 
 		private UIWebUrl TipUrl = null;
 		private UIWebUrl SupportUrl = null;
@@ -89,8 +89,6 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		public override void OnActivate() {
 			base.OnActivate();
-
-			this.RefreshApplyConfigButton();
 
 			int count;
 			lock( UIModControlPanelTab.ModDataListLock ) {

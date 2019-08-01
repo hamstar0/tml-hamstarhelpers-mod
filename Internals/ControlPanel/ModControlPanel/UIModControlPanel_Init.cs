@@ -1,9 +1,16 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
+using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Helpers.Tiles.TilePattern;
+using HamstarHelpers.Helpers.World;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 using Terraria.UI;
 
 
@@ -64,7 +71,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 					this.ModListElem.SetPadding( 0f );
 					modListPanel.Append( (UIElement)this.ModListElem );
 
-					top += UIModControlPanelTab.ModListHeight + this.PaddingTop;
+					top += UIModControlPanelTab.ModListHeight + this.PaddingTop - 8;
 
 					UIScrollbar scrollbar = new UIScrollbar();
 					{
@@ -92,7 +99,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			};
 			this.Append( (UIElement)this.IssueTitleInput );
 
-			top += 40f;
+			top += 36f;
 			
 			this.IssueBodyInput = new UITextArea( this.Theme, "Describe mod issue" );
 			this.IssueBodyInput.Top.Set( top, 0f );
@@ -106,7 +113,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			};
 			this.Append( (UIElement)this.IssueBodyInput );
 			
-			top += 40f;
+			top += 36f;
 
 			////
 
@@ -120,22 +127,8 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				self.SubmitIssue();
 			};
 			this.Append( this.IssueSubmitButton );
-			
-			this.ApplyConfigButton = new UITextPanelButton( this.Theme, "Apply Config Changes" );
-			this.ApplyConfigButton.Top.Set( top, 0f );
-			this.ApplyConfigButton.Left.Set( 0f, 0f );
-			this.ApplyConfigButton.Width.Set( 200f, 0f );
-			this.ApplyConfigButton.HAlign = 1f;
-			if( Main.netMode != 0  ) {
-				this.ApplyConfigButton.Disable();
-			}
-			this.ApplyConfigButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
-				if( !self.ApplyConfigButton.IsEnabled ) { return; }
-				self.ApplyConfigChanges();
-			};
-			this.Append( this.ApplyConfigButton );
 
-			top += 30f;
+			top += 26f;
 
 			this.ModLockButton = new UITextPanelButton( this.Theme, UIModControlPanelTab.ModLockTitle );
 			this.ModLockButton.Top.Set( top, 0f );
@@ -144,7 +137,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			if( Main.netMode != 0 || !mymod.Config.WorldModLockEnable ) {
 				this.ModLockButton.Disable();
 			}
-			this.ModLockButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
+			this.ModLockButton.OnClick += ( _, __ ) => {
 				if( !self.ModLockButton.IsEnabled ) { return; }
 				self.ToggleModLock();
 				Main.PlaySound( SoundID.Unlock );
@@ -153,7 +146,36 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			this.RefreshModLockButton();
 
-			top += 36f;
+			top += 26f;
+
+			this.CleanupModTiles = new UITextPanelButton( this.Theme, "Cleanup unused mod tiles" );
+			this.CleanupModTiles.Top.Set( top, 0f );
+			this.CleanupModTiles.Left.Set( 0f, 0f );
+			this.CleanupModTiles.Width.Set( 0f, 1f );
+			if( Main.netMode != 0 ) {
+				this.CleanupModTiles.Disable();
+			}
+			this.CleanupModTiles.OnClick += ( _, __ ) => {
+				if( !self.CleanupModTiles.IsEnabled ) { return; }
+
+				for( int i = 0; i < Main.maxTilesX; i++ ) {
+					for( int j = 0; j < Main.maxTilesY; j++ ) {
+						Tile tile = Framing.GetTileSafely( i, j );
+						if( TileHelpers.IsAir(tile) ) { continue; }
+						ModTile modTile = ModContent.GetModTile( tile.type );
+						if( modTile == null ) { continue; }
+
+						if( modTile.mod == null || modTile is MysteryTile ) {
+							TileHelpers.KillTile( i, j, false, false );
+						}
+					}
+				}
+
+				Main.NewText( "Modded tiles cleaned up.", Color.Lime );
+			};
+			this.Append( this.CleanupModTiles );
+
+			top += 32f;
 
 			////
 

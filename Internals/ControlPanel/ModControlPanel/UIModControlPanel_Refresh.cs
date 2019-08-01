@@ -32,18 +32,6 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.ModLockButton.SetText( UIModControlPanelTab.ModLockTitle + status );
 		}
 
-		public void RefreshApplyConfigButton() {
-			if( Main.netMode == 0 ) {
-				if( !this.ApplyConfigButton.IsEnabled ) {
-					this.ApplyConfigButton.Enable();
-				}
-			} else {
-				if( this.ApplyConfigButton.IsEnabled ) {
-					this.ApplyConfigButton.Disable();
-				}
-			}
-		}
-
 
 		////////////////
 
