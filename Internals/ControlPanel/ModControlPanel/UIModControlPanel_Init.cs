@@ -1,10 +1,7 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Helpers.Tiles;
-using HamstarHelpers.Helpers.Tiles.TilePattern;
-using HamstarHelpers.Helpers.World;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -45,6 +42,15 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.TipUrl.Left.Set( tip.GetInnerDimensions().Width, 0f );
 			this.TipUrl.Top.Set( -2f, 0f );
 			this.Append( (UIElement)this.TipUrl );
+
+			this.OpenConfigList = new UITextPanelButton( this.Theme, "Edit Configs" );
+			this.OpenConfigList.Top.Set( top - 8f, 0f );
+			this.OpenConfigList.Left.Set( -188f, 1f );
+			this.OpenConfigList.Width.Set( 160f, 0f );
+			this.OpenConfigList.OnClick += ( _, __ ) => {
+				MainMenuHelpers.LoadConfigList();
+			};
+			this.Append( this.OpenConfigList );
 
 			top += 24f;
 

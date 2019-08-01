@@ -8,6 +8,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 using Terraria.UI;
 
 
@@ -16,6 +17,75 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	/// Assorted static "helper" functions pertaining to the main menu.
 	/// </summary>
 	public static class MainMenuHelpers {
+		public static void LoadConfigList() {
+			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+
+			if( !Main.gameMenu ) {
+				IngameOptions.Close();
+				IngameFancyUI.CoverNextFrame();
+				Main.playerInventory = false;
+				Main.editChest = false;
+				Main.npcChatText = "";
+				Main.inFancyUI = true;
+			} else {
+				if( !ReflectionHelpers.Get(interfaceType, null, "modConfigID", out Main.menuMode) ) {
+					LogHelpers.Warn( "Could not get Interface.modConfigID" );
+					return;
+				}
+			}
+
+			UIState modConfigListInterfaceObj;
+			if( !ReflectionHelpers.Get(interfaceType, null, "modConfigList", out modConfigListInterfaceObj)
+					|| modConfigListInterfaceObj == null ) {
+				LogHelpers.Warn( "Could not get Interface.modConfigList" );
+				return;
+			}
+
+			Main.InGameUI.SetState( modConfigListInterfaceObj );
+
+			Main.PlaySound( SoundID.MenuTick );
+		}
+
+
+		/// <summary>
+		/// Loads the UI for mod configs.
+		/// </summary>
+		/// <param name="config"></param>
+		public static void LoadConfigUI( ModConfig config ) {
+			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+
+			if( !Main.gameMenu ) {
+				IngameOptions.Close();
+				IngameFancyUI.CoverNextFrame();
+				Main.playerInventory = false;
+				Main.editChest = false;
+				Main.npcChatText = "";
+				Main.inFancyUI = true;
+			} else {
+				if( !ReflectionHelpers.Get( interfaceType, null, "modConfigID", out Main.menuMode ) ) {
+					LogHelpers.Warn( "Could not get Interface.modConfigID" );
+					return;
+				}
+			}
+
+			UIState modConfigInterfaceObj;
+			if( !ReflectionHelpers.Get(interfaceType, null, "modConfig", out modConfigInterfaceObj) || modConfigInterfaceObj == null ) {
+				LogHelpers.Warn( "Could not get Interface.modConfig" );
+				return;
+			}
+
+			object _;
+			if( !ReflectionHelpers.RunMethod(modConfigInterfaceObj, "SetMod", new object[] { config.mod, config }, out _) ) {
+				LogHelpers.Warn( "Could not run Interface.modConfig.SetMod" );
+				return;
+			}
+
+			Main.InGameUI.SetState( modConfigInterfaceObj );
+
+			Main.PlaySound( SoundID.MenuTick );
+		}
+
+
 		/// <summary>
 		/// Loads the mod browser menu.
 		/// </summary>
@@ -64,7 +134,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <param name="packTitle">Name of the set.</param>
 		/// <param name="modNames">Mod (internal) names of the set.</param>
 		public static void LoadModBrowserModDownloads( string packTitle, List<string> modNames ) {
-			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) )
+				.GetType( "Terraria.ModLoader.Interface" );
 
 			int modBrowserMenuMode;
 			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowserID", out modBrowserMenuMode ) ) {

@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Text;
 using Terraria.Social;
 using Terraria.Utilities;
 
@@ -55,10 +54,6 @@ namespace HamstarHelpers.Helpers.DotNET {
 
 			//return File.ReadAllText( fullPath );
 			byte[] buf = FileUtilities.ReadAllBytes( fullPath, isCloud );
-
-			if( buf.Length < 1 || buf[0] != 0x1F || buf[1] != 0x8B ) {
-				return null;
-			}
 
 			return System.Text.Encoding.UTF8.GetString( buf );
 			/*using( Stream fileStream = (Stream)new FileStream( fullPath, FileMode.Open ) ) {

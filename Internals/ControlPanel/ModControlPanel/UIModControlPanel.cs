@@ -37,6 +37,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		private UITextArea IssueBodyInput = null;
 
 		private UITextPanelButton IssueSubmitButton = null;
+		private UITextPanelButton OpenConfigList = null;
 		private UITextPanelButton ModLockButton = null;
 		private UITextPanelButton CleanupModTiles = null;
 
