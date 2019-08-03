@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Components.UI.Elements;
 using HamstarHelpers.Components.UI.Menus;
+using HamstarHelpers.Components.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
@@ -71,8 +72,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			};
 
 			this.HiddenPanel = new UIHiddenPanel( getRect, onHover, onExit );
-			this.FinishButton = new UITagFinishButton( this );
-			this.ResetButton = new UITagResetButton( this );
+			this.FinishButton = new UITagFinishButton( UITheme.Vanilla, this );
+			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this );
 		}
 
 		////
@@ -119,7 +120,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			var modInfo = modInfos[this.CurrentModName];
 			if( modInfo.IsBadMod ) {
-				var button = this.TagButtons["Misleading Info"];
+				var button = this.Panel.TagButtons["Misleading Info"];
 				
 				if( button.TagState != 1 ) {
 					if( Timers.GetTimerTickDuration("ModHelpersTagsEditDefaults") <= 0 ) {

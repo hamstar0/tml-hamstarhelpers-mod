@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Components.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +15,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a focusable text area UI panel element with crop-to-fit text input. Does not currently implement multi-line support (yet).
 	/// </summary>
-	public class UITextArea : UIPanel {
+	public class UITextArea : UIThemedPanel {
 		/// <summary>
 		/// Event type that fires every time the text changes.
 		/// </summary>
@@ -23,11 +24,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 
 		////////////////
-
-		/// <summary>
-		/// Appearance style.
-		/// </summary>
-		public UITheme Theme { get; protected set; }
 		
 		/// <summary>
 		/// Current text.
@@ -84,7 +80,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="hint">Default text. Overridden with any input text.</param>
 		/// <param name="maxLength">Maximum length of text input.</param>
-		public UITextArea( UITheme theme, string hint, int maxLength=2024 ) {
+		public UITextArea( UITheme theme, string hint, int maxLength=2024 ) : base( theme ) {
 			// TODO Add multiline support
 
 			this.Theme = theme;
@@ -245,7 +241,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <summary>
 		/// Refreshes visual theming.
 		/// </summary>
-		public virtual void RefreshTheme() {
+		public override void RefreshTheme() {
 			if( this.IsEnabled ) {
 				this.Theme.ApplyInput( this );
 			} else {

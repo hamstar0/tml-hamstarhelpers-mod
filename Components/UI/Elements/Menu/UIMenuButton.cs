@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Components.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 using Terraria;
 
 
@@ -11,7 +12,8 @@ namespace HamstarHelpers.Components.UI.Elements.Menu {
 
 		////////////////
 
-		public UIMenuButton( UITheme theme, string text, float width, float height, float xCenterOffset, float y, float textScale=1f, bool largeText=false )
+		public UIMenuButton( UITheme theme, string text, float width, float height, float xCenterOffset, float y,
+				float textScale=1f, bool largeText=false )
 				: base( theme, text, textScale, largeText ) {
 			this.Width.Set( width, 0f );
 			this.Height.Set( height, 0f );

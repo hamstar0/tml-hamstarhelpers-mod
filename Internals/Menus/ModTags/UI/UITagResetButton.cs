@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Elements.Menu;
+﻿using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using Terraria.UI;
 
@@ -15,8 +15,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagResetButton( TagsMenuContextBase menuContext )
-				: base( UITheme.Vanilla, "Reset Tags", 98f, 24f, -196f, 172f, 0.36f, true ) {
+		public UITagResetButton( UITheme theme, TagsMenuContextBase menuContext )
+				: base( theme, "Reset Tags", 98f, 24f, -196f, 172f, 0.36f, true ) {
 			this.MenuContext = menuContext;
 
 			this.RecalculatePos();
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		public override void Click( UIMouseEvent evt ) {
 			if( !this.IsEnabled ) { return; }
 
-			this.MenuContext.ResetTagButtons();
+			this.MenuContext.Panel.ResetTagButtons();
 		}
 
 
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				}
 			}
 
-			if( this.MenuContext.GetTagsOfState(1).Count > 0 || this.MenuContext.GetTagsOfState(-1).Count > 0 ) {
+			if( this.MenuContext.GetTagsWithGivenState(1).Count > 0 || this.MenuContext.GetTagsWithGivenState(-1).Count > 0 ) {
 				if( modInfoContext != null ) {
 					if( modInfoContext.FinishButton.Text == "Modify Tags" ) {
 						this.Disable();

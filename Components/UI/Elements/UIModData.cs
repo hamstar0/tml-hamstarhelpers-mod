@@ -8,13 +8,14 @@ using Terraria.UI;
 using System.Collections.Generic;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.ModHelpers;
+using HamstarHelpers.Components.UI.Theme;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
 	/// </summary>
-	public partial class UIModData : UIPanel {
+	public partial class UIModData : UIThemedPanel {
 		/// <summary>
 		/// Mod represented by this element.
 		/// </summary>
@@ -82,8 +83,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="idx">ID number assigned to this element in its list.</param>
 		/// <param name="mod">Mod represented by this element.</param>
 		/// <param name="willDrawOwnHoverElements">Indicates if this element draws its own mouse-hover elements.</param>
-		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
-			this.InitializeMe( theme, idx, mod, willDrawOwnHoverElements );
+		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true )
+				: base( theme ) {
+			this.InitializeMe( idx, mod, willDrawOwnHoverElements );
 
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				ISet<string> modTags = args.ModTags?.GetOrDefault( mod.Name );

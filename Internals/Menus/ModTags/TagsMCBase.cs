@@ -1,8 +1,7 @@
 ﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Components.UI.Menus;
+using HamstarHelpers.Components.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
-using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
 
@@ -10,36 +9,20 @@ using System.Collections.Generic;
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
-		internal readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
-
-		private readonly bool CanDisableTags;
+		public readonly UITagsPanel Panel;
 
 
 
 		////////////////
 
 		protected TagsMenuContextBase( bool canDisableTags ) : base( true, true ) {
-			this.CanDisableTags = canDisableTags;
-
-			for( int i=0; i<TagsMenuContextBase.Tags.Length; i++ ) {
-				string tagText = TagsMenuContextBase.Tags[i].Item1;
-				string tagDesc = TagsMenuContextBase.Tags[i].Item3;
-				
-				this.TagButtons[ tagText ] = new UITagButton( this, i, tagText, tagDesc, this.CanDisableTags );
-			}
+			this.Panel = new UITagsPanel( UITheme.Vanilla, this, TagsMenuContextBase.Tags, canDisableTags );
 		}
 
 		public override void OnContexualize( string uiClassName, string contextName ) {
 			base.OnContexualize( uiClassName, contextName );
 
-			int i = 0;
-			
-			foreach( UITagButton button in this.TagButtons.Values ) {
-				var buttonWidgetCtx = new WidgetMenuContext( button, false );
-
-				MenuContextService.AddMenuContext( uiClassName, contextName + " Tag " + i, buttonWidgetCtx );
-				i++;
-			}
+			this.Panel.ApplyMenuContext( uiClassName, contextName );
 		}
 
 
@@ -48,38 +31,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		public abstract void OnTagStateChange( UITagButton tagButton );
 
 
-		public ISet<string> GetTagsOfState( int state ) {
-			ISet<string> tags = new HashSet<string>();
-
-			foreach( var kv in this.TagButtons ) {
-				if( kv.Value.TagState == state ) {
-					tags.Add( kv.Key );
-				}
-			}
-			return tags;
-		}
-
-
-		////////////////
-
-		public void EnableTagButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Enable();
-			}
-		}
-
-		public void DisableTagButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Disable();
-			}
-		}
-
-		////////////////
-
-		public void ResetTagButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.SetTagState( 0 );
-			}
+		public ISet<string> GetTagsWithGivenState( int state ) {
+			return this.Panel.GetTagsWithGivenState( state );
 		}
 	}
 }

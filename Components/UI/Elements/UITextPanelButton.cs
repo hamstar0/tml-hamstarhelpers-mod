@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Components.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -7,12 +8,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a common text panel button element.
 	/// </summary>
-	public class UITextPanelButton : UITextPanel<string> {
-		/// <summary>
-		/// Appearance style.
-		/// </summary>
-		public UITheme Theme { get; protected set; }
-
+	public class UITextPanelButton : UIThemedTextPanel<string> {
 		/// <summary>
 		/// Indicates if button accepts inputs.
 		/// </summary>
@@ -27,7 +23,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="label">Button's label.</param>
 		/// <param name="scale">Multiplier of label text size.</param>
 		/// <param name="large">Sets label text 'large'.</param>
-		public UITextPanelButton( UITheme theme, string label, float scale = 1f, bool large = false ) : base( label, scale, large ) {
+		public UITextPanelButton( UITheme theme, string label, float scale = 1f, bool large = false )
+				: base( theme, label, scale, large ) {
 			this.Theme = theme;
 			this.IsEnabled = true;
 
@@ -73,7 +70,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <summary>
 		/// Refreshes visual theming.
 		/// </summary>
-		public virtual void RefreshTheme() {
+		public override void RefreshTheme() {
 			if( this.IsEnabled ) {
 				this.Theme.ApplyButton( this );
 			} else {

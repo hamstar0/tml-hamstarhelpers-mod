@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Components.UI.Theme;
+using System;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -7,7 +8,7 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 	/// <summary>
 	/// Defines a simple, dialog-like 'Confirm'/'Cancel' prompt panel element.
 	/// </summary>
-	public class UIPromptPanel : UIPanel {
+	public class UIPromptPanel : UIThemedPanel {
 		/// @private
 		protected UITextPanelButton ConfirmButton;
 		/// @private
@@ -46,10 +47,6 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 		public int MyHeight { get; private set; }
 
 		/// <summary>
-		/// Appearance style.
-		/// </summary>
-		public UITheme Theme { get; protected set; }
-		/// <summary>
 		/// Mouse hover text.
 		/// </summary>
 		public string TitleText { get; private set; }
@@ -69,8 +66,8 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 		/// <param name="title"></param>
 		/// <param name="confirm"></param>
 		/// <param name="cancel"></param>
-		public UIPromptPanel( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null ) {
-			this.Theme = theme;
+		public UIPromptPanel( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null )
+				: base( theme ) {
 			this.MyWidth = width;
 			this.MyHeight = height;
 			this.TitleText = title;
@@ -126,7 +123,7 @@ namespace HamstarHelpers.Components.UI.Elements.Dialogs {
 		/// <summary>
 		/// Refreshes visual theming.
 		/// </summary>
-		public virtual void RefreshTheme() {
+		public override void RefreshTheme() {
 			this.CancelButton.RefreshTheme();
 			this.ConfirmButton.RefreshTheme();
 		}

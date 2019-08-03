@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Elements.Menu;
+﻿using HamstarHelpers.Components.UI.Elements.Menu;
 using HamstarHelpers.Components.UI.Menus;
+using HamstarHelpers.Components.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using HamstarHelpers.Services.UI.Menus;
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		private ModBrowserTagsMenuContext() : base( true ) {
 			//this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true );
-			this.ResetButton = new UITagResetButton( this );
+			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this );
 
 			//this.BlankButton.Disable();
 		}

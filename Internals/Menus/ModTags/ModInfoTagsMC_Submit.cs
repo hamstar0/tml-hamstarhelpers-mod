@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				LogHelpers.Log( e.ToString() );
 			};
 
-			ISet<string> newTags = this.GetTagsOfState( 1 );
+			ISet<string> newTags = this.GetTagsWithGivenState( 1 );
 
 			// Update snapshot of tags for the given mod (locally)
 			if( this.AllModTagsSnapshot != null ) {

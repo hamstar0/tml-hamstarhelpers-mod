@@ -18,7 +18,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			
 			this.BeginModBrowserPopulateCheck( ui );
 			this.RecalculateMenuObjects();
-			this.EnableTagButtons();
+			this.Panel.EnableTagButtons();
 
 			this.InfoDisplay.SetDefaultText( "Click tags to filter the list. Right-click tags to filter without them." );
 

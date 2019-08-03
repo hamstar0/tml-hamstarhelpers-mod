@@ -83,8 +83,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void FilterMods( IList<string> modNames, IDictionary<string, ISet<string>> modTagsOfModNames,
 				Action<bool, IList<string>, int, int> callback ) {
 			IList<string> filteredModNameList = new List<string>();
-			ISet<string> onTags = this.GetTagsOfState( 1 );
-			ISet<string> offTags = this.GetTagsOfState( -1 );
+			ISet<string> onTags = this.GetTagsWithGivenState( 1 );
+			ISet<string> offTags = this.GetTagsWithGivenState( -1 );
 			bool isFiltered = onTags.Count > 0 || offTags.Count > 0;
 
 			if( isFiltered ) {

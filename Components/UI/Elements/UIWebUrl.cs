@@ -4,17 +4,17 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.UI;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Components.UI.Theme;
 
 
 namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a visitable web URL (hyperlink) as a UI element.
 	/// </summary>
-	public class UIWebUrl : UIElement {
+	public class UIWebUrl : UIThemedElement {
 		/// <summary>
 		/// Generates a UIText element of the URL's underline (a set of underscores). Used to render together with URL text.
 		/// </summary>
@@ -34,10 +34,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		////////////////
 
-		/// <summary>
-		/// Appearance style.
-		/// </summary>
-		public UITheme Theme { get; protected set; }
 		/// <summary>
 		/// Element holding the display text.
 		/// </summary>
@@ -80,8 +76,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="hoverUrl">Indicates if the current element handles its own mouse hover URL display behavior.</param>
 		/// <param name="scale">Size multiplier of display text.</param>
 		/// <param name="large">'Large' state of display text.</param>
-		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f, bool large = false ) : base() {
-			this.Theme = theme;
+		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f, bool large = false )
+				: base( theme ) {
 			this.IsVisited = false;
 			this.Url = url;
 			this.WillDrawOwnHoverUrl = hoverUrl;
@@ -186,7 +182,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <summary>
 		/// Refreshes visual theming.
 		/// </summary>
-		public virtual void RefreshTheme() {
+		public override void RefreshTheme() {
 			if( this.IsVisited ) {
 				this.TextElem.TextColor = this.Theme.UrlVisitColor;
 				this.LineElem.TextColor = this.Theme.UrlVisitColor;

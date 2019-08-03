@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.UI;
 using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.HUD;
 using Microsoft.Xna.Framework;
@@ -35,8 +35,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagButton( TagsMenuContextBase menuContext, int pos, string label, string desc, bool canNegateTags )
-				: base( UITheme.Vanilla, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -308f, 40, 0.6f, false ) {
+		public UITagButton( UITheme theme, TagsMenuContextBase menuContext, int pos, string label, string desc, bool canNegateTags )
+				: base( theme, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -308f, 40, 0.6f, false ) {
 			this.MenuContext = menuContext;
 			this.TagState = 0;
 			this.DrawPanel = false;

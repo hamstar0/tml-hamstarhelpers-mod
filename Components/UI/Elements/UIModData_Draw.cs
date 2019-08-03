@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
@@ -13,7 +12,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
 	/// </summary>
-	public partial class UIModData : UIPanel {
+	public partial class UIModData : UIThemedPanel {
 		/// <summary>
 		/// Matches a color with a given mod tag. Used to represent tags that should be emphasized.
 		/// </summary>

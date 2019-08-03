@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Components.UI.Theme;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -29,7 +30,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a simpler append-only text field input panel. Suited for main menu use.
 	/// </summary>
-	public class UITextField : UIPanel {
+	public class UITextField : UIThemedPanel {
 		/// <summary>
 		/// Event handler for text input events
 		/// </summary>
@@ -37,11 +38,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="e">Changed text (wrapped).</param>
 		public delegate void EventHandler( Object sender, EventArgs e );
 
-
-		/// <summary>
-		/// Appearance style.
-		/// </summary>
-		public UITheme Theme { get; protected set; }
 
 		/// <summary>
 		/// Fires on text change.
@@ -67,8 +63,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
-		public UITextField( UITheme theme, string hintText ) {
-			this.Theme = theme;
+		public UITextField( UITheme theme, string hintText ) : base( theme ) {
 			this.HintText = hintText;
 			
 			this.SetPadding( 6f );
@@ -81,7 +76,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <summary>
 		/// Refreshes visual theming.
 		/// </summary>
-		public virtual void RefreshTheme() {
+		public override void RefreshTheme() {
 			this.Theme.ApplyInput( this );
 		}
 

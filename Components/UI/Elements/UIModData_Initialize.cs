@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Services.TML;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -14,8 +15,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
 	/// </summary>
-	public partial class UIModData : UIPanel {
-		private bool InitializeMe( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
+	public partial class UIModData : UIThemedPanel {
+		private bool InitializeMe( int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			var self = this;
 			TmodFile modfile;
 			if( !ReflectionHelpers.Get(mod, "File", out modfile) || modfile == null ) {
@@ -32,9 +33,9 @@ namespace HamstarHelpers.Components.UI.Elements {
 			this.LatestAvailableVersion = default( Version );
 
 			if( !ModHelpersMod.Instance.Config.DisableModMenuUpdates ) {
-				Services.TML.BuildPropertiesViewer props = modfile != null ?
-					Services.TML.BuildPropertiesViewer.GetBuildPropertiesForModFile( modfile ) :
-					(Services.TML.BuildPropertiesViewer)null;
+				BuildPropertiesViewer props = modfile != null ?
+					BuildPropertiesViewer.GetBuildPropertiesForModFile( modfile ) :
+					(BuildPropertiesViewer)null;
 				if( props != null ) {
 					this.Author = (string)props.GetField( "author" );
 					this.HomepageUrl = (string)props.GetField( "homepage" );
@@ -64,7 +65,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 			string modTitle = this.Mod.DisplayName + " " + this.Mod.Version.ToString();
 			
 			if( !String.IsNullOrEmpty(this.HomepageUrl) ) {
-				this.TitleElem = new UIWebUrl( theme, modTitle, this.HomepageUrl, false );
+				this.TitleElem = new UIWebUrl( this.Theme, modTitle, this.HomepageUrl, false );
 			} else {
 				this.TitleElem = new UIText( modTitle );
 			}

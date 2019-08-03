@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Components.UI.Theme;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -10,7 +11,7 @@ namespace HamstarHelpers.Components.UI.Elements {
 	/// <summary>
 	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
 	/// </summary>
-	public abstract class UIDialog : UIState {
+	public abstract class UIDialog : UIThemedState {
 		/// <summary>
 		/// Recommended dialog width.
 		/// </summary>
@@ -24,11 +25,6 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// Indicates if dialog is open.
 		/// </summary>
 		public bool IsOpen { get; private set; }
-
-		/// <summary>
-		/// Appearance style.
-		/// </summary>
-		protected UITheme Theme;
 
 		/// @private
 		protected UserInterface Backend = null;
@@ -55,9 +51,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="initialWidth">Recommended width.</param>
 		/// <param name="initialHeight">Recommended height.</param>
-		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) {
+		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) : base( theme ) {
 			this.IsOpen = false;
-			this.Theme = theme;
 			this.InitialContainerWidth = initialWidth;
 			this.InitialContainerHeight = initialHeight;
 		}
@@ -257,7 +252,8 @@ namespace HamstarHelpers.Components.UI.Elements {
 		/// <summary>
 		/// Refreshes visual theming.
 		/// </summary>
-		public virtual void RefreshTheme() {
+		public override void RefreshTheme() {
+			base.RefreshTheme();
 			this.Theme.ApplyPanel( this.InnerContainer );
 		}
 

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.UI;
-using HamstarHelpers.Components.UI.Elements.Menu;
+﻿using HamstarHelpers.Components.UI.Elements.Menu;
+using HamstarHelpers.Components.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,8 +18,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagFinishButton( ModInfoTagsMenuContext menuContext )
-				: base( UITheme.Vanilla, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
+		public UITagFinishButton( UITheme theme, ModInfoTagsMenuContext menuContext )
+				: base( theme, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
 			this.MenuContext = menuContext;
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.Text == "Submit Tags" ) {
@@ -55,14 +55,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			this.IsLocked = true;
 
 			this.UpdateEnableState();
-			this.MenuContext.DisableTagButtons();
+			this.MenuContext.Panel.DisableTagButtons();
 		}
 
 		public void Unlock() {
 			this.IsLocked = false;
 
 			this.UpdateEnableState();
-			this.MenuContext.EnableTagButtons();
+			this.MenuContext.Panel.EnableTagButtons();
 			
 			if( this.MenuContext.ResetButton.IsLocked ) {
 				this.MenuContext.ResetButton.Unlock();
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 		public void SetModeSubmit() {
 			this.SetText( "Submit Tags" );
 			
-			this.MenuContext.EnableTagButtons();
+			this.MenuContext.Panel.EnableTagButtons();
 
 			this.UpdateEnableState();
 			this.MenuContext.ResetButton.UpdateEnableState();
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				return;
 			}
 
-			ISet<string> tags = this.MenuContext.GetTagsOfState( 1 );
+			ISet<string> tags = this.MenuContext.GetTagsWithGivenState( 1 );
 
 			if( this.MenuContext.AllModTagsSnapshot != null && this.MenuContext.AllModTagsSnapshot.ContainsKey(modName) ) {
 				if( tags.SetEquals( this.MenuContext.AllModTagsSnapshot[modName] ) ) {

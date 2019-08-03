@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 
 
-namespace HamstarHelpers.Components.UI {
+namespace HamstarHelpers.Components.UI.Theme {
 	public partial class UITheme {
 		/// <summary></summary>
 		public Color ModListBgColor = new Color( 0, 0, 0, 128 );

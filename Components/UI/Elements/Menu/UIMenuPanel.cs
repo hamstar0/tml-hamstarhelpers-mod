@@ -1,24 +1,18 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Components.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Components.UI.Elements.Menu {
-	internal class UIMenuPanel : UIPanel {
+	internal class UIMenuPanel : UIThemedPanel {
 		protected float XCenterOffset;
 		protected float YPos;
 
-		////////////////
-
-		public UITheme Theme { get; protected set; }
-
 
 
 		////////////////
 
-		public UIMenuPanel( UITheme theme, float width, float height, float xCenterOffset, float y ) {
-			this.Theme = theme;
-
+		public UIMenuPanel( UITheme theme, float width, float height, float xCenterOffset, float y ) : base( theme ) {
 			this.Width.Set( width, 0f );
 			this.Height.Set( height, 0f );
 
@@ -40,13 +34,6 @@ namespace HamstarHelpers.Components.UI.Elements.Menu {
 		public override void Recalculate() {
 			this.RecalculatePos();
 			base.Recalculate();
-		}
-
-
-		////////////////
-
-		public virtual void RefreshTheme() {
-			this.Theme.ApplyPanel( this );
 		}
 	}
 }

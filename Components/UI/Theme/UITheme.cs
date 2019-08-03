@@ -1,9 +1,11 @@
-﻿using HamstarHelpers.Components.UI.Elements;
+﻿using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Components.UI.Elements;
 using System.Reflection;
 using Terraria.GameContent.UI.Elements;
+using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI {
+namespace HamstarHelpers.Components.UI.Theme {
 	/// <summary>
 	/// Defines a theme to use for common UI color and layout settings. Default values are a Mod Helpers custom theme.
 	/// </summary>
@@ -18,7 +20,7 @@ namespace HamstarHelpers.Components.UI {
 		/// </summary>
 		/// <param name="newTheme">Theme to copy from.</param>
 		public void Switch( UITheme newTheme ) {
-			foreach( FieldInfo field in typeof( UITheme ).GetFields() ) {
+			foreach( FieldInfo field in typeof(UITheme).GetFields() ) {
 				field.SetValue( this, field.GetValue( newTheme ) );
 			}
 
@@ -59,6 +61,53 @@ namespace HamstarHelpers.Components.UI {
 			this.UrlColor = newTheme.UrlColor;
 			this.UrlLitColor = newTheme.UrlLitColor;
 			this.UrlVisitColor = newTheme.UrlVisitColor;*/
+		}
+
+
+		////////////////
+
+		public bool Apply( UIElement element ) {
+			foreach( CustomAttributeData attr in element.GetType().CustomAttributes ) {
+				if( !attr.AttributeType.IsSubclassOf(typeof(ThemedAttrbute)) ) {
+					continue;
+				}
+
+				if( attr.AttributeType == typeof( PanelThemeAttribute ) ) {
+					if( element is UIPanel ) {
+						this.ApplyPanel( (UIPanel)element );
+						return true;
+					}
+				} else if( attr.AttributeType == typeof(ListContainerThemeAttribute) ) {
+					if( element is UIPanel ) {
+						this.ApplyListContainer( (UIPanel)element );
+						return true;
+					}
+				} else if( attr.AttributeType == typeof(ListItemThemeAttribute) ) {
+					if( element is UIPanel ) {
+						this.ApplyListItem( (UIPanel)element );
+						return true;
+					}
+				} else if( attr.AttributeType == typeof(ButtonThemeAttribute) ) {
+					if( element is UITextPanel<string> ) {
+						this.ApplyButton( (UITextPanel<string>)element );
+						return true;
+					}
+				} else if( attr.AttributeType == typeof(InputThemeAttribute) ) {
+					if( element is UITextField ) {
+						this.ApplyInput( (UITextField)element );
+						return true;
+					}
+				}
+
+				throw new ModHelpersException( "Invalid ThemeAttribute "+attr.AttributeType.Name+" for "+element.GetType().Name );
+			}
+
+			if( element is IThemeable ) {
+				((IThemeable)element).SetTheme( this );
+				return true;
+			}
+
+			return false;
 		}
 
 
@@ -113,14 +162,14 @@ namespace HamstarHelpers.Components.UI {
 			panel.BorderColor = this.InputEdgeDisabledColor;
 			panel.TextColor = this.InputTextDisabledColor;
 		}
-
+		
 		////////////////
 
 		/// <summary>
 		/// Applies standard button theming to a UI text panel button.
 		/// </summary>
 		/// <param name="panel"></param>
-		public virtual void ApplyButton( UITextPanelButton panel ) {
+		public virtual void ApplyButton<T>( UITextPanel<T> panel ) {
 			panel.BackgroundColor = this.ButtonBgColor;
 			panel.BorderColor = this.ButtonEdgeColor;
 			panel.TextColor = this.ButtonTextColor;
@@ -130,7 +179,7 @@ namespace HamstarHelpers.Components.UI {
 		/// Applies standard 'lit' button theming to a UI text panel button.
 		/// </summary>
 		/// <param name="panel"></param>
-		public virtual void ApplyButtonLit( UITextPanelButton panel ) {
+		public virtual void ApplyButtonLit<T>( UITextPanel<T> panel ) {
 			panel.BackgroundColor = this.ButtonBgLitColor;
 			panel.BorderColor = this.ButtonEdgeLitColor;
 			panel.TextColor = this.ButtonTextLitColor;
@@ -140,7 +189,7 @@ namespace HamstarHelpers.Components.UI {
 		/// Applies standard disabled button theming to a UI text panel button.
 		/// </summary>
 		/// <param name="panel"></param>
-		public virtual void ApplyButtonDisable( UITextPanelButton panel ) {
+		public virtual void ApplyButtonDisable<T>( UITextPanel<T> panel ) {
 			panel.BackgroundColor = this.ButtonBgDisabledColor;
 			panel.BorderColor = this.ButtonEdgeDisabledColor;
 			panel.TextColor = this.ButtonTextDisabledColor;

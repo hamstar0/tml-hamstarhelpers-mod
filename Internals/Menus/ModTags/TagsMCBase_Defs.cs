@@ -5,36 +5,38 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
+	class TagDefinition {
+		public string Tag;
+		public string Category;
+		public string Description;
+
+		public TagDefinition( string tag, string category, string description ) {
+			this.Tag = tag;
+			this.Category = category;
+			this.Description = description;
+		}
+	}
+
+
+
+
 	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
-		public readonly static Tuple<string, string, string>[] Tags;
-		public readonly static int TagColumnPivot;
+		public readonly static TagDefinition[] Tags;
 
 		static TagsMenuContextBase() {
 			TagsMenuContextBase.Tags = TagsMenuContextBase.GetTags();
-			TagsMenuContextBase.TagColumnPivot = TagsMenuContextBase.FindPivotInTagsList( TagsMenuContextBase.Tags );
-		}
-
-		////
-
-		private static int FindPivotInTagsList( Tuple<string, string, string>[] tags ) {
-			for( int i = 0; i < tags.Length; i++ ) {
-				if( tags[i].Item2 == "Content" ) {
-					return i;
-				}
-			}
-			return -1;
 		}
 
 
 
 		////////////////
 
-		private static Tuple<string, string, string>[] GetTags() {
-			Func<string, string, string, Tuple<string, string, string>> m =
-				( tag, category, desc ) => Tuple.Create( tag, category, desc );
+		private static TagDefinition[] GetTags() {
+			Func<string, string, string, TagDefinition> m =
+				( tag, category, desc ) => new TagDefinition( tag, category, desc );
 
-			var list = new List<Tuple<string, string, string>> {
+			var list = new List<TagDefinition> {
 				//m( "Core Game",             "Mechanics: Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc."),
 				m( "Combat",                "Mechanics",	"Adds weapon reloading, dual-wielding, monster AI changes, etc."),
 				m( "Crafting",              "Mechanics",    "Adds bulk crafting, UI-based crafting, item drag-and-drop crafting, etc."),
@@ -168,11 +170,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			};
 
 			if( !ModHelpersMod.Instance.Config.DisableJudgmentalTags ) {
-				int pivot = TagsMenuContextBase.FindPivotInTagsList( list.ToArray() );
-				
-				list.Insert( pivot, m( "Unimaginative",			"Judgmental",	"Nothing special; exceedingly common, generic, or flavorless.") );
-				list.Insert( pivot, m( "Low Effort",			"Judgmental",	"Evident lack of effort involved.") );
-				list.Insert( pivot, m( "Unoriginal Content",	"Judgmental",	"Contains stolen or extensively-derived content.") );
+				list.Add( m( "Unimaginative",		"Judgmental",	"Nothing special; exceedingly common, generic, or flavorless.") );
+				list.Add( m( "Low Effort",			"Judgmental",	"Evident lack of effort involved.") );
+				list.Add( m( "Unoriginal Content",	"Judgmental",	"Contains stolen or extensively-derived content.") );
 			}
 
 			return list.ToArray();
