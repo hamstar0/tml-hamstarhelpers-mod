@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.UI;
+﻿using HamstarHelpers.Classes.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;

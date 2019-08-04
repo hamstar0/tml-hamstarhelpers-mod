@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.UI.Menu;
+﻿using HamstarHelpers.Classes.UI.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;

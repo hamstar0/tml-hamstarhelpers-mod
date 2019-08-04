@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Components.DataStructures;
+using HamstarHelpers.Classes.DataStructures;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

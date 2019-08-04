@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.Protocols.Packet.Interfaces;
-using HamstarHelpers.Components.Protocols;
+﻿using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
+using HamstarHelpers.Classes.Protocols;
 using HamstarHelpers.Helpers.DotNET;
 
 

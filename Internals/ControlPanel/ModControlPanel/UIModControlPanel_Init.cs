@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.UI.Elements;
+﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Tiles;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;

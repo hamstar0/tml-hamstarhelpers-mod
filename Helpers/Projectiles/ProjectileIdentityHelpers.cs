@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.DataStructures;
+﻿using HamstarHelpers.Classes.DataStructures;
 using ReLogic.Reflection;
 using System;
 using Terraria;

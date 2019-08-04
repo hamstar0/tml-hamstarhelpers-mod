@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using Terraria;
-using HamstarHelpers.Components.Errors;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Components.Protocols.Packet.Interfaces;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

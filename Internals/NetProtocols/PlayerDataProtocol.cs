@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
-using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocols.Packet.Interfaces;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

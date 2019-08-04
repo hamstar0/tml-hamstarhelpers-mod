@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.UI.Menus;
+﻿using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
 using System.Collections.Generic;
 using Terraria;

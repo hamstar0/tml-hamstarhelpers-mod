@@ -2,7 +2,7 @@
 using HamstarHelpers.Helpers.Players;
 using Terraria;
 using System.Collections.Generic;
-using HamstarHelpers.Components.Protocols.Packet.Interfaces;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
