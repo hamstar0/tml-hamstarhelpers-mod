@@ -7,9 +7,9 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.HUD {
 	/// <summary>
-	/// Assorted static "helper" functions pertaining to the HUD health bar.
+	/// Assorted static "helper" functions pertaining to the HUD health bar. 
 	/// </summary>
-	public static class HUDHealthBarHelpers {
+	public class HUDHealthBarHelpers {
 		/// <summary>
 		/// Gets the screen coordinates of the last non-empty heart in the vanilla life bar.
 		/// </summary>

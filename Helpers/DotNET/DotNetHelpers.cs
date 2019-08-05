@@ -8,7 +8,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to .NET/C# functionality.
 	/// </summary>
-	public static class DotNetHelpers {
+	public class DotNetHelpers {
 		/// <summary>
 		/// Radians-to-degrees.
 		/// </summary>

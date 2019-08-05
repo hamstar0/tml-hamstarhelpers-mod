@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.DotNET.Encoding {
 	/// 
 	/// Credit: https://stackoverflow.com/a/10177020/6269494
 	/// </summary>
-	public static class SimpleStringCipher {
+	public class SimpleStringCipher {
 		// This constant is used to determine the keysize of the encryption algorithm in bits.
 		// We divide this by 8 within the code below to get the equivalent number of bytes.
 		private const int Keysize = 256;

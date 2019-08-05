@@ -1,7 +1,6 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Classes.Tiles.TilePattern;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.Tiles;
-using HamstarHelpers.Helpers.Tiles.TilePattern;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

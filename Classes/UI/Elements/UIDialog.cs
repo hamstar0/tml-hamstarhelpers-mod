@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Theme;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,7 +7,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
 	/// </summary>

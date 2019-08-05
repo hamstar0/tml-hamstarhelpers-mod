@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Elements.Menu;
+using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.HUD;
 using Microsoft.Xna.Framework;

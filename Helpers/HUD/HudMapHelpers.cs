@@ -6,9 +6,9 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.HUD {
 	/// <summary>
-	/// Assorted static "helper" functions pertaining to the HUD map.
+	/// Assorted static "helper" functions pertaining to the HUD map. 
 	/// </summary>
-	public static partial class HUDMapHelpers {
+	public partial class HUDMapHelpers {
 		/// <summary>
 		/// Returns a screen position of a given world position as if projected onto the fullscreen map.
 		/// </summary>

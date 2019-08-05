@@ -11,7 +11,7 @@ using Terraria.ModLoader.Core;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
 	/// </summary>

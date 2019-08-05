@@ -5,9 +5,9 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.HUD {
 	/// <summary>
-	/// Assorted static "helper" functions pertaining to general HUD.
+	/// Assorted static "helper" functions pertaining to general HUD. 
 	/// </summary>
-	public static class HUDHelpers {
+	public class HUDHelpers {
 		/// <summary>
 		/// Draws a bordered rectangle.
 		/// </summary>

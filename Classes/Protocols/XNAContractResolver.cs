@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 
 
-namespace HamstarHelpers.Components.Protocols {
+namespace HamstarHelpers.Classes.Protocols {
 	/// <summary>
 	/// Handy Newtonsoft serialization "contract resolver" for handling XNA fringe behavior.
 	/// </summary>

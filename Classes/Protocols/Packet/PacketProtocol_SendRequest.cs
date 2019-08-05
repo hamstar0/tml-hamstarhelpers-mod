@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocols.Stream;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Components.Protocols.Packet {
+namespace HamstarHelpers.Classes.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		internal void SendRequestToClient( int toWho, int ignoreWho, int retries ) {
 			var mymod = ModHelpersMod.Instance;

@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Classes.Errors;
 using System;
 
 
-namespace HamstarHelpers.Components.Protocols.Packet.Interfaces {
+namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 	/// <summary>
 	/// Recommended PacketProtocol form for sending requests to the server.
 	/// </summary>

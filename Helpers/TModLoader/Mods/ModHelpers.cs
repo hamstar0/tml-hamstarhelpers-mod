@@ -11,7 +11,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to mods.
 	/// </summary>
-	public static partial class ModHelpers {
+	public partial class ModHelpers {
 		/// <summary>
 		/// Loads a file contained within a given mod file (.tmod).
 		/// </summary>

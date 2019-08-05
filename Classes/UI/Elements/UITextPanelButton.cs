@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a common text panel button element.
 	/// </summary>

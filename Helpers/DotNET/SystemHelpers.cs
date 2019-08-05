@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to system-level functions.
 	/// </summary>
-	public static class SystemHelpers {
+	public class SystemHelpers {
 		/// <summary>
 		/// Returns a timestamp spanning between 1970 and the present.
 		/// </summary>

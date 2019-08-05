@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.UI.Menu;
-using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Menu;
+using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.Menus.ModTags.UI;
 using System;

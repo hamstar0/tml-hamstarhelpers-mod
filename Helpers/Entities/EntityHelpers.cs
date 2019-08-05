@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Items;
 using HamstarHelpers.Helpers.NPCs;
 using HamstarHelpers.Helpers.Projectiles;
-using HamstarHelpers.Helpers.Tiles;
 using HamstarHelpers.Helpers.Tiles.TilePattern;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -12,7 +11,7 @@ namespace HamstarHelpers.Helpers.Entities {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to `Entity`s (parent class of Item, NPC, Player, and Projectile).
 	/// </summary>
-	public static class EntityHelpers {
+	public class EntityHelpers {
 		/// <summary>
 		/// Gets a hash value to attempt to uniquely identify a given entity. Not recommended if the specific entity's
 		/// `GetVanillaSnapshotHash(...)` (via. the respective Helper) is available.

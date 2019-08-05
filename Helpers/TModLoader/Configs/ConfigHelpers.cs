@@ -8,7 +8,15 @@ using Terraria.ModLoader.Config;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Configs {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to configs (ModConfig, primarily).
+	/// </summary>
 	public class ConfigHelpers {
+		/// <summary>
+		/// Syncs to everyone. Use with caution.
+		/// </summary>
+		/// <param name="config"></param>
+		/// <returns>`false` if sync is diabled (client-only config).</returns>
 		public static bool SyncConfig( ModConfig config ) {	//untested
 			if( config.Mode != ConfigScope.ServerSide ) {
 				return false;

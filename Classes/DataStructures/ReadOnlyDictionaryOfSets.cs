@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Classes.DataStructures {
 	/// <summary>
 	/// Implments a dictionary that cannot be modified whose values are sets.
 	/// </summary>

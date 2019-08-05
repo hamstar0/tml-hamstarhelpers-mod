@@ -8,10 +8,10 @@ using Terraria.UI;
 using System.Collections.Generic;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Components.UI.Theme;
+using HamstarHelpers.Classes.UI.Theme;
 
 
-namespace HamstarHelpers.Components.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a UI panel element specialized for rendering and displaying a mod's data (especially as a list item).
 	/// </summary>

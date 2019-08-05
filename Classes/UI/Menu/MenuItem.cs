@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.UI.Menu {
+namespace HamstarHelpers.Classes.UI.Menu {
 	public class MenuItem {
 		public static void AddMenuItem( string text, int offsetX, int menuContext, Action myAction ) {
 			var mymod = ModHelpersMod.Instance;

@@ -4,7 +4,7 @@ using System;
 
 namespace HamstarHelpers.Helpers.XNA {
 	/// <summary>
-	/// Assorted static "helper" functions pertaining to XNA's Color struct.
+	/// Assorted static "helper" functions pertaining to XNA's Color struct. 
 	/// </summary>
 	public static partial class XNAColorHelpers {
 		/// <summary>

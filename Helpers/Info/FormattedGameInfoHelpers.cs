@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.Info {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game information formatted for output
 	/// </summary>
-	public static partial class FormattedGameInfoHelpers {
+	public partial class FormattedGameInfoHelpers {
 		/// <summary>
 		/// Gets a list of assorted game data statistics, formatted for (markdown) output.
 		/// </summary>

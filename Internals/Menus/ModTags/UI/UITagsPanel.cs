@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Components.UI.Elements.Menu;
-using HamstarHelpers.Components.UI.Menus;
-using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Classes.UI.Elements.Menu;
+using HamstarHelpers.Classes.UI.Menus;
+using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;

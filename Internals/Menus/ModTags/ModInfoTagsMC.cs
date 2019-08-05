@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Components.UI.Elements;
-using HamstarHelpers.Components.UI.Menus;
-using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Classes.UI.Menus;
+using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;

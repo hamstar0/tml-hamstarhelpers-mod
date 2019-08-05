@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Theme;
 using System;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Elements.Dialogs {
+namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 	/// <summary>
 	/// Defines a simple, dialog-like 'Confirm'/'Cancel' prompt panel element.
 	/// </summary>

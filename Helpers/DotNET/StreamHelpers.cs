@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to basic stream IO.
 	/// </summary>
-	public static partial class StreamHelpers {
+	public partial class StreamHelpers {
 		/// <summary>
 		/// Pumps a byte array to a stream (with compression).
 		/// </summary>

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocols.Stream;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Components.Protocols.Packet {
+namespace HamstarHelpers.Classes.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		/// <summary>
 		/// Sends the current packet to the server.

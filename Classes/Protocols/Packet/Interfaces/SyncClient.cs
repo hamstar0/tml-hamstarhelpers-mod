@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Classes.Errors;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.Protocols.Packet.Interfaces {
+namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 	/// <summary>
 	/// Recommended PacketProtocol form for syncing data between clients and server.
 	/// </summary>

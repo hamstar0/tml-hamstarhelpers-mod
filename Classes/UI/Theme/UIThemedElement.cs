@@ -3,7 +3,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Theme {
+namespace HamstarHelpers.Classes.UI.Theme {
 	/// <summary>
 	/// Theme-able UIElement.
 	/// </summary>

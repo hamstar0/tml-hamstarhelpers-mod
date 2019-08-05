@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Info {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game information formatted for output.
 	/// </summary>
-	public static partial class FormattedGameInfoHelpers {
+	public partial class FormattedGameInfoHelpers {
 		/// <summary>
 		/// Renders a list of mod names into a markdown table.
 		/// </summary>

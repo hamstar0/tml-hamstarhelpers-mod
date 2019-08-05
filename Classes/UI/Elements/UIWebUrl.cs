@@ -7,10 +7,10 @@ using Microsoft.Xna.Framework.Graphics;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.UI;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Components.UI.Theme;
+using HamstarHelpers.Classes.UI.Theme;
 
 
-namespace HamstarHelpers.Components.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a visitable web URL (hyperlink) as a UI element.
 	/// </summary>

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.UI.Menu.UI;
-using HamstarHelpers.Components.UI.Menus;
+﻿using HamstarHelpers.Classes.UI.Menu.UI;
+using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Services.UI.Menus;
@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Menu {
+namespace HamstarHelpers.Classes.UI.Menu {
 	abstract partial class SessionMenuContext : MenuContext {
 		public UIInfoDisplay InfoDisplay { get; private set; }
 

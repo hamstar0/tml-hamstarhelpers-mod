@@ -6,7 +6,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a UI checkbox (toggleable button) element.
 	/// </summary>

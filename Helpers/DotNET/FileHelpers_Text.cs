@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to basic file IO.
 	/// </summary>
-	public static partial class FileHelpers {
+	public partial class FileHelpers {
 		/// <summary>
 		/// Saves string data to a text file.
 		/// </summary>

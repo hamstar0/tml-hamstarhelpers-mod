@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Components.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.UI.Elements.Menu {
+namespace HamstarHelpers.Classes.UI.Elements.Menu {
 	internal class UIMenuPanel : UIThemedPanel {
 		protected float XCenterOffset;
 		protected float YPos;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 
 
-namespace HamstarHelpers.Components.UI.Theme {
+namespace HamstarHelpers.Classes.UI.Theme {
 	public partial class UITheme {
 		/// <summary>
 		/// Default "vanilla Terraria" UI theme presets.

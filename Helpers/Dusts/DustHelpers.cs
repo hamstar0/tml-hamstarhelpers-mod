@@ -6,7 +6,7 @@ namespace HamstarHelpers.Helpers.Dusts {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to dusts
 	/// </summary>
-	public static class DustHelpers {
+	public class DustHelpers {
 		/// <summary>
 		/// Indicates if the given dust (in `Main.dust`) is active.
 		/// </summary>

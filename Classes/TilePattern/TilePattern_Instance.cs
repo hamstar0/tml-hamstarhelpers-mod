@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.Tiles;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles.TilePattern {
+namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// <summary>
 	/// Identifies a type of tile by its attributes.
 	/// </summary>

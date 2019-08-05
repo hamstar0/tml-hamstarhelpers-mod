@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the main menu.
 	/// </summary>
-	public static class MainMenuHelpers {
+	public class MainMenuHelpers {
 		public static void LoadConfigList() {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
 

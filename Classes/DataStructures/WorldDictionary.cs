@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.DataStructures;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Classes.DataStructures {
 	/// <summary>
 	/// Implements a dictionary for mapping data to world coordinates.
 	/// 

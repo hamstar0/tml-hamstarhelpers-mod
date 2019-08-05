@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.UI.Elements;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Elements;
 using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Theme {
+namespace HamstarHelpers.Classes.UI.Theme {
 	/// <summary>
 	/// Defines a theme to use for common UI color and layout settings. Default values are a Mod Helpers custom theme.
 	/// </summary>

@@ -13,7 +13,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the mod list menu.
 	/// </summary>
-	public static partial class ModMenuHelpers {
+	public partial class ModMenuHelpers {
 		/// <summary>
 		/// Filters the mod browser mod list to a specific set of mods, or none.
 		/// </summary>

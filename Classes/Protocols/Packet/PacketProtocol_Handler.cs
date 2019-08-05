@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocols.Stream;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
 using System.Threading;
 
 
-namespace HamstarHelpers.Components.Protocols.Packet {
+namespace HamstarHelpers.Classes.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		internal static void HandlePacketOnClient( int protocolCode, BinaryReader reader, int playerWho ) {
 			var mymod = ModHelpersMod.Instance;

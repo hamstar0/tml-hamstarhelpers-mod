@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.Debug {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to debugging and debug outputs.
 	/// </summary>
-	public static partial class DebugHelpers {
+	public partial class DebugHelpers {
 		/// <summary>
 		/// Gets the current method call (context) of a stack trace at the specified frame (stack depth).
 		/// </summary>

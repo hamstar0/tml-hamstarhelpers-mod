@@ -2,7 +2,7 @@
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Components.UI.Menus {
+namespace HamstarHelpers.Classes.UI.Menus {
 	public class WidgetMenuContext : MenuContext {
 		public readonly bool IsInner;
 		public readonly UIElement MyElement;

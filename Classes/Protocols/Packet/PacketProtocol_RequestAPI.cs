@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocols.Stream;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.Protocols.Packet {
+namespace HamstarHelpers.Classes.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		/// <summary>
 		/// Shorthand to send a request for a default instance of this protocol's data from a client.

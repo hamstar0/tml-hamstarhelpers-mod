@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Classes.Errors;
 using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Components.Protocols.Packet {
+namespace HamstarHelpers.Classes.Protocols.Packet {
 	class PacketProtocolManager {
 		private static object MyLock = new object();
 

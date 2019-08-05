@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Components.Errors;
-using HamstarHelpers.Components.Protocols.Packet;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using Newtonsoft.Json;
@@ -12,7 +12,7 @@ using System.Reflection;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.Protocols.Stream {
+namespace HamstarHelpers.Classes.Protocols.Stream {
 	/// <summary>
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>

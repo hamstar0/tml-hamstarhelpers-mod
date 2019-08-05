@@ -2,7 +2,7 @@
 using System;
 
 
-namespace HamstarHelpers.Components.Protocols {
+namespace HamstarHelpers.Classes.Protocols {
 	/// <summary>
 	/// Sets a field to be ignored by a protocol.
 	/// </summary>

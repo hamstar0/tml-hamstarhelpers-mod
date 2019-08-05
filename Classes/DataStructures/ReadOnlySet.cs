@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Components.Errors;
+﻿using HamstarHelpers.Classes.Errors;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Components.DataStructures {
+namespace HamstarHelpers.Classes.DataStructures {
 	/// <summary></summary>
 	/// <typeparam name="T"></typeparam>
 	public interface IReadOnlySet<T> : ISet<T> { }

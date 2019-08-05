@@ -16,6 +16,12 @@
     <None Remove="icon.pdn" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Classes\TilePattern\TilePattern.cs" />
+    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Classes\TilePattern\TilePattern_Instance.cs" />
+    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Classes\TilePattern\TilePattern_Instance_Ctor.cs" />
     <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Components\UI\Themeable\UIThemedPanel.cs" />
+    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Definitions\TilePattern\TilePattern.cs" />
+    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Definitions\TilePattern\TilePattern_Instance.cs" />
+    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Definitions\TilePattern\TilePattern_Instance_Ctor.cs" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Components.UI.Elements;
+﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.TModLoader;
 using Terraria;
 
 
-namespace HamstarHelpers.Components.UI {
+namespace HamstarHelpers.Internals.UI {
 	class DialogManager {
 		public static DialogManager Instance {
 			get {

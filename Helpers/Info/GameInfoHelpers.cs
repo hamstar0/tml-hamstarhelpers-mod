@@ -12,7 +12,7 @@ namespace HamstarHelpers.Helpers.Info {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game information.
 	/// </summary>
-	public static partial class GameInfoHelpers {
+	public partial class GameInfoHelpers {
 		/// <summary>
 		/// Gets the current world's (vanilla) progress stage in human-readable form.
 		/// </summary>
