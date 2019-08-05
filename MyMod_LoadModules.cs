@@ -27,6 +27,7 @@ using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Helpers.Buffs;
 using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Helpers.NPCs.Attributes;
 using HamstarHelpers.Helpers.Projectiles.Attributes;
 using HamstarHelpers.Helpers.Recipes;
 using HamstarHelpers.Helpers.XNA;

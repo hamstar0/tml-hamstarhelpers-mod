@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Classes.UI;
-using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Internals.UI;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;

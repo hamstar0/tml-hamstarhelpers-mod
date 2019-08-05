@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Items.Attributes {
+namespace HamstarHelpers.Helpers.NPCs.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to gameplay attributes of NPCs.
 	/// </summary>
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < NPCLoader.NPCCount; i++ ) {
-				string name = Lang.GetNPCNameValue( i );
+				string name = NPCAttributeHelpers.GetQualifiedName( i );
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );

@@ -97,54 +97,6 @@ namespace HamstarHelpers.Helpers.NPCs {
 			return ModLoader.GetMod( mod )?.NPCType( name ) ?? 0;
 		}
 
-
-		////////////////
-
-		/// <summary>
-		/// Gets an NPC's qualified (human readable) name.
-		/// </summary>
-		/// <param name="npc"></param>
-		/// <returns></returns>
-		public static string GetQualifiedName( NPC npc ) {
-			return Lang.GetNPCNameValue( npc.netID );
-		}
-
-		/// <summary>
-		/// Gets an NPC's qualified (human readable) name.
-		/// </summary>
-		/// <param name="netid"></param>
-		/// <returns></returns>
-		public static string GetQualifiedName( int netid ) {    //npcType?
-			return Lang.GetNPCNameValue( netid );
-		}
-
 		// TODO: GetVanillaSnapshotHash
-
-
-
-		////////////////
-		
-		/// <summary>
-		/// Gets an NPC type from its unique ID string.
-		/// </summary>
-		/// <param name="uid"></param>
-		/// <returns></returns>
-		public static int GetNpcTypeByUniqueId( string uid ) {
-			string[] npcNameSplit = uid.Split( ' ' );
-
-			if( npcNameSplit[0] == "Terraria" ) {
-				return NPCID.Search.GetId( npcNameSplit[1] );
-			} else {
-				Mod mod = ModLoader.GetMod( npcNameSplit[0] );
-				if( mod == null ) {
-					return 0;
-				}
-
-				npcNameSplit = npcNameSplit.Copy( 1, npcNameSplit.Length - 1 );
-				string modNpcName = string.Join( " ", npcNameSplit );
-
-				return mod.NPCType( modNpcName );
-			}
-		}
 	}
 }

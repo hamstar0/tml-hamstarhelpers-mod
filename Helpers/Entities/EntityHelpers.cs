@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.Projectiles;
-using HamstarHelpers.Helpers.Tiles.TilePattern;
+﻿using HamstarHelpers.Classes.Tiles.TilePattern;
+using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Helpers.NPCs.Attributes;
+using HamstarHelpers.Helpers.Projectiles.Attributes;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -84,13 +84,13 @@ namespace HamstarHelpers.Helpers.Entities {
 		/// <returns></returns>
 		public static string GetQualifiedName( Entity ent ) {
 			if( ent is Item ) {
-				return ItemIdentityHelpers.GetQualifiedName( (Item)ent );
+				return ItemAttributeHelpers.GetQualifiedName( (Item)ent );
 			}
 			if( ent is NPC ) {
-				return NPCIdentityHelpers.GetQualifiedName( (NPC)ent );
+				return NPCAttributeHelpers.GetQualifiedName( (NPC)ent );
 			}
 			if( ent is Projectile ) {
-				return ProjectileIdentityHelpers.GetQualifiedName( (Projectile)ent );
+				return ProjectileAttributeHelpers.GetQualifiedName( (Projectile)ent );
 			}
 			if( ent is Player ) {
 				return ( (Player)ent ).name;

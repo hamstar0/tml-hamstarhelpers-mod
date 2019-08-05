@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Items;
+﻿using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Helpers.TModLoader.Commands;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
@@ -30,11 +30,11 @@ namespace HamstarHelpers.Commands {
 			int _;
 			string itemName;
 			if( CommandsHelpers.GetQuotedStringFromArgsAt(args, 0, out _, out itemName) ) {
-				if( !ItemIdentityHelpers.DisplayNamesToIds.ContainsKey( itemName ) ) {
+				if( !ItemAttributeHelpers.DisplayNamesToIds.ContainsKey( itemName ) ) {
 					throw new UsageException( "Invalid item type." );
 				}
 
-				caller.Reply( "Item id for " + itemName + ": " + ItemIdentityHelpers.DisplayNamesToIds[itemName], Color.Lime );
+				caller.Reply( "Item id for " + itemName + ": " + ItemAttributeHelpers.DisplayNamesToIds[itemName], Color.Lime );
 			}
 		}
 	}

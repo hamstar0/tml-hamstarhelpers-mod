@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Classes.UI;
-using HamstarHelpers.Classes.UI.Elements;
+﻿using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
