@@ -102,7 +102,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
-					string name = ItemIdentityHelpers.GetQualifiedName( item );
+					string name = ItemAttributeHelpers.GetQualifiedName( item );
 					return name.Contains( "Staff" ) ||
 						name.Contains( "Scepter" ) ||
 						name.Contains( "Wand" );
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
-					string name = ItemIdentityHelpers.GetQualifiedName( item );
+					string name = ItemAttributeHelpers.GetQualifiedName( item );
 					return name.Contains( "Rod" );
 				} )
 			) );
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						return true;
 					}
 
-					string name = ItemIdentityHelpers.GetQualifiedName( item );
+					string name = ItemAttributeHelpers.GetQualifiedName( item );
 					return name.Contains( "Gun" ) ||
 						name.Contains( "Rifle" ) ||
 						name.Contains( "Ray" ) ||
@@ -152,7 +152,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ {ItemID.SpellTome, 1} } );
 					if( has ) { return true; }
 
-					string name = ItemIdentityHelpers.GetQualifiedName( item );
+					string name = ItemAttributeHelpers.GetQualifiedName( item );
 					return name.Contains( "Book" ) ||
 						name.Contains( "Tome" );
 				} )

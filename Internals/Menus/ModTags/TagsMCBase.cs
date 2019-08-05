@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		protected TagsMenuContextBase( bool canDisableTags ) : base( true, true ) {
-			this.Panel = new UITagsPanel( UITheme.Vanilla, this, TagsMenuContextBase.Tags, canDisableTags );
+			this.Panel = new UITagsPanel( UITheme.Vanilla, this, ModTagsManager.Tags, canDisableTags );
 		}
 
 		public override void OnContexualize( string uiClassName, string contextName ) {

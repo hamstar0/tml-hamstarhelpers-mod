@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				new ItemGroupMatcher( ( item, grps ) => {
 					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
-					string name = ItemIdentityHelpers.GetQualifiedName( item );
+					string name = ItemAttributeHelpers.GetQualifiedName( item );
 
 					if( !hasEquip || !name.Contains( "Tiki" ) ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;

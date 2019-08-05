@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Internals.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

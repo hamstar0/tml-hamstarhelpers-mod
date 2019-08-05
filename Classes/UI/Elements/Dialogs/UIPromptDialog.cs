@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Internals.UI;
 using System;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;

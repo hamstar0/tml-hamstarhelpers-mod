@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Helpers.NPCs.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,7 +39,7 @@ namespace HamstarHelpers.Services.GameData {
 		/// <param name="npcId"></param>
 		/// <returns></returns>
 		public bool GetNpcId( out int npcId ) {
-			return NPCIdentityHelpers.NamesToIds.TryGetValue( this.Name, out npcId );
+			return NPCAttributeHelpers.DisplayNamesToIds.TryGetValue( this.Name, out npcId );
 		}
 	}
 
