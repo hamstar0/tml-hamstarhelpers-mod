@@ -146,14 +146,5 @@ namespace HamstarHelpers.Helpers.NPCs {
 				return mod.NPCType( modNpcName );
 			}
 		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Table of NPC ids by qualified names.
-		/// </summary>
-		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds =>
-			ModHelpersMod.Instance.NPCIdentityHelpers._NamesToIds;
 	}
 }

@@ -25,16 +25,15 @@ using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Helpers.Buffs;
-using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.Projectiles;
+using HamstarHelpers.Helpers.Projectiles.Attributes;
 using HamstarHelpers.Helpers.Recipes;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Helpers.Players;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -71,9 +70,8 @@ namespace HamstarHelpers {
 		internal LogHelpers LogHelpers;
 		internal NetPlayHelpers NetHelpers;
 		internal BuffHelpers BuffHelpers;
-		internal ItemIdentityHelpers ItemIdentityHelpers;
-		internal NPCIdentityHelpers NPCIdentityHelpers;
-		internal ProjectileIdentityHelpers ProjectileIdentityHelpers;
+		internal NPCAttributeHelpers NPCAttributeHelpers;
+		internal ProjectileAttributeHelpers ProjectileAttributeHelpers;
 		internal BuffIdentityHelpers BuffIdentityHelpers;
 		internal NPCBannerHelpers NPCBannerHelpers;
 		internal RecipeIdentityHelpers RecipeIdentityHelpers;
@@ -121,9 +119,8 @@ namespace HamstarHelpers {
 
 			this.BuffHelpers = new BuffHelpers();
 			this.NetHelpers = new NetPlayHelpers();
-			this.ItemIdentityHelpers = new ItemIdentityHelpers();
-			this.NPCIdentityHelpers = new NPCIdentityHelpers();
-			this.ProjectileIdentityHelpers = new ProjectileIdentityHelpers();
+			this.NPCAttributeHelpers = new NPCAttributeHelpers();
+			this.ProjectileAttributeHelpers = new ProjectileAttributeHelpers();
 			this.BuffIdentityHelpers = new BuffIdentityHelpers();
 			this.NPCBannerHelpers = new NPCBannerHelpers();
 			this.RecipeIdentityHelpers = new RecipeIdentityHelpers();
@@ -162,9 +159,8 @@ namespace HamstarHelpers {
 			this.ModFeaturesHelpers = null;
 			this.BuffHelpers = null;
 			this.NetHelpers = null;
-			this.ItemIdentityHelpers = null;
-			this.NPCIdentityHelpers = null;
-			this.ProjectileIdentityHelpers = null;
+			this.NPCAttributeHelpers = null;
+			this.ProjectileAttributeHelpers = null;
 			this.BuffIdentityHelpers = null;
 			this.NPCBannerHelpers = null;
 			this.RecipeIdentityHelpers = null;
@@ -229,9 +225,9 @@ namespace HamstarHelpers {
 		}
 
 		private void PostAddRecipesModules() {
-			this.ItemIdentityHelpers.PopulateNames();
-			this.NPCIdentityHelpers.PopulateNames();
-			this.ProjectileIdentityHelpers.PopulateNames();
+			this.ItemAttributeHelpers.PopulateNames();
+			this.NPCAttributeHelpers.PopulateNames();
+			this.ProjectileAttributeHelpers.PopulateNames();
 			this.BuffIdentityHelpers.PopulateNames();
 		}
 	}

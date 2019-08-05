@@ -17,6 +17,27 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		////////////////
 
 		/// <summary>
+		/// Gets an item's qualified (human readable) name.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public static string GetQualifiedName( Item item ) {
+			return Lang.GetItemNameValue( item.type );  // not netID?
+		}
+
+		/// <summary>
+		/// Gets an item's qualified (human readable) name.
+		/// </summary>
+		/// <param name="itemType"></param>
+		/// <returns></returns>
+		public static string GetQualifiedName( int itemType ) {
+			return Lang.GetItemNameValue( itemType );
+		}
+
+
+		////////////////
+
+		/// <summary>
 		/// Indicates an item produces a penetrating projectile.
 		/// </summary>
 		/// <param name="item"></param>

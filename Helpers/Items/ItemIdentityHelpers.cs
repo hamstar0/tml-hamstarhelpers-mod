@@ -99,27 +99,6 @@ namespace HamstarHelpers.Helpers.Items {
 		////////////////
 
 		/// <summary>
-		/// Gets an item's qualified (human readable) name.
-		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		public static string GetQualifiedName( Item item ) {
-			return Lang.GetItemNameValue( item.type );  // not netID?
-		}
-
-		/// <summary>
-		/// Gets an item's qualified (human readable) name.
-		/// </summary>
-		/// <param name="itemType"></param>
-		/// <returns></returns>
-		public static string GetQualifiedName( int itemType ) {
-			return Lang.GetItemNameValue( itemType );
-		}
-
-
-		////////////////
-
-		/// <summary>
 		/// Generates a hash value to uniquely identify a (vanilla) item instance by its field values.
 		/// </summary>
 		/// <param name="item"></param>
@@ -247,26 +226,6 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 
 			return hash;
-		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Gets an item's type by it's internal name (ItemID static field name or `ModItem.Name`), and it's origin mod (if any).
-		/// </summary>
-		/// <param name="name">Item's internal name: For vanilla, ItemID static field name. For mods, `ModItem.Name`.</param>
-		/// <param name="mod"></param>
-		/// <returns></returns>
-		public static int GetTypeByName( string name, Mod mod=null ) {
-			if( mod == null ) {
-				if( !ItemID.Search.ContainsName( name ) )
-					return 0;
-				return ItemID.Search.GetId( name );
-			}
-
-			ModItem moditem = mod.GetItem( name );
-			return moditem == null ? 0 : moditem.item.type;
 		}
 	}
 }

@@ -103,38 +103,6 @@ namespace HamstarHelpers.Helpers.Projectiles {
 			return ModLoader.GetMod( mod )?.NPCType( name ) ?? 0;
 		}
 
-
-		////////////////
-
-		/// <summary>
-		/// Gets the "qualified" (human readable) name of a given projectile.
-		/// </summary>
-		/// <param name="proj"></param>
-		/// <returns></returns>
-		public static string GetQualifiedName( Projectile proj ) {
-			return ProjectileIdentityHelpers.GetQualifiedName( proj.type );
-		}
-
-		/// <summary>
-		/// Gets the "qualified" (human readable) name of a given projectile.
-		/// </summary>
-		/// <param name="projType"></param>
-		/// <returns></returns>
-		public static string GetQualifiedName( int projType ) {
-			string name = Lang.GetProjectileName( projType ).Value;
-			return name;
-		}
-
 		// TODO: GetVanillaSnapshotHash()
-
-
-		////////////////
-
-		/// <summary>
-		/// Provides a map of (qualified) projectile names to their IDs.
-		/// </summary>
-		public static ReadOnlyDictionaryOfSets<string, int> NamesToIds {
-			get { return ModHelpersMod.Instance.ProjectileIdentityHelpers._NamesToIds; }
-		}
 	}
 }

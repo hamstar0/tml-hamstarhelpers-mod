@@ -30,11 +30,11 @@ namespace HamstarHelpers.Commands {
 			int _;
 			string itemName;
 			if( CommandsHelpers.GetQuotedStringFromArgsAt(args, 0, out _, out itemName) ) {
-				if( !ItemIdentityHelpers.NamesToIds.ContainsKey( itemName ) ) {
+				if( !ItemIdentityHelpers.DisplayNamesToIds.ContainsKey( itemName ) ) {
 					throw new UsageException( "Invalid item type." );
 				}
 
-				caller.Reply( "Item id for " + itemName + ": " + ItemIdentityHelpers.NamesToIds[itemName], Color.Lime );
+				caller.Reply( "Item id for " + itemName + ": " + ItemIdentityHelpers.DisplayNamesToIds[itemName], Color.Lime );
 			}
 		}
 	}

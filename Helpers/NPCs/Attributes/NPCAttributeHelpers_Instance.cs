@@ -6,28 +6,25 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Helpers.Items.Attributes {
 	/// <summary>
-	/// Assorted static "helper" functions pertaining to gameplay attributes of items.
+	/// Assorted static "helper" functions pertaining to gameplay attributes of NPCs.
 	/// </summary>
-	public partial class ItemAttributeHelpers {
-		private IDictionary<long, ISet<int>> PurchasableItems = new Dictionary<long, ISet<int>>();
-
+	public partial class NPCAttributeHelpers {
 		private ReadOnlyDictionaryOfSets<string, int> _DisplayNamesToIds = null;
 
 
-		////
+		////////////////
 
-		public static ReadOnlyDictionaryOfSets<string, int> DisplayNamesToIds {
-			get {
-				return ModHelpersMod.Instance.ItemAttributeHelpers._DisplayNamesToIds;
-			}
-		}
+		/// <summary>
+		/// Table of NPC ids by qualified names.
+		/// </summary>
+		public static ReadOnlyDictionaryOfSets<string, int> DisplayNamesToIds =>
+			ModHelpersMod.Instance.NPCAttributeHelpers._DisplayNamesToIds;
 
 
 
 		////////////////
 
-		internal ItemAttributeHelpers() { }
-
+		internal NPCAttributeHelpers() { }
 
 
 		////////////////
@@ -35,8 +32,8 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		internal void PopulateNames() {
 			var dict = new Dictionary<string, ISet<int>>();
 
-			for( int i = 1; i < ItemLoader.ItemCount; i++ ) {
-				string name = Lang.GetItemNameValue( i );
+			for( int i = 1; i < NPCLoader.NPCCount; i++ ) {
+				string name = Lang.GetNPCNameValue( i );
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );
