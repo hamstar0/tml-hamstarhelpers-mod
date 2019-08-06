@@ -120,16 +120,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			var modInfo = modInfos[this.CurrentModName];
 			if( modInfo.IsBadMod ) {
-				var button = this.Panel.TagButtons["Misleading Info"];
-				
-				if( button.TagState != 1 ) {
-					if( Timers.GetTimerTickDuration("ModHelpersTagsEditDefaults") <= 0 ) {
-						Timers.SetTimer( "ModHelpersTagsEditDefaults", 60, () => {
-							button.SetTagState( 1 );
-							return false;
-						} );
-					}
-				}
+				this.Panel.SafelySetTagButton( "Misleading Info" );
 			}
 		}
 	}

@@ -28,8 +28,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Menu {
 		////////////////
 
 		public virtual void RecalculatePos() {
-			this.Left.Set( ((float)Main.screenWidth / 2f) + this.XCenterOffset, 0f );
-			this.Top.Set( this.YPos, 0f );
+			float left = ( (float)Main.screenWidth / 2f ) + this.XCenterOffset;
+			float top = this.YPos;
+
+			this.Left.Set( left, 0f );
+			this.Top.Set( top, 0f );
 		}
 
 		public override void Recalculate() {

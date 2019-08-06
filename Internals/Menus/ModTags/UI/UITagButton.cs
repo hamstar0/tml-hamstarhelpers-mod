@@ -12,19 +12,12 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 	/// @private
 	internal class UITagButton : UIMenuButton {
-		public const float ColumnWidth = 102f;
-		public const float RowHeight = 16f;
-		public const int ColumnHeightFirst = 32;
-		public const int ColumnHeightShort = 8;
+		public const float ButtonWidth = 102f;
+		public const float ButtonHeight = 16f;
 
 
 
 		////////////////
-
-		private readonly TagsMenuContextBase MenuContext;
-
-		public int Column;
-		public int Row;
 
 		////////////////
 		
@@ -35,27 +28,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagButton( UITheme theme, TagsMenuContextBase menuContext, int pos, string label, string desc, bool canNegateTags )
-				: base( theme, label, UITagButton.ColumnWidth, UITagButton.RowHeight, -308f, 40, 0.6f, false ) {
-			this.MenuContext = menuContext;
+		public UITagButton( UITheme theme, int pos, string label, string desc, bool canNegateTags )
+				: base( theme, label, UITagButton.ButtonWidth, UITagButton.ButtonHeight, -308f, 40, 0.6f, false ) {
 			this.TagState = 0;
 			this.DrawPanel = false;
 			this.Desc = desc;
-
-			int colTall = UITagButton.ColumnHeightFirst;
-			int colShort = UITagButton.ColumnHeightShort;
-			int posAfterPivot = pos - TagsMenuContextBase.TagColumnPivot;
-			
-			if( pos < colTall ) {
-				this.Column = 0;
-				this.Row = pos;
-			} else if( pos < TagsMenuContextBase.TagColumnPivot ) {
-				this.Column = 1;
-				this.Row = colShort + (pos - colTall);
-			} else {
-				this.Column = 1 + (posAfterPivot / colShort);
-				this.Row = posAfterPivot % colShort;
-			}
 			
 			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( !this.IsEnabled ) { return; }
@@ -79,18 +56,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			this.Disable();
 			this.RecalculatePos();
 			this.RefreshTheme();
-		}
-
-
-		////////////////
-
-		public override void RecalculatePos() {
-			float width = this.Width.Pixels;
-			float left = (((Main.screenWidth / 2) + this.XCenterOffset) - (width - 8)) + ((width - 2) * this.Column);
-			float top = (UITagButton.RowHeight * this.Row) + this.YPos;
-
-			this.Left.Set( left, 0f );
-			this.Top.Set( top, 0f );
 		}
 
 

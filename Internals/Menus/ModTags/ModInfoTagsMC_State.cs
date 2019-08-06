@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels += UITagButton.ColumnWidth;
+				elem.Left.Pixels += UITagButton.ButtonWidth;
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context "+ui.GetType().Name );
@@ -57,7 +57,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels -= UITagButton.ColumnWidth;
+				elem.Left.Pixels -= UITagButton.ButtonWidth;
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
@@ -78,10 +78,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 			}
 
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Disable();
-				kv.Value.SetTagState( 0 );
-			}
+			this.Panel.ResetTagButtons( true );
 		}
 
 
@@ -103,7 +100,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 						new HashSet<string>();
 				bool hasNetTags = netModTags.Count > 0;
 
-//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
+				//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
 				if( hasNetTags ) {
 					this.InfoDisplay.SetDefaultText( "Do these tags look incorrect? If so, modify them." );
 					this.FinishButton.SetModeReadOnly();
@@ -112,34 +109,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 					this.InfoDisplay.SetDefaultText( "No tags set for this mod. Why not add some?" );
 					this.FinishButton.SetModeSubmit();
 				}
-				
-				foreach( var kv in this.TagButtons ) {
-					string tagName = kv.Key;
-					UITagButton button = kv.Value;
-					bool hasTag = netModTags.Contains( tagName );
 
-					if( !hasNetTags ) {
-						button.Enable();
-					}
-
-					if( tagName == "Low Effort" ) {
-						if( hasTag ) {
-							button.SetTagState( 1 );
-						} else {
-							string desc = this.GetModDataFromActiveMod( modName, "description" );
-							if( string.IsNullOrEmpty(desc) ) {
-								string _ = "";
-								desc = this.GetModDescriptionFromUI( modName, ref _ );
-							}
-
-							if( desc.Contains("Modify this file with a description of your mod.") ) {
-								button.SetTagState( 1 );
-							}
-						}
-					} else {
-						button.SetTagState( hasTag ? 1 : 0 );
-					}
-				}
+				this.Panel.SetCurrentMod( modName, netModTags );
 
 				return false;
 			} );

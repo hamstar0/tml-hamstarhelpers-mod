@@ -3,6 +3,8 @@ using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Terraria;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
 using Terraria.ModLoader.UI.ModBrowser;
@@ -156,6 +158,37 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 			}
 
 			return (TmodFile)rawModFile;
+		}
+
+
+		////
+
+		/// <summary>
+		/// Gets the shown description text from the given mod-representing UI, if applicable.
+		/// </summary>
+		/// <param name="output"></param>
+		/// <returns></returns>
+		public static bool GetModDescriptionFromCurrentMenuUI( out string output ) {
+			UIState modUI = Main.MenuUI.CurrentState;
+			if( modUI.GetType().Name != "UIModInfo" ) {
+				output = "Not currently viewing mod info.";
+				return false;
+			}
+
+			UIPanel msgBox;
+			if( modUI == null || !ReflectionHelpers.Get( modUI, "_modInfo", out msgBox ) ) {
+				output = "No modInfo field.";
+				return false;
+			}
+
+			string modDesc;
+			if( !ReflectionHelpers.Get( msgBox, "text", out modDesc ) ) {
+				output = "No modInfo.text field.";
+				return false;
+			}
+
+			output = modDesc;
+			return true;
 		}
 	}
 }

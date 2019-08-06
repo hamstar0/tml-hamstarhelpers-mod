@@ -2,6 +2,9 @@
 using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Services.Timers;
+using HamstarHelpers.Services.TML;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
@@ -48,6 +51,44 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
+		public void SetCurrentMod( string modName, ISet<string> tags ) {
+			bool hasNetTags = tags.Count > 0;
+
+			foreach( var kv in this.TagButtons ) {
+				string tagName = kv.Key;
+				UITagButton button = kv.Value;
+				bool hasTag = tags.Contains( tagName );
+
+				if( !hasNetTags ) {
+					button.Enable();
+				}
+
+				if( tagName == "Low Effort" ) {
+					if( hasTag ) {
+						button.SetTagState( 1 );
+					} else {
+						BuildPropertiesViewer viewer = BuildPropertiesViewer.GetBuildPropertiesForActiveMod( modName );
+						string desc = viewer.Description ?? "";
+
+						if( viewer == null || string.IsNullOrEmpty( desc ) ) {
+							if( !ModMenuHelpers.GetModDescriptionFromCurrentMenuUI( out desc ) ) {
+								desc = "";
+							}
+						}
+
+						if( desc.Contains( "Modify this file with a description of your mod." ) ) {
+							button.SetTagState( 1 );
+						}
+					}
+				} else {
+					button.SetTagState( hasTag ? 1 : 0 );
+				}
+			}
+		}
+
+
+		////////////////
+
 		public ISet<string> GetTagsWithGivenState( int state ) {
 			ISet<string> tags = new HashSet<string>();
 
@@ -74,11 +115,30 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			}
 		}
 
-		////////////////
+		////
 
-		public void ResetTagButtons() {
+		public void ResetTagButtons( bool alsoDisable ) {
 			foreach( var kv in this.TagButtons ) {
+				if( alsoDisable ) {
+					kv.Value.Disable();
+				}
 				kv.Value.SetTagState( 0 );
+			}
+		}
+
+
+		////
+
+		public void SafelySetTagButton( string tag ) {
+			var button = this.TagButtons[tag];
+
+			if( button.TagState != 1 ) {
+				if( Timers.GetTimerTickDuration( "ModHelpersTagsEditDefaults" ) <= 0 ) {
+					Timers.SetTimer( "ModHelpersTagsEditDefaults", 60, () => {
+						button.SetTagState( 1 );
+						return false;
+					} );
+				}
 			}
 		}
 	}

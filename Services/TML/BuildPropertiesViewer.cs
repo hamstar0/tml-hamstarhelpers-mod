@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
 
 
@@ -42,7 +43,7 @@ namespace HamstarHelpers.Services.TML {
 
 
 		/// <summary>
-		/// Produces a 'viewer' object for a mod file's build.txt data.
+		/// Produces a 'viewer' object for a TmodFile mod file's build.txt data.
 		/// </summary>
 		/// <param name="modfile"></param>
 		/// <returns></returns>
@@ -66,6 +67,26 @@ namespace HamstarHelpers.Services.TML {
 			}
 
 			return new BuildPropertiesViewer( buildProps );
+		}
+
+
+		/// <summary>
+		/// Produces a 'viewer' object for an active mod file's build.txt data.
+		/// </summary>
+		/// <param name="modName"></param>
+		/// <returns></returns>
+		public static BuildPropertiesViewer GetBuildPropertiesForActiveMod( string modName ) {
+			Mod mod = ModLoader.GetMod( modName );
+			if( mod == null ) {
+				return null;
+			}
+
+			TmodFile modFile;
+			if( !ReflectionHelpers.Get( mod, "File", out modFile ) || modFile == null ) {
+				return null;
+			}
+
+			return BuildPropertiesViewer.GetBuildPropertiesForModFile( modFile );
 		}
 	}
 }
