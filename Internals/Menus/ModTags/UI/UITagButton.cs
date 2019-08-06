@@ -19,6 +19,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
+		private UITagsPanel Container;
+
+
 		////////////////
 		
 		public string Desc { get; private set; }
@@ -28,8 +31,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagButton( UITheme theme, int pos, string label, string desc, bool canNegateTags )
+		public UITagButton( UITheme theme, UITagsPanel container, string label, string desc, bool canNegateTags )
 				: base( theme, label, UITagButton.ButtonWidth, UITagButton.ButtonHeight, -308f, 40, 0.6f, false ) {
+			this.Container = container;
 			this.TagState = 0;
 			this.DrawPanel = false;
 			this.Desc = desc;
@@ -43,12 +47,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				this.MenuContext.InfoDisplay?.SetText( desc );
+				this.Container.SetInfoText( desc );
+				//context.InfoDisplay?.SetText( desc );
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( this.MenuContext.InfoDisplay?.GetText() == desc ) {
-					this.MenuContext.InfoDisplay?.SetText( "" );
+				if( this.Container.GetInfoText() == desc ) {
+					this.Container.SetInfoText( "" );
 				}
 				this.RefreshTheme();
 			};
@@ -66,21 +71,21 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.MenuContext.OnTagStateChange( this );
+			this.Container.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void TogglePositiveTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.MenuContext.OnTagStateChange( this );
+			this.Container.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void ToggleNegativeTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.MenuContext.OnTagStateChange( this );
+			this.Container.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
