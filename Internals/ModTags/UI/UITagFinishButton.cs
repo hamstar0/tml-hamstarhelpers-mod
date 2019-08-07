@@ -1,16 +1,17 @@
 ﻿using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Internals.Menus.ModTags;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.Menus.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.UI {
 	/// @private
 	partial class UITagFinishButton : UIMenuButton {
-		private readonly ModInfoTagsMenuContext MenuContext;
+		private readonly ModTagsManager Manager;
 
 		public bool IsLocked { get; private set; }
 
@@ -18,9 +19,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagFinishButton( UITheme theme, ModInfoTagsMenuContext menuContext )
+		public UITagFinishButton( UITheme theme, ModTagsManager manager )
 				: base( theme, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
-			this.MenuContext = menuContext;
+			this.Manager = manager;
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.Text == "Submit Tags" ) {
 					MenuContext.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );

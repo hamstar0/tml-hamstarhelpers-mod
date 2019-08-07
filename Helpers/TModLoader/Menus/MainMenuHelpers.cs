@@ -17,7 +17,10 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	/// Assorted static "helper" functions pertaining to the main menu.
 	/// </summary>
 	public class MainMenuHelpers {
-		public static void LoadConfigList() {
+		/// <summary>
+		/// Switches to the list of mod configs menu.
+		/// </summary>
+		public static void OpenModConfigListUI() {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
 
 			if( !Main.gameMenu ) {
@@ -51,7 +54,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// Loads the UI for mod configs.
 		/// </summary>
 		/// <param name="config"></param>
-		public static void LoadConfigUI( ModConfig config ) {
+		public static void OpenModConfigUI( ModConfig config ) {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
 
 			if( !Main.gameMenu ) {
@@ -89,7 +92,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <summary>
 		/// Loads the mod browser menu.
 		/// </summary>
-		public static void LoadModBrowser() {
+		public static void OpenModBrowserMenu() {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
 
 			int modBrowserMenuMode;
@@ -133,7 +136,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// </summary>
 		/// <param name="packTitle">Name of the set.</param>
 		/// <param name="modNames">Mod (internal) names of the set.</param>
-		public static void LoadModBrowserModDownloads( string packTitle, List<string> modNames ) {
+		public static void OpenModBrowserWithDownloadList( string packTitle, List<string> modNames ) {
 			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) )
 				.GetType( "Terraria.ModLoader.Interface" );
 

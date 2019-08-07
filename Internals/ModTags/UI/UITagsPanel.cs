@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Internals.Menus.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.UI {
 	class UITagsPanel : UIThemedPanel {
 		private readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
 		private readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagsPanel( UITheme theme, TagsMenuContextBase context, TagDefinition[] tags, bool canDisableTags ) : base( theme ) {
+		public UITagsPanel( UITheme theme, ModTagsManager manager, TagDefinition[] tags, bool canDisableTags ) : base( theme ) {
 			float y = 0;
 
 			foreach( string category in new HashSet<string>( tags.Select(t=>t.Category) ) ) {
@@ -31,19 +31,19 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 			for( int i = 0; i < tags.Length; i++ ) {
 				string tag = tags[i].Tag;
 
-				this.TagButtons[tag] = new UITagButton( this.Theme, context, i, tag, tags[i].Description, canDisableTags );
+				this.TagButtons[tag] = new UITagButton( this.Theme, manager, tag, tags[i].Description, canDisableTags );
 			}
 		}
 
 		////
 
-		public void ApplyMenuContext( string uiClassName, string contextName ) {
+		public void ApplyMenuContext( TModLoaderMenuDefinition menuDef, string contextName ) {
 			int i = 0;
 
 			foreach( UITagButton button in this.TagButtons.Values ) {
 				var buttonWidgetCtx = new WidgetMenuContext( button, false );
 
-				MenuContextService.AddMenuContext( uiClassName, contextName + " Tag " + i, buttonWidgetCtx );
+				MenuContextService.AddMenuContext( menuDef, contextName + " Tag " + i, buttonWidgetCtx );
 				i++;
 			}
 		}

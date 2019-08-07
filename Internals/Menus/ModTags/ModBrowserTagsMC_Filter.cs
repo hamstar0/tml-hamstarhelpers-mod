@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		internal void ApplyModsFilter() {
 			IList<string> modNames = new List<string>();
-			UIState myUI = this.MyUI;
+			UIState myUI = this.MyMenuUI;
 
 			object items;
 			if( !ReflectionHelpers.Get( myUI, "_items", out items ) ) {

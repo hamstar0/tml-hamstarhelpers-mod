@@ -6,7 +6,10 @@ using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Classes.UI.Menu.UI {
-	internal class UIInfoDisplay : UIMenuPanel {
+	/// <summary>
+	/// An information display panel specialized for menu contexts.
+	/// </summary>
+	public class UIInfoDisplay : UIMenuPanel {
 		private readonly UIText TextElem;
 
 		private string DefaultText = "";

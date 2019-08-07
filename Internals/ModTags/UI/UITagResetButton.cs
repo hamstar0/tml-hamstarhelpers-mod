@@ -1,13 +1,14 @@
 ﻿using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Internals.Menus.ModTags;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.Menus.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.UI {
 	/// @private
 	partial class UITagResetButton : UIMenuButton {
-		private readonly TagsMenuContextBase MenuContext;
+		private readonly ModTagsManager Manager;
 
 		public bool IsLocked { get; private set; }
 
@@ -15,9 +16,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags.UI {
 
 		////////////////
 
-		public UITagResetButton( UITheme theme, TagsMenuContextBase menuContext )
+		public UITagResetButton( UITheme theme, ModTagsManager manager )
 				: base( theme, "Reset Tags", 98f, 24f, -196f, 172f, 0.36f, true ) {
-			this.MenuContext = menuContext;
+			this.Manager = manager;
 
 			this.RecalculatePos();
 			this.UpdateEnableState();

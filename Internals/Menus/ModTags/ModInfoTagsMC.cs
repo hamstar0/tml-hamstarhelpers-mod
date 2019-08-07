@@ -3,11 +3,12 @@ using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Internals.Menus.ModTags.UI;
+using HamstarHelpers.Internals.ModTags;
+using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
-using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using System;
@@ -27,8 +28,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var ctx = new ModInfoTagsMenuContext();
-				MenuContextService.AddMenuContext( "UIModInfo", "ModHelpers: Mod Info", ctx );
+				var manager = new ModTagsManager();
+				var ctx = new ModInfoTagsMenuContext( manager );
+				MenuContextService.AddMenuContext( TModLoaderMenuDefinition.ModInfo, "ModHelpers: Mod Info", ctx );
 			}
 		}
 
@@ -48,10 +50,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private ModInfoTagsMenuContext() : base( false ) {
+		private ModInfoTagsMenuContext( ModTagsManager manager ) : base( manager, false ) {
 			Func<Rectangle> getRect = () => {
 				UIElement homepageButton;
-				if( ReflectionHelpers.Get( this.MyUI, "_modHomepageButton", out homepageButton ) ) {
+				if( ReflectionHelpers.Get( this.MyMenuUI, "_modHomepageButton", out homepageButton ) ) {
 					return homepageButton?.GetOuterDimensions().ToRectangle() ?? new Rectangle( -1, -1, 0, 0 );
 				} else {
 					LogHelpers.Warn( "Could not get _modHomepageButton" );
@@ -61,7 +63,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			Action onHover = () => {
 				string url;
-				if( ReflectionHelpers.Get( this.MyUI, "_url", out url ) ) {
+				if( ReflectionHelpers.Get( this.MyMenuUI, "_url", out url ) ) {
 					this.InfoDisplay?.SetText( "" + url );
 				} else {
 					LogHelpers.Warn( "Could not get url" );
@@ -72,22 +74,22 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			};
 
 			this.HiddenPanel = new UIHiddenPanel( getRect, onHover, onExit );
-			this.FinishButton = new UITagFinishButton( UITheme.Vanilla, this );
-			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this );
+			this.FinishButton = new UITagFinishButton( UITheme.Vanilla, manager );
+			this.ResetButton = new UITagResetButton( UITheme.Vanilla, manager );
 		}
 
 		////
 
-		public override void OnContexualize( string uiClassName, string contextName ) {
-			base.OnContexualize( uiClassName, contextName );
+		public override void OnContexualize( TModLoaderMenuDefinition menuDef, string contextName ) {
+			base.OnContexualize( menuDef, contextName );
 
 			var hiddenWidgetCtx = new WidgetMenuContext( this.HiddenPanel, false );
 			var finishButtonWidgetCtx = new WidgetMenuContext( this.FinishButton, false );
 			var resetButtonWidgetCtx = new WidgetMenuContext( this.ResetButton, false );
 
-			MenuContextService.AddMenuContext( uiClassName, contextName + " Hidden", hiddenWidgetCtx );
-			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Finish Button", finishButtonWidgetCtx );
-			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Reset Button", resetButtonWidgetCtx );
+			MenuContextService.AddMenuContext( menuDef, contextName + " Hidden", hiddenWidgetCtx );
+			MenuContextService.AddMenuContext( menuDef, contextName + " Tag Finish Button", finishButtonWidgetCtx );
+			MenuContextService.AddMenuContext( menuDef, contextName + " Tag Reset Button", resetButtonWidgetCtx );
 		}
 
 

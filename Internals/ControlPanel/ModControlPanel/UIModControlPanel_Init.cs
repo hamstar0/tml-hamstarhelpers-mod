@@ -48,7 +48,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.OpenConfigList.Left.Set( -188f, 1f );
 			this.OpenConfigList.Width.Set( 160f, 0f );
 			this.OpenConfigList.OnClick += ( _, __ ) => {
-				MainMenuHelpers.LoadConfigList();
+				MainMenuHelpers.OpenModConfigListUI();
 			};
 			this.Append( this.OpenConfigList );
 

@@ -15,7 +15,4 @@
     <None Remove=".gitignore" />
     <None Remove="icon.pdn" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Internals\ModTags\UI\" />
-  </ItemGroup>
 </Project>

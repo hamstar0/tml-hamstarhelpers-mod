@@ -2,7 +2,9 @@
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.Menus.ModTags.UI;
+using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Internals.ModTags;
+using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Services.UI.Menus;
 
 
@@ -13,7 +15,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var ctx = new ModBrowserTagsMenuContext();
+				var ctx = new ModBrowserTagsMenuContext( manager );
 				MenuContextService.AddMenuContext( "UIModBrowser", "ModHelpers: Mod Browser", ctx );
 			}
 		}
@@ -29,15 +31,15 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private ModBrowserTagsMenuContext() : base( true ) {
+		private ModBrowserTagsMenuContext( ModTagsManager manager ) : base( manager, true ) {
 			//this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true );
-			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this );
+			this.ResetButton = new UITagResetButton( UITheme.Vanilla, manager );
 
 			//this.BlankButton.Disable();
 		}
 
-		public override void OnContexualize( string uiClassName, string contextName ) {
-			base.OnContexualize( uiClassName, contextName );
+		public override void OnContexualize( TModLoaderMenuDefinition menuDef, string contextName ) {
+			base.OnContexualize( menuDef, contextName );
 
 			var blankRecomPanel = new UIMenuPanel( UITheme.Vanilla, 198f, 132f, 202f, 40f );
 			var blankDlButtonPanel = new UIMenuPanel( UITheme.Vanilla, 198f, 26f, 202f, 172f );
@@ -47,10 +49,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			var blankRecomWidgetCtx = new WidgetMenuContext( blankRecomPanel, false );
 			var blankDlWidgetCtx = new WidgetMenuContext( blankDlButtonPanel, false );
 
-			//MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Blank Button", blankButtonWidgetCtx );
-			MenuContextService.AddMenuContext( uiClassName, contextName + " Tag Reset Button", resetButtonWidgetCtx );
-			MenuContextService.AddMenuContext( uiClassName, contextName + " Blank Recommendations List", blankRecomWidgetCtx );
-			MenuContextService.AddMenuContext( uiClassName, contextName + " Blank Download Button", blankDlWidgetCtx );
+			//MenuContextService.AddMenuContext( menuDef, contextName + " Tag Blank Button", blankButtonWidgetCtx );
+			MenuContextService.AddMenuContext( menuDef, contextName + " Tag Reset Button", resetButtonWidgetCtx );
+			MenuContextService.AddMenuContext( menuDef, contextName + " Blank Recommendations List", blankRecomWidgetCtx );
+			MenuContextService.AddMenuContext( menuDef, contextName + " Blank Download Button", blankDlWidgetCtx );
 		}
 
 

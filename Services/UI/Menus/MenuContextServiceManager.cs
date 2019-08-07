@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,11 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Services.UI.Menus {
 	class MenuContextServiceManager {
-		internal IDictionary<string, IDictionary<string, MenuContext>> Contexts = new Dictionary<string, IDictionary<string, MenuContext>>();
+		internal IDictionary<TModLoaderMenuDefinition, IDictionary<string, MenuContext>> Contexts
+			= new Dictionary<TModLoaderMenuDefinition, IDictionary<string, MenuContext>>();
 
-		internal Tuple<string, UIState> CurrentMenuUI = null;
-		internal Tuple<string, UIState> PreviousMenuUI = null;
+		internal Tuple<TModLoaderMenuDefinition, UIState> CurrentMenuUI = null;
+		internal Tuple<TModLoaderMenuDefinition, UIState> PreviousMenuUI = null;
 		
 
 
@@ -40,14 +42,14 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 		private void HideAll() {
 			if( this.CurrentMenuUI != null ) {
-				string context = this.CurrentMenuUI.Item1;
+				TModLoaderMenuDefinition menuDef = this.CurrentMenuUI.Item1;
 
-				if( !this.Contexts.ContainsKey(context) ) {
-					LogHelpers.Warn( "Missing menu context " + context );
+				if( !this.Contexts.ContainsKey(menuDef) ) {
+					LogHelpers.Warn( "Missing menu context " + Enum.GetName(typeof(TModLoaderMenuDefinition), menuDef) );
 					return;
 				}
 
-				IDictionary<string, MenuContext> loaders = this.Contexts[ context ];
+				IDictionary<string, MenuContext> loaders = this.Contexts[ menuDef ];
 
 				foreach( MenuContext loader in loaders.Values ) {
 					loader.Hide( this.CurrentMenuUI.Item2 );
@@ -68,9 +70,16 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 		private void Update() {
 			UIState ui = Main.MenuUI.CurrentState;
+			string prevUiName, currUiName;
 
-			string prevUiName = this.CurrentMenuUI?.Item1;
-			string currUiName = ui?.GetType().Name;
+			if( this.CurrentMenuUI == null ) {
+				prevUiName = null;
+			} else {
+				TModLoaderMenuDefinition prevUiDef = this.CurrentMenuUI.Item1;
+				prevUiName = "UI" + Enum.GetName( typeof( TModLoaderMenuDefinition ), prevUiDef );
+			}
+
+			currUiName = ui?.GetType().Name;
 
 			if( prevUiName == currUiName ) {
 				return;
@@ -81,32 +90,39 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 
 		private void LoadUI( UIState ui ) {
-			string prevUiName = this.CurrentMenuUI?.Item1;
-			string currUiName = ui?.GetType().Name;
+			if( ui == null ) {
+				this.CurrentMenuUI = null;
+				return;
+			}
+
+			TModLoaderMenuDefinition prevUiDef, currUiDef;
+
+			prevUiDef = this.CurrentMenuUI?.Item1 ?? 0;
+
+			string currUiName = ui.GetType().Name.Substring( 2 );
+			if( !Enum.TryParse(currUiName, out currUiDef) ) {
+				this.CurrentMenuUI = null;
+				return;
+			}
 
 			this.PreviousMenuUI = this.CurrentMenuUI;
 
-			if( prevUiName != null && this.Contexts.ContainsKey(prevUiName) ) {
-				var contexts = this.Contexts[ prevUiName ].Values;
+			if( prevUiDef != 0 && this.Contexts.ContainsKey(prevUiDef) ) {
+				var contexts = this.Contexts[ prevUiDef ].Values;
 				
 				foreach( MenuContext ctx in contexts ) {
 					ctx.Hide( this.CurrentMenuUI.Item2 );
 				}
 				//this.Unloaders.Remove( prev_ui_name );
 			}
-			
-			if( ui == null ) {
-				this.CurrentMenuUI = null;
-				return;
-			}
 
-			if( this.Contexts.ContainsKey( currUiName ) ) {
-				foreach( MenuContext ctx in this.Contexts[currUiName].Values ) {
+			if( this.Contexts.ContainsKey( currUiDef ) ) {
+				foreach( MenuContext ctx in this.Contexts[currUiDef].Values ) {
 					ctx.Show( ui );
 				}
 			}
 
-			this.CurrentMenuUI = Tuple.Create( currUiName, ui );
+			this.CurrentMenuUI = Tuple.Create( currUiDef, ui );
 		}
 	}
 }

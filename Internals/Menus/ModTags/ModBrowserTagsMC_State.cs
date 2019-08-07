@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Internals.Menus.ModTags.UI;
+using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
@@ -51,12 +51,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void ApplyDefaultFiltersAsync( UIState ui ) {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
-					if( this.MyUI != ui ) {
+					if( this.MyMenuUI != ui ) {
 						return false;
 					}
 
 					bool isLoading;
-					if( !ReflectionHelpers.Get( this.MyUI, "loading", out isLoading ) ) {
+					if( !ReflectionHelpers.Get( this.MyMenuUI, "loading", out isLoading ) ) {
 						LogHelpers.Warn( "ModBrowserTagsMenuContext - No 'loading'." );
 						return false;
 					}
@@ -142,8 +142,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 
 				modInfoButton.OnClick += (evt, elem) => {
-					if( this.MyUI == null ) { return; }
-					if( !ReflectionHelpers.Set( this.MyUI, "selectedItem", item ) ) {
+					if( this.MyMenuUI == null ) { return; }
+					if( !ReflectionHelpers.Set( this.MyMenuUI, "selectedItem", item ) ) {
 						LogHelpers.Alert( "Could not set selected item from the mod browser" );
 					}
 				};

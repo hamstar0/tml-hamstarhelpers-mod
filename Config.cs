@@ -58,6 +58,12 @@ namespace HamstarHelpers {
 		[Label( "Debug Mode - Packet Info" )]
 		[Tooltip( "Logs PacketProtocol payload content.")]
 		public bool DebugModePacketInfo = false;
+		/// <summary>
+		/// Displays the current menu's ID in bottom right.
+		/// </summary>
+		[Label( "Debug Mode - Show Menu ID" )]
+		[Tooltip( "Displays the current menu's ID in bottom right." )]
+		public bool DebugModeMenuInfo = false;
 
 
 		/// <summary>
