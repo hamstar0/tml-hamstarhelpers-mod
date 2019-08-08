@@ -71,21 +71,21 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.Manager.OnTagStateChange( this );
+			this.Manager.TagsUI.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void TogglePositiveTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.Manager.OnTagStateChange( this );
+			this.Manager.TagsUI.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void ToggleNegativeTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.Manager.OnTagStateChange( this );
+			this.Manager.TagsUI.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 

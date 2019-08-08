@@ -58,15 +58,15 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.IsLocked = true;
 
 			this.UpdateEnableState();
-			this.Manager.DisableTagButtons();
+			this.Manager.TagsUI.DisableTagButtons();
 		}
 
 		public void Unlock() {
 			this.IsLocked = false;
 
 			this.UpdateEnableState();
-			this.Manager.EnableTagButtons();
-			this.Manager.EnableResetButton();
+			this.Manager.TagsUI.EnableTagButtons();
+			this.Manager.TagsUI.EnableResetButton();
 			//if( this.MenuContext.ResetButton.IsLocked ) {
 			//	this.MenuContext.ResetButton.Unlock();
 			//}
@@ -79,19 +79,19 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.SetText( "Modify Tags" );
 			
 			this.UpdateEnableState();
-			this.Manager.UpdateResetButton();
+			this.Manager.TagsUI.UpdateResetButton();
 			//this.MenuContext.ResetButton.UpdateEnableState();
 		}
 
 		public void SetModeSubmit() {
 			this.SetText( "Submit Tags" );
 
-			this.Manager.EnableTagButtons();
+			this.Manager.TagsUI.EnableTagButtons();
 			//this.MenuContext.Panel.EnableTagButtons();
 
 			this.UpdateEnableState();
 			//this.MenuContext.ResetButton.UpdateEnableState();
-			this.Manager.UpdateResetButton();
+			this.Manager.TagsUI.UpdateResetButton();
 		}
 
 		////////////////

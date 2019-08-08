@@ -1,18 +1,13 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Classes.UI.Theme;
+﻿using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
@@ -36,44 +31,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private UIHiddenPanel HiddenPanel;
-		internal UITagFinishButton FinishButton;
-		internal UITagResetButton ResetButton;
-
-		public string CurrentModName = "";
-
-		internal IDictionary<string, ISet<string>> AllModTagsSnapshot = null;
-
-
-
-		////////////////
-
 		private ModInfoTagsMenuContext() : base( false ) {
-			Func<Rectangle> getRect = () => {
-				UIElement homepageButton;
-				if( ReflectionHelpers.Get( this.MyMenuUI, "_modHomepageButton", out homepageButton ) ) {
-					return homepageButton?.GetOuterDimensions().ToRectangle() ?? new Rectangle( -1, -1, 0, 0 );
-				} else {
-					LogHelpers.Warn( "Could not get _modHomepageButton" );
-					return default( Rectangle );
-				}
-			};
-
-			Action onHover = () => {
-				string url;
-				if( ReflectionHelpers.Get( this.MyMenuUI, "_url", out url ) ) {
-					this.InfoDisplay?.SetText( "" + url );
-				} else {
-					LogHelpers.Warn( "Could not get url" );
-				}
-			};
-			Action onExit = () => {
-				this.InfoDisplay?.SetText( "" );
-			};
-
-			this.HiddenPanel = new UIHiddenPanel( getRect, onHover, onExit );
-			this.FinishButton = new UITagFinishButton( UITheme.Vanilla, this.Manager );
-			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this.Manager );
 		}
 
 		////
@@ -81,21 +39,9 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
 			base.OnContexualize( menuDef, contextName );
 
-			var hiddenWidgetCtx = new WidgetMenuContext( this.HiddenPanel, false );
-			var finishButtonWidgetCtx = new WidgetMenuContext( this.FinishButton, false );
-			var resetButtonWidgetCtx = new WidgetMenuContext( this.ResetButton, false );
-
 			MenuContextService.AddMenuContext( menuDef, contextName + " Hidden", hiddenWidgetCtx );
 			MenuContextService.AddMenuContext( menuDef, contextName + " Tag Finish Button", finishButtonWidgetCtx );
 			MenuContextService.AddMenuContext( menuDef, contextName + " Tag Reset Button", resetButtonWidgetCtx );
-		}
-
-
-		////////////////
-
-		public override void OnTagStateChange( UITagButton tagButton ) {
-			this.FinishButton.UpdateEnableState();
-			this.ResetButton.UpdateEnableState();
 		}
 
 
@@ -120,7 +66,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			var modInfo = modInfos[this.CurrentModName];
 			if( modInfo.IsBadMod ) {
-				this.Panel.SafelySetTagButton( "Misleading Info" );
+				this.UI.SafelySetTagButton( "Misleading Info" );
 			}
 		}
 	}

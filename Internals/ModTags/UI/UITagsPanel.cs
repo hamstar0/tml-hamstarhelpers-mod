@@ -1,51 +1,34 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Elements.Menu;
-using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.TML;
-using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.UI {
-	class UITagsPanel : UIThemedPanel {
+	partial class UITagsPanel : UIThemedPanel {
 		private readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
 		private readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
+
+		////////////////
+
+		private ModTagsManager Manager;
+
+		private UIHiddenPanel HiddenPanel;
+		private UITagFinishButton FinishButton;
+		private UITagResetButton ResetButton;
 
 
 
 		////////////////
 
-		public UITagsPanel( UITheme theme, ModTagsManager manager, TagDefinition[] tags, bool canDisableTags ) : base( theme ) {
-			float y = 0;
-			
-			foreach( string category in new HashSet<string>( tags.Select(t=>t.Category) ) ) {
-				this.CategoryButtons[category] = new UIMenuButton( theme, category, 160f, 32f, 0f, y );
-				y += 32;
-			}
+		public UITagsPanel( UIState uiContext, UITheme theme, ModTagsManager manager, TagDefinition[] tags, bool canDisableTags ) : base( theme ) {
+			this.Manager = manager;
 
-			for( int i = 0; i < tags.Length; i++ ) {
-				string tag = tags[i].Tag;
-
-				this.TagButtons[tag] = new UITagButton( this.Theme, manager, tag, tags[i].Description, canDisableTags );
-			}
-		}
-
-		////
-
-		public void ApplyMenuContext( MenuUIDefinition menuDef, string contextName ) {
-			int i = 0;
-
-			foreach( UITagButton button in this.TagButtons.Values ) {
-				var buttonWidgetCtx = new WidgetMenuContext( button, false );
-
-				MenuContextService.AddMenuContext( menuDef, contextName + " Tag " + i, buttonWidgetCtx );
-				i++;
-			}
+			this.InitializeControls( uiContext, tags, canDisableTags );
 		}
 
 
@@ -98,48 +81,6 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				}
 			}
 			return tags;
-		}
-
-
-		////////////////
-
-		public void EnableTagButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Enable();
-			}
-		}
-
-		public void DisableTagButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Disable();
-			}
-		}
-
-		////
-
-		public void ResetTagButtons( bool alsoDisable ) {
-			foreach( var kv in this.TagButtons ) {
-				if( alsoDisable ) {
-					kv.Value.Disable();
-				}
-				kv.Value.SetTagState( 0 );
-			}
-		}
-
-
-		////
-
-		public void SafelySetTagButton( string tag ) {
-			var button = this.TagButtons[tag];
-
-			if( button.TagState != 1 ) {
-				if( Timers.GetTimerTickDuration( "ModHelpersTagsEditDefaults" ) <= 0 ) {
-					Timers.SetTimer( "ModHelpersTagsEditDefaults", 60, () => {
-						button.SetTagState( 1 );
-						return false;
-					} );
-				}
-			}
 		}
 	}
 }

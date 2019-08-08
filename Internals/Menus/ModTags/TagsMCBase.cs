@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Classes.UI.Menu;
-using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags;
@@ -12,21 +11,19 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		public readonly ModTagsManager Manager;
-		public readonly UITagsPanel Panel;
 
 
 
 		////////////////
 
 		protected TagsMenuContextBase( bool canDisableTags ) : base( true, true ) {
-			this.Manager = new ModTagsManager( this );
-			this.Panel = new UITagsPanel( UITheme.Vanilla, this.Manager, ModTagsManager.Tags, canDisableTags );
+			this.Manager = new ModTagsManager( this, canDisableTags );
 		}
 
 		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
 			base.OnContexualize( menuDef, contextName );
 
-			this.Panel.ApplyMenuContext( menuDef, contextName );
+			this.Manager.TagsUI.ApplyMenuContext( menuDef, contextName );
 		}
 
 
@@ -36,7 +33,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 
 		public ISet<string> GetTagsWithGivenState( int state ) {
-			return this.Panel.GetTagsWithGivenState( state );
+			return this.Manager.TagsUI.GetTagsWithGivenState( state );
 		}
 	}
 }

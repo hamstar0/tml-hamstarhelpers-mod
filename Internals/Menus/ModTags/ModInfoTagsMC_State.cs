@@ -78,42 +78,15 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 			}
 
-			this.Panel.ResetTagButtons( true );
+			this.UI.ResetTagButtons( true );
 		}
 
 
 		////////////////
 
 		private void SetCurrentMod( UIState ui, string modName ) {
-			this.CurrentModName = modName;
-
-			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
-				if( !args.Found ) {
-					LogHelpers.Warn();
-					return false;
-				}
-
-				this.AllModTagsSnapshot = args.ModTags;
-
-				ISet<string> netModTags = args.Found && args.ModTags.ContainsKey( modName ) ?
-						args.ModTags[ modName ] :
-						new HashSet<string>();
-				bool hasNetTags = netModTags.Count > 0;
-
-				//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
-				if( hasNetTags ) {
-					this.InfoDisplay.SetDefaultText( "Do these tags look incorrect? If so, modify them." );
-					this.FinishButton.SetModeReadOnly();
-					this.ResetButton.Disable();
-				} else {
-					this.InfoDisplay.SetDefaultText( "No tags set for this mod. Why not add some?" );
-					this.FinishButton.SetModeSubmit();
-				}
-
-				this.Panel.SetCurrentMod( modName, netModTags );
-
-				return false;
-			} );
+			this.Manager.SetCurrentMod( modName );
+			//this.CurrentModName = modName;
 		}
 	}
 }

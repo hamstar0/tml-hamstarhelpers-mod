@@ -1,28 +1,22 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.ModTags.UI;
+using Microsoft.Xna.Framework;
 using System;
 
 
 namespace HamstarHelpers.Internals.ModTags {
 	partial class ModTagsManager {
-		public void OnTagStateChange( UITagButton button ) {
-
+		public string GetInfoText() {
+			return this.Context.InfoDisplay?.GetText() ?? null;
 		}
 
+		public void SetInfoText( string text, Color? color = null ) {
+			this.Context.InfoDisplay?.SetText( text, color );
+		}
 
-		////////////////
+		////
 
-		public void DisableTagButtons() { }
-
-		public void EnableTagButtons() { }
-
-		public void ResetTagButtons() { }
-
-
-		////////////////
-
-		public void EnableResetButton() { }
-
-		public void UpdateResetButton() { }
+		public void SetInfoTextDefault( string text ) {
+			this.Context.InfoDisplay?.SetDefaultText( text );
+		}
 	}
 }
