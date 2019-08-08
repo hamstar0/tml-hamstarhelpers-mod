@@ -1,8 +1,6 @@
-﻿using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
@@ -34,16 +32,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private ModInfoTagsMenuContext() : base( false ) {
 		}
 
-		////
-
-		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
-			base.OnContexualize( menuDef, contextName );
-
-			MenuContextService.AddMenuContext( menuDef, contextName + " Hidden", hiddenWidgetCtx );
-			MenuContextService.AddMenuContext( menuDef, contextName + " Tag Finish Button", finishButtonWidgetCtx );
-			MenuContextService.AddMenuContext( menuDef, contextName + " Tag Reset Button", resetButtonWidgetCtx );
-		}
-
 
 		////////////////
 
@@ -60,13 +48,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		////////////////
 
 		private void ApplyDefaultEditModeTags( IDictionary<string, BasicModInfo> modInfos ) {
-			if( !modInfos.ContainsKey( this.CurrentModName ) ) {
+			if( !modInfos.ContainsKey( this.Manager.CurrentModName ) ) {
 				return;
 			}
 
-			var modInfo = modInfos[this.CurrentModName];
+			var modInfo = modInfos[this.Manager.CurrentModName];
 			if( modInfo.IsBadMod ) {
-				this.UI.SafelySetTagButton( "Misleading Info" );
+				this.Manager.TagsUI.SafelySetTagButton( "Misleading Info" );
 			}
 		}
 	}

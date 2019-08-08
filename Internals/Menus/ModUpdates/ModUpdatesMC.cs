@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -20,7 +21,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 			if( ModHelpersMod.Instance.Config.DisableModMenuUpdates ) { return; }
 			
 			var ctx = new ModUpdatesMenuContext();
-			MenuContextService.AddMenuContext( "UIMods", "ModHelpers: Mod Updates", ctx );
+			MenuContextService.AddMenuContext( MenuUIDefinition.UIMods, "ModHelpers: Mod Updates", ctx );
 		}
 
 
@@ -28,10 +29,6 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		////////////////
 
 		private ModUpdatesMenuContext() : base( false, false ) {
-		}
-		
-		public override void OnContexualize( string uiClassName, string contextName ) {
-			base.OnContexualize( uiClassName, contextName );
 		}
 
 
