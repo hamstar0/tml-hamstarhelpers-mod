@@ -11,17 +11,19 @@ using System.Collections.Generic;
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
+		public readonly ModTagsManager Manager;
 		public readonly UITagsPanel Panel;
 
 
 
 		////////////////
 
-		protected TagsMenuContextBase( ModTagsManager manager, bool canDisableTags ) : base( true, true ) {
-			this.Panel = new UITagsPanel( UITheme.Vanilla, manager, ModTagsManager.Tags, canDisableTags );
+		protected TagsMenuContextBase( bool canDisableTags ) : base( true, true ) {
+			this.Manager = new ModTagsManager( this );
+			this.Panel = new UITagsPanel( UITheme.Vanilla, this.Manager, ModTagsManager.Tags, canDisableTags );
 		}
 
-		public override void OnContexualize( TModLoaderMenuDefinition menuDef, string contextName ) {
+		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
 			base.OnContexualize( menuDef, contextName );
 
 			this.Panel.ApplyMenuContext( menuDef, contextName );

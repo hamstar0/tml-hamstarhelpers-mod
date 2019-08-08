@@ -10,11 +10,11 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Services.UI.Menus {
 	class MenuContextServiceManager {
-		internal IDictionary<TModLoaderMenuDefinition, IDictionary<string, MenuContext>> Contexts
-			= new Dictionary<TModLoaderMenuDefinition, IDictionary<string, MenuContext>>();
+		private IDictionary<MenuUIDefinition, IDictionary<string, MenuContext>> Contexts
+			= new Dictionary<MenuUIDefinition, IDictionary<string, MenuContext>>();
 
-		internal Tuple<TModLoaderMenuDefinition, UIState> CurrentMenuUI = null;
-		internal Tuple<TModLoaderMenuDefinition, UIState> PreviousMenuUI = null;
+		private Tuple<MenuUIDefinition, UIState> CurrentMenuUI = null;
+		private Tuple<MenuUIDefinition, UIState> PreviousMenuUI = null;
 		
 
 
@@ -42,10 +42,10 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 		private void HideAll() {
 			if( this.CurrentMenuUI != null ) {
-				TModLoaderMenuDefinition menuDef = this.CurrentMenuUI.Item1;
+				MenuUIDefinition menuDef = this.CurrentMenuUI.Item1;
 
 				if( !this.Contexts.ContainsKey(menuDef) ) {
-					LogHelpers.Warn( "Missing menu context " + Enum.GetName(typeof(TModLoaderMenuDefinition), menuDef) );
+					LogHelpers.Warn( "Missing menu context " + Enum.GetName(typeof(MenuUIDefinition), menuDef) );
 					return;
 				}
 
@@ -75,8 +75,8 @@ namespace HamstarHelpers.Services.UI.Menus {
 			if( this.CurrentMenuUI == null ) {
 				prevUiName = null;
 			} else {
-				TModLoaderMenuDefinition prevUiDef = this.CurrentMenuUI.Item1;
-				prevUiName = "UI" + Enum.GetName( typeof( TModLoaderMenuDefinition ), prevUiDef );
+				MenuUIDefinition prevUiDef = this.CurrentMenuUI.Item1;
+				prevUiName = Enum.GetName( typeof(MenuUIDefinition), prevUiDef );
 			}
 
 			currUiName = ui?.GetType().Name;
@@ -95,7 +95,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 				return;
 			}
 
-			TModLoaderMenuDefinition prevUiDef, currUiDef;
+			MenuUIDefinition prevUiDef, currUiDef;
 
 			prevUiDef = this.CurrentMenuUI?.Item1 ?? 0;
 

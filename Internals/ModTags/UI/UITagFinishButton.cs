@@ -22,15 +22,17 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public UITagFinishButton( UITheme theme, ModTagsManager manager )
 				: base( theme, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
 			this.Manager = manager;
+
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
 				if( this.Text == "Submit Tags" ) {
-					MenuContext.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
+					manager.SetInfoText( "Submit tags to online database.", Color.White );
+					//MenuContext.InfoDisplay?.SetText( "Submit tags to online database.", Color.White );
 				} else if( this.Text == "Modify Tags" ) {
-					MenuContext.InfoDisplay?.SetText( "Enable changing current mod's tags.", Color.White );
+					manager.SetInfoText( "Enable changing current mod's tags.", Color.White );
 				}
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				MenuContext.InfoDisplay?.SetText( "", Color.White );
+				manager.SetInfoText( "", Color.White );
 			};
 
 			this.RecalculatePos();
@@ -45,7 +47,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			if( this.Text == "Modify Tags" ) {
 				this.SetModeSubmit();
 			} else if( this.Text == "Submit Tags" ) {
-				this.MenuContext.SubmitTags();
+				this.Manager.SubmitTags();
 			}
 		}
 
@@ -56,18 +58,18 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.IsLocked = true;
 
 			this.UpdateEnableState();
-			this.MenuContext.Panel.DisableTagButtons();
+			this.Manager.DisableTagButtons();
 		}
 
 		public void Unlock() {
 			this.IsLocked = false;
 
 			this.UpdateEnableState();
-			this.MenuContext.Panel.EnableTagButtons();
-			
-			if( this.MenuContext.ResetButton.IsLocked ) {
-				this.MenuContext.ResetButton.Unlock();
-			}
+			this.Manager.EnableTagButtons();
+			this.Manager.EnableResetButton();
+			//if( this.MenuContext.ResetButton.IsLocked ) {
+			//	this.MenuContext.ResetButton.Unlock();
+			//}
 		}
 		
 
@@ -77,16 +79,19 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.SetText( "Modify Tags" );
 			
 			this.UpdateEnableState();
-			this.MenuContext.ResetButton.UpdateEnableState();
+			this.Manager.UpdateResetButton();
+			//this.MenuContext.ResetButton.UpdateEnableState();
 		}
 
 		public void SetModeSubmit() {
 			this.SetText( "Submit Tags" );
-			
-			this.MenuContext.Panel.EnableTagButtons();
+
+			this.Manager.EnableTagButtons();
+			//this.MenuContext.Panel.EnableTagButtons();
 
 			this.UpdateEnableState();
-			this.MenuContext.ResetButton.UpdateEnableState();
+			//this.MenuContext.ResetButton.UpdateEnableState();
+			this.Manager.UpdateResetButton();
 		}
 
 		////////////////
@@ -97,7 +102,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			string modName = this.MenuContext.CurrentModName;
+			string modName = this.Manager.CurrentModName;
 
 			if( string.IsNullOrEmpty( modName ) ) {
 				this.Disable();
@@ -114,10 +119,10 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			ISet<string> tags = this.MenuContext.GetTagsWithGivenState( 1 );
+			ISet<string> tags = this.Manager.GetTagsWithGivenState( 1 );
 
-			if( this.MenuContext.AllModTagsSnapshot != null && this.MenuContext.AllModTagsSnapshot.ContainsKey(modName) ) {
-				if( tags.SetEquals( this.MenuContext.AllModTagsSnapshot[modName] ) ) {
+			if( this.Manager.AllModTagsSnapshot != null && this.Manager.AllModTagsSnapshot.ContainsKey(modName) ) {
+				if( tags.SetEquals( this.Manager.AllModTagsSnapshot[modName] ) ) {
 					this.Disable();
 					return;
 				}
@@ -138,7 +143,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public override void Update( GameTime gameTime ) {
 			base.Update( gameTime );
 
-			this.MenuContext.UpdateMode( this.Text == "Submit Tags" );
+			this.Manager.UpdateMode( this.Text == "Submit Tags" );
 		}
 
 

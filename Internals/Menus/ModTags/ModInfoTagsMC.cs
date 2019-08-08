@@ -5,7 +5,6 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Internals.ModTags;
 using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -28,9 +27,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var manager = new ModTagsManager();
-				var ctx = new ModInfoTagsMenuContext( manager );
-				MenuContextService.AddMenuContext( TModLoaderMenuDefinition.ModInfo, "ModHelpers: Mod Info", ctx );
+				var ctx = new ModInfoTagsMenuContext();
+				MenuContextService.AddMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Info", ctx );
 			}
 		}
 
@@ -50,7 +48,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private ModInfoTagsMenuContext( ModTagsManager manager ) : base( manager, false ) {
+		private ModInfoTagsMenuContext() : base( false ) {
 			Func<Rectangle> getRect = () => {
 				UIElement homepageButton;
 				if( ReflectionHelpers.Get( this.MyMenuUI, "_modHomepageButton", out homepageButton ) ) {
@@ -74,13 +72,13 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			};
 
 			this.HiddenPanel = new UIHiddenPanel( getRect, onHover, onExit );
-			this.FinishButton = new UITagFinishButton( UITheme.Vanilla, manager );
-			this.ResetButton = new UITagResetButton( UITheme.Vanilla, manager );
+			this.FinishButton = new UITagFinishButton( UITheme.Vanilla, this.Manager );
+			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this.Manager );
 		}
 
 		////
 
-		public override void OnContexualize( TModLoaderMenuDefinition menuDef, string contextName ) {
+		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
 			base.OnContexualize( menuDef, contextName );
 
 			var hiddenWidgetCtx = new WidgetMenuContext( this.HiddenPanel, false );

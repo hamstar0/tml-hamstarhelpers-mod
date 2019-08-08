@@ -12,7 +12,7 @@ namespace HamstarHelpers.Classes.UI.Menus {
 		/// </summary>
 		/// <param name="menuDef"></param>
 		/// <param name="contextName"></param>
-		public abstract void OnContexualize( TModLoaderMenuDefinition menuDef, string contextName );
+		public abstract void OnContexualize( MenuUIDefinition menuDef, string contextName );
 		/// <summary>
 		/// When a menu bound to the current context is shown.
 		/// </summary>

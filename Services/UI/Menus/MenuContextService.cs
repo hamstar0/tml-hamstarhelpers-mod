@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// </summary>
 		/// <param name="menuDefinition"></param>
 		/// <returns></returns>
-		public static bool ContainsMenuContexts( TModLoaderMenuDefinition menuDefinition ) {
+		public static bool ContainsMenuContexts( MenuUIDefinition menuDefinition ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuContextMngr == null ) { return false; }
 			var loaders = mymod.MenuContextMngr.Contexts;
@@ -36,7 +36,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <param name="menuDefinition"></param>
 		/// <param name="contextName"></param>
 		/// <returns></returns>
-		public static MenuContext GetMenuContext( TModLoaderMenuDefinition menuDefinition, string contextName ) {
+		public static MenuContext GetMenuContext( MenuUIDefinition menuDefinition, string contextName ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuContextMngr == null ) { return null; }
 			var loaders = mymod.MenuContextMngr.Contexts;
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <param name="menuDefinition"></param>
 		/// <param name="contextName"></param>
 		/// <param name="context"></param>
-		public static void AddMenuContext( TModLoaderMenuDefinition menuDefinition, string contextName, MenuContext context ) {
+		public static void AddMenuContext( MenuUIDefinition menuDefinition, string contextName, MenuContext context ) {
 			var mymod = ModHelpersMod.Instance;
 
 			if( !mymod.MenuContextMngr.Contexts.ContainsKey( menuDefinition ) ) {

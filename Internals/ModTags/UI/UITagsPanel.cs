@@ -22,7 +22,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		public UITagsPanel( UITheme theme, ModTagsManager manager, TagDefinition[] tags, bool canDisableTags ) : base( theme ) {
 			float y = 0;
-
+			
 			foreach( string category in new HashSet<string>( tags.Select(t=>t.Category) ) ) {
 				this.CategoryButtons[category] = new UIMenuButton( theme, category, 160f, 32f, 0f, y );
 				y += 32;
@@ -37,7 +37,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////
 
-		public void ApplyMenuContext( TModLoaderMenuDefinition menuDef, string contextName ) {
+		public void ApplyMenuContext( MenuUIDefinition menuDef, string contextName ) {
 			int i = 0;
 
 			foreach( UITagButton button in this.TagButtons.Values ) {

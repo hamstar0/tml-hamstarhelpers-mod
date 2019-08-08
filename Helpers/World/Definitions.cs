@@ -3,7 +3,7 @@
 
 namespace HamstarHelpers.Helpers.World {
 	/// <summary></summary>
-	public enum VanillaBiomes {
+	public enum VanillaBiome {
 		/// <summary></summary>
 		Forest,
 		/// <summary></summary>
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Helpers.World {
 		Temple
 	}
 	/// <summary></summary>
-	public enum VanillaSectionalBiomes {
+	public enum VanillaSectionalBiome {
 		/// <summary></summary>
 		Forest,
 		/// <summary></summary>
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Helpers.World {
 		Hell
 	}
 	/// <summary></summary>
-	public enum VanillaSurfaceBiomes {
+	public enum VanillaSurfaceBiome {
 		/// <summary></summary>
 		Forest,
 		/// <summary></summary>
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Helpers.World {
 		Hallow
 	}
 	/// <summary></summary>
-	public enum VanillaUndergroundBiomes {
+	public enum VanillaUndergroundBiome {
 		/// <summary></summary>
 		Cave,
 		/// <summary></summary>
@@ -107,7 +107,7 @@ namespace HamstarHelpers.Helpers.World {
 		Hell
 	}
 	/// <summary></summary>
-	public enum VanillaHardModeSurfaceBiomes {
+	public enum VanillaHardModeSurfaceBiome {
 		/// <summary></summary>
 		Corruption,
 		/// <summary></summary>
@@ -116,7 +116,7 @@ namespace HamstarHelpers.Helpers.World {
 		Hallow
 	}
 	/// <summary></summary>
-	public enum VanillaHardModeUndergroundBiomes {
+	public enum VanillaHardModeUndergroundBiome {
 		/// <summary></summary>
 		Temple,
 		/// <summary></summary>
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Helpers.World {
 		Hallow
 	}
 	/// <summary></summary>
-	public enum VanillaHardModeConvertibleBiomes {
+	public enum VanillaHardModeConvertibleBiome {
 		/// <summary></summary>
 		Cave,
 		/// <summary></summary>

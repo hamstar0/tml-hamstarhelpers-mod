@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.Menus.ModTags;
 using Terraria.UI;
 
 
@@ -30,7 +29,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public override void Click( UIMouseEvent evt ) {
 			if( !this.IsEnabled ) { return; }
 
-			this.MenuContext.Panel.ResetTagButtons();
+			this.Manager.ResetTagButtons();
 		}
 
 
@@ -57,21 +56,17 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				return;
 			}
 
-			var modInfoContext = this.MenuContext as ModInfoTagsMenuContext;
-
-			if( modInfoContext != null ) {
-				if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( modInfoContext.CurrentModName ) ) {
-					this.Disable();
-					return;
-				}
+			//if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( modInfoContext.CurrentModName ) ) {
+			if( this.Manager.IsCurrentModRecentlyTagged() ) {
+				this.Disable();
+				return;
 			}
 
-			if( this.MenuContext.GetTagsWithGivenState(1).Count > 0 || this.MenuContext.GetTagsWithGivenState(-1).Count > 0 ) {
-				if( modInfoContext != null ) {
-					if( modInfoContext.FinishButton.Text == "Modify Tags" ) {
-						this.Disable();
-						return;
-					}
+			if( this.Manager.GetTagsWithGivenState(1).Count > 0 || this.Manager.GetTagsWithGivenState(-1).Count > 0 ) {
+				//modInfoContext.FinishButton.Text == "Modify Tags"
+				if( this.Manager.CanEditTags() ) {
+					this.Disable();
+					return;
 				}
 				
 				this.Enable();

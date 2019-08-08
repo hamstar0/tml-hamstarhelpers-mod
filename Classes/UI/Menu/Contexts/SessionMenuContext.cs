@@ -60,7 +60,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		/// </summary>
 		/// <param name="uiClassName"></param>
 		/// <param name="contextNammenuDefe"></param>
-		public override void OnContexualize( TModLoaderMenuDefinition menuDef, string contextName ) {
+		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
 			if( this.DisplayInfo ) {
 				WidgetMenuContext widgetCtx;
 

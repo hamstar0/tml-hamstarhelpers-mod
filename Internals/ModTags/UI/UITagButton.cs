@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		private UITagsPanel Container;
+		private ModTagsManager Manager;
 
 
 		////////////////
@@ -31,9 +31,9 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagButton( UITheme theme, UITagsPanel container, string label, string desc, bool canNegateTags )
+		public UITagButton( UITheme theme, ModTagsManager manager, string label, string desc, bool canNegateTags )
 				: base( theme, label, UITagButton.ButtonWidth, UITagButton.ButtonHeight, -308f, 40, 0.6f, false ) {
-			this.Container = container;
+			this.Manager = manager;
 			this.TagState = 0;
 			this.DrawPanel = false;
 			this.Desc = desc;
@@ -47,13 +47,13 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				this.Container.SetInfoText( desc );
+				this.Manager.SetInfoText( desc );
 				//context.InfoDisplay?.SetText( desc );
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				if( this.Container.GetInfoText() == desc ) {
-					this.Container.SetInfoText( "" );
+				if( this.Manager.GetInfoText() == desc ) {
+					this.Manager.SetInfoText( "" );
 				}
 				this.RefreshTheme();
 			};
@@ -71,21 +71,21 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.Container.OnTagStateChange( this );
+			this.Manager.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void TogglePositiveTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.Container.OnTagStateChange( this );
+			this.Manager.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 
 		public void ToggleNegativeTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.Container.OnTagStateChange( this );
+			this.Manager.OnTagStateChange( this );
 			this.RefreshTheme();
 		}
 

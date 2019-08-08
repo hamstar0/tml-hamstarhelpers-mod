@@ -2,7 +2,7 @@
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Menus {
-	/*public enum VanillaMenuDefinitions {
+	/*public enum VanillaMenuDefinition {
 		WorldEvilSelect = -71,
 		WorldDifficultySelect = -7,
 		Main = 0,
@@ -36,7 +36,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 
 
-	public enum TModLoaderMenuDefinition {
+	public enum MenuUIDefinition {
+		UICharacterSelect = 0,//-1,
+		UIWorldSelect = 0,//-2,
+		UIManageControls = 0,//-3,
+		UIAchievementsMenu = 0,//-4,	//888
+
 		/*internal const int modsMenuID = 10000;
 		internal const int modSourcesID = 10001;
 		//set initial Main.menuMode to loadModsID
@@ -64,26 +69,26 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		internal const int createModID = 10025;
 		internal const int exitID = 10026;*/
 
-		Mods = 10000,
-		ModSources = 10001,
-		LoadModsProgress = 10002,
-		BuildModProgress = 10003,
-		ErrorMessage = 10005,
-		ModBrowser = 10007,
-		ModInfo = 10008,
-		ManagePublished = 10011,
-		UpdateMessage = 10012,
-		InfoMessage = 10013,
-		EnterPassphraseMenu = 10015,
-		ModPacks = 10016,
-		EnterSteamIDMenu = 10018,
-		ExtractModProgress = 10019,
-		DownloadProgress = 10020,
-		UploadModProgress = 10021,
-		DeveloperModeHelp = 10022,
-		Progress = 10023,
-		ModConfig = 10024,
-		ModConfigList = -1,	//?
-		CreateMod = 10025,
+		UIMods = 10000,
+		UIModSources = 10001,
+		UILoadModsProgress = 10002,
+		UIBuildModProgress = 10003,
+		UIErrorMessage = 10005,
+		UIModBrowser = 10007,
+		UIModInfo = 10008,
+		UIManagePublished = 10011,
+		UIUpdateMessage = 10012,
+		UIInfoMessage = 10013,
+		UIEnterPassphraseMenu = 10015,
+		UIModPacks = 10016,
+		UIEnterSteamIDMenu = 10018,
+		UIExtractModProgress = 10019,
+		UIDownloadProgress = 10020,
+		UIUploadModProgress = 10021,
+		UIDeveloperModeHelp = 10022,
+		UIProgress = 10023,
+		UIModConfig = 10024,
+		UIModConfigList = 0,//-10,	//?
+		UICreateMod = 10025,
 	}
 }

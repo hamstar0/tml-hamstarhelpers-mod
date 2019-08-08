@@ -3,7 +3,6 @@ using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags;
 using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Services.UI.Menus;
 
@@ -15,8 +14,8 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var ctx = new ModBrowserTagsMenuContext( manager );
-				MenuContextService.AddMenuContext( "UIModBrowser", "ModHelpers: Mod Browser", ctx );
+				var ctx = new ModBrowserTagsMenuContext();
+				MenuContextService.AddMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Browser", ctx );
 			}
 		}
 
@@ -31,14 +30,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private ModBrowserTagsMenuContext( ModTagsManager manager ) : base( manager, true ) {
+		private ModBrowserTagsMenuContext() : base( true ) {
 			//this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true );
-			this.ResetButton = new UITagResetButton( UITheme.Vanilla, manager );
+			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this.Manager );
 
 			//this.BlankButton.Disable();
 		}
 
-		public override void OnContexualize( TModLoaderMenuDefinition menuDef, string contextName ) {
+		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
 			base.OnContexualize( menuDef, contextName );
 
 			var blankRecomPanel = new UIMenuPanel( UITheme.Vanilla, 198f, 132f, 202f, 40f );
