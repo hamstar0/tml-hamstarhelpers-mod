@@ -18,12 +18,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			
 			this.BeginModBrowserPopulateCheck( ui );
 			this.RecalculateMenuObjects();
-			this.UI.EnableTagButtons();
+			this.Manager.TagsUI.EnableTagButtons();
 
-			this.InfoDisplay.SetDefaultText( "Click tags to filter the list. Right-click tags to filter without them." );
+			this.Manager.SetInfoTextDefault( "Click tags to filter the list. Right-click tags to filter without them." );
 
 			UIElement elem;
-			if( ReflectionHelpers.Get(ui, "_rootElement", out elem) ) {
+			if( !ReflectionHelpers.Get(ui, "_rootElement", out elem) || elem == null ) {
+				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
+			} else {
 				elem.Left.Pixels += UITagButton.ButtonWidth;
 				elem.Recalculate();
 			}
@@ -34,12 +36,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		public override void Hide( UIState ui ) {
 			base.Hide( ui );
 
-			this.InfoDisplay?.SetDefaultText( "" );
+			this.Manager.SetInfoTextDefault( "" );
 
 			this.ResetMenuObjects();
 
 			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem != null ) {
+			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem == null ) {
+				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
+			} else {
 				elem.Left.Pixels -= UITagButton.ButtonWidth;
 				elem.Recalculate();
 			}
@@ -48,15 +52,16 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		private void ApplyDefaultFiltersAsync( UIState ui ) {
+		private void ApplyDefaultFiltersAsync( UIState modBrowserUi ) {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
-					if( this.MyMenuUI != ui ) {
+					if( this.MyMenuUI != modBrowserUi ) {
+						LogHelpers.Warn( "Current UIState mismatch: Found "+this.MyMenuUI+", expected "+modBrowserUi.GetType().Name );
 						return false;
 					}
 
 					bool isLoading;
-					if( !ReflectionHelpers.Get( this.MyMenuUI, "loading", out isLoading ) ) {
+					if( !ReflectionHelpers.Get( modBrowserUi, "loading", out isLoading ) ) {
 						LogHelpers.Warn( "ModBrowserTagsMenuContext - No 'loading'." );
 						return false;
 					}
@@ -84,7 +89,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			}
 			
 			if( this.IsModBrowserListPopulated( uiModList ) ) {
-				this.ApplyModBrowserModInfoBindings( uiModList );
+				this.ApplyModBrowserModInfoBindings( modBrowserUi, uiModList );
 				return;
 			}
 
@@ -94,7 +99,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 						return true;
 					}
 
-					this.ApplyModBrowserModInfoBindings( uiModList );
+					this.ApplyModBrowserModInfoBindings( modBrowserUi, uiModList );
 					return false;
 				} );
 			}
@@ -112,7 +117,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		}
 
 
-		private void ApplyModBrowserModInfoBindings( UIList uiModList ) {
+		private void ApplyModBrowserModInfoBindings( UIState modBrowserUi, UIList uiModList ) {
 			object modList;
 
 			if( !ReflectionHelpers.Get(uiModList, "_items", out modList) || modList == null ) {

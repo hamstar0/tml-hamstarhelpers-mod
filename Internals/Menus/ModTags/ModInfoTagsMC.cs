@@ -57,5 +57,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				this.Manager.TagsUI.SafelySetTagButton( "Misleading Info" );
 			}
 		}
+
+
+		////////////////
+
+		private void SubmitTags() {
+			this.Manager.SubmitTags();
+		}
 	}
 }

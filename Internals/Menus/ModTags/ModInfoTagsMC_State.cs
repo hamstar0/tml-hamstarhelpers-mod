@@ -2,10 +2,7 @@
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.UI;
-using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
-using System.Collections.Generic;
 using Terraria.UI;
 
 
@@ -69,16 +66,12 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		private void ResetUIState( string modName ) {
 			if( !ModInfoTagsMenuContext.RecentTaggedMods.Contains( modName ) ) {
-				if( this.FinishButton.IsLocked ) {
-					this.FinishButton.Unlock();
-				}
+				this.Manager.TagsUI.UnlockFinishButton();
 			} else {
-				if( !this.FinishButton.IsLocked ) {
-					this.FinishButton.Lock();
-				}
+				this.Manager.TagsUI.LockFinishButton();
 			}
 
-			this.UI.ResetTagButtons( true );
+			this.Manager.TagsUI.ResetTagButtons( true );
 		}
 
 
@@ -87,6 +80,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		private void SetCurrentMod( UIState ui, string modName ) {
 			this.Manager.SetCurrentMod( modName );
 			//this.CurrentModName = modName;
+		}
+
+		public override void OnTagStateChange( UITagButton tagButton ) {
+			this.Manager.TagsUI.RefreshButtonEnableStates();
 		}
 	}
 }

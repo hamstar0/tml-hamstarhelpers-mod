@@ -34,6 +34,13 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
+		public bool CanEditTags() {
+			return this.FinishButton.Text == "Modify Tags";
+		}
+
+
+		////////////////
+
 		public void SetCurrentMod( string modName, ISet<string> tags ) {
 			bool hasNetTags = tags.Count > 0;
 

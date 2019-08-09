@@ -6,8 +6,15 @@ using System;
 namespace HamstarHelpers.Internals.ModTags.UI {
 	partial class UITagsPanel : UIThemedPanel {
 		public void OnTagStateChange( UITagButton button ) {
-			this.FinishButton.UpdateEnableState();
-			this.ResetButton.UpdateEnableState();
+			this.RefreshButtonEnableStates();
+		}
+
+
+		////////////////
+
+		public void RefreshButtonEnableStates() {
+			this.FinishButton.RefreshEnableState();
+			this.ResetButton.RefreshEnableState();
 		}
 
 
@@ -61,8 +68,34 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.ResetButton?.Disable();
 		}
 
-		public void UpdateResetButton() {
-			f
+		public void LockResetButton() {
+			this.ResetButton.Lock();
+		}
+
+
+		////////////////
+
+		public void LockFinishButton() {
+			if( !this.FinishButton.IsLocked ) {
+				this.FinishButton.Lock();
+			}
+		}
+
+		public void UnlockFinishButton() {
+			if( this.FinishButton.IsLocked ) {
+				this.FinishButton.Unlock();
+			}
+		}
+
+
+		////////////////
+
+		public void EnableSubmitMode() {
+			this.FinishButton.SetModeSubmit();
+		}
+
+		public void DisableSubmitMode() {
+			this.FinishButton.SetModeReadOnly();
 		}
 	}
 }

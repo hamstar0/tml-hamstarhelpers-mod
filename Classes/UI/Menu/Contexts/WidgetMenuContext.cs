@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Services.UI.Menus;
+﻿using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
 
 
@@ -16,7 +17,7 @@ namespace HamstarHelpers.Classes.UI.Menus {
 			this.IsInner = isInner;
 		}
 
-		public override void OnContexualize( string uiClassName, string contextName ) { }
+		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) { }
 
 
 		////////////////

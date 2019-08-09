@@ -7,19 +7,29 @@ using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader.UI.ModBrowser;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
 	/// @private
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
-		internal void ApplyModsFilter() {
+		/// @private
+		public delegate void FilteredModsHandler(
+			bool isFiltered,
+			IList<string> filteredModNameList,
+			int onTagCount,
+			int offTagCount
+		);
+
+
+
+		////////////////
+
+		private void ApplyModsFilter() {
 			IList<string> modNames = new List<string>();
-			UIState myUI = this.MyMenuUI;
 
 			object items;
-			if( !ReflectionHelpers.Get( myUI, "_items", out items ) ) {
-				LogHelpers.Warn( "No 'items' field in ui " + myUI );
+			if( !ReflectionHelpers.Get( this.MyMenuUI, "_items", out items ) ) {
+				LogHelpers.Warn( "No 'items' field in ui " + this.MyMenuUI );
 				return;
 			}
 
@@ -39,34 +49,37 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 				}
 			}
 
-			this.FilterModsAsync( modNames, ( isFiltered, filteredModNameList, onTagCount, offTagCount ) => {
-				string filterName = "Tags";
-				if( onTagCount > 0 || offTagCount > 0 ) {
-					filterName += " ";
+			this.FilterModsAsync( modNames, this.HandleFilteredMods );
+		}
 
-					if( onTagCount > 0 ) {
-						filterName += "+" + onTagCount;
-						if( offTagCount > 0 ) {
-							filterName += " ";
-						}
-					}
+
+		private void HandleFilteredMods( bool isFiltered, IList<string> filteredModNameList, int onTagCount, int offTagCount ) {
+			string filterName = "Tags";
+			if( onTagCount > 0 || offTagCount > 0 ) {
+				filterName += " ";
+
+				if( onTagCount > 0 ) {
+					filterName += "+" + onTagCount;
 					if( offTagCount > 0 ) {
-						filterName += "-" + offTagCount;
+						filterName += " ";
 					}
 				}
-
-				if( ReflectionHelpers.Set( myUI, "UpdateFilterMode", (UpdateFilter)0 ) ) {
-					ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
-				} else {
-					LogHelpers.Alert( "Could not set UpdateFilterMode for the mod browser" );
+				if( offTagCount > 0 ) {
+					filterName += "-" + offTagCount;
 				}
-			} );
+			}
+
+			if( ReflectionHelpers.Set( this.MyMenuUI, "UpdateFilterMode", (UpdateFilter)0 ) ) {
+				ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
+			} else {
+				LogHelpers.Alert( "Could not set UpdateFilterMode for the mod browser" );
+			}
 		}
 
 
 		////////////////
 
-		public void FilterModsAsync( IList<string> modNames, Action<bool, IList<string>, int, int> callback ) {
+		public void FilterModsAsync( IList<string> modNames, FilteredModsHandler callback ) {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				if( !args.Found ) {
 					this.InfoDisplay?.SetText( "Could not acquire mod data." );
@@ -80,8 +93,10 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 		}
 
 
-		private void FilterMods( IList<string> modNames, IDictionary<string, ISet<string>> modTagsOfModNames,
-				Action<bool, IList<string>, int, int> callback ) {
+		private void FilterMods(
+				IList<string> modNames,
+				IDictionary<string, ISet<string>> modTagsOfModNames,
+				FilteredModsHandler callback ) {
 			IList<string> filteredModNameList = new List<string>();
 			ISet<string> onTags = this.GetTagsWithGivenState( 1 );
 			ISet<string> offTags = this.GetTagsWithGivenState( -1 );

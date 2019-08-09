@@ -57,16 +57,13 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public void Lock() {
 			this.IsLocked = true;
 
-			this.UpdateEnableState();
-			this.Manager.TagsUI.DisableTagButtons();
+			this.Manager.TagsUI.RefreshButtonEnableStates();
 		}
 
 		public void Unlock() {
 			this.IsLocked = false;
 
-			this.UpdateEnableState();
-			this.Manager.TagsUI.EnableTagButtons();
-			this.Manager.TagsUI.EnableResetButton();
+			this.Manager.TagsUI.RefreshButtonEnableStates();
 			//if( this.MenuContext.ResetButton.IsLocked ) {
 			//	this.MenuContext.ResetButton.Unlock();
 			//}
@@ -77,9 +74,8 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		public void SetModeReadOnly() {
 			this.SetText( "Modify Tags" );
-			
-			this.UpdateEnableState();
-			this.Manager.TagsUI.UpdateResetButton();
+
+			this.Manager.TagsUI.RefreshButtonEnableStates();
 			//this.MenuContext.ResetButton.UpdateEnableState();
 		}
 
@@ -89,14 +85,12 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.Manager.TagsUI.EnableTagButtons();
 			//this.MenuContext.Panel.EnableTagButtons();
 
-			this.UpdateEnableState();
-			//this.MenuContext.ResetButton.UpdateEnableState();
-			this.Manager.TagsUI.UpdateResetButton();
+			this.Manager.TagsUI.RefreshButtonEnableStates();
 		}
 
 		////////////////
 
-		public void UpdateEnableState() {
+		public void RefreshEnableState() {
 			if( this.IsLocked ) {
 				this.Disable();
 				return;
@@ -143,7 +137,11 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public override void Update( GameTime gameTime ) {
 			base.Update( gameTime );
 
-			this.Manager.UpdateMode( this.Text == "Submit Tags" );
+			if( this.Text == "Submit Tags" ) {
+				this.Manager.EnableSubmitMode();
+			} else {
+				this.Manager.DisableSubmitMode();
+			}
 		}
 
 

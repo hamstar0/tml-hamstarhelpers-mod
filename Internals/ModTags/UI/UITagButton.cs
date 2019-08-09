@@ -38,20 +38,20 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.DrawPanel = false;
 			this.Desc = desc;
 			
-			this.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
+			this.OnClick += ( _, __ ) => {
 				if( !this.IsEnabled ) { return; }
 				this.TogglePositiveTag();
 			};
-			this.OnRightClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
+			this.OnRightClick += ( _, __ ) => {
 				if( !this.IsEnabled || !canNegateTags ) { return; }
 				this.ToggleNegativeTag();
 			};
-			this.OnMouseOver += ( UIMouseEvent evt, UIElement listeningElement ) => {
+			this.OnMouseOver += ( _, __ ) => {
 				this.Manager.SetInfoText( desc );
 				//context.InfoDisplay?.SetText( desc );
 				this.RefreshTheme();
 			};
-			this.OnMouseOut += ( UIMouseEvent evt, UIElement listeningElement ) => {
+			this.OnMouseOut += ( _, __ ) => {
 				if( this.Manager.GetInfoText() == desc ) {
 					this.Manager.SetInfoText( "" );
 				}

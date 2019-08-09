@@ -278,8 +278,15 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			try {
 				if( Main.MenuUI.CurrentState != null ) {
 					Type uiType = Main.MenuUI.CurrentState.GetType();
+					if( uiType.Name != "UIMods" ) {
+						return;
+					}
 
-					if( uiType.Name != "UIMods" && MenuContextService.ContainsMenuContexts( uiType.Name ) ) {
+					MenuUIDefinition menuDef;
+					if( !Enum.TryParse( uiType.Name, out menuDef ) ) {
+						return;
+					}
+					if( MenuContextService.ContainsMenuContexts( menuDef ) ) {
 						return;
 					}
 				}

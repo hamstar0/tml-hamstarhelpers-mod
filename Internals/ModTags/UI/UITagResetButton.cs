@@ -20,7 +20,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			this.Manager = manager;
 
 			this.RecalculatePos();
-			this.UpdateEnableState();
+			this.RefreshEnableState();
 		}
 
 
@@ -38,19 +38,19 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public void Lock() {
 			this.IsLocked = true;
 
-			this.UpdateEnableState();
+			this.RefreshEnableState();
 		}
 
 		public void Unlock() {
 			this.IsLocked = false;
 
-			this.UpdateEnableState();
+			this.RefreshEnableState();
 		}
 		
 
 		////////////////
 
-		public void UpdateEnableState() {
+		public void RefreshEnableState() {
 			if( this.IsLocked ) {
 				this.Disable();
 				return;

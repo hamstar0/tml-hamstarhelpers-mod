@@ -13,25 +13,24 @@ namespace HamstarHelpers.Services.UI.Menus {
 	/// </summary>
 	public partial class MenuContextService {
 		/// <summary>
-		/// Indicates if a "context" (added menu content) exists for the given main menu UI by itsclass name
-		/// (the UIState of a given main menu UI).
+		/// Indicates if a menu "context" (menu page) has custom content.
 		/// </summary>
 		/// <param name="menuDefinition"></param>
 		/// <returns></returns>
 		public static bool ContainsMenuContexts( MenuUIDefinition menuDefinition ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuContextMngr == null ) { return false; }
-			var loaders = mymod.MenuContextMngr.Contexts;
 
-			return loaders.ContainsKey( menuDefinition );
+			IDictionary<string, MenuContext> contexts = mymod.MenuContextMngr.GetContexts( menuDefinition );
+
+			return contexts != null && contexts.Count > 0;
 		}
 
 
 		////////////////
 
 		/// <summary>
-		/// Gets the given menu "context" (container of added menu content) by name of a given UI by its class name
-		/// (the UIState of a given main menu UI).
+		/// Gets a specific piece of added content for a menu "context" (menu page) by name.
 		/// </summary>
 		/// <param name="menuDefinition"></param>
 		/// <param name="contextName"></param>
@@ -39,22 +38,20 @@ namespace HamstarHelpers.Services.UI.Menus {
 		public static MenuContext GetMenuContext( MenuUIDefinition menuDefinition, string contextName ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MenuContextMngr == null ) { return null; }
-			var loaders = mymod.MenuContextMngr.Contexts;
 
-			MenuContext ctx = null;
+			IDictionary<string, MenuContext> contexts = mymod.MenuContextMngr.GetContexts( menuDefinition );
 
-			if( loaders.ContainsKey( menuDefinition ) ) {
-				loaders[menuDefinition].TryGetValue( contextName, out ctx );
+			if( contexts.ContainsKey(contextName) ) {
+				return contexts[ contextName ];
 			}
-			return ctx;
+			return null;
 		}
 
 
 		////////////////
 
 		/// <summary>
-		/// Adds a menu "context" (container of added menu content) for a given given UI by its class name
-		/// (the UIState of a given main menu UI).
+		/// Adds a piece of menu content to a menu "context" (menu page) by name.
 		/// </summary>
 		/// <param name="menuDefinition"></param>
 		/// <param name="contextName"></param>
@@ -62,17 +59,15 @@ namespace HamstarHelpers.Services.UI.Menus {
 		public static void AddMenuContext( MenuUIDefinition menuDefinition, string contextName, MenuContext context ) {
 			var mymod = ModHelpersMod.Instance;
 
-			if( !mymod.MenuContextMngr.Contexts.ContainsKey( menuDefinition ) ) {
-				mymod.MenuContextMngr.Contexts[menuDefinition] = new Dictionary<string, MenuContext>();
-			}
-			mymod.MenuContextMngr.Contexts[menuDefinition][contextName] = context;
+			IDictionary<string, MenuContext> contexts = mymod.MenuContextMngr.GetContexts( menuDefinition );
+			contexts[contextName] = context;
 
 			context.OnContexualize( menuDefinition, contextName );
 
 			UIState ui = Main.MenuUI.CurrentState;
 			string currUiName = ui?.GetType().Name;
 
-			if( uiClassName == currUiName ) {
+			if( Enum.GetName(typeof(MenuUIDefinition), menuDefinition) == currUiName ) {
 				context.Show( ui );
 			}
 		}

@@ -2,6 +2,7 @@
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.Menus.ModTags;
 using HamstarHelpers.Internals.Menus.ModUpdates;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -50,7 +51,7 @@ namespace HamstarHelpers.Internals.Menus {
 
 			var buttonWidgetCtx = new WidgetMenuContext( button, true );
 
-			MenuContextService.AddMenuContext( "UIMods", "ModHelpers: Mod Menu Config Folder Button", buttonWidgetCtx );
+			MenuContextService.AddMenuContext( MenuUIDefinition.UIMods, "ModHelpers: Mod Menu Config Folder Button", buttonWidgetCtx );
 		}
 
 

@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			this.ApplyModsFilter();
 
 			//this.ResetButton.UpdateEnableState();
-			this.Manager.TagsUI.UpdateResetButton();
+			this.Manager.TagsUI.RefreshButtonEnableStates();
 		}
 	}
 }
