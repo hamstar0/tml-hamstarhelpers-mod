@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework;
 
 namespace HamstarHelpers.Internals.ModTags.UI {
 	partial class UITagsPanel : UIThemedPanel {
-		private void InitializeControls( TagDefinition[] tags, bool canDisableTags ) {
+		private void InitializeControls( UIState uiContext, TagDefinition[] tags, bool canExcludeTags ) {
 			this.InitializeControlButtons( uiContext );
 
 			float y = 0;
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 			for( int i = 0; i < tags.Length; i++ ) {
 				string tag = tags[i].Tag;
 
-				this.TagButtons[tag] = new UITagButton( this.Theme, this.Manager, tag, tags[i].Description, canDisableTags );
+				this.TagButtons[tag] = new UITagButton( this.Theme, this.Manager, tag, tags[i].Description, canExcludeTags );
 			}
 		}
 

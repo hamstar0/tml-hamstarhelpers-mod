@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Classes.DataStructures;
-using HamstarHelpers.Classes.Errors;
+﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
@@ -14,22 +13,35 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// </summary>
 	public partial class ReflectionHelpers {
 		/// <summary>
+		/// Gets a class's type by it's proper name from a given assembly.
+		/// </summary>
+		/// <param name="assemblyName"></param>
+		/// <param name="namespaceAndClassName"></param>
+		/// <returns></returns>
+		public static Type GetTypeFromAssembly( string assemblyName, string namespaceAndClassName ) {
+			var rh = ModHelpersMod.Instance.ReflectionHelpers;
+			string newAssemblyName = namespaceAndClassName + assemblyName.Substring( assemblyName.IndexOf( ',' ) );
+
+			if( rh.TypeMap.ContainsKey( newAssemblyName ) ) {
+				return rh.TypeMap[newAssemblyName];
+			}
+
+			rh.TypeMap[newAssemblyName] = Type.GetType( newAssemblyName );
+			return rh.TypeMap[newAssemblyName];
+		}
+
+
+		////////////////
+
+		/// <summary>
 		/// Gets all types from a given assembly using a given class name.
 		/// </summary>
 		/// <param name="assemblyName"></param>
 		/// <param name="className"></param>
 		/// <returns></returns>
 		public static IList<Type> GetTypesFromAssembly( string assemblyName, string className ) {
-			IList<Type> classTypeList = new List<Type>();
-			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-			foreach( var ass in assemblies ) {
-				if( ass.GetName().Name != assemblyName ) { continue; }
-				classTypeList = ReflectionHelpers.GetTypesFromAssembly( ass, className );
-				break;
-			}
-
-			return classTypeList;
+			Assembly assemblies = ReflectionHelpers.GetAssembly( assemblyName );
+			return ReflectionHelpers.GetTypesFromAssembly( assemblies, className );
 		}
 
 		/// <summary>
@@ -50,7 +62,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 			try {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-				Func<Assembly, IEnumerable<Type>> selectMany = delegate ( Assembly a ) {
+				Func<Assembly, IEnumerable<Type>> selectMany = ( Assembly a ) => {
 					try {
 						return a.GetTypes();
 					} catch {
@@ -107,20 +119,6 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			}
 
 			return subclasses;
-		}
-
-		
-		////////////////
-
-		/// <summary>
-		/// Gets a class's type by it's proper name from a given assembly.
-		/// </summary>
-		/// <param name="assemblyName"></param>
-		/// <param name="namespaceAndClassName"></param>
-		/// <returns></returns>
-		public static Type GetClassFromAssembly( string assemblyName, string namespaceAndClassName ) {
-			string newAssemblyName = namespaceAndClassName + assemblyName.Substring( assemblyName.IndexOf( ',' ) );
-			return Type.GetType( newAssemblyName );
 		}
 	}
 }

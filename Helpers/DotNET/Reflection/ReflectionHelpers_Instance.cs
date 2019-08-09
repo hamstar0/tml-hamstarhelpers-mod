@@ -17,6 +17,8 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 		////////////////
 
+		private IDictionary<string, Type> TypeMap = new ConcurrentDictionary<string, Type>();
+		private IDictionary<string, Assembly> AssMap = new ConcurrentDictionary<string, Assembly>();
 		private IDictionary<string, IDictionary<string, IList<Type>>> AssClassTypeMap = new ConcurrentDictionary<string, IDictionary<string, IList<Type>>>();
 		private IDictionary<string, IDictionary<string, MemberInfo>> FieldPropMap = new ConcurrentDictionary<string, IDictionary<string, MemberInfo>>();
 

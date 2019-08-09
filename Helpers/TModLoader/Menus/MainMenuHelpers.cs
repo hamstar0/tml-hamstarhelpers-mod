@@ -17,6 +17,23 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	/// Assorted static "helper" functions pertaining to the main menu.
 	/// </summary>
 	public class MainMenuHelpers {
+		public static UIState GetMenuUI( MenuUIDefinition menuDef ) {
+			string uiClassName = Enum.GetName( typeof( MenuUIDefinition ), menuDef );
+			if( string.IsNullOrEmpty(uiClassName) ) {
+				return null;
+			}
+
+			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+
+			UIState modConfigListInterfaceObj;
+			if( !ReflectionHelpers.Get( interfaceType, null, "modConfigList", out modConfigListInterfaceObj )
+					|| modConfigListInterfaceObj == null ) {
+				LogHelpers.Warn( "Could not get Interface.modConfigList" );
+				return;
+			}
+		}
+
+
 		/// <summary>
 		/// Switches to the list of mod configs menu.
 		/// </summary>

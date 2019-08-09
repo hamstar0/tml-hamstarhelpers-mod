@@ -16,14 +16,14 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		protected TagsMenuContextBase( bool canDisableTags ) : base( true, true ) {
-			this.Manager = new ModTagsManager( this, canDisableTags );
+		protected TagsMenuContextBase( bool canExcludeTags ) : base( true, true ) {
+			this.Manager = new ModTagsManager( this, canExcludeTags );
 		}
 
-		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
+		public sealed override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
 			base.OnContexualize( menuDef, contextName );
 
-			this.Manager.TagsUI.ApplyMenuContext( menuDef, contextName );
+			this.Manager.OnMenuContextualize( menuDef, contextName );
 		}
 
 

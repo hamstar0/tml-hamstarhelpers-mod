@@ -61,16 +61,18 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		/// <param name="uiClassName"></param>
 		/// <param name="contextNammenuDefe"></param>
 		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
-			if( this.DisplayInfo ) {
-				WidgetMenuContext widgetCtx;
+			if( !this.DisplayInfo ) {
+				return;
+			}
 
-				if( MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" ) == null ) {
-					widgetCtx = new WidgetMenuContext( this.InfoDisplay, false );
-					MenuContextService.AddMenuContext( menuDef, "ModHelpers: Info Display", widgetCtx );
-				} else {
-					widgetCtx = (WidgetMenuContext)MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" );
-					this.InfoDisplay = (UIInfoDisplay)widgetCtx.MyElement;
-				}
+			WidgetMenuContext widgetCtx;
+
+			if( MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" ) == null ) {
+				widgetCtx = new WidgetMenuContext( this.InfoDisplay, false );
+				MenuContextService.AddMenuContext( menuDef, "ModHelpers: Info Display", widgetCtx );
+			} else {
+				widgetCtx = (WidgetMenuContext)MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" );
+				this.InfoDisplay = (UIInfoDisplay)widgetCtx.MyElement;
 			}
 		}
 
@@ -136,7 +138,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 				}
 				ohLogoPosField.SetValue( ohMod, newValue );
 			} else {	// For version 3.3
-				Type classType = ReflectionHelpers.GetClassFromAssembly( ohModType.AssemblyQualifiedName, "TerrariaOverhaul.UI.OverhaulUI" );
+				Type classType = ReflectionHelpers.GetTypeFromAssembly( ohModType.AssemblyQualifiedName, "TerrariaOverhaul.UI.OverhaulUI" );
 				if( classType == null ) { return false; }
 
 				ReflectionHelpers.Set( classType, null, "mainMenuDataOffset", newValue );

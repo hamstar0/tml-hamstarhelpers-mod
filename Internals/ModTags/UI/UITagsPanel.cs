@@ -5,6 +5,7 @@ using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Services.TML;
 using System;
 using System.Collections.Generic;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.UI {
@@ -24,11 +25,11 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagsPanel( UITheme theme, ModTagsManager manager, TagDefinition[] tags, bool canDisableTags )
+		public UITagsPanel( UITheme theme, ModTagsManager manager, UIState uiContext, TagDefinition[] tags, bool canExcludeTags )
 				: base( theme, true ) {
 			this.Manager = manager;
 
-			this.InitializeControls( tags, canDisableTags );
+			this.InitializeControls( uiContext, tags, canExcludeTags );
 
 			this.RefreshTheme();
 		}
