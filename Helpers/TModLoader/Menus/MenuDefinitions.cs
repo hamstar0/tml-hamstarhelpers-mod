@@ -1,9 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using ReLogic.Reflection;
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.States;
 using Terraria.ModLoader;
@@ -11,115 +10,6 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Menus {
-	public class MenuUIs {
-		public static UIState UICharacterSelect => MenuUIs.GetCharacterSelectMenu();
-		public static UIState UIWorldSelect => MenuUIs.GetWorldSelectMenu();
-		public static UIState UIManageControls => MenuUIs.GetManageControlsMenu();
-		public static UIState UIAchievementsMenu => MenuUIs.GetAchievementsMenu();
-
-		public static UIState UIMods => MenuUIs.GetAchievementsMenu();
-		public static UIState UILoadModsProgress => MenuUIs.GetAchievementsMenu();
-		public static UIState UIModSources => MenuUIs.GetAchievementsMenu();
-		public static UIState UIBuildModProgress => MenuUIs.GetAchievementsMenu();
-		public static UIState UIErrorMessage => MenuUIs.GetAchievementsMenu();
-		public static UIState UIModBrowser => MenuUIs.GetAchievementsMenu();
-		public static UIState UIModInfo => MenuUIs.GetAchievementsMenu();
-		public static UIState UIManagePublished => MenuUIs.GetAchievementsMenu();
-		public static UIState UIUpdateMessage => MenuUIs.GetAchievementsMenu();
-		public static UIState UIInfoMessage => MenuUIs.GetAchievementsMenu();
-		public static UIState UIEnterPassphraseMenu => MenuUIs.GetAchievementsMenu();
-		public static UIState UIModPacks => MenuUIs.GetAchievementsMenu();
-		public static UIState UIEnterSteamIDMenu => MenuUIs.GetAchievementsMenu();
-		public static UIState UIExtractModProgress => MenuUIs.GetAchievementsMenu();
-		public static UIState UIUploadModProgress => MenuUIs.GetAchievementsMenu();
-		public static UIState UIDeveloperModeHelp => MenuUIs.GetAchievementsMenu();
-		public static UIState UIModConfig => MenuUIs.GetAchievementsMenu();
-		public static UIState UIModConfigList => MenuUIs.GetAchievementsMenu();
-		public static UIState UICreateMod => MenuUIs.GetAchievementsMenu();
-		public static UIState UIProgress => MenuUIs.GetAchievementsMenu();
-		public static UIState UIDownloadProgress => MenuUIs.GetAchievementsMenu();
-
-
-
-		////////////////
-
-		private static UIState GetMenuUI( string className, string fieldName ) {
-			Type sourceClassType;
-
-			if( className == "Main" ) {
-				sourceClassType = typeof( Main );
-			} else if( className == "Interface" ) {
-				sourceClassType = ReflectionHelpers.GetAssembly()
-				sourceClassType = Assembly.GetAssembly( typeof(ModLoader) )
-						.GetType( "Terraria.ModLoader.Interface" );
-			}
-
-			UIState menuUI;
-			if( !ReflectionHelpers.Get( typeof( Main ), null, "_characterSelectMenu", out menuUI ) ) {
-				LogHelpers.Warn( "Could not find Main._characterSelectMenu" );
-				return null;
-			}
-
-			return menuUI;
-		}
-
-
-		public static UICharacterSelect GetCharacterSelectMenu() {
-			UICharacterSelect menuUI;
-			if( !ReflectionHelpers.Get( typeof( Main ), null, "_characterSelectMenu", out menuUI ) ) {
-				LogHelpers.Warn( "Could not find Main._characterSelectMenu" );
-				return null;
-			}
-
-			return menuUI;
-		}
-
-		public static UIWorldSelect GetWorldSelectMenu() {
-			UIWorldSelect menuUI;
-			if( !ReflectionHelpers.Get( typeof( Main ), null, "_worldSelectMenu", out menuUI ) ) {
-				LogHelpers.Warn( "Could not find Main._worldSelectMenu" );
-				return null;
-			}
-
-			return menuUI;
-		}
-
-		public static UIManageControls GetManageControlsMenu() {
-			UIManageControls menuUI;
-			if( !ReflectionHelpers.Get( typeof( Main ), null, "ManageControlsMenu", out menuUI ) ) {
-				LogHelpers.Warn( "Could not find Main.ManageControlsMenu" );
-				return null;
-			}
-
-			return menuUI;
-		}
-
-		public static UIAchievementsMenu GetAchievementsMenu() {
-			UIAchievementsMenu menuUI;
-			if( !ReflectionHelpers.Get( typeof( Main ), null, "AchievementsMenu", out menuUI ) ) {
-				LogHelpers.Warn( "Could not find Main.AchievementsMenu" );
-				return null;
-			}
-
-			return menuUI;
-		}
-
-		////
-
-		public static UIAchievementsMenu GetAchievementsMenu() {
-			UIAchievementsMenu menuUI;
-			if( !ReflectionHelpers.Get( typeof( Main ), null, "AchievementsMenu", out menuUI ) ) {
-				LogHelpers.Warn( "Could not find Main.AchievementsMenu" );
-				return null;
-			}
-
-			return menuUI;
-		}
-	}
-
-
-
-
 	/*public enum VanillaMenuDefinition {
 		WorldEvilSelect = -71,
 		WorldDifficultySelect = -7,
@@ -152,13 +42,16 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 	}*/
 
 
+	
 
-
+	/// <summary>
+	/// Mappings of menu UI classes to their respective `Main.menuMode` (or 888, if not relevant).
+	/// </summary>
 	public enum MenuUIDefinition {
-		UICharacterSelect = 0,//-1,
-		UIWorldSelect = 0,//-2,
-		UIManageControls = 0,//-3,
-		UIAchievementsMenu = 0,//-4,	//888
+		UICharacterSelect = 888,	///1
+		UIWorldSelect = 888,	//6
+		UIManageControls = 888,	//1127
+		UIAchievementsMenu = 888,	//0, Main menu
 
 		/*internal const int modsMenuID = 10000;
 		internal const int modSourcesID = 10001;
@@ -206,7 +99,73 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		UIDeveloperModeHelp = 10022,
 		UIProgress = 10023,
 		UIModConfig = 10024,
-		UIModConfigList = 0,//-10,	//?
+		UIModConfigList = 888,//?
 		UICreateMod = 10025,
+	}
+
+
+
+
+	/// <summary>
+	/// Getters for menu UI objects (`UIstate`).
+	/// </summary>
+	public class MenuUIs {
+		public static UICharacterSelect		UICharacterSelect => (UICharacterSelect)MenuUIs.GetMainMenuUI( "_characterSelectMenu" );
+		public static UIWorldSelect			UIWorldSelect => (UIWorldSelect)MenuUIs.GetMainMenuUI( "_worldSelectMenu" );
+		public static UIManageControls		UIManageControls => (UIManageControls)MenuUIs.GetMainMenuUI( "ManageControlsMenu" );
+		public static UIAchievementsMenu	UIAchievementsMenu => (UIAchievementsMenu)MenuUIs.GetMainMenuUI( "AchievementsMenu" );
+
+		////
+
+		public static UIState UIMods => MenuUIs.GetInterfacesMenuUi( "modsMenu" );
+		public static UIState UILoadModsProgress => MenuUIs.GetInterfacesMenuUi( "loadModsProgress" );
+		public static UIState UIModSources => MenuUIs.GetInterfacesMenuUi( "modSources" );
+		public static UIState UIBuildModProgress => MenuUIs.GetInterfacesMenuUi( "buildMod" );
+		public static UIState UIErrorMessage => MenuUIs.GetInterfacesMenuUi( "errorMessage" );
+		public static UIState UIModBrowser => MenuUIs.GetInterfacesMenuUi( "modBrowser" );
+		public static UIState UIModInfo => MenuUIs.GetInterfacesMenuUi( "modInfo" );
+		public static UIState UIManagePublished => MenuUIs.GetInterfacesMenuUi( "managePublished" );
+		public static UIState UIUpdateMessage => MenuUIs.GetInterfacesMenuUi( "updateMessage" );
+		public static UIState UIInfoMessage => MenuUIs.GetInterfacesMenuUi( "infoMessage" );
+		public static UIState UIEnterPassphraseMenu => MenuUIs.GetInterfacesMenuUi( "enterPassphraseMenu" );
+		public static UIState UIModPacks => MenuUIs.GetInterfacesMenuUi( "modPacksMenu" );
+		public static UIState UIEnterSteamIDMenu => MenuUIs.GetInterfacesMenuUi( "enterSteamIDMenu" );
+		public static UIState UIExtractModProgress => MenuUIs.GetInterfacesMenuUi( "extractMod" );
+		public static UIState UIUploadModProgress => MenuUIs.GetInterfacesMenuUi( "uploadModProgress" );
+		public static UIState UIDeveloperModeHelp => MenuUIs.GetInterfacesMenuUi( "developerModeHelp" );
+		public static UIState UIModConfig => MenuUIs.GetInterfacesMenuUi( "modConfig" );
+		public static UIState UIModConfigList => MenuUIs.GetInterfacesMenuUi( "modConfigList" );
+		public static UIState UICreateMod => MenuUIs.GetInterfacesMenuUi( "createMod" );
+		public static UIState UIProgress => MenuUIs.GetInterfacesMenuUi( "progress" );
+		public static UIState UIDownloadProgress => MenuUIs.GetInterfacesMenuUi( "downloadProgress" );
+
+
+
+		////////////////
+
+		private static UIState GetMainMenuUI( string menuFieldName ) {
+			UIState menuUI;
+			if( !ReflectionHelpers.Get( typeof( Main ), null, menuFieldName, out menuUI ) ) {
+				LogHelpers.Warn( "Could not find Main."+menuFieldName );
+				return null;
+			}
+
+			return menuUI;
+		}
+
+		private static UIState GetInterfacesMenuUi( string menuFieldName ) {
+			IList<Type> types = ReflectionHelpers.GetTypesFromAssembly( typeof(ModLoader).Assembly, "Terraria.ModLoader.Interface" );
+			if( types.Count != 1 ) {
+				LogHelpers.Warn( "Could not find Terraria.ModLoader.Interface" );
+				return null;
+			}
+
+			UIState menuUI;
+			if( !ReflectionHelpers.Get( types[0], menuFieldName, out menuUI ) ) {
+				LogHelpers.Warn( "Could not find Terraria.ModLoader.Interface."+menuFieldName );
+				return null;
+			}
+			return menuUI;
+		}
 	}
 }
