@@ -67,7 +67,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 		/// <param name="confirm"></param>
 		/// <param name="cancel"></param>
 		public UIPromptPanel( UITheme theme, int width, int height, string title, Action confirm, Action cancel=null )
-				: base( theme ) {
+				: base( theme, true ) {
 			this.MyWidth = width;
 			this.MyHeight = height;
 			this.TitleText = title;
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 				this.Append( this.CancelButton );
 			}
 
-			this.Theme.ApplyPanel( this );
+			this.RefreshTheme();
 		}
 
 
@@ -124,6 +124,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 		/// Refreshes visual theming.
 		/// </summary>
 		public override void RefreshTheme() {
+			this.Theme.ApplyPanel( this );
 			this.CancelButton.RefreshTheme();
 			this.ConfirmButton.RefreshTheme();
 		}

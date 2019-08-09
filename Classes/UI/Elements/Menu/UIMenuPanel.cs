@@ -22,7 +22,8 @@ namespace HamstarHelpers.Classes.UI.Elements.Menu {
 		/// <param name="height"></param>
 		/// <param name="xCenterOffset">Offset from horizontal center of screen.</param>
 		/// <param name="y">Offset from top of screen.</param>
-		public UIMenuPanel( UITheme theme, float width, float height, float xCenterOffset, float y ) : base( theme ) {
+		public UIMenuPanel( UITheme theme, float width, float height, float xCenterOffset, float y )
+				: base( theme, true ) {
 			this.Width.Set( width, 0f );
 			this.Height.Set( height, 0f );
 

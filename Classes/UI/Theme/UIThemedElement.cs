@@ -19,10 +19,12 @@ namespace HamstarHelpers.Classes.UI.Theme {
 
 		/// <summary></summary>
 		/// <param name="theme"></param>
-		public UIThemedElement( UITheme theme ) : base() {
+		public UIThemedElement( UITheme theme, bool skipThemeRefreshNow ) : base() {
 			this.Theme = theme;
 
-			this.RefreshTheme();
+			if( !skipThemeRefreshNow ) {
+				this.RefreshTheme();
+			}
 		}
 
 

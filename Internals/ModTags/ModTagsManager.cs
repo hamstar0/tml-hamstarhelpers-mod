@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		public ModTagsManager( SessionMenuContext menuContext, bool canDisableTags ) {
 			this.Context = menuContext;
-			this.TagsUI = new UITagsPanel( menuContext.MyMenuUI, UITheme.Vanilla, this, ModTagsManager.Tags, canDisableTags );
+			this.TagsUI = new UITagsPanel( UITheme.Vanilla, this, ModTagsManager.Tags, canDisableTags );
 		}
 
 

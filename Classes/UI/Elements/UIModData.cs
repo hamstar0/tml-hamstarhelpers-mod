@@ -84,7 +84,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="mod">Mod represented by this element.</param>
 		/// <param name="willDrawOwnHoverElements">Indicates if this element draws its own mouse-hover elements.</param>
 		public UIModData( UITheme theme, int? idx, Mod mod, bool willDrawOwnHoverElements = true )
-				: base( theme ) {
+				: base( theme, true ) {
 			this.InitializeMe( idx, mod, willDrawOwnHoverElements );
 
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
@@ -93,6 +93,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 				return false;
 			} );
+
+			this.RefreshTheme();
 		}
 
 

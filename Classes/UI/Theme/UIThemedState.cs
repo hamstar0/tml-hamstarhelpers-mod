@@ -23,9 +23,12 @@ namespace HamstarHelpers.Classes.UI.Theme {
 
 		////////////////
 
-		public void AppendThemed( UIElement element ) {
+		public void AppendThemed( UIElement element, bool skipThemeRefreshNow ) {
 			base.Append( element );
-			this.RefreshThemeForChild( element );
+
+			if( !skipThemeRefreshNow ) {
+				this.RefreshThemeForChild( element );
+			}
 		}
 
 

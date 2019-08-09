@@ -8,7 +8,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Theme-able UITextPanel<T>.
 	/// </summary>
-	public class UIThemedTextPanel<T> : UITextPanel<T>, IThemeable {
+	public class UIThemedTextPanel : UITextPanel<string>, IThemeable {
 		/// <summary>
 		/// Appearance style.
 		/// </summary>
@@ -24,11 +24,13 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="text"></param>
 		/// <param name="textScale"></param>
 		/// <param name="large"></param>
-		public UIThemedTextPanel( UITheme theme, T text, float textScale=1f, bool large=false )
+		public UIThemedTextPanel( UITheme theme, bool skipThemeRefreshNow, string text, float textScale=1f, bool large=false )
 				: base( text, textScale, large ) {
 			this.Theme = theme;
 
-			theme.ApplyPanel( this );
+			if( !skipThemeRefreshNow ) {
+				theme.ApplyPanel( this );
+			}
 		}
 
 

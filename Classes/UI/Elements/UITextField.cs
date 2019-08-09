@@ -63,7 +63,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
-		public UITextField( UITheme theme, string hintText ) : base( theme ) {
+		public UITextField( UITheme theme, string hintText ) : base( theme, true ) {
 			this.HintText = hintText;
 			
 			this.SetPadding( 6f );

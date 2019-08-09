@@ -77,7 +77,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="scale">Size multiplier of display text.</param>
 		/// <param name="large">'Large' state of display text.</param>
 		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f, bool large = false )
-				: base( theme ) {
+				: base( theme, true ) {
 			this.IsVisited = false;
 			this.Url = url;
 			this.WillDrawOwnHoverUrl = hoverUrl;
@@ -125,6 +125,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					Main.NewText( e.Message );
 				}
 			};
+
+			this.RefreshTheme();
 		}
 
 

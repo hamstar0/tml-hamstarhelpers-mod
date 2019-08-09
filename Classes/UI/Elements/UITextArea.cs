@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Text;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
@@ -80,10 +79,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="hint">Default text. Overridden with any input text.</param>
 		/// <param name="maxLength">Maximum length of text input.</param>
-		public UITextArea( UITheme theme, string hint, int maxLength=2024 ) : base( theme ) {
+		public UITextArea( UITheme theme, string hint, int maxLength=2024 ) : base( theme, true ) {
 			// TODO Add multiline support
-
-			this.Theme = theme;
 
 			this.Hint = hint;
 			this.CursorPos = 0;

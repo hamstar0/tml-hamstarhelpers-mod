@@ -8,7 +8,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a common text panel button element.
 	/// </summary>
-	public class UITextPanelButton : UIThemedTextPanel<string> {
+	public class UITextPanelButton : UIThemedTextPanel {
 		/// <summary>
 		/// Indicates if button accepts inputs.
 		/// </summary>
@@ -24,15 +24,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="scale">Multiplier of label text size.</param>
 		/// <param name="large">Sets label text 'large'.</param>
 		public UITextPanelButton( UITheme theme, string label, float scale = 1f, bool large = false )
-				: base( theme, label, scale, large ) {
+				: base( theme, true, label, scale, large ) {
 			this.Theme = theme;
 			this.IsEnabled = true;
 
 			this.SetPadding( 5f );
 
-			var self = this;
-
 			theme.ApplyButton( this );
+
+			var self = this;
 			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement fromElem ) {
 				if( !self.IsEnabled ) { return; }
 				theme.ApplyButtonLit( self );
