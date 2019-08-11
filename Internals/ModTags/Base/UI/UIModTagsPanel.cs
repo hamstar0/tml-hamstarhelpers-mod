@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsPanel : UIThemedPanel {
 		private readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
 		private readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();

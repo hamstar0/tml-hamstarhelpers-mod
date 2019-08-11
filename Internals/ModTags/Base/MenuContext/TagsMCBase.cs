@@ -1,14 +1,13 @@
 ﻿using HamstarHelpers.Classes.UI.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.ModTags.Base.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.MenuContext {
+namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		public readonly ModTagsManager Manager;

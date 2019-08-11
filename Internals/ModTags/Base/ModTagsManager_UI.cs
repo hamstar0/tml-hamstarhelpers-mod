@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.ModTags.Base {
 	abstract partial class ModTagsManager {
 		public string GetInfoText() {
 			return this.Context.InfoDisplay?.GetText() ?? null;

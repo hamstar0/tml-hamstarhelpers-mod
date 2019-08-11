@@ -3,7 +3,7 @@ using HamstarHelpers.Services.Timers;
 using System;
 
 
-namespace HamstarHelpers.Internals.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsPanel : UIThemedPanel {
 		public void OnTagStateChange( UITagButton button ) {
 			this.RefreshButtonEnableStates();

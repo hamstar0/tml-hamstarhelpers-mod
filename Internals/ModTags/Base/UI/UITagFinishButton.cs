@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	/// @private
 	partial class UITagFinishButton : UIMenuButton {
 		private readonly ModTagsManager Manager;

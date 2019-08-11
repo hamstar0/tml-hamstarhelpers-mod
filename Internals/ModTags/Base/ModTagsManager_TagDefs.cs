@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.ModTags.Base {
 	class TagDefinition {
 		public string Tag;
 		public string Category;

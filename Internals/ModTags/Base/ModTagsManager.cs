@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags {
+namespace HamstarHelpers.Internals.ModTags.Base {
 	abstract partial class ModTagsManager {
 		private static ISet<string> RecentTaggedMods = new HashSet<string>();
 

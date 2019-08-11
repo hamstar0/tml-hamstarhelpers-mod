@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	/// @private
 	internal class UITagButton : UIMenuButton {
 		public const float ButtonWidth = 102f;

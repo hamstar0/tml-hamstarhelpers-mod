@@ -13,7 +13,7 @@ using Terraria.UI;
 using Microsoft.Xna.Framework;
 
 
-namespace HamstarHelpers.Internals.ModTags.UI {
+namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsPanel : UIThemedPanel {
 		private void InitializeControls( UIState uiContext, TagDefinition[] tags, bool canExcludeTags ) {
 			this.InitializeControlButtons( uiContext );
