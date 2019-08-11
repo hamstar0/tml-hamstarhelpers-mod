@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.Menus.ModTags {
+namespace HamstarHelpers.Internals.ModTags.MenuContext {
 	/// @private
 	abstract partial class TagsMenuContextBase : SessionMenuContext {
 		public readonly ModTagsManager Manager;

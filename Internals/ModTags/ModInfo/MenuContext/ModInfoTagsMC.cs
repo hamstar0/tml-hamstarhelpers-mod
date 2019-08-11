@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Internals.ModTags.MenuContext;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
@@ -8,7 +9,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Internals.Menus.ModTags {
+namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
 	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();

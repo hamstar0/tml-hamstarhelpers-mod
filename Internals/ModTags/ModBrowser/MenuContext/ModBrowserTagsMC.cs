@@ -1,10 +1,11 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Internals.ModTags.MenuContext;
 using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Services.UI.Menus;
 
 
-namespace HamstarHelpers.Internals.Menus.ModTags {
+namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public static void Initialize( bool onModLoad ) {

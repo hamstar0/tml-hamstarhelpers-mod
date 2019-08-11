@@ -20,15 +20,19 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		public static void Initialize() {
 			if( ModHelpersMod.Instance.Config.DisableModMenuUpdates ) { return; }
 			
-			var ctx = new ModUpdatesMenuContext();
-			MenuContextService.AddMenuContext( MenuUIDefinition.UIMods, "ModHelpers: Mod Updates", ctx );
+			var ctx = new ModUpdatesMenuContext( MenuUIDefinition.UIMods, "ModHelpers: Mod Updates" );
+			MenuContextService.AddMenuContext( ctx );
 		}
 
 
 
 		////////////////
 
-		private ModUpdatesMenuContext() : base( false, false ) {
+		private ModUpdatesMenuContext( MenuUIDefinition menuDef, string contextName )
+				: base( menuDef, contextName, false, false ) { }
+
+		public override void OnSessionContextualize() {
+			throw new NotImplementedException();
 		}
 
 

@@ -53,21 +53,20 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <summary>
 		/// Adds a piece of menu content to a menu "context" (menu page) by name.
 		/// </summary>
-		/// <param name="menuDefinition"></param>
-		/// <param name="contextName"></param>
 		/// <param name="context"></param>
-		public static void AddMenuContext( MenuUIDefinition menuDefinition, string contextName, MenuContext context ) {
+		public static void AddMenuContext( MenuContext context ) {
 			var mymod = ModHelpersMod.Instance;
+			MenuUIDefinition menuDef = context.MenuDefinitionOfContext;
 
-			IDictionary<string, MenuContext> contexts = mymod.MenuContextMngr.GetContexts( menuDefinition );
-			contexts[contextName] = context;
+			IDictionary<string, MenuContext> contexts = mymod.MenuContextMngr.GetContexts( menuDef );
+			contexts[ context.ContextName ] = context;
 
 			context.OnContexualize();
 
 			UIState ui = Main.MenuUI.CurrentState;
 			string currUiName = ui?.GetType().Name;
 
-			if( Enum.GetName(typeof(MenuUIDefinition), menuDefinition) == currUiName ) {
+			if( Enum.GetName(typeof(MenuUIDefinition), menuDef ) == currUiName ) {
 				context.Show( ui );
 			}
 		}

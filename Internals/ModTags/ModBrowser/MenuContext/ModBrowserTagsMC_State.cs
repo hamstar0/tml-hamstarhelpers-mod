@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Internals.ModTags.MenuContext;
 using HamstarHelpers.Internals.ModTags.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -10,7 +11,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.Menus.ModTags {
+namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
 	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
 		public override void Show( UIState ui ) {
