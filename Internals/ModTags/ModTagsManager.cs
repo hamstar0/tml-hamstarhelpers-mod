@@ -21,12 +21,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		private SessionMenuContext Context;
-
-
-		////////////////
-
-		public UITagsPanel TagsUI { get; private set; }
+		public UIModTagsPanel TagsUI { get; private set; }
 		public bool CanExcludeTags { get; private set; }
 		public string CurrentModName { get; private set; }
 		public IDictionary<string, ISet<string>> AllModTagsSnapshot { get; private set; }
@@ -35,18 +30,14 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		////////////////
 
-		public ModTagsManager( SessionMenuContext menuContext, bool canExcludeTags ) {
-			this.Context = menuContext;
+		public ModTagsManager( UIState uiContext, bool canExcludeTags ) {
 			this.CanExcludeTags = canExcludeTags;
+			this.TagsUI = new UIModTagsPanel( UITheme.Vanilla, this, uiContext, ModTagsManager.Tags, this.CanExcludeTags );
 		}
 
 
-		public void OnMenuContextualize( MenuUIDefinition menuDef, string contextName ) {
-			UIState uiContext = MainMenuHelpers.GetMenuUI( menuDef );
-
-			this.TagsUI = new UITagsPanel( UITheme.Vanilla, this, uiContext, ModTagsManager.Tags, this.CanExcludeTags );
-
-			this.TagsUI.ApplyMenuContext( menuDef, contextName );
+		public void OnMenuContextualize() {
+			this.TagsUI.ApplyMenuContext();
 		}
 
 

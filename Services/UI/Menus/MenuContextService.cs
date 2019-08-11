@@ -62,7 +62,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			IDictionary<string, MenuContext> contexts = mymod.MenuContextMngr.GetContexts( menuDefinition );
 			contexts[contextName] = context;
 
-			context.OnContexualize( menuDefinition, contextName );
+			context.OnContexualize();
 
 			UIState ui = Main.MenuUI.CurrentState;
 			string currUiName = ui?.GetType().Name;

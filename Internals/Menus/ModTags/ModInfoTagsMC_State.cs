@@ -29,12 +29,11 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 			if( modName == null ) {
 				LogHelpers.Warn( "Could not load mod tags; no mod found" );
-			} else {
-				this.ResetUIState( modName );
-				this.SetCurrentMod( ui, modName );
-				this.RecalculateMenuObjects();
+				return;
 			}
-			
+
+			this.ResetUIState( modName );
+			this.SetCurrentMod( ui, modName );
 			
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
@@ -49,8 +48,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		private void HideGeneral( UIState ui ) {
 			this.InfoDisplay.SetDefaultText( "" );
-
-			this.ResetMenuObjects();
 
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {

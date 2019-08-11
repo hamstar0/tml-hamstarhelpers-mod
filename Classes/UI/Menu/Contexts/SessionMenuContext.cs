@@ -47,7 +47,11 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		/// </summary>
 		/// <param name="displayInfo">Whether an info panel is used/exists.</param>
 		/// <param name="occludesLogo">Whether the Terraria logo is removed.</param>
-		protected SessionMenuContext( bool displayInfo, bool occludesLogo ) {
+		protected SessionMenuContext( MenuUIDefinition menuDefinitionOfContext,
+				string contextName,
+				bool displayInfo,
+				bool occludesLogo )
+				: base( menuDefinitionOfContext, contextName ) {
 			this.DisplayInfo = displayInfo;
 			this.OccludesLogo = occludesLogo;
 			this.OldLogo1 = Main.logoTexture;
@@ -55,26 +59,34 @@ namespace HamstarHelpers.Classes.UI.Menu {
 			this.InfoDisplay = new UIInfoDisplay();
 		}
 
+
+		////
+
+		/// @private
+		public sealed override void OnContexualize() {
+			var menuDef = this.MenuDefinitionOfContext;
+
+			if( this.DisplayInfo ) {
+				WidgetMenuContext widgetCtx;
+
+				if( MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" ) == null ) {
+					widgetCtx = new WidgetMenuContext( this.InfoDisplay, false );
+					MenuContextService.AddMenuContext( menuDef, "ModHelpers: Info Display", widgetCtx );
+				} else {
+					widgetCtx = (WidgetMenuContext)MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" );
+					this.InfoDisplay = (UIInfoDisplay)widgetCtx.MyElement;
+				}
+			}
+
+			this.OnSessionContextualize();
+		}
+
 		/// <summary>
 		/// When our menu context first becomes "contextualized" with a given menu.
 		/// </summary>
 		/// <param name="uiClassName"></param>
 		/// <param name="contextNammenuDefe"></param>
-		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
-			if( !this.DisplayInfo ) {
-				return;
-			}
-
-			WidgetMenuContext widgetCtx;
-
-			if( MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" ) == null ) {
-				widgetCtx = new WidgetMenuContext( this.InfoDisplay, false );
-				MenuContextService.AddMenuContext( menuDef, "ModHelpers: Info Display", widgetCtx );
-			} else {
-				widgetCtx = (WidgetMenuContext)MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" );
-				this.InfoDisplay = (UIInfoDisplay)widgetCtx.MyElement;
-			}
-		}
+		public abstract void OnSessionContextualize();
 
 
 		////////////////
@@ -92,6 +104,8 @@ namespace HamstarHelpers.Classes.UI.Menu {
 			}
 
 			this.MyMenuUI = ui;
+
+			this.RecalculateMenuObjects();
 		}
 
 		/// <summary>
@@ -105,18 +119,26 @@ namespace HamstarHelpers.Classes.UI.Menu {
 			}
 
 			this.MyMenuUI = null;
+
+			this.ResetMenuObjects();
 		}
 
 
 		////////////////
 
-		protected void RecalculateMenuObjects() {
+		/// <summary>
+		/// Re-aligns menu objects for the context.
+		/// </summary>
+		protected virtual void RecalculateMenuObjects() {
 			if( Main.screenWidth < ( 800 + 128 ) ) {
 				this.SetOverhaulMenuDataOffset( new Vector2( -384, -384 ) );
 			}
 		}
-
-		protected void ResetMenuObjects() {
+		
+		/// <summary>
+		/// Reverts menu objects when the context changes.
+		/// </summary>
+		protected virtual void ResetMenuObjects() {
 			if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
 				this.SetOverhaulMenuDataOffset( this.OldOverhaulLogoPos );
 			}

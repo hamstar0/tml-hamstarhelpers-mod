@@ -17,7 +17,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			base.Show( ui );
 			
 			this.BeginModBrowserPopulateCheck( ui );
-			this.RecalculateMenuObjects();
 			this.Manager.TagsUI.EnableTagButtons();
 
 			this.Manager.SetInfoTextDefault( "Click tags to filter the list. Right-click tags to filter without them." );
@@ -37,8 +36,6 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 			base.Hide( ui );
 
 			this.Manager.SetInfoTextDefault( "" );
-
-			this.ResetMenuObjects();
 
 			UIElement elem;
 			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem == null ) {

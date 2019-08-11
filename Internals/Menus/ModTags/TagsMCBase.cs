@@ -5,6 +5,7 @@ using HamstarHelpers.Internals.ModTags;
 using HamstarHelpers.Internals.ModTags.UI;
 using System;
 using System.Collections.Generic;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus.ModTags {
@@ -16,14 +17,18 @@ namespace HamstarHelpers.Internals.Menus.ModTags {
 
 		////////////////
 
-		protected TagsMenuContextBase( bool canExcludeTags ) : base( true, true ) {
-			this.Manager = new ModTagsManager( this, canExcludeTags );
+		protected TagsMenuContextBase( MenuUIDefinition menuDef,
+				string contextName,
+				bool canExcludeTags )
+				: base( menuDef, contextName, true, true ) {
+			UIState uiContext = MainMenuHelpers.GetMenuUI( menuDef );
+
+			this.Manager = new ModTagsManager( uiContext, canExcludeTags );
 		}
 
-		public sealed override void OnContexualize( MenuUIDefinition menuDef, string contextName ) {
-			base.OnContexualize( menuDef, contextName );
 
-			this.Manager.OnMenuContextualize( menuDef, contextName );
+		public sealed override void OnSessionContextualize() {
+			this.Manager.TagsUI.ApplyMenuContext( this.MenuDefinitionOfContext, this.ContextName );
 		}
 
 

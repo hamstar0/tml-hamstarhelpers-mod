@@ -9,7 +9,7 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.UI {
-	partial class UITagsPanel : UIThemedPanel {
+	abstract partial class UIModTagsPanel : UIThemedPanel {
 		private readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
 		private readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
 
@@ -25,7 +25,11 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 
 		////////////////
 
-		public UITagsPanel( UITheme theme, ModTagsManager manager, UIState uiContext, TagDefinition[] tags, bool canExcludeTags )
+		public UIModTagsPanel( UITheme theme,
+				ModTagsManager manager,
+				UIState uiContext,
+				TagDefinition[] tags,
+				bool canExcludeTags )
 				: base( theme, true ) {
 			this.Manager = manager;
 

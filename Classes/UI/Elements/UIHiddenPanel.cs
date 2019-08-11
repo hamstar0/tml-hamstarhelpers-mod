@@ -23,7 +23,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		////////////////
 
-		/// <param name="zone">Space the element pretends to occupy (in truth, it is 0 sized).</param>
+		/// <param name="zone">Indicates the space the element pretends to occupy for interactivity purposes
+		/// (in truth, it is 0 sized).</param>
 		/// <param name="onHover">Action to run on mouse hover</param>
 		/// <param name="onExit">Action to run on mouse hover exit</param>
 		public UIHiddenPanel( Func<Rectangle> zone, Action onHover, Action onExit ) : base() {
