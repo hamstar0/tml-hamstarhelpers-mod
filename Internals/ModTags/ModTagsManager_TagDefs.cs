@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 
 
-	partial class ModTagsManager {
+	abstract partial class ModTagsManager {
 		public readonly static TagDefinition[] Tags;
 
 

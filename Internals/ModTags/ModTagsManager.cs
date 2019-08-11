@@ -14,13 +14,14 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModTagsManager {
+	abstract partial class ModTagsManager {
 		private static ISet<string> RecentTaggedMods = new HashSet<string>();
 
 
 
 		////////////////
 
+		public virtual TagDefinition[] MyTags => ModTagsManager.Tags;
 		public UIModTagsPanel TagsUI { get; private set; }
 		public bool CanExcludeTags { get; private set; }
 		public string CurrentModName { get; private set; }
@@ -32,12 +33,7 @@ namespace HamstarHelpers.Internals.ModTags {
 
 		public ModTagsManager( UIState uiContext, bool canExcludeTags ) {
 			this.CanExcludeTags = canExcludeTags;
-			this.TagsUI = new UIModTagsPanel( UITheme.Vanilla, this, uiContext, ModTagsManager.Tags, this.CanExcludeTags );
-		}
-
-
-		public void OnMenuContextualize() {
-			this.TagsUI.ApplyMenuContext();
+			this.TagsUI = new UIModTagsPanel( UITheme.Vanilla, this, uiContext, this.CanExcludeTags );
 		}
 
 

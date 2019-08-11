@@ -4,7 +4,7 @@ using System;
 
 
 namespace HamstarHelpers.Internals.ModTags {
-	partial class ModTagsManager {
+	abstract partial class ModTagsManager {
 		public string GetInfoText() {
 			return this.Context.InfoDisplay?.GetText() ?? null;
 		}

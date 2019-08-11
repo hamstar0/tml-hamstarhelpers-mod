@@ -28,12 +28,11 @@ namespace HamstarHelpers.Internals.ModTags.UI {
 		public UIModTagsPanel( UITheme theme,
 				ModTagsManager manager,
 				UIState uiContext,
-				TagDefinition[] tags,
 				bool canExcludeTags )
 				: base( theme, true ) {
 			this.Manager = manager;
 
-			this.InitializeControls( uiContext, tags, canExcludeTags );
+			this.InitializeControls( uiContext, manager.MyTags, canExcludeTags );
 
 			this.RefreshTheme();
 		}
