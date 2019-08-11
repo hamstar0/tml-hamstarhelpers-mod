@@ -1,19 +1,20 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.MenuContext;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.ModTags.Base;
+using HamstarHelpers.Internals.ModTags.Base.MenuContext;
+using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Services.UI.Menus;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
+	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase {
 		public static void Initialize( bool onModLoad ) {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var ctx = new ModBrowserTagsMenuContext();
-				MenuContextService.AddMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Browser", ctx );
+				var ctx = new ModBrowserTagsMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Browser" );
+				MenuContextService.AddMenuContext( ctx );
 			}
 		}
 
@@ -21,7 +22,10 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
-		private ModBrowserTagsMenuContext() : base( true ) {
+		protected ModBrowserTagsMenuContext( MenuUIDefinition menuDef, string contextName )
+				: base( menuDef, contextName, true ) {
+			//UIState uiContext = MainMenuHelpers.GetMenuUI( menuDef );
+			this.Manager = new ModTagsModBrowserManager();
 		}
 
 

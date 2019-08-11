@@ -1,15 +1,15 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.MenuContext;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.ModTags.Base.MenuContext;
+using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
-	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
+	partial class ModInfoTagsMenuContext : ModTagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 			this.ShowGeneral( ui );

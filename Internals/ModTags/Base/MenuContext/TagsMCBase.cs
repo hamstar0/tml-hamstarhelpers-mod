@@ -9,20 +9,18 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 	/// @private
-	abstract partial class TagsMenuContextBase : SessionMenuContext {
-		public readonly ModTagsManager Manager;
+	abstract partial class ModTagsMenuContextBase : SessionMenuContext {
+		public ModTagsManager Manager { get; protected set; }
 
 
 
 		////////////////
 
-		protected TagsMenuContextBase( MenuUIDefinition menuDef,
+		protected ModTagsMenuContextBase( MenuUIDefinition menuDef,
 				string contextName,
 				bool canExcludeTags )
 				: base( menuDef, contextName, true, true ) {
 			UIState uiContext = MainMenuHelpers.GetMenuUI( menuDef );
-
-			this.Manager = new ModTagsManager( uiContext, canExcludeTags );
 		}
 
 

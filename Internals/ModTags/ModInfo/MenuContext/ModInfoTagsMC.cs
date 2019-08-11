@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Internals.ModTags.MenuContext;
+using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
-	partial class ModInfoTagsMenuContext : TagsMenuContextBase {
+	partial class ModInfoTagsMenuContext : ModTagsMenuContextBase {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 
 
@@ -21,8 +21,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var ctx = new ModInfoTagsMenuContext();
-				MenuContextService.AddMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Info", ctx );
+				var ctx = new ModInfoTagsMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Info" );
+				MenuContextService.AddMenuContext( ctx );
 			}
 		}
 
