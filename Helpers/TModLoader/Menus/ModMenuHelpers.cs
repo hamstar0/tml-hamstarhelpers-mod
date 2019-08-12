@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <param name="isFiltered">Indicates whether to simply clear the filter list and filtered state.</param>
 		/// <param name="modNames">List of (internal) mod names to filter the list to.</param>
 		public static void ApplyModBrowserFilter( string filterName, bool isFiltered, List<string> modNames ) {
-			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) )
+			Type interfaceType = ReflectionHelpers.GetMainAssembly()
 				.GetType( "Terraria.ModLoader.Interface" );
 
 			UIState modBrowserUi;

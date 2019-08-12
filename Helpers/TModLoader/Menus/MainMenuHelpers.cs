@@ -23,10 +23,11 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <param name="menuDef"></param>
 		/// <returns></returns>
 		public static UIState GetMenuUI( MenuUIDefinition menuDef ) {
-			string menuUiName = Enum.GetName( typeof( MenuUIDefinition ), menuDef );
-			UIState menuUi;
+			string menuUiName = Enum.GetName( typeof(MenuUIDefinition), menuDef );
 
-			ReflectionHelpers.Get( typeof( MenuUIs ), menuUiName, out menuUi );
+			UIState menuUi;
+			ReflectionHelpers.Get( typeof(MenuUIs), null, menuUiName, out menuUi );
+
 			return menuUi;
 		}
 
@@ -35,7 +36,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// Switches to the list of mod configs menu.
 		/// </summary>
 		public static void OpenModConfigListUI() {
-			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+			Type interfaceType = ReflectionHelpers.GetMainAssembly().GetType( "Terraria.ModLoader.Interface" );
 
 			if( !Main.gameMenu ) {
 				IngameOptions.Close();
@@ -69,7 +70,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// </summary>
 		/// <param name="config"></param>
 		public static void OpenModConfigUI( ModConfig config ) {
-			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+			Type interfaceType = ReflectionHelpers.GetMainAssembly()
+				.GetType( "Terraria.ModLoader.Interface" );
 
 			if( !Main.gameMenu ) {
 				IngameOptions.Close();
@@ -107,7 +109,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// Loads the mod browser menu.
 		/// </summary>
 		public static void OpenModBrowserMenu() {
-			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) ).GetType( "Terraria.ModLoader.Interface" );
+			Type interfaceType = ReflectionHelpers.GetMainAssembly()
+				.GetType( "Terraria.ModLoader.Interface" );
 
 			int modBrowserMenuMode;
 			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowserID", out modBrowserMenuMode ) ) {
@@ -151,7 +154,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <param name="packTitle">Name of the set.</param>
 		/// <param name="modNames">Mod (internal) names of the set.</param>
 		public static void OpenModBrowserWithDownloadList( string packTitle, List<string> modNames ) {
-			Type interfaceType = Assembly.GetAssembly( typeof( ModLoader ) )
+			Type interfaceType = ReflectionHelpers.GetMainAssembly()
 				.GetType( "Terraria.ModLoader.Interface" );
 
 			int modBrowserMenuMode;

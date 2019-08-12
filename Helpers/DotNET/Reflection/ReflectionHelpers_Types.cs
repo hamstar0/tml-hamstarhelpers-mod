@@ -61,27 +61,48 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			}
 
 			try {
-				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-				Func<Assembly, IEnumerable<Type>> selectMany = ( Assembly a ) => {
-					try {
-						return a.GetTypes();
-					} catch {
-						return new List<Type>();
-					}
-				};
+				IList<Type> types = assembly.GetTypes();
 
-				foreach( Type t in selectMany( assembly ) ) {
+				foreach( Type t in types ) {
 					if( t.Name == className ) {
 						classTypeList.Add( t );
 					}
 				}
-
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
+				return new List<Type>();
 			}
 
 			rh.AssClassTypeMap.Set2D( assembly.FullName, className, classTypeList );
 			return classTypeList;
+		}
+
+
+		/// <summary>
+		/// Gets all types from a given assembly using a given class name.
+		/// </summary>
+		/// <param name="assembly"></param>
+		/// <param name="namespacedType"></param>
+		/// <returns></returns>
+		public static Type GetTypeFromAssembly( Assembly assembly, string namespacedType ) {
+			var rh = ModHelpersMod.Instance.ReflectionHelpers;
+			IList<Type> classTypeList;
+
+			if( rh.AssClassTypeMap.TryGetValue2D( assembly.FullName, namespacedType, out classTypeList ) ) {
+				return classTypeList.Count == 1 ? classTypeList[0] : null;
+			} else {
+				classTypeList = new List<Type>();
+			}
+
+			try {
+				classTypeList = new List<Type> { assembly.GetType( namespacedType ) };
+			} catch( Exception e ) {
+				LogHelpers.Warn( e.ToString() );
+				return null;
+			}
+
+			rh.AssClassTypeMap.Set2D( assembly.FullName, namespacedType, classTypeList );
+			return classTypeList.Count == 1 ? classTypeList[0] : null;
 		}
 
 

@@ -32,8 +32,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		private void InitializeControlButtons() {
 			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this.Manager );
-
-			//this.BlankButton.Disable();
 		}
 
 

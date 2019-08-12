@@ -23,6 +23,8 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser {
 		public ModTagsModBrowserManager( UIInfoDisplay infoDisplay ) : base( infoDisplay, true ) {
 			var tagsUi = new UIModTagsModBrowser( UITheme.Vanilla, this );
 			this.TagsUI = (UIModTags<ModTagsManager>)Convert.ChangeType( tagsUi, typeof(UIModTags<ModTagsManager>) );
+
+			this.TagsUI.RefreshButtonEnableStates();
 		}
 	}
 }

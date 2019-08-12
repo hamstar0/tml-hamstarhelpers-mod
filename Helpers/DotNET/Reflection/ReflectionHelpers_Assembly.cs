@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Reflection;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
@@ -9,6 +10,22 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
 	public partial class ReflectionHelpers {
+		/// <summary>
+		/// Returns the "main" assembly of tModLoader/Terraria.
+		/// </summary>
+		/// <returns></returns>
+		public static Assembly GetMainAssembly() {
+			var rh = ModHelpersMod.Instance.ReflectionHelpers;
+
+			if( rh.AssMap.ContainsKey( "___" ) ) {
+				return rh.AssMap["___"];
+			}
+
+			rh.AssMap[ "___" ] = Assembly.GetAssembly( typeof(ModLoader) );
+			return rh.AssMap["___"];
+		}
+
+
 		/// <summary>
 		/// Gets an assembly by the given name. Caches result for quicker future retrievals.
 		/// </summary>

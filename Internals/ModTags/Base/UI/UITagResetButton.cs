@@ -18,9 +18,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		public UITagResetButton( UITheme theme, ModTagsManager manager )
 				: base( theme, "Reset Tags", 98f, 24f, -196f, 172f, 0.36f, true ) {
 			this.Manager = manager;
-
-			this.RecalculatePos();
-			this.RefreshEnableState();
 		}
 
 

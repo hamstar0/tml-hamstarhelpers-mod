@@ -38,7 +38,7 @@ namespace HamstarHelpers.Internals.Menus {
 
 		private static void InitializeOpenConfigButton() {
 			var button = new UITextPanelButton( UITheme.Vanilla, "Open Mod Config Folder" );
-			button.Top.Set( 11f, 0f );
+			button.Top.Set( -2f, 0f );
 			button.Left.Set( -104f, 0.5f );
 			button.Width.Set( 208f, 0f );
 			button.Height.Set( 20f, 0f );

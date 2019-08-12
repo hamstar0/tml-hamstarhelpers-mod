@@ -36,8 +36,9 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 				: base( menuDef, contextName ) {
 			UIState uiModInfo = MainMenuHelpers.GetMenuUI( menuDef );
 
-			if( uiModInfo.GetType().Name != "UIModInfo" ) {
-				throw new ModHelpersException( "UI context not UIModInfo, found " + uiModInfo.GetType().Name );
+			if( uiModInfo == null || uiModInfo.GetType().Name != "UIModInfo" ) {
+				throw new ModHelpersException( "UI context not UIModInfo, found "
+						+ (uiModInfo?.GetType().Name ?? "null") + " ("+menuDef+")" );
 			}
 
 			this.Manager = new ModTagsEditorManager( this.InfoDisplay, uiModInfo );

@@ -1,6 +1,4 @@
 ﻿using System;
-using Terraria;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Debug {
@@ -51,7 +49,10 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="msg"></param>
 		public static void AlertOnce( string msg = "" ) {
 			if( LogHelpers.CanOutputOnceMessage( msg, out msg ) ) {
-				LogHelpers.Alert( "~" + msg );
+				ModHelpersMod mymod = ModHelpersMod.Instance;
+				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+
+				mymod.Logger.Error( "~" + fmtMsg );
 			}
 		}
 
@@ -61,7 +62,12 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="msg"></param>
 		public static void WarnOnce( string msg = "" ) {
 			if( LogHelpers.CanOutputOnceMessage( msg, out msg ) ) {
-				LogHelpers.Warn( "~" + msg );
+				lock( LogHelpers.MyLock ) {
+					ModHelpersMod mymod = ModHelpersMod.Instance;
+					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+
+					mymod.Logger.Fatal( "~" + fmtMsg );
+				}
 			}
 		}
 
@@ -73,7 +79,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="msg"></param>
 		public static void ResetOnceMessage( string msg ) {
 			lock( LogHelpers.MyLock ) {
-				string fmtMsg = LogHelpers.FormatMessage( msg, true );
+				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
 
 				ModHelpersMod.Instance.LogHelpers.UniqueMessages.Remove( "~" + msg );
 				ModHelpersMod.Instance.LogHelpers.UniqueMessages.Remove( "~" + fmtMsg );

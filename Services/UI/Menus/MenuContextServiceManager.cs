@@ -44,7 +44,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 				MenuUIDefinition menuDef = this.CurrentMenuUI.Item1;
 
 				if( !this.Contexts.ContainsKey( menuDef ) ) {
-					LogHelpers.Warn( "Missing menu context " + Enum.GetName( typeof( MenuUIDefinition ), menuDef ) );
+					LogHelpers.Warn( "Missing menu context " + menuDef );
 					return;
 				}
 

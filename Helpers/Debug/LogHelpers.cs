@@ -11,9 +11,10 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// Formats a given message as it would appear in the log output.
 		/// </summary>
 		/// <param name="msg"></param>
-		/// <param name="addContext">Prefixes the caller's namespace, class, and method "context".</param>
+		/// <param name="contextDepth">Indicates whether to also output the callstack context at the specified depth.
+		/// No output if -1 is set.</param>
 		/// <returns></returns>
-		public static string FormatMessage( string msg, bool addContext ) {
+		public static string FormatMessage( string msg, int contextDepth=-1 ) {
 			ModHelpersMod mymod = ModHelpersMod.Instance;
 			var logHelpers = mymod.LogHelpers;
 			string output = msg;
@@ -38,8 +39,8 @@ namespace HamstarHelpers.Helpers.Debug {
 				output = "FORMATTING ERROR (" + e.GetType().Name + ") - " + msg;
 			}
 
-			if( addContext ) {
-				output = DebugHelpers.GetCurrentContext( 3 ) + ( ( output != "" ) ? " - " + output : "" );
+			if( contextDepth >= 0 ) {
+				output = DebugHelpers.GetCurrentContext( contextDepth ) + ( ( output != "" ) ? " - " + output : "" );
 			}
 
 			return output;
@@ -55,7 +56,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		public static void Log( string msg="" ) {
 			lock( LogHelpers.MyLock ) {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
-				mymod.Logger.Info( LogHelpers.FormatMessage( msg, false ) );
+				mymod.Logger.Info( LogHelpers.FormatMessage( msg ) );
 			}
 		}
 
@@ -66,7 +67,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		public static void Alert( string msg="" ) {
 			lock( LogHelpers.MyLock ) {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
-				string fmtMsg = LogHelpers.FormatMessage( msg, true );
+				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
 
 				mymod.Logger.Error( fmtMsg );
 				//LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg : "") );
@@ -80,7 +81,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		public static void Warn( string msg="" ) {
 			lock( LogHelpers.MyLock ) {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
-				string fmtMsg = LogHelpers.FormatMessage( msg, true );
+				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
 
 				mymod.Logger.Fatal( fmtMsg );
 				//LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg: "") );

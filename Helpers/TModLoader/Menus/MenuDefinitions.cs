@@ -2,10 +2,9 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
-using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 using Terraria.GameContent.UI.States;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 
@@ -117,27 +116,27 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 		////
 
-		public static UIState UIMods => MenuUIs.GetInterfacesMenuUi( "modsMenu" );
-		public static UIState UILoadModsProgress => MenuUIs.GetInterfacesMenuUi( "loadModsProgress" );
-		public static UIState UIModSources => MenuUIs.GetInterfacesMenuUi( "modSources" );
-		public static UIState UIBuildModProgress => MenuUIs.GetInterfacesMenuUi( "buildMod" );
-		public static UIState UIErrorMessage => MenuUIs.GetInterfacesMenuUi( "errorMessage" );
-		public static UIState UIModBrowser => MenuUIs.GetInterfacesMenuUi( "modBrowser" );
-		public static UIState UIModInfo => MenuUIs.GetInterfacesMenuUi( "modInfo" );
-		public static UIState UIManagePublished => MenuUIs.GetInterfacesMenuUi( "managePublished" );
-		public static UIState UIUpdateMessage => MenuUIs.GetInterfacesMenuUi( "updateMessage" );
-		public static UIState UIInfoMessage => MenuUIs.GetInterfacesMenuUi( "infoMessage" );
-		public static UIState UIEnterPassphraseMenu => MenuUIs.GetInterfacesMenuUi( "enterPassphraseMenu" );
-		public static UIState UIModPacks => MenuUIs.GetInterfacesMenuUi( "modPacksMenu" );
-		public static UIState UIEnterSteamIDMenu => MenuUIs.GetInterfacesMenuUi( "enterSteamIDMenu" );
-		public static UIState UIExtractModProgress => MenuUIs.GetInterfacesMenuUi( "extractMod" );
-		public static UIState UIUploadModProgress => MenuUIs.GetInterfacesMenuUi( "uploadModProgress" );
-		public static UIState UIDeveloperModeHelp => MenuUIs.GetInterfacesMenuUi( "developerModeHelp" );
-		public static UIState UIModConfig => MenuUIs.GetInterfacesMenuUi( "modConfig" );
-		public static UIState UIModConfigList => MenuUIs.GetInterfacesMenuUi( "modConfigList" );
-		public static UIState UICreateMod => MenuUIs.GetInterfacesMenuUi( "createMod" );
-		public static UIState UIProgress => MenuUIs.GetInterfacesMenuUi( "progress" );
-		public static UIState UIDownloadProgress => MenuUIs.GetInterfacesMenuUi( "downloadProgress" );
+		public static UIState UIMods => MenuUIs.GetInterfacesMenuUI( "modsMenu" );
+		public static UIState UILoadModsProgress => MenuUIs.GetInterfacesMenuUI( "loadModsProgress" );
+		public static UIState UIModSources => MenuUIs.GetInterfacesMenuUI( "modSources" );
+		public static UIState UIBuildModProgress => MenuUIs.GetInterfacesMenuUI( "buildMod" );
+		public static UIState UIErrorMessage => MenuUIs.GetInterfacesMenuUI( "errorMessage" );
+		public static UIState UIModBrowser => MenuUIs.GetInterfacesMenuUI( "modBrowser" );
+		public static UIState UIModInfo => MenuUIs.GetInterfacesMenuUI( "modInfo" );
+		public static UIState UIManagePublished => MenuUIs.GetInterfacesMenuUI( "managePublished" );
+		public static UIState UIUpdateMessage => MenuUIs.GetInterfacesMenuUI( "updateMessage" );
+		public static UIState UIInfoMessage => MenuUIs.GetInterfacesMenuUI( "infoMessage" );
+		public static UIState UIEnterPassphraseMenu => MenuUIs.GetInterfacesMenuUI( "enterPassphraseMenu" );
+		public static UIState UIModPacks => MenuUIs.GetInterfacesMenuUI( "modPacksMenu" );
+		public static UIState UIEnterSteamIDMenu => MenuUIs.GetInterfacesMenuUI( "enterSteamIDMenu" );
+		public static UIState UIExtractModProgress => MenuUIs.GetInterfacesMenuUI( "extractMod" );
+		public static UIState UIUploadModProgress => MenuUIs.GetInterfacesMenuUI( "uploadModProgress" );
+		public static UIState UIDeveloperModeHelp => MenuUIs.GetInterfacesMenuUI( "developerModeHelp" );
+		public static UIState UIModConfig => MenuUIs.GetInterfacesMenuUI( "modConfig" );
+		public static UIState UIModConfigList => MenuUIs.GetInterfacesMenuUI( "modConfigList" );
+		public static UIState UICreateMod => MenuUIs.GetInterfacesMenuUI( "createMod" );
+		public static UIState UIProgress => MenuUIs.GetInterfacesMenuUI( "progress" );
+		public static UIState UIDownloadProgress => MenuUIs.GetInterfacesMenuUI( "downloadProgress" );
 
 
 
@@ -145,7 +144,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 		private static UIState GetMainMenuUI( string menuFieldName ) {
 			UIState menuUI;
-			if( !ReflectionHelpers.Get( typeof( Main ), null, menuFieldName, out menuUI ) ) {
+			if( !ReflectionHelpers.Get( typeof(Main), null, menuFieldName, out menuUI ) ) {
 				LogHelpers.Warn( "Could not find Main."+menuFieldName );
 				return null;
 			}
@@ -153,15 +152,18 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 			return menuUI;
 		}
 
-		private static UIState GetInterfacesMenuUi( string menuFieldName ) {
-			IList<Type> types = ReflectionHelpers.GetTypesFromAssembly( typeof(ModLoader).Assembly, "Terraria.ModLoader.Interface" );
-			if( types.Count != 1 ) {
+		private static UIState GetInterfacesMenuUI( string menuFieldName ) {
+			Assembly ass = ReflectionHelpers.GetMainAssembly();
+			//Type interfaceType = ass.GetType( "Terraria.ModLoader.Interface" );
+
+			Type type = ReflectionHelpers.GetTypeFromAssembly( ass, "Terraria.ModLoader.Interface" );
+			if( type == null ) {
 				LogHelpers.Warn( "Could not find Terraria.ModLoader.Interface" );
 				return null;
 			}
 
 			UIState menuUI;
-			if( !ReflectionHelpers.Get( types[0], menuFieldName, out menuUI ) ) {
+			if( !ReflectionHelpers.Get(type, null, menuFieldName, out menuUI) ) {
 				LogHelpers.Warn( "Could not find Terraria.ModLoader.Interface."+menuFieldName );
 				return null;
 			}

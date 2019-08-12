@@ -55,6 +55,10 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="result"></param>
 		/// <returns>`true` if field or property exist.</returns>
 		public static bool Get<T>( object instance, string fieldOrPropName, out T result ) {
+			if( instance is Type ) {
+				throw new ModHelpersException( "Cannot get fields or properties from Type. Use the other Get<T>(...)." );
+			}
+
 			return ReflectionHelpers.Get<T>( instance.GetType(), instance, fieldOrPropName, out result );
 		}
 
