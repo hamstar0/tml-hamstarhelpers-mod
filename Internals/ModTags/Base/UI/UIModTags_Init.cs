@@ -11,7 +11,7 @@ using System.Linq;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
-	abstract partial class UIModTags<T> : UIThemedPanel where T : ModTagsManager {
+	abstract partial class UIModTags : UIThemedPanel {
 		private void InitializeControls( TagDefinition[] tags, bool canExcludeTags ) {
 			this.InitializeControlButtons();
 

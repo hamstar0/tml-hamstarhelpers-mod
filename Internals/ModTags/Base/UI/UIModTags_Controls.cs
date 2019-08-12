@@ -1,11 +1,10 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Internals.ModTags.ModInfo.UI;
 using HamstarHelpers.Services.Timers;
 using System;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
-	abstract partial class UIModTags<T> : UIThemedPanel where T : ModTagsManager {
+	abstract partial class UIModTags : UIThemedPanel {
 		public void OnTagStateChange( UITagButton button ) {
 			this.RefreshButtonEnableStates();
 		}
@@ -24,10 +23,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			foreach( var kv in this.TagButtons ) {
 				kv.Value.Enable();
 			}
-		}
-
-		public static explicit operator UIModTags<T>( UIModTagsEditor v ) {
-			throw new NotImplementedException();
 		}
 
 		public void DisableTagButtons() {

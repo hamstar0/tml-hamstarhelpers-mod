@@ -7,7 +7,7 @@ using HamstarHelpers.Services.UI.Menus;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase<ModTagsModBrowserManager> {
+	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase {
 		public static void Initialize( bool onModLoad ) {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 

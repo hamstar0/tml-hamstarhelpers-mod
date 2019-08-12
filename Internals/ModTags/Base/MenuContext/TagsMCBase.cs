@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 	/// @private
-	abstract partial class ModTagsMenuContextBase<T> : SessionMenuContext where T : ModTagsManager {
-		public T Manager { get; protected set; }
+	abstract partial class ModTagsMenuContextBase : SessionMenuContext {
+		public ModTagsManager Manager { get; protected set; }
 
 
 

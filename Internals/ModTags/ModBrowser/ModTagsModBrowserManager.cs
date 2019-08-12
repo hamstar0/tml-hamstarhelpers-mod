@@ -10,19 +10,8 @@ using System;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser {
 	partial class ModTagsModBrowserManager : ModTagsManager {
-		public UIModTagsModBrowser MyTagsUI {
-			get {
-				return (UIModTagsModBrowser)Convert.ChangeType( this.TagsUI, typeof(UIModTagsModBrowser) );
-			}
-		}
-
-
-
-		////////////////
-
 		public ModTagsModBrowserManager( UIInfoDisplay infoDisplay ) : base( infoDisplay, true ) {
-			var tagsUi = new UIModTagsModBrowser( UITheme.Vanilla, this );
-			this.TagsUI = (UIModTags<ModTagsManager>)Convert.ChangeType( tagsUi, typeof(UIModTags<ModTagsManager>) );
+			this.TagsUI = new UIModTagsModBrowser( UITheme.Vanilla, this );
 
 			this.TagsUI.RefreshButtonEnableStates();
 		}

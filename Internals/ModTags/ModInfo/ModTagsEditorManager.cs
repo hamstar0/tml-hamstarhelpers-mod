@@ -4,7 +4,6 @@ using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base;
-using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -17,19 +16,14 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo {
 	partial class ModTagsEditorManager : ModTagsManager {
-		public UIModTagsEditor MyTagsUI {
-			get {
-				return (UIModTagsEditor)Convert.ChangeType( this.TagsUI, typeof(UIModTagsEditor) );
-			}
-		}
+		public UIModTagsEditor MyTagsUI => (UIModTagsEditor)this.TagsUI;
 
 
 
 		////////////////
 
 		public ModTagsEditorManager( UIInfoDisplay infoDisplay, UIState uiModInfo ) : base( infoDisplay, false ) {
-			var tagsUi = new UIModTagsEditor( UITheme.Vanilla, this, uiModInfo );
-			this.TagsUI = (UIModTags<ModTagsManager>)Convert.ChangeType( tagsUi, typeof(UIModTags<ModTagsManager>) );
+			this.TagsUI = new UIModTagsEditor( UITheme.Vanilla, this, uiModInfo );
 
 			this.TagsUI.RefreshButtonEnableStates();
 		}

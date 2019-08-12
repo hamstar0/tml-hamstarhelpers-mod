@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
-	abstract partial class UIModTags<T> : UIThemedPanel where T : ModTagsManager {
+	abstract partial class UIModTags : UIThemedPanel {
 		protected readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
 		protected readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
 
 		////////////////
 
-		protected T Manager;
+		protected ModTagsManager Manager;
 
 		protected UITagResetButton ResetButton;
 
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public UIModTags( UITheme theme, T manager, bool canExcludeTags ) : base( theme, true ) {
+		public UIModTags( UITheme theme, ModTagsManager manager, bool canExcludeTags ) : base( theme, true ) {
 			this.Manager = manager;
 
 			this.InitializeControls( manager.MyTags, canExcludeTags );

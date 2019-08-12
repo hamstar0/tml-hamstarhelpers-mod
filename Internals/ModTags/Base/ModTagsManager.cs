@@ -16,18 +16,20 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 		////////////////
 
+		public UIModTags TagsUI { get; protected set; }
+
 		public virtual TagDefinition[] MyTags => ModTagsManager.Tags;
-		public UIModTags<ModTagsManager> TagsUI { get; protected set; }
 
 		public string CurrentModName { get; protected set; }
 		public bool CanExcludeTags { get; private set; }
+
 		public IDictionary<string, ISet<string>> AllModTagsSnapshot { get; protected set; }
 
 
 
 		////////////////
 
-		public ModTagsManager( UIInfoDisplay infoDisplay, bool canExcludeTags ) {
+		protected ModTagsManager( UIInfoDisplay infoDisplay, bool canExcludeTags ) {
 			this.InfoDisplay = infoDisplay;
 			this.CanExcludeTags = canExcludeTags;
 			//this.TagsUI = new UIModTagsPanel( UITheme.Vanilla, this, uiContext, this.CanExcludeTags );

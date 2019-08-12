@@ -4,7 +4,7 @@ using System;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.UI {
-	partial class UIModTagsModBrowser : UIModTags<ModTagsModBrowserManager> {
+	partial class UIModTagsModBrowser : UIModTags {
 		public UIModTagsModBrowser( UITheme theme, ModTagsModBrowserManager manager )
 				: base( theme, manager, true ) {
 		}

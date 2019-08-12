@@ -13,7 +13,12 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
-	partial class ModInfoTagsMenuContext : ModTagsMenuContextBase<ModTagsEditorManager> {
+	partial class ModInfoTagsMenuContext : ModTagsMenuContextBase {
+		protected ModTagsEditorManager MyManager => (ModTagsEditorManager)this.Manager;
+
+
+		////////////////
+
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 
 

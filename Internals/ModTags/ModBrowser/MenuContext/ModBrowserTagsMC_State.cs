@@ -13,7 +13,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase<ModTagsModBrowserManager> {
+	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 			
