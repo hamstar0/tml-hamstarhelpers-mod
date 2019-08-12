@@ -1,10 +1,12 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Internals.ModTags.ModBrowser.UI;
+using HamstarHelpers.Internals.ModTags.ModInfo.UI;
 using HamstarHelpers.Services.Timers;
 using System;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
-	abstract partial class UIModTagsPanel : UIThemedPanel {
+	abstract partial class UIModTags<T> : UIThemedPanel where T : ModTagsManager {
 		public void OnTagStateChange( UITagButton button ) {
 			this.RefreshButtonEnableStates();
 		}
@@ -12,8 +14,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public void RefreshButtonEnableStates() {
-			this.FinishButton.RefreshEnableState();
+		public virtual void RefreshButtonEnableStates() {
 			this.ResetButton.RefreshEnableState();
 		}
 
@@ -24,6 +25,10 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			foreach( var kv in this.TagButtons ) {
 				kv.Value.Enable();
 			}
+		}
+
+		public static explicit operator UIModTags<T>( UIModTagsEditor v ) {
+			throw new NotImplementedException();
 		}
 
 		public void DisableTagButtons() {
@@ -70,32 +75,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		public void LockResetButton() {
 			this.ResetButton.Lock();
-		}
-
-
-		////////////////
-
-		public void LockFinishButton() {
-			if( !this.FinishButton.IsLocked ) {
-				this.FinishButton.Lock();
-			}
-		}
-
-		public void UnlockFinishButton() {
-			if( this.FinishButton.IsLocked ) {
-				this.FinishButton.Unlock();
-			}
-		}
-
-
-		////////////////
-
-		public void EnableSubmitMode() {
-			this.FinishButton.SetModeSubmit();
-		}
-
-		public void DisableSubmitMode() {
-			this.FinishButton.SetModeReadOnly();
 		}
 	}
 }

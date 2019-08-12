@@ -1,17 +1,17 @@
 ﻿using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.Menus.ModTags;
+using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.Base.UI {
+namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 	/// @private
 	partial class UITagFinishButton : UIMenuButton {
-		private readonly ModTagsManager Manager;
+		private readonly ModTagsEditorManager Manager;
 
 		public bool IsLocked { get; private set; }
 
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public UITagFinishButton( UITheme theme, ModTagsManager manager )
+		public UITagFinishButton( UITheme theme, ModTagsEditorManager manager )
 				: base( theme, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
 			this.Manager = manager;
 

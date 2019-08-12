@@ -5,43 +5,29 @@ using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Services.TML;
 using System;
 using System.Collections.Generic;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
-	abstract partial class UIModTagsPanel : UIThemedPanel {
-		private readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
-		private readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
+	abstract partial class UIModTags<T> : UIThemedPanel where T : ModTagsManager {
+		protected readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
+		protected readonly IDictionary<string, UITagButton> TagButtons = new Dictionary<string, UITagButton>();
 
 		////////////////
 
-		private ModTagsManager Manager;
+		protected T Manager;
 
-		private UIHiddenPanel HiddenPanel;
-		private UITagFinishButton FinishButton;
-		private UITagResetButton ResetButton;
+		protected UITagResetButton ResetButton;
 
 
 
 		////////////////
 
-		public UIModTagsPanel( UITheme theme,
-				ModTagsManager manager,
-				UIState uiContext,
-				bool canExcludeTags )
-				: base( theme, true ) {
+		public UIModTags( UITheme theme, T manager, bool canExcludeTags ) : base( theme, true ) {
 			this.Manager = manager;
 
-			this.InitializeControls( uiContext, manager.MyTags, canExcludeTags );
+			this.InitializeControls( manager.MyTags, canExcludeTags );
 
 			this.RefreshTheme();
-		}
-
-
-		////////////////
-
-		public bool CanEditTags() {
-			return this.FinishButton.Text == "Modify Tags";
 		}
 
 

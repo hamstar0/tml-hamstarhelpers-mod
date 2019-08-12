@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
@@ -7,11 +8,12 @@ using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
-	partial class ModInfoTagsMenuContext : ModTagsMenuContextBase {
+	partial class ModInfoTagsMenuContext : ModTagsMenuContextBase<ModTagsEditorManager> {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 
 
@@ -30,7 +32,15 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 		////////////////
 
-		private ModInfoTagsMenuContext() : base( false ) {
+		protected ModInfoTagsMenuContext( MenuUIDefinition menuDef, string contextName )
+				: base( menuDef, contextName ) {
+			UIState uiModInfo = MainMenuHelpers.GetMenuUI( menuDef );
+
+			if( uiModInfo.GetType().Name != "UIModInfo" ) {
+				throw new ModHelpersException( "UI context not UIModInfo, found " + uiModInfo.GetType().Name );
+			}
+
+			this.Manager = new ModTagsEditorManager( uiModInfo );
 		}
 
 
@@ -57,13 +67,6 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			if( modInfo.IsBadMod ) {
 				this.Manager.TagsUI.SafelySetTagButton( "Misleading Info" );
 			}
-		}
-
-
-		////////////////
-
-		private void SubmitTags() {
-			this.Manager.SubmitTags();
 		}
 	}
 }

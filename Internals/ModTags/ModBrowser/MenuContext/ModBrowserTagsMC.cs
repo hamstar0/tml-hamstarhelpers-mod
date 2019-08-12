@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.Base;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Services.UI.Menus;
@@ -8,7 +7,7 @@ using HamstarHelpers.Services.UI.Menus;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase {
+	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase<ModTagsModBrowserManager> {
 		public static void Initialize( bool onModLoad ) {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
@@ -23,8 +22,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 		////////////////
 
 		protected ModBrowserTagsMenuContext( MenuUIDefinition menuDef, string contextName )
-				: base( menuDef, contextName, true ) {
-			//UIState uiContext = MainMenuHelpers.GetMenuUI( menuDef );
+				: base( menuDef, contextName ) {
 			this.Manager = new ModTagsModBrowserManager();
 		}
 

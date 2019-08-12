@@ -6,7 +6,6 @@ using HamstarHelpers.Helpers.HUD;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {

@@ -3,20 +3,17 @@ using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria.UI;
-using Microsoft.Xna.Framework;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
-	abstract partial class UIModTagsPanel : UIThemedPanel {
-		private void InitializeControls( UIState uiContext, TagDefinition[] tags, bool canExcludeTags ) {
-			this.InitializeControlButtons( uiContext );
+	abstract partial class UIModTags<T> : UIThemedPanel where T : ModTagsManager {
+		private void InitializeControls( TagDefinition[] tags, bool canExcludeTags ) {
+			this.InitializeControlButtons();
 
 			float y = 0;
 
@@ -33,68 +30,34 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		}
 
 
-		private void InitializeControlButtons( UIState uiContext ) {
-			if( uiContext.GetType().Name == "UIModInfo" ) {
-				this.InitializeHiddenControl( uiContext );
-			} else {
-				this.HiddenPanel = null;
-			}
-
-			this.FinishButton = new UITagFinishButton( UITheme.Vanilla, this.Manager );
+		private void InitializeControlButtons() {
 			this.ResetButton = new UITagResetButton( UITheme.Vanilla, this.Manager );
 
 			//this.BlankButton.Disable();
 		}
 
-		private void InitializeHiddenControl( UIState modInfoUi ) {
-			Func<Rectangle> getRect = () => {
-				UIElement homepageButton;
-				if( !ReflectionHelpers.Get( modInfoUi, "_modHomepageButton", out homepageButton ) ) {
-					LogHelpers.Warn( "Could not get _modHomepageButton" );
-					return default( Rectangle );
-				}
-
-				return homepageButton?.GetOuterDimensions().ToRectangle() ?? new Rectangle( -1, -1, 0, 0 );
-			};
-
-			Action onHover = () => {
-				string url;
-				if( !ReflectionHelpers.Get( modInfoUi, "_url", out url ) ) {
-					LogHelpers.Warn( "Could not get url" );
-					return;
-				}
-
-				this.Manager.SetInfoText( "" + url );
-			};
-
-			Action onExit = () => {
-				this.Manager.SetInfoText( "" );
-			};
-
-			//this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true );
-			this.HiddenPanel = new UIHiddenPanel( getRect, onHover, onExit );
-		}
-
 
 		////
 
-		public void ApplyMenuContext( MenuUIDefinition menuDef, string baseContextName ) {
+		public virtual void ApplyMenuContext( MenuUIDefinition menuDef, string baseContextName ) {
 			int i = 0;
 
 			foreach( UITagButton button in this.TagButtons.Values ) {
-				var buttonWidgetCtx = new WidgetMenuContext( button, false );
+				var buttonWidgetCtx = new WidgetMenuContext( menuDef,
+					baseContextName + " Tag " + i,
+					button,
+					false );
 
-				MenuContextService.AddMenuContext( menuDef, baseContextName + " Tag " + i, buttonWidgetCtx );
+				MenuContextService.AddMenuContext( buttonWidgetCtx );
 				i++;
 			}
 
-			var hiddenWidgetCtx = new WidgetMenuContext( this.HiddenPanel, false );
-			var finishButtonWidgetCtx = new WidgetMenuContext( this.FinishButton, false );
-			var resetButtonWidgetCtx = new WidgetMenuContext( this.ResetButton, false );
+			var resetButtonWidgetCtx = new WidgetMenuContext( menuDef,
+				baseContextName + " Tag Reset Button",
+				this.ResetButton,
+				false );
 
-			MenuContextService.AddMenuContext( menuDef, baseContextName + " Hidden", hiddenWidgetCtx );
-			MenuContextService.AddMenuContext( menuDef, baseContextName + " Tag Finish Button", finishButtonWidgetCtx );
-			MenuContextService.AddMenuContext( menuDef, baseContextName + " Tag Reset Button", resetButtonWidgetCtx );
+			MenuContextService.AddMenuContext( resetButtonWidgetCtx );
 		}
 	}
 }

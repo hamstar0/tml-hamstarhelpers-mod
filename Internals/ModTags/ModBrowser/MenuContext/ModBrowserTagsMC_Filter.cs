@@ -2,7 +2,7 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.MenuContext;
+using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
@@ -12,7 +12,7 @@ using Terraria.ModLoader.UI.ModBrowser;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
+	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase<ModTagsModBrowserManager> {
 		/// @private
 		public delegate void FilteredModsHandler(
 			bool isFiltered,

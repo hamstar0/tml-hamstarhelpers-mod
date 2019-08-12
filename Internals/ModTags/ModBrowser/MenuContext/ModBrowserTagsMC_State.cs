@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Internals.ModTags.MenuContext;
-using HamstarHelpers.Internals.ModTags.UI;
+using HamstarHelpers.Internals.ModTags.Base.MenuContext;
+using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
@@ -13,7 +13,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : TagsMenuContextBase {
+	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase<ModTagsModBrowserManager> {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 			

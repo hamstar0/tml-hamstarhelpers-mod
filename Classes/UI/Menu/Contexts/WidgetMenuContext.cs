@@ -12,12 +12,13 @@ namespace HamstarHelpers.Classes.UI.Menus {
 
 		////////////////
 
-		public WidgetMenuContext( UIElement myElem, bool isInner ) {
+		public WidgetMenuContext( MenuUIDefinition menuDef, string contextName, UIElement myElem, bool isInner )
+				: base( menuDef, contextName ) {
 			this.MyElement = myElem;
 			this.IsInner = isInner;
 		}
 
-		public override void OnContexualize( MenuUIDefinition menuDef, string contextName ) { }
+		public override void OnContexualize() { }
 
 
 		////////////////
