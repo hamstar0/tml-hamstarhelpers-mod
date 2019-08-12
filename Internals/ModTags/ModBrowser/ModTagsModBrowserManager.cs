@@ -9,9 +9,9 @@ using System;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser {
 	partial class ModTagsModBrowserManager : ModTagsManager {
-		public UIModTagsBrowser MyTagsUI {
+		public UIModTagsModBrowser MyTagsUI {
 			get {
-				return (UIModTagsBrowser)Convert.ChangeType( this.TagsUI, typeof(UIModTagsBrowser) );
+				return (UIModTagsModBrowser)Convert.ChangeType( this.TagsUI, typeof(UIModTagsModBrowser) );
 			}
 		}
 
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser {
 		////////////////
 
 		public ModTagsModBrowserManager() : base( true ) {
-			var tagsUi = new UIModTagsBrowser( UITheme.Vanilla, this );
+			var tagsUi = new UIModTagsModBrowser( UITheme.Vanilla, this );
 			this.TagsUI = (UIModTags<ModTagsManager>)Convert.ChangeType( tagsUi, typeof(UIModTags<ModTagsManager>) );
 		}
 	}

@@ -70,8 +70,8 @@ namespace HamstarHelpers.Classes.UI.Menu {
 				WidgetMenuContext widgetCtx;
 
 				if( MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" ) == null ) {
-					widgetCtx = new WidgetMenuContext( this.InfoDisplay, false );
-					MenuContextService.AddMenuContext( menuDef, "ModHelpers: Info Display", widgetCtx );
+					widgetCtx = new WidgetMenuContext( menuDef, "ModHelpers: Info Display", this.InfoDisplay, false );
+					MenuContextService.AddMenuContext( widgetCtx );
 				} else {
 					widgetCtx = (WidgetMenuContext)MenuContextService.GetMenuContext( menuDef, "ModHelpers: Info Display" );
 					this.InfoDisplay = (UIInfoDisplay)widgetCtx.MyElement;

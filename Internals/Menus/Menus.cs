@@ -3,8 +3,9 @@ using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.Menus.ModTags;
 using HamstarHelpers.Internals.Menus.ModUpdates;
+using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
+using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
@@ -49,9 +50,12 @@ namespace HamstarHelpers.Internals.Menus {
 				} catch( Exception ) { }
 			};
 
-			var buttonWidgetCtx = new WidgetMenuContext( button, true );
+			var buttonWidgetCtx = new WidgetMenuContext( MenuUIDefinition.UIMods,
+				"ModHelpers: Mod Menu Config Folder Button",
+				button,
+				true );
 
-			MenuContextService.AddMenuContext( MenuUIDefinition.UIMods, "ModHelpers: Mod Menu Config Folder Button", buttonWidgetCtx );
+			MenuContextService.AddMenuContext( buttonWidgetCtx );
 		}
 
 

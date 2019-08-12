@@ -15,13 +15,4 @@
     <None Remove=".gitignore" />
     <None Remove="icon.pdn" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Internals\ModTags\Base\MenuContext\TagsMCBase.cs" />
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Internals\ModTags\Base\UI\UIModTagsPanel.cs" />
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Internals\ModTags\Base\UI\UIModTagsPanel_Controls.cs" />
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Internals\ModTags\Base\UI\UIModTagsPanel_Init.cs" />
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Internals\ModTags\Base\UI\UITagButton.cs" />
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Internals\ModTags\Base\UI\UITagFinishButton.cs" />
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Internals\ModTags\Base\UI\UITagResetButton.cs" />
-  </ItemGroup>
 </Project>
