@@ -6,17 +6,17 @@ using System;
 namespace HamstarHelpers.Internals.ModTags.Base {
 	abstract partial class ModTagsManager {
 		public string GetInfoText() {
-			return this.Context.InfoDisplay?.GetText() ?? null;
+			return this.InfoDisplay?.GetText() ?? null;
 		}
 
 		public void SetInfoText( string text, Color? color = null ) {
-			this.Context.InfoDisplay?.SetText( text, color );
+			this.InfoDisplay?.SetText( text, color );
 		}
 
 		////
 
 		public void SetInfoTextDefault( string text ) {
-			this.Context.InfoDisplay?.SetDefaultText( text );
+			this.InfoDisplay?.SetDefaultText( text );
 		}
 	}
 }

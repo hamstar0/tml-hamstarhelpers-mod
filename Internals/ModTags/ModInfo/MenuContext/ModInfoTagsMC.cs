@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 				throw new ModHelpersException( "UI context not UIModInfo, found " + uiModInfo.GetType().Name );
 			}
 
-			this.Manager = new ModTagsEditorManager( uiModInfo );
+			this.Manager = new ModTagsEditorManager( this.InfoDisplay, uiModInfo );
 		}
 
 

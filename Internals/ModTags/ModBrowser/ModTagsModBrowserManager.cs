@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ModTags.Base;
@@ -19,7 +20,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser {
 
 		////////////////
 
-		public ModTagsModBrowserManager() : base( true ) {
+		public ModTagsModBrowserManager( UIInfoDisplay infoDisplay ) : base( infoDisplay, true ) {
 			var tagsUi = new UIModTagsModBrowser( UITheme.Vanilla, this );
 			this.TagsUI = (UIModTags<ModTagsManager>)Convert.ChangeType( tagsUi, typeof(UIModTags<ModTagsManager>) );
 		}

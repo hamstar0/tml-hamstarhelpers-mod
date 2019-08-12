@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using System;
@@ -9,12 +10,15 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 	abstract partial class ModTagsManager {
 		protected static ISet<string> RecentTaggedMods = new HashSet<string>();
 
+		private UIInfoDisplay InfoDisplay;
+
 
 
 		////////////////
 
 		public virtual TagDefinition[] MyTags => ModTagsManager.Tags;
 		public UIModTags<ModTagsManager> TagsUI { get; protected set; }
+
 		public string CurrentModName { get; protected set; }
 		public bool CanExcludeTags { get; private set; }
 		public IDictionary<string, ISet<string>> AllModTagsSnapshot { get; protected set; }
@@ -23,7 +27,8 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 		////////////////
 
-		public ModTagsManager( bool canExcludeTags ) {
+		public ModTagsManager( UIInfoDisplay infoDisplay, bool canExcludeTags ) {
+			this.InfoDisplay = infoDisplay;
 			this.CanExcludeTags = canExcludeTags;
 			//this.TagsUI = new UIModTagsPanel( UITheme.Vanilla, this, uiContext, this.CanExcludeTags );
 		}

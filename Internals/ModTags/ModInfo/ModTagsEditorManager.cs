@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
@@ -26,7 +27,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo {
 
 		////////////////
 
-		public ModTagsEditorManager( UIState uiModInfo ) : base( false ) {
+		public ModTagsEditorManager( UIInfoDisplay infoDisplay, UIState uiModInfo ) : base( infoDisplay, false ) {
 			var tagsUi = new UIModTagsEditor( UITheme.Vanilla, this, uiModInfo );
 			this.TagsUI = (UIModTags<ModTagsManager>)tagsUi;
 		}
