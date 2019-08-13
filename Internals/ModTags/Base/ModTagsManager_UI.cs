@@ -18,5 +18,12 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 		public void SetInfoTextDefault( string text ) {
 			this.InfoDisplay?.SetDefaultText( text );
 		}
+
+
+		////////////////
+
+		public string GetSelectedCategory() {
+			return this.TagsUI.SelectedCategory;
+		}
 	}
 }

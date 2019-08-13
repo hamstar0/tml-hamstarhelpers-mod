@@ -30,8 +30,12 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public UITagMenuButton( UITheme theme, ModTagsManager manager, string label, string desc, bool canNegateTags )
-				: base( theme, label, UITagMenuButton.ButtonWidth, UITagMenuButton.ButtonHeight, -308f, 40, 0.6f, false ) {
+		public UITagMenuButton( UITheme theme,
+					ModTagsManager manager,
+					string label,
+					string desc,
+					bool canNegateTags )
+				: base( theme, label, UITagMenuButton.ButtonWidth, UITagMenuButton.ButtonHeight, 0, 0, 0.6f, false ) {
 			this.Manager = manager;
 			this.TagState = 0;
 			this.DrawPanel = false;
@@ -168,13 +172,15 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		public override void Draw( SpriteBatch sb ) {
-			Rectangle rect = this.GetOuterDimensions().ToRectangle();
-			rect.X += 4;
-			rect.Y += 4;
-			rect.Width -= 4;
-			rect.Height -= 5;
+			if( !this.IsHidden ) {
+				Rectangle rect = this.GetOuterDimensions().ToRectangle();
+				rect.X += 4;
+				rect.Y += 4;
+				rect.Width -= 4;
+				rect.Height -= 5;
 
-			HUDHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
+				HUDHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
+			}
 
 			base.Draw( sb );
 		}

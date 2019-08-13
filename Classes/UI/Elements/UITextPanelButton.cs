@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using Terraria.GameContent.UI.Elements;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.UI;
 
 
@@ -9,6 +9,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// Defines a common text panel button element.
 	/// </summary>
 	public class UITextPanelButton : UIThemedTextPanel {
+		/// <summary>
+		/// Indicates if button is visible. Does not effect interactivity (use Enable and Disable).
+		/// </summary>
+		public bool IsHidden { get; private set; }
+
 		/// <summary>
 		/// Indicates if button accepts inputs.
 		/// </summary>
@@ -75,6 +80,25 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				this.Theme.ApplyButton( this );
 			} else {
 				this.Theme.ApplyButtonDisable( this );
+			}
+		}
+
+
+		////////////////
+
+		public virtual void Show() {
+			this.IsHidden = false;
+		}
+
+		public virtual void Hide() {
+			this.IsHidden = true;
+		}
+
+		////////////////
+
+		public override void Draw( SpriteBatch spriteBatch ) {
+			if( !this.IsHidden ) {
+				base.Draw( spriteBatch );
 			}
 		}
 

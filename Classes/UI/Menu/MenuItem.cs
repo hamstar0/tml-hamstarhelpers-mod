@@ -9,11 +9,23 @@ using Terraria;
 
 
 namespace HamstarHelpers.Classes.UI.Menu {
+	/// <summary>
+	/// A clickable menu text item. Does not affect positions of other existing vanilla menu items, and is entirely
+	/// light-weight.
+	/// </summary>
 	public class MenuItem {
-		public static void AddMenuItem( string text, int offsetX, int menuContext, Action myAction ) {
+		/// <summary>
+		/// Adds a menu item.
+		/// </summary>
+		/// <param name="text"></param>
+		/// <param name="offsetY">Vertical pixel position. `MenuItem.MenuTopPosition` is the usual base line for menu
+		/// items.</param>
+		/// <param name="menuContext">Which `Main.menuMode` this belongs to.</param>
+		/// <param name="myAction">Action to perform on click.</param>
+		public static void AddMenuItem( string text, int offsetY, int menuContext, Action myAction ) {
 			var mymod = ModHelpersMod.Instance;
-			var item = new MenuItem( text, offsetX, menuContext, myAction );
-			string key = text + "." + offsetX + "." + menuContext;
+			var item = new MenuItem( text, offsetY, menuContext, myAction );
+			string key = text + "." + offsetY + "." + menuContext;
 			
 			mymod.MenuItemMngr.Items[ key ] = item;
 		}
@@ -21,12 +33,19 @@ namespace HamstarHelpers.Classes.UI.Menu {
 
 
 		////////////////
-		
-		public const int MenuTopPos = 250;
 
+		/// <summary>
+		/// The usual base line position for menu items.
+		/// </summary>
+		public const int MenuTopPosition = 250;
+
+		/// <summary></summary>
 		public string MenuText { get; private set; }
+		/// <summary>Offset from top of screen.</summary>
 		public int OffsetY { get; private set; }
+		/// <summary>Which `Main.menuMode` this belongs to.</summary>
 		public int MenuContext { get; private set; }
+		/// <summary>Action to perform on click.</summary>
 		public Action MyAction { get; private set; }
 
 		private bool MenuItemHovered = false;
@@ -172,46 +191,6 @@ namespace HamstarHelpers.Classes.UI.Menu {
 					(float)Math.Sin( (double)( Main.GlobalTime * 6.28318548f * 2f ) ) ) * new Vector2( 30f, 15f ) + Vector2.UnitY * 20f;
 				UILinkPointNavigator.SetPosition( 2000, new Vector2( (float)Main.screenWidth, (float)Main.screenHeight ) / 2f + value2 );
 			}*/
-		}
-	}
-
-
-
-	class MenuItemManager {
-		internal IDictionary<string, MenuItem> Items = new Dictionary<string, MenuItem>();
-
-		
-		////////////////
-
-		public MenuItemManager() {
-			if( !Main.dedServ ) {
-				Main.OnPostDraw += MenuItemManager._Draw;
-			}
-		}
-
-		~MenuItemManager() {
-			try {
-				if( !Main.dedServ ) {
-					Main.OnPostDraw -= MenuItemManager._Draw;
-				}
-			} catch { }
-		}
-
-		////////////////
-
-		private static void _Draw( GameTime gameTime ) {	// <- Just in case references are doing something funky...
-			ModHelpersMod mymod = ModHelpersMod.Instance;
-			if( mymod == null || mymod.MenuItemMngr == null ) { return; }
-
-			mymod.MenuItemMngr.Draw( gameTime );
-		}
-
-		private void Draw( GameTime gameTime ) {
-			foreach( MenuItem item in this.Items.Values ) {
-				if( item.MenuContext == Main.menuMode ) {
-					item.Draw();
-				}
-			}
 		}
 	}
 }
