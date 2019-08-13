@@ -12,74 +12,72 @@ using System.Linq;
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsInterface : UIThemedPanel {
-		private void InitializeControls( bool canExcludeTags ) {
+		private void InitializeControls() {
 			this.InitializeControlButtons();
-
-			TagDefinition[] tags = this.Manager.MyTags;
-			float x = 0, y = 0;
-
-			foreach( string category in new HashSet<string>( tags.Select(t => t.Category) ) ) {
-				this.CategoryButtons[category] = new UIMenuButton( this.Theme,
-					category,
-					UIModTagsInterface.CategoryButtonWidth,
-					UIModTagsInterface.CategoryButtonHeight,
-					0f,
-					y
-				);
-
-				y += 32f;
-				if( y >= UIModTagsInterface.CategoryPanelHeight ) {
-					y = 0;
-					x = UIModTagsInterface.CategoryButtonWidth;
-				}
-			}
-
-			for( int i = 0; i < tags.Length; i++ ) {
-				string tag = tags[i].Tag;
-
-				this.TagButtons[tag] = new UITagMenuButton( this.Theme,
-					this.Manager,
-					tag,
-					tags[i].Description,
-					canExcludeTags
-				);
-			}
-
-			this.LayoutTagButtonsByCategory();
+			this.InitializeCategoryButtons();
+			this.InitializeTagButtons();
 		}
 
+		////
 
 		private void InitializeControlButtons() {
 			this.ResetButton = new UIResetTagsMenuButton( UITheme.Vanilla, this.Manager );
 		}
 
+		private void InitializeCategoryButtons() {
+			this.CategoryButtons = UICategoryMenuButton.CreateButtons( this.Theme, this.Manager );
+
+			this.LayoutCategoryButtons();
+		}
+
+		private void InitializeTagButtons() {
+			this.TagButtons = UITagMenuButton.CreateButtons( this.Theme, this.Manager );
+
+			this.LayoutTagButtonsByCategory();
+		}
+
 
 		////////////////
 
-		public void LayoutTagButtonsByCategory() {
+		private void LayoutCategoryButtons() {
+			float x = this.PositionXCenterOffset;
+			float y = this.Top.Pixels;
+
+			foreach( UICategoryMenuButton catButton in this.CategoryButtons.Values ) {
+				catButton.SetMenuSpacePosition( x, y );
+
+				y += UICategoryMenuButton.ButtonHeight;
+				if( y >= UIModTagsInterface.CategoryPanelHeight ) {
+					y = this.Top.Pixels;
+					x += UICategoryMenuButton.ButtonWidth;
+				}
+			}
+		}
+
+		private void LayoutTagButtonsByCategory() {
 			float x, y;
 			TagDefinition[] tags = this.Manager.MyTags;
 
 			IEnumerable<IGrouping<string, TagDefinition>> groups = tags.GroupBy( tagDef => tagDef.Category );
 
 			foreach( IGrouping<string, TagDefinition> group in groups ) {
-				x = 0;
-				y = 0;
+				x = this.PositionXCenterOffset;
+				y = this.Top.Pixels;
 
 				foreach( TagDefinition tagDef in group ) {
 					UITagMenuButton button = this.TagButtons[tagDef.Tag];
 
-					if( group.Key == this.SelectedCategory ) {
+					if( group.Key == this.CurrentCategory ) {
 						button.Show();
 					} else {
 						button.Hide();
 					}
 
-					button.SetMenuSpacePosition( this.PositionXCenterOffset + x, y );
+					button.SetMenuSpacePosition( x, y );
 
 					y += UITagMenuButton.ButtonHeight;
 					if( y >= UIModTagsInterface.TagsPanelHeight ) {
-						y = 0;
+						y = this.Top.Pixels;
 						x += UITagMenuButton.ButtonWidth;
 					}
 				}
@@ -87,7 +85,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		}
 
 
-		////
+		////////////////
 
 		public virtual void ApplyMenuContext( MenuUIDefinition menuDef, string baseContextName ) {
 			var thisWidgetCtx = new WidgetMenuContext( menuDef,

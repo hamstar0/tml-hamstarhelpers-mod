@@ -20,10 +20,23 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 
 	abstract partial class ModTagsManager {
+		public readonly static IDictionary<string, string> Categories;
 		public readonly static TagDefinition[] Tags;
 
 
 		static ModTagsManager() {
+			ModTagsManager.Categories = new Dictionary<string, string> {
+				{ "Specifications",	"General descriptions a mod." },
+				{ "Mechanics",		"Describes what game mechanics are associated with a mod." },
+				{ "Gameplay",		"Describes how a mod affects gameplay (more than specific mechanics)." },
+				{ "State",			"Describes the existential state of a mod." },
+				{ "Privilege",		"Indicates what manner of user or system priviledges a mod needs to function." },
+				{ "Content",		"Describes what types of content a mod features." },
+				{ "Theme",			"Describes the apparent thematic elements of a mod." },
+				{ "When",			"Indicates what part of the game's (vanilla) progression a mod most pertains to." },
+				{ "Judgmental",		"Wholly-subjective tags." }
+			};
+
 			Func<string, string, string, TagDefinition> m =
 				( tag, category, desc ) => new TagDefinition( tag, category, desc );
 
@@ -53,11 +66,11 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "Replacements",          "General",  "Primarily meant as an alternative to something the game already provides."),
 				//{ "Esoteric",              "General",	"Does something uncommon or unexpected. Likely one-of-a-kind."),
 				//{ "Visuals",               "General",	"Implements new or improved sprites, adds new background details, etc."),
-				m( "MP Compatible",         "MP",   "Built for multiplayer."),
-				m( "PvP",                   "MP",   "Player vs player (multiplayer)."),
-				m( "Coop",                  "MP",   "Requires or involves direct player-to-player cooperation (multiplayer)."),
-				m( "Teams",                 "MP",   "Requires or involves teams of players (multiplayer)."),
-				m( "Server Use",            "MP",   "Player management tools, permissions, game rule changes, scheduled events, etc."),
+				m( "MP Compatible",         "Multiplayer",  "Built for multiplayer."),
+				m( "PvP",                   "Multiplayer",  "Player vs player (multiplayer)."),
+				m( "Coop",                  "Multiplayer",  "Requires or involves direct player-to-player cooperation (multiplayer)."),
+				m( "Teams",                 "Multiplayer",  "Requires or involves teams of players (multiplayer)."),
+				m( "Server Use",            "Multiplayer",  "Player management tools, permissions, game rule changes, scheduled events, etc."),
 
 				////
 					
@@ -67,26 +80,30 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "Unfinished",            "State",        "Has missing or partially-working features."),
 				m( "Buggy",                 "State",        "Does unexpected or erroneous things."),
 				m( "Non-functional",        "State",        "Does not work (for its main use)."),
+				m( "Misleading Info",       "State",		"Contains bad or missing information (poor mod description, misleading tooltips, etc.)."),
+				m( "Inadequate Homepage",	"State",        "Missing or unhelpful homepage."),
+				//{ "Rated R",               "State",		"Guess." },
 				//{ "Made By Team",			"" },
 				//{ "Simplistic",			"" },
 				//{ "Minimalistic",			"" },
 				//{ "Shows Effort",			"" },
 				//{ "Polished",				"" },
-					
+				
 				////
 				
-				m( "Game Mode(s)",          "General",  "New game rules; added end goals, progression, setting, session, etc."),
-				m( "Changes Genre",         "General",  "Adds linear progression, includes a SHMUP sequence, removes combat gameplay, etc."),
-				m( "Quests",                "General",  "Adds goals for player to progress the game or gain profit from."),
-				m( "Creativity",            "General",  "Emphasizes building or artistic expression (as opposed to fighting and adventuring)."),
-				m( "Adds Convenience",      "General",  "Reduces annoyances; auto-trashes junk items, centralizes storage, etc."),
-				m( "Cheat-like",            "General",  "Significantly reduces or removes some game challenges; may be 'unfair'."),
-				m( "Challenge",             "General",  "Increases difficulty of specific elements: Time limits, harder boss AI, etc."),
-				//m( "Easings",               "General",	"Decreases difficulty of specific elements: Stronger weapons, added player defense, etc."),
-				m( "Restrictions",          "General",  "Limits or removes elements of the game; may make things easier or harder."),
-				//m( "Vanilla Balanced",      "General",	"Balanced around plain Terraria; progress will not happen faster than usual."),
-				m( "Loosely Balanced",      "General",  "Inconsistent or vague attempt to maintain balance, vanilla or otherwise."),
-				m( "Plus Balanced",         "General",  "Balanced in excess of vanilla; expect sequence breaks (e.g. killing powerful bosses early)."),
+				m( "Game Mode(s)",          "Gameplay",		"New game rules; added end goals, progression, setting, session, etc."),
+				m( "Changes Genre",         "Gameplay",		"Adds linear progression, includes a SHMUP sequence, adds cooking minigames, etc."),
+				m( "Quests",                "Gameplay",		"Adds goals for player to progress the game or gain profit from."),
+				m( "Creativity",            "Gameplay",		"Emphasizes building or artistic expression (as opposed to fighting and adventuring)."),
+				m( "Adds Convenience",      "Gameplay",		"Reduces annoyances; auto-trashes junk items, centralizes storage, etc."),
+				//m( "Cheat-like",            "General",		"Significantly reduces or removes some game challenges; may be 'unfair'."),
+				m( "Challenge",             "Gameplay",		"Increases difficulty of specific elements: Time limits, harder boss AI, etc."),
+				//m( "Easings",               "General",		"Decreases difficulty of specific elements: Stronger weapons, added player defense, etc."),
+				m( "Restrictions",          "Gameplay",		"Limits or removes elements of the game; may make things easier or harder."),
+				//m( "Vanilla Balanced",      "General",		"Balanced around plain Terraria; progress will not happen faster than usual."),
+				m( "Loosely Balanced",      "Gameplay",		"Inconsistent or vague attempt to maintain balance, vanilla or otherwise."),
+				m( "Plus Balanced",         "Gameplay",		"Balanced in excess of vanilla; expect sequence breaks (e.g. killing powerful bosses early)."),
+
 				m( "Spoilers",              "General",  "Reveals information in advance about game or story elements, especially prematurely."),
 				m( "Needs New World",       "General",  "Playing an existing world is difficult, problematic, or just impossible."),
 				m( "Needs New Player",      "General",  "Character must begin as a blank slate, similarly."),
@@ -97,11 +114,10 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "May Lag",               "General",  "May use system resources or network bandwidth heavily. Good computer recommended."),
 				m( "Adds UI",               "General",  "Adds user interface components for mod functions."),
 				m( "Configurable",          "General",  "Provides options for configuring game settings (menu, config file, commands, etc.)."),
-				m( "Misleading Info",       "General",  "Contains bad or missing information (e.g. poor mod description, no homepage, etc.)."),
-				//{ "Rated R",               "General",	"Guess." },
 
-				m( "Accesses System",       "Priviledge",   "Accesses files, opens programs, uses system functions, etc."),
-				m( "Accesses Web",          "Priviledge",   "Makes web requests to send or receive data."),
+				m( "Needs Credentials",		"Privilege",	"Requires input of user information for features to work." ),
+				m( "Accesses System",       "Privilege",	"Accesses files, opens programs, uses system functions, etc."),
+				m( "Accesses Web",          "Privilege",	"Makes web requests to send or receive data."),
 				//{ "Injects Code",           make("Priviledge",	"Uses Reflection, swaps methods, or invokes libraries that do these."),
 				
 				////
@@ -132,15 +148,16 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "Story or Lore",         "Content",  "Implements elements of story telling or universe lore."),
 				m( "Special FX",            "Content",  "Adds gore effects, adds motion blurs, improves particle effects, etc."),
 
-				m( "Dark",                  "Theme",    "Gloomy, edgy, or just plain poor visibility."),
-				m( "Silly",                 "Theme",    "Light-hearted, immersion-breaking, or just plain absurd."),
-				m( "Fantasy",               "Theme",    "Elements of mythologies, swords & sorcery, and maybe a hobbit or 2."),
-				m( "Medieval",              "Theme",    "Chivalry, castles, primitive technology, melee fighting, archery, etc."),
-				m( "Military",              "Theme",    "Guns and stuff."),
-				m( "Nature",                "Theme",    "Birds, bees, rocks, trees, etc."),
-				m( "Sci-Fi",                "Theme",    "Robots, lasers, flying machines, etc."),
-				m( "Civilized",             "Theme",    "NPC interactions, town workings, player living spaces, etc."),
-				//{ "Mixed",				"Theme",    "Mashup of genres, but not purely in a silly way."),
+				m( "Dark",                  "Theme",    "Gloomy, edgy, or just plain poor visibility." ),
+				m( "Silly",                 "Theme",    "Light-hearted, immersion-breaking, or just plain absurd." ),
+				m( "Fantasy",               "Theme",    "Elements of mythologies, swords & sorcery, and maybe a hobbit or 2." ),
+				m( "Medieval",              "Theme",    "Chivalry, castles, primitive technology, melee fighting, archery, etc." ),
+				m( "Military",              "Theme",    "Guns and stuff." ),
+				m( "Nature",                "Theme",    "Birds, bees, rocks, trees, etc." ),
+				m( "Sci-Fi",                "Theme",    "Robots, lasers, flying machines, etc." ),
+				//m( "Futuristic",            "Theme",    "" ),
+				m( "Civilized",             "Theme",    "NPC interactions, town workings, player living spaces, etc." ),
+				//{ "Mixed",				"Theme",    "Mashup of genres, but not purely in a silly way." ),
 				//{ "Where: Surface",       "" },
 				//{ "Where: Underground",	"" },
 				//{ "Where: Ocean",			"" },
@@ -161,9 +178,9 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 			};
 
 			if( !ModHelpersMod.Instance.Config.DisableJudgmentalTags ) {
-				list.Add( m( "Unimaginative", "Judgmental", "Nothing special; exceedingly common, generic, or flavorless." ) );
-				list.Add( m( "Low Effort", "Judgmental", "Evident lack of effort involved." ) );
-				list.Add( m( "Unoriginal Content", "Judgmental", "Contains stolen or extensively-derived content." ) );
+				list.Add( m( "Unimaginative",		"Judgmental", "Nothing special; exceedingly common, generic, or flavorless." ) );
+				list.Add( m( "Low Effort",			"Judgmental", "Evident lack of effort involved." ) );
+				list.Add( m( "Unoriginal Content",	"Judgmental", "Contains stolen or extensively-derived content." ) );
 			}
 
 			ModTagsManager.Tags = list.ToArray();

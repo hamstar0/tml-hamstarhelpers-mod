@@ -15,17 +15,14 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		public static int CategoryPanelHeight { get; private set; } = 128;
 		public static int TagsPanelHeight { get; private set; } = 368;
 
-		public static int CategoryButtonWidth { get; private set; } = 160;
-		public static int CategoryButtonHeight { get; private set; } = 32;
-
 
 
 		////////////////
 
-		public string SelectedCategory { get; protected set; }
+		public string CurrentCategory { get; protected set; }
 
-		protected readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
-		protected readonly IDictionary<string, UITagMenuButton> TagButtons = new Dictionary<string, UITagMenuButton>();
+		protected IDictionary<string, UICategoryMenuButton> CategoryButtons;
+		protected IDictionary<string, UITagMenuButton> TagButtons;
 
 
 		////////////////
@@ -41,16 +38,23 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public UIModTagsInterface( UITheme theme, ModTagsManager manager, bool canExcludeTags )
+		public UIModTagsInterface( UITheme theme, ModTagsManager manager )
 				: base( theme, true ) {
 			this.Manager = manager;
 
 			this.PositionXCenterOffset = -400 + 4;
 			this.PositionY = 64 + 4;
-			this.InitializeControls( canExcludeTags );
+			this.InitializeControls();
 
 			this.RefreshTheme();
 			this.Recalculate();
+		}
+
+
+		////////////////
+
+		public void OnTagStateChange( UITagMenuButton button ) {
+			this.RefreshButtonEnableStates();
 		}
 
 

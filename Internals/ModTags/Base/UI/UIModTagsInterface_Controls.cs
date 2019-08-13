@@ -5,15 +5,25 @@ using System;
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsInterface : UIThemedPanel {
-		public void OnTagStateChange( UITagMenuButton button ) {
-			this.RefreshButtonEnableStates();
+		public virtual void RefreshButtonEnableStates() {
+			this.ResetButton.RefreshEnableState();
 		}
 
 
 		////////////////
 
-		public virtual void RefreshButtonEnableStates() {
-			this.ResetButton.RefreshEnableState();
+		public void SetCategory( string category ) {
+			this.CurrentCategory = category;
+
+			foreach( UICategoryMenuButton button in this.CategoryButtons.Values ) {
+				if( button.Text != category && button.IsSelected ) {
+					button.Unselect();
+				}
+			}
+		}
+
+		public void UnsetCategory() {
+
 		}
 
 

@@ -24,7 +24,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		public UIModTagsEditorInterface( UITheme theme,
 				ModTagsEditorManager manager,
 				UIState uiModInfo )
-				: base( theme, manager, false ) {
+				: base( theme, manager ) {
 			this.InitializeEditorControls( uiModInfo );
 		}
 

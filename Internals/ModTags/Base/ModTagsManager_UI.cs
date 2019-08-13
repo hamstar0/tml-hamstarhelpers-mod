@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 		////////////////
 
 		public string GetSelectedCategory() {
-			return this.TagsUI.SelectedCategory;
+			return this.TagsUI.CurrentCategory;
 		}
 	}
 }

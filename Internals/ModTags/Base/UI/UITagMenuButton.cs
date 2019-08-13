@@ -5,6 +5,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.HUD;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 
 
@@ -13,6 +14,28 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	internal class UITagMenuButton : UIMenuButton {
 		public static float ButtonWidth { get; private set; } = 102f;
 		public static float ButtonHeight { get; private set; } = 16f;
+
+
+
+		////////////////
+
+		public static IDictionary<string, UITagMenuButton> CreateButtons( UITheme theme, ModTagsManager manager ) {
+			IDictionary<string, UITagMenuButton> buttons = null;
+			TagDefinition[] tags = manager.MyTags;
+
+			for( int i = 0; i < tags.Length; i++ ) {
+				string tag = tags[i].Tag;
+
+				buttons[tag] = new UITagMenuButton( theme,
+					manager,
+					tag,
+					tags[i].Description,
+					manager.CanExcludeTags
+				);
+			}
+
+			return buttons;
+		}
 
 
 
