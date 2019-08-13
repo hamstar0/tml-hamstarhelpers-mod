@@ -3,7 +3,6 @@ using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ModTags.Base;
-using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.ModBrowser.UI;
 using System;
 

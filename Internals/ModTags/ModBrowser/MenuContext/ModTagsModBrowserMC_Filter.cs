@@ -12,7 +12,7 @@ using Terraria.ModLoader.UI.ModBrowser;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase {
+	partial class ModTagsModBrowserMenuContext : ModTagsMenuContextBase {
 		/// @private
 		public delegate void FilteredModsHandler(
 			bool isFiltered,

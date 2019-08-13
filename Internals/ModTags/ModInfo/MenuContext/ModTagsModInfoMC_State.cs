@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
-	partial class ModInfoTagsMenuContext : ModTagsMenuContextBase {
+	partial class ModTagsModInfoMenuContext : ModTagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 			this.ShowGeneral( ui );
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels += UIModTagMenuButton.ButtonWidth;
+				elem.Left.Pixels += UITagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context "+ui.GetType().Name );
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels -= UIModTagMenuButton.ButtonWidth;
+				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 		////////////////
 
 		private void ResetUIState( string modName ) {
-			if( !ModInfoTagsMenuContext.RecentTaggedMods.Contains( modName ) ) {
+			if( !ModTagsModInfoMenuContext.RecentTaggedMods.Contains( modName ) ) {
 				this.MyManager.MyTagsUI.UnlockFinishButton();
 			} else {
 				this.MyManager.MyTagsUI.LockFinishButton();
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			//this.CurrentModName = modName;
 		}
 
-		public override void OnTagStateChange( UIModTagMenuButton tagButton ) {
+		public override void OnTagStateChange( UITagMenuButton tagButton ) {
 			this.Manager.TagsUI.RefreshButtonEnableStates();
 		}
 	}

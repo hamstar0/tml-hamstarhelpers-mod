@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	/// @private
-	partial class UIModTagsResetMenuButton : UIMenuButton {
+	partial class UIResetTagsMenuButton : UIMenuButton {
 		private readonly ModTagsManager Manager;
 
 		public bool IsLocked { get; private set; }
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public UIModTagsResetMenuButton( UITheme theme, ModTagsManager manager )
+		public UIResetTagsMenuButton( UITheme theme, ModTagsManager manager )
 				: base( theme, "Reset Tags", 98f, 24f, -196f, 172f, 0.36f, true ) {
 			this.Manager = manager;
 		}

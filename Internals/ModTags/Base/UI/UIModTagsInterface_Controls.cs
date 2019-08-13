@@ -5,7 +5,7 @@ using System;
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsInterface : UIThemedPanel {
-		public void OnTagStateChange( UIModTagMenuButton button ) {
+		public void OnTagStateChange( UITagMenuButton button ) {
 			this.RefreshButtonEnableStates();
 		}
 

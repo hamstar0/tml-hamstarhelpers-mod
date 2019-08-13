@@ -25,7 +25,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		protected readonly IDictionary<string, UIMenuButton> CategoryButtons = new Dictionary<string, UIMenuButton>();
-		protected readonly IDictionary<string, UIModTagMenuButton> TagButtons = new Dictionary<string, UIModTagMenuButton>();
+		protected readonly IDictionary<string, UITagMenuButton> TagButtons = new Dictionary<string, UITagMenuButton>();
 
 		////////////////
 
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		protected ModTagsManager Manager;
 
-		protected UIModTagsResetMenuButton ResetButton;
+		protected UIResetTagsMenuButton ResetButton;
 
 
 
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 			foreach( var kv in this.TagButtons ) {
 				string tagName = kv.Key;
-				UIModTagMenuButton button = kv.Value;
+				UITagMenuButton button = kv.Value;
 				bool hasTag = tags.Contains( tagName );
 
 				if( !hasNetTags ) {

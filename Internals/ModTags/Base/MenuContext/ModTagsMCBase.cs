@@ -27,7 +27,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 
 		////////////////
 
-		public abstract void OnTagStateChange( UIModTagMenuButton tagButton );
+		public abstract void OnTagStateChange( UITagMenuButton tagButton );
 
 
 		public ISet<string> GetTagsWithGivenState( int state ) {

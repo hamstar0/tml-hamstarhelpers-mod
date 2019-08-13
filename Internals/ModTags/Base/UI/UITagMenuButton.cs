@@ -10,7 +10,7 @@ using Terraria;
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	/// @private
-	internal class UIModTagMenuButton : UIMenuButton {
+	internal class UITagMenuButton : UIMenuButton {
 		public static float ButtonWidth { get; private set; } = 102f;
 		public static float ButtonHeight { get; private set; } = 16f;
 
@@ -30,8 +30,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public UIModTagMenuButton( UITheme theme, ModTagsManager manager, string label, string desc, bool canNegateTags )
-				: base( theme, label, UIModTagMenuButton.ButtonWidth, UIModTagMenuButton.ButtonHeight, -308f, 40, 0.6f, false ) {
+		public UITagMenuButton( UITheme theme, ModTagsManager manager, string label, string desc, bool canNegateTags )
+				: base( theme, label, UITagMenuButton.ButtonWidth, UITagMenuButton.ButtonHeight, -308f, 40, 0.6f, false ) {
 			this.Manager = manager;
 			this.TagState = 0;
 			this.DrawPanel = false;

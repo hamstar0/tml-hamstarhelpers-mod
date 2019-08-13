@@ -13,7 +13,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase {
+	partial class ModTagsModBrowserMenuContext : ModTagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 			
@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			if( !ReflectionHelpers.Get(ui, "_rootElement", out elem) || elem == null ) {
 				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
 			} else {
-				elem.Left.Pixels += UIModTagMenuButton.ButtonWidth;
+				elem.Left.Pixels += UITagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			}
 
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem == null ) {
 				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
 			} else {
-				elem.Left.Pixels -= UIModTagMenuButton.ButtonWidth;
+				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			}
 		}

@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			for( int i = 0; i < tags.Length; i++ ) {
 				string tag = tags[i].Tag;
 
-				this.TagButtons[tag] = new UIModTagMenuButton( this.Theme,
+				this.TagButtons[tag] = new UITagMenuButton( this.Theme,
 					this.Manager,
 					tag,
 					tags[i].Description,
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 
 		private void InitializeControlButtons() {
-			this.ResetButton = new UIModTagsResetMenuButton( UITheme.Vanilla, this.Manager );
+			this.ResetButton = new UIResetTagsMenuButton( UITheme.Vanilla, this.Manager );
 		}
 
 
@@ -72,7 +72,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 			int i = 0;
 
-			foreach( UIModTagMenuButton button in this.TagButtons.Values ) {
+			foreach( UITagMenuButton button in this.TagButtons.Values ) {
 				var buttonWidgetCtx = new WidgetMenuContext( menuDef,
 					baseContextName + " Tag " + i,
 					button,

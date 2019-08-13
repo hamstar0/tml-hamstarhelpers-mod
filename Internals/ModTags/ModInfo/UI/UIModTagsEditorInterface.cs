@@ -10,7 +10,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 	partial class UIModTagsEditorInterface : UIModTagsInterface {
 		protected UIHiddenPanel HiddenPanel;
-		protected UIModTagsEditModeMenuButton FinishButton;
+		protected UIEditModeMenuButton FinishButton;
 
 
 		////////////////

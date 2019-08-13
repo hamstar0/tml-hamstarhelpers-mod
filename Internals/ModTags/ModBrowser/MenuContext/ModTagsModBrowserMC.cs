@@ -7,12 +7,12 @@ using HamstarHelpers.Services.UI.Menus;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
-	partial class ModBrowserTagsMenuContext : ModTagsMenuContextBase {
+	partial class ModTagsModBrowserMenuContext : ModTagsMenuContextBase {
 		public static void Initialize( bool onModLoad ) {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var ctx = new ModBrowserTagsMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Browser" );
+				var ctx = new ModTagsModBrowserMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Browser" );
 				MenuContextService.AddMenuContext( ctx );
 			}
 		}
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
-		protected ModBrowserTagsMenuContext( MenuUIDefinition menuDef, string contextName )
+		protected ModTagsModBrowserMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName ) {
 			this.Manager = new ModTagsModBrowserManager( this.InfoDisplay );
 		}
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
-		public override void OnTagStateChange( UIModTagMenuButton tagButton ) {
+		public override void OnTagStateChange( UITagMenuButton tagButton ) {
 			this.ApplyModsFilter();
 
 			//this.ResetButton.UpdateEnableState();

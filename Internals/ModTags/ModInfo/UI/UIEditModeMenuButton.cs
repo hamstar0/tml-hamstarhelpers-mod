@@ -10,7 +10,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI { 
 	/// @private
-	partial class UIModTagsEditModeMenuButton : UIMenuButton {
+	partial class UIEditModeMenuButton : UIMenuButton {
 		private readonly ModTagsEditorManager Manager;
 
 		public bool IsLocked { get; private set; }
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		////////////////
 
-		public UIModTagsEditModeMenuButton( UITheme theme, ModTagsEditorManager manager )
+		public UIEditModeMenuButton( UITheme theme, ModTagsEditorManager manager )
 				: base( theme, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
 			this.Manager = manager;
 
@@ -108,7 +108,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				return;
 			}
 
-			if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( modName ) ) {
+			if( ModTagsModInfoMenuContext.RecentTaggedMods.Contains( modName ) ) {
 				this.Disable();
 				return;
 			}

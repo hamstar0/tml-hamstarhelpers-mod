@@ -255,8 +255,8 @@ namespace HamstarHelpers.Internals.Menus.Support {
 					this.EnableModTagsLabel.Remove();
 					this.Elements.Remove( this.EnableModTagsLabel );
 
-					ModInfoTagsMenuContext.Initialize( false );
-					ModBrowserTagsMenuContext.Initialize( false );
+					ModTagsModInfoMenuContext.Initialize( false );
+					ModTagsModBrowserMenuContext.Initialize( false );
 
 					Timers.SetTimer( "ModHelpersModBrowserActivate", 5, () => {
 						MainMenuHelpers.OpenModBrowserMenu();
