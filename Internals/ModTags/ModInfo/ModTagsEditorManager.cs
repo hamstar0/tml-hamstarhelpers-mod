@@ -16,14 +16,14 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo {
 	partial class ModTagsEditorManager : ModTagsManager {
-		public UIModTagsEditor MyTagsUI => (UIModTagsEditor)this.TagsUI;
+		public UIModTagsEditorInterface MyTagsUI => (UIModTagsEditorInterface)this.TagsUI;
 
 
 
 		////////////////
 
 		public ModTagsEditorManager( UIInfoDisplay infoDisplay, UIState uiModInfo ) : base( infoDisplay, false ) {
-			this.TagsUI = new UIModTagsEditor( UITheme.Vanilla, this, uiModInfo );
+			this.TagsUI = new UIModTagsEditorInterface( UITheme.Vanilla, this, uiModInfo );
 
 			this.TagsUI.RefreshButtonEnableStates();
 		}

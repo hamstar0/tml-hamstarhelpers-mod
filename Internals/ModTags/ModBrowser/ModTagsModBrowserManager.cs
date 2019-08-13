@@ -11,7 +11,7 @@ using System;
 namespace HamstarHelpers.Internals.ModTags.ModBrowser {
 	partial class ModTagsModBrowserManager : ModTagsManager {
 		public ModTagsModBrowserManager( UIInfoDisplay infoDisplay ) : base( infoDisplay, true ) {
-			this.TagsUI = new UIModTagsModBrowser( UITheme.Vanilla, this );
+			this.TagsUI = new UIModTagsModBrowserInterface( UITheme.Vanilla, this );
 
 			this.TagsUI.RefreshButtonEnableStates();
 		}

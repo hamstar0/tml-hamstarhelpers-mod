@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 		////////////////
 
-		public UIModTags TagsUI { get; protected set; }
+		public UIModTagsInterface TagsUI { get; protected set; }
 
 		public virtual TagDefinition[] MyTags => ModTagsManager.Tags;
 

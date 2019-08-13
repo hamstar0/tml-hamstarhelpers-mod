@@ -10,7 +10,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI { 
 	/// @private
-	partial class UITagFinishButton : UIMenuButton {
+	partial class UIModTagsEditModeMenuButton : UIMenuButton {
 		private readonly ModTagsEditorManager Manager;
 
 		public bool IsLocked { get; private set; }
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		////////////////
 
-		public UITagFinishButton( UITheme theme, ModTagsEditorManager manager )
+		public UIModTagsEditModeMenuButton( UITheme theme, ModTagsEditorManager manager )
 				: base( theme, "", 98f, 24f, -98f, 172f, 0.36f, true ) {
 			this.Manager = manager;
 
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				manager.SetInfoText( "", Color.White );
 			};
 
-			this.RecalculatePos();
+			this.RecalculatePosition();
 		}
 
 

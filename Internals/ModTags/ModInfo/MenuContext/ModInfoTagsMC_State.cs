@@ -38,7 +38,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels += UITagButton.ButtonWidth;
+				elem.Left.Pixels += UIModTagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context "+ui.GetType().Name );
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels -= UITagButton.ButtonWidth;
+				elem.Left.Pixels -= UIModTagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			//this.CurrentModName = modName;
 		}
 
-		public override void OnTagStateChange( UITagButton tagButton ) {
+		public override void OnTagStateChange( UIModTagMenuButton tagButton ) {
 			this.Manager.TagsUI.RefreshButtonEnableStates();
 		}
 	}

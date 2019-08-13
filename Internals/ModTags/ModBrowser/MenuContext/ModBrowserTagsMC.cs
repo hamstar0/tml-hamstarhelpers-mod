@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
-		public override void OnTagStateChange( UITagButton tagButton ) {
+		public override void OnTagStateChange( UIModTagMenuButton tagButton ) {
 			this.ApplyModsFilter();
 
 			//this.ResetButton.UpdateEnableState();

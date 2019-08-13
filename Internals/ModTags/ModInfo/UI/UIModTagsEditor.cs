@@ -8,9 +8,9 @@ using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
-	partial class UIModTagsEditor : UIModTags {
+	partial class UIModTagsEditorInterface : UIModTagsInterface {
 		protected UIHiddenPanel HiddenPanel;
-		protected UITagFinishButton FinishButton;
+		protected UIModTagsEditModeMenuButton FinishButton;
 
 
 		////////////////
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		////////////////
 
-		public UIModTagsEditor( UITheme theme,
+		public UIModTagsEditorInterface( UITheme theme,
 				ModTagsEditorManager manager,
 				UIState uiModInfo )
 				: base( theme, manager, false ) {

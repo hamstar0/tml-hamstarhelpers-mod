@@ -12,7 +12,7 @@ using HamstarHelpers.Services.UI.Menus;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
-	partial class UIModTagsEditor : UIModTags {
+	partial class UIModTagsEditorInterface : UIModTagsInterface {
 		private void InitializeEditorControls( UIState modInfoUi ) {
 			Func<Rectangle> getRect = () => {
 				UIElement homepageButton;
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			};
 
 			//this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true );
-			this.FinishButton = new UITagFinishButton( this.Theme, this.MyManager );
+			this.FinishButton = new UIModTagsEditModeMenuButton( this.Theme, this.MyManager );
 			this.HiddenPanel = new UIHiddenPanel( getRect, onHover, onExit );
 		}
 

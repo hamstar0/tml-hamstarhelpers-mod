@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			if( !ReflectionHelpers.Get(ui, "_rootElement", out elem) || elem == null ) {
 				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
 			} else {
-				elem.Left.Pixels += UITagButton.ButtonWidth;
+				elem.Left.Pixels += UIModTagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			}
 
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem == null ) {
 				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
 			} else {
-				elem.Left.Pixels -= UITagButton.ButtonWidth;
+				elem.Left.Pixels -= UIModTagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			}
 		}
