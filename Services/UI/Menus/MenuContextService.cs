@@ -61,12 +61,11 @@ namespace HamstarHelpers.Services.UI.Menus {
 			IDictionary<string, MenuContext> contexts = mymod.MenuContextMngr.GetContexts( menuDef );
 			contexts[ context.ContextName ] = context;
 
-			context.OnContexualize();
-
 			UIState ui = Main.MenuUI.CurrentState;
 			string currUiName = ui?.GetType().Name;
 
 			if( Enum.GetName(typeof(MenuUIDefinition), menuDef ) == currUiName ) {
+				context.ActivateIfInactive( ui );
 				context.Show( ui );
 			}
 		}

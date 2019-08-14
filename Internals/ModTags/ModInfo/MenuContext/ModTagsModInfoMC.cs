@@ -1,8 +1,10 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
@@ -50,11 +52,43 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			this.Manager = new ModTagsEditorManager( this.InfoDisplay, uiModInfo );
 		}
 
+		////
+
+		public override void OnModsUnloading() { }
+
+
 		////////////////
 
-		public override void OnModUnload() { }
+		public override void OnActivationForModTags( UIState ui ) {
+			if( ui.GetType().Name != "UIModInfo" ) {
+				LogHelpers.Warn( "Invalid UI. Expected UIModInfo, found " + ui.GetType().Name + "." );
+				return;
+			}
 
-		public override void OnModTagsContextualize() { }
+			UIElement elem;
+			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
+				elem.Left.Pixels += UITagMenuButton.ButtonWidth;
+				elem.Recalculate();
+			} else {
+				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
+			}
+		}
+
+		public override void OnDeactivation() {
+			UIState modInfoUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+			if( modInfoUi.GetType().Name != "UIModInfo" ) {
+				LogHelpers.Warn( "Invalid UI. Expected UIModInfo, found " + modInfoUi.GetType().Name + "." );
+				return;
+			}
+
+			UIElement elem;
+			if( ReflectionHelpers.Get( modInfoUi, "_uIElement", out elem ) ) {
+				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
+				elem.Recalculate();
+			} else {
+				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + modInfoUi.GetType().Name );
+			}
+		}
 
 
 		////////////////

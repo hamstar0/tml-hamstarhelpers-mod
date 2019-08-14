@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -17,11 +18,19 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <param name="ui"></param>
 		/// <returns></returns>
 		public static UIElement GetMenuContainerOuter( UIState ui ) {
-			Type uiType = ui.GetType();
-			FieldInfo uiOuterBoxField = uiType.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );
-			UIElement uiOuterBox = (UIElement)uiOuterBoxField.GetValue( ui );
+			UIElement elem;
+			if( !ReflectionHelpers.Get( ui, "uIElement", out elem ) || elem == null ) {
+				LogHelpers.AlertOnce();
+				return null;
+			}
 
-			return uiOuterBox;
+			return elem;
+
+			//Type uiType = ui.GetType();
+			//FieldInfo uiOuterBoxField = uiType.GetField( "uIElement", BindingFlags.Instance | BindingFlags.NonPublic );
+			//UIElement uiOuterBox = (UIElement)uiOuterBoxField.GetValue( ui );
+			//
+			//return uiOuterBox;
 		}
 
 		/// <summary>
@@ -31,11 +40,21 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <param name="uiOuterBox"></param>
 		/// <returns></returns>
 		public static UIElement GetMenuContainerInner( UIElement uiOuterBox ) {
-			Type uiOuterBoxType = uiOuterBox.GetType();
-			FieldInfo uiOuterBoxElemsField = uiOuterBoxType.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
-			List<UIElement> uiOuterBoxElems = (List<UIElement>)uiOuterBoxElemsField.GetValue( uiOuterBox );
+			List<UIElement> uiOuterBoxElems;
+			if( !ReflectionHelpers.Get( uiOuterBox, "Elements", out uiOuterBoxElems )
+					|| uiOuterBoxElems == null
+					|| uiOuterBoxElems.Count == 0 ) {
+				LogHelpers.AlertOnce();
+				return null;
+			}
 
 			return uiOuterBoxElems[0];
+
+			//Type uiOuterBoxType = uiOuterBox.GetType();
+			//FieldInfo uiOuterBoxElemsField = uiOuterBoxType.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
+			//List<UIElement> uiOuterBoxElems = (List<UIElement>)uiOuterBoxElemsField.GetValue( uiOuterBox );
+			//
+			//return uiOuterBoxElems[0];
 		}
 
 		/// <summary>
@@ -44,9 +63,16 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <param name="uiInnerContainer"></param>
 		/// <returns></returns>
 		public static UIElement GetMenuContainerInsertPoint( UIElement uiInnerContainer ) {
-			Type uiContainerType = uiInnerContainer.GetType();
-			FieldInfo uiContainerElemsField = uiContainerType.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
-			List<UIElement> uiContainerElems = (List<UIElement>)uiContainerElemsField.GetValue( uiInnerContainer );
+			List<UIElement> uiContainerElems;
+			if( !ReflectionHelpers.Get( uiInnerContainer, "Elements", out uiContainerElems )
+					|| uiContainerElems == null ) {
+				LogHelpers.AlertOnce();
+				return null;
+			}
+
+			//Type uiContainerType = uiInnerContainer.GetType();
+			//FieldInfo uiContainerElemsField = uiContainerType.GetField( "Elements", BindingFlags.Instance | BindingFlags.NonPublic );
+			//List<UIElement> uiContainerElems = (List<UIElement>)uiContainerElemsField.GetValue( uiInnerContainer );
 
 			for( int i = 0; i < uiContainerElems.Count; i++ ) {
 				if( uiContainerElems[i] is UIElement
@@ -56,6 +82,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 				}
 			}
 
+			LogHelpers.AlertOnce();
 			return null;
 		}
 
@@ -74,7 +101,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		////////////////
 
 		/// <summary>
-		/// Gets the current active main menu UI object.
+		/// Gets the current active main menu UI object (if any).
 		/// </summary>
 		/// <returns></returns>
 		public static UIState GetCurrentMenuUI() {
@@ -82,7 +109,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		}
 
 		/// <summary>
-		/// Gets the previous active main menu UI object.
+		/// Gets the previous active main menu UI object (if any).
 		/// </summary>
 		/// <returns></returns>
 		public static UIState GetPreviousMenuUI() {

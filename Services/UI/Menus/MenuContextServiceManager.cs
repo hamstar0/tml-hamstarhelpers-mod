@@ -26,37 +26,43 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 			Main.OnPostDraw += MenuContextServiceManager._Update;
 
-			LoadHooks.AddModUnloadHook( () => {
-				try {
-					Main.OnPostDraw -= MenuContextServiceManager._Update;
-					this.HideAll();
+			LoadHooks.AddModUnloadHook( this.ModsUnloading );
+		}
 
-					foreach( MenuContext context in this.Contexts.Values.SafeSelectMany(kv=>kv.Values) ) {
-						context.OnModUnload();
-					}
 
-					this.Contexts.Clear();
-				} catch { }
-			} );
+		private void ModsUnloading() {
+			try {
+				Main.OnPostDraw -= MenuContextServiceManager._Update;
+				this.HideAllForCurrentMenuUI();
+
+				foreach( MenuContext context in this.Contexts.Values.SafeSelectMany(kv=>kv.Values) ) {
+					context.ModsUnloading();
+				}
+
+				this.Contexts.Clear();
+			} catch( Exception e ) {
+				LogHelpers.Warn( "Could not finish unloading menu contexts: "+e.ToString() );
+			}
 		}
 
 
 		////////////////
 
-		private void HideAll() {
-			if( this.CurrentMenuUI != null ) {
-				MenuUIDefinition menuDef = this.CurrentMenuUI.Item1;
+		private void HideAllForCurrentMenuUI() {
+			if( this.CurrentMenuUI == null ) {
+				return;
+			}
 
-				if( !this.Contexts.ContainsKey( menuDef ) ) {
-					LogHelpers.Warn( "Missing menu context " + menuDef );
-					return;
-				}
+			MenuUIDefinition menuDef = this.CurrentMenuUI.Item1;
+			if( !this.Contexts.ContainsKey( menuDef ) ) {
+				LogHelpers.Warn( "Missing menu context " + menuDef );
+				return;
+			}
 
-				IDictionary<string, MenuContext> loaders = this.Contexts[menuDef];
+			IDictionary<string, MenuContext> loaders = this.Contexts[ menuDef ];
 
-				foreach( MenuContext loader in loaders.Values ) {
-					loader.Hide( this.CurrentMenuUI.Item2 );
-				}
+			foreach( MenuContext loader in loaders.Values ) {
+				loader.Hide( this.CurrentMenuUI.Item2 );
 			}
 		}
 

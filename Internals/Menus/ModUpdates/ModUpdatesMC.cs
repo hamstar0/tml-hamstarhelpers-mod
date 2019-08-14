@@ -31,9 +31,11 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		private ModUpdatesMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName, false, false ) { }
 
-		public override void OnSessionContextualize() { }
+		public override void OnModsUnloading() { }
 
-		public override void OnModUnload() { }
+		public override void OnActivationForSession( UIState ui ) { }
+
+		public override void OnDeactivation() { }
 
 
 		////////////////

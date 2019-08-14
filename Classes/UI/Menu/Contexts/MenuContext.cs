@@ -11,6 +11,8 @@ namespace HamstarHelpers.Classes.UI.Menus {
 		public MenuUIDefinition MenuDefinitionOfContext { get; private set; }
 		/// <summary>Name associated with this context (unique identifier).</summary>
 		public string ContextName { get; private set; }
+		/// <summary>Context has become active with its associated menu's UI having loaded.</summary>
+		public bool IsActive { get; internal set; } = false;
 
 
 
@@ -24,17 +26,45 @@ namespace HamstarHelpers.Classes.UI.Menus {
 			this.ContextName = contextName;
 		}
 
+		////////////////
 
-		/// <summary></summary>
-		public abstract void OnModUnload();
-
-
-		////
+		internal void ModsUnloading() {
+			if( this.IsActive ) {
+				this.IsActive = false;
+				this.OnDeactivation();
+			}
+			this.OnModsUnloading();
+		}
 
 		/// <summary>
-		/// When our menu context first becomes "contextualized" with a given menu.
+		/// Called when mods are unloading. Runs after `OnDeactivation()`.
 		/// </summary>
-		public abstract void OnContexualize();
+		public abstract void OnModsUnloading();
+
+
+		////////////////
+
+		internal void ActivateIfInactive( UIState ui ) {
+			if( !this.IsActive ) {
+				this.IsActive = true;
+				this.OnActivation( ui );
+			}
+		}
+
+		/// <summary>
+		/// When our menu context first becomes active with a given menu UI (occurs when that menu is opened).
+		/// </summary>
+		/// <param name="ui"></param>
+		public abstract void OnActivation( UIState ui );
+		
+		/// <summary>
+		/// When our menu context deactivates after activating.
+		/// </summary>
+		public abstract void OnDeactivation();
+
+
+		////////////////
+
 		/// <summary>
 		/// When a menu bound to the current context is shown.
 		/// </summary>

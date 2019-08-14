@@ -35,28 +35,12 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 			this.ResetUIState( modName );
 			this.SetCurrentMod( ui, modName );
-			
-			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels += UITagMenuButton.ButtonWidth;
-				elem.Recalculate();
-			} else {
-				LogHelpers.Warn( "Could not get uiElement for mod info tags context "+ui.GetType().Name );
-			}
 		}
 
 		////////////////
 
 		private void HideGeneral( UIState ui ) {
 			this.InfoDisplay.SetDefaultText( "" );
-
-			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
-				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
-				elem.Recalculate();
-			} else {
-				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
-			}
 		}
 
 

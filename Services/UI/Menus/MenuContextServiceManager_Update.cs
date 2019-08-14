@@ -11,9 +11,8 @@ namespace HamstarHelpers.Services.UI.Menus {
 	partial class MenuContextServiceManager {
 		private static void _Update( GameTime gametime ) {   // <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
-			if( mymod == null ) { return; }
+			if( mymod?.MenuContextMngr == null ) { return; }
 
-			if( mymod.MenuContextMngr == null ) { return; }
 			mymod.MenuContextMngr.Update();
 		}
 
@@ -34,13 +33,13 @@ namespace HamstarHelpers.Services.UI.Menus {
 				return;
 			}
 
-			this.LoadUI( ui );
+			this.SwitchToUI( ui );
 		}
 
 
 		////////////////
 
-		private void LoadUI( UIState ui ) {
+		private void SwitchToUI( UIState ui ) {
 			if( ui == null ) {
 				this.CurrentMenuUI = null;
 				return;
@@ -67,6 +66,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			// In with the new
 			if( this.Contexts.ContainsKey( openingUiDef ) ) {
 				foreach( MenuContext ctx in this.Contexts[openingUiDef].Values ) {
+					ctx.ActivateIfInactive( ui );
 					ctx.Show( ui );
 				}
 			}

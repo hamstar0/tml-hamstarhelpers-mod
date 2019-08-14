@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using System;
 using System.Collections.Generic;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
@@ -19,13 +20,14 @@ namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 				: base( menuDef, contextName, true, true ) {
 		}
 
+		////
 
-		public sealed override void OnSessionContextualize() {
+		public sealed override void OnActivationForSession( UIState ui ) {
 			this.Manager.TagsUI.ApplyMenuContext( this.MenuDefinitionOfContext, this.ContextName );
-			this.OnModTagsContextualize();
+			this.OnActivationForModTags( ui );
 		}
 
-		public abstract void OnModTagsContextualize();
+		public abstract void OnActivationForModTags( UIState ui );
 
 
 		////////////////

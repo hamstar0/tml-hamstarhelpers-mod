@@ -60,10 +60,10 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		}
 
 
-		////
+		////////////////
 
 		/// @private
-		public sealed override void OnContexualize() {
+		public sealed override void OnActivation( UIState ui ) {
 			var menuDef = this.MenuDefinitionOfContext;
 
 			if( this.DisplayInfo ) {
@@ -78,15 +78,14 @@ namespace HamstarHelpers.Classes.UI.Menu {
 				}
 			}
 
-			this.OnSessionContextualize();
+			this.OnActivationForSession( ui );
 		}
 
 		/// <summary>
-		/// When our menu context first becomes "contextualized" with a given menu.
+		/// When our menu context first becomes activated with a given menu UI (runs when menu opens).
 		/// </summary>
-		/// <param name="uiClassName"></param>
-		/// <param name="contextNammenuDefe"></param>
-		public abstract void OnSessionContextualize();
+		/// <param name="ui"></param>
+		public abstract void OnActivationForSession( UIState ui );
 
 
 		////////////////

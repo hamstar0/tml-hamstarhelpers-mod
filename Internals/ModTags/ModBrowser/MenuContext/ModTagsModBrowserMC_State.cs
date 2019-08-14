@@ -16,8 +16,6 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 
-			this.LoadForContext( ui );
-
 			this.BeginModBrowserPopulateCheck( ui );
 			this.Manager.TagsUI.EnableTagButtons();
 

@@ -23,38 +23,27 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
-		private bool IsLoadedForContext = false;
-
-
-
-		////////////////
-
 		protected ModTagsModBrowserMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName ) {
 			this.Manager = new ModTagsModBrowserManager( this.InfoDisplay );
 		}
 
-		////////////////
-
-		public override void OnModTagsContextualize() { }
-
 		////
 
-		public override void OnModUnload() {
-			UIState modBrowserUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+		public override void OnModsUnloading() { }
 
-			this.UnloadForContext( modBrowserUi );
-		}
 
 		////////////////
 
-		private void LoadForContext( UIState modBrowserUi ) {
-			if( this.IsLoadedForContext ) { return; }
-			this.IsLoadedForContext = true;
+		public override void OnActivationForModTags( UIState ui ) {
+			if( ui.GetType().Name != "UIModBrowser" ) {
+				LogHelpers.Warn( "Invalid UI. Expected UIModBrowser, found "+ui.GetType().Name+"." );
+				return;
+			}
 
 			UIElement elem;
-			if( !ReflectionHelpers.Get( modBrowserUi, "_rootElement", out elem ) || elem == null ) {
-				LogHelpers.Alert( "_rootElement not found for " + modBrowserUi.GetType().Name );
+			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) || elem == null ) {
+				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
 				return;
 			}
 
@@ -62,10 +51,16 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			elem.Recalculate();
 		}
 
-		private void UnloadForContext( UIState modBrowserUi ) {
+		public override void OnDeactivation() {
+			UIState modBrowserUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+			if( modBrowserUi?.GetType().Name != "UIModBrowser" ) {
+				LogHelpers.Warn( "Invalid UI. Expected UIModBrowser, found " + modBrowserUi?.GetType().Name + "." );
+				return;
+			}
+
 			UIElement elem;
 			if( !ReflectionHelpers.Get( modBrowserUi, "_rootElement", out elem ) || elem == null ) {
-				LogHelpers.Alert( "_rootElement not found for " + modBrowserUi.GetType().Name );
+				LogHelpers.Alert( "_rootElement not found for UIModBrowser." );
 				return;
 			}
 
