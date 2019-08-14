@@ -6,6 +6,7 @@ using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
 using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
 using HamstarHelpers.Services.AnimatedColor;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
@@ -195,11 +196,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.SupportText1Label.Recalculate();
 			this.SupportUrl.Recalculate();
 			this.SupportText2Label.Recalculate();
-		}
 
-
-		~SupportInfoDisplay() {
-			Main.OnPostDraw -= SupportInfoDisplay._Draw;
+			LoadHooks.AddModUnloadHook( () => {
+				Main.OnPostDraw -= SupportInfoDisplay._Draw;
+			} );
 		}
 
 

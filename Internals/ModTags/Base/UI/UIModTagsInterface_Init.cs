@@ -88,31 +88,25 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		public virtual void ApplyMenuContext( MenuUIDefinition menuDef, string baseContextName ) {
-			var thisWidgetCtx = new WidgetMenuContext( menuDef,
-				baseContextName + " Tags Panel",
-				this,
-				false );
-
+			var thisWidgetCtx = new WidgetMenuContext( menuDef, baseContextName + " Tags Panel", this, false );
 			MenuContextService.AddMenuContext( thisWidgetCtx );
 
 			int i = 0;
-			foreach( UIMenuButton button in this.CategoryButtons.Values ) {
+			foreach( UIMenuButton categoryButton in this.CategoryButtons.Values ) {
 				var buttonWidgetCtx = new WidgetMenuContext( menuDef,
 					baseContextName + " Tag Category " + i,
-					button,
+					categoryButton,
 					false );
-
 				MenuContextService.AddMenuContext( buttonWidgetCtx );
 				i++;
 			}
 
 			i = 0;
-			foreach( UITagMenuButton button in this.TagButtons.Values ) {
+			foreach( UITagMenuButton tagButton in this.TagButtons.Values ) {
 				var buttonWidgetCtx = new WidgetMenuContext( menuDef,
 					baseContextName + " Tag " + i,
-					button,
+					tagButton,
 					false );
-
 				MenuContextService.AddMenuContext( buttonWidgetCtx );
 				i++;
 			}
@@ -121,7 +115,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 				baseContextName + " Tag Reset Button",
 				this.ResetButton,
 				false );
-
 			MenuContextService.AddMenuContext( resetButtonWidgetCtx );
 		}
 	}

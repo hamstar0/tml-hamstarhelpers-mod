@@ -22,6 +22,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 
 
+
 		////////////////
 
 		public static void Initialize( bool onModLoad ) {
@@ -43,11 +44,17 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 			if( uiModInfo == null || uiModInfo.GetType().Name != "UIModInfo" ) {
 				throw new ModHelpersException( "UI context not UIModInfo, found "
-						+ (uiModInfo?.GetType().Name ?? "null") + " ("+menuDef+")" );
+						+ ( uiModInfo?.GetType().Name ?? "null" ) + " (" + menuDef + ")" );
 			}
 
 			this.Manager = new ModTagsEditorManager( this.InfoDisplay, uiModInfo );
 		}
+
+		////////////////
+
+		public override void OnModUnload() { }
+
+		public override void OnModTagsContextualize() { }
 
 
 		////////////////

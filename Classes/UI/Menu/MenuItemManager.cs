@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,14 @@ namespace HamstarHelpers.Classes.UI.Menu {
 			if( !Main.dedServ ) {
 				Main.OnPostDraw += MenuItemManager._Draw;
 			}
-		}
 
-		~MenuItemManager() {
-			try {
-				if( !Main.dedServ ) {
-					Main.OnPostDraw -= MenuItemManager._Draw;
-				}
-			} catch { }
+			LoadHooks.AddModUnloadHook( () => {
+				try {
+					if( !Main.dedServ ) {
+						Main.OnPostDraw -= MenuItemManager._Draw;
+					}
+				} catch { }
+			} );
 		}
 
 		////////////////

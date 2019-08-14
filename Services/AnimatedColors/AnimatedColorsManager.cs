@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Services.Hooks.LoadHooks;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -39,12 +40,16 @@ namespace HamstarHelpers.Services.AnimatedColor {
 			this.Disco = AnimatedColors.Create( this, 56, new Color[] { Color.Red, Color.Orange, Color.Yellow, green, Color.Blue, indigo, violet } );
 			this.DiscoFast = AnimatedColors.Create( this, 8, new Color[] { Color.Red, Color.Orange, Color.Yellow, green, Color.Blue, indigo, violet } );
 
-			this.OnTickGet = Timers.Timers.MainOnTickGet();
-			Main.OnTick += AnimatedColorsManager._Update;
+			if( !Main.dedServ ) {
+				this.OnTickGet = Timers.Timers.MainOnTickGet();
+				Main.OnTick += AnimatedColorsManager._Update;
+			}
 		}
 
 		~AnimatedColorsManager() {
-			Main.OnTick -= AnimatedColorsManager._Update;
+			if( !Main.dedServ ) {
+				Main.OnTick -= AnimatedColorsManager._Update;
+			}
 		}
 
 

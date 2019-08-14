@@ -22,7 +22,10 @@ namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 
 		public sealed override void OnSessionContextualize() {
 			this.Manager.TagsUI.ApplyMenuContext( this.MenuDefinitionOfContext, this.ContextName );
+			this.OnModTagsContextualize();
 		}
+
+		public abstract void OnModTagsContextualize();
 
 
 		////////////////

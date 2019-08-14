@@ -1,6 +1,8 @@
 ﻿using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -23,17 +25,19 @@ namespace HamstarHelpers.Services.UI.Menus {
 			if( Main.dedServ ) { return; }
 
 			Main.OnPostDraw += MenuContextServiceManager._Update;
-		}
 
-		~MenuContextServiceManager() {
-			if( Main.dedServ ) { return; }
+			LoadHooks.AddModUnloadHook( () => {
+				try {
+					Main.OnPostDraw -= MenuContextServiceManager._Update;
+					this.HideAll();
 
-			try {
-				Main.OnPostDraw -= MenuContextServiceManager._Update;
-				this.HideAll();
+					foreach( MenuContext context in this.Contexts.Values.SafeSelectMany(kv=>kv.Values) ) {
+						context.OnModUnload();
+					}
 
-				this.Contexts.Clear();
-			} catch { }
+					this.Contexts.Clear();
+				} catch { }
+			} );
 		}
 
 

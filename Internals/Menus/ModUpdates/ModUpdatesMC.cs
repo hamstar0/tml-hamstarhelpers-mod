@@ -33,6 +33,10 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		public override void OnSessionContextualize() { }
 
+		public override void OnModUnload() { }
+
+
+		////////////////
 
 		public override void Show( UIState ui ) {
 			base.Show( ui );

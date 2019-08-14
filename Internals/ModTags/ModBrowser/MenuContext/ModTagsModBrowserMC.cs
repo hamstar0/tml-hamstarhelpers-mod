@@ -1,8 +1,10 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Services.UI.Menus;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
@@ -24,6 +26,36 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 		protected ModTagsModBrowserMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName ) {
 			this.Manager = new ModTagsModBrowserManager( this.InfoDisplay );
+		}
+
+		////////////////
+
+		public override void OnModTagsContextualize() {
+			UIState modBrowserUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+
+			UIElement elem;
+			if( !ReflectionHelpers.Get( modBrowserUi, "_rootElement", out elem ) || elem == null ) {
+				LogHelpers.Alert( "_rootElement not found for " + modBrowserUi.GetType().Name );
+				return;
+			}
+
+			elem.Left.Pixels += UITagMenuButton.ButtonWidth;
+			elem.Recalculate();
+		}
+
+		////
+
+		public override void OnModUnload() {
+			UIState modBrowserUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+
+			UIElement elem;
+			if( !ReflectionHelpers.Get( modBrowserUi, "_rootElement", out elem ) || elem == null ) {
+				LogHelpers.Alert( "_rootElement not found for " + modBrowserUi.GetType().Name );
+				return;
+			}
+
+			elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
+			elem.Recalculate();
 		}
 
 

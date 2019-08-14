@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Services.Timers;
+﻿using HamstarHelpers.Services.Hooks.LoadHooks;
+using HamstarHelpers.Services.Timers;
 using System;
 using Terraria;
 using Terraria.ModLoader.Audio;
@@ -18,10 +19,10 @@ namespace HamstarHelpers.Helpers.Misc {
 		internal MusicHelpers() {
 			this.OnTickGet = Timers.MainOnTickGet();
 			Main.OnTick += MusicHelpers._Update;
-		}
 
-		~MusicHelpers() {
-			Main.OnTick -= MusicHelpers._Update;
+			LoadHooks.AddModUnloadHook( () => {
+				Main.OnTick -= MusicHelpers._Update;
+			} );
 		}
 
 		////////////////

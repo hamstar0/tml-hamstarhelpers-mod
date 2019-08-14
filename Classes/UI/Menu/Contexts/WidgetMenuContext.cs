@@ -20,6 +20,8 @@ namespace HamstarHelpers.Classes.UI.Menus {
 
 		public override void OnContexualize() { }
 
+		public override void OnModUnload() { }
+
 
 		////////////////
 

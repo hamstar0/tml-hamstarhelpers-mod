@@ -39,14 +39,13 @@ namespace HamstarHelpers.Services.Timers {
 					this.Expired.Clear();
 				}
 			} );
-		}
 
-		/// @private
-		~Timers() {
-		//internal void Unload() {
-			try {
-				Main.OnTick -= Timers._Update;
-			} catch { }
+			LoadHooks.AddModUnloadHook( () => {
+				//internal void Unload() {
+				try {
+					Main.OnTick -= Timers._Update;
+				} catch { }
+			} );
 		}
 
 

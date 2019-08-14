@@ -37,18 +37,17 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 		internal LoadHooks() {
 			this.OnTickGet = Timers.Timers.MainOnTickGet();
 			Main.OnTick += LoadHooks._Update;
-		}
 
-		/// @private
-		~LoadHooks() {
-			try {
-				Main.OnTick -= LoadHooks._Update;
+			LoadHooks.AddModUnloadHook( () => {
+				try {
+					Main.OnTick -= LoadHooks._Update;
 
-				if( this.WorldLoadHookConditionsMet && !this.WorldUnloadHookConditionsMet ) {
-					this.FulfillWorldUnloadHooks();
-					this.FulfillPostWorldUnloadHooks();
-				}
-			} catch { }
+					if( this.WorldLoadHookConditionsMet && !this.WorldUnloadHookConditionsMet ) {
+						this.FulfillWorldUnloadHooks();
+						this.FulfillPostWorldUnloadHooks();
+					}
+				} catch { }
+			} );
 		}
 
 

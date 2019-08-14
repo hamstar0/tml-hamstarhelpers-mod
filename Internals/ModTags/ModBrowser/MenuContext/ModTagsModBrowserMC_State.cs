@@ -22,14 +22,6 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 			this.Manager.SetInfoTextDefault( "Click tags to filter the list. Right-click tags to filter without them." );
 
-			UIElement elem;
-			if( !ReflectionHelpers.Get(ui, "_rootElement", out elem) || elem == null ) {
-				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
-			} else {
-				elem.Left.Pixels += UITagMenuButton.ButtonWidth;
-				elem.Recalculate();
-			}
-
 			//this.ApplyDefaultFiltersAsync( ui );
 		}
 
@@ -92,7 +84,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			}
 
 			if( Timers.GetTimerTickDuration( "ModHelpersModBrowserCheckLoop" ) <= 0 ) {
-				Timers.SetTimer( "", 5, () => {
+				Timers.SetTimer( "ModHelpersModBrowserCheckLoop", 5, () => {
 					if( !this.IsModBrowserListPopulated( uiModList ) ) {
 						return true;
 					}

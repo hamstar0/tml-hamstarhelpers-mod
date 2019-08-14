@@ -20,18 +20,14 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		public static IDictionary<string, UITagMenuButton> CreateButtons( UITheme theme, ModTagsManager manager ) {
-			IDictionary<string, UITagMenuButton> buttons = null;
+			var buttons = new Dictionary<string, UITagMenuButton>();
 			TagDefinition[] tags = manager.MyTags;
 
 			for( int i = 0; i < tags.Length; i++ ) {
 				string tag = tags[i].Tag;
+				string desc = tags[i].Description;
 
-				buttons[tag] = new UITagMenuButton( theme,
-					manager,
-					tag,
-					tags[i].Description,
-					manager.CanExcludeTags
-				);
+				buttons[tag] = new UITagMenuButton( theme, manager, tag, desc, manager.CanExcludeTags );
 			}
 
 			return buttons;

@@ -113,11 +113,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 				} );
 			} );
-		}
 
-		/// @private
-		~EntityGroups() {
-			lock( EntityGroups.MyLock ) { }
+			LoadHooks.AddModUnloadHook( () => {
+				lock( EntityGroups.MyLock ) { }
+			} );
 		}
 
 

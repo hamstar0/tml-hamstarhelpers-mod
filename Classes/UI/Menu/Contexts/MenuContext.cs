@@ -25,6 +25,10 @@ namespace HamstarHelpers.Classes.UI.Menus {
 		}
 
 
+		/// <summary></summary>
+		public abstract void OnModUnload();
+
+
 		////
 
 		/// <summary>
