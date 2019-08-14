@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

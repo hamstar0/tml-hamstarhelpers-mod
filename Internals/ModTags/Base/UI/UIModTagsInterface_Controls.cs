@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.Timers;
 using System;
 

@@ -2,7 +2,7 @@
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
-using HamstarHelpers.Internals.ModTags.Base.UI;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
 

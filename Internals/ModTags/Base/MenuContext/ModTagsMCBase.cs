@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Menu;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.Base.UI;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using System;
 using System.Collections.Generic;
 

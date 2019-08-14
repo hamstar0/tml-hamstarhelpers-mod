@@ -37,6 +37,14 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 		internal LoadHooks() {
 			this.OnTickGet = Timers.Timers.MainOnTickGet();
 			Main.OnTick += LoadHooks._Update;
+		}
+
+
+		internal void OnPostSetupContent() {
+			LoadHooks.AddWorldLoadEachHook( () => {
+				this.WorldUnloadHookConditionsMet = false;
+				this.PostWorldUnloadHookConditionsMet = false;
+			} );
 
 			LoadHooks.AddModUnloadHook( () => {
 				try {
@@ -47,14 +55,6 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 						this.FulfillPostWorldUnloadHooks();
 					}
 				} catch { }
-			} );
-		}
-
-
-		internal void OnPostSetupContent() {
-			LoadHooks.AddWorldLoadEachHook( () => {
-				this.WorldUnloadHookConditionsMet = false;
-				this.PostWorldUnloadHookConditionsMet = false;
 			} );
 		}
 

@@ -12,7 +12,7 @@ using Terraria;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.Base.UI {
+namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 	/// @private
 	internal class UICategoryMenuButton : UIMenuButton {
 		public static IDictionary<string, UICategoryMenuButton> CreateButtons( UITheme theme, ModTagsManager manager ) {

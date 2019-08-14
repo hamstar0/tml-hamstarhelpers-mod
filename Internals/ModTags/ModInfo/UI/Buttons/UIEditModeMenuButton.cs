@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.ModInfo.UI { 
+namespace HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons { 
 	/// @private
 	partial class UIEditModeMenuButton : UIMenuButton {
 		private readonly ModTagsEditorManager Manager;

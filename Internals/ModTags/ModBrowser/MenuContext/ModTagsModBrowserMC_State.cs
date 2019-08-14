@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
-using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
@@ -16,7 +15,9 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	partial class ModTagsModBrowserMenuContext : ModTagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
-			
+
+			this.LoadForContext( ui );
+
 			this.BeginModBrowserPopulateCheck( ui );
 			this.Manager.TagsUI.EnableTagButtons();
 
@@ -30,13 +31,13 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 			this.Manager.SetInfoTextDefault( "" );
 
-			UIElement elem;
+			/*UIElement elem;
 			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem == null ) {
 				LogHelpers.Alert( "_rootElement not found for " + ui.GetType().Name );
 			} else {
 				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
 				elem.Recalculate();
-			}
+			}*/
 		}
 
 

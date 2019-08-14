@@ -4,6 +4,7 @@ using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;

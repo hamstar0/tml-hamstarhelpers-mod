@@ -2,7 +2,7 @@
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
-using HamstarHelpers.Internals.ModTags.Base.UI;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
 
@@ -23,6 +23,12 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
+		private bool IsLoadedForContext = false;
+
+
+
+		////////////////
+
 		protected ModTagsModBrowserMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName ) {
 			this.Manager = new ModTagsModBrowserManager( this.InfoDisplay );
@@ -30,8 +36,21 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
-		public override void OnModTagsContextualize() {
+		public override void OnModTagsContextualize() { }
+
+		////
+
+		public override void OnModUnload() {
 			UIState modBrowserUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+
+			this.UnloadForContext( modBrowserUi );
+		}
+
+		////////////////
+
+		private void LoadForContext( UIState modBrowserUi ) {
+			if( this.IsLoadedForContext ) { return; }
+			this.IsLoadedForContext = true;
 
 			UIElement elem;
 			if( !ReflectionHelpers.Get( modBrowserUi, "_rootElement", out elem ) || elem == null ) {
@@ -43,11 +62,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			elem.Recalculate();
 		}
 
-		////
-
-		public override void OnModUnload() {
-			UIState modBrowserUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
-
+		private void UnloadForContext( UIState modBrowserUi ) {
 			UIElement elem;
 			if( !ReflectionHelpers.Get( modBrowserUi, "_rootElement", out elem ) || elem == null ) {
 				LogHelpers.Alert( "_rootElement not found for " + modBrowserUi.GetType().Name );

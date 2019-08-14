@@ -1,14 +1,15 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI;
+using HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons;
+using HamstarHelpers.Services.UI.Menus;
 using System;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
-using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Services.UI.Menus;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {

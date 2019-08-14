@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Internals.ModTags.Base.UI {
+namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 	/// @private
 	internal class UITagMenuButton : UIMenuButton {
 		public static float ButtonWidth { get; private set; } = 102f;

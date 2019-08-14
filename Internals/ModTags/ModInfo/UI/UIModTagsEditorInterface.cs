@@ -3,6 +3,7 @@ using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ModTags.Base.UI;
+using HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons;
 using System;
 using Terraria.UI;
 

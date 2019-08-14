@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.TML;
 using System.Collections.Generic;
 using Terraria;
