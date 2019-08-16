@@ -1,4 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.Timers;
 using System;
@@ -17,14 +19,34 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			this.CurrentCategory = category;
 
 			foreach( UICategoryMenuButton button in this.CategoryButtons.Values ) {
-				if( button.Text != category && button.IsSelected ) {
+				if( button.Text != category ) {
 					button.Unselect();
+				} else {
+					button.Select();
+				}
+			}
+
+			foreach( TagDefinition tagDef in this.Manager.MyTags ) {
+				if( tagDef.Category == category ) {
+					this.TagButtons[ tagDef.Tag ].Show();
+				} else {
+					this.TagButtons[ tagDef.Tag ].Hide();
 				}
 			}
 		}
 
 		public void UnsetCategory() {
+			this.CurrentCategory = "";
 
+			foreach( (string category, UICategoryMenuButton button) in this.CategoryButtons ) {
+				if( button.Text != category && button.IsSelected ) {
+					button.Unselect();
+				}
+			}
+
+			foreach( TagDefinition tagDef in this.Manager.MyTags ) {
+				this.TagButtons[tagDef.Tag].Hide();
+			}
 		}
 
 

@@ -2,7 +2,6 @@
 using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.HUD;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,13 +21,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				string category = kv.Key;
 				string desc = kv.Value;
 				var button = new UICategoryMenuButton( theme, manager, category, desc );
-
-				button.OnSelect += (_, __) => {
-					foreach( (string otherCategory, UICategoryMenuButton otherButton) in buttons ) {
-						if( category == otherCategory ) { continue; }
-						otherButton.Unselect();
-					}
-				};
 
 				return button;
 			} );
@@ -98,7 +90,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				this.RefreshTheme();
 			};
 
-			this.Disable();
 			this.RecalculatePosition();
 			this.RefreshTheme();
 		}
@@ -107,7 +98,10 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		////////////////
 
 		public void Select() {
+			if( this.IsSelected ) { return; }
 			this.IsSelected = true;
+
+			this.Manager.TagsUI.SetCategory( this.Text );
 
 			this.OnSelect?.Invoke(
 				new UIMouseEvent( this, new Vector2(Main.mouseX, Main.mouseY) ),
@@ -136,9 +130,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			base.RefreshTheme();
 
 			if( !this.IsSelected ) {
-				this.TextColor = Color.Gray;
-			} else {
 				this.TextColor = Color.White;
+			} else {
+				this.TextColor = Color.Lime;
 			}
 		}
 
@@ -153,8 +147,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				rect.Width -= 4;
 				rect.Height -= 5;
 
-				Color bgColor = this.IsSelected ? this.Theme.ButtonBgColor : (this.Theme.ButtonBgLitColor * 2f);
-				Color edgeColor = this.IsSelected ? this.Theme.ButtonEdgeColor : (this.Theme.ButtonEdgeLitColor * 2f);
+				Color bgColor = this.IsMouseHovering ? this.Theme.ButtonBgLitColor : this.Theme.ButtonBgColor;
+				Color edgeColor = this.IsMouseHovering ? this.Theme.ButtonEdgeLitColor : this.Theme.ButtonEdgeColor;
 
 				HUDHelpers.DrawBorderedRect( sb, bgColor, edgeColor, rect, 2 );
 			}

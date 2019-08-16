@@ -135,7 +135,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 					this.Theme.ButtonBgColor;
 			byte a = bgColor.A;
 			
-			if( this.Description.Contains("Mechanics:") ) {
+			/*if( this.Description.Contains("Mechanics:") ) {
 				bgColor = Color.Lerp( bgColor, Color.Gold, 0.3f );
 			} else if( this.Description.Contains("Theme:") ) {
 				bgColor = Color.Lerp( bgColor, Color.DarkTurquoise, 0.4f );
@@ -152,7 +152,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			} else if( this.Description.Contains( "Priviledge:" ) ) {
 				bgColor = Color.Lerp( bgColor, Color.Black, 0.4f );
 			}
-			bgColor.A = a;
+			bgColor.A = a;*/
 
 			return bgColor;
 		}
@@ -165,7 +165,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 					this.Theme.ButtonEdgeColor;
 			byte a = edgeColor.A;
 			
-			if( this.Description.Contains( "Mechanics:" ) ) {
+			/*if( this.Description.Contains( "Mechanics:" ) ) {
 				edgeColor = Color.Lerp( edgeColor, Color.Goldenrod, 0.35f );
 			} else if( this.Description.Contains( "Theme:" ) ) {
 				edgeColor = Color.Lerp( edgeColor, Color.Aquamarine, 0.25f );
@@ -182,7 +182,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			} else if( this.Description.Contains( "Priviledge:" ) ) {
 				edgeColor = Color.Lerp( edgeColor, Color.Black, 0.4f );
 			}
-			edgeColor.A = a;
+			edgeColor.A = a;*/
 
 			return edgeColor;
 		}

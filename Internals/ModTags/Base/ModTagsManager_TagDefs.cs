@@ -81,7 +81,7 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "Buggy",                 "State",        "Does unexpected or erroneous things."),
 				m( "Non-functional",        "State",        "Does not work (for its main use)."),
 				m( "Misleading Info",       "State",		"Contains bad or missing information (poor mod description, misleading tooltips, etc.)."),
-				m( "Inadequate Homepage",	"State",        "Missing or unhelpful homepage."),
+				m( "Poor Homepage",			"State",        "Missing or unhelpful homepage."),
 				//{ "Rated R",               "State",		"Guess." },
 				//{ "Made By Team",			"" },
 				//{ "Simplistic",			"" },

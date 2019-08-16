@@ -3,6 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
 using Terraria;
 using Terraria.UI;
 
@@ -65,7 +66,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 			// In with the new
 			if( this.Contexts.ContainsKey( openingUiDef ) ) {
-				foreach( MenuContext ctx in this.Contexts[openingUiDef].Values ) {
+				foreach( MenuContext ctx in this.Contexts[openingUiDef].Values.ToArray() ) {
 					ctx.ActivateIfInactive( ui );
 					ctx.Show( ui );
 				}

@@ -41,32 +41,33 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		private void LayoutCategoryButtons() {
+			float top = this.PositionY - 2;
 			float x = this.PositionXCenterOffset;
-			float y = this.Top.Pixels;
+			float y = top;
 
 			foreach( UICategoryMenuButton catButton in this.CategoryButtons.Values ) {
 				catButton.SetMenuSpacePosition( x, y );
 
 				y += UICategoryMenuButton.ButtonHeight;
-				if( y >= UIModTagsInterface.CategoryPanelHeight ) {
-					y = this.Top.Pixels;
-					x += UICategoryMenuButton.ButtonWidth;
+				if( y >= (UIModTagsInterface.CategoryPanelHeight + top - 2) ) {
+					y = top;
+					x += UICategoryMenuButton.ButtonWidth - 2;
 				}
 			}
 		}
 
 		private void LayoutTagButtonsByCategory() {
-			float x, y;
+			float x, y, top = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
 			TagDefinition[] tags = this.Manager.MyTags;
 
 			IEnumerable<IGrouping<string, TagDefinition>> groups = tags.GroupBy( tagDef => tagDef.Category );
 
 			foreach( IGrouping<string, TagDefinition> group in groups ) {
 				x = this.PositionXCenterOffset;
-				y = this.Top.Pixels;
+				y = top;
 
 				foreach( TagDefinition tagDef in group ) {
-					UITagMenuButton button = this.TagButtons[tagDef.Tag];
+					UITagMenuButton button = this.TagButtons[ tagDef.Tag ];
 
 					if( group.Key == this.CurrentCategory ) {
 						button.Show();
@@ -77,8 +78,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 					button.SetMenuSpacePosition( x, y );
 
 					y += UITagMenuButton.ButtonHeight;
-					if( y >= UIModTagsInterface.TagsPanelHeight ) {
-						y = this.Top.Pixels;
+					if( y >= (UIModTagsInterface.TagsPanelHeight + top) ) {
+						y = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
 						x += UITagMenuButton.ButtonWidth;
 					}
 				}

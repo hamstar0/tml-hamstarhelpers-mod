@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
@@ -12,18 +11,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	partial class ModTagsModInfoMenuContext : ModTagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
-			this.ShowGeneral( ui );
-		}
 
-		public override void Hide( UIState ui ) {
-			base.Hide( ui );
-			this.HideGeneral( ui );
-		}
-
-
-		////////////////
-
-		private void ShowGeneral( UIState ui ) {
 			string modName = ModMenuHelpers.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
 
 			this.InfoDisplay.SetDefaultText( "" );
@@ -37,9 +25,9 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			this.SetCurrentMod( ui, modName );
 		}
 
-		////////////////
+		public override void Hide( UIState ui ) {
+			base.Hide( ui );
 
-		private void HideGeneral( UIState ui ) {
 			this.InfoDisplay.SetDefaultText( "" );
 		}
 
