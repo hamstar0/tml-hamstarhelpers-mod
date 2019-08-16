@@ -17,7 +17,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		public static IDictionary<string, UICategoryMenuButton> CreateButtons( UITheme theme, ModTagsManager manager ) {
 			IDictionary<string, UICategoryMenuButton> buttons = null;
 
-			buttons = manager.MyTagCategories.ToDictionary( kv => kv.Key, kv => {
+			buttons = manager.MyTagCategoryDescriptions.ToDictionary( kv => kv.Key, kv => {
 				string category = kv.Key;
 				string desc = kv.Value;
 				var button = new UICategoryMenuButton( theme, manager, category, desc );
@@ -57,7 +57,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		////////////////
 
-		public UICategoryMenuButton( UITheme theme,
+		private UICategoryMenuButton( UITheme theme,
 					ModTagsManager manager,
 					string category,
 					string description )

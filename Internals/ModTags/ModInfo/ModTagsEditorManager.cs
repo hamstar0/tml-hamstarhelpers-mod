@@ -56,7 +56,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo {
 					//this.UI.FinishButton.SetModeSubmit();
 				}
 
-				this.TagsUI.SetCurrentMod( modName, netModTags );
+				this.MyTagsUI.SetCurrentMod( modName, netModTags );
 
 				return false;
 			} );

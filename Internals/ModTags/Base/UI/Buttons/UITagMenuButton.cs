@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		////////////////
 
-		public UITagMenuButton( UITheme theme,
+		private UITagMenuButton( UITheme theme,
 					ModTagsManager manager,
 					string label,
 					string desc,
@@ -69,8 +69,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( _, __ ) => {
+				if( !this.IsEnabled ) { return; }
 				this.Manager.SetInfoText( desc );
-				//context.InfoDisplay?.SetText( desc );
 				this.RefreshTheme();
 			};
 			this.OnMouseOut += ( _, __ ) => {

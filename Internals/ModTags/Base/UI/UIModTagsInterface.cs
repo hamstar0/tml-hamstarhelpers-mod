@@ -61,6 +61,20 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
+		public ISet<string> GetTagsWithGivenState( int state ) {
+			ISet<string> tags = new HashSet<string>();
+
+			foreach( var kv in this.TagButtons ) {
+				if( kv.Value.TagState == state ) {
+					tags.Add( kv.Key );
+				}
+			}
+			return tags;
+		}
+
+
+		////////////////
+
 		public override void Recalculate() {
 			float x = ((float)Main.screenWidth * 0.5f) + this.PositionXCenterOffset;
 
@@ -72,11 +86,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		public override void Draw( SpriteBatch sb ) {
-			int x = (int)this.Left.Pixels;
-			int y = (int)this.Top.Pixels;
-			int wid = UIModTagsInterface.PanelWidth;
-			var rect1 = new Rectangle( x, y, wid, UIModTagsInterface.CategoryPanelHeight );
-			var rect2 = new Rectangle( x, y + UIModTagsInterface.CategoryPanelHeight + 2, wid, UIModTagsInterface.TagsPanelHeight );
+			Rectangle rect1 = this.GetCategoryPanelRectangle();
+			Rectangle rect2 = this.GetTagsPanelRectangle();
 
 			HUDHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect1, 2 );
 			HUDHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect2, 2 );

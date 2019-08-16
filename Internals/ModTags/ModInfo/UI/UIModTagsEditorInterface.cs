@@ -2,10 +2,15 @@
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons;
 using System;
 using Terraria.UI;
+using System.Collections.Generic;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
+using HamstarHelpers.Services.TML;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
@@ -65,6 +70,42 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		public void UnlockFinishButton() {
 			if( this.FinishButton.IsLocked ) {
 				this.FinishButton.Unlock();
+			}
+		}
+
+
+		////////////////
+
+		public void SetCurrentMod( string modName, ISet<string> tags ) {
+			bool hasNetTags = tags.Count > 0;
+
+			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {
+				bool hasTag = tags.Contains( tagName );
+
+				if( !hasNetTags ) {
+					tagButton.Enable();
+				}
+
+				if( tagName == "Low Effort" ) {
+					if( hasTag ) {
+						tagButton.SetTagState( 1 );
+					} else {
+						BuildPropertiesViewer viewer = BuildPropertiesViewer.GetBuildPropertiesForActiveMod( modName );
+						string desc = viewer.Description ?? "";
+
+						if( viewer == null || string.IsNullOrEmpty( desc ) ) {
+							if( !ModMenuHelpers.GetModDescriptionFromCurrentMenuUI( out desc ) ) {
+								desc = "";
+							}
+						}
+
+						if( desc.Contains( "Modify this file with a description of your mod." ) ) {
+							tagButton.SetTagState( 1 );
+						}
+					}
+				} else {
+					tagButton.SetTagState( hasTag ? 1 : 0 );
+				}
 			}
 		}
 	}

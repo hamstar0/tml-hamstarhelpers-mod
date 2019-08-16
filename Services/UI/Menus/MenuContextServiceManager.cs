@@ -6,7 +6,6 @@ using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Services.UI.Menus {

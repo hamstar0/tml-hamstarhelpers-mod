@@ -18,8 +18,9 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 		public UIModTagsInterface TagsUI { get; protected set; }
 
-		public virtual IDictionary<string, string> MyTagCategories => ModTagsManager.Categories;
+		public virtual IDictionary<string, string> MyTagCategoryDescriptions => ModTagsManager.CategoryDescriptions;
 		public virtual TagDefinition[] MyTags => ModTagsManager.Tags;
+		public virtual IDictionary<string, TagDefinition> MyTagMap => ModTagsManager.TagMap;
 
 		public string CurrentModName { get; protected set; }
 		public bool CanExcludeTags { get; private set; }

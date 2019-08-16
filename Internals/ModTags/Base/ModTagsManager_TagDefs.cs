@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace HamstarHelpers.Internals.ModTags.Base {
@@ -20,12 +21,18 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 
 	abstract partial class ModTagsManager {
-		public readonly static IDictionary<string, string> Categories;
+		public readonly static IDictionary<string, string> CategoryDescriptions;
+		public readonly static IDictionary<string, TagDefinition> TagMap;
 		public readonly static TagDefinition[] Tags;
 
 
 		static ModTagsManager() {
-			ModTagsManager.Categories = new Dictionary<string, string> {
+			Func<string, string, string, TagDefinition> m = ( tag, category, desc ) => {
+				var def = new TagDefinition( tag, category, desc );
+				return def;
+			};
+
+			ModTagsManager.CategoryDescriptions = new Dictionary<string, string> {
 				{ "Specifications",	"General descriptions a mod." },
 				{ "Mechanics",		"Describes what game mechanics are associated with a mod." },
 				{ "Gameplay",		"Describes how a mod affects gameplay (more than specific mechanics)." },
@@ -36,9 +43,6 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				{ "When",			"Indicates what part of the game's (vanilla) progression a mod most pertains to." },
 				{ "Judgmental",		"Wholly-subjective tags." }
 			};
-
-			Func<string, string, string, TagDefinition> m =
-				( tag, category, desc ) => new TagDefinition( tag, category, desc );
 
 			var list = new List<TagDefinition> {
 				//m( "Core Game",             "Mechanics: Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc."),
@@ -183,6 +187,7 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				list.Add( m( "Unoriginal Content",	"Judgmental", "Contains stolen or extensively-derived content." ) );
 			}
 
+			ModTagsManager.TagMap = list.ToDictionary( tagDef=>tagDef.Tag, tagDef=>tagDef );
 			ModTagsManager.Tags = list.ToArray();
 		}
 	}

@@ -8,6 +8,36 @@ using System;
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsInterface : UIThemedPanel {
+		public void EnableCatTagInterface() {
+			foreach( UICategoryMenuButton catButton in this.CategoryButtons.Values ) {
+				catButton.Enable();
+			}
+
+			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
+				if( this.Manager.MyTagMap[tagName].Category == this.CurrentCategory ) {
+					button.Enable();
+					button.Show();
+				} else {
+					button.Disable();
+					button.Hide();
+				}
+			}
+		}
+
+		public void DisableCatTagInterface() {
+			foreach( UICategoryMenuButton catButton in this.CategoryButtons.Values ) {
+				catButton.Disable();
+			}
+
+			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
+				button.Disable();
+				button.Hide();
+			}
+		}
+
+
+		////////////////
+
 		public virtual void RefreshButtonEnableStates() {
 			this.ResetButton.RefreshEnableState();
 		}
@@ -16,21 +46,16 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		public void SetCategory( string category ) {
+			this.UnsetCategory();
 			this.CurrentCategory = category;
 
-			foreach( UICategoryMenuButton button in this.CategoryButtons.Values ) {
-				if( button.Text != category ) {
-					button.Unselect();
+			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
+				if( this.Manager.MyTagMap[tagName].Category == this.CurrentCategory ) {
+					button.Enable();
+					button.Show();
 				} else {
-					button.Select();
-				}
-			}
-
-			foreach( TagDefinition tagDef in this.Manager.MyTags ) {
-				if( tagDef.Category == category ) {
-					this.TagButtons[ tagDef.Tag ].Show();
-				} else {
-					this.TagButtons[ tagDef.Tag ].Hide();
+					button.Disable();
+					button.Hide();
 				}
 			}
 		}
@@ -38,43 +63,35 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		public void UnsetCategory() {
 			this.CurrentCategory = "";
 
-			foreach( (string category, UICategoryMenuButton button) in this.CategoryButtons ) {
-				if( button.Text != category && button.IsSelected ) {
-					button.Unselect();
+			foreach( (string category, UICategoryMenuButton catButton) in this.CategoryButtons ) {
+				if( catButton.IsSelected ) {
+					catButton.Unselect();
 				}
 			}
 
 			foreach( TagDefinition tagDef in this.Manager.MyTags ) {
-				this.TagButtons[tagDef.Tag].Hide();
+				var tagButton = this.TagButtons[tagDef.Tag];
+
+				tagButton.Hide();
+				tagButton.Disable();
 			}
 		}
 
 
 		////////////////
 
-		public void EnableTagButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Enable();
-			}
-		}
-
-		public void DisableTagButtons() {
-			foreach( var kv in this.TagButtons ) {
-				kv.Value.Disable();
-			}
-		}
-
 		public void ResetTagButtons( bool alsoDisable ) {
-			foreach( var kv in this.TagButtons ) {
+			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
 				if( alsoDisable ) {
-					kv.Value.Disable();
+					button.Disable();
+					button.Hide();
 				}
-				kv.Value.SetTagState( 0 );
+				button.SetTagState( 0 );
 			}
 		}
 
 
-		////
+		////////////////
 
 		public void SafelySetTagButton( string tag ) {
 			var button = this.TagButtons[tag];

@@ -82,7 +82,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons {
 		public void SetModeSubmit() {
 			this.SetText( "Submit Tags" );
 
-			this.Manager.TagsUI.EnableTagButtons();
+			this.Manager.TagsUI.EnableCatTagInterface();
 			//this.MenuContext.Panel.EnableTagButtons();
 
 			this.Manager.TagsUI.RefreshButtonEnableStates();

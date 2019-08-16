@@ -17,7 +17,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			base.Show( ui );
 
 			this.BeginModBrowserPopulateCheck( ui );
-			this.Manager.TagsUI.EnableTagButtons();
+			this.Manager.TagsUI.EnableCatTagInterface();
 
 			this.Manager.SetInfoTextDefault( "Click tags to filter the list. Right-click tags to filter without them." );
 
@@ -107,6 +107,10 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 
 		private void ApplyModBrowserModInfoBindings( UIState modBrowserUi, UIList uiModList ) {
+			if( modBrowserUi.GetType().Name != "UIModBrowser" ) {
+				throw new ModHelpersException( "Invalid UIModBrowser" );
+			}
+
 			object modList;
 
 			if( !ReflectionHelpers.Get(uiModList, "_items", out modList) || modList == null ) {
@@ -136,8 +140,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				}
 
 				modInfoButton.OnClick += (evt, elem) => {
-					if( this.MyMenuUI == null ) { return; }
-					if( !ReflectionHelpers.Set( this.MyMenuUI, "selectedItem", item ) ) {
+					if( !ReflectionHelpers.Set( modBrowserUi, "SelectedItem", item ) ) {
 						LogHelpers.Alert( "Could not set selected item from the mod browser" );
 					}
 				};
