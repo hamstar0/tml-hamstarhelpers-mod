@@ -44,18 +44,18 @@ namespace HamstarHelpers.Classes.UI.Menus {
 
 		////////////////
 
-		internal void ActivateIfInactive( UIState ui ) {
+		internal void ActivateIfInactive( UIState _ui ) {
 			if( !this.IsActive ) {
 				this.IsActive = true;
-				this.OnActivation( ui );
+				this.OnActivation( _ui );
 			}
 		}
 
 		/// <summary>
 		/// When our menu context first becomes active with a given menu UI (occurs when that menu is opened).
 		/// </summary>
-		/// <param name="ui"></param>
-		public abstract void OnActivation( UIState ui );
+		/// <param name="_ui"></param>
+		public abstract void OnActivation( UIState _ui );
 		
 		/// <summary>
 		/// When our menu context deactivates after activating.
@@ -68,12 +68,12 @@ namespace HamstarHelpers.Classes.UI.Menus {
 		/// <summary>
 		/// When a menu bound to the current context is shown.
 		/// </summary>
-		/// <param name="ui"></param>
-		public abstract void Show( UIState ui );
+		/// <param name="_ui"></param>
+		public abstract void Show( UIState _ui );
 		/// <summary>
 		/// When a menu bound to the current context is hidden.
 		/// </summary>
-		/// <param name="ui"></param>
-		public abstract void Hide( UIState ui );
+		/// <param name="_ui"></param>
+		public abstract void Hide( UIState _ui );
 	}
 }

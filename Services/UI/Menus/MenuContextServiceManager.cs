@@ -14,8 +14,8 @@ namespace HamstarHelpers.Services.UI.Menus {
 		private IDictionary<MenuUIDefinition, IDictionary<string, MenuContext>> Contexts
 				= new Dictionary<MenuUIDefinition, IDictionary<string, MenuContext>>();
 
-		internal Tuple<MenuUIDefinition, UIState> CurrentMenuUI { get; private set; }
-		internal Tuple<MenuUIDefinition, UIState> PreviousMenuUI { get; private set; }
+		internal MenuUIDefinition CurrentMenuUI { get; private set; }
+		internal MenuUIDefinition PreviousMenuUI { get; private set; }
 
 
 
@@ -49,20 +49,20 @@ namespace HamstarHelpers.Services.UI.Menus {
 		////////////////
 
 		private void HideAllForCurrentMenuUI() {
-			if( this.CurrentMenuUI == null ) {
+			if( this.CurrentMenuUI == 0 ) {
 				return;
 			}
 
-			MenuUIDefinition menuDef = this.CurrentMenuUI.Item1;
+			MenuUIDefinition menuDef = this.CurrentMenuUI;
 			if( !this.Contexts.ContainsKey( menuDef ) ) {
 				LogHelpers.Warn( "Missing menu context " + menuDef );
 				return;
 			}
 
-			IDictionary<string, MenuContext> loaders = this.Contexts[ menuDef ];
+			IDictionary<string, MenuContext> contexts = this.Contexts[ menuDef ];
 
-			foreach( MenuContext loader in loaders.Values ) {
-				loader.Hide( this.CurrentMenuUI.Item2 );
+			foreach( MenuContext context in contexts.Values ) {
+				context.Hide( MainMenuHelpers.GetMenuUI(this.CurrentMenuUI) );
 			}
 		}
 

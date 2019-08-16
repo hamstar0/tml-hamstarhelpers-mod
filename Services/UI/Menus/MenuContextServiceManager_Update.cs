@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
 using System;
@@ -21,10 +22,10 @@ namespace HamstarHelpers.Services.UI.Menus {
 			UIState ui = Main.MenuUI.CurrentState;
 			string prevUiName, currUiName;
 
-			if( this.CurrentMenuUI == null ) {
+			if( this.CurrentMenuUI == 0 ) {
 				prevUiName = null;
 			} else {
-				MenuUIDefinition prevUiDef = this.CurrentMenuUI.Item1;
+				MenuUIDefinition prevUiDef = this.CurrentMenuUI;
 				prevUiName = Enum.GetName( typeof(MenuUIDefinition), prevUiDef );
 			}
 
@@ -41,27 +42,26 @@ namespace HamstarHelpers.Services.UI.Menus {
 		////////////////
 
 		private void SwitchToUI( UIState ui ) {
-			if( ui == null ) {
-				this.CurrentMenuUI = null;
-				return;
-			}
-
-			MenuUIDefinition openingUiDef;
-			MenuUIDefinition closingUiDef = this.CurrentMenuUI?.Item1 ?? 0;
-
-			if( !Enum.TryParse( ui.GetType().Name, out openingUiDef) ) {
-				LogHelpers.WarnOnce( "Could not get MenuUIDefinition " + ui.GetType().Name );
-				this.CurrentMenuUI = null;
-				return;
-			}
+			MenuUIDefinition openingUiDef = 0;
+			MenuUIDefinition closingUiDef = this.CurrentMenuUI;
 
 			// Out with the old
 			if( closingUiDef != 0 && this.Contexts.ContainsKey(closingUiDef) ) {
-				var contexts = this.Contexts[ closingUiDef ].Values;
-				
-				foreach( MenuContext ctx in contexts ) {
-					ctx.Hide( this.CurrentMenuUI.Item2 );
+				foreach( (string ctxName, MenuContext ctx) in this.Contexts[closingUiDef] ) {
+					ctx.Hide( MainMenuHelpers.GetMenuUI(closingUiDef) );
 				}
+			}
+
+			// Validate
+			if( ui != null ) {
+				if( !Enum.TryParse( ui.GetType().Name, out openingUiDef ) ) {
+					LogHelpers.WarnOnce( "Could not get MenuUIDefinition " + ui.GetType().Name );
+					this.CurrentMenuUI = 0;
+					return;
+				}
+			} else {
+				this.PreviousMenuUI = this.CurrentMenuUI;
+				this.CurrentMenuUI = 0;
 			}
 
 			// In with the new
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			}
 
 			this.PreviousMenuUI = this.CurrentMenuUI;
-			this.CurrentMenuUI = Tuple.Create( openingUiDef, ui );
+			this.CurrentMenuUI = openingUiDef;
 		}
 	}
 }

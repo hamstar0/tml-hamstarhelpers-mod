@@ -1,15 +1,12 @@
 ﻿using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 
@@ -95,16 +92,9 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		/// </summary>
 		/// <param name="ui"></param>
 		public override void Show( UIState ui ) {
-			if( this.OccludesLogo ) {
-				Main.instance.LoadProjectile( ProjectileID.ShadowBeamHostile );
-
-				Main.logoTexture = Main.projectileTexture[ProjectileID.ShadowBeamHostile];
-				Main.logo2Texture = Main.projectileTexture[ProjectileID.ShadowBeamHostile];
-			}
+			this.AccommodateLogo();
 
 			this.MyMenuUI = ui;
-
-			this.RecalculateMenuObjects();
 		}
 
 		/// <summary>
@@ -112,60 +102,9 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		/// </summary>
 		/// <param name="ui"></param>
 		public override void Hide( UIState ui ) {
-			if( this.OccludesLogo ) {
-				Main.logoTexture = this.OldLogo1;
-				Main.logo2Texture = this.OldLogo2;
-			}
+			this.RevertLogo();
 
 			this.MyMenuUI = null;
-
-			this.ResetMenuObjects();
-		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Re-aligns menu objects for the context.
-		/// </summary>
-		protected virtual void RecalculateMenuObjects() {
-			if( Main.screenWidth < ( 800 + 128 ) ) {
-				this.SetOverhaulMenuDataOffset( new Vector2( -384, -384 ) );
-			}
-		}
-		
-		/// <summary>
-		/// Reverts menu objects when the context changes.
-		/// </summary>
-		protected virtual void ResetMenuObjects() {
-			if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
-				this.SetOverhaulMenuDataOffset( this.OldOverhaulLogoPos );
-			}
-		}
-
-
-		////////////////
-
-		private bool SetOverhaulMenuDataOffset( Vector2 newValue ) {
-			Mod ohMod = ModLoader.GetMod( "OverhaulMod" );
-			if( ohMod == null ) { return false; }
-			
-			Type ohModType = ohMod.GetType();
-			var ohLogoPosField = ohModType.GetField( "mainMenuDataOffset", ReflectionHelpers.MostAccess );
-
-			if( ohLogoPosField != null ) {
-				if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
-					this.OldOverhaulLogoPos = (Vector2)ohLogoPosField.GetValue( ohMod );
-				}
-				ohLogoPosField.SetValue( ohMod, newValue );
-			} else {	// For version 3.3
-				Type classType = ReflectionHelpers.GetTypeFromAssembly( ohModType.AssemblyQualifiedName, "TerrariaOverhaul.UI.OverhaulUI" );
-				if( classType == null ) { return false; }
-
-				ReflectionHelpers.Set( classType, null, "mainMenuDataOffset", newValue );
-			}
-
-			return true;
 		}
 	}
 }

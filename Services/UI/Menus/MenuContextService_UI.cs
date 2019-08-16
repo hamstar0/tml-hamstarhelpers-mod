@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -105,7 +105,12 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// </summary>
 		/// <returns></returns>
 		public static UIState GetCurrentMenuUI() {
-			return ModHelpersMod.Instance.MenuContextMngr.CurrentMenuUI?.Item2;
+			var mymod = ModHelpersMod.Instance;
+
+			if( mymod.MenuContextMngr.CurrentMenuUI == 0 ) {
+				return null;
+			}
+			return MainMenuHelpers.GetMenuUI( mymod.MenuContextMngr.CurrentMenuUI );
 		}
 
 		/// <summary>
@@ -113,7 +118,12 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// </summary>
 		/// <returns></returns>
 		public static UIState GetPreviousMenuUI() {
-			return ModHelpersMod.Instance.MenuContextMngr.PreviousMenuUI?.Item2;
+			var mymod = ModHelpersMod.Instance;
+
+			if( mymod.MenuContextMngr.PreviousMenuUI == 0 ) {
+				return null;
+			}
+			return MainMenuHelpers.GetMenuUI( mymod.MenuContextMngr.PreviousMenuUI );
 		}
 	}
 }
