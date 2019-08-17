@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.HUD;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using Microsoft.Xna.Framework;
@@ -61,12 +62,16 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public ISet<string> GetTagsWithGivenState( int state ) {
+		public ISet<string> GetTagsWithGivenState( int state, string category=null ) {
 			ISet<string> tags = new HashSet<string>();
 
-			foreach( var kv in this.TagButtons ) {
-				if( kv.Value.TagState == state ) {
-					tags.Add( kv.Key );
+			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {
+				if( category != null && this.Manager.MyTagMap[tagName].Category != category ) {
+					continue;
+				}
+
+				if( tagButton.TagState == state ) {
+					tags.Add( tagName );
 				}
 			}
 			return tags;

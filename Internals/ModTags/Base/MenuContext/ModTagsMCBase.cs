@@ -33,10 +33,5 @@ namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 		////////////////
 
 		public abstract void OnTagStateChange( UITagMenuButton tagButton );
-
-
-		public ISet<string> GetTagsWithGivenState( int state ) {
-			return this.Manager.TagsUI.GetTagsWithGivenState( state );
-		}
 	}
 }

@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 						+ ( uiModInfo?.GetType().Name ?? "null" ) + " (" + menuDef + ")" );
 			}
 
-			this.Manager = new ModTagsEditorManager( this.InfoDisplay, uiModInfo );
+			this.Manager = new ModTagsEditorManager( this.InfoDisplay, menuDef, uiModInfo );
 		}
 
 		////

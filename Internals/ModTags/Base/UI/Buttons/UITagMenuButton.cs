@@ -91,8 +91,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		////////////////
 
 		public void TakeOut() {
-			/*this.Show();
 			this.Enable();
+			/*this.Show();
 			this.SetMenuSpacePosition( this.PositionXCenterOffset, this.PositionY );*/
 
 			if( this.Parent == null ) {
@@ -110,8 +110,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		}
 
 		public void PutAway() {
-			/*this.Hide();
 			this.Disable();
+			/*this.Hide();
 			this.Left.Set( -(UITagMenuButton.ButtonWidth + 1), 0f );
 			this.Top.Set( -(UITagMenuButton.ButtonHeight + 1), 0f );*/
 

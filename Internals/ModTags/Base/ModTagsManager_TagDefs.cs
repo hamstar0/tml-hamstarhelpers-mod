@@ -33,7 +33,7 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 			};
 
 			ModTagsManager.CategoryDescriptions = new Dictionary<string, string> {
-				{ "Specifications",	"General descriptions a mod." },
+				{ "Specifications",	"General descriptions of a mod." },
 				{ "Mechanics",		"Describes what game mechanics are associated with a mod." },
 				{ "Gameplay",		"Describes how a mod affects gameplay (more than specific mechanics)." },
 				{ "State",			"Describes the existential state of a mod." },
@@ -63,13 +63,13 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "NPC Stats",             "Mechanics",    "Modifies NPC attack, defense, and other intrinsic elements."),
 				m( "NPC Behavior",          "Mechanics",    "Modifies NPC AIs or state for new or altered behaviors."),
 
-				m( "Informational",         "General",  "Adds game state reports (time, weather, progress, scores, etc.)."),
-				m( "Specialized",           "General",  "Focuses on one main specific, well-defined function."),
-				m( "Technical",             "General",  "May require a brain."),
-				//{ "Multi-faceted",         "General",	"Does more than one thing, whether focusing mainly on one thing or not."),
-				m( "Replacements",          "General",  "Primarily meant as an alternative to something the game already provides."),
-				//{ "Esoteric",              "General",	"Does something uncommon or unexpected. Likely one-of-a-kind."),
-				//{ "Visuals",               "General",	"Implements new or improved sprites, adds new background details, etc."),
+				m( "Informational",         "Specifications",	"Adds game state reports (time, weather, progress, scores, etc.)."),
+				m( "Specialized",           "Specifications",	"Focuses on one main specific, well-defined function."),
+				m( "Technical",             "Specifications",	"May require a brain."),
+				//{ "Multi-faceted",         "Specifications",	"Does more than one thing, whether focusing mainly on one thing or not."),
+				m( "Replacements",          "Specifications",	"Primarily meant as an alternative to something the game already provides."),
+				//{ "Esoteric",              "Specifications",	"Does something uncommon or unexpected. Likely one-of-a-kind."),
+				//{ "Visuals",               "Specifications",	"Implements new or improved sprites, adds new background details, etc."),
 				m( "MP Compatible",         "Multiplayer",  "Built for multiplayer."),
 				m( "PvP",                   "Multiplayer",  "Player vs player (multiplayer)."),
 				m( "Coop",                  "Multiplayer",  "Requires or involves direct player-to-player cooperation (multiplayer)."),
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "Server Use",            "Multiplayer",  "Player management tools, permissions, game rule changes, scheduled events, etc."),
 
 				////
-					
+				
 				m( "Open Source",           "State",        "Freely available source code."),
 				m( "Has Documentation",     "State",        "Has an associated wiki or other comprehensive information source."),
 				m( "Unmaintained",          "State",        "No longer receives version updates."),
@@ -108,16 +108,16 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "Loosely Balanced",      "Gameplay",		"Inconsistent or vague attempt to maintain balance, vanilla or otherwise."),
 				m( "Plus Balanced",         "Gameplay",		"Balanced in excess of vanilla; expect sequence breaks (e.g. killing powerful bosses early)."),
 
-				m( "Spoilers",              "General",  "Reveals information in advance about game or story elements, especially prematurely."),
-				m( "Needs New World",       "General",  "Playing an existing world is difficult, problematic, or just impossible."),
-				m( "Needs New Player",      "General",  "Character must begin as a blank slate, similarly."),
-				m( "Affects World",         "General",  "Adds set pieces, alters biome shapes, adds new types of growth, etc."),
-				m( "Affects Game State",    "General",  "Alters shop prices, activates invasion events, changes weather, etc."),
-				m( "Mod Interacting",       "General",  "Supplies data, alters behavior, provides APIs, or manages other mods."),
-				m( "Mod Collab",            "General",  "May be specifically paired with (an)other mod(s) to create a more-than-sum-of-parts result."),
-				m( "May Lag",               "General",  "May use system resources or network bandwidth heavily. Good computer recommended."),
-				m( "Adds UI",               "General",  "Adds user interface components for mod functions."),
-				m( "Configurable",          "General",  "Provides options for configuring game settings (menu, config file, commands, etc.)."),
+				m( "Spoilers",              "Specifications",	"Reveals information in advance about game or story elements, especially prematurely."),
+				m( "Needs New World",       "Specifications",	"Playing an existing world is difficult, problematic, or just impossible."),
+				m( "Needs New Player",      "Specifications",	"Character must begin as a blank slate, similarly."),
+				m( "Affects World",         "Specifications",	"Adds set pieces, alters biome shapes, adds new types of growth, etc."),
+				m( "Affects Game State",    "Specifications",	"Alters shop prices, activates invasion events, changes weather, etc."),
+				m( "Mod Interacting",       "Specifications",	"Supplies data, alters behavior, provides APIs, or manages other mods."),
+				m( "Mod Collab",            "Specifications",	"May be specifically paired with (an)other mod(s) to create a more-than-sum-of-parts result."),
+				m( "May Lag",               "Specifications",	"May use system resources or network bandwidth heavily. Good computer recommended."),
+				m( "Adds UI",               "Specifications",	"Adds user interface components for mod functions."),
+				m( "Configurable",          "Specifications",	"Provides options for configuring game settings (menu, config file, commands, etc.)."),
 
 				m( "Needs Credentials",		"Privilege",	"Requires input of user information for features to work." ),
 				m( "Accesses System",       "Privilege",	"Accesses files, opens programs, uses system functions, etc."),
@@ -147,10 +147,10 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 				m( "Decorative",            "Content",  "Adds or edits decorative objects (e.g. furniture for houses)."),
 				m( "Wiring",                "Content",  "Adds or edits tools and toys for use for wiring."),
 				m( "Music",                 "Content",  "Adds or edits music."),
-				m( "Rich Art",              "Content",  "Adds extensive or detailed art for new or existing content."),
-				m( "Sounds",                "Content",  "Adds or edits sound effects or ambience."),
-				m( "Story or Lore",         "Content",  "Implements elements of story telling or universe lore."),
-				m( "Special FX",            "Content",  "Adds gore effects, adds motion blurs, improves particle effects, etc."),
+				m( "Rich Art",				"Content",  "Adds extensive or detailed art for new or existing content."),
+				m( "Sounds",				"Content",  "Adds or edits sound effects or ambience."),
+				m( "Story or Lore",			"Content",  "Implements elements of story telling or universe lore."),
+				m( "Special FX",			"Content",  "Adds gore effects, adds motion blurs, improves particle effects, etc."),
 
 				m( "Dark",                  "Theme",    "Gloomy, edgy, or just plain poor visibility." ),
 				m( "Silly",                 "Theme",    "Light-hearted, immersion-breaking, or just plain absurd." ),

@@ -99,8 +99,8 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				IDictionary<string, ISet<string>> modTagsOfModNames,
 				FilteredModsHandler callback ) {
 			IList<string> filteredModNameList = new List<string>();
-			ISet<string> onTags = this.GetTagsWithGivenState( 1 );
-			ISet<string> offTags = this.GetTagsWithGivenState( -1 );
+			ISet<string> onTags = this.Manager.GetTagsWithGivenState( 1 );
+			ISet<string> offTags = this.Manager.GetTagsWithGivenState( -1 );
 			bool isFiltered = onTags.Count > 0 || offTags.Count > 0;
 
 			if( isFiltered ) {

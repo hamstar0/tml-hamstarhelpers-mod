@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
@@ -41,6 +42,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		private ModTagsManager Manager;
 
+		private UIText PositiveTagCount;
+		private UIText NegativeTagCount;
+
 
 		////////////////
 
@@ -73,7 +77,19 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			this.IsSelected = false;
 			this.DrawPanel = false;
 			this.Description = description;
-			
+
+			this.PositiveTagCount = new UIText( "+0", 0.7f );
+			this.PositiveTagCount.Left.Set( 0f, 0f );
+			this.PositiveTagCount.TextColor = Color.Green;
+			this.Append( this.PositiveTagCount );
+
+			if( this.Manager.CanExcludeTags ) {
+				this.NegativeTagCount = new UIText( "-0", 0.7f );
+				this.NegativeTagCount.Left.Set( -12f, 1f );
+				this.NegativeTagCount.TextColor = Color.Red;
+				this.Append( this.NegativeTagCount );
+			}
+
 			this.OnClick += ( _, __ ) => {
 				if( !this.IsEnabled ) { return; }
 				this.Select();
@@ -153,7 +169,33 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				HUDHelpers.DrawBorderedRect( sb, bgColor, edgeColor, rect, 2 );
 			}
 
+			this.UpdateTagCounts();
+
 			base.Draw( sb );
+		}
+
+
+		////
+		public void UpdateTagCounts() {
+			int positives = this.Manager.GetTagsWithGivenState( 1, this.Text ).Count;
+
+			this.PositiveTagCount.SetText( "+" + positives );
+			if( positives == 0 ) {
+				this.PositiveTagCount.TextColor = Color.Green * 0.65f;
+			} else {
+				this.PositiveTagCount.TextColor = Color.Green;
+			}
+
+			if( this.Manager.CanExcludeTags ) {
+				int negatives = this.Manager.GetTagsWithGivenState( -1, this.Text ).Count;
+
+				this.NegativeTagCount.SetText( "-" + negatives );
+				if( negatives == 0 ) {
+					this.PositiveTagCount.TextColor = Color.Red * 0.65f;
+				} else {
+					this.PositiveTagCount.TextColor = Color.Red;
+				}
+			}
 		}
 	}
 }

@@ -48,8 +48,8 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 		////////////////
 
-		public ISet<string> GetTagsWithGivenState( int state ) {
-			return this.TagsUI.GetTagsWithGivenState( state );
+		public ISet<string> GetTagsWithGivenState( int state, string category=null ) {
+			return this.TagsUI.GetTagsWithGivenState( state, category );
 		}
 
 
