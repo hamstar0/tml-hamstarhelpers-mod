@@ -176,6 +176,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 
 		////
+
 		public void UpdateTagCounts() {
 			int positives = this.Manager.GetTagsWithGivenState( 1, this.Text ).Count;
 

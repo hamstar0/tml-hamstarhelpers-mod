@@ -55,7 +55,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public void OnTagStateChange( UITagMenuButton button ) {
+		public void OnTagStateChange( string tagName, int state ) {
 			this.RefreshButtonEnableStates();
 		}
 

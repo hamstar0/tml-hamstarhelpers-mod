@@ -37,40 +37,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		////////////////
 
-		public override void RefreshButtonEnableStates() {
-			base.RefreshButtonEnableStates();
-			this.FinishButton.RefreshEnableState();
-		}
-
-
-		////////////////
-
 		public bool CanEditTags() {
 			return this.FinishButton.Text == "Modify Tags";
-		}
-
-		////////////////
-
-		public void EnableSubmitOption() {
-			this.FinishButton.SetModeSubmit();
-		}
-
-		public void DisableSubmitOption() {
-			this.FinishButton.SetModeReadOnly();
-		}
-
-		////////////////
-
-		public void LockFinishButton() {
-			if( !this.FinishButton.IsLocked ) {
-				this.FinishButton.Lock();
-			}
-		}
-
-		public void UnlockFinishButton() {
-			if( this.FinishButton.IsLocked ) {
-				this.FinishButton.Unlock();
-			}
 		}
 
 

@@ -39,28 +39,32 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo {
 					return false;
 				}
 
-				this.AllModTagsSnapshot = args.ModTags;
-
-				ISet<string> netModTags = args.Found && args.ModTags.ContainsKey( modName ) ?
-						args.ModTags[modName] :
-						new HashSet<string>();
-				bool hasNetTags = netModTags.Count > 0;
-
-				//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
-				if( hasNetTags ) {
-					this.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
-					//this.UI.ResetButton.Disable();
-					this.TagsUI.DisableResetButton();
-				} else {
-					this.SetInfoTextDefault( "No tags set for this mod. Why not add some?" );
-					this.DisableSubmitMode();
-					//this.UI.FinishButton.SetModeSubmit();
-				}
-
-				this.MyTagsUI.SetCurrentMod( modName, netModTags );
-
+				this.SetCurrentModAsync( modName, args.Found, args.ModTags );
 				return false;
 			} );
+		}
+
+
+		private void SetCurrentModAsync( string modName, bool found, IDictionary<string, ISet<string>> modTags ) {
+			this.AllModTagsSnapshot = modTags;
+
+			ISet<string> netModTags = found && modTags.ContainsKey( modName ) ?
+					modTags[modName] :
+					new HashSet<string>();
+			bool hasNetTags = netModTags.Count > 0;
+
+			//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
+			if( hasNetTags ) {
+				this.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
+				//this.UI.ResetButton.Disable();
+				this.TagsUI.DisableResetButton();
+			} else {
+				this.SetInfoTextDefault( "No tags set for this mod. Why not add some?" );
+				this.DisableSubmitMode();
+				//this.UI.FinishButton.SetModeSubmit();
+			}
+
+			this.MyTagsUI.SetCurrentMod( modName, netModTags );
 		}
 
 
@@ -84,42 +88,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo {
 
 		////////////////
 
-		public void SubmitTags() {
-			if( string.IsNullOrEmpty( this.CurrentModName ) ) {
-				UIState prevMenuUI = MenuContextService.GetPreviousMenuUI();
-				UIState currMenuUI = MenuContextService.GetCurrentMenuUI();
-				this.CurrentModName = ModMenuHelpers.GetModName( prevMenuUI, currMenuUI ) ?? "";
-
-				if( string.IsNullOrEmpty( this.CurrentModName ) ) {
-					throw new ModHelpersException( "Invalid mod name." );
-				}
-			}
-
-			Action<Exception, string> onError = ( e, output ) => {
-				this.SetInfoText( "Error: " + ( string.IsNullOrEmpty( output ) ? e.Message : output ), Color.Red );
-				LogHelpers.Log( e.ToString() );
-			};
-
-			Action<bool, string> onCompletion = ( success, output ) => {
-				if( success ) {
-					this.SetInfoText( output, Color.Lime );
-					LogHelpers.Log( "Mod info submit result: " + output );
-				}
-			};
-
-			ISet<string> newTags = this.GetTagsWithGivenState( 1 );
-
-			// Update snapshot of tags for the given mod (locally)
-			if( this.AllModTagsSnapshot != null ) {
-				this.AllModTagsSnapshot[this.CurrentModName] = newTags;
-			}
-
-			PostModInfo.SubmitModInfo( this.CurrentModName, newTags, onError, onCompletion );
-
-			this.MyTagsUI.LockFinishButton();
-			this.MyTagsUI.LockResetButton();
-
-			ModTagsManager.RecentTaggedMods.Add( this.CurrentModName );
+		public override void OnSetTagState( string tagName, int state ) {
 		}
 	}
 }

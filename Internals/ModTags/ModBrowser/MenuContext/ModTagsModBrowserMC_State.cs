@@ -2,8 +2,6 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
-using HamstarHelpers.Internals.WebRequests;
-using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.GameContent.UI.Elements;
@@ -36,35 +34,6 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
 				elem.Recalculate();
 			}*/
-		}
-
-
-		////////////////
-
-		private void ApplyDefaultFiltersAsync( UIState modBrowserUi ) {
-			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
-				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
-					if( this.MyMenuUI != modBrowserUi ) {
-						LogHelpers.Warn( "Current UIState mismatch: Found "+this.MyMenuUI+", expected "+modBrowserUi.GetType().Name );
-						return false;
-					}
-
-					bool isLoading;
-					if( !ReflectionHelpers.Get( modBrowserUi, "loading", out isLoading ) ) {
-						LogHelpers.Warn( "ModBrowserTagsMenuContext - No 'loading'." );
-						return false;
-					}
-
-					if( isLoading ) {
-						return true;
-					} else {
-						//UITagButton button = this.TagButtons["Misleading Info"];
-						//button.SetTagState( -1 );
-						return false;
-					}
-				} );
-				return true;
-			} );
 		}
 
 

@@ -3,7 +3,6 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using System;
-using System.Collections.Generic;
 using Terraria.UI;
 
 
@@ -28,10 +27,5 @@ namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 		}
 
 		public abstract void OnActivationForModTags( UIState ui );
-
-
-		////////////////
-
-		public abstract void OnTagStateChange( UITagMenuButton tagButton );
 	}
 }

@@ -2,19 +2,21 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.Base.MenuContext;
+using HamstarHelpers.Internals.ModTags.Base;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader.UI.ModBrowser;
+using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
+namespace HamstarHelpers.Internals.ModTags.ModBrowser {
 	/// @private
-	partial class ModTagsModBrowserMenuContext : ModTagsMenuContextBase {
+	partial class ModTagsModBrowserManager : ModTagsManager {
 		/// @private
 		public delegate void FilteredModsHandler(
+			UIState _menuUi,
 			bool isFiltered,
 			IList<string> filteredModNameList,
 			int onTagCount,
@@ -26,11 +28,13 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 		////////////////
 
 		private void ApplyModsFilter() {
+			UIState menuUi = MainMenuHelpers.GetMenuUI( this.MenuDefinition );
+
 			IList<string> modNames = new List<string>();
 
 			object items;
-			if( !ReflectionHelpers.Get( this.MyMenuUI, "_items", out items ) ) {
-				LogHelpers.Warn( "No 'items' field in ui " + this.MyMenuUI );
+			if( !ReflectionHelpers.Get( menuUi, "_items", out items ) ) {
+				LogHelpers.Warn( "No 'items' field in ui " + menuUi );
 				return;
 			}
 
@@ -50,11 +54,15 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				}
 			}
 
-			this.FilterModsAsync( modNames, this.HandleFilteredMods );
+			this.FilterModsAsync( menuUi, modNames, this.HandleFilteredMods );
 		}
 
 
-		private void HandleFilteredMods( bool isFiltered, IList<string> filteredModNameList, int onTagCount, int offTagCount ) {
+		private void HandleFilteredMods( UIState _menuUi,
+				bool isFiltered,
+				IList<string> filteredModNameList,
+				int onTagCount,
+				int offTagCount ) {
 			string filterName = "Tags";
 			if( onTagCount > 0 || offTagCount > 0 ) {
 				filterName += " ";
@@ -70,7 +78,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				}
 			}
 
-			if( ReflectionHelpers.Set( this.MyMenuUI, "UpdateFilterMode", (UpdateFilter)0 ) ) {
+			if( ReflectionHelpers.Set( _menuUi, "UpdateFilterMode", (UpdateFilter)0 ) ) {
 				ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
 			} else {
 				LogHelpers.Alert( "Could not set UpdateFilterMode for the mod browser" );
@@ -80,27 +88,27 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		////////////////
 
-		public void FilterModsAsync( IList<string> modNames, FilteredModsHandler callback ) {
+		private void FilterModsAsync( UIState _menuUi, IList<string> modNames, FilteredModsHandler callback ) {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				if( !args.Found ) {
-					this.InfoDisplay?.SetText( "Could not acquire mod data." );
-					callback( false, new List<string>(), 0, 0 );
+					this.SetInfoText( "Could not acquire mod data." );
+					callback( _menuUi, false, new List<string>(), 0, 0 );
 					return false;
 				}
 
-				this.FilterMods( modNames, args.ModTags, callback );
+				this.FilterMods( _menuUi, modNames, args.ModTags, callback );
 				return false;
 			} );
 		}
 
 
-		private void FilterMods(
+		private void FilterMods( UIState _menuUi,
 				IList<string> modNames,
 				IDictionary<string, ISet<string>> modTagsOfModNames,
 				FilteredModsHandler callback ) {
 			IList<string> filteredModNameList = new List<string>();
-			ISet<string> onTags = this.Manager.GetTagsWithGivenState( 1 );
-			ISet<string> offTags = this.Manager.GetTagsWithGivenState( -1 );
+			ISet<string> onTags = this.GetTagsWithGivenState( 1 );
+			ISet<string> offTags = this.GetTagsWithGivenState( -1 );
 			bool isFiltered = onTags.Count > 0 || offTags.Count > 0;
 
 			if( isFiltered ) {
@@ -129,7 +137,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				);
 			}
 
-			callback( isFiltered, filteredModNameList, onTags.Count, offTags.Count );
+			callback( _menuUi, isFiltered, filteredModNameList, onTags.Count, offTags.Count );
 		}
 	}
 }

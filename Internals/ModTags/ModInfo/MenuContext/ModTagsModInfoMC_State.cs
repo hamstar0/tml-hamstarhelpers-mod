@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
-using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
 
@@ -22,7 +21,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			}
 
 			this.ResetUIState( modName );
-			this.SetCurrentMod( ui, modName );
+			this.MyManager.SetCurrentMod( modName );
 		}
 
 		public override void Hide( UIState ui ) {
@@ -42,18 +41,6 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			}
 
 			this.Manager.TagsUI.ResetTagButtons( true );
-		}
-
-
-		////////////////
-
-		private void SetCurrentMod( UIState ui, string modName ) {
-			this.MyManager.SetCurrentMod( modName );
-			//this.CurrentModName = modName;
-		}
-
-		public override void OnTagStateChange( UITagMenuButton tagButton ) {
-			this.Manager.TagsUI.RefreshButtonEnableStates();
 		}
 	}
 }

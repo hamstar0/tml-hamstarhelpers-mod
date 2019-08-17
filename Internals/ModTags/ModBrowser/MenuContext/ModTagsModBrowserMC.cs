@@ -67,15 +67,5 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
 			elem.Recalculate();
 		}
-
-
-		////////////////
-
-		public override void OnTagStateChange( UITagMenuButton tagButton ) {
-			this.ApplyModsFilter();
-
-			//this.ResetButton.UpdateEnableState();
-			this.Manager.TagsUI.RefreshButtonEnableStates();
-		}
 	}
 }

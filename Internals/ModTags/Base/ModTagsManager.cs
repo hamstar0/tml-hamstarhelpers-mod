@@ -46,17 +46,27 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 			return ModTagsManager.RecentTaggedMods.Contains( this.CurrentModName );
 		}
 
-		////////////////
-
-		public ISet<string> GetTagsWithGivenState( int state, string category=null ) {
-			return this.TagsUI.GetTagsWithGivenState( state, category );
-		}
-
 
 		////////////////
 
 		public virtual bool CanEditTags() {
 			return false;
 		}
+
+
+		////////////////
+
+		public ISet<string> GetTagsWithGivenState( int state, string category = null ) {
+			return this.TagsUI.GetTagsWithGivenState( state, category );
+		}
+
+		////////////////
+
+		public void SetTagState( string tag, int state ) {
+			this.OnSetTagState( tag, state );
+			this.TagsUI.OnTagStateChange( tag, state );
+		}
+
+		public abstract void OnSetTagState( string tag, int state );
 	}
 }

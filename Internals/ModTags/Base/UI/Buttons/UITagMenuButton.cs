@@ -125,21 +125,21 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.Manager.TagsUI.OnTagStateChange( this );
+			this.Manager.SetTagState( this.Text, this.TagState );
 			this.RefreshTheme();
 		}
 
 		public void TogglePositiveTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.Manager.TagsUI.OnTagStateChange( this );
+			this.Manager.SetTagState( this.Text, this.TagState );
 			this.RefreshTheme();
 		}
 
 		public void ToggleNegativeTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.Manager.TagsUI.OnTagStateChange( this );
+			this.Manager.SetTagState( this.Text, this.TagState );
 			this.RefreshTheme();
 		}
 
