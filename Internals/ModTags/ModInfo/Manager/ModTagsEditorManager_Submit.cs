@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.Base;
+using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.ModInfo {
+namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 	partial class ModTagsEditorManager : ModTagsManager {
 		public void SubmitTags() {
 			if( string.IsNullOrEmpty( this.CurrentModName ) ) {

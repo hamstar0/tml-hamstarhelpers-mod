@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.TML;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Internals.ModTags.ModInfo.Manager;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {

@@ -5,6 +5,7 @@ using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
+using HamstarHelpers.Internals.ModTags.ModInfo.Manager;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;

@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Internals.ModTags.Base {
+namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 	abstract partial class ModTagsManager {
 		protected static ISet<string> RecentTaggedMods = new HashSet<string>();
 

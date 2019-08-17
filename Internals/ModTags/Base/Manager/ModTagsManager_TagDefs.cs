@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Internals.ModTags.Base {
+namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 	class TagDefinition {
 		public string Tag;
 		public string Category;

@@ -3,7 +3,7 @@ using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Internals.ModTags.Base;
+using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Internals.ModTags.ModInfo {
+namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 	partial class ModTagsEditorManager : ModTagsManager {
 		public UIModTagsEditorInterface MyTagsUI => (UIModTagsEditorInterface)this.TagsUI;
 

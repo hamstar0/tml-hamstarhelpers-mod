@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Internals.ModTags.Base.UI;
+using HamstarHelpers.Internals.ModTags.ModBrowser.Manager;
 using System;
 
 

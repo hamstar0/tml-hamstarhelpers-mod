@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Internals.ModTags.ModInfo.Manager;
 using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

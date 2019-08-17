@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.HUD;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
+using HamstarHelpers.Internals.ModTags.Base.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
