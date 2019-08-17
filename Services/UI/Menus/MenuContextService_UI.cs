@@ -58,7 +58,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		}
 
 		/// <summary>
-		/// Gets the recommended element to add content to within an "inner" container element of a given menu UI.
+		/// Gets the recommended element to add content to an "inner" container element of a given menu UI.
 		/// </summary>
 		/// <param name="uiInnerContainer"></param>
 		/// <returns></returns>
@@ -87,7 +87,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		}
 
 		/// <summary>
-		/// Gets the recommended element to add content to (within an "inner" container element) of a given menu UI.
+		/// Gets the recommended element to add content to (within an "inner" container element) a given menu UI.
 		/// </summary>
 		/// <param name="ui"></param>
 		/// <returns></returns>

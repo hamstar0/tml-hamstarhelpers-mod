@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 		////////////////
 
+		public MenuUIDefinition MenuDefinition { get; private set; }
 		public UIModTagsInterface TagsUI { get; protected set; }
 
 		public virtual IDictionary<string, string> MyTagCategoryDescriptions => ModTagsManager.CategoryDescriptions;
@@ -31,10 +33,10 @@ namespace HamstarHelpers.Internals.ModTags.Base {
 
 		////////////////
 
-		protected ModTagsManager( UIInfoDisplay infoDisplay, bool canExcludeTags ) {
+		protected ModTagsManager( UIInfoDisplay infoDisplay, MenuUIDefinition menuDef, bool canExcludeTags ) {
+			this.MenuDefinition = menuDef;
 			this.InfoDisplay = infoDisplay;
 			this.CanExcludeTags = canExcludeTags;
-			//this.TagsUI = new UIModTagsPanel( UITheme.Vanilla, this, uiContext, this.CanExcludeTags );
 		}
 
 

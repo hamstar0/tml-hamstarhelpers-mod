@@ -38,15 +38,13 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 				foreach( TagDefinition tagDef in group ) {
 					UITagMenuButton button = this.TagButtons[ tagDef.Tag ];
 
-					if( group.Key == this.CurrentCategory ) {
-						button.Show();
-						button.Enable();
-					} else {
-						button.Hide();
-						button.Disable();
-					}
-
 					button.SetMenuSpacePosition( x, y );
+
+					if( group.Key == this.CurrentCategory ) {
+						button.TakeOut();
+					} else {
+						button.PutAway();
+					}
 
 					y += UITagMenuButton.ButtonHeight;
 					if( y >= (UIModTagsInterface.TagsPanelHeight + top) ) {

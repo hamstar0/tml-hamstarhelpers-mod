@@ -22,8 +22,9 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo {
 
 		////////////////
 
-		public ModTagsEditorManager( UIInfoDisplay infoDisplay, UIState uiModInfo ) : base( infoDisplay, false ) {
-			this.TagsUI = new UIModTagsEditorInterface( UITheme.Vanilla, this, uiModInfo );
+		public ModTagsEditorManager( UIInfoDisplay infoDisplay, MenuUIDefinition menuDef, UIState _uiModInfo )
+				: base( infoDisplay, menuDef, false ) {
+			this.TagsUI = new UIModTagsEditorInterface( UITheme.Vanilla, this, _uiModInfo );
 
 			this.TagsUI.RefreshButtonEnableStates();
 		}

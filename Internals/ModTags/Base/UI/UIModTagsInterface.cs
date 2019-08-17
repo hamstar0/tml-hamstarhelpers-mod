@@ -91,8 +91,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 			HUDHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect1, 2 );
 			HUDHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect2, 2 );
-
-			base.Draw( sb );
 		}
 	}
 }

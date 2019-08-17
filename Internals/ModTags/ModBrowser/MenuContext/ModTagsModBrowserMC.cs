@@ -25,7 +25,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		protected ModTagsModBrowserMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName ) {
-			this.Manager = new ModTagsModBrowserManager( this.InfoDisplay );
+			this.Manager = new ModTagsModBrowserManager( this.InfoDisplay, menuDef );
 		}
 
 		////

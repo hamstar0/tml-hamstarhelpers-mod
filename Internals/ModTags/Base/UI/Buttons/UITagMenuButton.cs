@@ -3,8 +3,10 @@ using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -59,7 +61,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			this.TagState = 0;
 			this.DrawPanel = false;
 			this.Description = desc;
-			
+
 			this.OnClick += ( _, __ ) => {
 				if( !this.IsEnabled ) { return; }
 				this.TogglePositiveTag();
@@ -85,6 +87,36 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			this.RefreshTheme();
 		}
 
+
+		////////////////
+
+		public void TakeOut() {
+			/*this.Show();
+			this.Enable();
+			this.SetMenuSpacePosition( this.PositionXCenterOffset, this.PositionY );*/
+
+			if( this.Parent == null ) {
+				if( Main.MenuUI.CurrentState != null ) {
+					string currentMenuContextUi = Main.MenuUI.CurrentState.GetType().Name;
+					string expectedMenuContextUi = Enum.GetName( typeof(MenuUIDefinition), this.Manager.MenuDefinition );
+
+					if( currentMenuContextUi == expectedMenuContextUi ) {
+						Main.MenuUI.CurrentState?.Append( this );
+					} else {
+						LogHelpers.Warn( "Found " + currentMenuContextUi + ", expected " + expectedMenuContextUi );
+					}
+				}
+			}
+		}
+
+		public void PutAway() {
+			/*this.Hide();
+			this.Disable();
+			this.Left.Set( -(UITagMenuButton.ButtonWidth + 1), 0f );
+			this.Top.Set( -(UITagMenuButton.ButtonHeight + 1), 0f );*/
+
+			this.Remove();
+		}
 
 		////////////////
 

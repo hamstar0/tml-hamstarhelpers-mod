@@ -15,11 +15,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
 				if( this.Manager.MyTagMap[tagName].Category == this.CurrentCategory ) {
-					button.Enable();
-					button.Show();
+					button.TakeOut();
 				} else {
-					button.Disable();
-					button.Hide();
+					button.PutAway();
 				}
 			}
 		}
@@ -30,8 +28,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			}
 
 			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
-				button.Disable();
-				button.Hide();
+				button.PutAway();
 			}
 		}
 
@@ -51,11 +48,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
 				if( this.Manager.MyTagMap[tagName].Category == this.CurrentCategory ) {
-					button.Enable();
-					button.Show();
+					button.TakeOut();
 				} else {
-					button.Disable();
-					button.Hide();
+					button.PutAway();
 				}
 			}
 		}
@@ -72,8 +67,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			foreach( TagDefinition tagDef in this.Manager.MyTags ) {
 				var tagButton = this.TagButtons[tagDef.Tag];
 
-				tagButton.Hide();
-				tagButton.Disable();
+				tagButton.PutAway();
 			}
 		}
 
@@ -84,7 +78,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
 				if( alsoDisable ) {
 					button.Disable();
-					button.Hide();
 				}
 				button.SetTagState( 0 );
 			}
