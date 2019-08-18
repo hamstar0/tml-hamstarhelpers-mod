@@ -193,9 +193,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 				this.NegativeTagCount.SetText( "-" + negatives );
 				if( negatives == 0 ) {
-					this.PositiveTagCount.TextColor = Color.Red * 0.65f;
+					this.NegativeTagCount.TextColor = Color.Red * 0.65f;
 				} else {
-					this.PositiveTagCount.TextColor = Color.Red;
+					this.NegativeTagCount.TextColor = Color.Red;
 				}
 			}
 		}

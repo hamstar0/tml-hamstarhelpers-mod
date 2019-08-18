@@ -57,16 +57,16 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		////////////////
 
-		private void DisplayModListVersions( UIState ui, IDictionary<string, BasicModInfo> modInfo ) {
+		private void DisplayModListVersions( UIState modsUi, IDictionary<string, BasicModInfo> modInfo ) {
 			object items;
-			if( !ReflectionHelpers.Get( ui, "items", out items ) ) {
-				LogHelpers.Warn( "No 'items' field in ui " + ui );
+			if( !ReflectionHelpers.Get( modsUi, "items", out items ) ) {
+				LogHelpers.Warn( "No 'items' field in ui " + modsUi );
 				return;
 			}
 
 			UIList list;
-			if( !ReflectionHelpers.Get( ui, "modList", out list ) ) {
-				LogHelpers.Warn( "No 'modList' field in ui " + ui );
+			if( !ReflectionHelpers.Get( modsUi, "modList", out list ) ) {
+				LogHelpers.Warn( "No 'modList' field in ui " + modsUi );
 				return;
 			}
 
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				object item = itemsArr.GetValue( i );
 
 				object mod;
-				if( !ReflectionHelpers.Get( item, "mod", out mod ) || mod == null ) {
+				if( !ReflectionHelpers.Get( item, "_mod", out mod ) || mod == null ) {
 					LogHelpers.Warn( "Could not get Mod from list item " + item.ToString() );
 					continue;
 				}
@@ -98,17 +98,17 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		////////////////
 
-		public void CheckVersion( string modName, BasicModInfo modInfo, UIList modList, Version modVersion ) {
+		public void CheckVersion( string modName, BasicModInfo modInfo, UIList modsUiModList, Version modVersion ) {
 //LogHelpers.Log( "modInfo.Count:"+modInfo.Count+ ", name:"+name+", vers:"+vers);
 			if( modInfo.Version == modVersion ) { return; }
 
 			UIPanel uiModItem = null;
 
-			foreach( UIElement modItem in modList._items ) {
+			foreach( UIElement modItem in modsUiModList._items ) {
 				object mod;
 				TmodFile modFile;
 
-				if( !ReflectionHelpers.Get(modItem, "mod", out mod) || mod == null ) {
+				if( !ReflectionHelpers.Get(modItem, "_mod", out mod) || mod == null ) {
 					LogHelpers.Warn( "Could not get mod for version check from mod list item "+modItem.ToString() );
 					continue;
 				}

@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
-	partial class ModTagsModInfoMenuContext : ModTagsMenuContextBase {
+	partial class ModTagsEditorMenuContext : ModTagsMenuContextBase {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 
@@ -20,7 +20,9 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 				return;
 			}
 
-			this.ResetUIState( modName );
+			bool isRecentlyTagged = ModTagsEditorMenuContext.RecentTaggedMods.Contains( modName );
+
+			this.MyManager.MyTagsUI.ResetUIState( isRecentlyTagged );
 			this.MyManager.SetCurrentMod( modName );
 		}
 
@@ -28,19 +30,6 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			base.Hide( ui );
 
 			this.InfoDisplay.SetDefaultText( "" );
-		}
-
-
-		////////////////
-
-		private void ResetUIState( string modName ) {
-			if( !ModTagsModInfoMenuContext.RecentTaggedMods.Contains( modName ) ) {
-				this.MyManager.MyTagsUI.UnlockFinishButton();
-			} else {
-				this.MyManager.MyTagsUI.LockFinishButton();
-			}
-
-			this.Manager.TagsUI.ResetTagButtons( true );
 		}
 	}
 }

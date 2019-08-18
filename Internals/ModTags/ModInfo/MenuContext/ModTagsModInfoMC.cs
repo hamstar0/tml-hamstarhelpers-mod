@@ -16,7 +16,7 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
-	partial class ModTagsModInfoMenuContext : ModTagsMenuContextBase {
+	partial class ModTagsEditorMenuContext : ModTagsMenuContextBase {
 		protected ModTagsEditorManager MyManager => (ModTagsEditorManager)this.Manager;
 
 
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
-				var ctx = new ModTagsModInfoMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Info" );
+				var ctx = new ModTagsEditorMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Info" );
 				MenuContextService.AddMenuContext( ctx );
 			}
 		}
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 		////////////////
 
-		protected ModTagsModInfoMenuContext( MenuUIDefinition menuDef, string contextName )
+		protected ModTagsEditorMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName ) {
 			UIState uiModInfo = MainMenuHelpers.GetMenuUI( menuDef );
 

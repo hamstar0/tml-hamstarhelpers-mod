@@ -102,7 +102,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				//	throw new Exception( "Invalid modList._item["+i+"].mod" );
 				//}
 				
-				UIPanel modInfoButton;
+				UIElement modInfoButton;
 				if( !ReflectionHelpers.Get(item, "_moreInfoButton", out modInfoButton) || modInfoButton == null ) {
 					LogHelpers.Alert( "Invalid modList._item[" + i + "]._moreInfoButton" );
 					continue;

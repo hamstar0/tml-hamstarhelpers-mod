@@ -60,8 +60,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 			UIElement inputTextUi;    //UIInputTextField
 			if( ReflectionHelpers.Get(modBrowserUi, "FilterTextBox", out inputTextUi) && inputTextUi != null ) {
-				if( !ReflectionHelpers.Set( inputTextUi, "currentString", (object)"" ) ) {
-					LogHelpers.Alert( "Could not acquire set 'currentString' of mod browser's filter box" );
+				if( !ReflectionHelpers.Set( inputTextUi, "_currentString", (object)"" ) ) {
+					LogHelpers.Alert( "Could not acquire set '_currentString' of mod browser's filter box" );
 				}
 			} else {
 				LogHelpers.Alert( "Could not acquire get 'FilterTextBox' from mod browser" );

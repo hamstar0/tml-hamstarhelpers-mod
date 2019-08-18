@@ -61,7 +61,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			}
 
 			if( this.Manager.GetTagsWithGivenState(1).Count > 0 || this.Manager.GetTagsWithGivenState(-1).Count > 0 ) {
-				//modInfoContext.FinishButton.Text == "Modify Tags"
+				//modInfoContext.FinishButton.Text == UIEditModeMenuButton.ModifyModeText
 				if( this.Manager.CanEditTags() ) {
 					this.Disable();
 					return;

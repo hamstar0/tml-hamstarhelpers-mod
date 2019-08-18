@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.Menus {
 			LoadHooks.AddPostModLoadHook( () => {
 				Menus.InitializeOpenConfigButton();
 				Menus.InitializeDebugModeMenuInfo();
-				ModTagsModInfoMenuContext.Initialize( true );
+				ModTagsEditorMenuContext.Initialize( true );
 				ModTagsModBrowserMenuContext.Initialize( true );
 				ModUpdatesMenuContext.Initialize();
 				//if( AprilFoolsMenuContext.IsAprilFools() ) {

@@ -25,15 +25,24 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		////////////////
 
 		public void LockFinishButton() {
-			if( !this.FinishButton.IsLocked ) {
-				this.FinishButton.Lock();
-			}
+			this.FinishButton.Lock();
 		}
 
 		public void UnlockFinishButton() {
-			if( this.FinishButton.IsLocked ) {
-				this.FinishButton.Unlock();
+			this.FinishButton.Unlock();
+		}
+
+
+		////////////////
+
+		public void ResetUIState( bool isRecentlyTagged ) {
+			if( !isRecentlyTagged ) {
+				this.UnlockFinishButton();
+			} else {
+				this.LockFinishButton();
 			}
+
+			this.ResetTagButtons( true );
 		}
 	}
 }

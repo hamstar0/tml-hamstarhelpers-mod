@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		////////////////
 
 		public bool CanEditTags() {
-			return this.FinishButton.Text == "Modify Tags";
+			return this.FinishButton.Text == UIEditModeMenuButton.ModifyModeText;
 		}
 
 
