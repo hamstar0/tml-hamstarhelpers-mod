@@ -118,10 +118,6 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				LogHelpers.Warn( "No '_localMod' field in " + currUi.GetType() );
 				return null;
 			}
-			if( localmod == null ) {
-				LogHelpers.Warn( "No mod loaded in '_localMod' field for " + currUi.GetType() );
-				return null;
-			}
 
 			if( localmod != null ) {
 				return ModMenuHelpers.GetLocalMod( localmod ).name;
@@ -138,15 +134,15 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 		////
 
-		private static string GetSelectedModBrowserModName( UIState modBrowser ) {
-			object modListItem;
-			if( !ReflectionHelpers.Get( modBrowser, "selectedItem", out modListItem ) || modListItem == null ) {
-				LogHelpers.Warn( "No 'selectedItem' list item in "+modBrowser.GetType().ToString() );
+		private static string GetSelectedModBrowserModName( UIState modBrowserUi ) {
+			object modDownloadItem;
+			if( !ReflectionHelpers.Get( modBrowserUi, "SelectedItem", out modDownloadItem ) || modDownloadItem == null ) {
+				LogHelpers.Warn( "No 'selectedItem' list item in "+modBrowserUi.GetType().ToString() );
 				return null;
 			}
 
 			string modName;
-			if( !ReflectionHelpers.Get(modListItem, "mod", out modName) ) {
+			if( !ReflectionHelpers.Get(modDownloadItem, "ModName", out modName) ) {
 				LogHelpers.Warn( "Invalid 'mod' data in mod browser listed entry." );
 				return null;
 			}

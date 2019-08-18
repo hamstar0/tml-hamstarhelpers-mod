@@ -46,12 +46,12 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		////////////////
 
 		public void SetCurrentMod( string modName, ISet<string> tags ) {
-			bool hasNetTags = tags.Count > 0;
+			bool hasExistingTags = tags.Count > 0;
 
 			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {
 				bool hasTag = tags.Contains( tagName );
 
-				if( !hasNetTags ) {
+				if( !hasExistingTags ) {
 					tagButton.Enable();
 				}
 
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 						tagButton.SetTagState( 1 );
 					} else {
 						BuildPropertiesViewer viewer = BuildPropertiesViewer.GetBuildPropertiesForActiveMod( modName );
-						string desc = viewer.Description ?? "";
+						string desc = viewer?.Description ?? "";
 
 						if( viewer == null || string.IsNullOrEmpty( desc ) ) {
 							if( !ModMenuHelpers.GetModDescriptionFromCurrentMenuUI( out desc ) ) {
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 							}
 						}
 
-						if( desc.Contains( "Modify this file with a description of your mod." ) ) {
+						if( desc == "" || desc.Contains( "Modify this file with a description of your mod." ) ) {
 							tagButton.SetTagState( 1 );
 						}
 					}

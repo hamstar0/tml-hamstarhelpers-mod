@@ -7,8 +7,6 @@ using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
-using HamstarHelpers.Services.UI.Menus;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.UI;
@@ -32,29 +30,29 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 
 		////////////////
 
-		public void SetCurrentMod( string modName ) {
+		public void SetCurrentModAsync( string modName ) {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				if( !args.Found ) {
 					LogHelpers.Warn();
 					return false;
 				}
 
-				this.SetCurrentModAsync( modName, args.Found, args.ModTags );
+				this.SetCurrentMod( modName, args.Found, args.ModTags );
 				return false;
 			} );
 		}
 
 
-		private void SetCurrentModAsync( string modName, bool found, IDictionary<string, ISet<string>> modTags ) {
-			this.AllModTagsSnapshot = modTags;
+		private void SetCurrentMod( string modName, bool found, IDictionary<string, ISet<string>> tagsPerMod ) {
+			this.AllModTagsSnapshot = tagsPerMod;
 
-			ISet<string> netModTags = found && modTags.ContainsKey( modName ) ?
-					modTags[modName] :
+			ISet<string> tagsOfMod = found && tagsPerMod.ContainsKey( modName ) ?
+					tagsPerMod[modName] :
 					new HashSet<string>();
-			bool hasNetTags = netModTags.Count > 0;
+			bool hasExistingTags = tagsOfMod.Count > 0;
 
 			//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
-			if( hasNetTags ) {
+			if( hasExistingTags ) {
 				this.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
 				//this.UI.ResetButton.Disable();
 				this.TagsUI.DisableResetButton();
@@ -64,7 +62,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 				//this.UI.FinishButton.SetModeSubmit();
 			}
 
-			this.MyTagsUI.SetCurrentMod( modName, netModTags );
+			this.MyTagsUI.SetCurrentMod( modName, tagsOfMod );
 		}
 
 

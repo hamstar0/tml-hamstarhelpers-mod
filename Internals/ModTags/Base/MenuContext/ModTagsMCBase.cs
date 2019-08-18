@@ -27,5 +27,20 @@ namespace HamstarHelpers.Internals.ModTags.Base.MenuContext {
 		}
 
 		public abstract void OnActivationForModTags( UIState ui );
+
+
+		////////////////
+
+		public override void Show( UIState ui ) {
+			base.Show( ui );
+
+			this.Manager.TagsUI.EnableCatTagInterface();
+		}
+
+		public override void Hide( UIState ui ) {
+			base.Hide( ui );
+
+			this.Manager.SetInfoTextDefault( "" );
+		}
 	}
 }

@@ -47,11 +47,11 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			this.UnsetCategory();
 			this.CurrentCategory = category;
 
-			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
+			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {
 				if( this.Manager.MyTagMap[tagName].Category == this.CurrentCategory ) {
-					button.TakeOut();
+					tagButton.TakeOut();
 				} else {
-					button.PutAway();
+					tagButton.PutAway();
 				}
 			}
 		}

@@ -101,7 +101,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		////////////////
 
 		/// <summary>
-		/// Gets the current active main menu UI object (if any).
+		/// Gets the active main menu UI object (if any).
 		/// </summary>
 		/// <returns></returns>
 		public static UIState GetCurrentMenuUI() {

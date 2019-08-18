@@ -15,7 +15,6 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			base.Show( ui );
 
 			this.BeginModBrowserPopulateCheck( ui );
-			this.Manager.TagsUI.EnableCatTagInterface();
 
 			this.Manager.SetInfoTextDefault( "Click tags to filter the list. Right-click tags to filter without them." );
 
@@ -24,8 +23,6 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 		public override void Hide( UIState ui ) {
 			base.Hide( ui );
-
-			this.Manager.SetInfoTextDefault( "" );
 
 			/*UIElement elem;
 			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) && elem == null ) {
@@ -76,7 +73,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 
 		private void ApplyModBrowserModInfoBindings( UIState modBrowserUi, UIList uiModList ) {
-			if( modBrowserUi.GetType().Name != "UIModBrowser" ) {
+			if( modBrowserUi?.GetType().Name != "UIModBrowser" ) {
 				throw new ModHelpersException( "Invalid UIModBrowser" );
 			}
 

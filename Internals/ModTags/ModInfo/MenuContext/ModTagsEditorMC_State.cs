@@ -11,11 +11,18 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 
-			string modName = ModMenuHelpers.GetModName( MenuContextService.GetCurrentMenuUI(), ui );
+			UIState prevUi = MenuContextService.GetCurrentMenuUI();
+			if( prevUi == ui ) {
+				prevUi = MenuContextService.GetPreviousMenuUI();
+			}
+
+			string modName = ModMenuHelpers.GetModName( prevUi, ui );
 
 			this.InfoDisplay.SetDefaultText( "" );
 
 			if( modName == null ) {
+				this.MyManager.MyTagsUI.ResetUIState( false );
+
 				LogHelpers.Warn( "Could not load mod tags; no mod found" );
 				return;
 			}
@@ -23,13 +30,14 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			bool isRecentlyTagged = ModTagsEditorMenuContext.RecentTaggedMods.Contains( modName );
 
 			this.MyManager.MyTagsUI.ResetUIState( isRecentlyTagged );
-			this.MyManager.SetCurrentMod( modName );
+			this.MyManager.SetCurrentModAsync( modName );
 		}
+
 
 		public override void Hide( UIState ui ) {
 			base.Hide( ui );
 
-			this.InfoDisplay.SetDefaultText( "" );
+			this.Manager.TagsUI.UnsetCategory();
 		}
 	}
 }
