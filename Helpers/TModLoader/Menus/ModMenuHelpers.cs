@@ -114,8 +114,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		public static string GetModName( UIState prevUi, UIState currUi ) {
 			// = uiType.GetField( "_localMod", BindingFlags.NonPublic | BindingFlags.Instance );
 			object localmod;	// <- is a LocalMod class
-			if( !ReflectionHelpers.Get(currUi, "_localMod", out localmod) || localmod == null ) {
+			if( !ReflectionHelpers.Get(currUi, "_localMod", out localmod) ) {
 				LogHelpers.Warn( "No '_localMod' field in " + currUi.GetType() );
+				return null;
+			}
+			if( localmod == null ) {
+				LogHelpers.Warn( "No mod loaded in '_localMod' field for " + currUi.GetType() );
 				return null;
 			}
 
