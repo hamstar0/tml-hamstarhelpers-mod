@@ -44,7 +44,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 
 			PostModInfo.SubmitModInfo( this.CurrentModName, newTags, onError, onCompletion );
 
-			this.MyTagsUI.LockFinishButton();
+			this.MyTagsUI.LockEditButton();
 			this.MyTagsUI.LockResetButton();
 
 			ModTagsManager.RecentTaggedMods.Add( this.CurrentModName );

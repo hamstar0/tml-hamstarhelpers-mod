@@ -10,6 +10,7 @@ using HamstarHelpers.Services.UI.Menus;
 using System;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
@@ -39,9 +40,15 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				this.Manager.SetInfoText( "" );
 			};
 
+			Vector2 pos = this.GetTagControlsTopLeftPositionOffset();
+
 			//this.BlankButton = new UIMenuButton( UITheme.Vanilla, "", 98f, 24f, -196f, 172f, 0.36f, true );
-			this.FinishButton = new UIEditModeMenuButton( this.Theme, this.MyManager );
 			this.HiddenPanel = new UIHiddenPanel( getRect, onHover, onExit );
+			this.EditButton = new UIEditModeMenuButton( this.Theme,
+				this.MyManager,
+				pos.X + UIResetTagsMenuButton.ButtonWidth + 4,
+				pos.Y
+			);
 		}
 
 
@@ -52,7 +59,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 			var finishButtonWidgetCtx = new WidgetMenuContext( menuDef,
 				baseContextName + " Tag Finish Button",
-				this.FinishButton,
+				this.EditButton,
 				false );
 			var hiddenWidgetCtx = new WidgetMenuContext( menuDef,
 				baseContextName+" Hidden",

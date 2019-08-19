@@ -49,31 +49,9 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 			ISet<string> tagsOfMod = found && tagsPerMod.ContainsKey( modName ) ?
 					tagsPerMod[modName] :
 					new HashSet<string>();
-			bool hasExistingTags = tagsOfMod.Count > 0;
 
-			//LogHelpers.Log( "SetCurrentMod modname: " + modName + ", modTags: " + string.Join(",", netModTags ) );
-			if( hasExistingTags ) {
-				this.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
-				//this.UI.ResetButton.Disable();
-				this.TagsUI.DisableResetButton();
-			} else {
-				this.SetInfoTextDefault( "No tags set for this mod. Why not add some?" );
-				this.DisableSubmitMode();
-				//this.UI.FinishButton.SetModeSubmit();
-			}
-
-			this.MyTagsUI.SetCurrentMod( modName, tagsOfMod );
-		}
-
-
-		////////////////
-
-		public void EnableSubmitMode() {
-			this.MyTagsUI.EnableSubmitOption();
-		}
-
-		public void DisableSubmitMode() {
-			this.MyTagsUI.DisableSubmitOption();
+			this.MyTagsUI.SetTagsForCurrentMod( modName, tagsOfMod );
+			this.MyTagsUI.RefreshButtonEnableStates();
 		}
 
 

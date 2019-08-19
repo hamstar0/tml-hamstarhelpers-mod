@@ -6,6 +6,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Services.UI.Menus;
+using Microsoft.Xna.Framework;
 using System;
 
 
@@ -20,7 +21,13 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////
 
 		private void InitializeControlButtons() {
-			this.ResetButton = new UIResetTagsMenuButton( UITheme.Vanilla, this.Manager );
+			Vector2 pos = this.GetTagControlsTopLeftPositionOffset();
+
+			this.ResetButton = new UIResetTagsMenuButton( UITheme.Vanilla,
+				this.Manager,
+				pos.X,
+				pos.Y
+			);
 		}
 
 		private void InitializeCategoryButtons() {

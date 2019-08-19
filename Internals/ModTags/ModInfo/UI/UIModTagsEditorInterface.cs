@@ -17,7 +17,7 @@ using HamstarHelpers.Internals.ModTags.ModInfo.Manager;
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 	partial class UIModTagsEditorInterface : UIModTagsInterface {
 		protected UIHiddenPanel HiddenPanel;
-		protected UIEditModeMenuButton FinishButton;
+		protected UIEditModeMenuButton EditButton;
 
 
 		////////////////
@@ -39,13 +39,13 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		////////////////
 
 		public bool CanEditTags() {
-			return this.FinishButton.Text == UIEditModeMenuButton.ModifyModeText;
+			return this.EditButton.Text == UIEditModeMenuButton.ReadOnlyModeText;
 		}
 
 
 		////////////////
 
-		public void SetCurrentMod( string modName, ISet<string> tags ) {
+		public void SetTagsForCurrentMod( string modName, ISet<string> tags ) {
 			bool hasExistingTags = tags.Count > 0;
 
 			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {

@@ -8,6 +8,13 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 	/// @private
 	partial class UIResetTagsMenuButton : UIMenuButton {
+		public static float ButtonWidth { get; private set; } = 98f;
+		public static float ButtonHeight { get; private set; } = 24f;
+
+
+
+		////////////////
+
 		private readonly ModTagsManager Manager;
 
 		public bool IsLocked { get; private set; }
@@ -16,8 +23,15 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		////////////////
 
-		public UIResetTagsMenuButton( UITheme theme, ModTagsManager manager )
-				: base( theme, "Reset Tags", 98f, 24f, -196f, 172f, 0.36f, true ) {
+		public UIResetTagsMenuButton( UITheme theme, ModTagsManager manager, float xCenterOffset, float y )
+				: base( theme,
+					"Reset Tags",
+					UIResetTagsMenuButton.ButtonWidth,
+					UIResetTagsMenuButton.ButtonHeight,
+					xCenterOffset,	//Old value: -196f, 172f
+					y,
+					0.36f,
+					true ) {
 			this.Manager = manager;
 		}
 

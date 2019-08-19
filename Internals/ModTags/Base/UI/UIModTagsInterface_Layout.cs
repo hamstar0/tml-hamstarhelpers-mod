@@ -27,7 +27,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		}
 
 		private void LayoutTagButtonsByCategory() {
-			float x, y, top = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
+			float x, y;
+			float top = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
+			float maxY = UIModTagsInterface.TagsPanelHeight + top - UIResetTagsMenuButton.ButtonHeight - 4;
 			TagDefinition[] tags = this.Manager.MyTags;
 
 			IEnumerable<IGrouping<string, TagDefinition>> groups = tags.GroupBy( tagDef => tagDef.Category );
@@ -48,7 +50,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 					}
 
 					y += UITagMenuButton.ButtonHeight;
-					if( y >= (UIModTagsInterface.TagsPanelHeight + top) ) {
+					if( y >= maxY ) {
 						y = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
 						x += UITagMenuButton.ButtonWidth;
 					}
@@ -58,6 +60,16 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 
 		////////////////
+
+		public Vector2 GetTagControlsTopLeftPositionOffset() {
+			float x = this.PositionXCenterOffset;
+			float y = this.PositionY
+				+ UIModTagsInterface.CategoryPanelHeight
+				+ UIModTagsInterface.TagsPanelHeight
+				- UIResetTagsMenuButton.ButtonHeight;
+
+			return new Vector2( x, y );
+		}
 
 		public Rectangle GetCategoryPanelRectangle() {
 			int x = (int)this.Left.Pixels;
