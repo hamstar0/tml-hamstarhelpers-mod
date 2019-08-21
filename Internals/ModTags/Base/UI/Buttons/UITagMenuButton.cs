@@ -96,17 +96,21 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			this.Show();
 			this.SetMenuSpacePosition( this.PositionXCenterOffset, this.PositionY );*/
 
-			if( this.Parent == null ) {
-				if( Main.MenuUI.CurrentState != null ) {
-					string currentMenuContextUi = Main.MenuUI.CurrentState.GetType().Name;
-					string expectedMenuContextUi = Enum.GetName( typeof(MenuUIDefinition), this.Manager.MenuDefinition );
+			if( Main.MenuUI.CurrentState == null ) {
+				LogHelpers.Warn( "No menu UI loaded." );
+				return;
+			}
+			if( this.Parent != null ) {
+				return;
+			}
 
-					if( currentMenuContextUi == expectedMenuContextUi ) {
-						Main.MenuUI.CurrentState?.Append( this );
-					} else {
-						LogHelpers.Warn( "Found " + currentMenuContextUi + ", expected " + expectedMenuContextUi );
-					}
-				}
+			string currentMenuContextUi = Main.MenuUI.CurrentState.GetType().Name;
+			string expectedMenuContextUi = Enum.GetName( typeof(MenuUIDefinition), this.Manager.MenuDefinition );
+
+			if( currentMenuContextUi == expectedMenuContextUi ) {
+				Main.MenuUI.CurrentState?.Append( this );
+			} else {
+				LogHelpers.Warn( "Found " + currentMenuContextUi + ", expected " + expectedMenuContextUi );
 			}
 		}
 

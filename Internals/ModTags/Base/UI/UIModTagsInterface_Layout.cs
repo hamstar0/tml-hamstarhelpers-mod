@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsInterface : UIThemedPanel {
-		private void LayoutCategoryButtons() {
+		public void LayoutCategoryButtons() {
 			float top = this.PositionY - 2;
 			float x = this.PositionXCenterOffset;
 			float y = top;
@@ -26,8 +26,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			}
 		}
 
-		private void LayoutTagButtonsByCategory() {
+		public void LayoutTagButtonsByCategory() {
 			float x, y;
+			UITagMenuButton tagButton;
 			float top = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
 			float maxY = UIModTagsInterface.TagsPanelHeight + top - UIResetTagsMenuButton.ButtonHeight - 4;
 			TagDefinition[] tags = this.Manager.MyTags;
@@ -39,14 +40,17 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 				y = top;
 
 				foreach( TagDefinition tagDef in group ) {
-					UITagMenuButton button = this.TagButtons[ tagDef.Tag ];
+					if( !this.TagButtons.TryGetValue( tagDef.Tag, out tagButton ) ) {
+						LogHelpers.AlertOnce( "Missing tag button "+tagDef.Tag );
+						continue;
+					}
 
-					button.SetMenuSpacePosition( x, y );
+					tagButton.SetMenuSpacePosition( x, y );
 
 					if( group.Key == this.CurrentCategory ) {
-						button.TakeOut();
+						tagButton.TakeOut();
 					} else {
-						button.PutAway();
+						tagButton.PutAway();
 					}
 
 					y += UITagMenuButton.ButtonHeight;
@@ -54,6 +58,28 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 						y = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
 						x += UITagMenuButton.ButtonWidth;
 					}
+				}
+			}
+		}
+
+		public void LayoutTagButtonsByOnState() {
+			float top = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
+			float x = this.PositionXCenterOffset;
+			float y = top;
+			float maxY = UIModTagsInterface.TagsPanelHeight + top - UIResetTagsMenuButton.ButtonHeight - 4;
+			
+			foreach( UITagMenuButton tagButton in this.TagButtons.Values ) {
+				if( tagButton.TagState != 1 ) {
+					continue;
+				}
+
+				tagButton.SetMenuSpacePosition( x, y );
+				tagButton.TakeOut();
+
+				y += UITagMenuButton.ButtonHeight;
+				if( y >= maxY ) {
+					y = top;
+					x += UITagMenuButton.ButtonWidth;
 				}
 			}
 		}

@@ -49,6 +49,10 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			}
 
 			elem.Left.Pixels += UITagMenuButton.ButtonWidth;
+
+			elem.Top.Set( 80f, 0f );
+			elem.Height.Set( -88f, 1f );
+
 			elem.Recalculate();
 		}
 
@@ -66,6 +70,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			}
 
 			elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
+
 			elem.Recalculate();
 		}
 	}

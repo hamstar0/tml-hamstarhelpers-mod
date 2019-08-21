@@ -11,7 +11,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
 	public partial class ReflectionHelpers {
-		public static ReflectionHelpers Instance => ModHelpersMod.Instance.ReflectionHelpers;
+		public static ReflectionHelpers Instance => ModHelpersMod.Instance?.ReflectionHelpers;
 
 
 

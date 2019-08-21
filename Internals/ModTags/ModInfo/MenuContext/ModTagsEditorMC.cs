@@ -11,6 +11,7 @@ using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.UI;
 
 
@@ -70,6 +71,9 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			UIElement elem;
 			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
 				elem.Left.Pixels += UITagMenuButton.ButtonWidth;
+				elem.Top.Set( 80f, 0f );
+				elem.Height.Set( -88f, 1f );
+
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
@@ -86,6 +90,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			UIElement elem;
 			if( ReflectionHelpers.Get( modInfoUi, "_uIElement", out elem ) ) {
 				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
+
 				elem.Recalculate();
 			} else {
 				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + modInfoUi.GetType().Name );

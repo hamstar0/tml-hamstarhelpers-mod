@@ -105,7 +105,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 					continue;
 				}
 
-				modInfoButton.OnClick += (evt, elem) => {
+				modInfoButton.OnClick += (_, __) => {
 					if( !ReflectionHelpers.Set( modBrowserUi, "SelectedItem", item ) ) {
 						LogHelpers.Alert( "Could not set selected item from the mod browser" );
 					}
