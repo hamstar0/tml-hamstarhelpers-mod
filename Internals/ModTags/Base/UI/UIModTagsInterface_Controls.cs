@@ -14,11 +14,11 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 				catButton.Enable();
 			}
 
-			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
+			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {
 				if( this.Manager.MyTagMap[tagName].Category == this.CurrentCategory ) {
-					button.TakeOut();
+					tagButton.TakeOut();
 				} else {
-					button.PutAway();
+					tagButton.PutAway();
 				}
 			}
 		}
@@ -28,15 +28,15 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 				catButton.Disable();
 			}
 
-			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
-				button.PutAway();
+			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {
+				tagButton.PutAway();
 			}
 		}
 
 
 		////////////////
 
-		public virtual void RefreshButtonEnableStates() {
+		public virtual void RefreshControlsStates() {
 			this.ResetButton.RefreshEnableState();
 		}
 
@@ -109,10 +109,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		public void DisableResetButton() {
 			this.ResetButton?.Disable();
-		}
-
-		public void LockResetButton() {
-			this.ResetButton.Lock();
 		}
 	}
 }

@@ -11,7 +11,16 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
-		public static ModHelpersMod Instance;
+		private static object MyLock = new object();
+		private static ModHelpersMod _Instance;
+
+		public static ModHelpersMod Instance {
+			get {
+				lock( ModHelpersMod.MyLock ) {
+					return ModHelpersMod._Instance;
+				}
+			}
+		}
 
 
 
@@ -42,7 +51,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public ModHelpersMod() {
-			ModHelpersMod.Instance = this;
+			ModHelpersMod._Instance = this;
 
 			this.HasSetupContent = false;
 			this.HasAddedRecipeGroups = false;
@@ -72,7 +81,7 @@ namespace HamstarHelpers {
 		public override void Unload() {
 			this.UnloadFull();
 
-			ModHelpersMod.Instance = null;
+			ModHelpersMod._Instance = null;
 		}
 
 

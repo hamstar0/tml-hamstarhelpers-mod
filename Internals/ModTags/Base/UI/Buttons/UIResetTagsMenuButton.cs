@@ -17,8 +17,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		private readonly ModTagsManager Manager;
 
-		public bool IsLocked { get; private set; }
-
 
 
 		////////////////
@@ -43,31 +41,11 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 			this.Manager.TagsUI.ResetTagButtons( false );
 		}
-
-
-		////////////////
-
-		public void Lock() {
-			this.IsLocked = true;
-
-			this.RefreshEnableState();
-		}
-
-		public void Unlock() {
-			this.IsLocked = false;
-
-			this.RefreshEnableState();
-		}
 		
 
 		////////////////
 
 		public void RefreshEnableState() {
-			if( this.IsLocked ) {
-				this.Disable();
-				return;
-			}
-
 			//if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( modInfoContext.CurrentModName ) ) {
 			if( this.Manager.IsCurrentModRecentlyTagged() ) {
 				this.Disable();
@@ -75,12 +53,6 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			}
 
 			if( this.Manager.GetTagsWithGivenState(1).Count > 0 || this.Manager.GetTagsWithGivenState(-1).Count > 0 ) {
-				//modInfoContext.FinishButton.Text == UIEditModeMenuButton.ModifyModeText
-				if( this.Manager.CanEditTags() ) {
-					this.Disable();
-					return;
-				}
-				
 				this.Enable();
 				return;
 			} else {

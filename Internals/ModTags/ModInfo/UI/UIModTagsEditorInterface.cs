@@ -38,13 +38,6 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		////////////////
 
-		public bool CanEditTags() {
-			return this.EditButton.Text == UIEditModeMenuButton.ReadOnlyModeText;
-		}
-
-
-		////////////////
-
 		public void SetTagsForCurrentMod( string modName, ISet<string> tags ) {
 			bool hasExistingTags = tags.Count > 0;
 

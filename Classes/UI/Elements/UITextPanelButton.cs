@@ -56,7 +56,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Enables the button.
 		/// </summary>
-		public void Enable() {
+		public virtual void Enable() {
 			this.IsEnabled = true;
 			this.RefreshTheme();
 		}
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Disables the button.
 		/// </summary>
-		public void Disable() {
+		public virtual void Disable() {
 			this.IsEnabled = false;
 			this.RefreshTheme();
 		}

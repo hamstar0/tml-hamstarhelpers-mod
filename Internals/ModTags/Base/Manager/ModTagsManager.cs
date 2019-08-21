@@ -43,14 +43,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 		////////////////
 
 		public bool IsCurrentModRecentlyTagged() {
-			return ModTagsManager.RecentTaggedMods.Contains( this.CurrentModName );
-		}
-
-
-		////////////////
-
-		public virtual bool CanEditTags() {
-			return false;
+			return !string.IsNullOrEmpty(this.CurrentModName)
+				&& ModTagsManager.RecentTaggedMods.Contains( this.CurrentModName );
 		}
 
 
