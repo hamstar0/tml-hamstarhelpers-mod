@@ -33,16 +33,25 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			}
 
 			if( !this.EditButton.IsEditMode ) {
-				if( this.Manager.GetTagsWithGivenState( 1 ).Count > 0 ) {
-					this.Manager.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
-					this.SetReadOnlyMode( true );
-				} else {
-					this.Manager.SetInfoTextDefault( "No tags set for this mod. Why not add some?" );
-					this.SetEditMode( false );
-				}
+				this.RefreshReadOnlyMode();
+			} else {
+				this.RefreshEditMode();
+			}
+		}
+
+		private void RefreshReadOnlyMode() {
+			if( this.Manager.GetTagsWithGivenState( 1 ).Count > 0 ) {				this.Manager.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
+				this.SetReadOnlyMode( true );
+				return;
+			} else {
+				this.Manager.SetInfoTextDefault( "No tags set for this mod. Why not add some?" );
+				this.SetEditMode( false );
 				return;
 			}
+		}
 
+		private void RefreshEditMode() {
+			string modName = this.Manager.CurrentModName;
 			ISet<string> tags = this.Manager.GetTagsWithGivenState( 1 );
 
 			if( this.Manager.AllModTagsSnapshot?.ContainsKey( modName ) == true ) {
@@ -53,15 +62,11 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				}
 			}
 
-			if( this.EditButton.IsEditMode ) {
-				// Non-zero tags?
-				if( tags.Count >= 2 ) {
-					this.EditButton.Enable();
-					return;
-				} else {
-					this.EditButton.Disable();
-					return;
-				}
+			// Non-zero tags?
+			if( tags.Count >= 2 ) {
+				this.EditButton.Enable();
+			} else {
+				this.EditButton.Disable();
 			}
 		}
 

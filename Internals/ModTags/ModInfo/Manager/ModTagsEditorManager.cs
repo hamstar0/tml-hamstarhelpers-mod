@@ -45,6 +45,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 
 		private void SetCurrentMod( string modName, bool found, IDictionary<string, ISet<string>> tagsPerMod ) {
 			this.AllModTagsSnapshot = tagsPerMod;
+			this.CurrentModName = modName;
 
 			ISet<string> tagsOfMod = found && tagsPerMod.ContainsKey( modName ) ?
 					tagsPerMod[modName] :

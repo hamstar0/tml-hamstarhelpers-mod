@@ -75,12 +75,12 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public void ResetTagButtons( bool alsoDisable ) {
-			foreach( (string tagName, UITagMenuButton button) in this.TagButtons ) {
+		public void ResetTagButtonOnStates( bool alsoDisable ) {
+			foreach( (string tagName, UITagMenuButton tagButton) in this.TagButtons ) {
 				if( alsoDisable ) {
-					button.Disable();
+					tagButton.Disable();
 				}
-				button.SetTagState( 0 );
+				tagButton.SetTagState( 0 );
 			}
 		}
 

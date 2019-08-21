@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		public override void Click( UIMouseEvent evt ) {
 			if( !this.IsEnabled ) { return; }
 
-			this.Manager.TagsUI.ResetTagButtons( false );
+			this.Manager.TagsUI.ResetTagButtonOnStates( false );
 		}
 		
 

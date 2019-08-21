@@ -21,13 +21,13 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			this.InfoDisplay.SetDefaultText( "" );
 
 			if( modName == null ) {
-				this.MyManager.MyTagsUI.ResetTagButtons( true );
+				this.MyManager.MyTagsUI.ResetTagButtonOnStates( true );
 
 				LogHelpers.Warn( "Could not load mod tags; no mod found" );
 				return;
 			}
 
-			this.MyManager.MyTagsUI.ResetTagButtons( true );
+			this.MyManager.MyTagsUI.ResetTagButtonOnStates( true );
 			this.MyManager.SetCurrentModAsync( modName );
 		}
 
