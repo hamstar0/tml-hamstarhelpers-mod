@@ -1,5 +1,3 @@
-(Formerly Hamstar's Helpers)
-
 Supplies numerous helper functions, classes, services, utilities, and information for other mods. Features include:
 * In-game mod control panel UI for reporting bugs, editing mod configs, and seeing mods' status.
 * Descriptive mod tags that may be viewed and edited by anyone, for any mod. Mod searches in the browser may be filtered by these tags.
@@ -9,7 +7,3 @@ Modders: See the homepage for information on setting up your mod to receive bug 
 
 Credits:
 Nvar: Coal item's tile sprite sheet.
-
-Mod recommendations:
-ModdersToolkit = Tons of experimenting and tinkering options for modders.
-FKTModSettings = Adds a UI option for editing a mod's configs. Must be implemented per mod via. API/dependency.
