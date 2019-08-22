@@ -23,11 +23,11 @@ namespace HamstarHelpers.Helpers.User {
 
 			var mymod = ModHelpersMod.Instance;
 
-			if( string.IsNullOrEmpty(mymod.Config.PrivilegedUserId) ) {
+			if( string.IsNullOrEmpty(mymod.PrivConfig.PrivilegedUserId) ) {
 				return false;
 			}
 
-			return mymod.Config.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId( player );
+			return mymod.PrivConfig.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId( player );
 		}
 	}
 }

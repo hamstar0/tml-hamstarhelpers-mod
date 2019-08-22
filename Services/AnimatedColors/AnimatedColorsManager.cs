@@ -8,6 +8,7 @@ using Terraria;
 namespace HamstarHelpers.Services.AnimatedColor {
 	class AnimatedColorsManager {
 		internal readonly AnimatedColors Alert;
+		internal readonly AnimatedColors Ember;
 		internal readonly AnimatedColors Strobe;
 		internal readonly AnimatedColors Fire;
 		internal readonly AnimatedColors Water;
@@ -29,6 +30,7 @@ namespace HamstarHelpers.Services.AnimatedColor {
 			var mymod = ModHelpersMod.Instance;
 
 			this.Alert = AnimatedColors.Create( this, 16, new Color[] { Color.Yellow, Color.Gray } );
+			this.Ember = AnimatedColors.Create( this, 16, new Color[] { Color.Orange, Color.Orange * 0.65f } );
 			this.Strobe = AnimatedColors.Create( this, 16, new Color[] { Color.Black, Color.White } );
 			this.Fire = AnimatedColors.Create( this, 16, new Color[] { Color.Red, Color.Yellow } );
 			this.Water = AnimatedColors.Create( this, 16, new Color[] { Color.Blue, Color.Turquoise } );

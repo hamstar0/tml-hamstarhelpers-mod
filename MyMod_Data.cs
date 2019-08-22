@@ -6,6 +6,7 @@ namespace HamstarHelpers {
 	/// @private
 	class ModHelpersData {
 		public string ControlPanelNewSince = "1.0.0";
+		public bool ModTagsOpened = false;
 	}
 
 

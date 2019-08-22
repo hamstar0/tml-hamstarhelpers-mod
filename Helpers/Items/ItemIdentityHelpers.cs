@@ -4,37 +4,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
+
 namespace HamstarHelpers.Helpers.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to item identification.
 	/// </summary>
 	public partial class ItemIdentityHelpers {
-		/// <summary>
-		/// Gets a (human readable) unique key from a given item type.
-		/// </summary>
-		/// <param name="itemType"></param>
-		/// <returns></returns>
-		[Obsolete( "use ItemID.GetUniqueKey(int)" )]
-		public static string GetUniqueKey( int itemType ) {
-			if( itemType < 0 || itemType >= ItemLoader.ItemCount ) {
-				throw new ArgumentOutOfRangeException( "Invalid type: " + itemType );
-			}
-			if( itemType < ItemID.Count ) {
-				return "Terraria " + ItemID.Search.GetName( itemType );
-			}
-
-			var modItem = ItemLoader.GetItem( itemType );
-			return $"{modItem.mod.Name} {modItem.Name}";
-		}
-
-		/// <summary>
-		/// Gets a (human readable) unique key from a given item.
-		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		[Obsolete( "use ItemID.GetUniqueKey(NPC)" )]
-		public static string GetUniqueKey( Item item ) => ItemIdentityHelpers.GetUniqueKey( item.type );
-
 		/// <summary>
 		/// Gets a (human readable) unique key (as segments) from a given item type.
 		/// </summary>
@@ -61,41 +36,6 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
-		////
-
-		/// <summary>
-		/// Gets an item type from a given unique key.
-		/// </summary>
-		/// <param name="key"></param>
-		/// <returns></returns>
-		[Obsolete( "use ItemID.TypeFromUniqueKey(string)" )]
-		public static int TypeFromUniqueKey( string key ) {
-			string[] parts = key.Split( new char[] { ' ' }, 2 );
-
-			if( parts.Length != 2 ) {
-				return 0;
-			}
-			return ItemIdentityHelpers.TypeFromUniqueKey( parts[0], parts[1] );
-		}
-
-		/// <summary>
-		/// Gets an item type from a given unique key.
-		/// </summary>
-		/// <param name="mod"></param>
-		/// <param name="name"></param>
-		/// <returns></returns>
-		[Obsolete( "use ItemID.TypeFromUniqueKey(string, string)" )]
-		public static int TypeFromUniqueKey( string mod, string name ) {
-			if( mod == "Terraria" ) {
-				if( !ItemID.Search.ContainsName( name ) ) {
-					return 0;
-				}
-				return ItemID.Search.GetId( name );
-			}
-			return ModLoader.GetMod( mod )?.NPCType( name ) ?? 0;
-		}
-
-
 		////////////////
 
 		/// <summary>
@@ -108,7 +48,7 @@ namespace HamstarHelpers.Helpers.Items {
 		public static int GetVanillaSnapshotHash( Item item, bool noContext, bool minimal ) {
 			int hash = Entities.EntityHelpers.GetVanillaSnapshotHash( item, noContext );
 
-			string id = ItemIdentityHelpers.GetUniqueKey( item );
+			string id = ItemID.GetUniqueKey( item );
 
 			hash ^= ( "id" + id ).GetHashCode();
 			hash ^= ( "prefix" + item.prefix ).GetHashCode();

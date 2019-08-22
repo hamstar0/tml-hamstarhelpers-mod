@@ -5,7 +5,7 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.Buffs {
 	/// @private
-	public partial class BuffIdentityHelpers {
+	public partial class BuffAttributesHelpers {
 		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 
 

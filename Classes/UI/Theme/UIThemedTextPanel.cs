@@ -1,5 +1,8 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.DotNET.Reflection;
+using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -13,6 +16,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Appearance style.
 		/// </summary>
 		public UITheme Theme { get; protected set; }
+
+		/// <summary></summary>
+		public bool IsHidden { get; protected set; }
 
 
 
@@ -37,12 +43,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// <summary>
-		/// Intended to replace `Append(UIElement)` for propagating the current theme to appended elements.
+		/// An alternative to the normal `Append` method to apply theming to appended element.
 		/// </summary>
 		/// <param name="element"></param>
 		public void AppendThemed( UIElement element ) {
 			base.Append( element );
-			this.RefreshThemeForChild( element );
+			this.RefreshThemeForChild( element, true );
 		}
 
 
@@ -55,7 +61,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.Theme.ApplyPanel( this );
 
 			foreach( UIElement elem in this.Elements ) {
-				this.RefreshThemeForChild( elem );
+				this.RefreshThemeForChild( elem, true );
 			}
 		}
 
@@ -63,11 +69,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Applies the current theme's styles to a given element (presumably a child element).
 		/// </summary>
 		/// <param name="element"></param>
-		public virtual void RefreshThemeForChild( UIElement element ) {
-			if( !this.Theme.Apply(element) ) {
-				if( element is UIPanel ) {
-					this.Theme.ApplyPanel( (UIPanel)element );
-				}
+		/// <param name="recursive"></param>
+		public virtual void RefreshThemeForChild( UIElement element, bool recursive ) {
+			if( !this.Theme.Apply( element ) ) {
+				this.Theme.ApplyByType( element );
+			}
+
+			List<UIElement> children;
+			ReflectionHelpers.Get( element, "Elements", out children );
+
+			foreach( IThemeable child in children ) {
+				this.RefreshThemeForChild( element, true );
 			}
 		}
 
@@ -80,6 +92,29 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public virtual void SetTheme( UITheme theme ) {
 			this.Theme = theme;
 			this.RefreshTheme();
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
+		public virtual void Hide() {
+			this.IsHidden = true;
+		}
+
+		/// <summary></summary>
+		public virtual void Show() {
+			this.IsHidden = false;
+		}
+
+
+		////////////////
+
+		/// @private
+		public override void Draw( SpriteBatch spriteBatch ) {
+			if( !this.IsHidden ) {
+				base.Draw( spriteBatch );
+			}
 		}
 	}
 }

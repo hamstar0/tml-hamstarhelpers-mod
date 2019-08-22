@@ -10,16 +10,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public class UITextPanelButton : UIThemedTextPanel {
 		/// <summary>
-		/// Indicates if button is visible. Does not effect interactivity (use Enable and Disable).
-		/// </summary>
-		public bool IsHidden { get; private set; }
-
-		/// <summary>
 		/// Indicates if button accepts inputs.
 		/// </summary>
 		public bool IsEnabled { get; private set; }
 
 		//public string HoverText = "";
+
 
 
 		////////////////

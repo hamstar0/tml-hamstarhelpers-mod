@@ -4,13 +4,13 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using System;
 using Terraria;
-
+using HamstarHelpers.Classes.UI.Theme;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a UI checkbox (toggleable button) element.
 	/// </summary>
-	public class UICheckbox : UIText {
+	public class UICheckbox : UIThemedText {
 		/// <summary></summary>
 		public static Texture2D CheckboxTexture { get; private set; }
 		/// <summary></summary>
@@ -68,13 +68,19 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		////////////////
 
+		/// <param name="theme">Appearance style.</param>
 		/// <param name="label">Display text next to checkbox control.</param>
 		/// <param name="title">Mouse hover popup label.</param>
 		/// <param name="isClickable">Enables mouse interactivity.</param>
 		/// <param name="textScale">Multiplies label text size.</param>
 		/// <param name="large">Uses 'large' label text style.</param>
-		public UICheckbox( string label, string title, bool isClickable = true, float textScale = 1, bool large = false )
-				: base( label, textScale, large ) {
+		public UICheckbox( UITheme theme,
+				string label,
+				string title,
+				bool isClickable = true,
+				float textScale = 1,
+				bool large = false )
+				: base( theme, true, label, textScale, large ) {
 			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
 				UICheckbox.LoadTextures();
 			}

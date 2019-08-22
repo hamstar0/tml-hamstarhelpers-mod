@@ -9,9 +9,9 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Theme-able UIPanel.
+	/// Theme-able UIText.
 	/// </summary>
-	public class UIThemedPanel : UIPanel, IThemeable {
+	public class UIThemedText : UIText, IThemeable {
 		/// <summary>
 		/// Appearance style.
 		/// </summary>
@@ -26,11 +26,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// <summary></summary>
 		/// <param name="theme"></param>
-		public UIThemedPanel( UITheme theme, bool skipThemeRefreshNow ) : base() {
+		public UIThemedText( UITheme theme, bool skipThemeRefreshNow, string text, float textScale=1, bool large=false )
+				: base( text, textScale, large ) {
 			this.Theme = theme;
 
 			if( !skipThemeRefreshNow ) {
-				theme.ApplyPanel( this );
+				theme.ApplyText( this );
 			}
 		}
 
@@ -53,7 +54,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Re-applies the current theme styles (including child elements).
 		/// </summary>
 		public virtual void RefreshTheme() {
-			this.Theme.ApplyPanel( this );
+			this.Theme.ApplyText( this );
 
 			foreach( UIElement elem in this.Elements ) {
 				this.RefreshThemeForChild( elem, true );

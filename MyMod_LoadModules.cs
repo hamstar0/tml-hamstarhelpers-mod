@@ -73,7 +73,7 @@ namespace HamstarHelpers {
 		internal BuffHelpers BuffHelpers;
 		internal NPCAttributeHelpers NPCAttributeHelpers;
 		internal ProjectileAttributeHelpers ProjectileAttributeHelpers;
-		internal BuffIdentityHelpers BuffIdentityHelpers;
+		internal BuffAttributesHelpers BuffIdentityHelpers;
 		internal NPCBannerHelpers NPCBannerHelpers;
 		internal RecipeIdentityHelpers RecipeIdentityHelpers;
 		internal RecipeGroupHelpers RecipeGroupHelpers;
@@ -122,7 +122,7 @@ namespace HamstarHelpers {
 			this.NetHelpers = new NetPlayHelpers();
 			this.NPCAttributeHelpers = new NPCAttributeHelpers();
 			this.ProjectileAttributeHelpers = new ProjectileAttributeHelpers();
-			this.BuffIdentityHelpers = new BuffIdentityHelpers();
+			this.BuffIdentityHelpers = new BuffAttributesHelpers();
 			this.NPCBannerHelpers = new NPCBannerHelpers();
 			this.RecipeIdentityHelpers = new RecipeIdentityHelpers();
 			this.RecipeGroupHelpers = new RecipeGroupHelpers();

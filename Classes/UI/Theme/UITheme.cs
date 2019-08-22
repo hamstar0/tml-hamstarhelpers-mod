@@ -23,58 +23,31 @@ namespace HamstarHelpers.Classes.UI.Theme {
 			foreach( FieldInfo field in typeof(UITheme).GetFields() ) {
 				field.SetValue( this, field.GetValue( newTheme ) );
 			}
-
-			/*this.ButtonBgColor = newTheme.ButtonBgColor;
-			this.ButtonBgDisabledColor = newTheme.ButtonBgDisabledColor;
-			this.ButtonBgLitColor = newTheme.ButtonBgLitColor;
-			this.ButtonEdgeColor = newTheme.ButtonEdgeColor;
-			this.ButtonEdgeDisabledColor = newTheme.ButtonEdgeDisabledColor;
-			this.ButtonEdgeLitColor = newTheme.ButtonEdgeLitColor;
-			this.ButtonTextColor = newTheme.ButtonTextColor;
-			this.ButtonTextDisabledColor = newTheme.ButtonTextDisabledColor;
-			this.ButtonTextLitColor = newTheme.ButtonTextLitColor;
-			this.HeadBgColor = newTheme.HeadBgColor;
-			this.HeadEdgeColor = newTheme.HeadEdgeColor;
-			this.InputBgColor = newTheme.InputBgColor;
-			this.InputBgDisabledColor = newTheme.InputBgDisabledColor;
-			this.InputEdgeColor = newTheme.InputEdgeColor;
-			this.InputEdgeDisabledColor = newTheme.InputEdgeDisabledColor;
-			this.InputTextColor = newTheme.InputTextColor;
-			this.InputTextDisabledColor = newTheme.InputTextDisabledColor;
-			this.ListBgColor = newTheme.ListBgColor;
-			this.ListEdgeColor = newTheme.ListEdgeColor;
-			this.ListItemBgColor = newTheme.ListItemBgColor;
-			this.ListItemBgLitColor = newTheme.ListItemBgLitColor;
-			this.ListItemEdgeColor = newTheme.ListItemEdgeColor;
-			this.ListItemEdgeLitColor = newTheme.ListItemEdgeLitColor;
-			this.ListItemEdgeSelectedColor = newTheme.ListItemEdgeSelectedColor;
-			this.MainBgColor = newTheme.MainBgColor;
-			this.MainEdgeColor = newTheme.MainEdgeColor;
-			this.ModListBgColor = newTheme.ModListBgColor;
-			this.ModListEdgeColor = newTheme.ModListEdgeColor;
-			this.ModListItemBgColor = newTheme.ModListItemBgColor;
-			this.ModListItemBgLitColor = newTheme.ModListItemBgLitColor;
-			this.ModListItemBgSelectedColor = newTheme.ModListItemBgSelectedColor;
-			this.ModListItemEdgeColor = newTheme.ModListItemEdgeColor;
-			this.ModListItemEdgeLitColor = newTheme.ModListItemEdgeLitColor;
-			this.ModListItemEdgeSelectedColor = newTheme.ModListItemEdgeSelectedColor;
-			this.UrlColor = newTheme.UrlColor;
-			this.UrlLitColor = newTheme.UrlLitColor;
-			this.UrlVisitColor = newTheme.UrlVisitColor;*/
 		}
 
 
 		////////////////
 
+		/// <summary>
+		/// Applies the current them to the given element, as the element specified. Does not assume anything about
+		/// the element to apply theming.
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns>`false` if the element does not specify how it will be themed.</returns>
 		public bool Apply( UIElement element ) {
 			foreach( CustomAttributeData attr in element.GetType().CustomAttributes ) {
 				if( !attr.AttributeType.IsSubclassOf(typeof(ThemedAttrbute)) ) {
 					continue;
 				}
-
+				
 				if( attr.AttributeType == typeof( PanelThemeAttribute ) ) {
 					if( element is UIPanel ) {
 						this.ApplyPanel( (UIPanel)element );
+						return true;
+					}
+				} else if( attr.AttributeType == typeof( TextThemeAttribute ) ) {
+					if( element is UIText ) {
+						this.ApplyText( (UIText)element );
 						return true;
 					}
 				} else if( attr.AttributeType == typeof(ListContainerThemeAttribute) ) {
@@ -99,7 +72,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 					}
 				}
 
-				throw new ModHelpersException( "Invalid ThemeAttribute "+attr.AttributeType.Name+" for "+element.GetType().Name );
+				throw new ModHelpersException( "Invalid theme Attribute "+attr.AttributeType.Name+" for "+element.GetType().Name );
 			}
 
 			if( element is IThemeable ) {
@@ -108,6 +81,24 @@ namespace HamstarHelpers.Classes.UI.Theme {
 			}
 
 			return false;
+		}
+
+
+		/// <summary>
+		/// Attempts to style an element by its type. No additional context is implied (e.g. UIList is not
+		/// treated as a list, as only it's inner "container" element is styled).
+		/// </summary>
+		/// <param name="element"></param>
+		public virtual void ApplyByType( UIElement element ) {
+			if( element is UITextPanel<string> ) {
+				this.ApplyButton( (UITextPanel<string>)element );
+			} else if( element is UITextField ) {
+				this.ApplyInput( (UITextField)element );
+			} else if( element is UIText ) {
+				this.ApplyText( (UIText)element );
+			} else if( element is UIPanel ) {
+				this.ApplyPanel( (UIPanel)element );
+			}
 		}
 
 
@@ -129,6 +120,16 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		public virtual void ApplyHeader( UIPanel panel ) {
 			panel.BackgroundColor = this.HeadBgColor;
 			panel.BorderColor = this.HeadEdgeColor;
+		}
+
+		////////////////
+
+		/// <summary>
+		/// Applies standard text color to a UI text element.
+		/// </summary>
+		/// <param name="elem"></param>
+		public virtual void ApplyText( UIText elem ) {
+			elem.TextColor = this.MainTextColor;
 		}
 
 		////////////////

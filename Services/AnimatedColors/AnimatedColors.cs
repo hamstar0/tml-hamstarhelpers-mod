@@ -13,6 +13,10 @@ namespace HamstarHelpers.Services.AnimatedColor {
 		/// </summary>
 		public static AnimatedColors Alert => ModHelpersMod.Instance.AnimatedColors.Alert;
 		/// <summary>
+		/// Color animation preset for glowing ember-like effect.
+		/// </summary>
+		public static AnimatedColors Ember => ModHelpersMod.Instance.AnimatedColors.Ember;
+		/// <summary>
 		/// Color animation preset to make a strobe-like effect.
 		/// </summary>
 		public static AnimatedColors Strobe => ModHelpersMod.Instance.AnimatedColors.Strobe;

@@ -18,6 +18,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 
 			UITheme.Vanilla.MainBgColor = new Color( 26, 40, 89 ) * 0.8f;
 			UITheme.Vanilla.MainEdgeColor = new Color( 13, 20, 44 ) * 0.8f;
+			UITheme.Vanilla.MainTextColor = Color.White;
 
 			////////////////
 

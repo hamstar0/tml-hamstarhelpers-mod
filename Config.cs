@@ -7,6 +7,41 @@ using Terraria.ModLoader.Config;
 
 namespace HamstarHelpers {
 	/// <summary>
+	/// Defines config settings field for a "privileged user".
+	/// </summary>
+	[Label( "Mod Helpers \"Privileged User\"" )]
+	public class ModHelpersPrivilegedUserConfig : ModConfig {
+		/// @private
+		public override ConfigScope Mode => ConfigScope.ClientSide;
+
+		/// <summary>
+		/// User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers.
+		/// </summary>
+		[Label( "Privileged User ID (internal UID)" )]
+		[Tooltip( "User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers." )]
+		//[ReloadRequired]
+		public string PrivilegedUserId = "";
+
+
+
+		////////////////
+
+		/// @private
+		public override void OnChanged() {
+			string oldVal = this.PrivilegedUserId;
+			this.PrivilegedUserId = "";
+
+			Timers.SetTimer( "ModHelpersConfigSyncPrevention", 1, () => {
+				this.PrivilegedUserId = oldVal;
+				return false;
+			} );
+		}
+	}
+
+
+
+
+	/// <summary>
 	/// Defines config settings fields. See `ModConfig` (via. tModLoader).
 	/// </summary>
 	[Label("Mod Helpers Settings")]
@@ -174,14 +209,6 @@ namespace HamstarHelpers {
 		[DefaultValue( 60 * 15 )]
 		public int PingUpdateDelay = 60 * 15;   // 15 seconds
 
-		/// <summary>
-		/// User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers.
-		/// </summary>
-		[Label( "Privileged User ID (internal UID)" )]
-		[Tooltip("User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers.")]
-		//[ReloadRequired]
-		public string PrivilegedUserId = "";
-
 
 		/// <summary>
 		/// Disables mod tags UI for mod browser and mod info.
@@ -192,23 +219,11 @@ namespace HamstarHelpers {
 		//[ReloadRequired]
 		public bool DisableModTags = false;
 		/// <summary>
-		/// Disables mod recommendations list within mod tags UI.
-		/// </summary>
-		[Label("Disable mod recommendations")]
-		[Tooltip("Disables mod recommendations list within mod tags UI.")]
-		public bool DisableModRecommendations = false;
-		/// <summary>
 		/// Disables mod version updates overlay display in the mod menu.
 		/// </summary>
 		[Label("Disable mod menu updates overlay")]
 		[Tooltip("Disables mod version updates overlay display in the mod menu.")]
 		public bool DisableModMenuUpdates = false;
-		/// <summary>
-		/// Disables main menu support top corner links.
-		/// </summary>
-		[Label("Disable Mod Helpers sSupport links")]
-		[Tooltip("Disables main menu support top corner links.")]
-		public bool DisableSupportLinks = false;
 
 		/// <summary>
 		/// Disable 'judgmental' mod tags.
@@ -252,17 +267,6 @@ namespace HamstarHelpers {
 				return false;
 			}
 			return true;
-		}
-
-		/// @private
-		public override void OnChanged() {
-			string oldVal = this.PrivilegedUserId;
-			this.PrivilegedUserId = "";
-
-			Timers.SetTimer( "ModHelpersConfigSyncPrevention", 1, () => {
-				this.PrivilegedUserId = oldVal;
-				return false;
-			} );
 		}
 	}
 }

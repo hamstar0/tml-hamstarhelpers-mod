@@ -27,6 +27,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
+		internal ModHelpersPrivilegedUserConfig PrivConfig => this.GetConfig<ModHelpersPrivilegedUserConfig>();
 		public ModHelpersConfig Config => this.GetConfig<ModHelpersConfig>();
 
 		////
@@ -54,10 +55,10 @@ namespace HamstarHelpers {
 
 		public override void Load() {
 			//ErrorLogger.Log( "Loading Mod Helpers. Ensure you have .NET Framework v4.6+ installed, if you're having problems." );
-			if( Environment.Version < new Version( 4, 0, 30319, 42000 ) ) {
-				SystemHelpers.OpenUrl( "https://dotnet.microsoft.com/download/dotnet-framework-runtime" );
-				throw new FileNotFoundException( "Mod Helpers "+this.Version+" requires .NET Framework v4.6+ to work." );
-			}
+			//if( Environment.Version < new Version( 4, 0, 30319, 42000 ) ) {
+			//	SystemHelpers.OpenUrl( "https://dotnet.microsoft.com/download/dotnet-framework-runtime" );
+			//	throw new FileNotFoundException( "Mod Helpers "+this.Version+" requires .NET Framework v4.6+ to work." );
+			//}
 
 			this.LoadFull();
 

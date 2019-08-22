@@ -74,6 +74,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public bool IsEnabled { get; private set; }
 
 
+
 		////////////////
 
 		/// <param name="theme">Appearance style.</param>

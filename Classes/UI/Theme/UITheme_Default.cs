@@ -4,28 +4,11 @@
 namespace HamstarHelpers.Classes.UI.Theme {
 	public partial class UITheme {
 		/// <summary></summary>
-		public Color ModListBgColor = new Color( 0, 0, 0, 128 );
-		/// <summary></summary>
-		public Color ModListEdgeColor = new Color( 32, 32, 32, 32 );
-		/// <summary></summary>
-		public Color ModListItemBgColor = new Color( 64, 0, 16, 128 );
-		/// <summary></summary>
-		public Color ModListItemEdgeColor = new Color( 224, 224, 224, 128 );
-		/// <summary></summary>
-		public Color ModListItemBgLitColor = new Color( 112, 32, 48, 128 );
-		/// <summary></summary>
-		public Color ModListItemEdgeLitColor = new Color( 255, 255, 255, 128 );
-		/// <summary></summary>
-		public Color ModListItemBgSelectedColor = new Color( 160, 64, 80, 128 );
-		/// <summary></summary>
-		public Color ModListItemEdgeSelectedColor = new Color( 224, 224, 224, 128 );
-
-
-
-		/// <summary></summary>
 		public Color MainBgColor = new Color( 160, 0, 32, 192 );
 		/// <summary></summary>
 		public Color MainEdgeColor = new Color( 224, 224, 224, 192 );
+		/// <summary></summary>
+		public Color MainTextColor = new Color( 224, 224, 224, 224 );
 
 
 		/// <summary></summary>
@@ -98,5 +81,24 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		public Color UrlLitColor = new Color( 128, 128, 255 );
 		/// <summary></summary>
 		public Color UrlVisitColor = new Color( 192, 0, 255 );
+
+
+
+		/// <summary></summary>
+		public Color ModListBgColor = new Color( 0, 0, 0, 128 );
+		/// <summary></summary>
+		public Color ModListEdgeColor = new Color( 32, 32, 32, 32 );
+		/// <summary></summary>
+		public Color ModListItemBgColor = new Color( 64, 0, 16, 128 );
+		/// <summary></summary>
+		public Color ModListItemEdgeColor = new Color( 224, 224, 224, 128 );
+		/// <summary></summary>
+		public Color ModListItemBgLitColor = new Color( 112, 32, 48, 128 );
+		/// <summary></summary>
+		public Color ModListItemEdgeLitColor = new Color( 255, 255, 255, 128 );
+		/// <summary></summary>
+		public Color ModListItemBgSelectedColor = new Color( 160, 64, 80, 128 );
+		/// <summary></summary>
+		public Color ModListItemEdgeSelectedColor = new Color( 224, 224, 224, 128 );
 	}
 }

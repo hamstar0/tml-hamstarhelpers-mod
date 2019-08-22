@@ -7,13 +7,19 @@ namespace HamstarHelpers.Classes.UI.Theme {
 	/// Interface for all elements that support themes intrinsically.
 	/// </summary>
 	public interface IThemeable {
+		/// <summary>
+		/// An alternative to the normal `Append` method to apply theming to appended element.
+		/// </summary>
+		/// <param name="element"></param>
+		void AppendThemed( UIElement element );
 		/// <summary></summary>
 		void RefreshTheme();
 		/// <summary>
 		/// Refreshes theme for contained elements.
 		/// </summary>
 		/// <param name="element"></param>
-		void RefreshThemeForChild( UIElement element );
+		/// <param name="recursive"></param>
+		void RefreshThemeForChild( UIElement element, bool recursive );
 		/// <summary></summary>
 		/// <param name="theme"></param>
 		void SetTheme( UITheme theme );
@@ -40,6 +46,17 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		AllowMultiple = false,
 		Inherited = true )]
 	public class PanelThemeAttribute : ThemedAttrbute { }
+
+
+
+
+	/// <summary>
+	/// Indicates an element is meant to have a theme as if a text element.
+	/// </summary>
+	[AttributeUsage( AttributeTargets.Field | AttributeTargets.Property,
+		AllowMultiple = false,
+		Inherited = true )]
+	public class TextThemeAttribute : ThemedAttrbute { }
 
 
 
