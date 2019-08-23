@@ -150,9 +150,9 @@ namespace HamstarHelpers {
 		[Label( "Mod Issue Report Error Log Max Lines" )]
 		[Tooltip( "Quantity of the latest log entries to pass along with issue reports.")]
 		[Increment( 10 )]
-		[Range( 0, 1000 )]
-		[DefaultValue( 100 )]
-		public int ModIssueReportErrorLogMaxLines = 100;
+		[Range( 0, 5000 )]
+		[DefaultValue( 250 )]
+		public int ModIssueReportErrorLogMaxLines = 250;
 
 		/// <summary>
 		/// Enables mod locking per world (prevents playing a world with missing mods).

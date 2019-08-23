@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.Info;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.Net;
@@ -58,15 +59,15 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 				if( success ) {
 					JObject respJson = JObject.Parse( output );
-					//JToken data = respJson.SelectToken( "Data.html_url" );
+					JToken data = respJson.SelectToken( "Data.html_url" );
 					JToken msg = respJson.SelectToken( "Msg" );
 
-					/*if( data != null ) {
-						string post_at_url = data.ToObject<string>();
-						if( !string.IsNullOrEmpty( post_at_url ) ) {
-							SystemHelpers.Start( post_at_url );
+					if( data != null ) {
+						string issueUrl = data.ToObject<string>();
+						if( !string.IsNullOrEmpty( issueUrl ) ) {
+							SystemHelpers.OpenUrl( issueUrl );
 						}
-					}*/
+					}
 
 					success = msg != null;
 					if( success ) {

@@ -1,8 +1,5 @@
-﻿using HamstarHelpers.Helpers.DotNET.Reflection;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
@@ -25,10 +22,13 @@ namespace HamstarHelpers.Classes.UI.Theme {
 
 		/// <summary></summary>
 		/// <param name="theme">Appearance style.</param>
-		public UIThemedState( UITheme theme ) : base() {
+		/// <param name="skipThemeRefreshNow"></param>
+		public UIThemedState( UITheme theme, bool skipThemeRefreshNow ) : base() {
 			this.Theme = theme;
 
-			this.RefreshTheme();
+			if( !skipThemeRefreshNow ) {
+				this.RefreshTheme();
+			}
 		}
 
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		/// <param name="element"></param>
 		public void AppendThemed( UIElement element ) {
 			base.Append( element );
-			this.RefreshThemeForChild( element, true );
+			this.RefreshThemeForChild( element );
 		}
 
 
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		/// </summary>
 		public virtual void RefreshTheme() {
 			foreach( UIElement elem in this.Elements ) {
-				this.RefreshThemeForChild( elem, true );
+				this.RefreshThemeForChild( elem );
 			}
 		}
 
@@ -59,17 +59,9 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		/// Applies the current theme's styles to a given element (presumably a child element).
 		/// </summary>
 		/// <param name="element"></param>
-		/// <param name="recursive"></param>
-		public virtual void RefreshThemeForChild( UIElement element, bool recursive ) {
+		public virtual void RefreshThemeForChild( UIElement element ) {
 			if( !this.Theme.Apply( element ) ) {
 				this.Theme.ApplyByType( element );
-			}
-
-			List<UIElement> children;
-			ReflectionHelpers.Get( element, "Elements", out children );
-
-			foreach( IThemeable child in children ) {
-				this.RefreshThemeForChild( element, true );
 			}
 		}
 

@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Menus;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
@@ -11,12 +12,14 @@ using HamstarHelpers.Services.UI.Menus;
 using System;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
+using HamstarHelpers.Internals.ModTags.Base.Manager;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 	partial class UIModTagsEditorInterface : UIModTagsInterface {
 		private void InitializeEditorControls( UIState modInfoUi ) {
 			this.InitializeCategoryButtons();
+			this.InitializeTagButtons();
 			this.InitializeEditButton();
 			this.InitializeHiddenControl( modInfoUi );
 		}
@@ -30,6 +33,16 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				};
 			}
 		}
+
+		private void InitializeTagButtons() {
+			foreach( (string tag, UITagMenuButton tagButton) in this.TagButtons ) {
+				tagButton.OnClick += ( _, __ ) => {
+					this.ApplyTagConstraints( tag );
+				};
+			}
+		}
+
+		////
 
 		private void InitializeEditButton() {
 			Vector2 pos = this.GetTagControlsTopLeftPositionOffset();

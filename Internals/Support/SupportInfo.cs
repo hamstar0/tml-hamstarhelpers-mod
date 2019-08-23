@@ -215,8 +215,11 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.PatreonLabel.Recalculate();
 			this.PatreonButton.Recalculate();
 
+			// This is deferred to here because of LoadHooks load order (ironically)
 			LoadHooks.AddModUnloadHook( () => {
-				Main.OnPostDraw -= SupportInfoDisplay._Draw;
+				try {
+					Main.OnPostDraw -= SupportInfoDisplay._Draw;
+				} catch { }
 			} );
 		}
 

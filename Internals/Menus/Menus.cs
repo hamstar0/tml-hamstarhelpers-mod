@@ -36,6 +36,8 @@ namespace HamstarHelpers.Internals.Menus {
 		}
 
 
+		////////////////
+
 		private static void InitializeOpenConfigButton() {
 			var button = new UITextPanelButton( UITheme.Vanilla, "Open Mod Config Folder" );
 			button.Top.Set( -2f, 0f );
@@ -58,19 +60,34 @@ namespace HamstarHelpers.Internals.Menus {
 			MenuContextService.AddMenuContext( buttonWidgetCtx );
 		}
 
+		////
+
+		private static bool DebugModeMenuInfoLoaded = false;
+
+		private static void DebugModeMenuInfo( GameTime _ ) {
+			Main.spriteBatch.DrawString(
+				Main.fontMouseText,
+				Main.menuMode + "",
+				new Vector2( Main.screenWidth - 32, Main.screenHeight - 32 ),
+				Color.White
+			);
+		}
 
 		private static void InitializeDebugModeMenuInfo() {
 			var mymod = ModHelpersMod.Instance;
 			if( !mymod.Config.DebugModeMenuInfo ) { return; }
 
-			Main.OnPostDraw += ( _ ) => {
-				Main.spriteBatch.DrawString(
-					Main.fontMouseText,
-					Main.menuMode + "",
-					new Vector2( Main.screenWidth - 32, Main.screenHeight - 32 ),
-					Color.White
-				);
-			};
+			Main.OnPostDraw += Menus.DebugModeMenuInfo;
+			Menus.DebugModeMenuInfoLoaded = true;
+
+			LoadHooks.AddModUnloadHook( () => {
+				try {
+					if( Menus.DebugModeMenuInfoLoaded ) {
+						Menus.DebugModeMenuInfoLoaded = false;
+						Main.OnPostDraw -= Menus.DebugModeMenuInfo;
+					}
+				} catch { }
+			} );
 		}
 	}
 }

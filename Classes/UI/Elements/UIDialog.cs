@@ -52,7 +52,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="initialWidth">Recommended width.</param>
 		/// <param name="initialHeight">Recommended height.</param>
-		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) : base( theme ) {
+		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) : base( theme, false ) {
 			this.IsOpen = false;
 			this.InitialContainerWidth = initialWidth;
 			this.InitialContainerHeight = initialHeight;

@@ -21,7 +21,9 @@ namespace HamstarHelpers.Helpers.Misc {
 			Main.OnTick += MusicHelpers._Update;
 
 			LoadHooks.AddModUnloadHook( () => {
-				Main.OnTick -= MusicHelpers._Update;
+				try {
+					Main.OnTick -= MusicHelpers._Update;
+				} catch { }
 			} );
 		}
 
@@ -30,6 +32,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		private static void _Update() { // <- Just in case references are doing something funky...
 			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null || mymod.MusicHelpers == null ) { return; }
+			if( Main.dedServ ) { return; }
 			
 			if( mymod.MusicHelpers.OnTickGet() ) {
 				mymod.MusicHelpers.Update();

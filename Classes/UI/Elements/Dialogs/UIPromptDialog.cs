@@ -52,7 +52,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 			this.ConfirmButton.Top.Set( -32f, 1f );
 			this.ConfirmButton.Left.Set( -192f, 0.5f );
 			this.ConfirmButton.Width.Set( 128f, 0f );
-			this.ConfirmButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
+			this.ConfirmButton.OnClick += ( _, __ ) => {
 				self.OnReply( true );
 				self.SetDialogToClose = true;
 				DialogManager.Instance.UnsetForcedModality();
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 			this.CancelButton.Top.Set( -32f, 1f );
 			this.CancelButton.Left.Set( 64f, 0.5f );
 			this.CancelButton.Width.Set( 128f, 0f );
-			this.CancelButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
+			this.CancelButton.OnClick += ( _, __ ) => {
 				self.OnReply( false );
 				self.SetDialogToClose = true;
 				DialogManager.Instance.UnsetForcedModality();

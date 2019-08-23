@@ -18,8 +18,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		/// Refreshes theme for contained elements.
 		/// </summary>
 		/// <param name="element"></param>
-		/// <param name="recursive"></param>
-		void RefreshThemeForChild( UIElement element, bool recursive );
+		void RefreshThemeForChild( UIElement element );
 		/// <summary></summary>
 		/// <param name="theme"></param>
 		void SetTheme( UITheme theme );

@@ -55,7 +55,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 				{ "Content",		"Describes what types of content a mod features." },
 				{ "Theme",			"Describes the apparent thematic elements of a mod." },
 				{ "When",			"Indicates what part of the game's (vanilla) progression a mod most pertains to." },
-				{ "Judgmental",		"Wholly-subjective tags." }
+				{ "Where",          "Indicates where in a world the mod specifically emphasizes relevance to." },
+				{ "Judgmental",		"Wholly-subjective tags. Must be enabled in settings." }
 			};
 
 			////
@@ -76,14 +77,14 @@ namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 					new HashSet<string> { "Core Game" } ),
 				m( "Misc. Interactions",	"Mechanics",    "Adds new block interactions, fishing mechanics, NPC dialogues, etc.",
 					new HashSet<string> { "Core Game" } ),
-				m( "Item Storage",          "Mechanics",    "Affects player inventory, centralizes chests, adds piggy banks, etc." ),
+				m( "Item Storage",          "Mechanics",    "Adds or changes chest behavior, adds item sharing, global organization, etc." ),
 				m( "Item Equiping",         "Mechanics",    "Dual wielding, additional accessory slots, equipment management, etc."),
 				m( "Item Stats",            "Mechanics",    "Adjusts item damage, defense, price, etc." ),
 				m( "Item Behavior",         "Mechanics",    "Changes item projectile type or quantity, item class, equipability, etc." ),
 				m( "Player State",          "Mechanics",    "Applies (de)buff-like effects; resistances/weaknesses, terrain access/hindrance, etc." ),
 				m( "Player Class(es)",      "Mechanics",    "Adds or edits player 'classes'; custom damage types or abilities/strengths."),
 				m( "Player Stats",          "Mechanics",    "Modifies player attack, defense, and other intrinsic elements (minion slots, etc.)."),
-				m( "Inventory",				"Mechanics",	"" ),
+				m( "Inventory",				"Mechanics",	"Adds behavior to player inventories; additional slots, pages, organization, etc." ),
 				m( "NPC Stats",             "Mechanics",    "Modifies NPC attack, defense, and other intrinsic elements."),
 				m( "NPC Behavior",          "Mechanics",    "Modifies NPC AIs or state for new or altered behaviors."),
 

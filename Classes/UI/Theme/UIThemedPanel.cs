@@ -26,6 +26,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// <summary></summary>
 		/// <param name="theme"></param>
+		/// <param name="skipThemeRefreshNow"></param>
 		public UIThemedPanel( UITheme theme, bool skipThemeRefreshNow ) : base() {
 			this.Theme = theme;
 
@@ -43,7 +44,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="element"></param>
 		public void AppendThemed( UIElement element ) {
 			base.Append( element );
-			this.RefreshThemeForChild( element, true );
+			this.RefreshThemeForChild( element );
 		}
 
 
@@ -56,7 +57,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.Theme.ApplyPanel( this );
 
 			foreach( UIElement elem in this.Elements ) {
-				this.RefreshThemeForChild( elem, true );
+				this.RefreshThemeForChild( elem );
 			}
 		}
 
@@ -64,17 +65,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Applies the current theme's styles to a given element (presumably a child element).
 		/// </summary>
 		/// <param name="element"></param>
-		/// <param name="recursive"></param>
-		public virtual void RefreshThemeForChild( UIElement element, bool recursive ) {
+		public virtual void RefreshThemeForChild( UIElement element ) {
 			if( !this.Theme.Apply( element ) ) {
 				this.Theme.ApplyByType( element );
-			}
-
-			List<UIElement> children;
-			ReflectionHelpers.Get( element, "Elements", out children );
-
-			foreach( IThemeable child in children ) {
-				this.RefreshThemeForChild( element, true );
 			}
 		}
 

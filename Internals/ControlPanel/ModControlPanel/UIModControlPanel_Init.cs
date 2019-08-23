@@ -100,7 +100,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueTitleInput.HAlign = 0f;
 			this.IssueTitleInput.SetPadding( 8f );
 			this.IssueTitleInput.Disable();
-			this.IssueTitleInput.OnPreChange += delegate ( StringBuilder newText ) {
+			this.IssueTitleInput.OnPreChange += ( _ ) => {
 				self.RefreshIssueSubmitButton();
 			};
 			this.Append( (UIElement)this.IssueTitleInput );
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueBodyInput.HAlign = 0f;
 			this.IssueBodyInput.SetPadding( 8f );
 			this.IssueBodyInput.Disable();
-			this.IssueBodyInput.OnPreChange += delegate ( StringBuilder newText ) {
+			this.IssueBodyInput.OnPreChange += ( _ ) => {
 				self.RefreshIssueSubmitButton();
 			};
 			this.Append( (UIElement)this.IssueBodyInput );
@@ -128,7 +128,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueSubmitButton.Left.Set( 0f, 0f );
 			this.IssueSubmitButton.Width.Set( 200f, 0f );
 			this.IssueSubmitButton.Disable();
-			this.IssueSubmitButton.OnClick += delegate ( UIMouseEvent evt, UIElement listeningElement ) {
+			this.IssueSubmitButton.OnClick += ( _, __ ) => {
 				if( self.AwaitingReport || !self.IssueSubmitButton.IsEnabled ) { return; }
 				self.SubmitIssue();
 			};

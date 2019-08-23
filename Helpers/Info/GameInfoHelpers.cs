@@ -243,7 +243,7 @@ namespace HamstarHelpers.Helpers.Info {
 
 			IList<string> lines = new List<string>();
 			char sep = Path.DirectorySeparatorChar;
-			string path = Main.SavePath + sep + "Logs" + sep + "client.txt";
+			string path = Main.SavePath + sep + "Logs" + sep + "client.log";
 
 			if( !File.Exists( path ) ) {
 				return new List<string> { "No error logs available." };

@@ -2,11 +2,12 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
-
+using static Terraria.UI.UIElement;
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
@@ -105,11 +106,18 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 					continue;
 				}
 
-				modInfoButton.OnClick += (_, __) => {
+				MouseEvent modInfoButtonClick = ( _, __ ) => {
 					if( !ReflectionHelpers.Set( modBrowserUi, "SelectedItem", item ) ) {
 						LogHelpers.Alert( "Could not set selected item from the mod browser" );
 					}
 				};
+
+				modInfoButton.OnClick += modInfoButtonClick;
+				LoadHooks.AddModUnloadHook( () => {
+					try {
+						modInfoButton.OnClick -= modInfoButtonClick;
+					} catch { }
+				} );
 			}
 		}
 	}
