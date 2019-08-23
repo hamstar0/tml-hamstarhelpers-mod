@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.NPCs;
 using HamstarHelpers.Helpers.Players;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Info {
@@ -239,39 +241,40 @@ namespace HamstarHelpers.Helpers.Info {
 		/// <param name="maxLines">Highest amount of lines of the log to return.</param>
 		/// <returns></returns>
 		public static IList<string> GetErrorLog( int maxLines ) {
-			if( maxLines > 150 ) { maxLines = 150; }
-
 			IList<string> lines = new List<string>();
 			char sep = Path.DirectorySeparatorChar;
-			string path = Main.SavePath + sep + "Logs" + sep + "client.log";
+			string path = Path.Combine( Logging.LogDir, "client.log" );	//Main.SavePath + sep + "Logs" + sep + "client.log";
 
 			if( !File.Exists( path ) ) {
 				return new List<string> { "No error logs available." };
 			}
+			
+			//using( var reader = new StreamReader( path ) ) {
+            using( Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite) ) {
+				using( var reader = new StreamReader(stream) ) {
+					int size = 1024;
+					bool eof = false;
 
-			using( var reader = new StreamReader( path ) ) {
-				int size = 1024;
-				bool eof = false;
+					do {
+						lines = new List<string>( maxLines + 25 );
 
-				do {
-					lines = new List<string>( maxLines + 25 );
+						if( reader.BaseStream.Length > size ) {
+							reader.BaseStream.Seek( -size, SeekOrigin.End );
+							size += 1024;
+						} else {
+							eof = true;
+							reader.BaseStream.Seek( 0, SeekOrigin.Begin );
+						}
 
-					if( reader.BaseStream.Length > size ) {
-						reader.BaseStream.Seek( -size, SeekOrigin.End );
-						size += 1024;
-					} else {
-						eof = true;
-						reader.BaseStream.Seek( 0, SeekOrigin.Begin );
-					}
-
-					string line;
-					while( ( line = reader.ReadLine() ) != null ) {
-						lines.Add( line );
-					}
-				} while( lines.Count < maxLines && !eof );
+						string line;
+						while( ( line = reader.ReadLine() ) != null ) {
+							lines.Add( line );
+						}
+					} while( lines.Count < maxLines && !eof );
+				}
 			}
 
-			IList<string> revLines = lines.Reverse().Take( 25 ).ToList();
+			IList<string> revLines = lines.Reverse().Take( maxLines ).ToList();
 			if( lines.Count > maxLines ) { revLines.Add( "..." ); }
 
 			return new List<string>( revLines.Reverse() );
