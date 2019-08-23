@@ -248,10 +248,10 @@ namespace HamstarHelpers.Helpers.Info {
 			if( !File.Exists( path ) ) {
 				return new List<string> { "No error logs available." };
 			}
-			
+
 			//using( var reader = new StreamReader( path ) ) {
-            using( Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite) ) {
-				using( var reader = new StreamReader(stream) ) {
+			using( Stream stream = File.Open( path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite ) ) {
+				using( var reader = new StreamReader( stream ) ) {
 					int size = 1024;
 					bool eof = false;
 

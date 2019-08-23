@@ -74,9 +74,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				ModTagsModBrowserMenuContext.Initialize( false );
 			}
 
-			bool isHoveringModTagsLabel = this.EnableModTagsLabel.GetOuterDimensions()
+			bool isHoveringModTagsLabel = this.EnableModTagsLabel?.GetOuterDimensions()
 				.ToRectangle()
-				.Contains( Main.mouseX, Main.mouseY );
+				.Contains( Main.mouseX, Main.mouseY )
+				?? false;
 
 			if( isClicking && isHoveringModTagsLabel ) {
 				mymod.Data.ModTagsOpened = true;

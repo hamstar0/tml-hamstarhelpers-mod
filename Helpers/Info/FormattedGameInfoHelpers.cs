@@ -83,6 +83,8 @@ namespace HamstarHelpers.Helpers.Info {
 			list.Add( "Child safety: " + childSafe );
 			list.Add( "Game zoom: " + gameZoom );
 			list.Add( "UI zoom: " + uiZoom );
+			list.Add( "FrameworkVersion.Framework: " + Enum.GetName(typeof(FrameworkVersion), FrameworkVersion.Framework) );
+			list.Add( "FrameworkVersion.Version: " + FrameworkVersion.Version.ToString() );
 
 			return list;
 		}
