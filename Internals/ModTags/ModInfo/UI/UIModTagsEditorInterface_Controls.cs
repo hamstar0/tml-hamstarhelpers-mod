@@ -40,7 +40,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		}
 
 		private void RefreshReadOnlyMode() {
-			if( this.Manager.GetTagsWithGivenState( 1 ).Count > 0 ) {				this.Manager.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
+			if( this.Manager.GetTagsWithGivenState( 1 ).Count > 0 ) {
+				this.Manager.SetInfoTextDefault( "Do these tags look incorrect? If so, modify them." );
 				this.SetReadOnlyMode( true );
 				return;
 			} else {

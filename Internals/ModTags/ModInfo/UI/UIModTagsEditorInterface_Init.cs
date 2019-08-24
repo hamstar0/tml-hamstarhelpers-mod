@@ -12,7 +12,6 @@ using HamstarHelpers.Services.UI.Menus;
 using System;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
-using HamstarHelpers.Internals.ModTags.Base.Manager;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
@@ -36,8 +35,12 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		private void InitializeTagButtons() {
 			foreach( (string tag, UITagMenuButton tagButton) in this.TagButtons ) {
-				tagButton.OnClick += ( _, __ ) => {
-					this.ApplyTagConstraints( tag );
+				tagButton.OnStateChange += ( state ) => {
+					if( state == 1 ) {
+						this.ApplyTagsByConstraintsOfTag( tag );
+					} else if( state == 0 ) {
+						this.UnapplyTagsByConstraintsOfTag( tag );
+					} 
 				};
 			}
 		}
@@ -97,7 +100,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				this.EditButton,
 				false );
 			var hiddenWidgetCtx = new WidgetMenuContext( menuDef,
-				baseContextName+" Hidden",
+				baseContextName + " Hidden",
 				this.HiddenPanel,
 				false );
 

@@ -42,9 +42,11 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		private ModTagsManager Manager;
 
+		public event Action<int> OnStateChange;
+
 
 		////////////////
-		
+
 		public string Description { get; private set; }
 		public int TagState { get; private set; }
 
@@ -132,6 +134,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 			this.Manager.SetTagState( this.Text, this.TagState );
 			this.RefreshTheme();
+
+			this.OnStateChange?.Invoke( state );
 		}
 
 		public void TogglePositiveTag() {
@@ -139,6 +143,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 			this.Manager.SetTagState( this.Text, this.TagState );
 			this.RefreshTheme();
+
+			this.OnStateChange?.Invoke( this.TagState );
 		}
 
 		public void ToggleNegativeTag() {
@@ -146,6 +152,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 			this.Manager.SetTagState( this.Text, this.TagState );
 			this.RefreshTheme();
+
+			this.OnStateChange?.Invoke( this.TagState );
 		}
 
 

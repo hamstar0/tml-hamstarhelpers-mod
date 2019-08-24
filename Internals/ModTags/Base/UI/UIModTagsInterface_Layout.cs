@@ -47,10 +47,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 					tagButton.SetMenuSpacePosition( x, y );
 
+					tagButton.PutAway();
 					if( group.Key == this.CurrentCategory ) {
 						tagButton.TakeOut();
-					} else {
-						tagButton.PutAway();
 					}
 
 					y += UITagMenuButton.ButtonHeight;
