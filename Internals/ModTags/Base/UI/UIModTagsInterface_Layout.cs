@@ -55,7 +55,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 					y += UITagMenuButton.ButtonHeight;
 					if( y >= maxY ) {
 						y = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
-						x += UITagMenuButton.ButtonWidth;
+						x += UITagMenuButton.ButtonWidth - 2;
 					}
 				}
 			}

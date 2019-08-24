@@ -38,52 +38,62 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary>
 		/// Preset for completely empty space.
 		/// </summary>
-		public readonly static TilePattern AbsoluteAir = new TilePattern {
-			HasWire1 = false,
-			HasWire2 = false,
-			HasWire3 = false,
-			HasWire4 = false,
-			IsSolid = false,
-			HasWall = false,
-			HasWater = false,
-			HasHoney = false,
-			HasLava = false
-		};
+		public readonly static TilePattern AbsoluteAir = new TilePattern(
+			new TilePatternBuilder {
+				HasWire1 = false,
+				HasWire2 = false,
+				HasWire3 = false,
+				HasWire4 = false,
+				IsSolid = false,
+				HasWall = false,
+				HasWater = false,
+				HasHoney = false,
+				HasLava = false
+			}
+		);
 
 		/// <summary>
 		/// Preset for walls, no tiles.
 		/// </summary>
-		public readonly static TilePattern OpenWall = new TilePattern {
-			IsSolid = false,
-			HasWall = true
-		};
+		public readonly static TilePattern OpenWall = new TilePattern(
+			new TilePatternBuilder {
+				IsSolid = false,
+				HasWall = true
+			}
+		);
 
 		/// <summary>
 		/// Preset for any non-solid tiles.
 		/// </summary>
-		public readonly static TilePattern NonSolid = new TilePattern {
-			IsSolid = false,
-			IsActuated = false
-		};
+		public readonly static TilePattern NonSolid = new TilePattern(
+			new TilePatternBuilder {
+				IsSolid = false,
+				IsActuated = false
+			}
+		);
 
 		/// <summary>
 		/// Preset for any non-"filled" space (no solids, no liquids).
 		/// </summary>
-		public readonly static TilePattern NonFilled = new TilePattern {
-			IsSolid = false,
-			HasWater = false,
-			HasHoney = false,
-			HasLava = false
-		};
+		public readonly static TilePattern NonFilled = new TilePattern(
+			new TilePatternBuilder {
+				IsSolid = false,
+				HasWater = false,
+				HasHoney = false,
+				HasLava = false
+			}
+		);
 
 		/// <summary>
 		/// Preset for common solid tiles.
 		/// </summary>
-		public readonly static TilePattern CommonSolid = new TilePattern {
-			IsSolid = true,
-			IsActuated = false,
-			IsPlatform = false
-		};
+		public readonly static TilePattern CommonSolid = new TilePattern(
+			new TilePatternBuilder {
+				IsSolid = true,
+				IsActuated = false,
+				IsPlatform = false
+			}
+		);
 
 
 

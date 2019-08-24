@@ -2,230 +2,71 @@
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
+	public class TilePatternBuilder {
+		/// <summary></summary>
+		public bool? HasWire1;
+		/// <summary></summary>
+		public bool? HasWire2;
+		/// <summary></summary>
+		public bool? HasWire3;
+		/// <summary></summary>
+		public bool? HasWire4;
+
+		/// <summary></summary>
+		public bool? IsSolid;
+		/// <summary></summary>
+		public bool? IsPlatform;
+		/// <summary></summary>
+		public bool? IsActuated;
+		/// <summary></summary>
+		public bool? IsVanillaBombable;
+
+		/// <summary></summary>
+		public bool? HasWall;
+
+		/// <summary></summary>
+		public bool? HasWater;
+		/// <summary></summary>
+		public bool? HasHoney;
+		/// <summary></summary>
+		public bool? HasLava;
+
+		/// <summary></summary>
+		public TileSlopeType? Slope;
+
+		/// <summary></summary>
+		public bool? IsModded;
+	}
+
+
+
+
 	/// <summary>
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
 	public partial class TilePattern {
-		private TilePattern() { }
-
-
 		/// <summary>
-		/// Note: `null` values for `bool?` parameters mean either type of that tile are matched.
 		/// </summary>
-		/// <param name="hasWire1"></param>
-		/// <param name="hasWire2"></param>
-		/// <param name="hasWire3"></param>
-		/// <param name="hasWire4"></param>
-		/// <param name="isSolid"></param>
-		/// <param name="isPlatform"></param>
-		/// <param name="isActuated"></param>
-		/// <param name="isVanillaBombable"></param>
-		/// <param name="hasWall"></param>
-		/// <param name="slope"></param>
-		/// <param name="isModded"></param>
-		/// <param name="hasWater"></param>
-		/// <param name="hasHoney"></param>
-		/// <param name="hasLava"></param>
-		public TilePattern( bool? hasWire1, bool? hasWire2, bool? hasWire3, bool? hasWire4,
-				bool? isSolid,
-				bool? isPlatform,
-				bool? isActuated,
-				bool? isVanillaBombable,
-				bool? hasWall,
-				TileSlopeType? slope,
-				bool? isModded,
-				bool? hasWater, bool? hasHoney, bool? hasLava ) {
-			this.HasWire1 = hasWire1;
-			this.HasWire2 = hasWire2;
-			this.HasWire3 = hasWire3;
-			this.HasWire4 = hasWire4;
-			this.IsSolid = isSolid;
-			this.IsPlatform = isPlatform;
-			this.IsActuated = isActuated;
-			this.IsVanillaBombable = isVanillaBombable;
-			this.HasWall = hasWall;
-			this.Slope = slope;
-			this.IsModded = isModded;
-			this.HasWater = hasWater;
-			this.HasHoney = hasHoney;
-			this.HasLava = hasLava;
-		}
+		public TilePattern( TilePatternBuilder builder ) {
+			this.HasWire1 = builder.HasWire1;
+			this.HasWire2 = builder.HasWire2;
+			this.HasWire3 = builder.HasWire3;
+			this.HasWire4 = builder.HasWire4;
 
-		/// <summary>
-		/// Note: `null` values for `bool?` parameters mean either type of that tile are matched.
-		/// </summary>
-		/// <param name="isSolid"></param>
-		/// <param name="isPlatform"></param>
-		/// <param name="isActuated"></param>
-		/// <param name="isVanillaBombable"></param>
-		/// <param name="hasWall"></param>
-		/// <param name="slope"></param>
-		/// <param name="isModded"></param>
-		/// <param name="hasWater"></param>
-		/// <param name="hasHoney"></param>
-		/// <param name="hasLava"></param>
-		public TilePattern( bool? isSolid,
-				bool? isPlatform,
-				bool? isActuated,
-				bool? isVanillaBombable,
-				bool? hasWall,
-				TileSlopeType? slope,
-				bool? isModded,
-				bool? hasWater, bool? hasHoney, bool? hasLava )
-			: this( null, null, null, null,
-				isSolid,
-				isPlatform,
-				isActuated,
-				isVanillaBombable,
-				hasWall,
-				slope,
-				isModded,
-				hasWater, hasHoney, hasLava ) {
-		}
+			this.IsSolid = builder.IsSolid;
+			this.IsPlatform = builder.IsPlatform;
+			this.IsActuated = builder.IsActuated;
+			this.IsVanillaBombable = builder.IsVanillaBombable;
 
-		/// <summary>
-		/// Note: `null` values for `bool?` parameters mean either type of that tile are matched.
-		/// </summary>
-		/// <param name="isSolid"></param>
-		/// <param name="isPlatform"></param>
-		/// <param name="isActuated"></param>
-		/// <param name="isVanillaBombable"></param>
-		/// <param name="hasWall"></param>
-		/// <param name="slope"></param>
-		/// <param name="isModded"></param>
-		public TilePattern( bool? isSolid,
-				bool? isPlatform,
-				bool? isActuated,
-				bool? isVanillaBombable,
-				bool? hasWall,
-				TileSlopeType? slope,
-				bool? isModded )
-			: this( isSolid,
-				isPlatform,
-				isActuated,
-				isVanillaBombable,
-				hasWall,
-				slope,
-				isModded,
-				null, null, null ) {
-		}
+			this.HasWall = builder.HasWall;
 
+			this.HasWater = builder.HasWater;
+			this.HasHoney = builder.HasHoney;
+			this.HasLava = builder.HasLava;
 
-		////
+			this.Slope = builder.Slope;
 
-		/// <summary>
-		/// Note: `null` values for `bool?` parameters mean either type of that tile are matched.
-		/// </summary>
-		/// <param name="baseModel">Base pattern to derive from. Use `null` for the following parameters to defer to base.</param>
-		/// <param name="hasWire1"></param>
-		/// <param name="hasWire2"></param>
-		/// <param name="hasWire3"></param>
-		/// <param name="hasWire4"></param>
-		/// <param name="isSolid"></param>
-		/// <param name="isPlatform"></param>
-		/// <param name="isActuated"></param>
-		/// <param name="isVanillaBombable"></param>
-		/// <param name="hasWall"></param>
-		/// <param name="slope"></param>
-		/// <param name="isModded"></param>
-		/// <param name="hasWater"></param>
-		/// <param name="hasHoney"></param>
-		/// <param name="hasLava"></param>
-		public TilePattern( TilePattern baseModel,
-				bool? hasWire1, bool? hasWire2, bool? hasWire3, bool? hasWire4,
-				bool? isSolid,
-				bool? isPlatform,
-				bool? isActuated,
-				bool? isVanillaBombable,
-				bool? hasWall,
-				TileSlopeType? slope,
-				bool? isModded,
-				bool? hasWater, bool? hasHoney, bool? hasLava )
-			: this( hasWire1, hasWire2, hasWire3, hasWire4,
-				isSolid,
-				isPlatform,
-				isActuated,
-				isVanillaBombable,
-				hasWall,
-				slope,
-				isModded,
-				hasWater, hasHoney, hasLava ) {
-			this.HasWire1 = this.HasWire1 ?? baseModel.HasWire1;
-			this.HasWire2 = this.HasWire2 ?? baseModel.HasWire2;
-			this.HasWire3 = this.HasWire3 ?? baseModel.HasWire3;
-			this.HasWire4 = this.HasWire4 ?? baseModel.HasWire4;
-			this.IsSolid = this.IsSolid ?? baseModel.IsSolid;
-			this.HasWall = this.HasWall ?? baseModel.HasWall;
-			this.IsModded = this.IsModded ?? baseModel.IsModded;
-			this.HasWater = this.HasWater ?? baseModel.HasWater;
-			this.HasHoney = this.HasHoney ?? baseModel.HasHoney;
-			this.HasLava = this.HasLava ?? baseModel.HasLava;
-		}
-
-		/// <summary>
-		/// Note: `null` values for `bool?` parameters mean either type of that tile are matched.
-		/// </summary>
-		/// <param name="baseModel">Base pattern to derive from. Use `null` for the following parameters to defer to base.</param>
-		/// <param name="isSolid"></param>
-		/// <param name="isPlatform"></param>
-		/// <param name="isActuated"></param>
-		/// <param name="isVanillaBombable"></param>
-		/// <param name="hasWall"></param>
-		/// <param name="slope"></param>
-		/// <param name="isModded"></param>
-		/// <param name="hasWater"></param>
-		/// <param name="hasHoney"></param>
-		/// <param name="hasLava"></param>
-		public TilePattern( TilePattern baseModel,
-				bool? isSolid,
-				bool? isPlatform,
-				bool? isActuated,
-				bool? isVanillaBombable,
-				bool? hasWall,
-				TileSlopeType? slope,
-				bool? isModded,
-				bool? hasWater, bool? hasHoney, bool? hasLava )
-			: this( baseModel,
-				baseModel.HasWire1, baseModel.HasWire2, baseModel.HasWire3, baseModel.HasWire4,
-				isSolid,
-				isPlatform,
-				isActuated,
-				isVanillaBombable,
-				hasWall,
-				slope,
-				isModded,
-				hasWater, hasHoney, hasLava ) {
-		}
-
-		/// <summary>
-		/// Note: `null` values for `bool?` parameters mean either type of that tile are matched.
-		/// </summary>
-		/// <param name="baseModel">Base pattern to derive from. Use `null` for the following parameters to defer to base.</param>
-		/// <param name="isSolid"></param>
-		/// <param name="isPlatform"></param>
-		/// <param name="isActuated"></param>
-		/// <param name="isVanillaBombable"></param>
-		/// <param name="hasWall"></param>
-		/// <param name="slope"></param>
-		/// <param name="isModded"></param>
-		public TilePattern( TilePattern baseModel,
-				bool? isSolid,
-				bool? isPlatform,
-				bool? isActuated,
-				bool? isVanillaBombable,
-				bool? hasWall,
-				TileSlopeType? slope,
-				bool? isModded )
-			: this( baseModel,
-				baseModel.HasWire1, baseModel.HasWire2, baseModel.HasWire3, baseModel.HasWire4,
-				isSolid,
-				isPlatform,
-				isActuated,
-				isVanillaBombable,
-				hasWall,
-				slope,
-				isModded,
-				baseModel.HasWater, baseModel.HasHoney, baseModel.HasLava ) {
+			this.IsModded = builder.IsModded;
 		}
 	}
 }
