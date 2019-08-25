@@ -4,38 +4,38 @@
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	public class TilePatternBuilder {
 		/// <summary></summary>
-		public bool? HasWire1;
+		public bool? HasWire1 = null;
 		/// <summary></summary>
-		public bool? HasWire2;
+		public bool? HasWire2 = null;
 		/// <summary></summary>
-		public bool? HasWire3;
+		public bool? HasWire3 = null;
 		/// <summary></summary>
-		public bool? HasWire4;
+		public bool? HasWire4 = null;
 
 		/// <summary></summary>
-		public bool? IsSolid;
+		public bool? IsSolid = null;
 		/// <summary></summary>
-		public bool? IsPlatform;
+		public bool? IsPlatform = null;
 		/// <summary></summary>
-		public bool? IsActuated;
+		public bool? IsActuated = null;
 		/// <summary></summary>
-		public bool? IsVanillaBombable;
+		public bool? IsVanillaBombable = null;
 
 		/// <summary></summary>
-		public bool? HasWall;
+		public bool? HasWall = null;
 
 		/// <summary></summary>
-		public bool? HasWater;
+		public bool? HasWater = null;
 		/// <summary></summary>
-		public bool? HasHoney;
+		public bool? HasHoney = null;
 		/// <summary></summary>
-		public bool? HasLava;
+		public bool? HasLava = null;
 
 		/// <summary></summary>
-		public TileSlopeType? Slope;
+		public TileSlopeType? Slope = null;
 
 		/// <summary></summary>
-		public bool? IsModded;
+		public bool? IsModded = null;
 	}
 
 
