@@ -14,44 +14,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public partial class UIModData : UIThemedPanel {
 		/// <summary>
-		/// Matches a color with a given mod tag. Used to represent tags that should be emphasized.
-		/// </summary>
-		/// <param name="tag">Mod tag</param>
-		/// <returns>Color of tag.</returns>
-		public static Color GetTagColor( string tag ) {
-			switch( tag ) {
-			// Important tags:
-			case "MP Compatible":
-				return Color.Blue;
-			case "Needs New World":
-			case "Needs New Player":
-				return Color.SkyBlue;
-			// Negative tags:
-			case "May Lag":
-			case "Cheat-like":
-				return Color.Yellow;
-			case "Non-functional":
-				return Color.Red;
-			case "Misleading Info":
-			case "Buggy":
-				return Color.Purple;
-			case "Unimaginative":
-			case "Low Effort":
-			case "Unoriginal Content":
-				return Color.Tomato;
-			case "Unmaintained":
-			case "Unfinished":
-				return Color.SlateGray;
-			default:
-				return Color.Silver;
-			}
-		}
-
-
-
-		////////////////
-
-		/// <summary>
 		/// Expands on base.Draw(...) to implement custom mouse hover effects (if applicable).
 		/// </summary>
 		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>

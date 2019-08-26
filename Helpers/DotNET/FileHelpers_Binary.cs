@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using HamstarHelpers.Helpers.Debug;
+using System.IO;
 using Terraria.Social;
 using Terraria.Utilities;
 
@@ -25,6 +26,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 
 			if( isCloud ) {
 				if( SocialAPI.Cloud != null ) {
+					LogHelpers.Warn( "Cloud API not available." );
 					return false;
 				}
 
@@ -51,11 +53,13 @@ namespace HamstarHelpers.Helpers.DotNET {
 		/// <returns>A byte array of the input file's data. `null` if file does not exist, or error.</returns>
 		public static byte[] LoadBinaryFile( string fullPath, bool isCloud ) {
 			if( !FileUtilities.Exists( fullPath, isCloud ) ) {
+				LogHelpers.Warn( "Binary file "+fullPath+" does not exist." );
 				return null;
 			}
 
 			byte[] buf = FileUtilities.ReadAllBytes( fullPath, isCloud );
 			if( buf.Length < 1 || buf[0] != 0x1F || buf[1] != 0x8B ) {
+				LogHelpers.Warn( "Invalid binary file." );
 				return null;
 			}
 

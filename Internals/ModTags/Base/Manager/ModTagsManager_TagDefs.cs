@@ -51,12 +51,13 @@ namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 				{ "Mechanics",		"Describes what game mechanics are associated with a mod." },
 				{ "Gameplay",		"Describes how a mod affects gameplay (more than specific mechanics)." },
 				{ "State",			"Describes the existential state of a mod." },
+				{ "Multiplayer",	"Describes what manner of relevance a mod has to multiplayer." },
 				{ "Privilege",		"Indicates what manner of user or system priviledges a mod needs to function." },
 				{ "Content",		"Describes what types of content a mod features." },
 				{ "Theme",			"Describes the apparent thematic elements of a mod." },
 				{ "When",			"Indicates what part of the game's (vanilla) progression a mod most pertains to." },
 				{ "Where",          "Indicates where in a world the mod specifically emphasizes relevance to." },
-				{ "Judgmental",		"Wholly-subjective tags. Must be enabled in settings." }
+				//{ "Judgmental",		"Wholly-subjective tags. Must be enabled in settings." }
 			};
 
 			////

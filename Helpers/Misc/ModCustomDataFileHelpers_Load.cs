@@ -65,12 +65,17 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="fileNameWithExt"></param>
 		/// <param name="jsonSettings"></param>
 		/// <returns></returns>
-		public static T LoadBinaryJson<T>( Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings ) where T : class {
+		public static T LoadBinaryJson<T>( Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings )
+				where T : class {
 			ModCustomDataFileHelpers.PrepareDir( mod );
 
 			try {
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
 				byte[] dataBytes = FileHelpers.LoadBinaryFile( fullPath, false );
+				if( dataBytes == null ) {
+					return null;
+				}
+
 				string dataJson = System.Text.Encoding.UTF8.GetString( dataBytes );
 
 				if( dataBytes != null ) {

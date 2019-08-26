@@ -164,7 +164,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			base.RefreshTheme();
 
 			if( this.TagState > 0 ) {
-				this.TextColor = Color.LimeGreen;
+				this.TextColor = Color.Lime;
 			} else if( this.TagState < 0 ) {
 				this.TextColor = Color.Red;
 			}
