@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.ModTagDefinitions;
 using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
@@ -20,9 +21,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 		public MenuUIDefinition MenuDefinition { get; private set; }
 		public UIModTagsInterface TagsUI { get; protected set; }
 
-		public virtual IDictionary<string, string> MyTagCategoryDescriptions => ModTagsManager.CategoryDescriptions;
-		public virtual TagDefinition[] MyTags => ModTagsManager.Tags;
-		public virtual IDictionary<string, TagDefinition> MyTagMap => ModTagsManager.TagMap;
+		public virtual IReadOnlyDictionary<string, string> MyTagCategoryDescriptions => ModTagDefinition.CategoryDescriptions;
+		public virtual IReadOnlyList<ModTagDefinition> MyTags => ModTagDefinition.Tags;
+		public virtual IReadOnlyDictionary<string, ModTagDefinition> MyTagMap => ModTagDefinition.TagMap;
 
 		public string CurrentModName { get; protected set; }
 		public bool CanExcludeTags { get; private set; }

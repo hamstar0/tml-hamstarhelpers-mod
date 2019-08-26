@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
+﻿using HamstarHelpers.Classes.ModTagDefinitions;
+using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using Microsoft.Xna.Framework;
 using System;
@@ -31,15 +31,15 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			UITagMenuButton tagButton;
 			float top = this.PositionY + UIModTagsInterface.CategoryPanelHeight;
 			float maxY = UIModTagsInterface.TagsPanelHeight + top - UIResetTagsMenuButton.ButtonHeight - 4;
-			TagDefinition[] tags = this.Manager.MyTags;
+			IReadOnlyList<ModTagDefinition> tags = this.Manager.MyTags;
 
-			IEnumerable<IGrouping<string, TagDefinition>> groups = tags.GroupBy( tagDef => tagDef.Category );
+			IEnumerable<IGrouping<string, ModTagDefinition>> groups = tags.GroupBy( tagDef => tagDef.Category );
 
-			foreach( IGrouping<string, TagDefinition> group in groups ) {
+			foreach( IGrouping<string, ModTagDefinition> group in groups ) {
 				x = this.PositionXCenterOffset;
 				y = top;
 
-				foreach( TagDefinition tagDef in group ) {
+				foreach( ModTagDefinition tagDef in group ) {
 					if( !this.TagButtons.TryGetValue( tagDef.Tag, out tagButton ) ) {
 						LogHelpers.AlertOnce( "Missing tag button "+tagDef.Tag );
 						continue;

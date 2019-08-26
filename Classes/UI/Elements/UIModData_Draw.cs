@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Classes.ModTagDefinitions;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.AnimatedColor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -51,7 +52,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				int i = 0;
 				foreach( string tag in this.ModTags ) {
 					string tagStr = tag + ((i++ < this.ModTags.Count-1) ? "," : "");
-					Color tagColor = UIModData.GetTagColor( tag );
+					Color tagColor = ModTagDefinition.TagMap[tag].GetFlavorColor();
 
 					Vector2 dim = Main.fontMouseText.MeasureString( tag ) * 0.75f;
 					float addX = dim.X + 8;

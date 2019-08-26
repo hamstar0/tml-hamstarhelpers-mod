@@ -2,8 +2,8 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using System;
-using HamstarHelpers.Internals.ModTags.Base.Manager;
 using System.Collections.Generic;
+using HamstarHelpers.Classes.ModTagDefinitions;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		////////////////
 
 		public void ApplyTagsByConstraintsOfTag( string tagName ) {
-			TagDefinition tagDef = this.Manager.MyTagMap[tagName];
+			ModTagDefinition tagDef = this.Manager.MyTagMap[tagName];
 
 			foreach( string forcedTag in tagDef.ForcesTags ) {
 				if( forcedTag == tagName ) { continue; }

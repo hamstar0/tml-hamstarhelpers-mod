@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
+﻿using HamstarHelpers.Classes.ModTagDefinitions;
+using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
@@ -65,7 +66,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 				}
 			}
 
-			foreach( TagDefinition tagDef in this.Manager.MyTags ) {
+			foreach( ModTagDefinition tagDef in this.Manager.MyTags ) {
 				var tagButton = this.TagButtons[tagDef.Tag];
 
 				tagButton.PutAway();

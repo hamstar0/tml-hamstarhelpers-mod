@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.ModTagDefinitions;
 using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
@@ -24,9 +25,9 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		public static IDictionary<string, UITagMenuButton> CreateButtons( UITheme theme, ModTagsManager manager ) {
 			var buttons = new Dictionary<string, UITagMenuButton>();
-			TagDefinition[] tags = manager.MyTags;
+			IReadOnlyList<ModTagDefinition> tags = manager.MyTags;
 
-			for( int i = 0; i < tags.Length; i++ ) {
+			for( int i = 0; i < tags.Count; i++ ) {
 				string tag = tags[i].Tag;
 				string desc = tags[i].Description;
 
