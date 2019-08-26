@@ -1,14 +1,22 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 
 namespace HamstarHelpers.Classes.ModTagDefinitions {
+	/// <summary>
+	/// Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive
+	/// categorical description of a mod.
+	/// </summary>
 	public partial class ModTagDefinition {
-		public readonly static IDictionary<string, string> CategoryDescriptions;
-		public readonly static IDictionary<string, ModTagDefinition> TagMap;
-		public readonly static ModTagDefinition[] Tags;
+		/// <summary>Descriptions of each tag category.</summary>
+		public readonly static IReadOnlyDictionary<string, string> CategoryDescriptions;
+		/// <summary>A map of tag definitions to their tags.</summary>
+		public readonly static IReadOnlyDictionary<string, ModTagDefinition> TagMap;
+		/// <summary>An ordered list of the tag definitions.</summary>
+		public readonly static IReadOnlyList<ModTagDefinition> Tags;
 
 
 		////
@@ -17,15 +25,16 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 			ModTagDefinition m( string tag,
 					string category,
 					string desc,
+					TagFlavor flavor = TagFlavor.Specification,
 					ISet<string> forces = null,
 					ISet<string> excludesOnAdd = null ) {
-				var def = new ModTagDefinition( tag, category, desc, forces, excludesOnAdd );
+				var def = new ModTagDefinition( tag, category, desc, flavor, forces, excludesOnAdd );
 				return def;
 			}
 
 			////
 
-			ModTagDefinition.CategoryDescriptions = new Dictionary<string, string> {
+			var catDescs = new Dictionary<string, string> {
 				{ "Specifications", "General descriptions of a mod." },
 				{ "Mechanics",      "Describes what game mechanics are associated with a mod." },
 				{ "Gameplay",       "Describes how a mod affects gameplay (more than specific mechanics)." },
@@ -38,25 +47,26 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 				{ "Where",          "Indicates where in a world the mod specifically emphasizes relevance to." },
 				//{ "Judgmental",		"Wholly-subjective tags. Must be enabled in settings." }
 			};
+			ModTagDefinition.CategoryDescriptions = new ReadOnlyDictionary<string, string>( catDescs );
 
 			////
 
 			var list = new List<ModTagDefinition> {
 				m( "Core Game",             "Mechanics",    "Adds a \"bullet hell\" mode, adds a stamina bar, removes mining, etc." ),
 				m( "Combat",                "Mechanics",    "Adds weapon reloading, dual-wielding, monster AI changes, etc.",
-					new HashSet<string> { "Core Game" } ),
+					TagFlavor.Specification, new HashSet<string> { "Core Game" } ),
 				m( "Crafting",              "Mechanics",    "Adds bulk crafting, UI-based crafting, item drag-and-drop crafting, etc.",
-					new HashSet<string> { "Core Game" } ),
+					TagFlavor.Specification, new HashSet<string> { "Core Game" } ),
 				m( "Movement",              "Mechanics",    "Gives super speed, adds dodging mechanics, adds unlimited flight, etc.",
-					new HashSet<string> { "Core Game" } ),
+					TagFlavor.Specification, new HashSet<string> { "Core Game" } ),
 				m( "Mining",                "Mechanics",    "Adds fast tunneling, area mining, shape cutting, etc.",
-					new HashSet<string> { "Core Game" } ),
+					TagFlavor.Specification, new HashSet<string> { "Core Game" } ),
 				m( "Building",              "Mechanics",    "Add fast building options, measuring tools, world editing, etc.",
-					new HashSet<string> { "Core Game" } ),
+					TagFlavor.Specification, new HashSet<string> { "Core Game" } ),
 				m( "Traveling",             "Mechanics",    "Adds fast travel options, new types of minecarts/travel-mounts, etc.",
-					new HashSet<string> { "Core Game" } ),
+					TagFlavor.Specification, new HashSet<string> { "Core Game" } ),
 				m( "Misc. Interactions",    "Mechanics",    "Adds new block interactions, fishing mechanics, NPC dialogues, etc.",
-					new HashSet<string> { "Core Game" } ),
+					TagFlavor.Specification, new HashSet<string> { "Core Game" } ),
 				m( "Item Storage",          "Mechanics",    "Adds or changes chest behavior, adds item sharing, global organization, etc." ),
 				m( "Item Equiping",         "Mechanics",    "Dual wielding, additional accessory slots, equipment management, etc."),
 				m( "Item Stats",            "Mechanics",    "Adjusts item damage, defense, price, etc." ),
@@ -77,42 +87,52 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 				//{ "Esoteric",              "Specifications",	"Does something uncommon or unexpected. Likely one-of-a-kind."),
 				//{ "Visuals",               "Specifications",	"Implements new or improved sprites, adds new background details, etc."),
 				//m( "Spoilers",              "Specifications",	"Reveals information in advance about game or story elements, especially prematurely."),
-				m( "Needs New World",       "Specifications",   "Playing an existing world is difficult, problematic, or just impossible."),
-				m( "Needs New Player",      "Specifications",   "Character must begin as a blank slate, similarly."),
+				m( "Needs New World",       "Specifications",   "Playing an existing world is difficult, problematic, or just impossible.",
+					TagFlavor.TechnicallyImportant ),
+				m( "Needs New Player",      "Specifications",   "Character must begin as a blank slate, similarly.",
+					TagFlavor.TechnicallyImportant ),
 				m( "Affects World",         "Specifications",   "Adds set pieces, alters biome shapes, adds new types of growth, etc."),
 				m( "Affects Game State",    "Specifications",   "Alters shop prices, activates invasion events, changes weather, etc."),
 				m( "Mod Interacting",       "Specifications",   "Supplies data, alters behavior, provides APIs, or manages other mods."),
 				m( "Mod Collab",            "Specifications",   "May be specifically paired with (an)other mod(s) to create a more-than-sum-of-parts result."),
 				m( "Adds UI",               "Specifications",   "Adds user interface components for mod functions."),
 				m( "Configurable",          "Specifications",   "Provides options for configuring game settings (menu, config file, commands, etc.)."),
-
-				m( "MP Compatible",         "Multiplayer",  "Built for multiplayer." ),
+				
+				m( "MP Compatible",         "Multiplayer",  "Built for multiplayer.",
+					TagFlavor.Important ),
 				m( "MP Emphasis",           "Multiplayer",  "Mod is meant primarily (if not exclusively) for multiplayer use.",
-					new HashSet<string> { "MP Compatible" } ),
+					TagFlavor.Specification, new HashSet<string> { "MP Compatible" } ),
 				m( "PvP",                   "Multiplayer",  "Player vs player (multiplayer).",
-					new HashSet<string> { "MP Compatible" } ),
+					TagFlavor.Specification, new HashSet<string> { "MP Compatible" } ),
 				m( "Coop",                  "Multiplayer",  "Requires or involves direct player-to-player cooperation (multiplayer).",
-					new HashSet<string> { "MP Compatible" } ),
+					TagFlavor.Specification, new HashSet<string> { "MP Compatible" } ),
 				m( "Teams",                 "Multiplayer",  "Requires or involves teams of players (multiplayer).",
-					new HashSet<string> { "MP Compatible" } ),
+					TagFlavor.Specification, new HashSet<string> { "MP Compatible" } ),
 				m( "Client Only",           "Multiplayer",  "Intended to run only on a local client. Does not pertain to servers.",
-					new HashSet<string> { "MP Compatible" }, new HashSet<string> { "Server Use" } ),
+					TagFlavor.Specification, new HashSet<string> { "MP Compatible" }, new HashSet<string> { "Server Use" } ),
 				m( "Server Use",            "Multiplayer",  "Player management tools, permissions, game rule changes, scheduled events, etc.",
-					new HashSet<string> { "MP Compatible" }, new HashSet<string> { "Client Only" } ),
+					TagFlavor.Specification, new HashSet<string> { "MP Compatible" }, new HashSet<string> { "Client Only" } ),
 
 				////
 				
 				m( "Open Source",           "State",        "Freely available source code." ),
 				m( "Has Documentation",     "State",        "Has an associated wiki or other comprehensive information source."),
-				m( "Unmaintained",          "State",        "No longer receives version updates."),
-				m( "Unfinished",            "State",        "Has missing or partially-working features."),
-				m( "May Lag",               "State",        "May use system resources or network bandwidth heavily. Good computer recommended."),
-				m( "Buggy",                 "State",        "Does unexpected or erroneous things."),
-				m( "Non-functional",        "State",        "Does not work (for its main use)." ),
+				m( "Made By Team",			"State",		"Features significant contributions from multiple people." ),
+				m( "Unmaintained",          "State",        "No longer receives version updates.",
+					TagFlavor.Deficient ),
+				m( "Unfinished",            "State",        "Has missing or partially-working features.",
+					TagFlavor.Deficient ),
+				m( "May Lag",               "State",        "May use system resources or network bandwidth heavily. Good computer recommended.",
+					TagFlavor.Alert ),
+				m( "Buggy",                 "State",        "Does unexpected or erroneous things.",
+					TagFlavor.Warning ),
+				m( "Non-functional",        "State",        "Does not work (for its main use).",
+					TagFlavor.Broken ),
+				m( "Misleading Info",		"State",		"Missing or unhelpful mod information (description, tooltips, etc.).",
+					TagFlavor.Warning ),
 				m( "Poor Homepage",         "State",        "Missing or unhelpful homepage.",
-					new HashSet<string> { "Misleading Info" } ),
+					TagFlavor.Warning, new HashSet<string> { "Misleading Info" } ),
 				//{ "Rated R",               "State",		"Guess." },
-				m( "Made By Team",          "State",        "Features significant contributions from multiple people." ),
 				//{ "Simplistic",			"" },
 				//{ "Minimalistic",			"" },
 				//{ "Polished",				"" },
@@ -127,7 +147,7 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 				m( "Adds Convenience",      "Gameplay",     "Reduces annoyances; auto-trashes junk items, reduces grinding, etc."),
 				m( "Challenge",             "Gameplay",     "Increases difficulty of specific elements: Time limits, harder boss AI, etc."),
 				m( "Challenge Emphasis",    "Gameplay",     "Focuses significantly on adding challenge to the game.",
-					new HashSet<string> { "Adds Challenge" } ),
+					TagFlavor.Specification, new HashSet<string> { "Adds Challenge" } ),
 				//m( "Easings",               "General",		"Decreases difficulty of specific elements: Stronger weapons, added player defense, etc."),
 				//m( "Vanilla Balanced",      "General",		"Balanced around plain Terraria; progress will not happen faster than usual."),
 				m( "Loosely Balanced",      "Gameplay",     "Inconsistent or vague attempt to maintain balance, vanilla or otherwise."),
@@ -167,51 +187,51 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 				m( "Story or Lore",             "Content",  "Implements elements of story telling or universe lore."),
 				m( "Special FX",                "Content",  "Adds gore effects, adds motion blurs, improves particle effects, etc."),
 				m( "Weapon Emphasis",           "Content",  "Emphasizes added or modified weapon items.",
-					new HashSet<string> { "Weapons" } ),
+					TagFlavor.Specification, new HashSet<string> { "Weapons" } ),
 				m( "Tools Emphasis",            "Content",  "Emphasizes added or modified tool items.",
-					new HashSet<string> { "Tools" } ),
+					TagFlavor.Specification, new HashSet<string> { "Tools" } ),
 				m( "Armors Emphasis",           "Content",  "Emphasizes added or modified armor items.",
-					new HashSet<string> { "Armors" } ),
+					TagFlavor.Specification, new HashSet<string> { "Armors" } ),
 				m( "Accessory Emphasis",        "Content",  "Emphasizes added or modified player accessory items (includes wings).",
-					new HashSet<string> { "Accessories" } ),
+					TagFlavor.Specification, new HashSet<string> { "Accessories" } ),
 				m( "Mounts Emphasis",           "Content",  "Emphasizes added or modified player mounts or gameplay-affecting 'pets'.",
-					new HashSet<string> { "Mounts & Familiars" } ),
+					TagFlavor.Specification, new HashSet<string> { "Mounts & Familiars" } ),
 				m( "Vanity Emphasis",           "Content",  "Emphasizes added or modified player vanity items, dyes, or non-gameplay pets.",
-					new HashSet<string> { "Vanity" } ),
+					TagFlavor.Specification, new HashSet<string> { "Vanity" } ),
 				m( "Ores Emphasis",             "Content",  "Emphasizes added mineable ores (and probably matching equipment tiers).",
-					new HashSet<string> { "Ores" } ),
+					TagFlavor.Specification, new HashSet<string> { "Ores" } ),
 				m( "Recipes Emphasis",          "Content",  "Emphasizes added or modified recipes beyond the expected minimum, or provides recipe information.",
-					new HashSet<string> { "Recipes" } ),
+					TagFlavor.Specification, new HashSet<string> { "Recipes" } ),
 				m( "Foes Emphasis",             "Content",  "Emphasizes added or modified hostile NPCs (monsters).",
-					new HashSet<string> { "Hostile NPCs" } ),
+					TagFlavor.Specification, new HashSet<string> { "Hostile NPCs" } ),
 				m( "Friends Emphasis",          "Content",  "Emphasizes added or modified town NPCs (villagers).",
-					new HashSet<string> { "Town NPCs" } ),
+					TagFlavor.Specification, new HashSet<string> { "Town NPCs" } ),
 				m( "Critters Emphasis",         "Content",  "Emphasizes added or modified (passive) biome fauna.",
-					new HashSet<string> { "Critters" } ),
+					TagFlavor.Specification, new HashSet<string> { "Critters" } ),
 				m( "Bosses Emphasis",           "Content",  "Emphasizes added or modified boss monsters.",
-					new HashSet<string> { "Bosses" } ),
+					TagFlavor.Specification, new HashSet<string> { "Bosses" } ),
 				m( "Invasions Emphasis",        "Content",  "Emphasizes added or modified invasions or game events.",
-					new HashSet<string> { "Invasions & Events" } ),
+					TagFlavor.Specification, new HashSet<string> { "Invasions & Events" } ),
 				m( "Fishing Emphasis",          "Content",  "Emphasizes added or modified tools for fishing or types of fish.",
-					new HashSet<string> { "Fishing" } ),
+					TagFlavor.Specification, new HashSet<string> { "Fishing" } ),
 				m( "Blocks Emphasis",           "Content",  "Emphasizes added or modified new block types.",
-					new HashSet<string> { "Blocks" } ),
+					TagFlavor.Specification, new HashSet<string> { "Blocks" } ),
 				m( "Biomes Emphasis",           "Content",  "Emphasizes added or modified world biomes.",
-					new HashSet<string> { "Biomes" } ),
+					TagFlavor.Specification, new HashSet<string> { "Biomes" } ),
 				m( "Decorative Emphasis",       "Content",  "Emphasizes added or modified decorative objects (e.g. furniture for houses).",
-					new HashSet<string> { "Decorative" } ),
+					TagFlavor.Specification, new HashSet<string> { "Decorative" } ),
 				m( "Wiring Emphasis",           "Content",  "Emphasizes added or modified tools and toys for use for wiring.",
-					new HashSet<string> { "Wiring" } ),
+					TagFlavor.Specification, new HashSet<string> { "Wiring" } ),
 				m( "Music Emphasis",            "Content",  "Emphasizes added or modified music.",
-					new HashSet<string> { "Music" } ),
+					TagFlavor.Specification, new HashSet<string> { "Music" } ),
 				m( "Rich Art Emphasis",         "Content",  "Emphasizes added extensive or detailed art for new or existing content.",
-					new HashSet<string> { "Rich Art" } ),
+					TagFlavor.Specification, new HashSet<string> { "Rich Art" } ),
 				m( "Sounds Emphasis",           "Content",  "Emphasizes added or modified sound effects or ambience.",
-					new HashSet<string> { "Sounds" } ),
+					TagFlavor.Specification, new HashSet<string> { "Sounds" } ),
 				m( "Story Emphasis",            "Content",  "Emphasizes added elements of story telling or universe lore.",
-					new HashSet<string> { "Story" } ),
+					TagFlavor.Specification, new HashSet<string> { "Story" } ),
 				m( "SFX Emphasis",              "Content",  "Emphasizes added special FX.",
-					new HashSet<string> { "Special FX" } ),
+					TagFlavor.Specification, new HashSet<string> { "Special FX" } ),
 
 				m( "Dark",                  "Theme",    "Gloomy, edgy, or just plain poor visibility." ),
 				m( "Silly",                 "Theme",    "Light-hearted, immersion-breaking, or just plain absurd." ),
@@ -247,18 +267,24 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 			};
 
 			if( !ModHelpersMod.Instance.Config.DisableJudgmentalTags ) {
-				list.Add( m( "Unimaginative", "Judgmental", "Nothing special; exceedingly common, generic, or flavorless." ) );
+				list.Add( m( "Unimaginative", "Judgmental", "Nothing special; exceedingly common, generic, or flavorless.",
+					TagFlavor.IllFavored
+				) );
 				list.Add( m( "Low Effort", "Judgmental", "Evident lack of effort involved.",
-					null, new HashSet<string> { "Shows Effort" }
+					TagFlavor.IllFavored, null, new HashSet<string> { "Shows Effort" }
 				) );
 				list.Add( m( "Shows Effort", "Judgmental", "Evident investment of effort involved.",
-					null, new HashSet<string> { "Low Effort" }
+					TagFlavor.Specification, null, new HashSet<string> { "Low Effort" }
 				) );
-				list.Add( m( "Unoriginal Content", "Judgmental", "Contains stolen or extensively-derived content." ) );
+				list.Add( m( "Unoriginal Content", "Judgmental", "Contains stolen or extensively-derived content.",
+					TagFlavor.IllFavored
+				) );
 			}
 
-			ModTagDefinition.TagMap = list.ToDictionary( tagDef => tagDef.Tag, tagDef => tagDef );
-			ModTagDefinition.Tags = list.ToArray();
+			ModTagDefinition.TagMap = new ReadOnlyDictionary<string, ModTagDefinition>(
+				list.ToDictionary( tagDef => tagDef.Tag, tagDef => tagDef )
+			);
+			ModTagDefinition.Tags = list.ToList().AsReadOnly();
 		}
 	}
 }
