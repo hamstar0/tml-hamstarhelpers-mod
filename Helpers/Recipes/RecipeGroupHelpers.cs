@@ -14,25 +14,25 @@ namespace HamstarHelpers.Helpers.Recipes {
 		/// <summary>
 		/// Recipe group of items of an "evil" biome boss's drops (Shadow Scale and Tissue Sample).
 		/// </summary>
-		public static RecipeGroup EvilBiomeBossDrops => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBiomeBossDrops"];
+		public static RecipeGroup EvilBiomeBossDrops => RecipeGroupHelpers.Groups["ModHelpers:EvilBiomeBossDrops"];
 		/// <summary>
 		/// Recipe group of light pet items of an "evil" biome (Shadow Orb and Crimson Heart).
 		/// </summary>
-		public static RecipeGroup EvilBiomeLightPet => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsEvilBiomeLightPet"];
+		public static RecipeGroup EvilBiomeLightPet => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsEvilBiomeLightPet"];
 		/// <summary></summary>
-		public static RecipeGroup VanillaButterfly => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsVanillaButterfly"];
+		public static RecipeGroup VanillaButterfly => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsVanillaButterfly"];
 		/// <summary></summary>
-		public static RecipeGroup VanillaGoldCritter => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsVanillaGoldCritter"];
+		public static RecipeGroup VanillaGoldCritter => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsVanillaGoldCritter"];
 		/// <summary></summary>
-		public static RecipeGroup PressurePlates => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsPressurePlates"];
+		public static RecipeGroup PressurePlates => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsPressurePlates"];
 		/// <summary></summary>
-		public static RecipeGroup WeightedPressurePlates => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsWeightedPressurePlates"];
+		public static RecipeGroup WeightedPressurePlates => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsWeightedPressurePlates"];
 		/// <summary></summary>
-		public static RecipeGroup ConveyorBelts => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsConveyorBelts"];
+		public static RecipeGroup ConveyorBelts => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsConveyorBelts"];
 		/// <summary></summary>
-		public static RecipeGroup NpcBanners => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsNpcBanners"];
+		public static RecipeGroup NpcBanners => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsNpcBanners"];
 		/// <summary></summary>
-		public static RecipeGroup RecordedMusicBoxes => RecipeGroupHelpers.Groups["HamstarHelpers:EvilBossDropsRecordedMusicBoxes"];
+		public static RecipeGroup RecordedMusicBoxes => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsRecordedMusicBoxes"];
 
 
 		////
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 			IDictionary<string, RecipeGroup> groups = commonItemGrps.ToDictionary(
 				kv => {
 					string internalGrpName = kv.Key;
-					return "HamstarHelpers:" + internalGrpName;
+					return "ModHelpers:" + internalGrpName;
 				},
 				kv => {
 					string grpName = kv.Value.GroupName;

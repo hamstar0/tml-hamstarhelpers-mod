@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Classes.DataStructures;
+using System;
 using Terraria;
 
 
@@ -7,6 +8,16 @@ namespace HamstarHelpers.Helpers.NPCs.Attributes {
 	/// Assorted static "helper" functions pertaining to gameplay attributes of NPCs.
 	/// </summary>
 	public partial class NPCAttributeHelpers {
+		/// <summary>
+		/// Table of NPC ids by qualified names.
+		/// </summary>
+		public static ReadOnlyDictionaryOfSets<string, int> DisplayNamesToIds =>
+			ModHelpersMod.Instance.NPCAttributeHelpers._DisplayNamesToIds;
+
+
+
+		////////////////
+
 		/// <summary>
 		/// Gets an NPC's qualified (human readable) name.
 		/// </summary>

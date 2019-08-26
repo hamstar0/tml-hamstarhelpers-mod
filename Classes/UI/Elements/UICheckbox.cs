@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Classes.UI.Theme;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
 using System;
 using Terraria;
-using HamstarHelpers.Classes.UI.Theme;
+using Terraria.UI;
+
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
@@ -12,25 +12,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public class UICheckbox : UIThemedText {
 		/// <summary></summary>
-		public static Texture2D CheckboxTexture { get; private set; }
+		public Texture2D CheckboxTexture;
 		/// <summary></summary>
-		public static Texture2D CheckmarkTexture { get; private set; }
-
-
-		////////////////
-
-		static UICheckbox() {
-			UICheckbox.CheckboxTexture = null;
-			UICheckbox.CheckmarkTexture = null;
-		}
-
-		internal static void LoadTextures() {
-			UICheckbox.CheckboxTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_box" );
-			UICheckbox.CheckmarkTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_mark" );
-		}
-
-
-		////////////////
+		public Texture2D CheckmarkTexture;
 
 		/// <summary>
 		/// Hooks changes to the button state.
@@ -66,6 +50,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		}
 
 
+
 		////////////////
 
 		/// <param name="theme">Appearance style.</param>
@@ -81,8 +66,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				float textScale = 1,
 				bool large = false )
 				: base( theme, true, label, textScale, large ) {
-			if( Main.netMode != 2 && UICheckbox.CheckboxTexture == null || UICheckbox.CheckmarkTexture == null ) {
-				UICheckbox.LoadTextures();
+			if( Main.netMode != 2 ) {
+				this.CheckboxTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_box" );
+				this.CheckmarkTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_mark" );
 			}
 
 			this.Title = title;
@@ -111,9 +97,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			CalculatedStyle innerPos = base.GetInnerDimensions();
 			Vector2 pos = new Vector2( innerPos.X, innerPos.Y - 5 );
 
-			sb.Draw( UICheckbox.CheckboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f );
+			sb.Draw( this.CheckboxTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f );
 			if( this.Selected ) {
-				sb.Draw( UICheckbox.CheckmarkTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f );
+				sb.Draw( this.CheckmarkTexture, pos, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f );
 			}
 
 			base.DrawSelf( sb );

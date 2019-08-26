@@ -55,9 +55,13 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				}
 			}
 
+			this.CheckForAndApplyLowEffortTag( modName );
+
 			this.LayoutTagButtonsByOnState();
 
-			this.CheckForAndApplyLowEffortTag( modName );
+			if( hasExistingTags ) {
+				this.SetReadOnlyMode( true );
+			}
 		}
 
 

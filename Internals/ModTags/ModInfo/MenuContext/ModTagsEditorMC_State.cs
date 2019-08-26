@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 				LogHelpers.Warn( "Could not load mod tags; no mod found" );
 				return;
 			}
-
+			
 			this.MyManager.MyTagsUI.ResetTagButtonOnStates( true );
 			this.MyManager.SetCurrentModAsync( modName );
 		}

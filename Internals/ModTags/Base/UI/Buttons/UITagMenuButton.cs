@@ -125,6 +125,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			this.Remove();
 		}
 
+
 		////////////////
 
 		public void SetTagState( int state ) {
@@ -132,7 +133,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			if( this.TagState == state ) { return; }
 			this.TagState = state;
 
-			this.Manager.SetTagState( this.Text, this.TagState );
+			this.Manager.OnTagButtonStateChange( this.Text, this.TagState );
 			this.RefreshTheme();
 
 			this.OnStateChange?.Invoke( state );
@@ -141,7 +142,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		public void TogglePositiveTag() {
 			this.TagState = this.TagState <= 0 ? 1 : 0;
 
-			this.Manager.SetTagState( this.Text, this.TagState );
+			this.Manager.OnTagButtonStateChange( this.Text, this.TagState );
 			this.RefreshTheme();
 
 			this.OnStateChange?.Invoke( this.TagState );
@@ -150,7 +151,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		public void ToggleNegativeTag() {
 			this.TagState = this.TagState >= 0 ? -1 : 0;
 
-			this.Manager.SetTagState( this.Text, this.TagState );
+			this.Manager.OnTagButtonStateChange( this.Text, this.TagState );
 			this.RefreshTheme();
 
 			this.OnStateChange?.Invoke( this.TagState );

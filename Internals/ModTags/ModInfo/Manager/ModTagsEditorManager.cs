@@ -58,7 +58,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 
 		////////////////
 
-		public override void OnSetTagState( string tagName, int state ) {
+		public override void OnTagStateChange( string tagName, int state ) {
 		}
 	}
 }

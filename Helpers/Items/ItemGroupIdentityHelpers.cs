@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.NPCs;
 using System;
 using System.Collections.Generic;
@@ -38,16 +39,16 @@ namespace HamstarHelpers.Helpers.Items {
 		/// </summary>
 		/// <returns>Group names mapped to group description and a set of item ids.</returns>
 		public static IDictionary<string, ItemGroupDefinition> GetCommonItemGroups() {
-			IEnumerable<FieldInfo> itemGrpFields = typeof( ItemGroupIdentityHelpers )
-					.GetFields( BindingFlags.Static | BindingFlags.Public );
+			IEnumerable<PropertyInfo> itemGrpFields = typeof( ItemGroupIdentityHelpers )
+					.GetProperties( ReflectionHelpers.MostAccess );
 
 			itemGrpFields = itemGrpFields.Where( field => {
-				return field.FieldType == typeof( ItemGroupDefinition );
+				return field.PropertyType == typeof( ItemGroupDefinition );
 			} );
 
 			var groups = itemGrpFields.ToDictionary(
-				field => field.Name,
-				field => (ItemGroupDefinition)field.GetValue( null )
+				prop => prop.Name,
+				prop => (ItemGroupDefinition)prop.GetValue( null )
 			);
 			/*groups["EvilBiomeBossChunks"] = groups["EvilBiomeBossDrops"];
 			groups["EvilBiomeLightPet"] = groups["EvilBiomeLightPets"];

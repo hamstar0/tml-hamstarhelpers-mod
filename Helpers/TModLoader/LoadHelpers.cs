@@ -72,6 +72,10 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <returns></returns>
 		public static bool IsWorldSafelyBeingPlayed() {
 			var mymod = ModHelpersMod.Instance;
+			if( mymod.LoadHelpers == null ) {
+				return false;
+			}
+
 			bool notSafelyPlayed = mymod.LoadHelpers.StartupDelay >= ( 60 * 2 );
 
 			if( mymod.Config.DebugModeHelpersInfo && !notSafelyPlayed ) {

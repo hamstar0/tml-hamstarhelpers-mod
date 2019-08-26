@@ -12,15 +12,6 @@ namespace HamstarHelpers.Helpers.NPCs.Attributes {
 		private ReadOnlyDictionaryOfSets<string, int> _DisplayNamesToIds = null;
 
 
-		////////////////
-
-		/// <summary>
-		/// Table of NPC ids by qualified names.
-		/// </summary>
-		public static ReadOnlyDictionaryOfSets<string, int> DisplayNamesToIds =>
-			ModHelpersMod.Instance.NPCAttributeHelpers._DisplayNamesToIds;
-
-
 
 		////////////////
 

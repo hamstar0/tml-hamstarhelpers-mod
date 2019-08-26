@@ -25,13 +25,13 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				this.SetReadOnlyMode( false );
 				return;
 			}
-
+			
 			if( this.Manager.IsCurrentModRecentlyTagged() ) {
 				this.Manager.SetInfoTextDefault( "Tags already set." );
 				this.SetReadOnlyMode( false );
 				return;
 			}
-
+			
 			if( !this.EditButton.IsEditMode ) {
 				this.RefreshReadOnlyMode();
 			} else {
@@ -55,14 +55,16 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			string modName = this.Manager.CurrentModName;
 			ISet<string> tags = this.Manager.GetTagsWithGivenState( 1 );
 
-			if( this.Manager.AllModTagsSnapshot?.ContainsKey( modName ) == true ) {
+			if( this.Manager.AllModTagsSnapshot == null ) {
+				LogHelpers.Alert( "AllModTagsSnapshot == null" );
+			} else if( this.Manager.AllModTagsSnapshot.ContainsKey( modName ) == true ) {
 				// No changes?
 				if( tags.SetEquals( this.Manager.AllModTagsSnapshot[modName] ) ) {
 					this.SetEditMode( false );
 					return;
 				}
 			}
-
+			
 			// Non-zero tags?
 			if( tags.Count >= 2 ) {
 				this.EditButton.Enable();

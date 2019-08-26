@@ -14,15 +14,6 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		private ReadOnlyDictionaryOfSets<string, int> _DisplayNamesToIds = null;
 
 
-		////
-
-		public static ReadOnlyDictionaryOfSets<string, int> DisplayNamesToIds {
-			get {
-				return ModHelpersMod.Instance.ItemAttributeHelpers._DisplayNamesToIds;
-			}
-		}
-
-
 
 		////////////////
 

@@ -56,11 +56,11 @@ namespace HamstarHelpers.Internals.ModTags.Base.Manager {
 
 		////////////////
 
-		public void SetTagState( string tag, int state ) {
-			this.OnSetTagState( tag, state );
-			this.TagsUI.OnTagStateChange( tag, state );
+		public void OnTagButtonStateChange( string tag, int state ) {
+			this.OnTagStateChange( tag, state );
+			this.TagsUI.OnTagStateChangeForManager( tag, state );
 		}
 
-		public abstract void OnSetTagState( string tag, int state );
+		public abstract void OnTagStateChange( string tag, int state );
 	}
 }

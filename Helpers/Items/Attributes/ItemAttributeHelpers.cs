@@ -13,6 +13,18 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		private static IDictionary<int, int> _ProjPene = new Dictionary<int, int>();
 
 
+		////////////////
+
+		/// <summary>
+		/// Table of item ids by qualified names.
+		/// </summary>
+		public static ReadOnlyDictionaryOfSets<string, int> DisplayNamesToIds {
+			get {
+				return ModHelpersMod.Instance.ItemAttributeHelpers._DisplayNamesToIds;
+			}
+		}
+
+
 
 		////////////////
 
