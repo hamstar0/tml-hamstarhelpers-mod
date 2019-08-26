@@ -52,7 +52,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="initialWidth">Recommended width.</param>
 		/// <param name="initialHeight">Recommended height.</param>
-		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) : base( theme, false ) {
+		public UIDialog( UITheme theme, int initialWidth, int initialHeight ) : base( theme, true ) {
 			this.IsOpen = false;
 			this.InitialContainerWidth = initialWidth;
 			this.InitialContainerHeight = initialHeight;
@@ -66,6 +66,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public override void OnInitialize() {
 			this.InitializeContainer( this.InitialContainerWidth, this.InitialContainerHeight );
 			this.InitializeComponents();
+
+			this.RefreshTheme();
 		}
 
 
@@ -89,8 +91,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.InnerContainer.Width.Set( 0f, 1f );
 			this.InnerContainer.Height.Set( 0f, 1f );
 			this.OuterContainer.Append( (UIElement)this.InnerContainer );
-
-			this.Theme.ApplyPanel( this.InnerContainer );
 		}
 
 
@@ -255,6 +255,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		public override void RefreshTheme() {
 			base.RefreshTheme();
+
 			this.Theme.ApplyPanel( this.InnerContainer );
 		}
 

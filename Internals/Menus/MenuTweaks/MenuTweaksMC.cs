@@ -38,19 +38,10 @@ namespace HamstarHelpers.Internals.Menus.MenuTweaks {
 		public override void OnModsUnloading() { }
 
 		public override void OnActivationForSession( UIState ui ) {
-			UIElement elem;
-
-			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) || elem == null ) {
-				if( !ReflectionHelpers.Get( ui, "uIElement", out elem ) || elem == null ) {
-					List<UIElement> elems;
-
-					if( !ReflectionHelpers.Get( ui, "Elements", out elems ) || elems == null || elems.Count == 0 ) {
-						LogHelpers.Alert( "Container element not found for " + ui.GetType().Name );
-						return;
-					}
-
-					elem = elems[0];
-				}
+			UIElement elem = this.GetContainer( ui );
+			if( elem == null ) {
+				LogHelpers.Alert( "Container element not found for " + ui.GetType().Name );
+				return;
 			}
 			
 			elem.Top.Set( 80f, 0f );
@@ -60,19 +51,40 @@ namespace HamstarHelpers.Internals.Menus.MenuTweaks {
 		}
 
 		public override void OnDeactivation() {
-			UIState modBrowserUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
-			if( modBrowserUi == null ) {
+			UIState ui = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+			if( ui == null ) {
 				LogHelpers.Warn( "Invalid UI." );
 				return;
 			}
 
-			UIElement elem;
-			if( !ReflectionHelpers.Get( modBrowserUi, "_rootElement", out elem ) || elem == null ) {
-				LogHelpers.Alert( "_rootElement not found for UIModBrowser." );
+			/*UIElement elem = this.GetContainer( ui );
+			if( ui == null ) {
+				LogHelpers.Alert( "Container element not found for " + ui.GetType().Name );
 				return;
 			}
 
-			elem.Recalculate();
+			elem.Recalculate();*/
+		}
+
+
+		////////////////
+
+		public UIElement GetContainer( UIState ui ) {
+			UIElement elem;
+
+			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) || elem == null ) {
+				if( !ReflectionHelpers.Get( ui, "uIElement", out elem ) || elem == null ) {
+					List<UIElement> elems;
+
+					if( !ReflectionHelpers.Get( ui, "Elements", out elems ) || elems == null || elems.Count == 0 ) {
+						return null;
+					}
+
+					elem = elems[0];
+				}
+			}
+
+			return elem;
 		}
 	}
 }
