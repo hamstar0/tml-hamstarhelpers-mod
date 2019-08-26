@@ -51,6 +51,10 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 				int i = 0;
 				foreach( string tag in this.ModTags ) {
+					if( !ModTagDefinition.TagMap.ContainsKey(tag) ) {
+						continue;
+					}
+
 					string tagStr = tag + ((i++ < this.ModTags.Count-1) ? "," : "");
 					Color tagColor = ModTagDefinition.TagMap[tag].GetFlavorColor();
 

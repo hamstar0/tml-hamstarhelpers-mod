@@ -164,6 +164,8 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.CleanupModTiles.OnClick += ( _, __ ) => {
 				if( !self.CleanupModTiles.IsEnabled ) { return; }
 
+				int cleaned = 0;
+
 				for( int i = 0; i < Main.maxTilesX; i++ ) {
 					for( int j = 0; j < Main.maxTilesY; j++ ) {
 						Tile tile = Framing.GetTileSafely( i, j );
@@ -173,11 +175,12 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 						if( modTile.mod == null || modTile is MysteryTile ) {
 							TileHelpers.KillTile( i, j, false, false );
+							cleaned++;
 						}
 					}
 				}
 
-				Main.NewText( "Modded tiles cleaned up.", Color.Lime );
+				Main.NewText( cleaned+" modded tiles cleaned up.", Color.Lime );
 			};
 			this.Append( this.CleanupModTiles );
 
