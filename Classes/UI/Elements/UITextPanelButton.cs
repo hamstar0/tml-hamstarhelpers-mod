@@ -79,17 +79,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			}
 		}
 
-
-		////////////////
-
-		public virtual void Show() {
-			this.IsHidden = false;
-		}
-
-		public virtual void Hide() {
-			this.IsHidden = true;
-		}
-
 		////////////////
 
 		public override void Draw( SpriteBatch spriteBatch ) {

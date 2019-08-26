@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 	partial class UIModTagsEditorInterface : UIModTagsInterface {
-		public override void RefreshControlsStates() {
-			base.RefreshControlsStates();
+		public override void RefreshControls() {
+			this.ResetButton.RefreshEnableState( this.EditButton.IsEditMode );	//was base.RefreshControls();
 
 			this.RefreshMode();
 		}
@@ -103,6 +103,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			} else {
 				this.EditButton.Disable();
 			}
+
+			this.ResetButton.RefreshEnableState( true );
 		}
 	}
 }

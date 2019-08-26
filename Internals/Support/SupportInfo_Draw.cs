@@ -16,29 +16,45 @@ using Terraria.GameContent.UI.Elements;
 namespace HamstarHelpers.Internals.Menus.Support {
 	/// @private
 	internal partial class SupportInfoDisplay {
-		private static void _Draw( GameTime gt ) {
-			if( !Main.gameMenu ) { return; }
-			if( Main.spriteBatch == null ) { return; }
+		private static bool CanDraw() {
+			if( !Main.gameMenu ) { return false; }
+			if( Main.spriteBatch == null ) {
+				return false;
+			}
 
 			var mymod = ModHelpersMod.Instance;
-			if( mymod == null || mymod.Config == null || Main.MenuUI == null ) { return; }
+			if( mymod == null || mymod.Config == null || Main.MenuUI == null ) {
+				return false;
+			}
 
-			try {
-				if( Main.MenuUI.CurrentState != null ) {
-					Type uiType = Main.MenuUI.CurrentState.GetType();
-					if( uiType.Name != "UIMods" ) {
-						return;
-					}
-
-					MenuUIDefinition menuDef;
-					if( !Enum.TryParse( uiType.Name, out menuDef ) ) {
-						return;
-					}
-					if( MenuContextService.ContainsMenuContexts( menuDef ) ) {
-						return;
+			if( Main.MenuUI.CurrentState != null ) {
+				Type uiType = Main.MenuUI.CurrentState.GetType();
+				if( mymod.Data.ModTagsOpened ) {
+					if( uiType.Name == "UIModInfo" || uiType.Name == "UIModBrowser" ) {
+						return false;
 					}
 				}
-				
+
+				MenuUIDefinition menuDef;
+				if( !Enum.TryParse( uiType.Name, out menuDef ) ) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+
+		////////////////
+
+		private static void _Draw( GameTime gt ) {
+			try {
+				if( !SupportInfoDisplay.CanDraw() ) {
+					return;
+				}
+
+				var mymod = ModHelpersMod.Instance;
+
 				bool _;
 				XNAHelpers.DrawBatch( ( sb ) => {
 					mymod.SupportInfo?.Update();

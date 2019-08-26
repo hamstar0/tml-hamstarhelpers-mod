@@ -20,7 +20,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 				: base( infoDisplay, menuDef, true ) {
 			this.TagsUI = new UIModTagsModBrowserInterface( UITheme.Vanilla, this );
 
-			this.TagsUI.RefreshControlsStates();
+			this.TagsUI.RefreshControls();
 		}
 
 

@@ -37,8 +37,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 		////////////////
 
-		public virtual void RefreshControlsStates() {
-			this.ResetButton.RefreshEnableState();
+		public virtual void RefreshControls() {
+			this.ResetButton.RefreshEnableState( true );
 		}
 
 

@@ -214,6 +214,14 @@ namespace HamstarHelpers {
 		/// Disables mod tags UI for mod browser and mod info.
 		/// </summary>
 		[Header( "Features settings" )]
+		[Label( "Disable menu resize tweaks" )]
+		[Tooltip( "Disables menu resize tweaks." )]
+		//[ReloadRequired]
+		public bool DisableModMenuTweaks = false;
+
+		/// <summary>
+		/// Disables mod tags UI for mod browser and mod info.
+		/// </summary>
 		[Label( "Disable mod tags" )]
 		[Tooltip( "Disables mod tags UI for mod browser and mod info." )]
 		//[ReloadRequired]

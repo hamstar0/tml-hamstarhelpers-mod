@@ -45,14 +45,22 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 
 		////////////////
 
-		public void RefreshEnableState() {
+		public void RefreshEnableState( bool canResetTags ) {
 			//if( ModInfoTagsMenuContext.RecentTaggedMods.Contains( modInfoContext.CurrentModName ) ) {
 			if( this.Manager.IsCurrentModRecentlyTagged() ) {
 				this.Disable();
 				return;
 			}
 
-			if( this.Manager.GetTagsWithGivenState(1).Count > 0 || this.Manager.GetTagsWithGivenState(-1).Count > 0 ) {
+			bool modifiedTagsExist = this.Manager.GetTagsWithGivenState( 1 ).Count > 0
+				|| this.Manager.GetTagsWithGivenState( -1 ).Count > 0;
+
+			if( !modifiedTagsExist ) {
+				this.Disable();
+				return;
+			}
+
+			if( canResetTags ) {
 				this.Enable();
 				return;
 			} else {

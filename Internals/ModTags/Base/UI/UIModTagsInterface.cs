@@ -57,7 +57,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 		////////////////
 
 		public void OnTagStateChangeForManager( string tagName, int state ) {
-			this.RefreshControlsStates();
+			this.RefreshControls();
 		}
 
 

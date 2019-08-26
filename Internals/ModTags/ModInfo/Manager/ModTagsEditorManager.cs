@@ -24,7 +24,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 				: base( infoDisplay, menuDef, false ) {
 			this.TagsUI = new UIModTagsEditorInterface( UITheme.Vanilla, this, _uiModInfo );
 
-			this.TagsUI.RefreshControlsStates();
+			this.TagsUI.RefreshControls();
 		}
 
 
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 					new HashSet<string>();
 
 			this.MyTagsUI.SetTagsForCurrentMod( modName, tagsOfMod );
-			this.MyTagsUI.RefreshControlsStates();
+			this.MyTagsUI.RefreshControls();
 		}
 
 

@@ -90,13 +90,13 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons {
 		public void SetReadOnlyModeForUI() {
 			this.SetReadOnlyModeForButton();
 
-			this.Manager.TagsUI.RefreshControlsStates();
+			this.Manager.TagsUI.RefreshControls();
 		}
 
 		public void SetEditModeForUI() {
 			this.SetEditModeForButton();
 
-			this.Manager.TagsUI.RefreshControlsStates();
+			this.Manager.TagsUI.RefreshControls();
 		}
 
 

@@ -46,7 +46,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 
 			ModTagsManager.RecentTaggedMods.Add( this.CurrentModName );
 
-			this.TagsUI.RefreshControlsStates();
+			this.TagsUI.RefreshControls();
 		}
 	}
 }

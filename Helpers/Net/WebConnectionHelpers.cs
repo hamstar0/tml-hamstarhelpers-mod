@@ -126,7 +126,7 @@ namespace HamstarHelpers.Helpers.Net {
 			HttpWebResponse resp = null;
 			try {
 				resp = (HttpWebResponse)request.GetResponse();
-			} catch( WebException _ ) {
+			} catch( WebException ) {
 				output = "";
 				return false;
 			}

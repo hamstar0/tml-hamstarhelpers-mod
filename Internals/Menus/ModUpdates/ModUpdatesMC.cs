@@ -19,7 +19,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 	partial class ModUpdatesMenuContext : SessionMenuContext {
 		public static void Initialize() {
 			if( ModHelpersMod.Instance.Config.DisableModMenuUpdates ) { return; }
-			
+
 			var ctx = new ModUpdatesMenuContext( MenuUIDefinition.UIMods, "ModHelpers: Mod Updates" );
 			MenuContextService.AddMenuContext( ctx );
 		}
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		public override void Show( UIState ui ) {
 			base.Show( ui );
-			
+
 			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, () => {
 				CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 					if( args != null ) {
@@ -84,12 +84,12 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				}
 
 				TmodFile modFile;
-				if( !ReflectionHelpers.Get(mod, "modFile", out modFile) || modFile == null ) {
-					LogHelpers.Warn( "Could not get modFile from list item " + item.ToString()+"'s mod "+mod.ToString() );
+				if( !ReflectionHelpers.Get( mod, "modFile", out modFile ) || modFile == null ) {
+					LogHelpers.Warn( "Could not get modFile from list item " + item.ToString() + "'s mod " + mod.ToString() );
 					continue;
 				}
 
-				if( modInfo.ContainsKey(modFile.name) ) {
+				if( modInfo.ContainsKey( modFile.name ) ) {
 					this.CheckVersion( modFile.name, modInfo[modFile.name], list, modFile.version );
 				}
 			}
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		////////////////
 
 		public void CheckVersion( string modName, BasicModInfo modInfo, UIList modsUiModList, Version modVersion ) {
-//LogHelpers.Log( "modInfo.Count:"+modInfo.Count+ ", name:"+name+", vers:"+vers);
+			//LogHelpers.Log( "modInfo.Count:"+modInfo.Count+ ", name:"+name+", vers:"+vers);
 			if( modInfo.Version == modVersion ) { return; }
 
 			UIPanel uiModItem = null;
@@ -108,12 +108,12 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				object mod;
 				TmodFile modFile;
 
-				if( !ReflectionHelpers.Get(modItem, "_mod", out mod) || mod == null ) {
-					LogHelpers.Warn( "Could not get mod for version check from mod list item "+modItem.ToString() );
+				if( !ReflectionHelpers.Get( modItem, "_mod", out mod ) || mod == null ) {
+					LogHelpers.Warn( "Could not get mod for version check from mod list item " + modItem.ToString() );
 					continue;
 				}
-				if( !ReflectionHelpers.Get(mod, "modFile", out modFile) || modFile == null ) {
-					LogHelpers.Warn( "Could not get mod file for version check from mod "+mod.ToString()+"'s list item " + modItem.ToString() );
+				if( !ReflectionHelpers.Get( mod, "modFile", out modFile ) || modFile == null ) {
+					LogHelpers.Warn( "Could not get mod file for version check from mod " + mod.ToString() + "'s list item " + modItem.ToString() );
 					continue;
 				}
 
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				Version newModVersion = modInfo.Version;
 				string msg = newModVersion.ToString() + " On Mod Browser";
 
-//LogHelpers.Log( " name: "+name+", uiModItem: " + uiModItem.GetOuterDimensions().ToRectangle() );
+				//LogHelpers.Log( " name: "+name+", uiModItem: " + uiModItem.GetOuterDimensions().ToRectangle() );
 				var txt = new UIText( msg, 0.8f, true );
 				txt.Top.Set( 24f, 0f );
 				txt.Left.Set( -184f, 0.5f );

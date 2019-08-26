@@ -3,6 +3,7 @@ using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Internals.Menus.MenuTweaks;
 using HamstarHelpers.Internals.Menus.ModUpdates;
 using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
 using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
@@ -29,6 +30,7 @@ namespace HamstarHelpers.Internals.Menus {
 				ModTagsEditorMenuContext.Initialize( true );
 				ModTagsModBrowserMenuContext.Initialize( true );
 				ModUpdatesMenuContext.Initialize();
+				MenuTweaksMenuContext.Initialize();
 				//if( AprilFoolsMenuContext.IsAprilFools() ) {
 				//	AprilFoolsMenuContext.Initialize();
 				//}
