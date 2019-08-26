@@ -13,6 +13,8 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 		/// <summary></summary>
 		Specification,
 		/// <summary></summary>
+		Emphasis,
+		/// <summary></summary>
 		Important,
 		/// <summary></summary>
 		TechnicallyImportant,
@@ -44,6 +46,7 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 				new Dictionary<TagFlavor, Color> {
 					{ TagFlavor.Mundane, Color.Silver * 0.8f },
 					{ TagFlavor.Specification, Color.Silver },
+					{ TagFlavor.Emphasis, Color.Silver * 1.1f },
 					{ TagFlavor.Important, Color.Blue },
 					{ TagFlavor.TechnicallyImportant, Color.SkyBlue },
 					{ TagFlavor.Alert, Color.Yellow },
