@@ -1,6 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
@@ -210,10 +212,7 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 
 			if( skipCoins ) {
-				foreach( var kv in changes ) {
-					int itemIdx = kv.Key;
-					int changeDir = kv.Value;
-
+				foreach( (int itemIdx, int changeDir) in changes.ToArray() ) {
 					currItem = currItems[itemIdx];
 					prevItem = prevItems[itemIdx];
 

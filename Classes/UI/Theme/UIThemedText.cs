@@ -1,8 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -73,7 +71,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Applies the current theme's styles to a given element (presumably a child element).
 		/// </summary>
 		/// <param name="element"></param>
-		/// <param name="recursive"></param>
 		public virtual void RefreshThemeForChild( UIElement element ) {
 			if( !this.Theme.Apply( element ) ) {
 				this.Theme.ApplyByType( element );

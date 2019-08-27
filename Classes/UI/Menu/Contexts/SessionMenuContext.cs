@@ -42,7 +42,9 @@ namespace HamstarHelpers.Classes.UI.Menu {
 
 		/// <summary>
 		/// </summary>
-		/// <param name="displayInfo">Whether an info panel is used/exists.</param>
+		/// <param name="menuDefinitionOfContext">Which menu UI this context belongs to.</param>
+		/// <param name="contextName">Unique name of this context.</param>
+		/// <param name="displayInfo">Whether to show an info display box at the top.</param>
 		/// <param name="occludesLogo">Whether the Terraria logo is removed.</param>
 		protected SessionMenuContext( MenuUIDefinition menuDefinitionOfContext,
 				string contextName,

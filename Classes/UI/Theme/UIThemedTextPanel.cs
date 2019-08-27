@@ -74,7 +74,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Applies the current theme's styles to a given element (presumably a child element).
 		/// </summary>
 		/// <param name="element"></param>
-		/// <param name="recursive"></param>
 		public virtual void RefreshThemeForChild( UIElement element ) {
 			if( !this.Theme.Apply( element ) ) {
 				this.Theme.ApplyByType( element );

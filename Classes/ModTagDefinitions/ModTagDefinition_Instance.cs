@@ -48,7 +48,7 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 					{ TagFlavor.Specification, Color.Silver },
 					{ TagFlavor.Emphasis, Color.Silver * 1.1f },
 					{ TagFlavor.Important, Color.Blue },
-					{ TagFlavor.TechnicallyImportant, Color.SkyBlue },
+					{ TagFlavor.TechnicallyImportant, Color.Lerp(Color.Blue, Color.White, 0.5f) },
 					{ TagFlavor.Alert, Color.Yellow },
 					{ TagFlavor.Warning, Color.Purple },
 					{ TagFlavor.Deficient, Color.SlateGray },
