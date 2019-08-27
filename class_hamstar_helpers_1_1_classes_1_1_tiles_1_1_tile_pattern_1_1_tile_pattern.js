@@ -1,0 +1,25 @@
+var class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern =
+[
+    [ "TilePattern", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e", null ],
+    [ "Check", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a161c6cbd8d94d2f770e08b471b89eb46", null ],
+    [ "CheckArea", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a52951491e8f36c9b787e7d46dcce6db2", null ],
+    [ "CheckArea", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ab6812800322cc9e4946ba6e334749ca5", null ],
+    [ "AbsoluteAir", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a251cc5cf0b1db3df88b37f5d00914d35", null ],
+    [ "CommonSolid", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ad3a4cd56456bafb03198fa474652a84e", null ],
+    [ "NonFilled", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ad553fa493ccd1848e37b7a7f21a26440", null ],
+    [ "NonSolid", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#afabd22c351f0ff19a1bb28be64a5515d", null ],
+    [ "OpenWall", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aefd541c56b43261cb9867e9aa1d5ebad", null ],
+    [ "HasHoney", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a3b7f0ba2cedeaaf653a0e1dd27b09a30", null ],
+    [ "HasLava", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a24c207b8d30d4fd969b130b4e5fe0313", null ],
+    [ "HasWall", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a61724cbc3b24abf8bc7188f9ef8ce032", null ],
+    [ "HasWater", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a0bd97daef59ca16b7097d2ede585c36c", null ],
+    [ "HasWire1", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#abd81959a234430f8f7dd4e3a4d557f46", null ],
+    [ "HasWire2", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a34395f025e696a664704b35913180973", null ],
+    [ "HasWire3", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ab344f9108ad5a430da9aab26f439e0d3", null ],
+    [ "HasWire4", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ae5ef5ea680f5345350dc1629e0e53b33", null ],
+    [ "IsActuated", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a760b32582a9cd729ad2c9bd7331af920", null ],
+    [ "IsPlatform", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a5fd5186ceda80627d3c81f594d9b1e2e", null ],
+    [ "IsSolid", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6", null ],
+    [ "IsVanillaBombable", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a22af0ad9b527669082c6e1100609bccd", null ],
+    [ "Slope", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a7dfd6337047bd13f3ffea1567dbbb07e", null ]
+];

@@ -12,6 +12,6 @@ var namespace_hamstar_helpers_1_1_services =
     [ "RecipeHack", "namespace_hamstar_helpers_1_1_services_1_1_recipe_hack.html", "namespace_hamstar_helpers_1_1_services_1_1_recipe_hack" ],
     [ "Server", "namespace_hamstar_helpers_1_1_services_1_1_server.html", "namespace_hamstar_helpers_1_1_services_1_1_server" ],
     [ "Timers", "namespace_hamstar_helpers_1_1_services_1_1_timers.html", "namespace_hamstar_helpers_1_1_services_1_1_timers" ],
-    [ "Tml", "namespace_hamstar_helpers_1_1_services_1_1_tml.html", "namespace_hamstar_helpers_1_1_services_1_1_tml" ],
+    [ "TML", "namespace_hamstar_helpers_1_1_services_1_1_t_m_l.html", "namespace_hamstar_helpers_1_1_services_1_1_t_m_l" ],
     [ "UI", "namespace_hamstar_helpers_1_1_services_1_1_u_i.html", "namespace_hamstar_helpers_1_1_services_1_1_u_i" ]
 ];

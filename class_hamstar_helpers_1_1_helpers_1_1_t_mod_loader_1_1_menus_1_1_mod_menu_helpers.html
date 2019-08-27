@@ -105,16 +105,19 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7a13f9448e46c8c562bb486775a71156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters the mod browser mod list to a specific set of mods, or none.  <a href="#a7a13f9448e46c8c562bb486775a71156">More...</a><br /></td></tr>
 <tr class="separator:a7a13f9448e46c8c562bb486775a71156"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a40e3689c22f03522df06b25350086b"><td class="memItemLeft" align="right" valign="top">static TmodFile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#a4a40e3689c22f03522df06b25350086b">GetModFile</a> (UIState ui)</td></tr>
-<tr class="memdesc:a4a40e3689c22f03522df06b25350086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the file data for a given mod within a given mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (typically the Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_info.html">Info</a> menu page).  <a href="#a4a40e3689c22f03522df06b25350086b">More...</a><br /></td></tr>
+<tr class="memdesc:a4a40e3689c22f03522df06b25350086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the file data for a given mod within a given mod-representing menu UI (typically the Mod Info menu page).  <a href="#a4a40e3689c22f03522df06b25350086b">More...</a><br /></td></tr>
 <tr class="separator:a4a40e3689c22f03522df06b25350086b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7958059b0cd2869764916c08956ce160"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#a7958059b0cd2869764916c08956ce160">GetModName</a> (UIState prevUi, UIState currUi)</td></tr>
-<tr class="memdesc:a7958059b0cd2869764916c08956ce160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mod name of a mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (sometimes needs the previous <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> for context).  <a href="#a7958059b0cd2869764916c08956ce160">More...</a><br /></td></tr>
+<tr class="memdesc:a7958059b0cd2869764916c08956ce160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the mod name of a mod-representing menu UI (sometimes needs the previous UI for context).  <a href="#a7958059b0cd2869764916c08956ce160">More...</a><br /></td></tr>
 <tr class="separator:a7958059b0cd2869764916c08956ce160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a966a4bc077795bedb2729f549c4e1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#a71a966a4bc077795bedb2729f549c4e1">GetModDescriptionFromCurrentMenuUI</a> (out string output)</td></tr>
+<tr class="memdesc:a71a966a4bc077795bedb2729f549c4e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the shown description text from the given mod-representing UI, if applicable.  <a href="#a71a966a4bc077795bedb2729f549c4e1">More...</a><br /></td></tr>
+<tr class="separator:a71a966a4bc077795bedb2729f549c4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to the mod list menu. </p>
 
-<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00018">18</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a7a13f9448e46c8c562bb486775a71156"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a13f9448e46c8c562bb486775a71156">&#9670;&nbsp;</a></span>ApplyModBrowserFilter()</h2>
@@ -166,7 +169,44 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00023">23</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00025">25</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a71a966a4bc077795bedb2729f549c4e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a966a4bc077795bedb2729f549c4e1">&#9670;&nbsp;</a></span>GetModDescriptionFromCurrentMenuUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.TModLoader.Menus.ModMenuHelpers.GetModDescriptionFromCurrentMenuUI </td>
+          <td>(</td>
+          <td class="paramtype">out string&#160;</td>
+          <td class="paramname"><em>output</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the shown description text from the given mod-representing UI, if applicable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">output</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00171">171</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -194,7 +234,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Retrieves the file data for a given mod within a given mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (typically the Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_info.html">Info</a> menu page). </p>
+<p>Retrieves the file data for a given mod within a given mod-representing menu UI (typically the Mod Info menu page). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ui</td><td></td></tr>
@@ -203,7 +243,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00089">89</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00091">91</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -241,7 +281,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the mod name of a mod-representing menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> (sometimes needs the previous <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> for context). </p>
+<p>Gets the mod name of a mod-representing menu UI (sometimes needs the previous UI for context). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">prevUi</td><td></td></tr>
@@ -251,7 +291,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00112">112</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_menu_helpers_8cs_source.html#l00114">114</a> of file <a class="el" href="_mod_menu_helpers_8cs_source.html">ModMenuHelpers.cs</a>.</p>
 
 </div>
 </div>

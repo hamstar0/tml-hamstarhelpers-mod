@@ -6,6 +6,7 @@ var class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors =
     [ "Alert", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a35b0f9fc5bc3f0d785debf603f24c8b4", null ],
     [ "Disco", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#adc4b4ddb4016eca41811d97ca498d2c5", null ],
     [ "DiscoFast", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#abc0bce228d3e47ff3c7881acfeafbd71", null ],
+    [ "Ember", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a1d0f8f6aff5868bfc4cfcbaaabab1632", null ],
     [ "Ether", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a98465ffabd3361fdd6344f001f75a9da", null ],
     [ "Fire", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#adfa14ba3008f63328a5402083b326676", null ],
     [ "Strobe", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a8cef30b53cd1a4906dee0098ab45ff24", null ],

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['netplayhelpers',['NetPlayHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_net_play_helpers.html',1,'HamstarHelpers::Helpers::Net']]],
+  ['npcattributehelpers',['NPCAttributeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_attributes_1_1_n_p_c_attribute_helpers.html',1,'HamstarHelpers::Helpers::NPCs::Attributes']]],
   ['npcbannerhelpers',['NPCBannerHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_banner_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],
   ['npcdrawhelpers',['NPCDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_draw_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],
   ['npcfinderhelpers',['NPCFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_finder_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],

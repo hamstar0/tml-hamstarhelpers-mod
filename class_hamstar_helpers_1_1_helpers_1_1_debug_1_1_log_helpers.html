@@ -101,9 +101,9 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:adeaebe355ce68e30c8229f5f637be53c"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#adeaebe355ce68e30c8229f5f637be53c">FormatMessage</a> (string msg, bool addContext)</td></tr>
-<tr class="memdesc:adeaebe355ce68e30c8229f5f637be53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats a given message as it would appear in the log output.  <a href="#adeaebe355ce68e30c8229f5f637be53c">More...</a><br /></td></tr>
-<tr class="separator:adeaebe355ce68e30c8229f5f637be53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e61e38c0852f43e16700011fbdf6281"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a3e61e38c0852f43e16700011fbdf6281">FormatMessage</a> (string msg, int contextDepth=-1)</td></tr>
+<tr class="memdesc:a3e61e38c0852f43e16700011fbdf6281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formats a given message as it would appear in the log output.  <a href="#a3e61e38c0852f43e16700011fbdf6281">More...</a><br /></td></tr>
+<tr class="separator:a3e61e38c0852f43e16700011fbdf6281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae141f63955b55fae280ffdb3c4a19f8e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae141f63955b55fae280ffdb3c4a19f8e">Log</a> (string msg=&quot;&quot;)</td></tr>
 <tr class="memdesc:ae141f63955b55fae280ffdb3c4a19f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a plain log message.  <a href="#ae141f63955b55fae280ffdb3c4a19f8e">More...</a><br /></td></tr>
 <tr class="separator:ae141f63955b55fae280ffdb3c4a19f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,7 +163,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00066">66</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00067">67</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -199,12 +199,12 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00052">52</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00050">50</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
-<a id="adeaebe355ce68e30c8229f5f637be53c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adeaebe355ce68e30c8229f5f637be53c">&#9670;&nbsp;</a></span>FormatMessage()</h2>
+<a id="a3e61e38c0852f43e16700011fbdf6281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e61e38c0852f43e16700011fbdf6281">&#9670;&nbsp;</a></span>FormatMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,8 +221,8 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>addContext</em>&#160;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>contextDepth</em> = <code>-1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -241,13 +241,13 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td></td></tr>
-    <tr><td class="paramname">addContext</td><td>Prefixes the caller's namespace, class, and method "context".</td></tr>
+    <tr><td class="paramname">contextDepth</td><td>Indicates whether to also output the callstack context at the specified depth. No output if -1 is set.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -283,7 +283,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00055">55</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00056">56</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -319,7 +319,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00042">42</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00040">40</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -355,7 +355,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00074">74</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00080">80</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -391,7 +391,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00080">80</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00081">81</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -427,7 +427,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00062">62</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00063">63</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>

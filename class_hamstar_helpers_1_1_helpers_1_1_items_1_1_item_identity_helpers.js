@@ -1,29 +1,5 @@
 var class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers =
 [
-    [ "GetCommonItemGroups", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a9ca864c641e1aae0e5f0b8bbe51b150d", null ],
-    [ "GetQualifiedName", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ad15de2743fe22d17cf20ff7218bc0f42", null ],
-    [ "GetQualifiedName", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ade25bf38430cb088d17fcdeb74b3d146", null ],
-    [ "GetTypeByName", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ab89422c71846ed2cee7e1c7dc28a79ea", null ],
-    [ "GetUniqueKey", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ab0355ada553e3195ff748868104314d8", null ],
-    [ "GetUniqueKey", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#accd669033c4542292090d92b2f433729", null ],
-    [ "GetVanillaContainerItemTypes", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#aa67327297cb9360822481ebe02573752", null ],
-    [ "GetVanillaSnapshotHash", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#abb1622f711484013653a6b77636432e5", null ],
-    [ "TypeFromUniqueKey", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a3979ee5592f746377322661634522398", null ],
-    [ "AllPressurePlates", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a3b6d812aff6fedf310030023e979404b", null ],
-    [ "ConveyorBeltPair", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#afc74e67308884b6f56d17283fd0100e4", null ],
-    [ "EvilBiomeBossDrops", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a9ea1d9d2282f18f9739b31ec86db54ba", null ],
-    [ "EvilBiomeLightPets", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a461f228aab5020e2d1034ff239130071", null ],
-    [ "MagicMirrors", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#ab7b524461775bc3e704d882b03b3fbd3", null ],
-    [ "Paints", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a009a9866171ef04e6ee4a92fa4ba5235", null ],
-    [ "VanillaAlchemyHerbs", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a76076949168edbca03d445eb3e64935f", null ],
-    [ "VanillaAnimals", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a450e11e8a342da3776826a25a60dbc15", null ],
-    [ "VanillaBugs", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a084f0e40a78adf5c69fb95af49e99f27", null ],
-    [ "VanillaButterflies", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a1a5da58e76a78517a916fc73913d470c", null ],
-    [ "VanillaDyes", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a79e5eaccb5769ae897fc88249366baab", null ],
-    [ "VanillaGoldCritters", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a64caa9924f4790624407b2aff12924cc", null ],
-    [ "VanillaStrangePlants", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a849dcd47e99a0e4712ac228df0f07814", null ],
-    [ "WarpPotions", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a8932fd0701bb027414784195ffbe637a", null ],
-    [ "WeightPressurePlates", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a739ee252b13b7f5f2475f4c4819be659", null ],
-    [ "MobBanners", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#aa0584e714c7a106606b725114a1edccc", null ],
-    [ "VanillaRecordedMusicBoxes", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#a29e9b63fb8c24eceb0e8a6b489c21885", null ]
+    [ "GetUniqueKeySegs", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#af2a01876cd4231b59804bc0d3b8ba328", null ],
+    [ "GetVanillaSnapshotHash", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html#abb1622f711484013653a6b77636432e5", null ]
 ];

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['temple',['Temple',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a2bf13217295d75ae2fa2734d9ee4ef37a54026e80aeaf32220fe0b10441eaca0d',1,'HamstarHelpers.Helpers.World.Temple()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a84bdde1b2d6ce1b05cf8834a1413fe43a54026e80aeaf32220fe0b10441eaca0d',1,'HamstarHelpers.Helpers.World.Temple()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#ac51206d892b05ee40805a3ec9330faaaa54026e80aeaf32220fe0b10441eaca0d',1,'HamstarHelpers.Helpers.World.Temple()']]]
+  ['pink',['Pink',['../namespace_hamstar_helpers_1_1_helpers_1_1_players.html#ac3593e1d99b88070c03f558882ac1ce2a8dc5344bc0746e1cc5abf896ca03bbdf',1,'HamstarHelpers::Helpers::Players']]],
+  ['pirates',['Pirates',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da281a66b1f4a1ded6214bdbd1a35f8e1f',1,'HamstarHelpers::Helpers::NPCs']]],
+  ['pumpkinmoon',['PumpkinMoon',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da5aa3ae9152acb613289caec44071fc49',1,'HamstarHelpers::Helpers::NPCs']]]
 ];

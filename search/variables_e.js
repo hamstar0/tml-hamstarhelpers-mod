@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['openwall',['OpenWall',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_pattern.html#ae9d8f361ac9122568932bdb1b7fadffd',1,'HamstarHelpers::Helpers::Tiles::TilePattern']]],
-  ['order',['Order',['../class_hamstar_helpers_1_1_components_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#ad17fa47ef289857b5d899819251c35e7',1,'HamstarHelpers.Components.UI.Elements.UICheckbox.Order()'],['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#a5873e3ef054d964d7b2db8923d96c8ec',1,'HamstarHelpers.Services.GameData.BossDataEntry.Order()']]]
+  ['openwall',['OpenWall',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aefd541c56b43261cb9867e9aa1d5ebad',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePattern']]],
+  ['order',['Order',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a0ceb64b22a2fd4156a3aaaf0611b1aaa',1,'HamstarHelpers.Classes.UI.Elements.UICheckbox.Order()'],['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#a5873e3ef054d964d7b2db8923d96c8ec',1,'HamstarHelpers.Services.GameData.BossDataEntry.Order()']]]
 ];

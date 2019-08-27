@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['needsnearbyhoney',['NeedsNearbyHoney',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa6108237b8ea0cc91b1556e77c1700122',1,'HamstarHelpers::Helpers::Recipes']]],
-  ['needsnearbylava',['NeedsNearbyLava',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa1e3c09ad012b733e996f41b04ce7aabe',1,'HamstarHelpers::Helpers::Recipes']]],
-  ['needsnearbysnowbiome',['NeedsNearbySnowBiome',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aad5f266a63adfe5d47fa3e6f2eed34879',1,'HamstarHelpers::Helpers::Recipes']]],
-  ['needsnearbywater',['NeedsNearbyWater',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa6f23c923b3206575993b4ccb99cad3d0',1,'HamstarHelpers::Helpers::Recipes']]],
-  ['none',['None',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da6adf97f83acf6453d4a6a4b1070f3754',1,'HamstarHelpers::Helpers::NPCs']]]
+  ['jungle',['Jungle',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#adc67de7c4a50810164b8548dd09fd117a4ddf4cb005260f1c5b21adca4d27c4ab',1,'HamstarHelpers.Helpers.World.Jungle()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a6c96804d2d560ce24321f5700aaf10cfa4ddf4cb005260f1c5b21adca4d27c4ab',1,'HamstarHelpers.Helpers.World.Jungle()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#abc5187c3be2fd50d3708509c6f8e8db1a4ddf4cb005260f1c5b21adca4d27c4ab',1,'HamstarHelpers.Helpers.World.Jungle()']]]
 ];
