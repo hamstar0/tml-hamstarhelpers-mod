@@ -67,8 +67,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				bool large = false )
 				: base( theme, true, label, textScale, large ) {
 			if( Main.netMode != 2 ) {
-				this.CheckboxTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_box" );
-				this.CheckmarkTexture = ModHelpersMod.Instance.GetTexture( "Components/UI/Elements/check_mark" );
+				this.CheckboxTexture = ModHelpersMod.Instance.GetTexture( "Classes/UI/Elements/check_box" );
+				this.CheckmarkTexture = ModHelpersMod.Instance.GetTexture( "Classes/UI/Elements/check_mark" );
 			}
 
 			this.Title = title;
