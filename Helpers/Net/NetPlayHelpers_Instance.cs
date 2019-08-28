@@ -32,24 +32,42 @@ namespace HamstarHelpers.Helpers.Net {
 		
 
 		private void LoadIPAsync() {
-			Action<bool, string> onCompletion = ( success, output ) => {
+			Action<bool, string> onCompletion = null;
+			Action<Exception, string> onFail = null;
+
+			onCompletion = ( success, output ) => {
+				if( !success ) {
+					onFail( new Exception( "Could not reach site." ), output );
+					return;
+				}
 				if( this.PublicIP != null ) {
 					return;
 				}
 
 				string[] a = output.Split( ':' );
+				if( a.Length < 2 ) {
+					onFail( new Exception( "Malformed IP output (1)." ), output );
+					return;
+				}
+
 				string a2 = a[1].Substring( 1 );
+
 				string[] a3 = a2.Split( '<' );
+				if( a3.Length == 0 ) {
+					onFail( new Exception( "Malformed IP output (2)." ), output );
+					return;
+				}
+
 				string a4 = a3[0];
 
 				this.PublicIP = a4;
 			};
 
-			Action<Exception, string> onFail = delegate ( Exception e, string output ) {
+			onFail = ( Exception e, string output ) => {
 				if( e is WebException ) {
 					LogHelpers.Log( "Could not acquire IP: " + e.Message );
 				} else {
-					LogHelpers.Log( "Could not acquire IP: " + e.ToString() );
+					LogHelpers.Alert( "Could not acquire IP: " + e.ToString() );
 				}
 			};
 
