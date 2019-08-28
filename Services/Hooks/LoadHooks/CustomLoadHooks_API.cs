@@ -115,7 +115,7 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 				throw new ModHelpersException( "Invalid argument type: Expected "
 					+ argType.Name + ", found `null`" );
 			}
-			if( argType != args.GetType() ) {
+			if( argType != args.GetType() && !args.GetType().IsSubclassOf(argType) ) {
 				throw new ModHelpersException( "Invalid argument type: Expected "
 					+ argType.Name + ", found "
 					+ args.GetType().Name );
