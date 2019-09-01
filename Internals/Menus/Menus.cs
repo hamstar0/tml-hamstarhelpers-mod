@@ -3,6 +3,7 @@ using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Menus.MenuTweaks;
 using HamstarHelpers.Internals.Menus.ModUpdates;
 using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
@@ -66,15 +67,6 @@ namespace HamstarHelpers.Internals.Menus {
 
 		private static bool DebugModeMenuInfoLoaded = false;
 
-		private static void DebugModeMenuInfo( GameTime _ ) {
-			Main.spriteBatch.DrawString(
-				Main.fontMouseText,
-				Main.menuMode + "",
-				new Vector2( Main.screenWidth - 32, Main.screenHeight - 32 ),
-				Color.White
-			);
-		}
-
 		private static void InitializeDebugModeMenuInfo() {
 			var mymod = ModHelpersMod.Instance;
 			if( !mymod.Config.DebugModeMenuInfo ) { return; }
@@ -85,11 +77,25 @@ namespace HamstarHelpers.Internals.Menus {
 			LoadHooks.AddModUnloadHook( () => {
 				try {
 					if( Menus.DebugModeMenuInfoLoaded ) {
-						Menus.DebugModeMenuInfoLoaded = false;
 						Main.OnPostDraw -= Menus.DebugModeMenuInfo;
 					}
 				} catch { }
+
+				Menus.DebugModeMenuInfoLoaded = false;
 			} );
+		}
+
+
+		private static void DebugModeMenuInfo( GameTime _ ) {
+			bool __;
+			XNAHelpers.DrawBatch( ( sb ) => {
+				sb.DrawString(
+					Main.fontMouseText,
+					Main.menuMode + "",
+					new Vector2( Main.screenWidth - 32, Main.screenHeight - 32 ),
+					Color.White
+				);
+			}, out __ );
 		}
 	}
 }

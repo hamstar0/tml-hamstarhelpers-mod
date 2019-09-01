@@ -15,7 +15,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 	partial class GetModInfo {
 		private static void RetrieveAllModInfoAsync( Action<bool, BasicModInfoDatabase> onCompletion ) {
 			Action<Exception, string> onError = (e, jsonStr) => {
-				if( e is JsonReaderException ) {
+				if( e == null ) {
+					LogHelpers.Alert( (jsonStr ?? "") + " - Invalid exception?" );
+				} else if( e is JsonReaderException ) {
 					LogHelpers.Alert( "Bad JSON: " + ( jsonStr.Length > 256 ? jsonStr.Substring( 0, 256 ) : jsonStr ) );
 				} else if( e is WebException || e is NullReferenceException ) {
 					LogHelpers.Alert( (jsonStr ?? "") + " - " + e.Message );

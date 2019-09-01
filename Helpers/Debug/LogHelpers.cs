@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria;
 
 
@@ -14,8 +15,13 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="contextDepth">Indicates whether to also output the callstack context at the specified depth.
 		/// No output if -1 is set.</param>
 		/// <returns></returns>
-		public static string FormatMessage( string msg, int contextDepth=-1 ) {
+		public static string FormatMessage( string msg, int contextDepth = -1 ) {
 			ModHelpersMod mymod = ModHelpersMod.Instance;
+			if( mymod == null ) {
+				contextDepth = contextDepth == -1 ? 2 : contextDepth;
+				return "!Mod Helpers unloaded. Message called from: " + DebugHelpers.GetCurrentContext( contextDepth );
+			}
+
 			var logHelpers = mymod.LogHelpers;
 			string output = msg;
 
@@ -53,7 +59,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// Outputs a plain log message.
 		/// </summary>
 		/// <param name="msg"></param>
-		public static void Log( string msg="" ) {
+		public static void Log( string msg = "" ) {
 			lock( LogHelpers.MyLock ) {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
 				mymod.Logger.Info( LogHelpers.FormatMessage( msg ) );
@@ -64,7 +70,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// Outputs an "alert" log message (TML considers it an error-type message).
 		/// </summary>
 		/// <param name="msg"></param>
-		public static void Alert( string msg="" ) {
+		public static void Alert( string msg = "" ) {
 			lock( LogHelpers.MyLock ) {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
 				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
@@ -78,7 +84,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// Outputs a warning log message (TML considers it a fatal-type message).
 		/// </summary>
 		/// <param name="msg"></param>
-		public static void Warn( string msg="" ) {
+		public static void Warn( string msg = "" ) {
 			lock( LogHelpers.MyLock ) {
 				ModHelpersMod mymod = ModHelpersMod.Instance;
 				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
@@ -86,6 +92,24 @@ namespace HamstarHelpers.Helpers.Debug {
 				mymod.Logger.Fatal( fmtMsg );
 				//LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg: "") );
 			}
+		}
+
+
+		////
+
+		/// <summary>
+		/// Outputs a log message indicating the current context.
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="omitNamespace"></param>
+		/// <param name="max"></param>
+		/// <param name="separator"></param>
+		/// <param name="spacer"></param>
+		public static void LogContext( string msg, bool omitNamespace=true, int max=-1, string separator="\n", string spacer="  " ) {
+			IList<string> contextSlice = DebugHelpers.GetContextSlice( 3, omitNamespace, max );
+			string context = string.Join( separator+spacer, contextSlice );
+
+			LogHelpers.Log( msg + " at " + context );
 		}
 	}
 }

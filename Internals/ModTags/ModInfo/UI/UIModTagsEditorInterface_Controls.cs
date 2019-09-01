@@ -1,15 +1,13 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
-using System;
 using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 	partial class UIModTagsEditorInterface : UIModTagsInterface {
 		public override void RefreshControls() {
-			this.ResetButton.RefreshEnableState( this.EditButton.IsEditMode );	//was base.RefreshControls();
+			this.ResetButton.RefreshEnableState( this.EditButton.IsEditMode );  //was base.RefreshControls();
 
 			this.RefreshMode();
 		}
@@ -25,17 +23,18 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 				this.SetReadOnlyMode( false );
 				return;
 			}
-			
+
+			// Skip mods already set with tags
 			if( this.Manager.IsCurrentModRecentlyTagged() ) {
 				this.Manager.SetInfoTextDefault( "Tags already set." );
 				this.SetReadOnlyMode( false );
 				return;
 			}
-			
-			if( !this.EditButton.IsEditMode ) {
-				this.RefreshReadOnlyMode();
-			} else {
+
+			if( this.EditButton.IsEditMode ) {
 				this.RefreshEditMode();
+			} else {
+				this.RefreshReadOnlyMode();
 			}
 		}
 
@@ -53,20 +52,20 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		private void RefreshEditMode() {
 			string modName = this.Manager.CurrentModName;
-			ISet<string> tags = this.Manager.GetTagsWithGivenState( 1 );
+			ISet<string> onTags = this.Manager.GetTagsWithGivenState( 1 );
 
 			if( this.Manager.AllModTagsSnapshot == null ) {
 				LogHelpers.Alert( "AllModTagsSnapshot == null" );
 			} else if( this.Manager.AllModTagsSnapshot.ContainsKey( modName ) == true ) {
 				// No changes?
-				if( tags.SetEquals( this.Manager.AllModTagsSnapshot[modName] ) ) {
+				if( onTags.SetEquals( this.Manager.AllModTagsSnapshot[modName] ) ) {
 					this.SetEditMode( false );
 					return;
 				}
 			}
-			
+
 			// Non-zero tags?
-			if( tags.Count >= 2 ) {
+			if( onTags.Count >= 2 ) {
 				this.EditButton.Enable();
 			} else {
 				this.EditButton.Disable();
@@ -76,7 +75,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 		////////////////
 
-		private void SetReadOnlyMode( bool enableModeChangeButton ) {
+		public void SetReadOnlyMode( bool enableModeChangeButton ) {
 			foreach( UITagMenuButton tagButton in this.TagButtons.Values ) {
 				tagButton.Disable();
 			}
@@ -91,7 +90,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		}
 
 
-		private void SetEditMode( bool enableSubmitButton ) {
+		public void SetEditMode( bool enableSubmitButton ) {
 			foreach( UITagMenuButton tagButton in this.TagButtons.Values ) {
 				tagButton.Enable();
 			}

@@ -35,6 +35,15 @@ namespace HamstarHelpers.Helpers.Players {
 		////////////////
 
 		/// <summary>
+		/// Gets a player's maximum allowed accessories, according to vanilla limits.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
+		public static int GetCurrentVanillaMaxAccessories( Player player ) {
+			return 5 + player.extraAccessorySlots;
+		}
+
+		/// <summary>
 		/// Removes a quantity of a given item type from the player's inventory.
 		/// </summary>
 		/// <param name="player"></param>

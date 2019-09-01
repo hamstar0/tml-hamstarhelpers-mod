@@ -28,23 +28,24 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 				LogHelpers.Log( e.ToString() );
 			};
 
-			Action<bool, string> onCompletion = ( success, output ) => {
-				if( success ) {
-					this.SetInfoText( output, Color.Lime );
-					LogHelpers.Log( "Mod info submit result: " + output );
-				}
-			};
-
 			ISet<string> newTags = this.GetTagsWithGivenState( 1 );
 
 			// Update snapshot of tags for the given mod (locally)
 			if( this.AllModTagsSnapshot != null ) {
-				this.AllModTagsSnapshot[this.CurrentModName] = newTags;
+				this.AllModTagsSnapshot[ this.CurrentModName ] = newTags;
 			}
 
-			PostModInfo.SubmitModInfo( this.CurrentModName, newTags, onError, onCompletion );
+			PostModInfo.SubmitModInfo( this.CurrentModName, newTags, onError, this.PostSubmitTags );
 
 			ModTagsManager.RecentTaggedMods.Add( this.CurrentModName );
+		}
+
+
+		private void PostSubmitTags( bool success, string output ) {
+			if( success ) {
+				this.SetInfoText( output, Color.Lime );
+				LogHelpers.Log( "Mod info submit result: " + output );
+			}
 
 			this.TagsUI.RefreshControls();
 		}

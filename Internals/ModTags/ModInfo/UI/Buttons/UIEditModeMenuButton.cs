@@ -68,9 +68,11 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons {
 			if( !this.IsEnabled ) { return; }
 
 			if( this.IsReadOnlyMode ) {
-				this.SetEditModeForUI();
+				this.Manager.MyTagsUI.SetEditMode( false );
 			} else if( this.IsEditMode ) {
 				this.Manager.SubmitTags();
+				this.Disable();
+				this.Manager.MyTagsUI.DisableResetButton();
 			}
 		}
 

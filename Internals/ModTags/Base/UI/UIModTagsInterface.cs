@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 	abstract partial class UIModTagsInterface : UIThemedPanel {
 		public static int PanelWidth { get; private set; } = 204;
 		public static int CategoryPanelHeight { get; private set; } = 82;
-		public static int TagsPanelHeight { get; private set; } = 416;
+		public static int TagsPanelHeight { get; private set; } = 420;
 
 
 

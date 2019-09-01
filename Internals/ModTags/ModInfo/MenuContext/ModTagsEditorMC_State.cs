@@ -19,15 +19,13 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			string modName = ModMenuHelpers.GetModName( prevUi, ui );
 
 			this.InfoDisplay.SetDefaultText( "" );
+			this.MyManager.MyTagsUI.ResetTagButtonOnStates( true );
 
 			if( modName == null ) {
-				this.MyManager.MyTagsUI.ResetTagButtonOnStates( true );
-
 				LogHelpers.Warn( "Could not load mod tags; no mod found" );
 				return;
 			}
-			
-			this.MyManager.MyTagsUI.ResetTagButtonOnStates( true );
+
 			this.MyManager.SetCurrentModAsync( modName );
 		}
 
@@ -36,6 +34,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 			base.Hide( ui );
 
 			this.Manager.TagsUI.UnsetCategory();
+			this.MyManager.MyTagsUI.SetReadOnlyMode( false );
 		}
 	}
 }

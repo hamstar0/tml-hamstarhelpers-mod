@@ -91,6 +91,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			float y = this.PositionY
 				+ UIModTagsInterface.CategoryPanelHeight
 				+ UIModTagsInterface.TagsPanelHeight
+				+ 4
 				- UIResetTagsMenuButton.ButtonHeight;
 
 			return new Vector2( x, y );
