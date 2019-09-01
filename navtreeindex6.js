@@ -1,5 +1,14 @@
 var NAVTREEINDEX6 =
 {
+"class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html#a9966272ca1bcf93290271f9293c7e5b0":[1,0,0,4,3,5,0],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html":[1,0,0,4,4,0],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a30dfa5cb87b29da260377239fbf8b03b":[1,0,0,4,4,0,7],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a40e46be13224fb9c500d44c018afe5f6":[1,0,0,4,4,0,19],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a504ca2b610ccb10ddc8a8ca78ccb3191":[1,0,0,4,4,0,9],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5901bbebf31657c60e16fa39ce6152de":[1,0,0,4,4,0,15],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5bb00f85e226bde6ca476149a753e035":[1,0,0,4,4,0,18],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e4f80e4dab6c74fa036c228764c27d3":[1,0,0,4,4,0,13],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e50af473b7eceb77801afce85d5ca4b":[1,0,0,4,4,0,3],
 "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a6e20e3ca89ec377f2b99697fed221c04":[1,0,0,4,4,0,0],
 "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a7aff2e3162d90e0abc690446e2bae8b4":[1,0,0,4,4,0,4],
 "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a8992e457a25952737bd2fab14dd1049f":[1,0,0,4,4,0,6],
@@ -240,14 +249,5 @@ var NAVTREEINDEX6 =
 "dir_ea6ccead3befb48a921b69828a3f4a5e.html":[2,0,0,0,6,2,2],
 "dir_ea7b40b25a229cb5f87df4413b5224d0.html":[2,0,0,0,3,4,0],
 "dir_eb258d0e7f6778fc2b6d95e89cd5999c.html":[2,0,0,0,0,5,0],
-"dir_ec556111fdd1ecf0e2a169cfedb376c2.html":[2,0,0,0,2,7],
-"dir_ee4895896352bb68f09c00760a71f7fe.html":[2,0,0,0,6,13],
-"dir_eef20ef8b320134c3eefce2444a6de38.html":[2,0,0,0,3,3,1],
-"dir_f1f99f24e28b357e1c8b727dba407b63.html":[2,0,0,0,3,7],
-"dir_f6eb509598b00e656b86752022b86ee3.html":[2,0,0,0,2,8,0],
-"dir_fae0d5b16341b3860fc573cb98f1438c.html":[2,0,0,0,2,22],
-"dir_ffdd692eacb38e58e1cdb18303add757.html":[2,0,0,0,0,3],
-"files.html":[2,0],
-"functions.html":[1,3,0,0],
-"functions.html":[1,3,0]
+"dir_ec556111fdd1ecf0e2a169cfedb376c2.html":[2,0,0,0,2,7]
 };

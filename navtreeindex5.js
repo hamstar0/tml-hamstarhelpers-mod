@@ -1,5 +1,14 @@
 var NAVTREEINDEX5 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_positive_single_definition.html#ac448af1ddf221cc3ff9c9f4c400e0b3a":[1,0,0,1,20,1,8,0],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_percent_position_definition.html":[1,0,0,1,20,1,9],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_percent_position_definition.html#a721ab8db5f45ccb6391b8347652efe4b":[1,0,0,1,20,1,9,2],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_percent_position_definition.html#aa48a71b48074f28b461fcd77bd1e60f1":[1,0,0,1,20,1,9,0],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_percent_position_definition.html#ac6b112ed054f290e2cf237c8273c8168":[1,0,0,1,20,1,9,1],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_position_definition.html":[1,0,0,1,20,1,10],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_position_definition.html#a0683773c6bac02176f1322f7bd0a9726":[1,0,0,1,20,1,10,2],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_position_definition.html#a2c511568a35b7e84f77fadfae052c460":[1,0,0,1,20,1,10,1],
+"class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_position_definition.html#a9e5302aee54255c75357eb2beaa03b59":[1,0,0,1,20,1,10,0],
 "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html":[1,0,0,1,20,4],
 "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html#a88e4ffe6ddbab6d488419e867a684a99":[1,0,0,1,20,4,1],
 "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html#abc7cac389fceabfd6e4b6fa0fd6907a8":[1,0,0,1,20,4,2],
@@ -240,14 +249,5 @@ var NAVTREEINDEX5 =
 "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html#a531847850ef6b13c3bc283085e5e2669":[1,0,0,4,3,3,0],
 "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_n_p_c_group_matcher.html":[1,0,0,4,3,4],
 "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_n_p_c_group_matcher.html#ac8bd667bdb57c5515f76b70126a0a2e1":[1,0,0,4,3,4,0],
-"class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html":[1,0,0,4,3,5],
-"class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html#a9966272ca1bcf93290271f9293c7e5b0":[1,0,0,4,3,5,0],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html":[1,0,0,4,4,0],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a30dfa5cb87b29da260377239fbf8b03b":[1,0,0,4,4,0,7],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a40e46be13224fb9c500d44c018afe5f6":[1,0,0,4,4,0,19],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a504ca2b610ccb10ddc8a8ca78ccb3191":[1,0,0,4,4,0,9],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5901bbebf31657c60e16fa39ce6152de":[1,0,0,4,4,0,15],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5bb00f85e226bde6ca476149a753e035":[1,0,0,4,4,0,18],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e4f80e4dab6c74fa036c228764c27d3":[1,0,0,4,4,0,13],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e50af473b7eceb77801afce85d5ca4b":[1,0,0,4,4,0,3]
+"class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html":[1,0,0,4,3,5]
 };

@@ -101,6 +101,9 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a917921116c0bfc4468a0f53f215a680d"><td class="memItemLeft" align="right" valign="top">static IList&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a917921116c0bfc4468a0f53f215a680d">GetContextSlice</a> (int stackFrameIdx=1, bool omitNamespace=false, int max=-1, string until=&quot;Unknown Context&quot;)</td></tr>
+<tr class="memdesc:a917921116c0bfc4468a0f53f215a680d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a slice of the current method call (context) stack trace beginning at the specified frame (stack depth).  <a href="#a917921116c0bfc4468a0f53f215a680d">More...</a><br /></td></tr>
+<tr class="separator:a917921116c0bfc4468a0f53f215a680d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ae3310473d64362a8d6265cc8bfd870"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a6ae3310473d64362a8d6265cc8bfd870">GetCurrentContext</a> (int stackFrameIdx=1)</td></tr>
 <tr class="memdesc:a6ae3310473d64362a8d6265cc8bfd870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current method call (context) of a stack trace at the specified frame (stack depth).  <a href="#a6ae3310473d64362a8d6265cc8bfd870">More...</a><br /></td></tr>
 <tr class="separator:a6ae3310473d64362a8d6265cc8bfd870"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,8 +114,70 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to debugging and debug outputs. </p>
 
-<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a917921116c0bfc4468a0f53f215a680d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a917921116c0bfc4468a0f53f215a680d">&#9670;&nbsp;</a></span>GetContextSlice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IList&lt;string&gt; HamstarHelpers.Helpers.Debug.DebugHelpers.GetContextSlice </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stackFrameIdx</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>omitNamespace</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>until</em> = <code>&quot;Unknown&#160;Context&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a slice of the current method call (context) stack trace beginning at the specified frame (stack depth). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stackFrameIdx</td><td>Depth within the current call stack.</td></tr>
+    <tr><td class="paramname">omitNamespace</td><td></td></tr>
+    <tr><td class="paramname">max</td><td></td></tr>
+    <tr><td class="paramname">until</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="a6ae3310473d64362a8d6265cc8bfd870"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6ae3310473d64362a8d6265cc8bfd870">&#9670;&nbsp;</a></span>GetCurrentContext()</h2>
 
@@ -146,7 +211,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Method, class, and namespace of the given frame of the current call stack.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_debug_helpers_8cs_source.html#l00066">66</a> of file <a class="el" href="_debug_helpers_8cs_source.html">DebugHelpers.cs</a>.</p>
 
 </div>
 </div>

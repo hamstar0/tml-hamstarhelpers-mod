@@ -47,6 +47,7 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.TModLoader.Configs.FullSingleDefinition", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_full_single_definition.html", null ],
     [ "HamstarHelpers.Helpers.Info.GameInfoHelpers", "class_hamstar_helpers_1_1_helpers_1_1_info_1_1_game_info_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Encoding.HashHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_hash_helpers.html", null ],
+    [ "HamstarHelpers.Helpers.HUD.HUDElementHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_element_helpers.html", null ],
     [ "HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html", null ],
     [ "HamstarHelpers.Helpers.HUD.HUDHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html", null ],
     [ "HamstarHelpers.Helpers.HUD.HUDMapHelpers", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html", null ],

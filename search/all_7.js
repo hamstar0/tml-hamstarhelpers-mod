@@ -64,6 +64,7 @@ var searchData=
   ['homepageurl',['HomepageUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a2af1de9955f1735f7fa83f1ee3d0c59c',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
   ['hooks',['Hooks',['../namespace_hamstar_helpers_1_1_services_1_1_hooks.html',1,'HamstarHelpers::Services']]],
   ['hud',['HUD',['../namespace_hamstar_helpers_1_1_helpers_1_1_h_u_d.html',1,'HamstarHelpers::Helpers']]],
+  ['hudelementhelpers',['HUDElementHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_element_helpers.html',1,'HamstarHelpers::Helpers::HUD']]],
   ['hudhealthbarhelpers',['HUDHealthBarHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html',1,'HamstarHelpers::Helpers::HUD']]],
   ['hudhelpers',['HUDHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_helpers.html',1,'HamstarHelpers::Helpers::HUD']]],
   ['hudmaphelpers',['HUDMapHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html',1,'HamstarHelpers::Helpers::HUD']]],

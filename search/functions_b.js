@@ -8,6 +8,7 @@ var searchData=
   ['lockdownplayerpertick',['LockdownPlayerPerTick',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a1e1c1870e9e503db990fe60d95d924d0',1,'HamstarHelpers::Helpers::Players::PlayerHelpers']]],
   ['lockworld',['LockWorld',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#ad5f214fdaf40fa50de91c6b085541a5d',1,'HamstarHelpers::Services::ModHelpers::ModLockService']]],
   ['log',['Log',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae141f63955b55fae280ffdb3c4a19f8e',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
+  ['logcontext',['LogContext',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a1b965a4bf677140bb6897298cb6d0a2d',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['logonce',['LogOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae74866022df1221b810f0c9399944d5d',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['looselyappraise',['LooselyAppraise',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#a48791356605dea4bf93e46490c1bdefe',1,'HamstarHelpers::Helpers::Items::Attributes::ItemAttributeHelpers']]],
   ['looselyassesspower',['LooselyAssessPower',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a9d22e8084900c77460eb8b1917d15977',1,'HamstarHelpers::Helpers::Players::PlayerHelpers']]],

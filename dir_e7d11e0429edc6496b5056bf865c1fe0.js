@@ -1,7 +1,7 @@
 var dir_e7d11e0429edc6496b5056bf865c1fe0 =
 [
     [ "PlayerFileHelpers.cs", "_player_file_helpers_8cs_source.html", null ],
-    [ "PlayerHeadDisplayHelpers.cs", "_player_head_display_helpers_8cs_source.html", null ],
+    [ "PlayerHeadDrawHelpers.cs", "_player_head_draw_helpers_8cs_source.html", null ],
     [ "PlayerHelpers.cs", "_player_helpers_8cs_source.html", null ],
     [ "PlayerIdentityHelpers.cs", "_player_identity_helpers_8cs_source.html", null ],
     [ "PlayerIdentityHelpers_Instance.cs", "_player_identity_helpers___instance_8cs_source.html", null ],

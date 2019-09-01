@@ -5,6 +5,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers =
     [ "DropEquippedMiscItem", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a6ae0929b414d6ed5bb3c63256a8194ee", null ],
     [ "DropInventoryItem", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a9d3ac6e8e0b772eeffa3487ab741e89e", null ],
     [ "GetCurrentlyOpenChest", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a2654f7ec0bdbcc5d565c456028f68655", null ],
+    [ "GetCurrentVanillaMaxAccessories", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#adcd3504778d6b069f41341a06ec5b06b", null ],
     [ "GetGrappleItem", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a987b1fc96a7a05b58a164cb6579df13e", null ],
     [ "IsAccessorySlot", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#ac51f8dffe849041692001891f1305487", null ],
     [ "IsArmorSlot", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a6f4148959012a4f8fd7b59baf5306803", null ],
