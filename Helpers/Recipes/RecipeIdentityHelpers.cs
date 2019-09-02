@@ -1,15 +1,21 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
-	/** <summary>Assorted static "helper" functions pertaining to recipe identification.</summary> */
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to recipe identification.
+	/// </summary>
 	public partial class RecipeIdentityHelpers {
+		/// <summary>
+		/// Indicates if any 2 recipes are identical.
+		/// </summary>
+		/// <param name="recipe1"></param>
+		/// <param name="recipe2"></param>
+		/// <returns></returns>
 		public static bool Equals( Recipe recipe1, Recipe recipe2 ) {
 			if( recipe1.needHoney != recipe2.needHoney ) { return false; }
 			if( recipe1.needLava != recipe2.needLava ) { return false; }
@@ -43,47 +49,19 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 		////////////////
 
+		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static ISet<int> GetRecipeIndexesOfItem( int itemNetID ) {
-			if( itemNetID == 0 ) {
-				throw new ModHelpersException( "Invalid item type" );
-			}
-
-			var mymod = ModHelpersMod.Instance;
-			IDictionary<int, ISet<int>> recipeIdxLists = mymod.RecipeIdentityHelpers.RecipeIndexesByItemNetID;
-			
-			lock( RecipeIdentityHelpers.MyLock ) {
-				if( recipeIdxLists.Count == 0 ) {
-					mymod.RecipeIdentityHelpers.CacheItemRecipes();
-				}
-				return recipeIdxLists.GetOrDefault( itemNetID )
-					?? new HashSet<int>();
-			}
+			return RecipeFinderHelpers.GetRecipeIndexesOfItem( itemNetID );
 		}
-		
+
+		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static IList<Recipe> GetRecipesOfItem( int itemNetID ) {
-			return RecipeIdentityHelpers.GetRecipeIndexesOfItem( itemNetID )
-				.Select( idx=>Main.recipe[idx] )
-				.ToList();
+			return RecipeFinderHelpers.GetRecipesOfItem( itemNetID );
 		}
 
-
-		////////////////
-
+		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static ISet<int> GetRecipeIndexesUsingIngredient( int itemNetID ) {
-			if( itemNetID == 0 ) {
-				throw new ModHelpersException( "Invalid item type" );
-			}
-
-			var mymod = ModHelpersMod.Instance;
-			IDictionary<int, ISet<int>> recipeIdxSets = mymod.RecipeIdentityHelpers.RecipeIndexesOfIngredientNetIDs;
-
-			lock( RecipeIdentityHelpers.MyLock ) {
-				if( recipeIdxSets.Count == 0 ) {
-					mymod.RecipeIdentityHelpers.CacheIngredientRecipes();
-				}
-				return recipeIdxSets.GetOrDefault( itemNetID )
-					?? new HashSet<int>();
-			}
+			return RecipeFinderHelpers.GetRecipeIndexesUsingIngredient( itemNetID );
 		}
 	}
 }

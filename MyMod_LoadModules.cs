@@ -75,7 +75,7 @@ namespace HamstarHelpers {
 		internal ProjectileAttributeHelpers ProjectileAttributeHelpers;
 		internal BuffAttributesHelpers BuffIdentityHelpers;
 		internal NPCBannerHelpers NPCBannerHelpers;
-		internal RecipeIdentityHelpers RecipeIdentityHelpers;
+		internal RecipeFinderHelpers RecipeFinderHelpers;
 		internal RecipeGroupHelpers RecipeGroupHelpers;
 		internal LoadHelpers LoadHelpers;
 		internal WorldStateHelpers WorldStateHelpers;
@@ -124,7 +124,7 @@ namespace HamstarHelpers {
 			this.ProjectileAttributeHelpers = new ProjectileAttributeHelpers();
 			this.BuffIdentityHelpers = new BuffAttributesHelpers();
 			this.NPCBannerHelpers = new NPCBannerHelpers();
-			this.RecipeIdentityHelpers = new RecipeIdentityHelpers();
+			this.RecipeFinderHelpers = new RecipeFinderHelpers();
 			this.RecipeGroupHelpers = new RecipeGroupHelpers();
 			this.PlayerHooks = new ExtendedPlayerHooks();
 			this.WorldTimeHooks = new WorldTimeHooks();
@@ -164,7 +164,7 @@ namespace HamstarHelpers {
 			this.ProjectileAttributeHelpers = null;
 			this.BuffIdentityHelpers = null;
 			this.NPCBannerHelpers = null;
-			this.RecipeIdentityHelpers = null;
+			this.RecipeFinderHelpers = null;
 			this.RecipeGroupHelpers = null;
 			this.PlayerHooks = null;
 			this.LoadHelpers = null;

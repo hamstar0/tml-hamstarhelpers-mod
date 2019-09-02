@@ -16,6 +16,14 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 						grps["Any Armor"].Contains( item.type );
 				} )
 			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				"Any Heavy Armor",
+				new string[] { "Any Armor" },
+				new ItemGroupMatcher( ( item, grps ) => {
+					return grps["Any Armor"].Contains( item.type ) &&
+						item.defense >= 4;
+				} )
+			) );
 		}
 	}
 }

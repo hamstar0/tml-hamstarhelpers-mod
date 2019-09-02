@@ -7,7 +7,7 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.Recipes {
 	/// @private
-	public partial class RecipeIdentityHelpers {
+	public partial class RecipeFinderHelpers {
 		private static object MyLock = new object();
 
 
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 		////////////////
 
 		private void CacheItemRecipes() {
-			lock( RecipeIdentityHelpers.MyLock ) {
+			lock( RecipeFinderHelpers.MyLock ) {
 				for( int i = 0; i < Main.recipe.Length; i++ ) {
 					Recipe recipe = Main.recipe[i];
 					int recipeItemType = recipe.createItem.type;
@@ -37,7 +37,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 
 		private void CacheIngredientRecipes() {
-			lock( RecipeIdentityHelpers.MyLock ) {
+			lock( RecipeFinderHelpers.MyLock ) {
 				for( int i = 0; i < Main.recipe.Length; i++ ) {
 					Recipe recipe = Main.recipe[i];
 					if( recipe.createItem.type == 0 ) {

@@ -156,7 +156,7 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 					TagFlavor.Emphasis, new HashSet<string> { "Adds Challenge" } ),
 				//m( "Easings",               "General",		"Decreases difficulty of specific elements: Stronger weapons, added player defense, etc."),
 				//m( "Vanilla Balanced",      "General",		"Balanced around plain Terraria; progress will not happen faster than usual."),
-				m( "Loosely Balanced",      "Gameplay",     "Inconsistent or vague attempt to maintain balance, vanilla or otherwise.",
+				m( "Loosely Balanced",      "Gameplay",     "Inconsistent or vague attempt to maintain consistent balance, vanilla or otherwise.",
 					TagFlavor.Alert ),
 				m( "Plus Balanced",         "Gameplay",     "Balanced in excess of vanilla; expect sequence breaks (e.g. killing powerful bosses early).",
 					TagFlavor.Alert ),
