@@ -13,7 +13,7 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				new string[] { "Any Food" },
 				new ItemGroupMatcher( ( item, grps ) => {
 					foreach( int foodId in grps["Any Food"] ) {
-						IEnumerable<Recipe> recipes = RecipeIdentityHelpers.GetRecipesOfItem( foodId );
+						IEnumerable<Recipe> recipes = RecipeFinderHelpers.GetRecipesOfItem( foodId );
 
 						foreach( Recipe recipe in recipes ) {
 							for( int i = 0; i < recipe.requiredItem.Length; i++ ) {

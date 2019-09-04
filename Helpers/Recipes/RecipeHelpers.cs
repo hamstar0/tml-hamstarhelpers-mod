@@ -148,7 +148,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 			ISet<int> possibleRecipeIdxs = new HashSet<int>();
 
 			foreach( Item ingredient in ingredients ) {
-				IEnumerable<int> ingredientRecipeIdxs = RecipeIdentityHelpers.GetRecipeIndexesOfItem( ingredient.netID );
+				IEnumerable<int> ingredientRecipeIdxs = RecipeFinderHelpers.GetRecipeIndexesOfItem( ingredient.netID );
 
 				foreach( int recipeIdx in ingredientRecipeIdxs ) {
 					possibleRecipeIdxs.Add( recipeIdx );

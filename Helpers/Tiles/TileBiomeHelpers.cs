@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,20 +60,95 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 		/// <summary>
 		/// Gets percent values indicating how much of each vanilla biome type is near a given tile position. See
-		/// `GetPlayerRangeTilesAt(...)` for the specification of the tile checking range. Percent values indicate how much
-		/// of the *minimum* percent of tiles exist nearby to count as being within the given biome.
+		/// `GetPlayerRangeTilesAt(...)` for the specification of the tile checking range. Percent values indicate
+		/// how much of the *minimum* percent of tiles exist nearby to count as being within the given biome.
 		/// </summary>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
 		/// <param name="totalTiles">Returns a count of non-air tiles in total.</param>
 		/// <param name="unidenfiedTiles">Returns all non-air tiles not identified with a specific biome.</param>
 		/// <returns></returns>
+		[Obsolete( "Needs TileFinderHelpers.GetPlayerRangeTilesAt fixed" )]
 		public static IDictionary<string, float> GetVanillaBiomePercentsNear( int tileX, int tileY,
 					out int totalTiles,
 					out int unidenfiedTiles ) {
 			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( tileX, tileY );
 
+			return TileBiomeHelpers.GetVanillaBiomePercentsOf( ref tiles, out totalTiles, out unidenfiedTiles )
+				.ToDictionary( kv=>Enum.GetName(typeof(VanillaBiome), kv), kv=>kv.Value );
+		}
+
+
+		/// <summary>
+		/// Gets percent values indicating how much of each vanilla biome type of a set of tiles. See
+		/// `GetPlayerRangeTilesAt(...)` for the specification of the tile checking range. Percent values indicate
+		/// how much of the *minimum* percent of tiles exist nearby to count as being within the given biome.
+		/// </summary>
+		/// <param name="tiles">Counts of tiles by type.</param>
+		/// <param name="totalTiles">Returns a count of non-air tiles in total.</param>
+		/// <param name="unidenfiedTiles">Returns all non-air tiles not identified with a specific biome.</param>
+		/// <returns></returns>
+		public static IDictionary<VanillaBiome, float> GetVanillaBiomePercentsOf( ref IDictionary<int, int> tiles,
+					out int totalTiles,
+					out int unidenfiedTiles ) {
 			int holyTiles = 0;
+			int corrTiles = 0;
+			int crimTiles = 0;
+			int snowTiles = 0;
+			int jungTiles = 0;
+			int mushTiles = 0;
+			int meteTiles = 0;
+			int deseTiles = 0;
+			int dungTiles = 0;
+			int lihzTiles = 0;
+
+			TileBiomeHelpers.GetVanillaBiomeAmountsOf( ref tiles,
+				out holyTiles,
+				out corrTiles,
+				out crimTiles,
+				out snowTiles,
+				out jungTiles,
+				out mushTiles,
+				out meteTiles,
+				out deseTiles,
+				out dungTiles,
+				out lihzTiles,
+				out unidenfiedTiles,
+				out totalTiles
+			);
+
+			var biomes = new Dictionary<VanillaBiome, float>();
+			biomes[VanillaBiome.Hallow] = (float)holyTiles / (float)TileBiomeHelpers.VanillaHolyMinTiles;
+			biomes[VanillaBiome.Corruption] = (float)corrTiles / (float)TileBiomeHelpers.VanillaCorruptionMinTiles;
+			biomes[VanillaBiome.Crimson] = (float)crimTiles / (float)TileBiomeHelpers.VanillaCrimsonMinTiles;
+			biomes[VanillaBiome.Meteor] = (float)meteTiles / (float)TileBiomeHelpers.VanillaMeteorMinTiles;
+			biomes[VanillaBiome.Jungle] = (float)jungTiles / (float)TileBiomeHelpers.VanillaJungleMinTiles;
+			biomes[VanillaBiome.Cold] = (float)snowTiles / (float)TileBiomeHelpers.VanillaSnowMinTiles;
+			biomes[VanillaBiome.Desert] = (float)deseTiles / (float)TileBiomeHelpers.VanillaDesertMinTiles;
+			biomes[VanillaBiome.Mushroom] = (float)mushTiles / (float)TileBiomeHelpers.VanillaShroomMinTiles;
+			biomes[VanillaBiome.Dungeon] = (float)dungTiles / (float)TileBiomeHelpers.VanillaDungeonMinTiles;
+			biomes[VanillaBiome.Temple] = (float)lihzTiles / (float)TileBiomeHelpers.VanillaLihzahrdMinTiles;
+
+			return biomes;
+		}
+
+
+		////
+
+		private static void GetVanillaBiomeAmountsOf( ref IDictionary<int, int> tiles,
+					out int holyTiles,
+					out int corrTiles,
+					out int crimTiles,
+					out int snowTiles,
+					out int jungTiles,
+					out int mushTiles,
+					out int meteTiles,
+					out int deseTiles,
+					out int dungTiles,
+					out int lihzTiles,
+					out int totalTiles,
+					out int unidenfiedTiles ) {
+			holyTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaHolyTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					holyTiles += tiles[tileType];
@@ -80,7 +156,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int corrTiles = 0;
+			corrTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaCorruptionTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					corrTiles += tiles[tileType];
@@ -88,7 +164,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int crimTiles = 0;
+			crimTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaCrimsonTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					crimTiles += tiles[tileType];
@@ -96,7 +172,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int snowTiles = 0;
+			snowTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaSnowTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					snowTiles += tiles[tileType];
@@ -104,7 +180,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int jungTiles = 0;
+			jungTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaJungleTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					jungTiles += tiles[tileType];
@@ -112,7 +188,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int mushTiles = 0;
+			mushTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaShroomTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					mushTiles += tiles[tileType];
@@ -120,7 +196,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int meteTiles = 0;
+			meteTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaMeteorTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					meteTiles += tiles[tileType];
@@ -128,7 +204,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int deseTiles = 0;
+			deseTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaDesertTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					deseTiles += tiles[tileType];
@@ -136,7 +212,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			int dungTiles = 0;
+			dungTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaDungeonTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					dungTiles += tiles[tileType];
@@ -144,7 +220,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 			
-			int lihzTiles = 0;
+			lihzTiles = 0;
 			foreach( int tileType in TileBiomeHelpers.VanillaLihzahrdTiles ) {
 				if( tiles.ContainsKey( tileType ) ) {
 					lihzTiles += tiles[tileType];
@@ -153,22 +229,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 
 			unidenfiedTiles = tiles.Values.Sum();	// Unclaimed remainder
-			totalTiles = unidenfiedTiles + holyTiles + corrTiles + crimTiles + meteTiles + jungTiles + snowTiles + deseTiles + mushTiles
-				+ dungTiles + lihzTiles;
-
-			var biomes = new Dictionary<string, float>();
-			biomes["Holy"] = (float)holyTiles / (float)TileBiomeHelpers.VanillaHolyMinTiles;
-			biomes["Corruption"] = (float)corrTiles / (float)TileBiomeHelpers.VanillaCorruptionMinTiles;
-			biomes["Crimson"] = (float)crimTiles / (float)TileBiomeHelpers.VanillaCrimsonMinTiles;
-			biomes["Meteor"] = (float)meteTiles / (float)TileBiomeHelpers.VanillaMeteorMinTiles;
-			biomes["Jungle"] = (float)jungTiles / (float)TileBiomeHelpers.VanillaJungleMinTiles;
-			biomes["Snow"] = (float)snowTiles / (float)TileBiomeHelpers.VanillaSnowMinTiles;
-			biomes["Desert"] = (float)deseTiles / (float)TileBiomeHelpers.VanillaDesertMinTiles;
-			biomes["Mushroom"] = (float)mushTiles / (float)TileBiomeHelpers.VanillaShroomMinTiles;
-			biomes["Dungeon"] = (float)dungTiles / (float)TileBiomeHelpers.VanillaDungeonMinTiles;
-			biomes["Lihzahrd"] = (float)lihzTiles / (float)TileBiomeHelpers.VanillaLihzahrdMinTiles;
-
-			return biomes;
+			totalTiles = unidenfiedTiles + holyTiles + corrTiles + crimTiles + meteTiles + jungTiles + snowTiles
+				+ deseTiles + mushTiles + dungTiles + lihzTiles;
 		}
 	}
 }

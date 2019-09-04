@@ -23,6 +23,8 @@ namespace HamstarHelpers.Helpers.World {
 		/// <summary></summary>
 		Jungle,
 		/// <summary></summary>
+		Meteor,
+		/// <summary></summary>
 		Corruption,
 		/// <summary></summary>
 		Crimson,
@@ -68,6 +70,8 @@ namespace HamstarHelpers.Helpers.World {
 		Ocean,
 		/// <summary></summary>
 		Space,
+		/// <summary></summary>
+		Meteor,
 		/// <summary></summary>
 		Corruption,
 		/// <summary></summary>
@@ -128,6 +132,8 @@ namespace HamstarHelpers.Helpers.World {
 	}
 	/// <summary></summary>
 	public enum VanillaHardModeConvertibleBiome {
+		/// <summary></summary>
+		Forest,
 		/// <summary></summary>
 		Cave,
 		/// <summary></summary>
