@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public static class TileWorldHelpers {
 		/// <summary>
-		/// Indicates if a given tiles is within the visible map's boundaries.
+		/// Indicates if a given tiles is within the visible player-accessible world's boundaries.
 		/// </summary>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>

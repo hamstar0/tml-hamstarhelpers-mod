@@ -23,11 +23,19 @@ namespace HamstarHelpers.Helpers.Debug {
 			}
 
 			var logHelpers = mymod.LogHelpers;
-			string output = msg;
+			string output;
+			double nowSeconds;
 
 			try {
-				double nowSeconds = DateTime.UtcNow.Subtract( new DateTime( 1970, 1, 1, 0, 0, 0 ) ).TotalSeconds - logHelpers.StartTime;
+				var beginning = new DateTime( 1970, 1, 1, 0, 0, 0 );
+				TimeSpan nowTotalSpan = DateTime.UtcNow.Subtract( beginning );
+				nowSeconds = nowTotalSpan.TotalSeconds - logHelpers.StartTime;
+			} catch( Exception e ) {
+				nowSeconds = 0;
+				output = "FORMATTING ERROR 1 (" + e.GetType().Name + ") - " + msg;
+			}
 
+			try {
 				string nowSecondsWhole = ( (int)nowSeconds ).ToString( "D6" );
 				string nowSecondsDecimal = ( nowSeconds - (int)nowSeconds ).ToString( "N2" );
 				string now = nowSecondsWhole + "." + ( nowSecondsDecimal.Length > 2 ? nowSecondsDecimal.Substring( 2 ) : nowSecondsDecimal );
@@ -42,7 +50,7 @@ namespace HamstarHelpers.Helpers.Debug {
 
 				output = logged + msg;
 			} catch( Exception e ) {
-				output = "FORMATTING ERROR (" + e.GetType().Name + ") - " + msg;
+				output = "FORMATTING ERROR 2 (" + e.GetType().Name + ") - " + msg;
 			}
 
 			if( contextDepth >= 0 ) {

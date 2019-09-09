@@ -35,6 +35,11 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public TileSlopeType? Slope = null;
 
 		/// <summary></summary>
+		public float? MinimumBrightness = null;
+		/// <summary></summary>
+		public float? MaximumBrightness = null;
+
+		/// <summary></summary>
 		public bool? IsModded = null;
 	}
 
@@ -65,6 +70,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.HasLava = builder.HasLava;
 
 			this.Slope = builder.Slope;
+
+			this.MinimumBrightness = builder.MinimumBrightness;
+			this.MaximumBrightness = builder.MaximumBrightness;
 
 			this.IsModded = builder.IsModded;
 		}

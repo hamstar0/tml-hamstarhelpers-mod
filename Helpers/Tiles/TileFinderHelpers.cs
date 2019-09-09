@@ -149,7 +149,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 		/// <summary>
-		/// Attempts to find an area within an area of a given matching tile pattern. Search begins from the center.
+		/// Attempts to find an area of a given matching tile pattern within a larger area. Search begins from the
+		/// center.
 		/// </summary>
 		/// <param name="tileType"></param>
 		/// <param name="within"></param>
@@ -233,6 +234,18 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <returns></returns>
 		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern pattern ) {
+			return TileFinderHelpers.GetTilesInWorldRectangle( worldRect, pattern );
+		}
+
+		/// <summary>
+		/// Gets all tiles of a given pattern within a given area. Calls a function for each.
+		/// </summary>
+		/// <param name="worldRect"></param>
+		/// <param name="pattern"></param>
+		/// <param name="forEach"></param>
+		/// <returns></returns>
+		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern pattern,
+				Action<int, int, bool> forEach=null ) {
 			int projRight = worldRect.X + worldRect.Width;
 			int projBottom = worldRect.Y + worldRect.Height;
 
@@ -246,8 +259,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 					Tile tile = Main.tile[i, j];
 
-					if( TileHelpers.IsAir( tile ) ) { continue; }
-					if( !pattern.Check(i, j) ) { continue; }
+					//if( TileHelpers.IsAir( tile ) ) { continue; }
+
+					bool isMatch = pattern.Check( i, j );
+
+					forEach?.Invoke( i, j, isMatch );
+					if( isMatch) { continue; }
 
 					hits[i] = j;
 				}
@@ -258,7 +275,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 		/// <summary>
-		/// Gets the nearest matching tile to a given point.
+		/// Gets the nearest matching tile to a given point (world coordinate).
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <param name="pattern"></param>

@@ -201,6 +201,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		private void PostSetupContentModules() {
+			this.SupportInfo.OnPostSetupContent();
 			this.PacketProtocolMngr.OnPostSetupContent();
 			this.LoadHooks.OnPostSetupContent();
 			this.ModFeaturesHelpers.OnPostSetupContent();

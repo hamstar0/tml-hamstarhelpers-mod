@@ -183,7 +183,20 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			Main.OnPostDraw += SupportInfoDisplay._Draw;
 		}
+		
+		////
 
+		internal void OnPostSetupContent() {
+			// This is deferred to here because of LoadHooks load order (ironically)
+			LoadHooks.AddModUnloadHook( () => {
+				try {
+					Main.OnPostDraw -= SupportInfoDisplay._Draw;
+				} catch { }
+			} );
+		}
+
+
+		////////////////
 
 		private void ExpandUI() {
 			this.Elements.Add( this.ModderTextLabel );
@@ -214,13 +227,6 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			//this.SupportText2Label.Recalculate();
 			this.PatreonLabel.Recalculate();
 			this.PatreonButton.Recalculate();
-
-			// This is deferred to here because of LoadHooks load order (ironically)
-			LoadHooks.AddModUnloadHook( () => {
-				try {
-					Main.OnPostDraw -= SupportInfoDisplay._Draw;
-				} catch { }
-			} );
 		}
 
 

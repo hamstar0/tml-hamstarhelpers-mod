@@ -36,6 +36,13 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// </summary>
 	public partial class TilePattern {
 		/// <summary>
+		/// Preset for any tile, including empty space.
+		/// </summary>
+		public readonly static TilePattern Any = new TilePattern(
+			new TilePatternBuilder { }
+		);
+
+		/// <summary>
 		/// Preset for completely empty space.
 		/// </summary>
 		public readonly static TilePattern AbsoluteAir = new TilePattern(
@@ -95,6 +102,15 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			}
 		);
 
+		/// <summary>
+		/// Preset for total blackness.
+		/// </summary>
+		public readonly static TilePattern PitchDark = new TilePattern(
+			new TilePatternBuilder {
+				MaximumBrightness = 0f
+			}
+		);
+
 
 
 		////////////////
@@ -130,6 +146,13 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		public TileSlopeType? Slope { get; private set; }
 
+		/// <summary></summary>
+		public float? MaximumBrightness { get; private set; }
+
+		/// <summary></summary>
+		public float? MinimumBrightness { get; private set; }
+
+		/// <summary></summary>
 		public bool? IsModded { get; private set; }
 	}
 }

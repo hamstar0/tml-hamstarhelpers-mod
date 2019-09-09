@@ -147,6 +147,21 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				}
 			}
 
+			if( this.MinimumBrightness.HasValue || this.MaximumBrightness.HasValue ) {
+				float brightness = Lighting.Brightness( tileX, tileY );
+
+				if( this.MinimumBrightness.HasValue ) {
+					if( this.MinimumBrightness > brightness ) {
+						return false;
+					}
+				}
+				if( this.MaximumBrightness.HasValue ) {
+					if( this.MaximumBrightness < brightness ) {
+						return false;
+					}
+				}
+			}
+
 			return true;
 		}
 

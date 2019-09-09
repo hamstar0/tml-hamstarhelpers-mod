@@ -19,6 +19,50 @@ namespace HamstarHelpers.Helpers.World {
 		public static Point WorldSizeLarge => new Point( 8400, 2400 );
 
 
+		////////////////
+
+		/// <summary></summary>
+		public static int RockLayerTop => (int)Main.rockLayer;
+
+		/// <summary></summary>
+		public static int RockLayerBottom => WorldHelpers.UnderworldLayerTop;
+
+
+		/// <summary></summary>
+		public static int DirtLayerTop => (int)Main.worldSurface;
+
+		/// <summary></summary>
+		public static int DirtLayerBottom => (int)Main.rockLayer;
+
+
+		/// <summary></summary>
+		public static int SurfaceLayerTop => WorldHelpers.SkyLayerBottom;
+
+		/// <summary></summary>
+		public static int SurfaceLayerBottom => (int)Main.worldSurface;
+
+
+		/// <summary></summary>
+		public static int SkyLayerTop => 0;
+
+		/// <summary></summary>
+		public static int SkyLayerBottom => (int)(Main.worldSurface * 0.35d);
+
+
+		/// <summary></summary>
+		public static int UnderworldLayerTop => Main.maxTilesY - 200;
+
+		/// <summary></summary>
+		public static int UnderworldLayerBottom => 0;
+
+
+		/// <summary></summary>
+		public static int IsBeachWest => 380;
+
+		/// <summary></summary>
+		public static int IsBeachEast => Main.maxTilesX - 380;
+
+
 
 		////////////////
 
