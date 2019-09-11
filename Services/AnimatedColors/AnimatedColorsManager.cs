@@ -48,9 +48,11 @@ namespace HamstarHelpers.Services.AnimatedColor {
 			}
 		}
 
-		~AnimatedColorsManager() {
+		internal void OnPostSetupContent() {
 			if( !Main.dedServ ) {
-				Main.OnTick -= AnimatedColorsManager._Update;
+				LoadHooks.AddModUnloadHook( () => {
+					Main.OnTick -= AnimatedColorsManager._Update;
+				} );
 			}
 		}
 

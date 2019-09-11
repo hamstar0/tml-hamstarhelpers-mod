@@ -13,6 +13,8 @@ namespace HamstarHelpers.Helpers.World {
 		/// <summary></summary>
 		Cave,
 		/// <summary></summary>
+		RockCave,
+		/// <summary></summary>
 		Hell,
 		/// <summary></summary>
 		Desert,

@@ -75,7 +75,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			IDictionary<int, int> tiles = TileFinderHelpers.GetPlayerRangeTilesAt( tileX, tileY );
 
 			return TileBiomeHelpers.GetVanillaBiomePercentsOf( ref tiles, out totalTiles, out unidenfiedTiles )
-				.ToDictionary( kv=>Enum.GetName(typeof(VanillaBiome), kv), kv=>kv.Value );
+				.ToDictionary( kv => Enum.GetName(typeof(VanillaBiome), kv), kv=>kv.Value );
 		}
 
 

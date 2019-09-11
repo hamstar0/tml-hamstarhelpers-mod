@@ -22,10 +22,10 @@ namespace HamstarHelpers.Helpers.World {
 		////////////////
 
 		/// <summary></summary>
-		public static int RockLayerTop => (int)Main.rockLayer;
+		public static int SurfaceLayerTop => WorldHelpers.SkyLayerBottom;
 
 		/// <summary></summary>
-		public static int RockLayerBottom => WorldHelpers.UnderworldLayerTop;
+		public static int SurfaceLayerBottom => (int)Main.worldSurface;
 
 
 		/// <summary></summary>
@@ -36,10 +36,10 @@ namespace HamstarHelpers.Helpers.World {
 
 
 		/// <summary></summary>
-		public static int SurfaceLayerTop => WorldHelpers.SkyLayerBottom;
+		public static int RockLayerTop => (int)Main.rockLayer;
 
 		/// <summary></summary>
-		public static int SurfaceLayerBottom => (int)Main.worldSurface;
+		public static int RockLayerBottom => WorldHelpers.UnderworldLayerTop;
 
 
 		/// <summary></summary>

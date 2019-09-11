@@ -11,6 +11,7 @@ using HamstarHelpers.Services.Hooks.ExtendedHooks;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Hooks.WorldHooks;
 using HamstarHelpers.Services.AnimatedColor;
+using HamstarHelpers.Services.AnimatedTexture;
 using HamstarHelpers.Services.EntityGroups;
 using HamstarHelpers.Services.Messages.Player;
 using HamstarHelpers.Services.Timers;
@@ -55,6 +56,7 @@ namespace HamstarHelpers {
 		internal CustomLoadHooks CustomLoadHooks;
 		internal Timers Timers;
 		internal EntityGroups EntityGroups;
+		internal AnimatedTextureManager AnimatedTextures;
 		internal AnimatedColorsManager AnimatedColors;
 		internal PlayerMessages PlayerMessages;
 		internal DataStore DataStore;
@@ -104,6 +106,7 @@ namespace HamstarHelpers {
 		private void InitializeModules() {
 			this.ExceptionMngr = new ModHelpersExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
+			this.AnimatedTextures = new AnimatedTextureManager();
 		}
 
 		private void LoadModules() {
@@ -174,6 +177,7 @@ namespace HamstarHelpers {
 			this.ModLock = null;
 			this.EntityGroups = null;
 			this.AnimatedColors = null;
+			this.AnimatedTextures = null;
 			this.PlayerMessages = null;
 			this.Inbox = null;
 			this.ControlPanel = null;
@@ -202,6 +206,8 @@ namespace HamstarHelpers {
 
 		private void PostSetupContentModules() {
 			this.SupportInfo.OnPostSetupContent();
+			this.AnimatedColors.OnPostSetupContent();
+			this.AnimatedTextures.OnPostSetupContent();
 			this.PacketProtocolMngr.OnPostSetupContent();
 			this.LoadHooks.OnPostSetupContent();
 			this.ModFeaturesHelpers.OnPostSetupContent();
