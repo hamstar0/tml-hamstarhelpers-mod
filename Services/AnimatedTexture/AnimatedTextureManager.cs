@@ -6,7 +6,8 @@ using Terraria;
 
 namespace HamstarHelpers.Services.AnimatedTexture {
 	class AnimatedTextureManager {
-		internal IList<AnimatedTexture> Defs = new List<AnimatedTexture>();
+		internal IList<AnimatedTexture> Animations = new List<AnimatedTexture>();
+
 		private Func<bool> OnTickGet;
 
 
@@ -24,6 +25,9 @@ namespace HamstarHelpers.Services.AnimatedTexture {
 
 		internal void OnPostSetupContent() {
 			if( !Main.dedServ ) {
+				LoadHooks.AddWorldUnloadEachHook( () => {
+					this.Animations.Clear();
+				} );
 				LoadHooks.AddModUnloadHook( () => {
 					Main.OnTick -= AnimatedTextureManager._Update;
 				} );
@@ -34,7 +38,7 @@ namespace HamstarHelpers.Services.AnimatedTexture {
 		////////////////
 
 		public void AddAnimation( AnimatedTexture animation ) {
-			this.Defs.Add( animation );
+			this.Animations.Add( animation );
 		}
 
 
@@ -51,7 +55,11 @@ namespace HamstarHelpers.Services.AnimatedTexture {
 
 
 		internal void Update() {
-			foreach( var def in this.Defs ) {
+			if( Main.gameMenu ) {
+				return;
+			}
+
+			foreach( var def in this.Animations ) {
 				def.AdvanceFrame();
 			}
 		}
