@@ -85,12 +85,12 @@ namespace HamstarHelpers.Helpers.XNA {
 
 
 		/// <summary>
-		/// Gets the difference between 2 colors (including alpha channel).
+		/// Subtracts 1 color from another as much as it will allow (including alpha channel).
 		/// </summary>
 		/// <param name="c1"></param>
 		/// <param name="c2"></param>
 		/// <returns></returns>
-		public static Color DifferenceRGBA( Color c1, Color c2 ) {
+		public static Color SubtractRGBA( Color c1, Color c2 ) {
 			return new Color(
 				Math.Max( (int)c1.R - (int)c2.R, 0 ),
 				Math.Max( (int)c1.G - (int)c2.G, 0 ),
@@ -99,12 +99,12 @@ namespace HamstarHelpers.Helpers.XNA {
 			);
 		}
 		/// <summary>
-		/// Get the difference between 2 colors (minus alpha channel).
+		/// Subtracts 1 color from another as much as it will allow (minus alpha channel).
 		/// </summary>
 		/// <param name="c1"></param>
 		/// <param name="c2"></param>
 		/// <returns></returns>
-		public static Color DifferenceRGB( Color c1, Color c2 ) {
+		public static Color SubtractRGB( Color c1, Color c2 ) {
 			return new Color(
 				Math.Max( (int)c1.R - (int)c2.R, 0 ),
 				Math.Max( (int)c1.G - (int)c2.G, 0 ),
@@ -112,13 +112,43 @@ namespace HamstarHelpers.Helpers.XNA {
 			);
 		}
 
+
+		/// <summary>
+		/// Produces a color representing how far apart each RGBA channel is between 2 given colors.
+		/// </summary>
+		/// <param name="c1"></param>
+		/// <param name="c2"></param>
+		/// <returns></returns>
+		public static Color DistanceRGBA( Color c1, Color c2 ) {
+			return new Color(
+				Math.Abs( (int)c1.R - (int)c2.R ),
+				Math.Abs( (int)c1.G - (int)c2.G ),
+				Math.Abs( (int)c1.B - (int)c2.B ),
+				Math.Abs( (int)c1.A - (int)c2.A )
+			);
+		}
+		/// <summary>
+		/// Produces a color representing how far apart each RGB channel is between 2 given colors.
+		/// </summary>
+		/// <param name="c1"></param>
+		/// <param name="c2"></param>
+		/// <returns></returns>
+		public static Color DistanceRGB( Color c1, Color c2 ) {
+			return new Color(
+				Math.Abs( (int)c1.R - (int)c2.R ),
+				Math.Abs( (int)c1.G - (int)c2.G ),
+				Math.Abs( (int)c1.B - (int)c2.B )
+			);
+		}
+
+
 		/// <summary>
 		/// Adds together a color's RGBA.
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns></returns>
 		public static int SumRGBA( Color c ) {
-			return (int)c.R + c.G + (int)c.B + (int)c.A;
+			return (int)c.R + (int)c.G + (int)c.B + (int)c.A;
 		}
 		/// <summary>
 		/// Adds together a color's RGB.
@@ -126,7 +156,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="c"></param>
 		/// <returns></returns>
 		public static int SumRGB( Color c ) {
-			return (int)c.R + c.G + (int)c.B;
+			return (int)c.R + (int)c.G + (int)c.B;
 		}
 
 		/// <summary>

@@ -53,6 +53,9 @@ namespace HamstarHelpers.Services.AnimatedTexture {
 			this.CurrentFrameTickDuration = animData.TickDuration;
 		}
 
+
+		////////////////
+
 		internal void AdvanceFrame() {
 			if( this.CurrentFrameTicksElapsed++ < this.CurrentFrameTickDuration ) {
 				return;

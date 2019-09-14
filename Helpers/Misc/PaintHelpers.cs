@@ -22,7 +22,9 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="color"></param>
 		/// <returns>Internal paint id (not item id).</returns>
 		public static byte GetNearestPaintType( Color color ) {
-			int colorCode = (((int)color.R >> 3) << 3) + (((int)color.G >> 3) << 11) + (((int)color.B >> 3) << 19 );
+			int colorCode = (((int)color.R >> 3) << 3) +
+				(((int)color.G >> 3) << 11) +
+				(((int)color.B >> 3) << 19 );
 
 			if( PaintHelpers.CachedMatches.ContainsKey( colorCode ) ) {
 				return PaintHelpers.CachedMatches[ colorCode ];
@@ -33,11 +35,11 @@ namespace HamstarHelpers.Helpers.Misc {
 
 			for( int i=1; i<=30; i++ ) {
 				Color compare = WorldGen.paintColor( i );
-				Color diff = XNAColorHelpers.DifferenceRGB( color, compare );
-				float diffAmt = Math.Abs( XNAColorHelpers.SumRGB( diff ) );
+				Color dist = XNAColorHelpers.DistanceRGB( color, compare );
+				float distAmt = Math.Abs( XNAColorHelpers.SumRGB( dist ) );
 
-				if( minVal > diffAmt ) {
-					minVal = diffAmt;
+				if( minVal > distAmt ) {
+					minVal = distAmt;
 					minIdx = i;
 				}
 			}

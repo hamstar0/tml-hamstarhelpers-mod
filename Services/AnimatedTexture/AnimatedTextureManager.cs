@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Services.Hooks.LoadHooks;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using Terraria;
