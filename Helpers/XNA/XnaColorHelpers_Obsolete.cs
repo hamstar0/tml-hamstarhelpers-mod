@@ -13,7 +13,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="c1"></param>
 		/// <param name="c2"></param>
 		/// <returns></returns>
-		[Obsolete("use SubtractRGBA", true)]
+		[Obsolete("use either SubtractRGBA or DistanceRGBA, depending on use", true)]
 		public static Color DifferenceRGBA( Color c1, Color c2 ) {
 			return XNAColorHelpers.SubtractRGBA( c1, c2 );
 		}
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="c1"></param>
 		/// <param name="c2"></param>
 		/// <returns></returns>
-		[Obsolete( "use SubtractRGBA", true )]
+		[Obsolete( "use SubtractRGB or DistanceRGB, depending on use", true )]
 		public static Color DifferenceRGB( Color c1, Color c2 ) {
 			return XNAColorHelpers.SubtractRGB( c1, c2 );
 		}

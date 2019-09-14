@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TileHelpers {
 		/// <summary>
-		/// Indicates if a given tile is purely "air" (nothing in it at all).
+		/// Indicates if a given tile is "air" (including no walls).
 		/// </summary>
 		/// <param name="tile"></param>
 		/// <param name="isWireAir"></param>
@@ -42,13 +42,21 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <returns></returns>
 		public static bool IsSolid( Tile tile, bool isPlatformSolid = false, bool isActuatedSolid = false ) {
 			if( TileHelpers.IsAir(tile) ) { return false; }
-			if( !Main.tileSolid[tile.type] ) { return false; }
+			if( !Main.tileSolid[tile.type] || !tile.active() ) { return false; }
 
-			bool isTopSolid = Main.tileSolidTop[ tile.type ];
-			bool isPassable = tile.inActive();
+			if( !isPlatformSolid ) {
+				bool isTopSolid = Main.tileSolidTop[tile.type];
+				if( isTopSolid ) {
+					return false;
+				}
+			}
 
-			if( !isPlatformSolid && isTopSolid ) { return false; }
-			if( !isActuatedSolid && isPassable ) { return false; }
+			if( !isActuatedSolid ) {
+				bool isPassable = tile.inActive();
+				if( isPassable ) {
+					return false;
+				}
+			}
 			
 			return true;
 		}
