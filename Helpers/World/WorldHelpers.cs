@@ -198,30 +198,52 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="ground">Tile pattern checker to define what "ground" is.</param>
 		/// <param name="groundPos"></param>
 		/// <returns>`true` if a ground point was found within world boundaries.</returns>
-		public static bool DropToGround( Vector2 worldPos, bool invertGravity, TilePattern ground, out Vector2 groundPos ) {
+		public static bool DropToGround( Vector2 worldPos,
+				bool invertGravity,
+				TilePattern ground,
+				out Vector2 groundPos ) {
+			int furthestTileY = invertGravity ? 42 : Main.maxTilesY - 42;
+			return WorldHelpers.DropToGround( worldPos, invertGravity, ground, furthestTileY, out groundPos );
+		}
+
+
+		/// <summary>
+		/// Drops from a given point to the ground.
+		/// </summary>
+		/// <param name="worldPos"></param>
+		/// <param name="invertGravity"></param>
+		/// <param name="ground">Tile pattern checker to define what "ground" is.</param>
+		/// <param name="furthestTileY">Limit to check tiles down (or up) to before giving up.</param>
+		/// <param name="groundPos"></param>
+		/// <returns>`true` if a ground point was found within world boundaries.</returns>
+		public static bool DropToGround( Vector2 worldPos,
+				bool invertGravity,
+				TilePattern ground,
+				int furthestTileY,
+				out Vector2 groundPos ) {
 			bool hitGround = true;
-			int x = (int)worldPos.X / 16;
-			int y = (int)worldPos.Y / 16;
+			int tileX = (int)worldPos.X >> 4;
+			int tileY = (int)worldPos.Y >> 4;
 
 			if( invertGravity ) {
 				do {
-					y--;
-					if( y >= 42 ) {
+					tileY--;
+					if( tileY >= furthestTileY ) {
 						hitGround = false;
 						break;
 					}
-				} while( !ground.Check(x, y) );
+				} while( !ground.Check( tileX, tileY ) );
 			} else {
 				do {
-					y++;
-					if( y >= Main.maxTilesY - 42 ) {
+					tileY++;
+					if( tileY >= furthestTileY ) {
 						hitGround = false;
 						break;
 					}
-				} while( !ground.Check(x, y) );
+				} while( !ground.Check( tileX, tileY ) );
 			}
 
-			groundPos = new Vector2( worldPos.X, y * 16 );
+			groundPos = new Vector2( worldPos.X, tileY * 16 );
 			return hitGround;
 		}
 	}
