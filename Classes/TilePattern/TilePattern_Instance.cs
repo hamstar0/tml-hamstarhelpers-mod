@@ -97,6 +97,13 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 					collideType = TileCollideType.Solid;
 					return false;
 				}
+				if( this.Slope.HasValue && this.Slope.Value != TileSlopeType.None ) {
+					collideType = TileCollideType.Solid;
+					return false;
+				}
+				if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
+					return false;
+				}
 				collideType = TileCollideType.None;
 				return true;
 			}
@@ -245,22 +252,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 					break;
 				}
 			}
-			
-			if( this.MinimumBrightness.HasValue || this.MaximumBrightness.HasValue ) {
-				float brightness = Lighting.Brightness( tileX, tileY );
 
-				if( this.MinimumBrightness.HasValue ) {
-					if( this.MinimumBrightness > brightness ) {
-						collideType = TileCollideType.BrightnessLow;
-						return false;
-					}
-				}
-				if( this.MaximumBrightness.HasValue ) {
-					if( this.MaximumBrightness < brightness ) {
-						collideType = TileCollideType.BrightnessHigh;
-						return false;
-					}
-				}
+			if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
+				return false;
 			}
 
 			collideType = TileCollideType.None;
@@ -296,6 +290,34 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 					}
 				}
 			}
+			return true;
+		}
+
+
+		////
+
+		public bool CheckBrightness( int tileX, int tileY, out TileCollideType collideType ) {
+			if( !this.MinimumBrightness.HasValue && !this.MaximumBrightness.HasValue ) {
+				collideType = TileCollideType.None;
+				return true;
+			}
+
+			float brightness = Lighting.Brightness( tileX, tileY );
+
+			if( this.MinimumBrightness.HasValue ) {
+				if( this.MinimumBrightness > brightness ) {
+					collideType = TileCollideType.BrightnessLow;
+					return false;
+				}
+			}
+			if( this.MaximumBrightness.HasValue ) {
+				if( this.MaximumBrightness < brightness ) {
+					collideType = TileCollideType.BrightnessHigh;
+					return false;
+				}
+			}
+
+			collideType = TileCollideType.None;
 			return true;
 		}
 	}
