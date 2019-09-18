@@ -1,35 +1,49 @@
-﻿using HamstarHelpers.Helpers.Tiles;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
-	/// <summary></summary>
-	public enum TileCollideType {
-		None = 0,
-		Solid,
-		Wall,
-		Platform,
-		Wire1,
-		Wire2,
-		Wire3,
-		Wire4,
-		Actuated,
-		Water,
-		Honey,
-		Lava,
-		SlopeAny,
-		SlopeHalfBrick,
-		SlopeTopRight,
-		SlopeTopLeft,
-		SlopeBottomRight,
-		SlopeBottomLeft,
-		SlopeTop,
-		SlopeBottom,
-		SlopeLeft,
-		SlopeRight,
-		BrightnessLow,
-		BrightnessHigh,
+	public class TilePatternBuilder {
+		/// <summary></summary>
+		public (int Width, int Height) SquareCheckRadius = (1, 1);
+
+		/// <summary></summary>
+		public bool? HasWire1 = null;
+		/// <summary></summary>
+		public bool? HasWire2 = null;
+		/// <summary></summary>
+		public bool? HasWire3 = null;
+		/// <summary></summary>
+		public bool? HasWire4 = null;
+
+		/// <summary></summary>
+		public bool? IsSolid = null;
+		/// <summary></summary>
+		public bool? IsPlatform = null;
+		/// <summary></summary>
+		public bool? IsActuated = null;
+		/// <summary></summary>
+		public bool? IsVanillaBombable = null;
+
+		/// <summary></summary>
+		public bool? HasWall = null;
+
+		/// <summary></summary>
+		public bool? HasWater = null;
+		/// <summary></summary>
+		public bool? HasHoney = null;
+		/// <summary></summary>
+		public bool? HasLava = null;
+
+		/// <summary></summary>
+		public TileSlopeType? Slope = null;
+
+		/// <summary></summary>
+		public float? MinimumBrightness = null;
+		/// <summary></summary>
+		public float? MaximumBrightness = null;
+
+		/// <summary></summary>
+		public bool? IsModded = null;
 	}
 
 
@@ -39,243 +53,78 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
 	public partial class TilePattern {
-		/// <summary>
-		/// Tests a given tile against the current settings.
-		/// </summary>
-		/// <param name="tileX"></param>
-		/// <param name="tileY"></param>
-		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
-		public bool Check( int tileX, int tileY ) {
-			TileCollideType _;
-			return this.Check( tileX, tileY, out _ );
-		}
+		/// <summary></summary>
+		public (int Width, int Height) Area { get; private set; }
 
-		/// <summary>
-		/// Tests a given tile against the current settings. Also indicates what type of collision occurs.
-		/// </summary>
-		/// <param name="tileX"></param>
-		/// <param name="tileY"></param>
-		/// <param name="collideType"></param>
-		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
-		public bool Check( int tileX, int tileY, out TileCollideType collideType ) {
-			Tile tile = Framing.GetTileSafely( tileX, tileY );
+		/// <summary></summary>
+		public bool? HasWire1 { get; private set; }
+		/// <summary></summary>
+		public bool? HasWire2 { get; private set; }
+		/// <summary></summary>
+		public bool? HasWire3 { get; private set; }
+		/// <summary></summary>
+		public bool? HasWire4 { get; private set; }
 
-			if( TileHelpers.IsAir(tile) ) {
-				if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
-					return false;
-				}
-				collideType = TileCollideType.None;
-				return true;
-			}
-
-			if( this.HasWire1.HasValue ) {
-				if( this.HasWire1.Value != tile.wire() ) {
-					collideType = TileCollideType.Wire1;
-					return false;
-				}
-			}
-			if( this.HasWire2.HasValue ) {
-				if( this.HasWire2.Value != tile.wire2() ) {
-					collideType = TileCollideType.Wire2;
-					return false;
-				}
-			}
-			if( this.HasWire3.HasValue ) {
-				if( this.HasWire3.Value != tile.wire3() ) {
-					collideType = TileCollideType.Wire3;
-					return false;
-				}
-			}
-			if( this.HasWire4.HasValue ) {
-				if( this.HasWire4.Value != tile.wire4() ) {
-					collideType = TileCollideType.Wire4;
-					return false;
-				}
-			}
-
-			if( this.IsPlatform.HasValue ) {
-				if( Main.tileSolidTop[tile.type] != this.IsPlatform ) {
-					collideType = TileCollideType.Platform;
-					return false;
-				}
-			}
-
-			if( this.IsActuated.HasValue ) {
-				if( tile.inActive() != this.IsActuated ) {
-					collideType = TileCollideType.Actuated;
-					return false;
-				}
-			}
-
-			if( this.IsSolid.HasValue ) {
-				bool isPlatform = this.IsPlatform.GetValueOrDefault();
-				bool isActuated = this.IsActuated.GetValueOrDefault();
-				if( TileHelpers.IsSolid(tile, isPlatform, isActuated) != this.IsSolid.Value ) {
-					collideType = TileCollideType.Solid;
-					return false;
-				}
-			}
-
-			if( this.HasWall.HasValue ) {
-				if( (tile.wall > 0) != this.HasWall.Value ) {
-					collideType = TileCollideType.Wall;
-					return false;
-				}
-			}
-
-			if( this.HasLava.HasValue ) {
-				if( tile.lava() != this.HasLava.Value ) {
-					collideType = TileCollideType.Lava;
-					return false;
-				}
-			}
-			if( this.HasHoney.HasValue ) {
-				if( tile.honey() != this.HasHoney.Value ) {
-					collideType = TileCollideType.Honey;
-					return false;
-				}
-			}
-			if( this.HasWater.HasValue ) {
-				if( tile.liquid > 0 != this.HasWater.Value ) {
-					collideType = TileCollideType.Water;
-					return false;
-				}
-			}
-			
-			if( this.Slope.HasValue ) {
-				switch( this.Slope.Value ) {
-				case TileSlopeType.None:
-					if( tile.slope() != 0 ) {
-						collideType = TileCollideType.None;
-						return false;
-					}
-					break;
-				case TileSlopeType.Any:
-					if( tile.slope() == 0 ) {
-						collideType = TileCollideType.SlopeAny;
-						return false;
-					}
-					break;
-				case TileSlopeType.HalfBrick:
-					if( !tile.halfBrick() ) {
-						collideType = TileCollideType.SlopeHalfBrick;
-						return false;
-					}
-					break;
-				case TileSlopeType.TopRightSlope:
-					if( tile.slope() == 1 ) {
-						collideType = TileCollideType.SlopeTopRight;
-						return false;
-					}
-					break;
-				case TileSlopeType.TopLeftSlope:
-					if( tile.slope() == 2 ) {
-						collideType = TileCollideType.SlopeTopLeft;
-						return false;
-					}
-					break;
-				case TileSlopeType.BottomRightSlope:
-					if( tile.slope() == 3 ) {
-						collideType = TileCollideType.SlopeBottomRight;
-						return false;
-					}
-					break;
-				case TileSlopeType.BottomLeftSlope:
-					if( tile.slope() == 4 ) {
-						collideType = TileCollideType.SlopeBottomLeft;
-						return false;
-					}
-					break;
-				case TileSlopeType.Top:
-					if( !tile.topSlope() ) {
-						collideType = TileCollideType.SlopeTop;
-						return false;
-					}
-					break;
-				case TileSlopeType.Bottom:
-					if( !tile.bottomSlope() ) {
-						collideType = TileCollideType.SlopeBottom;
-						return false;
-					}
-					break;
-				case TileSlopeType.Left:
-					if( !tile.leftSlope() ) {
-						collideType = TileCollideType.SlopeLeft;
-						return false;
-					}
-					break;
-				case TileSlopeType.Right:
-					if( !tile.rightSlope() ) {
-						collideType = TileCollideType.SlopeRight;
-						return false;
-					}
-					break;
-				}
-			}
-
-			if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
-				return false;
-			}
-
-			collideType = TileCollideType.None;
-			return true;
-		}
-
-
-		/// <summary>
-		/// Checks all tiles in an area.
-		/// </summary>
-		/// <param name="tileArea"></param>
-		/// <returns></returns>
-		public bool CheckArea( Rectangle tileArea ) {
-			return this.CheckArea( tileArea.X, tileArea.Y, tileArea.Width, tileArea.Height );
-		}
+		/// <summary></summary>
+		public bool? IsSolid { get; private set; }
+		/// <summary></summary>
+		public bool? IsPlatform { get; private set; }
+		/// <summary></summary>
+		public bool? IsActuated { get; private set; }
+		/// <summary></summary>
+		public bool? IsVanillaBombable { get; private set; }
 		
+		/// <summary></summary>
+		public bool? HasWall { get; private set; }
+
+		/// <summary></summary>
+		public bool? HasWater { get; private set; }
+		/// <summary></summary>
+		public bool? HasHoney { get; private set; }
+		/// <summary></summary>
+		public bool? HasLava { get; private set; }
+
+		/// <summary></summary>
+		public TileSlopeType? Slope { get; private set; }
+
+		/// <summary></summary>
+		public float? MaximumBrightness { get; private set; }
+
+		/// <summary></summary>
+		public float? MinimumBrightness { get; private set; }
+
+		/// <summary></summary>
+		public bool? IsModded { get; private set; }
+
+
+
+		////////////////
+
 		/// <summary>
-		/// Checks all tiles in an area.
 		/// </summary>
-		/// <param name="tileX"></param>
-		/// <param name="tileY"></param>
-		/// <param name="width"></param>
-		/// <param name="height"></param>
-		/// <returns></returns>
-		public bool CheckArea( int tileX, int tileY, int width, int height ) {    //, out int failAtX, out int failAtY
-			int maxX = tileX + width;
-			int maxY = tileY + height;
+		public TilePattern( TilePatternBuilder builder ) {
+			this.HasWire1 = builder.HasWire1;
+			this.HasWire2 = builder.HasWire2;
+			this.HasWire3 = builder.HasWire3;
+			this.HasWire4 = builder.HasWire4;
 
-			for( int i = tileX; i < maxX; i++ ) {
-				for( int j = tileY; j < maxY; j++ ) {
-					if( !this.Check( i, j ) ) {
-						return false;
-					}
-				}
-			}
-			return true;
-		}
+			this.IsSolid = builder.IsSolid;
+			this.IsPlatform = builder.IsPlatform;
+			this.IsActuated = builder.IsActuated;
+			this.IsVanillaBombable = builder.IsVanillaBombable;
 
+			this.HasWall = builder.HasWall;
 
-		////
+			this.HasWater = builder.HasWater;
+			this.HasHoney = builder.HasHoney;
+			this.HasLava = builder.HasLava;
 
-		public bool CheckBrightness( int tileX, int tileY, out TileCollideType collideType ) {
-			if( this.MinimumBrightness.HasValue || this.MaximumBrightness.HasValue ) {
-				float brightness = Lighting.Brightness( tileX, tileY );
+			this.Slope = builder.Slope;
 
-				if( this.MinimumBrightness.HasValue ) {
-					if( this.MinimumBrightness > brightness ) {
-						collideType = TileCollideType.BrightnessLow;
-						return false;
-					}
-				}
-				if( this.MaximumBrightness.HasValue ) {
-					if( this.MaximumBrightness < brightness ) {
-						collideType = TileCollideType.BrightnessHigh;
-						return false;
-					}
-				}
-			}
+			this.MinimumBrightness = builder.MinimumBrightness;
+			this.MaximumBrightness = builder.MaximumBrightness;
 
-			collideType = TileCollideType.None;
-			return true;
+			this.IsModded = builder.IsModded;
 		}
 	}
 }

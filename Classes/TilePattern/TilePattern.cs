@@ -110,49 +110,5 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				MaximumBrightness = 0f
 			}
 		);
-
-
-
-		////////////////
-
-		/// <summary></summary>
-		public bool? HasWire1 { get; private set; }
-		/// <summary></summary>
-		public bool? HasWire2 { get; private set; }
-		/// <summary></summary>
-		public bool? HasWire3 { get; private set; }
-		/// <summary></summary>
-		public bool? HasWire4 { get; private set; }
-
-		/// <summary></summary>
-		public bool? IsSolid { get; private set; }
-		/// <summary></summary>
-		public bool? IsPlatform { get; private set; }
-		/// <summary></summary>
-		public bool? IsActuated { get; private set; }
-		/// <summary></summary>
-		public bool? IsVanillaBombable { get; private set; }
-		
-		/// <summary></summary>
-		public bool? HasWall { get; private set; }
-
-		/// <summary></summary>
-		public bool? HasWater { get; private set; }
-		/// <summary></summary>
-		public bool? HasHoney { get; private set; }
-		/// <summary></summary>
-		public bool? HasLava { get; private set; }
-
-		/// <summary></summary>
-		public TileSlopeType? Slope { get; private set; }
-
-		/// <summary></summary>
-		public float? MaximumBrightness { get; private set; }
-
-		/// <summary></summary>
-		public float? MinimumBrightness { get; private set; }
-
-		/// <summary></summary>
-		public bool? IsModded { get; private set; }
 	}
 }
