@@ -72,17 +72,14 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <param name="collisionAt"></param>
 		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
 		public bool Check( int tileX, int tileY, out TileCollideType collideType, out Point collisionAt ) {
-			if( !this.AreaFromCenter.HasValue || (this.AreaFromCenter.Value.X == 0 && this.AreaFromCenter.Value.Y == 0) ) {
+			if( !this.AreaFromCenter.HasValue ) {
 				collisionAt = new Point( tileX, tileY );
 				return this.CheckPoint( tileX, tileY, out collideType );
 			}
 
-			int leftTileX = tileX + this.AreaFromCenter.Value.X;
-			int topTileY = tileY + this.AreaFromCenter.Value.Y;
-
 			return this.CheckArea(
-				leftTileX,
-				topTileY,
+				tileX + this.AreaFromCenter.Value.X,
+				tileY + this.AreaFromCenter.Value.Y,
 				this.AreaFromCenter.Value.Width,
 				this.AreaFromCenter.Value.Height,
 				out collideType,
