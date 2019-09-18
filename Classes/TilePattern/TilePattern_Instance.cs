@@ -61,46 +61,6 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
 			if( TileHelpers.IsAir(tile) ) {
-				if( this.HasHoney.HasValue && this.HasHoney.Value ) {
-					collideType = TileCollideType.Honey;
-					return false;
-				}
-				if( this.HasLava.HasValue && this.HasLava.Value ) {
-					collideType = TileCollideType.Lava;
-					return false;
-				}
-				if( this.HasWater.HasValue && this.HasWater.Value ) {
-					collideType = TileCollideType.Water;
-					return false;
-				}
-				if( this.HasWall.HasValue && this.HasWall.Value ) {
-					collideType = TileCollideType.Wall;
-					return false;
-				}
-				if( this.HasWire1.HasValue && this.HasWire1.Value ) {
-					collideType = TileCollideType.Wire1;
-					return false;
-				}
-				if( this.HasWire2.HasValue && this.HasWire2.Value ) {
-					collideType = TileCollideType.Wire2;
-					return false;
-				}
-				if( this.HasWire3.HasValue && this.HasWire3.Value ) {
-					collideType = TileCollideType.Wire3;
-					return false;
-				}
-				if( this.HasWire4.HasValue && this.HasWire4.Value ) {
-					collideType = TileCollideType.Wire4;
-					return false;
-				}
-				if( this.IsSolid.HasValue && this.IsSolid.Value ) {
-					collideType = TileCollideType.Solid;
-					return false;
-				}
-				if( this.Slope.HasValue && this.Slope.Value != TileSlopeType.None ) {
-					collideType = TileCollideType.Solid;
-					return false;
-				}
 				if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
 					return false;
 				}
@@ -297,23 +257,20 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		////
 
 		public bool CheckBrightness( int tileX, int tileY, out TileCollideType collideType ) {
-			if( !this.MinimumBrightness.HasValue && !this.MaximumBrightness.HasValue ) {
-				collideType = TileCollideType.None;
-				return true;
-			}
+			if( this.MinimumBrightness.HasValue || this.MaximumBrightness.HasValue ) {
+				float brightness = Lighting.Brightness( tileX, tileY );
 
-			float brightness = Lighting.Brightness( tileX, tileY );
-
-			if( this.MinimumBrightness.HasValue ) {
-				if( this.MinimumBrightness > brightness ) {
-					collideType = TileCollideType.BrightnessLow;
-					return false;
+				if( this.MinimumBrightness.HasValue ) {
+					if( this.MinimumBrightness > brightness ) {
+						collideType = TileCollideType.BrightnessLow;
+						return false;
+					}
 				}
-			}
-			if( this.MaximumBrightness.HasValue ) {
-				if( this.MaximumBrightness < brightness ) {
-					collideType = TileCollideType.BrightnessHigh;
-					return false;
+				if( this.MaximumBrightness.HasValue ) {
+					if( this.MaximumBrightness < brightness ) {
+						collideType = TileCollideType.BrightnessHigh;
+						return false;
+					}
 				}
 			}
 

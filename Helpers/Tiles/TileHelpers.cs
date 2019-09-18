@@ -20,16 +20,17 @@ namespace HamstarHelpers.Helpers.Tiles {
 			if( tile == null ) {
 				return true;
 			}
-			if( (!tile.active() && tile.wall == 0) ) {/*|| tile.type == 0*/
-				if( !isWireAir && TileHelpers.IsWire(tile) ) {
-					return false;
-				}
-				if( !isLiquidAir && tile.liquid != 0 ) {
-					return false;
-				}
-				return true;
+			if( tile.active() || tile.wall > 0 ) {/*|| tile.type == 0*/
+				return false;
 			}
-			return false;
+			if( !isWireAir && TileHelpers.IsWire(tile) ) {
+				return false;
+			}
+			if( !isLiquidAir && tile.liquid != 0 ) {
+				return false;
+			}
+
+			return true;
 		}
 
 		
