@@ -5,7 +5,7 @@ using Terraria;
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	public class TilePatternBuilder {
 		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
-		public Point? AreaFromCenter = null;
+		public Rectangle? AreaFromCenter = null;
 
 		/// <summary></summary>
 		public bool? HasWire1 = null;
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// </summary>
 	public partial class TilePattern {
 		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
-		public Point? AreaFromCenter { get; private set; } = null;
+		public Rectangle? AreaFromCenter { get; private set; } = null;
 
 		/// <summary></summary>
 		public bool? HasWire1 { get; private set; }

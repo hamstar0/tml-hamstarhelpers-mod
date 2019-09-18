@@ -72,19 +72,19 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <param name="collisionAt"></param>
 		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
 		public bool Check( int tileX, int tileY, out TileCollideType collideType, out Point collisionAt ) {
-			if( !this.AreaFromCenter.HasValue || (this.AreaFromCenter.Value.X == 1 && this.AreaFromCenter.Value.Y == 1) ) {
+			if( !this.AreaFromCenter.HasValue || (this.AreaFromCenter.Value.X == 0 && this.AreaFromCenter.Value.Y == 0) ) {
 				collisionAt = new Point( tileX, tileY );
 				return this.CheckPoint( tileX, tileY, out collideType );
 			}
 
-			int leftTileX = tileX - this.AreaFromCenter.Value.X;
-			int topTileY = tileY - this.AreaFromCenter.Value.Y;
+			int leftTileX = tileX + this.AreaFromCenter.Value.X;
+			int topTileY = tileY + this.AreaFromCenter.Value.Y;
 
 			return this.CheckArea(
 				leftTileX,
 				topTileY,
-				this.AreaFromCenter.Value.X * 2,
-				this.AreaFromCenter.Value.Y * 2,
+				this.AreaFromCenter.Value.Width,
+				this.AreaFromCenter.Value.Height,
 				out collideType,
 				out collisionAt
 			);
@@ -308,7 +308,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 			for( int i = tileX; i < maxX; i++ ) {
 				for( int j = tileY; j < maxY; j++ ) {
-					if( !this.Check( i, j, out collideType ) ) {
+					if( !this.CheckPoint( i, j, out collideType ) ) {
 						collision = new Point( i, j );
 						return false;
 					}
@@ -321,8 +321,15 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		}
 
 
-		////
+		////////////////
 
+		/// <summary>
+		/// Checks for valid brightness of the given tile.
+		/// </summary>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="collideType"></param>
+		/// <returns></returns>
 		public bool CheckBrightness( int tileX, int tileY, out TileCollideType collideType ) {
 			if( this.MinimumBrightness.HasValue || this.MaximumBrightness.HasValue ) {
 				float brightness = Lighting.Brightness( tileX, tileY );
