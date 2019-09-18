@@ -77,13 +77,13 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		public override void OnInitializeMe() {
 			this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanelTab.SupportMessages.Count );
+			
+			this.InitializeComponents();
 
 			LoadHooks.AddWorldUnloadEachHook( () => {
 				this.RandomSupportTextIdx = Main.rand.Next( UIModControlPanelTab.SupportMessages.Count );
-				this.SupportUrl.SetText( UIModControlPanelTab.SupportMessages[this.RandomSupportTextIdx] );
+				this.SupportUrl?.SetText( UIModControlPanelTab.SupportMessages[this.RandomSupportTextIdx] );
 			} );
-			
-			this.InitializeComponents();
 		}
 
 		////

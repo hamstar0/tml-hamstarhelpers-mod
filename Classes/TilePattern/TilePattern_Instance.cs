@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	public class TilePatternBuilder {
-		/// <summary></summary>
-		public (int Width, int Height) SquareCheckRadius = (1, 1);
+		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
+		public Point? AreaFromCenter = null;
 
 		/// <summary></summary>
 		public bool? HasWire1 = null;
@@ -53,8 +54,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
 	public partial class TilePattern {
-		/// <summary></summary>
-		public (int Width, int Height) Area { get; private set; }
+		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
+		public Point? AreaFromCenter { get; private set; } = null;
 
 		/// <summary></summary>
 		public bool? HasWire1 { get; private set; }
@@ -103,6 +104,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary>
 		/// </summary>
 		public TilePattern( TilePatternBuilder builder ) {
+			this.AreaFromCenter = builder.AreaFromCenter;
+
 			this.HasWire1 = builder.HasWire1;
 			this.HasWire2 = builder.HasWire2;
 			this.HasWire3 = builder.HasWire3;
