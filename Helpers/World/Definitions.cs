@@ -3,6 +3,31 @@
 
 namespace HamstarHelpers.Helpers.World {
 	/// <summary></summary>
+	public enum WorldRegionFlags {
+		/// <summary></summary>
+		Overworld = 1,
+		/// <summary></summary>
+		Sky = 2,
+		/// <summary></summary>
+		Ocean = 4,
+		/// <summary></summary>
+		OceanEast = 8 + 2,
+		/// <summary></summary>
+		OceanWest = 16 + 2,
+		/// <summary></summary>
+		Cave = 32,
+		/// <summary></summary>
+		CaveDirt = 64 + 16,
+		/// <summary></summary>
+		CaveRock = 128 + 16,
+		/// <summary></summary>
+		CaveLava = 256 + 16,
+		/// <summary></summary>
+		Hell = 512
+	}
+
+
+	/// <summary></summary>
 	public enum VanillaBiome {
 		/// <summary></summary>
 		Forest,
@@ -42,19 +67,6 @@ namespace HamstarHelpers.Helpers.World {
 		Dungeon,
 		/// <summary></summary>
 		Temple
-	}
-	/// <summary></summary>
-	public enum VanillaSectionalBiome {
-		/// <summary></summary>
-		Forest,
-		/// <summary></summary>
-		Space,
-		/// <summary></summary>
-		Ocean,
-		/// <summary></summary>
-		Cave,
-		/// <summary></summary>
-		Hell
 	}
 	/// <summary></summary>
 	public enum VanillaSurfaceBiome {

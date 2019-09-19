@@ -100,13 +100,13 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public bool CheckPoint( int tileX, int tileY, out TileCollideType collideType ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
-			if( TileHelpers.IsAir(tile) ) {
+			/*if( TileHelpers.IsAir(tile, false, false) ) {
 				if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
 					return false;
 				}
 				collideType = TileCollideType.None;
 				return true;
-			}
+			}*/
 
 			if( this.HasWire1.HasValue ) {
 				if( this.HasWire1.Value != tile.wire() ) {
@@ -295,24 +295,24 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <param name="width"></param>
 		/// <param name="height"></param>
 		/// <param name="collideType"></param>
-		/// <param name="collision"></param>
+		/// <param name="collisionAt"></param>
 		/// <returns></returns>
 		public bool CheckArea( int tileX, int tileY, int width, int height,
 				out TileCollideType collideType,
-				out Point collision ) {
+				out Point collisionAt ) {
 			int maxX = tileX + width;
 			int maxY = tileY + height;
 
 			for( int i = tileX; i < maxX; i++ ) {
 				for( int j = tileY; j < maxY; j++ ) {
 					if( !this.CheckPoint( i, j, out collideType ) ) {
-						collision = new Point( i, j );
+						collisionAt = new Point( i, j );
 						return false;
 					}
 				}
 			}
 
-			collision = new Point(-1, -1);
+			collisionAt = new Point(-1, -1);
 			collideType = TileCollideType.None;
 			return true;
 		}

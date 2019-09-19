@@ -22,45 +22,45 @@ namespace HamstarHelpers.Helpers.World {
 		////////////////
 
 		/// <summary></summary>
-		public static int SurfaceLayerTop => WorldHelpers.SkyLayerBottom;
+		public static int SurfaceLayerTopTileY => WorldHelpers.SkyLayerBottomTileY;
 
 		/// <summary></summary>
-		public static int SurfaceLayerBottom => (int)Main.worldSurface;
-
-
-		/// <summary></summary>
-		public static int DirtLayerTop => (int)Main.worldSurface;
-
-		/// <summary></summary>
-		public static int DirtLayerBottom => (int)Main.rockLayer;
+		public static int SurfaceLayerBottomTileY => (int)Main.worldSurface;
 
 
 		/// <summary></summary>
-		public static int RockLayerTop => (int)Main.rockLayer;
+		public static int DirtLayerTopTileY => (int)Main.worldSurface;
 
 		/// <summary></summary>
-		public static int RockLayerBottom => WorldHelpers.UnderworldLayerTop;
-
-
-		/// <summary></summary>
-		public static int SkyLayerTop => 0;
-
-		/// <summary></summary>
-		public static int SkyLayerBottom => (int)(Main.worldSurface * 0.35d);
+		public static int DirtLayerBottomTileY => (int)Main.rockLayer;
 
 
 		/// <summary></summary>
-		public static int UnderworldLayerTop => Main.maxTilesY - 200;
+		public static int RockLayerTopTileY => (int)Main.rockLayer;
 
 		/// <summary></summary>
-		public static int UnderworldLayerBottom => 0;
+		public static int RockLayerBottomTileY => WorldHelpers.UnderworldLayerTopTileY;
 
 
 		/// <summary></summary>
-		public static int IsBeachWest => 380;
+		public static int SkyLayerTopTileY => 0;
 
 		/// <summary></summary>
-		public static int IsBeachEast => Main.maxTilesX - 380;
+		public static int SkyLayerBottomTileY => (int)(Main.worldSurface * 0.35d);
+
+
+		/// <summary></summary>
+		public static int UnderworldLayerTopTileY => Main.maxTilesY - 200;
+
+		/// <summary></summary>
+		public static int UnderworldLayerBottomTileY => 0;
+
+
+		/// <summary></summary>
+		public static int BeachWestTileX => 380;
+
+		/// <summary></summary>
+		public static int BeachEastTileX => Main.maxTilesX - 380;
 
 
 
@@ -106,33 +106,51 @@ namespace HamstarHelpers.Helpers.World {
 		////////////////
 
 		/// <summary>
-		/// Indicates if the given position is within the underground rock layer.
+		/// Gets the identifiable region of a given point in the world.
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
-		public static bool IsRockLayer( Vector2 worldPos ) {
-			Vector2 tilePos = worldPos / 16;
-			return tilePos.Y <= Main.maxTilesY - 200 && (double)tilePos.Y > Main.rockLayer;
+		public WorldRegionFlags GetRegion( Vector2 worldPos ) {
+			WorldRegionFlags where = 0;
+
+			if( WorldHelpers.IsSky(worldPos) ) {
+				where |= WorldRegionFlags.Sky;
+			} else if( WorldHelpers.IsWithinUnderworld(worldPos) ) {
+				where |= WorldRegionFlags.Hell;
+			} else if( WorldHelpers.IsAboveWorldSurface(worldPos) ) {
+				where |= WorldRegionFlags.Overworld;
+
+				if( WorldHelpers.BeachEastTileX < (worldPos.Y/16) ) {
+					where |= WorldRegionFlags.OceanEast;
+				} else if( WorldHelpers.BeachWestTileX > (worldPos.Y/16) ) {
+					where |= WorldRegionFlags.OceanWest;
+				}
+			} else {
+				if( WorldHelpers.IsDirtLayer(worldPos) ) {
+					where |= WorldRegionFlags.CaveDirt;
+				} else if( WorldHelpers.IsRockLayer(worldPos) ) {
+					where |= WorldRegionFlags.CaveRock;
+
+					if( WorldHelpers.IsLavaLayer( worldPos ) ) {
+						where |= WorldRegionFlags.CaveLava;
+					}
+				}
+			}
+
+			return where;
 		}
 
-		/// <summary>
-		/// Indicates if the given position is within the underground dirt layer (beneath elevation 0, above the rock layer).
-		/// </summary>
-		/// <param name="worldPos"></param>
-		/// <returns></returns>
-		public static bool IsDirtLayer( Vector2 worldPos ) {
-			Vector2 tilePos = worldPos / 16;
-			return (double)tilePos.Y <= Main.rockLayer && (double)tilePos.Y > Main.worldSurface;
-		}
+
+		////////////////
 
 		/// <summary>
-		/// Indicates if the given position is above the world's surface.
+		/// Indicates if the given position is in the sky/space.
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
-		public static bool IsAboveWorldSurface( Vector2 worldPos ) {
+		public static bool IsSky( Vector2 worldPos ) {
 			Vector2 tilePos = worldPos / 16;
-			return tilePos.Y < Main.worldSurface;
+			return tilePos.Y <= ( Main.worldSurface * 0.35 );   //0.34999999403953552?
 		}
 
 		/// <summary>
@@ -146,17 +164,47 @@ namespace HamstarHelpers.Helpers.World {
 		}
 
 		/// <summary>
-		/// Indicates if the given position is in the sky/space.
+		/// Indicates if the given position is above the world's surface.
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
-		public static bool IsSky( Vector2 worldPos ) {
+		public static bool IsAboveWorldSurface( Vector2 worldPos ) {
 			Vector2 tilePos = worldPos / 16;
-			return tilePos.Y <= (Main.worldSurface * 0.35);	//0.34999999403953552?
+			return tilePos.Y < Main.worldSurface;
 		}
 
 		/// <summary>
-		/// Indicates if the given position is within the underworld.
+		/// Indicates if the given position is within the underground dirt layer (beneath elevation 0, above the rock layer).
+		/// </summary>
+		/// <param name="worldPos"></param>
+		/// <returns></returns>
+		public static bool IsDirtLayer( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos / 16;
+			return (double)tilePos.Y <= Main.rockLayer && (double)tilePos.Y > Main.worldSurface;
+		}
+
+		/// <summary>
+		/// Indicates if the given position is within the underground rock layer.
+		/// </summary>
+		/// <param name="worldPos"></param>
+		/// <returns></returns>
+		public static bool IsRockLayer( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos / 16;
+			return tilePos.Y <= Main.maxTilesY - 200 && (double)tilePos.Y > Main.rockLayer;
+		}
+
+		/// <summary>
+		/// Indicates if the given position is within the underground lava layer.
+		/// </summary>
+		/// <param name="worldPos"></param>
+		/// <returns></returns>
+		public static bool IsLavaLayer( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos / 16;
+			return tilePos.Y <= Main.maxTilesY - 200 && (double)tilePos.Y > (Main.rockLayer + 601);
+		}
+
+		/// <summary>
+		/// Indicates if the given position is within the underworld (hell).
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
@@ -164,6 +212,8 @@ namespace HamstarHelpers.Helpers.World {
 			Vector2 tilePos = worldPos / 16;
 			return tilePos.Y > (Main.maxTilesY - 200);
 		}
+
+		////
 
 		/// <summary>
 		/// Indicates if the given position is at a beach/ocean area.
