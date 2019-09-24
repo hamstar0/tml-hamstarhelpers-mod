@@ -19,11 +19,13 @@ namespace HamstarHelpers.Helpers.World {
 		/// <summary></summary>
 		CaveDirt = 64 + 16,
 		/// <summary></summary>
-		CaveRock = 128 + 16,
+		CavePreRock = 128 + 16,
 		/// <summary></summary>
-		CaveLava = 256 + 16,
+		CaveRock = 256 + 16,
 		/// <summary></summary>
-		Hell = 512
+		CaveLava = 512 + 16,
+		/// <summary></summary>
+		Hell = 1024
 	}
 
 
@@ -44,7 +46,9 @@ namespace HamstarHelpers.Helpers.World {
 		/// <summary></summary>
 		Desert,
 		/// <summary></summary>
-		Cold,
+		Snow=7,
+		[Obsolete("use Snow", true)]
+		Cold=7,
 		/// <summary></summary>
 		Mushroom,
 		/// <summary></summary>

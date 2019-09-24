@@ -110,7 +110,7 @@ namespace HamstarHelpers.Helpers.World {
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
-		public WorldRegionFlags GetRegion( Vector2 worldPos ) {
+		public static WorldRegionFlags GetRegion( Vector2 worldPos ) {
 			WorldRegionFlags where = 0;
 
 			if( WorldHelpers.IsSky(worldPos) ) {
@@ -128,10 +128,12 @@ namespace HamstarHelpers.Helpers.World {
 			} else {
 				if( WorldHelpers.IsDirtLayer(worldPos) ) {
 					where |= WorldRegionFlags.CaveDirt;
+				} else if( WorldHelpers.IsPreRockLayer(worldPos) ) {
+					where |= WorldRegionFlags.CavePreRock;
 				} else if( WorldHelpers.IsRockLayer(worldPos) ) {
 					where |= WorldRegionFlags.CaveRock;
 
-					if( WorldHelpers.IsLavaLayer( worldPos ) ) {
+					if( WorldHelpers.IsLavaLayer(worldPos) ) {
 						where |= WorldRegionFlags.CaveLava;
 					}
 				}
@@ -180,7 +182,18 @@ namespace HamstarHelpers.Helpers.World {
 		/// <returns></returns>
 		public static bool IsDirtLayer( Vector2 worldPos ) {
 			Vector2 tilePos = worldPos / 16;
-			return (double)tilePos.Y <= Main.rockLayer && (double)tilePos.Y > Main.worldSurface;
+			return (double)tilePos.Y > Main.worldSurface && (double)tilePos.Y <= Main.rockLayer;
+		}
+
+		/// <summary>
+		/// Indicates if the given position is within the underground pre-rock layer (background appears like dirt,
+		/// but the game recognizes the 'rockLayer' depth).
+		/// </summary>
+		/// <param name="worldPos"></param>
+		/// <returns></returns>
+		public static bool IsPreRockLayer( Vector2 worldPos ) {
+			Vector2 tilePos = worldPos / 16;
+			return (double)tilePos.Y > Main.rockLayer && (double)tilePos.Y <= Main.rockLayer + 60;
 		}
 
 		/// <summary>

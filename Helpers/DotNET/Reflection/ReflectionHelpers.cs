@@ -21,6 +21,9 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <summary>
 		/// Handy preset for accessing any member of the given name (regardless of access restrictions).
 		/// </summary>
-		public readonly static BindingFlags MostAccess = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+		public readonly static BindingFlags MostAccess = BindingFlags.Public |
+			BindingFlags.NonPublic |
+			BindingFlags.Instance |
+			BindingFlags.Static;
 	}
 }

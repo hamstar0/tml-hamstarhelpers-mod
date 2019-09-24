@@ -107,7 +107,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 
 		/// <summary>
-		/// Gets all available sub-types (immedaite sub-classes) of a given parent type from each loaded mod.
+		/// Gets all available sub-types (immediate sub-classes) of a given parent type from each loaded mod.
 		/// </summary>
 		/// <param name="parentType"></param>
 		/// <returns></returns>

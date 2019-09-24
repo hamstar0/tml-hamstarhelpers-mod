@@ -123,7 +123,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			biomes[VanillaBiome.Crimson] = (float)crimTiles / (float)TileBiomeHelpers.VanillaCrimsonMinTiles;
 			biomes[VanillaBiome.Meteor] = (float)meteTiles / (float)TileBiomeHelpers.VanillaMeteorMinTiles;
 			biomes[VanillaBiome.Jungle] = (float)jungTiles / (float)TileBiomeHelpers.VanillaJungleMinTiles;
-			biomes[VanillaBiome.Cold] = (float)snowTiles / (float)TileBiomeHelpers.VanillaSnowMinTiles;
+			biomes[VanillaBiome.Snow] = (float)snowTiles / (float)TileBiomeHelpers.VanillaSnowMinTiles;
 			biomes[VanillaBiome.Desert] = (float)deseTiles / (float)TileBiomeHelpers.VanillaDesertMinTiles;
 			biomes[VanillaBiome.Mushroom] = (float)mushTiles / (float)TileBiomeHelpers.VanillaShroomMinTiles;
 			biomes[VanillaBiome.Dungeon] = (float)dungTiles / (float)TileBiomeHelpers.VanillaDungeonMinTiles;
@@ -177,7 +177,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			biomes[VanillaBiome.Crimson] = (float)crimTiles / (float)TileBiomeHelpers.VanillaCrimsonMinTiles;
 			biomes[VanillaBiome.Meteor] = (float)meteTiles / (float)TileBiomeHelpers.VanillaMeteorMinTiles;
 			biomes[VanillaBiome.Jungle] = (float)jungTiles / (float)TileBiomeHelpers.VanillaJungleMinTiles;
-			biomes[VanillaBiome.Cold] = (float)snowTiles / (float)TileBiomeHelpers.VanillaSnowMinTiles;
+			biomes[VanillaBiome.Snow] = (float)snowTiles / (float)TileBiomeHelpers.VanillaSnowMinTiles;
 			biomes[VanillaBiome.Desert] = (float)deseTiles / (float)TileBiomeHelpers.VanillaDesertMinTiles;
 			biomes[VanillaBiome.Mushroom] = (float)mushTiles / (float)TileBiomeHelpers.VanillaShroomMinTiles;
 			biomes[VanillaBiome.Dungeon] = (float)dungTiles / (float)TileBiomeHelpers.VanillaDungeonMinTiles;
