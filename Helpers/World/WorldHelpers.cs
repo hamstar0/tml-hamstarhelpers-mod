@@ -126,15 +126,18 @@ namespace HamstarHelpers.Helpers.World {
 					where |= WorldRegionFlags.OceanWest;
 				}
 			} else {
-				if( WorldHelpers.IsDirtLayer(worldPos) ) {
+				if( WorldHelpers.IsDirtLayer( worldPos ) ) {
 					where |= WorldRegionFlags.CaveDirt;
-				} else if( WorldHelpers.IsPreRockLayer(worldPos) ) {
-					where |= WorldRegionFlags.CavePreRock;
-				} else if( WorldHelpers.IsRockLayer(worldPos) ) {
-					where |= WorldRegionFlags.CaveRock;
+				} else {
+					if( WorldHelpers.IsPreRockLayer( worldPos ) ) {
+						where |= WorldRegionFlags.CavePreRock;
+					}
+					if( WorldHelpers.IsRockLayer( worldPos ) ) {
+						where |= WorldRegionFlags.CaveRock;
 
-					if( WorldHelpers.IsLavaLayer(worldPos) ) {
-						where |= WorldRegionFlags.CaveLava;
+						if( WorldHelpers.IsLavaLayer( worldPos ) ) {
+							where |= WorldRegionFlags.CaveLava;
+						}
 					}
 				}
 			}
@@ -192,8 +195,8 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
 		public static bool IsPreRockLayer( Vector2 worldPos ) {
-			Vector2 tilePos = worldPos / 16;
-			return (double)tilePos.Y > Main.rockLayer && (double)tilePos.Y <= Main.rockLayer + 60;
+			Vector2 tilePos = worldPos / 16;    //between 33 and 37
+			return (double)tilePos.Y > Main.rockLayer && (double)tilePos.Y <= Main.rockLayer + 34;
 		}
 
 		/// <summary>
@@ -203,7 +206,7 @@ namespace HamstarHelpers.Helpers.World {
 		/// <returns></returns>
 		public static bool IsRockLayer( Vector2 worldPos ) {
 			Vector2 tilePos = worldPos / 16;
-			return tilePos.Y <= Main.maxTilesY - 200 && (double)tilePos.Y > Main.rockLayer;
+			return (double)tilePos.Y > Main.rockLayer && tilePos.Y <= Main.maxTilesY - 200;
 		}
 
 		/// <summary>

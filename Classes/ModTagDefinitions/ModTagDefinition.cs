@@ -250,6 +250,7 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 				m( "Silly",                 "Theme",    "Light-hearted, immersion-breaking, or just plain absurd." ),
 				m( "Fantasy",               "Theme",    "Elements of mythologies, swords & sorcery, and maybe a hobbit or 2." ),
 				m( "Medieval",              "Theme",    "Chivalry, castles, primitive technology, melee fighting, archery, etc." ),
+				m( "Magical",				"Theme",    "Specifically meta-physical, spiritual, or heavily involving things of magic." ),
 				m( "Military",              "Theme",    "Guns and stuff." ),
 				m( "Nature",                "Theme",    "Birds, bees, rocks, trees, etc." ),
 				m( "Sci-Fi",                "Theme",    "Robots, lasers, flying machines, etc." ),

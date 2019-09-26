@@ -32,132 +32,132 @@ namespace HamstarHelpers.Helpers.World {
 	/// <summary></summary>
 	public enum VanillaBiome {
 		/// <summary></summary>
-		Forest,
+		Forest = 0,
 		/// <summary></summary>
-		Space,
+		Space = 1,
 		/// <summary></summary>
-		Ocean,
+		Ocean = 2,
 		/// <summary></summary>
-		Cave,
+		Cave = 4,
 		/// <summary></summary>
-		RockCave,
+		RockCave = 8,
 		/// <summary></summary>
-		Hell,
+		Hell = 16,
 		/// <summary></summary>
-		Desert,
+		Desert = 32,
 		/// <summary></summary>
-		Snow=7,
+		Snow = 64,
 		[Obsolete("use Snow", true)]
-		Cold=7,
+		Cold = 64,
 		/// <summary></summary>
-		Mushroom,
+		Mushroom = 128,
 		/// <summary></summary>
-		Jungle,
+		Jungle = 256,
 		/// <summary></summary>
-		Meteor,
+		Meteor = 512,
 		/// <summary></summary>
-		Corruption,
+		Corruption = 1024,
 		/// <summary></summary>
-		Crimson,
+		Crimson = 2048,
 		/// <summary></summary>
-		Hallow,
+		Hallow = 4096,
 		/// <summary></summary>
-		Granite,
+		Granite = 8192,
 		/// <summary></summary>
-		Marble,
+		Marble = 16384,
 		/// <summary></summary>
-		SpiderNest,
+		SpiderNest = 32768,
 		/// <summary></summary>
-		Dungeon,
+		Dungeon = 65536,
 		/// <summary></summary>
-		Temple
+		Temple = 131072
 	}
 	/// <summary></summary>
 	public enum VanillaSurfaceBiome {
 		/// <summary></summary>
-		Forest,
+		Forest = 0,
 		/// <summary></summary>
-		Desert,
+		Desert = 1,
 		/// <summary></summary>
-		Cold,
+		Cold = 2,
 		/// <summary></summary>
-		Mushroom,
+		Mushroom = 4,
 		/// <summary></summary>
-		Jungle,
+		Jungle = 8,
 		/// <summary></summary>
-		Ocean,
+		Ocean = 16,
 		/// <summary></summary>
-		Space,
+		Space = 32,
 		/// <summary></summary>
-		Meteor,
+		Meteor = 64,
 		/// <summary></summary>
-		Corruption,
+		Corruption = 128,
 		/// <summary></summary>
-		Crimson,
+		Crimson = 256,
 		/// <summary></summary>
-		Hallow
+		Hallow = 512
 	}
 	/// <summary></summary>
 	public enum VanillaUndergroundBiome {
 		/// <summary></summary>
-		Cave,
+		Cave = 0,
 		/// <summary></summary>
-		Desert,
+		Desert = 1,
 		/// <summary></summary>
-		Cold,
+		Cold = 2,
 		/// <summary></summary>
-		Mushroom,
+		Mushroom = 4,
 		/// <summary></summary>
-		Granite,
+		Granite = 8,
 		/// <summary></summary>
-		Marble,
+		Marble = 16,
 		/// <summary></summary>
-		SpiderNest,
+		SpiderNest = 32,
 		/// <summary></summary>
-		Dungeon,
+		Dungeon = 64,
 		/// <summary></summary>
-		Jungle,
+		Jungle = 128,
 		/// <summary></summary>
-		Temple,
+		Temple = 256,
 		/// <summary></summary>
-		Corruption,
+		Corruption = 512,
 		/// <summary></summary>
-		Crimson,
+		Crimson = 1024,
 		/// <summary></summary>
-		Hallow,
+		Hallow = 2048,
 		/// <summary></summary>
-		Hell
+		Hell = 4096
 	}
 	/// <summary></summary>
 	public enum VanillaHardModeSurfaceBiome {
 		/// <summary></summary>
-		Corruption,
+		Corruption = 1,
 		/// <summary></summary>
-		Crimson,
+		Crimson = 2,
 		/// <summary></summary>
-		Hallow
+		Hallow = 4
 	}
 	/// <summary></summary>
 	public enum VanillaHardModeUndergroundBiome {
 		/// <summary></summary>
-		Temple,
+		Temple = 1,
 		/// <summary></summary>
-		Corruption,
+		Corruption = 2,
 		/// <summary></summary>
-		Crimson,
+		Crimson = 4,
 		/// <summary></summary>
-		Hallow
+		Hallow = 8
 	}
 	/// <summary></summary>
 	public enum VanillaHardModeConvertibleBiome {
 		/// <summary></summary>
-		Forest,
+		Forest = 0,
 		/// <summary></summary>
-		Cave,
+		Cave = 1,
 		/// <summary></summary>
-		Desert,
+		Desert = 2,
 		/// <summary></summary>
-		Cold
+		Cold = 4
 	}
 
 
