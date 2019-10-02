@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 
 
@@ -6,6 +7,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	public class TilePatternBuilder {
 		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
 		public Rectangle? AreaFromCenter = null;
+
+		/// <summary></summary>
+		public ISet<int> IsAnyOfType = null;
 
 		/// <summary></summary>
 		public bool? HasWire1 = null;
@@ -58,6 +62,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public Rectangle? AreaFromCenter { get; private set; } = null;
 
 		/// <summary></summary>
+		public ISet<int> IsAnyOfType = null;
+
+		/// <summary></summary>
 		public bool? HasWire1 { get; private set; }
 		/// <summary></summary>
 		public bool? HasWire2 { get; private set; }
@@ -105,6 +112,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public TilePattern( TilePatternBuilder builder ) {
 			this.AreaFromCenter = builder.AreaFromCenter;
+
+			this.IsAnyOfType = builder.IsAnyOfType;
 
 			this.HasWire1 = builder.HasWire1;
 			this.HasWire2 = builder.HasWire2;

@@ -12,6 +12,17 @@ namespace HamstarHelpers.Helpers.Players {
 	public partial class PlayerWarpHelpers {
 		private static object SpawnPointKey = new object();
 
+		/// <summary></summary>
+		public const int MagicMirrorWarpStyle = 0;
+		/// <summary></summary>
+		public const int DiscordWarpStyle = 1;
+		/// <summary></summary>
+		public const int RecallPotionWarpStyle = 2;
+		/// <summary></summary>
+		public const int WormholePotionWarpStyle = 3;
+		/// <summary></summary>
+		public const int PortalWarpStyle = 4;
+
 
 
 		////////////////

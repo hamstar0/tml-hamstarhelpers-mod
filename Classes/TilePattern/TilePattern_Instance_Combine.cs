@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System.Collections.Generic;
+using Terraria;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
@@ -15,6 +16,15 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns></returns>
 		public static TilePattern CombinePositive( TilePattern pattern1, TilePattern pattern2, bool blendLight = false ) {
 			var builder = new TilePatternBuilder();
+
+			if( pattern1.IsAnyOfType != null ) {
+				builder.IsAnyOfType = new HashSet<int>( pattern1.IsAnyOfType );
+				if( pattern2.IsAnyOfType != null ) {
+					builder.IsAnyOfType.UnionWith( pattern2.IsAnyOfType );
+				}
+			} else if( pattern2.IsAnyOfType != null ) {
+				builder.IsAnyOfType = new HashSet<int>( pattern2.IsAnyOfType );
+			}
 
 			if( (pattern1.HasWire1.HasValue && pattern1.HasWire1.Value) ||
 					(pattern2.HasWire1.HasValue && pattern2.HasWire1.Value) ) {

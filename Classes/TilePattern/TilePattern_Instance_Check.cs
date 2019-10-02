@@ -7,6 +7,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// <summary></summary>
 	public enum TileCollideType {
 		None = 0,
+		TileType,
 		Solid,
 		Wall,
 		Platform,
@@ -107,6 +108,21 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				collideType = TileCollideType.None;
 				return true;
 			}*/
+
+			if( this.IsAnyOfType != null ) {
+				bool found = false;
+
+				foreach( int tileType in this.IsAnyOfType ) {
+					if( tile.type == tileType ) {
+						found = true;
+						break;
+					}
+				}
+				if( !found ) {
+					collideType = TileCollideType.TileType;
+					return false;
+				}
+			}
 
 			if( this.HasWire1.HasValue ) {
 				if( this.HasWire1.Value != tile.wire() ) {

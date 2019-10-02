@@ -67,6 +67,50 @@ namespace HamstarHelpers.Helpers.Tiles {
 		}
 
 
+		/// <summary>
+		/// Finds the top left tile of a given pattern.
+		/// </summary>
+		/// <param name="pattern"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="maxTileX"></param>
+		/// <param name="maxTileY"></param>
+		/// <returns></returns>
+		public static (int TileX, int TileY)? FindTopLeft(
+				TilePattern pattern,
+				int tileX,
+				int tileY,
+				int maxTileX,
+				int maxTileY ) {
+			if( pattern.Check(tileX, tileY) ) {
+				return null;
+			}
+
+			int i, j = 0;
+
+			// Find the exact tile
+			for( i = 0; i < maxTileX; i++ ) {
+				for( j = 0; j < maxTileY; j++ ) {
+					if( !pattern.Check(tileX - i, tileY - j) ) {
+						break;
+					}
+				}
+				j = j > 0 ? j - 1 : j;
+				
+				if( !pattern.Check(tileX - i, tileY - j) ) {
+					break;
+				}
+			}
+			i = i > 0 ? i - 1 : i;
+
+			if( pattern.Check( tileX - i, tileY - j ) ) {
+				return (tileX - i, tileY - j);
+			}
+
+			return null;
+		}
+
+
 		////////////////
 
 		/// <summary>

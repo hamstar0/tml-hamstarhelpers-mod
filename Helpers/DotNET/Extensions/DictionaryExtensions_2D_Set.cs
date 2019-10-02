@@ -16,7 +16,8 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		/// <param name="key"></param>
 		/// <param name="idx"></param>
 		/// <param name="value"></param>
-		public static void Set2D<TKey, TValue>( this IDictionary<TKey, List<TValue>> dict, TKey key, int idx, TValue value ) {
+		public static void Set2D<TKey, TValue>( this IDictionary<TKey, List<TValue>> dict,
+				TKey key, int idx, TValue value ) {
 			if( !dict.ContainsKey( key ) ) {
 				dict[key] = new List<TValue>();
 			}
