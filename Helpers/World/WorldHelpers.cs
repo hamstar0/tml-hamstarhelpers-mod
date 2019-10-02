@@ -53,7 +53,7 @@ namespace HamstarHelpers.Helpers.World {
 		public static int UnderworldLayerTopTileY => Main.maxTilesY - 200;
 
 		/// <summary></summary>
-		public static int UnderworldLayerBottomTileY => 0;
+		public static int UnderworldLayerBottomTileY => Main.maxTilesY;
 
 
 		/// <summary></summary>

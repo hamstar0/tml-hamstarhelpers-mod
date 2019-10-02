@@ -29,8 +29,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float mapScale = Main.mapFullscreenScale / Main.UIScale;
 			var scrSize = UIHelpers.GetScreenSize();
 
-			float offscrLitX = 10f * mapScale;
-			float offscrLitY = 10f * mapScale;
+			//float offscrLitX = 10f * mapScale;
+			//float offscrLitY = 10f * mapScale;
 
 			float mapFullscrX = Main.mapFullscreenPos.X * mapScale;
 			float mapFullscrY = Main.mapFullscreenPos.Y * mapScale;
