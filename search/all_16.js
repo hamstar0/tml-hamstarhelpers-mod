@@ -20,11 +20,13 @@ var searchData=
   ['worldhelpers',['WorldHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html',1,'HamstarHelpers::Helpers::World']]],
   ['worldmodlockenable',['WorldModLockEnable',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a6481872fac8c11ec7957ef6d89ed458a',1,'HamstarHelpers::ModHelpersConfig']]],
   ['worldmodlockminimumonly',['WorldModLockMinimumOnly',['../class_hamstar_helpers_1_1_mod_helpers_config.html#af114320522431d3de0f7611951383f7e',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['worldregionflags',['WorldRegionFlags',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5fcf9ea63edf5782b37a3ac683960694',1,'HamstarHelpers::Helpers::World']]],
   ['worldsize',['WorldSize',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a8beedfa3dcac7b50bc266189a21be91e',1,'HamstarHelpers::Helpers::World']]],
   ['worldsizelarge',['WorldSizeLarge',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#adae016ee3e2e430e567289e1db7880c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizemedium',['WorldSizeMedium',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a4da7daacfb34b919e1ca492e7c31e9c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizesmall',['WorldSizeSmall',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldstatehelpers',['WorldStateHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_state_helpers.html',1,'HamstarHelpers::Helpers::World']]],
   ['worldtimehooks',['WorldTimeHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_world_hooks_1_1_world_time_hooks.html',1,'HamstarHelpers::Services::Hooks::WorldHooks']]],
+  ['wormholepotionwarpstyle',['WormholePotionWarpStyle',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#accd7929b58fba4b7e7c0e6dd9dfa21e3',1,'HamstarHelpers::Helpers::Players::PlayerWarpHelpers']]],
   ['writestream',['WriteStream',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_stream_1_1_stream_protocol.html#a7b15aa951b307c4f7fed46476095405a',1,'HamstarHelpers::Classes::Protocols::Stream::StreamProtocol']]]
 ];

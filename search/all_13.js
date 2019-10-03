@@ -21,6 +21,7 @@ var searchData=
   ['this_5bushort_20x_2c_20ushort_20y_5d',['this[ushort x, ushort y]',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_world_dictionary.html#af43139a21c8ed07c06e3b30fe102fe27',1,'HamstarHelpers::Classes::DataStructures::WorldDictionary']]],
   ['tileattributehelpers',['TileAttributeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_attribute_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilebiomehelpers',['TileBiomeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
+  ['tilecollidetype',['TileCollideType',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['tilecollisionhelpers',['TileCollisionHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_tile_collision_helpers.html',1,'HamstarHelpers::Helpers::Collisions']]],
   ['tilefinderhelpers',['TileFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilehelpers',['TileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],

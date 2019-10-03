@@ -9,5 +9,6 @@ var searchData=
   ['worldmodlockminimumonly',['WorldModLockMinimumOnly',['../class_hamstar_helpers_1_1_mod_helpers_config.html#af114320522431d3de0f7611951383f7e',1,'HamstarHelpers::ModHelpersConfig']]],
   ['worldsizelarge',['WorldSizeLarge',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#adae016ee3e2e430e567289e1db7880c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizemedium',['WorldSizeMedium',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a4da7daacfb34b919e1ca492e7c31e9c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
-  ['worldsizesmall',['WorldSizeSmall',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d',1,'HamstarHelpers::Helpers::World::WorldHelpers']]]
+  ['worldsizesmall',['WorldSizeSmall',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
+  ['wormholepotionwarpstyle',['WormholePotionWarpStyle',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#accd7929b58fba4b7e7c0e6dd9dfa21e3',1,'HamstarHelpers::Helpers::Players::PlayerWarpHelpers']]]
 ];

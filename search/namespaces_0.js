@@ -1,6 +1,7 @@
 var searchData=
 [
   ['animatedcolor',['AnimatedColor',['../namespace_hamstar_helpers_1_1_services_1_1_animated_color.html',1,'HamstarHelpers::Services']]],
+  ['animatedtexture',['AnimatedTexture',['../namespace_hamstar_helpers_1_1_services_1_1_animated_texture.html',1,'HamstarHelpers::Services']]],
   ['attributes',['Attributes',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html',1,'HamstarHelpers.Helpers.Items.Attributes'],['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_attributes.html',1,'HamstarHelpers.Helpers.NPCs.Attributes'],['../namespace_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_attributes.html',1,'HamstarHelpers.Helpers.Projectiles.Attributes']]],
   ['base',['Base',['../namespace_hamstar_helpers_1_1_internals_1_1_mod_tags_1_1_base.html',1,'HamstarHelpers::Internals::ModTags']]],
   ['buffs',['Buffs',['../namespace_hamstar_helpers_1_1_helpers_1_1_buffs.html',1,'HamstarHelpers::Helpers']]],

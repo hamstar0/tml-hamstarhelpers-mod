@@ -1,6 +1,7 @@
 var searchData=
 [
   ['magicmirrors',['MagicMirrors',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a2f89f58a95e6f73a000e868a4fb7d0cd',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
+  ['magicmirrorwarpstyle',['MagicMirrorWarpStyle',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#ad1e9f7851bef38b27cfbdd9622873eed',1,'HamstarHelpers::Helpers::Players::PlayerWarpHelpers']]],
   ['magitechscrapmechbossdropsenabled',['MagiTechScrapMechBossDropsEnabled',['../class_hamstar_helpers_1_1_mod_helpers_config.html#af9d0c598db3c102b0c5277ddae5da5af',1,'HamstarHelpers::ModHelpersConfig']]],
   ['mainbgcolor',['MainBgColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a7b01082992a447dae7a55ab70fe4d3a6',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
   ['mainedgecolor',['MainEdgeColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a24d7fa20c8ec08f7610fa5a0705611ef',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],

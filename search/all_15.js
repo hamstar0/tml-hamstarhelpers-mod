@@ -51,7 +51,6 @@ var searchData=
   ['vanillapiratetypes',['VanillaPirateTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a12b7fd993ddd9c67d42bc858e191db4c',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
   ['vanillapumpkingmoontypes',['VanillaPumpkingMoonTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#aa4819e2148c6330bcf802456cfa09641',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
   ['vanillarecordedmusicboxes',['VanillaRecordedMusicBoxes',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a26c2a6e23c5e9d783c707d2f64a09807',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
-  ['vanillasectionalbiome',['VanillaSectionalBiome',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#abf77e602740ed63a84aac2f64b799564',1,'HamstarHelpers::Helpers::World']]],
   ['vanillashroommintiles',['VanillaShroomMinTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a6237b969e21558643ddfc5e38331be4c',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],
   ['vanillashroomtiles',['VanillaShroomTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a43df2daac25c8124691b74cd99fca8af',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],
   ['vanillasnowmintiles',['VanillaSnowMinTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a656fe2e34d9ace4fb8b50ecbde8eed8d',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],

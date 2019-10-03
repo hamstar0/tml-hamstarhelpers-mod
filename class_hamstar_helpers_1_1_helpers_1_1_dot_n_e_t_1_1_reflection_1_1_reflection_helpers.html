@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.1.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -154,7 +154,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3801c1608c2e0d6119b0aaf8da60b2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all types from a given assembly using a given class name.  <a href="#a3801c1608c2e0d6119b0aaf8da60b2eb">More...</a><br /></td></tr>
 <tr class="separator:a3801c1608c2e0d6119b0aaf8da60b2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a4a5b5f723bceb4c09b209ea6046e8ac7">GetAllAvailableSubTypesFromMods</a> (Type parentType)</td></tr>
-<tr class="memdesc:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available sub-types (immedaite sub-classes) of a given parent type from each loaded mod.  <a href="#a4a5b5f723bceb4c09b209ea6046e8ac7">More...</a><br /></td></tr>
+<tr class="memdesc:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available sub-types (immediate sub-classes) of a given parent type from each loaded mod.  <a href="#a4a5b5f723bceb4c09b209ea6046e8ac7">More...</a><br /></td></tr>
 <tr class="separator:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc84762e36fcf1f6288f6fcce44a0573"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#afc84762e36fcf1f6288f6fcce44a0573">GetAllAvailableSubTypesFromAssemblies</a> (IEnumerable&lt; Assembly &gt; asses, Type parentType)</td></tr>
 <tr class="memdesc:afc84762e36fcf1f6288f6fcce44a0573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available sub-types (immedaite sub-classes) of a given parent type from each assembly.  <a href="#afc84762e36fcf1f6288f6fcce44a0573">More...</a><br /></td></tr>
@@ -162,7 +162,7 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a5db1f331b550bb60c8233ab3b595b4e7"><td class="memItemLeft" align="right" valign="top">static readonly BindingFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a5db1f331b550bb60c8233ab3b595b4e7">MostAccess</a> = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static</td></tr>
+<tr class="memitem:a5db1f331b550bb60c8233ab3b595b4e7"><td class="memItemLeft" align="right" valign="top">static readonly BindingFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a5db1f331b550bb60c8233ab3b595b4e7">MostAccess</a></td></tr>
 <tr class="memdesc:a5db1f331b550bb60c8233ab3b595b4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handy preset for accessing any member of the given name (regardless of access restrictions).  <a href="#a5db1f331b550bb60c8233ab3b595b4e7">More...</a><br /></td></tr>
 <tr class="separator:a5db1f331b550bb60c8233ab3b595b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -372,7 +372,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets all available sub-types (immedaite sub-classes) of a given parent type from each loaded mod. </p>
+<p>Gets all available sub-types (immediate sub-classes) of a given parent type from each loaded mod. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parentType</td><td></td></tr>
@@ -1202,7 +1202,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">readonly BindingFlags HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.MostAccess = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static</td>
+          <td class="memname">readonly BindingFlags HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.MostAccess</td>
         </tr>
       </table>
   </td>
@@ -1211,7 +1211,7 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">= BindingFlags.Public |</div><div class="line">            BindingFlags.NonPublic |</div><div class="line">            BindingFlags.Instance |</div><div class="line">            BindingFlags.Static</div></div><!-- fragment -->
 <p>Handy preset for accessing any member of the given name (regardless of access restrictions). </p>
 
 <p class="definition">Definition at line <a class="el" href="_reflection_helpers_8cs_source.html#l00024">24</a> of file <a class="el" href="_reflection_helpers_8cs_source.html">ReflectionHelpers.cs</a>.</p>

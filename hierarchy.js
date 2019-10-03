@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "HamstarHelpers.Services.AnimatedColor.AnimatedColors", "class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html", null ],
+    [ "HamstarHelpers.Services.AnimatedTexture.AnimatedTexture", "class_hamstar_helpers_1_1_services_1_1_animated_texture_1_1_animated_texture.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.ArrayExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_array_extensions.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.BinaryReaderExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions.html", null ],
@@ -158,6 +159,7 @@ var hierarchy =
     [ "HamstarHelpers.Classes.Protocols.ProtocolWriteIgnoreServerAttribute", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_protocol_write_ignore_server_attribute.html", null ],
     [ "HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets< K, V >", "class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html", null ],
     [ "HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets< string, int >", "class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html", null ],
+    [ "HamstarHelpers.Helpers.Recipes.RecipeFinderHelpers", "class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_finder_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Recipes.RecipeGroupHelpers", "class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html", null ],
     [ "HamstarHelpers.Services.RecipeHack.RecipeHack", "class_hamstar_helpers_1_1_services_1_1_recipe_hack_1_1_recipe_hack.html", null ],
     [ "HamstarHelpers.Helpers.Recipes.RecipeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_helpers.html", null ],

@@ -1,6 +1,8 @@
 var class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers =
 [
     [ "GetVanillaBiomePercentsNear", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ac389110bff8c4fe7d1be07c50bd710ca", null ],
+    [ "GetVanillaBiomePercentsOf", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a795f1e54a51d1043e13e28db5258c880", null ],
+    [ "GetVanillaBiomePercentsOf", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ad674da0baa52b44600d3b4a9dbfa581b", null ],
     [ "VanillaCorruptionMinTiles", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a401e5689f71f1f23b8fca709ee8bf9de", null ],
     [ "VanillaCorruptionTiles", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a4b1538fb0d34fbc71a6319630b4e0c7c", null ],
     [ "VanillaCrimsonMinTiles", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ae45c55ec9cc6416ad3d5b38c3772dba4", null ],

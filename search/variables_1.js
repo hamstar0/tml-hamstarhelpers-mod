@@ -1,6 +1,8 @@
 var searchData=
 [
   ['basefolder',['BaseFolder',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a9dda480b8c7f6e7377fd862f7eb02b94',1,'HamstarHelpers::Helpers::Misc::ModCustomDataFileHelpers']]],
+  ['beacheasttilex',['BeachEastTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ad38e42af9f155e1d6263055deaabeff7',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
+  ['beachwesttilex',['BeachWestTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a2dd07a1e970f123e4482867f0ed2ec43',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['beta',['Beta',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#aa5841def65e22fee9f017fb13441cc3e',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['betsy',['Betsy',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a8b6dac025ea61ece90b164efe62916ff',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['brainofcthulhu',['BrainOfCthulhu',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e50af473b7eceb77801afce85d5ca4b',1,'HamstarHelpers::Services::GameData::BossData']]],

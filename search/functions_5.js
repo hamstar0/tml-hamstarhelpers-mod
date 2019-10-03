@@ -13,6 +13,7 @@ var searchData=
   ['findnearbyareafromcenter',['FindNearbyAreaFromCenter',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aaf1da59b7d565e7b40c4b7ea0736acd7',1,'HamstarHelpers::Helpers::Tiles::TileFinderHelpers']]],
   ['findnearbyrandommatch',['FindNearbyRandomMatch',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#ac195d521fd45d4635580715d6eeabb6a',1,'HamstarHelpers::Helpers::Tiles::TileFinderHelpers']]],
   ['findpossiblepurchasetypes',['FindPossiblePurchaseTypes',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#af4cb5e5bb07bdd94bab0210029674574',1,'HamstarHelpers::Helpers::Items::ItemFinderHelpers']]],
+  ['findtopleftofsquare',['FindTopLeftOfSquare',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a77cd8770d0e196e2935832b8a14f5587',1,'HamstarHelpers::Helpers::Tiles::TileFinderHelpers']]],
   ['flagstocollection_3c_20t_20_3e',['FlagsToCollection&lt; T &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#a58559dc69e084e30c4a74122c199b627',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
   ['flattencolor',['FlattenColor',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#ac8b2efe4b6a7134e85317f4a1fb497d1',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
   ['focus',['Focus',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a525c9a37ac23cb482fd43f5b4a98ca14',1,'HamstarHelpers::Classes::UI::Elements::UITextArea']]],

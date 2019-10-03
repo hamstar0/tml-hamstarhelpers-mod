@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.1.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -90,6 +90,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_classes_1_1_
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern-members.html">List of all members</a>  </div>
@@ -103,20 +105,52 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_classes_1_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ac2403410766a8ba2e98b91b4801a235e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a> (TilePatternBuilder builder)</td></tr>
+<tr class="separator:ac2403410766a8ba2e98b91b4801a235e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a161c6cbd8d94d2f770e08b471b89eb46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a161c6cbd8d94d2f770e08b471b89eb46">Check</a> (int tileX, int tileY)</td></tr>
 <tr class="memdesc:a161c6cbd8d94d2f770e08b471b89eb46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a given tile against the current settings.  <a href="#a161c6cbd8d94d2f770e08b471b89eb46">More...</a><br /></td></tr>
 <tr class="separator:a161c6cbd8d94d2f770e08b471b89eb46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8904574e60e599df2b81a6db7fa2bdf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ab8904574e60e599df2b81a6db7fa2bdf">Check</a> (int tileX, int tileY, out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a> collideType)</td></tr>
+<tr class="memdesc:ab8904574e60e599df2b81a6db7fa2bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a given tile against the current settings.  <a href="#ab8904574e60e599df2b81a6db7fa2bdf">More...</a><br /></td></tr>
+<tr class="separator:ab8904574e60e599df2b81a6db7fa2bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78c8872cf567b7c1dd13767c71bbf40e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a78c8872cf567b7c1dd13767c71bbf40e">Check</a> (int tileX, int tileY, out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a> collideType, out Point collisionAt)</td></tr>
+<tr class="memdesc:a78c8872cf567b7c1dd13767c71bbf40e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a given tile against the current settings.  <a href="#a78c8872cf567b7c1dd13767c71bbf40e">More...</a><br /></td></tr>
+<tr class="separator:a78c8872cf567b7c1dd13767c71bbf40e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62996974239fddf87e6f11fe534f0a1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a62996974239fddf87e6f11fe534f0a1f">CheckPoint</a> (int tileX, int tileY, out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a> collideType)</td></tr>
+<tr class="memdesc:a62996974239fddf87e6f11fe534f0a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests a given tile against the current settings. Also indicates what type of collision occurs.  <a href="#a62996974239fddf87e6f11fe534f0a1f">More...</a><br /></td></tr>
+<tr class="separator:a62996974239fddf87e6f11fe534f0a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52951491e8f36c9b787e7d46dcce6db2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a52951491e8f36c9b787e7d46dcce6db2">CheckArea</a> (Rectangle tileArea)</td></tr>
 <tr class="memdesc:a52951491e8f36c9b787e7d46dcce6db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks all tiles in an area.  <a href="#a52951491e8f36c9b787e7d46dcce6db2">More...</a><br /></td></tr>
 <tr class="separator:a52951491e8f36c9b787e7d46dcce6db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6812800322cc9e4946ba6e334749ca5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ab6812800322cc9e4946ba6e334749ca5">CheckArea</a> (int tileX, int tileY, int width, int height)</td></tr>
 <tr class="memdesc:ab6812800322cc9e4946ba6e334749ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks all tiles in an area.  <a href="#ab6812800322cc9e4946ba6e334749ca5">More...</a><br /></td></tr>
 <tr class="separator:ab6812800322cc9e4946ba6e334749ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2403410766a8ba2e98b91b4801a235e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a> (TilePatternBuilder builder)</td></tr>
-<tr class="separator:ac2403410766a8ba2e98b91b4801a235e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0719cd09b9f0101eb39819300639d60"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ae0719cd09b9f0101eb39819300639d60">CheckArea</a> (int tileX, int tileY, int width, int height, out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a> collideType, out Point collisionAt)</td></tr>
+<tr class="memdesc:ae0719cd09b9f0101eb39819300639d60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks all tiles in an area.  <a href="#ae0719cd09b9f0101eb39819300639d60">More...</a><br /></td></tr>
+<tr class="separator:ae0719cd09b9f0101eb39819300639d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad6501f613836959a2546e464f899fd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aad6501f613836959a2546e464f899fd6">CheckBrightness</a> (int tileX, int tileY, out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a> collideType)</td></tr>
+<tr class="memdesc:aad6501f613836959a2546e464f899fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for valid brightness of the given tile.  <a href="#aad6501f613836959a2546e464f899fd6">More...</a><br /></td></tr>
+<tr class="separator:aad6501f613836959a2546e464f899fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aff3269098bfcae41f75b98323234be5c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aff3269098bfcae41f75b98323234be5c">CombinePositive</a> (<a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern1, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern2, bool blendLight=false)</td></tr>
+<tr class="memdesc:aff3269098bfcae41f75b98323234be5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines 2 patterns into a new pattern. Positive filters are favored over negatives.  <a href="#aff3269098bfcae41f75b98323234be5c">More...</a><br /></td></tr>
+<tr class="separator:aff3269098bfcae41f75b98323234be5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d2145d2984d82cb6af46a2ee7e7e15"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a61d2145d2984d82cb6af46a2ee7e7e15">CombineNegative</a> (<a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern1, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern2, bool blendLight=false)</td></tr>
+<tr class="memdesc:a61d2145d2984d82cb6af46a2ee7e7e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines 2 patterns into a new pattern. Negative filters are favored over positives.  <a href="#a61d2145d2984d82cb6af46a2ee7e7e15">More...</a><br /></td></tr>
+<tr class="separator:a61d2145d2984d82cb6af46a2ee7e7e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:adfbb46fc363291fb849b73c125c6d09e"><td class="memItemLeft" align="right" valign="top">ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#adfbb46fc363291fb849b73c125c6d09e">IsAnyOfType</a> = null</td></tr>
+<tr class="separator:adfbb46fc363291fb849b73c125c6d09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:ae0f367a2647081b460003e44770323d0"><td class="memItemLeft" align="right" valign="top">static readonly <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ae0f367a2647081b460003e44770323d0">Any</a></td></tr>
+<tr class="memdesc:ae0f367a2647081b460003e44770323d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Preset for any tile, including empty space.  <a href="#ae0f367a2647081b460003e44770323d0">More...</a><br /></td></tr>
+<tr class="separator:ae0f367a2647081b460003e44770323d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a251cc5cf0b1db3df88b37f5d00914d35"><td class="memItemLeft" align="right" valign="top">static readonly <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a251cc5cf0b1db3df88b37f5d00914d35">AbsoluteAir</a></td></tr>
 <tr class="memdesc:a251cc5cf0b1db3df88b37f5d00914d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Preset for completely empty space.  <a href="#a251cc5cf0b1db3df88b37f5d00914d35">More...</a><br /></td></tr>
 <tr class="separator:a251cc5cf0b1db3df88b37f5d00914d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,9 +166,15 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:ad3a4cd56456bafb03198fa474652a84e"><td class="memItemLeft" align="right" valign="top">static readonly <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ad3a4cd56456bafb03198fa474652a84e">CommonSolid</a></td></tr>
 <tr class="memdesc:ad3a4cd56456bafb03198fa474652a84e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Preset for common solid tiles.  <a href="#ad3a4cd56456bafb03198fa474652a84e">More...</a><br /></td></tr>
 <tr class="separator:ad3a4cd56456bafb03198fa474652a84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2032c53f6f5c39ff5a7bfe1d4caa7ef6"><td class="memItemLeft" align="right" valign="top">static readonly <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a2032c53f6f5c39ff5a7bfe1d4caa7ef6">PitchDark</a></td></tr>
+<tr class="memdesc:a2032c53f6f5c39ff5a7bfe1d4caa7ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Preset for total blackness.  <a href="#a2032c53f6f5c39ff5a7bfe1d4caa7ef6">More...</a><br /></td></tr>
+<tr class="separator:a2032c53f6f5c39ff5a7bfe1d4caa7ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:aeed0a3ccf111a17cf6eb43c4761c754c"><td class="memItemLeft" align="right" valign="top">Rectangle?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aeed0a3ccf111a17cf6eb43c4761c754c">AreaFromCenter</a> = null<code> [get]</code></td></tr>
+<tr class="memdesc:aeed0a3ccf111a17cf6eb43c4761c754c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to also check adjacent tiles from a given center point.  <a href="#aeed0a3ccf111a17cf6eb43c4761c754c">More...</a><br /></td></tr>
+<tr class="separator:aeed0a3ccf111a17cf6eb43c4761c754c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd81959a234430f8f7dd4e3a4d557f46"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#abd81959a234430f8f7dd4e3a4d557f46">HasWire1</a><code> [get]</code></td></tr>
 <tr class="separator:abd81959a234430f8f7dd4e3a4d557f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34395f025e696a664704b35913180973"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a34395f025e696a664704b35913180973">HasWire2</a><code> [get]</code></td></tr>
@@ -161,6 +201,12 @@ Properties</h2></td></tr>
 <tr class="separator:a24c207b8d30d4fd969b130b4e5fe0313"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dfd6337047bd13f3ffea1567dbbb07e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#aed4d496bb45d2cccd9fc19c7362c0af3">TileSlopeType</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a7dfd6337047bd13f3ffea1567dbbb07e">Slope</a><code> [get]</code></td></tr>
 <tr class="separator:a7dfd6337047bd13f3ffea1567dbbb07e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfdb7791bf2dc6f070c5fe8f08c64de3"><td class="memItemLeft" align="right" valign="top">float?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#adfdb7791bf2dc6f070c5fe8f08c64de3">MaximumBrightness</a><code> [get]</code></td></tr>
+<tr class="separator:adfdb7791bf2dc6f070c5fe8f08c64de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a0fb82db5a6ebafb6efe86036d3d3eb"><td class="memItemLeft" align="right" valign="top">float?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a7a0fb82db5a6ebafb6efe86036d3d3eb">MinimumBrightness</a><code> [get]</code></td></tr>
+<tr class="separator:a7a0fb82db5a6ebafb6efe86036d3d3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a852b3359221e0629fee8aba4d1c599d8"><td class="memItemLeft" align="right" valign="top">bool?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a852b3359221e0629fee8aba4d1c599d8">IsModded</a><code> [get]</code></td></tr>
+<tr class="separator:a852b3359221e0629fee8aba4d1c599d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Identifies a type of tile by its attributes. </p>
@@ -185,13 +231,13 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___ctor_8cs_source.html#l00050">50</a> of file <a class="el" href="_tile_pattern___instance___ctor_8cs_source.html">TilePattern_Instance_Ctor.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00113">113</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a161c6cbd8d94d2f770e08b471b89eb46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a161c6cbd8d94d2f770e08b471b89eb46">&#9670;&nbsp;</a></span>Check()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a161c6cbd8d94d2f770e08b471b89eb46">&#9670;&nbsp;</a></span>Check() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,12 +272,113 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if all settings pass the test, and identify the tile as the current type.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00017">17</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00049">49</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab8904574e60e599df2b81a6db7fa2bdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8904574e60e599df2b81a6db7fa2bdf">&#9670;&nbsp;</a></span>Check() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Check </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a>&#160;</td>
+          <td class="paramname"><em>collideType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests a given tile against the current settings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">collideType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if all settings pass the test, and identify the tile as the current type.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00062">62</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
+
+</div>
+</div>
+<a id="a78c8872cf567b7c1dd13767c71bbf40e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78c8872cf567b7c1dd13767c71bbf40e">&#9670;&nbsp;</a></span>Check() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Check </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a>&#160;</td>
+          <td class="paramname"><em>collideType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out Point&#160;</td>
+          <td class="paramname"><em>collisionAt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests a given tile against the current settings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">collideType</td><td></td></tr>
+    <tr><td class="paramname">collisionAt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if all settings pass the test, and identify the tile as the current type.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00075">75</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
 
 </div>
 </div>
 <a id="a52951491e8f36c9b787e7d46dcce6db2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52951491e8f36c9b787e7d46dcce6db2">&#9670;&nbsp;</a></span>CheckArea() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a52951491e8f36c9b787e7d46dcce6db2">&#9670;&nbsp;</a></span>CheckArea() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,12 +402,12 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00159">159</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00287">287</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
 
 </div>
 </div>
 <a id="ab6812800322cc9e4946ba6e334749ca5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6812800322cc9e4946ba6e334749ca5">&#9670;&nbsp;</a></span>CheckArea() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6812800322cc9e4946ba6e334749ca5">&#9670;&nbsp;</a></span>CheckArea() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +456,279 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00171">171</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00299">299</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae0719cd09b9f0101eb39819300639d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0719cd09b9f0101eb39819300639d60">&#9670;&nbsp;</a></span>CheckArea() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CheckArea </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a>&#160;</td>
+          <td class="paramname"><em>collideType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out Point&#160;</td>
+          <td class="paramname"><em>collisionAt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks all tiles in an area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">collideType</td><td></td></tr>
+    <tr><td class="paramname">collisionAt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00315">315</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
+
+</div>
+</div>
+<a id="aad6501f613836959a2546e464f899fd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad6501f613836959a2546e464f899fd6">&#9670;&nbsp;</a></span>CheckBrightness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CheckBrightness </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a>&#160;</td>
+          <td class="paramname"><em>collideType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks for valid brightness of the given tile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">collideType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00345">345</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
+
+</div>
+</div>
+<a id="a62996974239fddf87e6f11fe534f0a1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62996974239fddf87e6f11fe534f0a1f">&#9670;&nbsp;</a></span>CheckPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CheckPoint </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out <a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a>&#160;</td>
+          <td class="paramname"><em>collideType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests a given tile against the current settings. Also indicates what type of collision occurs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">collideType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if all settings pass the test, and identify the tile as the current type.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00101">101</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
+
+</div>
+</div>
+<a id="a61d2145d2984d82cb6af46a2ee7e7e15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61d2145d2984d82cb6af46a2ee7e7e15">&#9670;&nbsp;</a></span>CombineNegative()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CombineNegative </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>pattern1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>pattern2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>blendLight</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Combines 2 patterns into a new pattern. Negative filters are favored over positives. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pattern1</td><td></td></tr>
+    <tr><td class="paramname">pattern2</td><td></td></tr>
+    <tr><td class="paramname">blendLight</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___combine_8cs_source.html#l00190">190</a> of file <a class="el" href="_tile_pattern___instance___combine_8cs_source.html">TilePattern_Instance_Combine.cs</a>.</p>
+
+</div>
+</div>
+<a id="aff3269098bfcae41f75b98323234be5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff3269098bfcae41f75b98323234be5c">&#9670;&nbsp;</a></span>CombinePositive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CombinePositive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>pattern1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>pattern2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>blendLight</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Combines 2 patterns into a new pattern. Positive filters are favored over negatives. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pattern1</td><td></td></tr>
+    <tr><td class="paramname">pattern2</td><td></td></tr>
+    <tr><td class="paramname">blendLight</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___combine_8cs_source.html#l00017">17</a> of file <a class="el" href="_tile_pattern___instance___combine_8cs_source.html">TilePattern_Instance_Combine.cs</a>.</p>
 
 </div>
 </div>
@@ -335,6 +754,32 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a>(</div><div class="line">            <span class="keyword">new</span> TilePatternBuilder {</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#abd81959a234430f8f7dd4e3a4d557f46">HasWire1</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a34395f025e696a664704b35913180973">HasWire2</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ab344f9108ad5a430da9aab26f439e0d3">HasWire3</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ae5ef5ea680f5345350dc1629e0e53b33">HasWire4</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6">IsSolid</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a61724cbc3b24abf8bc7188f9ef8ce032">HasWall</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a0bd97daef59ca16b7097d2ede585c36c">HasWater</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a3b7f0ba2cedeaaf653a0e1dd27b09a30">HasHoney</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a24c207b8d30d4fd969b130b4e5fe0313">HasLava</a> = <span class="keyword">false</span></div><div class="line">            }</div><div class="line">        )</div></div><!-- fragment -->
 <p>Preset for completely empty space. </p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00048">48</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae0f367a2647081b460003e44770323d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0f367a2647081b460003e44770323d0">&#9670;&nbsp;</a></span>Any</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Any</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a>(</div><div class="line">            <span class="keyword">new</span> TilePatternBuilder { }</div><div class="line">        )</div></div><!-- fragment -->
+<p>Preset for any tile, including empty space. </p>
 
 <p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00041">41</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
 
@@ -362,7 +807,25 @@ Properties</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a>(</div><div class="line">            <span class="keyword">new</span> TilePatternBuilder {</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6">IsSolid</a> = <span class="keyword">true</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a760b32582a9cd729ad2c9bd7331af920">IsActuated</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a5fd5186ceda80627d3c81f594d9b1e2e">IsPlatform</a> = <span class="keyword">false</span></div><div class="line">            }</div><div class="line">        )</div></div><!-- fragment -->
 <p>Preset for common solid tiles. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00090">90</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00097">97</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+
+</div>
+</div>
+<a id="adfbb46fc363291fb849b73c125c6d09e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfbb46fc363291fb849b73c125c6d09e">&#9670;&nbsp;</a></span>IsAnyOfType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ISet&lt;int&gt; HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsAnyOfType = null</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00065">65</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -388,7 +851,7 @@ Properties</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a>(</div><div class="line">            <span class="keyword">new</span> TilePatternBuilder {</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6">IsSolid</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a0bd97daef59ca16b7097d2ede585c36c">HasWater</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a3b7f0ba2cedeaaf653a0e1dd27b09a30">HasHoney</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a24c207b8d30d4fd969b130b4e5fe0313">HasLava</a> = <span class="keyword">false</span></div><div class="line">            }</div><div class="line">        )</div></div><!-- fragment -->
 <p>Preset for any non-"filled" space (no solids, no liquids). </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00078">78</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00085">85</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
 
 </div>
 </div>
@@ -414,7 +877,7 @@ Properties</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a>(</div><div class="line">            <span class="keyword">new</span> TilePatternBuilder {</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6">IsSolid</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a760b32582a9cd729ad2c9bd7331af920">IsActuated</a> = <span class="keyword">false</span></div><div class="line">            }</div><div class="line">        )</div></div><!-- fragment -->
 <p>Preset for any non-solid tiles. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00068">68</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00075">75</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
 
 </div>
 </div>
@@ -440,11 +903,63 @@ Properties</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a>(</div><div class="line">            <span class="keyword">new</span> TilePatternBuilder {</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6">IsSolid</a> = <span class="keyword">false</span>,</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a61724cbc3b24abf8bc7188f9ef8ce032">HasWall</a> = <span class="keyword">true</span></div><div class="line">            }</div><div class="line">        )</div></div><!-- fragment -->
 <p>Preset for walls, no tiles. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00058">58</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00065">65</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2032c53f6f5c39ff5a7bfe1d4caa7ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2032c53f6f5c39ff5a7bfe1d4caa7ef6">&#9670;&nbsp;</a></span>PitchDark</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.PitchDark</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">TilePattern</a>(</div><div class="line">            <span class="keyword">new</span> TilePatternBuilder {</div><div class="line">                <a class="code" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#adfdb7791bf2dc6f070c5fe8f08c64de3">MaximumBrightness</a> = 0f</div><div class="line">            }</div><div class="line">        )</div></div><!-- fragment -->
+<p>Preset for total blackness. </p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00108">108</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a id="aeed0a3ccf111a17cf6eb43c4761c754c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeed0a3ccf111a17cf6eb43c4761c754c">&#9670;&nbsp;</a></span>AreaFromCenter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Rectangle? HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.AreaFromCenter = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Distance to also check adjacent tiles from a given center point. </p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00062">62</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
+
+</div>
+</div>
 <a id="a3b7f0ba2cedeaaf653a0e1dd27b09a30"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b7f0ba2cedeaaf653a0e1dd27b09a30">&#9670;&nbsp;</a></span>HasHoney</h2>
 
@@ -467,7 +982,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00126">126</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00091">91</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -493,7 +1008,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00128">128</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00093">93</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -519,7 +1034,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00121">121</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00086">86</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -545,7 +1060,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00124">124</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00089">89</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -571,7 +1086,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00103">103</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00068">68</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -597,7 +1112,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00105">105</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00070">70</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -623,7 +1138,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00107">107</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00072">72</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -649,7 +1164,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00109">109</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00074">74</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -675,7 +1190,33 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00116">116</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00081">81</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
+
+</div>
+</div>
+<a id="a852b3359221e0629fee8aba4d1c599d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a852b3359221e0629fee8aba4d1c599d8">&#9670;&nbsp;</a></span>IsModded</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool? HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsModded</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00105">105</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -701,7 +1242,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00114">114</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00079">79</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -727,7 +1268,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00112">112</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00077">77</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -753,7 +1294,59 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00118">118</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00083">83</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
+
+</div>
+</div>
+<a id="adfdb7791bf2dc6f070c5fe8f08c64de3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfdb7791bf2dc6f070c5fe8f08c64de3">&#9670;&nbsp;</a></span>MaximumBrightness</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float? HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.MaximumBrightness</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00099">99</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7a0fb82db5a6ebafb6efe86036d3d3eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a0fb82db5a6ebafb6efe86036d3d3eb">&#9670;&nbsp;</a></span>MinimumBrightness</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float? HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.MinimumBrightness</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00102">102</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -779,14 +1372,15 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern_8cs_source.html#l00131">131</a> of file <a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance_8cs_source.html#l00096">96</a> of file <a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Classes/TilePattern/<a class="el" href="_tile_pattern_8cs_source.html">TilePattern.cs</a></li>
 <li>v5 (tML11)/HamstarHelpers/Classes/TilePattern/<a class="el" href="_tile_pattern___instance_8cs_source.html">TilePattern_Instance.cs</a></li>
-<li>v5 (tML11)/HamstarHelpers/Classes/TilePattern/<a class="el" href="_tile_pattern___instance___ctor_8cs_source.html">TilePattern_Instance_Ctor.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Classes/TilePattern/<a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Classes/TilePattern/<a class="el" href="_tile_pattern___instance___combine_8cs_source.html">TilePattern_Instance_Combine.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
