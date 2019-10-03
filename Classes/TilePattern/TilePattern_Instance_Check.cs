@@ -109,9 +109,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				return true;
 			}*/
 
-			if( this.IsAnyOfType != null ) {
+			if( this.IsAnyOfType != null && this.IsAnyOfType.Count > 0 ) {
 				bool found = false;
-
 				foreach( int tileType in this.IsAnyOfType ) {
 					if( tile.type == tileType ) {
 						found = true;

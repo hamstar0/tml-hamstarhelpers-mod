@@ -1,11 +1,9 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using System;
-using System.IO;
 using System.Net;
-using System.Text;
 using System.Threading;
-using Terraria.ModLoader;
+using System.Threading.Tasks;
 
 
 namespace HamstarHelpers.Helpers.Net {
@@ -13,6 +11,25 @@ namespace HamstarHelpers.Helpers.Net {
 	/// Assorted static "helper" functions pertaining to connecting to the web.
 	/// </summary>
 	public partial class WebConnectionHelpers {
+		private static void HandleResponse( object _,
+					UploadStringCompletedEventArgs e,
+					Action<Exception, string> onError,
+					Action<bool, string> onCompletion = null ) {
+			if( onCompletion != null ) {
+				bool success = !e.Cancelled && e.Error == null;
+				string response = e.Result;
+
+				onCompletion( success, response );
+			}
+
+			if( e.Error != null ) {
+				onError( e.Error, e.Result );
+			}
+		}
+
+
+		////////////////
+
 		/// <summary>
 		/// Sends a POST request to a website asynchronously. 
 		/// </summary>
@@ -24,57 +41,44 @@ namespace HamstarHelpers.Helpers.Net {
 		public static void MakePostRequestAsync( string url, string jsonData,
 					Action<Exception, string> onError,
 					Action<bool, string> onCompletion=null ) {
-			ThreadPool.QueueUserWorkItem( _ => {
-				bool success = false;
-				string output = null;
+			var cts = new CancellationTokenSource();
 
-				try {
-					success = WebConnectionHelpers.MakePostRequest( url, jsonData, out output );
+			try {
+				Task.Factory.StartNew( () => {
+					ServicePointManager.Expect100Continue = false;
+					//var values = new NameValueCollection {
+					//	{ "modloaderversion", ModLoader.versionedName },
+					//	{ "platform", ModLoader.CompressedPlatformRepresentation },
+					//	{ "netversion", FrameworkVersion.Version.ToString() }
+					//};
 
-					if( !success ) {
-						output = "";
-						throw new ModHelpersException( "POST request unsuccessful (url: "+url+")" );
+					using( var client = new WebClient() ) {
+						ServicePointManager.ServerCertificateValidationCallback = ( sender, certificate, chain, policyErrors ) => { return true; };
+						client.UploadStringAsync( new Uri( url ), "POST", jsonData );//UploadValuesAsync( new Uri( url ), "POST", values );
+						client.UploadStringCompleted += ( sender, e ) => {
+							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
+						};
 					}
-				} catch( Exception e ) {
-					onError?.Invoke( e, output );
+				}, cts.Token );
+			} catch( WebException e ) {
+				if( e.Status == WebExceptionStatus.Timeout ) {
+					onError?.Invoke( e, "Timeout." );
+					return;
 				}
 
-				onCompletion?.Invoke( success, output );
-			} );
-		}
+				if( e.Status == WebExceptionStatus.ProtocolError ) {
+					var resp = (HttpWebResponse)e.Response;
+					if( resp.StatusCode == HttpStatusCode.NotFound ) {
+						onError?.Invoke( e, "Not found." );
+						return;
+					}
 
-
-		/// <summary>
-		/// Makes a POST request to a website. May tie up the current thread awaiting a response.
-		/// </summary>
-		/// <param name="url">Website URL.</param>
-		/// <param name="jsonData">JSON-formatted string data.</param>
-		/// <param name="output">Data returned from the website.</param>
-		/// <returns>`true` if response code is 400; success.</returns>
-		public static bool MakePostRequest( string url, string jsonData, out string output ) {
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create( url );
-			request.Method = "POST";
-			request.ContentType = "application/json";   //"application/vnd.github.v3+json";
-			request.ContentLength = jsonData.Length;
-			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
-
-			using( Stream dataStream = request.GetRequestStream() ) {
-				byte[] bytes = Encoding.UTF8.GetBytes( jsonData );
-				
-				dataStream.Write( bytes, 0, bytes.Length );
-				dataStream.Close();
+					onError?.Invoke( e, "Bad protocol." );
+				}
+			} catch( Exception e ) {
+				onError?.Invoke( e, "Unknown." );
+				//LogHelpers.Warn( e.ToString() );
 			}
-
-			HttpWebResponse resp = (HttpWebResponse)request.GetResponse();
-			int statusCode = (int)resp.StatusCode;
-
-			using( Stream respDataStream = resp.GetResponseStream() ) {
-				var streamRead = new StreamReader( respDataStream, Encoding.UTF8 );
-				output = streamRead.ReadToEnd();
-				respDataStream.Close();
-			}
-
-			return statusCode >= 200 && statusCode < 300;
 		}
 
 
@@ -90,55 +94,39 @@ namespace HamstarHelpers.Helpers.Net {
 		public static void MakeGetRequestAsync( string url,
 					Action<Exception, string> onError,
 					Action<bool, string> onCompletion = null ) {
-			ThreadPool.QueueUserWorkItem( _ => {
-				bool success = false;
-				string output = null;
+			var cts = new CancellationTokenSource();
 
-				try {
-					//lock( NetHelpers.RequestMutex ) {
-					success = WebConnectionHelpers.MakeGetRequest( url, out output );
-					//}
-
-					if( !success ) {
-						output = "";
-						throw new ModHelpersException( "GET request unsuccessful (url: " + url + ")" );
-					}
-				} catch( Exception e ) {
-					onError?.Invoke( e, output ?? "" );
-				}
-				
-				onCompletion?.Invoke( success, output );
-			} );
-		}
-
-
-		/// <summary>
-		/// Makes a GET request to a website. May tie up the current thread awaiting a response.
-		/// </summary>
-		/// <param name="url">Website URL.</param>
-		/// <param name="output">Data returned from the website.</param>
-		/// <returns>`true` if response code is 400; success.</returns>
-		public static bool MakeGetRequest( string url, out string output ) {
-			var request = (HttpWebRequest)WebRequest.Create( url );
-			request.Method = "GET";
-			request.UserAgent = "tModLoader " + ModLoader.version.ToString();
-
-			HttpWebResponse resp = null;
 			try {
-				resp = (HttpWebResponse)request.GetResponse();
-			} catch( WebException ) {
-				output = "";
-				return false;
-			}
+				Task.Factory.StartNew( () => {
+					ServicePointManager.Expect100Continue = false;
 
-			using( Stream respDataStream = resp.GetResponseStream() ) {
-				var streamRead = new StreamReader( respDataStream, Encoding.UTF8 );
-				output = streamRead.ReadToEnd();
-				respDataStream.Close();
-			}
+					using( var client = new WebClient() ) {
+						ServicePointManager.ServerCertificateValidationCallback =
+							( sender, certificate, chain, policyErrors ) => { return true; };
+						client.UploadStringAsync( new Uri( url ), "GET", "" );//UploadValuesAsync( new Uri( url ), "POST", values );
+						client.UploadStringCompleted +=
+							( sender, e ) => WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
+					}
+				}, cts.Token );
+			} catch( WebException e ) {
+				if( e.Status == WebExceptionStatus.Timeout ) {
+					onError?.Invoke( e, "Timeout." );
+					return;
+				}
 
-			int statusCode = (int)resp.StatusCode;
-			return statusCode >= 200 && statusCode < 300;
+				if( e.Status == WebExceptionStatus.ProtocolError ) {
+					var resp = (HttpWebResponse)e.Response;
+					if( resp.StatusCode == HttpStatusCode.NotFound ) {
+						onError?.Invoke( e, "Not found." );
+						return;
+					}
+
+					onError?.Invoke( e, "Bad protocol." );
+				}
+			} catch( Exception e ) {
+				onError?.Invoke( e, "Unknown." );
+				//LogHelpers.Warn( e.ToString() );
+			}
 		}
 	}
 }

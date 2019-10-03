@@ -73,41 +73,42 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
-		/// <param name="maxTileX"></param>
-		/// <param name="maxTileY"></param>
-		/// <returns></returns>
-		public static (int TileX, int TileY)? FindTopLeft(
+		/// <param name="maxDistance"></param>
+		/// <param name="coords"></param>
+		/// <returns>Returns tile coordinates, or else `null` if not found within the given max amounts.</returns>
+		public static bool FindTopLeftOfSquare(
 				TilePattern pattern,
 				int tileX,
 				int tileY,
-				int maxTileX,
-				int maxTileY ) {
-			if( pattern.Check(tileX, tileY) ) {
-				return null;
+				int maxDistance,
+				out (int TileX, int TileY) coords ) {
+			if( !pattern.Check(tileX, tileY) ) {
+				coords = (tileX, tileY);
+				return false;
 			}
 
-			int i, j = 0;
+			int i = 1, j = 1;
+			int maxX = 0, maxY = 0;
+			bool foundX = false, foundY = false;
 
-			// Find the exact tile
-			for( i = 0; i < maxTileX; i++ ) {
-				for( j = 0; j < maxTileY; j++ ) {
-					if( !pattern.Check(tileX - i, tileY - j) ) {
-						break;
-					}
-				}
-				j = j > 0 ? j - 1 : j;
-				
-				if( !pattern.Check(tileX - i, tileY - j) ) {
+			do {
+				if( !pattern.Check( tileX - i, tileY ) ) {
+					foundX = true;
+					maxX = i - 1;
 					break;
 				}
-			}
-			i = i > 0 ? i - 1 : i;
+			} while( i++ < maxDistance );
 
-			if( pattern.Check( tileX - i, tileY - j ) ) {
-				return (tileX - i, tileY - j);
-			}
+			do {
+				if( !pattern.Check( tileX - maxX, tileY - j ) ) {
+					foundY = true;
+					maxY = j - 1;
+					break;
+				}
+			} while( j++ < maxDistance );
 
-			return null;
+			coords = ( TileX: tileX - maxX, TileY: tileY - maxY);
+			return foundX && foundY;
 		}
 
 

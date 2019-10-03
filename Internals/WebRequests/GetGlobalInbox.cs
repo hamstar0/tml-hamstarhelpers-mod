@@ -71,7 +71,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 		
-		internal void OnPostSetupContent() {
+		internal void OnPostSetupContent() {	//TODO
 			GetGlobalInbox.CacheAllGlobalInboxAsync();
 		}
 	}
