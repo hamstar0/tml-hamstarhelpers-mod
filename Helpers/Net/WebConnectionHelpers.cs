@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Net {
@@ -17,9 +18,21 @@ namespace HamstarHelpers.Helpers.Net {
 					Action<bool, string> onCompletion = null ) {
 			if( onCompletion != null ) {
 				bool success = !e.Cancelled && e.Error == null;
-				string response = e.Result;
+				onCompletion( success, e.Result );
+			}
 
-				onCompletion( success, response );
+			if( e.Error != null ) {
+				onError( e.Error, e.Result );
+			}
+		}
+
+		private static void HandleResponse( object _,
+					DownloadStringCompletedEventArgs e,
+					Action<Exception, string> onError,
+					Action<bool, string> onCompletion = null ) {
+			if( onCompletion != null ) {
+				bool success = !e.Cancelled && e.Error == null;
+				onCompletion( success, e.Result );
 			}
 
 			if( e.Error != null ) {
@@ -54,6 +67,10 @@ namespace HamstarHelpers.Helpers.Net {
 
 					using( var client = new WebClient() ) {
 						ServicePointManager.ServerCertificateValidationCallback = ( sender, certificate, chain, policyErrors ) => { return true; };
+
+						client.Headers.Add( HttpRequestHeader.ContentType, "application/json" );
+						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader "+ModLoader.version.ToString() );
+						//client.Headers["UserAgent"] = "tModLoader " + ModLoader.version.ToString();
 						client.UploadStringAsync( new Uri( url ), "POST", jsonData );//UploadValuesAsync( new Uri( url ), "POST", values );
 						client.UploadStringCompleted += ( sender, e ) => {
 							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
@@ -103,9 +120,13 @@ namespace HamstarHelpers.Helpers.Net {
 					using( var client = new WebClient() ) {
 						ServicePointManager.ServerCertificateValidationCallback =
 							( sender, certificate, chain, policyErrors ) => { return true; };
-						client.UploadStringAsync( new Uri( url ), "GET", "" );//UploadValuesAsync( new Uri( url ), "POST", values );
-						client.UploadStringCompleted +=
-							( sender, e ) => WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
+
+						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader "+ModLoader.version.ToString() );
+						client.DownloadStringAsync( new Uri(url) );
+						client.DownloadStringCompleted += ( sender, e ) => {
+							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
+						};
+						//client.UploadStringAsync( new Uri(url), "GET", "" );//UploadValuesAsync( new Uri( url ), "POST", values );
 					}
 				}, cts.Token );
 			} catch( WebException e ) {
