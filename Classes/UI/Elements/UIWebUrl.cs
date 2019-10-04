@@ -16,6 +16,20 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public class UIWebUrl : UIThemedElement {
 		/// <summary>
+		/// Indicated number of underscore characters that fit within a given string's length.
+		/// </summary>
+		/// <param name="label"></param>
+		/// <param name="lengthOffset"></param>
+		/// <returns></returns>
+		public static int GetUnderlineLength( string label, int lengthOffset ) {
+			float underscoreLen = Main.fontMouseText.MeasureString( "_" ).X;
+			float textLen = Main.fontMouseText.MeasureString( label ).X;
+
+			return (int)Math.Max( 1f, Math.Round( textLen / ( underscoreLen - 2f ) ) ) + lengthOffset;
+		}
+
+
+		/// <summary>
 		/// Generates a UIText element of the URL's underline (a set of underscores). Used to render together with URL text.
 		/// </summary>
 		/// <param name="label">Label to generate underline based on.</param>
@@ -23,12 +37,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="large">Label as 'large' text.</param>
 		/// <returns>UIText underline element.</returns>
 		public static UIText GetLineElement( string label, float scale, bool large ) {
-			float underscoreLen = Main.fontMouseText.MeasureString("_").X;
-			float textLen = Main.fontMouseText.MeasureString( label ).X;
-			int lineLen = (int)Math.Max( 1f, Math.Round(textLen / (underscoreLen - 2)) );
+			int lineLen = UIWebUrl.GetUnderlineLength( label, 0 );
 
 			return new UIText( new String('_', lineLen), scale, large );
 		}
+
+		private static UIText GetLineElement( string label, float scale, bool large, int lengthOffset ) {
+			int lineLen = UIWebUrl.GetUnderlineLength( label, lengthOffset );
+
+			return new UIText( new String('_', lineLen), scale, large );
+		}
+
 
 
 
@@ -76,7 +95,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="hoverUrl">Indicates if the current element handles its own mouse hover URL display behavior.</param>
 		/// <param name="scale">Size multiplier of display text.</param>
 		/// <param name="large">'Large' state of display text.</param>
-		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f, bool large = false )
+		public UIWebUrl( UITheme theme, string label, string url, bool hoverUrl = true, float scale = 0.85f,
+				bool large = false )
 				: base( theme, true ) {
 			this.IsVisited = false;
 			this.Url = url;
@@ -146,6 +166,18 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.Append( this.LineElem );
 
 			this.Recalculate();
+		}
+
+		/// <summary>
+		/// Adjusts the length of this URL's underscore character line by a given offset amount.
+		/// </summary>
+		/// <param name="offset">Amount of underscores to add or remove.</param>
+		public void ApplyUnderlineOffset( int offset ) {
+			this.LineElem.Remove();
+
+			this.LineElem = UIWebUrl.GetLineElement( this.TextElem.Text, this.Scale, this.Large, offset );
+			this.LineElem.TextColor = this.Theme.UrlColor;
+			this.Append( this.LineElem );
 		}
 
 

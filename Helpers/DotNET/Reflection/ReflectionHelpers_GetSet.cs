@@ -73,7 +73,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <returns>`true` if field or property exist.</returns>
 		public static bool Get<T>( Type classType, object instance, string fieldOrPropName, out T result ) {
 			ReflectionHelpers rh = ReflectionHelpers.Instance;
-			MemberInfo rawMember = rh.GetCachedInfoMember( classType, fieldOrPropName );
+			MemberInfo rawMember = rh.GetCachedMemberInfo( classType, fieldOrPropName );
 			if( rawMember == null ) {
 				result = default( T );
 				return false;
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <returns>`true` if member exists.</returns>
 		public static bool Set( Type classType, object instance, string fieldOrPropName, object newValue ) {
 			ReflectionHelpers rh = ReflectionHelpers.Instance;
-			MemberInfo rawMember = rh.GetCachedInfoMember( classType, fieldOrPropName );
+			MemberInfo rawMember = rh.GetCachedMemberInfo( classType, fieldOrPropName );
 			if( rawMember == null ) { 
 				return false;
 			}
