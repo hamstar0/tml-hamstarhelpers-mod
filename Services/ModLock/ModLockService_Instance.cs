@@ -98,9 +98,6 @@ namespace HamstarHelpers.Services.ModHelpers {
 		////////////////
 
 		internal void Load( TagCompound tags ) {
-			var mymod = ModHelpersMod.Instance;
-			var modworld = mymod.GetModWorld<ModHelpersWorld>();
-
 			if( tags.ContainsKey( "world_mod_lock_count" ) ) {
 				int worldCount = tags.GetInt( "world_mod_lock_count" );
 
@@ -120,9 +117,6 @@ namespace HamstarHelpers.Services.ModHelpers {
 		}
 
 		internal void Save( TagCompound tags ) {
-			var mymod = ModHelpersMod.Instance;
-			var modworld = mymod.GetModWorld<ModHelpersWorld>();
-
 			tags["world_mod_lock_count"] = this.WorldModLocks.Count;
 
 			int i = 0;
@@ -152,8 +146,6 @@ namespace HamstarHelpers.Services.ModHelpers {
 //if( (this.ExitDuration % 60) == 0 ) {LogHelpers.Log( "bye? IsInitialized:"+this.IsInitialized+" IsMismatched:"+this.IsMismatched+"," + ( this.ExitDuration / 60) );}
 			
 			if( Main.netMode == 2 && !this.MismatchBroadcastMade ) {
-				var modworld = ModHelpersMod.Instance.GetModWorld<ModHelpersWorld>();
-
 				if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 					this.MismatchBroadcastMade = true;
 

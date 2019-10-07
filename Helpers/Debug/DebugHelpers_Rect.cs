@@ -24,18 +24,25 @@ namespace HamstarHelpers.Helpers.Debug {
 
 
 		////////////////
-		
-		public static void DrawRect( string msgLabel, Rectangle rect, bool isWorldPos, int duration ) {
+
+		/// <summary>
+		/// Draws a rectangle to screen.
+		/// </summary>
+		/// <param name="id">Unique identifier.</param>
+		/// <param name="rect"></param>
+		/// <param name="isWorldPos"></param>
+		/// <param name="duration"></param>
+		public static void DrawRect( string id, Rectangle rect, bool isWorldPos, int duration ) {
 			lock( DebugHelpers.MyRectLock ) {
 				if( isWorldPos ) {
 					rect.X -= (int)Main.screenPosition.X;
 					rect.Y -= (int)Main.screenPosition.Y;
 				}
 
-				DebugHelpers.Rects[msgLabel] = rect;
-				DebugHelpers.RectsTime[msgLabel] = duration;
-				DebugHelpers.RectsTimeStart[msgLabel] = duration;
-				DebugHelpers.RectsShade[msgLabel] = 255;
+				DebugHelpers.Rects[id] = rect;
+				DebugHelpers.RectsTime[id] = duration;
+				DebugHelpers.RectsTimeStart[id] = duration;
+				DebugHelpers.RectsShade[id] = 255;
 
 				if( DebugHelpers.Rects.Count > 16 ) {
 					foreach( string key in DebugHelpers.RectsTime.Keys.ToList() ) {

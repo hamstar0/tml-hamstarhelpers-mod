@@ -20,7 +20,7 @@ namespace HamstarHelpers {
 			}
 
 			if( mymod.Config.MagiTechScrapMechBossDropsEnabled ) {
-				int scrapType = mymod.ItemType<MagiTechScrapItem>();
+				int scrapType = ModContent.ItemType<MagiTechScrapItem>();
 
 				switch( npc.type ) {
 				case NPCID.Retinazer:

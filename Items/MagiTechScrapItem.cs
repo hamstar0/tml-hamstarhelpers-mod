@@ -14,7 +14,7 @@ namespace HamstarHelpers.Items {
 		/// <param name="stack"></param>
 		/// <returns></returns>
 		public static int Create( Vector2 pos, int stack ) {
-			return ItemHelpers.CreateItem( pos, ModHelpersMod.Instance.ItemType<MagiTechScrapItem>(), stack, 24, 24 );
+			return ItemHelpers.CreateItem( pos, ModContent.ItemType<MagiTechScrapItem>(), stack, 24, 24 );
 		}
 
 

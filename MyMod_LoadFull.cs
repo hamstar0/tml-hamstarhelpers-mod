@@ -52,7 +52,7 @@ namespace HamstarHelpers {
 			this.LoadHooks.FulfillPostModLoadHooks();
 
 			Services.Hooks.LoadHooks.LoadHooks.AddWorldUnloadEachHook( () => {
-				var myworld = this.GetModWorld<ModHelpersWorld>();
+				var myworld = ModContent.GetInstance<ModHelpersWorld>();
 				myworld.OnWorldExit();
 			} );
 		}

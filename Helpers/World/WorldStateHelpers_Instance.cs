@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.TModLoader;
 using System;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
@@ -16,8 +17,7 @@ namespace HamstarHelpers.Helpers.World {
 		////////////////
 
 		internal void Load( TagCompound tags ) {
-			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<ModHelpersWorld>();
+			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			if( tags.ContainsKey( "world_id" ) ) {
 				this.HalfDaysElapsed = tags.GetInt( "half_days_elapsed_" + myworld.ObsoleteId );
@@ -25,8 +25,7 @@ namespace HamstarHelpers.Helpers.World {
 		}
 
 		internal void Save( TagCompound tags ) {
-			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<ModHelpersWorld>();
+			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			tags["half_days_elapsed_" + myworld.ObsoleteId] = (int)this.HalfDaysElapsed;
 		}
@@ -34,8 +33,7 @@ namespace HamstarHelpers.Helpers.World {
 		////////////////
 		
 		internal void LoadFromData( int halfDays, string oldWorldId ) {
-			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<ModHelpersWorld>();
+			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			this.HalfDaysElapsed = halfDays;
 

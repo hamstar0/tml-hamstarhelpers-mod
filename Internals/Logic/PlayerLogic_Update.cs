@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.NetProtocols;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -33,7 +34,7 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 
 			if( player.whoAmI == Main.myPlayer ) { // Current player
-				var myworld = mymod.GetModWorld<ModHelpersWorld>();
+				var myworld = ModContent.GetInstance<ModHelpersWorld>();
 				myworld.WorldLogic.PreUpdateClient();
 			}
 

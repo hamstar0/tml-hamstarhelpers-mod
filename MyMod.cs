@@ -27,8 +27,8 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		internal ModHelpersPrivilegedUserConfig PrivConfig => this.GetConfig<ModHelpersPrivilegedUserConfig>();
-		public ModHelpersConfig Config => this.GetConfig<ModHelpersConfig>();
+		internal ModHelpersPrivilegedUserConfig PrivConfig => ModContent.GetInstance<ModHelpersPrivilegedUserConfig>();
+		public ModHelpersConfig Config => ModContent.GetInstance<ModHelpersConfig>();
 
 		////
 

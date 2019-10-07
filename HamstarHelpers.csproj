@@ -6,6 +6,13 @@
     <TargetFramework>net452</TargetFramework>
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>latest</LangVersion>
+    <Authors>hamstar</Authors>
+    <Product>Mod Helpers</Product>
+    <Version>5.1.1</Version>
+    <PackageId>Mod Helpers</PackageId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\Spinach\Documents\Projects\DotNET\Projects\Mod Helpers\v5 (tML11)\HamstarHelpers\HamstarHelpers.xml</DocumentationFile>
   </PropertyGroup>
   <Target Name="BuildMod" AfterTargets="Build">
     <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define $(DefineConstants) -unsafe $(AllowUnsafeBlocks)" />
@@ -13,6 +20,7 @@
   <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
+    <None Remove="HamstarHelpers.xml" />
     <None Remove="icon.pdn" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Entities {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to entity info.
+	/// </summary>
 	public class EntityInfoHelpers {
 		/// <summary>
 		/// Generates a table of field and property defaults of a given NPC type.

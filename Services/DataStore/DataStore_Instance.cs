@@ -19,6 +19,7 @@ namespace HamstarHelpers.Services.DataStore {
 
 		////////////////
 
+		/// <summary></summary>
 		public string Serialize() {
 			return JsonConvert.SerializeObject( DataStore.GetAll(), Formatting.Indented );
 		}

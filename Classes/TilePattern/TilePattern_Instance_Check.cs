@@ -6,30 +6,55 @@ using Terraria;
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// <summary></summary>
 	public enum TileCollideType {
+		/// <summary></summary>
 		None = 0,
+		/// <summary></summary>
 		TileType,
+		/// <summary></summary>
 		Solid,
+		/// <summary></summary>
 		Wall,
+		/// <summary></summary>
 		Platform,
+		/// <summary></summary>
 		Wire1,
+		/// <summary></summary>
 		Wire2,
+		/// <summary></summary>
 		Wire3,
+		/// <summary></summary>
 		Wire4,
+		/// <summary></summary>
 		Actuated,
+		/// <summary></summary>
 		Water,
+		/// <summary></summary>
 		Honey,
+		/// <summary></summary>
 		Lava,
+		/// <summary></summary>
 		SlopeAny,
+		/// <summary></summary>
 		SlopeHalfBrick,
+		/// <summary></summary>
 		SlopeTopRight,
+		/// <summary></summary>
 		SlopeTopLeft,
+		/// <summary></summary>
 		SlopeBottomRight,
+		/// <summary></summary>
 		SlopeBottomLeft,
+		/// <summary></summary>
 		SlopeTop,
+		/// <summary></summary>
 		SlopeBottom,
+		/// <summary></summary>
 		SlopeLeft,
+		/// <summary></summary>
 		SlopeRight,
+		/// <summary></summary>
 		BrightnessLow,
+		/// <summary></summary>
 		BrightnessHigh,
 	}
 

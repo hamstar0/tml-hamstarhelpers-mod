@@ -1,15 +1,13 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Theme-able UITextPanel<T>.
+	/// Theme-able UITextPanel.
 	/// </summary>
 	public class UIThemedTextPanel : UITextPanel<string>, IThemeable {
 		/// <summary>

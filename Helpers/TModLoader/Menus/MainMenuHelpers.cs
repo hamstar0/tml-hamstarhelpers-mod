@@ -4,10 +4,8 @@ using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.UI;
 

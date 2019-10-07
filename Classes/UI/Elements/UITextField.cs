@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
 using Terraria.UI;
 
@@ -36,13 +35,13 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="sender">Context of text change (AKA current element).</param>
 		/// <param name="e">Changed text (wrapped).</param>
-		public delegate void EventHandler( Object sender, EventArgs e );
+		public delegate void TextEventHandler( Object sender, TextInputEventArgs e );
 
 
 		/// <summary>
 		/// Fires on text change.
 		/// </summary>
-		public event EventHandler OnTextChange;
+		public event TextEventHandler OnTextChange;
 		/// <summary>
 		/// Text color.
 		/// </summary>
@@ -78,6 +77,21 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		public override void RefreshTheme() {
 			this.Theme.ApplyInput( this );
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
+		/// <returns></returns>
+		public string GetText() {
+			return this.Text;
+		}
+
+		/// <summary></summary>
+		/// <param name="text"></param>
+		public void SetText( string text ) {
+			this.Text = text;
 		}
 
 

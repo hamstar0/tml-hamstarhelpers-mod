@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
@@ -30,8 +31,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		public static bool IsWorldLoaded() {
 			if( !LoadHelpers.IsModLoaded() ) { return false; }
 
-			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<ModHelpersWorld>();
+			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 			if( !myworld.HasObsoleteId ) { return false; }
 
 			return true;
@@ -87,7 +87,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsClientPlaying_Hackish+" (true?)"
 						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?)" );
 				} else {
-					var myworld = mymod.GetModWorld<ModHelpersWorld>();
+					var myworld = ModContent.GetInstance<ModHelpersWorld>();
 					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
 						+ "StartupDelay: "+!(mymod.LoadHelpers.WorldStartupDelay < (60 * 2))
 						+ ", IsModLoaded(): "+LoadHelpers.IsModLoaded()+" (true?)"

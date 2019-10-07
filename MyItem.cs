@@ -43,7 +43,7 @@ namespace HamstarHelpers {
 					item.autoReuse = true;
 
 					item.consumable = true;
-					item.createTile = mymod.TileType<CoalTile>();
+					item.createTile = ModContent.TileType<CoalTile>();
 				}
 			}
 

@@ -13,7 +13,7 @@ namespace HamstarHelpers {
 	public class ModHelpersPrivilegedUserConfig : ModConfig {
 		/// @private
 		public override ConfigScope Mode => ConfigScope.ClientSide;
-
+		
 		/// <summary>
 		/// User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers.
 		/// </summary>

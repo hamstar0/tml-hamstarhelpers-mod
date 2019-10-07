@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.World;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
@@ -29,8 +30,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		protected override void InitializeServerSendData( int fromWho ) {
-			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<ModHelpersWorld>();
+			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			this.HalfDays = WorldStateHelpers.GetElapsedHalfDays();
 			this.HasObsoletedWorldId = myworld.HasObsoleteId;
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		protected override void ReceiveReply() {
 			var mymod = ModHelpersMod.Instance;
-			var myworld = mymod.GetModWorld<ModHelpersWorld>();
+			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
 
 			myworld.HasObsoleteId = this.HasObsoletedWorldId;

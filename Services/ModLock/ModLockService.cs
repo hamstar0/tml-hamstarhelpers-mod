@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 		public static bool IsWorldLocked() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;
-			var modworld = mymod.GetModWorld<ModHelpersWorld>();
+			var modworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			return modlock.WorldModLocks.ContainsKey( modworld.ObsoleteId2 );
 		}
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 		public static void LockWorld() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;
-			var modworld = mymod.GetModWorld<ModHelpersWorld>();
+			var modworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			IEnumerable<Mod> allMods = ModListHelpers.GetAllLoadedModsPreferredOrder();
 			ISet<string> modNames = new HashSet<string>();
@@ -75,7 +75,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 		public static void UnlockWorld() {
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;
-			var modworld = mymod.GetModWorld<ModHelpersWorld>();
+			var modworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			modlock.WorldModLocks.Remove( modworld.ObsoleteId2 );
 			modlock.MismatchBroadcastMade = false;
