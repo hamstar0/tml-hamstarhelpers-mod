@@ -40,7 +40,7 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 		}
 
 
-		internal void OnPostSetupContent() {
+		internal void OnPostModsLoad() {
 			LoadHooks.AddWorldLoadEachHook( () => {
 				this.WorldUnloadHookConditionsMet = false;
 				this.PostWorldUnloadHookConditionsMet = false;

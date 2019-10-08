@@ -22,7 +22,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.Menus {
 	/// @private
 	class Menus {
-		public static void OnPostSetupContent() {
+		public static void OnPostModsLoad() {
 			if( Main.dedServ ) { return; }
 
 			LoadHooks.AddPostModLoadHook( () => {

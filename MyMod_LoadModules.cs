@@ -6,6 +6,7 @@ using HamstarHelpers.Internals.Inbox;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Menu;
 using HamstarHelpers.Classes.Protocols.Packet;
+using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Services.Debug.CustomHotkeys;
 using HamstarHelpers.Services.Hooks.ExtendedHooks;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -45,7 +46,8 @@ using Terraria.ID;
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
-		// Components
+		// Classes
+		internal LoadableManager Loadables;
 		internal ModHelpersExceptionManager ExceptionMngr;
 		internal MenuContextServiceManager MenuContextMngr;
 		internal MenuItemManager MenuItemMngr;
@@ -102,14 +104,18 @@ namespace HamstarHelpers {
 
 
 		////////////////
-
+		
 		private void InitializeModules() {
+			this.Loadables = new LoadableManager();
+
 			this.ExceptionMngr = new ModHelpersExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
 			this.AnimatedTextures = new AnimatedTextureManager();
 		}
 
 		private void LoadModules() {
+			this.Loadables.OnModsLoad();
+
 			this.ReflectionHelpers = new ReflectionHelpers();
 			this.DataStore = new DataStore();
 			this.LoadHooks = new LoadHooks();
@@ -155,6 +161,9 @@ namespace HamstarHelpers {
 
 
 		public void UnloadModules() {
+			this.Loadables.OnModsUnload();
+			
+			this.Loadables = null;
 			this.ReflectionHelpers = null;
 			this.PacketProtocolMngr = null;
 			this.ExceptionMngr = null;
@@ -203,22 +212,24 @@ namespace HamstarHelpers {
 		}
 
 		////////////////
+		
+		private void PostSetupFullModules() {
+			this.Loadables.OnPostModsLoad();
 
-		private void PostSetupContentModules() {
-			this.SupportInfo.OnPostSetupContent();
-			this.AnimatedColors.OnPostSetupContent();
-			this.AnimatedTextures.OnPostSetupContent();
-			this.PacketProtocolMngr.OnPostSetupContent();
-			this.LoadHooks.OnPostSetupContent();
-			this.ModFeaturesHelpers.OnPostSetupContent();
-			this.PlayerIdentityHelpers.OnPostSetupContent();
+			this.SupportInfo.OnPostModsLoad();
+			this.AnimatedColors.OnPostModsLoad();
+			this.AnimatedTextures.OnPostModsLoad();
+			this.PacketProtocolMngr.OnPostModsLoad();
+			this.LoadHooks.OnPostModsLoad();
+			this.ModFeaturesHelpers.OnPostModsLoad();
+			this.PlayerIdentityHelpers.OnPostModsLoad();
 
 			if( !Main.dedServ && Main.netMode != NetmodeID.Server ) {
-				this.GetModInfo.OnPostSetupContent();
-				this.GetModTags.OnPostSetupContent();
+				this.GetModInfo.OnPostModsLoad();
+				this.GetModTags.OnPostModsLoad();
 
-				Menus.OnPostSetupContent();
-				UIControlPanel.OnPostSetupContent();
+				Menus.OnPostModsLoad();
+				UIControlPanel.OnPostModsLoad();
 			}
 		}
 

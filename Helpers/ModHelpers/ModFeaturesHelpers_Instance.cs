@@ -21,7 +21,7 @@ namespace HamstarHelpers.Helpers.ModHelpers {
 
 		////////////////
 
-		internal void OnPostSetupContent() {
+		internal void OnPostModsLoad() {
 			this.GithubMods = new Dictionary<string, Mod>();
 			this.ConfigMods = new Dictionary<string, Mod>();
 			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();

@@ -1,13 +1,10 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
-using System.Reflection;
 using System.Threading;
 using Terraria;
 using Terraria.Graphics.Capture;
 using Terraria.IO;
-using Terraria.ModLoader;
 using Terraria.Social;
 
 
@@ -98,48 +95,5 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 			return errors.ToArray();
 		}*/
-
-
-		////////////////
-
-		private static void ForceSetupPlayer( Player player ) {
-			ModPlayer[] modPlayers;
-
-			if( !ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
-				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", DotNET.Reflection.ReflectionHelpers.MostAccess );
-				if( setupPlayerMethod == null ) {
-					throw new ModHelpersException( "Could not run SetupPlayer for " + ( player?.name ?? "null player" ) );
-				}
-
-				setupPlayerMethod.Invoke( null, new object[] { player } );
-			}
-		}
-
-		////
-
-		/// <summary>
-		/// Provides an alternative to `Player.GetModPlayer(...)` to ensure the given player is properly loaded. Addresses some
-		/// confusing types of errors.
-		/// </summary>
-		/// <param name="player"></param>
-		/// <param name="mod"></param>
-		/// <param name="modPlayerName"></param>
-		/// <returns></returns>
-		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {    // Solely for Main.LocalPlayer?
-			TmlHelpers.ForceSetupPlayer( player );
-			return player.GetModPlayer( mod, modPlayerName );
-		}
-
-		/// <summary>
-		/// Provides an alternative to `Player.GetModPlayer(...)` to ensure the given player is properly loaded. Addresses some
-		/// confusing types of errors.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="player"></param>
-		/// <returns></returns>
-		public static T SafelyGetModPlayer<T>( Player player ) where T : ModPlayer {
-			TmlHelpers.ForceSetupPlayer( player );
-			return player.GetModPlayer<T>();
-		}
 	}
 }

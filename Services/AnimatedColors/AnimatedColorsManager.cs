@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Services.Hooks.LoadHooks;
+﻿using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,9 @@ namespace HamstarHelpers.Services.AnimatedColor {
 			}
 		}
 
-		internal void OnPostSetupContent() {
+		////
+
+		public void OnPostModsLoad() {
 			if( !Main.dedServ ) {
 				LoadHooks.AddModUnloadHook( () => {
 					Main.OnTick -= AnimatedColorsManager._Update;

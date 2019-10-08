@@ -92,7 +92,7 @@ namespace HamstarHelpers {
 		public override void AddRecipes() {
 			this.AddRecipesFull();
 		}
-
+		
 		public override void AddRecipeGroups() {
 			this.AddRecipeGroupsFull();
 
@@ -115,7 +115,10 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipeGroups ) { return; }
 			if( !this.HasAddedRecipes ) { return; }
 
-			this.PostLoadFull();
+			Services.Timers.Timers.SetTimer( "ModHelpersLoadFinish", 1, () => {
+				this.PostLoadFull();
+				return false;
+			} );
 /*DataDumper.SetDumpSource( "DEBUG", () => {
 	var data = Services.DataStore.DataStore.GetAll();
 	string str = "";

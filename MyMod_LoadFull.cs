@@ -28,7 +28,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		private void PostSetupContentFull() {
-			this.PostSetupContentModules();
+			this.PostSetupFullModules();
 		}
 
 		////

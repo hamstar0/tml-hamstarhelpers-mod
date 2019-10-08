@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace HamstarHelpers.Services.Timers {
 	/// MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS.
 	/// </summary>
 	public partial class Timers {
-		private IDictionary<string, KeyValuePair<Func<bool>, int>> Running = new Dictionary<string, KeyValuePair<Func<bool>, int>>();
+		private IDictionary<string, (Func<bool> Callback, int Elapsed)> Running
+			= new Dictionary<string, (Func<bool> Callback, int Elapsed)>();
 		private IDictionary<string, int> Elapsed = new Dictionary<string, int>();
 
 		private ISet<string> Expired = new HashSet<string>();
@@ -30,8 +32,8 @@ namespace HamstarHelpers.Services.Timers {
 
 			LoadHooks.AddWorldUnloadEachHook( () => {
 				lock( Timers.MyLock ) {
-					foreach( var kv in this.Running ) {
-						LogHelpers.Log( "Aborted timer " + kv.Key );
+					foreach( (string timerName, (Func<bool>, int) timer) in this.Running ) {
+						LogHelpers.Log( "Aborted timer " + timerName );
 					}
 
 					this.Running.Clear();
@@ -71,16 +73,12 @@ namespace HamstarHelpers.Services.Timers {
 
 		private void Update() {
 			foreach( string name in this.Running.Keys.ToArray() ) {
-				int duration = this.Running[ name ].Value;
-
 				this.Elapsed[name]++;
 
-				if( this.Elapsed[name] >= duration ) {
-					Func<bool> func = this.Running[ name ].Key;
-
+				if( this.Elapsed[name] >= this.Running[name].Elapsed ) {
 					this.Expired.Add( name );
 
-					if( func() ) {
+					if( this.Running[name].Callback() ) {
 						this.Elapsed[name] = 0;
 						this.Expired.Remove( name );
 					}

@@ -186,7 +186,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		
 		////
 
-		internal void OnPostSetupContent() {
+		internal void OnPostModsLoad() {
 			// This is deferred to here because of LoadHooks load order (ironically)
 			LoadHooks.AddModUnloadHook( () => {
 				try {

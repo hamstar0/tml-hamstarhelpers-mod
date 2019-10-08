@@ -24,7 +24,9 @@ namespace HamstarHelpers.Services.AnimatedTexture {
 			}
 		}
 
-		internal void OnPostSetupContent() {
+		////
+
+		public void OnPostModsLoad() {
 			if( !Main.dedServ ) {
 				LoadHooks.AddWorldUnloadEachHook( () => {
 					this.Animations.Clear();

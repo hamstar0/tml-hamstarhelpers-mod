@@ -7084,6 +7084,9 @@
             <summary>
             Assorted static "helper" functions pertaining to tModLoader.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tModLoader.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.Helpers.TModLoader.TmlHelpers.ConfigRelativeFolder">
             <summary>
@@ -7119,6 +7122,12 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetRand">
+            <summary>
+            Ensures a valid randomizer. Typically returns `Main.rand`.
+            </summary>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.UI.UIHelpers">

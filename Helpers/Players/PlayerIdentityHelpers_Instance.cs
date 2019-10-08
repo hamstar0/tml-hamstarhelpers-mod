@@ -14,7 +14,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 		////////////////
 
-		internal void OnPostSetupContent() {
+		internal void OnPostModsLoad() {
 			LoadHooks.AddPostWorldUnloadEachHook( () => {
 				this.PlayerIds = new Dictionary<int, string>();
 			} );

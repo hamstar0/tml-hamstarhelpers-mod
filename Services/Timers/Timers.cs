@@ -61,7 +61,7 @@ namespace HamstarHelpers.Services.Timers {
 			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
-				timers.Running[name] = new KeyValuePair<Func<bool>, int>( action, tickDuration );
+				timers.Running[name] = (Callback: action, Elapsed: tickDuration );
 				timers.Elapsed[name] = 0;
 				timers.Expired.Remove( name );
 			}
@@ -79,7 +79,7 @@ namespace HamstarHelpers.Services.Timers {
 
 			lock( Timers.MyLock ) {
 				if( timers.Running.ContainsKey( name ) ) {
-					return timers.Running[name].Value - timers.Elapsed[ name ];
+					return timers.Running[name].Elapsed - timers.Elapsed[ name ];
 				}
 			}
 
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Services.Timers {
 			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
-				timers.Running = new Dictionary<string, KeyValuePair<Func<bool>, int>>();
+				timers.Running = new Dictionary<string, (Func<bool>, int)>();
 				timers.Elapsed = new Dictionary<string, int>();
 				timers.Expired = new HashSet<string>();
 			}

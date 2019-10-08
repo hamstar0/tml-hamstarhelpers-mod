@@ -18,7 +18,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 		////////////////
 
-		internal void OnPostSetupContent() {
+		internal void OnPostModsLoad() {
 			this.PacketProtocolTypesByCode = PacketProtocol.GetProtocolTypes();
 		}
 

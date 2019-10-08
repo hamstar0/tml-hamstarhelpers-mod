@@ -79,7 +79,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 
 		/// <summary>
-		/// Gets all types from a given assembly using a given class name.
+		/// Gets all types from a given assembly using a given (namespaced) class name.
 		/// </summary>
 		/// <param name="assembly"></param>
 		/// <param name="namespacedType"></param>

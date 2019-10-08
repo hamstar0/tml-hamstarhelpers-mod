@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public static void OnPostSetupContent() {
+		public static void OnPostModsLoad() {
 			if( Main.dedServ ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
