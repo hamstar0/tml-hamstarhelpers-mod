@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
-	public class TileFinderHelpers {
+	public partial class TileFinderHelpers {
 		/// <summary>
 		/// Counts tile types within the player's vicinity (used for checking biomes and stuff).
 		/// </summary>
@@ -279,7 +279,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <returns></returns>
 		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern pattern ) {
-			return TileFinderHelpers.GetTilesInWorldRectangle( worldRect, pattern );
+			return TileFinderHelpers.GetTilesInWorldRectangle( worldRect, pattern, null );
 		}
 
 		/// <summary>
@@ -287,19 +287,21 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// </summary>
 		/// <param name="worldRect"></param>
 		/// <param name="pattern"></param>
-		/// <param name="forEach"></param>
+		/// <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned bool to indicate a match.</param>
 		/// <returns></returns>
-		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern pattern,
-				Action<int, int, bool> forEach=null ) {
-			int projRight = worldRect.X + worldRect.Width;
-			int projBottom = worldRect.Y + worldRect.Height;
+		public static IDictionary<int, int> GetTilesInWorldRectangle(
+				Rectangle worldRect,
+				TilePattern pattern,
+				Func<int, int, bool, bool> forEach ) {
+			int projWldRight = worldRect.X + worldRect.Width;
+			int projWldBottom = worldRect.Y + worldRect.Height;
 
 			IDictionary<int, int> hits = new Dictionary<int, int>();
 
-			for( int i = (worldRect.X >> 4); (i << 4) <= projRight; i++ ) {
+			for( int i = (worldRect.X >> 4); (i << 4) <= projWldRight; i++ ) {
 				if( i < 0 || i > Main.maxTilesX - 1 ) { continue; }
 
-				for( int j = (worldRect.Y >> 4); (j << 4) <= projBottom; j++ ) {
+				for( int j = (worldRect.Y >> 4); (j << 4) <= projWldBottom; j++ ) {
 					if( j < 0 || j > Main.maxTilesY - 1 ) { continue; }
 
 					Tile tile = Main.tile[i, j];
@@ -307,9 +309,9 @@ namespace HamstarHelpers.Helpers.Tiles {
 					//if( TileHelpers.IsAir( tile ) ) { continue; }
 
 					bool isMatch = pattern.Check( i, j );
+					isMatch = forEach?.Invoke( i, j, isMatch ) ?? isMatch;
 
-					forEach?.Invoke( i, j, isMatch );
-					if( isMatch) { continue; }
+					if( isMatch ) { continue; }
 
 					hits[i] = j;
 				}
@@ -327,10 +329,10 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="maxRadius"></param>
 		/// <returns></returns>
 		public static Point? GetNearestTile( Vector2 worldPos, TilePattern pattern, int maxRadius = Int32.MaxValue ) {
-			int midX = (int)Math.Round( worldPos.X );
-			int midY = (int)Math.Round( worldPos.Y );
-			int tileX = midX >> 4;
-			int tileY = midY >> 4;
+			int midWldX = (int)Math.Round( worldPos.X );
+			int midWldY = (int)Math.Round( worldPos.Y );
+			int tileX = midWldX >> 4;
+			int tileY = midWldY >> 4;
 
 			if( pattern.Check(tileX, tileY) ) {
 				return new Point( tileX, tileY );
@@ -352,12 +354,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 							continue;
 						}
 
-						tileX = (midX + (int)inX) >> 4;
+						tileX = (midWldX + (int)inX) >> 4;
 						if( tileX < 0 || tileX >= (Main.maxTilesX - 1) ) {
 							continue;
 						}
 
-						tileY = (midY + (int)inY) >> 4;
+						tileY = (midWldY + (int)inY) >> 4;
 						if( tileY < 0 || tileY >= (Main.maxTilesY - 1) ) {
 							continue;
 						}

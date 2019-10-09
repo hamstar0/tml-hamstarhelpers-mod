@@ -338,6 +338,26 @@
             <param name="msg">Standard message to output.</param>
             <param name="inner">Inner exception to wrap for further output.</param>
         </member>
+        <member name="T:HamstarHelpers.Classes.Loadable.ILoadable">
+            <summary>
+            Affixed to classes that wish to automatically run functios on mod load, post load, and unload.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Loadable.ILoadable.OnModsLoad">
+            <summary>
+            Called during `Mod.Load()`.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Loadable.ILoadable.OnPostModsLoad">
+            <summary>
+            Called after `Mod.PostSetupContent()`, `Mod.AddRecipeGroups()`, and `Mod.PostAddRecipes()`.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Loadable.ILoadable.OnModsUnload">
+            <summary>
+            Called during `Mod.Unload()`.
+            </summary>
+        </member>
         <member name="T:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition">
             <summary>
             Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive
@@ -1241,6 +1261,24 @@
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.BrightnessHigh">
             <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.ChangeEvent">
+            @private
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.OnChange">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.SetObject(System.Object)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.GetFloatValue">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.SetFloatValue(System.Single)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.ModConfig.ConfigFloatInput">
             <summary>
@@ -4129,7 +4167,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.GetTypeFromAssembly(System.Reflection.Assembly,System.String)">
             <summary>
-            Gets all types from a given assembly using a given class name.
+            Gets all types from a given assembly using a given (namespaced) class name.
             </summary>
             <param name="assembly"></param>
             <param name="namespacedType"></param>
@@ -6517,13 +6555,13 @@
             <param name="pattern"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTilesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Action{System.Int32,System.Int32,System.Boolean})">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTilesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Func{System.Int32,System.Int32,System.Boolean,System.Boolean})">
             <summary>
             Gets all tiles of a given pattern within a given area. Calls a function for each.
             </summary>
             <param name="worldRect"></param>
             <param name="pattern"></param>
-            <param name="forEach"></param>
+            <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned bool to indicate a match.</param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetNearestTile(Microsoft.Xna.Framework.Vector2,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">

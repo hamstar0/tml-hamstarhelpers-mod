@@ -5,19 +5,23 @@ using Terraria.ModLoader.Config.UI;
 
 
 namespace HamstarHelpers.Classes.UI.ModConfig {
-	class AccessibleFloatElement : FloatElement {
+	/// @private
+	public class AccessibleFloatElement : FloatElement {
+		/// @private
 		public delegate void ChangeEvent( float oldValue );
 
 
 
 		////////////////
 
+		/// @private
 		public event ChangeEvent OnChange;
 
 
 
 		////////////////
 
+		/// @private
 		protected override void SetObject( object value ) {
 			var oldVal = (float)this.GetObject();
 
@@ -27,10 +31,12 @@ namespace HamstarHelpers.Classes.UI.ModConfig {
 
 		////////////////
 
+		/// @private
 		public float GetFloatValue() {
 			return (float)this.GetObject();
 		}
 
+		/// @private
 		public void SetFloatValue( float val ) {
 			this.SetObject( val );
 		}

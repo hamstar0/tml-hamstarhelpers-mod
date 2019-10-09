@@ -3,7 +3,7 @@
 
 namespace HamstarHelpers.Classes.Loadable {
 	/// <summary>
-	/// Affixed to classes that wish to create evens on mod load, post load, and unload.
+	/// Affixed to classes that wish to automatically run functios on mod load, post load, and unload.
 	/// </summary>
 	public interface ILoadable {
 		/// <summary>
