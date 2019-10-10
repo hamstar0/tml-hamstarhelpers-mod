@@ -11,11 +11,11 @@ namespace HamstarHelpers.Classes.DataStructures.BTree {
 		/// <param name="check">Accepts a key as a parmeter, returns a value between 0-1 to indicate a match.</param>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public IEnumerable<(float, BTreeEntry<TK, TP>)> SearchWhile( Func<TK, float> check, TK key ) {
+		public IEnumerable<BTreeEntry<TK, TP>> SearchWhile( Func<TK, float> check, TK key ) {
 			IList<(float, BTreeEntry<TK, TP>)> list = new List<(float, BTreeEntry<TK, TP>)>();
 			this.SearchWhileInternal( check, this.Root, key, ref list );
 
-			return list;
+			return list.Select( t => t.Item2 );
 		}
 
 

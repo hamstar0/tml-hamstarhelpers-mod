@@ -18,7 +18,9 @@ namespace HamstarHelpers.Helpers.Net {
 					Action<bool, string> onCompletion = null ) {
 			if( onCompletion != null ) {
 				bool success = !e.Cancelled && e.Error == null;
-				onCompletion( success, e.Result );
+				string result = success ? e.Result :
+					(e.Cancelled ? "Cancelled" : e.Error?.Message ?? "Error");
+				onCompletion( success, result );
 			}
 
 			if( e.Error != null ) {
@@ -32,7 +34,9 @@ namespace HamstarHelpers.Helpers.Net {
 					Action<bool, string> onCompletion = null ) {
 			if( onCompletion != null ) {
 				bool success = !e.Cancelled && e.Error == null;
-				onCompletion( success, e.Result );
+				string result = success ? e.Result :
+					(e.Cancelled ? "Cancelled" : e.Error?.Message ?? "Error");
+				onCompletion( success, result );
 			}
 
 			if( e.Error != null ) {
