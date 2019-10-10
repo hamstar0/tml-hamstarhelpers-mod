@@ -102,6 +102,14 @@
             <param name="nodeToBeSplitIndex">Index of the node to be split within parent.</param>
             <param name="nodeToBeSplit">Node to be split.</param>
         </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.SearchWhile(System.Func{`0,System.Single},`0)">
+            <summary>
+            Searches for all items indicated as matches by a checker function.
+            </summary>
+            <param name="check">Accepts a key as a parmeter, returns a value between 0-1 to indicate a match.</param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTreeEntry`2">
             <summary></summary>
             <typeparam name="TK"></typeparam>

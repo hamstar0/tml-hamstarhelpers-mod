@@ -11,7 +11,7 @@ namespace HamstarHelpers.Classes.DataStructures.BTree {
 	/// </summary>
 	/// <typeparam name="TK">Type of BTree Key.</typeparam>
 	/// <typeparam name="TP">Type of BTree Pointer associated with each Key.</typeparam>
-	public class BTree<TK, TP> where TK : IComparable<TK> {
+	public partial class BTree<TK, TP> where TK : IComparable<TK> {
 		/// <summary></summary>
 		/// <param name="degree"></param>
 		public BTree( int degree ) {
