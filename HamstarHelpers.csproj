@@ -20,6 +20,7 @@
   <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
+    <None Remove="Classes\DataStructures\BTree\README.txt" />
     <None Remove="HamstarHelpers.xml" />
     <None Remove="icon.pdn" />
   </ItemGroup>

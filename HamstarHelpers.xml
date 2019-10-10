@@ -4,6 +4,144 @@
         <name>HamstarHelpers</name>
     </assembly>
     <members>
+        <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTree`2">
+            <summary>
+            Based on BTree chapter in "Introduction to Algorithms", by Thomas Cormen, Charles Leiserson, Ronald Rivest.
+            
+            This implementation is not thread-safe, and user must handle thread-safety.
+            </summary>
+            <typeparam name="TK">Type of BTree Key.</typeparam>
+            <typeparam name="TP">Type of BTree Pointer associated with each Key.</typeparam>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.#ctor(System.Int32)">
+            <summary></summary>
+            <param name="degree"></param>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.Root">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.Degree">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.Height">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.Search(`0)">
+            <summary>
+            Searches a key in the BTree, returning the entry with it and with the pointer.
+            </summary>
+            <param name="key">Key being searched.</param>
+            <returns>Entry for that key, null otherwise.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.Insert(`0,`1)">
+            <summary>
+            Inserts a new key associated with a pointer in the BTree. This
+            operation splits nodes as required to keep the BTree properties.
+            </summary>
+            <param name="newKey">Key to be inserted.</param>
+            <param name="newPointer">Pointer to be associated with inserted key.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.Delete(`0)">
+            <summary>
+            Deletes a key from the BTree. This operations moves keys and nodes
+            as required to keep the BTree properties.
+            </summary>
+            <param name="keyToDelete">Key to be deleted.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.DeleteInternal(HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1},`0)">
+            <summary>
+            Internal method to delete keys from the BTree
+            </summary>
+            <param name="node">Node to use to start search for the key.</param>
+            <param name="keyToDelete">Key to be deleted.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.DeleteKeyFromSubtree(HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1},`0,System.Int32)">
+            <summary>
+            Helper method that deletes a key from a subtree.
+            </summary>
+            <param name="parentNode">Parent node used to start search for the key.</param>
+            <param name="keyToDelete">Key to be deleted.</param>
+            <param name="subtreeIndexInNode">Index of subtree node in the parent node.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.DeleteKeyFromNode(HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1},`0,System.Int32)">
+            <summary>
+            Helper method that deletes key from a node that contains it, be this
+            node a leaf node or an internal node.
+            </summary>
+            <param name="node">Node that contains the key.</param>
+            <param name="keyToDelete">Key to be deleted.</param>
+            <param name="keyIndexInNode">Index of key within the node.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.DeletePredecessor(HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1})">
+            <summary>
+            Helper method that deletes a predecessor key (i.e. rightmost key) for a given node.
+            </summary>
+            <param name="node">Node for which the predecessor will be deleted.</param>
+            <returns>Predecessor entry that got deleted.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.DeleteSuccessor(HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1})">
+            <summary>
+            Helper method that deletes a successor key (i.e. leftmost key) for a given node.
+            </summary>
+            <param name="node">Node for which the successor will be deleted.</param>
+            <returns>Successor entry that got deleted.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.SearchInternal(HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1},`0)">
+            <summary>
+            Helper method that search for a key in a given BTree.
+            </summary>
+            <param name="node">Node used to start the search.</param>
+            <param name="key">Key to be searched.</param>
+            <returns>Entry object with key information if found, null otherwise.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.SplitChild(HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1},System.Int32,HamstarHelpers.Classes.DataStructures.BTree.BTreeNode{`0,`1})">
+            <summary>
+            Helper method that splits a full node into two nodes.
+            </summary>
+            <param name="parentNode">Parent node that contains node to be split.</param>
+            <param name="nodeToBeSplitIndex">Index of the node to be split within parent.</param>
+            <param name="nodeToBeSplit">Node to be split.</param>
+        </member>
+        <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTreeEntry`2">
+            <summary></summary>
+            <typeparam name="TK"></typeparam>
+            <typeparam name="TP"></typeparam>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTreeEntry`2.Key">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTreeEntry`2.Pointer">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTreeEntry`2.Equals(HamstarHelpers.Classes.DataStructures.BTree.BTreeEntry{`0,`1})">
+            <summary></summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTreeNode`2">
+            <summary></summary>
+            <typeparam name="TK"></typeparam>
+            <typeparam name="TP"></typeparam>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTreeNode`2.Children">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTreeNode`2.Entries">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTreeNode`2.IsLeaf">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTreeNode`2.HasReachedMaxEntries">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.DataStructures.BTree.BTreeNode`2.HasReachedMinEntries">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTreeNode`2.#ctor(System.Int32)">
+            <summary></summary>
+            <param name="degree"></param>
+        </member>
         <member name="T:HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets`2">
             <summary>
             Implments a dictionary that cannot be modified whose values are sets.
