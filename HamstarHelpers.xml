@@ -1408,30 +1408,7 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.BrightnessHigh">
             <summary></summary>
         </member>
-        <member name="T:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.ChangeEvent">
-            @private
-        </member>
-        <member name="E:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.OnChange">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.SetObject(System.Object)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.GetFloatValue">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.ModConfig.AccessibleFloatElement.SetFloatValue(System.Single)">
-            @private
-        </member>
         <member name="T:HamstarHelpers.Classes.UI.ModConfig.ConfigFloatInput">
-            <summary>
-            Implements a text field for inputting float values.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.ModConfig.ConfigFloatInput.OnBind">
             @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.Dialogs.UIPromptDialog">
@@ -2093,9 +2070,15 @@
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextChangeEvent">
             <summary>
-            Event type that fires every time the text changes.
+            Event handler for text input events
             </summary>
-            <param name="newText">Changed text.</param>
+            <param name="input"></param>
+            <returns>`true` if string is valid</returns>
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.OnPreChange">
+            <summary>
+            Fires as the text input changes.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Text">
             <summary>
@@ -2115,11 +2098,6 @@
         <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.MaxLength">
             <summary>
             Maximum length of text input.
-            </summary>
-        </member>
-        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.OnPreChange">
-            <summary>
-            Fires as the text input changes.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextColor">
@@ -2231,8 +2209,8 @@
             <summary>
             Event handler for text input events
             </summary>
-            <param name="sender">Context of text change (AKA current element).</param>
-            <param name="newText">Changed text.</param>
+            <param name="input"></param>
+            <returns>`true` if string is valid</returns>
         </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnTextChange">
             <summary>
@@ -2276,7 +2254,8 @@
             <summary>
             Event handler for text input events
             </summary>
-            <param name="input">Changed text.</param>
+            <param name="input"></param>
+            <returns>`true` if string is valid</returns>
         </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.OnTextChange">
             <summary>

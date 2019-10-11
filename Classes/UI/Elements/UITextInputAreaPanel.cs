@@ -17,14 +17,23 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public class UITextInputAreaPanel : UIThemedPanel {
 		/// <summary>
-		/// Event type that fires every time the text changes.
+		/// Event handler for text input events
 		/// </summary>
-		/// <param name="newText">Changed text.</param>
-		public delegate void TextChangeEvent( StringBuilder newText );
+		/// <param name="input"></param>
+		/// <returns>`true` if string is valid</returns>
+		public delegate bool TextChangeEvent( StringBuilder input );
 
 
 		////////////////
-		
+
+		/// <summary>
+		/// Fires as the text input changes.
+		/// </summary>
+		public event TextChangeEvent OnPreChange;
+
+
+		////////////////
+
 		/// <summary>
 		/// Current text.
 		/// </summary>
@@ -41,11 +50,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Maximum length of text input.
 		/// </summary>
 		public int MaxLength { get; private set; }
-
-		/// <summary>
-		/// Fires as the text input changes.
-		/// </summary>
-		public event TextChangeEvent OnPreChange;
 
 		/// <summary>
 		/// Color of input text.
@@ -105,8 +109,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="text">New text.</param>
 		public void SetText( string text ) {
 			var strBldr = new StringBuilder( text );
-			if( this.OnPreChange != null ) {
-				this.OnPreChange.Invoke( strBldr );
+			if( !this.OnPreChange?.Invoke( strBldr ) ?? false ) {
+				return;
 			}
 
 			text = strBldr.ToString();

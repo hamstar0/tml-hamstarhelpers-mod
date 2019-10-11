@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Text;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.UI;
@@ -15,8 +16,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Event handler for text input events
 		/// </summary>
-		/// <param name="input">Changed text.</param>
-		public delegate void TextEventHandler( string input );
+		/// <param name="input"></param>
+		/// <returns>`true` if string is valid</returns>
+		public delegate bool TextEventHandler( StringBuilder input );
 
 
 		/// <summary>
@@ -96,6 +98,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {
 					if( Main.mouseY >= dim.Y && Main.mouseY < ( dim.Y + dim.Height ) ) {
 						this.IsSelected = true;
+						Main.keyCount = 0;
 					}
 				}
 			}
@@ -108,10 +111,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				string newStr = Main.GetInputText( this.Text );
 
 				if( !newStr.Equals( this.Text ) ) {
-					this.OnTextChange( newStr );
-				}
+					var newStrMuta = new StringBuilder( newStr );
 
-				this.Text = newStr;
+					if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
+						this.Text = newStrMuta.ToString();
+					}
+				}
 			}
 
 			var pos = new Vector2( dim.X + this.PaddingLeft, dim.Y + this.PaddingTop );

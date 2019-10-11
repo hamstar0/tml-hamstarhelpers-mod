@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.Tiles;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
-using System.Text;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -102,6 +101,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueTitleInput.Disable();
 			this.IssueTitleInput.OnPreChange += ( _ ) => {
 				self.RefreshIssueSubmitButton();
+				return true;
 			};
 			this.Append( (UIElement)this.IssueTitleInput );
 
@@ -116,6 +116,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueBodyInput.Disable();
 			this.IssueBodyInput.OnPreChange += ( _ ) => {
 				self.RefreshIssueSubmitButton();
+				return true;
 			};
 			this.Append( (UIElement)this.IssueBodyInput );
 			
