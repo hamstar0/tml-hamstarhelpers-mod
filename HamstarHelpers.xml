@@ -1619,6 +1619,122 @@
             Recalculates whole panel's position and dimensions.
             </summary>
         </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextArea">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextArea.TextChangeEvent">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.Text">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.DisplayText">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.Hint">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.MaxLength">
+            @private
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextArea.OnPreChange">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextArea.TextColor">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextArea.HintColor">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.CursorPos">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.CursorAnimation">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.HasFocus">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.IsEnabled">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.SetText(System.String)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Update(Microsoft.Xna.Framework.GameTime)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Recalculate">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Click(Terraria.UI.UIMouseEvent)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Focus">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Unfocus">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Disable">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Enable">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.RefreshTheme">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.GetFittedText(System.String,System.Int32,System.Single)">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.TextInputEventArgs">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.TextInputEventArgs.Text">
+            <summary>
+            Input text.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.TextInputEventArgs.#ctor(System.String)">
+            <param name="text">Input text.</param>
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextField">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextField.TextEventHandler">
+            @private
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextField.OnTextChange">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextField.TextColor">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextField.HintText">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.RefreshTheme">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.GetText">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.SetText(System.String)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UICheckbox">
             <summary>
             Defines a UI checkbox (toggleable button) element.
@@ -1969,134 +2085,135 @@
             </summary>
             <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
         </member>
-        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextArea">
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel">
             <summary>
-            Defines a focusable text area UI panel element with crop-to-fit text input. Does not currently implement multi-line support (yet).
+            Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
+            multi-line support (yet).
             </summary>
         </member>
-        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextArea.TextChangeEvent">
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextChangeEvent">
             <summary>
             Event type that fires every time the text changes.
             </summary>
             <param name="newText">Changed text.</param>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.Text">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Text">
             <summary>
             Current text.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.DisplayText">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.DisplayText">
             <summary>
             Text in its displayed form (includes cursor).
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.Hint">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Hint">
             <summary>
             "Default" text. Appears when no text is input. Not counted as input.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.MaxLength">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.MaxLength">
             <summary>
             Maximum length of text input.
             </summary>
         </member>
-        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextArea.OnPreChange">
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.OnPreChange">
             <summary>
             Fires as the text input changes.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextArea.TextColor">
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextColor">
             <summary>
             Color of input text.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextArea.HintColor">
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.HintColor">
             <summary>
             Color of mouse hover text.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.CursorPos">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.CursorPos">
             <summary>
             Position of input cursor in input string.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.CursorAnimation">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.CursorAnimation">
             <summary>
             State of input cursor flashing animation.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.HasFocus">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.HasFocus">
             <summary>
             Indicates text is being input.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextArea.IsEnabled">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.IsEnabled">
             <summary>
             Indicates element is able to be edited.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Int32)">
             <param name="theme">Appearance style.</param>
             <param name="hint">Default text. Overridden with any input text.</param>
             <param name="maxLength">Maximum length of text input.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.SetText(System.String)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.SetText(System.String)">
             <summary>
             Manually sets the input text, accommodating cursor position.
             </summary>
             <param name="text">New text.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Update(Microsoft.Xna.Framework.GameTime)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Update(Microsoft.Xna.Framework.GameTime)">
             <summary>
             Updates state of input, including cursor animation.
             </summary>
             <param name="gameTime">Unused.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Recalculate">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Recalculate">
             <summary>
             Recalculates element positions.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Click(Terraria.UI.UIMouseEvent)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Click(Terraria.UI.UIMouseEvent)">
             <summary>
             Implements click behavior. Focuses on the input element.
             </summary>
             <param name="evt">Mouse event.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Focus">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Focus">
             <summary>
             Sets input to be captured by the current element.
             </summary>
             <returns>`true` if able to capture focus.</returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Unfocus">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Unfocus">
             <summary>
             Removes input capture.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Disable">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Disable">
             <summary>
             Disables the text area (prevents text input).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.Enable">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Enable">
             <summary>
             Enables the text area.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.RefreshTheme">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.RefreshTheme">
             <summary>
             Refreshes visual theming.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             <summary>
             Draws the element. Animates cursor, draws hint text.
             </summary>
             <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextArea.GetFittedText(System.String,System.Int32,System.Single)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.GetFittedText(System.String,System.Int32,System.Single)">
             <summary>
             Applies a cursor to a given string.
             </summary>
@@ -2105,64 +2222,95 @@
             <param name="width">Width of input.</param>
             <returns>Cursor-added input string.</returns>
         </member>
-        <member name="T:HamstarHelpers.Classes.UI.Elements.TextInputEventArgs">
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement">
             <summary>
-            Defines a custom event for UITextField use.
+            Defines a simpler append-only text field input element (no panel). Suited for main menu use.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.TextInputEventArgs.Text">
-            <summary>
-            Input text.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.TextInputEventArgs.#ctor(System.String)">
-            <param name="text">Input text.</param>
-        </member>
-        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextField">
-            <summary>
-            Defines a simpler append-only text field input panel. Suited for main menu use.
-            </summary>
-        </member>
-        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextField.TextEventHandler">
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextEventHandler">
             <summary>
             Event handler for text input events
             </summary>
             <param name="sender">Context of text change (AKA current element).</param>
-            <param name="e">Changed text (wrapped).</param>
+            <param name="newText">Changed text.</param>
         </member>
-        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextField.OnTextChange">
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnTextChange">
             <summary>
             Fires on text change.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextField.TextColor">
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextColor">
             <summary>
             Text color.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextField.HintText">
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.HintText">
             <summary>
             "Default" text. Appears when no text is input. Not counted as input.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.#ctor(System.String)">
+            <summary></summary>
+            <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.GetText">
+            <summary></summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.SetText(System.String)">
+            <summary></summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Draws element. Also handles text input changes.
+            </summary>
+            <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputPanel">
+            <summary>
+            Defines a simpler append-only text field input panel. Suited for main menu use.
+            </summary>
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.TextEventHandler">
+            <summary>
+            Event handler for text input events
+            </summary>
+            <param name="input">Changed text.</param>
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.OnTextChange">
+            <summary>
+            Fires on text change.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.TextColor">
+            <summary>
+            Text color.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.HintText">
+            <summary>
+            "Default" text. Appears when no text is input. Not counted as input.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String)">
             <param name="theme">Appearance style.</param>
             <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.RefreshTheme">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.RefreshTheme">
             <summary>
             Refreshes visual theming.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.GetText">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.GetText">
             <summary></summary>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.SetText(System.String)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.SetText(System.String)">
             <summary></summary>
             <param name="text"></param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             <summary>
             Draws element. Also handles text input changes.
             </summary>
@@ -2198,6 +2346,9 @@
             <summary>
             Refreshes visual theming.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextPanelButton.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UIWebUrl">
             <summary>
@@ -2722,19 +2873,31 @@
             </summary>
             <param name="elem"></param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInput(HamstarHelpers.Classes.UI.Elements.UITextField)">
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInput(HamstarHelpers.Classes.UI.Elements.UITextInputPanel)">
             <summary>
             Applies standard text input theming to a UI text field.
             </summary>
             <param name="panel"></param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInput(HamstarHelpers.Classes.UI.Elements.UITextArea)">
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInput(HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel)">
             <summary>
             Applies standard text input theming to a UI text area.
             </summary>
             <param name="panel"></param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInputDisable(HamstarHelpers.Classes.UI.Elements.UITextArea)">
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInput(Terraria.GameContent.UI.Elements.UIPanel)">
+            <summary>
+            Applies standard text input theming to any UI panel that accepts text colors.
+            </summary>
+            <param name="panel"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInputDisable(HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel)">
+            <summary>
+            Applies standard disabled text input theming to a UI text area.
+            </summary>
+            <param name="panel"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UITheme.ApplyInputDisable(Terraria.GameContent.UI.Elements.UIPanel)">
             <summary>
             Applies standard disabled text input theming to a UI text area.
             </summary>

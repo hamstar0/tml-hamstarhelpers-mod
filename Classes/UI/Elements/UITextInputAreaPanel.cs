@@ -12,9 +12,10 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Defines a focusable text area UI panel element with crop-to-fit text input. Does not currently implement multi-line support (yet).
+	/// Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
+	/// multi-line support (yet).
 	/// </summary>
-	public class UITextArea : UIThemedPanel {
+	public class UITextInputAreaPanel : UIThemedPanel {
 		/// <summary>
 		/// Event type that fires every time the text changes.
 		/// </summary>
@@ -80,7 +81,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="hint">Default text. Overridden with any input text.</param>
 		/// <param name="maxLength">Maximum length of text input.</param>
-		public UITextArea( UITheme theme, string hint, int maxLength=2024 ) : base( theme, true ) {
+		public UITextInputAreaPanel( UITheme theme, string hint, int maxLength=2024 ) : base( theme, true ) {
 			// TODO Add multiline support
 
 			this.Hint = hint;
@@ -116,7 +117,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			this.Text = text;
 			this.CursorPos = text.Length; // TODO: Allow cursor moving
-			this.DisplayText = UITextArea.GetFittedText( text, this.CursorPos, this.GetInnerDimensions().Width );
+			this.DisplayText = UITextInputAreaPanel.GetFittedText( text, this.CursorPos, this.GetInnerDimensions().Width );
 		}
 
 

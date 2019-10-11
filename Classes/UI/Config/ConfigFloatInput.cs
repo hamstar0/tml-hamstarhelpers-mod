@@ -50,7 +50,7 @@ namespace HamstarHelpers.Classes.UI.ModConfig {
 	/// </summary>
 	public class ConfigFloatInput : ConfigElement {
 		private AccessibleFloatElement FloatElem;
-		private UITextField InputElem;
+		private UITextInputPanel InputElem;
 
 
 
@@ -72,10 +72,10 @@ namespace HamstarHelpers.Classes.UI.ModConfig {
 			};
 			this.Append( this.FloatElem );
 
-			this.InputElem = new UITextField( UITheme.Vanilla, "Enter decimal number value" );
-			this.InputElem.OnTextChange += ( _, e ) => {
+			this.InputElem = new UITextInputPanel( UITheme.Vanilla, "Enter decimal number value" );
+			this.InputElem.OnTextChange += ( text ) => {
 				float val;
-				if( float.TryParse( e.Text, out val ) ) {
+				if( float.TryParse( text, out val ) ) {
 					this.SetObject( val );
 					this.FloatElem.SetFloatValue( val );
 				}

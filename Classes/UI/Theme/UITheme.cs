@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
@@ -66,8 +67,8 @@ namespace HamstarHelpers.Classes.UI.Theme {
 						return true;
 					}
 				} else if( attr.AttributeType == typeof(InputThemeAttribute) ) {
-					if( element is UITextField ) {
-						this.ApplyInput( (UITextField)element );
+					if( element is UITextInputPanel ) {
+						this.ApplyInput( (UITextInputPanel)element );
 						return true;
 					}
 				}
@@ -92,8 +93,8 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		public virtual void ApplyByType( UIElement element ) {
 			if( element is UITextPanel<string> ) {
 				this.ApplyButton( (UITextPanel<string>)element );
-			} else if( element is UITextField ) {
-				this.ApplyInput( (UITextField)element );
+			} else if( element is UITextInputPanel ) {
+				this.ApplyInput( (UITextInputPanel)element );
 			} else if( element is UIText ) {
 				this.ApplyText( (UIText)element );
 			} else if( element is UIPanel ) {
@@ -138,7 +139,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		/// Applies standard text input theming to a UI text field.
 		/// </summary>
 		/// <param name="panel"></param>
-		public virtual void ApplyInput( UITextField panel ) {
+		public virtual void ApplyInput( UITextInputPanel panel ) {
 			panel.BackgroundColor = this.InputBgColor;
 			panel.BorderColor = this.InputEdgeColor;
 			panel.TextColor = this.InputTextColor;
@@ -148,22 +149,44 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		/// Applies standard text input theming to a UI text area.
 		/// </summary>
 		/// <param name="panel"></param>
-		public virtual void ApplyInput( UITextArea panel ) {
+		public virtual void ApplyInput( UITextInputAreaPanel panel ) {
 			panel.BackgroundColor = this.InputBgColor;
 			panel.BorderColor = this.InputEdgeColor;
 			panel.TextColor = this.InputTextColor;
 		}
 
 		/// <summary>
+		/// Applies standard text input theming to any UI panel that accepts text colors.
+		/// </summary>
+		/// <param name="panel"></param>
+		public virtual void ApplyInput( UIPanel panel ) {
+			panel.BackgroundColor = this.InputBgColor;
+			panel.BorderColor = this.InputEdgeColor;
+			ReflectionHelpers.Set( panel, "TextColor", this.InputTextColor );
+		}
+
+		////
+
+		/// <summary>
 		/// Applies standard disabled text input theming to a UI text area.
 		/// </summary>
 		/// <param name="panel"></param>
-		public virtual void ApplyInputDisable( UITextArea panel ) {
+		public virtual void ApplyInputDisable( UITextInputAreaPanel panel ) {
 			panel.BackgroundColor = this.InputBgDisabledColor;
 			panel.BorderColor = this.InputEdgeDisabledColor;
 			panel.TextColor = this.InputTextDisabledColor;
 		}
-		
+
+		/// <summary>
+		/// Applies standard disabled text input theming to a UI text area.
+		/// </summary>
+		/// <param name="panel"></param>
+		public virtual void ApplyInputDisable( UIPanel panel ) {
+			panel.BackgroundColor = this.InputBgDisabledColor;
+			panel.BorderColor = this.InputEdgeDisabledColor;
+			ReflectionHelpers.Set( panel, "TextColor", this.InputTextDisabledColor );
+		}
+
 		////////////////
 
 		/// <summary>

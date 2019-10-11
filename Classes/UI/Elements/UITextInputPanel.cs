@@ -9,33 +9,14 @@ using Terraria.UI;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Defines a custom event for UITextField use.
-	/// </summary>
-	public class TextInputEventArgs : EventArgs {
-		/// <summary>
-		/// Input text.
-		/// </summary>
-		public string Text;
-
-		/// <param name="text">Input text.</param>
-		public TextInputEventArgs( string text ) : base() {
-			this.Text = text;
-		}
-	}
-
-
-
-
-	/// <summary>
 	/// Defines a simpler append-only text field input panel. Suited for main menu use.
 	/// </summary>
-	public class UITextField : UIThemedPanel {
+	public class UITextInputPanel : UIThemedPanel {
 		/// <summary>
 		/// Event handler for text input events
 		/// </summary>
-		/// <param name="sender">Context of text change (AKA current element).</param>
-		/// <param name="e">Changed text (wrapped).</param>
-		public delegate void TextEventHandler( Object sender, TextInputEventArgs e );
+		/// <param name="input">Changed text.</param>
+		public delegate void TextEventHandler( string input );
 
 
 		/// <summary>
@@ -50,7 +31,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// "Default" text. Appears when no text is input. Not counted as input.
 		/// </summary>
-		private string HintText;
+		public string HintText { get; private set; }
 
 		private string Text = "";
 		private uint CursorAnimation;
@@ -62,7 +43,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
-		public UITextField( UITheme theme, string hintText ) : base( theme, true ) {
+		public UITextInputPanel( UITheme theme, string hintText ) : base( theme, true ) {
 			this.HintText = hintText;
 			
 			this.SetPadding( 6f );
@@ -103,11 +84,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		protected override void DrawSelf( SpriteBatch sb ) {
 			base.DrawSelf( sb );
-			
+
 			////
 
 			CalculatedStyle dim = this.GetDimensions();
 
+			// Detect if user selects this element
 			if( Main.mouseLeft ) {
 				this.IsSelected = false;
 
@@ -117,7 +99,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					}
 				}
 			}
-			
+
+			// Apply text inputs
 			if( this.IsSelected ) {
 				PlayerInput.WritingText = true;
 				Main.instance.HandleIME();
@@ -125,7 +108,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				string newStr = Main.GetInputText( this.Text );
 
 				if( !newStr.Equals( this.Text ) ) {
-					this.OnTextChange( this, new TextInputEventArgs( newStr ) );
+					this.OnTextChange( newStr );
 				}
 
 				this.Text = newStr;
@@ -133,13 +116,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			var pos = new Vector2( dim.X + this.PaddingLeft, dim.Y + this.PaddingTop );
 
+			// Draw text
 			if( this.Text.Length == 0 ) {
 				Utils.DrawBorderString( sb, this.HintText, pos, Color.Gray, 1f );
 			} else {
 				string displayStr = this.Text;
 
-				if( ++this.CursorAnimation % 40 < 20 ) {
-					displayStr = displayStr + "|";
+				// Draw cursor
+				if( this.IsSelected ) {
+					if( ++this.CursorAnimation % 40 < 20 ) {
+						displayStr = displayStr + "|";
+					}
 				}
 
 				Utils.DrawBorderString( sb, displayStr, pos, this.TextColor, 1f );

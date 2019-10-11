@@ -81,6 +81,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		////////////////
 
+		/// @private
 		public override void Draw( SpriteBatch spriteBatch ) {
 			if( !this.IsHidden ) {
 				base.Draw( spriteBatch );
