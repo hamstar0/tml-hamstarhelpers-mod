@@ -6,7 +6,7 @@ using Terraria.ModLoader.Config.UI;
 
 namespace HamstarHelpers.Classes.UI.ModConfig {
 	/// <summary>
-	/// Implements a text field for inputting float values.
+	/// Implements a ModConfig widget for inputting float values via. text input or slider.
 	/// </summary>
 	public class FloatInputElement : FloatElement {
 		private UITextInputPanel InputElem;
