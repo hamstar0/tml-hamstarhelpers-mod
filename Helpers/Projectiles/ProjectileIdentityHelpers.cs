@@ -30,14 +30,6 @@ namespace HamstarHelpers.Helpers.Projectiles {
 		}
 
 
-		////
-
-		public static ProjectileDefinition GetProjectileDefinition( string uniqueKey ) {
-			string[] segs = uniqueKey.Split( new char[] { ' ' }, 2 );
-			return new ProjectileDefinition( segs[0], segs[1] );
-		}
-
-
 		// TODO: GetVanillaSnapshotHash()
 	}
 }

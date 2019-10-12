@@ -28,14 +28,6 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
-		////
-
-		public static ItemDefinition GetItemDefinition( string uniqueKey ) {
-			string[] segs = uniqueKey.Split( new char[] { ' ' }, 2 );
-			return new ItemDefinition( segs[0], segs[1] );
-		}
-
-
 		////////////////
 
 		/// <summary>

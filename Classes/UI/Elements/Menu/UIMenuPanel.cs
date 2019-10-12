@@ -8,7 +8,9 @@ namespace HamstarHelpers.Classes.UI.Elements.Menu {
 	/// A UI panel specialized for menu use.
 	/// </summary>
 	public class UIMenuPanel : UIThemedPanel {
+		/// <summary></summary>
 		protected float XCenterOffset;
+		/// <summary></summary>
 		protected float YPos;
 
 

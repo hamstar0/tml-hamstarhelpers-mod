@@ -19,6 +19,7 @@ namespace HamstarHelpers.Classes.UI.Menu.UI {
 
 		////////////////
 
+		/// <summary></summary>
 		public UIInfoDisplay() : base( UITheme.Vanilla, 800f, 40f, -400f, 2f ) {
 			this.TextElem = new UIText( "" );
 			this.TextElem.Width.Set( 0f, 1f );
@@ -32,6 +33,8 @@ namespace HamstarHelpers.Classes.UI.Menu.UI {
 
 		////////////////
 
+		/// <summary></summary>
+		/// <param name="text"></param>
 		public void SetDefaultText( string text ) {
 			this.DefaultText = text;
 
@@ -43,6 +46,9 @@ namespace HamstarHelpers.Classes.UI.Menu.UI {
 
 		////////////////
 
+		/// <summary></summary>
+		/// <param name="text"></param>
+		/// <param name="color"></param>
 		public void SetText( string text, Color? color=null ) {
 			if( string.IsNullOrEmpty(text) ) {
 				text = this.DefaultText;
@@ -53,6 +59,8 @@ namespace HamstarHelpers.Classes.UI.Menu.UI {
 			this.TextElem.SetText( text );
 		}
 
+		/// <summary></summary>
+		/// <returns></returns>
 		public string GetText() {
 			return this.TextElem.Text;
 		}

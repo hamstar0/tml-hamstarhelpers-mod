@@ -49,16 +49,19 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 		////////////////
 
+		/// @private
 		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static ISet<int> GetRecipeIndexesOfItem( int itemNetID ) {
 			return RecipeFinderHelpers.GetRecipeIndexesOfItem( itemNetID );
 		}
 
+		/// @private
 		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static IList<Recipe> GetRecipesOfItem( int itemNetID ) {
 			return RecipeFinderHelpers.GetRecipesOfItem( itemNetID );
 		}
 
+		/// @private
 		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static ISet<int> GetRecipeIndexesUsingIngredient( int itemNetID ) {
 			return RecipeFinderHelpers.GetRecipeIndexesUsingIngredient( itemNetID );

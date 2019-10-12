@@ -12,19 +12,23 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ControlPanel {
 	/// @private
 	public abstract class UIControlPanelTab : UIPanel {
+		/// @private
 		public UITheme Theme { get; protected set; }
+		/// @private
 		public bool IsInitialized { get; private set; }
 
 
 
 		////////////////
 
+		/// @private
 		public sealed override void OnInitialize() {
 			this.OnInitializeMe();
 			this.IsInitialized = true;
 		}
 
 
+		/// @private
 		public abstract void OnInitializeMe();
 	}
 

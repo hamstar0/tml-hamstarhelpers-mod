@@ -4,6 +4,9 @@ using Terraria;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
+	/// <summary>
+	/// Used to in TilePattern's constructor to simplify specifying non-optional values. Keeps TilePattern immutable.
+	/// </summary>
 	public class TilePatternBuilder {
 		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
 		public Rectangle? AreaFromCenter = null;

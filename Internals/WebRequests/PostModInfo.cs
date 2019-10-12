@@ -4,13 +4,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
 	/// @private
 	public struct PostModTagsData {
+		/// <summary></summary>
 		public string modname;
+		/// <summary></summary>
 		public string modtags;
 	}
 

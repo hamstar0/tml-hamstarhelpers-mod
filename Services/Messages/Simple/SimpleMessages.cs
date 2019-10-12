@@ -10,14 +10,25 @@ namespace HamstarHelpers.Services.Messages.Simple {
 	/// A simple alternative to display centered text messages on-screen.
 	/// </summary>
 	public static class SimpleMessage {
+		/// <summary>
+		/// Tick duration of message.
+		/// </summary>
 		public static int MessageDuration = 0;
+		/// <summary></summary>
 		public static string Message = "";
+		/// <summary>
+		/// Smaller message under the bigger message.
+		/// </summary>
 		public static string SubMessage = "";
 
 
 
 		////////////////
 
+		/// <summary></summary>
+		/// <param name="msg"></param>
+		/// <param name="submsg"></param>
+		/// <param name="duration">Tick duration.</param>
 		public static void PostMessage( string msg, string submsg, int duration ) {
 			SimpleMessage.MessageDuration = duration;
 			SimpleMessage.Message = msg;

@@ -12,6 +12,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 	/// </summary>
 	[Obsolete("Will be replaced eventually")]
 	public partial class RecipeHack {
+		/// @private
 		public static void ForceRecipeRefresh() {
 			var mymod = ModHelpersMod.Instance;
 			mymod.RecipeHack.RefreshTimer = 0;
@@ -20,11 +21,13 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		////////////////
 
+		/// @private
 		public static void RegisterIngredientSource( string sourceName, Func<Player, IEnumerable<Item>> itemSource ) {
 			var mymod = ModHelpersMod.Instance;
 			mymod.RecipeHack.IngredientOutsources[ sourceName ] = itemSource;
 		}
 
+		/// @private
 		public static void UnregisterIngredientSource( string sourceName ) {
 			var mymod = ModHelpersMod.Instance;
 			mymod.RecipeHack.IngredientOutsources.Remove( sourceName );
@@ -33,6 +36,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		////////////////
 
+		/// @private
 		public static IEnumerable<Item> GetOutsourcedItems( Player player ) {
 			return ModHelpersMod.Instance.RecipeHack.IngredientOutsources.Values
 					.SelectMany( src => src(player) );
@@ -41,6 +45,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 		////////////////
 
+		/// @private
 		public static ISet<int> GetAvailableRecipesOfIngredients( Player player, IEnumerable<Item> ingredients ) {
 			int[] _;
 			IDictionary<int, int> __;

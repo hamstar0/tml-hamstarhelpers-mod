@@ -47,6 +47,7 @@ namespace HamstarHelpers.Helpers.World {
 		Desert = 64,
 		/// <summary></summary>
 		Snow = 128,
+		/// @private
 		[Obsolete("use Snow", true)]
 		Cold = 128,
 		/// <summary></summary>

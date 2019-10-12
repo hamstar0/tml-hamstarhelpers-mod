@@ -16,9 +16,13 @@ using Terraria.ModLoader;
 namespace HamstarHelpers.Internals.WebRequests {
 	/// @private
 	public struct GithubModIssueReportData {
+		/// @private
 		public string githubuser;
+		/// @private
 		public string githubproject;
+		/// @private
 		public string title;
+		/// @private
 		public string body;
 		//public string[] labels;
 	}

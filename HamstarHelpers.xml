@@ -1408,8 +1408,31 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.BrightnessHigh">
             <summary></summary>
         </member>
-        <member name="T:HamstarHelpers.Classes.UI.ModConfig.ConfigFloatInput">
+        <member name="T:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement">
+            <summary>
+            Implements a text field for inputting float values.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement.OnBind">
             @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement.SetObject(System.Object)">
+            <summary>
+            Sets the config item's value represented by this widget.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement.SetFloatValue(System.Single)">
+            <summary>
+            Sets the config item's value represented by this widget.
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement.GetFloatValue">
+            <summary>
+            Gets the config value this widget represents.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.Dialogs.UIPromptDialog">
             <summary>
