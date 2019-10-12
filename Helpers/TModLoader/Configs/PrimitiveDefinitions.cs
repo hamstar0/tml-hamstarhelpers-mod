@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Classes.UI.ModConfig;
+using System;
 using Terraria.ModLoader.Config;
 
 
@@ -10,12 +11,6 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		/// <summary></summary>
 		[Range( Int32.MinValue, Int32.MaxValue )]
 		public int Amount;
-
-		/// <summary></summary>
-		/// <param name="amt"></param>
-		public FullIntDefinition( int amt ) {
-			this.Amount = amt;
-		}
 	}
 
 
@@ -26,12 +21,6 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		/// <summary></summary>
 		[Range( 0, Int32.MaxValue )]
 		public int Amount;
-
-		/// <summary></summary>
-		/// <param name="amt"></param>
-		public PositiveIntDefinition( int amt ) {
-			this.Amount = amt;
-		}
 	}
 
 
@@ -41,13 +30,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 	public class FullPercentFloatDefinition {
 		/// <summary></summary>
 		[Range( -1f, 1f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float Amount;
-
-		/// <summary></summary>
-		/// <param name="amt"></param>
-		public FullPercentFloatDefinition( float amt ) {
-			this.Amount = amt;
-		}
 	}
 
 
@@ -57,13 +41,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 	public class PercentFloatDefinition {
 		/// <summary></summary>
 		[Range( 0f, 1f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float Amount;
-
-		/// <summary></summary>
-		/// <param name="amt"></param>
-		public PercentFloatDefinition( float amt ) {
-			this.Amount = amt;
-		}
 	}
 
 
@@ -73,13 +52,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 	public class FullSingleDefinition {
 		/// <summary></summary>
 		[Range( Single.MinValue, Single.MaxValue )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float Amount;
-
-		/// <summary></summary>
-		/// <param name="amt"></param>
-		public FullSingleDefinition( float amt ) {
-			this.Amount = amt;
-		}
 	}
 
 
@@ -89,32 +63,21 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 	public class PositiveSingleDefinition {
 		/// <summary></summary>
 		[Range( 0, Single.MaxValue )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float Amount;
-
-		/// <summary></summary>
-		/// <param name="amt"></param>
-		public PositiveSingleDefinition( float amt ) {
-			this.Amount = amt;
-		}
 	}
 
 
 	/*public class FullDoubleDefinition {
 		[Range( Double.MinValue, Double.MaxValue )]
+		[CustomModConfigItem( typeof( DoubleInputElement ) )]
 		public double Amount;
-
-		public FullDoubleMultiplierDefinition( double amt ) {
-			this.Amount = amt;
-		}
 	}
 
 	public class PositiveDoubleDefinition {
 		[Range( 0, Double.MaxValue )]
+		[CustomModConfigItem( typeof( DoubleInputElement ) )]
 		public double Amount;
-
-		public PositiveDoubleMultiplierDefinition( double amt ) {
-			this.Amount = amt;
-		}
 	}*/
 
 
@@ -127,18 +90,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 	public class FullScreenPercentPositionDefinition {
 		/// <summary></summary>
 		[Range( -1f, 1f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float X;
 		/// <summary></summary>
 		[Range( -1f, 1f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float Y;
-
-		/// <summary></summary>
-		/// <param name="xPercent"></param>
-		/// <param name="yPercent"></param>
-		public FullScreenPercentPositionDefinition( float xPercent, float yPercent ) {
-			this.X = xPercent;
-			this.Y = yPercent;
-		}
 	}
 
 
@@ -149,18 +106,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 	public class ScreenPercentPositionDefinition {
 		/// <summary></summary>
 		[Range( 0f, 1f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float X;
 		/// <summary></summary>
 		[Range( 0f, 1f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float Y;
-
-		/// <summary></summary>
-		/// <param name="xPercent"></param>
-		/// <param name="yPercent"></param>
-		public ScreenPercentPositionDefinition( float xPercent, float yPercent ) {
-			this.X = xPercent;
-			this.Y = yPercent;
-		}
 	}
 
 
@@ -178,14 +129,6 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		/// <summary></summary>
 		[Range( -2160, 2160 )]
 		public int Y;
-
-		/// <summary></summary>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-		public FullScreenPositionDefinition( int x, int y ) {
-			this.X = x;
-			this.Y = y;
-		}
 	}
 
 	/// <summary>
@@ -199,13 +142,5 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		/// <summary></summary>
 		[Range( 0, 2160 )]
 		public int Y;
-
-		/// <summary></summary>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-		public ScreenPositionDefinition( int x, int y ) {
-			this.X = x;
-			this.Y = y;
-		}
 	}
 }

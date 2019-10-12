@@ -1276,6 +1276,11 @@
             <param name="blendLight"></param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder">
+            <summary>
+            Used to in TilePattern's constructor to simplify specifying non-optional values. Keeps TilePattern immutable.
+            </summary>
+        </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.AreaFromCenter">
             <summary>Distance to also check adjacent tiles from a given center point.</summary>
         </member>
@@ -1410,7 +1415,7 @@
         </member>
         <member name="T:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement">
             <summary>
-            Implements a text field for inputting float values.
+            Implements a ModConfig widget for inputting float values via. text input or slider.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement.OnBind">
@@ -1599,6 +1604,12 @@
             <summary>
             A UI panel specialized for menu use.
             </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.Menu.UIMenuPanel.XCenterOffset">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.Menu.UIMenuPanel.YPos">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Menu.UIMenuPanel.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.Single,System.Single,System.Single,System.Single)">
             <summary>
@@ -2798,6 +2809,22 @@
             <summary>
             An information display panel specialized for menu contexts.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Menu.UI.UIInfoDisplay.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Menu.UI.UIInfoDisplay.SetDefaultText(System.String)">
+            <summary></summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Menu.UI.UIInfoDisplay.SetText(System.String,System.Nullable{Microsoft.Xna.Framework.Color})">
+            <summary></summary>
+            <param name="text"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Menu.UI.UIInfoDisplay.GetText">
+            <summary></summary>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Theme.IThemeable">
             <summary>
@@ -4137,6 +4164,21 @@
             <param name="key2"></param>
             <param name="value"></param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.KeyValuePairExtensions">
+            <summary>
+            Extensions for `KeyValuePair`.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.KeyValuePairExtensions.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
+            <summary>
+            Enables value tuples `foreach` for dictionaries, rather than just `KeyValuePair`.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="this"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.FileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to basic file IO.
@@ -5354,6 +5396,9 @@
             <summary>
             Assorted static "helper" functions pertaining to item identification.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to item identification.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Items.ItemIdentityHelpers.GetUniqueKeySegs(System.Int32)">
             <summary>
@@ -5370,6 +5415,9 @@
             <param name="noContext">Omits `owner`, `netID`, and `favorited` fields.</param>
             <param name="minimal">Uses only the item's unique ID (`GetUniqueKey(...)`), `prefix`, and `stack`.</param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.ItemIdentityHelpers.GetItemDefinition(System.String)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Items.MusicBoxHelpers">
             <summary>
@@ -6509,6 +6557,24 @@
             Table of NPC ids by qualified names.
             </summary>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to players relative to projectile identification
+            </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to players relative to projectile identification
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.GetProjectileDefinition(System.String)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.GetUniqueKeySegs(System.Int32)">
+            <summary>
+            Gets a (human readable) unique key (as segments) from a given projectile type.
+            </summary>
+            <param name="projType"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Projectiles.ProjectileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to players relative to projectiles.
@@ -6534,18 +6600,6 @@
             <param name="color"></param>
             <param name="scale"></param>
             <param name="applyZoom">Whether to convert to current zoom amount of the screen.</param>
-        </member>
-        <member name="T:HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to players relative to projectile identification
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Projectiles.ProjectileIdentityHelpers.GetUniqueKeySegs(System.Int32)">
-            <summary>
-            Gets a (human readable) unique key (as segments) from a given projectile type.
-            </summary>
-            <param name="projType"></param>
-            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Recipes.RecipeFinderHelpers">
             <summary>
@@ -6683,6 +6737,15 @@
             <param name="recipe1"></param>
             <param name="recipe2"></param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Recipes.RecipeIdentityHelpers.GetRecipeIndexesOfItem(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Recipes.RecipeIdentityHelpers.GetRecipesOfItem(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Recipes.RecipeIdentityHelpers.GetRecipeIndexesUsingIngredient(System.Int32)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Steam.SteamHelpers">
             <summary>
@@ -7304,13 +7367,160 @@
             Mappings of menu UI classes to their respective `Main.menuMode` (or 888, if not relevant).
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UICharacterSelect">
+            <summary></summary>
+        </member>
         <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIWorldSelect">
-            1
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIManageControls">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIAchievementsMenu">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIMods">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIModSources">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UILoadModsProgress">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIBuildModProgress">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIErrorMessage">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIModBrowser">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIModInfo">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIManagePublished">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIUpdateMessage">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIInfoMessage">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIEnterPassphraseMenu">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIModPacks">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIEnterSteamIDMenu">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIExtractModProgress">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIDownloadProgress">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIUploadModProgress">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIDeveloperModeHelp">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIProgress">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIModConfig">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UIModConfigList">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIDefinition.UICreateMod">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs">
             <summary>
-            Getters for menu UI objects (`UIstate`).
+            Getters for menu UI objects (`UIstate` instances).
             </summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UICharacterSelect">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIWorldSelect">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIManageControls">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIAchievementsMenu">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIMods">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UILoadModsProgress">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIModSources">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIBuildModProgress">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIErrorMessage">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIModBrowser">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIModInfo">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIManagePublished">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIUpdateMessage">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIInfoMessage">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIEnterPassphraseMenu">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIModPacks">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIEnterSteamIDMenu">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIExtractModProgress">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIUploadModProgress">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIDeveloperModeHelp">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIModConfig">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIModConfigList">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UICreateMod">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIProgress">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.TModLoader.Menus.MenuUIs.UIDownloadProgress">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Menus.ModMenuHelpers">
             <summary>
@@ -7661,6 +7871,9 @@
         <member name="F:HamstarHelpers.Helpers.World.VanillaBiome.Snow">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Helpers.World.VanillaBiome.Cold">
+            @private
+        </member>
         <member name="F:HamstarHelpers.Helpers.World.VanillaBiome.Mushroom">
             <summary></summary>
         </member>
@@ -7834,6 +8047,24 @@
         </member>
         <member name="F:HamstarHelpers.Helpers.World.WorldSize.SuperLarge">
             <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.World.VanillaSectionalBiome">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.VanillaSectionalBiome.Forest">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.VanillaSectionalBiome.Space">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.VanillaSectionalBiome.Ocean">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.VanillaSectionalBiome.Cave">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.VanillaSectionalBiome.Hell">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.World.WorldFileHelpers">
             <summary>
@@ -8011,6 +8242,42 @@
             <param name="furthestTileY">Limit to check tiles down (or up) to before giving up.</param>
             <param name="groundPos"></param>
             <returns>`true` if a ground point was found within world boundaries.</returns>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.SurfaceLayerTop">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.SurfaceLayerBottom">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.DirtLayerTop">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.DirtLayerBottom">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.RockLayerTop">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.RockLayerBottom">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.SkyLayerTop">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.SkyLayerBottom">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.UnderworldLayerTop">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.UnderworldLayerBottom">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.IsBeachWest">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.IsBeachEast">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.World.WorldStateHelpers">
             <summary>
@@ -8236,7 +8503,6 @@
             @private
             @private
             @private
-            @private
         </member>
         <member name="T:HamstarHelpers.Internals.ControlPanel.UIControlPanel">
             @private
@@ -8246,6 +8512,18 @@
             @private
         </member>
         <member name="T:HamstarHelpers.Internals.ControlPanel.UIControlPanelTab">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Internals.ControlPanel.UIControlPanelTab.Theme">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Internals.ControlPanel.UIControlPanelTab.IsInitialized">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Internals.ControlPanel.UIControlPanelTab.OnInitialize">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Internals.ControlPanel.UIControlPanelTab.OnInitializeMe">
             @private
         </member>
         <member name="T:HamstarHelpers.Internals.Inbox.InboxControl">
@@ -8348,11 +8626,29 @@
         <member name="T:HamstarHelpers.Internals.WebRequests.GithubModIssueReportData">
             @private
         </member>
+        <member name="F:HamstarHelpers.Internals.WebRequests.GithubModIssueReportData.githubuser">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Internals.WebRequests.GithubModIssueReportData.githubproject">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Internals.WebRequests.GithubModIssueReportData.title">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Internals.WebRequests.GithubModIssueReportData.body">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Internals.WebRequests.PostGithubModIssueReports">
             @private
         </member>
         <member name="T:HamstarHelpers.Internals.WebRequests.PostModTagsData">
             @private
+        </member>
+        <member name="F:HamstarHelpers.Internals.WebRequests.PostModTagsData.modname">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Internals.WebRequests.PostModTagsData.modtags">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Internals.WebRequests.PostModInfo">
             @private
@@ -9267,6 +9563,25 @@
             A simple alternative to display centered text messages on-screen.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.MessageDuration">
+            <summary>
+            Tick duration of message.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.Message">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.SubMessage">
+            <summary>
+            Smaller message under the bigger message.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Messages.Simple.SimpleMessage.PostMessage(System.String,System.String,System.Int32)">
+            <summary></summary>
+            <param name="msg"></param>
+            <param name="submsg"></param>
+            <param name="duration">Tick duration.</param>
+        </member>
         <member name="T:HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat.ExtensibleInventoryCompatibilities">
             <summary>
             Defines functions for applying any needed inter-mod compatibility adjustments for the Extensible Inventory mod (if active).
@@ -9323,6 +9638,21 @@
             Provides a way to lock the given current loaded mods with a given world. May also be accessed in-game via. the
             Mod Helpers control panel.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.ForceRecipeRefresh">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.RegisterIngredientSource(System.String,System.Func{Terraria.Player,System.Collections.Generic.IEnumerable{Terraria.Item}})">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.UnregisterIngredientSource(System.String)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.GetOutsourcedItems(Terraria.Player)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.GetAvailableRecipesOfIngredients(Terraria.Player,System.Collections.Generic.IEnumerable{Terraria.Item})">
+            @private
         </member>
         <member name="T:HamstarHelpers.Services.Server.Server">
             <summary>
