@@ -19,12 +19,27 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="input"></param>
 		/// <returns>`true` if string is valid</returns>
 		public delegate bool TextEventHandler( StringBuilder input );
+		/// <summary>
+		/// Event handler for focus change events.
+		/// </summary>
+		public delegate void FocusHandler();
 
+
+
+		////////////////
 
 		/// <summary>
 		/// Fires on text change.
 		/// </summary>
 		public event TextEventHandler OnTextChange;
+		/// <summary>
+		/// Fires on when input is no longer selected.
+		/// </summary>
+		public event FocusHandler OnUnfocus;
+
+
+		////////////////
+
 		/// <summary>
 		/// Text color.
 		/// </summary>
@@ -93,14 +108,19 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			// Detect if user selects this element
 			if( Main.mouseLeft ) {
-				this.IsSelected = false;
+				bool isNowSelected = false;
 
 				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {
 					if( Main.mouseY >= dim.Y && Main.mouseY < ( dim.Y + dim.Height ) ) {
-						this.IsSelected = true;
+						isNowSelected = true;
 						Main.keyCount = 0;
 					}
 				}
+
+				if( this.IsSelected && !isNowSelected ) {
+					this.OnUnfocus?.Invoke();
+				}
+				this.IsSelected = isNowSelected;
 			}
 
 			// Apply text inputs

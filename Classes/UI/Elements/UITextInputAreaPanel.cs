@@ -21,7 +21,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns>`true` if string is valid</returns>
-		public delegate bool TextChangeEvent( StringBuilder input );
+		public delegate bool TextEventHandler( StringBuilder input );
+		/// <summary>
+		/// Event handler for focus change events.
+		/// </summary>
+		public delegate void FocusHandler();
+
 
 
 		////////////////
@@ -29,7 +34,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Fires as the text input changes.
 		/// </summary>
-		public event TextChangeEvent OnPreChange;
+		public event TextEventHandler OnPreTextChange;
+		/// <summary>
+		/// Fires on when input is no longer selected.
+		/// </summary>
+		public event FocusHandler OnUnfocus;
 
 
 		////////////////
@@ -109,7 +118,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="text">New text.</param>
 		public void SetText( string text ) {
 			var strBldr = new StringBuilder( text );
-			if( !this.OnPreChange?.Invoke( strBldr ) ?? false ) {
+			if( !this.OnPreTextChange?.Invoke( strBldr ) ?? false ) {
 				return;
 			}
 
@@ -209,6 +218,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.HasFocus = false;
 
 			Main.blockInput = false;
+
+			this.OnUnfocus?.Invoke();
 
 			return true;
 		}

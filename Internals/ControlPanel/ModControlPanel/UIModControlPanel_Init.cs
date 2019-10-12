@@ -99,7 +99,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueTitleInput.HAlign = 0f;
 			this.IssueTitleInput.SetPadding( 8f );
 			this.IssueTitleInput.Disable();
-			this.IssueTitleInput.OnPreChange += ( _ ) => {
+			this.IssueTitleInput.OnPreTextChange += ( _ ) => {
 				self.RefreshIssueSubmitButton();
 				return true;
 			};
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueBodyInput.HAlign = 0f;
 			this.IssueBodyInput.SetPadding( 8f );
 			this.IssueBodyInput.Disable();
-			this.IssueBodyInput.OnPreChange += ( _ ) => {
+			this.IssueBodyInput.OnPreTextChange += ( _ ) => {
 				self.RefreshIssueSubmitButton();
 				return true;
 			};

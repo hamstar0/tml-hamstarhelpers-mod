@@ -2068,16 +2068,26 @@
             multi-line support (yet).
             </summary>
         </member>
-        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextChangeEvent">
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextEventHandler">
             <summary>
             Event handler for text input events
             </summary>
             <param name="input"></param>
             <returns>`true` if string is valid</returns>
         </member>
-        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.OnPreChange">
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.FocusHandler">
+            <summary>
+            Event handler for focus change events.
+            </summary>
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.OnPreTextChange">
             <summary>
             Fires as the text input changes.
+            </summary>
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.OnUnfocus">
+            <summary>
+            Fires on when input is no longer selected.
             </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Text">
@@ -2212,9 +2222,19 @@
             <param name="input"></param>
             <returns>`true` if string is valid</returns>
         </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement.FocusHandler">
+            <summary>
+            Event handler for focus change events.
+            </summary>
+        </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnTextChange">
             <summary>
             Fires on text change.
+            </summary>
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnUnfocus">
+            <summary>
+            Fires on when input is no longer selected.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextColor">
@@ -2257,9 +2277,19 @@
             <param name="input"></param>
             <returns>`true` if string is valid</returns>
         </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.FocusHandler">
+            <summary>
+            Event handler for focus change events.
+            </summary>
+        </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.OnTextChange">
             <summary>
             Fires on text change.
+            </summary>
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.OnUnfocus">
+            <summary>
+            Fires on when input is no longer selected.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.TextColor">
