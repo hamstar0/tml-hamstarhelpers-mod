@@ -24,7 +24,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <param name="modNames">List of (internal) mod names to filter the list to.</param>
 		public static void ApplyModBrowserFilter( string filterName, bool isFiltered, List<string> modNames ) {
 			Type interfaceType = ReflectionHelpers.GetMainAssembly()
-				.GetType( "Terraria.ModLoader.Interface" );
+				.GetType( "Terraria.ModLoader.UI.Interface" );
 
 			UIState modBrowserUi;
 			if( !ReflectionHelpers.Get(interfaceType, null, "modBrowser", out modBrowserUi) || modBrowserUi == null ) {

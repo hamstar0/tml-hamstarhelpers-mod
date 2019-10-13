@@ -208,7 +208,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 			Type type = ReflectionHelpers.GetTypeFromAssembly( ass, "Terraria.ModLoader.UI.Interface" );
 			if( type == null ) {
-				LogHelpers.Warn( "Could not find Terraria.ModLoader.Interface" );
+				LogHelpers.Warn( "Could not find Terraria.ModLoader.UI.Interface" );
 				return null;
 			}
 

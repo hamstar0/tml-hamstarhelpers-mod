@@ -7162,10 +7162,6 @@
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.FullIntDefinition.Amount">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.FullIntDefinition.#ctor(System.Int32)">
-            <summary></summary>
-            <param name="amt"></param>
-        </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.PositiveIntDefinition">
             <summary>
             Allows defining a positive int value (furthest positive values only). Used for array/list/etc. entries.
@@ -7173,10 +7169,6 @@
         </member>
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.PositiveIntDefinition.Amount">
             <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.PositiveIntDefinition.#ctor(System.Int32)">
-            <summary></summary>
-            <param name="amt"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.FullPercentFloatDefinition">
             <summary>
@@ -7186,10 +7178,6 @@
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.FullPercentFloatDefinition.Amount">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.FullPercentFloatDefinition.#ctor(System.Single)">
-            <summary></summary>
-            <param name="amt"></param>
-        </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.PercentFloatDefinition">
             <summary>
             Allows defining a "percent" float value (between 0 and 1). Used for array/list/etc. entries.
@@ -7197,10 +7185,6 @@
         </member>
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.PercentFloatDefinition.Amount">
             <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.PercentFloatDefinition.#ctor(System.Single)">
-            <summary></summary>
-            <param name="amt"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.FullSingleDefinition">
             <summary>
@@ -7210,10 +7194,6 @@
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.FullSingleDefinition.Amount">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.FullSingleDefinition.#ctor(System.Single)">
-            <summary></summary>
-            <param name="amt"></param>
-        </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.PositiveSingleDefinition">
             <summary>
             Allows defining a positive float value (furthest positive range only). Used for array/list/etc. entries.
@@ -7221,10 +7201,6 @@
         </member>
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.PositiveSingleDefinition.Amount">
             <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.PositiveSingleDefinition.#ctor(System.Single)">
-            <summary></summary>
-            <param name="amt"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.FullScreenPercentPositionDefinition">
             <summary>
@@ -7238,11 +7214,6 @@
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.FullScreenPercentPositionDefinition.Y">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.FullScreenPercentPositionDefinition.#ctor(System.Single,System.Single)">
-            <summary></summary>
-            <param name="xPercent"></param>
-            <param name="yPercent"></param>
-        </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.ScreenPercentPositionDefinition">
             <summary>
             Allows defining a coordinate value representing a possible screen position (as a percent).
@@ -7254,11 +7225,6 @@
         </member>
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.ScreenPercentPositionDefinition.Y">
             <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.ScreenPercentPositionDefinition.#ctor(System.Single,System.Single)">
-            <summary></summary>
-            <param name="xPercent"></param>
-            <param name="yPercent"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.FullScreenPositionDefinition">
             <summary>
@@ -7273,11 +7239,6 @@
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.FullScreenPositionDefinition.Y">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.FullScreenPositionDefinition.#ctor(System.Int32,System.Int32)">
-            <summary></summary>
-            <param name="x"></param>
-            <param name="y"></param>
-        </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.ScreenPositionDefinition">
             <summary>
             Allows defining a coordinate value representing a possible screen position (up to the theoretical largest
@@ -7289,11 +7250,6 @@
         </member>
         <member name="F:HamstarHelpers.Helpers.TModLoader.Configs.ScreenPositionDefinition.Y">
             <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.ScreenPositionDefinition.#ctor(System.Int32,System.Int32)">
-            <summary></summary>
-            <param name="x"></param>
-            <param name="y"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.LoadHelpers">
             <summary>

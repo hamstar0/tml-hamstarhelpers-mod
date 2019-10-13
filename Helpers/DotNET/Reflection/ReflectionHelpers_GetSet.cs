@@ -55,6 +55,9 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="result"></param>
 		/// <returns>`true` if field or property exist.</returns>
 		public static bool Get<T>( object instance, string fieldOrPropName, out T result ) {
+			if( instance == null ) {
+				throw new ModHelpersException( "Null instances not allowed. Use the other Get function for static classes." );
+			}
 			if( instance is Type ) {
 				throw new ModHelpersException( "Cannot get fields or properties from Type. Use the other Get<T>(...)." );
 			}
