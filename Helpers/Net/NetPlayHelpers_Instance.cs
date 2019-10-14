@@ -18,6 +18,10 @@ namespace HamstarHelpers.Helpers.Net {
 		////////////////
 
 		internal NetPlayHelpers() {
+			if( ModHelpersMod.Instance.Config.DisableOwnIPCheck ) {
+				return;
+			}
+
 			this.LoadIPAsync();
 
 			int attempts = 3;
