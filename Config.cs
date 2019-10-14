@@ -58,24 +58,6 @@ namespace HamstarHelpers {
 		////////////////
 
 		/// <summary>
-		/// Shorthand for disabling all internet functions
-		/// </summary>
-		[Label( "Disable all internet features" )]
-		[Tooltip( "Enable 'DisableModMenuUpdates', 'DisableModTags', and 'DisableOwnIPCheck' settings" )]
-		public bool DisableAllNetworkFeatures {
-			get {
-				return this.DisableModMenuUpdates && this.DisableModTags && this.DisableOwnIPCheck;
-			}
-			set {
-				this.DisableModMenuUpdates = true;
-				this.DisableModTags = true;
-				this.DisableOwnIPCheck = true;
-			}
-		}
-
-		////
-
-		/// <summary>
 		/// Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only.
 		/// </summary>
 		[Header( "Debug settings" )]
@@ -191,10 +173,28 @@ namespace HamstarHelpers {
 		public bool WorldModLockMinimumOnly { get; set; } = true;
 
 
+		////
+
 		/// <summary>
 		/// Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!
 		/// </summary>
+		/// <summary>
+		/// Shorthand for disabling all internet functions
+		/// </summary>
 		[Header( "Mod Helpers functions settings" )]
+		[Label( "Disable all internet features\n----" )]
+		[Tooltip( "Enable 'DisableModMenuUpdates', 'DisableModTags', and 'DisableOwnIPCheck' settings" )]
+		public bool DisableAllInternaFeatures {
+			get {
+				return this.DisableModMenuUpdates && this.DisableModTags && this.DisableOwnIPCheck;
+			}
+			set {
+				this.DisableModMenuUpdates = value;
+				this.DisableModTags = value;
+				this.DisableOwnIPCheck = value;
+			}
+		}
+
 		[Label( "Mod Call Command Enabled" )]
 		[Tooltip( "Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!" )]
 		//[ReloadRequired]

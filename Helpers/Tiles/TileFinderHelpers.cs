@@ -322,24 +322,24 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 		/// <summary>
-		/// Gets the nearest matching tile to a given point (world coordinate).
+		/// Gets the nearest matching tile to a given point (as a world coordinate).
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <param name="pattern"></param>
-		/// <param name="maxRadius"></param>
-		/// <returns></returns>
-		public static Point? GetNearestTile( Vector2 worldPos, TilePattern pattern, int maxRadius = Int32.MaxValue ) {
+		/// <param name="maxWorldRadius"></param>
+		/// <returns>Tile position of match. `null` if none.</returns>
+		public static Point? GetNearestTile( Vector2 worldPos, TilePattern pattern, int maxWorldRadius = Int32.MaxValue ) {
 			int midWldX = (int)Math.Round( worldPos.X );
 			int midWldY = (int)Math.Round( worldPos.Y );
 			int tileX = midWldX >> 4;
 			int tileY = midWldY >> 4;
 
-			if( pattern.Check(tileX, tileY) ) {
+			if( pattern.Check( tileX, tileY ) ) {
 				return new Point( tileX, tileY );
 			}
 
 			int max = Math.Max( Main.maxTilesX - 1, Main.maxTilesY - 1 ) * 16;
-			max = Math.Min( maxRadius, max );
+			max = Math.Min( maxWorldRadius, max );
 
 			for( int radius = 16; radius < max; radius += 16 ) {
 				double radMin = radius - 8;
@@ -349,23 +349,75 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 				for( double inX = -radius; inX <= radius; inX += 16 ) {
 					for( double inY = -radius; inY <= radius; inY += 16 ) {
-						double distSqr = (inX * inX) + (inY * inY);
+						double distSqr = ( inX * inX ) + ( inY * inY );
 						if( distSqr < radMin || distSqr > radMax ) {
 							continue;
 						}
 
-						tileX = (midWldX + (int)inX) >> 4;
+						tileX = ( midWldX + (int)inX ) >> 4;
+						if( tileX < 0 || tileX >= ( Main.maxTilesX - 1 ) ) {
+							continue;
+						}
+
+						tileY = ( midWldY + (int)inY ) >> 4;
+						if( tileY < 0 || tileY >= ( Main.maxTilesY - 1 ) ) {
+							continue;
+						}
+
+						if( pattern.Check( tileX, tileY ) ) {
+							return new Point( tileX, tileY );
+						}
+					}
+				}
+			}
+
+			return null;
+		}
+
+
+		/// <summary>
+		/// Gets the nearest matching tile to a given point.
+		/// </summary>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="pattern"></param>
+		/// <param name="maxTileRadius"></param>
+		/// <returns>Tile position of match. `null` if none.</returns>
+		public static (int TileX, int TileY)? GetNearestTile( int tileX, int tileY, TilePattern pattern, int maxTileRadius = Int32.MaxValue ) {
+			if( pattern.Check(tileX, tileY) ) {
+				return (tileX, tileY);
+			}
+
+			int midTileX = tileX;
+			int midTileY = tileY;
+			int max = Math.Max( Main.maxTilesX - 1, Main.maxTilesY - 1 );
+			max = Math.Min( maxTileRadius, max );
+
+			for( double radius = 1; radius < max; radius += 1 ) {
+				double radMinSqr = radius - 0.5d;
+				double radMaxSqr = radius + 0.5d;
+				radMinSqr *= radMinSqr;
+				radMaxSqr *= radMaxSqr;
+
+				for( double inTileX = -radius; inTileX <= radius; inTileX += 1 ) {
+					for( double inTileY = -radius; inTileY <= radius; inTileY += 1 ) {
+						double distSqr = (inTileX * inTileX) + (inTileY * inTileY);
+						if( distSqr < radMinSqr || distSqr > radMaxSqr ) {
+							continue;
+						}
+
+						tileX = midTileX + (int)inTileX;
 						if( tileX < 0 || tileX >= (Main.maxTilesX - 1) ) {
 							continue;
 						}
 
-						tileY = (midWldY + (int)inY) >> 4;
+						tileY = (midTileY + (int)inTileY) >> 4;
 						if( tileY < 0 || tileY >= (Main.maxTilesY - 1) ) {
 							continue;
 						}
 
 						if( pattern.Check(tileX, tileY) ) {
-							return new Point( tileX, tileY );
+							return (tileX, tileY);
 						}
 					}
 				}
