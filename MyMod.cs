@@ -13,6 +13,11 @@ namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		public static ModHelpersMod Instance { get; private set; }
 
+		////
+
+		internal static ModHelpersPrivilegedUserConfig PrivConfig => ModContent.GetInstance<ModHelpersPrivilegedUserConfig>();
+		public static ModHelpersConfig Config => ModContent.GetInstance<ModHelpersConfig>();
+
 
 
 		////////////////
@@ -26,11 +31,6 @@ namespace HamstarHelpers {
 
 
 		////////////////
-
-		internal ModHelpersPrivilegedUserConfig PrivConfig => ModContent.GetInstance<ModHelpersPrivilegedUserConfig>();
-		public ModHelpersConfig Config => ModContent.GetInstance<ModHelpersConfig>();
-
-		////
 
 		private int LastSeenCPScreenWidth = -1;
 		private int LastSeenCPScreenHeight = -1;

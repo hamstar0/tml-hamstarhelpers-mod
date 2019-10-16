@@ -176,9 +176,6 @@ namespace HamstarHelpers {
 		////
 
 		/// <summary>
-		/// Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!
-		/// </summary>
-		/// <summary>
 		/// Shorthand for disabling all internet functions
 		/// </summary>
 		[Header( "Mod Helpers functions settings" )]
@@ -195,10 +192,13 @@ namespace HamstarHelpers {
 			}
 		}
 
+		/// <summary>
+		/// Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!
+		/// </summary>
 		[Label( "Mod Call Command Enabled" )]
 		[Tooltip( "Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!" )]
-		//[ReloadRequired]
 		public bool ModCallCommandEnabled { get; set; } = false;
+		//[ReloadRequired]
 
 		//public bool IsServerHiddenFromBrowser = false;
 		//public bool IsServerHiddenFromBrowserUnlessPortForwardedViaUPNP = true;
@@ -262,6 +262,9 @@ namespace HamstarHelpers {
 		[Tooltip("Disables mod version updates overlay display in the mod menu.")]
 		public bool DisableModMenuUpdates { get; set; } = false;
 
+		/// <summary>
+		/// Disables IP address checks from checkip.dyndns.org.
+		/// </summary>
 		[Label("Disable self IP checking")]
 		[Tooltip( "Skips calls to checkip.dyndns.org for getting own IP" )]
 		[ReloadRequired]

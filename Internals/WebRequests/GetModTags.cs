@@ -102,7 +102,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 		////////////////
 		
 		internal void OnPostModsLoad() {
-			if( !ModHelpersMod.Instance.Config.DisableModTags ) {
+			if( !ModHelpersMod.Config.DisableModTags ) {
 				GetModTags.CacheAllModTagsAsync();
 			}
 		}

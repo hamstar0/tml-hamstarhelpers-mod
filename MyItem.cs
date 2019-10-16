@@ -29,9 +29,7 @@ namespace HamstarHelpers {
 		public override void SetDefaults( Item item ) {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+item.whoAmI+":"+item.type+"_A", 1 );
 			if( item.type == ItemID.Coal ) {
-				var mymod = ModHelpersMod.Instance;
-
-				if( mymod.Config.CoalAsTile ) {
+				if( ModHelpersMod.Config.CoalAsTile ) {
 					item.maxStack = 999;
 					item.rare = 2;
 					item.value = 1000;

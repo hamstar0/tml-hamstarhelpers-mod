@@ -141,7 +141,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.ModLockButton.Top.Set( top, 0f );
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );
-			if( Main.netMode != 0 || !mymod.Config.WorldModLockEnable ) {
+			if( Main.netMode != 0 || !ModHelpersMod.Config.WorldModLockEnable ) {
 				this.ModLockButton.Disable();
 			}
 			this.ModLockButton.OnClick += ( _, __ ) => {

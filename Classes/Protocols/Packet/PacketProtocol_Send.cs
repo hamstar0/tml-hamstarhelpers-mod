@@ -30,7 +30,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				this.Send_Core( packet );
 			}
 
-			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+			if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string jsonStr = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendToServer: " + jsonStr );
 			}
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				this.Send_Core( packet, toWho, ignoreWho );
 			}
 
-			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+			if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				string jsonStr = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendToClient " + toWho + ", " + ignoreWho + ": " + jsonStr );
 			}

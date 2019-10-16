@@ -35,7 +35,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 			if( modlock.MissingModNames.Count > 0 ) {
 				return true;
 			}
-			if( mymod.Config.WorldModLockMinimumOnly && modlock.ExtraModNames.Count > 0 ) {
+			if( ModHelpersMod.Config.WorldModLockMinimumOnly && modlock.ExtraModNames.Count > 0 ) {
 				return true;
 			}
 
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 
 			modlock.ScanMods( modworld );
 
-			if( mymod.Config.WorldModLockMinimumOnly ) {
+			if( ModHelpersMod.Config.WorldModLockMinimumOnly ) {
 				Main.NewText( "Your world now requires exactly these mods: " + string.Join( ", ", modNames ) );
 			} else {
 				Main.NewText( "Your world now requires at least these mods: " + string.Join( ", ", modNames ) );

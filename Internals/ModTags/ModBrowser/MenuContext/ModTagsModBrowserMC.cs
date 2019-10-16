@@ -12,7 +12,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
 	partial class ModTagsModBrowserMenuContext : ModTagsMenuContextBase {
 		public static void Initialize( bool onModLoad ) {
-			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
+			if( ModHelpersMod.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
 				var ctx = new ModTagsModBrowserMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Browser" );

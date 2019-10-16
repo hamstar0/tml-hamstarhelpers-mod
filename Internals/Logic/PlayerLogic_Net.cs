@@ -58,7 +58,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void FinishWorldDataSyncOnClient() {
 			this.HasSyncedWorldData = true;
-			if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
+			if( ModHelpersMod.Config.DebugModeNetInfo ) {
 				LogHelpers.Alert();
 			}
 			if( this.HasSyncedState() ) { this.FinishSyncOnClient(); }
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.Logic {
 		////
 
 		public bool HasSyncedState() {
-			if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
+			if( ModHelpersMod.Config.DebugModeNetInfo ) {
 				LogHelpers.AlertOnce( "HasSyncedWorldData: "+this.HasSyncedWorldData+
 					", HasLoadedOldUID: "+this.HasLoadedOldUID );
 			}
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 			var mymod = ModHelpersMod.Instance;
 
-			if( mymod.Config.DebugModeNetInfo ) {
+			if( ModHelpersMod.Config.DebugModeNetInfo ) {
 				LogHelpers.Alert();
 			}
 

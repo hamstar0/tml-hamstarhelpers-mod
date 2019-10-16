@@ -46,8 +46,7 @@ namespace HamstarHelpers.Commands {
 				}
 			}
 
-			var mymod = ModHelpersMod.Instance;
-			if( !mymod.Config.ModCallCommandEnabled ) {
+			if( !ModHelpersMod.Config.ModCallCommandEnabled ) {
 				throw new UsageException( "Mod.Call() command disabled by settings." );
 			}
 

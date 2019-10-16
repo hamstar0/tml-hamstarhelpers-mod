@@ -19,7 +19,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				return;
 			}
 
-			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+			if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToClient " + toWho + ", " + ignoreWho );
 			}
 			
@@ -28,7 +28,6 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 
 		internal void SendRequestToServer( int retries ) {
-			var mymod = ModHelpersMod.Instance;
 			ModPacket packet = this.GetClientPacket( true, false );
 
 			try {
@@ -38,7 +37,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				return;
 			}
 
-			if( mymod.Config.DebugModeNetInfo && this.IsVerbose ) {
+			if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
 				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
 			}
 
@@ -54,7 +53,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			var mymod = ModHelpersMod.Instance;
 			string protocolName = this.GetType().Name;
 			string timerName = protocolName + "RequestToClientTimeout";
-			int retryDuration = mymod.Config.PacketRequestRetryDuration;
+			int retryDuration = ModHelpersMod.Config.PacketRequestRetryDuration;
 
 			mymod.PacketProtocolMngr.ExpectReqest( protocolName );
 
@@ -64,7 +63,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 					return false;
 				}
 
-				if( mymod2.Config.DebugModeNetInfo && this.IsVerbose ) {
+				if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
 					LogHelpers.Log( "  Request (to client) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}
@@ -83,7 +82,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			var mymod = ModHelpersMod.Instance;
 			string protocolName = this.GetType().Name;
 			string timerName = this.GetType().Name + "RequestToServerTimeout";
-			int retryDuration = mymod.Config.PacketRequestRetryDuration;
+			int retryDuration = ModHelpersMod.Config.PacketRequestRetryDuration;
 
 			mymod.PacketProtocolMngr.ExpectReqest( protocolName );
 
@@ -93,7 +92,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 					return false;
 				}
 
-				if( mymod2.Config.DebugModeNetInfo && this.IsVerbose ) {
+				if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
 					LogHelpers.Log( "  Request (to server) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}

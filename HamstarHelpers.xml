@@ -3451,10 +3451,12 @@
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DisableAllInternaFeatures">
             <summary>
-            Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!
-            </summary>
-            <summary>
             Shorthand for disabling all internet functions
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.ModCallCommandEnabled">
+            <summary>
+            Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.PacketRequestRetryDuration">
@@ -3490,6 +3492,11 @@
         <member name="P:HamstarHelpers.ModHelpersConfig.DisableModMenuUpdates">
             <summary>
             Disables mod version updates overlay display in the mod menu.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableOwnIPCheck">
+            <summary>
+            Disables IP address checks from checkip.dyndns.org.
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.MagiTechScrapMechBossDropsEnabled">

@@ -13,13 +13,11 @@ namespace HamstarHelpers {
 	class ModHelpersNPC : GlobalNPC {
 		public override void NPCLoot( NPC npc ) {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+npc.whoAmI+":"+npc.type+"_A", 1 );
-			var mymod = (ModHelpersMod)this.mod;
-
 			if( npc.lastInteraction >= 0 && npc.lastInteraction < Main.player.Length ) {
 				this.NpcKilledByPlayer( npc );
 			}
 
-			if( mymod.Config.MagiTechScrapMechBossDropsEnabled ) {
+			if( ModHelpersMod.Config.MagiTechScrapMechBossDropsEnabled ) {
 				int scrapType = ModContent.ItemType<MagiTechScrapItem>();
 
 				switch( npc.type ) {

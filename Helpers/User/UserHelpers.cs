@@ -21,13 +21,11 @@ namespace HamstarHelpers.Helpers.User {
 				throw new ModHelpersException( "Not multiplayer." );
 			}
 
-			var mymod = ModHelpersMod.Instance;
-
-			if( string.IsNullOrEmpty(mymod.PrivConfig.PrivilegedUserId) ) {
+			if( string.IsNullOrEmpty( ModHelpersMod.PrivConfig.PrivilegedUserId) ) {
 				return false;
 			}
 
-			return mymod.PrivConfig.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId( player );
+			return ModHelpersMod.PrivConfig.PrivilegedUserId == PlayerIdentityHelpers.GetUniqueId( player );
 		}
 	}
 }

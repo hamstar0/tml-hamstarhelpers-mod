@@ -68,8 +68,7 @@ namespace HamstarHelpers.Internals.Menus {
 		private static bool DebugModeMenuInfoLoaded = false;
 
 		private static void InitializeDebugModeMenuInfo() {
-			var mymod = ModHelpersMod.Instance;
-			if( !mymod.Config.DebugModeMenuInfo ) { return; }
+			if( !ModHelpersMod.Config.DebugModeMenuInfo ) { return; }
 
 			Main.OnPostDraw += Menus.DebugModeMenuInfo;
 			Menus.DebugModeMenuInfoLoaded = true;

@@ -31,15 +31,13 @@ namespace HamstarHelpers.Internals.Logic {
 		public void PreUpdateClient( Player player ) {
 			this.PreUpdateLocal( player );
 
-			var mymod = ModHelpersMod.Instance;
-
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var myworld = ModContent.GetInstance<ModHelpersWorld>();
 				myworld.WorldLogic.PreUpdateClient();
 			}
 
 			// Update ping every 15 seconds
-			if( mymod.Config.IsServerGaugingAveragePing && this.TestPing++ > mymod.Config.PingUpdateDelay ) {
+			if( ModHelpersMod.Config.IsServerGaugingAveragePing && this.TestPing++ > ModHelpersMod.Config.PingUpdateDelay ) {
 				PingProtocol.QuickSendToServer();
 				this.TestPing = 0;
 			}

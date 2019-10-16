@@ -24,9 +24,7 @@ namespace HamstarHelpers.Commands {
 				throw new UsageException( "Command not available for server.", Color.Red );
 			}
 
-			var mymod = (ModHelpersMod)this.mod;
-
-			if( mymod.Config.DisableControlPanel ) {
+			if( ModHelpersMod.Config.DisableControlPanel ) {
 				caller.Reply( "Control panel disabled.", Color.Red );
 			} else {
 				ModHelpersMod.Instance.ControlPanel.Open();

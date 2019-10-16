@@ -174,25 +174,39 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			}
 
 			if( this.IsPlatform.HasValue ) {
-				if( Main.tileSolidTop[tile.type] != this.IsPlatform ) {
+				if( Main.tileSolidTop[tile.type] != this.IsPlatform.Value ) {
 					collideType = TileCollideType.Platform;
 					return false;
 				}
 			}
 
 			if( this.IsActuated.HasValue ) {
-				if( tile.inActive() != this.IsActuated ) {
+				if( tile.inActive() != this.IsActuated.Value ) {
 					collideType = TileCollideType.Actuated;
 					return false;
 				}
 			}
 
 			if( this.IsSolid.HasValue ) {
-				bool isPlatform = this.IsPlatform.GetValueOrDefault();
-				bool isActuated = this.IsActuated.GetValueOrDefault();
-				if( TileHelpers.IsSolid(tile, isPlatform, isActuated) != this.IsSolid.Value ) {
-					collideType = TileCollideType.Solid;
-					return false;
+				if( !tile.active() ) {
+					if( this.IsSolid.Value ) {
+						collideType = TileCollideType.Solid;
+						return false;
+					}
+				} else {//tile.active() == true
+					if( !this.IsSolid.Value ) {
+						if( Main.tileSolid[tile.type] ) {
+							if( !Main.tileSolidTop[tile.type] ) {
+								collideType = TileCollideType.Solid;
+								return false;
+							}
+						}
+					} else {//this.IsSolid.Value == true
+						if( Main.tileSolidTop[tile.type] ) {
+							collideType = TileCollideType.Solid;
+							return false;
+						}
+					}
 				}
 			}
 

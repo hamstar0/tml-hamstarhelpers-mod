@@ -78,7 +78,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 			bool notSafelyPlayed = mymod.LoadHelpers.WorldStartupDelay >= ( 60 * 2 );
 
-			if( mymod.Config.DebugModeHelpersInfo && !notSafelyPlayed ) {
+			if( ModHelpersMod.Config.DebugModeHelpersInfo && !notSafelyPlayed ) {
 				if( Main.netMode != 2 && !Main.dedServ ) {
 					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, mymod, "ModHelpersPlayer" );
 

@@ -6,12 +6,11 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 	/// @private
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		public void RefreshModLockButton() {
-			var mymod = ModHelpersMod.Instance;
 			bool areModsLocked = ModLockService.IsWorldLocked();
 			string status = areModsLocked ? ": ON" : ": OFF";
 			bool isEnabled = true;
 
-			if( !mymod.Config.WorldModLockEnable ) {
+			if( !ModHelpersMod.Config.WorldModLockEnable ) {
 				status += " (disabled)";
 				isEnabled = false;
 			} else if( Main.netMode != 0 ) {
@@ -36,9 +35,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		////////////////
 
 		public void UpdateElements() {
-			var mymod = ModHelpersMod.Instance;
-
-			if( !mymod.Config.WorldModLockEnable ) {
+			if( !ModHelpersMod.Config.WorldModLockEnable ) {
 				if( this.ModLockButton.IsEnabled ) {
 					this.RefreshModLockButton();
 				}

@@ -108,7 +108,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				if( args.Found && args.ModInfo.ContainsKey(this.Mod.Name) ) {
 					this.LatestAvailableVersion = args.ModInfo[ this.Mod.Name ].Version;
 				} else {
-					if( ModHelpersMod.Instance.Config.DebugModeNetInfo ) {
+					if( ModHelpersMod.Config.DebugModeNetInfo ) {
 						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName+"'" ); //+ "': " + reason );
 					}
 				}

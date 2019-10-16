@@ -130,7 +130,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 				}
 			}
 
-			if( ModHelpersMod.Instance.Config.DebugModeHelpersInfo ) {
+			if( ModHelpersMod.Config.DebugModeHelpersInfo ) {
 				LogHelpers.Log( "Filtered to " + filteredModNameList.Count + " mods."
 					+ ( onTags.Count > 0 ? "\nWith tags: " + string.Join( ", ", onTags ) : "" )
 					+ ( offTags.Count > 0 ? "\nWithout tags: " + string.Join( ", ", offTags ) : "" )

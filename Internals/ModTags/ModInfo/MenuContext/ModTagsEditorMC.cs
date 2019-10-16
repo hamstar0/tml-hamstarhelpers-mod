@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 		////////////////
 
 		public static void Initialize( bool onModLoad ) {
-			if( ModHelpersMod.Instance.Config.DisableModTags ) { return; }
+			if( ModHelpersMod.Config.DisableModTags ) { return; }
 
 			if( !onModLoad ) {
 				var ctx = new ModTagsEditorMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Info" );

@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			}
 
 			var mymod = ModHelpersMod.Instance;
-			if( mymod == null || mymod.Config == null || Main.MenuUI == null ) {
+			if( mymod == null || ModHelpersMod.Config == null || Main.MenuUI == null ) {
 				return false;
 			}
 

@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.Net {
 		////////////////
 
 		internal NetPlayHelpers() {
-			if( ModHelpersMod.Instance.Config.DisableOwnIPCheck ) {
+			if( ModHelpersMod.Config.DisableOwnIPCheck ) {
 				return;
 			}
 
