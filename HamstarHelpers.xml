@@ -102,14 +102,6 @@
             <param name="nodeToBeSplitIndex">Index of the node to be split within parent.</param>
             <param name="nodeToBeSplit">Node to be split.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.DataStructures.BTree.BTree`2.SearchWhile(System.Func{`0,System.Single},`0)">
-            <summary>
-            Searches for all items indicated as matches by a checker function.
-            </summary>
-            <param name="check">Accepts a key as a parmeter, returns a value between 0-1 to indicate a match.</param>
-            <param name="key"></param>
-            <returns></returns>
-        </member>
         <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTreeEntry`2">
             <summary></summary>
             <typeparam name="TK"></typeparam>
@@ -3382,132 +3374,135 @@
         <member name="P:HamstarHelpers.ModHelpersConfig.Mode">
             @private
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DebugModeHelpersInfo">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeHelpersInfo">
             <summary>
             Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DebugModeNetInfo">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeNetInfo">
             <summary>
             Outputs (to log) network message information (sends and receives of PacketProtocol).
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DebugModeUnhandledExceptionLogging">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeUnhandledExceptionLogging">
             <summary>
             Catches and logs unhandled exceptions (before crash).
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DebugModeDumpAlsoServer">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeDumpAlsoServer">
             <summary>
             Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DebugModeDisableSilentLogging">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeDisableSilentLogging">
             <summary>
             Disables logging of "silenced" exceptions.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DebugModePacketInfo">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModePacketInfo">
             <summary>
             Logs PacketProtocol payload content.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DebugModeMenuInfo">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeMenuInfo">
             <summary>
             Displays the current menu's ID in bottom right.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DisableControlPanel">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableControlPanel">
             <summary>
             Disables control panel outright.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.ControlPanelIconX">
+        <member name="P:HamstarHelpers.ModHelpersConfig.ControlPanelIconX">
             <summary>
             Control panel icon's X coordinate on screen. Negative values align the button from the right edge.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.ControlPanelIconY">
+        <member name="P:HamstarHelpers.ModHelpersConfig.ControlPanelIconY">
             <summary>
             Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.InboxIconX">
+        <member name="P:HamstarHelpers.ModHelpersConfig.InboxIconX">
             <summary>
             Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.InboxIconY">
+        <member name="P:HamstarHelpers.ModHelpersConfig.InboxIconY">
             <summary>
             Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.ModIssueReportErrorLogMaxLines">
+        <member name="P:HamstarHelpers.ModHelpersConfig.ModIssueReportErrorLogMaxLines">
             <summary>
             Quantity of the latest log entries to pass along with issue reports.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.WorldModLockEnable">
+        <member name="P:HamstarHelpers.ModHelpersConfig.WorldModLockEnable">
             <summary>
             Enables mod locking per world (prevents playing a world with missing mods).
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.WorldModLockMinimumOnly">
+        <member name="P:HamstarHelpers.ModHelpersConfig.WorldModLockMinimumOnly">
             <summary>
             Sets mod locking to expect only the exact set of mods it was locked with, and no more.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.ModCallCommandEnabled">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableAllInternaFeatures">
             <summary>
             Allows calling `Mod.Call(...)` via. chat/console commands. Use at your own risk!
             </summary>
+            <summary>
+            Shorthand for disabling all internet functions
+            </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.PacketRequestRetryDuration">
+        <member name="P:HamstarHelpers.ModHelpersConfig.PacketRequestRetryDuration">
             <summary>
             Duration (in game ticks) to wait in expectation of a reply before a retry attempt of a given packet is made.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.IsServerGaugingAveragePing">
+        <member name="P:HamstarHelpers.ModHelpersConfig.IsServerGaugingAveragePing">
             <summary>
             Server occasionally pings clients to guage their latency.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.PingUpdateDelay">
+        <member name="P:HamstarHelpers.ModHelpersConfig.PingUpdateDelay">
             <summary>
             Duration between latency pings per client.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DisableModMenuTweaks">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableModMenuTweaks">
             <summary>
             Disables mod tags UI for mod browser and mod info.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DisableModTags">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableModTags">
             <summary>
             Disables mod tags UI for mod browser and mod info.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DisableModMenuUpdates">
-            <summary>
-            Disables mod version updates overlay display in the mod menu.
-            </summary>
-        </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.DisableJudgmentalTags">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableJudgmentalTags">
             <summary>
             Disable 'judgmental' mod tags.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.MagiTechScrapMechBossDropsEnabled">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableModMenuUpdates">
+            <summary>
+            Disables mod version updates overlay display in the mod menu.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.MagiTechScrapMechBossDropsEnabled">
             <summary>
             Magi-Tech Scrap items drop from mech bosses.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.CoalAsTile">
+        <member name="P:HamstarHelpers.ModHelpersConfig.CoalAsTile">
             <summary>
             Coal items can be placed like tiles.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.ModHelpersConfig.AddCrimsonLeatherRecipe">
+        <member name="P:HamstarHelpers.ModHelpersConfig.AddCrimsonLeatherRecipe">
             <summary>
             Adds crimson biome alternatve recipe for leather.
             </summary>
@@ -4106,6 +4101,17 @@
             <param name="dict"></param>
             <param name="key"></param>
             <param name="idx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Remove2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IList{``1}},``0,``1)">
+            <summary>
+            Removes a value in a nested collection at a given dictionary key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="val"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Remove2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.ISet{``1}},``0,``1)">
@@ -6970,12 +6976,22 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetNearestTile(Microsoft.Xna.Framework.Vector2,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
             <summary>
-            Gets the nearest matching tile to a given point (world coordinate).
+            Gets the nearest matching tile to a given point (as a world coordinate).
             </summary>
             <param name="worldPos"></param>
             <param name="pattern"></param>
-            <param name="maxRadius"></param>
-            <returns></returns>
+            <param name="maxWorldRadius"></param>
+            <returns>Tile position of match. `null` if none.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetNearestTile(System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
+            <summary>
+            Gets the nearest matching tile to a given point.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="pattern"></param>
+            <param name="maxTileRadius"></param>
+            <returns>Tile position of match. `null` if none.</returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileHelpers">
             <summary>

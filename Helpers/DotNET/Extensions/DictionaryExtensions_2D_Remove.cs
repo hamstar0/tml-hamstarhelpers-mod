@@ -40,6 +40,30 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		/// <param name="key"></param>
 		/// <param name="val"></param>
 		/// <returns></returns>
+		public static bool Remove2D<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, TValue val ) {
+			bool removed = false;
+
+			if( dict.ContainsKey( key ) ) {
+				dict[key].Remove( val );
+				removed = true;
+
+				if( dict[key].Count == 0 ) {
+					dict.Remove( key );
+				}
+			}
+
+			return removed;
+		}
+
+		/// <summary>
+		/// Removes a value in a nested collection at a given dictionary key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="val"></param>
+		/// <returns></returns>
 		public static bool Remove2D<TKey, TValue>( this IDictionary<TKey, ISet<TValue>> dict, TKey key, TValue val ) {
 			bool removed = false;
 
