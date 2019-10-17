@@ -14,9 +14,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 				if( e is JsonReaderException ) {
 					LogHelpers.Alert( "Bad JSON: " + ( jsonStr.Length > 256 ? jsonStr.Substring( 0, 256 ) : jsonStr ) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( ( jsonStr ?? "" ) + " - " + e.Message );
+					LogHelpers.Alert( ("'"+jsonStr+"'" ?? "...") + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( ( jsonStr ?? "" ) + " - " + e.ToString() );
+					LogHelpers.Alert( ("'"+jsonStr+"'" ?? "...") + " - " + e.ToString() );
 				}
 			};
 
