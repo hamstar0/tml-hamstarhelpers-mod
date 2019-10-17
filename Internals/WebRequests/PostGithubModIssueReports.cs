@@ -89,7 +89,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onError( e, str );
 			};
 
-			WebConnectionHelpers.MakePostRequestAsync( url, jsonStr, wrappedOnError, wrappedOnCompletion );
+			WebConnectionHelpers.MakePostRequestAsync( url, jsonStr, e => wrappedOnError(e, ""), wrappedOnCompletion );
 		}
 	}
 }

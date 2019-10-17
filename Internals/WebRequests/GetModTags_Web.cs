@@ -16,9 +16,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 				if( e is JsonReaderException ) {
 					LogHelpers.Alert( "Bad JSON: " + (output.Length > 256 ? output.Substring(0, 256) : output) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( (output ?? "...") + " - " + e.Message );
+					LogHelpers.Alert( "'" + (output ?? "...") + "' - " + e.Message );
 				} else {
-					LogHelpers.Alert( (output ?? "...") + " - " + e.ToString() );
+					LogHelpers.Alert( "'" + (output ?? "...") + "' - " + e.ToString() );
 				}
 			};
 
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onCompletion( success, modTagSet );
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, onError, onWrappedCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( GetModTags.ModTagsUrl, e => onError(e, ""), onWrappedCompletion );
 		}
 
 

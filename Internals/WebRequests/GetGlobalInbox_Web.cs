@@ -39,7 +39,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onCompletion( success, globalInboxSet );
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( GetGlobalInbox.GlobalInboxUrl, onError, onWrappedCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( GetGlobalInbox.GlobalInboxUrl, e => onError(e, ""), onWrappedCompletion );
 		}
 
 

@@ -20,9 +20,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 				} else if( e is JsonReaderException ) {
 					LogHelpers.Alert( "Bad JSON: " + ( jsonStr.Length > 256 ? jsonStr.Substring( 0, 256 ) : jsonStr ) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( (jsonStr ?? "") + " - " + e.Message );
+					LogHelpers.Alert( "'" + (jsonStr ?? "...") + "' - " + e.Message );
 				} else {
-					LogHelpers.Alert( (jsonStr ?? "") + " - " + e.ToString() );
+					LogHelpers.Alert( "'" + (jsonStr ?? "...") + "' - " + e.ToString() );
 				}
 			};
 
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onCompletion( success, modInfoDb );
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.ModInfoUrl, onError, onWrappedCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.ModInfoUrl, e => onError(e, ""), onWrappedCompletion );
 		}
 
 

@@ -37,7 +37,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onCompletion( success, badModsDb );
 			};
 			
-			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, onError, onWrappedCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, e => onError(e, ""), onWrappedCompletion );
 		}
 
 

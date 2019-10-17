@@ -75,7 +75,7 @@ namespace HamstarHelpers.Helpers.Net {
 				}
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( "http://checkip.dyndns.org/", onFail, onCompletion );
+			WebConnectionHelpers.MakeGetRequestAsync( "http://checkip.dyndns.org/", e => onFail(e, ""), onCompletion );
 			//NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", onSuccess, onFail );
 			//using( WebClient webClient = new WebClient() ) {
 			//	this.PublicIP = webClient.DownloadString( "http://ifconfig.me/ip" );

@@ -5662,23 +5662,26 @@
             <summary>
             Assorted static "helper" functions pertaining to connecting to the web.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to connecting to the web.
+            </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakePostRequestAsync(System.String,System.String,System.Action{System.Exception,System.String},System.Action{System.Boolean,System.String})">
+        <member name="M:HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakePostRequestAsync(System.String,System.String,System.Action{System.Exception},System.Action{System.Boolean,System.String})">
             <summary>
             Sends a POST request to a website asynchronously. 
             </summary>
             <param name="url">Website URL.</param>
             <param name="jsonData">JSON-formatted string data.</param>
-            <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
+            <param name="onError">Called on error. Receives an `Exception`.</param>
             <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
             and the output (if any).</param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakeGetRequestAsync(System.String,System.Action{System.Exception,System.String},System.Action{System.Boolean,System.String})">
+        <member name="M:HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakeGetRequestAsync(System.String,System.Action{System.Exception},System.Action{System.Boolean,System.String})">
             <summary>
             Makes a GET request to a website.
             </summary>
             <param name="url">Website URL.</param>
-            <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
+            <param name="onError">Called on error. Receives an `Exception`.</param>
             <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
             and the output (if any).</param>
         </member>

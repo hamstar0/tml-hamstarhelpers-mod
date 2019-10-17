@@ -2,7 +2,6 @@
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
 
@@ -13,34 +12,42 @@ namespace HamstarHelpers.Helpers.Net {
 	/// </summary>
 	public partial class WebConnectionHelpers {
 		private static void HandleResponse( object _,
-					UploadStringCompletedEventArgs e,
-					Action<Exception, string> onError,
+					UploadStringCompletedEventArgs args,
+					Action<Exception> onError,
 					Action<bool, string> onCompletion = null ) {
-			if( onCompletion != null ) {
-				bool success = !e.Cancelled && e.Error == null;
-				string result = success ? e.Result :
-					(e.Cancelled ? "Cancelled" : e.Error?.Message ?? "Error");
-				onCompletion( success, result );
-			}
+			try {
+				if( onCompletion != null ) {
+					bool success = !args.Cancelled && args.Error == null;
+					string result = success ? args.Result :
+						(args.Cancelled ? "Cancelled" : args.Error?.Message ?? "Error");
+					onCompletion( success, result );
+				}
 
-			if( e.Error != null ) {
-				onError( e.Error, e.Result );
+				if( args.Error != null ) {
+					onError( args.Error );
+				}
+			} catch( Exception e ) {
+				LogHelpers.Warn( e.ToString() );
 			}
 		}
 
 		private static void HandleResponse( object _,
-					DownloadStringCompletedEventArgs e,
-					Action<Exception, string> onError,
+					DownloadStringCompletedEventArgs args,
+					Action<Exception> onError,
 					Action<bool, string> onCompletion = null ) {
-			if( onCompletion != null ) {
-				bool success = !e.Cancelled && e.Error == null;
-				string result = success ? e.Result :
-					(e.Cancelled ? "Cancelled" : e.Error?.Message ?? "Error");
-				onCompletion( success, result );
-			}
+			try {
+				if( onCompletion != null ) {
+					bool success = !args.Cancelled && args.Error == null;
+					string result = success ? args.Result :
+						( args.Cancelled ? "Cancelled" : args.Error?.Message ?? "Error" );
+					onCompletion( success, result );
+				}
 
-			if( e.Error != null ) {
-				onError( e.Error, e.Result );
+				if( args.Error != null ) {
+					onError( args.Error );
+				}
+			} catch( Exception e ) {
+				LogHelpers.Warn( e.ToString() );
 			}
 		}
 
@@ -52,16 +59,16 @@ namespace HamstarHelpers.Helpers.Net {
 		/// </summary>
 		/// <param name="url">Website URL.</param>
 		/// <param name="jsonData">JSON-formatted string data.</param>
-		/// <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
+		/// <param name="onError">Called on error. Receives an `Exception`.</param>
 		/// <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
 		/// and the output (if any).</param>
 		public static void MakePostRequestAsync( string url, string jsonData,
-					Action<Exception, string> onError,
+					Action<Exception> onError,
 					Action<bool, string> onCompletion=null ) {
-			var cts = new CancellationTokenSource();
+			//var cts = new CancellationTokenSource();
 
 			try {
-				Task.Factory.StartNew( () => {
+				Task.Run( () => {
 					ServicePointManager.Expect100Continue = false;
 					//var values = new NameValueCollection {
 					//	{ "modloaderversion", ModLoader.versionedName },
@@ -73,31 +80,31 @@ namespace HamstarHelpers.Helpers.Net {
 						ServicePointManager.ServerCertificateValidationCallback = ( sender, certificate, chain, policyErrors ) => { return true; };
 
 						client.Headers.Add( HttpRequestHeader.ContentType, "application/json" );
-						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader "+ModLoader.version.ToString() );
+						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader " + ModLoader.version.ToString() );
 						//client.Headers["UserAgent"] = "tModLoader " + ModLoader.version.ToString();
 						client.UploadStringAsync( new Uri( url ), "POST", jsonData );//UploadValuesAsync( new Uri( url ), "POST", values );
 						client.UploadStringCompleted += ( sender, e ) => {
 							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
 						};
 					}
-				}, cts.Token );
+				} );//, cts.Token );
 			} catch( WebException e ) {
 				if( e.Status == WebExceptionStatus.Timeout ) {
-					onError?.Invoke( e, "Timeout." );
+					onCompletion?.Invoke( false, "Timeout." );
 					return;
 				}
 
 				if( e.Status == WebExceptionStatus.ProtocolError ) {
 					var resp = (HttpWebResponse)e.Response;
 					if( resp.StatusCode == HttpStatusCode.NotFound ) {
-						onError?.Invoke( e, "Not found." );
+						onCompletion?.Invoke( false, "Not found." );
 						return;
 					}
 
-					onError?.Invoke( e, "Bad protocol." );
+					onCompletion?.Invoke( false, "Bad protocol." );
 				}
 			} catch( Exception e ) {
-				onError?.Invoke( e, "Unknown." );
+				onError?.Invoke( e );
 				//LogHelpers.Warn( e.ToString() );
 			}
 		}
@@ -109,49 +116,48 @@ namespace HamstarHelpers.Helpers.Net {
 		/// Makes a GET request to a website.
 		/// </summary>
 		/// <param name="url">Website URL.</param>
-		/// <param name="onError">Called on error. Receives an `Exception` and the site's output (if any).</param>
+		/// <param name="onError">Called on error. Receives an `Exception`.</param>
 		/// <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
 		/// and the output (if any).</param>
 		public static void MakeGetRequestAsync( string url,
-					Action<Exception, string> onError,
+					Action<Exception> onError,
 					Action<bool, string> onCompletion = null ) {
-			var cts = new CancellationTokenSource();
-
-			try {
-				Task.Factory.StartNew( () => {
+			Task.Run( () => {
+			//var cts = new CancellationTokenSource();
+				try {
 					ServicePointManager.Expect100Continue = false;
 
 					using( var client = new WebClient() ) {
 						ServicePointManager.ServerCertificateValidationCallback =
 							( sender, certificate, chain, policyErrors ) => { return true; };
 
-						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader "+ModLoader.version.ToString() );
-						client.DownloadStringAsync( new Uri(url) );
+						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader " + ModLoader.version.ToString() );
+						client.DownloadStringAsync( new Uri( url ) );
 						client.DownloadStringCompleted += ( sender, e ) => {
 							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
 						};
 						//client.UploadStringAsync( new Uri(url), "GET", "" );//UploadValuesAsync( new Uri( url ), "POST", values );
 					}
-				}, cts.Token );
-			} catch( WebException e ) {
-				if( e.Status == WebExceptionStatus.Timeout ) {
-					onError?.Invoke( e, "Timeout." );
-					return;
-				}
-
-				if( e.Status == WebExceptionStatus.ProtocolError ) {
-					var resp = (HttpWebResponse)e.Response;
-					if( resp.StatusCode == HttpStatusCode.NotFound ) {
-						onError?.Invoke( e, "Not found." );
+				} catch( WebException e ) {
+					if( e.Status == WebExceptionStatus.Timeout ) {
+						onCompletion?.Invoke( false, "Timeout." );
 						return;
 					}
 
-					onError?.Invoke( e, "Bad protocol." );
+					if( e.Status == WebExceptionStatus.ProtocolError ) {
+						var resp = (HttpWebResponse)e.Response;
+						if( resp.StatusCode == HttpStatusCode.NotFound ) {
+							onCompletion?.Invoke( false, "Not found." );
+							return;
+						}
+
+						onCompletion?.Invoke( false, "Bad protocol." );
+					}
+				} catch( Exception e ) {
+					onError?.Invoke( e );
+						//LogHelpers.Warn( e.ToString() );
 				}
-			} catch( Exception e ) {
-				onError?.Invoke( e, "Unknown." );
-				//LogHelpers.Warn( e.ToString() );
-			}
+			} );//, cts.Token );
 		}
 	}
 }
