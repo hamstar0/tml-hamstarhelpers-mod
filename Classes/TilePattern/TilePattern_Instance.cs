@@ -13,6 +13,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 		/// <summary></summary>
 		public ISet<int> IsAnyOfType = null;
+		/// <summary></summary>
+		public ISet<int> IsAnyOfWallType = null;
 
 		/// <summary></summary>
 		public bool? HasWire1 = null;
@@ -66,6 +68,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 		/// <summary></summary>
 		public ISet<int> IsAnyOfType = null;
+		/// <summary></summary>
+		public ISet<int> IsAnyOfWallType = null;
 
 		/// <summary></summary>
 		public bool? HasWire1 { get; private set; }
@@ -117,6 +121,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.AreaFromCenter = builder.AreaFromCenter;
 
 			this.IsAnyOfType = builder.IsAnyOfType;
+			this.IsAnyOfWallType = builder.IsAnyOfWallType;
 
 			this.HasWire1 = builder.HasWire1;
 			this.HasWire2 = builder.HasWire2;

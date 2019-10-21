@@ -11,6 +11,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		TileType,
 		/// <summary></summary>
+		WallType,
+		/// <summary></summary>
 		Solid,
 		/// <summary></summary>
 		Wall,
@@ -144,6 +146,20 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				}
 				if( !found ) {
 					collideType = TileCollideType.TileType;
+					return false;
+				}
+			}
+
+			if( this.IsAnyOfWallType != null && this.IsAnyOfWallType.Count > 0 ) {
+				bool found = false;
+				foreach( int wallType in this.IsAnyOfWallType ) {
+					if( tile.wall == wallType ) {
+						found = true;
+						break;
+					}
+				}
+				if( !found ) {
+					collideType = TileCollideType.WallType;
 					return false;
 				}
 			}

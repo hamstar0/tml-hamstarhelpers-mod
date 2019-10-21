@@ -27,7 +27,7 @@ namespace HamstarHelpers.Helpers.Net {
 					onError( args.Error );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogHelpers.Warn( e.GetType().Name + " - " + e.Message );
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Helpers.Net {
 					onError( args.Error );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogHelpers.Warn( e.GetType().Name + " - " + e.Message );
 			}
 		}
 
