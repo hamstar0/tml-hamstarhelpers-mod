@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HamstarHelpers.Classes.DataStructures;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
@@ -8,6 +10,24 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// Assorted static "helper" functions pertaining to tile walls.
 	/// </summary>
 	public class TileWallHelpers {
+		/// <summary></summary>
+		public static ISet<int> UnsafeDungeonWallTypes { get; } = new ReadOnlySet<int>( new HashSet<int> {
+			WallID.BlueDungeonSlabUnsafe,
+			WallID.GreenDungeonSlabUnsafe,
+			WallID.PinkDungeonSlabUnsafe,
+			WallID.BlueDungeonTileUnsafe,
+			WallID.GreenDungeonTileUnsafe,
+			WallID.PinkDungeonTileUnsafe,
+			WallID.BlueDungeonUnsafe,
+			WallID.GreenDungeonUnsafe,
+			WallID.PinkDungeonUnsafe
+		} );
+
+
+
+
+		////////////////
+
 		/// <summary>
 		/// Indicates if a given wall is dungeon or temple "biome" wall.
 		/// </summary>

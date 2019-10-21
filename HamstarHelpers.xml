@@ -7093,6 +7093,9 @@
             Assorted static "helper" functions pertaining to tile walls.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.Helpers.Tiles.TileWallHelpers.UnsafeDungeonWallTypes">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileWallHelpers.IsDungeon(Terraria.Tile,System.Boolean@)">
             <summary>
             Indicates if a given wall is dungeon or temple "biome" wall.

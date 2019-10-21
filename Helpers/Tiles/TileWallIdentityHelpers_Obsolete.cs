@@ -8,6 +8,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to wall identification.
 	/// </summary>
+	[Obsolete( "use WallID", true )]
 	public class TileWallIdentityHelpers {
 		private static readonly IdDictionary WallIdSearch = IdDictionary.Create<WallID, short>();
 
