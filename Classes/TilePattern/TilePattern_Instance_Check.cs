@@ -58,6 +58,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		BrightnessLow,
 		/// <summary></summary>
 		BrightnessHigh,
+		/// <summary></summary>
+		Custom,
 	}
 
 
@@ -135,6 +137,11 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				collideType = TileCollideType.None;
 				return true;
 			}*/
+
+			if( this.CustomCheck != null && !this.CustomCheck.Invoke(tileX, tileY) ) {
+				collideType = TileCollideType.Custom;
+				return false;
+			}
 
 			if( this.IsAnyOfType != null && this.IsAnyOfType.Count > 0 ) {
 				bool found = false;

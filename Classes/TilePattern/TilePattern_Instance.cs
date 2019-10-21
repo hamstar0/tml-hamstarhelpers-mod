@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -54,6 +55,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 		/// <summary></summary>
 		public bool? IsModded = null;
+
+		/// <summary></summary>
+		public Func<int, int, bool> CustomCheck = null;
 	}
 
 
@@ -111,6 +115,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		public bool? IsModded { get; private set; }
 
+		/// <summary></summary>
+		public Func<int, int, bool> CustomCheck = null;
+
 
 
 		////////////////
@@ -145,6 +152,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.MaximumBrightness = builder.MaximumBrightness;
 
 			this.IsModded = builder.IsModded;
+
+			this.CustomCheck = builder.CustomCheck;
 		}
 	}
 }

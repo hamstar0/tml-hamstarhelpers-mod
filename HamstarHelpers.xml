@@ -1175,6 +1175,9 @@
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsModded">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CustomCheck">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.#ctor(HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder)">
             <summary>
             </summary>
@@ -1333,6 +1336,9 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsModded">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.CustomCheck">
+            <summary></summary>
+        </member>
         <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType">
             <summary></summary>
         </member>
@@ -1412,6 +1418,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.BrightnessHigh">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Custom">
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement">
