@@ -4210,6 +4210,19 @@
             <param name="key"></param>
             <param name="value"></param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.StringExtensions">
+            <summary>
+            Extensions for strings.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.StringExtensions.Trunc(System.String,System.Int32)">
+            <summary>
+            Safely truncates an input string.
+            </summary>
+            <param name="value"></param>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.FileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to basic file IO.
@@ -7077,7 +7090,7 @@
             <param name="muted"></param>
             <param name="forced"></param>
             <param name="plrWho"></param>
-            <returns></returns>
+            <returns>`true` if tile placement succeeded.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTile(System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
@@ -9628,6 +9641,37 @@
             <summary>
             Unlocks the current world.
             </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.OverlaySounds.OverlaySound">
+            <summary>
+            Provides a way to create ambient sound effects that overlay existing game sounds and music.
+            </summary>
+            <summary>
+            Provides a way to create ambient sound effects that overlay existing game sounds and music.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Create(Terraria.ModLoader.Mod,System.String,System.Int32,System.Int32,System.Func{System.ValueTuple{System.Single,System.Boolean}})">
+            <summary></summary>
+            <param name="sourceMod"></param>
+            <param name="soundPath"></param>
+            <param name="fadeTicks"></param>
+            <param name="playDurationTicks">If -1, sound repeats until `customCondition` says otherwise.</param>
+            <param name="customCondition">Returns a volume scale float and a boolean to indicate if the sound has ended.</param>
+            <returns></returns>
+        </member>
+        <member name="P:HamstarHelpers.Services.OverlaySounds.OverlaySound.IsEndlessLoop">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Play">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Stop">
+            <summary>
+            Begins song fade out.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.StopImmediately">
+            <summary>Stops without fadeout.</summary>
         </member>
         <member name="T:HamstarHelpers.Services.RecipeHack.RecipeHack">
             <summary>

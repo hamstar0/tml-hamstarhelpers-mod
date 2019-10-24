@@ -19,7 +19,7 @@ namespace HamstarHelpers.Classes.UI.ModConfig {
 		public override void OnBind() {
 			base.OnBind();
 
-			this.TextDisplayFunction = () => "blah";
+			//this.TextDisplayFunction = () => this.labelAttribute?.Label ?? this.memberInfo.Name + ": " + this.GetValue();
 
 			////
 

@@ -119,7 +119,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="muted"></param>
 		/// <param name="forced"></param>
 		/// <param name="plrWho"></param>
-		/// <returns></returns>
+		/// <returns>`true` if tile placement succeeded.</returns>
 		public static bool PlaceTile( int tileX, int tileY, int tileType, int placeStyle = 0, bool muted = false, bool forced = false, int plrWho = -1 ) {
 			if( !WorldGen.PlaceTile( tileX, tileY, tileType, muted, forced, plrWho, placeStyle ) ) {
 				return false;

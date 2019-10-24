@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -12,11 +13,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private static void RetrieveBadModsAsync( Action<bool, BadModsDatabase> onCompletion ) {
 			Action<Exception, string> onError = ( e, jsonStr ) => {
 				if( e is JsonReaderException ) {
-					LogHelpers.Alert( "Bad JSON: " + ( jsonStr.Length > 256 ? jsonStr.Substring( 0, 256 ) : jsonStr ) );
+					LogHelpers.Alert( "Bad JSON: " + jsonStr.Trunc(256) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( ("'"+jsonStr+"'" ?? "...") + " - " + e.Message );
+					LogHelpers.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( ("'"+jsonStr+"'" ?? "...") + " - " + e.ToString() );
+					LogHelpers.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.ToString() );
 				}
 			};
 
