@@ -9659,6 +9659,9 @@
             <param name="customCondition">Returns a volume scale float and a boolean to indicate if the sound has ended.</param>
             <returns></returns>
         </member>
+        <member name="P:HamstarHelpers.Services.OverlaySounds.OverlaySound.IsFadingOut">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Services.OverlaySounds.OverlaySound.IsEndlessLoop">
             <summary></summary>
         </member>
@@ -9667,11 +9670,11 @@
         </member>
         <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Stop">
             <summary>
-            Begins song fade out.
+            Begins sound loop fade out.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.StopImmediately">
-            <summary>Stops without fadeout.</summary>
+            <summary>Stops sound loop without fadeout.</summary>
         </member>
         <member name="T:HamstarHelpers.Services.RecipeHack.RecipeHack">
             <summary>

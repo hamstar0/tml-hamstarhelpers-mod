@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -36,6 +37,9 @@ namespace HamstarHelpers.Services.OverlaySounds {
 			}
 
 			if( this.MyInstance != null ) {
+				if( this.MyInstance.State != SoundState.Playing ) {
+					this.MyInstance.Play();
+				}
 				this.MyInstance.Volume = (customState.VolumeOverride * (float)this.ElapsedFadeTicks) / (float)this.FadeTicks;
 			}
 		}
@@ -55,7 +59,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 				int soundSlot = this.SourceMod.GetSoundSlot( SoundType.Custom, this.SoundPath );
 
 				this.MyInstance = Main.PlaySound( (int)SoundType.Custom, -1, -1, soundSlot, volume );
-				this.MyInstance.IsLooped = true;
+				//this.MyInstance.IsLooped = true;	//<- Crashes?
 			} else {
 				this.MyInstance.Play();
 				this.MyInstance.Volume = volume;

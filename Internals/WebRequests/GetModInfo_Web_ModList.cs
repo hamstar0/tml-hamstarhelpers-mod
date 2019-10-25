@@ -3,11 +3,12 @@ using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Helpers.TModLoader.Mods;
+using Ionic.Zlib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net;
 
 
@@ -55,13 +56,31 @@ namespace HamstarHelpers.Internals.WebRequests {
 			if( respJson.Count == 0 ) {
 				return false;
 			}
-			
-			JToken modListToken = respJson.SelectToken( "modlist" );
+
+			IEnumerable<JToken> modList;
+			string modlistCompressed = (string)respJson["modlist_compressed"];
+
+			// From tModLoader's code:
+			if( modlistCompressed != null ) {
+				byte[] data = Convert.FromBase64String( modlistCompressed );
+				var memStream = new MemoryStream( data );
+
+				using( var zip = new GZipStream(memStream, CompressionMode.Decompress) ) {
+					using( var reader = new StreamReader(zip) ) {
+						modList = JArray.Parse( reader.ReadToEnd() );
+					}
+				}
+			} else {
+				// Fallback if needed.
+				modList = (JArray)respJson["modlist"];
+			}
+
+			/*JToken modListToken = respJson.SelectToken( "modlist_compressed" );
 			if( modListToken == null ) {
 				throw new NullReferenceException( "No modlist" );
 			}
 
-			JToken[] modList = modListToken.ToArray();
+			JToken[] modList = modListToken.ToArray();*/
 
 			foreach( JToken modEntry in modList ) {
 				JToken modNameToken = modEntry.SelectToken( "name" );
