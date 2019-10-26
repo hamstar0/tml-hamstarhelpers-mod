@@ -217,17 +217,22 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 						return false;
 					}
 				} else {//tile.active() == true
-					if( !this.IsSolid.Value ) {
-						if( Main.tileSolid[tile.type] ) {
-							if( !Main.tileSolidTop[tile.type] ) {
+					if( !Main.tileSolid[tile.type] ) {
+						if( this.IsSolid.Value ) {
+							collideType = TileCollideType.Solid;
+							return false;
+						}
+					} else {//Main.tileSolid[tile.type] == true
+						if( Main.tileSolidTop[tile.type] ) {
+							if( !this.IsPlatform.HasValue || !this.IsPlatform.Value ) {
+								collideType = TileCollideType.Platform;
+								return false;
+							}
+						} else {//Main.tileSolidTop[tile.type] == false
+							if( !this.IsSolid.Value ) {
 								collideType = TileCollideType.Solid;
 								return false;
 							}
-						}
-					} else {//this.IsSolid.Value == true
-						if( Main.tileSolidTop[tile.type] ) {
-							collideType = TileCollideType.Solid;
-							return false;
 						}
 					}
 				}
