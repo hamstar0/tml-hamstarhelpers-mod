@@ -13,11 +13,10 @@ namespace HamstarHelpers.Services.EntityGroups.Defs {
 				new string[] { "Any Equipment", "Any Wood" },
 				new ItemGroupMatcher( ( item, grps ) => {
 					IDictionary<int, int> anyEquipGrp = grps["Any Equipment"].ToDictionary( id=>id, id=>1 );
-					IDictionary<int, int> anyWoodGrp = grps["Any Wood"].ToDictionary( id => id, id => 1 );
+					IDictionary<int, int> anyWoodGrp = grps["Any Wood"].ToDictionary( id => id, id=>1 );
 
-					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipGrp );
 					bool hasWood = RecipeHelpers.ItemHasIngredients( item.type, anyWoodGrp );
-					if( !hasEquip || !hasWood ) { return false; }
+					if( !anyEquipGrp.ContainsKey(item.type) || !hasWood ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} )
 			) );
