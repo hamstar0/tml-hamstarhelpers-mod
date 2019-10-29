@@ -6067,6 +6067,29 @@
             <param name="sprayAmount">Outward spray velocity.</param>
             <param name="scale"></param>
         </member>
+        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeFireEmbers(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Creates fire embers.
+            </summary>
+            <param name="position"></param>
+            <param name="smallEmbers"></param>
+            <param name="largeEmbers"></param>
+            <param name="pouringEmbers"></param>
+            <param name="floaters"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="scale"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Creates fire embers.
+            </summary>
+            <param name="position"></param>
+            <param name="quantity">Dust particles.</param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="scale"></param>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Players.PlayerFileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to player file data (.plr, .tplr).
@@ -7100,6 +7123,18 @@
             <param name="tileY"></param>
             <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
             <param name="dropsItem"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Swaps 1x1 tiles. Destructive.
+            </summary>
+            <param name="fromTileX"></param>
+            <param name="fromTileY"></param>
+            <param name="toTileX"></param>
+            <param name="toTileY"></param>
+            <param name="preserveWall"></param>
+            <param name="preserveWire"></param>
+            <param name="preserveLiquid"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
             <summary>
