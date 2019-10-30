@@ -3,6 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
@@ -62,19 +63,23 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
+		/// <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTile`, just beyond the outer edges of the result's matches.</param>
 		/// <param name="maxRadius"></param>
 		/// <param name="maxTiles"></param>
 		/// <returns></returns>
-		public static IEnumerable<(ushort TileX, ushort TileY)> GetAllContiguousMatchingTiles(
+		public static IList<(ushort TileX, ushort TileY)> GetAllContiguousMatchingTiles(
 					TilePattern pattern,
 					int tileX,
 					int tileY,
+					out IList<(ushort TileX, ushort TileY)> unclosedTiles,
 					int maxRadius = -1,
 					int maxTiles = -1 ) {
 			if( !pattern.Check(tileX, tileY) ) {
+				unclosedTiles = new (ushort, ushort)[0];
 				return new (ushort, ushort)[ 0 ];
 			}
-
+			
+			ISet<int> edgeTileMap = new HashSet<int>();
 			ISet<int> unchartedTileMap = new HashSet<int>{ tileX + (tileY<<16) };
 			ISet<int> newUnchartedTileMap = new HashSet<int>();
 			ISet<int> chartedTileMap = new HashSet<int>();
@@ -83,12 +88,16 @@ namespace HamstarHelpers.Helpers.Tiles {
 			int distX, distY, distSqr;
 
 			do {
+				bool isMaxTiles = false;
+
 				foreach( int tileAt in unchartedTileMap ) {
+					bool isMaxRadius = false;
+
 					int x = (tileAt << 16) >> 16;
 					int y = tileAt >> 16;
 
 					if( maxTiles > 0 && chartedTileMap.Count >= maxTiles ) {
-						break;
+						isMaxTiles = true;
 					}
 
 					if( maxRadius > 0 ) {
@@ -97,24 +106,30 @@ namespace HamstarHelpers.Helpers.Tiles {
 						distSqr = (distX * distX) + (distY * distY);
 
 						if( distSqr >= maxRadiusSqr ) {
-							continue;
+							isMaxRadius = true;
 						}
 					}
 
 					if( pattern.Check(x, y) ) {
-						chartedTileMap.Add( tileAt );
-						newUnchartedTileMap.Add( x + ((y-1)<<16) );
-						newUnchartedTileMap.Add( (x-1) + (y<<16) );
-						newUnchartedTileMap.Add( (x+1) + (y<<16) );
-						newUnchartedTileMap.Add( x + ((y+1)<<16) );
+						if( !isMaxRadius && !isMaxTiles ) {
+							chartedTileMap.Add( tileAt );
+							newUnchartedTileMap.Add( x + ( ( y - 1 ) << 16 ) );
+							newUnchartedTileMap.Add( ( x - 1 ) + ( y << 16 ) );
+							newUnchartedTileMap.Add( ( x + 1 ) + ( y << 16 ) );
+							newUnchartedTileMap.Add( x + ( ( y + 1 ) << 16 ) );
+						} else {
+							edgeTileMap.Add( tileAt );
+						}
 					}
 				}
 
-				if( maxTiles > 0 && chartedTileMap.Count >= maxTiles ) {
+				if( isMaxTiles ) {
+					edgeTileMap.UnionWith( unchartedTileMap );
 					break;
 				}
 
 				unchartedTileMap.Clear();
+
 				foreach( int tileAt in newUnchartedTileMap ) {
 					if( chartedTileMap.Contains(tileAt) ) {
 						continue;
@@ -125,13 +140,25 @@ namespace HamstarHelpers.Helpers.Tiles {
 				newUnchartedTileMap.Clear();
 			} while( unchartedTileMap.Count > 0 );
 
+			if( unchartedTileMap.Count > 0 ) {
+				unclosedTiles = edgeTileMap
+					.SafeSelect(
+						tileAt => (
+							(ushort)((tileAt<<16)>>16),
+							(ushort)(tileAt>>16)
+						)
+					).ToList();
+			} else {
+				unclosedTiles = new (ushort, ushort)[0];
+			}
+
 			return chartedTileMap
 				.SafeSelect(
 					tileAt => (
 						(ushort)((tileAt<<16)>>16),
 						(ushort)(tileAt>>16)
 					)
-				);
+				).ToList();
 		}
 	}
 }

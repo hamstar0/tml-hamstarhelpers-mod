@@ -7005,13 +7005,14 @@
             <param name="coords"></param>
             <returns>Returns tile coordinates, or else `null` if not found within the given max amounts.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetAllContiguousMatchingTiles(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetAllContiguousMatchingTiles(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.UInt16,System.UInt16}}@,System.Int32,System.Int32)">
             <summary>
             Gets a list of all contiguous tiles matching the given pattern.
             </summary>
             <param name="pattern"></param>
             <param name="tileX"></param>
             <param name="tileY"></param>
+            <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTile`, just beyond the outer edges of the result's matches.</param>
             <param name="maxRadius"></param>
             <param name="maxTiles"></param>
             <returns></returns>
