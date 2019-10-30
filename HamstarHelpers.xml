@@ -6961,6 +6961,15 @@
             <summary>
             Assorted static "helper" functions pertaining to tile finding.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tile finding.
+            </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tile finding.
+            </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tile finding.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetPlayerRangeTilesAt(System.Int32,System.Int32)">
             <summary>
@@ -6969,17 +6978,6 @@
             <param name="midTileX"></param>
             <param name="midTileY"></param>
             <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindTopLeftOfSquare(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32}@)">
-            <summary>
-            Finds the top left tile of a given pattern.
-            </summary>
-            <param name="pattern"></param>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
-            <param name="maxDistance"></param>
-            <param name="coords"></param>
-            <returns>Returns tile coordinates, or else `null` if not found within the given max amounts.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindNearbyRandomMatch(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32@,System.Int32@)">
             <summary>
@@ -6996,24 +6994,33 @@
             <param name="foundY">Returns found Y tile coordinate.</param>
             <returns>`true` if tile match found.</returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindTopLeftOfSquare(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32}@)">
+            <summary>
+            Finds the top left tile of a given pattern.
+            </summary>
+            <param name="pattern"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="maxDistance"></param>
+            <param name="coords"></param>
+            <returns>Returns tile coordinates, or else `null` if not found within the given max amounts.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetAllContiguousMatchingTiles(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets a list of all contiguous tiles matching the given pattern.
+            </summary>
+            <param name="pattern"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="maxRadius"></param>
+            <param name="maxTiles"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindAreaMatchWithin(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">
             <summary>
             Attempts to find an area of contiguous matching tiles within a larger area.
             </summary>
             <param name="pattern"></param>
-            <param name="within"></param>
-            <param name="width"></param>
-            <param name="height"></param>
-            <param name="foundX">Returns found X tile coordinate.</param>
-            <param name="foundY">Returns found Y tile coordinate.</param>
-            <returns>`true` if matching area found.</returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindNearbyAreaFromCenter(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">
-            <summary>
-            Attempts to find an area of a given matching tile pattern within a larger area. Search begins from the
-            center.
-            </summary>
-            <param name="tileType"></param>
             <param name="within"></param>
             <param name="width"></param>
             <param name="height"></param>
@@ -7037,6 +7044,19 @@
             <param name="pattern"></param>
             <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned bool to indicate a match.</param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindNearbyAreaFromCenter(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Attempts to find an area of a given matching tile pattern within a larger area. Search begins from the
+            center.
+            </summary>
+            <param name="tileType"></param>
+            <param name="within"></param>
+            <param name="patternWidth"></param>
+            <param name="height"></param>
+            <param name="foundX">Returns found X tile coordinate.</param>
+            <param name="foundY">Returns found Y tile coordinate.</param>
+            <returns>`true` if matching area found.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetNearestTile(Microsoft.Xna.Framework.Vector2,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
             <summary>
