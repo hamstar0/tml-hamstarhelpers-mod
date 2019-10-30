@@ -57,6 +57,79 @@ namespace HamstarHelpers.Helpers.Tiles {
 		}
 
 
+		////////////////
+
+		/// <summary>
+		/// Traces downwards from a given tile coordinate to the nearest floor, and then measures the contiguous width.
+		/// </summary>
+		/// <param name="pattern"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="maxFallRange">Max distance to trace downwards to a floor before giving up.</param>
+		/// <param name="floorY">Last matching tile before hitting the floor.</param>
+		/// <returns></returns>
+		public static int GetFloorWidth( TilePattern pattern, int tileX, int tileY, int maxFallRange, out int floorY ) {
+			floorY = tileY;
+
+			while( pattern.Check(tileX, floorY) ) {
+				floorY++;
+
+				if( (floorY - tileY) >= maxFallRange ) {
+					return 0;
+				}
+			}
+			floorY--;
+
+			int rightWidth = 1;
+			while( pattern.Check(tileX+rightWidth, floorY) && !pattern.Check(tileX+rightWidth, floorY+1) ) {
+				rightWidth++;
+			}
+
+			int leftWidth = 0;
+			while( pattern.Check(tileX-leftWidth, floorY) && !pattern.Check(tileX-leftWidth, floorY+1) ) {
+				leftWidth++;
+			}
+
+			return rightWidth + leftWidth;
+		}
+
+		/// <summary>
+		/// Traces upwards from a given tile coordinate to the nearest ceiling, and then measures the contiguous width.
+		/// </summary>
+		/// <param name="pattern"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="maxRiseRange">Max distance to trace upwards to a ceiling before giving up.</param>
+		/// <param name="ceilY">Last matching tile before hitting the ceiling.</param>
+		/// <returns></returns>
+		public static int GetCeilingWidth( TilePattern pattern, int tileX, int tileY, int maxRiseRange, out int ceilY ) {
+			ceilY = tileY;
+
+			while( pattern.Check(tileX, ceilY) ) {
+				ceilY--;
+
+				if( (tileY - ceilY) >= maxRiseRange ) {
+					return 0;
+				}
+			}
+			ceilY++;
+
+			int rightWidth = 1;
+			while( pattern.Check(tileX+rightWidth, ceilY) && !pattern.Check(tileX+rightWidth, ceilY-1) ) {
+				rightWidth++;
+			}
+
+			int leftWidth = 0;
+			while( pattern.Check(tileX-leftWidth, ceilY) && !pattern.Check(tileX-leftWidth, ceilY-1) ) {
+				leftWidth++;
+			}
+
+			return rightWidth + leftWidth;
+		}
+
+
+		////////////////
+
 		/// <summary>
 		/// Gets a list of all contiguous tiles matching the given pattern.
 		/// </summary>

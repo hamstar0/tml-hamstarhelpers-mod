@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Tiles;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 
@@ -60,6 +61,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		BrightnessHigh,
 		/// <summary></summary>
 		Custom,
+		/// <summary></summary>
+		WorldEdge,
 	}
 
 
@@ -128,7 +131,19 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <param name="collideType"></param>
 		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
 		public bool CheckPoint( int tileX, int tileY, out TileCollideType collideType ) {
+			if( tileX < 0 || tileX >= Main.maxTilesX ) {
+				LogHelpers.LogOnce( "Tile out of X range." );
+				collideType = TileCollideType.WorldEdge;
+				return false;
+			}
+			if( tileY < 0 || tileY >= Main.maxTilesY ) {
+				LogHelpers.LogOnce( "Tile out of Y range." );
+				collideType = TileCollideType.WorldEdge;
+				return false;
+			}
+
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
+
 			bool isActive = tile.active();
 
 			/*if( TileHelpers.IsAir(tile, false, false) ) {

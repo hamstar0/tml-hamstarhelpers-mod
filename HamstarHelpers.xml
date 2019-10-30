@@ -1139,13 +1139,13 @@
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.HasWire4">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsSolid">
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsSolid">
             <summary>Tile is wholly solid.</summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.HasSolidProperties">
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.HasSolidProperties">
             <summary>Corresponds to `Main.tileSolid`.</summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsPlatform">
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsPlatform">
             <summary>Corresponds to `Main.tileSolidTop`</summary>
         </member>
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsActuated">
@@ -1360,9 +1360,6 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Solid">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.HasSolidProperties">
-            <summary></summary>
-        </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Wall">
             <summary></summary>
         </member>
@@ -1430,6 +1427,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Custom">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WorldEdge">
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement">
@@ -7013,6 +7013,28 @@
             <param name="maxDistance"></param>
             <param name="coords"></param>
             <returns>Returns tile coordinates, or else `null` if not found within the given max amounts.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetFloorWidth(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Traces downwards from a given tile coordinate to the nearest floor, and then measures the contiguous width.
+            </summary>
+            <param name="pattern"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="maxFallRange">Max distance to trace downwards to a floor before giving up.</param>
+            <param name="floorY">Last matching tile before hitting the floor.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetCeilingWidth(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Traces upwards from a given tile coordinate to the nearest ceiling, and then measures the contiguous width.
+            </summary>
+            <param name="pattern"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="maxRiseRange">Max distance to trace upwards to a ceiling before giving up.</param>
+            <param name="ceilY">Last matching tile before hitting the ceiling.</param>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetAllContiguousMatchingTiles(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.UInt16,System.UInt16}}@,System.Int32,System.Int32)">
             <summary>
