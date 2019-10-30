@@ -129,6 +129,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
 		public bool CheckPoint( int tileX, int tileY, out TileCollideType collideType ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
+			bool isActive = tile.active();
 
 			/*if( TileHelpers.IsAir(tile, false, false) ) {
 				if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
@@ -143,18 +144,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				return false;
 			}
 
-			if( this.IsAnyOfType != null && this.IsAnyOfType.Count > 0 ) {
-				bool found = false;
-				foreach( int tileType in this.IsAnyOfType ) {
-					if( tile.type == tileType ) {
-						found = true;
-						break;
-					}
-				}
-				if( !found ) {
-					collideType = TileCollideType.TileType;
-					return false;
-				}
+			if( isActive && !this.CheckActivePoint(tileX, tileY, out collideType) ) {
+				return false;
 			}
 
 			if( this.IsAnyOfWallType != null && this.IsAnyOfWallType.Count > 0 ) {
@@ -196,50 +187,17 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				}
 			}
 
-			if( this.IsPlatform.HasValue ) {
-				if( Main.tileSolidTop[tile.type] != this.IsPlatform.Value ) {
-					collideType = TileCollideType.Platform;
-					return false;
-				}
-			}
-
-			if( this.IsActuated.HasValue ) {
-				if( tile.inActive() != this.IsActuated.Value ) {
-					collideType = TileCollideType.Actuated;
-					return false;
-				}
-			}
-
-			if( this.IsSolid.HasValue ) {
-				if( !tile.active() ) {
-					if( this.IsSolid.Value ) {
+			if( this.HasSolidProperties.HasValue ) {
+				if( !isActive ) {
+					if( this.HasSolidProperties.Value ) {
 						collideType = TileCollideType.Solid;
 						return false;
-					}
-				} else {//tile.active() == true
-					if( !Main.tileSolid[tile.type] ) {
-						if( this.IsSolid.Value ) {
-							collideType = TileCollideType.Solid;
-							return false;
-						}
-					} else {//Main.tileSolid[tile.type] == true
-						if( Main.tileSolidTop[tile.type] ) {
-							if( !this.IsPlatform.HasValue || !this.IsPlatform.Value ) {
-								collideType = TileCollideType.Platform;
-								return false;
-							}
-						} else {//Main.tileSolidTop[tile.type] == false
-							if( !this.IsSolid.Value ) {
-								collideType = TileCollideType.Solid;
-								return false;
-							}
-						}
 					}
 				}
 			}
 
 			if( this.HasWall.HasValue ) {
-				if( (tile.wall > 0) != this.HasWall.Value ) {
+				if( ( tile.wall > 0 ) != this.HasWall.Value ) {
 					collideType = TileCollideType.Wall;
 					return false;
 				}
@@ -263,7 +221,75 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 					return false;
 				}
 			}
-			
+
+			if( !this.CheckBrightness( tileX, tileY, out collideType ) ) {
+				return false;
+			}
+
+			collideType = TileCollideType.None;
+			return true;
+		}
+
+
+		private bool CheckActivePoint( int tileX, int tileY, out TileCollideType collideType ) {
+			Tile tile = Main.tile[ tileX, tileY ];
+
+			if( this.IsAnyOfType != null && this.IsAnyOfType.Count > 0 ) {
+				bool found = false;
+				foreach( int tileType in this.IsAnyOfType ) {
+					if( tile.type == tileType ) {
+						found = true;
+						break;
+					}
+				}
+				if( !found ) {
+					collideType = TileCollideType.TileType;
+					return false;
+				}
+			}
+
+			if( this.IsActuated.HasValue ) {
+				if( tile.inActive() != this.IsActuated.Value ) {
+					collideType = TileCollideType.Actuated;
+					return false;
+				}
+			}
+
+			if( this.HasSolidProperties.HasValue ) {
+				if( Main.tileSolid[tile.type] != this.HasSolidProperties.Value ) {
+					collideType = TileCollideType.Solid;
+					return false;
+				}
+			}
+
+			if( this.IsPlatform.HasValue ) {
+				if( Main.tileSolidTop[tile.type] != this.IsPlatform.Value ) {
+					collideType = TileCollideType.Platform;
+					return false;
+				}
+			}
+
+			/*if( this.IsSolid.HasValue ) {
+				if( !Main.tileSolid[tile.type] ) {
+					if( this.IsSolid.Value ) {
+						collideType = TileCollideType.Solid;
+						return false;
+					}
+				} else {//Main.tileSolid[tile.type] == true
+					if( Main.tileSolidTop[tile.type] ) {
+						if( !this.IsPlatform.HasValue || !this.IsPlatform.Value ) {
+							collideType = TileCollideType.Platform;
+							return false;
+						}
+					} else {//Main.tileSolidTop[tile.type] == false
+						if( !this.IsSolid.Value ) {
+							collideType = TileCollideType.Solid;
+							return false;
+						}
+					}
+				}
+			}*/
+
 			if( this.Slope.HasValue ) {
 				switch( this.Slope.Value ) {
 				case TileSlopeType.None:
@@ -333,10 +359,6 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 					}
 					break;
 				}
-			}
-
-			if( !this.CheckBrightness(tileX, tileY, out collideType) ) {
-				return false;
 			}
 
 			collideType = TileCollideType.None;

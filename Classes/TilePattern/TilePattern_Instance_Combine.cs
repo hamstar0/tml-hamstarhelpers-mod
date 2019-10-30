@@ -40,7 +40,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			builder.HasWire3 = TilePattern.CombinePositive( pattern1.HasWire3, pattern2.HasWire3 );
 			builder.HasWire4 = TilePattern.CombinePositive( pattern1.HasWire4, pattern2.HasWire4 );
 
-			builder.IsSolid = TilePattern.CombinePositive( pattern1.IsSolid, pattern2.IsSolid );
+			//builder.IsSolid = TilePattern.CombinePositive( pattern1.IsSolid, pattern2.IsSolid );
+			builder.HasSolidProperties = TilePattern.CombinePositive( pattern1.HasSolidProperties, pattern2.HasSolidProperties );
 			builder.IsPlatform = TilePattern.CombinePositive( pattern1.IsPlatform, pattern2.IsPlatform );
 			builder.IsActuated = TilePattern.CombinePositive( pattern1.IsActuated, pattern2.IsActuated );
 			builder.IsVanillaBombable = TilePattern.CombinePositive( pattern1.IsVanillaBombable, pattern2.IsVanillaBombable );
@@ -167,7 +168,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			builder.HasWire3 = TilePattern.CombineNegative( pattern1.HasWire3, pattern2.HasWire3 );
 			builder.HasWire4 = TilePattern.CombineNegative( pattern1.HasWire4, pattern2.HasWire4 );
 
-			builder.IsSolid = TilePattern.CombineNegative( pattern1.IsSolid, pattern2.IsSolid );
+			//builder.IsSolid = TilePattern.CombineNegative( pattern1.IsSolid, pattern2.IsSolid );
+			builder.HasSolidProperties = TilePattern.CombineNegative( pattern1.HasSolidProperties, pattern2.HasSolidProperties );
 			builder.IsPlatform = TilePattern.CombineNegative( pattern1.IsPlatform, pattern2.IsPlatform );
 			builder.IsActuated = TilePattern.CombineNegative( pattern1.IsActuated, pattern2.IsActuated );
 			builder.IsVanillaBombable = TilePattern.CombineNegative( pattern1.IsVanillaBombable, pattern2.IsVanillaBombable );

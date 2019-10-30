@@ -1139,11 +1139,14 @@
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.HasWire4">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsSolid">
-            <summary></summary>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsSolid">
+            <summary>Tile is wholly solid.</summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsPlatform">
-            <summary></summary>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.HasSolidProperties">
+            <summary>Corresponds to `Main.tileSolid`.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsPlatform">
+            <summary>Corresponds to `Main.tileSolidTop`</summary>
         </member>
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsActuated">
             <summary></summary>
@@ -1301,10 +1304,13 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsSolid">
-            <summary></summary>
+            <summary>Tile is wholly solid.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.HasSolidProperties">
+            <summary>Corresponds to `Main.tileSolid`.</summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsPlatform">
-            <summary></summary>
+            <summary>Corresponds to `Main.tileSolidTop`</summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsActuated">
             <summary></summary>
@@ -1352,6 +1358,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Solid">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.HasSolidProperties">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Wall">

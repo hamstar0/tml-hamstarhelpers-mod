@@ -51,7 +51,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				HasWire2 = false,
 				HasWire3 = false,
 				HasWire4 = false,
-				IsSolid = false,
+				HasSolidProperties = false,
 				HasWall = false,
 				HasWater = false,
 				HasHoney = false,
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern OpenWall = new TilePattern(
 			new TilePatternBuilder {
-				IsSolid = false,
+				HasSolidProperties = false,
 				HasWall = true
 			}
 		);
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern NonSolid = new TilePattern(
 			new TilePatternBuilder {
-				IsSolid = false,
+				HasSolidProperties = false,
 				IsActuated = false
 			}
 		);
@@ -84,7 +84,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern NonFilled = new TilePattern(
 			new TilePatternBuilder {
-				IsSolid = false,
+				HasSolidProperties = false,
 				HasWater = false,
 				HasHoney = false,
 				HasLava = false
@@ -96,7 +96,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern CommonSolid = new TilePattern(
 			new TilePatternBuilder {
-				IsSolid = true,
+				HasSolidProperties = true,
 				IsActuated = false,
 				IsPlatform = false
 			}

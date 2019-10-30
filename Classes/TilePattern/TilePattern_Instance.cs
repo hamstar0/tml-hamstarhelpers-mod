@@ -26,9 +26,12 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		public bool? HasWire4 = null;
 
-		/// <summary></summary>
+		/// <summary>Tile is wholly solid.</summary>
+		[Obsolete("use HasSolidProperties and IsPlatform accordingly")]
 		public bool? IsSolid = null;
-		/// <summary></summary>
+		/// <summary>Corresponds to `Main.tileSolid`.</summary>
+		public bool? HasSolidProperties = null;
+		/// <summary>Corresponds to `Main.tileSolidTop`</summary>
 		public bool? IsPlatform = null;
 		/// <summary></summary>
 		public bool? IsActuated = null;
@@ -84,9 +87,25 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		public bool? HasWire4 { get; private set; }
 
-		/// <summary></summary>
-		public bool? IsSolid { get; private set; }
-		/// <summary></summary>
+		/// <summary>Tile is wholly solid.</summary>
+		[Obsolete( "use HasSolidProperties and IsPlatform accordingly" )]
+		public bool? IsSolid {
+			get {
+				return this.HasSolidProperties.HasValue
+					&& this.HasSolidProperties.Value
+					&& (!this.IsPlatform.HasValue || !this.IsPlatform.Value);
+			}
+			private set {
+				this.HasSolidProperties = value;
+				if( value.HasValue && value.Value ) {
+					this.HasSolidProperties = value;
+					this.IsPlatform = false;
+				}
+			}
+		}
+		/// <summary>Corresponds to `Main.tileSolid`.</summary>
+		public bool? HasSolidProperties { get; private set; }
+		/// <summary>Corresponds to `Main.tileSolidTop`</summary>
 		public bool? IsPlatform { get; private set; }
 		/// <summary></summary>
 		public bool? IsActuated { get; private set; }
@@ -136,6 +155,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.HasWire4 = builder.HasWire4;
 
 			this.IsSolid = builder.IsSolid;
+			this.HasSolidProperties = builder.HasSolidProperties;
 			this.IsPlatform = builder.IsPlatform;
 			this.IsActuated = builder.IsActuated;
 			this.IsVanillaBombable = builder.IsVanillaBombable;
