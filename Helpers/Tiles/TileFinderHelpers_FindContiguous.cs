@@ -66,15 +66,17 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
 		/// <param name="maxFallRange">Max distance to trace downwards to a floor before giving up.</param>
+		/// <param name="floorX">Leftmost tile of the contiguous floor.</param>
 		/// <param name="floorY">Last matching tile before hitting the floor.</param>
 		/// <returns></returns>
-		public static int GetFloorWidth( TilePattern pattern, int tileX, int tileY, int maxFallRange, out int floorY ) {
+		public static int GetFloorWidth( TilePattern pattern, int tileX, int tileY, int maxFallRange, out int floorX, out int floorY ) {
 			floorY = tileY;
 
 			while( pattern.Check(tileX, floorY) ) {
 				floorY++;
 
 				if( (floorY - tileY) >= maxFallRange ) {
+					floorX = tileX;
 					return 0;
 				}
 			}
@@ -90,6 +92,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				leftWidth++;
 			}
 
+			floorX = tileX - leftWidth;
 			return rightWidth + leftWidth;
 		}
 
@@ -100,15 +103,17 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
 		/// <param name="maxRiseRange">Max distance to trace upwards to a ceiling before giving up.</param>
+		/// <param name="ceilX">Leftmost tile of the contiguous ceiling.</param>
 		/// <param name="ceilY">Last matching tile before hitting the ceiling.</param>
 		/// <returns></returns>
-		public static int GetCeilingWidth( TilePattern pattern, int tileX, int tileY, int maxRiseRange, out int ceilY ) {
+		public static int GetCeilingWidth( TilePattern pattern, int tileX, int tileY, int maxRiseRange, out int ceilX, out int ceilY ) {
 			ceilY = tileY;
 
 			while( pattern.Check(tileX, ceilY) ) {
 				ceilY--;
 
 				if( (tileY - ceilY) >= maxRiseRange ) {
+					ceilX = tileX;
 					return 0;
 				}
 			}
@@ -124,6 +129,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				leftWidth++;
 			}
 
+			ceilX = tileX - leftWidth;
 			return rightWidth + leftWidth;
 		}
 
@@ -147,18 +153,29 @@ namespace HamstarHelpers.Helpers.Tiles {
 					out IList<(ushort TileX, ushort TileY)> unclosedTiles,
 					int maxRadius = -1,
 					int maxTiles = -1 ) {
-			if( !pattern.Check(tileX, tileY) ) {
+			int getCodeFromCoord( int x, int y ) => x + (y << 16);
+
+			(ushort, ushort) getCoordFromCode( int code ) => (
+				(ushort)((code << 16) >> 16),
+				(ushort)(code >> 16)
+			);
+
+			////
+
+			TileCollideType collide;
+			if( !pattern.Check(tileX, tileY, out collide) ) {
 				unclosedTiles = new (ushort, ushort)[0];
 				return new (ushort, ushort)[ 0 ];
 			}
-			
+
 			ISet<int> edgeTileMap = new HashSet<int>();
-			ISet<int> unchartedTileMap = new HashSet<int>{ tileX + (tileY<<16) };
+			ISet<int> unchartedTileMap = new HashSet<int>{ getCodeFromCoord(tileX, tileY) };
 			ISet<int> newUnchartedTileMap = new HashSet<int>();
 			ISet<int> chartedTileMap = new HashSet<int>();
 
 			int maxRadiusSqr = maxRadius * maxRadius;
 			int distX, distY, distSqr;
+			(ushort x, ushort y) coord;
 
 			do {
 				bool isMaxTiles = false;
@@ -166,8 +183,9 @@ namespace HamstarHelpers.Helpers.Tiles {
 				foreach( int tileAt in unchartedTileMap ) {
 					bool isMaxRadius = false;
 
-					int x = (tileAt << 16) >> 16;
-					int y = tileAt >> 16;
+					coord = getCoordFromCode( tileAt );
+					int x = (int)coord.x;
+					int y = (int)coord.y;
 
 					if( maxTiles > 0 && chartedTileMap.Count >= maxTiles ) {
 						isMaxTiles = true;
@@ -186,19 +204,14 @@ namespace HamstarHelpers.Helpers.Tiles {
 					if( pattern.Check(x, y) ) {
 						if( !isMaxRadius && !isMaxTiles ) {
 							chartedTileMap.Add( tileAt );
-							newUnchartedTileMap.Add( x + ( ( y - 1 ) << 16 ) );
-							newUnchartedTileMap.Add( ( x - 1 ) + ( y << 16 ) );
-							newUnchartedTileMap.Add( ( x + 1 ) + ( y << 16 ) );
-							newUnchartedTileMap.Add( x + ( ( y + 1 ) << 16 ) );
+							newUnchartedTileMap.Add( getCodeFromCoord(x, y - 1) );
+							newUnchartedTileMap.Add( getCodeFromCoord(x - 1, y) );
+							newUnchartedTileMap.Add( getCodeFromCoord(x + 1, y) );
+							newUnchartedTileMap.Add( getCodeFromCoord(x, y + 1) );
 						} else {
 							edgeTileMap.Add( tileAt );
 						}
 					}
-				}
-
-				if( isMaxTiles ) {
-					edgeTileMap.UnionWith( unchartedTileMap );
-					break;
 				}
 
 				unchartedTileMap.Clear();
@@ -213,25 +226,17 @@ namespace HamstarHelpers.Helpers.Tiles {
 				newUnchartedTileMap.Clear();
 			} while( unchartedTileMap.Count > 0 );
 
-			if( unchartedTileMap.Count > 0 ) {
+			if( edgeTileMap.Count > 0 ) {
 				unclosedTiles = edgeTileMap
-					.SafeSelect(
-						tileAt => (
-							(ushort)((tileAt<<16)>>16),
-							(ushort)(tileAt>>16)
-						)
-					).ToList();
+					.SafeSelect( tileAt => getCoordFromCode(tileAt) )
+					.ToList();
 			} else {
 				unclosedTiles = new (ushort, ushort)[0];
 			}
 
 			return chartedTileMap
-				.SafeSelect(
-					tileAt => (
-						(ushort)((tileAt<<16)>>16),
-						(ushort)(tileAt>>16)
-					)
-				).ToList();
+				.SafeSelect( tileAt => getCoordFromCode(tileAt) )
+				.ToList();
 		}
 	}
 }
