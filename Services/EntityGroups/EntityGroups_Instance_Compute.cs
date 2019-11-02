@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -12,32 +13,14 @@ namespace HamstarHelpers.Services.EntityGroups {
 	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
 	/// </summary>
 	public partial class EntityGroups {
-		private void ComputeGroups<T>( IList<EntityGroupMatcherDefinition<T>> matchers,
-					ref IDictionary<string, IReadOnlySet<int>> groups,
-					ref IDictionary<int, IReadOnlySet<string>> groupsPerEnt ) where T : Entity {
-			var rawGroupsPerEnt = new Dictionary<int, ISet<string>>();
-			
-			IList<T> pool = this.GetPool<T>();
-
-			for( int i=0; i<matchers.Count; i++ ) {
-				EntityGroupMatcherDefinition<T> matcher = matchers[i];
-				ISet<int> grp;
-
-				if( !this.ComputeGroupMatch( pool, matcher, out grp ) ) {
-					matchers.Add( matchers[i] );
-					continue;
-				}
-
-				lock( EntityGroups.MyLock ) {
-					groups[ matcher.GroupName ] = new ReadOnlySet<int>( grp );
-				}
-
-				foreach( int idx in grp ) {
-					if( !rawGroupsPerEnt.ContainsKey( idx ) ) {
-						rawGroupsPerEnt[ idx ] = new HashSet<string>();
-					}
-					rawGroupsPerEnt[ idx ].Add( matcher.GroupName );
-				}
+		private bool ComputeGroups<T>(
+					IList<EntityGroupMatcherDefinition<T>> matchers,
+					IDictionary<string, IReadOnlySet<int>> groups,
+					IDictionary<int, IReadOnlySet<string>> groupsPerEnt )
+					where T : Entity {
+			IDictionary<int, ISet<string>> rawGroupsPerEnt;
+			if( !this.GetComputedGroups( matchers, groups, out rawGroupsPerEnt ) ) {
+				return false;
 			}
 
 			lock( EntityGroups.MyLock ) {
@@ -45,6 +28,48 @@ namespace HamstarHelpers.Services.EntityGroups {
 					groupsPerEnt[ kv.Key ] = new ReadOnlySet<string>( kv.Value );
 				}
 			}
+
+			return true;
+		}
+
+		private bool GetComputedGroups<T>(
+					IList<EntityGroupMatcherDefinition<T>> matchers,
+					IDictionary<string, IReadOnlySet<int>> groups,
+					out IDictionary<int, ISet<string>> groupsPerEnt )
+					where T : Entity {
+			groupsPerEnt = new Dictionary<int, ISet<string>>();
+			var reQueuedCounts = new Dictionary<EntityGroupMatcherDefinition<T>, int>();
+			IList<T> entityPool = this.GetPool<T>();
+
+			for( int i = 0; i < matchers.Count; i++ ) {
+				EntityGroupMatcherDefinition<T> matcher = matchers[i];
+				ISet<int> grp;
+
+				try {
+					if( !this.ComputeGroupMatch( entityPool, matcher, out grp ) ) {
+						reQueuedCounts.AddOrSet( matchers[i], 1 );
+						matchers.Add( matchers[i] );
+
+						if( reQueuedCounts[matchers[i]] > 100 ) {
+							LogHelpers.Warn( "Could not find all dependencies for " + matcher.GroupName );
+							return false;
+						}
+						continue;
+					}
+
+					lock( EntityGroups.MyLock ) {
+						groups[ matcher.GroupName ] = new ReadOnlySet<int>( grp );
+					}
+
+					foreach( int idx in grp ) {
+						groupsPerEnt.Set2D( idx, matcher.GroupName );
+					}
+				} catch( Exception e ) {
+					LogHelpers.Warn( "Failed (at #" + i + "): " + e.ToString() );
+				}
+			}
+
+			return true;
 		}
 
 
@@ -53,7 +78,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 					out ISet<int> entityIdsOfGroup )
 					where T : Entity {
 			entityIdsOfGroup = new HashSet<int>();
-			EntityGroupDependencies deps = this.GetGroups<T>( matcher.GroupName, matcher.GroupDependencies );
+			EntityGroupDependencies deps;
+			
+			if( !this.GetGroups<T>(matcher.GroupName, matcher.GroupDependencies, out deps) ) {
+				return false;
+			}
 
 			for( int i = 1; i < entityPool.Count; i++ ) {
 				try {
@@ -73,12 +102,14 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		////////////////
 
-		private ISet<string> _AlreadyRequeued = new HashSet<string>();
-
-		private EntityGroupDependencies GetGroups<T>( string groupName, string[] dependencies )
+		private bool GetGroups<T>(
+					string groupName, string[] dependencies,
+					out EntityGroupDependencies groupDependencies )
 					where T : Entity {
-			var deps = new EntityGroupDependencies();
-			if( dependencies == null ) { return deps; }
+			groupDependencies = new EntityGroupDependencies();
+			if( dependencies == null || dependencies.Length == 0 ) {
+				return true;
+			}
 
 			IDictionary<string, IReadOnlySet<int>> entityGroups;
 
@@ -98,18 +129,13 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			foreach( string dependency in dependencies ) {
 				if( !entityGroups.ContainsKey( dependency ) ) {
-					if( this._AlreadyRequeued.Contains( groupName ) ) {
-						throw new ModHelpersException( "Entity group " + groupName + " could not find dependency " + dependency + "." );
-					}
-					this._AlreadyRequeued.Add( groupName );
-
-					return deps;
+					return false;
 				}
 
-				deps[dependency] = entityGroups[dependency];
+				groupDependencies[dependency] = entityGroups[dependency];
 			}
 
-			return deps;
+			return true;
 		}
 	}
 }

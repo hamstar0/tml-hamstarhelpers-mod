@@ -22,11 +22,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="coords"></param>
 		/// <returns>Returns tile coordinates, or else `null` if not found within the given max amounts.</returns>
 		public static bool FindTopLeftOfSquare(
-				TilePattern pattern,
-				int tileX,
-				int tileY,
-				int maxDistance,
-				out (int TileX, int TileY) coords ) {
+					TilePattern pattern,
+					int tileX,
+					int tileY,
+					int maxDistance,
+					out (int TileX, int TileY) coords ) {
 			if( !pattern.Check(tileX, tileY) ) {
 				coords = (tileX, tileY);
 				return false;

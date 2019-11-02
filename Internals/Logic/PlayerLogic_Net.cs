@@ -14,8 +14,6 @@ namespace HamstarHelpers.Internals.Logic {
 		}
 
 		public void OnServerConnect( Player player ) {
-			var mymod = ModHelpersMod.Instance;
-
 			this.HasSyncedWorldData = true;
 			this.IsSynced = true;	// Technically this should only be set upon sync receipt of player's 'old' uid...
 
@@ -33,7 +31,7 @@ namespace HamstarHelpers.Internals.Logic {
 				this.HasLoadedOldUID = true;	// Ugly failsafe; don't really know why data from ModPlayer.Load isn't available here
 			}
 			
-			this.FinishWorldDataSyncOnClient();
+			this.FinishWorldDataSyncOnLocal();
 		}
 
 
@@ -56,7 +54,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void FinishWorldDataSyncOnClient() {
+		public void FinishWorldDataSyncOnLocal() {
 			this.HasSyncedWorldData = true;
 			if( ModHelpersMod.Config.DebugModeNetInfo ) {
 				LogHelpers.Alert();
@@ -84,10 +82,10 @@ namespace HamstarHelpers.Internals.Logic {
 				LogHelpers.Alert();
 			}
 
+			this.IsSynced = true;
+
 			UIModControlPanelTab uiModCtrlPanel = mymod.ControlPanel.DefaultTab;
 			uiModCtrlPanel.LoadModListAsync();
-
-			this.IsSynced = true;
 		}
 
 		private void FinishSyncOnServer() {

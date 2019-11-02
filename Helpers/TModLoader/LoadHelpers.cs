@@ -46,11 +46,15 @@ namespace HamstarHelpers.Helpers.TModLoader {
 			var mymod = ModHelpersMod.Instance;
 
 			if( Main.netMode != 2 && !Main.dedServ ) {
-				if( !mymod.LoadHelpers.IsClientPlaying_Hackish ) {
+				if( !mymod.LoadHelpers.IsLocalPlayerInGame_Hackish ) {
 					return false;
 				}
 
-				var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
+				var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer(
+					Main.LocalPlayer,
+					ModHelpersMod.Instance,
+					"ModHelpersPlayer"
+				);
 				return myplayer.Logic.IsSynced;
 			} else {
 				if( !LoadHelpers.IsWorldLoaded() ) {
@@ -84,7 +88,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
 						+ "StartupDelay: "+!(mymod.LoadHelpers.WorldStartupDelay < (60 * 2))
-						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsClientPlaying_Hackish+" (true?)"
+						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsLocalPlayerInGame_Hackish+" (true?)"
 						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?)" );
 				} else {
 					var myworld = ModContent.GetInstance<ModHelpersWorld>();

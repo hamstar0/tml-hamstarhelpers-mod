@@ -50,7 +50,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			mymod.WorldStateHelpers.LoadFromData( this.HalfDays, this.ObsoletedWorldId );
 
-			myplayer.Logic.FinishWorldDataSyncOnClient();
+			myplayer.Logic.FinishWorldDataSyncOnLocal();
 		}
 	}
 }

@@ -3,7 +3,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -62,61 +62,99 @@ namespace HamstarHelpers.Services.EntityGroups {
 			LoadHooks.AddPostModLoadHook( () => {
 				if( !this.IsEnabled ) { return; }
 
-				this.GetItemPool();
-				this.GetNPCPool();
-				this.GetProjPool();
-				
-				ThreadPool.QueueUserWorkItem( _ => {
-					int _check = 0;
-
-					try {
-						IList<EntityGroupMatcherDefinition<Item>> itemMatchers;
-						IList<EntityGroupMatcherDefinition<NPC>> npcMatchers;
-						IList<EntityGroupMatcherDefinition<Projectile>> projMatchers;
-
-						lock( EntityGroups.MyLock ) {
-							itemMatchers = EntityGroups.DefineItemGroups();
-							_check++;
-							npcMatchers = EntityGroups.DefineNPCGroups();
-							_check++;
-							projMatchers = EntityGroups.DefineProjectileGroups();
-							_check++;
-						}
-
-						this.ComputeGroups<Item>( itemMatchers, ref this.ItemGroups, ref this.GroupsPerItem );
-						_check++;
-						this.ComputeGroups<NPC>( npcMatchers, ref this.NPCGroups, ref this.GroupsPerNPC );
-						_check++;
-						this.ComputeGroups<Projectile>( projMatchers, ref this.ProjGroups, ref this.GroupsPerProj );
-						_check++;
-
-						this.ComputeGroups<Item>( this.CustomItemMatchers, ref this.ItemGroups, ref this.GroupsPerItem );
-						_check++;
-						this.ComputeGroups<NPC>( this.CustomNPCMatchers, ref this.NPCGroups, ref this.GroupsPerNPC );
-						_check++;
-						this.ComputeGroups<Projectile>( this.CustomProjMatchers, ref this.ProjGroups, ref this.GroupsPerProj );
-						_check++;
-
-						lock( EntityGroups.MyLock ) {
-							this.CustomItemMatchers = null;
-							this.CustomNPCMatchers = null;
-							this.CustomProjMatchers = null;
-							this.ItemPool = null;
-							this.NPCPool = null;
-							this.ProjPool = null;
-						}
-						
-						CustomLoadHooks.TriggerHook( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
-						_check++;
-					} catch( Exception e ) {
-						LogHelpers.Warn( "Initialization failed (at #"+_check+"): "+e.ToString() );
-					}
-				} );
+				this.InitializePools();
+				this.InitializeDefinitions();
 			} );
 
 			//LoadHooks.AddModUnloadHook( () => {
 			//	lock( EntityGroups.MyLock ) { }
 			//} );
+		}
+
+		private void InitializePools() {
+			this.GetItemPool();
+			this.GetNPCPool();
+			this.GetProjPool();
+		}
+
+		private int _InitCheck = 0;
+
+		private void InitializeDefinitions() {
+			this._InitCheck = 0;
+
+			IList<EntityGroupMatcherDefinition<Item>> itemMatchers = null;
+			IList<EntityGroupMatcherDefinition<NPC>> npcMatchers = null;
+			IList<EntityGroupMatcherDefinition<Projectile>> projMatchers = null;
+
+			try {
+				lock( EntityGroups.MyLock ) {
+					itemMatchers = EntityGroups.DefineItemGroupDefinitions();
+					this._InitCheck++;
+					npcMatchers = EntityGroups.DefineNPCGroupDefinitions();
+					this._InitCheck++;
+					projMatchers = EntityGroups.DefineProjectileGroupDefinitions();
+					this._InitCheck++;
+				}
+			} catch( Exception e ) {
+				LogHelpers.Warn( "Initialization failed 1 (at #" + this._InitCheck + "): " + e.ToString() );
+				return;
+			}
+
+			Task.Run( () => {
+				Task[] tasks = new Task[3];
+
+				tasks[0] = Task.Run( () => {
+					this.ComputeGroups<Item>( itemMatchers, this.ItemGroups, this.GroupsPerItem );
+					this._InitCheck++;
+				} );
+				tasks[1] = Task.Run( () => {
+					this.ComputeGroups<NPC>( npcMatchers, this.NPCGroups, this.GroupsPerNPC );
+					this._InitCheck++;
+				} );
+				tasks[2] = Task.Run( () => {
+					this.ComputeGroups<Projectile>( projMatchers, this.ProjGroups, this.GroupsPerProj );
+					this._InitCheck++;
+				} );
+
+				try {
+					Task.WaitAll( tasks );
+				} catch( Exception e ) {
+					LogHelpers.Warn( "Entity group compute threads failed 1: " + e.ToString() );
+					return;
+				}
+
+				tasks[0] = Task.Run( () => {
+					this.ComputeGroups<Item>( this.CustomItemMatchers, this.ItemGroups, this.GroupsPerItem );
+					this._InitCheck++;
+				} );
+				tasks[1] = Task.Run( () => {
+					this.ComputeGroups<NPC>( this.CustomNPCMatchers, this.NPCGroups, this.GroupsPerNPC );
+					this._InitCheck++;
+				} );
+				tasks[2] = Task.Run( () => {
+					this.ComputeGroups<Projectile>( this.CustomProjMatchers, this.ProjGroups, this.GroupsPerProj );
+					this._InitCheck++;
+				} );
+
+				try {
+					Task.WaitAll( tasks );
+				} catch( Exception e ) {
+					LogHelpers.Warn( "Entity group compute threads failed 2: " + e.ToString() );
+					return;
+				}
+
+				lock( EntityGroups.MyLock ) {
+					this.CustomItemMatchers = null;
+					this.CustomNPCMatchers = null;
+					this.CustomProjMatchers = null;
+					this.ItemPool = null;
+					this.NPCPool = null;
+					this.ProjPool = null;
+				}
+
+				CustomLoadHooks.TriggerHook( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
+				this._InitCheck++;
+			} );
 		}
 
 

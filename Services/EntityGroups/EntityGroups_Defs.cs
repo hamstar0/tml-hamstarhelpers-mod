@@ -11,7 +11,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
 	/// </summary>
 	public partial class EntityGroups {
-		private static IList<EntityGroupMatcherDefinition<Item>> DefineItemGroups() {
+		private static IList<EntityGroupMatcherDefinition<Item>> DefineItemGroupDefinitions() {
 			var matchers = new List<EntityGroupMatcherDefinition<Item>>();
 
 			EntityGroupDefs.DefineItemEquipmentGroups1( matchers );
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private static IList<EntityGroupMatcherDefinition<NPC>> DefineNPCGroups() {
+		private static IList<EntityGroupMatcherDefinition<NPC>> DefineNPCGroupDefinitions() {
 			var matchers = new List<EntityGroupMatcherDefinition<NPC>>();
 
 			EntityGroupDefs.DefineNPCGroups1( matchers );
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private static IList<EntityGroupMatcherDefinition<Projectile>> DefineProjectileGroups() {
+		private static IList<EntityGroupMatcherDefinition<Projectile>> DefineProjectileGroupDefinitions() {
 			var matchers = new List<EntityGroupMatcherDefinition<Projectile>>();
 
 			EntityGroupDefs.DefineProjectileGroups1( matchers );
