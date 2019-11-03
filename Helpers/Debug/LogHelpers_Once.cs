@@ -48,12 +48,17 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void AlertOnce( string msg = "" ) {
-			if( LogHelpers.CanOutputOnceMessage( msg, out msg ) ) {
-				ModHelpersMod mymod = ModHelpersMod.Instance;
-				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+			ModHelpersMod mymod = ModHelpersMod.Instance;
+			(string Context, string Info, string Full) fmtMsg = LogHelpers.FormatMessageFull( msg, 3 );
 
-				mymod.Logger.Error( "~" + fmtMsg );
+			string outMsg;
+			LogHelpers.CanOutputOnceMessage( fmtMsg.Full, out outMsg );
+
+			if( !LogHelpers.CanOutputOnceMessage( fmtMsg.Context+" "+msg, out _ ) ) {
+				return;
 			}
+
+			mymod.Logger.Error( "~" + outMsg );
 		}
 
 		/// <summary>
@@ -61,14 +66,17 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void WarnOnce( string msg = "" ) {
-			if( LogHelpers.CanOutputOnceMessage( msg, out msg ) ) {
-				lock( LogHelpers.MyLock ) {
-					ModHelpersMod mymod = ModHelpersMod.Instance;
-					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+			ModHelpersMod mymod = ModHelpersMod.Instance;
+			(string Context, string Info, string Full) fmtMsg = LogHelpers.FormatMessageFull( msg, 3 );
 
-					mymod.Logger.Fatal( "~" + fmtMsg );
-				}
+			string outMsg;
+			LogHelpers.CanOutputOnceMessage( fmtMsg.Full, out outMsg );
+
+			if( !LogHelpers.CanOutputOnceMessage( fmtMsg.Context + " " + msg, out _ ) ) {
+				return;
 			}
+
+			mymod.Logger.Fatal( "~" + outMsg );
 		}
 
 		////

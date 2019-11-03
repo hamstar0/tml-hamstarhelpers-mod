@@ -20,7 +20,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 		public static UIElement GetMenuContainerOuter( UIState ui ) {
 			UIElement elem;
 			if( !ReflectionHelpers.Get( ui, "uIElement", out elem ) || elem == null ) {
-				LogHelpers.AlertOnce();
+				LogHelpers.AlertOnce( "No uiElement for "+ui?.GetType().Name );
 				return null;
 			}
 
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			if( !ReflectionHelpers.Get( uiOuterBox, "Elements", out uiOuterBoxElems )
 					|| uiOuterBoxElems == null
 					|| uiOuterBoxElems.Count == 0 ) {
-				LogHelpers.AlertOnce();
+				LogHelpers.AlertOnce( "No Elements for " + uiOuterBox?.GetType().Name );
 				return null;
 			}
 
@@ -66,7 +66,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			List<UIElement> uiContainerElems;
 			if( !ReflectionHelpers.Get( uiInnerContainer, "Elements", out uiContainerElems )
 					|| uiContainerElems == null ) {
-				LogHelpers.AlertOnce();
+				LogHelpers.AlertOnce( "No Elements for " + uiInnerContainer?.GetType().Name );
 				return null;
 			}
 
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 				}
 			}
 
-			LogHelpers.AlertOnce();
+			LogHelpers.AlertOnce( "Not found" );
 			return null;
 		}
 

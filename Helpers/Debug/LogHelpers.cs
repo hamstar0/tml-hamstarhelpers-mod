@@ -16,48 +16,76 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// No output if -1 is set.</param>
 		/// <returns></returns>
 		public static string FormatMessage( string msg, int contextDepth = -1 ) {
+			return LogHelpers.FormatMessageFull( msg, contextDepth ).Full;
+		}
+
+		/// <summary>
+		/// Formats a given message as it would appear in the log output.
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="contextDepth">Indicates whether to also output the callstack context at the specified depth.
+		/// No output if -1 is set.</param>
+		/// <returns>Calling context, global info, and full (chained together) output.</returns>
+		public static (string Context, string Info, string Full) FormatMessageFull( string msg, int contextDepth = -1 ) {
+			string context, info;
 			ModHelpersMod mymod = ModHelpersMod.Instance;
 			if( mymod == null ) {
 				contextDepth = contextDepth == -1 ? 2 : contextDepth;
-				return "!Mod Helpers unloaded. Message called from: " + DebugHelpers.GetCurrentContext( contextDepth );
+				context = DebugHelpers.GetCurrentContext( contextDepth );
+
+				return ( context, "", "!Mod Helpers unloaded. Message called from: "+context );
 			}
 
 			var logHelpers = mymod.LogHelpers;
 			string output;
 			double nowSeconds;
 
+			// Prepare time stamp
 			try {
 				var beginning = new DateTime( 1970, 1, 1, 0, 0, 0 );
 				TimeSpan nowTotalSpan = DateTime.UtcNow.Subtract( beginning );
 				nowSeconds = nowTotalSpan.TotalSeconds - logHelpers.StartTime;
+
+				output = "";
 			} catch( Exception e ) {
 				nowSeconds = 0;
 				output = "FORMATTING ERROR 1 (" + e.GetType().Name + ") - " + msg;
 			}
-
+			
+			// Generate global info output
 			try {
 				string nowSecondsWhole = ( (int)nowSeconds ).ToString( "D6" );
 				string nowSecondsDecimal = ( nowSeconds - (int)nowSeconds ).ToString( "N2" );
 				string now = nowSecondsWhole + "." + ( nowSecondsDecimal.Length > 2 ? nowSecondsDecimal.Substring( 2 ) : nowSecondsDecimal );
 
 				string from = Main.myPlayer.ToString( "D3" );
-				string logged = Main.netMode + ":" + from + " - " + now;
-				if( logged.Length < 26 ) {
-					logged += new String( ' ', 26 - logged.Length );
+				info = Main.netMode + ":" + from + " - " + now;
+				if( info.Length < 26 ) {
+					info += new String( ' ', 26 - info.Length );
 				} else {
-					logged += "  ";
+					info += "  ";
 				}
 
-				output = logged + msg;
+				output += info + msg;
 			} catch( Exception e ) {
-				output = "FORMATTING ERROR 2 (" + e.GetType().Name + ") - " + msg;
+				info = "";
+				output += "FORMATTING ERROR 2 (" + e.GetType().Name + ") - " + msg;
 			}
 
+			// Generate calling context output
 			if( contextDepth >= 0 ) {
-				output = DebugHelpers.GetCurrentContext( contextDepth ) + ( ( output != "" ) ? " - " + output : "" );
+				context = DebugHelpers.GetCurrentContext( contextDepth );
+
+				if( output.Length > 0 ) {
+					output = context + " - " + output;
+				} else {
+					output = context;
+				}
+			} else {
+				context = "";
 			}
 
-			return output;
+			return ( context, info, output );
 		}
 
 

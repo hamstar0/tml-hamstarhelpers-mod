@@ -7,7 +7,7 @@ using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
-using static Terraria.UI.UIElement;
+
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
@@ -106,7 +106,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 					continue;
 				}
 
-				MouseEvent modInfoButtonClick = ( _, __ ) => {
+				UIElement.MouseEvent modInfoButtonClick = ( _, __ ) => {
 					if( !ReflectionHelpers.Set( modBrowserUi, "SelectedItem", item ) ) {
 						LogHelpers.Alert( "Could not set selected item from the mod browser" );
 					}

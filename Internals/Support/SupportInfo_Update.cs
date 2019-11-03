@@ -66,26 +66,26 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		private void UpdateModTagsLabel( bool isClicking ) {
 			var mymod = ModHelpersMod.Instance;
+			
+			if( mymod.Data.ModTagsOpened ) {    // This exists because ModHelpersData loads late
+				this.RemoveModTagsMessage();	// This Update no longer gets called
 
-			if( mymod.Data.ModTagsOpened ) {
-				this.RemoveModTagsMessage();
-
-				ModTagsEditorMenuContext.Initialize( false );
-				ModTagsModBrowserMenuContext.Initialize( false );
+				ModTagsEditorMenuContext.Initialize();
+				ModTagsModBrowserMenuContext.Initialize();
 			}
 
 			bool isHoveringModTagsLabel = this.EnableModTagsLabel?.GetOuterDimensions()
 				.ToRectangle()
 				.Contains( Main.mouseX, Main.mouseY )
 				?? false;
-
+			
 			if( isClicking && isHoveringModTagsLabel ) {
 				mymod.Data.ModTagsOpened = true;
 
-				this.RemoveModTagsMessage();
+				this.RemoveModTagsMessage();    // This Update no longer gets called
 
-				ModTagsEditorMenuContext.Initialize( false );
-				ModTagsModBrowserMenuContext.Initialize( false );
+				ModTagsEditorMenuContext.Initialize();
+				ModTagsModBrowserMenuContext.Initialize();
 
 				Timers.SetTimer( "ModHelpersModBrowserActivate", 5, () => {
 					MainMenuHelpers.OpenModBrowserMenu();

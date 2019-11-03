@@ -34,7 +34,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			if( prevUiName == currUiName ) {
 				return;
 			}
-
+			
 			this.SwitchToUI( ui );
 		}
 
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 				this.PreviousMenuUI = this.CurrentMenuUI;
 				this.CurrentMenuUI = 0;
 			}
-
+			
 			// In with the new
 			if( this.Contexts.ContainsKey( openingUiDef ) ) {
 				foreach( MenuContext ctx in this.Contexts[openingUiDef].Values.ToArray() ) {

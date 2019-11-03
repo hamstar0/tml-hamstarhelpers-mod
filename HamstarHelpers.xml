@@ -3721,6 +3721,15 @@
             No output if -1 is set.</param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.FormatMessageFull(System.String,System.Int32)">
+            <summary>
+            Formats a given message as it would appear in the log output.
+            </summary>
+            <param name="msg"></param>
+            <param name="contextDepth">Indicates whether to also output the callstack context at the specified depth.
+            No output if -1 is set.</param>
+            <returns>Calling context, global info, and full (chained together) output.</returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.Log(System.String)">
             <summary>
             Outputs a plain log message.

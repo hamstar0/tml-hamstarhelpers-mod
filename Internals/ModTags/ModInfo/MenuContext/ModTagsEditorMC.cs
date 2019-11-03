@@ -18,25 +18,27 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 	/// @private
 	partial class ModTagsEditorMenuContext : ModTagsMenuContextBase {
-		protected ModTagsEditorManager MyManager => (ModTagsEditorManager)this.Manager;
-
-
-		////////////////
-
 		internal static ISet<string> RecentTaggedMods = new HashSet<string>();
 
 
 
 		////////////////
 
-		public static void Initialize( bool onModLoad ) {
+		public static void Initialize() {
+			if( !ModHelpersMod.Instance.Data.ModTagsOpened ) { return; }
 			if( ModHelpersMod.Config.DisableModTags ) { return; }
 
-			if( !onModLoad ) {
-				var ctx = new ModTagsEditorMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Info" );
+			if( MenuContextService.GetMenuContext(MenuUIDefinition.UIModInfo, "ModHelpers: Mod Tags Info") == null ) {
+				var ctx = new ModTagsEditorMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Tags Info" );
 				MenuContextService.AddMenuContext( ctx );
 			}
 		}
+
+
+
+		////////////////
+
+		protected ModTagsEditorManager MyManager => (ModTagsEditorManager)this.Manager;
 
 
 

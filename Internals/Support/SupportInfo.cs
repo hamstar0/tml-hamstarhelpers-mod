@@ -210,7 +210,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.Elements.Add( this.PatreonLabel );
 			this.Elements.Add( this.PatreonButton );
 
-			this.EnableModTagsLabel?.Top.Set( this.EnableModTagsLabel.Top.Pixels + ( 2 * this.RowHeight * this.Scale ), 0f );
+			this.EnableModTagsLabel?.Top.Set(
+				this.EnableModTagsLabel.Top.Pixels + ( 2 * this.RowHeight * this.Scale ),
+				0f
+			);
 
 			/*this.RecomInfoTextUI.Recalculate();
 			this.Elements.Add( this.RecomInfoTextUI );

@@ -10,7 +10,7 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 			this.PostModLoadHookConditionsMet = true;
 
 			Action[] hooks;
-
+			
 			lock( LoadHooks.PostModLoadHookLock ) {
 				hooks = this.PostModLoadHooks.ToArray();
 				this.PostModLoadHooks.Clear();

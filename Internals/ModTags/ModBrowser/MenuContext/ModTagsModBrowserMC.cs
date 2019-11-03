@@ -11,11 +11,12 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 	/// @private
 	partial class ModTagsModBrowserMenuContext : ModTagsMenuContextBase {
-		public static void Initialize( bool onModLoad ) {
+		public static void Initialize() {
+			if( !ModHelpersMod.Instance.Data.ModTagsOpened ) { return; }
 			if( ModHelpersMod.Config.DisableModTags ) { return; }
 
-			if( !onModLoad ) {
-				var ctx = new ModTagsModBrowserMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Browser" );
+			if( MenuContextService.GetMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Tags Browser" ) == null ) {
+				var ctx = new ModTagsModBrowserMenuContext( MenuUIDefinition.UIModBrowser, "ModHelpers: Mod Tags Browser" );
 				MenuContextService.AddMenuContext( ctx );
 			}
 		}

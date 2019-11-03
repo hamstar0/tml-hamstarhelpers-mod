@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.XNA;
@@ -28,8 +29,8 @@ namespace HamstarHelpers.Internals.Menus {
 			LoadHooks.AddPostModLoadHook( () => {
 				Menus.InitializeOpenConfigButton();
 				Menus.InitializeDebugModeMenuInfo();
-				ModTagsEditorMenuContext.Initialize( true );
-				ModTagsModBrowserMenuContext.Initialize( true );
+				ModTagsEditorMenuContext.Initialize();
+				ModTagsModBrowserMenuContext.Initialize();
 				ModUpdatesMenuContext.Initialize();
 				MenuTweaksMenuContext.Initialize();
 				//if( AprilFoolsMenuContext.IsAprilFools() ) {
