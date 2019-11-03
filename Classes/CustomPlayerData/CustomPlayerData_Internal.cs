@@ -61,14 +61,16 @@ namespace HamstarHelpers.Classes.PlayerData {
 				if( isInGame ) {
 					if( !singleton.DataMap.ContainsKey( i ) ) {
 						CustomPlayerData.InitializeAll( i );
-					}
-
-					foreach( CustomPlayerData plrData in singleton.DataMap[i] ) {
-						plrData.Update();
+					} else {
+						foreach( CustomPlayerData plrData in singleton.DataMap[i] ) {
+							plrData.Update();
+						}
 					}
 				} else {
-					foreach( CustomPlayerData plrData in singleton.DataMap[i] ) {
-						plrData.OnExit();
+					if( singleton.DataMap.ContainsKey( i ) ) {
+						foreach( CustomPlayerData plrData in singleton.DataMap[i] ) {
+							plrData.OnExit();
+						}
 					}
 				}
 			}
