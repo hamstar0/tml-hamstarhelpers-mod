@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Terraria;
 
 
@@ -13,59 +14,106 @@ namespace HamstarHelpers.Services.EntityGroups {
 	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
 	/// </summary>
 	public partial class EntityGroups {
+		private static object ComputeLock = new object();
+		private static object ReQueueLock = new object();
+
+
+
+		////////////////
+
 		private bool ComputeGroups<T>(
 					IList<EntityGroupMatcherDefinition<T>> matchers,
 					IDictionary<string, IReadOnlySet<int>> groups,
 					IDictionary<int, IReadOnlySet<string>> groupsPerEnt )
 					where T : Entity {
 			IDictionary<int, ISet<string>> rawGroupsPerEnt;
-			if( !this.GetComputedGroups( matchers, groups, out rawGroupsPerEnt ) ) {
+			int failedAt = this.GetComputedGroupsThreaded( matchers, groups, out rawGroupsPerEnt );
+			if( failedAt != -1 ) {
+//LogHelpers.Log( "ent:" + typeof( T ).Name + ", !OK " + failedAt+", processed:"+groups.Count );
 				return false;
 			}
 
 			lock( EntityGroups.MyLock ) {
-				foreach( var kv in rawGroupsPerEnt ) {
-					groupsPerEnt[ kv.Key ] = new ReadOnlySet<string>( kv.Value );
+				lock( EntityGroups.ComputeLock ) {
+					foreach( var kv in rawGroupsPerEnt ) {
+						groupsPerEnt[kv.Key] = new ReadOnlySet<string>( kv.Value );
+					}
 				}
 			}
 
+//LogHelpers.Log( "ent:" + typeof( T ).Name + ", OK " + groups.Count );
 			return true;
 		}
 
-		private bool GetComputedGroups<T>(
+		private int GetComputedGroupsThreaded<T>(
 					IList<EntityGroupMatcherDefinition<T>> matchers,
 					IDictionary<string, IReadOnlySet<int>> groups,
 					out IDictionary<int, ISet<string>> groupsPerEnt )
 					where T : Entity {
-			groupsPerEnt = new Dictionary<int, ISet<string>>();
+			var myGroupsPerEnt = new Dictionary<int, ISet<string>>();
 			var reQueuedCounts = new Dictionary<EntityGroupMatcherDefinition<T>, int>();
 			IList<T> entityPool = this.GetPool<T>();
 
-			for( int i = 0; i < matchers.Count; i++ ) {
-				EntityGroupMatcherDefinition<T> matcher = matchers[i];
-				ISet<int> grp;
+			int failedAt = -1;
+			int i = 0, count = matchers.Count;
 
-				try {
-					if( !this.ComputeGroupMatch( entityPool, matcher, out grp ) ) {
-						reQueuedCounts.AddOrSet( matchers[i], 1 );
-						matchers.Add( matchers[i] );
+			do {
+				//for( i = 0; i < matchers.Count; i++ ) {
+				Parallel.For( i, count, ( j ) => {
+					if( failedAt != -1 ) { return; }
+					EntityGroupMatcherDefinition<T> matcher = matchers[j];
 
-						if( reQueuedCounts[matchers[i]] > 100 ) {
-							LogHelpers.Warn( "Could not find all dependencies for " + matcher.GroupName );
-							return false;
-						}
-						continue;
+					try {
+						failedAt = this.GetComputedGroup( matcher, matchers, entityPool, reQueuedCounts, groups, myGroupsPerEnt )
+							? -1
+							: (failedAt == -1 ? j : failedAt);
+					} catch( Exception e ) {
+						LogHelpers.Warn( "Failed (at #" + j + "): " + e.ToString() );
+						failedAt = j;
 					}
+				} );
 
-					lock( EntityGroups.MyLock ) {
-						groups[ matcher.GroupName ] = new ReadOnlySet<int>( grp );
-					}
+//LogHelpers.Log( "ent:"+typeof(T).Name+", i:"+i+", count:"+count+", real count:"+matchers.Count+", failed? at:"+failedAt);
+				i = count;
+				count = matchers.Count;
+			} while( failedAt == -1 && i < matchers.Count );
 
-					foreach( int idx in grp ) {
-						groupsPerEnt.Set2D( idx, matcher.GroupName );
+			groupsPerEnt = myGroupsPerEnt;
+			return failedAt;
+		}
+
+		private bool GetComputedGroup<T>(
+					EntityGroupMatcherDefinition<T> matcher,
+					IList<EntityGroupMatcherDefinition<T>> matchers,
+					IList<T> entityPool,
+					IDictionary<EntityGroupMatcherDefinition<T>, int> reQueuedCounts,
+					IDictionary<string, IReadOnlySet<int>> groups,
+					IDictionary<int, ISet<string>> groupsPerEnt )
+					where T : Entity {
+			ISet<int> grp;
+
+			if( !this.ComputeGroupMatch( entityPool, matcher, out grp ) ) {
+				matchers.Add( matcher );
+
+				lock( EntityGroups.ReQueueLock ) {
+					reQueuedCounts.AddOrSet( matcher, 1 );
+
+					if( reQueuedCounts[matcher] > 100 ) {
+						LogHelpers.Warn( "Could not find all dependencies for " + matcher.GroupName );
+						return false;
 					}
-				} catch( Exception e ) {
-					LogHelpers.Warn( "Failed (at #" + i + "): " + e.ToString() );
+				}
+
+				return true;
+			}
+
+			lock( EntityGroups.MyLock ) {
+				groups[matcher.GroupName] = new ReadOnlySet<int>( grp );
+			}
+
+			lock( EntityGroups.ComputeLock ) {
+				foreach( int grpIdx in grp ) {
+					groupsPerEnt.Set2D( grpIdx, matcher.GroupName );
 				}
 			}
 
@@ -73,7 +121,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private bool ComputeGroupMatch<T>( IList<T> entityPool,
+		private bool ComputeGroupMatch<T>(
+					IList<T> entityPool,
 					EntityGroupMatcherDefinition<T> matcher,
 					out ISet<int> entityIdsOfGroup )
 					where T : Entity {
@@ -90,11 +139,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 				}
 
 				try {
-					lock( EntityGroups.MyLock ) {
-						if( matcher.Matcher.MatcherFunc(entityPool[i], deps) ) {
-							entityIdsOfGroup.Add( i );
-						}
+					//lock( EntityGroups.MyLock ) {
+					if( matcher.Matcher.MatcherFunc(entityPool[i], deps) ) {
+						entityIdsOfGroup.Add( i );
 					}
+					//}
 				} catch( Exception ) {
 					LogHelpers.Alert( "Compute fail for '"+matcher.GroupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
 				}

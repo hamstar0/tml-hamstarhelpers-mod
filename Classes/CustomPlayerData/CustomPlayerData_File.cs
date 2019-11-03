@@ -49,17 +49,18 @@ namespace HamstarHelpers.Classes.PlayerData {
 		////////////////
 
 		private static object LoadFileData( string className, string playerUid ) {
-			string dataStr;
+			string dataStr, fullPath;
+			string _;
 
 			CustomPlayerData.PrepareDir( className );
 
 			try {
 				if( ModHelpersMod.Config.CustomPlayerDataAsText ) {
-					string fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".json" );
+					fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".json" );
 					dataStr = FileHelpers.LoadTextFile( fullPath, false );
 				} else {
-					string fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".dat" );
-					byte[] dataBytes = FileHelpers.LoadBinaryFile( fullPath, false );
+					fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".dat" );
+					byte[] dataBytes = FileHelpers.LoadBinaryFile( fullPath, false, out _ );
 					if( dataBytes == null ) {
 						return null;
 					}
@@ -106,12 +107,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 					return FileHelpers.SaveTextFile( dataJson, fullPath, false, true );
 				} else {
+					string _;
 					string fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".json" );
 					string dataJson = JsonConvert.SerializeObject( data, new JsonSerializerSettings() );
 
 					byte[] dataBytes = System.Text.Encoding.UTF8.GetBytes( dataJson );
 
-					return FileHelpers.SaveBinaryFile( dataBytes, fullPath, false, true );
+					return FileHelpers.SaveBinaryFile( dataBytes, fullPath, false, true, out _ );
 				}
 			} catch( IOException e ) {
 				LogHelpers.Warn( "Failed to save json file " + playerUid + " at " + relDir + " - " + e.ToString() );
