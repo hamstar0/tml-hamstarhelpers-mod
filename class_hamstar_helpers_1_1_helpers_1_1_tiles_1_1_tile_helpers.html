@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.1.0</span>
+   &#160;<span id="projectnumber">v5.0.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -122,6 +122,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:afa6740b2a2db8501fc644276e81126cb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#afa6740b2a2db8501fc644276e81126cb">KillTile</a> (int tileX, int tileY, bool effectOnly, bool dropsItem)</td></tr>
 <tr class="memdesc:afa6740b2a2db8501fc644276e81126cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills a given tile. Results are synced.  <a href="#afa6740b2a2db8501fc644276e81126cb">More...</a><br /></td></tr>
 <tr class="separator:afa6740b2a2db8501fc644276e81126cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de576ca9afdb173404cdc74b71bbc70"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a1de576ca9afdb173404cdc74b71bbc70">Swap1x1</a> (int fromTileX, int fromTileY, int toTileX, int toTileY, bool preserveWall=false, bool preserveWire=false, bool preserveLiquid=false)</td></tr>
+<tr class="memdesc:a1de576ca9afdb173404cdc74b71bbc70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps 1x1 tiles. Destructive.  <a href="#a1de576ca9afdb173404cdc74b71bbc70">More...</a><br /></td></tr>
+<tr class="separator:a1de576ca9afdb173404cdc74b71bbc70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a558e66e2007b912c7c9f70ee9ec647c6"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a558e66e2007b912c7c9f70ee9ec647c6">GetDamageScale</a> (Tile tile, float baseDamage, out bool isAbsolute)</td></tr>
 <tr class="memdesc:a558e66e2007b912c7c9f70ee9ec647c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the damage scale (amount to multiply a pickaxe hit by) of a given tile.  <a href="#a558e66e2007b912c7c9f70ee9ec647c6">More...</a><br /></td></tr>
 <tr class="separator:a558e66e2007b912c7c9f70ee9ec647c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,7 +185,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00167">167</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00239">239</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -475,7 +478,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00149">149</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00151">151</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -556,9 +559,91 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if tile placement succeeded.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00123">123</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1de576ca9afdb173404cdc74b71bbc70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de576ca9afdb173404cdc74b71bbc70">&#9670;&nbsp;</a></span>Swap1x1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromTileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fromTileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toTileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>toTileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>preserveWall</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>preserveWire</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>preserveLiquid</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Swaps 1x1 tiles. Destructive. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fromTileX</td><td></td></tr>
+    <tr><td class="paramname">fromTileY</td><td></td></tr>
+    <tr><td class="paramname">toTileX</td><td></td></tr>
+    <tr><td class="paramname">toTileY</td><td></td></tr>
+    <tr><td class="paramname">preserveWall</td><td></td></tr>
+    <tr><td class="paramname">preserveWire</td><td></td></tr>
+    <tr><td class="paramname">preserveLiquid</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_helpers_8cs_source.html#l00172">172</a> of file <a class="el" href="_tile_helpers_8cs_source.html">TileHelpers.cs</a>.</p>
 
 </div>
 </div>

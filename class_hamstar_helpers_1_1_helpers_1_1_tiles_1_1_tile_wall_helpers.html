@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.1.0</span>
+   &#160;<span id="projectnumber">v5.0.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#properties">Properties</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Tiles.TileWallHelpers Class Reference</div>  </div>
@@ -104,11 +105,16 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a269db42c9f8eef951a0beb42e8d01097"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html#a269db42c9f8eef951a0beb42e8d01097">IsDungeon</a> (Tile tile, out bool isLihzahrd)</td></tr>
 <tr class="memdesc:a269db42c9f8eef951a0beb42e8d01097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given wall is dungeon or temple "biome" wall.  <a href="#a269db42c9f8eef951a0beb42e8d01097">More...</a><br /></td></tr>
 <tr class="separator:a269db42c9f8eef951a0beb42e8d01097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:aade2b86e30172c6b058a14de2c7e5250"><td class="memItemLeft" align="right" valign="top">static ISet&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html#aade2b86e30172c6b058a14de2c7e5250">UnsafeDungeonWallTypes</a><code> [get]</code></td></tr>
+<tr class="separator:aade2b86e30172c6b058a14de2c7e5250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tile walls. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_wall_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_tile_wall_helpers_8cs_source.html">TileWallHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_wall_helpers_8cs_source.html#l00012">12</a> of file <a class="el" href="_tile_wall_helpers_8cs_source.html">TileWallHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a269db42c9f8eef951a0beb42e8d01097"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a269db42c9f8eef951a0beb42e8d01097">&#9670;&nbsp;</a></span>IsDungeon()</h2>
@@ -154,7 +160,34 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_wall_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_tile_wall_helpers_8cs_source.html">TileWallHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_wall_helpers_8cs_source.html#l00037">37</a> of file <a class="el" href="_tile_wall_helpers_8cs_source.html">TileWallHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="aade2b86e30172c6b058a14de2c7e5250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade2b86e30172c6b058a14de2c7e5250">&#9670;&nbsp;</a></span>UnsafeDungeonWallTypes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ISet&lt;int&gt; HamstarHelpers.Helpers.Tiles.TileWallHelpers.UnsafeDungeonWallTypes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= <span class="keyword">new</span> ReadOnlySet&lt;int&gt;( <span class="keyword">new</span> HashSet&lt;int&gt; {</div><div class="line">            WallID.BlueDungeonSlabUnsafe,</div><div class="line">            WallID.GreenDungeonSlabUnsafe,</div><div class="line">            WallID.PinkDungeonSlabUnsafe,</div><div class="line">            WallID.BlueDungeonTileUnsafe,</div><div class="line">            WallID.GreenDungeonTileUnsafe,</div><div class="line">            WallID.PinkDungeonTileUnsafe,</div><div class="line">            WallID.BlueDungeonUnsafe,</div><div class="line">            WallID.GreenDungeonUnsafe,</div><div class="line">            WallID.PinkDungeonUnsafe</div><div class="line">        } )</div></div><!-- fragment -->
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_tile_wall_helpers_8cs_source.html#l00014">14</a> of file <a class="el" href="_tile_wall_helpers_8cs_source.html">TileWallHelpers.cs</a>.</p>
 
 </div>
 </div>

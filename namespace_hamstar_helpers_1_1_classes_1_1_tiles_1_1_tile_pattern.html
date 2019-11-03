@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.1.0</span>
+   &#160;<span id="projectnumber">v5.0.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -101,6 +101,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies a type of tile by its attributes.  <a href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html">TilePatternBuilder</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to in <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html" title="Identifies a type of tile by its attributes.">TilePattern</a>'s constructor to simplify specifying non-optional values. Keeps <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html" title="Identifies a type of tile by its attributes.">TilePattern</a> immutable.  <a href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -121,7 +124,43 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:aed4d496bb45d2cccd9fc19c7362c0af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7988faad5bf73e0f322b548c47cd4141"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a> </td></tr>
+<tr class="memitem:a7988faad5bf73e0f322b548c47cd4141"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141">TileCollideType</a> { <br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a6adf97f83acf6453d4a6a4b1070f3754">TileCollideType.None</a> = 0, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a64650539566db75533d0f5b7e2adc03b">TileCollideType.TileType</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a738ce52e71a260bb0f9911441cfb67d6">TileCollideType.WallType</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141ae41480b6bbfbf7407974a88d3d34f4fa">TileCollideType.Solid</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a94e8a499539d1a472f3b5dbbb85508c0">TileCollideType.Wall</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a419f3742e6de8e0ec4b22cce005e7630">TileCollideType.Platform</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141ad0443ffc393c8878c4a8ce2541e36411">TileCollideType.Wire1</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a2954d27d13f1787c811f237eab667da0">TileCollideType.Wire2</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a69d533080c530d3d52e02fa5490d8e3b">TileCollideType.Wire3</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a68054499c81ab2cec79407b5af1bf865">TileCollideType.Wire4</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141af1fa5c9d67213c446d65d31d132e77d6">TileCollideType.Actuated</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a27634ff8002b12e75d98e07ccd005d18">TileCollideType.Water</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a8dc0611245a871ac51bbeebb85f33a58">TileCollideType.Honey</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a1d18fe2cdd43a72d46421ecfe81b599e">TileCollideType.Lava</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a033631ba453c68acc738917936e0fb97">TileCollideType.SlopeAny</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a2a02ded07b97f68dd665b0d71a05f1b7">TileCollideType.SlopeHalfBrick</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141ab23bc8e1434b426e0ff1da5bce5b1706">TileCollideType.SlopeTopRight</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141ae4c02c33b14bd173677de365ab03591a">TileCollideType.SlopeTopLeft</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141abb45e7116bc984b777d246a2d8ad59f0">TileCollideType.SlopeBottomRight</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a776d4c819993989b12c4d766972e5efb">TileCollideType.SlopeBottomLeft</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141add2c9c045022543531e5237f4fbe06d6">TileCollideType.SlopeTop</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a4f6cc4fb4e192a45b240e21391823492">TileCollideType.SlopeBottom</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141aff21910a70de1f7290614103390ce694">TileCollideType.SlopeLeft</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141aa7f879b137eb057198e4bd162437a9f6">TileCollideType.SlopeRight</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a270e372bc5190fb48602b7f7496d8629">TileCollideType.BrightnessLow</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141af1e270d571ae407f779482e3e15eed87">TileCollideType.BrightnessHigh</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a90589c47f06eb971d548591f23c285af">TileCollideType.Custom</a>, 
+<a class="el" href="namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a5c8519c4be70160dc8d787a4b734bad5">TileCollideType.WorldEdge</a>
+<br />
+ }</td></tr>
 <tr class="separator:a7988faad5bf73e0f322b548c47cd4141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
@@ -146,8 +185,38 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 
 <p></p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a64650539566db75533d0f5b7e2adc03b"></a>TileType&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a738ce52e71a260bb0f9911441cfb67d6"></a>WallType&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141ae41480b6bbfbf7407974a88d3d34f4fa"></a>Solid&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a94e8a499539d1a472f3b5dbbb85508c0"></a>Wall&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a419f3742e6de8e0ec4b22cce005e7630"></a>Platform&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141ad0443ffc393c8878c4a8ce2541e36411"></a>Wire1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a2954d27d13f1787c811f237eab667da0"></a>Wire2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a69d533080c530d3d52e02fa5490d8e3b"></a>Wire3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a68054499c81ab2cec79407b5af1bf865"></a>Wire4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141af1fa5c9d67213c446d65d31d132e77d6"></a>Actuated&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a27634ff8002b12e75d98e07ccd005d18"></a>Water&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a8dc0611245a871ac51bbeebb85f33a58"></a>Honey&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a1d18fe2cdd43a72d46421ecfe81b599e"></a>Lava&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a033631ba453c68acc738917936e0fb97"></a>SlopeAny&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a2a02ded07b97f68dd665b0d71a05f1b7"></a>SlopeHalfBrick&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141ab23bc8e1434b426e0ff1da5bce5b1706"></a>SlopeTopRight&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141ae4c02c33b14bd173677de365ab03591a"></a>SlopeTopLeft&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141abb45e7116bc984b777d246a2d8ad59f0"></a>SlopeBottomRight&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a776d4c819993989b12c4d766972e5efb"></a>SlopeBottomLeft&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141add2c9c045022543531e5237f4fbe06d6"></a>SlopeTop&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a4f6cc4fb4e192a45b240e21391823492"></a>SlopeBottom&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141aff21910a70de1f7290614103390ce694"></a>SlopeLeft&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141aa7f879b137eb057198e4bd162437a9f6"></a>SlopeRight&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a270e372bc5190fb48602b7f7496d8629"></a>BrightnessLow&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141af1e270d571ae407f779482e3e15eed87"></a>BrightnessHigh&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a90589c47f06eb971d548591f23c285af"></a>Custom&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7988faad5bf73e0f322b548c47cd4141a5c8519c4be70160dc8d787a4b734bad5"></a>WorldEdge&#160;</td><td class="fielddoc"></td></tr>
+</table>
 
-<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00008">8</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_pattern___instance___check_8cs_source.html#l00009">9</a> of file <a class="el" href="_tile_pattern___instance___check_8cs_source.html">TilePattern_Instance_Check.cs</a>.</p>
 
 </div>
 </div>

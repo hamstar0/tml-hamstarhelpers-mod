@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.1.0</span>
+   &#160;<span id="projectnumber">v5.0.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -114,6 +114,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a634baadcd8f9ba77b41001363fe482ba"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#a634baadcd8f9ba77b41001363fe482ba">SafelyGetModPlayer&lt; T &gt;</a> (Player player)</td></tr>
 <tr class="memdesc:a634baadcd8f9ba77b41001363fe482ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides an alternative to <code>Player.GetModPlayer(...)</code> to ensure the given player is properly loaded. Addresses some confusing types of errors.  <a href="#a634baadcd8f9ba77b41001363fe482ba">More...</a><br /></td></tr>
 <tr class="separator:a634baadcd8f9ba77b41001363fe482ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acced8bc387fbb61a641b3aaeeac7fe1f"><td class="memItemLeft" align="right" valign="top">static UnifiedRandom&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#acced8bc387fbb61a641b3aaeeac7fe1f">SafelyGetRand</a> ()</td></tr>
+<tr class="memdesc:acced8bc387fbb61a641b3aaeeac7fe1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensures a valid randomizer. Typically returns <code>Main.rand</code>.  <a href="#acced8bc387fbb61a641b3aaeeac7fe1f">More...</a><br /></td></tr>
+<tr class="separator:acced8bc387fbb61a641b3aaeeac7fe1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -124,7 +127,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tModLoader. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00018">18</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a52292877daa46040b84380edaec7b1d9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52292877daa46040b84380edaec7b1d9">&#9670;&nbsp;</a></span>ExitToDesktop()</h2>
@@ -158,7 +161,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00032">32</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00029">29</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -194,7 +197,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00051">51</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00048">48</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -249,7 +252,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00128">128</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00045">45</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
 
 </div>
 </div>
@@ -300,7 +303,37 @@ Static Public Attributes</h2></td></tr>
 </dl>
 </div>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00140">140</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00057">57</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
+
+</div>
+</div>
+<a id="acced8bc387fbb61a641b3aaeeac7fe1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acced8bc387fbb61a641b3aaeeac7fe1f">&#9670;&nbsp;</a></span>SafelyGetRand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static UnifiedRandom HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetRand </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ensures a valid randomizer. Typically returns <code>Main.rand</code>. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00069">69</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
 
 </div>
 </div>
@@ -327,12 +360,13 @@ Static Public Attributes</h2></td></tr>
 
 <p>Path to config files. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00022">22</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>v5 (tML11)/HamstarHelpers/Helpers/TModLoader/<a class="el" href="_tml_helpers_8cs_source.html">TmlHelpers.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Helpers/TModLoader/<a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

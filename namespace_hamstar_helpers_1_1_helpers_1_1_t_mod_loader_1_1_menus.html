@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.1.0</span>
+   &#160;<span id="projectnumber">v5.0.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -102,7 +102,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assorted static "helper" functions pertaining to the main menu.  <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_menu_u_is.html">MenuUIs</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getters for menu UI objects (<code>UIstate</code>).  <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_menu_u_is.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getters for menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> objects (<code>UIstate</code> instances).  <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_menu_u_is.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html">ModMenuHelpers</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assorted static "helper" functions pertaining to the mod list menu.  <a href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html#details">More...</a><br /></td></tr>
@@ -110,7 +110,39 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a00e21668406f9c706b0a62586dd2ca32"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32">MenuUIDefinition</a> { , <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a8420a87416f36b5ce4cab19d22aebc3c">MenuUIDefinition.UIWorldSelect</a> = 888
+<tr class="memitem:a00e21668406f9c706b0a62586dd2ca32"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32">MenuUIDefinition</a> { <br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a42c4110e65cded90e3ff15e353215442">MenuUIDefinition.UICharacterSelect</a> = 888, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a8420a87416f36b5ce4cab19d22aebc3c">MenuUIDefinition.UIWorldSelect</a> = 888, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32ace617d56c5f8eaa9dcac4b3026d9fdb7">MenuUIDefinition.UIManageControls</a> = 888, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32ae02ab1c1e41b355efa20e9a6cb8dd1e3">MenuUIDefinition.UIAchievementsMenu</a> = 888, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32adef38f26f1817d0c5684e00680eab150">MenuUIDefinition.UIMods</a> = 10000, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a94a61883fff942ebde84bc8e25ad3b56">MenuUIDefinition.UIModSources</a> = 10001, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a4c629f9670cc7d6c47b3266d18e2dca8">MenuUIDefinition.UILoadModsProgress</a> = 10002, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32ac9f7735a20b815c96d6330f9dfaf87cd">MenuUIDefinition.UIBuildModProgress</a> = 10003, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a4f059936e5ca3663d46b576e897f35fa">MenuUIDefinition.UIErrorMessage</a> = 10005, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a1c739fd090ca55d3f3a02d130dbf3606">MenuUIDefinition.UIModBrowser</a> = 10007, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32aafdf507b3564aa6156dd896d3f374d4c">MenuUIDefinition.UIModInfo</a> = 10008, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32afcbf77efdc9d03826b1b1216bd271cfa">MenuUIDefinition.UIManagePublished</a> = 10011, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a91bd6f7c14204e69bd518b49b75006c1">MenuUIDefinition.UIUpdateMessage</a> = 10012, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a8f2ca928d8536079fa0f2ea9ebaa0d50">MenuUIDefinition.UIInfoMessage</a> = 10013, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a47d27442cf32a0e3fa0896528ce82b57">MenuUIDefinition.UIEnterPassphraseMenu</a> = 10015, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a2884bc154caeedf6da1ef4ee3d0f9a23">MenuUIDefinition.UIModPacks</a> = 10016, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a36ff79d784cf3e2871e161032aa9e8f3">MenuUIDefinition.UIEnterSteamIDMenu</a> = 10018, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32ab170eb7871b9aec4998437fd96469d77">MenuUIDefinition.UIExtractModProgress</a> = 10019, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a2d44236d672c0b9e0437a72b3864b794">MenuUIDefinition.UIDownloadProgress</a> = 10020, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a4080e9b4a6ae7f054cfc558101b6be46">MenuUIDefinition.UIUploadModProgress</a> = 10021, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a02be497824eb57c1c947da77733ec314">MenuUIDefinition.UIDeveloperModeHelp</a> = 10022, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a2025ff974a4b59aaca08758f725d2044">MenuUIDefinition.UIProgress</a> = 10023, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a91a9cc36b22b4937a1def040f36578a1">MenuUIDefinition.UIModConfig</a> = 10024, 
+<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32ae72061306d97f3e8155df75be53f39d3">MenuUIDefinition.UIModConfigList</a> = 888, 
+<br />
+&#160;&#160;<a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32ada0daa36e430eb873cd0ce1389701873">MenuUIDefinition.UICreateMod</a> = 10025
+<br />
  }</td></tr>
 <tr class="memdesc:a00e21668406f9c706b0a62586dd2ca32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mappings of menu UI classes to their respective <code>Main.menuMode</code> (or 888, if not relevant).  <a href="namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32">More...</a><br /></td></tr>
 <tr class="separator:a00e21668406f9c706b0a62586dd2ca32"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,10 +168,33 @@ Enumerations</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Mappings of menu UI classes to their respective <code>Main.menuMode</code> (or 888, if not relevant). </p>
+<p>Mappings of menu <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> classes to their respective <code>Main.menuMode</code> (or 888, if not relevant). </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a8420a87416f36b5ce4cab19d22aebc3c"></a>UIWorldSelect&#160;</td><td class="fielddoc"><p>1 </p>
-</td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a42c4110e65cded90e3ff15e353215442"></a>UICharacterSelect&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a8420a87416f36b5ce4cab19d22aebc3c"></a>UIWorldSelect&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32ace617d56c5f8eaa9dcac4b3026d9fdb7"></a>UIManageControls&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32ae02ab1c1e41b355efa20e9a6cb8dd1e3"></a>UIAchievementsMenu&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32adef38f26f1817d0c5684e00680eab150"></a>UIMods&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a94a61883fff942ebde84bc8e25ad3b56"></a>UIModSources&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a4c629f9670cc7d6c47b3266d18e2dca8"></a>UILoadModsProgress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32ac9f7735a20b815c96d6330f9dfaf87cd"></a>UIBuildModProgress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a4f059936e5ca3663d46b576e897f35fa"></a>UIErrorMessage&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a1c739fd090ca55d3f3a02d130dbf3606"></a>UIModBrowser&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32aafdf507b3564aa6156dd896d3f374d4c"></a>UIModInfo&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32afcbf77efdc9d03826b1b1216bd271cfa"></a>UIManagePublished&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a91bd6f7c14204e69bd518b49b75006c1"></a>UIUpdateMessage&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a8f2ca928d8536079fa0f2ea9ebaa0d50"></a>UIInfoMessage&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a47d27442cf32a0e3fa0896528ce82b57"></a>UIEnterPassphraseMenu&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a2884bc154caeedf6da1ef4ee3d0f9a23"></a>UIModPacks&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a36ff79d784cf3e2871e161032aa9e8f3"></a>UIEnterSteamIDMenu&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32ab170eb7871b9aec4998437fd96469d77"></a>UIExtractModProgress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a2d44236d672c0b9e0437a72b3864b794"></a>UIDownloadProgress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a4080e9b4a6ae7f054cfc558101b6be46"></a>UIUploadModProgress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a02be497824eb57c1c947da77733ec314"></a>UIDeveloperModeHelp&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a2025ff974a4b59aaca08758f725d2044"></a>UIProgress&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32a91a9cc36b22b4937a1def040f36578a1"></a>UIModConfig&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32ae72061306d97f3e8155df75be53f39d3"></a>UIModConfigList&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a00e21668406f9c706b0a62586dd2ca32ada0daa36e430eb873cd0ce1389701873"></a>UICreateMod&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 <p class="definition">Definition at line <a class="el" href="_menu_definitions_8cs_source.html#l00049">49</a> of file <a class="el" href="_menu_definitions_8cs_source.html">MenuDefinitions.cs</a>.</p>

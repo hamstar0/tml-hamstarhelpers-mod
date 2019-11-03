@@ -1,4 +1,5 @@
 var namespace_hamstar_helpers_1_1_helpers_1_1_entities =
 [
-    [ "EntityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers" ]
+    [ "EntityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers" ],
+    [ "EntityInfoHelpers", "class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_info_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_info_helpers" ]
 ];

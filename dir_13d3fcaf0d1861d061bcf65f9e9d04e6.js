@@ -8,5 +8,6 @@ var dir_13d3fcaf0d1861d061bcf65f9e9d04e6 =
     [ "DictionaryExtensions_2D_Get.cs", "_dictionary_extensions__2_d___get_8cs_source.html", null ],
     [ "DictionaryExtensions_2D_Remove.cs", "_dictionary_extensions__2_d___remove_8cs_source.html", null ],
     [ "DictionaryExtensions_2D_Set.cs", "_dictionary_extensions__2_d___set_8cs_source.html", null ],
-    [ "KeyValuePairExtensions.cs", "_key_value_pair_extensions_8cs_source.html", null ]
+    [ "KeyValuePairExtensions.cs", "_key_value_pair_extensions_8cs_source.html", null ],
+    [ "StringExtensions.cs", "_string_extensions_8cs_source.html", null ]
 ];

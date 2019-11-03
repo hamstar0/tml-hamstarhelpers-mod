@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['onprechange',['OnPreChange',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_area.html#a812c29fd16728404042ff600354cddb1',1,'HamstarHelpers::Classes::UI::Elements::UITextArea']]],
+  ['onpretextchange',['OnPreTextChange',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a45ab3afa80b6febddf93dc7ddf33b8e6',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
   ['onselectedchanged',['OnSelectedChanged',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a66b30badf61a5f1c2f70d20026300c36',1,'HamstarHelpers::Classes::UI::Elements::UICheckbox']]],
-  ['ontextchange',['OnTextChange',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_field.html#a7b5b5d0a1ef88d572b726107d84763da',1,'HamstarHelpers::Classes::UI::Elements::UITextField']]]
+  ['ontextchange',['OnTextChange',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html#a00405a35013f09459b4a5463cd13c642',1,'HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnTextChange()'],['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#a91eaa2077797b803d1ab8460802db577',1,'HamstarHelpers.Classes.UI.Elements.UITextInputPanel.OnTextChange()']]],
+  ['onunfocus',['OnUnfocus',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#ab2b1b093c95c4c42eea6183712b0bdd4',1,'HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.OnUnfocus()'],['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html#afd7c85c940280ff3f3d8d48543d7b2f0',1,'HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnUnfocus()'],['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#a5f4ced53d20fa284972d7db75a7040ec',1,'HamstarHelpers.Classes.UI.Elements.UITextInputPanel.OnUnfocus()']]]
 ];

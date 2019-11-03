@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.1.0</span>
+   &#160;<span id="projectnumber">v5.0.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -104,6 +104,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a785cd49084cedc68833b6ea7b428d590"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_particle_fx_1_1_particle_fx_helpers.html#a785cd49084cedc68833b6ea7b428d590">MakeDustCloud</a> (Vector2 position, int quantity, float sprayAmount=0.3f, float scale=1f)</td></tr>
 <tr class="memdesc:a785cd49084cedc68833b6ea7b428d590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a dust cloud.  <a href="#a785cd49084cedc68833b6ea7b428d590">More...</a><br /></td></tr>
 <tr class="separator:a785cd49084cedc68833b6ea7b428d590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26a5a5c0994445c59171814da52ddae5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_particle_fx_1_1_particle_fx_helpers.html#a26a5a5c0994445c59171814da52ddae5">MakeFireEmbers</a> (Vector2 position, int smallEmbers, int largeEmbers, int pouringEmbers, int floaters, int width=30, int height=30, float scale=1f)</td></tr>
+<tr class="memdesc:a26a5a5c0994445c59171814da52ddae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates fire embers.  <a href="#a26a5a5c0994445c59171814da52ddae5">More...</a><br /></td></tr>
+<tr class="separator:a26a5a5c0994445c59171814da52ddae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc317c566197bd699adddd6e53a13d5c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_particle_fx_1_1_particle_fx_helpers.html#abc317c566197bd699adddd6e53a13d5c">MakeTeleportFx</a> (Vector2 position, int quantity, int width=30, int height=30, float scale=1f)</td></tr>
+<tr class="memdesc:abc317c566197bd699adddd6e53a13d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates fire embers.  <a href="#abc317c566197bd699adddd6e53a13d5c">More...</a><br /></td></tr>
+<tr class="separator:abc317c566197bd699adddd6e53a13d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to visual particle and dust effects. </p>
@@ -168,6 +174,163 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="_particle_fx_helpers_8cs_source.html#l00018">18</a> of file <a class="el" href="_particle_fx_helpers_8cs_source.html">ParticleFxHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a26a5a5c0994445c59171814da52ddae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26a5a5c0994445c59171814da52ddae5">&#9670;&nbsp;</a></span>MakeFireEmbers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeFireEmbers </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>smallEmbers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>largeEmbers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pouringEmbers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>floaters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em> = <code>30</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em> = <code>30</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>1f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates fire embers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td></td></tr>
+    <tr><td class="paramname">smallEmbers</td><td></td></tr>
+    <tr><td class="paramname">largeEmbers</td><td></td></tr>
+    <tr><td class="paramname">pouringEmbers</td><td></td></tr>
+    <tr><td class="paramname">floaters</td><td></td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">scale</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_particle_fx_helpers_8cs_source.html#l00044">44</a> of file <a class="el" href="_particle_fx_helpers_8cs_source.html">ParticleFxHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="abc317c566197bd699adddd6e53a13d5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc317c566197bd699adddd6e53a13d5c">&#9670;&nbsp;</a></span>MakeTeleportFx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeTeleportFx </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>quantity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em> = <code>30</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em> = <code>30</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>1f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates fire embers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td></td></tr>
+    <tr><td class="paramname">quantity</td><td>Dust particles.</td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">scale</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_particle_fx_helpers_8cs_source.html#l00086">86</a> of file <a class="el" href="_particle_fx_helpers_8cs_source.html">ParticleFxHelpers.cs</a>.</p>
 
 </div>
 </div>

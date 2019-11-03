@@ -22,6 +22,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionar
     [ "Get2DOrDefault< TKey1, TKey2, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a0537574f3e928d810b660244923c9a86", null ],
     [ "GetOrDefault< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab1fed8a9a913f7287471779ba4b7d7ba", null ],
     [ "Remove2D< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a44ab9efdadf92f99b6fca3d3fb92ebc4", null ],
+    [ "Remove2D< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ac417ac5e4a5d7cb712d9e75d9cb50c82", null ],
     [ "Remove2D< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a6d3840b7f2db5932b67005b177410def", null ],
     [ "Remove2D< TKey1, TKey2, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a880ee0758d04fce3f4e274f54f9937cc", null ],
     [ "Set2D< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a489d6091146d4666fb17d61a3cdbc120", null ],

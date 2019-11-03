@@ -7,5 +7,6 @@ var class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers =
     [ "IsSolid", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ad89583ebd6a6f445cc64bb59de57cf92", null ],
     [ "IsWire", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a83630e8e6b61358be2a592a321a23158", null ],
     [ "KillTile", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#afa6740b2a2db8501fc644276e81126cb", null ],
-    [ "PlaceTile", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a763cb83d149dbd586c13cd5b5ddac0c8", null ]
+    [ "PlaceTile", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a763cb83d149dbd586c13cd5b5ddac0c8", null ],
+    [ "Swap1x1", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a1de576ca9afdb173404cdc74b71bbc70", null ]
 ];

@@ -9,6 +9,7 @@ var dir_3bd55fe61e5ac6158cf3ec2496b3368f =
     [ "Services", "dir_2b969caaf8c4e5d50df83d3fb1db3f43.html", "dir_2b969caaf8c4e5d50df83d3fb1db3f43" ],
     [ "Tiles", "dir_bfa987733c2be8aacc3763d972bbbcb9.html", "dir_bfa987733c2be8aacc3763d972bbbcb9" ],
     [ "Config.cs", "_config_8cs_source.html", null ],
+    [ "MyCustomPlayer.cs", "_my_custom_player_8cs_source.html", null ],
     [ "MyItem.cs", "_my_item_8cs_source.html", null ],
     [ "MyMod.cs", "_my_mod_8cs_source.html", null ],
     [ "MyMod_Data.cs", "_my_mod___data_8cs_source.html", null ],

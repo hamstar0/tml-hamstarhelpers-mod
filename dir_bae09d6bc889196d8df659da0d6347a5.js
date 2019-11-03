@@ -6,5 +6,6 @@ var dir_bae09d6bc889196d8df659da0d6347a5 =
     [ "Mods", "dir_3e6173b5d6204f084fa2ae19e6413db9.html", "dir_3e6173b5d6204f084fa2ae19e6413db9" ],
     [ "LoadHelpers.cs", "_load_helpers_8cs_source.html", null ],
     [ "LoadHelpers_Instance.cs", "_load_helpers___instance_8cs_source.html", null ],
-    [ "TmlHelpers.cs", "_tml_helpers_8cs_source.html", null ]
+    [ "TmlHelpers.cs", "_tml_helpers_8cs_source.html", null ],
+    [ "TmlHelpers_Safety.cs", "_tml_helpers___safety_8cs_source.html", null ]
 ];

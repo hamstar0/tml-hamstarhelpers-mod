@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.1.0</span>
+   &#160;<span id="projectnumber">v5.0.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -151,7 +151,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:affa6fbb377b0aab6295ad1cd1a9d65bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all types from a given assembly using a given class name.  <a href="#affa6fbb377b0aab6295ad1cd1a9d65bb">More...</a><br /></td></tr>
 <tr class="separator:affa6fbb377b0aab6295ad1cd1a9d65bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3801c1608c2e0d6119b0aaf8da60b2eb"><td class="memItemLeft" align="right" valign="top">static Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a3801c1608c2e0d6119b0aaf8da60b2eb">GetTypeFromAssembly</a> (Assembly assembly, string namespacedType)</td></tr>
-<tr class="memdesc:a3801c1608c2e0d6119b0aaf8da60b2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all types from a given assembly using a given class name.  <a href="#a3801c1608c2e0d6119b0aaf8da60b2eb">More...</a><br /></td></tr>
+<tr class="memdesc:a3801c1608c2e0d6119b0aaf8da60b2eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all types from a given assembly using a given (namespaced) class name.  <a href="#a3801c1608c2e0d6119b0aaf8da60b2eb">More...</a><br /></td></tr>
 <tr class="separator:a3801c1608c2e0d6119b0aaf8da60b2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="memItemLeft" align="right" valign="top">static IEnumerable&lt; Type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a4a5b5f723bceb4c09b209ea6046e8ac7">GetAllAvailableSubTypesFromMods</a> (Type parentType)</td></tr>
 <tr class="memdesc:a4a5b5f723bceb4c09b209ea6046e8ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all available sub-types (immediate sub-classes) of a given parent type from each loaded mod.  <a href="#a4a5b5f723bceb4c09b209ea6046e8ac7">More...</a><br /></td></tr>
@@ -296,7 +296,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if field or property exist.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00074">74</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00077">77</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
 
 </div>
 </div>
@@ -479,7 +479,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00127">127</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00130">130</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
 
 </div>
 </div>
@@ -540,7 +540,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00139">139</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00142">142</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
 
 </div>
 </div>
@@ -656,7 +656,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets all types from a given assembly using a given class name. </p>
+<p>Gets all types from a given assembly using a given (namespaced) class name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">assembly</td><td></td></tr>
@@ -1015,7 +1015,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if member exists.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00094">94</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00097">97</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
 
 </div>
 </div>
@@ -1077,7 +1077,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if member exists.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00106">106</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00109">109</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
 
 </div>
 </div>
@@ -1132,7 +1132,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00165">165</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00168">168</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
 
 </div>
 </div>
@@ -1187,7 +1187,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if member is found.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00176">176</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___get_set_8cs_source.html#l00179">179</a> of file <a class="el" href="_reflection_helpers___get_set_8cs_source.html">ReflectionHelpers_GetSet.cs</a>.</p>
 
 </div>
 </div>

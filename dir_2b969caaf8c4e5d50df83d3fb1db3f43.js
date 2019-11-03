@@ -10,6 +10,7 @@ var dir_2b969caaf8c4e5d50df83d3fb1db3f43 =
     [ "Messages", "dir_bcaaab98f6cb13c630f7e5e9e21f4ede.html", "dir_bcaaab98f6cb13c630f7e5e9e21f4ede" ],
     [ "ModCompatibilities", "dir_496a68cbef12e23f2d46b49683fe249d.html", "dir_496a68cbef12e23f2d46b49683fe249d" ],
     [ "ModLock", "dir_3623e498e3b0c0f1e6979d5aafa0a65c.html", "dir_3623e498e3b0c0f1e6979d5aafa0a65c" ],
+    [ "OverlaySounds", "dir_d8465fd0ce8b1826bccd721cfbc0f515.html", "dir_d8465fd0ce8b1826bccd721cfbc0f515" ],
     [ "RecipeHack", "dir_c42d853a714c7cb9fbf5427a71a8e546.html", "dir_c42d853a714c7cb9fbf5427a71a8e546" ],
     [ "Server", "dir_c5e5bbf80ea653d8bc0f2e102a496331.html", "dir_c5e5bbf80ea653d8bc0f2e102a496331" ],
     [ "Timers", "dir_aea5e6f526cf1edb6df3016233f56ac9.html", "dir_aea5e6f526cf1edb6df3016233f56ac9" ],
