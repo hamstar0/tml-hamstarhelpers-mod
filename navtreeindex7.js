@@ -1,5 +1,8 @@
 var NAVTREEINDEX7 =
 {
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#ad9c15a215ce0bac4f8394c50f134786f":[1,0,0,4,5,1,3],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#adfb70b5a173d403ab657a4559dc5d77a":[1,0,0,4,5,1,0],
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#afdf0705bbce538736e8a8030e4c34dde":[1,0,0,4,5,1,6],
 "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html":[1,0,0,4,6,0,0],
 "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#a1ea9318b54956a8a34d0f7e6286580e4":[1,0,0,4,6,0,0,3],
 "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#aa6be2915a113e87d4d2de80924dde2c6":[1,0,0,4,6,0,0,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX7 =
 "dir_fae0d5b16341b3860fc573cb98f1438c.html":[2,0,0,0,2,22],
 "dir_ffdd692eacb38e58e1cdb18303add757.html":[2,0,0,0,0,5],
 "files.html":[2,0],
-"functions.html":[1,3,0],
-"functions.html":[1,3,0,0],
-"functions_b.html":[1,3,0,1],
-"functions_c.html":[1,3,0,2]
+"functions.html":[1,3,0,0]
 };

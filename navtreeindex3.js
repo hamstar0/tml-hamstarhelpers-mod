@@ -203,6 +203,7 @@ var NAVTREEINDEX3 =
 "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a40930a3f028fad258de84ba729639694":[1,0,0,1,2,1,8],
 "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a6ea1feb593e0a83f7bc29628e09030db":[1,0,0,1,2,1,7],
 "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a7ffc50b1461dd296b95199b7007c4602":[1,0,0,1,2,1,1],
+"class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a9a6b4a2a0c6281273ba40d36f56a9cf3":[1,0,0,1,2,1,9],
 "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ac9434f59b02765fbda2a598028335652":[1,0,0,1,2,1,6],
 "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae141f63955b55fae280ffdb3c4a19f8e":[1,0,0,1,2,1,3],
 "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae74866022df1221b810f0c9399944d5d":[1,0,0,1,2,1,5],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#aaede95a9f6f922ac0cd4a72408a75812":[1,0,0,1,3,1,2,4],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab1fed8a9a913f7287471779ba4b7d7ba":[1,0,0,1,3,1,2,20],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab36edff65c054d4c9486d7171f67d91a":[1,0,0,1,3,1,2,16],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab93e2e57ce0dcf659e1392f9f9340f1c":[1,0,0,1,3,1,2,27],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#abaa45d8ba97fc140e54390f8d979126c":[1,0,0,1,3,1,2,28]
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab93e2e57ce0dcf659e1392f9f9340f1c":[1,0,0,1,3,1,2,27]
 };

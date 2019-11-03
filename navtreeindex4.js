@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#abaa45d8ba97fc140e54390f8d979126c":[1,0,0,1,3,1,2,28],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#abdf524bb75d7ebd4ce945cda5cd912ac":[1,0,0,1,3,1,2,26],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ac417ac5e4a5d7cb712d9e75d9cb50c82":[1,0,0,1,3,1,2,22],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#accc49d74e2aef32aed9c31acabdf6b71":[1,0,0,1,3,1,2,10],
@@ -12,11 +13,13 @@ var NAVTREEINDEX4 =
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_string_extensions.html":[1,0,0,1,3,1,4],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_string_extensions.html#a39885aabe985ca3292775cdaee60db4a":[1,0,0,1,3,1,4,0],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html":[1,0,0,1,3,5],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a67fa0ee3515626bf5f58dc6276212c52":[1,0,0,1,3,5,3],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6c49a09f75cd582c707efca7157e9a3b":[1,0,0,1,3,5,1],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a18fcf6a0ad6787dcb62b94d3baa2604e":[1,0,0,1,3,5,1],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a67fa0ee3515626bf5f58dc6276212c52":[1,0,0,1,3,5,4],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6c49a09f75cd582c707efca7157e9a3b":[1,0,0,1,3,5,2],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a809e448146791a6950e2594c92abf650":[1,0,0,1,3,5,0],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#abf76393ab615c90788e44cae0a6eb5ed":[1,0,0,1,3,5,2],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#ad260aeb7ef5602e378fbf5145212a144":[1,0,0,1,3,5,4],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#abf76393ab615c90788e44cae0a6eb5ed":[1,0,0,1,3,5,3],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#abfa9a89ce274e817bd885dcd02efd5f6":[1,0,0,1,3,5,5],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#ad260aeb7ef5602e378fbf5145212a144":[1,0,0,1,3,5,6],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html":[1,0,0,1,3,2,0],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html#a491799f7de1b4a973c18b571dbaca60d":[1,0,0,1,3,2,0,0],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html#a99a3a844743c86ac2024b4e8b9cdd30e":[1,0,0,1,3,2,0,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX4 =
 "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a3fcf21b2c95d646d2a0ca3cd2a209b4a":[1,0,0,1,12,6,3],
 "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#adea1167bc077106337f7317afc82f817":[1,0,0,1,12,6,0],
 "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#ae83f35a47e086046ec16d8f67db09b30":[1,0,0,1,12,6,1],
-"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_invasion_helpers.html":[1,0,0,1,12,7],
-"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_invasion_helpers.html#a1349353f77c095eecc4dcde8a57996f8":[1,0,0,1,12,7,0],
-"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_invasion_helpers.html#ab2e1770e7b86f174206226f406ace359":[1,0,0,1,12,7,1],
-"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers.html":[1,0,0,1,12,8]
+"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_invasion_helpers.html":[1,0,0,1,12,7]
 };
