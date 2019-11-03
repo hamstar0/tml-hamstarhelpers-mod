@@ -16,6 +16,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 	public partial class EntityGroups {
 		private static object ComputeLock = new object();
 		private static object ReQueueLock = new object();
+		private static object MatchersLock = new object();
 
 
 
@@ -61,7 +62,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 				//for( i = 0; i < matchers.Count; i++ ) {
 				Parallel.For( i, count, ( j ) => {
 					if( failedAt != -1 ) { return; }
-					EntityGroupMatcherDefinition<T> matcher = matchers[j];
+
+					EntityGroupMatcherDefinition<T> matcher;
+					lock( EntityGroups.MatchersLock ) {
+						matcher = matchers[j];
+					}
 
 					try {
 						failedAt = this.GetComputedGroup( matcher, matchers, entityPool, reQueuedCounts, groups, myGroupsPerEnt )
@@ -93,7 +98,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 			ISet<int> grp;
 
 			if( !this.ComputeGroupMatch( entityPool, matcher, out grp ) ) {
-				matchers.Add( matcher );
+				lock( EntityGroups.MatchersLock ) {
+					matchers.Add( matcher );
+				}
 
 				lock( EntityGroups.ReQueueLock ) {
 					reQueuedCounts.AddOrSet( matcher, 1 );
