@@ -51,6 +51,7 @@ namespace HamstarHelpers.Services.GameData {
 	/// 
 	/// IMPORTANT: Not finished; untested.
 	/// </summary>
+	[Obsolete("Incomplete")]
 	public class BossData {
 		private static IList<BossDataEntry> _BossOrder;
 		private static IDictionary<string, int> _BossMap;

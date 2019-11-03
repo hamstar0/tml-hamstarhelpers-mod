@@ -36,8 +36,6 @@ namespace HamstarHelpers.Internals.Logic {
 
 
 		public void OnCurrentClientEnterWorld( Player player ) {
-			var mymod = ModHelpersMod.Instance;
-
 			if( !this.HasLoadedOldUID ) {
 				LogHelpers.Alert( "No (old) UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 				this.HasLoadedOldUID = true;	// Ugly failsafe; don't really know why data from ModPlayer.Load isn't available here
@@ -66,8 +64,10 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public bool HasSyncedState() {
 			if( ModHelpersMod.Config.DebugModeNetInfo ) {
-				LogHelpers.AlertOnce( "HasSyncedWorldData: "+this.HasSyncedWorldData+
-					", HasLoadedOldUID: "+this.HasLoadedOldUID );
+				LogHelpers.AlertOnce(
+					"HasSyncedWorldData: " + this.HasSyncedWorldData +
+					", HasLoadedOldUID: " + this.HasLoadedOldUID
+				);
 			}
 
 			return this.HasSyncedWorldData && this.HasLoadedOldUID;
@@ -111,7 +111,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////
 
-		public void NetReceiveIdOnServer( bool hasUid, string uid ) {
+		public void NetReceiveUIDOnServer( bool hasUid, string uid ) {
 			this.HasLoadedOldUID = hasUid;
 			this.OldPrivateUID = uid;
 			

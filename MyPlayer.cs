@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
@@ -16,23 +17,6 @@ using Terraria.ModLoader.IO;
 namespace HamstarHelpers {
 	/// @private
 	class ModHelpersPlayer : ModPlayer {
-		internal readonly static object MyValidatorKey;
-		internal readonly static CustomLoadHookValidator<int> LoadValidator;
-		internal readonly static CustomLoadHookValidator<int> SaveValidator;
-
-
-		////////////////
-
-		static ModHelpersPlayer() {
-			ModHelpersPlayer.MyValidatorKey = new object();
-			ModHelpersPlayer.LoadValidator = new CustomLoadHookValidator<int>( ModHelpersPlayer.MyValidatorKey );
-			ModHelpersPlayer.SaveValidator = new CustomLoadHookValidator<int>( ModHelpersPlayer.MyValidatorKey );
-		}
-
-
-
-		////////////////
-
 		public PlayerLogic Logic { get; private set; }
 
 
@@ -72,8 +56,6 @@ namespace HamstarHelpers {
 			
 			int who = player.whoAmI;
 			
-			var mymod = (ModHelpersMod)this.mod;
-				
 			if( Main.netMode == 0 ) {
 				this.Logic.OnSingleEnterWorld( Main.player[who] );
 			} else if( Main.netMode == 1 ) {
@@ -88,15 +70,7 @@ namespace HamstarHelpers {
 		public override void Load( TagCompound tags ) {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			try {
-				//PlayerData.LoadAll( this.player.whoAmI, tags );
-
 				this.Logic.Load( tags );
-
-				CustomLoadHooks.TriggerHook(
-					ModHelpersPlayer.LoadValidator,
-					ModHelpersPlayer.MyValidatorKey,
-					this.player.whoAmI
-				);
 			} catch( Exception e ) {
 				if( !(e is ModHelpersException) ) {
 					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
@@ -109,14 +83,6 @@ namespace HamstarHelpers {
 		public override TagCompound Save() {
 			var tags = new TagCompound();
 			try {
-				//PlayerData.SaveAll( this.player.whoAmI, tags );
-			
-				CustomLoadHooks.TriggerHook(
-					ModHelpersPlayer.SaveValidator,
-					ModHelpersPlayer.MyValidatorKey,
-					this.player.whoAmI
-				);
-
 				this.Logic.Save( tags );
 			} catch( Exception e ) {
 				if( !(e is ModHelpersException) ) {

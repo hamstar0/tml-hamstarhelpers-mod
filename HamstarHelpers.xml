@@ -4,6 +4,15 @@
         <name>HamstarHelpers</name>
     </assembly>
     <members>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnModsUnload">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnPostModsLoad">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTree`2">
             <summary>
             Based on BTree chapter in "Introduction to Algorithms", by Thomas Cormen, Charles Leiserson, Ronald Rivest.
@@ -3476,7 +3485,7 @@
             Sets mod locking to expect only the exact set of mods it was locked with, and no more.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.ModHelpersConfig.DisableAllInternaFeatures">
+        <member name="P:HamstarHelpers.ModHelpersConfig.DisableAllInternetFeatures">
             <summary>
             Shorthand for disabling all internet functions
             </summary>

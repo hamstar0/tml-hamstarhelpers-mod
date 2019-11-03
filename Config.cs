@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.User;
 using HamstarHelpers.Services.Timers;
+using Newtonsoft.Json;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader.Config;
@@ -176,12 +177,23 @@ namespace HamstarHelpers {
 		////
 
 		/// <summary>
+		/// Save custom player data as (json) text.
+		/// </summary>
+		[Label( "Save custom player data as (json) text" )]
+		[DefaultValue( false )]
+		public bool CustomPlayerDataAsText { get; set; } = false;
+
+
+		////
+
+		/// <summary>
 		/// Shorthand for disabling all internet functions
 		/// </summary>
 		[Header( "Mod Helpers functions settings" )]
 		[Label( "Disable all internet features\n----" )]
 		[Tooltip( "Enable 'DisableModMenuUpdates', 'DisableModTags', and 'DisableOwnIPCheck' settings" )]
-		public bool DisableAllInternaFeatures {
+		[JsonIgnore]
+		public bool DisableAllInternetFeatures {
 			get {
 				return this.DisableModMenuUpdates && this.DisableModTags && this.DisableOwnIPCheck;
 			}

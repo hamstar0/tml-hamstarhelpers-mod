@@ -32,7 +32,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////
 
 		protected override void SetClientDefaults() {
-			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
+			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer(
+				Main.LocalPlayer,
+				ModHelpersMod.Instance,
+				"ModHelpersPlayer"
+			);
 
 			this.ClientPrivateUID = myplayer.Logic.OldPrivateUID;
 			this.ClientHasUID = myplayer.Logic.HasLoadedOldUID;
@@ -55,7 +59,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			Player player = Main.player[fromWho];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
-			myplayer.Logic.NetReceiveIdOnServer( this.ClientHasUID, this.ClientPrivateUID );
+			myplayer.Logic.NetReceiveUIDOnServer( this.ClientHasUID, this.ClientPrivateUID );
 		}
 	}
 }

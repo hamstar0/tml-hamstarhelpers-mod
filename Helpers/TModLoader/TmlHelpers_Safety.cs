@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 			ModPlayer[] modPlayers;
 
 			if( !ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
-				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", DotNET.Reflection.ReflectionHelpers.MostAccess );
+				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", ReflectionHelpers.MostAccess );
 				if( setupPlayerMethod == null ) {
 					throw new ModHelpersException( "Could not run SetupPlayer for " + ( player?.name ?? "null player" ) );
 				}

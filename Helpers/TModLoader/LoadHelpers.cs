@@ -88,8 +88,11 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
 						+ "StartupDelay: "+!(mymod.LoadHelpers.WorldStartupDelay < (60 * 2))
-						+ ", IsClientPlaying_Hackish: "+mymod.LoadHelpers.IsLocalPlayerInGame_Hackish+" (true?)"
-						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?)" );
+						+ ", IsLocalPlayerInGame_Hackish: " + mymod.LoadHelpers.IsLocalPlayerInGame_Hackish+" (true?)"
+						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?) = "
+						+ " HasSyncedWorldData: "+(myplayer?.Logic.HasSyncedWorldData.ToString() ?? "null")+" &&"
+						+ " HasLoadedOldUID: " + (myplayer?.Logic.HasLoadedOldUID.ToString() ?? "null")
+					);
 				} else {
 					var myworld = ModContent.GetInstance<ModHelpersWorld>();
 					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
