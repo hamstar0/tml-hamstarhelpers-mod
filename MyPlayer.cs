@@ -1,10 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Debug.DataDumper;
-using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
 using Microsoft.Xna.Framework;
 using System;
@@ -39,7 +37,7 @@ namespace HamstarHelpers {
 		public override void SyncPlayer( int toWho, int fromWho, bool newPlayer ) {
 			if( Main.netMode == 1 ) {
 				if( toWho == -1 && fromWho == -1 && newPlayer ) {
-					this.Logic.OnCurrentClientConnect( this.player );
+					this.Logic.OnCurrentClientConnect();
 				}
 			}
 			if( Main.netMode == 2 ) {
@@ -49,7 +47,7 @@ namespace HamstarHelpers {
 			}
 		}
 
-		public override void OnEnterWorld( Player player ) {
+		/*public override void OnEnterWorld( Player player ) {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			if( player.whoAmI != Main.myPlayer ) { return; }
 			if( this.player.whoAmI != Main.myPlayer ) { return; }
@@ -62,7 +60,7 @@ namespace HamstarHelpers {
 				this.Logic.OnCurrentClientEnterWorld( Main.player[who] );
 			}
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
-		}
+		}*/
 
 
 		////////////////

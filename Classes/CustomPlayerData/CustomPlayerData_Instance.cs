@@ -19,6 +19,9 @@ namespace HamstarHelpers.Classes.PlayerData {
 		/// </summary>
 		public int PlayerWho { get; private set; }
 
+		/// <summary></summary>
+		public Player Player => Main.player[ this.PlayerWho ];
+
 
 
 		////////////////

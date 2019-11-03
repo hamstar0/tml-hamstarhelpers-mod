@@ -20,7 +20,12 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 			foreach( Type plrDataType in plrDataTypes ) {
 				object data = CustomPlayerData.LoadFileData( plrDataType.Name, PlayerIdentityHelpers.GetUniqueId() );
-				var plrData = (CustomPlayerData)Activator.CreateInstance( plrDataType );
+				var plrData = (CustomPlayerData)Activator.CreateInstance(
+					plrDataType,
+					ReflectionHelpers.MostAccess,
+					null,
+					new object[] { },
+					null );
 				plrData.PlayerWho = playerWho;
 
 				singleton.DataMap.Set2D( playerWho, plrData );

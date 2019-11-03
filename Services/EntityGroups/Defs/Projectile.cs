@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Projectiles.Attributes;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Projectiles.Attributes;
 using System;
 using System.Collections.Generic;
 using Terraria;

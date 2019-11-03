@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Services.Hooks.LoadHooks;
 using System.Collections.Generic;
 using Terraria;
 
@@ -9,15 +8,13 @@ using Terraria;
 namespace HamstarHelpers.Internals.Logic {
 	/// @private
 	partial class PlayerLogic {
-		public void OnCurrentClientConnect( Player player ) {
+		public void OnCurrentClientConnect() {
 			PlayerNewIdProtocol.QuickSendToServer();
 		}
 
 		public void OnServerConnect( Player player ) {
 			this.HasSyncedWorldData = true;
 			this.IsSynced = true;	// Technically this should only be set upon sync receipt of player's 'old' uid...
-
-			CustomLoadHooks.TriggerHook( PlayerLogic.ServerConnectHookValidator, PlayerLogic.MyValidatorKey, player.whoAmI );
 
 			PlayerOldIdProtocol.QuickRequestToClient( player.whoAmI );
 			PlayerNewIdProtocol.QuickRequestToClient( player.whoAmI );

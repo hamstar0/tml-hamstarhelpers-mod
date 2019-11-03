@@ -10,21 +10,6 @@ using Terraria.ModLoader.IO;
 namespace HamstarHelpers.Internals.Logic {
 	/// @private
 	partial class PlayerLogic {
-		internal readonly static object MyValidatorKey;
-		internal readonly static CustomLoadHookValidator<int> ServerConnectHookValidator;
-
-
-		////////////////
-
-		static PlayerLogic() {
-			PlayerLogic.MyValidatorKey = new object();
-			PlayerLogic.ServerConnectHookValidator = new CustomLoadHookValidator<int>( PlayerLogic.MyValidatorKey );
-		}
-
-
-
-		////////////////
-
 		public string OldPrivateUID { get; private set; }
 		public bool HasLoadedOldUID { get; private set; }
 

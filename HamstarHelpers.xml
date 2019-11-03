@@ -4,6 +4,45 @@
         <name>HamstarHelpers</name>
     </assembly>
     <members>
+        <member name="T:HamstarHelpers.Classes.PlayerData.CustomPlayerData">
+            <summary>
+            An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
+            </summary>
+            <summary>
+            An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
+            </summary>
+            <summary>
+            An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
+            </summary>
+            <summary>
+            An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnEnter(System.Object)">
+            <summary>
+            Player enters the game.
+            </summary>
+            <param name="data">Data loaded for the current player from file.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnExit">
+            <summary>
+            Player exits the game.
+            </summary>
+            <returns>Data to save for the current player. Return `null` to skip.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.Update">
+            <summary>
+            Runs every tick.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.PlayerData.CustomPlayerData.PlayerWho">
+            <summary>
+            Current player's `whoAmI` (`Main.player` array index) value.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.PlayerData.CustomPlayerData.Player">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnModsLoad">
             @private
         </member>
@@ -3483,6 +3522,11 @@
         <member name="P:HamstarHelpers.ModHelpersConfig.WorldModLockMinimumOnly">
             <summary>
             Sets mod locking to expect only the exact set of mods it was locked with, and no more.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.CustomPlayerDataAsText">
+            <summary>
+            Save custom player data as (json) text.
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DisableAllInternetFeatures">
@@ -8785,6 +8829,9 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Items.MagiTechScrapItem.AddRecipes">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.ModHelpersCustomPlayer">
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersItem">

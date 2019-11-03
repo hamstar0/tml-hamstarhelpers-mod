@@ -69,7 +69,12 @@ namespace HamstarHelpers.Classes.Loadable {
 				return (ILoadable)rawInstance;
 			}
 
-			var loadable = (ILoadable)Activator.CreateInstance( loadableClassType, ReflectionHelpers.MostAccess );
+			var loadable = (ILoadable)Activator.CreateInstance(
+				loadableClassType,
+				ReflectionHelpers.MostAccess,
+				null,
+				new object[] { },
+				null );
 			ContentInstance.Register( loadable );
 
 			return loadable;

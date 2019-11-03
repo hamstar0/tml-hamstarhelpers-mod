@@ -85,6 +85,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 			}
 
 			for( int i = 1; i < entityPool.Count; i++ ) {
+				if( (i == 102 || i == 221) && entityPool[i].GetType() == typeof(Projectile) ) {
+					continue;	// Go away, log warning spam
+				}
+
 				try {
 					lock( EntityGroups.MyLock ) {
 						if( matcher.Matcher.MatcherFunc(entityPool[i], deps) ) {
