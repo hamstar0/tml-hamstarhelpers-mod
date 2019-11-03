@@ -2,7 +2,6 @@
 using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Internals.Logic;
 using System;
 using Terraria;
 
@@ -20,7 +19,10 @@ namespace HamstarHelpers {
 
 
 		protected override void OnEnter( object data ) {
-LogHelpers.Log("hello");
+			if( this.PlayerWho != Main.myPlayer ) {
+				return;
+			}
+
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
 
 			if( Main.netMode == 0 ) {
