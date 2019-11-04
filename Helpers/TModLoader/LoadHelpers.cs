@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -24,6 +25,18 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		}
 
 		
+		/// <summary>
+		/// Indicates if the player is playing a game.
+		/// </summary>
+		/// <returns></returns>
+		public static bool IsCurrentPlayerInGame() {
+			bool isTimerActive;
+			ReflectionHelpers.Get( Main.ActivePlayerFileData, "_isTimerActive", out isTimerActive );
+
+			return !Main.gameMenu && isTimerActive;
+		}
+
+
 		/// <summary>
 		/// Indicates if the current world has finished loading, and is ready for play.
 		/// </summary>

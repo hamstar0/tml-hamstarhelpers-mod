@@ -7516,6 +7516,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.TModLoader.LoadHelpers.IsCurrentPlayerInGame">
+            <summary>
+            Indicates if the player is playing a game.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.TModLoader.LoadHelpers.IsWorldLoaded">
             <summary>
             Indicates if the current world has finished loading, and is ready for play.

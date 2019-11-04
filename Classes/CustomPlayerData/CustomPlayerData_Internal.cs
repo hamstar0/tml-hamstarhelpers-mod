@@ -40,6 +40,10 @@ namespace HamstarHelpers.Classes.PlayerData {
 		}
 
 		private static void Exit( int playerWho ) {
+			if( ModHelpersMod.Config.DebugModeHelpersInfo ) {
+				LogHelpers.Alert( "Player " + Main.player[playerWho].name + " (" + playerWho + ") exited the game." );
+			}
+
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
 
 			foreach( CustomPlayerData plrData in singleton.DataMap[playerWho] ) {
@@ -54,7 +58,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 		////////////////
 
 		private static void UpdateAll() {
-			bool isInGame = !Main.gameMenu && LoadHelpers.IsWorldBeingPlayed();
+			bool isInGame = !Main.gameMenu && LoadHelpers.IsCurrentPlayerInGame();
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
 			Player player;
@@ -69,6 +73,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 					continue;
 				}
+//LogHelpers.LogOnce( "UpdateAll "+player.name+" "+i+" "+isInGame);
 
 				if( isInGame ) {
 					if( !singleton.DataMap.ContainsKey( i ) ) {
