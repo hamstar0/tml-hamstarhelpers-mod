@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Terraria;
 using Terraria.ModLoader;
 
 
@@ -41,8 +41,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 			int maxLines = ModHelpersMod.Config.ModIssueReportErrorLogMaxLines;
 
 			IEnumerable<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder();
-			string bodyInfo = string.Join( "\n \n", FormattedGameInfoHelpers.GetFormattedGameInfo( mods ).ToArray() );
-			string bodyErrors = string.Join( "\n", GameInfoHelpers.GetErrorLog( maxLines ).ToArray() );
+			string bodyInfo = string.Join( "\n \n", FormattedGameInfoHelpers.GetFormattedGameInfo( mods ) );
+			string bodyErrors = string.Join( "\n", GameInfoHelpers.GetErrorLog( maxLines ) );
 
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "Reported from in-game: " + issueTitle;

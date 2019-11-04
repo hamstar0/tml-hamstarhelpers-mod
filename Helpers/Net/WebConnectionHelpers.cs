@@ -11,7 +11,8 @@ namespace HamstarHelpers.Helpers.Net {
 	/// Assorted static "helper" functions pertaining to connecting to the web.
 	/// </summary>
 	public partial class WebConnectionHelpers {
-		private static void HandleResponse( object _,
+		private static void HandleResponse(
+					object _,
 					UploadStringCompletedEventArgs args,
 					Action<Exception> onError,
 					Action<bool, string> onCompletion = null ) {
@@ -31,7 +32,8 @@ namespace HamstarHelpers.Helpers.Net {
 			}
 		}
 
-		private static void HandleResponse( object _,
+		private static void HandleResponse(
+					object _,
 					DownloadStringCompletedEventArgs args,
 					Action<Exception> onError,
 					Action<bool, string> onCompletion = null ) {
@@ -62,7 +64,9 @@ namespace HamstarHelpers.Helpers.Net {
 		/// <param name="onError">Called on error. Receives an `Exception`.</param>
 		/// <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
 		/// and the output (if any).</param>
-		public static void MakePostRequestAsync( string url, string jsonData,
+		public static void MakePostRequestAsync(
+					string url,
+					string jsonData,
 					Action<Exception> onError,
 					Action<bool, string> onCompletion=null ) {
 			//var cts = new CancellationTokenSource();
@@ -77,13 +81,15 @@ namespace HamstarHelpers.Helpers.Net {
 					//};
 
 					using( var client = new WebClient() ) {
-						ServicePointManager.ServerCertificateValidationCallback = ( sender, certificate, chain, policyErrors ) => { return true; };
-
+						ServicePointManager.ServerCertificateValidationCallback = ( sender, certificate, chain, policyErrors ) => {
+							return true;
+						};
+						
 						client.Headers.Add( HttpRequestHeader.ContentType, "application/json" );
 						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader " + ModLoader.version.ToString() );
 						//client.Headers["UserAgent"] = "tModLoader " + ModLoader.version.ToString();
-						client.UploadStringAsync( new Uri( url ), "POST", jsonData );//UploadValuesAsync( new Uri( url ), "POST", values );
-						client.UploadStringCompleted += ( sender, e ) => {
+						client.UploadStringAsync( new Uri(url), "POST", jsonData );//UploadValuesAsync( new Uri( url ), "POST", values );
+						client.UploadStringCompleted += (sender, e) => {
 							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
 						};
 					}
@@ -119,7 +125,8 @@ namespace HamstarHelpers.Helpers.Net {
 		/// <param name="onError">Called on error. Receives an `Exception`.</param>
 		/// <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
 		/// and the output (if any).</param>
-		public static void MakeGetRequestAsync( string url,
+		public static void MakeGetRequestAsync(
+					string url,
 					Action<Exception> onError,
 					Action<bool, string> onCompletion = null ) {
 			Task.Run( () => {

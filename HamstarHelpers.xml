@@ -3293,6 +3293,28 @@
         <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedState.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Commands.CleanupModTilesCommand">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.CleanupModTilesCommand.CleanupAsync(System.Action{System.Int32})">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Commands.CleanupModTilesCommand.Type">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.CleanupModTilesCommand.Command">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.CleanupModTilesCommand.Usage">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.CleanupModTilesCommand.Description">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.CleanupModTilesCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Commands.ControlPanelOpenCommand">
             @private
         </member>

@@ -267,17 +267,30 @@ namespace HamstarHelpers.Helpers.Info {
 						}
 
 						string line;
-						while( ( line = reader.ReadLine() ) != null ) {
+						while( (line = reader.ReadLine()) != null ) {
 							lines.Add( line );
 						}
 					} while( lines.Count < maxLines && !eof );
 				}
 			}
 
-			IList<string> revLines = lines.Reverse().Take( maxLines ).ToList();
-			if( lines.Count > maxLines ) { revLines.Add( "..." ); }
+			var fmtLines = new List<string>();
 
-			return new List<string>( revLines.Reverse() );
+			if( lines.Count > maxLines ) {
+				fmtLines.Add( "..." );
+			}
+
+			int maxCountedLines = Math.Min( maxLines, lines.Count );
+			for( int i=0; i<maxCountedLines; i++ ) {
+				if( i >= lines.Count ) {
+					break;
+				}
+
+				string line = lines[ (lines.Count - maxCountedLines) + i ];
+				fmtLines.Add( line.Trim() );
+			}
+
+			return fmtLines;
 		}
 	}
 }
