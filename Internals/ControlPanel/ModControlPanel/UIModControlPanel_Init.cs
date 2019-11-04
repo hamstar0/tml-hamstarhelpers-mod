@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Commands;
 using HamstarHelpers.Helpers.Tiles;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
@@ -163,25 +164,14 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.CleanupModTiles.Disable();
 			}
 			this.CleanupModTiles.OnClick += ( _, __ ) => {
-				if( !self.CleanupModTiles.IsEnabled ) { return; }
-
-				int cleaned = 0;
-
-				for( int i = 0; i < Main.maxTilesX; i++ ) {
-					for( int j = 0; j < Main.maxTilesY; j++ ) {
-						Tile tile = Framing.GetTileSafely( i, j );
-						if( TileHelpers.IsAir(tile) ) { continue; }
-						ModTile modTile = ModContent.GetModTile( tile.type );
-						if( modTile == null ) { continue; }
-
-						if( modTile.mod == null || modTile is MysteryTile ) {
-							TileHelpers.KillTile( i, j, false, false );
-							cleaned++;
-						}
-					}
+				if( !self.CleanupModTiles.IsEnabled ) {
+					Main.NewText( "Unused tile cleanup disabled by settings.", Color.Yellow );
+					return;
 				}
 
-				Main.NewText( cleaned+" modded tiles cleaned up.", Color.Lime );
+				CleanupModTilesCommand.CleanupAsync( ( total ) => {
+					Main.NewText( "World cleaned. " + total + " unclaimed mod tiles removed.", Color.Lime );
+				} );
 			};
 			this.Append( this.CleanupModTiles );
 

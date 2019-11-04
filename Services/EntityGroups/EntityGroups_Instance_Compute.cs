@@ -29,6 +29,17 @@ namespace HamstarHelpers.Services.EntityGroups {
 					where T : Entity {
 			IDictionary<int, ISet<string>> rawGroupsPerEnt;
 			int failedAt = this.GetComputedGroupsThreaded( matchers, groups, out rawGroupsPerEnt );
+
+			lock( EntityGroups.MyLock ) {
+				lock( EntityGroups.MatchersLock ) {
+					foreach( EntityGroupMatcherDefinition<T> def in matchers ) {
+						if( !groups.ContainsKey( def.GroupName ) ) {
+							LogHelpers.Log( "!Entity group " + def.GroupName + " not loaded." );
+						}
+					}
+				}
+			}
+
 			if( failedAt != -1 ) {
 //LogHelpers.Log( "ent:" + typeof( T ).Name + ", !OK " + failedAt+", processed:"+groups.Count );
 				return false;
@@ -56,7 +67,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 			IList<T> entityPool = this.GetPool<T>();
 
 			int failedAt = -1;
-			int i = 0, count = matchers.Count;
+			int i = 0, count;
+
+			lock( EntityGroups.MatchersLock ) {
+				count = matchers.Count;
+			}
 
 			do {
 				//for( i = 0; i < matchers.Count; i++ ) {
@@ -79,8 +94,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 				} );
 
 //LogHelpers.Log( "ent:"+typeof(T).Name+", i:"+i+", count:"+count+", real count:"+matchers.Count+", failed? at:"+failedAt);
-				i = count;
-				count = matchers.Count;
+				lock( EntityGroups.MatchersLock ) {
+					i = count;
+					count = matchers.Count;
+				}
 			} while( failedAt == -1 && i < matchers.Count );
 
 			groupsPerEnt = myGroupsPerEnt;
