@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"_read_only_dictionary_of_sets_8cs_source.html":[2,0,0,0,0,1,1],
 "_read_only_set_8cs_source.html":[2,0,0,0,0,1,2],
 "_recipe_finder_helpers_8cs_source.html":[2,0,0,0,2,16,0],
 "_recipe_finder_helpers___instance_8cs_source.html":[2,0,0,0,2,16,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#a1ba949486459b9cc22aa7efe0c5c62e6":[1,0,0,0,5,0,0,3,0],
 "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#a2f09f00beb9c58600127c5aadd4eabca":[1,0,0,0,5,0,0,3,6],
 "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#a397fc6a797470c23b5ce842ee6769ff6":[1,0,0,0,5,0,0,3,1],
-"class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#a3a27e5f3990f9f2d112ab1d52ed72417":[1,0,0,0,5,0,0,3,8],
-"class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#a4880b39201fa0badc276be6fca8d7571":[1,0,0,0,5,0,0,3,5]
+"class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#a3a27e5f3990f9f2d112ab1d52ed72417":[1,0,0,0,5,0,0,3,8]
 };

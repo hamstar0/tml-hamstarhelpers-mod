@@ -45,6 +45,7 @@ var searchData=
   ['isbeachregion',['IsBeachRegion',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a40a71850c8bcaa251afb3ac713cd3984',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['isbeinginvaded',['IsBeingInvaded',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_state_helpers.html#aa7a7169c3dd1af4fba8edae6cbc3aa48',1,'HamstarHelpers::Helpers::World::WorldStateHelpers']]],
   ['isclickable',['IsClickable',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a9707c7d4c9f431f9beccedff0864593f',1,'HamstarHelpers::Classes::UI::Elements::UICheckbox']]],
+  ['iscurrentplayeringame',['IsCurrentPlayerInGame',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html#aa4caab093896b2191d195eff0c64783d',1,'HamstarHelpers::Helpers::TModLoader::LoadHelpers']]],
   ['isdialogopen',['IsDialogOpen',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html#a7a3381dc9a9aef9811a5fd221d1fc454',1,'HamstarHelpers::Services::UI::ControlPanel::ControlPanelTabs']]],
   ['isdirtlayer',['IsDirtLayer',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a8e1382ddb5787e2d6a258636562fa0f1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['isdungeon',['IsDungeon',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_helpers.html#a269db42c9f8eef951a0beb42e8d01097',1,'HamstarHelpers::Helpers::Tiles::TileWallHelpers']]],

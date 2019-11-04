@@ -1,5 +1,7 @@
 var NAVTREEINDEX6 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a795f1e54a51d1043e13e28db5258c880":[1,0,0,1,19,1,1],
+"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a911e11b02e2475f13f65e59a3eb7799c":[1,0,0,1,19,1,7],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a9804ecae44c02f9e3635ce20e9f7d9f5":[1,0,0,1,19,1,6],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#aa0c896505a0747d270a183069c6eb38a":[1,0,0,1,19,1,10],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#aaeffe381af2807b41a83e751aee9ee27":[1,0,0,1,19,1,12],
@@ -247,7 +249,5 @@ var NAVTREEINDEX6 =
 "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html":[1,0,0,4,5,1],
 "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#a5873e3ef054d964d7b2db8923d96c8ec":[1,0,0,4,5,1,7],
 "class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#a608da069b1039168953afd938a3bf95d":[1,0,0,4,5,1,1],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#a692d7c5eff7d897fe7a6d5a065bf37ac":[1,0,0,4,5,1,4],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#abe8309e2d22d88afde959dc95131b2a1":[1,0,0,4,5,1,5],
-"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#acc1be25c303ae958eb07425e7f1afb51":[1,0,0,4,5,1,2]
+"class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#a692d7c5eff7d897fe7a6d5a065bf37ac":[1,0,0,4,5,1,4]
 };

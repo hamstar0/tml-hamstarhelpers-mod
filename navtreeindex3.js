@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#addefc0d76ac533c79eb626c1a593b401":[1,0,0,0,7,0,9,4],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#aeee41e65b1433c1acb306013e384a8aa":[1,0,0,0,7,0,9,5],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html":[1,0,0,0,7,0,10],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html#a13702423407646cf01b7761398b9d94a":[1,0,0,0,7,0,10,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a92bda355e2317a6600b3d419821e8170":[1,0,0,1,3,1,2,0],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#aaede95a9f6f922ac0cd4a72408a75812":[1,0,0,1,3,1,2,4],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab1fed8a9a913f7287471779ba4b7d7ba":[1,0,0,1,3,1,2,20],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab36edff65c054d4c9486d7171f67d91a":[1,0,0,1,3,1,2,16],
-"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab93e2e57ce0dcf659e1392f9f9340f1c":[1,0,0,1,3,1,2,27]
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab36edff65c054d4c9486d7171f67d91a":[1,0,0,1,3,1,2,16]
 };

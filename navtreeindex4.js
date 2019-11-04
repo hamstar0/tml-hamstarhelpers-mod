@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab93e2e57ce0dcf659e1392f9f9340f1c":[1,0,0,1,3,1,2,27],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#abaa45d8ba97fc140e54390f8d979126c":[1,0,0,1,3,1,2,28],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#abdf524bb75d7ebd4ce945cda5cd912ac":[1,0,0,1,3,1,2,26],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ac417ac5e4a5d7cb712d9e75d9cb50c82":[1,0,0,1,3,1,2,22],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a17d314aab29ae2a4d6faef0e790caaf6":[1,0,0,1,12,6,2],
 "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a3fcf21b2c95d646d2a0ca3cd2a209b4a":[1,0,0,1,12,6,3],
 "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#adea1167bc077106337f7317afc82f817":[1,0,0,1,12,6,0],
-"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#ae83f35a47e086046ec16d8f67db09b30":[1,0,0,1,12,6,1],
-"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_invasion_helpers.html":[1,0,0,1,12,7]
+"class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#ae83f35a47e086046ec16d8f67db09b30":[1,0,0,1,12,6,1]
 };
