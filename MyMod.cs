@@ -71,7 +71,10 @@ namespace HamstarHelpers {
 		////
 
 		public override void Unload() {
-			LogHelpers.Alert( "Unloading mod..." );
+			try {
+				LogHelpers.Alert( "Unloading mod..." );
+			} catch { }
+
 			this.UnloadFull();
 
 			ModHelpersMod.Instance = null;

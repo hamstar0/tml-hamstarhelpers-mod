@@ -29,6 +29,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		public static (string Context, string Info, string Full) FormatMessageFull( string msg, int contextDepth = -1 ) {
 			string context, info;
 			ModHelpersMod mymod = ModHelpersMod.Instance;
+
 			if( mymod == null ) {
 				contextDepth = contextDepth == -1 ? 2 : contextDepth;
 				context = DebugHelpers.GetCurrentContext( contextDepth );
@@ -74,7 +75,11 @@ namespace HamstarHelpers.Helpers.Debug {
 
 			// Generate calling context output
 			if( contextDepth >= 0 ) {
-				context = DebugHelpers.GetCurrentContext( contextDepth );
+				try {
+					context = DebugHelpers.GetCurrentContext( contextDepth );
+				} catch {
+					context = "";
+				}
 
 				if( output.Length > 0 ) {
 					output = context + " - " + output;

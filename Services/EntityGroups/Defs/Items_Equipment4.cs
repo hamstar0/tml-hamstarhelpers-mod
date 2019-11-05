@@ -5,7 +5,14 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.EntityGroups.Defs {
+namespace HamstarHelpers.Services.EntityGroups.Definitions {
+	/// <summary></summary>
+	public partial class EntityGroupIDs {
+	}
+
+
+
+
 	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups4( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(

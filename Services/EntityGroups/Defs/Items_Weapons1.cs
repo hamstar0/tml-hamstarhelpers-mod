@@ -8,7 +8,14 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Services.EntityGroups.Defs {
+namespace HamstarHelpers.Services.EntityGroups.Definitions {
+	/// <summary></summary>
+	public partial class EntityGroupIDs {
+	}
+
+
+
+
 	partial class EntityGroupDefs {
 		internal static void DefineItemWeaponGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			// Weapon Classes

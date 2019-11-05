@@ -4,7 +4,14 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Services.EntityGroups.Defs {
+namespace HamstarHelpers.Services.EntityGroups.Definitions {
+	/// <summary></summary>
+	public partial class EntityGroupIDs {
+	}
+
+
+
+
 	partial class EntityGroupDefs {
 		internal static void DefineItemWeaponGroups2( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			// Misc Sub Classes

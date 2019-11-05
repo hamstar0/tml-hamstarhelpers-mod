@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.EntityGroups.Defs;
+using HamstarHelpers.Services.EntityGroups.Definitions;
 using System;
 using System.Collections.Generic;
 using Terraria;
