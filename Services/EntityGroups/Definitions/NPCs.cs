@@ -7,7 +7,11 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class NPCGroupIDs {
-		//...
+		//"Any Friendly NPC", null,
+		//"Any Hostile NPC", null,
+		//"Any Town NPC", null,
+		//"Any Boss", null,
+		//"Any Slime", null,
 	}
 
 

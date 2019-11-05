@@ -8,7 +8,26 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//...
+		/// <summary></summary>
+		public static readonly string AnyWeapon = "Any Weapon";
+		/// <summary></summary>
+		public static readonly string AnyTool = "Any Tool";
+		/// <summary></summary>
+		public static readonly string AnyVanillaExplosive = "Any Vanilla Explosive";
+		/// <summary></summary>
+		public static readonly string AnyAccessory = "Any Accessory";
+		/// <summary></summary>
+		public static readonly string AnyArmor = "Any Armor";
+		/// <summary></summary>
+		public static readonly string AnyGarment = "Any Garment";
+		/// <summary></summary>
+		public static readonly string AnyPotion = "Any Potion";
+		/// <summary></summary>
+		public static readonly string AnyVanity = "Any Vanity";
+		/// <summary></summary>
+		public static readonly string AnyVanityAccessory = "Any Vanity Accessory";
+		/// <summary></summary>
+		public static readonly string AnyVanityGarment = "Any Vanity Garment";
 	}
 
 
@@ -17,19 +36,19 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Weapon", null,
+				ItemGroupIDs.AnyWeapon, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.damage > 0;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Tool", null,
+				ItemGroupIDs.AnyTool, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsTool( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Explosive", null,
+				ItemGroupIDs.AnyVanillaExplosive, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Bomb:
@@ -62,25 +81,25 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Accessory", null,
+				ItemGroupIDs.AnyAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.accessory && !item.vanity;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Armor", null,
+				ItemGroupIDs.AnyArmor, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsArmor( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Garment", null,
+				ItemGroupIDs.AnyGarment, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Potion", null,
+				ItemGroupIDs.AnyPotion, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.potion;
 				} )
@@ -88,20 +107,21 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			// Vanity Classes
 
-			defs.Add( new EntityGroupMatcherDefinition<Item>( "Any Vanity", null,
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				ItemGroupIDs.AnyVanity, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.vanity;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanity Accessory", null,
+				ItemGroupIDs.AnyVanityAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.accessory;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanity Garment", null,
+				ItemGroupIDs.AnyVanityGarment, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;

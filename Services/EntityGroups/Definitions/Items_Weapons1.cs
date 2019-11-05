@@ -11,7 +11,24 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//...
+		//"Any Ranged Weapon", null,
+		//"Any Magic Weapon", null,
+		//"Any Melee Weapon", null,
+		//"Any Thrown Weapon", null,
+		//"Any Swingable", null,
+		//"Any Thrustable", null,
+		//"Any Flail", null,
+		//"Any Boomerang", null,
+		//"Any Yoyo", null,
+		//"Any Magic Staff Or Scepter Or Wand", null,
+		//"Any Magic Rod", null,
+		//"Any Magic Gun", null,
+		//"Any Magic Tome", null,
+		//"Any Ranger Gun", null,
+		//"Any Ranger Bow", null,
+		//"Any Ranger Launcher", null,
+		//"Any Minion Summon Item", null,
+		//"Any Sentry Summon Item", null,
 	}
 
 
@@ -208,22 +225,6 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				"Any Sentry Summon Item", null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.summon && item.sentry;
-				} )
-			) );
-
-			// Vanity Classes
-			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanity Accessory", null,
-				new ItemGroupMatcher( ( item, grps ) => {
-					if( !item.vanity ) { return false; }
-					return item.accessory;
-				} )
-			) );
-			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanity Garment", null,
-				new ItemGroupMatcher( ( item, grps ) => {
-					if( !item.vanity ) { return false; }
-					return !item.accessory;
 				} )
 			) );
 		}

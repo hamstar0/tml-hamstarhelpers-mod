@@ -43,9 +43,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		internal static void DefineItemEquipmentGroups4( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				ItemGroupIDs.AnyWoodEquipment,
-				new string[] { "Any Equipment", "Any Wood" },
+				new string[] { ItemGroupIDs.AnyEquipment, "Any Wood" },
 				new ItemGroupMatcher( ( item, grps ) => {
-					IDictionary<int, int> anyEquipGrp = grps["Any Equipment"].ToDictionary( id=>id, id=>1 );
+					IDictionary<int, int> anyEquipGrp = grps[ItemGroupIDs.AnyEquipment].ToDictionary( id=>id, id=>1 );
 					IDictionary<int, int> anyWoodGrp = grps["Any Wood"].ToDictionary( id => id, id=>1 );
 
 					bool hasWood = RecipeHelpers.ItemHasIngredients( item.type, anyWoodGrp );

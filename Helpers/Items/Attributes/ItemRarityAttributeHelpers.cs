@@ -47,7 +47,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// </summary>
 		public static readonly IReadOnlyDictionary<int, string> RarityColorText = new ReadOnlyDictionary<int, string>(
 			new Dictionary<int, string> {
-				{ -12, "Rainbow" },
+				{ -12, "Rainbow 2" },
 				{ -11, "Rainbow" },
 				{ -2, "Amber" },
 				{ -1, "Grey" },

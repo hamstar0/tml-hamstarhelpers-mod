@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Helpers.Items.Attributes;
+﻿using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Helpers.Recipes;
 using System;
 using System.Collections.Generic;
@@ -11,10 +10,28 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//...
-
 		/// <summary></summary>
 		public static readonly string AnyCactusEquipment = "Any Cactus Equipment";
+		//"Any Tiki Equipment",
+		//"Any Plain Wood Equipment",
+		//"Any Boreal Wood Equipment",
+		//"Any Palm Wood Equipment",
+		//"Any Rich Mahogany Equipment",
+		//"Any Ebonwood Equipment",
+		//"Any Shadewood Equipment",
+		//"Any Pearlwood Equipment",
+		//"Any Dynasty Wood Equipment",
+		//"Any Spooky Wood Equipment",
+		//"Any Tin Equipment",
+		//"Any Copper Equipment",
+		//"Any Iron Equipment",
+		//"Any Lead Equipment",
+		//"Any Silver Equipment",
+		//"Any Tungsten Equipment",
+		//"Any Gold Equipment",
+		//"Any Platinum Equipment",
+		//"Any Demonite Equipment",
+		//"Any Crimtane Equipment",
 		/// <summary></summary>
 		public static readonly string AnyMeteorEquipment = "Any Meteor Equipment";
 		/// <summary></summary>
@@ -23,25 +40,31 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		public static readonly string AnyBeeEquipment = "Any Bee Equipment";
 		/// <summary></summary>
 		public static readonly string AnyBoneEquipment = "Any Bone Equipment";
-
-		//...
-
 		/// <summary></summary>
 		public static readonly string AnyHellstoneEquipment = "Any Hellstone Equipment";
-
-		//...
-
-		/// <summary></summary>
-		public static readonly string AnyHallowEquipment = "Any Hallow Equipment";
+		//"Any Cobalt Equipment",
+		//"Any Palladium Equipment",
+		//"Any Mythril Equipment",
+		//"Any Orichalcum Equipment",
+		//"Any Adamantite Equipment",
+		//"Any Titanium Equipment",
 		/// <summary></summary>
 		public static readonly string AnyFrostCoreEquipment = "Any Frost Core Equipment";
-
-		//...
-		
+		/// <summary></summary>
+		public static readonly string AnyForbiddenEquipment = "Any Forbidden Equipment";
+		/// <summary></summary>
+		public static readonly string AnyHallowEquipment = "Any Hallow Equipment";
+		//"Any Chlorophyte Equipment",
+		//"Any Shroomite Equipment",
+		//"Any Spectre Equipment",
 		/// <summary></summary>
 		public static readonly string AnyShellEquipment = "Any Shell Equipment";
-
-		//...
+		//"Any Nebula Equipment",
+		//"Any Vortex Equipment",
+		//"Any Solar Equipment",
+		//"Any Stardust Equipment",
+		/// <summary></summary>
+		public static readonly string AnyLuminiteOreEquipment = "Any Luminite Ore Equipment";
 	}
 
 
@@ -53,9 +76,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Tiki Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					string name = ItemAttributeHelpers.GetQualifiedName( item );
 
@@ -66,9 +89,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Cactus Equipment",
-				new string[] { "Any Equipment", },
+				new string[] { ItemGroupIDs.AnyEquipment, },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Cactus, 1} } );
 
@@ -79,9 +102,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Plain Wood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Wood, 2} } );
 
@@ -91,9 +114,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Boreal Wood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BorealWood, 2} } );
 
@@ -103,9 +126,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Palm Wood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PalmWood, 2} } );
 
@@ -115,9 +138,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Rich Mahogany Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.RichMahogany, 2} } );
 
@@ -127,9 +150,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Ebonwood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Ebonwood, 2} } );
 
@@ -139,9 +162,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				 "Any Shadewood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Shadewood, 2} } );
 
@@ -151,9 +174,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Pearlwood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Pearlwood, 2} } );
 
@@ -163,9 +186,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Dynasty Wood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.DynastyWood, 2} } );
 
@@ -175,9 +198,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Spooky Wood Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SpookyWood, 2} } );
 
@@ -188,9 +211,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Tin Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TinBar, 1} } );
 
@@ -200,9 +223,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Copper Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CopperBar, 1} } );
 
@@ -213,9 +236,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Iron Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.IronBar, 1} } );
 
@@ -225,9 +248,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Lead Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.LeadBar, 1} } );
 
@@ -238,9 +261,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Silver Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SilverBar, 1} } );
 
@@ -250,9 +273,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Tungsten Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TungstenBar, 1} } );
 
@@ -263,9 +286,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Gold Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.GoldBar, 1} } );
 
@@ -275,9 +298,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Platinum Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PlatinumBar, 1} } );
 
@@ -288,9 +311,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Meteor Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.MeteoriteBar, 1} } );
 
@@ -300,9 +323,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Demonite Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.DemoniteBar, 1} } );
 
@@ -312,9 +335,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Crimtane Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CrimtaneBar, 1} } );
 
@@ -324,9 +347,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Jungle Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.JungleSpores, 1} } );
 
@@ -336,9 +359,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Bee Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BeeWax, 1} } );
 
@@ -348,9 +371,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Bone Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Bone, 1} } );
 
@@ -360,9 +383,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Hellstone Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.HellstoneBar, 1} } );
 
@@ -373,9 +396,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Cobalt Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CobaltBar, 1} } );
 
@@ -385,9 +408,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Palladium Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PalladiumBar, 1} } );
 
@@ -397,9 +420,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Mythril Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.MythrilBar, 1} } );
 
@@ -409,9 +432,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Orichalcum Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.OrichalcumBar, 1} } );
 
@@ -421,9 +444,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Adamantite Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.AdamantiteBar, 1} } );
 
@@ -433,9 +456,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Titanium Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TitaniumBar, 1} } );
 
@@ -446,9 +469,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Frost Core Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FrostCore, 1} } );
 
@@ -458,9 +481,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Forbidden Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.AncientBattleArmorMaterial, 1} } );
 
@@ -470,9 +493,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Hallow Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.HallowedBar, 1} } );
 
@@ -482,9 +505,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Chlorophyte Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.ChlorophyteBar, 1} } );
 
@@ -494,9 +517,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Shroomite Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.ShroomiteBar, 1} } );
 
@@ -506,9 +529,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Spectre Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SpectreBar, 1} } );
 
@@ -518,9 +541,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Shell Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has1 = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BeetleShell, 1} } );
 					var has2 = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TurtleShell, 1} } );
@@ -532,9 +555,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Nebula Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentNebula, 1} } );
 
@@ -544,9 +567,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Vortex Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentVortex, 1} } );
 
@@ -556,9 +579,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Solar Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentSolar, 1} } );
 
@@ -568,9 +591,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Stardust Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentStardust, 1} } );
 
@@ -580,9 +603,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Luminite Ore Equipment",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
-					var anyEquipItemDefs = grps["Any Equipment"].ToDictionary( kv => kv, kv => 1 );
+					var anyEquipItemDefs = grps[ItemGroupIDs.AnyEquipment].ToDictionary( kv => kv, kv => 1 );
 					bool hasEquip = RecipeHelpers.ItemHasIngredients( item.type, anyEquipItemDefs );
 					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { { ItemID.LunarBar, 1} } );
 

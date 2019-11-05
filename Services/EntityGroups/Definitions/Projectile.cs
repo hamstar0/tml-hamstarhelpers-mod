@@ -8,7 +8,8 @@ using Terraria;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ProjectileGroupIDs {
-		//...
+		/// <summary></summary>
+		public static readonly string AnyExplosive = "Any Explosive";
 	}
 
 
@@ -19,7 +20,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// General
 
 			defs.Add( new EntityGroupMatcherDefinition<Projectile>(
-				"Any Explosive", null,
+				ProjectileGroupIDs.AnyExplosive, null,
 				new ProjectileGroupMatcher( ( proj, grp ) => {
 					int _;
 					return ProjectileAttributeHelpers.IsExplosive( proj.type, out _, out _ );

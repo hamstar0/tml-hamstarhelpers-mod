@@ -9,7 +9,12 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//...
+		//"Any Plain Material",
+		//"Any Vanilla Corruption Item", null,
+		//"Any Vanilla Crimson Item", null,
+		//"Any Vanilla Alchemy Herb", null,
+		//"Any Vanilla Alchemy Fish", null,
+		//"Any Vanilla Alchemy Misc", null,
 	}
 
 
@@ -19,11 +24,11 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		internal static void DefineItemMiscGroups3( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>( 
 				"Any Plain Material",
-				new string[] { "Any Equipment" },
+				new string[] { ItemGroupIDs.AnyEquipment },
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.material &&
 						//!EntityGroups.ItemGroups["Any Placeable"].Contains( item.type ) &&
-						!grps["Any Equipment"].Contains( item.type );
+						!grps[ItemGroupIDs.AnyEquipment].Contains( item.type );
 				} )
 			) );
 

@@ -8,7 +8,7 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//...
+		//"Any Vanilla Alchemy Ingredient"
 	}
 
 

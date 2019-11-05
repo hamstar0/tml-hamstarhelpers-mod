@@ -9,7 +9,25 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//...
+		//"Any Item", null,
+		//"Any Rainbow 2 Tier", null,
+		//"Any Rainbow Tier", null,
+		//"Any Amber Tier", null,
+		//"Any Grey Tier", null,
+		//"Any White Tier", null,
+		//"Any Blue Tier", null,
+		//"Any Green Tier", null,
+		//"Any Orange Tier", null,
+		//"Any Light Red Tier", null,
+		//"Any Pink Tier", null,
+		//"Any Light Purple Tier", null,
+		//"Any Lime Tier", null,
+		//"Any Yellow Tier", null,
+		//"Any Cyan Tier", null,
+		//"Any Red Tier", null,
+		//"Any Purple Tier", null,
+		//"Any Dye", null,
+		//"Any Food", null,
 	}
 
 

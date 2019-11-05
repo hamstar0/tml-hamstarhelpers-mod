@@ -33,7 +33,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					ItemGroupIDs.AnyHallowEquipment,
 					ItemGroupIDs.AnyFrostCoreEquipment,
 					ItemGroupIDs.AnyShellEquipment,
-					ItemGroupIDs.AnyChlorophyteOrShroomiteOrSpectreEquipment
+					ItemGroupIDs.AnyChlorophyteOrShroomiteOrSpectreEquipment,
+					ItemGroupIDs.AnyLuminiteOreEquipment
 				},
 				new ItemGroupMatcher( ( item, grps ) => {
 					return grps[ItemGroupIDs.AnyCopperOrTinEquipment].Contains( item.type ) ||
@@ -49,7 +50,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						grps[ItemGroupIDs.AnyHallowEquipment].Contains( item.type ) ||
 						grps[ItemGroupIDs.AnyFrostCoreEquipment].Contains( item.type ) ||
 						grps[ItemGroupIDs.AnyShellEquipment].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyChlorophyteOrShroomiteOrSpectreEquipment].Contains( item.type );
+						grps[ItemGroupIDs.AnyChlorophyteOrShroomiteOrSpectreEquipment].Contains( item.type ) ||
+						grps[ItemGroupIDs.AnyLuminiteOreEquipment].Contains( item.type );
 				} )
 			) );
 			

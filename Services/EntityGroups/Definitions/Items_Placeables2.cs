@@ -8,7 +8,25 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//...
+		//"Any Wood", null,
+		//"Any Workbench", null,
+		//"Any Anvil", null,
+		//"Any Forge", null,
+		//"Any Table", null,
+		//"Any Alchemy Station", null,
+		//"Any Hardmode Crafting Station", null,
+		//"Any Vanilla Themed Crafting Station", null,
+		//"Any Misc Crafting Station", null,
+		//"Any Chest", null,
+		//"Any Wire Component", null,
+		//"Any Trap Chest", null,
+		//"Any Vanilla Wire Trap", null,
+		//"Any Vanilla Wire Switch", null,
+		//"Any Light", null,
+		//"Any Candle", null,
+		//"Any Wall Torch", null,
+		//"Any Campfire", null,
+		//"Any Statue", null,
 	}
 
 
