@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
-	public partial class EntityGroupIDs {
+	public partial class ItemGroupIDs {
 		/// <summary></summary>
 		public static readonly string AnyWingAccessory = "Any Wing Accessory";
 		/// <summary></summary>
@@ -37,14 +37,14 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Accessory Classes
 			
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyWingAccessory, null,
+				ItemGroupIDs.AnyWingAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					return item.wingSlot > 0;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaMovementAccessory, null,
+				ItemGroupIDs.AnyVanillaMovementAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaCombatAccessory, null,
+				ItemGroupIDs.AnyVanillaCombatAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -177,7 +177,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaYoyoAccessory, null,
+				ItemGroupIDs.AnyVanillaYoyoAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -211,7 +211,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaHealthOrManaAccessory, null,
+				ItemGroupIDs.AnyVanillaHealthOrManaAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -232,7 +232,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaConstructionAccessory, null,
+				ItemGroupIDs.AnyVanillaConstructionAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -250,7 +250,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaInformationAccessory, null,
+				ItemGroupIDs.AnyVanillaInformationAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -285,7 +285,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaFishingAccessory, null,
+				ItemGroupIDs.AnyVanillaFishingAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -299,7 +299,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaMusicBoxAccessory, null,
+				ItemGroupIDs.AnyVanillaMusicBoxAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
@@ -350,7 +350,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				EntityGroupIDs.AnyVanillaExpertAccessory, null,
+				ItemGroupIDs.AnyVanillaExpertAccessory, null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {

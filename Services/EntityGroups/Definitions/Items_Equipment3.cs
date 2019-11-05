@@ -10,7 +10,38 @@ using Terraria.ID;
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
-	public partial class EntityGroupIDs {
+	public partial class ItemGroupIDs {
+		//...
+
+		/// <summary></summary>
+		public static readonly string AnyCactusEquipment = "Any Cactus Equipment";
+		/// <summary></summary>
+		public static readonly string AnyMeteorEquipment = "Any Meteor Equipment";
+		/// <summary></summary>
+		public static readonly string AnyJungleEquipment = "Any Jungle Equipment";
+		/// <summary></summary>
+		public static readonly string AnyBeeEquipment = "Any Bee Equipment";
+		/// <summary></summary>
+		public static readonly string AnyBoneEquipment = "Any Bone Equipment";
+
+		//...
+
+		/// <summary></summary>
+		public static readonly string AnyHellstoneEquipment = "Any Hellstone Equipment";
+
+		//...
+
+		/// <summary></summary>
+		public static readonly string AnyHallowEquipment = "Any Hallow Equipment";
+		/// <summary></summary>
+		public static readonly string AnyFrostCoreEquipment = "Any Frost Core Equipment";
+
+		//...
+		
+		/// <summary></summary>
+		public static readonly string AnyShellEquipment = "Any Shell Equipment";
+
+		//...
 	}
 
 

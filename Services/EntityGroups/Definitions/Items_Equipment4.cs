@@ -7,16 +7,42 @@ using Terraria;
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
-	public partial class EntityGroupIDs {
+	public partial class ItemGroupIDs {
+		/// <summary></summary>
+		public static readonly string AnyWoodEquipment = "Any Wood Equipment";
+		/// <summary></summary>
+		public static readonly string AnyCopperOrTinEquipment = "Any Copper Or Tin Equipment";
+		/// <summary></summary>
+		public static readonly string AnyIronOrLeadEquipment = "Any Iron Or Lead Equipment";
+		/// <summary></summary>
+		public static readonly string AnySilverOrTungstenEquipment = "Any Silver Or Tungsten Equipment";
+		/// <summary></summary>
+		public static readonly string AnyGoldOrPlatinumEquipment = "Any Gold Or Platinum Equipment";
+		/// <summary></summary>
+		public static readonly string AnyDemoniteOrCrimtaneEquipment = "Any Demonite Or Crimtane Equipment";
+		/// <summary></summary>
+		public static readonly string AnyMeteorOrJungleOrBoneOrBeeEquipment = "Any Meteor Or Jungle Or Bone Or Bee Equipment";
+		/// <summary></summary>
+		public static readonly string AnyCobaltOrPalladiumEquipment = "Any Cobalt Or Palladium Equipment";
+		/// <summary></summary>
+		public static readonly string AnyMythrilOrOrichalcumEquipment = "Any Mythril Or Orichalcum Equipment";
+		/// <summary></summary>
+		public static readonly string AnyAdamantiteOrTitaniumEquipment = "Any Adamantite Or Titanium Equipment";
+		/// <summary></summary>
+		public static readonly string AnyFrostCoreOrForbiddenEquipment = "Any Frost Core Or Forbidden Equipment";
+		/// <summary></summary>
+		public static readonly string AnyChlorophyteOrShroomiteOrSpectreEquipment = "Any Chlorophyte Or Shroomite Or Spectre Equipment";
+		/// <summary></summary>
+		public static readonly string AnyCelestialEquipment = "Any Celestial Equipment";
 	}
-
+	
 
 
 
 	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups4( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Wood Equipment",
+				ItemGroupIDs.AnyWoodEquipment,
 				new string[] { "Any Equipment", "Any Wood" },
 				new ItemGroupMatcher( ( item, grps ) => {
 					IDictionary<int, int> anyEquipGrp = grps["Any Equipment"].ToDictionary( id=>id, id=>1 );

@@ -5,7 +5,8 @@ using Terraria;
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
-	public partial class EntityGroupIDs {
+	public partial class ItemGroupIDs {
+		//...
 	}
 
 
