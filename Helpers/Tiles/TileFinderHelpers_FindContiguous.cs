@@ -13,7 +13,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TileFinderHelpers {
 		/// <summary>
-		/// Finds the top left tile of a given pattern.
+		/// Finds the top left tile of a given area of a given pattern. Assumes the area is square (checks left first).
 		/// </summary>
 		/// <param name="pattern"></param>
 		/// <param name="tileX"></param>
@@ -33,26 +33,25 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 
 			int i = 1, j = 1;
-			int maxX = 0, maxY = 0;
 			bool foundX = false, foundY = false;
-
+			
 			do {
 				if( !pattern.Check( tileX - i, tileY ) ) {
 					foundX = true;
-					maxX = i - 1;
+					i--;
 					break;
 				}
 			} while( i++ < maxDistance );
 
 			do {
-				if( !pattern.Check( tileX - maxX, tileY - j ) ) {
+				if( !pattern.Check( tileX - i, tileY - j ) ) {
 					foundY = true;
-					maxY = j - 1;
+					j--;
 					break;
 				}
 			} while( j++ < maxDistance );
 
-			coords = ( TileX: tileX - maxX, TileY: tileY - maxY);
+			coords = (TileX: tileX - i, TileY: tileY - j);
 			return foundX && foundY;
 		}
 

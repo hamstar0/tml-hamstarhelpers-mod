@@ -1,12 +1,13 @@
-﻿using System;
-
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 
 namespace HamstarHelpers.Helpers.Debug {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to log outputs.
 	/// </summary>
 	public partial class LogHelpers {
-		private static bool CanOutputOnceMessage( string msg, out string formattedMsg ) {
+		internal static bool CanOutputOnceMessage( string msg, out string formattedMsg ) {
 			var logHelpers = ModHelpersMod.Instance.LogHelpers;
 			bool isShown = false;
 
@@ -80,6 +81,61 @@ namespace HamstarHelpers.Helpers.Debug {
 		}
 
 		////
+
+		/// <summary>
+		/// Outputs a plain log message "once" (or rather, once every log10 % 1 == 0 times).
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="color"></param>
+		public static void LogAndPrintOnce( string msg, Color? color=null ) {
+			if( LogHelpers.CanOutputOnceMessage( msg, out msg ) ) {
+				LogHelpers.Log( "~" + msg );
+				Main.NewText( "~" + msg, (color.HasValue ? color.Value : Color.White) );
+			}
+		}
+
+		/// <summary>
+		/// Outputs an "alert" log message "once" (or rather, once every log10 % 1 == 0 times).
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="color"></param>
+		public static void AlertAndPrintOnce( string msg = "", Color? color = null ) {
+			ModHelpersMod mymod = ModHelpersMod.Instance;
+			(string Context, string Info, string Full) fmtMsg = LogHelpers.FormatMessageFull( msg, 3 );
+
+			string outMsg;
+			LogHelpers.CanOutputOnceMessage( fmtMsg.Full, out outMsg );
+
+			if( !LogHelpers.CanOutputOnceMessage( fmtMsg.Context + " " + msg, out _ ) ) {
+				return;
+			}
+
+			mymod.Logger.Error( "~" + outMsg );
+			Main.NewText( "~" + fmtMsg.Context + " - " + msg, ( color.HasValue ? color.Value : Color.White ) );
+		}
+
+		/// <summary>
+		/// Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).
+		/// </summary>
+		/// <param name="msg"></param>
+		/// <param name="color"></param>
+		public static void WarnAndPrintOnce( string msg = "", Color? color = null ) {
+			ModHelpersMod mymod = ModHelpersMod.Instance;
+			(string Context, string Info, string Full) fmtMsg = LogHelpers.FormatMessageFull( msg, 3 );
+
+			string outMsg;
+			LogHelpers.CanOutputOnceMessage( fmtMsg.Full, out outMsg );
+
+			if( !LogHelpers.CanOutputOnceMessage( fmtMsg.Context + " " + msg, out _ ) ) {
+				return;
+			}
+
+			mymod.Logger.Fatal( "~" + outMsg );
+			Main.NewText( "~!" + fmtMsg.Context + " - " + msg, ( color.HasValue ? color.Value : Color.White ) );
+		}
+
+
+		////////////////
 
 		/// <summary>
 		/// Resets a given "once" log, alert, or warn messages.

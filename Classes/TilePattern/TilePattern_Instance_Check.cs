@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Tiles;
 using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 
 
@@ -132,12 +132,12 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
 		public bool CheckPoint( int tileX, int tileY, out TileCollideType collideType ) {
 			if( tileX < 0 || tileX >= Main.maxTilesX ) {
-				LogHelpers.LogOnce( "Tile out of X range." );
+				LogHelpers.AlertOnce( "Tile out of X range." );
 				collideType = TileCollideType.WorldEdge;
 				return false;
 			}
 			if( tileY < 0 || tileY >= Main.maxTilesY ) {
-				LogHelpers.LogOnce( "Tile out of Y range." );
+				LogHelpers.AlertOnce( "Tile out of Y range." );
 				collideType = TileCollideType.WorldEdge;
 				return false;
 			}
@@ -159,105 +159,27 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				return false;
 			}
 
-			if( isActive && !this.CheckActivePoint(tileX, tileY, out collideType) ) {
-				return false;
-			}
-
-			if( this.IsAnyOfWallType != null && this.IsAnyOfWallType.Count > 0 ) {
-				bool found = false;
-				foreach( int wallType in this.IsAnyOfWallType ) {
-					if( tile.wall == wallType ) {
-						found = true;
-						break;
-					}
+			if( isActive ) {
+				if( !this.CheckActivePoint( tileX, tileY, out collideType ) ) {
+					return false;
 				}
-				if( !found ) {
-					collideType = TileCollideType.WallType;
+			} else {
+				if( !this.CheckNonActivePoint( tileX, tileY, out collideType) ) {
 					return false;
 				}
 			}
 
-			if( this.HasWire1.HasValue ) {
-				if( this.HasWire1.Value != tile.wire() ) {
-					collideType = TileCollideType.Wire1;
-					return false;
-				}
-			}
-			if( this.HasWire2.HasValue ) {
-				if( this.HasWire2.Value != tile.wire2() ) {
-					collideType = TileCollideType.Wire2;
-					return false;
-				}
-			}
-			if( this.HasWire3.HasValue ) {
-				if( this.HasWire3.Value != tile.wire3() ) {
-					collideType = TileCollideType.Wire3;
-					return false;
-				}
-			}
-			if( this.HasWire4.HasValue ) {
-				if( this.HasWire4.Value != tile.wire4() ) {
-					collideType = TileCollideType.Wire4;
-					return false;
-				}
-			}
-
-			if( this.HasSolidProperties.HasValue ) {
-				if( !isActive ) {
-					if( this.HasSolidProperties.Value ) {
-						collideType = TileCollideType.Solid;
-						return false;
-					}
-				}
-			}
-
-			if( this.HasWall.HasValue ) {
-				if( ( tile.wall > 0 ) != this.HasWall.Value ) {
-					collideType = TileCollideType.Wall;
-					return false;
-				}
-			}
-
-			if( this.HasLava.HasValue ) {
-				if( tile.lava() != this.HasLava.Value ) {
-					collideType = TileCollideType.Lava;
-					return false;
-				}
-			}
-			if( this.HasHoney.HasValue ) {
-				if( tile.honey() != this.HasHoney.Value ) {
-					collideType = TileCollideType.Honey;
-					return false;
-				}
-			}
-			if( this.HasWater.HasValue ) {
-				if( tile.liquid > 0 != this.HasWater.Value ) {
-					collideType = TileCollideType.Water;
-					return false;
-				}
-			}
-
-			if( !this.CheckBrightness( tileX, tileY, out collideType ) ) {
-				return false;
-			}
-
-			collideType = TileCollideType.None;
-			return true;
+			return this.CheckGeneralPoint( tileX, tileY, out collideType );
 		}
 
+
+		////
 
 		private bool CheckActivePoint( int tileX, int tileY, out TileCollideType collideType ) {
 			Tile tile = Main.tile[ tileX, tileY ];
 
 			if( this.IsAnyOfType != null && this.IsAnyOfType.Count > 0 ) {
-				bool found = false;
-				foreach( int tileType in this.IsAnyOfType ) {
-					if( tile.type == tileType ) {
-						found = true;
-						break;
-					}
-				}
-				if( !found ) {
+				if( !this.IsAnyOfType.Any(t => t == tile.type) ) {
 					collideType = TileCollideType.TileType;
 					return false;
 				}
@@ -380,6 +302,105 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			return true;
 		}
 
+		private bool CheckNonActivePoint( int tileX, int tileY, out TileCollideType collideType ) {
+			if( this.HasSolidProperties.HasValue && this.HasSolidProperties.Value ) {
+				collideType = TileCollideType.Solid;
+				return false;
+			}
+			if( this.IsPlatform.HasValue && this.IsPlatform.Value ) {
+				collideType = TileCollideType.Platform;
+				return false;
+			}
+			if( this.IsAnyOfType != null && this.IsAnyOfType.Count > 0 ) {
+				collideType = TileCollideType.TileType;
+				return false;
+			}
+
+			collideType = TileCollideType.None;
+			return true;
+		}
+
+
+		private bool CheckGeneralPoint( int tileX, int tileY, out TileCollideType collideType ) {
+			Tile tile = Main.tile[tileX, tileY];
+
+			if( this.IsAnyOfWallType != null && this.IsAnyOfWallType.Count > 0 ) {
+				if( !this.IsAnyOfWallType.Any( w => tile.wall == w ) ) {
+					collideType = TileCollideType.WallType;
+					return false;
+				}
+			}
+
+			if( this.HasWire1.HasValue ) {
+				if( this.HasWire1.Value != tile.wire() ) {
+					collideType = TileCollideType.Wire1;
+					return false;
+				}
+			}
+			if( this.HasWire2.HasValue ) {
+				if( this.HasWire2.Value != tile.wire2() ) {
+					collideType = TileCollideType.Wire2;
+					return false;
+				}
+			}
+			if( this.HasWire3.HasValue ) {
+				if( this.HasWire3.Value != tile.wire3() ) {
+					collideType = TileCollideType.Wire3;
+					return false;
+				}
+			}
+			if( this.HasWire4.HasValue ) {
+				if( this.HasWire4.Value != tile.wire4() ) {
+					collideType = TileCollideType.Wire4;
+					return false;
+				}
+			}
+
+			/*if( this.HasSolidProperties.HasValue ) {
+				if( !tile.active() ) {
+					if( this.HasSolidProperties.Value ) {
+						collideType = TileCollideType.Solid;
+						return false;
+					}
+				}
+			}*/
+
+			if( this.HasWall.HasValue ) {
+				if( ( tile.wall > 0 ) != this.HasWall.Value ) {
+					collideType = TileCollideType.Wall;
+					return false;
+				}
+			}
+
+			if( this.HasLava.HasValue ) {
+				if( tile.lava() != this.HasLava.Value ) {
+					collideType = TileCollideType.Lava;
+					return false;
+				}
+			}
+			if( this.HasHoney.HasValue ) {
+				if( tile.honey() != this.HasHoney.Value ) {
+					collideType = TileCollideType.Honey;
+					return false;
+				}
+			}
+			if( this.HasWater.HasValue ) {
+				if( tile.liquid > 0 != this.HasWater.Value ) {
+					collideType = TileCollideType.Water;
+					return false;
+				}
+			}
+
+			if( this.MinimumBrightness.HasValue || this.MaximumBrightness.HasValue ) {
+				if( !this.CheckBrightness( tileX, tileY, out collideType ) ) {
+					return false;
+				}
+			}
+
+			collideType = TileCollideType.None;
+			return true;
+		}
+
 
 		////////////////
 
@@ -447,20 +468,18 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <param name="collideType"></param>
 		/// <returns></returns>
 		public bool CheckBrightness( int tileX, int tileY, out TileCollideType collideType ) {
-			if( this.MinimumBrightness.HasValue || this.MaximumBrightness.HasValue ) {
-				float brightness = Lighting.Brightness( tileX, tileY );
+			float brightness = Lighting.Brightness( tileX, tileY );
 
-				if( this.MinimumBrightness.HasValue ) {
-					if( this.MinimumBrightness > brightness ) {
-						collideType = TileCollideType.BrightnessLow;
-						return false;
-					}
+			if( this.MinimumBrightness.HasValue ) {
+				if( this.MinimumBrightness > brightness ) {
+					collideType = TileCollideType.BrightnessLow;
+					return false;
 				}
-				if( this.MaximumBrightness.HasValue ) {
-					if( this.MaximumBrightness < brightness ) {
-						collideType = TileCollideType.BrightnessHigh;
-						return false;
-					}
+			}
+			if( this.MaximumBrightness.HasValue ) {
+				if( this.MaximumBrightness < brightness ) {
+					collideType = TileCollideType.BrightnessHigh;
+					return false;
 				}
 			}
 

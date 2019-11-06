@@ -24,7 +24,32 @@ namespace HamstarHelpers.Helpers.Debug {
 
 
 		////////////////
-		
+
+		/// <summary>
+		/// Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
+		/// given label merely update that existing message.
+		/// </summary>
+		/// <param name="labelAndMsg">Identifier and message to display. Identifier is delineated by first occurrence of `.` in the
+		/// string. Calling `Print(...)` with this same identifier replaces any existing displayed message of this identifier.</param>
+		public static void Print( string labelAndMsg ) {
+			string[] msgSplit = labelAndMsg.Split( '.' );
+			string label = msgSplit[0];
+			string msg = msgSplit.Length > 0 ? msgSplit[1] : "";
+
+			DebugHelpers.Print( label, msg );
+		}
+
+		/// <summary>
+		/// Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
+		/// given label merely update that existing message.
+		/// </summary>
+		/// <param name="msgLabel">Identifier of the given message. Calling `Print(...)` with this same identifier replaces any existing
+		/// displayed message of this identifier.</param>
+		/// <param name="msg">Message to display.</param>
+		public static void Print( string msgLabel, string msg ) {
+			DebugHelpers.Print( msgLabel, msg, 20 );
+		}
+
 		/// <summary>
 		/// Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
 		/// given label merely update that existing message.

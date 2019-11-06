@@ -3703,6 +3703,23 @@
             <param name="stackFrameIdx">Depth within the current call stack.</param>
             <returns>Method, class, and namespace of the given frame of the current call stack.</returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.DebugHelpers.Print(System.String)">
+            <summary>
+            Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
+            given label merely update that existing message.
+            </summary>
+            <param name="labelAndMsg">Identifier and message to display. Identifier is delineated by first occurrence of `.` in the
+            string. Calling `Print(...)` with this same identifier replaces any existing displayed message of this identifier.</param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.DebugHelpers.Print(System.String,System.String)">
+            <summary>
+            Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
+            given label merely update that existing message.
+            </summary>
+            <param name="msgLabel">Identifier of the given message. Calling `Print(...)` with this same identifier replaces any existing
+            displayed message of this identifier.</param>
+            <param name="msg">Message to display.</param>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Debug.DebugHelpers.Print(System.String,System.String,System.Int32)">
             <summary>
             Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
@@ -3797,6 +3814,27 @@
             Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).
             </summary>
             <param name="msg"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.LogAndPrintOnce(System.String,System.Nullable{Microsoft.Xna.Framework.Color})">
+            <summary>
+            Outputs a plain log message "once" (or rather, once every log10 % 1 == 0 times).
+            </summary>
+            <param name="msg"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.AlertAndPrintOnce(System.String,System.Nullable{Microsoft.Xna.Framework.Color})">
+            <summary>
+            Outputs an "alert" log message "once" (or rather, once every log10 % 1 == 0 times).
+            </summary>
+            <param name="msg"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.WarnOnce(System.String,System.Nullable{Microsoft.Xna.Framework.Color})">
+            <summary>
+            Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).
+            </summary>
+            <param name="msg"></param>
+            <param name="color"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.ResetOnceMessage(System.String)">
             <summary>
@@ -7109,7 +7147,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindTopLeftOfSquare(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32}@)">
             <summary>
-            Finds the top left tile of a given pattern.
+            Finds the top left tile of a given area of a given pattern. Assumes the area is square (checks left first).
             </summary>
             <param name="pattern"></param>
             <param name="tileX"></param>
@@ -9236,6 +9274,175 @@
         <member name="M:HamstarHelpers.Services.EntityGroups.ProjectileGroupMatcher.#ctor(System.Func{Terraria.Projectile,HamstarHelpers.Services.EntityGroups.EntityGroupDependencies,System.Boolean})">
             <summary></summary>
             <param name="matcherFun"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs">
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWingAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaMovementAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaCombatAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaYoyoAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaHealthOrManaAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaConstructionAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaInformationAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaFishingAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaMusicBoxAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaExpertAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWeapon">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyTool">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaExplosive">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyArmor">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyGarment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPotion">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanity">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanityAccessory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanityGarment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyHeavyArmor">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCactusEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyMeteorEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyJungleEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyBeeEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyBoneEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyHellstoneEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyFrostCoreEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyForbiddenEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyHallowEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyShellEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyLuminiteOreEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWoodEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCopperOrTinEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyIronOrLeadEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnySilverOrTungstenEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyGoldOrPlatinumEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyDemoniteOrCrimtaneEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyMeteorOrJungleOrBoneOrBeeEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCobaltOrPalladiumEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyMythrilOrOrichalcumEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAdamantiteOrTitaniumEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyFrostCoreOrForbiddenEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyChlorophyteOrShroomiteOrSpectreEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCelestialEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyOreEquipment">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyNonOreCraftedEquipment">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.EntityGroups.Definitions.ProjectileGroupIDs">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ProjectileGroupIDs.AnyExplosive">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.EntityGroups.EntityGroups">
             <summary>
