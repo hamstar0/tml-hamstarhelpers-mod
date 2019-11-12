@@ -21,7 +21,8 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == 2 ) {
-				throw new UsageException( "Command not available for server.", Color.Red );
+				caller.Reply( "Command not available for server.", Color.Red );
+				return;
 			}
 
 			if( ModHelpersMod.Config.DisableControlPanel ) {

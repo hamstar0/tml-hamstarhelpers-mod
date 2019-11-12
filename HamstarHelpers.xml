@@ -4949,6 +4949,69 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.FX.FxHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to visual effects.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Creates a lightning effect relative to the screen.
+            </summary>
+            <param name="screenStartPos"></param>
+            <param name="screenEndPos"></param>
+            <param name="scale"></param>
+            <param name="color"></param>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.FX.ParticleFxHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to visual particle and dust effects.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.FX.ParticleFxHelpers.MakeDustCloud(Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Single)">
+            <summary>
+            Creates a dust cloud.
+            </summary>
+            <param name="position"></param>
+            <param name="quantity">Dust particles.</param>
+            <param name="sprayAmount">Outward spray velocity.</param>
+            <param name="scale"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.FX.ParticleFxHelpers.MakeFireEmbers(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Creates fire embers.
+            </summary>
+            <param name="position"></param>
+            <param name="smallEmbers"></param>
+            <param name="largeEmbers"></param>
+            <param name="pouringEmbers"></param>
+            <param name="floaters"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="scale"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.FX.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Creates fire embers.
+            </summary>
+            <param name="position"></param>
+            <param name="quantity">Dust particles.</param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="scale"></param>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeDustCloud(Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Single)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeFireEmbers(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Helpers.HUD.HUDElementHelpers">
             <summary>
             Assorted static "helper" functions pertaining to in-game HUD elements. 
@@ -6236,43 +6299,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to visual particle and dust effects.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeDustCloud(Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Single)">
-            <summary>
-            Creates a dust cloud.
-            </summary>
-            <param name="position"></param>
-            <param name="quantity">Dust particles.</param>
-            <param name="sprayAmount">Outward spray velocity.</param>
-            <param name="scale"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeFireEmbers(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">
-            <summary>
-            Creates fire embers.
-            </summary>
-            <param name="position"></param>
-            <param name="smallEmbers"></param>
-            <param name="largeEmbers"></param>
-            <param name="pouringEmbers"></param>
-            <param name="floaters"></param>
-            <param name="width"></param>
-            <param name="height"></param>
-            <param name="scale"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.ParticleFx.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
-            <summary>
-            Creates fire embers.
-            </summary>
-            <param name="position"></param>
-            <param name="quantity">Dust particles.</param>
-            <param name="width"></param>
-            <param name="height"></param>
-            <param name="scale"></param>
-        </member>
         <member name="T:HamstarHelpers.Helpers.Players.PlayerFileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to player file data (.plr, .tplr).
@@ -7437,17 +7463,83 @@
         <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.HalfBrick">
             <summary></summary>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType">
+            <summary>
+            Credit to https://tshock.readme.io/docs/multiplayer-packet-structure
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillTile">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PlaceTile">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillWall">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PlaceWall">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillTileNoItem">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PlaceWire">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillWire">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PoundTile">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PlaceActuator">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillActuator">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PlaceWire2">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillWire2">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PlaceWire3">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillWire3">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.SlopeTile">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.FrameTrack">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PlaceWire4">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.KillWire4">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.PokeLogicGate">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileChangeNetMessageType.Actuate">
+            <summary></summary>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileStateHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tile state (slope, actuation, etc.).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileStateHelpers.SmartSlope(System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileStateHelpers.SmartSlope(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Attempts to "smartly" smooth a given tile against its adjacent tiles.
             </summary>
             <param name="tileX"></param>
             <param name="tileY"></param>
+            <param name="isSynced"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileWallHelpers">

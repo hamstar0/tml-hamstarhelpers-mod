@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
@@ -48,6 +49,54 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 
+	/// <summary>
+	/// Credit to https://tshock.readme.io/docs/multiplayer-packet-structure
+	/// </summary>
+	public enum TileChangeNetMessageType : int {
+		/// <summary></summary>
+		KillTile = 0,
+		/// <summary></summary>
+		PlaceTile = 1,
+		/// <summary></summary>
+		KillWall = 2,
+		/// <summary></summary>
+		PlaceWall = 3,
+		/// <summary></summary>
+		KillTileNoItem = 4,
+		/// <summary></summary>
+		PlaceWire = 5,
+		/// <summary></summary>
+		KillWire = 6,
+		/// <summary></summary>
+		PoundTile = 7,
+		/// <summary></summary>
+		PlaceActuator = 8,
+		/// <summary></summary>
+		KillActuator = 9,
+		/// <summary></summary>
+		PlaceWire2 = 10,
+		/// <summary></summary>
+		KillWire2 = 11,
+		/// <summary></summary>
+		PlaceWire3 = 12,
+		/// <summary></summary>
+		KillWire3 = 13,
+		/// <summary></summary>
+		SlopeTile = 14,
+		/// <summary></summary>
+		FrameTrack = 15,
+		/// <summary></summary>
+		PlaceWire4 = 16,
+		/// <summary></summary>
+		KillWire4 = 17,
+		/// <summary></summary>
+		PokeLogicGate = 18,
+		/// <summary></summary>
+		Actuate = 19
+	}
+
+
+
 
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile state (slope, actuation, etc.).
@@ -58,8 +107,9 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// </summary>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
+		/// <param name="isSynced"></param>
 		/// <returns></returns>
-		public static bool SmartSlope( int tileX, int tileY ) {
+		public static bool SmartSlope( int tileX, int tileY, bool isSynced ) {
 			Tile mid = Framing.GetTileSafely( tileX, tileY );
 			Tile up = Framing.GetTileSafely( tileX, tileY - 1 );
 			Tile down = Framing.GetTileSafely( tileX, tileY + 1 );
@@ -79,29 +129,36 @@ namespace HamstarHelpers.Helpers.Tiles {
 				&& (left.slope() == (byte)TileSlopeType.TopRightSlope || left.slope() == (byte)TileSlopeType.BottomRightSlope );
 			rightSolid = rightSolid
 				&& ( right.slope() == (byte)TileSlopeType.TopLeftSlope || right.slope() == (byte)TileSlopeType.BottomLeftSlope );
+			int changed = 0;
 
 			// Up
 			if( !upSolid && downSolid && leftSolid && !rightSolid ) {
 				mid.slope( (byte)TileSlopeType.TopLeftSlope );
-				return true;
+				changed = 1;
 			}
 			if( !upSolid && downSolid && !leftSolid && rightSolid ) {
 				mid.slope( (byte)TileSlopeType.TopRightSlope );
-				return true;
+				changed = 1;
 			}
 			if( !upSolid && downSolid && !leftSolid && !rightSolid ) {
 				mid.halfBrick( true );
-				return true;
+				changed = 2;
 			}
 
 			// Down
 			if( upSolid && !downSolid && leftSolid && !rightSolid ) {
 				mid.slope( (byte)TileSlopeType.BottomLeftSlope );
-				return true;
+				changed = 1;
 			}
 			if( upSolid && !downSolid && !leftSolid && rightSolid ) {
 				mid.slope( (byte)TileSlopeType.BottomRightSlope );
-				return true;
+				changed = 1;
+			}
+
+			if( isSynced && Main.netMode == 1 ) {
+				if( changed != 0 ) {
+					NetMessage.SendData( MessageID.TileChange, -1, -1, null, (int)TileChangeNetMessageType.SlopeTile, (float)tileX, (float)tileY, (float)mid.slope(), 0, 0, 0 );
+				}
 			}
 
 			return false;

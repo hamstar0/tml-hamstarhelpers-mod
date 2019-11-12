@@ -24,7 +24,8 @@ namespace HamstarHelpers.Commands {
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( args.Length == 0 ) {
-				throw new UsageException("No arguments supplied.");
+				caller.Reply( "No arguments supplied.", Color.Red );
+				return;
 			}
 
 			int _;

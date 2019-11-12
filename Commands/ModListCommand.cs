@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using HamstarHelpers.Services.TML;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
@@ -62,12 +63,14 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( args.Length == 0 ) {
-				throw new UsageException( "No arguments supplied." );
+				caller.Reply( "No arguments supplied.", Color.Red );
+				return;
 			}
 
 			bool isVerbose;
 			if( !bool.TryParse(args[0], out isVerbose) ) {
-				throw new UsageException( "Invalid 'verbose' argument supplied (must be boolean)." );
+				caller.Reply( "Invalid 'verbose' argument supplied (must be boolean).", Color.Red );
+				return;
 			}
 
 			IList<string> reply = new List<string>( ModLoader.Mods.Length );

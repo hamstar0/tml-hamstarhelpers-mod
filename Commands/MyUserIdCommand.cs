@@ -8,11 +8,7 @@ namespace HamstarHelpers.Commands {
 	/// @private
 	public class MyUserIdCommand : ModCommand {
 		/// @private
-		public override CommandType Type {
-			get {
-				return CommandType.Chat;
-			}
-		}
+		public override CommandType Type => CommandType.Chat;
 		/// @private
 		public override string Command => "mh-my-userid";
 		/// @private

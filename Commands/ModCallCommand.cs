@@ -47,23 +47,30 @@ namespace HamstarHelpers.Commands {
 			}
 
 			if( !ModHelpersMod.Config.ModCallCommandEnabled ) {
-				throw new UsageException( "Mod.Call() command disabled by settings." );
+				caller.Reply( "Mod.Call() command disabled by settings.", Color.Red );
+				return;
 			}
 
 			if( args.Length < 2 ) {
 				if( args.Length == 0 ) {
-					throw new UsageException( "No arguments given." );
+					caller.Reply( "No arguments given.", Color.Red );
+					return;
 				} else {
-					throw new UsageException( "More arguments needed." );
+					caller.Reply( "More arguments needed.", Color.Red );
+					return;
 				}
 			}
 
 			Mod callmod = null;
 			try {
 				callmod = ModLoader.GetMod( args[0] );
-				if( callmod == null ) { throw new ModHelpersException("Bad call mod."); }
+				if( callmod == null ) {
+					caller.Reply( "Bad call mod.", Color.Red );
+					return;
+				}
 			} catch( Exception ) {
-				throw new UsageException( "Invald mod name " + args[0] );
+				caller.Reply( "Invald mod name " + args[0], Color.Red );
+				return;
 			}
 
 			try {

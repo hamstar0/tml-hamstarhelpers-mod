@@ -72,6 +72,8 @@ namespace HamstarHelpers.Services.Timers {
 		}
 
 		private void Update() {
+			if( Main.gamePaused ) { return; }
+
 			foreach( string name in this.Running.Keys.ToArray() ) {
 				this.Elapsed[name]++;
 
