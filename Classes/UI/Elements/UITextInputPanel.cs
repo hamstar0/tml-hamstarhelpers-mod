@@ -95,11 +95,30 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		////////////////
 
+		/// @private
+		public override void Draw( SpriteBatch spriteBatch ) {
+			if( !this.IsHidden ) {
+				float opacity = this.ComputeCurrentOpacity();
+				Color oldTextColor = this.TextColor;
+
+				this.TextColor *= opacity;
+
+				base.Draw( spriteBatch );
+
+				this.TextColor = oldTextColor;
+			}
+		}
+
 		/// <summary>
 		/// Draws element. Also handles text input changes.
 		/// </summary>
 		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		protected override void DrawSelf( SpriteBatch sb ) {
+			float opacity = this.ComputeCurrentOpacity();
+			Color oldTextColor = this.TextColor;
+
+			this.TextColor *= opacity;
+
 			base.DrawSelf( sb );
 
 			////
@@ -156,6 +175,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 				Utils.DrawBorderString( sb, displayStr, pos, this.TextColor, 1f );
 			}
+
+			this.TextColor = oldTextColor;
 		}
 	}
 }

@@ -1,30 +1,32 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
-	/// <summary></summary>
+	/// @private
+	[Obsolete("use Helpers.Tile.TileSlopeType")]
 	public enum TileSlopeType {
-		/// <summary></summary>
+		/// @private
 		None,
-		/// <summary></summary>
+		/// @private
 		Any,
-		/// <summary></summary>
+		/// @private
 		Top,
-		/// <summary></summary>
+		/// @private
 		Bottom,
-		/// <summary></summary>
+		/// @private
 		Left,
-		/// <summary></summary>
+		/// @private
 		Right,
-		/// <summary></summary>
+		/// @private
 		HalfBrick,
-		/// <summary></summary>
+		/// @private
 		TopRightSlope,
-		/// <summary></summary>
+		/// @private
 		TopLeftSlope,
-		/// <summary></summary>
+		/// @private
 		BottomRightSlope,
-		/// <summary></summary>
+		/// @private
 		BottomLeftSlope
 	}
 

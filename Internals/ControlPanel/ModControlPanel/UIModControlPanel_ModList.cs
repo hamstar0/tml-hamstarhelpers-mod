@@ -51,6 +51,9 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 				foreach( var mod in ModListHelpers.GetAllLoadedModsPreferredOrder() ) {
 					UIModData moditem = this.CreateModListItem( i++, mod );
+					if( moditem == null ) {
+						continue;
+					}
 
 					lock( UIModControlPanelTab.ModDataListLock ) {
 						this.ModDataList.Add( moditem );

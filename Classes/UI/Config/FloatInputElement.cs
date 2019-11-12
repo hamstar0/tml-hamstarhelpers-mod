@@ -24,10 +24,17 @@ namespace HamstarHelpers.Classes.UI.ModConfig {
 			////
 
 			this.InputElem = new UITextInputPanel( UITheme.Vanilla, "Enter decimal" );
+			this.InputElem.Opacity = 0.2f;
 			this.InputElem.Width.Set( 184f, 0f );
 			this.InputElem.Height.Set( 32f, 0f );
 			this.InputElem.Left.Set( -92f, 0.5f );
 			//this.InputElem.SetPadding( 2f );
+			this.InputElem.OnMouseOver += (_, __) => {
+				this.InputElem.Opacity = 1f;
+			};
+			this.InputElem.OnMouseOut += (_, __) => {
+				this.InputElem.Opacity = 0.2f;
+			};
 			this.InputElem.OnUnfocus += () => {
 				float val;
 				if( float.TryParse( this.InputElem.GetText(), out val ) ) {

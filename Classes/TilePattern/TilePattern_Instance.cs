@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.Tiles;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -9,6 +10,42 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// Used to in TilePattern's constructor to simplify specifying non-optional values. Keeps TilePattern immutable.
 	/// </summary>
 	public class TilePatternBuilder {
+		/// <summary></summary>
+		/// <param name="slopeType"></param>
+		/// <returns></returns>
+		public static TileShapeType ConvertToShape( TileSlopeType slopeType ) {
+			switch( slopeType ) {
+			case TileSlopeType.None:
+				return TileShapeType.None;
+			case TileSlopeType.Any:
+				return TileShapeType.Any;
+			case TileSlopeType.Top:
+				return TileShapeType.TopSlope;
+			case TileSlopeType.Bottom:
+				return TileShapeType.BottomSlope;
+			case TileSlopeType.Left:
+				return TileShapeType.LeftSlope;
+			case TileSlopeType.Right:
+				return TileShapeType.RightSlope;
+			case TileSlopeType.HalfBrick:
+				return TileShapeType.HalfBrick;
+			case TileSlopeType.TopRightSlope:
+				return TileShapeType.TopRightSlope;
+			case TileSlopeType.TopLeftSlope:
+				return TileShapeType.TopLeftSlope;
+			case TileSlopeType.BottomRightSlope:
+				return TileShapeType.BottomRightSlope;
+			case TileSlopeType.BottomLeftSlope:
+				return TileShapeType.BottomLeftSlope;
+			default:
+				return TileShapeType.None;
+			}
+		}
+
+
+
+		////////////////
+
 		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
 		public Rectangle? AreaFromCenter = null;
 
@@ -48,8 +85,12 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		public bool? HasLava = null;
 
-		/// <summary></summary>
+		/// @private
+		[Obsolete( "use Shape" )]
 		public TileSlopeType? Slope = null;
+
+		/// <summary></summary>
+		public TileShapeType? Shape = null;
 
 		/// <summary></summary>
 		public float? MinimumBrightness = null;
@@ -122,8 +163,12 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		public bool? HasLava { get; private set; }
 
+		/// @private
+		[Obsolete( "use Shape" )]
+		public TileSlopeType? Slope = null;
+
 		/// <summary></summary>
-		public TileSlopeType? Slope { get; private set; }
+		public TileShapeType? Shape = null;
 
 		/// <summary></summary>
 		public float? MaximumBrightness { get; private set; }
@@ -167,6 +212,11 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.HasLava = builder.HasLava;
 
 			this.Slope = builder.Slope;
+			this.Shape = builder.Shape;
+
+			if( !builder.Shape.HasValue && builder.Slope.HasValue ) {
+				this.Shape = TilePatternBuilder.ConvertToShape( builder.Slope.Value );
+			}
 
 			this.MinimumBrightness = builder.MinimumBrightness;
 			this.MaximumBrightness = builder.MaximumBrightness;

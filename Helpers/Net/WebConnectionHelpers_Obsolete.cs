@@ -8,6 +8,7 @@ namespace HamstarHelpers.Helpers.Net {
 	/// Assorted static "helper" functions pertaining to connecting to the web.
 	/// </summary>
 	public partial class WebConnectionHelpers {
+		/// @private
 		[Obsolete( "use MakePostRequestAsync(string, string, Action<Exception> onError, Action<bool, string>)", true )]
 		public static void MakePostRequestAsync( string url, string jsonData,
 					Action<Exception, string> onError,
@@ -16,6 +17,7 @@ namespace HamstarHelpers.Helpers.Net {
 		}
 
 
+		/// @private
 		[Obsolete( "use MakeGetRequestAsync(string, Action<Exception> onError, Action<bool, string>)", true )]
 		public static void MakeGetRequestAsync( string url,
 					Action<Exception, string> onError,

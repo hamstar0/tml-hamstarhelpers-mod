@@ -1,8 +1,9 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Commands;
-using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -202,7 +203,14 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		public UIModData CreateModListItem( int i, Mod mod ) {
 			UIModControlPanelTab self = this;
-			var elem = new UIModData( this.Theme, i, mod, false );
+			UIModData elem;
+
+			try {
+				elem = new UIModData( this.Theme, i, mod, false );
+			} catch {
+				LogHelpers.WarnAndPrintOnce( "Could not load mod " + mod?.DisplayName, Color.Red );
+				return null;
+			}
 
 			this.Theme.ApplyListItem( elem );
 

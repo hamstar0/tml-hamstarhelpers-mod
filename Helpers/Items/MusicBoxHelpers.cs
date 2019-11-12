@@ -12,7 +12,8 @@ namespace HamstarHelpers.Helpers.Items {
 		/// </summary>
 		/// <returns></returns>
 		public static ISet<int> GetVanillaMusicBoxItemIds() {
-			return new HashSet<int> { ItemID.MusicBoxAltOverworldDay,
+			return new HashSet<int> {
+				ItemID.MusicBoxAltOverworldDay,
 				ItemID.MusicBoxAltUnderground,
 				ItemID.MusicBoxBoss1,
 				ItemID.MusicBoxBoss2,

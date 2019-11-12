@@ -1082,42 +1082,45 @@
             @private
         </member>
         <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.None">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.Any">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.Top">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.Bottom">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.Left">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.Right">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.HalfBrick">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.TopRightSlope">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.TopLeftSlope">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.BottomRightSlope">
-            <summary></summary>
+            @private
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType.BottomLeftSlope">
-            <summary></summary>
+            @private
         </member>
         <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern">
+            <summary>
+            Identifies a type of tile by its attributes.
+            </summary>
             <summary>
             Identifies a type of tile by its attributes.
             </summary>
@@ -1214,7 +1217,10 @@
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.HasLava">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Slope">
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Slope">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Shape">
             <summary></summary>
         </member>
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.MaximumBrightness">
@@ -1260,15 +1266,6 @@
             <param name="collisionAt"></param>
             <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CheckPoint(System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType@)">
-            <summary>
-            Tests a given tile against the current settings. Also indicates what type of collision occurs.
-            </summary>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
-            <param name="collideType"></param>
-            <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
-        </member>
         <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CheckArea(Microsoft.Xna.Framework.Rectangle)">
             <summary>
             Checks all tiles in an area.
@@ -1297,6 +1294,15 @@
             <param name="collideType"></param>
             <param name="collisionAt"></param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CheckPoint(System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType@)">
+            <summary>
+            Tests a given tile against the current settings. Also indicates what type of collision occurs.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="collideType"></param>
+            <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
         </member>
         <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CheckBrightness(System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType@)">
             <summary>
@@ -1329,6 +1335,11 @@
             <summary>
             Used to in TilePattern's constructor to simplify specifying non-optional values. Keeps TilePattern immutable.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.ConvertToShape(HamstarHelpers.Classes.Tiles.TilePattern.TileSlopeType)">
+            <summary></summary>
+            <param name="slopeType"></param>
+            <returns></returns>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.AreaFromCenter">
             <summary>Distance to also check adjacent tiles from a given center point.</summary>
@@ -1379,6 +1390,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.Slope">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.Shape">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.MinimumBrightness">
@@ -2420,6 +2434,9 @@
             <summary></summary>
             <param name="text"></param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             <summary>
             Draws element. Also handles text input changes.
@@ -2553,6 +2570,9 @@
         <member name="P:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.IsHidden">
             <summary></summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.Opacity">
+            <summary>Visibility percent.</summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.Boolean)">
             <summary></summary>
             <param name="theme"></param>
@@ -2589,6 +2609,12 @@
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.ComputeCurrentOpacity">
+            <summary>
+            Gets the opacity of the current panel, factoring all parent panels.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UIThemedText">
             <summary>
@@ -3829,7 +3855,7 @@
             <param name="msg"></param>
             <param name="color"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.WarnOnce(System.String,System.Nullable{Microsoft.Xna.Framework.Color})">
+        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.WarnAndPrintOnce(System.String,System.Nullable{Microsoft.Xna.Framework.Color})">
             <summary>
             Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).
             </summary>
@@ -5867,6 +5893,12 @@
             <param name="onCompletion">Called regardless of success. Receives a boolean indicating if the site request succeeded,
             and the output (if any).</param>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakePostRequestAsync(System.String,System.String,System.Action{System.Exception,System.String},System.Action{System.Boolean,System.String})">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Net.WebConnectionHelpers.MakeGetRequestAsync(System.String,System.Action{System.Exception,System.String},System.Action{System.Boolean,System.String})">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Helpers.Net.WebHelpers">
             <summary>
             Assorted static "helper" functions pertaining to the web.
@@ -7253,6 +7285,16 @@
             <param name="maxTileRadius"></param>
             <returns>Tile position of match. `null` if none.</returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileGroupIdentityHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to tile group identification.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Tiles.TileGroupIdentityHelpers.VanillaEarthTiles">
+            <summary>
+            Tile types that typically comprise "earth".
+            </summary>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tiles.
@@ -7339,6 +7381,73 @@
             <param name="tile"></param>
             <param name="baseDamage">Amount of damage (e.g. pickaxe power) applied to the tile.</param>
             <param name="isAbsolute">Returns indication that tile will guarantee destruction on this hit.</param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileSlopeType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileSlopeType.None">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileSlopeType.TopRightSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileSlopeType.TopLeftSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileSlopeType.BottomRightSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileSlopeType.BottomLeftSlope">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileShapeType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.None">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.Any">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.TopRightSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.TopLeftSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.BottomRightSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.BottomLeftSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.TopSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.BottomSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.LeftSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.RightSlope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileShapeType.HalfBrick">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileStateHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to tile state (slope, actuation, etc.).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileStateHelpers.SmartSlope(System.Int32,System.Int32)">
+            <summary>
+            Attempts to "smartly" smooth a given tile against its adjacent tiles.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileWallHelpers">

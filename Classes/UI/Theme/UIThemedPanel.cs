@@ -1,8 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -19,6 +18,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// <summary></summary>
 		public bool IsHidden { get; protected set; }
+
+		/// <summary>Visibility percent.</summary>
+		public float Opacity { get; set; } = 1f;
 
 
 
@@ -101,8 +103,43 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// @private
 		public override void Draw( SpriteBatch spriteBatch ) {
 			if( !this.IsHidden ) {
+				float opacity = this.ComputeCurrentOpacity();
+
+				Color oldBg = this.BackgroundColor;
+				Color oldBord = this.BorderColor;
+
+				this.BackgroundColor *= opacity;
+				this.BorderColor *= opacity;
+
 				base.Draw( spriteBatch );
+
+				this.BackgroundColor = oldBg;
+				this.BorderColor = oldBord;
 			}
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Gets the opacity of the current panel, factoring all parent panels.
+		/// </summary>
+		/// <returns></returns>
+		public float ComputeCurrentOpacity() {
+			float opacity = 1f;
+			UIElement parent = this;
+			UIThemedPanel parentPanel;
+
+			do {
+				parentPanel = parent as UIThemedPanel;
+				if( parentPanel != null ) {
+					opacity *= parentPanel.Opacity;
+				}
+
+				parent = parent.Parent;
+			} while( parent != null );
+
+			return opacity;
 		}
 	}
 }
