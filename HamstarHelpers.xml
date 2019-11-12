@@ -4954,12 +4954,21 @@
             Assorted static "helper" functions pertaining to visual effects.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeScreenLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
             <summary>
-            Creates a lightning effect relative to the screen.
+            Creates a lightning effect relative to the screen. Must be called in a Draw function.
             </summary>
             <param name="screenStartPos"></param>
             <param name="screenEndPos"></param>
+            <param name="scale"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Creates a lightning effect. Must be called in a Draw function.
+            </summary>
+            <param name="wldStartPos"></param>
+            <param name="wldEndPos"></param>
             <param name="scale"></param>
             <param name="color"></param>
         </member>
@@ -6254,6 +6263,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.NPCs.NPCResourceHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to players relative to NPC resources (e.g. textures).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.NPCs.NPCResourceHelpers.SafelyGetTexture(System.Int32)">
+            <summary>
+            Gets a NPC's texture. Loads NPC as needed.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.NPCs.NPCTownHelpers">
             <summary>
             Assorted static "helper" functions pertaining to NPC townsfolk.
@@ -6880,6 +6901,18 @@
             <param name="scale"></param>
             <param name="applyZoom">Whether to convert to current zoom amount of the screen.</param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Projectiles.ProjectileResourceHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to players relative to projectile resources (e.g. textures).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Projectiles.ProjectileResourceHelpers.SafelyGetTexture(System.Int32)">
+            <summary>
+            Gets a projectile's texture. Loads projectiles as needed.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Recipes.RecipeFinderHelpers">
             <summary>
             Assorted static "helper" functions pertaining to recipe finding.
@@ -7409,6 +7442,18 @@
             <param name="isAbsolute">Returns indication that tile will guarantee destruction on this hit.</param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileResourceHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to players relative to Tile resources (e.g. textures).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileResourceHelpers.SafelyGetTexture(System.Int32)">
+            <summary>
+            Gets a tile's texture. Loads tiles as needed.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileSlopeType">
             <summary></summary>
         </member>
@@ -7575,6 +7620,18 @@
             Gets a wall type from a given unique key.
             </summary>
             <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileWallResourceHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to players relative to tile Wall resources (e.g. textures).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileWallResourceHelpers.SafelyGetTexture(System.Int32)">
+            <summary>
+            Gets a wall's texture. Loads walls as needed.
+            </summary>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileWorldHelpers">

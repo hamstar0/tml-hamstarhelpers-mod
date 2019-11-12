@@ -10,13 +10,13 @@ namespace HamstarHelpers.Helpers.FX {
 	/// </summary>
 	public class FxHelpers {
 		/// <summary>
-		/// Creates a lightning effect relative to the screen.
+		/// Creates a lightning effect relative to the screen. Must be called in a Draw function.
 		/// </summary>
 		/// <param name="screenStartPos"></param>
 		/// <param name="screenEndPos"></param>
 		/// <param name="scale"></param>
 		/// <param name="color"></param>
-		public static void MakeLightning( Vector2 screenStartPos, Vector2 screenEndPos, float scale, Color color ) {
+		public static void MakeScreenLightning( Vector2 screenStartPos, Vector2 screenEndPos, float scale, Color color ) {
 			Texture2D tex = Main.extraTexture[33];
 
 			DelegateMethods.c_1 = color;
@@ -27,9 +27,20 @@ namespace HamstarHelpers.Helpers.FX {
 				tex: tex,
 				start: screenStartPos,
 				end: screenEndPos,
-				scale: new Vector2(scale),
+				scale: new Vector2( scale ),
 				framing: new Utils.LaserLineFraming( DelegateMethods.LightningLaserDraw )
 			);
+		}
+
+		/// <summary>
+		/// Creates a lightning effect. Must be called in a Draw function.
+		/// </summary>
+		/// <param name="wldStartPos"></param>
+		/// <param name="wldEndPos"></param>
+		/// <param name="scale"></param>
+		/// <param name="color"></param>
+		public static void MakeLightning( Vector2 wldStartPos, Vector2 wldEndPos, float scale, Color color ) {
+			FxHelpers.MakeScreenLightning( wldStartPos-Main.screenPosition, wldEndPos-Main.screenPosition, scale, color );
 		}
 	}
 }
