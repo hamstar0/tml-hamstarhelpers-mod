@@ -4,7 +4,7 @@ using Terraria;
 
 namespace HamstarHelpers.Helpers.Dusts {
 	/// <summary>
-	/// Assorted static "helper" functions pertaining to dusts
+	/// Assorted static "helper" functions pertaining to dusts.
 	/// </summary>
 	public class DustHelpers {
 		/// <summary>

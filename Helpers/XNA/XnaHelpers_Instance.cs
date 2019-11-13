@@ -23,6 +23,9 @@ namespace HamstarHelpers.Helpers.XNA {
 			if( this.SpriteBatchBegunField == null ) {
 				this.SpriteBatchBegunField = sbType.GetField( "_beginCalled", ReflectionHelpers.MostAccess );
 			}
+			if( this.SpriteBatchBegunField == null ) {
+				this.SpriteBatchBegunField = sbType.GetField( "beginCalled", ReflectionHelpers.MostAccess );
+			}
 		}
 	}
 }

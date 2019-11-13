@@ -3,7 +3,6 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Services.AnimatedColor;
-using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -21,12 +20,12 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			if( Main.spriteBatch == null ) {
 				return false;
 			}
-
+			
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || ModHelpersMod.Config == null || Main.MenuUI == null ) {
 				return false;
 			}
-
+			
 			if( Main.MenuUI.CurrentState != null ) {
 				Type uiType = Main.MenuUI.CurrentState.GetType();
 				if( mymod.Data.ModTagsOpened ) {
@@ -34,13 +33,13 @@ namespace HamstarHelpers.Internals.Menus.Support {
 						return false;
 					}
 				}
-
+				
 				MenuUIDefinition menuDef;
 				if( !Enum.TryParse( uiType.Name, out menuDef ) ) {
 					return false;
 				}
 			}
-
+			
 			return true;
 		}
 
@@ -54,12 +53,12 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				}
 
 				var mymod = ModHelpersMod.Instance;
-
+				
 				bool _;
 				XNAHelpers.DrawBatch( ( sb ) => {
 					mymod.SupportInfo?.Update();
 					mymod.SupportInfo?.Draw( sb );
-				}, out _ );
+				}, out _, true );
 			} catch( Exception e ) {
 				LogHelpers.LogOnce( e.ToString() );
 			}

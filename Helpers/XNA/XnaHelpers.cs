@@ -69,7 +69,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// </summary>
 		/// <param name="draw"></param>
 		/// <param name="isBegun">Indicates that the SpriteBatch was already `Begun()`.</param>
-		/// <param name="forceDraw">Forces drawing even wehn the SpriteBatch is already `Begun()`.</param>
+		/// <param name="forceDraw">Forces drawing even when the SpriteBatch is already `Begun()`.</param>
 		/// <returns>`true` if no issues occurred with the drawing.</returns>
 		public static bool DrawBatch( Action<SpriteBatch> draw, out bool isBegun, bool forceDraw=true ) {
 			if( !XNAHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
