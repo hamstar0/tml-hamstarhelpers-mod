@@ -26,7 +26,7 @@ namespace HamstarHelpers.Helpers.Net {
 
 			int attempts = 3;
 
-			Timers.SetTimer( "ModHelpersRetryIP", 60 * 20, delegate () {
+			Timers.SetTimer( "ModHelpersRetryIP", 60 * 20, true, delegate () {
 				if( this.PublicIP != null ) { return false; }
 
 				this.LoadIPAsync();

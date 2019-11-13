@@ -126,7 +126,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				return;
 			}
 
-			Timers.SetTimer( "ModHelpersModDownloadPrompt", 5, () => {
+			Timers.SetTimer( "ModHelpersModDownloadPrompt", 5, true, () => {
 				if( MenuContextService.GetCurrentMenuUI()?.GetType().Name != "UIModBrowser" ) {
 					return false;
 				}
@@ -171,7 +171,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				return;
 			}
 
-			Timers.SetTimer( "ModHelpersModDownloadPrompt", 5, () => {
+			Timers.SetTimer( "ModHelpersModDownloadPrompt", 5, true, () => {
 				if( MenuContextService.GetCurrentMenuUI()?.GetType().Name != "UIModBrowser" ) {
 					return false;
 				}

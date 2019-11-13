@@ -57,7 +57,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 			mymod.PacketProtocolMngr.ExpectReqest( protocolName );
 
-			Timers.SetTimer( timerName, retryDuration, () => {
+			Timers.SetTimer( timerName, retryDuration, true, () => {
 				var mymod2 = ModHelpersMod.Instance;
 				if( !mymod2.PacketProtocolMngr.IsRequesting(protocolName) ) {
 					return false;
@@ -86,7 +86,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 			mymod.PacketProtocolMngr.ExpectReqest( protocolName );
 
-			Timers.SetTimer( timerName, retryDuration, () => {
+			Timers.SetTimer( timerName, retryDuration, true, () => {
 				var mymod2 = ModHelpersMod.Instance;
 				if( !mymod2.PacketProtocolMngr.IsRequesting( protocolName ) ) {
 					return false;

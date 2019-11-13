@@ -65,7 +65,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 				this.MyInstance.Volume = volume;
 			}
 
-			Timers.Timers.SetTimer( "OverlaySound_" + this.GetHashCode(), 1, () => {
+			Timers.Timers.SetTimer( "OverlaySound_" + this.GetHashCode(), 1, false, () => {
 				this.UpdateLoop();
 				return this.ElapsedFadeTicks > 0;
 			} );

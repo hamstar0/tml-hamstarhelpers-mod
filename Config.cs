@@ -34,7 +34,7 @@ namespace HamstarHelpers {
 			string oldVal = this.PrivilegedUserId;
 			this.PrivilegedUserId = "";
 
-			Timers.SetTimer( "ModHelpersConfigSyncPrevention", 1, () => {
+			Timers.SetTimer( "ModHelpersConfigSyncPrevention", 1, true, () => {
 				this.PrivilegedUserId = oldVal;
 				return false;
 			} );

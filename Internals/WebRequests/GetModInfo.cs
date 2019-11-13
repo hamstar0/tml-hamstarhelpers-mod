@@ -95,7 +95,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				modInfoArgs.ModInfo = modInfo;
 				modInfoArgs.Found = found;
 
-				Timers.SetTimer( "CacheAllModInfoAsyncFailsafe", 2, () => {
+				Timers.SetTimer( "CacheAllModInfoAsyncFailsafe", 2, true, () => {
 					if( GetModInfo.ModInfoListLoadHookValidator == null ) { return true; }
 
 					CustomLoadHooks.TriggerHook(

@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 
 		private void ApplyDefaultFiltersAsync( UIState modBrowserUi ) {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
-				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, () => {
+				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, true, () => {
 					bool isLoading;
 					if( !ReflectionHelpers.Get( modBrowserUi, "loading", out isLoading ) ) {
 						LogHelpers.Warn( "ModBrowserTagsMenuContext - No 'loading'." );

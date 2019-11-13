@@ -50,7 +50,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			}
 
 			if( Timers.GetTimerTickDuration( "ModHelpersModBrowserCheckLoop" ) <= 0 ) {
-				Timers.SetTimer( "ModHelpersModBrowserCheckLoop", 5, () => {
+				Timers.SetTimer( "ModHelpersModBrowserCheckLoop", 5, true, () => {
 					if( !this.IsModBrowserListPopulated( uiModList ) ) {
 						return true;
 					}

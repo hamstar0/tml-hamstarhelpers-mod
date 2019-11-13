@@ -51,7 +51,7 @@ namespace HamstarHelpers.Internals.Logic {
 					if( this.CanUpdateData ) {
 						this.CanUpdateData = false;
 
-						Timers.SetTimer( "ModHelpersPlayerDataAntiHammer", 60 * 3, () => {
+						Timers.SetTimer( "ModHelpersPlayerDataAntiHammer", 60 * 3, true, () => {
 							this.CanUpdateData = true;
 							return false;
 						} );
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Internals.Logic {
 					if( this.CanUpdateData ) {
 						this.CanUpdateData = false;
 
-						Timers.SetTimer( "ModHelpersPlayerDataAntiHammer", 60 * 3, () => {
+						Timers.SetTimer( "ModHelpersPlayerDataAntiHammer", 60 * 3, true, () => {
 							this.CanUpdateData = true;
 							return false;
 						} );

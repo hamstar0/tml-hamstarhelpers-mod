@@ -118,7 +118,7 @@ namespace HamstarHelpers {
 			if( !this.HasAddedRecipeGroups ) { return; }
 			if( !this.HasAddedRecipes ) { return; }
 			
-			Services.Timers.Timers.SetTimer( "ModHelpersLoadFinish", 1, () => {
+			Services.Timers.Timers.SetTimer( "ModHelpersLoadFinish", 1, true, () => {
 				this.PostLoadFull();
 				return false;
 			} );

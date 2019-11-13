@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 		public override void Show( UIState ui ) {
 			base.Show( ui );
 
-			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, () => {
+			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, true, () => {
 				CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
 					if( args != null ) {
 						this.DisplayModListVersions( ui, args.ModInfo );

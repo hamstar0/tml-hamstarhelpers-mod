@@ -54,14 +54,15 @@ namespace HamstarHelpers.Services.Timers {
 		/// </summary>
 		/// <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
 		/// <param name="tickDuration"></param>
+		/// <param name="runsWhilePaused"></param>
 		/// <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
 		/// given tick duration.</param>
-		public static void SetTimer( string name, int tickDuration, Func<bool> action ) {
+		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<bool> action ) {
 			var timers = ModHelpersMod.Instance?.Timers;
 			if( timers == null ) { return; }
-
+			
 			lock( Timers.MyLock ) {
-				timers.Running[name] = (Callback: action, Elapsed: tickDuration );
+				timers.Running[name] = (RunsWhilePaused: runsWhilePaused, Callback: action, Elapsed: tickDuration );
 				timers.Elapsed[name] = 0;
 				timers.Expired.Remove( name );
 			}
@@ -113,7 +114,7 @@ namespace HamstarHelpers.Services.Timers {
 			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
-				timers.Running = new Dictionary<string, (Func<bool>, int)>();
+				timers.Running = new Dictionary<string, (bool, Func<bool>, int)>();
 				timers.Elapsed = new Dictionary<string, int>();
 				timers.Expired = new HashSet<string>();
 			}

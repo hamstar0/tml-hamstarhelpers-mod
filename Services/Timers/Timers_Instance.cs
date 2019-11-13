@@ -13,8 +13,8 @@ namespace HamstarHelpers.Services.Timers {
 	/// MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS.
 	/// </summary>
 	public partial class Timers {
-		private IDictionary<string, (Func<bool> Callback, int Elapsed)> Running
-			= new Dictionary<string, (Func<bool> Callback, int Elapsed)>();
+		private IDictionary<string, (bool RunsWhilePaused, Func<bool> Callback, int Elapsed)> Running
+			= new Dictionary<string, (bool, Func<bool>, int)>();
 		private IDictionary<string, int> Elapsed = new Dictionary<string, int>();
 
 		private ISet<string> Expired = new HashSet<string>();
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Services.Timers {
 
 			LoadHooks.AddWorldUnloadEachHook( () => {
 				lock( Timers.MyLock ) {
-					foreach( (string timerName, (Func<bool>, int) timer) in this.Running ) {
+					foreach( (string timerName, (bool, Func<bool>, int) timer) in this.Running ) {
 						LogHelpers.Log( "Aborted timer " + timerName );
 					}
 
@@ -72,9 +72,11 @@ namespace HamstarHelpers.Services.Timers {
 		}
 
 		private void Update() {
-			if( Main.gamePaused ) { return; }
-
 			foreach( string name in this.Running.Keys.ToArray() ) {
+				if( Main.gamePaused && !this.Running[name].RunsWhilePaused ) {
+					continue;
+				}
+
 				this.Elapsed[name]++;
 
 				if( this.Elapsed[name] >= this.Running[name].Elapsed ) {

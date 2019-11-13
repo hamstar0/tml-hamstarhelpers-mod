@@ -93,7 +93,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 			if( button.TagState != 1 ) {
 				if( Timers.GetTimerTickDuration( "ModHelpersTagsEditDefaults" ) <= 0 ) {
-					Timers.SetTimer( "ModHelpersTagsEditDefaults", 60, () => {
+					Timers.SetTimer( "ModHelpersTagsEditDefaults", 60, true, () => {
 						button.SetTagState( 1 );
 						return false;
 					} );

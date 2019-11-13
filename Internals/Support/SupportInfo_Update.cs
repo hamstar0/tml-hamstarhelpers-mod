@@ -87,7 +87,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				ModTagsEditorMenuContext.Initialize();
 				ModTagsModBrowserMenuContext.Initialize();
 
-				Timers.SetTimer( "ModHelpersModBrowserActivate", 5, () => {
+				Timers.SetTimer( "ModHelpersModBrowserActivate", 5, true, () => {
 					MainMenuHelpers.OpenModBrowserMenu();
 					return false;
 				} );

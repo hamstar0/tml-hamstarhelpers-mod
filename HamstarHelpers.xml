@@ -4380,6 +4380,17 @@
             <param name="maxLength"></param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.Vector2StringExtensions">
+            <summary>
+            Extensions for Vector2 to output shorter strings.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.Vector2StringExtensions.ToShortString(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.FileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to basic file IO.
@@ -4954,21 +4965,21 @@
             Assorted static "helper" functions pertaining to visual effects.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeScreenLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
-            <summary>
-            Creates a lightning effect relative to the screen. Must be called in a Draw function.
-            </summary>
-            <param name="screenStartPos"></param>
-            <param name="screenEndPos"></param>
-            <param name="scale"></param>
-            <param name="color"></param>
-        </member>
         <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
             <summary>
             Creates a lightning effect. Must be called in a Draw function.
             </summary>
             <param name="wldStartPos"></param>
             <param name="wldEndPos"></param>
+            <param name="scale"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeScreenLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Creates a lightning effect relative to the screen. Must be called in a Draw function.
+            </summary>
+            <param name="screenStartPos"></param>
+            <param name="screenEndPos"></param>
             <param name="scale"></param>
             <param name="color"></param>
         </member>
@@ -10388,6 +10399,10 @@
             Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function,
             MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS.
             </summary>
+            <summary>
+            Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function,
+            MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.MainOnTickGet">
             <summary>
@@ -10396,13 +10411,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Func{System.Boolean})">
+        <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Boolean})">
             <summary>
             Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
             but does not obstruct current thread.
             </summary>
             <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
             <param name="tickDuration"></param>
+            <param name="runsWhilePaused"></param>
             <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
             given tick duration.</param>
         </member>
@@ -10423,6 +10439,9 @@
             <summary>
             Ends all 'timers'.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Func{System.Boolean})">
+            @private
         </member>
         <member name="T:HamstarHelpers.Services.TML.BuildPropertiesViewer">
             <summary>
