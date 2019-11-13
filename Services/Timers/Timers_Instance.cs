@@ -14,7 +14,7 @@ namespace HamstarHelpers.Services.Timers {
 	/// </summary>
 	public partial class Timers {
 		private IDictionary<string, (bool RunsWhilePaused, Func<bool> Callback, int Elapsed)> Running
-			= new Dictionary<string, (bool, Func<bool>, int)>();
+				= new Dictionary<string, (bool, Func<bool>, int)>();
 		private IDictionary<string, int> Elapsed = new Dictionary<string, int>();
 
 		private ISet<string> Expired = new HashSet<string>();

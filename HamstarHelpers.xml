@@ -6607,9 +6607,19 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Players.PlayerItemHelpers.TipOfHeldItem(Terraria.Player)">
             <summary>
-            Gets world position of the tip of a player's weilded item.
+            Gets world position of the tip of a player's wielded item.
             </summary>
             <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Players.PlayerItemHelpers.TipOfHeldItem(Terraria.Player,Terraria.Item,System.Int32,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Gets world position of the tip of a player's wielded item.
+            </summary>
+            <param name="player"></param>
+            <param name="item"></param>
+            <param name="useStyle"></param>
+            <param name="offset"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Players.PlayerItemHelpers.GetGrappleItem(Terraria.Player)">

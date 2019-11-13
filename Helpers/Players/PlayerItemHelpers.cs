@@ -295,7 +295,7 @@ namespace HamstarHelpers.Helpers.Players {
 		////////////////
 
 		/// <summary>
-		/// Gets world position of the tip of a player's weilded item.
+		/// Gets world position of the tip of a player's wielded item.
 		/// </summary>
 		/// <param name="player"></param>
 		/// <returns></returns>
@@ -303,23 +303,55 @@ namespace HamstarHelpers.Helpers.Players {
 			Item item = player.HeldItem;
 			if( item == null || item.IsAir ) { return Vector2.Zero; }
 
+			return PlayerItemHelpers.TipOfHeldItem( player, item, item.useStyle, Vector2.Zero ) ?? Vector2.Zero;
+		}
+
+		/// <summary>
+		/// Gets world position of the tip of a player's wielded item.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="item"></param>
+		/// <param name="useStyle"></param>
+		/// <param name="offset"></param>
+		/// <returns></returns>
+		public static Vector2? TipOfHeldItem( Player player, Item item, int useStyle, Vector2 offset ) {
 			Vector2 pos = player.RotatedRelativePoint( player.MountedCenter, true );
 
 			int wid = Main.itemTexture[ item.type ].Width;
 			int length = wid;
 
-			if( item.useStyle != 5 ) {
+			if( useStyle != 5 ) {
 				int hei = Main.itemTexture[ item.type ].Height;
 				length = (int)Math.Sqrt( wid * wid + hei * hei );
 			}
 
-			float reach = ((float)length + 6f) * (float)player.direction;
+			if( useStyle == 4 ) {
+				//return pos + new Vector2( reach/4f, -28f );
+				Vector2 ret = pos + new Vector2(
+					length * player.direction,
+					length * -player.gravDir
+				) + new Vector2(
+					offset.X * player.direction,
+					offset.Y * -player.gravDir
+				);
 
-			if( item.useStyle == 4 ) {
-				return pos + new Vector2( reach/4f, -28f );
+				if( player.direction > 0 ) {
+					ret.X -= 40;
+				}
+
+				return ret;
 			}
 
-			return pos + (player.itemRotation.ToRotationVector2() * reach);
+			float reach = ((float)length + 6f) * (float)player.direction;
+
+			// TODO other useStyle values
+
+			return pos
+				+ (player.itemRotation.ToRotationVector2() * reach)
+				+ new Vector2(
+					offset.X * player.direction,
+					offset.Y * -player.gravDir
+				);
 		}
 		
 
