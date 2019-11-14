@@ -318,40 +318,33 @@ namespace HamstarHelpers.Helpers.Players {
 			Vector2 pos = player.RotatedRelativePoint( player.MountedCenter, true );
 
 			int wid = Main.itemTexture[ item.type ].Width;
+			int hei = Main.itemTexture[ item.type ].Height;
 			int length = wid;
 
+			offset = new Vector2(
+				offset.X * player.direction,
+				offset.Y// * -player.gravDir
+			);
+
 			if( useStyle != 5 ) {
-				int hei = Main.itemTexture[ item.type ].Height;
 				length = (int)Math.Sqrt( wid * wid + hei * hei );
-			}
+			} else if( useStyle == 4 ) {
+				length /= 2;
 
-			if( useStyle == 4 ) {
-				//return pos + new Vector2( reach/4f, -28f );
-				Vector2 ret = pos + new Vector2(
-					length * player.direction,
-					length * -player.gravDir
-				) + new Vector2(
-					offset.X * player.direction,
-					offset.Y * -player.gravDir
-				);
-
-				if( player.direction > 0 ) {
-					ret.X -= 40;
-				}
-
+				//Vector2 ret = pos + new Vector2( reach/4f, -28f );
+				Vector2 ret = pos
+					+ new Vector2( length * player.direction, -length )
+					+ offset;
 				return ret;
 			}
 
-			float reach = ((float)length + 6f) * (float)player.direction;
-
 			// TODO other useStyle values
+
+			float reach = ((float)length + 6f) * (float)player.direction;
 
 			return pos
 				+ (player.itemRotation.ToRotationVector2() * reach)
-				+ new Vector2(
-					offset.X * player.direction,
-					offset.Y * -player.gravDir
-				);
+				+ offset;
 		}
 		
 
