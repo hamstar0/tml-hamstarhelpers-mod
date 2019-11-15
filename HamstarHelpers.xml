@@ -4960,6 +4960,47 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Fx.CameraHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to basic camera movement.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.ApplyOffset(System.Int32,System.Int32)">
+            <summary>
+            Shifts the camers from its current position by the given offset.
+            </summary>
+            <param name="offsetX"></param>
+            <param name="offsetY"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.ApplyShake(System.Single,System.Int32)">
+            <summary>
+            Applies a shaking motion to the camera.
+            </summary>
+            <param name="magnitude"></param>
+            <param name="tickDuration"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.GetShakeDuration">
+            <summary>
+            Gets the duration of any current shaking.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.MoveTo(System.Int32,System.Int32)">
+            <summary>
+            Positions the camera statically somewhere in the world.
+            </summary>
+            <param name="worldLeft"></param>
+            <param name="worldTop"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.OnModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.OnModsUnload">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.OnPostModsLoad">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Helpers.FX.FxHelpers">
             <summary>
             Assorted static "helper" functions pertaining to visual effects.

@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Fx;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Debug.DataDumper;
@@ -163,7 +164,15 @@ namespace HamstarHelpers {
 				LogHelpers.Warn( "(3) - " + e.ToString() );
 				return;
 			}
-//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
+			//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
+		}
+
+
+		////////////////
+
+		public override void ModifyScreenPosition() {
+			var cam = ModContent.GetInstance<CameraHelpers>();
+			cam.ApplyCameraEffects();
 		}
 	}
 }
