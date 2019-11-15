@@ -4972,6 +4972,12 @@
             <param name="offsetX"></param>
             <param name="offsetY"></param>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.GetOffset">
+            <summary>
+            Gets any camera shift offset amount.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.ApplyShake(System.Single,System.Int32)">
             <summary>
             Applies a shaking motion to the camera.

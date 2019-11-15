@@ -21,6 +21,16 @@ namespace HamstarHelpers.Helpers.Fx {
 		}
 
 		/// <summary>
+		/// Gets any camera shift offset amount.
+		/// </summary>
+		/// <returns></returns>
+		public static (int X, int Y) GetOffset() {
+			var cam = ModContent.GetInstance<CameraHelpers>();
+
+			return (cam.OffsetX, cam.OffsetY);
+		}
+
+		/// <summary>
 		/// Applies a shaking motion to the camera.
 		/// </summary>
 		/// <param name="magnitude"></param>

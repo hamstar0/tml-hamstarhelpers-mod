@@ -55,8 +55,8 @@ namespace HamstarHelpers.Helpers.Fx {
 				float shakeX = rand.NextFloat() * this.ShakeMagnitude;
 				float shakeY = rand.NextFloat() * this.ShakeMagnitude;
 
-				Main.screenPosition.X += shakeX - (shakeX * 0.5f);
-				Main.screenPosition.Y += shakeY - (shakeY * 0.5f);
+				Main.screenPosition.X += shakeX - (this.ShakeMagnitude * 0.5f);
+				Main.screenPosition.Y += shakeY - (this.ShakeMagnitude * 0.5f);
 			}
 		}
 	}
