@@ -13,8 +13,8 @@ namespace HamstarHelpers.Services.Timers {
 	/// MainOnTickGet() provides a way to use Main.OnTick for running background tasks at 60FPS.
 	/// </summary>
 	public partial class Timers {
-		private IDictionary<string, (bool RunsWhilePaused, Func<bool> Callback, int Elapsed)> Running
-				= new Dictionary<string, (bool, Func<bool>, int)>();
+		private IDictionary<string, (bool RunsWhilePaused, Func<int> Callback, int Duration)> Running
+				= new Dictionary<string, (bool, Func<int>, int)>();
 		private IDictionary<string, int> Elapsed = new Dictionary<string, int>();
 
 		private ISet<string> Expired = new HashSet<string>();
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Services.Timers {
 
 			LoadHooks.AddWorldUnloadEachHook( () => {
 				lock( Timers.MyLock ) {
-					foreach( (string timerName, (bool, Func<bool>, int) timer) in this.Running ) {
+					foreach( (string timerName, (bool, Func<int>, int) timer) in this.Running ) {
 						LogHelpers.Log( "Aborted timer " + timerName );
 					}
 
@@ -79,10 +79,17 @@ namespace HamstarHelpers.Services.Timers {
 
 				this.Elapsed[name]++;
 
-				if( this.Elapsed[name] >= this.Running[name].Elapsed ) {
+				if( this.Elapsed[name] >= this.Running[name].Duration ) {
 					this.Expired.Add( name );
 
-					if( this.Running[name].Callback() ) {
+					int duration = this.Running[name].Callback();
+					if( duration > 0 ) {
+						//this.Running[name].Duration = duration;
+						this.Running[name] = (
+							this.Running[name].RunsWhilePaused,
+							this.Running[name].Callback,
+							duration
+						);
 						this.Elapsed[name] = 0;
 						this.Expired.Remove( name );
 					}

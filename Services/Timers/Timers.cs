@@ -57,12 +57,12 @@ namespace HamstarHelpers.Services.Timers {
 		/// <param name="runsWhilePaused"></param>
 		/// <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
 		/// given tick duration.</param>
-		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<bool> action ) {
+		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<int> action ) {
 			var timers = ModHelpersMod.Instance?.Timers;
 			if( timers == null ) { return; }
 			
 			lock( Timers.MyLock ) {
-				timers.Running[name] = (RunsWhilePaused: runsWhilePaused, Callback: action, Elapsed: tickDuration );
+				timers.Running[name] = (RunsWhilePaused: runsWhilePaused, Callback: action, Duration: tickDuration );
 				timers.Elapsed[name] = 0;
 				timers.Expired.Remove( name );
 			}
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Services.Timers {
 
 			lock( Timers.MyLock ) {
 				if( timers.Running.ContainsKey( name ) ) {
-					return timers.Running[name].Elapsed - timers.Elapsed[ name ];
+					return timers.Running[name].Duration - timers.Elapsed[ name ];
 				}
 			}
 
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Services.Timers {
 			if( timers == null ) { return; }
 
 			lock( Timers.MyLock ) {
-				timers.Running = new Dictionary<string, (bool, Func<bool>, int)>();
+				timers.Running = new Dictionary<string, (bool, Func<int>, int)>();
 				timers.Elapsed = new Dictionary<string, int>();
 				timers.Expired = new HashSet<string>();
 			}

@@ -11,9 +11,14 @@ namespace HamstarHelpers.Services.Timers {
 	/// </summary>
 	public partial class Timers {
 		/// @private
-		[Obsolete( "use SetTimer(string, int, bool, Func<bool>)", true )]
+		[Obsolete( "use SetTimer(string, int, bool, Func<int>)", true )]
 		public static void SetTimer( string name, int tickDuration, Func<bool> action ) {
-			Timers.SetTimer( name, tickDuration, true, action );
+			Timers.SetTimer( name, tickDuration, true, () => {
+				if( action() ) {
+					return ModHelpersMod.Instance.Timers.Running[ name ].Duration;
+				}
+				return 0;
+			} );
 		}
 	}
 }
