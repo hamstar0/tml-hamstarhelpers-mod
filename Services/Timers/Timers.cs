@@ -57,6 +57,25 @@ namespace HamstarHelpers.Services.Timers {
 		/// <param name="runsWhilePaused"></param>
 		/// <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
 		/// given tick duration.</param>
+		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<bool> action ) {
+			Timers.SetTimer( name, tickDuration, runsWhilePaused, () => {
+				if( action() ) {
+					return tickDuration;
+				} else {
+					return 0;
+				}
+			} );
+		}
+
+		/// <summary>
+		/// Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
+		/// but does not obstruct current thread.
+		/// </summary>
+		/// <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
+		/// <param name="tickDuration"></param>
+		/// <param name="runsWhilePaused"></param>
+		/// <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
+		/// given tick duration.</param>
 		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<int> action ) {
 			var timers = ModHelpersMod.Instance?.Timers;
 			if( timers == null ) { return; }
@@ -68,6 +87,8 @@ namespace HamstarHelpers.Services.Timers {
 			}
 		}
 
+
+		////
 
 		/// <summary>
 		/// Indicates time remaining for the given 'timer'.

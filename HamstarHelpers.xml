@@ -7412,6 +7412,21 @@
             <param name="maxTileRadius"></param>
             <returns>Tile position of match. `null` if none.</returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileFrameHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to tile frames.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.ChestTypeNamesByFrame">
+            <summary>
+            Gets chest type names by frame.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.ChestFramesByTypeName">
+            <summary>
+            Gets chest frame by type names.
+            </summary>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileGroupIdentityHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tile group identification.
@@ -10469,6 +10484,17 @@
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Boolean})">
+            <summary>
+            Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
+            but does not obstruct current thread.
+            </summary>
+            <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
+            <param name="tickDuration"></param>
+            <param name="runsWhilePaused"></param>
+            <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
+            given tick duration.</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Int32})">
             <summary>
             Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
             but does not obstruct current thread.
