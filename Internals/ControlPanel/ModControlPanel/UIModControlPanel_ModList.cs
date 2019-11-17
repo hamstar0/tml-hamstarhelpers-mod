@@ -4,8 +4,9 @@ using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.TModLoader.Mods;
 using System;
 using System.Linq;
-using System.Threading;
+using System.Threading.Tasks;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
@@ -25,11 +26,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				try {
 					UIModData[] modDataList = uiModCtrlPanel.ModDataList.ToArray();
 
-					uiModCtrlPanel.ModListElem.Clear();
-
-					if( modDataList.Length > 0 ) {
-						uiModCtrlPanel.ModListElem.AddRange( modDataList );
-					}
+					uiModCtrlPanel.SetModList( modDataList );
 				} catch( Exception ) { }
 			}
 		}
@@ -39,7 +36,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		////////////////
 
 		public void LoadModListAsync() {
-			ThreadPool.QueueUserWorkItem( _ => {
+			Task.Run( () => {
 				this.IsPopulatingList = true;
 
 				lock( UIModControlPanelTab.ModDataListLock ) {
@@ -50,10 +47,12 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				int i = 1;
 
 				foreach( var mod in ModListHelpers.GetAllLoadedModsPreferredOrder() ) {
-					UIModData moditem = this.CreateModListItem( i++, mod );
+					UIModData moditem = this.CreateModListItem( i, mod );
 					if( moditem == null ) {
 						continue;
 					}
+
+					i++;
 
 					lock( UIModControlPanelTab.ModDataListLock ) {
 						this.ModDataList.Add( moditem );
@@ -67,6 +66,27 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.ModListUpdateRequired = true;
 				this.IsPopulatingList = false;
 			} );
+		}
+
+		////
+
+		private void SetModList( UIModData[] modDataList ) {
+			this.ModListElem.Clear();
+			if( modDataList.Length > 0 ) {
+				return;
+			}
+
+			this.ModListElem.AddRange( modDataList );
+
+			int i = 1;
+
+			foreach( UIElement elem in this.ModListElem._items ) {
+				var modDataElem = elem as UIModData;
+				if( modDataElem == null ) { continue; }
+
+				modDataElem.DisplayIndex?.SetText( "" + i );
+				i++;
+			}
 		}
 		
 

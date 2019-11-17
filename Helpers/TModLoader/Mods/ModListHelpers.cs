@@ -44,6 +44,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			foreach( var mod in ModLoader.Mods ) {
 				if( mod.Name == "ModLoader" ) { continue; }
 				if( modSet.Contains( mod.Name ) ) { continue; }
+
 				TmodFile modFile;
 				if( !ReflectionHelpers.Get(mod, "File", out modFile) || modFile == null ) {
 					LogHelpers.Warn( "Could not get mod file from mod " + mod.Name );

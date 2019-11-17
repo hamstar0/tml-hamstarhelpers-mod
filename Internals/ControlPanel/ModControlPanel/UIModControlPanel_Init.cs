@@ -8,7 +8,6 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Default;
 using Terraria.UI;
 
 
@@ -147,6 +146,10 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.ModLockButton.Disable();
 			}
 			this.ModLockButton.OnClick += ( _, __ ) => {
+				if( Main.netMode != 0 || !ModHelpersMod.Config.WorldModLockEnable ) {
+					self.ModLockButton.Disable();
+				}
+
 				if( !self.ModLockButton.IsEnabled ) { return; }
 				self.ToggleModLock();
 				Main.PlaySound( SoundID.Unlock );
@@ -165,8 +168,16 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.CleanupModTiles.Disable();
 			}
 			this.CleanupModTiles.OnClick += ( _, __ ) => {
+				if( Main.netMode != 0 && this.CleanupModTiles.IsEnabled ) {
+					self.CleanupModTiles.Disable();
+				}
+
 				if( !self.CleanupModTiles.IsEnabled ) {
-					Main.NewText( "Unused tile cleanup disabled by settings.", Color.Yellow );
+					if( Main.netMode == 1 ) {
+						Main.NewText( "Unused tile cleanup disabled for multiplayer.", Color.Yellow );
+					} else {
+						Main.NewText( "Unused tile cleanup disabled by settings.", Color.Yellow );
+					}
 					return;
 				}
 
@@ -201,12 +212,12 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		////////////////
 
-		public UIModData CreateModListItem( int i, Mod mod ) {
+		public UIModData CreateModListItem( int idx, Mod mod ) {
 			UIModControlPanelTab self = this;
 			UIModData elem;
 
 			try {
-				elem = new UIModData( this.Theme, i, mod, false );
+				elem = new UIModData( this.Theme, idx, mod, false );
 			} catch {
 				LogHelpers.WarnAndPrintOnce( "Could not load mod " + mod?.DisplayName, Color.Red );
 				return null;

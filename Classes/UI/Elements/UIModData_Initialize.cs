@@ -52,10 +52,10 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			// Mod index
 
-			if( idx != null ) {
-				var modIdxElem = new UIText( (int)idx + "" );
-				modIdxElem.Left.Set( titleOffset, 0f );
-				this.Append( (UIElement)modIdxElem );
+			if( idx.HasValue ) {
+				this.DisplayIndex = new UIText( (int)idx + "" );
+				this.DisplayIndex.Left.Set( titleOffset, 0f );
+				this.Append( (UIElement)this.DisplayIndex );
 
 				titleOffset += 16f;
 			}

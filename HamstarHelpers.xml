@@ -7417,12 +7417,12 @@
             Assorted static "helper" functions pertaining to tile frames.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.ChestTypeNamesByFrame">
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.VanillaChestTypeNamesByFrame">
             <summary>
             Gets chest type names by frame.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.ChestFramesByTypeName">
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.VanillaChestFramesByTypeName">
             <summary>
             Gets chest frame by type names.
             </summary>

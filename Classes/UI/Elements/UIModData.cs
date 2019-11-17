@@ -59,6 +59,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public UIElement VersionAlertElem { get; private set; }
 
 		/// <summary>
+		/// Displayed index within a display list.
+		/// </summary>
+		public UIText DisplayIndex { get; private set; }
+
+		/// <summary>
 		/// Indicates if mod's icon is loaded.
 		/// </summary>
 		public bool HasIconLoaded { get; private set; }
@@ -141,7 +146,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				return 1;
 			}
 
-			// Always sort own mod to top; this mod's configs should be available first
+			// Always sort Mod Helpers mod to top; this mod's configs should be available first
 			if( other.Mod.Name == ModHelpersMod.Instance.Name ) {
 				return 1;
 			} else if( this.Mod.Name == ModHelpersMod.Instance.Name ) {
