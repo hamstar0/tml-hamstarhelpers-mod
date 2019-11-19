@@ -16,7 +16,7 @@ namespace HamstarHelpers.Services.Configs {
 	/// </summary>
 	public partial class ModConfigStack : ILoadable {
 		/// <summary>
-		/// Downward mergest and retrieves all config stacks of a given type (including the default ModConfig).
+		/// Downward merges and retrieves all config stacks of a given type (including the default ModConfig).
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configType"></param>
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Services.Configs {
 
 
 		/// <summary>
-		/// Downward mergest and retrieves all config stacks of a given type. Excludes the default ModConfig itself.
+		/// Downward merges and retrieves all config stacks of a given type. Excludes the default ModConfig itself.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configType"></param>
