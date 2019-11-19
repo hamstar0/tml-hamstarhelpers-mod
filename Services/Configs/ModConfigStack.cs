@@ -16,7 +16,7 @@ namespace HamstarHelpers.Services.Configs {
 	/// </summary>
 	public partial class ModConfigStack : ILoadable {
 		/// <summary>
-		/// Downward merges and retrieves all config stacks of a given type (including the default ModConfig).
+		/// Downward merges the stack of a given config type. Includes the default ModConfig.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configType"></param>
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Services.Configs {
 
 
 		/// <summary>
-		/// Downward merges and retrieves all config stacks of a given type. Excludes the default ModConfig itself.
+		/// Downward merges the stack of a given config type. Excludes the default ModConfig itself.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configType"></param>
@@ -78,10 +78,14 @@ namespace HamstarHelpers.Services.Configs {
 		/// <returns></returns>
 		public static T GetConfigAt<T>( Type configType, int stackHeight, out bool isMerging ) where T : ModConfig {
 			var configStack = ModContent.GetInstance<ModConfigStack>();
-			(bool IsMerging, ModConfig Config) entry = configStack.ConfigStacks.Get2DOrDefault( configType, stackHeight );
+			(bool IsMerging, ModConfig Config)? entry = configStack.ConfigStacks.Get2DOrDefault( configType, stackHeight );
+			if( !entry.HasValue ) {
+				isMerging = false;
+				return null;
+			}
 
-			isMerging = entry.IsMerging;
-			return (T)entry.Config;
+			isMerging = entry.Value.IsMerging;
+			return (T)entry.Value.Config;
 		}
 
 
