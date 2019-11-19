@@ -11,7 +11,7 @@ namespace HamstarHelpers.Helpers.FX {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to visual effects.
 	/// </summary>
-	public class FxHelpers {
+	public partial class LightningFxHelpers {
 		/// <summary>
 		/// Creates a lightning effect. Must be called in a Draw function.
 		/// </summary>
@@ -19,8 +19,8 @@ namespace HamstarHelpers.Helpers.FX {
 		/// <param name="wldEndPos"></param>
 		/// <param name="scale"></param>
 		/// <param name="color"></param>
-		public static void MakeLightning( Vector2 wldStartPos, Vector2 wldEndPos, float scale, Color color ) {
-			FxHelpers.MakeScreenLightning( wldStartPos - Main.screenPosition, wldEndPos - Main.screenPosition, scale, color );
+		public static void DrawLightning( Vector2 wldStartPos, Vector2 wldEndPos, float scale, Color color ) {
+			LightningFxHelpers.DrawScreenLightning( wldStartPos - Main.screenPosition, wldEndPos - Main.screenPosition, scale, color );
 		}
 
 		/// <summary>
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Helpers.FX {
 		/// <param name="screenEndPos"></param>
 		/// <param name="scale"></param>
 		/// <param name="color"></param>
-		public static void MakeScreenLightning( Vector2 screenStartPos, Vector2 screenEndPos, float scale, Color color ) {
+		public static void DrawScreenLightning( Vector2 screenStartPos, Vector2 screenEndPos, float scale, Color color ) {
 			var rand = TmlHelpers.SafelyGetRand();
 			var segs = new List<(Vector2 Beg, Vector2 End)>();
 
@@ -65,13 +65,13 @@ namespace HamstarHelpers.Helpers.FX {
 //	+", scrStart: "+screenStartPos.ToShortString()+", scrEnd: "+screenEndPos.ToShortString()
 //	+", segs: "+string.Join(", ", segs.Select(seg=>seg.Beg.ToShortString()+"->"+seg.End.ToShortString())));
 			for( int i=0; i<segs.Count; i++ ) {
-				FxHelpers.MakeLightningBeam( segs[i].Beg, segs[i].End, scale, color );
+				LightningFxHelpers.DrawLightningBeam( segs[i].Beg, segs[i].End, scale, color );
 			}
 		}
 
 		////
 
-		private static void MakeLightningBeam( Vector2 screenStartPos, Vector2 screenEndPos, float scale, Color color ) {
+		private static void DrawLightningBeam( Vector2 screenStartPos, Vector2 screenEndPos, float scale, Color color ) {
 			Texture2D tex = Main.extraTexture[33];
 
 			DelegateMethods.c_1 = color;

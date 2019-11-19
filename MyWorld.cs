@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Draw;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Logic;
@@ -147,6 +148,8 @@ namespace HamstarHelpers {
 				out _
 			);
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
+
+			ModContent.GetInstance<DrawHelpersInternal>()?.RunPostDrawTilesActions();
 		}
 	}
 }
