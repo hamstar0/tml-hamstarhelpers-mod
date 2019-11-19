@@ -56,5 +56,23 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 			}
 			dict[key1][key2] = value;
 		}
+
+		/// <summary>
+		/// Sets a value in a nested (sorted) dictionary at a given dictionary key.
+		/// </summary>
+		/// <typeparam name="TKey1"></typeparam>
+		/// <typeparam name="TKey2"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key1"></param>
+		/// <param name="key2"></param>
+		/// <param name="value"></param>
+		public static void Set2DSorted<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
+				TKey1 key1, TKey2 key2, TValue value ) {
+			if( !dict.ContainsKey( key1 ) ) {
+				dict[key1] = new SortedDictionary<TKey2, TValue>();
+			}
+			dict[key1][key2] = value;
+		}
 	}
 }

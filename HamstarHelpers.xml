@@ -2126,6 +2126,11 @@
             Version update alert element.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UIModData.DisplayIndex">
+            <summary>
+            Displayed index within a display list.
+            </summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UIModData.HasIconLoaded">
             <summary>
             Indicates if mod's icon is loaded.

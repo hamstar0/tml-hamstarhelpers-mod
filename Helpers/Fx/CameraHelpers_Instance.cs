@@ -23,13 +23,11 @@ namespace HamstarHelpers.Helpers.Fx {
 		////////////////
 
 		/// @private
-		public void OnModsLoad() { }
-
+		void ILoadable.OnModsLoad() { }
 		/// @private
-		public void OnModsUnload() { }
-
+		void ILoadable.OnModsUnload() { }
 		/// @private
-		public void OnPostModsLoad() { }
+		void ILoadable.OnPostModsLoad() { }
 
 
 		////////////////

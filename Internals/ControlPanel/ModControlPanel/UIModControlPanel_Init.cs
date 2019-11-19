@@ -1,7 +1,9 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Commands;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -131,7 +133,9 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueSubmitButton.Width.Set( 200f, 0f );
 			this.IssueSubmitButton.Disable();
 			this.IssueSubmitButton.OnClick += ( _, __ ) => {
-				if( self.AwaitingReport || !self.IssueSubmitButton.IsEnabled ) { return; }
+				if( self.AwaitingReport || !self.IssueSubmitButton.IsEnabled ) {
+					return;
+				}
 				self.SubmitIssue();
 			};
 			this.Append( this.IssueSubmitButton );
@@ -143,14 +147,20 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );
 			if( Main.netMode != 0 || !ModHelpersMod.Config.WorldModLockEnable ) {
-				this.ModLockButton.Disable();
+				if( this.ModLockButton.IsEnabled ) {
+					this.ModLockButton.Disable();
+				}
 			}
 			this.ModLockButton.OnClick += ( _, __ ) => {
 				if( Main.netMode != 0 || !ModHelpersMod.Config.WorldModLockEnable ) {
-					self.ModLockButton.Disable();
+					if( self.ModLockButton.IsEnabled ) {
+						self.ModLockButton.Disable();
+					}
 				}
 
-				if( !self.ModLockButton.IsEnabled ) { return; }
+				if( !self.ModLockButton.IsEnabled ) {
+					return;
+				}
 				self.ToggleModLock();
 				Main.PlaySound( SoundID.Unlock );
 			};
@@ -168,7 +178,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.CleanupModTiles.Disable();
 			}
 			this.CleanupModTiles.OnClick += ( _, __ ) => {
-				if( Main.netMode != 0 && this.CleanupModTiles.IsEnabled ) {
+				if( Main.netMode != 0 && self.CleanupModTiles.IsEnabled ) {
 					self.CleanupModTiles.Disable();
 				}
 
@@ -207,6 +217,20 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.Append( this.SupportUrl );
 			//this.SupportUrl.Left.Set( -this.SupportUrl.GetDimensions().Width, 1f );
 			this.SupportUrl.Left.Set( -this.SupportUrl.GetDimensions().Width * 0.5f, 0.5f );
+
+			LoadHooks.AddPostWorldLoadEachHook( () => {
+				if( Main.netMode != 0 ) {
+					this.ModLockButton.Disable();
+					this.CleanupModTiles.Disable();
+				} else {
+					if( !ModHelpersMod.Config.WorldModLockEnable ) {
+						this.ModLockButton.Disable();
+					} else {
+						this.ModLockButton.Enable();
+					}
+					this.CleanupModTiles.Enable();
+				}
+			} );
 		}
 
 

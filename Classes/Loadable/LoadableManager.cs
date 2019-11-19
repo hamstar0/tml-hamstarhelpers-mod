@@ -40,7 +40,8 @@ namespace HamstarHelpers.Classes.Loadable {
 			}
 
 			foreach( ILoadable loadable in this.Loadables ) {
-				loadable.OnModsLoad();
+				object _;
+				ReflectionHelpers.RunMethod( loadable.GetType(), loadable, "OnModsLoad", new object[] { }, out _ );
 			}
 		}
 

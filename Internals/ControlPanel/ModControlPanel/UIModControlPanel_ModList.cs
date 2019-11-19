@@ -35,6 +35,27 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		////////////////
 
+		private void SetModList( UIModData[] modDataList ) {
+			this.ModListElem.Clear();
+			if( modDataList.Length == 0 ) {
+				return;
+			}
+
+			this.ModListElem.AddRange( modDataList );
+
+			int i = 1;
+
+			foreach( UIElement elem in this.ModListElem._items ) {
+				var modDataElem = elem as UIModData;
+				if( modDataElem == null ) { continue; }
+
+				modDataElem.DisplayIndex?.SetText( "" + i );
+				i++;
+			}
+		}
+
+		////
+
 		public void LoadModListAsync() {
 			Task.Run( () => {
 				this.IsPopulatingList = true;
@@ -66,27 +87,6 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.ModListUpdateRequired = true;
 				this.IsPopulatingList = false;
 			} );
-		}
-
-		////
-
-		private void SetModList( UIModData[] modDataList ) {
-			this.ModListElem.Clear();
-			if( modDataList.Length > 0 ) {
-				return;
-			}
-
-			this.ModListElem.AddRange( modDataList );
-
-			int i = 1;
-
-			foreach( UIElement elem in this.ModListElem._items ) {
-				var modDataElem = elem as UIModData;
-				if( modDataElem == null ) { continue; }
-
-				modDataElem.DisplayIndex?.SetText( "" + i );
-				i++;
-			}
 		}
 		
 
