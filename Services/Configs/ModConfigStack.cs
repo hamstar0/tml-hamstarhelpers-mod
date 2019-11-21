@@ -1,6 +1,7 @@
 ﻿using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Configs;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
 		public static T GetMergedConfigs<T>() where T : ModConfig {
-			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			if( configStack.CachedMergedConfigs.ContainsKey( configType ) ) {
@@ -46,7 +47,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
 		public static T GetMergedConfigStacks<T>() where T : ModConfig {
-			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			IDictionary<int, ModConfig> configsOf;
@@ -86,7 +87,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <param name="stackHeight"></param>
 		/// <returns></returns>
 		public static T GetConfigAt<T>( int stackHeight ) where T : ModConfig {
-			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			return (T)configStack.ConfigStacks.Get2DOrDefault( configType, stackHeight );
@@ -102,7 +103,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <param name="config"></param>
 		/// <param name="stackHeight"></param>
 		public static void SetConfig<T>( T config, int stackHeight = 100 ) where T : ModConfig {
-			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof(T);
 
 			configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
@@ -117,7 +118,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <param name="config"></param>
 		/// <param name="stackHeight"></param>
 		public static void SetAndMergeConfig<T>( T config, int stackHeight = 100 ) where T : ModConfig {
-			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			if( configStack.ConfigStacks.ContainsKey(configType) ) {
