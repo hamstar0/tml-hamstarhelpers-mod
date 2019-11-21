@@ -28,10 +28,10 @@ namespace HamstarHelpers.Services.Configs {
 				return (T)configStack.CachedMergedConfigs[ configType ];
 			}
 
-			T baseConfig = ModContent.GetInstance<T>();
+			T baseConfig = (T)ModContent.GetInstance<T>().Clone();
 			T mergedConfigs = ModConfigStack.GetMergedConfigStacks<T>();
 
-			ConfigHelpers.MergeConfigs( mergedConfigs, baseConfig );
+			ConfigHelpers.MergeConfigs( baseConfig, mergedConfigs );
 			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
 
 			configStack.CachedMergedConfigs[configType] = mergedConfigs;
