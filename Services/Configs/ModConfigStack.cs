@@ -19,17 +19,17 @@ namespace HamstarHelpers.Services.Configs {
 		/// Downward merges the stack of a given config type. Includes the default ModConfig.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="configType"></param>
 		/// <returns></returns>
-		public static T GetMergedConfigs<T>( Type configType ) where T : ModConfig {
+		public static T GetMergedConfigs<T>() where T : ModConfig {
 			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configType = typeof( T );
 
 			if( configStack.CachedMergedConfigs.ContainsKey( configType ) ) {
 				return (T)configStack.CachedMergedConfigs[ configType ];
 			}
 
 			T baseConfig = ModContent.GetInstance<T>();
-			T mergedConfigs = ModConfigStack.GetMergedConfigStacks<T>( configType );
+			T mergedConfigs = ModConfigStack.GetMergedConfigStacks<T>();
 
 			ConfigHelpers.MergeConfigs( mergedConfigs, baseConfig );
 			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
@@ -44,10 +44,10 @@ namespace HamstarHelpers.Services.Configs {
 		/// Downward merges the stack of a given config type. Excludes the default ModConfig itself.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="configType"></param>
 		/// <returns></returns>
-		public static T GetMergedConfigStacks<T>( Type configType ) where T : ModConfig {
+		public static T GetMergedConfigStacks<T>() where T : ModConfig {
 			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configType = typeof( T );
 
 			IDictionary<int, ModConfig> configsOf;
 			if( !configStack.ConfigStacks.TryGetValue(configType, out configsOf) ) {
@@ -83,11 +83,12 @@ namespace HamstarHelpers.Services.Configs {
 		/// Gets a config on the stack at the specified height (if present).
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="configType"></param>
 		/// <param name="stackHeight"></param>
 		/// <returns></returns>
-		public static T GetConfigAt<T>( Type configType, int stackHeight ) where T : ModConfig {
+		public static T GetConfigAt<T>( int stackHeight ) where T : ModConfig {
 			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configType = typeof( T );
+
 			return (T)configStack.ConfigStacks.Get2DOrDefault( configType, stackHeight );
 		}
 

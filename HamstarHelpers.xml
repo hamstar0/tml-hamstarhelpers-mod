@@ -9519,28 +9519,25 @@
             the user's own ModConfig.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigs``1(System.Type)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigs``1">
             <summary>
             Downward merges the stack of a given config type. Includes the default ModConfig.
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="configType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigStacks``1(System.Type)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigStacks``1">
             <summary>
             Downward merges the stack of a given config type. Excludes the default ModConfig itself.
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="configType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAt``1(System.Type,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAt``1(System.Int32)">
             <summary>
             Gets a config on the stack at the specified height (if present).
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="configType"></param>
             <param name="stackHeight"></param>
             <returns></returns>
         </member>
