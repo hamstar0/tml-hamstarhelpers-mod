@@ -8337,6 +8337,13 @@
             </summary>
             <param name="save">Saves settings or world state.</param>
         </member>
+        <member name="M:HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetInstance``1">
+            <summary>
+            Gets the singleton instance of a given class type. If no such instance exists, one is created and registered.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetModPlayer(Terraria.Player,Terraria.ModLoader.Mod,System.String)">
             <summary>
             Provides an alternative to `Player.GetModPlayer(...)` to ensure the given player is properly loaded. Addresses some

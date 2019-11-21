@@ -19,6 +19,30 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 		////////////////
 
+		/// <summary>
+		/// Gets the singleton instance of a given class type. If no such instance exists, one is created and registered.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public static T SafelyGetInstance<T>() where T : class {
+			T instance = ModContent.GetInstance<T>();
+			if( instance != null ) {
+				return instance;
+			}
+
+			instance = (T)Activator.CreateInstance(
+				typeof(T),
+				ReflectionHelpers.MostAccess,
+				null,
+				new object[] { },
+				null );
+			ContentInstance.Register( instance );
+
+			return instance;
+		}
+
+		////////////////
+
 		private static void ForceSetupPlayer( Player player ) {
 			ModPlayer[] modPlayers;
 
@@ -32,7 +56,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 			}
 		}
 
-		////
+		////////////////
 
 		/// <summary>
 		/// Provides an alternative to `Player.GetModPlayer(...)` to ensure the given player is properly loaded. Addresses some
