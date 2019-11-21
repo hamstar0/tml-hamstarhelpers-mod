@@ -42,14 +42,14 @@ namespace HamstarHelpers.Helpers.FX {
 		/// <param name="height"></param>
 		/// <param name="scale"></param>
 		public static void MakeFireEmbers(
-				Vector2 position,
-				int smallEmbers,
-				int largeEmbers,
-				int pouringEmbers,
-				int floaters,
-				int width=30,
-				int height=30,
-				float scale = 1f ) {
+					Vector2 position,
+					int smallEmbers,
+					int largeEmbers,
+					int pouringEmbers,
+					int floaters,
+					int width=30,
+					int height=30,
+					float scale = 1f ) {
 			int idx;
 			Dust dust;
 			void makeDust( int type, int num ) {
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Helpers.FX {
 		}
 
 		/// <summary>
-		/// Creates fire embers.
+		/// Creates teleportation particles.
 		/// </summary>
 		/// <param name="position"></param>
 		/// <param name="quantity">Dust particles.</param>
@@ -85,7 +85,7 @@ namespace HamstarHelpers.Helpers.FX {
 		/// <param name="scale"></param>
 		public static void MakeTeleportFx( Vector2 position, int quantity, int width=30, int height=30, float scale = 1f ) {
 			int idx;
-			Dust dust;
+			//Dust dust;
 			void makeDust( int type, int num ) {
 				for( int i = 0; i < num; i++ ) {
 					idx = Dust.NewDust(
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Helpers.FX {
 						newColor: new Color( 255, 255, 255 ),
 						Scale: scale
 					);
-					dust = Main.dust[idx];
+					//dust = Main.dust[idx];
 				}
 			}
 

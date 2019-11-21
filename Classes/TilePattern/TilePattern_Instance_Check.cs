@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 
 
@@ -156,8 +157,24 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <param name="collisionAt"></param>
 		/// <returns></returns>
 		public bool CheckArea( int tileX, int tileY, int width, int height,
-				out TileCollideType collideType,
-				out Point collisionAt ) {
+					out TileCollideType collideType,
+					out Point collisionAt ) {
+			if( tileX < 0 || tileY < 0 ) {
+				collideType = TileCollideType.WorldEdge;
+				collisionAt = new Point( tileX, tileY );
+				return false;
+			}
+			if( (tileX + width) >= Main.maxTilesX ) {
+				collideType = TileCollideType.WorldEdge;
+				collisionAt = new Point(tileX + width, tileY );
+				return false;
+			}
+			if( (tileY + height) >= Main.maxTilesY ) {
+				collideType = TileCollideType.WorldEdge;
+				collisionAt = new Point(tileX, tileY + height );
+				return false;
+			}
+
 			int maxX = tileX + width;
 			int maxY = tileY + height;
 

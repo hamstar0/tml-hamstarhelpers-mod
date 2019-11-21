@@ -61,17 +61,23 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <summary>
 		/// Traces downwards from a given tile coordinate to the nearest floor, and then measures the contiguous width.
 		/// </summary>
-		/// <param name="pattern"></param>
+		/// <param name="nonFloorPattern"></param>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
 		/// <param name="maxFallRange">Max distance to trace downwards to a floor before giving up.</param>
 		/// <param name="floorX">Leftmost tile of the contiguous floor.</param>
 		/// <param name="floorY">Last matching tile before hitting the floor.</param>
 		/// <returns></returns>
-		public static int GetFloorWidth( TilePattern pattern, int tileX, int tileY, int maxFallRange, out int floorX, out int floorY ) {
+		public static int GetFloorWidth(
+					TilePattern nonFloorPattern,
+					int tileX,
+					int tileY,
+					int maxFallRange,
+					out int floorX,
+					out int floorY ) {
 			floorY = tileY;
 
-			while( pattern.Check(tileX, floorY) ) {
+			while( nonFloorPattern.Check(tileX, floorY) ) {
 				floorY++;
 
 				if( (floorY - tileY) >= maxFallRange ) {
@@ -82,12 +88,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 			floorY--;
 
 			int rightWidth = 1;
-			while( pattern.Check(tileX+rightWidth, floorY) && !pattern.Check(tileX+rightWidth, floorY+1) ) {
+			while( nonFloorPattern.Check(tileX+rightWidth, floorY) && !nonFloorPattern.Check(tileX+rightWidth, floorY+1) ) {
 				rightWidth++;
 			}
 
 			int leftWidth = 0;
-			while( pattern.Check(tileX-leftWidth, floorY) && !pattern.Check(tileX-leftWidth, floorY+1) ) {
+			while( nonFloorPattern.Check(tileX-leftWidth, floorY) && !nonFloorPattern.Check(tileX-leftWidth, floorY+1) ) {
 				leftWidth++;
 			}
 

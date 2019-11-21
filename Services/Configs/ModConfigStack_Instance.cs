@@ -10,8 +10,10 @@ namespace HamstarHelpers.Services.Configs {
 	/// the user's own ModConfig.
 	/// </summary>
 	public partial class ModConfigStack : ILoadable {
-		private IDictionary<Type, IDictionary<int, (bool IsMerging, ModConfig Config)>> ConfigStacks
-			= new Dictionary<Type, IDictionary<int, (bool IsMerging, ModConfig Config)>>();
+		private IDictionary<Type, IDictionary<int, ModConfig>> ConfigStacks
+			= new Dictionary<Type, IDictionary<int, ModConfig>>();
+		private IDictionary<Type, ModConfig> CachedMergedConfigs
+			= new Dictionary<Type, ModConfig>();
 
 
 

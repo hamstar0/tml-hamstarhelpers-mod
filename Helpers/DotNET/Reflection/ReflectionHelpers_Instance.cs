@@ -44,9 +44,6 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 				if( result == null ) {
 					result = (MemberInfo)classType.GetProperty( fieldOrPropName, ReflectionHelpers.MostAccess );
 				}
-				if( result == null ) {
-					return null;
-				}
 
 				this.FieldPropMap[className][fieldOrPropName] = result;
 			}

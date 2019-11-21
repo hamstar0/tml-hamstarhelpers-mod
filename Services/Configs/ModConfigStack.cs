@@ -22,10 +22,20 @@ namespace HamstarHelpers.Services.Configs {
 		/// <param name="configType"></param>
 		/// <returns></returns>
 		public static T GetMergedConfigs<T>( Type configType ) where T : ModConfig {
+			var configStack = ModContent.GetInstance<ModConfigStack>();
+
+			if( configStack.CachedMergedConfigs.ContainsKey( configType ) ) {
+				return (T)configStack.CachedMergedConfigs[ configType ];
+			}
+
 			T baseConfig = ModContent.GetInstance<T>();
 			T mergedConfigs = ModConfigStack.GetMergedConfigStacks<T>( configType );
 
-			ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
+			ConfigHelpers.MergeConfigs( mergedConfigs, baseConfig );
+			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
+
+			configStack.CachedMergedConfigs[configType] = mergedConfigs;
+
 			return mergedConfigs;
 		}
 
@@ -38,7 +48,8 @@ namespace HamstarHelpers.Services.Configs {
 		/// <returns></returns>
 		public static T GetMergedConfigStacks<T>( Type configType ) where T : ModConfig {
 			var configStack = ModContent.GetInstance<ModConfigStack>();
-			IDictionary<int, (bool IsMerging, ModConfig Config)> configsOf;
+
+			IDictionary<int, ModConfig> configsOf;
 			if( !configStack.ConfigStacks.TryGetValue(configType, out configsOf) ) {
 				return null;
 			}
@@ -54,12 +65,13 @@ namespace HamstarHelpers.Services.Configs {
 				return null;
 			}
 
-			foreach( (bool IsMerging, ModConfig Config) entry in configsOf.Values.Reverse() ) {
-				if( entry.IsMerging ) {
-					ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfig, entry.Config );
-				} else {
-					ConfigHelpers.MergeConfigs( mergedConfig, entry.Config );
-				}
+			foreach( ModConfig entry in configsOf.Values.Reverse() ) {
+				//if( entry.IsMerging ) {
+				//	ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfig, entry.Config );
+				//} else {
+				//	ConfigHelpers.MergeConfigs( mergedConfig, entry.Config );
+				//}
+				ConfigHelpers.MergeConfigs( mergedConfig, entry );
 			}
 
 			return (T)mergedConfig;
@@ -73,19 +85,10 @@ namespace HamstarHelpers.Services.Configs {
 		/// <typeparam name="T"></typeparam>
 		/// <param name="configType"></param>
 		/// <param name="stackHeight"></param>
-		/// <param name="isMerging">Indicates this config should try to merge its collection settings up the stack (instead of
-		///		overriding).</param>
 		/// <returns></returns>
-		public static T GetConfigAt<T>( Type configType, int stackHeight, out bool isMerging ) where T : ModConfig {
+		public static T GetConfigAt<T>( Type configType, int stackHeight ) where T : ModConfig {
 			var configStack = ModContent.GetInstance<ModConfigStack>();
-			(bool IsMerging, ModConfig Config)? entry = configStack.ConfigStacks.Get2DOrDefault( configType, stackHeight );
-			if( !entry.HasValue ) {
-				isMerging = false;
-				return null;
-			}
-
-			isMerging = entry.Value.IsMerging;
-			return (T)entry.Value.Config;
+			return (T)configStack.ConfigStacks.Get2DOrDefault( configType, stackHeight );
 		}
 
 
@@ -97,11 +100,32 @@ namespace HamstarHelpers.Services.Configs {
 		/// <typeparam name="T"></typeparam>
 		/// <param name="config"></param>
 		/// <param name="stackHeight"></param>
-		/// <param name="isMerging">Indicates this config should try to merge its collection settings up the stack (instead of
-		///		overriding).</param>
-		public static void SetConfig<T>( T config, int stackHeight = 100, bool isMerging = false ) where T : ModConfig {
+		public static void SetConfig<T>( T config, int stackHeight = 100 ) where T : ModConfig {
 			var configStack = ModContent.GetInstance<ModConfigStack>();
-			configStack.ConfigStacks.Set2DSorted( typeof(T), stackHeight, (isMerging, config) );
+			var configType = typeof(T);
+
+			configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
+			configStack.CachedMergedConfigs.Remove( configType );
+		}
+
+
+		/// <summary>
+		/// Sets a config to exist on the stack at the specified height, merging if collisions.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="config"></param>
+		/// <param name="stackHeight"></param>
+		public static void SetAndMergeConfig<T>( T config, int stackHeight = 100 ) where T : ModConfig {
+			var configStack = ModContent.GetInstance<ModConfigStack>();
+			var configType = typeof( T );
+
+			if( configStack.ConfigStacks.ContainsKey(configType) ) {
+				ConfigHelpers.MergeConfigs( (T)configStack.ConfigStacks[configType], config );
+			} else {
+				configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
+			}
+
+			configStack.CachedMergedConfigs.Remove( configType );
 		}
 	}
 }

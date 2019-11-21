@@ -43,13 +43,13 @@
         <member name="P:HamstarHelpers.Classes.PlayerData.CustomPlayerData.Player">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnModsLoad">
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private
         </member>
-        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnModsUnload">
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
             @private
         </member>
-        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnPostModsLoad">
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
             @private
         </member>
         <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTree`2">
@@ -4357,6 +4357,18 @@
             <param name="key2"></param>
             <param name="value"></param>
         </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Set2DSorted``3(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,``2}},``0,``1,``2)">
+            <summary>
+            Sets a value in a nested (sorted) dictionary at a given dictionary key.
+            </summary>
+            <typeparam name="TKey1"></typeparam>
+            <typeparam name="TKey2"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dict"></param>
+            <param name="key1"></param>
+            <param name="key2"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.KeyValuePairExtensions">
             <summary>
             Extensions for `KeyValuePair`.
@@ -4864,6 +4876,26 @@
             </summary>
             <param name="url">URL to open.</param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Draw.DrawHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to drawing to the screen. 
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpers.AddPostDrawTilesAction(System.Func{System.Boolean})">
+            <summary>
+            Adds a function to call when ModWorld.PostTileDraw() is called. Main.SpriteBatch is 'begun'.
+            </summary>
+            <param name="func">Returns `false` to stop being called.</param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpersInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
+            @ private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpersInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
+            @ private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpersInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+            @ private
+        </member>
         <member name="T:HamstarHelpers.Helpers.Dusts.DustHelpers">
             <summary>
             Assorted static "helper" functions pertaining to dusts.
@@ -5003,21 +5035,21 @@
             <param name="worldLeft"></param>
             <param name="worldTop"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.OnModsLoad">
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private
         </member>
-        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.OnModsUnload">
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
             @private
         </member>
-        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.OnPostModsLoad">
+        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
             @private
         </member>
-        <member name="T:HamstarHelpers.Helpers.FX.FxHelpers">
+        <member name="T:HamstarHelpers.Helpers.FX.LightningFxHelpers">
             <summary>
             Assorted static "helper" functions pertaining to visual effects.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+        <member name="M:HamstarHelpers.Helpers.FX.LightningFxHelpers.DrawLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
             <summary>
             Creates a lightning effect. Must be called in a Draw function.
             </summary>
@@ -5026,7 +5058,7 @@
             <param name="scale"></param>
             <param name="color"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.FxHelpers.MakeScreenLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+        <member name="M:HamstarHelpers.Helpers.FX.LightningFxHelpers.DrawScreenLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
             <summary>
             Creates a lightning effect relative to the screen. Must be called in a Draw function.
             </summary>
@@ -5064,7 +5096,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.FX.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
             <summary>
-            Creates fire embers.
+            Creates teleportation particles.
             </summary>
             <param name="position"></param>
             <param name="quantity">Dust particles.</param>
@@ -7324,7 +7356,7 @@
             <summary>
             Traces downwards from a given tile coordinate to the nearest floor, and then measures the contiguous width.
             </summary>
-            <param name="pattern"></param>
+            <param name="nonFloorPattern"></param>
             <param name="tileX"></param>
             <param name="tileY"></param>
             <param name="maxFallRange">Max distance to trace downwards to a floor before giving up.</param>
@@ -7783,6 +7815,9 @@
             <summary>
             Assorted static "helper" functions pertaining to configs (ModConfig, primarily).
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to configs (ModConfig, primarily).
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.ConfigHelpers.SyncConfig(Terraria.ModLoader.Config.ModConfig)">
             <summary>
@@ -7790,6 +7825,15 @@
             </summary>
             <param name="config"></param>
             <returns>`false` if sync is diabled (client-only config).</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.TModLoader.Configs.ConfigHelpers.MergeConfigs``1(``0,``0)">
+            <summary>
+            Combines one ModConfig instance into another, prioritizing non-default values of the latter.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="to"></param>
+            <param name="fro"></param>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.FullIntDefinition">
             <summary>
@@ -9464,6 +9508,66 @@
             <param name="rotation"></param>
             <param name="origin"></param>
             <param name="spriteFx"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Configs.ModConfigStack">
+            <summary>
+            Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without affecting
+            the user's own ModConfig.
+            </summary>
+            <summary>
+            Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without affecting
+            the user's own ModConfig.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigs``1(System.Type)">
+            <summary>
+            Downward merges the stack of a given config type. Includes the default ModConfig.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigStacks``1(System.Type)">
+            <summary>
+            Downward merges the stack of a given config type. Excludes the default ModConfig itself.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAt``1(System.Type,System.Int32)">
+            <summary>
+            Gets a config on the stack at the specified height (if present).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="configType"></param>
+            <param name="stackHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetConfig``1(``0,System.Int32)">
+            <summary>
+            Sets a config to exist on the stack at the specified height.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="config"></param>
+            <param name="stackHeight"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetAndMergeConfig``1(``0,System.Int32)">
+            <summary>
+            Sets a config to exist on the stack at the specified height, merging if collisions.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="config"></param>
+            <param name="stackHeight"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.OnModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.OnPostModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.OnModsUnload">
+            @private
         </member>
         <member name="T:HamstarHelpers.Services.DataStore.DataStore">
             <summary>

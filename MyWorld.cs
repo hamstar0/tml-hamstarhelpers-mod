@@ -135,8 +135,8 @@ namespace HamstarHelpers {
 			bool _;
 			XNAHelpers.DrawBatch(
 				(sb) => {
-					var mymod = (ModHelpersMod)this.mod;
 					DebugHelpers.DrawAllRects( sb );
+					ModContent.GetInstance<DrawHelpersInternal>()?.RunPostDrawTilesActions();
 				},
 				SpriteSortMode.Deferred,
 				BlendState.AlphaBlend,
@@ -148,8 +148,6 @@ namespace HamstarHelpers {
 				out _
 			);
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
-
-			ModContent.GetInstance<DrawHelpersInternal>()?.RunPostDrawTilesActions();
 		}
 	}
 }
