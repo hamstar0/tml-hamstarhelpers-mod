@@ -16,7 +16,7 @@ namespace HamstarHelpers {
 		/// <summary>
 		/// Gets the singleton instance of this config file.
 		/// </summary>
-		public static ModHelpersPrivilegedUserConfig Instance => StackableModConfig.GetMergedConfigs<ModHelpersPrivilegedUserConfig>();
+		public static ModHelpersPrivilegedUserConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersPrivilegedUserConfig>();
 
 
 
@@ -41,6 +41,8 @@ namespace HamstarHelpers {
 		public override void OnChanged() {
 			if( Main.gameMenu ) { return; }
 
+			base.OnChanged();
+
 			string oldVal = this.PrivilegedUserId;
 			this.PrivilegedUserId = "";
 
@@ -62,7 +64,7 @@ namespace HamstarHelpers {
 		/// <summary>
 		/// Gets the singleton instance of this config file.
 		/// </summary>
-		public static ModHelpersConfig Instance => StackableModConfig.GetMergedConfigs<ModHelpersConfig>();
+		public static ModHelpersConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersConfig>();
 
 
 

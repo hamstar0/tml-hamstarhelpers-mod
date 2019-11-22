@@ -1,37 +1,15 @@
-﻿using HamstarHelpers.Classes.Loadable;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using Terraria.ModLoader.Config;
 
 
 namespace HamstarHelpers.Services.Configs {
 	/// <summary>
-	/// Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
-	/// affecting the user's own ModConfig. Must be subclassed.
+	/// Helps implement mod config stacking behavior. Replace your ModConfig classes with this class.
 	/// </summary>
-	public abstract partial class StackableModConfig : ModConfig, ILoadable {
-		private IDictionary<Type, IDictionary<int, StackableModConfig>> ConfigStacks
-			= new Dictionary<Type, IDictionary<int, StackableModConfig>>();
-		private IDictionary<Type, StackableModConfig> CachedMergedConfigs
-			= new Dictionary<Type, StackableModConfig>();
-
-
-
-		////////////////
-
+	public abstract class StackableModConfig : ModConfig {
 		/// @private
-		void ILoadable.OnModsLoad() { }
-		/// @private
-		void ILoadable.OnPostModsLoad() { }
-		/// @private
-		void ILoadable.OnModsUnload() { }
-		/// @private
-
-
-		////////////////
-
 		public override void OnChanged() {
-			StackableModConfig.Uncache( this.GetType() );
+			ModConfigStack.Uncache( this.GetType() );
 		}
 	}
 }

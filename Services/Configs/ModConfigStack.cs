@@ -14,16 +14,16 @@ using Terraria.ModLoader.Config;
 namespace HamstarHelpers.Services.Configs {
 	/// <summary>
 	/// Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
-	/// affecting the user's own ModConfig. Must be subclassed.
+	/// affecting the user's own ModConfig.
 	/// </summary>
-	public abstract partial class StackableModConfig : ModConfig, ILoadable {
+	public partial class ModConfigStack : ILoadable {
 		/// <summary>
 		/// Downward merges the stack of a given config type. Includes the default ModConfig.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
 		public static T GetMergedConfigs<T>() where T : StackableModConfig {
-			var configStack = TmlHelpers.SafelyGetInstance<StackableModConfig>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			if( configStack.CachedMergedConfigs.ContainsKey( configType ) ) {
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Services.Configs {
 			}
 
 			T baseConfig = (T)ModContent.GetInstance<T>().Clone();
-			T mergedConfigs = StackableModConfig.GetMergedConfigStacks<T>();
+			T mergedConfigs = ModConfigStack.GetMergedConfigStacks<T>();
 
 			ConfigHelpers.MergeConfigs( baseConfig, mergedConfigs );
 			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
 		public static T GetMergedConfigStacks<T>() where T : StackableModConfig {
-			var configStack = TmlHelpers.SafelyGetInstance<StackableModConfig>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			IDictionary<int, StackableModConfig> configsOf;
@@ -89,7 +89,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <param name="stackHeight"></param>
 		/// <returns></returns>
 		public static T GetConfigAt<T>( int stackHeight ) where T : StackableModConfig {
-			var configStack = TmlHelpers.SafelyGetInstance<StackableModConfig>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			return (T)configStack.ConfigStacks.Get2DOrDefault( configType, stackHeight );
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <param name="config"></param>
 		/// <param name="stackHeight"></param>
 		public static void SetConfig<T>( T config, int stackHeight = 100 ) where T : StackableModConfig {
-			var configStack = TmlHelpers.SafelyGetInstance<StackableModConfig>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof(T);
 
 			configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
@@ -120,7 +120,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// <param name="config"></param>
 		/// <param name="stackHeight"></param>
 		public static void SetAndMergeConfig<T>( T config, int stackHeight = 100 ) where T : StackableModConfig {
-			var configStack = TmlHelpers.SafelyGetInstance<StackableModConfig>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			if( configStack.ConfigStacks.ContainsKey(configType) ) {
@@ -141,7 +141,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		public static void Uncache<T>() where T : StackableModConfig {
-			var configStack = TmlHelpers.SafelyGetInstance<StackableModConfig>();
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
 			configStack.CachedMergedConfigs.Remove( configType );
@@ -153,7 +153,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// </summary>
 		/// <param name="configType"></param>
 		public static void Uncache( Type configType ) {
-			var configStack = TmlHelpers.SafelyGetInstance<StackableModConfig>();
+			var configStack = (ModConfigStack)TmlHelpers.SafelyGetInstance( typeof(ModConfigStack) );
 
 			configStack.CachedMergedConfigs.Remove( configType );
 		}

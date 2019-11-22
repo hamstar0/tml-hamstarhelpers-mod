@@ -9534,31 +9534,31 @@
             <param name="origin"></param>
             <param name="spriteFx"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Configs.StackableModConfig">
+        <member name="T:HamstarHelpers.Services.Configs.ModConfigStack">
             <summary>
             Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
-            affecting the user's own ModConfig. Must be subclassed.
+            affecting the user's own ModConfig.
             </summary>
             <summary>
             Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
-            affecting the user's own ModConfig. Must be subclassed.
+            affecting the user's own ModConfig.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.GetMergedConfigs``1">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigs``1">
             <summary>
             Downward merges the stack of a given config type. Includes the default ModConfig.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.GetMergedConfigStacks``1">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigStacks``1">
             <summary>
             Downward merges the stack of a given config type. Excludes the default ModConfig itself.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.GetConfigAt``1(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAt``1(System.Int32)">
             <summary>
             Gets a config on the stack at the specified height (if present).
             </summary>
@@ -9566,7 +9566,7 @@
             <param name="stackHeight"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.SetConfig``1(``0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetConfig``1(``0,System.Int32)">
             <summary>
             Sets a config to exist on the stack at the specified height.
             </summary>
@@ -9574,7 +9574,7 @@
             <param name="config"></param>
             <param name="stackHeight"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.SetAndMergeConfig``1(``0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetAndMergeConfig``1(``0,System.Int32)">
             <summary>
             Sets a config to exist on the stack at the specified height, merging if collisions.
             </summary>
@@ -9582,28 +9582,33 @@
             <param name="config"></param>
             <param name="stackHeight"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.Uncache``1">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache``1">
             <summary>
             Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
             of SetConfig or SetAndMergeConfig.
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.Uncache(System.Type)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache(System.Type)">
             <summary>
             Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
             of SetConfig or SetAndMergeConfig.
             </summary>
             <param name="configType"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
             @private
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
             @private
+        </member>
+        <member name="T:HamstarHelpers.Services.Configs.StackableModConfig">
+            <summary>
+            Helps implement mod config stacking behavior. Replace your ModConfig classes with this class.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OnChanged">
             @private
