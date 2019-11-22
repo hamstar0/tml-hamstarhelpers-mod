@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Services.Configs;
 using HamstarHelpers.Services.Timers;
 using Newtonsoft.Json;
 using System.ComponentModel;
@@ -11,7 +12,16 @@ namespace HamstarHelpers {
 	/// Defines config settings field for a "privileged user".
 	/// </summary>
 	[Label( "Mod Helpers \"Privileged User\"" )]
-	public class ModHelpersPrivilegedUserConfig : ModConfig {
+	public class ModHelpersPrivilegedUserConfig : StackableModConfig {
+		/// <summary>
+		/// Gets the singleton instance of this config file.
+		/// </summary>
+		public static ModHelpersPrivilegedUserConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersPrivilegedUserConfig>();
+
+
+
+		////////////////
+
 		/// @private
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 		
@@ -48,7 +58,16 @@ namespace HamstarHelpers {
 	/// Defines config settings fields. See `ModConfig` (via. tModLoader).
 	/// </summary>
 	[Label("Mod Helpers Settings")]
-	public class ModHelpersConfig : ModConfig {
+	public class ModHelpersConfig : StackableModConfig {
+		/// <summary>
+		/// Gets the singleton instance of this config file.
+		/// </summary>
+		public static ModHelpersConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersConfig>();
+
+
+
+		////////////////
+
 		//public static string ConfigFileName => "Mod Helpers Config.json";
 
 		/// @private

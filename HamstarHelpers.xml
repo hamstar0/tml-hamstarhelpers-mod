@@ -3483,6 +3483,11 @@
             Defines config settings field for a "privileged user".
             </summary>
         </member>
+        <member name="P:HamstarHelpers.ModHelpersPrivilegedUserConfig.Instance">
+            <summary>
+            Gets the singleton instance of this config file.
+            </summary>
+        </member>
         <member name="P:HamstarHelpers.ModHelpersPrivilegedUserConfig.Mode">
             @private
         </member>
@@ -3497,6 +3502,11 @@
         <member name="T:HamstarHelpers.ModHelpersConfig">
             <summary>
             Defines config settings fields. See `ModConfig` (via. tModLoader).
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.Instance">
+            <summary>
+            Gets the singleton instance of this config file.
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.Mode">
@@ -9579,6 +9589,13 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache(System.Type)">
+            <summary>
+            Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
+            of SetConfig or SetAndMergeConfig.
+            </summary>
+            <param name="configType"></param>
+        </member>
         <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.OnModsLoad">
             @private
         </member>
@@ -9586,6 +9603,14 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.OnModsUnload">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Services.Configs.StackableModConfig">
+            <summary>
+            Enables ModConfig for stackable use.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OnChanged">
             @private
         </member>
         <member name="T:HamstarHelpers.Services.DataStore.DataStore">

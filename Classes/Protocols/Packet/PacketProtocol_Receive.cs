@@ -24,7 +24,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				return;
 			}
 
-			if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
+			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				string name = protNamespace + "." + protName;
 				string jsonStr = JsonConvert.SerializeObject( this );
 				LogHelpers.Log( "<" + name + " ReceiveWithEitherBase: " + jsonStr );
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		////////
 
 		private void ReceiveRequestWithClientBase() {
-			if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
+			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
 				string name = mytype.Namespace + "." + mytype.Name;
 				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnClient..." );
@@ -84,7 +84,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 
 		private void ReceiveRequestWithServerBase( int fromWho ) {
-			if( ModHelpersMod.Config.DebugModeNetInfo && this.IsVerbose ) {
+			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
 				string name = mytype.Namespace + "." + mytype.Name;
 				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnServer..." );

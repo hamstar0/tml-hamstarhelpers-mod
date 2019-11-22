@@ -32,7 +32,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.HasIconLoaded = false;
 			this.LatestAvailableVersion = default( Version );
 
-			if( !ModHelpersMod.Config.DisableModMenuUpdates ) {
+			if( !ModHelpersConfig.Instance.DisableModMenuUpdates ) {
 				BuildPropertiesViewer props = modfile != null ?
 					BuildPropertiesViewer.GetBuildPropertiesForModFile( modfile ) :
 					(BuildPropertiesViewer)null;

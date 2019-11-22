@@ -90,7 +90,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 					callback( isProper );
 				} else {
-					if( ModHelpersMod.Config.DebugModeNetInfo ) {
+					if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 						LogHelpers.Log( "Error retrieving mod data for '" + modName + "'" ); //+ "': " + reason );
 					}
 				}

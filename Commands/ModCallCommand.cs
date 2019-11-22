@@ -46,7 +46,7 @@ namespace HamstarHelpers.Commands {
 				}
 			}
 
-			if( !ModHelpersMod.Config.ModCallCommandEnabled ) {
+			if( !ModHelpersConfig.Instance.ModCallCommandEnabled ) {
 				caller.Reply( "Mod.Call() command disabled by settings.", Color.Red );
 				return;
 			}

@@ -280,7 +280,7 @@ namespace HamstarHelpers.Classes.ModTagDefinitions {
 				m( "Contextual",            "When", "Concerns with a specific, discrete event or (non-boss) game context.")
 			};
 
-			if( !ModHelpersMod.Config.DisableJudgmentalTags ) {
+			if( !ModHelpersConfig.Instance.DisableJudgmentalTags ) {
 				list.Add( m( "Unimaginative", "Judgmental", "Nothing special; exceedingly common, generic, or flavorless.",
 					TagFlavor.IllFavored
 				) );

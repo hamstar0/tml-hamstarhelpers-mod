@@ -16,7 +16,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 	/// </summary>
 	public partial class CustomPlayerData : ILoadable {
 		private static void Enter( int playerWho ) {
-			if( ModHelpersMod.Config.DebugModeHelpersInfo ) {
+			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
 				LogHelpers.Alert( "Player "+Main.player[playerWho].name+" ("+playerWho+") entered the game." );
 			}
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 		}
 
 		private static void Exit( int playerWho ) {
-			if( ModHelpersMod.Config.DebugModeHelpersInfo ) {
+			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
 				LogHelpers.Alert( "Player " + Main.player[playerWho].name + " (" + playerWho + ") exited the game." );
 			}
 

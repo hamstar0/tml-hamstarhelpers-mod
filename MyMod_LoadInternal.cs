@@ -13,7 +13,7 @@ namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
 		private void LoadExceptionBehavior() {
-			if( ModHelpersMod.Config.DebugModeDisableSilentLogging ) {
+			if( ModHelpersConfig.Instance.DebugModeDisableSilentLogging ) {
 				var flags = Helpers.DotNET.Reflection.ReflectionHelpers.MostAccess;
 				FieldInfo fceField = typeof( AppDomain ).GetField( "FirstChanceException", flags );
 				if( fceField == null ) {
@@ -25,7 +25,7 @@ namespace HamstarHelpers {
 				}
 			}
 
-			if( !this.HasUnhandledExceptionLogger && ModHelpersMod.Config.DebugModeUnhandledExceptionLogging ) {
+			if( !this.HasUnhandledExceptionLogger && ModHelpersConfig.Instance.DebugModeUnhandledExceptionLogging ) {
 				this.HasUnhandledExceptionLogger = true;
 				AppDomain.CurrentDomain.UnhandledException += ModHelpersMod.UnhandledLogger;
 			}
@@ -56,7 +56,7 @@ namespace HamstarHelpers {
 		////////////////
 		
 		private void AddRecipesInternal() {
-			if( ModHelpersMod.Config.AddCrimsonLeatherRecipe ) {
+			if( ModHelpersConfig.Instance.AddCrimsonLeatherRecipe ) {
 				var vertebraeToLeather = new ModRecipe( this );
 
 				vertebraeToLeather.AddIngredient( ItemID.Vertebrae, 5 );

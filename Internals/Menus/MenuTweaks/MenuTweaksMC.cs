@@ -11,7 +11,7 @@ using Terraria.UI;
 namespace HamstarHelpers.Internals.Menus.MenuTweaks {
 	partial class MenuTweaksMenuContext : SessionMenuContext {
 		public static void Initialize() {
-			if( ModHelpersMod.Config.DisableModMenuTweaks ) { return; }
+			if( ModHelpersConfig.Instance.DisableModMenuTweaks ) { return; }
 
 			MenuTweaksMenuContext ctx;
 

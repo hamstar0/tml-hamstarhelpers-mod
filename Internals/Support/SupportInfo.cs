@@ -91,7 +91,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			row += 1;
 
-			if( !ModHelpersMod.Config.DisableModTags ) {
+			if( !ModHelpersConfig.Instance.DisableModTags ) {
 				if( !mymod.Data.ModTagsOpened ) {
 					this.EnableModTagsLabel = new UIThemedText( UITheme.Vanilla, false, "Enable Mod Tags", 1f * ( scale + 0.2f ) );
 					this.EnableModTagsLabel.TextColor = Color.Orange;

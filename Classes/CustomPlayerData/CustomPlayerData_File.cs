@@ -55,7 +55,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 			CustomPlayerData.PrepareDir( className );
 
 			try {
-				if( ModHelpersMod.Config.CustomPlayerDataAsText ) {
+				if( ModHelpersConfig.Instance.CustomPlayerDataAsText ) {
 					fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".json" );
 					dataStr = FileHelpers.LoadTextFile( fullPath, false );
 				} else {
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 			}
 
 			try {
-				if( ModHelpersMod.Config.CustomPlayerDataAsText ) {
+				if( ModHelpersConfig.Instance.CustomPlayerDataAsText ) {
 					string fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".json" );
 					string dataJson = JsonConvert.SerializeObject( data, new JsonSerializerSettings() );
 

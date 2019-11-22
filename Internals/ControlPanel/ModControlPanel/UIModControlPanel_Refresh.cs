@@ -10,7 +10,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			string status = areModsLocked ? ": ON" : ": OFF";
 			bool isEnabled = true;
 
-			if( !ModHelpersMod.Config.WorldModLockEnable ) {
+			if( !ModHelpersConfig.Instance.WorldModLockEnable ) {
 				status += " (disabled)";
 				isEnabled = false;
 			} else if( Main.netMode != 0 ) {
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		////////////////
 
 		public void UpdateElements() {
-			if( !ModHelpersMod.Config.WorldModLockEnable ) {
+			if( !ModHelpersConfig.Instance.WorldModLockEnable ) {
 				if( this.ModLockButton.IsEnabled ) {
 					this.RefreshModLockButton();
 				}

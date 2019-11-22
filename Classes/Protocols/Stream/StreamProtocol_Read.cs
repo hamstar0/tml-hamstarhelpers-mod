@@ -21,7 +21,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 			IOrderedEnumerable<FieldInfo> orderedFields = fieldContainer.OrderedFields;
 			int i = 0;
 
-			if( ModHelpersMod.Config.DebugModePacketInfo ) {
+			if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 				LogHelpers.Log( "  Begun reading packet " + fieldContainer.GetType().Name + " ("+fieldContainer.FieldCount+" fields)" );
 			}
 
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 					}
 				}
 
-				if( ModHelpersMod.Config.DebugModePacketInfo ) {
+				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 					LogHelpers.Log( "  * Reading packet "+fieldContainer.GetType().Name
 						+" field ("+i+" of "+fieldContainer.FieldCount+") "+field.Name
 						+": "+DotNetHelpers.Stringify(fieldData, 32) );
@@ -199,7 +199,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				//}
 				string rawJson = reader.ReadString();
 				
-				if( ModHelpersMod.Config.DebugModePacketInfo ) {
+				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 					LogHelpers.Log( "    - ReadStreamObjectValue - type: "+fieldType.Name+", raw value ("+rawJson.Length+"): \n  "+rawJson );
 				}
 

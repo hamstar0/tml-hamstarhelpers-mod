@@ -37,7 +37,7 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 
 			// Update ping every 15 seconds
-			if( ModHelpersMod.Config.IsServerGaugingAveragePing && this.TestPing++ > ModHelpersMod.Config.PingUpdateDelay ) {
+			if( ModHelpersConfig.Instance.IsServerGaugingAveragePing && this.TestPing++ > ModHelpersConfig.Instance.PingUpdateDelay ) {
 				PingProtocol.QuickSendToServer();
 				this.TestPing = 0;
 			}

@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Classes.Loadable;
 using System;
 using System.Collections.Generic;
-using Terraria.ModLoader.Config;
 
 
 namespace HamstarHelpers.Services.Configs {
@@ -10,10 +9,10 @@ namespace HamstarHelpers.Services.Configs {
 	/// the user's own ModConfig.
 	/// </summary>
 	public partial class ModConfigStack : ILoadable {
-		private IDictionary<Type, IDictionary<int, ModConfig>> ConfigStacks
-			= new Dictionary<Type, IDictionary<int, ModConfig>>();
-		private IDictionary<Type, ModConfig> CachedMergedConfigs
-			= new Dictionary<Type, ModConfig>();
+		private IDictionary<Type, IDictionary<int, StackableModConfig>> ConfigStacks
+			= new Dictionary<Type, IDictionary<int, StackableModConfig>>();
+		private IDictionary<Type, StackableModConfig> CachedMergedConfigs
+			= new Dictionary<Type, StackableModConfig>();
 
 
 

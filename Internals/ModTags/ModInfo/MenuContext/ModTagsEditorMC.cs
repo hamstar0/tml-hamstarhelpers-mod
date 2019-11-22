@@ -26,7 +26,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 		public static void Initialize() {
 			if( !ModHelpersMod.Instance.Data.ModTagsOpened ) { return; }
-			if( ModHelpersMod.Config.DisableModTags ) { return; }
+			if( ModHelpersConfig.Instance.DisableModTags ) { return; }
 
 			if( MenuContextService.GetMenuContext(MenuUIDefinition.UIModInfo, "ModHelpers: Mod Tags Info") == null ) {
 				var ctx = new ModTagsEditorMenuContext( MenuUIDefinition.UIModInfo, "ModHelpers: Mod Tags Info" );

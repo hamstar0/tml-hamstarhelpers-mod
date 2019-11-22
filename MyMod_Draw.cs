@@ -42,7 +42,7 @@ namespace HamstarHelpers {
 				var sb = Main.spriteBatch;
 
 				try {
-					if( !ModHelpersMod.Config.DisableControlPanel ) {
+					if( !ModHelpersConfig.Instance.DisableControlPanel ) {
 						this.ControlPanel.UpdateToggler();
 						this.ControlPanel.DrawToggler( sb );
 					}

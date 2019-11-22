@@ -146,13 +146,13 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.ModLockButton.Top.Set( top, 0f );
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );
-			if( Main.netMode != 0 || !ModHelpersMod.Config.WorldModLockEnable ) {
+			if( Main.netMode != 0 || !ModHelpersConfig.Instance.WorldModLockEnable ) {
 				if( this.ModLockButton.IsEnabled ) {
 					this.ModLockButton.Disable();
 				}
 			}
 			this.ModLockButton.OnClick += ( _, __ ) => {
-				if( Main.netMode != 0 || !ModHelpersMod.Config.WorldModLockEnable ) {
+				if( Main.netMode != 0 || !ModHelpersConfig.Instance.WorldModLockEnable ) {
 					if( self.ModLockButton.IsEnabled ) {
 						self.ModLockButton.Disable();
 					}
@@ -223,7 +223,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 					this.ModLockButton.Disable();
 					this.CleanupModTiles.Disable();
 				} else {
-					if( !ModHelpersMod.Config.WorldModLockEnable ) {
+					if( !ModHelpersConfig.Instance.WorldModLockEnable ) {
 						this.ModLockButton.Disable();
 					} else {
 						this.ModLockButton.Enable();

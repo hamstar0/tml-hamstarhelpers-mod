@@ -24,7 +24,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				throw new ModHelpersException( "Invalid default constructor for "+fieldContainer.GetType().Name );
 			}
 
-			if( ModHelpersMod.Config.DebugModePacketInfo ) {
+			if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 				LogHelpers.Log( "  Begun writing packet " + fieldContainer.GetType().Name + " (" + fieldContainer.FieldCount + " fields)" );
 			}
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				object rawFieldVal = field.GetValue( fieldContainer );
 				//LogHelpers.Log( "WRITE "+ data.GetType().Name+ " FIELD " + field + " VALUE "+(rawFieldVal??"null"));
 
-				if( ModHelpersMod.Config.DebugModePacketInfo ) {
+				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 					LogHelpers.Log( "  * Writing packet " + fieldContainer.GetType().Name
 						+ " field (" + i + " of " + fieldContainer.FieldCount + ") "
 						+ field.Name + ": " + DotNetHelpers.Stringify( rawFieldVal, 32 ) );
@@ -155,7 +155,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				string jsonEncVal = JsonConvert.SerializeObject( rawVal );
 				writer.Write( (string)jsonEncVal );
 
-				if( ModHelpersMod.Config.DebugModePacketInfo ) {
+				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 					LogHelpers.Log( "    - WriteStreamObjectValue - type: " + fieldType.Name + ", raw value ("+jsonEncVal.Length+"): \n  " + jsonEncVal );
 				}
 			}

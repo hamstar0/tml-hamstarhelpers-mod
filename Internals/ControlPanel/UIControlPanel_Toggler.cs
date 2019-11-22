@@ -21,7 +21,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		private static Vector2 TogglerPosition {
 			get {
-				var config = ModHelpersMod.Config;
+				var config = ModHelpersConfig.Instance;
 				int x = config.ControlPanelIconX < 0 ? Main.screenWidth + config.ControlPanelIconX : config.ControlPanelIconX;
 				int y = config.ControlPanelIconY < 0 ? Main.screenHeight + config.ControlPanelIconY : config.ControlPanelIconY;
 

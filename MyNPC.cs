@@ -17,7 +17,7 @@ namespace HamstarHelpers {
 				this.NpcKilledByPlayer( npc );
 			}
 
-			if( ModHelpersMod.Config.MagiTechScrapMechBossDropsEnabled ) {
+			if( ModHelpersConfig.Instance.MagiTechScrapMechBossDropsEnabled ) {
 				int scrapType = ModContent.ItemType<MagiTechScrapItem>();
 
 				switch( npc.type ) {

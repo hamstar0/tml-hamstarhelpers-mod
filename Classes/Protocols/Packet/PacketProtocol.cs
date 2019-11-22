@@ -46,7 +46,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 					throw new ModHelpersException( "Invalid constructor for " + subclassType.Name + " ("+subclassType.Namespace+"); must be private, not protected." );
 				}
 
-				if( ModHelpersMod.Config.DebugModeNetInfo ) {
+				if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 					string name = subclassType.Namespace + "." + subclassType.Name;
 					LogHelpers.Alert( name );
 				}
