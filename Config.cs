@@ -16,7 +16,7 @@ namespace HamstarHelpers {
 		/// <summary>
 		/// Gets the singleton instance of this config file.
 		/// </summary>
-		public static ModHelpersPrivilegedUserConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersPrivilegedUserConfig>();
+		public static ModHelpersPrivilegedUserConfig Instance => StackableModConfig.GetMergedConfigs<ModHelpersPrivilegedUserConfig>();
 
 
 
@@ -62,7 +62,7 @@ namespace HamstarHelpers {
 		/// <summary>
 		/// Gets the singleton instance of this config file.
 		/// </summary>
-		public static ModHelpersConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersConfig>();
+		public static ModHelpersConfig Instance => StackableModConfig.GetMergedConfigs<ModHelpersConfig>();
 
 
 
