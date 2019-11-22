@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader;
@@ -32,7 +33,7 @@ namespace HamstarHelpers.Services.Configs {
 
 			T baseConfig = (T)ModContent.GetInstance<T>().Clone();
 			T mergedConfigs = ModConfigStack.GetMergedConfigStacks<T>();
-
+			
 			ConfigHelpers.MergeConfigs( baseConfig, mergedConfigs );
 			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
 
@@ -57,7 +58,7 @@ namespace HamstarHelpers.Services.Configs {
 				configStack.ConfigStacks[ configType ] = configsOf;
 			}
 
-			var mergedConfig = (ModConfig)Activator.CreateInstance(
+			var mergedConfig = (T)Activator.CreateInstance(
 				configType,
 				ReflectionHelpers.MostAccess,
 				null,
@@ -74,10 +75,10 @@ namespace HamstarHelpers.Services.Configs {
 				//} else {
 				//	ConfigHelpers.MergeConfigs( mergedConfig, entry.Config );
 				//}
-				ConfigHelpers.MergeConfigs( mergedConfig, entry );
+				ConfigHelpers.MergeConfigs( mergedConfig, (T)entry );
 			}
 
-			return (T)mergedConfig;
+			return mergedConfig;
 		}
 
 		////

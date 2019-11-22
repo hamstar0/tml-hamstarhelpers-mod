@@ -107,6 +107,7 @@ namespace HamstarHelpers {
 		
 		private void InitializeModules() {
 			this.Loadables = new LoadableManager();
+			this.ReflectionHelpers = new ReflectionHelpers();
 
 			this.ExceptionMngr = new ModHelpersExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
@@ -116,7 +117,6 @@ namespace HamstarHelpers {
 		private void LoadModules() {
 			this.Loadables.OnModsLoad();
 
-			this.ReflectionHelpers = new ReflectionHelpers();
 			this.DataStore = new DataStore();
 			this.LoadHooks = new LoadHooks();
 			this.CustomLoadHooks = new CustomLoadHooks();

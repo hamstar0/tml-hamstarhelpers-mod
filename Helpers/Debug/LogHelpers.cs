@@ -58,7 +58,7 @@ namespace HamstarHelpers.Helpers.Debug {
 				string nowSecondsWhole = ( (int)nowSeconds ).ToString( "D6" );
 				string nowSecondsDecimal = ( nowSeconds - (int)nowSeconds ).ToString( "N2" );
 				string now = nowSecondsWhole + "." + ( nowSecondsDecimal.Length > 2 ? nowSecondsDecimal.Substring( 2 ) : nowSecondsDecimal );
-
+				
 				string from = Main.myPlayer.ToString( "D3" );
 				info = Main.netMode + ":" + from + " - " + now;
 				if( info.Length < 26 ) {

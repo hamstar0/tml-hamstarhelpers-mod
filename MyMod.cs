@@ -1,6 +1,5 @@
 ﻿using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Services.Messages.Inbox;
 using System;
 using System.IO;

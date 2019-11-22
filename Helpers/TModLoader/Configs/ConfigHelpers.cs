@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using Newtonsoft.Json;
 using System;
@@ -56,14 +57,14 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		/// <param name="fro">Config to pull field/property values from. Only pulls non-default (changed) values.</param>
 		public static void MergeConfigs<T>( T to, T fro ) where T : ModConfig {
 			var configType = typeof(T);
-			T template = JsonConvert.DeserializeObject<T>( "{}" );
-			/*T template = (T)Activator.CreateInstance(
+			//T template = JsonConvert.DeserializeObject<T>( "{}" );
+			T template = (T)Activator.CreateInstance(
 				configType,
 				ReflectionHelpers.MostAccess,
 				null,
 				new object[] { },
 				null
-			);*/
+			);
 			if( template == null ) {
 				throw new ModHelpersException( "Could generate template for ModConfig "+configType.Name );
 			}

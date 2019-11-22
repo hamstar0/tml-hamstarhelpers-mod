@@ -21,8 +21,13 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// </summary>
 		/// <returns></returns>
 		public static Vector2 GetVanillaAccessorySlotScreenPosition( int slot ) {
-			var pos = new Vector2( Main.screenWidth - 92, 310 );
+			var pos = new Vector2( Main.screenWidth - 92, 318 );
 			pos.Y += ( 48 * slot );
+
+			if( Main.mapStyle == 1 ) {
+				pos.Y += Main.screenHeight - 600;
+				//pos.Y += 104;
+			}
 
 			return pos;
 		}
