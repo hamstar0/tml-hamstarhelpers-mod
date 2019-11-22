@@ -21,6 +21,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 		/// <summary>
 		/// Gets the singleton instance of a given class type. If no such instance exists, one is created and registered.
+		/// Note: Avoid calling ContentInstance.Register(...) for this class after.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
@@ -40,6 +41,33 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 			return instance;
 		}
+
+		/// <summary>
+		/// Gets the singleton instance of a given class type. If no such instance exists, one is created and registered.
+		/// Note: Avoid calling ContentInstance.Register(...) for this class after.
+		/// </summary>
+		/// <param name="classType"></param>
+		/// <returns></returns>
+		public static object SafelyGetInstance( Type classType ) {
+			MethodInfo method = typeof( ModContent ).GetMethod( "GetInstance" );
+			MethodInfo genericMethod = method.MakeGenericMethod( classType );
+
+			object rawInstance = genericMethod?.Invoke( null, new object[] { } );
+			if( rawInstance != null ) {
+				return rawInstance;
+			}
+
+			rawInstance = Activator.CreateInstance(
+				classType,
+				ReflectionHelpers.MostAccess,
+				null,
+				new object[] { },
+				null );
+			ContentInstance.Register( rawInstance );
+
+			return rawInstance;
+		}
+
 
 		////////////////
 

@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Classes.Loadable;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader;
@@ -52,7 +53,8 @@ namespace HamstarHelpers.Services.Configs {
 
 			IDictionary<int, ModConfig> configsOf;
 			if( !configStack.ConfigStacks.TryGetValue(configType, out configsOf) ) {
-				return null;
+				configsOf = new Dictionary<int, ModConfig>();
+				configStack.ConfigStacks[ configType ] = configsOf;
 			}
 
 			var mergedConfig = (ModConfig)Activator.CreateInstance(
@@ -63,7 +65,7 @@ namespace HamstarHelpers.Services.Configs {
 				null
 			);
 			if( mergedConfig == null ) {
-				return null;
+				throw new ModHelpersException( "Could not generate merge base for ModConfig "+configType.Name );
 			}
 
 			foreach( ModConfig entry in configsOf.Values.Reverse() ) {
@@ -126,6 +128,21 @@ namespace HamstarHelpers.Services.Configs {
 			} else {
 				configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
 			}
+
+			configStack.CachedMergedConfigs.Remove( configType );
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
+		/// of SetConfig or SetAndMergeConfig.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		public static void Uncache<T>() where T : ModConfig {
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
+			var configType = typeof( T );
 
 			configStack.CachedMergedConfigs.Remove( configType );
 		}

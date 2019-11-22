@@ -7831,9 +7831,8 @@
             Combines one ModConfig instance into another, prioritizing non-default values of the latter.
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="to"></param>
-            <param name="fro"></param>
-            <returns></returns>
+            <param name="to">Config to push changed field/property values to. Any existing values are overridden, where changes found.</param>
+            <param name="fro">Config to pull field/property values from. Only pulls non-default (changed) values.</param>
         </member>
         <member name="T:HamstarHelpers.Helpers.TModLoader.Configs.FullIntDefinition">
             <summary>
@@ -8340,8 +8339,17 @@
         <member name="M:HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetInstance``1">
             <summary>
             Gets the singleton instance of a given class type. If no such instance exists, one is created and registered.
+            Note: Avoid calling ContentInstance.Register(...) for this class after.
             </summary>
             <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetInstance(System.Type)">
+            <summary>
+            Gets the singleton instance of a given class type. If no such instance exists, one is created and registered.
+            Note: Avoid calling ContentInstance.Register(...) for this class after.
+            </summary>
+            <param name="classType"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetModPlayer(Terraria.Player,Terraria.ModLoader.Mod,System.String)">
@@ -9563,6 +9571,13 @@
             <typeparam name="T"></typeparam>
             <param name="config"></param>
             <param name="stackHeight"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache``1">
+            <summary>
+            Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
+            of SetConfig or SetAndMergeConfig.
+            </summary>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.OnModsLoad">
             @private

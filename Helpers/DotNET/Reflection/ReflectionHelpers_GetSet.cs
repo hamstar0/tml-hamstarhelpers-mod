@@ -28,16 +28,20 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		}
 
 		private static bool SetMemberValue<T>( MemberInfo member, object instance, T newValue ) {
-			var field = member as FieldInfo;
-			if( field != null ) {
-				field.SetValue( instance, newValue );
-				return true;
-			}
+			try {
+				var field = member as FieldInfo;
+				if( field != null ) {
+					field.SetValue( instance, newValue );
+					return true;
+				}
 
-			var prop = member as PropertyInfo;
-			if( prop != null ) {
-				prop.SetValue( instance, newValue );
-				return true;
+				var prop = member as PropertyInfo;
+				if( prop != null ) {
+					prop.SetValue( instance, newValue );
+					return true;
+				}
+			} catch( Exception e ) {
+				throw new ModHelpersException( "", e );
 			}
 
 			return false;

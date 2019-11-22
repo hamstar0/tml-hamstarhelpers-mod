@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.TModLoader;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -29,7 +30,7 @@ namespace HamstarHelpers.Classes.Loadable {
 							continue;
 						}
 
-						ILoadable loadable = this.LoadLoadableSingleton( classType );
+						var loadable = (ILoadable)TmlHelpers.SafelyGetInstance( classType );
 						if( loadable == null ) {
 							continue;
 						}
@@ -56,29 +57,6 @@ namespace HamstarHelpers.Classes.Loadable {
 			foreach( ILoadable loadable in this.Loadables ) {
 				loadable.OnModsUnload();
 			}
-		}
-
-
-		////////////////
-
-		private ILoadable LoadLoadableSingleton( Type loadableClassType ) {
-			MethodInfo method = typeof( ModContent ).GetMethod( "GetInstance" );
-			MethodInfo genericMethod = method.MakeGenericMethod( loadableClassType );
-			object rawInstance = genericMethod?.Invoke( null, new object[] { } );
-
-			if( rawInstance != null ) {
-				return (ILoadable)rawInstance;
-			}
-
-			var loadable = (ILoadable)Activator.CreateInstance(
-				loadableClassType,
-				ReflectionHelpers.MostAccess,
-				null,
-				new object[] { },
-				null );
-			ContentInstance.Register( loadable );
-
-			return loadable;
 		}
 	}
 }
