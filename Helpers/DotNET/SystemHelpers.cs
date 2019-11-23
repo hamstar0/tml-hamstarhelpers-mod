@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 		
 
 		/// <summary>
-		/// Opens a given URL with the OS default program (typially your default web browser).
+		/// Opens a given URL with the OS default program (typically your default web browser).
 		/// </summary>
 		/// <param name="url">URL to open.</param>
 		public static void OpenUrl( string url ) {

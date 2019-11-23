@@ -1,9 +1,12 @@
-﻿using HamstarHelpers.Helpers.DotNET;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Terraria;
 using Terraria.ModLoader;
 
 
@@ -39,10 +42,13 @@ namespace HamstarHelpers.Classes.Loadable {
 					} catch { }
 				}
 			}
-
+			
 			foreach( ILoadable loadable in this.Loadables ) {
-				object _;
-				ReflectionHelpers.RunMethod( loadable.GetType(), loadable, "OnModsLoad", new object[] { }, out _ );
+				loadable.OnModsLoad();
+				//object _;
+				//if( !ReflectionHelpers.RunMethod( loadable.GetType(), loadable, "OnModsLoad", new object[] { }, out _ ) ) {
+				//	throw new ModHelpersException( "Could not call OnModsLoad for "+loadable.GetType() );
+				//}
 			}
 		}
 

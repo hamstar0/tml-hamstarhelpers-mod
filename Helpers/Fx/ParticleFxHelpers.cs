@@ -3,7 +3,7 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.FX {
+namespace HamstarHelpers.Helpers.Fx {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to visual particle and dust effects.
 	/// </summary>

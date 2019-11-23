@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// </summary>
 		/// <returns></returns>
 		public static bool IsWorldLoaded() {
-			if( !LoadHelpers.IsModLoaded() ) { return false; }
+			if( !LoadHelpers.IsModLoaded() ) {  return false; }
 
 			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 			if( !myworld.HasObsoleteId ) { return false; }

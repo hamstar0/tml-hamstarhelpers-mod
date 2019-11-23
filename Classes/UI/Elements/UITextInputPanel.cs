@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.XNA;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -45,14 +46,20 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		public Color TextColor;
 
-		/// <summary>
-		/// "Default" text. Appears when no text is input. Not counted as input.
-		/// </summary>
-		public string HintText { get; private set; }
+
+		////////////////
 
 		private string Text = "";
 		private uint CursorAnimation;
 		private bool IsSelected = false;
+
+
+		////////////////
+
+		/// <summary>
+		/// "Default" text. Appears when no text is input. Not counted as input.
+		/// </summary>
+		public string HintText { get; private set; }
 
 
 
@@ -95,30 +102,36 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		////////////////
 
-		/// @private
+		/*/// @private
 		public override void Draw( SpriteBatch spriteBatch ) {
 			if( !this.IsHidden ) {
 				float opacity = this.ComputeCurrentOpacity();
 				Color oldTextColor = this.TextColor;
 
-				this.TextColor *= opacity;
+				this.TextColor.R = (byte)((float)this.TextColor.R * opacity);
+				this.TextColor.G = (byte)((float)this.TextColor.G * opacity);
+				this.TextColor.B = (byte)((float)this.TextColor.B * opacity);
+				this.TextColor.A = (byte)((float)this.TextColor.A * opacity);
 
 				base.Draw( spriteBatch );
 
 				this.TextColor = oldTextColor;
 			}
-		}
+		}*/
 
 		/// <summary>
 		/// Draws element. Also handles text input changes.
 		/// </summary>
 		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
 		protected override void DrawSelf( SpriteBatch sb ) {
-			float opacity = this.ComputeCurrentOpacity();
+			/*float opacity = this.ComputeCurrentOpacity();
 			Color oldTextColor = this.TextColor;
-
-			this.TextColor *= opacity;
-
+			
+			this.TextColor.R = (byte)((float)this.TextColor.R * opacity);
+			this.TextColor.G = (byte)((float)this.TextColor.G * opacity);
+			this.TextColor.B = (byte)((float)this.TextColor.B * opacity);
+			this.TextColor.A = (byte)((float)this.TextColor.A * opacity);
+			*/
 			base.DrawSelf( sb );
 
 			////
@@ -176,7 +189,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				Utils.DrawBorderString( sb, displayStr, pos, this.TextColor, 1f );
 			}
 
-			this.TextColor = oldTextColor;
+			//this.TextColor = oldTextColor;
 		}
 	}
 }

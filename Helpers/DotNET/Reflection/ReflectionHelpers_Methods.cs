@@ -77,7 +77,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 			MethodInfo method = classType.GetMethod( methodName, ReflectionHelpers.MostAccess, null, paramTypes, null );
 			if( method == null ) {
-				if( classType.BaseType != null ) {
+				if( classType.BaseType != null && classType.BaseType != typeof(object) ) {
 					return ReflectionHelpers.RunMethod<T>( classType.BaseType, instance, methodName, args, out returnVal );
 				}
 				return false;

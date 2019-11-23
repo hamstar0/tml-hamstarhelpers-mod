@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.FX {
+namespace HamstarHelpers.Helpers.Fx {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to visual effects.
 	/// </summary>

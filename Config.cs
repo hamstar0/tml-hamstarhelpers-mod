@@ -9,9 +9,9 @@ using Terraria.ModLoader.Config;
 
 namespace HamstarHelpers {
 	/// <summary>
-	/// Defines config settings field for a "privileged user".
+	/// Defines config settings for a specific "privileged user" entry (used by assorted APIs).
 	/// </summary>
-	[Label( "Mod Helpers \"Privileged User\"" )]
+	[Label( "Mod Helpers \"Privileged User\" (used by some APIs)" )]
 	public class ModHelpersPrivilegedUserConfig : StackableModConfig {
 		/// <summary>
 		/// Gets the singleton instance of this config file.
@@ -57,12 +57,12 @@ namespace HamstarHelpers {
 
 
 	/// <summary>
-	/// Defines config settings fields. See `ModConfig` (via. tModLoader).
+	/// Defines Mod Helpers config settings.
 	/// </summary>
 	[Label("Mod Helpers Settings")]
 	public class ModHelpersConfig : StackableModConfig {
 		/// <summary>
-		/// Gets the singleton instance of this config file.
+		/// Gets the stack-merged singleton instance of this config file.
 		/// </summary>
 		public static ModHelpersConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersConfig>();
 

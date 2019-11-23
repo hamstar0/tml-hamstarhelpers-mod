@@ -3480,7 +3480,7 @@
         </member>
         <member name="T:HamstarHelpers.ModHelpersPrivilegedUserConfig">
             <summary>
-            Defines config settings field for a "privileged user".
+            Defines config settings for a specific "privileged user" entry (used by assorted APIs).
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersPrivilegedUserConfig.Instance">
@@ -3501,12 +3501,12 @@
         </member>
         <member name="T:HamstarHelpers.ModHelpersConfig">
             <summary>
-            Defines config settings fields. See `ModConfig` (via. tModLoader).
+            Defines Mod Helpers config settings.
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.Instance">
             <summary>
-            Gets the singleton instance of this config file.
+            Gets the stack-merged singleton instance of this config file.
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.Mode">
@@ -4882,7 +4882,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.SystemHelpers.OpenUrl(System.String)">
             <summary>
-            Opens a given URL with the OS default program (typially your default web browser).
+            Opens a given URL with the OS default program (typically your default web browser).
             </summary>
             <param name="url">URL to open.</param>
         </member>
@@ -5054,12 +5054,12 @@
         <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
             @private
         </member>
-        <member name="T:HamstarHelpers.Helpers.FX.LightningFxHelpers">
+        <member name="T:HamstarHelpers.Helpers.Fx.LightningFxHelpers">
             <summary>
             Assorted static "helper" functions pertaining to visual effects.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.LightningFxHelpers.DrawLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+        <member name="M:HamstarHelpers.Helpers.Fx.LightningFxHelpers.DrawLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
             <summary>
             Creates a lightning effect. Must be called in a Draw function.
             </summary>
@@ -5068,7 +5068,7 @@
             <param name="scale"></param>
             <param name="color"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.LightningFxHelpers.DrawScreenLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
+        <member name="M:HamstarHelpers.Helpers.Fx.LightningFxHelpers.DrawScreenLightning(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Color)">
             <summary>
             Creates a lightning effect relative to the screen. Must be called in a Draw function.
             </summary>
@@ -5077,12 +5077,12 @@
             <param name="scale"></param>
             <param name="color"></param>
         </member>
-        <member name="T:HamstarHelpers.Helpers.FX.ParticleFxHelpers">
+        <member name="T:HamstarHelpers.Helpers.Fx.ParticleFxHelpers">
             <summary>
             Assorted static "helper" functions pertaining to visual particle and dust effects.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.ParticleFxHelpers.MakeDustCloud(Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Single)">
+        <member name="M:HamstarHelpers.Helpers.Fx.ParticleFxHelpers.MakeDustCloud(Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Single)">
             <summary>
             Creates a dust cloud.
             </summary>
@@ -5091,7 +5091,7 @@
             <param name="sprayAmount">Outward spray velocity.</param>
             <param name="scale"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.ParticleFxHelpers.MakeFireEmbers(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">
+        <member name="M:HamstarHelpers.Helpers.Fx.ParticleFxHelpers.MakeFireEmbers(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single)">
             <summary>
             Creates fire embers.
             </summary>
@@ -5104,7 +5104,7 @@
             <param name="height"></param>
             <param name="scale"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.FX.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
+        <member name="M:HamstarHelpers.Helpers.Fx.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
             <summary>
             Creates teleportation particles.
             </summary>
@@ -6279,6 +6279,9 @@
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.NPCs.NPCIdentityHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to NPC identification.
+            </summary>
             <summary>
             Assorted static "helper" functions pertaining to NPC identification.
             </summary>
