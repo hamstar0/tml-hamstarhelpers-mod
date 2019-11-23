@@ -2439,9 +2439,6 @@
             <summary></summary>
             <param name="text"></param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
-            @private
-        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             <summary>
             Draws element. Also handles text input changes.
@@ -10196,6 +10193,43 @@
             Declares an action to run when an NPC is killed by a given player.
             </summary>
             <param name="action">Action to run. Includes the Player (killer) and killed NPC as parameters.</param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks">
+            <summary>
+            Supplies custom tModLoader-like, delegate-based hooks for tile-relevant functions not currently available in
+            tModLoader.
+            </summary>
+            <summary>
+            Supplies custom tModLoader-like, delegate-based hooks for tile-relevant functions not currently available in
+            tModLoader.
+            </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate">
+            <summary>
+            Represents a GlobalTile.KillTile hook binding.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="type"></param>
+            <param name="fail"></param>
+            <param name="effectOnly"></param>
+            <param name="noItem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.AddSafeKillTileHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate)">
+            <summary>
+            Allows binding actions to the GlobalTile.KillTile(...) hook in such a way as to avoid stack overflow exceptions.
+            </summary>
+            <param name="hook"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+            @private
         </member>
         <member name="T:HamstarHelpers.Services.Hooks.LoadHooks.ICustomLoadHookValidator">
             @private
