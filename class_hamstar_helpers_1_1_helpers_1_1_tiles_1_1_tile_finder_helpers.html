@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -109,11 +109,11 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac195d521fd45d4635580715d6eeabb6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to randomly search within a spherical area (via. <code>radius</code>) for any matching tiles (via. <code>pattern</code>). Checks for non-zero tile "brightness" to skip over unloaded tiles.  <a href="#ac195d521fd45d4635580715d6eeabb6a">More...</a><br /></td></tr>
 <tr class="separator:ac195d521fd45d4635580715d6eeabb6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77cd8770d0e196e2935832b8a14f5587"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a77cd8770d0e196e2935832b8a14f5587">FindTopLeftOfSquare</a> (<a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern, int tileX, int tileY, int maxDistance, out(int <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa588aa254e683af985d0cc64a51dc132">TileX</a>, int TileY) coords)</td></tr>
-<tr class="memdesc:a77cd8770d0e196e2935832b8a14f5587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the top left tile of a given pattern.  <a href="#a77cd8770d0e196e2935832b8a14f5587">More...</a><br /></td></tr>
+<tr class="memdesc:a77cd8770d0e196e2935832b8a14f5587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the top left tile of a given area of a given pattern. Assumes the area is square (checks left first).  <a href="#a77cd8770d0e196e2935832b8a14f5587">More...</a><br /></td></tr>
 <tr class="separator:a77cd8770d0e196e2935832b8a14f5587"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa160379ec79bcc13eb81cee793b0fcde"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa160379ec79bcc13eb81cee793b0fcde">GetFloorWidth</a> (<a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern, int tileX, int tileY, int maxFallRange, out int floorX, out int floorY)</td></tr>
-<tr class="memdesc:aa160379ec79bcc13eb81cee793b0fcde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traces downwards from a given tile coordinate to the nearest floor, and then measures the contiguous width.  <a href="#aa160379ec79bcc13eb81cee793b0fcde">More...</a><br /></td></tr>
-<tr class="separator:aa160379ec79bcc13eb81cee793b0fcde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed03bc48bdee51050e961f292b0aad2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a4ed03bc48bdee51050e961f292b0aad2">GetFloorWidth</a> (<a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> nonFloorPattern, int tileX, int tileY, int maxFallRange, out int floorX, out int floorY)</td></tr>
+<tr class="memdesc:a4ed03bc48bdee51050e961f292b0aad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traces downwards from a given tile coordinate to the nearest floor, and then measures the contiguous width.  <a href="#a4ed03bc48bdee51050e961f292b0aad2">More...</a><br /></td></tr>
+<tr class="separator:a4ed03bc48bdee51050e961f292b0aad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34f322251bcaed15289e5db789fa952b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a34f322251bcaed15289e5db789fa952b">GetCeilingWidth</a> (<a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern, int tileX, int tileY, int maxRiseRange, out int ceilX, out int ceilY)</td></tr>
 <tr class="memdesc:a34f322251bcaed15289e5db789fa952b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traces upwards from a given tile coordinate to the nearest ceiling, and then measures the contiguous width.  <a href="#a34f322251bcaed15289e5db789fa952b">More...</a><br /></td></tr>
 <tr class="separator:a34f322251bcaed15289e5db789fa952b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -441,7 +441,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Finds the top left tile of a given pattern. </p>
+<p>Finds the top left tile of a given area of a given pattern. Assumes the area is square (checks left first). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pattern</td><td></td></tr>
@@ -530,7 +530,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html#l00149">149</a> of file <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html">TileFinderHelpers_FindContiguous.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html#l00154">154</a> of file <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html">TileFinderHelpers_FindContiguous.cs</a>.</p>
 
 </div>
 </div>
@@ -606,12 +606,12 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html#l00109">109</a> of file <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html">TileFinderHelpers_FindContiguous.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html#l00114">114</a> of file <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html">TileFinderHelpers_FindContiguous.cs</a>.</p>
 
 </div>
 </div>
-<a id="aa160379ec79bcc13eb81cee793b0fcde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa160379ec79bcc13eb81cee793b0fcde">&#9670;&nbsp;</a></span>GetFloorWidth()</h2>
+<a id="a4ed03bc48bdee51050e961f292b0aad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed03bc48bdee51050e961f292b0aad2">&#9670;&nbsp;</a></span>GetFloorWidth()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -623,7 +623,7 @@ Static Public Attributes</h2></td></tr>
           <td class="memname">static int HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetFloorWidth </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
-          <td class="paramname"><em>pattern</em>, </td>
+          <td class="paramname"><em>nonFloorPattern</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -671,7 +671,7 @@ Static Public Attributes</h2></td></tr>
 <p>Traces downwards from a given tile coordinate to the nearest floor, and then measures the contiguous width. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pattern</td><td></td></tr>
+    <tr><td class="paramname">nonFloorPattern</td><td></td></tr>
     <tr><td class="paramname">tileX</td><td></td></tr>
     <tr><td class="paramname">tileY</td><td></td></tr>
     <tr><td class="paramname">maxFallRange</td><td>Max distance to trace downwards to a floor before giving up.</td></tr>
@@ -682,7 +682,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html#l00072">72</a> of file <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html">TileFinderHelpers_FindContiguous.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html#l00071">71</a> of file <a class="el" href="_tile_finder_helpers___find_contiguous_8cs_source.html">TileFinderHelpers_FindContiguous.cs</a>.</p>
 
 </div>
 </div>

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -104,12 +104,76 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa2ac9ae7d1c44d7545db57ac76a6946b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_config_helpers.html#aa2ac9ae7d1c44d7545db57ac76a6946b">SyncConfig</a> (ModConfig config)</td></tr>
 <tr class="memdesc:aa2ac9ae7d1c44d7545db57ac76a6946b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Syncs to everyone. Use with caution.  <a href="#aa2ac9ae7d1c44d7545db57ac76a6946b">More...</a><br /></td></tr>
 <tr class="separator:aa2ac9ae7d1c44d7545db57ac76a6946b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6824f470373dd62ceb324c1560bcebc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_config_helpers.html#aa6824f470373dd62ceb324c1560bcebc">MergeConfigs&lt; T &gt;</a> (T to, T fro)</td></tr>
+<tr class="memdesc:aa6824f470373dd62ceb324c1560bcebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines one ModConfig instance into another, prioritizing non-default values of the latter.  <a href="#aa6824f470373dd62ceb324c1560bcebc">More...</a><br /></td></tr>
+<tr class="separator:aa6824f470373dd62ceb324c1560bcebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to configs (ModConfig, primarily). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_helpers_8cs_source.html#l00014">14</a> of file <a class="el" href="_config_helpers_8cs_source.html">ConfigHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_helpers_8cs_source.html#l00017">17</a> of file <a class="el" href="_config_helpers_8cs_source.html">ConfigHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa6824f470373dd62ceb324c1560bcebc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6824f470373dd62ceb324c1560bcebc">&#9670;&nbsp;</a></span>MergeConfigs&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.TModLoader.Configs.ConfigHelpers.MergeConfigs&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>fro</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Combines one ModConfig instance into another, prioritizing non-default values of the latter. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">to</td><td>Config to push changed field/property values to. Any existing values are overridden, where changes found.</td></tr>
+    <tr><td class="paramname">fro</td><td>Config to pull field/property values from. Only pulls non-default (changed) values.</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>ModConfig</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+<p class="definition">Definition at line <a class="el" href="_config_helpers_8cs_source.html#l00058">58</a> of file <a class="el" href="_config_helpers_8cs_source.html">ConfigHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="aa2ac9ae7d1c44d7545db57ac76a6946b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa2ac9ae7d1c44d7545db57ac76a6946b">&#9670;&nbsp;</a></span>SyncConfig()</h2>
 
@@ -143,7 +207,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>false</code> if sync is diabled (client-only config).</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_config_helpers_8cs_source.html#l00020">20</a> of file <a class="el" href="_config_helpers_8cs_source.html">ConfigHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_helpers_8cs_source.html#l00023">23</a> of file <a class="el" href="_config_helpers_8cs_source.html">ConfigHelpers.cs</a>.</p>
 
 </div>
 </div>

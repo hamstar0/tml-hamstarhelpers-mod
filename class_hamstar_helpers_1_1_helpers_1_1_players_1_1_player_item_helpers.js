@@ -13,6 +13,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers =
     [ "IsVanitySlot", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#aedb183bba94fcb0494b2125557d08abe", null ],
     [ "RemoveInventoryItemQuantity", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a55b3cc742f3ea7e80dd8ca601dbd1f0e", null ],
     [ "TipOfHeldItem", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a4c8ad1af053a64581cdb5778d4868802", null ],
+    [ "TipOfHeldItem", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a93c2d4c2d38f97d2549350f0c56a1eb4", null ],
     [ "UnhandItem", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#ab94304f4787df39c9362aca9952217c4", null ],
     [ "VanillaAccessorySlotFirst", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a7dc34677e9c9eca826ef49aa6e6211c8", null ],
     [ "VanillaInventoryHotbarSize", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a849563c8b9c3ef4684b3e54ae46e51b0", null ],

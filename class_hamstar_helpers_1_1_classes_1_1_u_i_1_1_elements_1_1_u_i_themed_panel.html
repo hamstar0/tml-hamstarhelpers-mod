@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -137,6 +137,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5eccb615d75161b1425c4e6ab477ee5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a962cc1e7139df952aba487985b70cc0b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#a962cc1e7139df952aba487985b70cc0b">Show</a> ()</td></tr>
 <tr class="separator:a962cc1e7139df952aba487985b70cc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad80702e7682d5e1fc392d00240c61176"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#ad80702e7682d5e1fc392d00240c61176">ComputeCurrentOpacity</a> ()</td></tr>
+<tr class="memdesc:ad80702e7682d5e1fc392d00240c61176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the opacity of the current panel, factoring all parent panels.  <a href="#ad80702e7682d5e1fc392d00240c61176">More...</a><br /></td></tr>
+<tr class="separator:ad80702e7682d5e1fc392d00240c61176"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -145,11 +148,14 @@ Properties</h2></td></tr>
 <tr class="separator:abbed27eaa935600c9a715d85ad3b396d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a915ac6d9fc6e6495faf10404bfc33d37"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#a915ac6d9fc6e6495faf10404bfc33d37">IsHidden</a><code> [get, protected set]</code></td></tr>
 <tr class="separator:a915ac6d9fc6e6495faf10404bfc33d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bd45e9fe63b5574d93b7cc666b8a21f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#a3bd45e9fe63b5574d93b7cc666b8a21f">Opacity</a> = 1f<code> [get, set]</code></td></tr>
+<tr class="memdesc:a3bd45e9fe63b5574d93b7cc666b8a21f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visibility percent.  <a href="#a3bd45e9fe63b5574d93b7cc666b8a21f">More...</a><br /></td></tr>
+<tr class="separator:a3bd45e9fe63b5574d93b7cc666b8a21f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Theme-able UIPanel. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00014">14</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00013">13</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a716cbaa77a8738c94c1d2d72b1a7248d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a716cbaa77a8738c94c1d2d72b1a7248d">&#9670;&nbsp;</a></span>UIThemedPanel()</h2>
@@ -186,7 +192,7 @@ Properties</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00030">30</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00032">32</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -217,7 +223,29 @@ Properties</h2></td></tr>
 
 <p>Implements <a class="el" href="interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_themeable.html#af6edd83aa3474b520c4087a4402b7812">HamstarHelpers.Classes.UI.Theme.IThemeable</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00045">45</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00047">47</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad80702e7682d5e1fc392d00240c61176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad80702e7682d5e1fc392d00240c61176">&#9670;&nbsp;</a></span>ComputeCurrentOpacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float HamstarHelpers.Classes.UI.Elements.UIThemedPanel.ComputeCurrentOpacity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the opacity of the current panel, factoring all parent panels. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00128">128</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -246,7 +274,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00089">89</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00091">91</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -279,7 +307,7 @@ Properties</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#ac339a3fad27abbf461bb9285e7edd62d">HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel</a>, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a5c231133b3bd3b6257e6a13a915655ae">HamstarHelpers.Classes.UI.Elements.Dialogs.UIPromptPanel</a>, and <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#addefc0d76ac533c79eb626c1a593b401">HamstarHelpers.Classes.UI.Elements.UITextInputPanel</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00056">56</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00058">58</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -317,7 +345,7 @@ Properties</h2></td></tr>
 
 <p>Implements <a class="el" href="interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_themeable.html#ad316c91e3685d68a91757238d8ba7dee">HamstarHelpers.Classes.UI.Theme.IThemeable</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00068">68</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00070">70</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -355,7 +383,7 @@ Properties</h2></td></tr>
 
 <p>Implements <a class="el" href="interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_themeable.html#aad350bc160adae193b6f5d80bdc9396e">HamstarHelpers.Classes.UI.Theme.IThemeable</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00080">80</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00082">82</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -384,7 +412,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00094">94</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00096">96</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -411,7 +439,33 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00021">21</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00020">20</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3bd45e9fe63b5574d93b7cc666b8a21f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bd45e9fe63b5574d93b7cc666b8a21f">&#9670;&nbsp;</a></span>Opacity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float HamstarHelpers.Classes.UI.Elements.UIThemedPanel.Opacity = 1f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Visibility percent. </p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00023">23</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -437,7 +491,7 @@ Properties</h2></td></tr>
 
 <p>Appearance style. </p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00018">18</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_themed_panel_8cs_source.html#l00017">17</a> of file <a class="el" href="_u_i_themed_panel_8cs_source.html">UIThemedPanel.cs</a>.</p>
 
 </div>
 </div>

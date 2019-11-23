@@ -2,6 +2,7 @@ var namespace_hamstar_helpers_1_1_services =
 [
     [ "AnimatedColor", "namespace_hamstar_helpers_1_1_services_1_1_animated_color.html", "namespace_hamstar_helpers_1_1_services_1_1_animated_color" ],
     [ "AnimatedTexture", "namespace_hamstar_helpers_1_1_services_1_1_animated_texture.html", "namespace_hamstar_helpers_1_1_services_1_1_animated_texture" ],
+    [ "Configs", "namespace_hamstar_helpers_1_1_services_1_1_configs.html", "namespace_hamstar_helpers_1_1_services_1_1_configs" ],
     [ "DataStore", "namespace_hamstar_helpers_1_1_services_1_1_data_store.html", "namespace_hamstar_helpers_1_1_services_1_1_data_store" ],
     [ "Debug", "namespace_hamstar_helpers_1_1_services_1_1_debug.html", "namespace_hamstar_helpers_1_1_services_1_1_debug" ],
     [ "EntityGroups", "namespace_hamstar_helpers_1_1_services_1_1_entity_groups.html", "namespace_hamstar_helpers_1_1_services_1_1_entity_groups" ],

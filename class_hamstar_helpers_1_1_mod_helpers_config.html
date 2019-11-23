@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_mod_helpers_
 
 <div class="header">
   <div class="summary">
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="class_hamstar_helpers_1_1_mod_helpers_config-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -98,9 +99,22 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_mod_helpers_
 
 <p>Defines config settings fields. See <code>ModConfig</code> (via. tModLoader).  
  <a href="class_hamstar_helpers_1_1_mod_helpers_config.html#details">More...</a></p>
-
-<p>Inherits ModConfig.</p>
+<div class="dynheader">
+Inheritance diagram for HamstarHelpers.ModHelpersConfig:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_hamstar_helpers_1_1_mod_helpers_config.png" usemap="#HamstarHelpers.ModHelpersConfig_map" alt=""/>
+  <map id="HamstarHelpers.ModHelpersConfig_map" name="HamstarHelpers.ModHelpersConfig_map">
+<area href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html" title="Helps implement mod config stacking behavior. Replace your ModConfig classes with this class." alt="HamstarHelpers.Services.Configs.StackableModConfig" shape="rect" coords="0,0,324,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aadcf2533d71220e7f65b81f7944c7d4a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#aadcf2533d71220e7f65b81f7944c7d4a">Instance</a> =&gt; ModConfigStack.GetMergedConfigs&lt;<a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&gt;()</td></tr>
+<tr class="memdesc:aadcf2533d71220e7f65b81f7944c7d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the singleton instance of this config file.  <a href="#aadcf2533d71220e7f65b81f7944c7d4a">More...</a><br /></td></tr>
+<tr class="separator:aadcf2533d71220e7f65b81f7944c7d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:abfbd9b96adadf3beefa7ad7d30639cb3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#abfbd9b96adadf3beefa7ad7d30639cb3">DebugModeHelpersInfo</a> = false<code> [get, set]</code></td></tr>
@@ -194,8 +208,35 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines config settings fields. See <code>ModConfig</code> (via. tModLoader). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00051">51</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
-</div><h2 class="groupheader">Property Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00063">63</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="aadcf2533d71220e7f65b81f7944c7d4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadcf2533d71220e7f65b81f7944c7d4a">&#9670;&nbsp;</a></span>Instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a> HamstarHelpers.ModHelpersConfig.Instance =&gt; ModConfigStack.GetMergedConfigs&lt;<a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the singleton instance of this config file. </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00067">67</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
 <a id="a63834825874593e649b5a38502bf4e40"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a63834825874593e649b5a38502bf4e40">&#9670;&nbsp;</a></span>AddCrimsonLeatherRecipe</h2>
 
@@ -218,7 +259,7 @@ Properties</h2></td></tr>
 
 <p>Adds crimson biome alternatve recipe for leather. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00307">307</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00328">328</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -244,7 +285,7 @@ Properties</h2></td></tr>
 
 <p>Coal items can be placed like tiles. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00299">299</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00320">320</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -270,7 +311,7 @@ Properties</h2></td></tr>
 
 <p>Control panel icon's X coordinate on screen. Negative values align the button from the right edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00122">122</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00143">143</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -296,7 +337,7 @@ Properties</h2></td></tr>
 
 <p>Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00130">130</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00151">151</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -322,7 +363,7 @@ Properties</h2></td></tr>
 
 <p>Save custom player data as (json) text. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00184">184</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00205">205</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -348,7 +389,7 @@ Properties</h2></td></tr>
 
 <p>Disables logging of "silenced" exceptions. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00092">92</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00113">113</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -374,7 +415,7 @@ Properties</h2></td></tr>
 
 <p>Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00086">86</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00107">107</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -400,7 +441,7 @@ Properties</h2></td></tr>
 
 <p>Outputs (to log) debug information relevant to specific <a class="el" href="namespace_hamstar_helpers_1_1_helpers.html">Helpers</a> functions (where applicable). Developers only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00067">67</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00088">88</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -426,7 +467,7 @@ Properties</h2></td></tr>
 
 <p>Displays the current menu's ID in bottom right. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00104">104</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00125">125</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -452,7 +493,7 @@ Properties</h2></td></tr>
 
 <p>Outputs (to log) network message information (sends and receives of PacketProtocol). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00073">73</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00094">94</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -478,7 +519,7 @@ Properties</h2></td></tr>
 
 <p>Logs PacketProtocol payload content. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00098">98</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00119">119</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -504,7 +545,7 @@ Properties</h2></td></tr>
 
 <p>Catches and logs unhandled exceptions (before crash). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00080">80</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00101">101</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -530,7 +571,7 @@ Properties</h2></td></tr>
 
 <p>Shorthand for disabling all internet functions </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00196">196</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00217">217</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -556,7 +597,7 @@ Properties</h2></td></tr>
 
 <p>Disables control panel outright. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00114">114</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00135">135</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -582,7 +623,7 @@ Properties</h2></td></tr>
 
 <p>Disable 'judgmental' mod tags. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00268">268</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00289">289</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -608,7 +649,7 @@ Properties</h2></td></tr>
 
 <p>Disables mod tags UI for mod browser and mod info. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00253">253</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00274">274</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -634,7 +675,7 @@ Properties</h2></td></tr>
 
 <p>Disables mod version updates overlay display in the mod menu. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00275">275</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00296">296</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -660,7 +701,7 @@ Properties</h2></td></tr>
 
 <p>Disables mod tags UI for mod browser and mod info. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00261">261</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00282">282</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -686,7 +727,7 @@ Properties</h2></td></tr>
 
 <p>Disables IP address checks from checkip.dyndns.org. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00283">283</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00304">304</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -712,7 +753,7 @@ Properties</h2></td></tr>
 
 <p>Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00140">140</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00161">161</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -738,7 +779,7 @@ Properties</h2></td></tr>
 
 <p>Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00149">149</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00170">170</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -764,7 +805,7 @@ Properties</h2></td></tr>
 
 <p>Server occasionally pings clients to guage their latency. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00235">235</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00256">256</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -790,7 +831,7 @@ Properties</h2></td></tr>
 
 <p>Magi-Tech Scrap items drop from mech bosses. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00292">292</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00313">313</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -816,7 +857,7 @@ Properties</h2></td></tr>
 
 <p>Allows calling <code>Mod.Call(...)</code> via. chat/console commands. Use at your own risk! </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00212">212</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00233">233</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -842,7 +883,7 @@ Properties</h2></td></tr>
 
 <p>Quantity of the latest log entries to pass along with issue reports. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00159">159</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00180">180</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -868,7 +909,7 @@ Properties</h2></td></tr>
 
 <p>Duration (in game ticks) to wait in expectation of a reply before a retry attempt of a given packet is made. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00227">227</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00248">248</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -894,7 +935,7 @@ Properties</h2></td></tr>
 
 <p>Duration between latency pings per client. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00243">243</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00264">264</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -920,7 +961,7 @@ Properties</h2></td></tr>
 
 <p>Enables mod locking per world (prevents playing a world with missing mods). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00167">167</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00188">188</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -946,7 +987,7 @@ Properties</h2></td></tr>
 
 <p>Sets mod locking to expect only the exact set of mods it was locked with, and no more. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00174">174</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00195">195</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>

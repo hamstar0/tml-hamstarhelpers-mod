@@ -54,7 +54,7 @@ var searchData=
   ['resetmenuobjects',['ResetMenuObjects',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_session_menu_context.html#a3b3e5f0bf6aae8f74410c78950354f62',1,'HamstarHelpers::Classes::UI::Menu::SessionMenuContext']]],
   ['resetoncemessage',['ResetOnceMessage',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ac9434f59b02765fbda2a598028335652',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['retinazer',['Retinazer',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a942901a433e120d520bb43592e866851',1,'HamstarHelpers::Services::GameData::BossData']]],
-  ['right',['Right',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#aed4d496bb45d2cccd9fc19c7362c0af3a92b09c7c48c520c3c55e497875da437c',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
+  ['rightslope',['RightSlope',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#a863f4642d2fd475088d39815d1445ae8aade9d42ea67cf64efad625552c757ee4',1,'HamstarHelpers::Helpers::Tiles']]],
   ['rockcave',['RockCave',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#adc67de7c4a50810164b8548dd09fd117a16ad736be3f68d98787ee85d0f07d64d',1,'HamstarHelpers::Helpers::World']]],
   ['rocklayerbottomtiley',['RockLayerBottomTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a37ba6321b6306ff5b40eaec2d082ae77',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['rocklayertoptiley',['RockLayerTopTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a6506cb2873d8023554a70d7f0ec2fa8b',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],

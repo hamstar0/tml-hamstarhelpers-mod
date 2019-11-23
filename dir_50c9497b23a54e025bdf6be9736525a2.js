@@ -9,5 +9,6 @@ var dir_50c9497b23a54e025bdf6be9736525a2 =
     [ "NPCHelpers.cs", "_n_p_c_helpers_8cs_source.html", null ],
     [ "NPCIdentityHelpers.cs", "_n_p_c_identity_helpers_8cs_source.html", null ],
     [ "NPCInvasionHelpers.cs", "_n_p_c_invasion_helpers_8cs_source.html", null ],
+    [ "NPCResourceHelpers.cs", "_n_p_c_resource_helpers_8cs_source.html", null ],
     [ "NPCTownHelpers.cs", "_n_p_c_town_helpers_8cs_source.html", null ]
 ];

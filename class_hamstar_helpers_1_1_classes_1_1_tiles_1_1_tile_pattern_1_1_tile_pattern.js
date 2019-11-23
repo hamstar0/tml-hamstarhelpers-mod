@@ -21,6 +21,7 @@ var class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_patter
     [ "NonSolid", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#afabd22c351f0ff19a1bb28be64a5515d", null ],
     [ "OpenWall", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aefd541c56b43261cb9867e9aa1d5ebad", null ],
     [ "PitchDark", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a2032c53f6f5c39ff5a7bfe1d4caa7ef6", null ],
+    [ "Shape", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac56dffd653960b9820139078d72d6744", null ],
     [ "AreaFromCenter", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aeed0a3ccf111a17cf6eb43c4761c754c", null ],
     [ "HasHoney", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a3b7f0ba2cedeaaf653a0e1dd27b09a30", null ],
     [ "HasLava", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a24c207b8d30d4fd969b130b4e5fe0313", null ],
@@ -37,6 +38,5 @@ var class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_patter
     [ "IsSolid", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6", null ],
     [ "IsVanillaBombable", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a22af0ad9b527669082c6e1100609bccd", null ],
     [ "MaximumBrightness", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#adfdb7791bf2dc6f070c5fe8f08c64de3", null ],
-    [ "MinimumBrightness", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a7a0fb82db5a6ebafb6efe86036d3d3eb", null ],
-    [ "Slope", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a7dfd6337047bd13f3ffea1567dbbb07e", null ]
+    [ "MinimumBrightness", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a7a0fb82db5a6ebafb6efe86036d3d3eb", null ]
 ];

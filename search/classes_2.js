@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['camerahelpers',['CameraHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_camera_helpers.html',1,'HamstarHelpers::Helpers::Fx']]],
   ['coaltile',['CoalTile',['../class_hamstar_helpers_1_1_tiles_1_1_coal_tile.html',1,'HamstarHelpers::Tiles']]],
   ['commandshelpers',['CommandsHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_commands_1_1_commands_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Commands']]],
   ['confighelpers',['ConfigHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_config_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],

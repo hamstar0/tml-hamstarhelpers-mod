@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -108,6 +108,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aeeaa275d69e91bce256dc7537ae497f4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#aeeaa275d69e91bce256dc7537ae497f4">ExitToMenu</a> (bool save=true)</td></tr>
 <tr class="memdesc:aeeaa275d69e91bce256dc7537ae497f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exits to the main menu.  <a href="#aeeaa275d69e91bce256dc7537ae497f4">More...</a><br /></td></tr>
 <tr class="separator:aeeaa275d69e91bce256dc7537ae497f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af61c700112e4784eeaa185dbc08806f6"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#af61c700112e4784eeaa185dbc08806f6">SafelyGetInstance&lt; T &gt;</a> ()</td></tr>
+<tr class="memdesc:af61c700112e4784eeaa185dbc08806f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the singleton instance of a given class type. If no such instance exists, one is created and registered. Note: Avoid calling ContentInstance.Register(...) for this class after.  <a href="#af61c700112e4784eeaa185dbc08806f6">More...</a><br /></td></tr>
+<tr class="separator:af61c700112e4784eeaa185dbc08806f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9998c12d897a0207c58fc2fd97194796"><td class="memItemLeft" align="right" valign="top">static object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#a9998c12d897a0207c58fc2fd97194796">SafelyGetInstance</a> (Type classType)</td></tr>
+<tr class="memdesc:a9998c12d897a0207c58fc2fd97194796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the singleton instance of a given class type. If no such instance exists, one is created and registered. Note: Avoid calling ContentInstance.Register(...) for this class after.  <a href="#a9998c12d897a0207c58fc2fd97194796">More...</a><br /></td></tr>
+<tr class="separator:a9998c12d897a0207c58fc2fd97194796"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf99814d4a021cee4d9d4d9f8a8a0819"><td class="memItemLeft" align="right" valign="top">static ModPlayer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#adf99814d4a021cee4d9d4d9f8a8a0819">SafelyGetModPlayer</a> (Player player, Mod mod, string modPlayerName)</td></tr>
 <tr class="memdesc:adf99814d4a021cee4d9d4d9f8a8a0819"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides an alternative to <code>Player.GetModPlayer(...)</code> to ensure the given player is properly loaded. Addresses some confusing types of errors.  <a href="#adf99814d4a021cee4d9d4d9f8a8a0819">More...</a><br /></td></tr>
 <tr class="separator:adf99814d4a021cee4d9d4d9f8a8a0819"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +207,87 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a9998c12d897a0207c58fc2fd97194796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9998c12d897a0207c58fc2fd97194796">&#9670;&nbsp;</a></span>SafelyGetInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static object HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetInstance </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the singleton instance of a given class type. If no such instance exists, one is created and registered. Note: Avoid calling ContentInstance.Register(...) for this class after. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classType</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00051">51</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
+
+</div>
+</div>
+<a id="af61c700112e4784eeaa185dbc08806f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af61c700112e4784eeaa185dbc08806f6">&#9670;&nbsp;</a></span>SafelyGetInstance&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static T <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#a9998c12d897a0207c58fc2fd97194796">HamstarHelpers.Helpers.TModLoader.TmlHelpers.SafelyGetInstance</a>&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the singleton instance of a given class type. If no such instance exists, one is created and registered. Note: Avoid calling ContentInstance.Register(...) for this class after. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>class</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00028">28</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
+
+</div>
+</div>
 <a id="adf99814d4a021cee4d9d4d9f8a8a0819"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf99814d4a021cee4d9d4d9f8a8a0819">&#9670;&nbsp;</a></span>SafelyGetModPlayer()</h2>
 
@@ -252,7 +339,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00045">45</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00097">97</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
 
 </div>
 </div>
@@ -303,7 +390,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 </div>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00057">57</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00109">109</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
 
 </div>
 </div>
@@ -333,7 +420,7 @@ Static Public Attributes</h2></td></tr>
 <p>Ensures a valid randomizer. Typically returns <code>Main.rand</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00069">69</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tml_helpers___safety_8cs_source.html#l00121">121</a> of file <a class="el" href="_tml_helpers___safety_8cs_source.html">TmlHelpers_Safety.cs</a>.</p>
 
 </div>
 </div>

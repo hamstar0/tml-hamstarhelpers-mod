@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -163,6 +163,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 <li>GetCommonItemGroups()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a32252968ad2964655b67a5a3c4089f32">HamstarHelpers.Helpers.Items.ItemGroupIdentityHelpers</a>
 </li>
+<li>GetConfigAt&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#aaaaab25315624ddc74f313a94a5b4387">HamstarHelpers.Services.Configs.ModConfigStack</a>
+</li>
 <li>GetContextSlice()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a917921116c0bfc4468a0f53f215a680d">HamstarHelpers.Helpers.Debug.DebugHelpers</a>
 </li>
@@ -235,7 +238,7 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_mod_config_1_1_float_input_element.html#a1bf4be7b4ff4ed7ad8e1d7d7e33234a3">HamstarHelpers.Classes.UI.ModConfig.FloatInputElement</a>
 </li>
 <li>GetFloorWidth()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa160379ec79bcc13eb81cee793b0fcde">HamstarHelpers.Helpers.Tiles.TileFinderHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a4ed03bc48bdee51050e961f292b0aad2">HamstarHelpers.Helpers.Tiles.TileFinderHelpers</a>
 </li>
 <li>GetFormattedGameInfo()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_info_1_1_formatted_game_info_helpers.html#abc4188acf5f7776bbde4b8fcee8fd7c3">HamstarHelpers.Helpers.Info.FormattedGameInfoHelpers</a>
@@ -302,6 +305,12 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 </li>
 <li>GetMenuUI()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html#a39f6b0129a8f3eb198b8cf74bf6d6045">HamstarHelpers.Helpers.TModLoader.Menus.MainMenuHelpers</a>
+</li>
+<li>GetMergedConfigs&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#ad19b50af0887d3db8e0d44f12bc8230f">HamstarHelpers.Services.Configs.ModConfigStack</a>
+</li>
+<li>GetMergedConfigStacks&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#a60fe26c2dd2d051f299e95165a1a6ad4">HamstarHelpers.Services.Configs.ModConfigStack</a>
 </li>
 <li>GetMessageAt()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_inbox_1_1_inbox_messages.html#adac25fd50642ed6370b966c6697d6b2e">HamstarHelpers.Services.Messages.Inbox.InboxMessages</a>
@@ -380,9 +389,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 </li>
 <li>GetQualifiedName()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html#aa675d77763bc1b2af0eba05586e6abee">HamstarHelpers.Helpers.Entities.EntityHelpers</a>
-, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#a5fd07cf56fc9d7d70c3f772702b68fcd">HamstarHelpers.Helpers.Items.Attributes.ItemAttributeHelpers</a>
+, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#a6d9533d0be32d3d3bb6edffc864dfd1f">HamstarHelpers.Helpers.Items.Attributes.ItemAttributeHelpers</a>
 , <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_attributes_1_1_n_p_c_attribute_helpers.html#ab6896e89c64f0141fd4d624cb20fa399">HamstarHelpers.Helpers.NPCs.Attributes.NPCAttributeHelpers</a>
-, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_attributes_1_1_projectile_attribute_helpers.html#a32fa4381dd07bd0f8de94402e53e9ccb">HamstarHelpers.Helpers.Projectiles.Attributes.ProjectileAttributeHelpers</a>
+, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_attributes_1_1_projectile_attribute_helpers.html#a6935ba814eb7314267e30ea1d054b7bb">HamstarHelpers.Helpers.Projectiles.Attributes.ProjectileAttributeHelpers</a>
 </li>
 <li>GetQuotedStringFromArgsAt()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_commands_1_1_commands_helpers.html#a592801f90da10060d1804bb82a1c4f03">HamstarHelpers.Helpers.TModLoader.Commands.CommandsHelpers</a>
@@ -414,6 +423,9 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 <li>GetServerPing()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_net_1_1_net_play_helpers.html#ac714cda2994818f256c1662d41a8231d">HamstarHelpers.Helpers.Net.NetPlayHelpers</a>
 </li>
+<li>GetShakeDuration()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_camera_helpers.html#aa4d1f36490ab9641dd34d8151745a283">HamstarHelpers.Helpers.Fx.CameraHelpers</a>
+</li>
 <li>GetShop()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers.html#a6aece4473b33a703d56bb80e969d8a1d">HamstarHelpers.Helpers.NPCs.NPCTownHelpers</a>
 </li>
@@ -444,7 +456,7 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_u_i_1_1_u_i_info_display.html#adcd13416a0a239666a53fd889fe3399b">HamstarHelpers.Classes.UI.Menu.UI.UIInfoDisplay</a>
 </li>
 <li>GetTilesInWorldRectangle()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a3aed2497e5282eded0a881d584263f6d">HamstarHelpers.Helpers.Tiles.TileFinderHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a5a8ec068a5f7a77026ed34f75f859d93">HamstarHelpers.Helpers.Tiles.TileFinderHelpers</a>
 </li>
 <li>GetTimerTickDuration()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#ae651c264eae0a0a11bd63c23dcc239f2">HamstarHelpers.Services.Timers.Timers</a>
@@ -456,7 +468,7 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a636548a7a53ecae892799bcbf40099a6">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers</a>
 </li>
 <li>GetTypesFromAssembly()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#affa6fbb377b0aab6295ad1cd1a9d65bb">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#af025588440e15258368a20506acdf27c">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers</a>
 </li>
 <li>GetUniqueId()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a19d6ec1e7f793c7b612caedf9ed93e1d">HamstarHelpers.Helpers.Players.PlayerIdentityHelpers</a>
@@ -480,7 +492,7 @@ $(document).ready(function(){initNavTree('functions_func_g.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ac389110bff8c4fe7d1be07c50bd710ca">HamstarHelpers.Helpers.Tiles.TileBiomeHelpers</a>
 </li>
 <li>GetVanillaBiomePercentsOf()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ad674da0baa52b44600d3b4a9dbfa581b">HamstarHelpers.Helpers.Tiles.TileBiomeHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a795f1e54a51d1043e13e28db5258c880">HamstarHelpers.Helpers.Tiles.TileBiomeHelpers</a>
 </li>
 <li>GetVanillaContainerContext()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#add089804ee479e5d0afab0df68c3d6e0">HamstarHelpers.Helpers.Items.Attributes.ItemAttributeHelpers</a>

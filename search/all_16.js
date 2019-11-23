@@ -4,6 +4,7 @@ var searchData=
   ['wallofflesh',['WallOfFlesh',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#aa57b3c253a57ce546bea9f2f71011fe6',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['walltype',['WallType',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a738ce52e71a260bb0f9911441cfb67d6',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['warn',['Warn',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a6ea1feb593e0a83f7bc29628e09030db',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
+  ['warnandprintonce',['WarnAndPrintOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a2475bbfee8f18eb3a778daa77bf2df46',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['warning',['Warning',['../namespace_hamstar_helpers_1_1_classes_1_1_mod_tag_definitions.html#a3689012eabf257d6780a0e3a8ed0d50fa0eaadb4fcb48a0a0ed7bc9868be9fbaa',1,'HamstarHelpers::Classes::ModTagDefinitions']]],
   ['warnonce',['WarnOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a40930a3f028fad258de84ba729639694',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['warppotions',['WarpPotions',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a86082bc3f6bce5b058fcea8afafcd7a2',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],

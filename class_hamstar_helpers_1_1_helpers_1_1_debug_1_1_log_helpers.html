@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -126,6 +126,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a40930a3f028fad258de84ba729639694"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a40930a3f028fad258de84ba729639694">WarnOnce</a> (string msg=&quot;&quot;)</td></tr>
 <tr class="memdesc:a40930a3f028fad258de84ba729639694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).  <a href="#a40930a3f028fad258de84ba729639694">More...</a><br /></td></tr>
 <tr class="separator:a40930a3f028fad258de84ba729639694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69a47122f3bc4ef78bafda1d043f0933"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a69a47122f3bc4ef78bafda1d043f0933">LogAndPrintOnce</a> (string msg, Color? color=null)</td></tr>
+<tr class="memdesc:a69a47122f3bc4ef78bafda1d043f0933"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a plain log message "once" (or rather, once every log10 % 1 == 0 times).  <a href="#a69a47122f3bc4ef78bafda1d043f0933">More...</a><br /></td></tr>
+<tr class="separator:a69a47122f3bc4ef78bafda1d043f0933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65540ba69aa609430cd917029b7ea1f4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a65540ba69aa609430cd917029b7ea1f4">AlertAndPrintOnce</a> (string msg=&quot;&quot;, Color? color=null)</td></tr>
+<tr class="memdesc:a65540ba69aa609430cd917029b7ea1f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs an "alert" log message "once" (or rather, once every log10 % 1 == 0 times).  <a href="#a65540ba69aa609430cd917029b7ea1f4">More...</a><br /></td></tr>
+<tr class="separator:a65540ba69aa609430cd917029b7ea1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2475bbfee8f18eb3a778daa77bf2df46"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a2475bbfee8f18eb3a778daa77bf2df46">WarnAndPrintOnce</a> (string msg=&quot;&quot;, Color? color=null)</td></tr>
+<tr class="memdesc:a2475bbfee8f18eb3a778daa77bf2df46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times).  <a href="#a2475bbfee8f18eb3a778daa77bf2df46">More...</a><br /></td></tr>
+<tr class="separator:a2475bbfee8f18eb3a778daa77bf2df46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9434f59b02765fbda2a598028335652"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ac9434f59b02765fbda2a598028335652">ResetOnceMessage</a> (string msg)</td></tr>
 <tr class="memdesc:ac9434f59b02765fbda2a598028335652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a given "once" log, alert, or warn messages.  <a href="#ac9434f59b02765fbda2a598028335652">More...</a><br /></td></tr>
 <tr class="separator:ac9434f59b02765fbda2a598028335652"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,7 +182,54 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00109">109</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00114">114</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a65540ba69aa609430cd917029b7ea1f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65540ba69aa609430cd917029b7ea1f4">&#9670;&nbsp;</a></span>AlertAndPrintOnce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Debug.LogHelpers.AlertAndPrintOnce </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Color?&#160;</td>
+          <td class="paramname"><em>color</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs an "alert" log message "once" (or rather, once every log10 % 1 == 0 times). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00102">102</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -209,7 +265,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00050">50</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00051">51</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -293,7 +349,54 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00098">98</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00103">103</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a69a47122f3bc4ef78bafda1d043f0933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69a47122f3bc4ef78bafda1d043f0933">&#9670;&nbsp;</a></span>LogAndPrintOnce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Debug.LogHelpers.LogAndPrintOnce </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Color?&#160;</td>
+          <td class="paramname"><em>color</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs a plain log message "once" (or rather, once every log10 % 1 == 0 times). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00090">90</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -361,7 +464,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00144">144</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00149">149</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -397,7 +500,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00040">40</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00041">41</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -433,7 +536,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00088">88</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00144">144</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -469,7 +572,54 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00123">123</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers_8cs_source.html#l00128">128</a> of file <a class="el" href="_log_helpers_8cs_source.html">LogHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a2475bbfee8f18eb3a778daa77bf2df46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2475bbfee8f18eb3a778daa77bf2df46">&#9670;&nbsp;</a></span>WarnAndPrintOnce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Debug.LogHelpers.WarnAndPrintOnce </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Color?&#160;</td>
+          <td class="paramname"><em>color</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Outputs a "warning" log message "once" (or rather, once every log10 % 1 == 0 times). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00122">122</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>
@@ -505,7 +655,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00068">68</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_log_helpers___once_8cs_source.html#l00069">69</a> of file <a class="el" href="_log_helpers___once_8cs_source.html">LogHelpers_Once.cs</a>.</p>
 
 </div>
 </div>

@@ -28,6 +28,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionar
     [ "Set2D< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a489d6091146d4666fb17d61a3cdbc120", null ],
     [ "Set2D< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#abdf524bb75d7ebd4ce945cda5cd912ac", null ],
     [ "Set2D< TKey1, TKey2, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab93e2e57ce0dcf659e1392f9f9340f1c", null ],
+    [ "Set2DSorted< TKey1, TKey2, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#aa3705d7638a0f80ac0b3bd25eaea1333", null ],
     [ "TryGetValue2D< TKey, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#abaa45d8ba97fc140e54390f8d979126c", null ],
     [ "TryGetValue2D< TKey1, TKey2, TValue >", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a24a48bce39b9b84d55f4e03aefe465cb", null ]
 ];

@@ -1,11 +1,11 @@
 var searchData=
 [
+  ['shape',['Shape',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a7cde9166821f19ab33d7b57a2831a5d9',1,'HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.Shape()'],['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac56dffd653960b9820139078d72d6744',1,'HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Shape()']]],
   ['side',['Side',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a9dc9a4680b1cd5b5dbdacf44620f1a0c',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['skeletron',['Skeletron',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e4f80e4dab6c74fa036c228764c27d3',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['skeletronprime',['SkeletronPrime',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#acc60563e78d51cf61dfc33e3a3c5e19e',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['skylayerbottomtiley',['SkyLayerBottomTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a09649e888b54c067a1fc1251e509fa69',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['skylayertoptiley',['SkyLayerTopTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#afd82378c27741ae9aeb05f7f0b08b21b',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
-  ['slope',['Slope',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a1d2716d7450133e077f4d81e6b01db2f',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
   ['sortafter',['SortAfter',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a43b457faa0f1bd2fa96d9a1f3abc67a0',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['sortbefore',['SortBefore',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a84b821c71e1e764c09535a6951c46ac1',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['spazmatism',['Spazmatism',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5901bbebf31657c60e16fa39ce6152de',1,'HamstarHelpers::Services::GameData::BossData']]],

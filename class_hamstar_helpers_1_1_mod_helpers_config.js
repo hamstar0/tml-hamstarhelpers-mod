@@ -1,5 +1,6 @@
 var class_hamstar_helpers_1_1_mod_helpers_config =
 [
+    [ "Instance", "class_hamstar_helpers_1_1_mod_helpers_config.html#aadcf2533d71220e7f65b81f7944c7d4a", null ],
     [ "AddCrimsonLeatherRecipe", "class_hamstar_helpers_1_1_mod_helpers_config.html#a63834825874593e649b5a38502bf4e40", null ],
     [ "CoalAsTile", "class_hamstar_helpers_1_1_mod_helpers_config.html#a27b5a1e6eaa62ef13d4f561bb31c3492", null ],
     [ "ControlPanelIconX", "class_hamstar_helpers_1_1_mod_helpers_config.html#a2cb5ead492e70d30adff243fdef807e3", null ],

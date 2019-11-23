@@ -20,6 +20,8 @@ var searchData=
   ['uithemedtext',['UIThemedText',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_text.html#add617ddcb1ea5cd3d1e2f0821a2f5c90',1,'HamstarHelpers::Classes::UI::Elements::UIThemedText']]],
   ['uithemedtextpanel',['UIThemedTextPanel',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_text_panel.html#a79cad88b6a3d130d4a30d3cfbef49593',1,'HamstarHelpers::Classes::UI::Elements::UIThemedTextPanel']]],
   ['uiweburl',['UIWebUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#ac11c69e72f15ddf4abe1f684b92cc23a',1,'HamstarHelpers::Classes::UI::Elements::UIWebUrl']]],
+  ['uncache',['Uncache',['../class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#a76ef70de6fbebf9f506826e9b3968b88',1,'HamstarHelpers::Services::Configs::ModConfigStack']]],
+  ['uncache_3c_20t_20_3e',['Uncache&lt; T &gt;',['../class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#a27c66293a85089221507638f29ecba88',1,'HamstarHelpers::Services::Configs::ModConfigStack']]],
   ['unfocus',['Unfocus',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#addcb73df0a2d0a9971752489f0271cfa',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
   ['unhanditem',['UnhandItem',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#ab94304f4787df39c9362aca9952217c4',1,'HamstarHelpers::Helpers::Players::PlayerItemHelpers']]],
   ['unlockworld',['UnlockWorld',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html#a660e936429f431139ed521f8a1dcf831',1,'HamstarHelpers::Services::ModHelpers::ModLockService']]],

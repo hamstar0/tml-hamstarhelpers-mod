@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['pink',['Pink',['../namespace_hamstar_helpers_1_1_helpers_1_1_players.html#ac3593e1d99b88070c03f558882ac1ce2a8dc5344bc0746e1cc5abf896ca03bbdf',1,'HamstarHelpers::Helpers::Players']]],
-  ['pirates',['Pirates',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da281a66b1f4a1ded6214bdbd1a35f8e1f',1,'HamstarHelpers::Helpers::NPCs']]],
-  ['platform',['Platform',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a419f3742e6de8e0ec4b22cce005e7630',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
-  ['pumpkinmoon',['PumpkinMoon',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da5aa3ae9152acb613289caec44071fc49',1,'HamstarHelpers::Helpers::NPCs']]]
+  ['ocean',['Ocean',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5fcf9ea63edf5782b37a3ac683960694af41054884f4a8c8cb596222e2a31f098',1,'HamstarHelpers.Helpers.World.Ocean()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#adc67de7c4a50810164b8548dd09fd117af41054884f4a8c8cb596222e2a31f098',1,'HamstarHelpers.Helpers.World.Ocean()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a6c96804d2d560ce24321f5700aaf10cfaf41054884f4a8c8cb596222e2a31f098',1,'HamstarHelpers.Helpers.World.Ocean()']]],
+  ['oceaneast',['OceanEast',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5fcf9ea63edf5782b37a3ac683960694a090b6734ee24cb608f2644b10c103248',1,'HamstarHelpers::Helpers::World']]],
+  ['oceanwest',['OceanWest',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5fcf9ea63edf5782b37a3ac683960694a06bf678c98116af36c844a4e14914d9b',1,'HamstarHelpers::Helpers::World']]],
+  ['overworld',['Overworld',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5fcf9ea63edf5782b37a3ac683960694a50181b144eb2554dc2e45cd3d437e92f',1,'HamstarHelpers::Helpers::World']]]
 ];

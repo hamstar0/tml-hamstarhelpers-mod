@@ -8,6 +8,7 @@ var searchData=
   ['itemfinderhelpers',['ItemFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
   ['itemgroupdefinition',['ItemGroupDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_definition.html',1,'HamstarHelpers::Helpers::Items']]],
   ['itemgroupidentityhelpers',['ItemGroupIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
+  ['itemgroupids',['ItemGroupIDs',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html',1,'HamstarHelpers::Services::EntityGroups::Definitions']]],
   ['itemgroupmatcher',['ItemGroupMatcher',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html',1,'HamstarHelpers::Services::EntityGroups']]],
   ['itemhelpers',['ItemHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
   ['itemidentityhelpers',['ItemIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html',1,'HamstarHelpers::Helpers::Items']]],

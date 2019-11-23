@@ -8,5 +8,6 @@ var namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs =
     [ "NPCHelpers", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers" ],
     [ "NPCIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers" ],
     [ "NPCInvasionHelpers", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_invasion_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_invasion_helpers" ],
+    [ "NPCResourceHelpers", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_resource_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_resource_helpers" ],
     [ "NPCTownHelpers", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers" ]
 ];

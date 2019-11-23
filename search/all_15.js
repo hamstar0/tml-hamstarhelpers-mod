@@ -10,6 +10,8 @@ var searchData=
   ['vanillabugs',['VanillaBugs',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a0679757d72e75e1198831ead86140c0d',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['vanillabutterflies',['VanillaButterflies',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a077c9e9549dfa433fc30240441d3178c',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['vanillabutterfly',['VanillaButterfly',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a60937a256484227ebf9279b1bab31013',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],
+  ['vanillachestframesbytypename',['VanillaChestFramesByTypeName',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_frame_helpers.html#a6ec5f33a123cd99be5116b09408cf45c',1,'HamstarHelpers::Helpers::Tiles::TileFrameHelpers']]],
+  ['vanillachesttypenamesbyframe',['VanillaChestTypeNamesByFrame',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_frame_helpers.html#ae315d5b4632cf072949d7458b2b9463e',1,'HamstarHelpers::Helpers::Tiles::TileFrameHelpers']]],
   ['vanillacorruptionmintiles',['VanillaCorruptionMinTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a401e5689f71f1f23b8fca709ee8bf9de',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],
   ['vanillacorruptiontiles',['VanillaCorruptionTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#a4b1538fb0d34fbc71a6319630b4e0c7c',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],
   ['vanillacrimsonmintiles',['VanillaCrimsonMinTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ae45c55ec9cc6416ad3d5b38c3772dba4',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],
@@ -20,6 +22,7 @@ var searchData=
   ['vanilladungeonmintiles',['VanillaDungeonMinTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#af7c425a39561e7a41e2f7782b119cd30',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],
   ['vanilladungeontiles',['VanillaDungeonTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#aa0c896505a0747d270a183069c6eb38a',1,'HamstarHelpers::Helpers::Tiles::TileBiomeHelpers']]],
   ['vanilladyes',['VanillaDyes',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a264ce4fe146f81a09a8e666545822c60',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
+  ['vanillaearthtiles',['VanillaEarthTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_group_identity_helpers.html#ab065f5a41499d1493c07fcea78c30677',1,'HamstarHelpers::Helpers::Tiles::TileGroupIdentityHelpers']]],
   ['vanillaeventflag',['VanillaEventFlag',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824d',1,'HamstarHelpers::Helpers::NPCs']]],
   ['vanillafrostlegiontypes',['VanillaFrostLegionTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a5f72768bcd698cf3aa8a08a5f6ca8ff8',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
   ['vanillafrostmoontypes',['VanillaFrostMoonTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a2c082d8713e0b1e332acb4fde93e9d73',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
@@ -62,6 +65,7 @@ var searchData=
   ['vanillasurfacebiome',['VanillaSurfaceBiome',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a6c96804d2d560ce24321f5700aaf10cf',1,'HamstarHelpers::Helpers::World']]],
   ['vanillaundergroundbiome',['VanillaUndergroundBiome',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#abc5187c3be2fd50d3708509c6f8e8db1',1,'HamstarHelpers::Helpers::World']]],
   ['vanillavortexpillartypes',['VanillaVortexPillarTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a7875873e5086bf79b74b1d0a32108bd8',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
+  ['vector2stringextensions',['Vector2StringExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
   ['version',['Version',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#ac2004f561bf97096d05c125722db980b',1,'HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo.Version()'],['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a7b35a582d7c9926bf81e86e05f194e99',1,'HamstarHelpers.Services.TML.BuildPropertiesViewer.Version()']]],
   ['versionalertelem',['VersionAlertElem',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a991a89dde9ea7d9addf9651bc84e420b',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]]
 ];

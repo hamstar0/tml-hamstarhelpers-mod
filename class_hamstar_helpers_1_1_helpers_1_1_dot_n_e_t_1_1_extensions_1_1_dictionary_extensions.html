@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -191,6 +191,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ab93e2e57ce0dcf659e1392f9f9340f1c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab93e2e57ce0dcf659e1392f9f9340f1c">Set2D&lt; TKey1, TKey2, TValue &gt;</a> (this IDictionary&lt; TKey1, IDictionary&lt; TKey2, TValue &gt;&gt; dict, TKey1 key1, TKey2 key2, TValue value)</td></tr>
 <tr class="memdesc:ab93e2e57ce0dcf659e1392f9f9340f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a value in a nested dictionary at a given dictionary key.  <a href="#ab93e2e57ce0dcf659e1392f9f9340f1c">More...</a><br /></td></tr>
 <tr class="separator:ab93e2e57ce0dcf659e1392f9f9340f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3705d7638a0f80ac0b3bd25eaea1333"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#aa3705d7638a0f80ac0b3bd25eaea1333">Set2DSorted&lt; TKey1, TKey2, TValue &gt;</a> (this IDictionary&lt; TKey1, IDictionary&lt; TKey2, TValue &gt;&gt; dict, TKey1 key1, TKey2 key2, TValue value)</td></tr>
+<tr class="memdesc:aa3705d7638a0f80ac0b3bd25eaea1333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a value in a nested (sorted) dictionary at a given dictionary key.  <a href="#aa3705d7638a0f80ac0b3bd25eaea1333">More...</a><br /></td></tr>
+<tr class="separator:aa3705d7638a0f80ac0b3bd25eaea1333"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static extension "helper" functions pertaining to dictionaries. </p>
@@ -1904,6 +1907,75 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="_dictionary_extensions__2_d___set_8cs_source.html#l00052">52</a> of file <a class="el" href="_dictionary_extensions__2_d___set_8cs_source.html">DictionaryExtensions_2D_Set.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa3705d7638a0f80ac0b3bd25eaea1333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3705d7638a0f80ac0b3bd25eaea1333">&#9670;&nbsp;</a></span>Set2DSorted&lt; TKey1, TKey2, TValue &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Set2DSorted&lt; TKey1, TKey2, TValue &gt; </td>
+          <td>(</td>
+          <td class="paramtype">this IDictionary&lt; TKey1, IDictionary&lt; TKey2, TValue &gt;&gt;&#160;</td>
+          <td class="paramname"><em>dict</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey1&#160;</td>
+          <td class="paramname"><em>key1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TKey2&#160;</td>
+          <td class="paramname"><em>key2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TValue&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a value in a nested (sorted) dictionary at a given dictionary key. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TKey1</td><td></td></tr>
+    <tr><td class="paramname">TKey2</td><td></td></tr>
+    <tr><td class="paramname">TValue</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dict</td><td></td></tr>
+    <tr><td class="paramname">key1</td><td></td></tr>
+    <tr><td class="paramname">key2</td><td></td></tr>
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_dictionary_extensions__2_d___set_8cs_source.html#l00070">70</a> of file <a class="el" href="_dictionary_extensions__2_d___set_8cs_source.html">DictionaryExtensions_2D_Set.cs</a>.</p>
 
 </div>
 </div>

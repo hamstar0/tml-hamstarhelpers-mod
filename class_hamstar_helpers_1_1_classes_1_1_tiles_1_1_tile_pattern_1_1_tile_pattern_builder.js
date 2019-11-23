@@ -1,5 +1,6 @@
 var class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder =
 [
+    [ "ConvertToShape", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a4b6b637f50712c9a610784224509ff63", null ],
     [ "AreaFromCenter", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#aab7fa9c17569c1754bb4610b20255284", null ],
     [ "CustomCheck", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#aa8c161aefc09d58eae23a43222ab3f7f", null ],
     [ "HasHoney", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a0ad0a1c9bc0d90d9cf5fa9e1c6d99ab7", null ],
@@ -20,5 +21,5 @@ var class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_patter
     [ "IsVanillaBombable", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a195cabd2f6a97a863e6c4dd7a47825ac", null ],
     [ "MaximumBrightness", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#ae8680f963265d81045ef63696194b8e2", null ],
     [ "MinimumBrightness", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a254b0cf1a40891cd5c43bfaa77413776", null ],
-    [ "Slope", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a1d2716d7450133e077f4d81e6b01db2f", null ]
+    [ "Shape", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a7cde9166821f19ab33d7b57a2831a5d9", null ]
 ];

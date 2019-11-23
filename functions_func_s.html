@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -94,6 +94,12 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 <li>SafeCall()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a0d1c3c080106a5c212cb69a517966342">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers</a>
 </li>
+<li>SafelyGetInstance()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#a9998c12d897a0207c58fc2fd97194796">HamstarHelpers.Helpers.TModLoader.TmlHelpers</a>
+</li>
+<li>SafelyGetInstance&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#af61c700112e4784eeaa185dbc08806f6">HamstarHelpers.Helpers.TModLoader.TmlHelpers</a>
+</li>
 <li>SafelyGetModPlayer()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#adf99814d4a021cee4d9d4d9f8a8a0819">HamstarHelpers.Helpers.TModLoader.TmlHelpers</a>
 </li>
@@ -103,14 +109,20 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 <li>SafelyGetRand()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html#acced8bc387fbb61a641b3aaeeac7fe1f">HamstarHelpers.Helpers.TModLoader.TmlHelpers</a>
 </li>
+<li>SafelyGetTexture()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_resource_helpers.html#ae101e8f2b29f71342f751445c4a8e095">HamstarHelpers.Helpers.NPCs.NPCResourceHelpers</a>
+, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_resource_helpers.html#ac3d04abef235938238cb278d6fd930b2">HamstarHelpers.Helpers.Projectiles.ProjectileResourceHelpers</a>
+, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_resource_helpers.html#aaf977596a92cdef19f38c3cf8c53d492">HamstarHelpers.Helpers.Tiles.TileResourceHelpers</a>
+, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_wall_resource_helpers.html#ae34b262779b52086f2d11da516f46ea6">HamstarHelpers.Helpers.Tiles.TileWallResourceHelpers</a>
+</li>
 <li>SafeOrderBy&lt; TSource, TKey &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a6fe55e71d0ef97e192a43d48d526740d">HamstarHelpers.Helpers.DotNET.LINQHelpers</a>
 </li>
 <li>SafeSelect&lt; TSource, TResult &gt;()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#ac89882c2bc4318becaef21410c00b11d">HamstarHelpers.Helpers.DotNET.LINQHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#ace182693b3fdbdfb519b8a89e017d9cd">HamstarHelpers.Helpers.DotNET.LINQHelpers</a>
 </li>
 <li>SafeSelectMany&lt; TSource, TCollection, TResult &gt;()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a4fd94a4f81f7d18458b1a8485553af96">HamstarHelpers.Helpers.DotNET.LINQHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a523ab3825055ca535513d43daf1bc877">HamstarHelpers.Helpers.DotNET.LINQHelpers</a>
 </li>
 <li>SafeSelectMany&lt; TSource, TResult &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#a6ad2a0dd6396b3b737462fc1bf3d4d7a">HamstarHelpers.Helpers.DotNET.LINQHelpers</a>
@@ -164,6 +176,12 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 <li>Set2D&lt; TKey1, TKey2, TValue &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab93e2e57ce0dcf659e1392f9f9340f1c">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
 </li>
+<li>Set2DSorted&lt; TKey1, TKey2, TValue &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#aa3705d7638a0f80ac0b3bd25eaea1333">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
+</li>
+<li>SetAndMergeConfig&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#af3ae6c27801a5ecaf0fe9e6bc3e487b9">HamstarHelpers.Services.Configs.ModConfigStack</a>
+</li>
 <li>SetClientDefaults()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html#ac43a70fd541fa5276e1449b3d1d4aff5">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToClient</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html#a8a4b5ad737269cff606cb69407d918f3">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToServer</a>
@@ -171,6 +189,9 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#ae8276a93d7746ca0e5f6dae4929029ce">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html#a41da9a665f2f9c963fa2d3acd8e58b4d">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a3e219c19147116062ad80574b2e9f2d2">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>
+</li>
+<li>SetConfig&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#af311ff611b1c0c43b477c9cda52f4253">HamstarHelpers.Services.Configs.ModConfigStack</a>
 </li>
 <li>SetDeep()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a0770964a38de7fee9e55a17aac919343">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers</a>
@@ -226,7 +247,7 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#ad2d51c29766d2eced5e75052b674eaf9">HamstarHelpers.Classes.UI.Theme.UIThemedState</a>
 </li>
 <li>SetTimer()
-: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#af57b9f7064163825446e002675dac45b">HamstarHelpers.Services.Timers.Timers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#a79162ddbf648e9f8015a09fc79b41e56">HamstarHelpers.Services.Timers.Timers</a>
 </li>
 <li>SetTopPosition()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a2372aaa38d30e37ff675bb06a08fb1d1">HamstarHelpers.Classes.UI.Elements.UIDialog</a>
@@ -246,6 +267,9 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 </li>
 <li>SimpleLineOfSight()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_helpers.html#a7a91b809f8e7f3de3979ecc28a708049">HamstarHelpers.Helpers.Entities.EntityHelpers</a>
+</li>
+<li>SmartSlope()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_state_helpers.html#a425c0538ff88db417a39b3ca24ca9378">HamstarHelpers.Helpers.Tiles.TileStateHelpers</a>
 </li>
 <li>Spawn()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers.html#ae8274198ceb831c1f51009ad97b4cd9e">HamstarHelpers.Helpers.NPCs.NPCTownHelpers</a>

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.0.0</span>
+   &#160;<span id="projectnumber">v5.4.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -107,6 +107,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ae3310473d64362a8d6265cc8bfd870"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a6ae3310473d64362a8d6265cc8bfd870">GetCurrentContext</a> (int stackFrameIdx=1)</td></tr>
 <tr class="memdesc:a6ae3310473d64362a8d6265cc8bfd870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current method call (context) of a stack trace at the specified frame (stack depth).  <a href="#a6ae3310473d64362a8d6265cc8bfd870">More...</a><br /></td></tr>
 <tr class="separator:a6ae3310473d64362a8d6265cc8bfd870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acef50a7d9d1c73a84040c05c25887985"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#acef50a7d9d1c73a84040c05c25887985">Print</a> (string labelAndMsg)</td></tr>
+<tr class="memdesc:acef50a7d9d1c73a84040c05c25887985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a given label merely update that existing message.  <a href="#acef50a7d9d1c73a84040c05c25887985">More...</a><br /></td></tr>
+<tr class="separator:acef50a7d9d1c73a84040c05c25887985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a559f9adaa86e473e1314c6f537c7fedd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a559f9adaa86e473e1314c6f537c7fedd">Print</a> (string msgLabel, string msg)</td></tr>
+<tr class="memdesc:a559f9adaa86e473e1314c6f537c7fedd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a given label merely update that existing message.  <a href="#a559f9adaa86e473e1314c6f537c7fedd">More...</a><br /></td></tr>
+<tr class="separator:a559f9adaa86e473e1314c6f537c7fedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ee72761edd87e1c7eb6295073b348dd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a2ee72761edd87e1c7eb6295073b348dd">Print</a> (string msgLabel, string msg, int tickDuration)</td></tr>
 <tr class="memdesc:a2ee72761edd87e1c7eb6295073b348dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a given label merely update that existing message.  <a href="#a2ee72761edd87e1c7eb6295073b348dd">More...</a><br /></td></tr>
 <tr class="separator:a2ee72761edd87e1c7eb6295073b348dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -279,8 +285,91 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="acef50a7d9d1c73a84040c05c25887985"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acef50a7d9d1c73a84040c05c25887985">&#9670;&nbsp;</a></span>Print() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Debug.DebugHelpers.Print </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>labelAndMsg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a given label merely update that existing message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">labelAndMsg</td><td>Identifier and message to display. Identifier is delineated by first occurrence of <code>.</code> in the string. Calling <code>Print(...)</code> with this same identifier replaces any existing displayed message of this identifier.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_debug_helpers___print_8cs_source.html#l00034">34</a> of file <a class="el" href="_debug_helpers___print_8cs_source.html">DebugHelpers_Print.cs</a>.</p>
+
+</div>
+</div>
+<a id="a559f9adaa86e473e1314c6f537c7fedd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a559f9adaa86e473e1314c6f537c7fedd">&#9670;&nbsp;</a></span>Print() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Debug.DebugHelpers.Print </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msgLabel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a given label merely update that existing message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msgLabel</td><td>Identifier of the given message. Calling <code>Print(...)</code> with this same identifier replaces any existing displayed message of this identifier.</td></tr>
+    <tr><td class="paramname">msg</td><td>Message to display.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_debug_helpers___print_8cs_source.html#l00049">49</a> of file <a class="el" href="_debug_helpers___print_8cs_source.html">DebugHelpers_Print.cs</a>.</p>
+
+</div>
+</div>
 <a id="a2ee72761edd87e1c7eb6295073b348dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ee72761edd87e1c7eb6295073b348dd">&#9670;&nbsp;</a></span>Print()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ee72761edd87e1c7eb6295073b348dd">&#9670;&nbsp;</a></span>Print() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -329,7 +418,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_debug_helpers___print_8cs_source.html#l00036">36</a> of file <a class="el" href="_debug_helpers___print_8cs_source.html">DebugHelpers_Print.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_debug_helpers___print_8cs_source.html#l00061">61</a> of file <a class="el" href="_debug_helpers___print_8cs_source.html">DebugHelpers_Print.cs</a>.</p>
 
 </div>
 </div>

@@ -11,6 +11,7 @@ var class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data =
     [ "AuthorElem", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a598bd70b7b5df0dc5ee72dd85fb83807", null ],
     [ "ConfigOpenButton", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a57f71f7db61ce1483493d891948ebe88", null ],
     [ "ConfigResetButton", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a70417023e694e5cc00fd0684c8ae7f10", null ],
+    [ "DisplayIndex", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#af3706fa575aaa9fa8191f08e908306fc", null ],
     [ "HasIconLoaded", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a6f46046c8e8a07d77aa03a969a37d408", null ],
     [ "HomepageUrl", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a2af1de9955f1735f7fa83f1ee3d0c59c", null ],
     [ "IconElem", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a47b5d5ff7d22bc650dda2233d38de5e1", null ],
