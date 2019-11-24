@@ -9544,7 +9544,7 @@
             affecting the user's own ModConfig.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetStackOrDefaultConfig``1">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetStackedOrDefaultConfig``1">
             <summary>
             Gets either the merged stack of configs (not including the default), or else the default config (raw).
             </summary>
@@ -9558,7 +9558,7 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigStacks``1">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedStackedConfigs``1">
             <summary>
             Downward merges the stack of a given config type. Excludes the default ModConfig itself.
             </summary>
@@ -9573,7 +9573,7 @@
             <param name="stackHeight"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetConfig``1(``0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfig``1(``0,System.Int32)">
             <summary>
             Sets a config to exist on the stack at the specified height.
             </summary>
@@ -9581,7 +9581,7 @@
             <param name="config"></param>
             <param name="stackHeight"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetConfigWithOverlap``1(``0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfigChangesOnly``1(``0,System.Int32)">
             <summary>
             Sets a config to exist on the stack at the specified height, keeping any existing values that aren't overlapping.
             </summary>
