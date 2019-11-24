@@ -9544,6 +9544,13 @@
             affecting the user's own ModConfig.
             </summary>
         </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetStackOrDefaultConfig``1">
+            <summary>
+            Gets either the merged stack of configs (not including the default), or else the default config (raw).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigs``1">
             <summary>
             Downward merges the stack of a given config type. Includes the default ModConfig.
@@ -9574,9 +9581,9 @@
             <param name="config"></param>
             <param name="stackHeight"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetAndMergeConfig``1(``0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetConfigWithOverlap``1(``0,System.Int32)">
             <summary>
-            Sets a config to exist on the stack at the specified height, merging if collisions.
+            Sets a config to exist on the stack at the specified height, keeping any existing values that aren't overlapping.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="config"></param>
@@ -10214,7 +10221,6 @@
             <param name="fail"></param>
             <param name="effectOnly"></param>
             <param name="noItem"></param>
-            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.AddSafeKillTileHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate)">
             <summary>

@@ -19,6 +19,24 @@ namespace HamstarHelpers.Services.Configs {
 	/// </summary>
 	public partial class ModConfigStack : ILoadable {
 		/// <summary>
+		/// Gets either the merged stack of configs (not including the default), or else the default config (raw).
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public static T GetStackedOrDefaultConfig<T>() where T : StackableModConfig {
+			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
+			var configType = typeof( T );
+
+			IDictionary<int, StackableModConfig> configsOf;
+			if( !configStack.ConfigStacks.TryGetValue(configType, out configsOf) || configsOf.Count == 0 ) {
+				return (T)ModContent.GetInstance<T>();
+			}
+
+			return ModConfigStack.GetMergedStackedConfigs<T>();
+		}
+
+
+		/// <summary>
 		/// Downward merges the stack of a given config type. Includes the default ModConfig.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
@@ -27,17 +45,17 @@ namespace HamstarHelpers.Services.Configs {
 			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
-			if( configStack.CachedMergedConfigs.ContainsKey( configType ) ) {
-				return (T)configStack.CachedMergedConfigs[ configType ];
+			if( configStack.CachedMergedDefaultAndStackConfigs.ContainsKey( configType ) ) {
+				return (T)configStack.CachedMergedDefaultAndStackConfigs[ configType ];
 			}
 
 			T baseConfig = (T)ModContent.GetInstance<T>().Clone();
-			T mergedConfigs = ModConfigStack.GetMergedConfigStacks<T>();
+			T mergedConfigs = ModConfigStack.GetMergedStackedConfigs<T>();
 			
 			ConfigHelpers.MergeConfigs( baseConfig, mergedConfigs );
 			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
 
-			configStack.CachedMergedConfigs[configType] = mergedConfigs;
+			configStack.CachedMergedDefaultAndStackConfigs[configType] = mergedConfigs;
 
 			return mergedConfigs;
 		}
@@ -48,9 +66,13 @@ namespace HamstarHelpers.Services.Configs {
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
-		public static T GetMergedConfigStacks<T>() where T : StackableModConfig {
+		public static T GetMergedStackedConfigs<T>() where T : StackableModConfig {
 			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
+
+			if( configStack.CachedMergedStackConfigs.ContainsKey( configType ) ) {
+				return (T)configStack.CachedMergedStackConfigs[configType];
+			}
 
 			IDictionary<int, StackableModConfig> configsOf;
 			if( !configStack.ConfigStacks.TryGetValue(configType, out configsOf) ) {
@@ -77,6 +99,8 @@ namespace HamstarHelpers.Services.Configs {
 				//}
 				ConfigHelpers.MergeConfigs( mergedConfig, (T)entry );
 			}
+
+			configStack.CachedMergedStackConfigs[configType] = mergedConfig;
 
 			return mergedConfig;
 		}
@@ -105,22 +129,24 @@ namespace HamstarHelpers.Services.Configs {
 		/// <typeparam name="T"></typeparam>
 		/// <param name="config"></param>
 		/// <param name="stackHeight"></param>
-		public static void SetConfig<T>( T config, int stackHeight = 100 ) where T : StackableModConfig {
+		public static void SetStackedConfig<T>( T config, int stackHeight = 100 ) where T : StackableModConfig {
 			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof(T);
 
 			configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
-			configStack.CachedMergedConfigs.Remove( configType );
+
+			configStack.CachedMergedStackConfigs.Remove( configType );
+			configStack.CachedMergedDefaultAndStackConfigs.Remove( configType );
 		}
 
 
 		/// <summary>
-		/// Sets a config to exist on the stack at the specified height, merging if collisions.
+		/// Sets a config to exist on the stack at the specified height, keeping any existing values that aren't overlapping.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="config"></param>
 		/// <param name="stackHeight"></param>
-		public static void SetAndMergeConfig<T>( T config, int stackHeight = 100 ) where T : StackableModConfig {
+		public static void SetStackedConfigChangesOnly<T>( T config, int stackHeight = 100 ) where T : StackableModConfig {
 			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
@@ -130,7 +156,8 @@ namespace HamstarHelpers.Services.Configs {
 				configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
 			}
 
-			configStack.CachedMergedConfigs.Remove( configType );
+			configStack.CachedMergedStackConfigs.Remove( configType );
+			configStack.CachedMergedDefaultAndStackConfigs.Remove( configType );
 		}
 
 
@@ -145,7 +172,8 @@ namespace HamstarHelpers.Services.Configs {
 			var configStack = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 			var configType = typeof( T );
 
-			configStack.CachedMergedConfigs.Remove( configType );
+			configStack.CachedMergedStackConfigs.Remove( configType );
+			configStack.CachedMergedDefaultAndStackConfigs.Remove( configType );
 		}
 
 		/// <summary>
@@ -156,7 +184,8 @@ namespace HamstarHelpers.Services.Configs {
 		public static void Uncache( Type configType ) {
 			var configStack = (ModConfigStack)TmlHelpers.SafelyGetInstance( typeof(ModConfigStack) );
 
-			configStack.CachedMergedConfigs.Remove( configType );
+			configStack.CachedMergedStackConfigs.Remove( configType );
+			configStack.CachedMergedDefaultAndStackConfigs.Remove( configType );
 		}
 	}
 }

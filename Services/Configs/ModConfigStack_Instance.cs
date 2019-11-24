@@ -12,7 +12,9 @@ namespace HamstarHelpers.Services.Configs {
 	public partial class ModConfigStack : ILoadable {
 		private IDictionary<Type, IDictionary<int, StackableModConfig>> ConfigStacks
 			= new Dictionary<Type, IDictionary<int, StackableModConfig>>();
-		private IDictionary<Type, StackableModConfig> CachedMergedConfigs
+		private IDictionary<Type, StackableModConfig> CachedMergedStackConfigs
+			= new Dictionary<Type, StackableModConfig>();
+		private IDictionary<Type, StackableModConfig> CachedMergedDefaultAndStackConfigs
 			= new Dictionary<Type, StackableModConfig>();
 
 

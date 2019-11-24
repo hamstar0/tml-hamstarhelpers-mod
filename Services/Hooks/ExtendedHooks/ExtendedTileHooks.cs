@@ -19,8 +19,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// <param name="fail"></param>
 		/// <param name="effectOnly"></param>
 		/// <param name="noItem"></param>
-		/// <returns></returns>
-		public delegate bool KillTileDelegate( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem );
+		public delegate void KillTileDelegate( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem );
 		//public event KillTileEvent OnKillTile;
 
 
