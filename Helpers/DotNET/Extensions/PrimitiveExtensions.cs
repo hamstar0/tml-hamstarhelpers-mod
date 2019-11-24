@@ -20,7 +20,6 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 				: ( value.CompareTo( min ) < 0
 					? min
 					: value );
-			int blah = 0;
 		}
 	}
 }
