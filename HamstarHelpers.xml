@@ -4391,6 +4391,21 @@
             <param name="key"></param>
             <param name="value"></param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.PrimitiveExtensions">
+            <summary>
+            Extensions for general types.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.PrimitiveExtensions.Clamp``1(``0@,``0,``0)">
+            <summary>
+            Clamps most primitive value types.
+            Credit to absoluteAquarian
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="min"></param>
+            <param name="max"></param>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.StringExtensions">
             <summary>
             Extensions for strings.

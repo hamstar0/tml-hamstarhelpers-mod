@@ -1,5 +1,4 @@
-﻿using HamstarHelpers.Helpers.TModLoader;
-using System;
+﻿using System;
 using Terraria;
 
 

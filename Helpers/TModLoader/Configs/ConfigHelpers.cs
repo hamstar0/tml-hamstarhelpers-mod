@@ -57,7 +57,6 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		/// <param name="fro">Config to pull field/property values from. Only pulls non-default (changed) values.</param>
 		public static void MergeConfigs<T>( T to, T fro ) where T : ModConfig {
 			var configType = typeof(T);
-			//T template = JsonConvert.DeserializeObject<T>( "{}" );
 			T template = (T)Activator.CreateInstance(
 				configType,
 				ReflectionHelpers.MostAccess,
@@ -68,6 +67,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 			if( template == null ) {
 				throw new ModHelpersException( "Could generate template for ModConfig "+configType.Name );
 			}
+
+			JsonConvert.PopulateObject( "{}", template, ConfigManager.serializerSettings );
 
 			object froVal, tempVal;
 

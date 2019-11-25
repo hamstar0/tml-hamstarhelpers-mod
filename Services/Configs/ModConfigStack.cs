@@ -5,6 +5,7 @@ using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Configs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,8 @@ namespace HamstarHelpers.Services.Configs {
 			if( mergedConfig == null ) {
 				throw new ModHelpersException( "Could not generate merge base for ModConfig "+configType.Name );
 			}
+
+			JsonConvert.PopulateObject( "{}", mergedConfig, ConfigManager.serializerSettings );
 
 			foreach( ModConfig entry in configsOf.Values.Reverse() ) {
 				//if( entry.IsMerging ) {
