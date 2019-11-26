@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Collisions {
 	/// </summary>
 	public class TileCollisionHelpers {
 		/// <summary>
-		/// Measures world distance to a given tile from a given point and heading.
+		/// Measures world distance to the nearest tile from a given point and heading.
 		/// </summary>
 		/// <param name="position"></param>
 		/// <param name="direction"></param>

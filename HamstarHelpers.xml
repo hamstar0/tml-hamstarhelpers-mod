@@ -3696,6 +3696,22 @@
             <param name="player">Player to remove buff from.</param>
             <param name="buffId">ID of buff.</param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Collisions.CollisionHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to general collision detecting and handling.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Collisions.CollisionHelpers.CastRay(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Func{Microsoft.Xna.Framework.Vector2,System.Boolean},System.Func{System.Int32,System.Int32,System.Boolean})">
+            <summary>
+            Casts a ray from a given world point along a given heading.
+            </summary>
+            <param name="worldPosition"></param>
+            <param name="direction"></param>
+            <param name="maxWorldDistance"></param>
+            <param name="checkPerUnit"></param>
+            <param name="checkPerTile"></param>
+            <returns>`true` if the checker function reports a collision (itself returns `true`).</returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Collisions.TileCollisionHelpers">
             <summary>
             Assorted static "helper" functions pertaining to collisions between objects and/or tiles.
@@ -3703,7 +3719,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Collisions.TileCollisionHelpers.MeasureWorldDistanceToTile(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Boolean@,System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32}})">
             <summary>
-            Measures world distance to a given tile from a given point and heading.
+            Measures world distance to the nearest tile from a given point and heading.
             </summary>
             <param name="position"></param>
             <param name="direction"></param>
@@ -6250,6 +6266,14 @@
             </summary>
             <param name="npc"></param>
             <param name="damage"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.NPCs.NPCHelpers.RawHurt(Terraria.NPC,System.Int32,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Applies damage to an NPC, killing it if need be. Synced.
+            </summary>
+            <param name="npc"></param>
+            <param name="damage"></param>
+            <param name="knockbackDirection"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.NPCs.NPCHelpers.Kill(Terraria.NPC)">
             <summary>
@@ -8961,6 +8985,36 @@
         </member>
         <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.IsBeachEast">
             @private
+        </member>
+        <member name="T:HamstarHelpers.Helpers.World.WorldLocationHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to locating things in the world.
+            </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to locating things in the world.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.WorldLocationHelpers.GetEastBeach(System.Int32@,System.Int32@)">
+            <summary>
+            Gets the first (sand) tile of the eastern beach.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.WorldLocationHelpers.GetWestBeach(System.Int32@,System.Int32@)">
+            <summary>
+            Gets the first (sand) tile of the western beach.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.WorldLocationHelpers.GetGiantTrees">
+            <summary>
+            Gets rectangles containing all giant trees in the world.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.World.WorldStateHelpers">
             <summary>

@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.Debug;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 
@@ -10,51 +12,64 @@ namespace HamstarHelpers.Helpers.World {
 	/// Assorted static "helper" functions pertaining to locating things in the world.
 	/// </summary>
 	public partial class WorldLocationHelpers {
-		private static Rectangle GetGiantTreeAt( int x, int y ) {
-			var rect = new Rectangle( x, y, 1, 1 );
-
+		private static Rectangle GetGiantTreeAt( int tileX, int tileY ) {
 			int minY = 80;
 			int maxY = WorldHelpers.SurfaceLayerBottomTileY - 50;
+
 			Tile tile;
+			int xLeft = tileX, xRight = tileX + 1;
+			int yTop = tileY, yBottom = tileY + 1;
+
 			bool foundColumn = true;
-
-			for( int x2 = x; foundColumn; x2-- ) {
+			for( int x = tileX; foundColumn; x-- ) {
 				foundColumn = false;
 
-				for( int y2 = minY; y2 < maxY; y2++ ) {
-					tile = Framing.GetTileSafely( x2, y2 );
-					if( !tile.active() || ( tile.type != TileID.LivingWood && tile.type != TileID.LeafBlock ) ) {
+				for( int y = minY; y < maxY; y++ ) {
+					tile = Main.tile[ x, y ];
+					if( tile == null || !tile.active() || (tile.type != TileID.LivingWood && tile.type != TileID.LeafBlock) ) {
 						continue;
 					}
 
-					rect.X = x2;
-					rect.Y = rect.Y > y2 ? y2 : rect.Y;
-					rect.Height = rect.Y - minY;
-					foundColumn = true;
-				}
+					xLeft = x;
+					yTop = y < yTop
+						? y
+						: yTop;
+					yBottom = y > yBottom
+						? y
+						: yBottom;
 
-				if( !foundColumn ) {
-					break;
-				}
-			}
-
-			for( int x2 = x+1; foundColumn; x2++ ) {
-				foundColumn = false;
-
-				for( int y2 = minY; y2 < maxY; y2++ ) {
-					tile = Framing.GetTileSafely( x2, y2 );
-					if( !tile.active() || ( tile.type != TileID.LivingWood && tile.type != TileID.LeafBlock ) ) {
-						continue;
-					}
-
-					rect.Width = x2 - rect.X;
-					rect.Y = rect.Y > y2 ? y2 : rect.Y;
-					rect.Height = rect.Y - minY;
 					foundColumn = true;
 				}
 			}
 
-			return rect;
+			foundColumn = true;
+			for( int x = tileX+1; foundColumn; x++ ) {
+				foundColumn = false;
+
+				for( int y = minY; y < maxY; y++ ) {
+					tile = Main.tile[ x, y ];
+					if( tile == null || !tile.active() || (tile.type != TileID.LivingWood && tile.type != TileID.LeafBlock) ) {
+						continue;
+					}
+
+					xRight = x;
+					yTop = y < yTop
+						? y
+						: yTop;
+					yBottom = y > yBottom
+						? y
+						: yBottom;
+
+					foundColumn = true;
+				}
+			}
+
+			return new Rectangle(
+				xLeft,
+				yBottom,
+				(xRight - xLeft),
+				(yBottom - yTop)
+			);
 		}
 
 
@@ -64,41 +79,41 @@ namespace HamstarHelpers.Helpers.World {
 		/// Gets rectangles containing all giant trees in the world.
 		/// </summary>
 		/// <returns></returns>
-		public static IEnumerable<Rectangle> GetGiantTrees() {
+		public static IList<Rectangle> GetGiantTrees() {
 			IDictionary<int, Rectangle> trees = new Dictionary<int, Rectangle>();
 
 			int minX = 300;
-			int minY = 80;
 			int maxX = Main.maxTilesX - 300;
+			int minY = 80;
 			int maxY = WorldHelpers.SurfaceLayerBottomTileY - 50;
+			int midX1 = ( Main.maxTilesX / 2 ) - 100;
+			int midX2 = ( Main.maxTilesX / 2 ) + 100;
 			Tile tile;
 
 			for( int x=minX; x<maxX; x++ ) {
-				if( x > (Main.maxTilesX / 2) - 100 ) {
-					x = (Main.maxTilesX / 2) + 100;
-					continue;
+				if( x > midX1 && x < midX2 ) {
+					x = midX2;
 				}
 
 				if( trees.ContainsKey( x ) ) {
 					x += trees[x].Width;
-					continue;
 				}
-
+				
 				for( int y=minY; y<maxY; y++ ) {
-					tile = Framing.GetTileSafely( x, y );
-					if( !tile.active() || (tile.type != TileID.LivingWood && tile.type != TileID.LeafBlock) ) {
+					tile = Main.tile[x, y];
+					if( tile == null || !tile.active() || (tile.type != TileID.LivingWood && tile.type != TileID.LeafBlock) ) {
 						continue;
 					}
-
+					
 					Rectangle tree = WorldLocationHelpers.GetGiantTreeAt( x, y );
 					trees[ tree.X ] = tree;
 
-					x = tree.X + tree.Width;
+					x = tree.X + tree.Width + 1;
 					break;
 				}
 			}
-
-			return trees.Values;
+			
+			return trees.Values.ToList();
 		}
 	}
 }
