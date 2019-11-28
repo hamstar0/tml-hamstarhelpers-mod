@@ -9692,7 +9692,7 @@
         <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OnChanged">
             @private
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.CopyFrom(HamstarHelpers.Services.Configs.StackableModConfig)">
+        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OverlayChanges(HamstarHelpers.Services.Configs.StackableModConfig)">
             <summary>
             Convenience method for pulling changed settings from a given config instance into the current one.
             </summary>
