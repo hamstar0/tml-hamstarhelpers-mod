@@ -93,7 +93,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 					throw new ModHelpersException( "Could retrieve member "+memb.Name+" from template instance of "+configType.Name );
 				}
 
-				if( froVal != tempVal ) {
+				if( !(froVal?.Equals(tempVal) ?? froVal == tempVal) ) {
 					if( !ReflectionHelpers.Set( to, memb.Name, froVal ) ) {
 						throw new ModHelpersException( "Could set merged field/property "+memb.Name+" for "+configType.Name );
 					}

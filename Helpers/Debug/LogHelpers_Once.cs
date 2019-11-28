@@ -9,6 +9,11 @@ namespace HamstarHelpers.Helpers.Debug {
 	public partial class LogHelpers {
 		internal static bool CanOutputOnceMessage( string msg, out string formattedMsg ) {
 			var logHelpers = ModHelpersMod.Instance.LogHelpers;
+			if( logHelpers == null ) {
+				formattedMsg = msg;
+				return false;
+			}
+
 			bool isShown = false;
 
 			lock( LogHelpers.MyLock ) {

@@ -50,15 +50,16 @@ namespace HamstarHelpers.Services.Configs {
 				return (T)configStack.CachedMergedDefaultAndStackConfigs[ configType ];
 			}
 
-			T baseConfig = (T)ModContent.GetInstance<T>().Clone();
-			T mergedConfigs = ModConfigStack.GetMergedStackedConfigs<T>();
+			T baseConfig = (T)ConfigManager.GeneratePopulatedClone( ModContent.GetInstance<T>() );
+			//T baseConfig = (T)ModContent.GetInstance<T>().Clone();
+			T stackMergedConfigs = ModConfigStack.GetMergedStackedConfigs<T>();
 			
-			ConfigHelpers.MergeConfigs( baseConfig, mergedConfigs );
+			ConfigHelpers.MergeConfigs( baseConfig, stackMergedConfigs );
 			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
 
-			configStack.CachedMergedDefaultAndStackConfigs[configType] = mergedConfigs;
+			configStack.CachedMergedDefaultAndStackConfigs[configType] = baseConfig;
 
-			return mergedConfigs;
+			return baseConfig;
 		}
 
 
@@ -81,31 +82,31 @@ namespace HamstarHelpers.Services.Configs {
 				configStack.ConfigStacks[ configType ] = configsOf;
 			}
 
-			var mergedConfig = (T)Activator.CreateInstance(
+			var newDefaultConfig = (T)Activator.CreateInstance(
 				configType,
 				ReflectionHelpers.MostAccess,
 				null,
 				new object[] { },
 				null
 			);
-			if( mergedConfig == null ) {
+			if( newDefaultConfig == null ) {
 				throw new ModHelpersException( "Could not generate merge base for ModConfig "+configType.Name );
 			}
 
-			JsonConvert.PopulateObject( "{}", mergedConfig, ConfigManager.serializerSettings );
+			JsonConvert.PopulateObject( "{}", newDefaultConfig, ConfigManager.serializerSettings );
 
-			foreach( ModConfig entry in configsOf.Values.Reverse() ) {
+			foreach( (int stackPos, ModConfig entry) in configsOf.Reverse() ) {
 				//if( entry.IsMerging ) {
 				//	ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfig, entry.Config );
 				//} else {
 				//	ConfigHelpers.MergeConfigs( mergedConfig, entry.Config );
 				//}
-				ConfigHelpers.MergeConfigs( mergedConfig, (T)entry );
+				ConfigHelpers.MergeConfigs( newDefaultConfig, (T)entry );
 			}
 
-			configStack.CachedMergedStackConfigs[configType] = mergedConfig;
+			configStack.CachedMergedStackConfigs[configType] = newDefaultConfig;
 
-			return mergedConfig;
+			return newDefaultConfig;
 		}
 
 		////
@@ -144,7 +145,8 @@ namespace HamstarHelpers.Services.Configs {
 
 
 		/// <summary>
-		/// Sets a config to exist on the stack at the specified height, keeping any existing values that aren't overlapping.
+		/// Sets a config to exist on the stack at the specified height. Any values of an existing config at the given stack
+		/// height are preserved if they do not overlap with the latest changes.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="config"></param>
@@ -154,7 +156,8 @@ namespace HamstarHelpers.Services.Configs {
 			var configType = typeof( T );
 
 			if( configStack.ConfigStacks.ContainsKey(configType) ) {
-				ConfigHelpers.MergeConfigs( (T)configStack.ConfigStacks[configType], config );
+				T stackedConfig = (T)configStack.ConfigStacks[configType];
+				ConfigHelpers.MergeConfigs( stackedConfig, config );
 			} else {
 				configStack.ConfigStacks.Set2DSorted( configType, stackHeight, config );
 			}

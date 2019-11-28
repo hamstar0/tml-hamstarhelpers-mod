@@ -2,7 +2,7 @@
 using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Helpers.Draw;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -167,7 +167,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				Color bgColor = this.IsMouseHovering ? this.Theme.ButtonBgLitColor : this.Theme.ButtonBgColor;
 				Color edgeColor = this.IsMouseHovering ? this.Theme.ButtonEdgeLitColor : this.Theme.ButtonEdgeColor;
 
-				HUDHelpers.DrawBorderedRect( sb, bgColor, edgeColor, rect, 2 );
+				DrawHelpers.DrawBorderedRect( sb, bgColor, edgeColor, rect, 2 );
 			}
 
 			this.UpdateTagCounts();

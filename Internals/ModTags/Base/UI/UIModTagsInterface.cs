@@ -2,7 +2,7 @@
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Helpers.Draw;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using Microsoft.Xna.Framework;
@@ -95,8 +95,8 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 			Rectangle rect1 = this.GetCategoryPanelRectangle();
 			Rectangle rect2 = this.GetTagsPanelRectangle();
 
-			HUDHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect1, 2 );
-			HUDHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect2, 2 );
+			DrawHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect1, 2 );
+			DrawHelpers.DrawBorderedRect( sb, this.Theme.MainBgColor, this.Theme.MainEdgeColor, rect2, 2 );
 		}
 	}
 }

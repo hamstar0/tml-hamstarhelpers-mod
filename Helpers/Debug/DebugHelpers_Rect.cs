@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.HUD;
+﻿using HamstarHelpers.Helpers.Draw;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Helpers.Debug {
 						color.R = color.G = color.B = color.A = (byte)Math.Max(shade, 16);
 					}
 
-					HUDHelpers.DrawBorderedRect( sb, null, color, rect, 1 );
+					DrawHelpers.DrawBorderedRect( sb, null, color, rect, 1 );
 
 					if( DebugHelpers.RectsTime.ContainsKey(key) ) {
 						if( DebugHelpers.RectsTime[key] > 0 ) {

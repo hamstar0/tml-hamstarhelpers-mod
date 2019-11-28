@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Draw;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Logic;
+using HamstarHelpers.Services.Hooks.Draw;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -136,7 +136,7 @@ namespace HamstarHelpers {
 			XNAHelpers.DrawBatch(
 				(sb) => {
 					DebugHelpers.DrawAllRects( sb );
-					ModContent.GetInstance<DrawHelpersInternal>()?.RunPostDrawTilesActions();
+					ModContent.GetInstance<DrawHooksInternal>()?.RunPostDrawTilesActions();
 				},
 				SpriteSortMode.Deferred,
 				BlendState.AlphaBlend,

@@ -2,6 +2,7 @@
 using System;
 using Terraria;
 
+
 namespace HamstarHelpers.Helpers.Collisions {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to general collision detecting and handling.
@@ -29,6 +30,7 @@ namespace HamstarHelpers.Helpers.Collisions {
 
 			direction.Normalize();
 			Vector2 newPosition = worldPosition + direction;
+			bool found = false;
 
 			while( Vector2.DistanceSquared( worldPosition, newPosition ) < maxDistSqr ) {
 				tileX = (int)newPosition.X >> 4;
@@ -38,14 +40,18 @@ namespace HamstarHelpers.Helpers.Collisions {
 				}
 
 				if( checkPerUnit?.Invoke(newPosition) ?? false ) {
-					return true;
+					found = true;
 				}
 				if( checkPerTile != null && (tileX != prevX || tileY != prevY) ) {
 					prevX = tileX;
 					prevY = tileY;
 					if( checkPerTile( tileX, tileY ) ) {
-						return true;
+						found = true;
 					}
+				}
+
+				if( found ) {
+					return true;
 				}
 
 				newPosition += direction;

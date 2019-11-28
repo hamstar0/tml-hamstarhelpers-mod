@@ -6,9 +6,9 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Draw {
-	class DrawHelpersInternal : ILoadable {
-		internal ISet<Func<bool>> PostDrawTilesActions = new HashSet<Func<bool>>();
+namespace HamstarHelpers.Services.Hooks.Draw {
+	class DrawHooksInternal : ILoadable {
+		internal ISet<Func<bool>> PostDrawTilesHooks = new HashSet<Func<bool>>();
 
 
 
@@ -25,9 +25,9 @@ namespace HamstarHelpers.Helpers.Draw {
 		////////////////
 
 		internal void RunPostDrawTilesActions() {
-			foreach( Func<bool> action in this.PostDrawTilesActions.ToArray() ) {
+			foreach( Func<bool> action in this.PostDrawTilesHooks.ToArray() ) {
 				if( !action() ) {
-					this.PostDrawTilesActions.Remove( action );
+					this.PostDrawTilesHooks.Remove( action );
 				}
 			}
 		}

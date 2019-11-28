@@ -4918,21 +4918,63 @@
             <summary>
             Assorted static "helper" functions pertaining to drawing to the screen. 
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to drawing to the screen. 
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>
+            Draws a bordered rectangle.
+            </summary>
+            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+            <param name="bgColor">Fill color.</param>
+            <param name="borderColor"></param>
+            <param name="position"></param>
+            <param name="size"></param>
+            <param name="borderWidth"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Rectangle,System.Int32)">
+            <summary>
+            Draws a bordered rectangle.
+            </summary>
+            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+            <param name="bgColor">Fill color.</param>
+            <param name="borderColor"></param>
+            <param name="rect">Position and dimensions of rectangle.</param>
+            <param name="borderWidth"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{Microsoft.Xna.Framework.Color},System.Nullable{Microsoft.Xna.Framework.Color},Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>
+            Draws a rectangle with an optional border or optional fill color.
+            </summary>
+            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+            <param name="bgColor">Fill color. Use `null` for transparent.</param>
+            <param name="borderColor">Border color. User `null for transparent.</param>
+            <param name="position"></param>
+            <param name="size"></param>
+            <param name="borderWidth"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{Microsoft.Xna.Framework.Color},System.Nullable{Microsoft.Xna.Framework.Color},Microsoft.Xna.Framework.Rectangle,System.Int32)">
+            <summary>
+            Draws a rectangle with an optional border or optional fill color.
+            </summary>
+            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
+            <param name="bgColor">Fill color. Use `null` for transparent.</param>
+            <param name="borderColor">Border color. User `null for transparent.</param>
+            <param name="rect">Position and dimensions of rectangle.</param>
+            <param name="borderWidth"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpers.DrawTerrariaString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            Draws a "Terraria style" string, complete with pulsing and black border.
+            </summary>
+            <param name="sb"></param>
+            <param name="text"></param>
+            <param name="pos"></param>
+            <param name="scale"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpers.AddPostDrawTilesAction(System.Func{System.Boolean})">
-            <summary>
-            Adds a function to call when ModWorld.PostTileDraw() is called. Main.SpriteBatch is 'begun'.
-            </summary>
-            <param name="func">Returns `false` to stop being called.</param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpersInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
-            @ private
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpersInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
-            @ private
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Draw.DrawHelpersInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
-            @ private
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Dusts.DustHelpers">
             <summary>
@@ -5228,54 +5270,22 @@
             </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>
-            Draws a bordered rectangle.
-            </summary>
-            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
-            <param name="bgColor">Fill color.</param>
-            <param name="borderColor"></param>
-            <param name="position"></param>
-            <param name="size"></param>
-            <param name="borderWidth"></param>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Rectangle,System.Int32)">
-            <summary>
-            Draws a bordered rectangle.
-            </summary>
-            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
-            <param name="bgColor">Fill color.</param>
-            <param name="borderColor"></param>
-            <param name="rect">Position and dimensions of rectangle.</param>
-            <param name="borderWidth"></param>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{Microsoft.Xna.Framework.Color},System.Nullable{Microsoft.Xna.Framework.Color},Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>
-            Draws a rectangle with an optional border or optional fill color.
-            </summary>
-            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
-            <param name="bgColor">Fill color. Use `null` for transparent.</param>
-            <param name="borderColor">Border color. User `null for transparent.</param>
-            <param name="position"></param>
-            <param name="size"></param>
-            <param name="borderWidth"></param>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Nullable{Microsoft.Xna.Framework.Color},System.Nullable{Microsoft.Xna.Framework.Color},Microsoft.Xna.Framework.Rectangle,System.Int32)">
-            <summary>
-            Draws a rectangle with an optional border or optional fill color.
-            </summary>
-            <param name="sb">The spriteBatch to draw to. Typically `Main.spriteBatch`.</param>
-            <param name="bgColor">Fill color. Use `null` for transparent.</param>
-            <param name="borderColor">Border color. User `null for transparent.</param>
-            <param name="rect">Position and dimensions of rectangle.</param>
-            <param name="borderWidth"></param>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDHelpers.DrawTerrariaString(System.String,Microsoft.Xna.Framework.Vector2,System.Single)">
-            <summary>
-            Draws a "Terraria style" string, complete with pulsing and black border.
-            </summary>
-            <param name="text"></param>
-            <param name="pos"></param>
-            <param name="scale"></param>
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDHelpers.DrawTerrariaString(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.String,Microsoft.Xna.Framework.Vector2,System.Single)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.HUD.HUDMapHelpers">
             <summary>
@@ -6266,14 +6276,6 @@
             </summary>
             <param name="npc"></param>
             <param name="damage"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.NPCs.NPCHelpers.RawHurt(Terraria.NPC,System.Int32,Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Applies damage to an NPC, killing it if need be. Synced.
-            </summary>
-            <param name="npc"></param>
-            <param name="damage"></param>
-            <param name="knockbackDirection"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.NPCs.NPCHelpers.Kill(Terraria.NPC)">
             <summary>
@@ -9652,7 +9654,8 @@
         </member>
         <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfigChangesOnly``1(``0,System.Int32)">
             <summary>
-            Sets a config to exist on the stack at the specified height, keeping any existing values that aren't overlapping.
+            Sets a config to exist on the stack at the specified height. Any values of an existing config at the given stack
+            height are preserved if they do not overlap with the latest changes.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="config"></param>
@@ -9688,6 +9691,12 @@
         </member>
         <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OnChanged">
             @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.CopyFrom(HamstarHelpers.Services.Configs.StackableModConfig)">
+            <summary>
+            Convenience method for pulling changed settings from a given config instance into the current one.
+            </summary>
+            <param name="changes"></param>
         </member>
         <member name="T:HamstarHelpers.Services.DataStore.DataStore">
             <summary>
@@ -10226,6 +10235,26 @@
             <summary>
             Refreshes boss progression order.
             </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Hooks.Draw.DrawHooks">
+            <summary>
+            Supplies custom tModLoader-like, delegate-based hooks for conveniently plugging into existing drawing layers.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.Draw.DrawHooks.AddPostDrawTilesHook(System.Func{System.Boolean})">
+            <summary>
+            Adds a function to call when ModWorld.PostTileDraw() is called. Main.SpriteBatch is 'Begun'.
+            </summary>
+            <param name="func">Returns `false` to stop being called.</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.Draw.DrawHooksInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
+            @ private
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.Draw.DrawHooksInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
+            @ private
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.Draw.DrawHooksInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+            @ private
         </member>
         <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks">
             <summary>

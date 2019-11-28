@@ -3,7 +3,7 @@ using HamstarHelpers.Classes.ModTagDefinitions;
 using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Helpers.Draw;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using Microsoft.Xna.Framework;
@@ -245,7 +245,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				rect.Width -= 4;
 				rect.Height -= 5;
 
-				HUDHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
+				DrawHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
 			}
 
 			base.Draw( sb );
