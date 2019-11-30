@@ -4497,6 +4497,46 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions">
+            <summary>
+            Assorted static extension "helper" functions pertaining to XNA data structures.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions.ToVector2(System.ValueTuple{System.Int32,System.Int32})">
+            <summary>
+            Converts a value tuple to a Vector2.
+            </summary>
+            <param name="tuple"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions.ToVector2(System.ValueTuple{System.Single,System.Single})">
+            <summary>
+            Converts a value tuple to a Vector2.
+            </summary>
+            <param name="tuple"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions.ToVector2(Microsoft.Xna.Framework.Point)">
+            <summary>
+            Converts a Point to a Vector2.
+            </summary>
+            <param name="pt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions.ToTuple(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Converts a Vector2 to a value tuple.
+            </summary>
+            <param name="vec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions.ToTuple(Microsoft.Xna.Framework.Point)">
+            <summary>
+            Converts a Point to a value tuple.
+            </summary>
+            <param name="pt"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.FileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to basic file IO.

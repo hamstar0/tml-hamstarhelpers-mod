@@ -39,17 +39,17 @@ namespace HamstarHelpers.Helpers.Collisions {
 					return false;
 				}
 
+				if( tileX != prevX || tileY != prevY ) {
+					prevX = tileX;
+					prevY = tileY;
+				}
+
 				if( checkPerUnit?.Invoke(newPosition) ?? false ) {
 					found = true;
 				}
-				if( checkPerTile != null && (tileX != prevX || tileY != prevY) ) {
-					prevX = tileX;
-					prevY = tileY;
-					if( checkPerTile( tileX, tileY ) ) {
-						found = true;
-					}
+				if( checkPerTile?.Invoke(tileX, tileY) ?? false ) {
+					found = true;
 				}
-
 				if( found ) {
 					return true;
 				}

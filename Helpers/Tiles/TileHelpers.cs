@@ -53,8 +53,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 
 			if( !isActuatedSolid ) {
-				bool isPassable = tile.inActive();
-				if( isPassable ) {
+				if( tile.inActive() ) {
 					return false;
 				}
 			}
