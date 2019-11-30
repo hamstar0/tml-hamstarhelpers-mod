@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Extensions {
@@ -88,6 +89,57 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 				return default( TValue );
 			}
 			return dict[key1][key2];
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Safely attempts to determine if a given a value exists within the 2D collection.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="val"></param>
+		/// <returns></returns>
+		public static bool Contains2D<TKey, TValue>( this IDictionary<TKey, ISet<TValue>> dict, TKey key, TValue val ) {
+			if( !dict.ContainsKey( key ) ) {
+				return false;
+			}
+			return dict[key].Contains( val );
+		}
+
+		/// <summary>
+		/// Safely attempts to determine if a given a value exists within the 2D collection.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="val"></param>
+		/// <returns></returns>
+		public static bool Contains2D<TKey, TValue>( this IDictionary<TKey, IList<TValue>> dict, TKey key, TValue val ) {
+			if( !dict.ContainsKey( key ) ) {
+				return false;
+			}
+			return dict[key].Contains( val );
+		}
+
+		/// <summary>
+		/// Safely attempts to determine if a given a value exists within the 2D collection.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="val"></param>
+		/// <returns></returns>
+		public static bool Contains2D<TKey, TValue>( this IDictionary<TKey, IEnumerable<TValue>> dict, TKey key, TValue val ) {
+			if( !dict.ContainsKey( key ) ) {
+				return false;
+			}
+			return dict[key].Contains( val );
 		}
 	}
 }

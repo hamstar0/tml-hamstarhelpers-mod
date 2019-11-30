@@ -3397,6 +3397,24 @@
         <member name="M:HamstarHelpers.Commands.ModCallCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
             @private
         </member>
+        <member name="T:HamstarHelpers.Commands.ModConfigPrintCommand">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.ModConfigPrintCommand.Type">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.ModConfigPrintCommand.Command">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.ModConfigPrintCommand.Usage">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.ModConfigPrintCommand.Description">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.ModConfigPrintCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Commands.ModIssueReportCommand">
             @private
         </member>
@@ -4302,6 +4320,39 @@
             <param name="key2"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Contains2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.ISet{``1}},``0,``1)">
+            <summary>
+            Safely attempts to determine if a given a value exists within the 2D collection.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Contains2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IList{``1}},``0,``1)">
+            <summary>
+            Safely attempts to determine if a given a value exists within the 2D collection.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Contains2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IEnumerable{``1}},``0,``1)">
+            <summary>
+            Safely attempts to determine if a given a value exists within the 2D collection.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Remove2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IList{``1}},``0,System.Int32)">
             <summary>
             Removes a value in a nested collection at a given dictionary key.
@@ -4808,6 +4859,19 @@
             <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
             <param name="methodName">Method's name.</param>
             <param name="args">Method's arguments (will be validated before invoking).</param>
+            <param name="returnVal">Return value of method.</param>
+            <returns>`true` if method found and invoked successfully.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.RunMethod``1(System.Type,System.Object,System.String,System.Object[],System.Type[],``0@)">
+            <summary>
+            Invokes a method of a given class. May invoke static methods if the given `instance` parameter is `null`.
+            </summary>
+            <typeparam name="T">Invoked method's return value type.</typeparam>
+            <param name="classType">Class type of method.</param>
+            <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
+            <param name="methodName">Method's name.</param>
+            <param name="args">Method's arguments (will be validated before invoking).</param>
+            <param name="generics">Generic type parameters (if applicable).</param>
             <param name="returnVal">Return value of method.</param>
             <returns>`true` if method found and invoked successfully.</returns>
         </member>
@@ -7419,7 +7483,7 @@
             <summary>
             Traces upwards from a given tile coordinate to the nearest ceiling, and then measures the contiguous width.
             </summary>
-            <param name="pattern"></param>
+            <param name="nonCeilingPattern"></param>
             <param name="tileX"></param>
             <param name="tileY"></param>
             <param name="maxRiseRange">Max distance to trace upwards to a ceiling before giving up.</param>

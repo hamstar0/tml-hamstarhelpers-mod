@@ -70,6 +70,21 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="returnVal">Return value of method.</param>
 		/// <returns>`true` if method found and invoked successfully.</returns>
 		public static bool RunMethod<T>( Type classType, Object instance, string methodName, object[] args, out T returnVal ) {
+			return ReflectionHelpers.RunMethod<T>( classType, instance, methodName, args, new Type[] { }, out returnVal );
+		}
+
+		/// <summary>
+		/// Invokes a method of a given class. May invoke static methods if the given `instance` parameter is `null`.
+		/// </summary>
+		/// <typeparam name="T">Invoked method's return value type.</typeparam>
+		/// <param name="classType">Class type of method.</param>
+		/// <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
+		/// <param name="methodName">Method's name.</param>
+		/// <param name="args">Method's arguments (will be validated before invoking).</param>
+		/// <param name="generics">Generic type parameters (if applicable).</param>
+		/// <param name="returnVal">Return value of method.</param>
+		/// <returns>`true` if method found and invoked successfully.</returns>
+		public static bool RunMethod<T>( Type classType, Object instance, string methodName, object[] args, Type[] generics, out T returnVal ) {
 			returnVal = default( T );
 
 			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
@@ -78,9 +93,13 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			MethodInfo method = classType.GetMethod( methodName, ReflectionHelpers.MostAccess, null, paramTypes, null );
 			if( method == null ) {
 				if( classType.BaseType != null && classType.BaseType != typeof(object) ) {
-					return ReflectionHelpers.RunMethod<T>( classType.BaseType, instance, methodName, args, out returnVal );
+					return ReflectionHelpers.RunMethod<T>( classType.BaseType, instance, methodName, args, generics, out returnVal );
 				}
 				return false;
+			}
+
+			if( generics.Length > 0 ) {
+				method = method.MakeGenericMethod( generics );
 			}
 
 			returnVal = (T)ReflectionHelpers.SafeCall( method, instance, args );

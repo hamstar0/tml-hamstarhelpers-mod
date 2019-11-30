@@ -62,7 +62,6 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="style"></param>
 		public static void PlaceTile2x2Horizontal( int leftX, int topY, ushort type, int style = 0 ) {
 			WorldGen.Place2x2Horizontal( leftX, topY + 1, type, style );
-			//WorldGen.Place2x2Style( leftX, topY + 1, type, style );
 		}
 
 		/// <summary>
@@ -166,7 +165,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="direction"></param>
 		/// <param name="style"></param>
 		public static void PlaceTile4x2( int leftX, int topY, ushort type, int direction = -1, int style = 0 ) {
-			WorldGen.Place4x2( leftX + 1, topY + 3, type, direction, style );
+			WorldGen.Place4x2( leftX + 1, topY + 1, type, direction, style );
 		}
 
 		/// <summary>
