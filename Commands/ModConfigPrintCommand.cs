@@ -52,7 +52,7 @@ namespace HamstarHelpers.Commands {
 				return;
 			}
 
-			ModConfig config = ModConfigStack.GetMergedConfigs( configType );
+			ModConfig config = ModConfigStack.GetMergedConfigsForType( configType );
 			string configJson = JsonConvert.SerializeObject( config );
 
 			Main.NewText( configJson );

@@ -16,15 +16,17 @@ namespace HamstarHelpers.Services.Configs {
 
 
 		/// <summary>
-		/// Convenience method for pulling changed settings from a given config instance into the current one.
+		/// Convenience method for pulling changed settings from a given config instance into (the stack of) the current one.
 		/// </summary>
 		/// <param name="changes"></param>
 		public void OverlayChanges( StackableModConfig changes ) {
-			if( changes.GetType() != this.GetType() ) {
+			Type myType = changes.GetType();
+
+			if( myType != this.GetType() ) {
 				throw new ModHelpersException( "Mismatched StackableModConfig types; found "+changes.GetType().Name
 					+", expected "+this.GetType().Name );
 			}
-			ModConfigStack.SetStackedConfigChangesOnly( changes );
+			ModConfigStack.SetStackedConfigChangesOnlyForType( myType, changes );
 		}
 	}
 }

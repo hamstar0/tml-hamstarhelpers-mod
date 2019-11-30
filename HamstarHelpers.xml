@@ -9932,7 +9932,7 @@
         </member>
         <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OverlayChanges(HamstarHelpers.Services.Configs.StackableModConfig)">
             <summary>
-            Convenience method for pulling changed settings from a given config instance into the current one.
+            Convenience method for pulling changed settings from a given config instance into (the stack of) the current one.
             </summary>
             <param name="changes"></param>
         </member>

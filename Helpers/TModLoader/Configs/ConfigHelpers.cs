@@ -56,8 +56,14 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		/// <param name="to">Config to push changed field/property values to. Any existing values are overridden, where changes found.</param>
 		/// <param name="fro">Config to pull field/property values from. Only pulls non-default (changed) values.</param>
 		public static void MergeConfigs<T>( T to, T fro ) where T : ModConfig {
-			var configType = typeof(T);
-			T template = (T)Activator.CreateInstance(
+			if( typeof(T).IsAbstract ) {
+				throw new ModHelpersException( "Cannot merge abstract class "+typeof(T).Name+" (did you mean "+to.GetType().Name+"?)" );
+			}
+			ConfigHelpers.MergeConfigsForType( typeof(T), to, fro );
+		}
+
+		internal static void MergeConfigsForType( Type configType, ModConfig to, ModConfig fro ) {
+			var template = (ModConfig)Activator.CreateInstance(
 				configType,
 				ReflectionHelpers.MostAccess,
 				null,
@@ -72,7 +78,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 
 			object froVal, tempVal;
 
-			foreach( MemberInfo memb in typeof(T).GetMembers( BindingFlags.Public | BindingFlags.Instance ) ) {
+			foreach( MemberInfo memb in configType.GetMembers( BindingFlags.Public | BindingFlags.Instance ) ) {
 				if( memb.MemberType == MemberTypes.Property ) {
 					var prop = (PropertyInfo)memb;
 
