@@ -1,6 +1,8 @@
 ﻿using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
@@ -9,22 +11,19 @@ namespace HamstarHelpers.Classes.PlayerData {
 	/// </summary>
 	public partial class CustomPlayerData : ILoadable {
 		/// <summary>
-		/// Player enters the game.
+		/// Gets a given instance of a given CustomPlayerData class by its type and associated player `whoAmI` value.
 		/// </summary>
-		/// <param name="data">Data loaded for the current player from file.</param>
-		protected virtual void OnEnter( object data ) { }
-
-		/// <summary>
-		/// Player exits the game.
-		/// </summary>
-		/// <returns>Data to save for the current player. Return `null` to skip.</returns>
-		protected virtual object OnExit() {
-			return null;
+		/// <typeparam name="T"></typeparam>
+		/// <param name="playerWho"></param>
+		/// <returns></returns>
+		public static T GetPlayerData<T>( int playerWho ) where T : CustomPlayerData {
+			return (T)CustomPlayerData.GetPlayerData( typeof(T), playerWho );
 		}
 
-		/// <summary>
-		/// Runs every tick.
-		/// </summary>
-		protected virtual void Update() { }
+		internal static CustomPlayerData GetPlayerData( Type plrDataType, int playerWho ) {
+			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
+
+			return singleton.DataMap.Get2DOrDefault( playerWho, plrDataType );
+		}
 	}
 }

@@ -33,7 +33,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 					null );
 				plrData.PlayerWho = playerWho;
 
-				singleton.DataMap.Set2D( playerWho, plrData );
+				singleton.DataMap.Set2D( playerWho, plrDataType, plrData );
 
 				plrData.OnEnter( data );
 			}
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
 
-			foreach( CustomPlayerData plrData in singleton.DataMap[playerWho] ) {
+			foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[playerWho] ) {
 				object data = plrData.OnExit();
 				if( data != null ) {
 					CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityHelpers.GetUniqueId(), data );
@@ -79,7 +79,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 					if( !singleton.DataMap.ContainsKey( i ) ) {
 						CustomPlayerData.Enter( i );
 					} else {
-						foreach( CustomPlayerData plrData in singleton.DataMap[i] ) {
+						foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[i] ) {
 							plrData.Update();
 						}
 					}

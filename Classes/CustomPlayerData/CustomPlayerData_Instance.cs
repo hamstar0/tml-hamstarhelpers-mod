@@ -11,7 +11,8 @@ namespace HamstarHelpers.Classes.PlayerData {
 	/// An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
 	/// </summary>
 	public partial class CustomPlayerData : ILoadable {
-		private IDictionary<int, ISet<CustomPlayerData>> DataMap = new Dictionary<int, ISet<CustomPlayerData>>();
+		private IDictionary<int, IDictionary<Type, CustomPlayerData>> DataMap
+			= new Dictionary<int, IDictionary<Type, CustomPlayerData>>();
 
 		private bool CalledOnModsLoad = false;
 		private bool CalledOnModsUnload = false;

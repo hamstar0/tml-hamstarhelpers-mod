@@ -17,6 +17,17 @@
             <summary>
             An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
             </summary>
+            <summary>
+            An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.GetPlayerData``1(System.Int32)">
+            <summary>
+            Gets a given instance of a given CustomPlayerData class by its type and associated player `whoAmI` value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="playerWho"></param>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnEnter(System.Object)">
             <summary>
@@ -7345,6 +7356,39 @@
             <param name="tileType"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,System.Nullable{Terraria.Enums.TileCuttingContext})">
+            <summary>
+            Indicates if a given specific tile is "breakable" (typically to normal attacks).
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">
+            <summary>
+            Indicates if a given tile cannot be destroyed by vanilla explosives.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsNotVanillaBombableType(System.Int32)">
+            <summary>
+            Indicates if a given tile type cannot be destroyed by vanilla explosives.
+            </summary>
+            <param name="tileType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
+            <summary>
+            Gets the damage scale (amount to multiply a pickaxe hit by) of a given tile.
+            </summary>
+            <param name="tile"></param>
+            <param name="baseDamage">Amount of damage (e.g. pickaxe power) applied to the tile.</param>
+            <param name="isAbsolute">Returns indication that tile will guarantee destruction on this hit.</param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetVanillaTileDisplayNames(System.Int32)">
             <summary>
             Gets all vanilla tile names of each subtype of a given tile type.
@@ -7644,6 +7688,9 @@
             <summary>
             Assorted static "helper" functions pertaining to tiles.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tiles.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsAir(Terraria.Tile,System.Boolean,System.Boolean)">
             <summary>
@@ -7668,30 +7715,6 @@
             Indicates if a given tile has wires.
             </summary>
             <param name="tile"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">
-            <summary>
-            Indicates if a given tile cannot be destroyed by vanilla explosives.
-            </summary>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsNotVanillaBombableType(System.Int32)">
-            <summary>
-            Indicates if a given tile type cannot be destroyed by vanilla explosives.
-            </summary>
-            <param name="tileType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
-            <summary>
-            Gets the damage scale (amount to multiply a pickaxe hit by) of a given tile.
-            </summary>
-            <param name="tile"></param>
-            <param name="baseDamage">Amount of damage (e.g. pickaxe power) applied to the tile.</param>
-            <param name="isAbsolute">Returns indication that tile will guarantee destruction on this hit.</param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
@@ -7910,6 +7933,15 @@
             <param name="topY"></param>
             <param name="type"></param>
             <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsNotVanillaBombableType(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileResourceHelpers">
             <summary>
