@@ -9,7 +9,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TilePlacementHelpers {
 		/// <summary>
-		/// Convenience binding to place the given tile intuitively positioned. Places from the bottom.
+		/// Convenience binding to place the given tile intuitively positioned. Places from the bottom. Uses vanilla's
+		/// placement method.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="bottomY"></param>
@@ -18,13 +19,9 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="style"></param>
 		/// <returns></returns>
 		public static bool Place( int leftX, int bottomY, ushort type, sbyte direction = -1, int style = 0 ) {
-			if( TilePlacementHelpers.TryPrecisePlace(leftX, bottomY, type, direction, style) ) {
-				return true;
-			}
-
 			var tileObjData = TileObjectData.GetTileData( type, style );
 			int x = leftX + tileObjData.Origin.X;
-			int y = bottomY + tileObjData.Origin.X + tileObjData.Height;
+			int y = bottomY + tileObjData.Origin.X + tileObjData.Height - 1;
 
 			Main.player[255].direction = direction;
 
@@ -33,7 +30,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 		/// <summary>
-		/// Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom.
+		/// Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom. Not all
+		/// tile dimensions supported.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="bottomY"></param>
