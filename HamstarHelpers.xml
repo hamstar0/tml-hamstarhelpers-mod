@@ -7341,7 +7341,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers">
+        <member name="T:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tile attributes.
             </summary>
@@ -7349,14 +7349,14 @@
             Assorted static "helper" functions pertaining to tile attributes.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsObject(System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsObject(System.Int32)">
             <summary>
             Indicates if a given tile type is an "object" (container, sign, station, etc.).
             </summary>
             <param name="tileType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,System.Nullable{Terraria.Enums.TileCuttingContext})">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,System.Nullable{Terraria.Enums.TileCuttingContext})">
             <summary>
             Indicates if a given specific tile is "breakable" (typically to normal attacks).
             </summary>
@@ -7365,7 +7365,7 @@
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">
             <summary>
             Indicates if a given tile cannot be destroyed by vanilla explosives.
             </summary>
@@ -7373,14 +7373,14 @@
             <param name="tileY"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsNotVanillaBombableType(System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsNotVanillaBombableType(System.Int32)">
             <summary>
             Indicates if a given tile type cannot be destroyed by vanilla explosives.
             </summary>
             <param name="tileType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
             <summary>
             Gets the damage scale (amount to multiply a pickaxe hit by) of a given tile.
             </summary>
@@ -7389,20 +7389,44 @@
             <param name="isAbsolute">Returns indication that tile will guarantee destruction on this hit.</param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetVanillaTileDisplayNames(System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.GetVanillaTileDisplayNames(System.Int32)">
             <summary>
             Gets all vanilla tile names of each subtype of a given tile type.
             </summary>
             <param name="tileType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetVanillaTileDisplayName(System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.GetVanillaTileDisplayName(System.Int32,System.Int32)">
             <summary>
             Gets the specific tile name of a given type type and subtype.
             </summary>
             <param name="tileType"></param>
             <param name="subType"></param>
             <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsObject(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,System.Nullable{Terraria.Enums.TileCuttingContext})">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsNotVanillaBombableType(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetVanillaTileDisplayNames(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.GetVanillaTileDisplayName(System.Int32,System.Int32)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileBiomeHelpers">
             <summary>
@@ -7688,9 +7712,6 @@
             <summary>
             Assorted static "helper" functions pertaining to tiles.
             </summary>
-            <summary>
-            Assorted static "helper" functions pertaining to tiles.
-            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsAir(Terraria.Tile,System.Boolean,System.Boolean)">
             <summary>
@@ -7717,7 +7738,7 @@
             <param name="tile"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTileSynced(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Places a given tile of a given type. Synced.
             </summary>
@@ -7730,7 +7751,7 @@
             <param name="plrWho"></param>
             <returns>`true` if tile placement succeeded.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTile(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTileSynced(System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Kills a given tile. Results are synced.
             </summary>
@@ -7739,7 +7760,7 @@
             <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
             <param name="dropsItem"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1Synced(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Swaps 1x1 tiles. Destructive.
             </summary>
@@ -7751,188 +7772,14 @@
             <param name="preserveWire"></param>
             <param name="preserveLiquid"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile1x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+            @private
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile1x2Top(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTile(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            @private
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile2x1(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile2x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile2x2Horizontal(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile2x2Style(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile2x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile3x1(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile3x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile3x2Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile3x3(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile3x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile3x4(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile4x2(System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="direction"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile4x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile5x4(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile6x3(System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="direction"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile6x4(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile1xX(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Place2xX(System.Int32,System.Int32,System.UInt16,System.Int32)">
-            <summary>
-            Convenience binding for placing the given tile intuitively positioned.
-            </summary>
-            <param name="leftX"></param>
-            <param name="topY"></param>
-            <param name="type"></param>
-            <param name="style"></param>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">
             @private
@@ -7942,6 +7789,204 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
             @private
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to tile placement (convenience bindings for WorldGen).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.TryPlace(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+            <summary>
+            Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom.
+            </summary>
+            <param name="leftX"></param>
+            <param name="bottomY"></param>
+            <param name="type"></param>
+            <param name="direction"></param>
+            <param name="style"></param>
+            <returns>`false` if no suitable Place binding found.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place1xX(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2xX(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place1x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x1(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x1(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x3(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x4(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place4x2(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="direction"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place5x4(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place6x3(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="direction"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place1x2Top(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x2Horizontal(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x2Style(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x2Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place4x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place6x4Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
+            <summary>
+            Convenience binding for placing the given tile intuitively positioned.
+            </summary>
+            <param name="leftX"></param>
+            <param name="topY"></param>
+            <param name="type"></param>
+            <param name="style"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileResourceHelpers">
             <summary>
@@ -8089,20 +8134,19 @@
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileWallHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to tile walls.
-            </summary>
+            @private
         </member>
         <member name="P:HamstarHelpers.Helpers.Tiles.TileWallHelpers.UnsafeDungeonWallTypes">
-            <summary></summary>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileWallHelpers.IsDungeon(Terraria.Tile,System.Boolean@)">
-            <summary>
-            Indicates if a given wall is dungeon or temple "biome" wall.
-            </summary>
-            <param name="tile"></param>
-            <param name="isLihzahrd"></param>
-            <returns></returns>
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileWallResourceHelpers">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileWallResourceHelpers.SafelyGetTexture(System.Int32)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileWallIdentityHelpers">
             @private
@@ -8112,18 +8156,6 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileWallIdentityHelpers.TypeFromUniqueKey(System.String)">
             @private
-        </member>
-        <member name="T:HamstarHelpers.Helpers.Tiles.TileWallResourceHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to players relative to tile Wall resources (e.g. textures).
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileWallResourceHelpers.SafelyGetTexture(System.Int32)">
-            <summary>
-            Gets a wall's texture. Loads walls as needed.
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileWorldHelpers">
             <summary>
@@ -8146,6 +8178,34 @@
             <param name="tileY"></param>
             <param name="width"></param>
             <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.Walls.TileWallHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to tile walls.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Tiles.Walls.TileWallHelpers.UnsafeDungeonWallTypes">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Walls.TileWallHelpers.IsDungeon(Terraria.Tile,System.Boolean@)">
+            <summary>
+            Indicates if a given wall is dungeon or temple "biome" wall.
+            </summary>
+            <param name="tile"></param>
+            <param name="isLihzahrd"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.Walls.TileWallResourceHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to players relative to tile Wall resources (e.g. textures).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Walls.TileWallResourceHelpers.SafelyGetTexture(System.Int32)">
+            <summary>
+            Gets a wall's texture. Loads walls as needed.
+            </summary>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.TileHelpers.TileIdentityHelpers">

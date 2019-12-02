@@ -84,7 +84,7 @@ namespace HamstarHelpers.Commands {
 
 			try {
 				lock( CleanupModTilesCommand.MyLock ) {
-					TileHelpers.KillTile( i, j, false, false );
+					TileHelpers.KillTileSynced( i, j, false, false );
 				}
 			} catch {
 				cts.Cancel();
