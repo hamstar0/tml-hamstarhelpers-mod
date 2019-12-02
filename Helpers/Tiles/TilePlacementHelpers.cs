@@ -9,6 +9,30 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TilePlacementHelpers {
 		/// <summary>
+		/// Convenience binding to place the given tile intuitively positioned. Places from the bottom.
+		/// </summary>
+		/// <param name="leftX"></param>
+		/// <param name="bottomY"></param>
+		/// <param name="type"></param>
+		/// <param name="direction"></param>
+		/// <param name="style"></param>
+		/// <returns></returns>
+		public static bool Place( int leftX, int bottomY, ushort type, sbyte direction = -1, int style = 0 ) {
+			if( TilePlacementHelpers.TryPrecisePlace(leftX, bottomY, type, direction, style) ) {
+				return true;
+			}
+
+			var tileObjData = TileObjectData.GetTileData( type, style );
+			int x = leftX + tileObjData.Origin.X;
+			int y = bottomY + tileObjData.Origin.X + tileObjData.Height;
+
+			Main.player[255].direction = direction;
+
+			return WorldGen.PlaceTile( x, y, type, false, false, 255, style );
+		}
+
+
+		/// <summary>
 		/// Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom.
 		/// </summary>
 		/// <param name="leftX"></param>
@@ -17,7 +41,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="direction"></param>
 		/// <param name="style"></param>
 		/// <returns>`false` if no suitable Place binding found.</returns>
-		public static bool TryPlace( int leftX, int bottomY, ushort type, sbyte direction = -1, int style = 0 ) {
+		public static bool TryPrecisePlace( int leftX, int bottomY, ushort type, sbyte direction = -1, int style = 0 ) {
 			var tileObjData = TileObjectData.GetTileData( type, style );
 			int width = tileObjData.Width;
 			int height = tileObjData.Height;
@@ -25,56 +49,58 @@ namespace HamstarHelpers.Helpers.Tiles {
 			switch( width ) {
 			case 1:
 				switch( height ) {
+				case 1:
+					return WorldGen.PlaceTile( leftX, bottomY - 1, type, false, false, -1, style );
 				case 2:
-					TilePlacementHelpers.Place1x2( leftX, bottomY - 2, type, style );
+					TilePlacementHelpers.Place1x2( leftX, bottomY - 1, type, style );
 					return true;
 				default:
-					TilePlacementHelpers.Place1xX( leftX, bottomY - height, type, style );
+					TilePlacementHelpers.Place1xX( leftX, bottomY - (height - 1), type, style );
 					return true;
 				}
 			case 2:
 				switch( height ) {
 				case 2:
-					TilePlacementHelpers.Place2x2( leftX, bottomY - 2, type, style );
+					TilePlacementHelpers.Place2x2( leftX, bottomY - 1, type, style );
 					return true;
 				default:
-					TilePlacementHelpers.Place2xX( leftX, bottomY - height, type, style );
+					TilePlacementHelpers.Place2xX( leftX, bottomY - (height - 1), type, style );
 					return true;
 				}
 			case 3:
 				switch( height ) {
 				case 1:
-					TilePlacementHelpers.Place3x1( leftX, bottomY - 1, type, style );
+					TilePlacementHelpers.Place3x1( leftX, bottomY, type, style );
 					return true;
 				case 2:
-					TilePlacementHelpers.Place3x2( leftX, bottomY - 2, type, style );
+					TilePlacementHelpers.Place3x2( leftX, bottomY - 1, type, style );
 					return true;
 				case 3:
-					TilePlacementHelpers.Place3x3( leftX, bottomY - 3, type, style );
+					TilePlacementHelpers.Place3x3( leftX, bottomY - 2, type, style );
 					return true;
 				case 4:
-					TilePlacementHelpers.Place3x4( leftX, bottomY - 4, type, style );
+					TilePlacementHelpers.Place3x4( leftX, bottomY - 3, type, style );
 					return true;
 				}
 				break;
 			case 4:
 				switch( height ) {
 				case 2:
-					TilePlacementHelpers.Place4x2( leftX, bottomY - 2, type, direction, style );
+					TilePlacementHelpers.Place4x2( leftX, bottomY - 1, type, direction, style );
 					return true;
 				}
 				break;
 			case 5:
 				switch( height ) {
 				case 4:
-					TilePlacementHelpers.Place5x4( leftX, bottomY - 4, type, style );
+					TilePlacementHelpers.Place5x4( leftX, bottomY - 3, type, style );
 					return true;
 				}
 				break;
 			case 6:
 				switch( height ) {
 				case 3:
-					TilePlacementHelpers.Place6x3( leftX, bottomY - 3, type, direction, style );
+					TilePlacementHelpers.Place6x3( leftX, bottomY - 2, type, direction, style );
 					return true;
 				}
 				break;

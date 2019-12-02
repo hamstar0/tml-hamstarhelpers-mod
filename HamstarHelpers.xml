@@ -7797,6 +7797,17 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.TryPlace(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
             <summary>
+            Convenience binding to place the given tile intuitively positioned. Places from the bottom.
+            </summary>
+            <param name="leftX"></param>
+            <param name="bottomY"></param>
+            <param name="type"></param>
+            <param name="direction"></param>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.TryPrecisePlace(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+            <summary>
             Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom.
             </summary>
             <param name="leftX"></param>
