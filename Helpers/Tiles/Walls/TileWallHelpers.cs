@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Helpers.Tiles.Walls {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile walls.
 	/// </summary>

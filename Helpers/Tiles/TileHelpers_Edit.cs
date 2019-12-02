@@ -20,7 +20,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="forced"></param>
 		/// <param name="plrWho"></param>
 		/// <returns>`true` if tile placement succeeded.</returns>
-		public static bool PlaceTile( int tileX, int tileY, int tileType, int placeStyle = 0, bool muted = false, bool forced = false, int plrWho = -1 ) {
+		public static bool PlaceTileSynced( int tileX, int tileY, int tileType, int placeStyle = 0, bool muted = false, bool forced = false, int plrWho = -1 ) {
 			if( !WorldGen.PlaceTile( tileX, tileY, tileType, muted, forced, plrWho, placeStyle ) ) {
 				return false;
 			}
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="tileY"></param>
 		/// <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
 		/// <param name="dropsItem"></param>
-		public static void KillTile( int tileX, int tileY, bool effectOnly, bool dropsItem ) {
+		public static void KillTileSynced( int tileX, int tileY, bool effectOnly, bool dropsItem ) {
 			WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
 
 			if( !effectOnly && Main.netMode != 0 ) {
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="preserveWall"></param>
 		/// <param name="preserveWire"></param>
 		/// <param name="preserveLiquid"></param>
-		public static void Swap1x1(
+		public static void Swap1x1Synced(
 				int fromTileX,
 				int fromTileY,
 				int toTileX,

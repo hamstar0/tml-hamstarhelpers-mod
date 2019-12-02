@@ -49,7 +49,7 @@ namespace HamstarHelpers.Helpers.Net {
 					onError( args.Error );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.GetType().Name + " - " + e.Message );
+				LogHelpers.Warn( e.GetType().Name + " - " + e?.Message );
 			}
 		}
 

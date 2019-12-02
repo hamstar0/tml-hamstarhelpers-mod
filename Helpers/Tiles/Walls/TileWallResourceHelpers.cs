@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Helpers.Tiles.Walls {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to tile Wall resources (e.g. textures).
 	/// </summary>

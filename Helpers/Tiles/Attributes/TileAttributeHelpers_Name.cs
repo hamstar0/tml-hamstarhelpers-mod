@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Helpers.Tiles.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile attributes.
 	/// </summary>

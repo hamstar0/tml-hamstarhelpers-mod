@@ -102,8 +102,10 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="msg"></param>
 		public static void Log( string msg = "" ) {
 			lock( LogHelpers.MyLock ) {
-				ModHelpersMod mymod = ModHelpersMod.Instance;
-				mymod.Logger.Info( LogHelpers.FormatMessage( msg ) );
+				try {
+					ModHelpersMod mymod = ModHelpersMod.Instance;
+					mymod.Logger.Info( LogHelpers.FormatMessage( msg ) );
+				} catch { }
 			}
 		}
 
@@ -113,10 +115,12 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="msg"></param>
 		public static void Alert( string msg = "" ) {
 			lock( LogHelpers.MyLock ) {
-				ModHelpersMod mymod = ModHelpersMod.Instance;
-				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+				try {
+					var mymod = ModHelpersMod.Instance;
+					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
 
-				mymod.Logger.Error( fmtMsg );
+					mymod.Logger.Error( fmtMsg );
+				} catch { }
 				//LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg : "") );
 			}
 		}
@@ -127,10 +131,11 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="msg"></param>
 		public static void Warn( string msg = "" ) {
 			lock( LogHelpers.MyLock ) {
-				ModHelpersMod mymod = ModHelpersMod.Instance;
-				string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+				try {
+					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
 
-				mymod.Logger.Fatal( fmtMsg );
+					ModHelpersMod.Instance.Logger.Fatal( fmtMsg );
+				} catch { }
 				//LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg: "") );
 			}
 		}
