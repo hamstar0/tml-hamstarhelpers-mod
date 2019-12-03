@@ -16,12 +16,11 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// </summary>
 		/// <param name="hook"></param>
 		public static void AddSafeKillTileHook( KillTileDelegate hook ) {
-			ExtendedTileHooks eth;
-			lock( ExtendedTileHooks.MyLock ) {
-				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
-			}
+			ExtendedTileHooks eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 
-			eth.OnKillTileHooks.Add( hook );
+			lock( ExtendedTileHooks.MyLock ) {
+				eth.OnKillTileHooks.Add( hook );
+			}
 		}
 		
 		/// <summary>
@@ -30,22 +29,18 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// <param name="hook"></param>
 		/// <return></return>
 		public static bool RemoveSafeKillTileHook( KillTileDelegate hook ) {
-			ExtendedTileHooks eth;
-			lock( ExtendedTileHooks.MyLock ) {
-				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
-			}
+			ExtendedTileHooks eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 
-			return eth.OnKillTileHooks.Remove( hook );
+			lock( ExtendedTileHooks.MyLock ) {
+				return eth.OnKillTileHooks.Remove( hook );
+			}
 		}
 
 
 		////////////////
 		
 		internal static void CallKillTileHooks( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem ) {
-			ExtendedTileHooks eth;
-			lock( ExtendedTileHooks.MyLock ) {
-				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
-			}
+			ExtendedTileHooks eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 
 			int tileToCheck = (i << 16) + j;
 
@@ -55,7 +50,9 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillTileDelegate deleg in eth.OnKillTileHooks ) {
-				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem );
+				lock( ExtendedTileHooks.MyLock ) {
+					deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem );
+				}
 			}
 			eth.CheckedTiles.Add( tileToCheck );
 		}
@@ -64,10 +61,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		////////////////
 
 		private static void Update() {
-			ExtendedTileHooks eth;
-			lock( ExtendedTileHooks.MyLock ) {
-				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
-			}
+			ExtendedTileHooks eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 
 			if( !eth.OnTick() ) {
 				return;
