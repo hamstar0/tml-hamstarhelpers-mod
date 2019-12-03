@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader;
 using System;
 using System.Collections.Generic;

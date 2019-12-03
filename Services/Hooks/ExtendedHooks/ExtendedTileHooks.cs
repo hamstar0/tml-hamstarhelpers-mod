@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using System;
 using Terraria;
@@ -10,6 +11,12 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 	/// tModLoader.
 	/// </summary>
 	public partial class ExtendedTileHooks : ILoadable {
+		private static object MyLock = new object();
+
+
+
+		////////////////
+
 		/// <summary>
 		/// Represents a GlobalTile.KillTile hook binding.
 		/// </summary>
@@ -27,34 +34,62 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		////////////////
 		
 		/// <summary>
-		/// Allows binding actions to the GlobalTile.KillTile(...) hook in such a way as to avoid stack overflow exceptions.
+		/// Allows binding actions to the `GlobalTile.KillTile(...)` hook in such a way as to avoid stack overflow exceptions.
 		/// </summary>
 		/// <param name="hook"></param>
 		public static void AddSafeKillTileHook( KillTileDelegate hook ) {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			ExtendedTileHooks eth;
+			lock( ExtendedTileHooks.MyLock ) {
+				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			}
+
 			eth.OnKillTileHooks.Add( hook );
+		}
+		
+		/// <summary>
+		/// Removes `GlobalTile.KillTile(...)` bound action hook.
+		/// </summary>
+		/// <param name="hook"></param>
+		/// <returns></returns>
+		public static bool RemoveSafeKillTileHook( KillTileDelegate hook ) {
+			ExtendedTileHooks eth;
+			lock( ExtendedTileHooks.MyLock ) {
+				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			}
+
+			return eth.OnKillTileHooks.Remove( hook );
 		}
 
 
 		////////////////
 		
 		internal static void CallKillTileHooks( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem ) {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
-			int tileToCheck = i << 16 + j;
+			ExtendedTileHooks eth;
+			lock( ExtendedTileHooks.MyLock ) {
+				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			}
+
+			int tileToCheck = ( i << 16 ) + j;
 
 			// Important stack overflow failsafe:
-			if( eth.CheckedTiles.Contains(tileToCheck) ) {
+			if( eth.CheckedTiles.Contains( tileToCheck ) ) {
 				return;
 			}
 
 			foreach( KillTileDelegate deleg in eth.OnKillTileHooks ) {
-				deleg( i, j, type, ref fail, ref effectOnly, ref noItem );
+				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem );
 				eth.CheckedTiles.Add( tileToCheck );
 			}
 		}
 
+		////
+
 		private static void Update() {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			ExtendedTileHooks eth;
+			lock( ExtendedTileHooks.MyLock ) {
+				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			}
+
 			if( !eth.OnTick() ) {
 				return;
 			}

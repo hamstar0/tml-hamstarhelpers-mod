@@ -18,6 +18,10 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 
 		////////////////
 
+		private ExtendedTileHooks() { }
+
+		////
+
 		/// @private
 		void ILoadable.OnModsLoad() {
 			this.OnTick = Timers.Timers.MainOnTickGet();

@@ -10705,9 +10705,16 @@
         </member>
         <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.AddSafeKillTileHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate)">
             <summary>
-            Allows binding actions to the GlobalTile.KillTile(...) hook in such a way as to avoid stack overflow exceptions.
+            Allows binding actions to the `GlobalTile.KillTile(...)` hook in such a way as to avoid stack overflow exceptions.
             </summary>
             <param name="hook"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.RemoveSafeKillTileHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate)">
+            <summary>
+            Removes `GlobalTile.KillTile(...)` bound action hook.
+            </summary>
+            <param name="hook"></param>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private

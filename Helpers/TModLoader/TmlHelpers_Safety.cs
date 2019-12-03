@@ -26,20 +26,25 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
 		public static T SafelyGetInstance<T>() where T : class {
-			T instance = ModContent.GetInstance<T>();
-			if( instance != null ) {
+			lock( TmlHelpers.MyLock ) {
+				T instance = ModContent.GetInstance<T>();
+				if( instance != null ) {
+					return instance;
+				}
+
+				instance = (T)Activator.CreateInstance(
+					typeof( T ),
+					ReflectionHelpers.MostAccess,
+					null,
+					new object[] { },
+					null
+				);
+
+
+				ContentInstance.Register( instance );
+
 				return instance;
 			}
-
-			instance = (T)Activator.CreateInstance(
-				typeof(T),
-				ReflectionHelpers.MostAccess,
-				null,
-				new object[] { },
-				null );
-			ContentInstance.Register( instance );
-
-			return instance;
 		}
 
 		/// <summary>
@@ -49,23 +54,25 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <param name="classType"></param>
 		/// <returns></returns>
 		public static object SafelyGetInstance( Type classType ) {
-			MethodInfo method = typeof( ModContent ).GetMethod( "GetInstance" );
-			MethodInfo genericMethod = method.MakeGenericMethod( classType );
+			lock( TmlHelpers.MyLock ) {
+				MethodInfo method = typeof( ModContent ).GetMethod( "GetInstance" );
+				MethodInfo genericMethod = method.MakeGenericMethod( classType );
 
-			object rawInstance = genericMethod?.Invoke( null, new object[] { } );
-			if( rawInstance != null ) {
+				object rawInstance = genericMethod?.Invoke( null, new object[] { } );
+				if( rawInstance != null ) {
+					return rawInstance;
+				}
+
+				rawInstance = Activator.CreateInstance(
+					classType,
+					ReflectionHelpers.MostAccess,
+					null,
+					new object[] { },
+					null );
+				ContentInstance.Register( rawInstance );
+
 				return rawInstance;
 			}
-
-			rawInstance = Activator.CreateInstance(
-				classType,
-				ReflectionHelpers.MostAccess,
-				null,
-				new object[] { },
-				null );
-			ContentInstance.Register( rawInstance );
-
-			return rawInstance;
 		}
 
 

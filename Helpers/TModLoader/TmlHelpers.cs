@@ -19,6 +19,11 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		public static string ConfigRelativeFolder => "Mod Configs";
 
 
+		////////////////
+
+		private static object MyLock = new object();
+
+
 
 		////////////////
 

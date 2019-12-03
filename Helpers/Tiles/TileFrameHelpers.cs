@@ -46,6 +46,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 				{ 20, "Crimson Chest" },
 				{ 21, "Hallowed Chest" },
 				{ 22, "Frozen Chest" },
+				/*{ 23, "Jungle Chest" },
+				{ 24, "Corruption Chest" },
+				{ 25, "Crimson Chest" },
+				{ 26, "Hallowed Chest" },
+				{ 27, "Frozen Chest" },*/
 				{ 23, "Locked Jungle Chest" },
 				{ 24, "Locked Corruption Chest" },
 				{ 25, "Locked Crimson Chest" },
@@ -77,16 +82,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 				{ 51, "Marble Chest" },
 				{ 52, "Crystal Chest" },
 				{ 53, "Golden Chest" },
-				{ 50, "Granite Chest" },
-				{ 51, "Marble Chest" },
-				{ 23, "Jungle Chest" },
-				{ 24, "Corruption Chest" },
-				{ 25, "Crimson Chest" },
-				{ 26, "Hallowed Chest" },
-				{ 27, "Frozen Chest" },
 			};
 
-			TileFrameHelpers.VanillaChestTypeNamesByFrame = new ReadOnlyDictionary<int, string>( chestTypesByFrame );
+			TileFrameHelpers.VanillaChestTypeNamesByFrame = new ReadOnlyDictionary<int, string>(
+				chestTypesByFrame
+			);
 			TileFrameHelpers.VanillaChestFramesByTypeName = new ReadOnlyDictionary<string, int>(
 				chestTypesByFrame.ToDictionary( kv => kv.Value, kv => kv.Key )
 			);
