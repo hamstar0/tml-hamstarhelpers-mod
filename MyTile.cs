@@ -12,4 +12,14 @@ namespace HamstarHelpers {
 			}
 		}
 	}
+
+
+
+	class ModHelpersWall : GlobalWall {
+		public override void KillWall( int i, int j, int type, ref bool fail ) {
+			if( !Main.gameMenu ) {
+				ExtendedTileHooks.CallKillWallHooks( i, j, type, ref fail );
+			}
+		}
+	}
 }

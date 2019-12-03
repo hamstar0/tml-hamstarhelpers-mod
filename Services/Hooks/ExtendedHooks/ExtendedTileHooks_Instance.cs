@@ -27,13 +27,24 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// <param name="noItem"></param>
 		public delegate void KillTileDelegate( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem );
 
+		/// <summary>
+		/// Represents a GlobalWall.KillWall hook binding.
+		/// </summary>
+		/// <param name="i"></param>
+		/// <param name="j"></param>
+		/// <param name="type"></param>
+		/// <param name="fail"></param>
+		public delegate void KillWallDelegate( int i, int j, int type, ref bool fail );
+
 
 
 		////////////////
 
 		private Func<bool> OnTick;
 		private ISet<KillTileDelegate> OnKillTileHooks = new HashSet<KillTileDelegate>();
+		private ISet<KillWallDelegate> OnKillWallHooks = new HashSet<KillWallDelegate>();
 		private ISet<int> CheckedTiles = new HashSet<int>();
+		private ISet<int> CheckedWalls = new HashSet<int>();
 
 
 
