@@ -15,17 +15,31 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="leftX"></param>
 		/// <param name="bottomY"></param>
 		/// <param name="type"></param>
-		/// <param name="direction"></param>
 		/// <param name="style"></param>
+		/// <param name="direction"></param>
 		/// <returns></returns>
-		public static bool Place( int leftX, int bottomY, ushort type, sbyte direction = -1, int style = 0 ) {
+		public static bool Place( int leftX, int bottomY, ushort type, int style = 0, sbyte direction = -1 ) {
 			var tileObjData = TileObjectData.GetTileData( type, style );
+			if( tileObjData == null ) {
+				return false;
+			}
+
 			int x = leftX + tileObjData.Origin.X;
-			int y = bottomY + tileObjData.Origin.X + tileObjData.Height - 1;
-
-			Main.player[255].direction = direction;
-
-			return WorldGen.PlaceTile( x, y, type, false, false, 255, style );
+			int y = bottomY + (tileObjData.Height - 1) - tileObjData.Origin.Y;// + tileObjData.Height - 1;
+			
+/*int BLAH = 0;
+Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
+	Dust.QuickDust( new Point(leftX,bottomY), Color.Red);
+	Dust.QuickDust( new Point(x,y), Color.Green);
+	return BLAH++ < 50;
+} );*/
+			TileObject tileObj;
+			if( TileObject.CanPlace(x, y, type, style, direction, out tileObj) ) {
+				return TileObject.Place( tileObj );
+			}
+			return false;
+			//Main.player[255].direction = direction;
+			//return WorldGen.PlaceTile( x, y, type, false, false, 255, style );
 		}
 
 
@@ -36,11 +50,15 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="leftX"></param>
 		/// <param name="bottomY"></param>
 		/// <param name="type"></param>
-		/// <param name="direction"></param>
 		/// <param name="style"></param>
+		/// <param name="direction"></param>
 		/// <returns>`false` if no suitable Place binding found.</returns>
-		public static bool TryPrecisePlace( int leftX, int bottomY, ushort type, sbyte direction = -1, int style = 0 ) {
+		public static bool TryPrecisePlace( int leftX, int bottomY, ushort type, int style = 0, sbyte direction = -1 ) {
 			var tileObjData = TileObjectData.GetTileData( type, style );
+			if( tileObjData == null ) {
+				return false;
+			}
+
 			int width = tileObjData.Width;
 			int height = tileObjData.Height;
 
@@ -48,12 +66,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 			case 1:
 				switch( height ) {
 				case 1:
-					return WorldGen.PlaceTile( leftX, bottomY - 1, type, false, false, -1, style );
+					return WorldGen.PlaceTile( leftX, bottomY, type, false, false, -1, style );
 				case 2:
 					TilePlacementHelpers.Place1x2( leftX, bottomY - 1, type, style );
 					return true;
 				default:
-					TilePlacementHelpers.Place1xX( leftX, bottomY - (height - 1), type, style );
+					TilePlacementHelpers.Place1xX( leftX, bottomY - ( height - 1 ), type, style );
 					return true;
 				}
 			case 2:
@@ -62,7 +80,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 					TilePlacementHelpers.Place2x2( leftX, bottomY - 1, type, style );
 					return true;
 				default:
-					TilePlacementHelpers.Place2xX( leftX, bottomY - (height - 1), type, style );
+					TilePlacementHelpers.Place2xX( leftX, bottomY - ( height - 1 ), type, style );
 					return true;
 				}
 			case 3:
@@ -84,7 +102,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			case 4:
 				switch( height ) {
 				case 2:
-					TilePlacementHelpers.Place4x2( leftX, bottomY - 1, type, direction, style );
+					TilePlacementHelpers.Place4x2( leftX, bottomY - 1, type, style, direction );
 					return true;
 				}
 				break;
@@ -98,7 +116,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			case 6:
 				switch( height ) {
 				case 3:
-					TilePlacementHelpers.Place6x3( leftX, bottomY - 2, type, direction, style );
+					TilePlacementHelpers.Place6x3( leftX, bottomY - 2, type, style, direction );
 					return true;
 				}
 				break;
@@ -118,9 +136,9 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="type"></param>
 		/// <param name="style"></param>
 		public static void Place1xX( int leftX, int topY, ushort type, int style = 0 ) {
-			int yOffset = type == 92 ? 6 : 3;
+			int yOffset = type == 92 ? 5 : 2;
 
-			WorldGen.Place1xX( leftX, topY - yOffset + 1, type, style );
+			WorldGen.Place1xX( leftX, topY + yOffset, type, style );
 		}
 
 		/// <summary>
@@ -131,14 +149,14 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="type"></param>
 		/// <param name="style"></param>
 		public static void Place2xX( int leftX, int topY, ushort type, int style = 0 ) {
-			int yOffset = 3;
+			int yOffset = 2;
 			if( type == 104 ) {
-				yOffset = 5;
-			} else if( type == 207 ) {
 				yOffset = 4;
+			} else if( type == 207 ) {
+				yOffset = 3;
 			}
 
-			WorldGen.Place2xX( leftX, topY - yOffset + 1, type, style );
+			WorldGen.Place2xX( leftX, topY + yOffset, type, style );
 		}
 
 
@@ -233,7 +251,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="type"></param>
 		/// <param name="direction"></param>
 		/// <param name="style"></param>
-		public static void Place4x2( int leftX, int topY, ushort type, sbyte direction = -1, int style = 0 ) {
+		public static void Place4x2( int leftX, int topY, ushort type, int style = 0, sbyte direction = -1 ) {
 			WorldGen.Place4x2( leftX + 1, topY + 1, type, direction, style );
 		}
 
@@ -256,7 +274,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="type"></param>
 		/// <param name="direction"></param>
 		/// <param name="style"></param>
-		public static void Place6x3( int leftX, int topY, ushort type, sbyte direction = -1, int style = 0 ) {
+		public static void Place6x3( int leftX, int topY, ushort type, int style = 0, sbyte direction = -1 ) {
 			WorldGen.Place6x3( leftX + 3, topY + 2, type, direction, style );
 		}
 

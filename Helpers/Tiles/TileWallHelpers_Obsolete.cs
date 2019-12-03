@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using HamstarHelpers.Helpers.Tiles.Walls;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -10,12 +11,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 	public class TileWallHelpers {
 		/// @private
 		[Obsolete( "use Attributes/TileWallHelpers", true )]
-		public static ISet<int> UnsafeDungeonWallTypes => Walls.TileWallHelpers.UnsafeDungeonWallTypes;
+		public static ISet<int> UnsafeDungeonWallTypes => TileWallGroupIdentityHelpers.UnsafeDungeonWallTypes;
 
 		/// @private
 		[Obsolete( "use Attributes/TileWallHelpers", true )]
 		public static bool IsDungeon( Tile tile, out bool isLihzahrd ) {
-			return Walls.TileWallHelpers.IsDungeon( tile, out isLihzahrd );
+			return TileWallGroupIdentityHelpers.IsDungeon( tile, out isLihzahrd );
 		}
 	}
 

@@ -7795,7 +7795,7 @@
             Assorted static "helper" functions pertaining to tile placement (convenience bindings for WorldGen).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
             <summary>
             Convenience binding to place the given tile intuitively positioned. Places from the bottom. Uses vanilla's
             placement method.
@@ -7803,11 +7803,11 @@
             <param name="leftX"></param>
             <param name="bottomY"></param>
             <param name="type"></param>
-            <param name="direction"></param>
             <param name="style"></param>
+            <param name="direction"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.TryPrecisePlace(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.TryPrecisePlace(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
             <summary>
             Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom. Not all
             tile dimensions supported.
@@ -7815,8 +7815,8 @@
             <param name="leftX"></param>
             <param name="bottomY"></param>
             <param name="type"></param>
-            <param name="direction"></param>
             <param name="style"></param>
+            <param name="direction"></param>
             <returns>`false` if no suitable Place binding found.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place1xX(System.Int32,System.Int32,System.UInt16,System.Int32)">
@@ -7900,7 +7900,7 @@
             <param name="type"></param>
             <param name="style"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place4x2(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place4x2(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
             <summary>
             Convenience binding for placing the given tile intuitively positioned.
             </summary>
@@ -7919,7 +7919,7 @@
             <param name="type"></param>
             <param name="style"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place6x3(System.Int32,System.Int32,System.UInt16,System.SByte,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place6x3(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
             <summary>
             Convenience binding for placing the given tile intuitively positioned.
             </summary>
@@ -8193,15 +8193,15 @@
             <param name="height"></param>
             <returns></returns>
         </member>
-        <member name="T:HamstarHelpers.Helpers.Tiles.Walls.TileWallHelpers">
+        <member name="T:HamstarHelpers.Helpers.Tiles.Walls.TileWallGroupIdentityHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tile walls.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Helpers.Tiles.Walls.TileWallHelpers.UnsafeDungeonWallTypes">
+        <member name="P:HamstarHelpers.Helpers.Tiles.Walls.TileWallGroupIdentityHelpers.UnsafeDungeonWallTypes">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.Walls.TileWallHelpers.IsDungeon(Terraria.Tile,System.Boolean@)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Walls.TileWallGroupIdentityHelpers.IsDungeon(Terraria.Tile,System.Boolean@)">
             <summary>
             Indicates if a given wall is dungeon or temple "biome" wall.
             </summary>

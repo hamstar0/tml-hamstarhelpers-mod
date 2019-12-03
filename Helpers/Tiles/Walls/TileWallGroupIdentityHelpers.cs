@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.Tiles.Walls {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile walls.
 	/// </summary>
-	public class TileWallHelpers {
+	public class TileWallGroupIdentityHelpers {
 		/// <summary></summary>
 		public static ISet<int> UnsafeDungeonWallTypes { get; } = new ReadOnlySet<int>( new HashSet<int> {
 			WallID.BlueDungeonSlabUnsafe,
