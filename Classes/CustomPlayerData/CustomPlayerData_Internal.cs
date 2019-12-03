@@ -6,6 +6,7 @@ using HamstarHelpers.Helpers.Players;
 using HamstarHelpers.Helpers.TModLoader;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 				object data = CustomPlayerData.LoadFileData( plrDataType.Name, PlayerIdentityHelpers.GetUniqueId() );
 				var plrData = (CustomPlayerData)Activator.CreateInstance(
 					plrDataType,
-					ReflectionHelpers.MostAccess,
+					BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
 					null,
 					new object[] { },
 					null );

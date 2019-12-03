@@ -34,12 +34,14 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 				instance = (T)Activator.CreateInstance(
 					typeof( T ),
-					ReflectionHelpers.MostAccess,
+					BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
 					null,
 					new object[] { },
 					null
 				);
-
+				if( instance == null ) {
+					throw new ModHelpersException( "Could not generate singleton for " + typeof( T ).Name );
+				}
 
 				ContentInstance.Register( instance );
 
@@ -53,23 +55,15 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// </summary>
 		/// <param name="classType"></param>
 		/// <returns></returns>
-		public static object SafelyGetInstance( Type classType ) {
+		public static object SafelyGetInstanceForType( Type classType ) {
 			lock( TmlHelpers.MyLock ) {
-				MethodInfo method = typeof( ModContent ).GetMethod( "GetInstance" );
+				MethodInfo method = typeof( TmlHelpers ).GetMethod( "SafelyGetInstance" );
 				MethodInfo genericMethod = method.MakeGenericMethod( classType );
 
-				object rawInstance = genericMethod?.Invoke( null, new object[] { } );
-				if( rawInstance != null ) {
-					return rawInstance;
+				object rawInstance = genericMethod.Invoke( null, new object[] { } );
+				if( rawInstance == null ) {
+					throw new ModHelpersException( "Could not get singleton of "+classType.Name );
 				}
-
-				rawInstance = Activator.CreateInstance(
-					classType,
-					ReflectionHelpers.MostAccess,
-					null,
-					new object[] { },
-					null );
-				ContentInstance.Register( rawInstance );
 
 				return rawInstance;
 			}

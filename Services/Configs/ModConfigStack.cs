@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
@@ -103,7 +104,7 @@ namespace HamstarHelpers.Services.Configs {
 
 			var newDefaultConfig = (StackableModConfig)Activator.CreateInstance(
 				configType,
-				ReflectionHelpers.MostAccess,
+				BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
 				null,
 				new object[] { },
 				null
@@ -210,7 +211,7 @@ namespace HamstarHelpers.Services.Configs {
 		/// </summary>
 		/// <param name="configType"></param>
 		public static void Uncache( Type configType ) {
-			var cs = (ModConfigStack)TmlHelpers.SafelyGetInstance( typeof(ModConfigStack) );
+			var cs = TmlHelpers.SafelyGetInstance<ModConfigStack>();
 
 			cs.CachedMergedStackConfigs.Remove( configType );
 			cs.CachedMergedDefaultAndStackConfigs.Remove( configType );

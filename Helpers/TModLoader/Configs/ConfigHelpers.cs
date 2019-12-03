@@ -27,8 +27,9 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 
 			string json = JsonConvert.SerializeObject( config, ConfigManager.serializerSettings );
 
-			var requestChanges = (ModPacket)Activator.CreateInstance( typeof( ModPacket ),
-				ReflectionHelpers.MostAccess,
+			var requestChanges = (ModPacket)Activator.CreateInstance(
+				typeof( ModPacket ),
+				BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
 				null,
 				new object[] { MessageID.InGameChangeConfig },
 				null
@@ -65,7 +66,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 		internal static void MergeConfigsForType( Type configType, ModConfig to, ModConfig fro ) {
 			var template = (ModConfig)Activator.CreateInstance(
 				configType,
-				ReflectionHelpers.MostAccess,
+				BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
 				null,
 				new object[] { },
 				null

@@ -26,7 +26,9 @@ namespace HamstarHelpers.Helpers.Debug {
 
 		internal LogHelpers() {
 			this.Reset();
+		}
 
+		internal void OnPostModsLoad() {
 			LoadHooks.AddWorldUnloadEachHook( this.OnWorldExit );
 		}
 

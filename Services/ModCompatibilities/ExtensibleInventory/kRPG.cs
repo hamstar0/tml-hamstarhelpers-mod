@@ -13,7 +13,10 @@ namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 		private static void kRPGCompat() {  //TODO use weak reference somehow
 			Mod eiMod = ModLoader.GetMod( "ExtensibleInventory" );
 			object eiConfig = eiMod.Call( "GetModSettings" );
-			object newEIConifg = Activator.CreateInstance( eiMod.GetType().AssemblyQualifiedName, "ExtensibleInventoryConfigData" );
+			object newEIConifg = Activator.CreateInstance(
+				eiMod.GetType().AssemblyQualifiedName,
+				"ExtensibleInventoryConfigData"
+			);
 
 			float bookPosY, pagePosY, pageTickPosY,
 				newBookPosY, newPagePosY, newPageTickPosY;

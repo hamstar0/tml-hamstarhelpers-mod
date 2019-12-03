@@ -106,6 +106,7 @@ namespace HamstarHelpers {
 		////////////////
 		
 		private void InitializeModules() {
+			this.LogHelpers = new LogHelpers();
 			this.Loadables = new LoadableManager();
 			this.ReflectionHelpers = new ReflectionHelpers();
 
@@ -123,7 +124,6 @@ namespace HamstarHelpers {
 			this.LoadHelpers = new LoadHelpers();
 
 			this.Timers = new Timers();
-			this.LogHelpers = new LogHelpers();
 			this.ModFeaturesHelpers = new ModFeaturesHelpers();
 			this.PacketProtocolMngr = new PacketProtocolManager();
 
@@ -214,6 +214,7 @@ namespace HamstarHelpers {
 		////////////////
 		
 		private void PostSetupFullModules() {
+			this.LogHelpers.OnPostModsLoad();
 			this.Loadables.OnPostModsLoad();
 
 			this.SupportInfo.OnPostModsLoad();

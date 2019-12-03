@@ -22,17 +22,22 @@ namespace HamstarHelpers.Classes.Loadable {
 
 		public void OnModsLoad() {
 			IEnumerable<Assembly> asses = ModLoader.Mods
-				.SafeSelect( mod => mod.GetType().Assembly );
+				.SafeSelect( mod => mod.Code )
+				.SafeWhere( code => code != null );
 
 			foreach( Assembly ass in asses ) {
 				foreach( Type classType in ass.GetTypes() ) {
 					try {
+						if( !classType.IsClass || classType.IsAbstract ) {
+							continue;
+						}
+
 						Type iloadableType = classType.GetInterface( "ILoadable" );
 						if( iloadableType == null ) {
 							continue;
 						}
 
-						var loadable = (ILoadable)TmlHelpers.SafelyGetInstance( classType );
+						var loadable = (ILoadable)TmlHelpers.SafelyGetInstanceForType( classType );
 						if( loadable == null ) {
 							continue;
 						}

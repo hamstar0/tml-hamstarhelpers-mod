@@ -11,28 +11,6 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 	/// tModLoader.
 	/// </summary>
 	public partial class ExtendedTileHooks : ILoadable {
-		private static object MyLock = new object();
-
-
-
-		////////////////
-
-		/// <summary>
-		/// Represents a GlobalTile.KillTile hook binding.
-		/// </summary>
-		/// <param name="i"></param>
-		/// <param name="j"></param>
-		/// <param name="type"></param>
-		/// <param name="fail"></param>
-		/// <param name="effectOnly"></param>
-		/// <param name="noItem"></param>
-		public delegate void KillTileDelegate( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem );
-		//public event KillTileEvent OnKillTile;
-
-
-
-		////////////////
-		
 		/// <summary>
 		/// Allows binding actions to the `GlobalTile.KillTile(...)` hook in such a way as to avoid stack overflow exceptions.
 		/// </summary>
@@ -50,7 +28,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// Removes `GlobalTile.KillTile(...)` bound action hook.
 		/// </summary>
 		/// <param name="hook"></param>
-		/// <returns></returns>
+		/// <return></return>
 		public static bool RemoveSafeKillTileHook( KillTileDelegate hook ) {
 			ExtendedTileHooks eth;
 			lock( ExtendedTileHooks.MyLock ) {
@@ -69,7 +47,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 				eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 			}
 
-			int tileToCheck = ( i << 16 ) + j;
+			int tileToCheck = (i << 16) + j;
 
 			// Important stack overflow failsafe:
 			if( eth.CheckedTiles.Contains( tileToCheck ) ) {
@@ -78,11 +56,12 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 
 			foreach( KillTileDelegate deleg in eth.OnKillTileHooks ) {
 				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem );
-				eth.CheckedTiles.Add( tileToCheck );
 			}
+			eth.CheckedTiles.Add( tileToCheck );
 		}
 
-		////
+
+		////////////////
 
 		private static void Update() {
 			ExtendedTileHooks eth;

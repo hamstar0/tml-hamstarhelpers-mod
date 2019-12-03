@@ -24,7 +24,13 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 
 		internal static StreamProtocol CreateInstance( Type mytype ) {
 			Object[] args = new object[] { };
-			return (StreamProtocol)Activator.CreateInstance( mytype, BindingFlags.NonPublic | BindingFlags.Instance, null, args, null );
+			return (StreamProtocol)Activator.CreateInstance(
+				mytype,
+				BindingFlags.NonPublic | BindingFlags.Instance,
+				null,
+				args,
+				null
+			);
 		}
 
 
