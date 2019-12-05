@@ -28,5 +28,20 @@ namespace HamstarHelpers.Services.Configs {
 			}
 			ModConfigStack.SetStackedConfigChangesOnlyForType( myType, changes );
 		}
+
+		/*public override bool NeedsReload( ModConfig pendingConfig ) {
+			foreach( PropertyFieldWrapper variable in ConfigManager.GetFieldsAndProperties( this ) ) {
+				var reloadRequired = ConfigManager.GetCustomAttribute<ReloadRequiredAttribute>( variable, this, null );
+
+				if( reloadRequired != null ) {
+					// Do we need to implement nested ReloadRequired? Right now only top level fields will trigger it.
+					if( !ConfigManager.ObjectEquals( variable.GetValue(this), variable.GetValue(pendingConfig) ) ) {
+LogHelpers.Log("RELOADS BECAUSE "+variable.Name+": "+variable.GetValue(this)+" vs "+variable.GetValue(pendingConfig));
+						return true;
+					}
+				}
+			}
+			return false;
+		}*/
 	}
 }

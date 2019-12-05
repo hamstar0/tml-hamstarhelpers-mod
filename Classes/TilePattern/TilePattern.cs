@@ -49,11 +49,12 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern AbsoluteAir = new TilePattern(
 			new TilePatternBuilder {
+				IsActive = true,
 				HasWire1 = false,
 				HasWire2 = false,
 				HasWire3 = false,
 				HasWire4 = false,
-				HasSolidProperties = false,
+				//HasSolidProperties = false,
 				HasWall = false,
 				HasWater = false,
 				HasHoney = false,
@@ -66,38 +67,45 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern OpenWall = new TilePattern(
 			new TilePatternBuilder {
+				IsActive = false,
 				HasSolidProperties = false,
 				HasWall = true
 			}
 		);
 
 		/// <summary>
-		/// Preset for any non-solid tiles.
+		/// Preset for any non-solid tiles (including actuated tiles).
 		/// </summary>
 		public readonly static TilePattern NonSolid = new TilePattern(
 			new TilePatternBuilder {
-				HasSolidProperties = false,
-				IsActuated = false
+				CustomCheck = (x, y) => {
+					Tile tile = Main.tile[ x, y ];
+					return !tile.active() || tile.inActive() || !Main.tileSolid[tile.type];
+				}
 			}
 		);
 
 		/// <summary>
-		/// Preset for any non-"filled" space (no solids, no liquids).
+		/// Preset for any non-"filled" space (no solids, no liquids, no actuated tiles).
 		/// </summary>
 		public readonly static TilePattern NonFilled = new TilePattern(
 			new TilePatternBuilder {
-				HasSolidProperties = false,
 				HasWater = false,
 				HasHoney = false,
-				HasLava = false
+				HasLava = false,
+				CustomCheck = ( x, y ) => {
+					Tile tile = Main.tile[x, y];
+					return !tile.active() /*|| tile.inActive()*/ || !Main.tileSolid[tile.type];
+				}
 			}
 		);
 
 		/// <summary>
-		/// Preset for common solid tiles.
+		/// Preset for common solid tiles (non-actuated).
 		/// </summary>
 		public readonly static TilePattern CommonSolid = new TilePattern(
 			new TilePatternBuilder {
+				IsActive = true,
 				HasSolidProperties = true,
 				IsActuated = false,
 				IsPlatform = false

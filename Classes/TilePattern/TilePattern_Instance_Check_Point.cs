@@ -31,6 +31,10 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
 			bool isActive = tile.active();
+			if( this.IsActive.HasValue && this.IsActive.Value != isActive ) {
+				collideType = TileCollideType.Active;
+				return false;
+			}
 
 			/*if( TileHelpers.IsAir(tile, false, false) ) {
 				if( !this.CheckBrightness(tileX, tileY, out collideType) ) {

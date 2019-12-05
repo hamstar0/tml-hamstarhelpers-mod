@@ -10698,12 +10698,11 @@
             </summary>
             <param name="hook"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.RemoveSafeKillTileHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate)">
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.AddSafeWallKillHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillWallDelegate)">
             <summary>
-            Removes `GlobalTile.KillTile(...)` bound action hook.
+            Allows binding actions to the `GlobalWall.KillWall(...)` hook in such a way as to avoid stack overflow exceptions.
             </summary>
             <param name="hook"></param>
-            <return></return>
         </member>
         <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate">
             <summary>
@@ -10715,6 +10714,15 @@
             <param name="fail"></param>
             <param name="effectOnly"></param>
             <param name="noItem"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillWallDelegate">
+            <summary>
+            Represents a GlobalWall.KillWall hook binding.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="type"></param>
+            <param name="fail"></param>
         </member>
         <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private

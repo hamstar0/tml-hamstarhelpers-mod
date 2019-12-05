@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HamstarHelpers.Helpers.Tiles;
+using System.Collections.Generic;
 using Terraria;
 
 
@@ -16,6 +17,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns></returns>
 		public static TilePattern CombinePositive( TilePattern pattern1, TilePattern pattern2, bool blendLight = false ) {
 			var builder = new TilePatternBuilder();
+
+			builder.IsActive = TilePattern.CombinePositive( pattern1.IsActive, pattern2.IsActive );
 
 			if( pattern1.IsAnyOfType != null ) {
 				builder.IsAnyOfType = new HashSet<int>( pattern1.IsAnyOfType );
@@ -52,42 +55,42 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			builder.HasHoney = TilePattern.CombinePositive( pattern1.HasHoney, pattern2.HasHoney );
 			builder.HasLava = TilePattern.CombinePositive( pattern1.HasLava, pattern2.HasLava );
 
-			if( pattern1.Slope.HasValue && !pattern2.Slope.HasValue ) {
-				builder.Slope = pattern1.Slope;
-			} else if( !pattern1.Slope.HasValue && pattern2.Slope.HasValue ) {
-				builder.Slope = pattern2.Slope;
-			} else if( pattern1.Slope.HasValue && pattern2.Slope.HasValue ) {
-				if( pattern1.Slope.Value == TileSlopeType.Top ) {
-					if( pattern2.Slope.Value == TileSlopeType.Left ) {
-						builder.Slope = TileSlopeType.TopLeftSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Right ) {
-						builder.Slope = TileSlopeType.TopRightSlope;
+			if( pattern1.Shape.HasValue && !pattern2.Shape.HasValue ) {
+				builder.Shape = pattern1.Shape;
+			} else if( !pattern1.Shape.HasValue && pattern2.Shape.HasValue ) {
+				builder.Shape = pattern2.Shape;
+			} else if( pattern1.Shape.HasValue && pattern2.Shape.HasValue ) {
+				if( pattern1.Shape.Value == TileShapeType.TopSlope ) {
+					if( pattern2.Shape.Value == TileShapeType.LeftSlope ) {
+						builder.Shape = TileShapeType.TopLeftSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.RightSlope ) {
+						builder.Shape = TileShapeType.TopRightSlope;
 					} else {
-						builder.Slope = pattern2.Slope;
+						builder.Shape = pattern2.Shape;
 					}
-				} else if( pattern1.Slope.Value == TileSlopeType.Bottom ) {
-					if( pattern2.Slope.Value == TileSlopeType.Left ) {
-						builder.Slope = TileSlopeType.BottomLeftSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Right ) {
-						builder.Slope = TileSlopeType.BottomRightSlope;
+				} else if( pattern1.Shape.Value == TileShapeType.BottomSlope ) {
+					if( pattern2.Shape.Value == TileShapeType.LeftSlope ) {
+						builder.Shape = TileShapeType.BottomLeftSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.RightSlope ) {
+						builder.Shape = TileShapeType.BottomRightSlope;
 					} else {
-						builder.Slope = pattern2.Slope;
+						builder.Shape = pattern2.Shape;
 					}
-				} else if( pattern1.Slope.Value == TileSlopeType.Left ) {
-					if( pattern2.Slope.Value == TileSlopeType.Top ) {
-						builder.Slope = TileSlopeType.TopLeftSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Bottom ) {
-						builder.Slope = TileSlopeType.BottomLeftSlope;
+				} else if( pattern1.Shape.Value == TileShapeType.LeftSlope ) {
+					if( pattern2.Shape.Value == TileShapeType.TopSlope ) {
+						builder.Shape = TileShapeType.TopLeftSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.BottomSlope ) {
+						builder.Shape = TileShapeType.BottomLeftSlope;
 					} else {
-						builder.Slope = pattern2.Slope;
+						builder.Shape = pattern2.Shape;
 					}
 				} else {
-					if( pattern2.Slope.Value == TileSlopeType.Top ) {
-						builder.Slope = TileSlopeType.TopRightSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Bottom ) {
-						builder.Slope = TileSlopeType.BottomRightSlope;
+					if( pattern2.Shape.Value == TileShapeType.TopSlope ) {
+						builder.Shape = TileShapeType.TopRightSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.BottomSlope ) {
+						builder.Shape = TileShapeType.BottomRightSlope;
 					} else {
-						builder.Slope = pattern2.Slope;
+						builder.Shape = pattern2.Shape;
 					}
 				}
 			}
@@ -145,6 +148,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public static TilePattern CombineNegative( TilePattern pattern1, TilePattern pattern2, bool blendLight = false ) {
 			var builder = new TilePatternBuilder();
 
+			builder.IsActive = TilePattern.CombineNegative( pattern1.IsActive, pattern2.IsActive );
+
 			if( pattern1.IsAnyOfType != null ) {
 				builder.IsAnyOfType = new HashSet<int>( pattern1.IsAnyOfType );
 				if( pattern2.IsAnyOfType != null ) {
@@ -180,35 +185,35 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			builder.HasHoney = TilePattern.CombineNegative( pattern1.HasHoney, pattern2.HasHoney );
 			builder.HasLava = TilePattern.CombineNegative( pattern1.HasLava, pattern2.HasLava );
 
-			if( pattern1.Slope.HasValue && !pattern2.Slope.HasValue ) {
-				builder.Slope = pattern1.Slope;
-			} else if( !pattern1.Slope.HasValue && pattern2.Slope.HasValue ) {
-				builder.Slope = pattern2.Slope;
-			} else if( pattern1.Slope.HasValue && pattern2.Slope.HasValue ) {
-				builder.Slope = pattern1.Slope;
-				if( pattern1.Slope.Value == TileSlopeType.Top ) {
-					if( pattern2.Slope.Value == TileSlopeType.Left ) {
-						builder.Slope = TileSlopeType.TopLeftSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Right ) {
-						builder.Slope = TileSlopeType.TopRightSlope;
+			if( pattern1.Shape.HasValue && !pattern2.Shape.HasValue ) {
+				builder.Shape = pattern1.Shape;
+			} else if( !pattern1.Shape.HasValue && pattern2.Shape.HasValue ) {
+				builder.Shape = pattern2.Shape;
+			} else if( pattern1.Shape.HasValue && pattern2.Shape.HasValue ) {
+				builder.Shape = pattern1.Shape;
+				if( pattern1.Shape.Value == TileShapeType.TopSlope ) {
+					if( pattern2.Shape.Value == TileShapeType.LeftSlope ) {
+						builder.Shape = TileShapeType.TopLeftSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.RightSlope ) {
+						builder.Shape = TileShapeType.TopRightSlope;
 					}
-				} else if( pattern1.Slope.Value == TileSlopeType.Bottom ) {
-					if( pattern2.Slope.Value == TileSlopeType.Left ) {
-						builder.Slope = TileSlopeType.BottomLeftSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Right ) {
-						builder.Slope = TileSlopeType.BottomRightSlope;
+				} else if( pattern1.Shape.Value == TileShapeType.BottomSlope ) {
+					if( pattern2.Shape.Value == TileShapeType.LeftSlope ) {
+						builder.Shape = TileShapeType.BottomLeftSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.RightSlope ) {
+						builder.Shape = TileShapeType.BottomRightSlope;
 					}
-				} else if( pattern1.Slope.Value == TileSlopeType.Left ) {
-					if( pattern2.Slope.Value == TileSlopeType.Top ) {
-						builder.Slope = TileSlopeType.TopLeftSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Bottom ) {
-						builder.Slope = TileSlopeType.BottomLeftSlope;
+				} else if( pattern1.Shape.Value == TileShapeType.LeftSlope ) {
+					if( pattern2.Shape.Value == TileShapeType.TopSlope ) {
+						builder.Shape = TileShapeType.TopLeftSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.BottomSlope ) {
+						builder.Shape = TileShapeType.BottomLeftSlope;
 					}
 				} else {
-					if( pattern2.Slope.Value == TileSlopeType.Top ) {
-						builder.Slope = TileSlopeType.TopRightSlope;
-					} else if( pattern2.Slope.Value == TileSlopeType.Bottom ) {
-						builder.Slope = TileSlopeType.BottomRightSlope;
+					if( pattern2.Shape.Value == TileShapeType.TopSlope ) {
+						builder.Shape = TileShapeType.TopRightSlope;
+					} else if( pattern2.Shape.Value == TileShapeType.BottomSlope ) {
+						builder.Shape = TileShapeType.BottomRightSlope;
 					}
 				}
 			}

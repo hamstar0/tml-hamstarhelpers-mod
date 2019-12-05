@@ -50,12 +50,10 @@ namespace HamstarHelpers.Helpers.Tiles {
 				}
 			}
 
-			if( !isActuatedSolid ) {
-				if( tile.inActive() ) {
-					return false;
-				}
+			if( !isActuatedSolid && tile.inActive() ) {
+				return false;
 			}
-			
+
 			return true;
 		}
 

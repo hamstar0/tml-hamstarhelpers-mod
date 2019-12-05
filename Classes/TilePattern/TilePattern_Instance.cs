@@ -46,6 +46,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 		////////////////
 
+		/// <summary>If tile is active (not wall-only).</summary>
+		public bool? IsActive = null;
+
 		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
 		public Rectangle? AreaFromCenter = null;
 
@@ -111,6 +114,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
 	public partial class TilePattern {
+		/// <summary>If tile is active (not wall-only).</summary>
+		public bool? IsActive = null;
+
 		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
 		public Rectangle? AreaFromCenter { get; private set; } = null;
 
@@ -189,6 +195,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary>
 		/// </summary>
 		public TilePattern( TilePatternBuilder builder ) {
+			this.IsActive = builder.IsActive;
 			this.AreaFromCenter = builder.AreaFromCenter;
 
 			this.IsAnyOfType = builder.IsAnyOfType;

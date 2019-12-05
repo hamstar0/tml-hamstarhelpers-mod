@@ -89,7 +89,7 @@ namespace HamstarHelpers.Helpers.World {
 		public static WorldSize GetSize() {
 			int size = Main.maxTilesX * Main.maxTilesY;
 
-			if( size <= ( 4200 * 1200 ) / 2 ) {
+			if( size <= (4200 * 1200) / 2 ) {
 				return WorldSize.SubSmall;
 			} else if( size <= 4200 * 1200 + 1000 ) {
 				return WorldSize.Small;

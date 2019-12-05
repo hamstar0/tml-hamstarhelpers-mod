@@ -10,6 +10,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		None = 0,
 		/// <summary></summary>
+		Active,
+		/// <summary></summary>
 		TileType,
 		/// <summary></summary>
 		WallType,
