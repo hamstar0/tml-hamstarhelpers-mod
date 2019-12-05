@@ -1162,23 +1162,26 @@
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonSolid">
             <summary>
-            Preset for any non-solid tiles.
+            Preset for any non-solid tiles (including actuated tiles).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonFilled">
             <summary>
-            Preset for any non-"filled" space (no solids, no liquids).
+            Preset for any non-"filled" space (no solids, no liquids, no actuated tiles).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CommonSolid">
             <summary>
-            Preset for common solid tiles.
+            Preset for common solid tiles (non-actuated).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.PitchDark">
             <summary>
             Preset for total blackness.
             </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsActive">
+            <summary>If tile is active (not wall-only).</summary>
         </member>
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.AreaFromCenter">
             <summary>Distance to also check adjacent tiles from a given center point.</summary>
@@ -1352,6 +1355,9 @@
             <param name="slopeType"></param>
             <returns></returns>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsActive">
+            <summary>If tile is active (not wall-only).</summary>
+        </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.AreaFromCenter">
             <summary>Distance to also check adjacent tiles from a given center point.</summary>
         </member>
@@ -1422,6 +1428,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.None">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Active">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.TileType">

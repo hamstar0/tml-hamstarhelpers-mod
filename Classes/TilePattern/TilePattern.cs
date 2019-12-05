@@ -4,7 +4,7 @@ using Terraria;
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// @private
-	[Obsolete("use Helpers.Tile.TileSlopeType")]
+	[Obsolete("use Helpers.Tile.TileShapeType")]
 	public enum TileSlopeType {
 		/// @private
 		None,
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern AbsoluteAir = new TilePattern(
 			new TilePatternBuilder {
-				IsActive = true,
+				IsActive = false,
 				HasWire1 = false,
 				HasWire2 = false,
 				HasWire3 = false,
