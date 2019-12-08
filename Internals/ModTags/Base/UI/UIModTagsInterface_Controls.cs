@@ -1,10 +1,9 @@
-﻿using HamstarHelpers.Classes.ModTagDefinitions;
-using HamstarHelpers.Classes.UI.Elements;
+﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Internals.ModTags.Base.Manager;
-using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
+using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Services.Timers;
+using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using System;
 
 

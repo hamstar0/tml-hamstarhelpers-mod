@@ -555,108 +555,6 @@
             Called during `Mod.Unload()`.
             </summary>
         </member>
-        <member name="T:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition">
-            <summary>
-            Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive
-            categorical description of a mod.
-            </summary>
-            <summary>
-            Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive
-            categorical description of a mod.
-            </summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.CategoryDescriptions">
-            <summary>Descriptions of each tag category.</summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.TagMap">
-            <summary>A map of tag definitions to their tags.</summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.Tags">
-            <summary>An ordered list of the tag definitions.</summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.TagFlavorColors">
-            <summary>
-            Map of mod tag "flavors" to corresponding hues.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.Tag">
-            <summary>
-            Descriptive tag.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.Category">
-            <summary>
-            Category for the tag.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.Description">
-            <summary>
-            Human-readable description of the given tag.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.Flavor">
-            <summary>
-            Describes the "flavor" or practical signicance of the given tag.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.ForcesTags">
-            <summary>
-            Tags that are forced to apply in tandem with the current.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.ExcludesOnAdd">
-            <summary>
-            Tags that are mutually exclusive with the current.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.#ctor(System.String,System.String,System.String,HamstarHelpers.Classes.ModTagDefinitions.TagFlavor,System.Collections.Generic.ISet{System.String},System.Collections.Generic.ISet{System.String})">
-            <summary></summary>
-            <param name="tag"></param>
-            <param name="category"></param>
-            <param name="description"></param>
-            <param name="flavor"></param>
-            <param name="forcesTag"></param>
-            <param name="excludesOnAdd"></param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.ModTagDefinitions.ModTagDefinition.GetFlavorColor">
-            <summary>
-            Gets the "flavor" color of the current tag.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Mundane">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Specification">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Emphasis">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Important">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.TechnicallyImportant">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Alert">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Warning">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Deficient">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.Broken">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Classes.ModTagDefinitions.TagFlavor.IllFavored">
-            <summary></summary>
-        </member>
         <member name="T:HamstarHelpers.Classes.Protocols.ProtocolIgnoreAttribute">
             <summary>
             Sets a field to be ignored by a protocol.
@@ -6911,6 +6809,13 @@
             <param name="slot"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Players.PlayerItemHelpers.GetFirstVanitySlot(Terraria.Player)">
+            <summary>
+            Gets first vanity slot for a given player (`player.armor`).
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Players.PlayerItemHelpers.GetCurrentlyOpenChest(Terraria.Player,System.Nullable{System.Boolean}@)">
             <summary>
             Accesses items of a player's currently opened chest.
@@ -7365,7 +7270,7 @@
             <param name="tileType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,System.Nullable{Terraria.Enums.TileCuttingContext})">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,Terraria.Enums.TileCuttingContext)">
             <summary>
             Indicates if a given specific tile is "breakable" (typically to normal attacks).
             </summary>
@@ -11092,6 +10997,108 @@
             <summary>
             Unlocks the current world.
             </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition">
+            <summary>
+            Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive
+            categorical description of a mod.
+            </summary>
+            <summary>
+            Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive
+            categorical description of a mod.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.CategoryDescriptions">
+            <summary>Descriptions of each tag category.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.TagMap">
+            <summary>A map of tag definitions to their tags.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.Tags">
+            <summary>An ordered list of the tag definitions.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.TagFlavorColors">
+            <summary>
+            Map of mod tag "flavors" to corresponding hues.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.Tag">
+            <summary>
+            Descriptive tag.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.Category">
+            <summary>
+            Category for the tag.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.Description">
+            <summary>
+            Human-readable description of the given tag.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.Flavor">
+            <summary>
+            Describes the "flavor" or practical signicance of the given tag.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.ForcesTags">
+            <summary>
+            Tags that are forced to apply in tandem with the current.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.ExcludesOnAdd">
+            <summary>
+            Tags that are mutually exclusive with the current.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.#ctor(System.String,System.String,System.String,HamstarHelpers.Services.ModTagDefinitions.TagFlavor,System.Collections.Generic.ISet{System.String},System.Collections.Generic.ISet{System.String})">
+            <summary></summary>
+            <param name="tag"></param>
+            <param name="category"></param>
+            <param name="description"></param>
+            <param name="flavor"></param>
+            <param name="forcesTag"></param>
+            <param name="excludesOnAdd"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition.GetFlavorColor">
+            <summary>
+            Gets the "flavor" color of the current tag.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Services.ModTagDefinitions.TagFlavor">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Mundane">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Specification">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Emphasis">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Important">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.TechnicallyImportant">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Alert">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Warning">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Deficient">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Broken">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.IllFavored">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.OverlaySounds.OverlaySound">
             <summary>

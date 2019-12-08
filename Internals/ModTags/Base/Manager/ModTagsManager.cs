@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.ModTagDefinitions;
 using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using System;
 using System.Collections.Generic;

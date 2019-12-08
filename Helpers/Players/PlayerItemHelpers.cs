@@ -386,7 +386,8 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="slot"></param>
 		/// <returns></returns>
 		public static bool IsAccessorySlot( Player player, int slot ) {
-			return slot >= PlayerItemHelpers.VanillaAccessorySlotFirst && slot < 8 + player.extraAccessorySlots;
+			return slot >= PlayerItemHelpers.VanillaAccessorySlotFirst
+				&& slot < 8 + player.extraAccessorySlots;
 		}
 
 		/// <summary>
@@ -397,6 +398,16 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <returns></returns>
 		public static bool IsVanitySlot( Player player, int slot ) {
 			return slot >= 8 + player.extraAccessorySlots;
+		}
+
+
+		/// <summary>
+		/// Gets first vanity slot for a given player (`player.armor`).
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
+		public static int GetFirstVanitySlot( Player player ) {
+			return 8 + player.extraAccessorySlots;
 		}
 
 

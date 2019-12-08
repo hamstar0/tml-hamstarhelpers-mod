@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Classes.ModTagDefinitions;
-using HamstarHelpers.Classes.UI.Elements;
+﻿using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using Microsoft.Xna.Framework;
 using System;

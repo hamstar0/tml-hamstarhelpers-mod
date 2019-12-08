@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 
-namespace HamstarHelpers.Classes.ModTagDefinitions {
+namespace HamstarHelpers.Services.ModTagDefinitions {
 	/// <summary>
 	/// Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive
 	/// categorical description of a mod.

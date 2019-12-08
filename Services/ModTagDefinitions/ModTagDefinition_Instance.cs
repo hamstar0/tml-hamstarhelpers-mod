@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 
-namespace HamstarHelpers.Classes.ModTagDefinitions {
+namespace HamstarHelpers.Services.ModTagDefinitions {
 	/// <summary></summary>
 	public enum TagFlavor {
 		/// <summary></summary>

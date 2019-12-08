@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using System;
 using System.Collections.Generic;
-using HamstarHelpers.Classes.ModTagDefinitions;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {

@@ -32,11 +32,11 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 		/// <param name="tileY"></param>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public static bool IsBreakable( int tileX, int tileY, TileCuttingContext? context = null ) {
+		public static bool IsBreakable( int tileX, int tileY, TileCuttingContext context = TileCuttingContext.AttackMelee ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
 			return Main.tileCut[tile.type]
-				&& WorldGen.CanCutTile( tileX, tileY, context ?? TileCuttingContext.AttackMelee );
+				&& WorldGen.CanCutTile(tileX, tileY, context);
 		}
 
 		////

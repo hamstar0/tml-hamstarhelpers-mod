@@ -18,7 +18,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// @private
 		[Obsolete( "use Attributes/TileAttributeHelpers", true )]
 		public static bool IsBreakable( int tileX, int tileY, TileCuttingContext? context = null ) {
-			return Attributes.TileAttributeHelpers.IsBreakable( tileX, tileY, context );
+			return Attributes.TileAttributeHelpers.IsBreakable(
+				tileX,
+				tileY,
+				context.HasValue ? context.Value : TileCuttingContext.AttackMelee
+			);
 		}
 
 		/// @private

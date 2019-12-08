@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.ModTagDefinitions;
 using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Draw;
 using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
