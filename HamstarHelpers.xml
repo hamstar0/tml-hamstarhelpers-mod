@@ -7804,7 +7804,7 @@
             Assorted static "helper" functions pertaining to tile placement (convenience bindings for WorldGen).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte,System.Boolean)">
             <summary>
             Convenience binding to place the given tile intuitively positioned. Places from the bottom. Uses vanilla's
             placement method.
@@ -7814,6 +7814,7 @@
             <param name="type"></param>
             <param name="style"></param>
             <param name="direction"></param>
+            <param name="forced">Attempts to ignore anchor checks and place the tile regardless.</param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.TryPrecisePlace(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">

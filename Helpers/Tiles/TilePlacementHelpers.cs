@@ -17,8 +17,9 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="type"></param>
 		/// <param name="style"></param>
 		/// <param name="direction"></param>
+		/// <param name="forced">Attempts to ignore anchor checks and place the tile regardless.</param>
 		/// <returns></returns>
-		public static bool Place( int leftX, int bottomY, ushort type, int style = 0, sbyte direction = -1 ) {
+		public static bool Place( int leftX, int bottomY, ushort type, int style = 0, sbyte direction = -1, bool forced = false ) {
 			var tileObjData = TileObjectData.GetTileData( type, style );
 			if( tileObjData == null ) {
 				return false;
@@ -34,7 +35,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 	return BLAH++ < 50;
 } );*/
 			TileObject tileObj;
-			if( TileObject.CanPlace(x, y, type, style, direction, out tileObj) ) {
+			if( TileObject.CanPlace(x, y, type, style, direction, out tileObj) || forced ) {
 				return TileObject.Place( tileObj );
 			}
 			return false;

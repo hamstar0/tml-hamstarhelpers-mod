@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					}
 
 					if( filter.Check(x, y) ) {
-						if( prePlace( x, y )?.Place( x, y ) ?? false ) {
+						if( prePlace( x, y )?.Place(x, y) ?? false ) {
 							tiles.Add( (x, y) );
 						}
 					}

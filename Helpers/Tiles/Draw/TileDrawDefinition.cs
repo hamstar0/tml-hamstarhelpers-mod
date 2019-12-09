@@ -36,7 +36,13 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="tileY"></param>
 		/// <returns></returns>
 		public bool Place( int tileX, int tileY ) {
-			bool placed = TilePlacementHelpers.Place( tileX, tileY, this.TileType, this.TileStyle, this.Direction );
+			bool placed = TilePlacementHelpers.Place( tileX, tileY, this.TileType, this.TileStyle, this.Direction, true );
+			if( !placed ) {
+				if( !WorldGen.PlaceTile(tileX, tileY, this.TileType, false, true, -1, this.TileStyle) ) {
+					return false;
+				}
+			}
+
 			Tile tile = Main.tile[tileX, tileY];
 
 			tile.wall = this.WallType;
@@ -53,7 +59,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 				tile.honey( true );
 			}
 
-			return placed;
+			return true;
 		}
 	}
 }
