@@ -17,20 +17,14 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
 		/// <param name="fillDiagonal"></param>
-		/// <param name="tileType"></param>
-		/// <param name="tileStyle"></param>
-		/// <param name="direction"></param>
-		/// <param name="prePlace">Return `true` to allow tile placing.</param>
+		/// <param name="prePlace">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
-		public ISet<(int TileX, int TileY)> Fill(
+		public static ISet<(int TileX, int TileY)> Fill(
 					TilePattern filter,
 					int tileX,
 					int tileY,
 					bool fillDiagonal,
-					ushort tileType,
-					int tileStyle = 0,
-					sbyte direction = -1,
-					Func<int, int, bool> prePlace = null ) {
+					Func<int, int, TileDrawDefinition> prePlace ) {
 			var filled = new HashSet<(int, int)>();
 			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
 
@@ -40,10 +34,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 
 				foreach( (int x, int y) in unfilledCopy ) {
 					if( filter.Check( x, y ) ) {
-						if( prePlace == null || prePlace( x, y ) ) {
-							if( TilePlacementHelpers.Place( x, y, tileType, tileStyle, direction ) ) {
-								filled.Add( (x, y) );
-							}
+						if( prePlace(x, y)?.Place(x, y) ?? false ) {
+							filled.Add( (x, y) );
 						}
 					}
 

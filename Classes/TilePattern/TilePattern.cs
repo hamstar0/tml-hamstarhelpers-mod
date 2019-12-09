@@ -68,7 +68,6 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public readonly static TilePattern OpenWall = new TilePattern(
 			new TilePatternBuilder {
 				IsActive = false,
-				HasSolidProperties = false,
 				HasWall = true
 			}
 		);
@@ -86,7 +85,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
-		/// Preset for any non-"filled" space (no solids, no liquids, no actuated tiles).
+		/// Preset for any non-"filled" space (no solids, no liquids, no actuated tiles; walls, furniture, etc. allowed).
 		/// </summary>
 		public readonly static TilePattern NonFilled = new TilePattern(
 			new TilePatternBuilder {

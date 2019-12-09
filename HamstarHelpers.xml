@@ -1065,7 +1065,7 @@
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonFilled">
             <summary>
-            Preset for any non-"filled" space (no solids, no liquids, no actuated tiles).
+            Preset for any non-"filled" space (no solids, no liquids, no actuated tiles; walls, furniture, etc. allowed).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CommonSolid">
@@ -7316,6 +7316,101 @@
             </summary>
             <param name="tileType"></param>
             <param name="subType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition">
+            <summary>
+            Defines a basic tile.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.TileType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.WallType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.TileStyle">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.Direction">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.Slope">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.IsHalfBrick">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.LiquidVolume">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.IsLava">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.IsHoney">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.Place(System.Int32,System.Int32)">
+            <summary>
+            Places the current tile.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.Draw.TileDrawFillHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to fill-'drawing' tiles into the world.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Draw.TileDrawFillHelpers.Fill(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Boolean,System.Func{System.Int32,System.Int32,HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition})">
+            <summary>
+            Fills an area (of the given pattern) with the given tile type.
+            </summary>
+            <param name="filter"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="fillDiagonal"></param>
+            <param name="prePlace">Return `null` to skip tile placing.</param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.Draw.TileDrawPrimitivesHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to 'drawing' primitive tile structures into the world.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Draw.TileDrawPrimitivesHelpers.DrawRectangle(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Nullable{Microsoft.Xna.Framework.Rectangle},System.Func{System.Int32,System.Int32,HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition})">
+            <summary>
+            Draws a rectangle of a given tile type (where the filter allows).
+            </summary>
+            <param name="filter"></param>
+            <param name="area"></param>
+            <param name="hollow"></param>
+            <param name="prePlace">Return `null` to skip tile placing.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Draw.TileDrawPrimitivesHelpers.DrawCircle(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Single,System.Single,System.Func{System.Int32,System.Int32,HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition})">
+            <summary>
+            Draws a circle of a given tile type (where the filter allows).
+            </summary>
+            <param name="filter"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="minRadius"></param>
+            <param name="maxRadius"></param>
+            <param name="prePlace">Return `null` to skip tile placing.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Draw.TileDrawPrimitivesHelpers.DrawBlob(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Single,System.Single,System.Func{System.Int32,System.Int32,HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition})">
+            <summary>
+            Draws a blob of a given tile type (where the filter allows).
+            </summary>
+            <param name="filter"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="minSize"></param>
+            <param name="maxSize"></param>
+            <param name="prePlace">Return `null` to skip tile placing.</param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers">

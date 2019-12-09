@@ -19,19 +19,13 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="filter"></param>
 		/// <param name="area"></param>
 		/// <param name="hollow"></param>
-		/// <param name="tileType"></param>
-		/// <param name="tileStyle"></param>
-		/// <param name="direction"></param>
-		/// <param name="prePlace">Return `true` to allow tile placing.</param>
+		/// <param name="prePlace">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
-		public ISet<(int TileX, int TileY)> DrawRectangle(
+		public static ISet<(int TileX, int TileY)> DrawRectangle(
 					TilePattern filter,
 					Rectangle area,
 					Rectangle? hollow,
-					ushort tileType,
-					int tileStyle=0,
-					sbyte direction=-1,
-					Func<int, int, bool> prePlace = null ) {
+					Func<int, int, TileDrawDefinition> prePlace ) {
 			var tiles = new HashSet<(int, int)>();
 			int maxX = area.X + area.Width;
 			int maxY = area.Y + area.Height;
@@ -48,10 +42,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					}
 
 					if( filter.Check(x, y) ) {
-						if( prePlace == null || prePlace( x, y ) ) {
-							if( TilePlacementHelpers.Place( x, y, tileType, tileStyle, direction ) ) {
-								tiles.Add( (x, y) );
-							}
+						if( prePlace( x, y )?.Place( x, y ) ?? false ) {
+							tiles.Add( (x, y) );
 						}
 					}
 				}
@@ -69,10 +61,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="tileY"></param>
 		/// <param name="minRadius"></param>
 		/// <param name="maxRadius"></param>
-		/// <param name="tileType"></param>
-		/// <param name="tileStyle"></param>
-		/// <param name="direction"></param>
-		/// <param name="prePlace">Return `true` to allow tile placing.</param>
+		/// <param name="prePlace">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
 		public static ISet<(int TileX, int TileY)> DrawCircle(
 					TilePattern filter,
@@ -80,10 +69,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					int tileY,
 					float minRadius,
 					float maxRadius,
-					ushort tileType,
-					int tileStyle = 0,
-					sbyte direction = -1,
-					Func<int, int, bool> prePlace = null ) {
+					Func<int, int, TileDrawDefinition> prePlace ) {
 			var filled = new HashSet<(int, int)>();
 			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
 
@@ -111,10 +97,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					}
 
 					if( filter.Check( x, y ) ) {
-						if( prePlace == null || prePlace( x, y ) ) {
-							if( TilePlacementHelpers.Place( x, y, tileType, tileStyle, direction ) ) {
-								filled.Add( (x, y) );
-							}
+						if( prePlace( x, y )?.Place(x, y) ?? false ) {
+							filled.Add( (x, y) );
 						}
 					}
 
@@ -157,10 +141,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="tileY"></param>
 		/// <param name="minSize"></param>
 		/// <param name="maxSize"></param>
-		/// <param name="tileType"></param>
-		/// <param name="tileStyle"></param>
-		/// <param name="direction"></param>
-		/// <param name="prePlace">Return `true` to allow tile placing.</param>
+		/// <param name="prePlace">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
 		public static ISet<(int TileX, int TileY)> DrawBlob(
 					TilePattern filter,
@@ -168,10 +149,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					int tileY,
 					float minSize,
 					float maxSize,
-					ushort tileType,
-					int tileStyle = 0,
-					sbyte direction = -1,
-					Func<int, int, bool> prePlace = null ) {
+					Func<int, int, TileDrawDefinition> prePlace ) {
 			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
 			var filled = new HashSet<(int, int)>();
 			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
@@ -222,10 +200,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 
 				foreach( (int x, int y) in unfilledCopy ) {
 					if( filter.Check( x, y ) ) {
-						if( prePlace == null || prePlace( x, y ) ) {
-							if( TilePlacementHelpers.Place( x, y, tileType, tileStyle, direction ) ) {
-								filled.Add( (x, y) );
-							}
+						if( prePlace( x, y )?.Place(x, y) ?? false ) {
+							filled.Add( (x, y) );
 						}
 					}
 
