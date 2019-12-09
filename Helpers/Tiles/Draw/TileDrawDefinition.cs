@@ -1,5 +1,7 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.Debug;
+using System;
 using Terraria;
+
 
 namespace HamstarHelpers.Helpers.Tiles.Draw {
 	/// <summary>
@@ -32,18 +34,18 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <summary>
 		/// Places the current tile.
 		/// </summary>
-		/// <param name="tileX"></param>
-		/// <param name="tileY"></param>
+		/// <param name="leftTileX"></param>
+		/// <param name="bottomTileY"></param>
 		/// <returns></returns>
-		public bool Place( int tileX, int tileY ) {
-			bool placed = TilePlacementHelpers.Place( tileX, tileY, this.TileType, this.TileStyle, this.Direction, true );
+		public bool Place( int leftTileX, int bottomTileY ) {
+			bool placed = TilePlacementHelpers.PlaceObject( leftTileX, bottomTileY, this.TileType, this.TileStyle, this.Direction, false );
 			if( !placed ) {
-				if( !WorldGen.PlaceTile(tileX, tileY, this.TileType, false, true, -1, this.TileStyle) ) {
+				if( !WorldGen.PlaceTile(leftTileX, bottomTileY, this.TileType, false, true, -1, this.TileStyle) ) {
 					return false;
 				}
 			}
 
-			Tile tile = Main.tile[tileX, tileY];
+			Tile tile = Main.tile[leftTileX, bottomTileY];
 
 			tile.wall = this.WallType;
 

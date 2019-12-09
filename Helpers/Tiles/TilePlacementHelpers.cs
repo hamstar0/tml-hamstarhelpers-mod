@@ -9,8 +9,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TilePlacementHelpers {
 		/// <summary>
-		/// Convenience binding to place the given tile intuitively positioned. Places from the bottom. Uses vanilla's
-		/// placement method.
+		/// Convenience binding to place a given tile object from its corner. Places from the bottom. Uses vanilla's
+		/// object placement method.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="bottomY"></param>
@@ -19,12 +19,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="direction"></param>
 		/// <param name="forced">Attempts to ignore anchor checks and place the tile regardless.</param>
 		/// <returns></returns>
-		public static bool Place( int leftX, int bottomY, ushort type, int style = 0, sbyte direction = -1, bool forced = false ) {
+		public static bool PlaceObject( int leftX, int bottomY, ushort type, int style = 0, sbyte direction = -1, bool forced = false ) {
 			var tileObjData = TileObjectData.GetTileData( type, style );
 			if( tileObjData == null ) {
 				return false;
 			}
-
+			
 			int x = leftX + tileObjData.Origin.X;
 			int y = bottomY + (tileObjData.Height - 1) - tileObjData.Origin.Y;// + tileObjData.Height - 1;
 			
@@ -49,7 +49,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 
 
 		/// <summary>
-		/// Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom. Not all
+		/// Convenience binding to attempt to place the given tile from its corner. Places from the bottom. Not all
 		/// tile dimensions supported.
 		/// </summary>
 		/// <param name="leftX"></param>
@@ -134,7 +134,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		////////////////
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -147,7 +147,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -168,7 +168,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		///////////////
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -179,7 +179,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -190,7 +190,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -201,7 +201,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -212,7 +212,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -223,7 +223,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -238,7 +238,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -249,7 +249,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -261,7 +261,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -272,7 +272,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -287,7 +287,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		////////////////
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -298,7 +298,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -309,7 +309,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -323,7 +323,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		////////////////
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -334,7 +334,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -345,7 +345,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -356,7 +356,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>
@@ -367,7 +367,7 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 		}
 
 		/// <summary>
-		/// Convenience binding for placing the given tile intuitively positioned.
+		/// Convenience binding for placing the given tile from its corner.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="topY"></param>

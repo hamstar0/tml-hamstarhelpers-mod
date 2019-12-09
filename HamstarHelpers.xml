@@ -7354,8 +7354,8 @@
             <summary>
             Places the current tile.
             </summary>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
+            <param name="leftTileX"></param>
+            <param name="bottomTileY"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.Draw.TileDrawFillHelpers">
@@ -7804,10 +7804,10 @@
             Assorted static "helper" functions pertaining to tile placement (convenience bindings for WorldGen).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte,System.Boolean)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.PlaceObject(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte,System.Boolean)">
             <summary>
-            Convenience binding to place the given tile intuitively positioned. Places from the bottom. Uses vanilla's
-            placement method.
+            Convenience binding to place a given tile object from its corner. Places from the bottom. Uses vanilla's
+            object placement method.
             </summary>
             <param name="leftX"></param>
             <param name="bottomY"></param>
@@ -7819,7 +7819,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.TryPrecisePlace(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
             <summary>
-            Convenience binding to attempt to place the given tile intuitively positioned. Places from the bottom. Not all
+            Convenience binding to attempt to place the given tile from its corner. Places from the bottom. Not all
             tile dimensions supported.
             </summary>
             <param name="leftX"></param>
@@ -7831,7 +7831,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place1xX(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7840,7 +7840,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2xX(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7849,7 +7849,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place1x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7858,7 +7858,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x1(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7867,7 +7867,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7876,7 +7876,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x1(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7885,7 +7885,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x2(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7894,7 +7894,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x3(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7903,7 +7903,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x4(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7912,7 +7912,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place4x2(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7922,7 +7922,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place5x4(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7931,7 +7931,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place6x3(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7941,7 +7941,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place1x2Top(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7950,7 +7950,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x2Horizontal(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7959,7 +7959,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x2Style(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7968,7 +7968,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place2x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7977,7 +7977,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x2Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7986,7 +7986,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place3x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -7995,7 +7995,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place4x3Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
@@ -8004,7 +8004,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.Place6x4Wall(System.Int32,System.Int32,System.UInt16,System.Int32)">
             <summary>
-            Convenience binding for placing the given tile intuitively positioned.
+            Convenience binding for placing the given tile from its corner.
             </summary>
             <param name="leftX"></param>
             <param name="topY"></param>
