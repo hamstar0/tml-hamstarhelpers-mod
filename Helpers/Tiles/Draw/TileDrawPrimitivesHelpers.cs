@@ -1,0 +1,265 @@
+﻿using HamstarHelpers.Classes.Tiles.TilePattern;
+using HamstarHelpers.Helpers.TModLoader;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.Utilities;
+
+
+namespace HamstarHelpers.Helpers.Tiles.Draw {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to 'drawing' primitive tile structures into the world.
+	/// </summary>
+	public class TileDrawPrimitivesHelpers {
+		/// <summary>
+		/// Draws a rectangle of a given tile type (where the filter allows).
+		/// </summary>
+		/// <param name="filter"></param>
+		/// <param name="area"></param>
+		/// <param name="hollow"></param>
+		/// <param name="tileType"></param>
+		/// <param name="tileStyle"></param>
+		/// <param name="direction"></param>
+		/// <param name="prePlace">Return `true` to allow tile placing.</param>
+		/// <returns></returns>
+		public ISet<(int TileX, int TileY)> DrawRectangle(
+					TilePattern filter,
+					Rectangle area,
+					Rectangle? hollow,
+					ushort tileType,
+					int tileStyle=0,
+					sbyte direction=-1,
+					Func<int, int, bool> prePlace = null ) {
+			var tiles = new HashSet<(int, int)>();
+			int maxX = area.X + area.Width;
+			int maxY = area.Y + area.Height;
+			Rectangle myHollow = hollow.HasValue ? hollow.Value : new Rectangle();
+
+			for( int x=area.X; x<maxX; x++ ) {
+				for( int y=area.Y; y<maxY; y++ ) {
+					if( hollow.HasValue ) {
+						if( x >= myHollow.X && x < myHollow.X + myHollow.Width ) {
+							if( y >= myHollow.Y && y < myHollow.Y + myHollow.Height ) {
+								continue;
+							}
+						}
+					}
+
+					if( filter.Check(x, y) ) {
+						if( prePlace == null || prePlace( x, y ) ) {
+							if( TilePlacementHelpers.Place( x, y, tileType, tileStyle, direction ) ) {
+								tiles.Add( (x, y) );
+							}
+						}
+					}
+				}
+			}
+
+			return tiles;
+		}
+
+
+		/// <summary>
+		/// Draws a circle of a given tile type (where the filter allows).
+		/// </summary>
+		/// <param name="filter"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="minRadius"></param>
+		/// <param name="maxRadius"></param>
+		/// <param name="tileType"></param>
+		/// <param name="tileStyle"></param>
+		/// <param name="direction"></param>
+		/// <param name="prePlace">Return `true` to allow tile placing.</param>
+		/// <returns></returns>
+		public static ISet<(int TileX, int TileY)> DrawCircle(
+					TilePattern filter,
+					int tileX,
+					int tileY,
+					float minRadius,
+					float maxRadius,
+					ushort tileType,
+					int tileStyle = 0,
+					sbyte direction = -1,
+					Func<int, int, bool> prePlace = null ) {
+			var filled = new HashSet<(int, int)>();
+			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
+
+			//
+
+			float minRadSqr = minRadius * minRadius;
+			float maxRadSqr = maxRadius * maxRadius;
+			bool checkRadius( int x, int y ) {
+				int diffX = x - tileX;
+				int diffY = y - tileY;
+				int distSqr = (diffX * diffX) + (diffY * diffY);
+
+				return distSqr >= minRadSqr && distSqr < maxRadSqr;
+			}
+
+			//
+
+			do {
+				var unfilledCopy = unfilled.ToArray();
+				unfilled.Clear();
+
+				foreach( (int x, int y) in unfilledCopy ) {
+					if( !checkRadius(x, y) ) {
+						continue;
+					}
+
+					if( filter.Check( x, y ) ) {
+						if( prePlace == null || prePlace( x, y ) ) {
+							if( TilePlacementHelpers.Place( x, y, tileType, tileStyle, direction ) ) {
+								filled.Add( (x, y) );
+							}
+						}
+					}
+
+					if( !filled.Contains( (x, y - 1) ) ) {
+						unfilled.Add( (x, y - 1) );
+					}
+					if( !filled.Contains( (x - 1, y) ) ) {
+						unfilled.Add( (x - 1, y) );
+					}
+					if( !filled.Contains( (x + 1, y) ) ) {
+						unfilled.Add( (x + 1, y) );
+					}
+					if( !filled.Contains( (x, y + 1) ) ) {
+						unfilled.Add( (x, y + 1) );
+					}
+					if( !filled.Contains( (x - 1, y - 1) ) ) {
+						unfilled.Add( (x - 1, y - 1) );
+					}
+					if( !filled.Contains( (x + 1, y - 1) ) ) {
+						unfilled.Add( (x + 1, y - 1) );
+					}
+					if( !filled.Contains( (x - 1, y + 1) ) ) {
+						unfilled.Add( (x - 1, y + 1) );
+					}
+					if( !filled.Contains( (x + 1, y + 1) ) ) {
+						unfilled.Add( (x + 1, y + 1) );
+					}
+				}
+			} while( unfilled.Count > 0 );
+
+			return filled;
+		}
+
+
+		/// <summary>
+		/// Draws a blob of a given tile type (where the filter allows).
+		/// </summary>
+		/// <param name="filter"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="minSize"></param>
+		/// <param name="maxSize"></param>
+		/// <param name="tileType"></param>
+		/// <param name="tileStyle"></param>
+		/// <param name="direction"></param>
+		/// <param name="prePlace">Return `true` to allow tile placing.</param>
+		/// <returns></returns>
+		public static ISet<(int TileX, int TileY)> DrawBlob(
+					TilePattern filter,
+					int tileX,
+					int tileY,
+					float minSize,
+					float maxSize,
+					ushort tileType,
+					int tileStyle = 0,
+					sbyte direction = -1,
+					Func<int, int, bool> prePlace = null ) {
+			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
+			var filled = new HashSet<(int, int)>();
+			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
+
+			float minSizeSqr = minSize * minSize;
+			float maxSizeSqr = maxSize * maxSize;
+			float sizeDiffSqr = maxSizeSqr - minSizeSqr;
+			
+			//
+
+			bool checkRand( int x, int y ) {
+				int diffX = x - tileX;
+				int diffY = y - tileY;
+				int distSqr = ( diffX * diffX ) + ( diffY * diffY );
+
+				if( distSqr < minSizeSqr ) {
+					return true;
+				}
+
+				float randPercent = rand.NextFloat();
+				float randSizePercent = randPercent * sizeDiffSqr;
+
+				return randSizePercent > distSqr;
+			}
+
+			//
+
+			bool processAt( int x, int y ) {
+				if( filled.Contains( (x, y) ) ) {
+					return false;
+				}
+
+				bool check = checkRand( x, y );
+				if( check ) {
+					unfilled.Add( (x, y) );
+				}
+
+				return check;
+			}
+
+			//
+
+			bool topAdd = false, botAdd = false, leftAdd = false, rightAdd = false;
+
+			do {
+				var unfilledCopy = unfilled.ToArray();
+				unfilled.Clear();
+
+				foreach( (int x, int y) in unfilledCopy ) {
+					if( filter.Check( x, y ) ) {
+						if( prePlace == null || prePlace( x, y ) ) {
+							if( TilePlacementHelpers.Place( x, y, tileType, tileStyle, direction ) ) {
+								filled.Add( (x, y) );
+							}
+						}
+					}
+
+					topAdd = processAt( x, y - 1 );
+					leftAdd = processAt( x - 1, y );
+					rightAdd = processAt( x + 1, y );
+					botAdd = processAt( x, y + 1 );
+
+					/*if( smooth ) {
+						if( !filled.Contains( (x - 1, y - 1) ) ) {
+							if( topAdd && leftAdd ) {
+								unfilled.Add( (x - 1, y - 1) );
+							}
+						}
+						if( !filled.Contains( (x + 1, y - 1) ) ) {
+							if( topAdd && rightAdd ) {
+								unfilled.Add( (x + 1, y - 1) );
+							}
+						}
+						if( !filled.Contains( (x - 1, y + 1) ) ) {
+							if( botAdd && leftAdd ) {
+								unfilled.Add( (x - 1, y + 1) );
+							}
+						}
+						if( !filled.Contains( (x + 1, y + 1) ) ) {
+							if( botAdd && rightAdd ) {
+								unfilled.Add( (x + 1, y + 1) );
+							}
+						}
+					}*/
+				}
+			} while( unfilled.Count > 0 );
+
+			return filled;
+		}
+	}
+}
