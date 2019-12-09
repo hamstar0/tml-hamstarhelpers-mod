@@ -36,7 +36,11 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 } );*/
 			TileObject tileObj;
 			if( TileObject.CanPlace(x, y, type, style, direction, out tileObj) || forced ) {
-				return TileObject.Place( tileObj );
+				bool isPlaced = TileObject.Place( tileObj );
+				if( isPlaced ) {
+					WorldGen.SquareTileFrame( x, y );
+				}
+				return isPlaced;
 			}
 			return false;
 			//Main.player[255].direction = direction;

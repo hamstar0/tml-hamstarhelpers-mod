@@ -14,25 +14,25 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 	/// </summary>
 	public class TileDrawPrimitivesHelpers {
 		/// <summary>
-		/// Draws a rectangle of a given tile type (where the filter allows).
+		/// Draws a rectangle (from top to bottom) of a given tile type (where the filter allows).
 		/// </summary>
 		/// <param name="filter"></param>
 		/// <param name="area"></param>
 		/// <param name="hollow"></param>
-		/// <param name="prePlace">Return `null` to skip tile placing.</param>
+		/// <param name="place">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
 		public static ISet<(int TileX, int TileY)> DrawRectangle(
 					TilePattern filter,
 					Rectangle area,
 					Rectangle? hollow,
-					Func<int, int, TileDrawDefinition> prePlace ) {
+					Func<int, int, TileDrawDefinition> place ) {
 			var tiles = new HashSet<(int, int)>();
 			int maxX = area.X + area.Width;
 			int maxY = area.Y + area.Height;
 			Rectangle myHollow = hollow.HasValue ? hollow.Value : new Rectangle();
 
-			for( int x=area.X; x<maxX; x++ ) {
-				for( int y=area.Y; y<maxY; y++ ) {
+			for( int y = area.Y; y < maxY; y++ ) {
+				for( int x=area.X; x<maxX; x++ ) {
 					if( hollow.HasValue ) {
 						if( x >= myHollow.X && x < myHollow.X + myHollow.Width ) {
 							if( y >= myHollow.Y && y < myHollow.Y + myHollow.Height ) {
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					}
 
 					if( filter.Check(x, y) ) {
-						if( prePlace( x, y )?.Place(x, y) ?? false ) {
+						if( place( x, y )?.Place(x, y) ?? false ) {
 							tiles.Add( (x, y) );
 						}
 					}
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="tileY"></param>
 		/// <param name="minRadius"></param>
 		/// <param name="maxRadius"></param>
-		/// <param name="prePlace">Return `null` to skip tile placing.</param>
+		/// <param name="place">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
 		public static ISet<(int TileX, int TileY)> DrawCircle(
 					TilePattern filter,
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					int tileY,
 					float minRadius,
 					float maxRadius,
-					Func<int, int, TileDrawDefinition> prePlace ) {
+					Func<int, int, TileDrawDefinition> place ) {
 			var filled = new HashSet<(int, int)>();
 			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
 
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					}
 
 					if( filter.Check( x, y ) ) {
-						if( prePlace( x, y )?.Place(x, y) ?? false ) {
+						if( place( x, y )?.Place(x, y) ?? false ) {
 							filled.Add( (x, y) );
 						}
 					}
@@ -141,7 +141,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="tileY"></param>
 		/// <param name="minSize"></param>
 		/// <param name="maxSize"></param>
-		/// <param name="prePlace">Return `null` to skip tile placing.</param>
+		/// <param name="place">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
 		public static ISet<(int TileX, int TileY)> DrawBlob(
 					TilePattern filter,
@@ -149,7 +149,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					int tileY,
 					float minSize,
 					float maxSize,
-					Func<int, int, TileDrawDefinition> prePlace ) {
+					Func<int, int, TileDrawDefinition> place ) {
 			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
 			var filled = new HashSet<(int, int)>();
 			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
@@ -200,7 +200,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 
 				foreach( (int x, int y) in unfilledCopy ) {
 					if( filter.Check( x, y ) ) {
-						if( prePlace( x, y )?.Place(x, y) ?? false ) {
+						if( place( x, y )?.Place(x, y) ?? false ) {
 							filled.Add( (x, y) );
 						}
 					}
