@@ -1,12 +1,9 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Terraria;
 
@@ -20,6 +17,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		private static object ComputeLock = new object();
 		private static object ReQueueLock = new object();
 		private static object MatchersLock = new object();
+		private static object GroupsLock = new object();
 
 
 
@@ -69,45 +67,14 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			if( ModHelpersConfig.Instance.DebugModeEntityGroupDisplay ) {
 				foreach( (string groupName, IReadOnlySet<int> entIds) in groups ) {
-					switch( groupName ) {
-					case "Any Item":
-					case "Any NPC":
-					case "Any Projectile":
-						break;
-					default:
-						IList<string> entNames = entIds.SafeSelect(
-							itemType => ItemAttributeHelpers.GetQualifiedName( itemType )
-						).ToList();
-
-						var entNameChunks = new List<string>();
-						var chunk = new List<string>();
-
-						for( int i=0; i<entNames.Count; i++ ) {
-							chunk.Add( entNames[i] );
-							if( chunk.Count >= 10 ) {
-								entNameChunks.Add( string.Join(", ", chunk) );
-								chunk.Clear();
-							}
-						}
-						if( chunk.Count > 0 ) {
-							entNameChunks.Add( string.Join( ", ", chunk ) );
-						}
-
-						ModHelpersMod.Instance.Logger.Info( "\"" + groupName + "\" (" + typeof( T ).Name + ") - "
-							+ ( entIds.Count > 0 ? "[\n  " : "[" )
-							+ string.Join( ",\n  ", entNameChunks )
-							+ ( entIds.Count > 0 ? "\n]" : "]" )
-						);
-						break;
-					}
+					EntityGroups.LogGroup( typeof(T), groupName, entIds );
 				}
 			}
-
-			//
 
 			//LogHelpers.Log( "ent:" + typeof( T ).Name + ", OK " + groups.Count );
 			return true;
 		}
+
 
 		private int GetComputedGroupsThreaded<T>(
 					IList<EntityGroupMatcherDefinition<T>> matchers,
@@ -118,6 +85,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			var reQueuedCounts = new Dictionary<EntityGroupMatcherDefinition<T>, int>();
 			IList<T> entityPool = this.GetPool<T>();
 
+			bool isFailed = false;
 			int failedAt = -1;
 			int i = 0, count;
 
@@ -128,14 +96,16 @@ namespace HamstarHelpers.Services.EntityGroups {
 			do {
 				//for( i = 0; i < matchers.Count; i++ ) {
 				Parallel.For( i, count, ( j ) => {
-					if( failedAt != -1 ) { return; }
+					lock( EntityGroups.GroupsLock ) {
+						if( failedAt != -1 ) { return; }
+					}
 
 					EntityGroupMatcherDefinition<T> matcher;
 					lock( EntityGroups.MatchersLock ) {
 						matcher = matchers[j];
 					}
 
-					try {
+					lock( EntityGroups.GroupsLock ) {
 						bool success = this.GetComputedGroup(
 							matcher,
 							matchers,
@@ -148,9 +118,6 @@ namespace HamstarHelpers.Services.EntityGroups {
 						failedAt = success
 							? -1
 							: (failedAt == -1 ? j : failedAt);
-					} catch( Exception e ) {
-						LogHelpers.Warn( "Failed (at #" + j + "): " + e.ToString() );
-						failedAt = j;
 					}
 				} );
 
@@ -159,7 +126,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 					i = count;
 					count = matchers.Count;
 				}
-			} while( failedAt == -1 && i < matchers.Count );
+
+				lock( EntityGroups.GroupsLock ) {
+					isFailed = failedAt != -1;
+				}
+			} while( !isFailed && i < matchers.Count );
 
 			groupsPerEnt = myGroupsPerEnt;
 			return failedAt;

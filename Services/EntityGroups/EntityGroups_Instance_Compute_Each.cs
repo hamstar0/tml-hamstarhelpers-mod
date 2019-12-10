@@ -20,10 +20,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 					IList<T> entityPool,
 					IDictionary<EntityGroupMatcherDefinition<T>, int> reQueuedCounts,
 					IDictionary<string, IReadOnlySet<int>> groups,
-					IDictionary<int, ISet<string>> groupsPerEnt,
-					out bool fail )
+					IDictionary<int, ISet<string>> groupsPerEnt )
 					where T : Entity {
-			fail = false;
 			ISet<int> grp;
 
 			if( !this.ComputeGroupMatch(entityPool, matcher, matchers, out grp ) ) {
@@ -36,11 +34,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 					if( reQueuedCounts[matcher] > 100 ) {
 						LogHelpers.Warn( "Could not find all dependencies for " + matcher.GroupName );
-						fail = true;
+						return false;
 					}
 				}
 
-				return false;
+				return true;
 			}
 
 			lock( EntityGroups.MyLock ) {
@@ -90,12 +88,12 @@ namespace HamstarHelpers.Services.EntityGroups {
 					LogHelpers.Alert( "Compute fail for '"+matcher.GroupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
 				}
 			}
-lock( EntityGroups.MatchersLock ) {
+/*lock( EntityGroups.MatchersLock ) {
 LogHelpers.Log( "ComputeGroupMatch "+typeof(T).Name+" (pool="+entityPool.GetType().GenericTypeArguments?.First().Name+" "+entityPool.Count+")"
 	+",\n  matcher: "+matcher?.GroupName+", matchers type "+matchers.First()?.GetType().GenericTypeArguments?.First().Name
 	+",\n  entityIdsOfGroup ("+entityIdsOfGroup?.Count+"): "+(entityIdsOfGroup != null ? string.Join(", ", entityIdsOfGroup) : "")
 );
-}
+}*/
 			
 			return true;
 		}
