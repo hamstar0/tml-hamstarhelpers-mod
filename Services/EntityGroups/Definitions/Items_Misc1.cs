@@ -49,7 +49,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				defs.Add( new EntityGroupMatcherDefinition<Item>(
 					"Any " + ItemRarityAttributeHelpers.RarityColorText[i] + " Tier", null,
 					new ItemGroupMatcher( ( item, grps ) => {
-							return item.rare == tier;
+						return item.rare == tier;
 					} )
 				) );
 			}

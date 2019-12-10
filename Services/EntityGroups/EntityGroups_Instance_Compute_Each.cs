@@ -87,6 +87,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 					LogHelpers.Alert( "Compute fail for '"+matcher.GroupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
 				}
 			}
+
+			if( entityIdsOfGroup.Count == 0 ) {
+				LogHelpers.Info( "!Group "+matcher.GroupName+" has no entries." );
+			}
 /*lock( EntityGroups.MatchersLock ) {
 LogHelpers.Log( "ComputeGroupMatch "+typeof(T).Name+" (pool="+entityPool.GetType().GenericTypeArguments?.First().Name+" "+entityPool.Count+")"
 	+",\n  matcher: "+matcher?.GroupName+", matchers type "+matchers.First()?.GetType().GenericTypeArguments?.First().Name

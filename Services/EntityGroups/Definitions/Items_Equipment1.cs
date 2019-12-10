@@ -9,25 +9,25 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
 		/// <summary></summary>
-		public static readonly string AnyWeapon = "Any Weapon";
+		public const string AnyWeapon = "Any Weapon";
 		/// <summary></summary>
-		public static readonly string AnyTool = "Any Tool";
+		public const string AnyTool = "Any Tool";
 		/// <summary></summary>
-		public static readonly string AnyVanillaExplosive = "Any Vanilla Explosive";
+		public const string AnyVanillaExplosive = "Any Vanilla Explosive";
 		/// <summary></summary>
-		public static readonly string AnyAccessory = "Any Accessory";
+		public const string AnyAccessory = "Any Accessory";
 		/// <summary></summary>
-		public static readonly string AnyArmor = "Any Armor";
+		public const string AnyArmor = "Any Armor";
 		/// <summary></summary>
-		public static readonly string AnyGarment = "Any Garment";
+		public const string AnyGarment = "Any Garment";
 		/// <summary></summary>
-		public static readonly string AnyPotion = "Any Potion";
+		public const string AnyPotion = "Any Potion";
 		/// <summary></summary>
-		public static readonly string AnyVanity = "Any Vanity";
+		public const string AnyVanity = "Any Vanity";
 		/// <summary></summary>
-		public static readonly string AnyVanityAccessory = "Any Vanity Accessory";
+		public const string AnyVanityAccessory = "Any Vanity Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanityGarment = "Any Vanity Garment";
+		public const string AnyVanityGarment = "Any Vanity Garment";
 	}
 
 

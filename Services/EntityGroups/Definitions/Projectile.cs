@@ -9,7 +9,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ProjectileGroupIDs {
 		/// <summary></summary>
-		public static readonly string AnyExplosive = "Any Explosive";
+		public const string AnyExplosive = "Any Explosive";
 	}
 
 

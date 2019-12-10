@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.Debug;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -7,9 +8,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
 		/// <summary></summary>
-		public static readonly string AnyOreEquipment = "Any Ore Equipment";
+		public const string AnyOreEquipment = "Any Ore Equipment";
 		/// <summary></summary>
-		public static readonly string AnyNonOreCraftedEquipment = "Any Non Ore Crafted Equipment";
+		public const string AnyNonOreCraftedEquipment = "Any Non Ore Crafted Equipment";
 	}
 
 
@@ -63,10 +64,12 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					ItemGroupIDs.AnyJungleEquipment,
 					ItemGroupIDs.AnyBeeEquipment,
 					ItemGroupIDs.AnyBoneEquipment,
+					ItemGroupIDs.AnyMeteorEquipment,
 					ItemGroupIDs.AnyCelestialEquipment
 				},
 				new ItemGroupMatcher( ( item, grps ) => {
-					return grps[ItemGroupIDs.AnyWoodEquipment].Contains( item.type ) ||
+					return grps[ItemGroupIDs.AnyCactusEquipment].Contains( item.type ) ||
+						grps[ItemGroupIDs.AnyWoodEquipment].Contains( item.type ) ||
 						grps[ItemGroupIDs.AnyJungleEquipment].Contains( item.type ) ||
 						grps[ItemGroupIDs.AnyBeeEquipment].Contains( item.type ) ||
 						grps[ItemGroupIDs.AnyBoneEquipment].Contains( item.type ) ||

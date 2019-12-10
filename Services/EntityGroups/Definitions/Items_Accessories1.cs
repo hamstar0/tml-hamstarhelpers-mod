@@ -8,25 +8,25 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
 		/// <summary></summary>
-		public static readonly string AnyWingAccessory = "Any Wing Accessory";
+		public const string AnyWingAccessory = "Any Wing Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaMovementAccessory = "Any Vanilla Movement Accessory";
+		public const string AnyVanillaMovementAccessory = "Any Vanilla Movement Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaCombatAccessory = "Any Vanilla Combat Accessory";
+		public const string AnyVanillaCombatAccessory = "Any Vanilla Combat Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaYoyoAccessory = "Any Vanilla Yoyo Accessory";
+		public const string AnyVanillaYoyoAccessory = "Any Vanilla Yoyo Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaHealthOrManaAccessory = "Any Vanilla Health Or Mana Accessory";
+		public const string AnyVanillaHealthOrManaAccessory = "Any Vanilla Health Or Mana Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaConstructionAccessory = "Any Vanilla Construction Accessory";
+		public const string AnyVanillaConstructionAccessory = "Any Vanilla Construction Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaInformationAccessory = "Any Vanilla Information Accessory";
+		public const string AnyVanillaInformationAccessory = "Any Vanilla Information Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaFishingAccessory = "Any Vanilla Fishing Accessory";
+		public const string AnyVanillaFishingAccessory = "Any Vanilla Fishing Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaMusicBoxAccessory = "Any Vanilla Music Box Accessory";
+		public const string AnyVanillaMusicBoxAccessory = "Any Vanilla Music Box Accessory";
 		/// <summary></summary>
-		public static readonly string AnyVanillaExpertAccessory = "Any Vanilla Expert Accessory";
+		public const string AnyVanillaExpertAccessory = "Any Vanilla Expert Accessory";
 	}
 
 

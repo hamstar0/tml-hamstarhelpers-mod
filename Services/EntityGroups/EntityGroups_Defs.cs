@@ -37,6 +37,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 			//EntityGroupDefs.DefineItemWeaponGroups4( matchers );
 			//EntityGroupDefs.DefineItemPlaceablesGroups4( matchers );
 			EntityGroupDefs.DefineItemMiscGroups4( matchers );
+
+			EntityGroupDefs.DefineItemEquipmentGroups5( matchers );
 			
 			return matchers;
 		}

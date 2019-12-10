@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Debug {
@@ -95,6 +96,23 @@ namespace HamstarHelpers.Helpers.Debug {
 
 
 		////////////////
+
+		/// <summary>
+		/// Outputs a plain log message without added fluff (wraps `Mod.Logger.Info(...)`).
+		/// </summary>
+		/// <param name="msg"></param>
+		public static void Info( string msg = "" ) {
+			ModHelpersMod.Instance.Logger.Info( msg );
+		}
+
+		/// <summary>
+		/// Outputs a plain log message without added fluff (wraps `Mod.Logger.Info(...)`).
+		/// </summary>
+		/// <param name="mod"></param>
+		/// <param name="msg"></param>
+		public static void Info( Mod mod, string msg = "" ) {
+			mod.Logger.Info( msg );
+		}
 
 		/// <summary>
 		/// Outputs a plain log message.

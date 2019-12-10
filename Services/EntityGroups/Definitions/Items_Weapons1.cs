@@ -174,8 +174,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						return true;
 					}
 
-					var has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ {ItemID.SpellTome, 1} } );
-					if( has ) { return true; }
+					bool isCraftedWith = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ {ItemID.SpellTome, 1} } );
+					if( isCraftedWith ) { return true; }
 
 					string name = ItemAttributeHelpers.GetQualifiedName( item );
 					return name.Contains( "Book" ) ||

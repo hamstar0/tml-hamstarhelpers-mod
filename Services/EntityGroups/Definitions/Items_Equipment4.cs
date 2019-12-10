@@ -9,31 +9,31 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
 		/// <summary></summary>
-		public static readonly string AnyWoodEquipment = "Any Wood Equipment";
+		public const string AnyWoodEquipment = "Any Wood Equipment";
 		/// <summary></summary>
-		public static readonly string AnyCopperOrTinEquipment = "Any Copper Or Tin Equipment";
+		public const string AnyCopperOrTinEquipment = "Any Copper Or Tin Equipment";
 		/// <summary></summary>
-		public static readonly string AnyIronOrLeadEquipment = "Any Iron Or Lead Equipment";
+		public const string AnyIronOrLeadEquipment = "Any Iron Or Lead Equipment";
 		/// <summary></summary>
-		public static readonly string AnySilverOrTungstenEquipment = "Any Silver Or Tungsten Equipment";
+		public const string AnySilverOrTungstenEquipment = "Any Silver Or Tungsten Equipment";
 		/// <summary></summary>
-		public static readonly string AnyGoldOrPlatinumEquipment = "Any Gold Or Platinum Equipment";
+		public const string AnyGoldOrPlatinumEquipment = "Any Gold Or Platinum Equipment";
 		/// <summary></summary>
-		public static readonly string AnyDemoniteOrCrimtaneEquipment = "Any Demonite Or Crimtane Equipment";
+		public const string AnyDemoniteOrCrimtaneEquipment = "Any Demonite Or Crimtane Equipment";
 		/// <summary></summary>
-		public static readonly string AnyMeteorOrJungleOrBoneOrBeeEquipment = "Any Meteor Or Jungle Or Bone Or Bee Equipment";
+		public const string AnyMeteorOrJungleOrBoneOrBeeEquipment = "Any Meteor Or Jungle Or Bone Or Bee Equipment";
 		/// <summary></summary>
-		public static readonly string AnyCobaltOrPalladiumEquipment = "Any Cobalt Or Palladium Equipment";
+		public const string AnyCobaltOrPalladiumEquipment = "Any Cobalt Or Palladium Equipment";
 		/// <summary></summary>
-		public static readonly string AnyMythrilOrOrichalcumEquipment = "Any Mythril Or Orichalcum Equipment";
+		public const string AnyMythrilOrOrichalcumEquipment = "Any Mythril Or Orichalcum Equipment";
 		/// <summary></summary>
-		public static readonly string AnyAdamantiteOrTitaniumEquipment = "Any Adamantite Or Titanium Equipment";
+		public const string AnyAdamantiteOrTitaniumEquipment = "Any Adamantite Or Titanium Equipment";
 		/// <summary></summary>
-		public static readonly string AnyFrostCoreOrForbiddenEquipment = "Any Frost Core Or Forbidden Equipment";
+		public const string AnyFrostCoreOrForbiddenEquipment = "Any Frost Core Or Forbidden Equipment";
 		/// <summary></summary>
-		public static readonly string AnyChlorophyteOrShroomiteOrSpectreEquipment = "Any Chlorophyte Or Shroomite Or Spectre Equipment";
+		public const string AnyChlorophyteOrShroomiteOrSpectreEquipment = "Any Chlorophyte Or Shroomite Or Spectre Equipment";
 		/// <summary></summary>
-		public static readonly string AnyCelestialEquipment = "Any Celestial Equipment";
+		public const string AnyCelestialEquipment = "Any Celestial Equipment";
 	}
 	
 
@@ -48,8 +48,10 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					IDictionary<int, int> anyEquipGrp = grps[ItemGroupIDs.AnyEquipment].ToDictionary( id=>id, id=>1 );
 					IDictionary<int, int> anyWoodGrp = grps["Any Wood"].ToDictionary( id => id, id=>1 );
 
-					bool hasWood = RecipeHelpers.ItemHasIngredients( item.type, anyWoodGrp );
-					if( !anyEquipGrp.ContainsKey(item.type) || !hasWood ) { return false; }
+					bool isCraftedWithWood = RecipeHelpers.ItemHasIngredients( item.type, anyWoodGrp );
+
+
+					if( !anyEquipGrp.ContainsKey(item.type) || !isCraftedWithWood ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
 				} )
 			) );
@@ -57,24 +59,24 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				"Any Copper Or Tin Equipment",
 				new string[] { "Any Copper Equipment", "Any Tin Equipment" },
 				new ItemGroupMatcher( ( item, grps ) => {
-					return grps["Any Copper Equipment"].Contains( item.type ) ||
-						grps["Any Tin Equipment"].Contains( item.type );
+					return	grps["Any Copper Equipment"].Contains( item.type ) ||
+							grps["Any Tin Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Iron Or Lead Equipment",
 				new string[] { "Any Iron Equipment", "Any Lead Equipment" },
 				new ItemGroupMatcher( ( item, grps ) => {
-					return grps["Any Iron Equipment"].Contains( item.type ) ||
-						grps["Any Lead Equipment"].Contains( item.type );
+					return	grps["Any Iron Equipment"].Contains( item.type ) ||
+							grps["Any Lead Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Silver Or Tungsten Equipment",
 				new string[] { "Any Silver Equipment", "Any Tungsten Equipment" },
 				new ItemGroupMatcher( ( item, grps ) => {
-					return grps["Any Silver Equipment"].Contains( item.type ) ||
-						grps["Any Tungsten Equipment"].Contains( item.type );
+					return	grps["Any Silver Equipment"].Contains( item.type ) ||
+							grps["Any Tungsten Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(

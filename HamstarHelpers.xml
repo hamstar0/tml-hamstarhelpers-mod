@@ -3764,6 +3764,19 @@
             No output if -1 is set.</param>
             <returns>Calling context, global info, and full (chained together) output.</returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.Info(System.String)">
+            <summary>
+            Outputs a plain log message without added fluff (wraps `Mod.Logger.Info(...)`).
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.Info(Terraria.ModLoader.Mod,System.String)">
+            <summary>
+            Outputs a plain log message without added fluff (wraps `Mod.Logger.Info(...)`).
+            </summary>
+            <param name="mod"></param>
+            <param name="msg"></param>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Debug.LogHelpers.Log(System.String)">
             <summary>
             Outputs a plain log message.

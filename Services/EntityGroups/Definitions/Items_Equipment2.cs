@@ -7,9 +7,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
 		/// <summary></summary>
-		public static readonly string AnyEquipment = "Any Equipment";
+		public const string AnyEquipment = "Any Equipment";
 		/// <summary></summary>
-		public static readonly string AnyHeavyArmor = "Any Heavy Armor";
+		public const string AnyHeavyArmor = "Any Heavy Armor";
 	}
 
 
