@@ -86,12 +86,14 @@ namespace HamstarHelpers {
 		[Label( "Debug Mode - Helpers Info" )]
 		[Tooltip( "Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only." )]
 		public bool DebugModeHelpersInfo { get; set; } = false;
+
 		/// <summary>
 		/// Outputs (to log) network message information (sends and receives of PacketProtocol).
 		/// </summary>
 		[Label( "Debug Mode - Net Info" )]
 		[Tooltip( "Outputs (to log) network message information (sends and receives of PacketProtocol).")]
 		public bool DebugModeNetInfo { get; set; } = false;
+
 		/// <summary>
 		/// Catches and logs unhandled exceptions (before crash).
 		/// </summary>
@@ -99,30 +101,41 @@ namespace HamstarHelpers {
 		[Tooltip( "Catches and logs unhandled exceptions (before crash).")]
 		[DefaultValue(true)]
 		public bool DebugModeUnhandledExceptionLogging { get; set; } = true;
+
 		/// <summary>
 		/// Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).
 		/// </summary>
 		[Label( "Debug Mode - Also Server" )]
 		[Tooltip( "Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).")]
 		public bool DebugModeDumpAlsoServer { get; set; } = false;
+
 		/// <summary>
 		/// Disables logging of "silenced" exceptions.
 		/// </summary>
 		[Label( "Debug Mode - Silent Logging" )]
 		[Tooltip( "Silences silent logging.")]
 		public bool DebugModeDisableSilentLogging { get; set; } = false;
+
 		/// <summary>
 		/// Logs PacketProtocol payload content.
 		/// </summary>
 		[Label( "Debug Mode - Packet Info" )]
 		[Tooltip( "Logs PacketProtocol payload content.")]
 		public bool DebugModePacketInfo { get; set; } = false;
+
 		/// <summary>
 		/// Displays the current menu's ID in bottom right.
 		/// </summary>
 		[Label( "Debug Mode - Show Menu ID" )]
 		[Tooltip( "Displays the current menu's ID in bottom right." )]
 		public bool DebugModeMenuInfo { get; set; } = false;
+
+		/// <summary>
+		/// Displays all entity groups in the log on mod load.
+		/// </summary>
+		[Label( "Debug Mode - Display entity groups" )]
+		[Tooltip( "Displays all entity groups in the log on mod load." )]
+		public bool DebugModeEntityGroupDisplay { get; set; } = false;
 
 		////
 
@@ -133,6 +146,7 @@ namespace HamstarHelpers {
 		[Label( "Disable Control Panel" )]
 		[Tooltip( "Disables control panel outright.")]
 		public bool DisableControlPanel { get; set; } = false;
+
 		/// <summary>
 		/// Control panel icon's X coordinate on screen. Negative values align the button from the right edge.
 		/// </summary>
@@ -141,6 +155,7 @@ namespace HamstarHelpers {
 		[Increment(10)]
 		[Range( -4096, 4096 )]
 		public int ControlPanelIconX { get; set; } = 0;
+
 		/// <summary>
 		/// Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge.
 		/// </summary>
@@ -149,6 +164,7 @@ namespace HamstarHelpers {
 		[Increment( 10 )]
 		[Range( -2160, 2160 )]
 		public int ControlPanelIconY { get; set; } = 0;
+
 
 		/// <summary>
 		/// Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge.
@@ -159,6 +175,7 @@ namespace HamstarHelpers {
 		[Range( -4096, 4096 )]
 		[DefaultValue( 2 )]
 		public int InboxIconX { get; set; } = 2;
+
 		/// <summary>
 		/// Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge.
 		/// </summary>
@@ -168,6 +185,7 @@ namespace HamstarHelpers {
 		[Range( -2160, 2160 )]
 		[DefaultValue( 80 )]
 		public int InboxIconY { get; set; } = 80;
+
 
 		/// <summary>
 		/// Quantity of the latest log entries to pass along with issue reports.
@@ -179,6 +197,7 @@ namespace HamstarHelpers {
 		[DefaultValue( 25 )]
 		public int ModIssueReportErrorLogMaxLines { get; set; } = 25;
 
+
 		/// <summary>
 		/// Enables mod locking per world (prevents playing a world with missing mods).
 		/// </summary>
@@ -186,6 +205,7 @@ namespace HamstarHelpers {
 		[Tooltip( "Enables mod locking per world (prevents playing a world with missing mods).")]
 		[DefaultValue( true )]
 		public bool WorldModLockEnable { get; set; } = true;
+
 		/// <summary>
 		/// Sets mod locking to expect only the exact set of mods it was locked with, and no more.
 		/// </summary>
@@ -254,6 +274,7 @@ namespace HamstarHelpers {
 		[Tooltip( "Server occasionally pings clients to guage their latency." )]
 		[DefaultValue( true )]
 		public bool IsServerGaugingAveragePing { get; set; } = true;
+
 		/// <summary>
 		/// Duration between latency pings per client.
 		/// </summary>

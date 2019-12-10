@@ -43,6 +43,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 				if( !WorldGen.PlaceTile(leftTileX, bottomTileY, this.TileType, false, true, -1, this.TileStyle) ) {
 					return false;
 				}
+				WorldGen.SquareTileFrame( leftTileX, bottomTileY );
 			}
 
 			Tile tile = Main.tile[leftTileX, bottomTileY];

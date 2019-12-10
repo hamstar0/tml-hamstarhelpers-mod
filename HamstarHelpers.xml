@@ -3480,6 +3480,11 @@
             Displays the current menu's ID in bottom right.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeEntityGroupDisplay">
+            <summary>
+            Displays all entity groups in the log on mod load.
+            </summary>
+        </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DisableControlPanel">
             <summary>
             Disables control panel outright.

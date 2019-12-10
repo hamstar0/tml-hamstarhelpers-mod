@@ -1,7 +1,9 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -53,7 +55,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				}
 			}
 
-//LogHelpers.Log( "ent:" + typeof( T ).Name + ", OK " + groups.Count );
+			//LogHelpers.Log( "ent:" + typeof( T ).Name + ", OK " + groups.Count );
 			return true;
 		}
 
@@ -84,7 +86,14 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 
 					try {
-						failedAt = this.GetComputedGroup( matcher, matchers, entityPool, reQueuedCounts, groups, myGroupsPerEnt )
+						failedAt = this.GetComputedGroup(
+							matcher,
+							matchers,
+							entityPool,
+							reQueuedCounts,
+							groups,
+							myGroupsPerEnt
+						)
 							? -1
 							: (failedAt == -1 ? j : failedAt);
 					} catch( Exception e ) {
@@ -132,7 +141,24 @@ namespace HamstarHelpers.Services.EntityGroups {
 			}
 
 			lock( EntityGroups.MyLock ) {
-				groups[matcher.GroupName] = new ReadOnlySet<int>( grp );
+				groups[ matcher.GroupName ] = new ReadOnlySet<int>( grp );
+
+				if( ModHelpersConfig.Instance.DebugModeEntityGroupDisplay ) {
+					switch( matcher.GroupName ) {
+					case "Any Item":
+					case "Any NPC":
+					case "Any Projectile":
+						break;
+					default:
+						LogHelpers.Log( "\"" + matcher.GroupName + "\" - [\""
+							+ string.Join( "\", \"", grp.SafeSelect(
+								itemType => ItemAttributeHelpers.GetQualifiedName( itemType ) )
+							)
+							+ "\"]"
+						);
+						break;
+					}
+				}
 			}
 
 			lock( EntityGroups.ComputeLock ) {
