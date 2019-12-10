@@ -4,7 +4,6 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 
 
@@ -14,7 +13,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
 	/// </summary>
 	public partial class EntityGroups {
-		private bool GetComputedGroup<T>(
+		private bool ComputeGroup<T>(
 					EntityGroupMatcherDefinition<T> matcher,
 					IList<EntityGroupMatcherDefinition<T>> matchers,
 					IList<T> entityPool,
@@ -24,7 +23,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					where T : Entity {
 			ISet<int> grp;
 
-			if( !this.ComputeGroupMatch(entityPool, matcher, matchers, out grp ) ) {
+			if( !this.ComputeGroupMatcher(entityPool, matcher, out grp ) ) {    //matchers,
 				lock( EntityGroups.MatchersLock ) {
 					matchers.Add( matcher );
 				}
@@ -55,10 +54,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 
-		private bool ComputeGroupMatch<T>(
+		private bool ComputeGroupMatcher<T>(
 					IList<T> entityPool,
 					EntityGroupMatcherDefinition<T> matcher,
-					IList<EntityGroupMatcherDefinition<T>> matchers,
+					//IList<EntityGroupMatcherDefinition<T>> matchers,
 					out ISet<int> entityIdsOfGroup )
 					where T : Entity {
 			entityIdsOfGroup = new HashSet<int>();

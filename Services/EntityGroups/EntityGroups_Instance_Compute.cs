@@ -95,7 +95,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			do {
 				//for( i = 0; i < matchers.Count; i++ ) {
-				Parallel.For( i, count, ( j ) => {
+				Parallel.For( i, count, (j) => {
 					lock( EntityGroups.GroupsLock ) {
 						if( failedAt != -1 ) { return; }
 					}
@@ -106,7 +106,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 
 					lock( EntityGroups.GroupsLock ) {
-						bool success = this.GetComputedGroup(
+						bool success = this.ComputeGroup(
 							matcher,
 							matchers,
 							entityPool,
