@@ -10438,6 +10438,10 @@
             Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs,
             or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
             </summary>
+            <summary>
+            Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs,
+            or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.Enable">
             <summary>

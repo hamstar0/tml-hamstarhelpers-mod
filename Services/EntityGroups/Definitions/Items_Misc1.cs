@@ -57,7 +57,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				"Any Dye", null,
 				new ItemGroupMatcher( ( item, grps ) => {
-					return item.dye != 0 || item.hairDye != 0;
+					return item.dye != 0 || item.hairDye != -1;
 				} )
 			) );
 

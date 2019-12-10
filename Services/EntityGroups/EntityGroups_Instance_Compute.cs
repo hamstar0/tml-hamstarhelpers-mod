@@ -6,6 +6,7 @@ using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Terraria;
 
@@ -30,7 +31,12 @@ namespace HamstarHelpers.Services.EntityGroups {
 					IDictionary<int, IReadOnlySet<string>> groupsPerEnt )
 					where T : Entity {
 			IDictionary<int, ISet<string>> rawGroupsPerEnt;
-			int failedAt = this.GetComputedGroupsThreaded( matchers, groups, out rawGroupsPerEnt );
+
+			int failedAt = this.GetComputedGroupsThreaded(
+				matchers: matchers,
+				groups: groups,
+				groupsPerEnt: out rawGroupsPerEnt
+			);
 
 			lock( EntityGroups.MyLock ) {
 				lock( EntityGroups.MatchersLock ) {
@@ -38,6 +44,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 						if( !groups.ContainsKey( def.GroupName ) ) {
 							LogHelpers.Log( "!Entity group " + def.GroupName + " not loaded." );
 						}
+					}
+
+					if( ModHelpersConfig.Instance.DebugModeEntityGroupDisplay ) {
+						ModHelpersMod.Instance.Logger.Info( typeof(T).Name+" has groups "+string.Join(", ", groups.Keys) );
 					}
 				}
 			}
@@ -49,11 +59,51 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			lock( EntityGroups.MyLock ) {
 				lock( EntityGroups.ComputeLock ) {
-					foreach( var kv in rawGroupsPerEnt ) {
-						groupsPerEnt[kv.Key] = new ReadOnlySet<string>( kv.Value );
+					foreach( (int itemType, ISet<string> groupNames) in rawGroupsPerEnt ) {
+						groupsPerEnt[ itemType ] = new ReadOnlySet<string>( groupNames );
 					}
 				}
 			}
+
+			//
+
+			if( ModHelpersConfig.Instance.DebugModeEntityGroupDisplay ) {
+				foreach( (string groupName, IReadOnlySet<int> entIds) in groups ) {
+					switch( groupName ) {
+					case "Any Item":
+					case "Any NPC":
+					case "Any Projectile":
+						break;
+					default:
+						IList<string> entNames = entIds.SafeSelect(
+							itemType => ItemAttributeHelpers.GetQualifiedName( itemType )
+						).ToList();
+
+						var entNameChunks = new List<string>();
+						var chunk = new List<string>();
+
+						for( int i=0; i<entNames.Count; i++ ) {
+							chunk.Add( entNames[i] );
+							if( chunk.Count >= 10 ) {
+								entNameChunks.Add( string.Join(", ", chunk) );
+								chunk.Clear();
+							}
+						}
+						if( chunk.Count > 0 ) {
+							entNameChunks.Add( string.Join( ", ", chunk ) );
+						}
+
+						ModHelpersMod.Instance.Logger.Info( "\"" + groupName + "\" (" + typeof( T ).Name + ") - "
+							+ ( entIds.Count > 0 ? "[\n  " : "[" )
+							+ string.Join( ",\n  ", entNameChunks )
+							+ ( entIds.Count > 0 ? "\n]" : "]" )
+						);
+						break;
+					}
+				}
+			}
+
+			//
 
 			//LogHelpers.Log( "ent:" + typeof( T ).Name + ", OK " + groups.Count );
 			return true;
@@ -123,7 +173,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					where T : Entity {
 			ISet<int> grp;
 
-			if( !this.ComputeGroupMatch( entityPool, matcher, out grp ) ) {
+			if( !this.ComputeGroupMatch(entityPool, matcher, matchers, out grp ) ) {
 				lock( EntityGroups.MatchersLock ) {
 					matchers.Add( matcher );
 				}
@@ -142,23 +192,6 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			lock( EntityGroups.MyLock ) {
 				groups[ matcher.GroupName ] = new ReadOnlySet<int>( grp );
-
-				if( ModHelpersConfig.Instance.DebugModeEntityGroupDisplay ) {
-					switch( matcher.GroupName ) {
-					case "Any Item":
-					case "Any NPC":
-					case "Any Projectile":
-						break;
-					default:
-						LogHelpers.Log( "\"" + matcher.GroupName + "\" - [\""
-							+ string.Join( "\", \"", grp.SafeSelect(
-								itemType => ItemAttributeHelpers.GetQualifiedName( itemType ) )
-							)
-							+ "\"]"
-						);
-						break;
-					}
-				}
 			}
 
 			lock( EntityGroups.ComputeLock ) {
@@ -174,12 +207,18 @@ namespace HamstarHelpers.Services.EntityGroups {
 		private bool ComputeGroupMatch<T>(
 					IList<T> entityPool,
 					EntityGroupMatcherDefinition<T> matcher,
+					IList<EntityGroupMatcherDefinition<T>> matchers,
 					out ISet<int> entityIdsOfGroup )
 					where T : Entity {
 			entityIdsOfGroup = new HashSet<int>();
 			EntityGroupDependencies deps;
-			
-			if( !this.GetGroups<T>(matcher.GroupName, matcher.GroupDependencies, out deps) ) {
+
+			bool groupsFound = this.GetGroupsAsDependencies<T>(
+				matcher.GroupName,
+				matcher.GroupDependencies,
+				out deps
+			);
+			if( !groupsFound ) {
 				return false;
 			}
 
@@ -198,15 +237,22 @@ namespace HamstarHelpers.Services.EntityGroups {
 					LogHelpers.Alert( "Compute fail for '"+matcher.GroupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
 				}
 			}
-
+lock( EntityGroups.MatchersLock ) {
+LogHelpers.Log( "ComputeGroupMatch "+typeof(T).Name+" (pool="+entityPool.GetType().GenericTypeArguments?.First().Name+" "+entityPool.Count+")"
+	+", matcher: "+matcher?.GroupName+", matchers type "+matchers.GetType().GenericTypeArguments?.First().Name
+	+",\n  entityIdsOfGroup ("+entityIdsOfGroup?.Count+"): "+(entityIdsOfGroup != null ? string.Join(", ", entityIdsOfGroup) : "")
+);
+}
+			
 			return true;
 		}
 
 
 		////////////////
 
-		private bool GetGroups<T>(
-					string groupName, string[] dependencies,
+		private bool GetGroupsAsDependencies<T>(
+					string groupName,
+					string[] dependencies,
 					out EntityGroupDependencies groupDependencies )
 					where T : Entity {
 			groupDependencies = new EntityGroupDependencies();

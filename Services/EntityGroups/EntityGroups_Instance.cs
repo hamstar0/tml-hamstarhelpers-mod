@@ -100,8 +100,12 @@ namespace HamstarHelpers.Services.EntityGroups {
 				return;
 			}
 
+			//
+
 			Task.Run( () => {
 				Task[] tasks = new Task[3];
+
+				//
 
 				tasks[0] = Task.Run( () => {
 					this.ComputeGroups<Item>( itemMatchers, this.ItemGroups, this.GroupsPerItem );
@@ -123,6 +127,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return;
 				}
 
+				//
+
 				tasks[0] = Task.Run( () => {
 					this.ComputeGroups<Item>( this.CustomItemMatchers, this.ItemGroups, this.GroupsPerItem );
 					this._InitCheck++;
@@ -143,6 +149,8 @@ namespace HamstarHelpers.Services.EntityGroups {
 					return;
 				}
 
+				//
+
 				lock( EntityGroups.MyLock ) {
 					this.CustomItemMatchers = null;
 					this.CustomNPCMatchers = null;
@@ -155,84 +163,6 @@ namespace HamstarHelpers.Services.EntityGroups {
 				CustomLoadHooks.TriggerHook( EntityGroups.LoadedAllValidator, EntityGroups.MyValidatorKey );
 				this._InitCheck++;
 			} );
-		}
-
-
-		////////////////
-
-		private IList<T> GetPool<T>() where T : Entity {
-			IList<T> list = null;
-			
-			switch( typeof( T ).Name ) {
-			case "Item":
-				list = (IList<T>)this.GetItemPool();
-				break;
-			case "NPC":
-				list = (IList<T>)this.GetNPCPool();
-				break;
-			case "Projectile":
-				list = (IList<T>)this.GetProjPool();
-				break;
-			default:
-				throw new NotImplementedException( "Invalid Entity type " + typeof( T ).Name );
-			}
-			
-			return list;
-		}
-
-		internal IList<Item> GetItemPool() {
-			if( this.ItemPool != null ) { return this.ItemPool; }
-
-			var list = new Item[ ItemLoader.ItemCount ];
-			list[0] = null;
-			
-			for( int i = 1; i < ItemLoader.ItemCount; i++ ) {
-				list[i] = new Item();
-				list[i].SetDefaults( i, true );
-			}
-
-			this.ItemPool = new List<Item>( list );
-			return this.ItemPool;
-		}
-
-		internal IList<NPC> GetNPCPool() {
-			if( this.NPCPool != null ) { return this.NPCPool; }
-			
-			var list = new NPC[ NPCLoader.NPCCount ];
-			list[0] = null;
-
-			for( int i = 1; i < NPCLoader.NPCCount; i++ ) {
-				list[i] = new NPC();
-				list[i].SetDefaults( i );
-			}
-
-			this.NPCPool = new List<NPC>( list );
-			return this.NPCPool;
-		}
-
-		internal IList<Projectile> GetProjPool() {
-			if( this.ProjPool != null ) { return this.ProjPool; }
-			
-			var list = new Projectile[ ProjectileLoader.ProjectileCount ];
-			list[0] = null;
-
-			UnifiedRandom oldRand = Main.rand;
-			Main.rand = new UnifiedRandom();
-			
-			for( int i = 1; i < ProjectileLoader.ProjectileCount; i++ ) {
-				list[i] = new Projectile();
-
-				try {
-					list[i].SetDefaults( i );
-				} catch( Exception e ) {
-					LogHelpers.Log( "GetProjPool " + i + " - " + e.ToString() );
-				}
-			} 
-
-			Main.rand = oldRand;
-
-			this.ProjPool = new List<Projectile>( list );
-			return this.ProjPool;
 		}
 	}
 }
