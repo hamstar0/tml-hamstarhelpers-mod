@@ -10425,6 +10425,75 @@
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyNonOreCraftedEquipment">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPlaceable">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyTile">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWall">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWood">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyOreBar">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWorkbench">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAnvil">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyForge">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyTable">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAlchemyStation">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyHardmodeCraftingStation">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaThemedCraftingStation">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyMiscCraftingStation">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyChest">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWireComponent">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyTrapChest">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaWireTrap">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaWireSwitch">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyLight">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCandle">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWallTorch">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCampfire">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyStatue">
+            <summary></summary>
+        </member>
         <member name="T:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs">
             <summary></summary>
         </member>

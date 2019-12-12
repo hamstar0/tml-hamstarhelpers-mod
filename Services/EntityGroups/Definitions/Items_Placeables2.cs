@@ -1,32 +1,57 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TileHelpers;
+using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Helpers.Tiles.Attributes;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//"Any Wood", null,
-		//"Any Workbench", null,
-		//"Any Anvil", null,
-		//"Any Forge", null,
-		//"Any Table", null,
-		//"Any Alchemy Station", null,
-		//"Any Hardmode Crafting Station", null,
-		//"Any Vanilla Themed Crafting Station", null,
-		//"Any Misc Crafting Station", null,
-		//"Any Chest", null,
-		//"Any Wire Component", null,
-		//"Any Trap Chest", null,
-		//"Any Vanilla Wire Trap", null,
-		//"Any Vanilla Wire Switch", null,
-		//"Any Light", null,
-		//"Any Candle", null,
-		//"Any Wall Torch", null,
-		//"Any Campfire", null,
-		//"Any Statue", null,
+		/// <summary></summary>
+		public const string AnyWood = "Any Wood";
+		/// <summary></summary>
+		public const string AnyOreBar = "Any Ore Bar";
+		/// <summary></summary>
+		public const string AnyWorkbench = "Any Workbench";
+		/// <summary></summary>
+		public const string AnyAnvil = "Any Anvil";
+		/// <summary></summary>
+		public const string AnyForge = "Any Forge";
+		/// <summary></summary>
+		public const string AnyTable = "Any Table";
+		/// <summary></summary>
+		public const string AnyAlchemyStation = "Any Alchemy Station";
+		/// <summary></summary>
+		public const string AnyHardmodeCraftingStation = "Any Hardmode Crafting Station";
+		/// <summary></summary>
+		public const string AnyVanillaThemedCraftingStation = "Any Vanilla Themed Crafting Station";
+		/// <summary></summary>
+		public const string AnyMiscCraftingStation = "Any Misc Crafting Station";
+		/// <summary></summary>
+		public const string AnyChest = "Any Chest";
+		/// <summary></summary>
+		public const string AnyWireComponent = "Any Wire Component";
+		/// <summary></summary>
+		public const string AnyTrapChest = "Any Trap Chest";
+		/// <summary></summary>
+		public const string AnyVanillaWireTrap = "Any Vanilla Wire Trap";
+		/// <summary></summary>
+		public const string AnyVanillaWireSwitch = "Any Vanilla Wire Switch";
+		/// <summary></summary>
+		public const string AnyLight = "Any Light";
+		/// <summary></summary>
+		public const string AnyCandle = "Any Candle";
+		/// <summary></summary>
+		public const string AnyWallTorch = "Any Wall Torch";
+		/// <summary></summary>
+		public const string AnyCampfire = "Any Campfire";
+		/// <summary></summary>
+		public const string AnyStatue = "Any Statue";
 	}
 
 
@@ -36,7 +61,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		internal static void DefineItemPlaceablesGroups2( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			// Materials
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Wood", null,
+				ItemGroupIDs.AnyWood,
+				null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Wood:
@@ -51,6 +77,24 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						return true;
 					}
 					return false;
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				ItemGroupIDs.AnyOreBar,
+				new string[] { ItemGroupIDs.AnyTile },
+				new ItemGroupMatcher( ( item, grps ) => {
+					if( !grps[ItemGroupIDs.AnyTile].Contains( item.type ) ) { return false; }
+					if( !item.consumable ) { return false; }
+					if( item.createTile != 239 ) {
+						if( item.createTile <= 0 ) { return false; }
+						if( !Main.tileSolid[item.createTile] ) { return false; }
+						if( !Main.tileSolidTop[item.createTile] ) { return false; }
+						if( Main.tileShine[item.createTile] == 0 ) { return false; }
+
+						if( item.modItem == null ) { return false; }
+						if( !item.modItem.Name.EndsWith(" Bar") ) { return false; }
+					}
+					return true;
 				} )
 			) );
 
