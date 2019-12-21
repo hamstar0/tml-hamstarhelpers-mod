@@ -9,8 +9,8 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 	/// </summary>
 	public static partial class DictionaryExtensions {
 		/// <summary>
-		/// Safely attempts to get a value (akin to the usual TryGetValue) by index within a nested collection in a dictionary
-		/// at a given key.
+		/// Safely attempts to get a value (akin to the usual TryGetValue) by index within a nested collection in a
+		/// dictionary at a given key.
 		/// </summary>
 		/// <typeparam name="TKey"></typeparam>
 		/// <typeparam name="TValue"></typeparam>

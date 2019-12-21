@@ -84,7 +84,6 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				new string[] { ItemGroupIDs.AnyTile },
 				new ItemGroupMatcher( ( item, grps ) => {
 					if( !grps[ItemGroupIDs.AnyTile].Contains( item.type ) ) { return false; }
-					if( !item.consumable ) { return false; }
 					if( item.createTile != 239 ) {
 						if( item.createTile <= 0 ) { return false; }
 						if( !Main.tileSolid[item.createTile] ) { return false; }

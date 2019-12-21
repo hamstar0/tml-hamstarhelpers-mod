@@ -1060,12 +1060,13 @@
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonSolid">
             <summary>
-            Preset for any non-solid tiles (including actuated tiles).
+            Preset for any non-solid tiles (includes actuated tiles and active-but-non-solid tiles).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonFilled">
             <summary>
-            Preset for any non-"filled" space (no solids, no liquids, no actuated tiles; walls, furniture, etc. allowed).
+            Preset for any non-"filled" space (no actives, no solids, no liquids, no actuated tiles; walls, furniture, etc.
+            allowed).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CommonSolid">
@@ -4206,8 +4207,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.TryGetValue2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IList{``1}},``0,System.Int32,``1@)">
             <summary>
-            Safely attempts to get a value (akin to the usual TryGetValue) by index within a nested collection in a dictionary
-            at a given key.
+            Safely attempts to get a value (akin to the usual TryGetValue) by index within a nested collection in a
+            dictionary at a given key.
             </summary>
             <typeparam name="TKey"></typeparam>
             <typeparam name="TValue"></typeparam>
@@ -10332,6 +10333,15 @@
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPotion">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAmmo">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAmmoAmmo">
+            <summary>Ammo that isn't weird (no gels, coins, bones, etc.)</summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyNotAmmo">
+            <summary>Ammo that isn't ammo (gels, coins, bones, etc.)</summary>
+        </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanity">
             <summary></summary>
         </member>
@@ -10345,6 +10355,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyHeavyArmor">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyOreBarEquipment">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCactusEquipment">
@@ -10832,6 +10845,14 @@
             <param name="j"></param>
             <param name="type"></param>
             <param name="fail"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillMultiTileDelegate">
+            <summary>
+            Represents a GlobalTile.KillTile hook binding specifically for multi-tiles.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="type"></param>
         </member>
         <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private

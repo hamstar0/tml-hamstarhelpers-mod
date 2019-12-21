@@ -77,7 +77,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 					out int floorY ) {
 			floorY = tileY;
 
-			while( nonFloorPattern.Check( tileX, floorY ) ) {
+			while( nonFloorPattern.Check(tileX, floorY) ) {
 				floorY++;
 
 				if( (floorY - tileY) >= maxFallRange ) {

@@ -73,7 +73,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
-		/// Preset for any non-solid tiles (including actuated tiles).
+		/// Preset for any non-solid tiles (includes actuated tiles and active-but-non-solid tiles).
 		/// </summary>
 		public readonly static TilePattern NonSolid = new TilePattern(
 			new TilePatternBuilder {
@@ -85,7 +85,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
-		/// Preset for any non-"filled" space (no solids, no liquids, no actuated tiles; walls, furniture, etc. allowed).
+		/// Preset for any non-"filled" space (no actives, no solids, no liquids, no actuated tiles; walls, furniture, etc.
+		/// allowed).
 		/// </summary>
 		public readonly static TilePattern NonFilled = new TilePattern(
 			new TilePatternBuilder {

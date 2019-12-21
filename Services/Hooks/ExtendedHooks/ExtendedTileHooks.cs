@@ -41,54 +41,17 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 
 		////////////////
 
-		internal static void CallKillTileHooks( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem ) {
+		/// <summary>
+		/// Allows binding actions to `GlobalTile.KillTile(...)` calls for tiles larger than 1x1, and only for the top left
+		/// tile.
+		/// </summary>
+		/// <param name="hook"></param>
+		public static void KillMultiTile( KillMultiTileDelegate hook ) {
 			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 
-			int tileToCheck = (i << 16) + j;
-
-			// Important stack overflow failsafe:
-			if( eth.CheckedTiles.Contains( tileToCheck ) ) {
-				return;
+			lock( ExtendedTileHooks.MyLock ) {
+				eth.OnKillMultiTileHooks.Add( hook );
 			}
-
-			foreach( KillTileDelegate deleg in eth.OnKillTileHooks ) {
-				lock( ExtendedTileHooks.MyLock ) {
-					deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem );
-				}
-			}
-			eth.CheckedTiles.Add( tileToCheck );
-		}
-
-		internal static void CallKillWallHooks( int i, int j, int type, ref bool fail ) {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
-
-			int wallToCheck = (i << 16) + j;
-
-			// Important stack overflow failsafe:
-			if( eth.CheckedWalls.Contains( wallToCheck ) ) {
-				return;
-			}
-
-			foreach( KillWallDelegate deleg in eth.OnKillWallHooks ) {
-				lock( ExtendedTileHooks.MyLock ) {
-					deleg.Invoke( i, j, type, ref fail );
-				}
-			}
-			eth.CheckedWalls.Add( wallToCheck );
-		}
-
-
-		////////////////
-
-		private static void Update() {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
-
-			if( !eth.OnTick() ) {
-				return;
-			}
-
-			eth.CheckedTiles.Clear();
-			eth.CheckedWalls.Clear();
 		}
 	}
 }
