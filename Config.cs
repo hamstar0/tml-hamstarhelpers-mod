@@ -326,12 +326,19 @@ namespace HamstarHelpers {
 
 
 		/// <summary>
-		/// Magi-Tech Scrap items drop from mech bosses.
+		/// Adds Geo-Resonant Orbs to Dryad's shop.
 		/// </summary>
 		[Header( "Content settings settings" )]
+		[Label("Adds Geo-Resonant Orbs to Dryad's shop")]
+		public bool GeoResonantOrbSoldByDryad { get; set; } = false;
+
+		/// <summary>
+		/// Magi-Tech Scrap items drop from mech bosses.
+		/// </summary>
 		[Label("Adds Magi-Tech Scrap mech boss drops")]
 		[Tooltip( "Magi-Tech Scrap items drop from mech bosses." )]
 		public bool MagiTechScrapMechBossDropsEnabled { get; set; } = false;
+
 		/// <summary>
 		/// Coal items can be placed like tiles.
 		/// </summary>

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace HamstarHelpers.Items {
 	/// <summary>
-	/// Supplies a generic item as an ingredient for general, inter-mod magic/technology recipe/consumable use.
+	/// Supplies an item for use as an ingredient for any magic/technology recipe/consumable use. A MacGuffin item.
 	/// </summary>
 	public class MagiTechScrapItem : ModItem {
 		/// <summary></summary>

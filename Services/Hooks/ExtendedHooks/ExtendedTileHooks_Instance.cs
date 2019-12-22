@@ -157,7 +157,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 
 		////
 
-		internal bool CanCallKillMultiTileHooks( int i, int j, int type ) {
+		internal bool CanCallKillMultiTileHooks( int i, int j ) {
 			Tile tile = Main.tile[i, j];
 			if( tile?.active() != true ) {
 				return false;
@@ -187,7 +187,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		}
 
 		internal void CallKillMultiTileHooks( int i, int j, int type ) {
-			if( !this.CanCallKillMultiTileHooks(i, j, type) ) {
+			if( !this.CanCallKillMultiTileHooks(i, j) ) {
 				return;
 			}
 

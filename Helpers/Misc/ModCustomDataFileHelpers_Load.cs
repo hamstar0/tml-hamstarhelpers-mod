@@ -32,6 +32,7 @@ namespace HamstarHelpers.Helpers.Misc {
 				if( dataStr != null ) {
 					return JsonConvert.DeserializeObject<T>( dataStr, jsonSettings );
 				} else {
+					LogHelpers.Alert( "No json file "+fileNameNoExt+"." );
 					return null;
 				}
 			} catch( IOException e ) {
@@ -81,6 +82,7 @@ namespace HamstarHelpers.Helpers.Misc {
 				if( dataBytes != null ) {
 					return JsonConvert.DeserializeObject<T>( dataJson, jsonSettings );
 				} else {
+					LogHelpers.Alert( "No json file " + fileNameWithExt + "." );
 					return null;
 				}
 			} catch( IOException e ) {

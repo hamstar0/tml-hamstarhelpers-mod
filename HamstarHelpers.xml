@@ -3581,6 +3581,11 @@
             Disables IP address checks from checkip.dyndns.org.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.GeoResonantOrbSoldByDryad">
+            <summary>
+            Adds Geo-Resonant Orbs to Dryad's shop.
+            </summary>
+        </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.MagiTechScrapMechBossDropsEnabled">
             <summary>
             Magi-Tech Scrap items drop from mech bosses.
@@ -9804,6 +9809,11 @@
         <member name="T:HamstarHelpers.Internals.WebRequests.PostModInfo">
             @private
         </member>
+        <member name="T:HamstarHelpers.Items.GeoResonantOrbItem">
+            <summary>
+            Supplies an ingredient item meant to exist as the generic form of Orbs (e.g. Shadow Orbs).
+            </summary>
+        </member>
         <member name="T:HamstarHelpers.Items.MagiTechScrapItem">
             <summary>
             Supplies a generic item as an ingredient for general, inter-mod magic/technology recipe/consumable use.
@@ -10814,6 +10824,11 @@
             tModLoader.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.NonGameplayKillTileCondition">
+            <summary>
+            Supplies a condition to check for when to skip tile killing.
+            </summary>
+        </member>
         <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.AddSafeKillTileHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate)">
             <summary>
             Allows binding actions to the `GlobalTile.KillTile(...)` hook in such a way as to avoid stack overflow exceptions.
@@ -10843,6 +10858,7 @@
             <param name="fail"></param>
             <param name="effectOnly"></param>
             <param name="noItem"></param>
+            <param name="nonGameplay">Indicates this hook is being called for tile kills not directly from player actions (typically custom functions).</param>
         </member>
         <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillWallDelegate">
             <summary>
@@ -10852,6 +10868,7 @@
             <param name="j"></param>
             <param name="type"></param>
             <param name="fail"></param>
+            <param name="nonGameplay">Indicates this hook is being called for tile kills not directly from player actions (typically custom functions).</param>
         </member>
         <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillMultiTileDelegate">
             <summary>
@@ -10860,6 +10877,7 @@
             <param name="i"></param>
             <param name="j"></param>
             <param name="type"></param>
+            <param name="nonGameplay">Indicates this hook is being called for tile kills not directly from player actions (typically custom functions).</param>
         </member>
         <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private
