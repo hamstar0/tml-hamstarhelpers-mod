@@ -8,11 +8,12 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	class ModHelpersTile : GlobalTile {
 		public override void KillTile( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem ) {
+			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+
 			if( !Main.gameMenu ) {
-				var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 				eth.CallKillTileHooks( i, j, type, ref fail, ref effectOnly, ref noItem );
-				eth.CallKillMultiTileHooks( i, j, type );
 			}
+			eth.CallKillMultiTileHooks( i, j, type );
 		}
 	}
 

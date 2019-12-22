@@ -12,6 +12,24 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 	/// </summary>
 	public partial class ExtendedTileHooks : ILoadable {
 		/// <summary>
+		/// Supplies a condition to check for when to skip tile killing.
+		/// </summary>
+		public static Func<bool> NonGameplayKillTileCondition {
+			get {
+				var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+				return eth.KillTileSkipCondition;
+			}
+			set {
+				var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+				eth.KillTileSkipCondition = value;
+			}
+		}
+
+
+
+		////////////////
+
+		/// <summary>
 		/// Allows binding actions to the `GlobalTile.KillTile(...)` hook in such a way as to avoid stack overflow exceptions.
 		/// </summary>
 		/// <param name="hook"></param>
@@ -46,7 +64,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// tile.
 		/// </summary>
 		/// <param name="hook"></param>
-		public static void KillMultiTile( KillMultiTileDelegate hook ) {
+		public static void AddKillMultiTileHook( KillMultiTileDelegate hook ) {
 			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
 
 			lock( ExtendedTileHooks.MyLock ) {

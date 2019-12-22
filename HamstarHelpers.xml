@@ -10826,6 +10826,13 @@
             </summary>
             <param name="hook"></param>
         </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.AddKillMultiTileHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillMultiTileDelegate)">
+            <summary>
+            Allows binding actions to `GlobalTile.KillTile(...)` calls for tiles larger than 1x1, and only for the top left
+            tile.
+            </summary>
+            <param name="hook"></param>
+        </member>
         <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks.KillTileDelegate">
             <summary>
             Represents a GlobalTile.KillTile hook binding.

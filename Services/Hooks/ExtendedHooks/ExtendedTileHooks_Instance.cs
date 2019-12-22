@@ -28,7 +28,15 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// <param name="fail"></param>
 		/// <param name="effectOnly"></param>
 		/// <param name="noItem"></param>
-		public delegate void KillTileDelegate( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem );
+		/// <param name="nonGameplay">Indicates this hook is being called for tile kills not directly from player actions (typically custom functions).</param>
+		public delegate void KillTileDelegate(
+			int i,
+			int j,
+			int type,
+			ref bool fail,
+			ref bool effectOnly,
+			ref bool noItem,
+			bool nonGameplay );
 
 		/// <summary>
 		/// Represents a GlobalWall.KillWall hook binding.
@@ -37,7 +45,8 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// <param name="j"></param>
 		/// <param name="type"></param>
 		/// <param name="fail"></param>
-		public delegate void KillWallDelegate( int i, int j, int type, ref bool fail );
+		/// <param name="nonGameplay">Indicates this hook is being called for tile kills not directly from player actions (typically custom functions).</param>
+		public delegate void KillWallDelegate( int i, int j, int type, ref bool fail, bool nonGameplay );
 
 		/// <summary>
 		/// Represents a GlobalTile.KillTile hook binding specifically for multi-tiles.
@@ -45,7 +54,8 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// <param name="i"></param>
 		/// <param name="j"></param>
 		/// <param name="type"></param>
-		public delegate void KillMultiTileDelegate( int i, int j, int type );
+		/// <param name="nonGameplay">Indicates this hook is being called for tile kills not directly from player actions (typically custom functions).</param>
+		public delegate void KillMultiTileDelegate( int i, int j, int type, bool nonGameplay );
 
 
 
@@ -59,6 +69,8 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 
 		private ISet<int> CheckedTiles = new HashSet<int>();
 		private ISet<int> CheckedWalls = new HashSet<int>();
+
+		private Func<bool> KillTileSkipCondition;
 
 
 
@@ -117,7 +129,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillTileDelegate deleg in hooks ) {
-				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem );
+				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem, this.KillTileSkipCondition() );
 			}
 
 			this.CheckedTiles.Add( tileToCheck );
@@ -137,7 +149,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillWallDelegate deleg in this.OnKillWallHooks ) {
-				deleg.Invoke( i, j, type, ref fail );
+				deleg.Invoke( i, j, type, ref fail, this.KillTileSkipCondition() );
 			}
 
 			this.CheckedWalls.Add( wallToCheck );
@@ -185,7 +197,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillMultiTileDelegate deleg in hooks ) {
-				deleg.Invoke( i, j, type );
+				deleg.Invoke( i, j, type, this.KillTileSkipCondition() );
 			}
 		}
 	}
