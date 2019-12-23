@@ -12,7 +12,7 @@ using HamstarHelpers.Services.Timers;
 
 namespace HamstarHelpers {
 	/// @private
-	class ModHelpersNPC : GlobalNPC {
+	partial class ModHelpersNPC : GlobalNPC {
 		public override bool? CanChat( NPC npc ) {
 			if( !Main.mouseRight || !Main.npcChatRelease ) {
 				return base.CanChat( npc );
@@ -34,6 +34,13 @@ namespace HamstarHelpers {
 
 		private bool GetChatAssurred( NPC npc, ref string chat ) {
 			bool? isNewChat;
+
+			Func<string, string> hiChatFunc = NPCChat.GetPriorityChat( npc.type );
+			string hiChat = hiChatFunc?.Invoke( chat );
+			if( hiChat != null ) {
+				chat = hiChat;
+				return true;
+			}
 
 			while( true) {
 				isNewChat = NPCChat.GetChat( npc, ref chat );
@@ -84,12 +91,12 @@ namespace HamstarHelpers {
 					break;
 				}
 			}
-//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+npc.whoAmI+":"+npc.type+"_B", 1 );
+			//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+npc.whoAmI+":"+npc.type+"_B", 1 );
 		}
 
 
 		////////////////
-		
+
 		private void NpcKilledByPlayer( NPC npc ) {
 			var mymod = (ModHelpersMod)this.mod;
 

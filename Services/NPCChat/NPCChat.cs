@@ -175,9 +175,34 @@ namespace HamstarHelpers.Services.NPCChat {
 		}
 
 
+		////////////////
+
+		/// <summary>
+		/// Retrieves the current priority chat message getter.
+		/// </summary>
+		/// <param name="npcType"></param>
+		/// <returns></returns>
+		public static Func<string, string> GetPriorityChat( int npcType ) {
+			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			return nc.PriorityChat.GetOrDefault( npcType );
+		}
+
+		/// <summary>
+		/// Sets the current priority chat message getter for a given NPC.
+		/// </summary>
+		/// <param name="npcType"></param>
+		/// <param name="chatGet">Accepts an optional parameter of the current chat, and returns the priority chat.
+		/// Return `null` if no priority chat exists.</param>
+		public static void SetPriorityChat( int npcType, Func<string, string> chatGet ) {
+			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			nc.PriorityChat[npcType] = chatGet;
+		}
+
+
 
 		////////////////
 
+		private IDictionary<int, Func<string, string>> PriorityChat = new Dictionary<int, Func<string, string>>();
 		private IDictionary<int, IList<(float Weight, string Chat)>> AddedChats = new Dictionary<int, IList<(float, string)>>();
 		private IDictionary<int, IList<string>> RemovedChatFlatPatterns = new Dictionary<int, IList<string>>();
 

@@ -4018,6 +4018,12 @@
             <summary>
             Assorted static extension "helper" functions pertaining to dictionaries.
             </summary>
+            <summary>
+            Assorted static extension "helper" functions pertaining to dictionaries.
+            </summary>
+            <summary>
+            Assorted static extension "helper" functions pertaining to dictionaries.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.GetOrDefault``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
             <summary>
@@ -4059,6 +4065,90 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Int16}},``0,System.Int32,System.Int16)">
+            <summary>
+            Adds to a value to a nested collection in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="idx"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int16}},``0,``1,System.Int16)">
+            <summary>
+            Adds to a value to a nested dictionary in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey1"></typeparam>
+            <typeparam name="TKey2"></typeparam>
+            <param name="dict"></param>
+            <param name="key1"></param>
+            <param name="key2"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Int32}},``0,System.Int32,System.Int32)">
+            <summary>
+            Adds to a value to a nested collection in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="idx"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int32}},``0,``1,System.Int32)">
+            <summary>
+            Adds to a value to a nested dictionary in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey1"></typeparam>
+            <typeparam name="TKey2"></typeparam>
+            <param name="dict"></param>
+            <param name="key1"></param>
+            <param name="key2"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Single}},``0,System.Int32,System.Single)">
+            <summary>
+            Adds to a value to a nested collection in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="idx"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Single}},``0,``1,System.Single)">
+            <summary>
+            Adds to a value to a nested dictionary in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey1"></typeparam>
+            <typeparam name="TKey2"></typeparam>
+            <param name="dict"></param>
+            <param name="key1"></param>
+            <param name="key2"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Double}},``0,System.Int32,System.Double)">
+            <summary>
+            Adds to a value to a nested collection in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="idx"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Double}},``0,``1,System.Double)">
+            <summary>
+            Adds to a value to a nested dictionary in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey1"></typeparam>
+            <typeparam name="TKey2"></typeparam>
+            <param name="dict"></param>
+            <param name="key1"></param>
+            <param name="key2"></param>
+            <param name="value"></param>
+        </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Append2D``2(System.Collections.Generic.IDictionary{``0,``1[]},``0,``1)">
             <summary>
             Appends a value to a nested collection in the given dictionary at the given key.
@@ -4087,90 +4177,6 @@
             <typeparam name="TValue"></typeparam>
             <param name="dict"></param>
             <param name="key"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Int16}},``0,System.Int32,System.Int16)">
-            <summary>
-            Adds to a value to a nested collection in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey"></typeparam>
-            <param name="dict"></param>
-            <param name="key"></param>
-            <param name="idx"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int16}},``0,``1,System.Int16)">
-            <summary>
-            Adds to a value to a nested dictionary in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey1"></typeparam>
-            <typeparam name="TKey2"></typeparam>
-            <param name="dict"></param>
-            <param name="key1"></param>
-            <param name="key2"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Int32}},``0,System.Int32,System.Int32)">
-            <summary>
-            Adds to a value to a nested collection in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey"></typeparam>
-            <param name="dict"></param>
-            <param name="key"></param>
-            <param name="idx"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int32}},``0,``1,System.Int32)">
-            <summary>
-            Adds to a value to a nested dictionary in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey1"></typeparam>
-            <typeparam name="TKey2"></typeparam>
-            <param name="dict"></param>
-            <param name="key1"></param>
-            <param name="key2"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Single}},``0,System.Int32,System.Single)">
-            <summary>
-            Adds to a value to a nested collection in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey"></typeparam>
-            <param name="dict"></param>
-            <param name="key"></param>
-            <param name="idx"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Single}},``0,``1,System.Single)">
-            <summary>
-            Adds to a value to a nested dictionary in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey1"></typeparam>
-            <typeparam name="TKey2"></typeparam>
-            <param name="dict"></param>
-            <param name="key1"></param>
-            <param name="key2"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Double}},``0,System.Int32,System.Double)">
-            <summary>
-            Adds to a value to a nested collection in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey"></typeparam>
-            <param name="dict"></param>
-            <param name="key"></param>
-            <param name="idx"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Double}},``0,``1,System.Double)">
-            <summary>
-            Adds to a value to a nested dictionary in the given dictionary at the given key.
-            </summary>
-            <typeparam name="TKey1"></typeparam>
-            <typeparam name="TKey2"></typeparam>
-            <param name="dict"></param>
-            <param name="key1"></param>
-            <param name="key2"></param>
             <param name="value"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Count2D``3(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,``2}})">
@@ -4294,6 +4300,30 @@
             <param name="key"></param>
             <param name="val"></param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Int16}},``0,System.Int32,System.Int16)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int16}},``0,``1,System.Int16)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Int32}},``0,System.Int32,System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int32}},``0,``1,System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Single}},``0,System.Int32,System.Single)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Single}},``0,``1,System.Single)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Double}},``0,System.Int32,System.Double)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Add2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Double}},``0,``1,System.Double)">
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Remove2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IList{``1}},``0,System.Int32)">
             <summary>
@@ -9860,6 +9890,7 @@
         </member>
         <member name="T:HamstarHelpers.ModHelpersNPC">
             @private
+            @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersPlayer">
             @private
@@ -11346,6 +11377,84 @@
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.IllFavored">
             <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.NPCChat.NPCChat">
+            <summary>
+            Provides a service for adding or removing town NPC chats (based on weight values).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetChat(Terraria.NPC,System.String@,System.Single)">
+            <summary>
+            Gets a chat message for the given NPC. Pulls from its default pool and any added chats, also excludes any
+            default chats matching any removal patterns.
+            </summary>
+            <param name="npc"></param>
+            <param name="chat">Unless removal patterns specify otherwise, may either be untouched, or else a new chat from
+            the added pool.</param>
+            <param name="defaultChatsTotalWeight"></param>
+            <returns>Returns `true` if a new chat message was picked, `false` if the no new chat was picked, or `null` if
+            another attempt (`npc.GetChat()`) is needed to get a new chat message.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetNewChat(System.Int32)">
+            <summary>
+            Gets a random chat from the given NPC's added chats pool.
+            </summary>
+            <param name="npcType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.IsChatRemoved(System.Int32,System.String)">
+            <summary>
+            Indicates if a given chat messages is matched for removal by any of the removal patterns.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetAddedChats(System.Int32)">
+            <summary>
+            Gets all added chats (and their weights) for a given NPC.
+            </summary>
+            <param name="npcType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.RemoveAddedChat(System.Int32,System.String)">
+            <summary>
+            Removes a specific added chat.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.AddChatForNPC(System.Int32,System.String,System.Single)">
+            <summary>
+            Adds a new chat message for a given NPC.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chat"></param>
+            <param name="weight">How much favor is given to this chat to be picked from the NPC's pool. Note: All of an
+            NPC's default chats have a total weight of `1f`.</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.AddChatRemoveFlatPatternForNPC(System.Int32,System.String)">
+            <summary>
+            Adds a pattern to match existing (non-pool added) chats.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chatFlatPattern"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetPriorityChat(System.Int32)">
+            <summary>
+            Retrieves the current priority chat message getter.
+            </summary>
+            <param name="npcType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.SetPriorityChat(System.Int32,System.Func{System.String,System.String})">
+            <summary>
+            Sets the current priority chat message getter for a given NPC.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chatGet">Accepts an optional parameter of the current chat, and returns the priority chat.
+            Return `null` if no priority chat exists.</param>
         </member>
         <member name="T:HamstarHelpers.Services.OverlaySounds.OverlaySound">
             <summary>
