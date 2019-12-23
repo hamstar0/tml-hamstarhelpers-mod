@@ -1,16 +1,55 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Items;
-using HamstarHelpers.Services.Hooks.ExtendedHooks;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Items;
+using HamstarHelpers.Services.Hooks.ExtendedHooks;
+using HamstarHelpers.Services.NPCChat;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers {
 	/// @private
 	class ModHelpersNPC : GlobalNPC {
+		public override bool? CanChat( NPC npc ) {
+			if( !Main.mouseRight || !Main.npcChatRelease ) {
+				return base.CanChat( npc );
+			}
+
+			Timers.SetTimer( "ModHelpersTownNPCChatOverride", 1, true, () => {
+				this.GetChatAssurred( npc, ref Main.npcChatText );
+				return false;
+			} );
+
+			return base.CanChat( npc );
+		}
+
+		public override void GetChat( NPC npc, ref string chat ) {
+			this.GetChatAssurred( npc, ref chat );
+		}
+
+		////
+
+		private bool GetChatAssurred( NPC npc, ref string chat ) {
+			bool? isNewChat;
+
+			while( true) {
+				isNewChat = NPCChat.GetChat( npc, ref chat );
+				if( isNewChat.HasValue ) {
+					break;
+				}
+
+				chat = npc.GetChat();
+			}
+
+			return isNewChat.Value;
+		}
+
+
+		////////////////
+
 		public override void SetupShop( int type, Chest shop, ref int nextSlot ) {
 			if( ModHelpersConfig.Instance.GeoResonantOrbSoldByDryad ) {
 				if( type == NPCID.Dryad ) {

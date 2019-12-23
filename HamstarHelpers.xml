@@ -9811,12 +9811,18 @@
         </member>
         <member name="T:HamstarHelpers.Items.GeoResonantOrbItem">
             <summary>
-            Supplies an ingredient item meant to exist as the generic form of Orbs (e.g. Shadow Orbs).
+            Supplies an ingredient item meant to exist as the generic form of Orbs (e.g. Shadow Orbs). Another MacGuffin item.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Items.GeoResonantOrbItem.SetStaticDefaults">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Items.GeoResonantOrbItem.SetDefaults">
+            @private
         </member>
         <member name="T:HamstarHelpers.Items.MagiTechScrapItem">
             <summary>
-            Supplies a generic item as an ingredient for general, inter-mod magic/technology recipe/consumable use.
+            Supplies an item for use as an ingredient for any magic/technology recipe/consumable use. A MacGuffin item.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Items.MagiTechScrapItem.Create(Microsoft.Xna.Framework.Vector2,System.Int32)">
