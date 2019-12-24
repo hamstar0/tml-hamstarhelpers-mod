@@ -13,34 +13,36 @@ using HamstarHelpers.Services.Timers;
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersNPC : GlobalNPC {
-		public override bool? CanChat( NPC npc ) {
-			if( !Main.mouseRight || !Main.npcChatRelease ) {
-				return base.CanChat( npc );
-			}
-
-			Timers.SetTimer( "ModHelpersTownNPCChatOverride", 1, true, () => {
-				this.GetChatAssurred( npc, ref Main.npcChatText );
-				return false;
-			} );
-
-			return base.CanChat( npc );
+		public override void GetChat( NPC npc, ref string chat ) {
+			this.GetChatModded( npc, ref chat );
 		}
 
-		public override void GetChat( NPC npc, ref string chat ) {
-			this.GetChatAssurred( npc, ref chat );
+		public override void OnChatButtonClicked( NPC npc, bool firstButton ) {
+			if( npc.type == NPCID.Guide ) {
+				if( firstButton ) {
+					Timers.SetTimer( "ModHelpersGuideHelp", 1, false, () => {
+						this.GetChatModdedWithoutPriorityChats( npc, ref Main.npcChatText );
+						return false;
+					} );
+				}
+			}
 		}
 
 		////
 
-		private bool GetChatAssurred( NPC npc, ref string chat ) {
-			bool? isNewChat;
-
+		private bool GetChatModded( NPC npc, ref string chat ) {
 			Func<string, string> hiChatFunc = NPCChat.GetPriorityChat( npc.type );
 			string hiChat = hiChatFunc?.Invoke( chat );
 			if( hiChat != null ) {
 				chat = hiChat;
 				return true;
 			}
+
+			return this.GetChatModdedWithoutPriorityChats( npc, ref chat );
+		}
+
+		private bool GetChatModdedWithoutPriorityChats( NPC npc, ref string chat ) {
+			bool? isNewChat;
 
 			while( true) {
 				isNewChat = NPCChat.GetChat( npc, ref chat );
