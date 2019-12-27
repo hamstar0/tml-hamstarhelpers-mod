@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Players;
 using Terraria;
@@ -7,14 +8,24 @@ using Terraria;
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	class PlayerPermaDeathProtocol : PacketProtocolSentToEither {
-		public static void SendToAll( int playerDeadWho, string msg ) {
+		public static void BroadcastFromClient( int playerDeadWho, string msg ) {
+			if( Main.netMode != 1 ) {
+				throw new ModHelpersException( "Not client" );
+			}
+
 			var protocol = new PlayerPermaDeathProtocol( playerDeadWho, msg );
 
-			if( Main.netMode == 1 ) {
-				protocol.SendToServer( true );
-			} else if( Main.netMode == 2 ) {
-				protocol.SendToClient( -1, -1 );
+			protocol.SendToServer( true );
+		}
+
+		public static void BroadcastFromServer( int playerDeadWho, string msg ) {
+			if( Main.netMode != 2 ) {
+				throw new ModHelpersException( "Not server" );
 			}
+
+			var protocol = new PlayerPermaDeathProtocol( playerDeadWho, msg );
+
+			protocol.SendToClient( -1, -1 );
 		}
 
 

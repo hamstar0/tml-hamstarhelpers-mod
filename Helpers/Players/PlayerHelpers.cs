@@ -164,8 +164,10 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="player"></param>
 		/// <param name="deathMsg"></param>
 		public static void KillWithPermadeath( Player player, string deathMsg ) {
-			if( Main.netMode != 0 ) {
-				PlayerPermaDeathProtocol.SendToAll( player.whoAmI, deathMsg );
+			if( Main.netMode == 1 ) {
+				PlayerPermaDeathProtocol.BroadcastFromClient( player.whoAmI, deathMsg );
+			} else if( Main.netMode == 2 ) {
+				PlayerPermaDeathProtocol.BroadcastFromServer( player.whoAmI, deathMsg );
 			} else {
 				PlayerHelpers.ApplyPermaDeath( player, deathMsg );
 			}

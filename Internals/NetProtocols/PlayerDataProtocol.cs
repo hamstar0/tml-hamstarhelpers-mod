@@ -8,8 +8,8 @@ using HamstarHelpers.Helpers.Debug;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
-	class PlayerDataProtocol : PacketProtocolSentToEither {
-		public static void SyncToEveryone( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+	class PlayerDataProtocol : PacketProtocolBroadcast {
+		public static void BroadcastToAll( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not client" ); }
 			
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
@@ -38,10 +38,6 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.HasBuffIds = hasBuffIds;
 			this.EquipSlotsToItemTypes = equipSlotsToItemTypes;
 		}
-
-		////
-
-		protected override void SetServerDefaults( int fromWho ) { }
 
 
 		////////////////

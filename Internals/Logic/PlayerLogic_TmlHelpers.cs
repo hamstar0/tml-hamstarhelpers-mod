@@ -56,7 +56,7 @@ namespace HamstarHelpers.Internals.Logic {
 							return false;
 						} );
 
-						PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+						PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 					}
 				}
 			}
@@ -102,7 +102,7 @@ namespace HamstarHelpers.Internals.Logic {
 							return false;
 						} );
 
-						PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+						PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 					}
 				}
 			}
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void AddPermaBuff( int buffId ) {
 			if( this.PermaBuffsById.Add( buffId ) ) {
-				PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+				PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			}
 		}
 
@@ -121,7 +121,7 @@ namespace HamstarHelpers.Internals.Logic {
 			if( !this.PermaBuffsById.Contains( buffId ) ) { return; }
 
 			if( this.PermaBuffsById.Remove( buffId ) ) {
-				PlayerDataProtocol.SyncToEveryone( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+				PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 			}
 		}
 	}
