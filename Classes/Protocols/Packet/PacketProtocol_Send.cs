@@ -20,13 +20,14 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			}
 
 			var mymod = ModHelpersMod.Instance;
-			ModPacket packet = this.GetClientPacket( false, syncToClients );
 
 			if( this.IsAsync ) {
 				ThreadPool.QueueUserWorkItem( _ => {
+					ModPacket packet = this.GetClientPacket( false, syncToClients );
 					this.Send_Core( packet );
 				} );
 			} else {
+				ModPacket packet = this.GetClientPacket( false, syncToClients );
 				this.Send_Core( packet );
 			}
 
@@ -46,13 +47,14 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			}
 
 			var mymod = ModHelpersMod.Instance;
-			ModPacket packet = this.GetServerPacket( false );
 
 			if( this.IsAsync ) {
 				ThreadPool.QueueUserWorkItem( _ => {
+					ModPacket packet = this.GetServerPacket( false );
 					this.Send_Core( packet, toWho, ignoreWho );
 				} );
 			} else {
+				ModPacket packet = this.GetServerPacket( false );
 				this.Send_Core( packet, toWho, ignoreWho );
 			}
 

@@ -9,16 +9,16 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 	/// </summary>
 	public abstract class PacketProtocolSyncClient : PacketProtocol {
 		/// <summary>
-		/// "Quick" method for syncing packets from a client to everyone else with any PacketProtocolSyncClient class. Intended to
-		/// be wrapped with a `public static` method.
+		/// "Quick" method for syncing packets from a client to everyone else with any PacketProtocolSyncClient class.
+		/// Intended to be wrapped with a `public static` method.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		protected static void SyncFromMe<T>() where T : PacketProtocolSyncClient {
 			PacketProtocol.QuickSendToServer<T>();
 		}
 		/// <summary>
-		/// "Quick" method for syncing packets from everyone else to the current client with any PacketProtocolSyncClient class.
-		/// Intended to be wrapped with a `public static` method.
+		/// "Quick" method for syncing packets from everyone else to the current client with any PacketProtocolSyncClient
+		/// class. Intended to be wrapped with a `public static` method.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="retries">Number of times to attempt to resend the packet if it fails. -1 for perpetual retries.</param>

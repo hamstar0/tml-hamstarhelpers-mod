@@ -570,6 +570,43 @@
             Sets a field to be not written by server in a protocol.
             </summary>
         </member>
+        <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither">
+            <summary>
+            Recommended PacketProtocol form for sending data to server and/or clients.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.QuickSendToAClient``1(System.Int32,System.Int32)">
+            <summary>
+            "Quick" method for sending packets to the client with any PacketProtocolSentToEither class. Intended to be wrapped with a
+            `public static` method.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toWho">Player "whoAmI" value to send the packet to. -1 for everyone.</param>
+            <param name="ignoreWho">Player "whoAmI" value to skip sending packet to. -1 for no one.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.QuickSendToTheServer``1">
+            <summary>
+            "Quick" method for sending packets to the server with any PacketProtocolSentToEither class. Intended to be wrapped with a
+            `public static` method.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveOnClient">
+            <summary>
+            Implements handling of received replies on the client.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveWithClient">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveOnServer(System.Int32)">
+            <summary>
+            Implements handling of received replies on the server.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveWithServer(System.Int32)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToClient">
             <summary>
             Recommended PacketProtocol form for sending requests to clients.
@@ -687,41 +724,40 @@
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToClient.ReceiveRequestWithServer(System.Int32)">
             @private
         </member>
-        <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither">
+        <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast">
             <summary>
             Recommended PacketProtocol form for sending data to server and/or clients.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.QuickSendToAClient``1(System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.QuickBroadcastFromServer``1(System.Int32)">
             <summary>
-            "Quick" method for sending packets to the client with any PacketProtocolSentToEither class. Intended to be wrapped with a
-            `public static` method.
+            "Quick" method for sending packets to all clients with any PacketProtocolBroadcast class. Intended to be
+            wrapped with a `public static` method.
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="toWho">Player "whoAmI" value to send the packet to. -1 for everyone.</param>
             <param name="ignoreWho">Player "whoAmI" value to skip sending packet to. -1 for no one.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.QuickSendToTheServer``1">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.QuickBroadcastFromClient``1">
             <summary>
-            "Quick" method for sending packets to the server with any PacketProtocolSentToEither class. Intended to be wrapped with a
-            `public static` method.
+            "Quick" method for sending packets to the server with any PacketProtocolSentToEither class. Intended to be
+            wrapped with a `public static` method.
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveOnClient">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveOnClient">
             <summary>
-            Implements handling of received replies on the client.
+            Implements handling of received broadcasts on the client.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveWithClient">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveWithClient">
             @private
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveOnServer(System.Int32)">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveOnServer(System.Int32)">
             <summary>
-            Implements handling of received replies on the server.
+            Implements handling of received messages on the server. Re-broadcasting to clients is handled automatically.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveWithServer(System.Int32)">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveWithServer(System.Int32)">
             @private
         </member>
         <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer">
@@ -770,15 +806,15 @@
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncFromMe``1">
             <summary>
-            "Quick" method for syncing packets from a client to everyone else with any PacketProtocolSyncClient class. Intended to
-            be wrapped with a `public static` method.
+            "Quick" method for syncing packets from a client to everyone else with any PacketProtocolSyncClient class.
+            Intended to be wrapped with a `public static` method.
             </summary>
             <typeparam name="T"></typeparam>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncToMe``1(System.Int32)">
             <summary>
-            "Quick" method for syncing packets from everyone else to the current client with any PacketProtocolSyncClient class.
-            Intended to be wrapped with a `public static` method.
+            "Quick" method for syncing packets from everyone else to the current client with any PacketProtocolSyncClient
+            class. Intended to be wrapped with a `public static` method.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="retries">Number of times to attempt to resend the packet if it fails. -1 for perpetual retries.</param>

@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
