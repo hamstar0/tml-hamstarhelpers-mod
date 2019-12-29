@@ -39,7 +39,9 @@ namespace HamstarHelpers.Helpers.NPCs {
 				NPCHelpers.Kill( npc );
 			} else {
 				npc.life -= damage;
-				NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
+				if( Main.netMode != 0 ) {
+					NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
+				}
 			}
 		}
 
@@ -52,7 +54,9 @@ namespace HamstarHelpers.Helpers.NPCs {
 			npc.life = 0;
 			npc.checkDead();
 			npc.active = false;
-			NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
+			if( Main.netMode != 0 ) {
+				NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
+			}
 		}
 
 		/// <summary>

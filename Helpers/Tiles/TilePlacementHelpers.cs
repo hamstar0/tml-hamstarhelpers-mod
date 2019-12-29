@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	public partial class TilePlacementHelpers {
 		/// <summary>
 		/// Convenience binding to place a given tile object from its corner. Places from the bottom. Uses vanilla's
-		/// object placement method.
+		/// object placement method. Applies `WorldGen.SquareTileFrame(...)`.
 		/// </summary>
 		/// <param name="leftX"></param>
 		/// <param name="bottomY"></param>

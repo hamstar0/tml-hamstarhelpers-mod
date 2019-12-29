@@ -32,7 +32,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		////////////////
 
 		/// <summary>
-		/// Places the current tile.
+		/// Places the current tile. Applies `WorldGen.SquareTileFrame(...)`.
 		/// </summary>
 		/// <param name="leftTileX"></param>
 		/// <param name="bottomTileY"></param>
@@ -51,7 +51,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 			tile.wall = this.WallType;
 
 			if( this.Slope != 0 ) {
-				tile.slope( (byte)this.Slope );
+				WorldGen.SlopeTile( leftTileX, bottomTileY, 0 );
+				//tile.slope( (byte)this.Slope );
 			}
 			if( this.IsHalfBrick ) {
 				tile.halfBrick( true );

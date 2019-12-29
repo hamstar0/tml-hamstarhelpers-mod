@@ -575,6 +575,13 @@
             Recommended PacketProtocol form for sending data to server and/or clients.
             </summary>
         </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.QuickBroadcastFromClient``1">
+            <summary>
+            "Quick" method for sending packets to the server with any PacketProtocolSentToEither class. Intended to be
+            wrapped with a `public static` method.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.QuickBroadcastFromServer``1(System.Int32)">
             <summary>
             "Quick" method for sending packets to all clients with any PacketProtocolBroadcast class. Intended to be
@@ -582,13 +589,6 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="ignoreWho">Player "whoAmI" value to skip sending packet to. -1 for no one.</param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.QuickBroadcastFromClient``1">
-            <summary>
-            "Quick" method for sending packets to the server with any PacketProtocolSentToEither class. Intended to be
-            wrapped with a `public static` method.
-            </summary>
-            <typeparam name="T"></typeparam>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.SetServerDefaults(System.Int32)">
             @private
@@ -603,7 +603,7 @@
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveOnServer(System.Int32)">
             <summary>
-            Implements handling of received messages on the server. Re-broadcasting to clients is handled automatically.
+            Implements handling of received messages on the server (before re-broadcast to clients).
             </summary>
             <return>`true` to go through with re-broadcasting this packet to clients.</return>
         </member>
@@ -5891,7 +5891,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Items.ItemHelpers.CreateItem(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Creates an item and ensures it syncs.
+            Creates a world item and ensures it syncs.
             </summary>
             <param name="pos"></param>
             <param name="type"></param>
@@ -5903,7 +5903,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Items.ItemHelpers.DestroyItem(Terraria.Item)">
             <summary>
-            Destroyes an item (turns it to air).
+            Destroyes an item (turns it to air). No sync.
             </summary>
             <param name="item"></param>
         </member>
@@ -7446,7 +7446,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.Place(System.Int32,System.Int32)">
             <summary>
-            Places the current tile.
+            Places the current tile. Applies `WorldGen.SquareTileFrame(...)`.
             </summary>
             <param name="leftTileX"></param>
             <param name="bottomTileY"></param>
@@ -7901,7 +7901,7 @@
         <member name="M:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers.PlaceObject(System.Int32,System.Int32,System.UInt16,System.Int32,System.SByte,System.Boolean)">
             <summary>
             Convenience binding to place a given tile object from its corner. Places from the bottom. Uses vanilla's
-            object placement method.
+            object placement method. Applies `WorldGen.SquareTileFrame(...)`.
             </summary>
             <param name="leftX"></param>
             <param name="bottomY"></param>

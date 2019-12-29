@@ -90,13 +90,13 @@ namespace HamstarHelpers.Helpers.Players {
 				return -1;
 			}
 
-			int idx = Item.NewItem( (int)player.position.X, (int)player.position.Y, player.width, player.height, item.type, item.stack, false, -1, false, false );
-			Item protoNewItem = Main.item[idx];
+			int itemIdx = Item.NewItem( (int)player.position.X, (int)player.position.Y, player.width, player.height, item.type, item.stack, false, -1, false, false );
+			Item protoNewItem = Main.item[itemIdx];
 
 			item.position.X = protoNewItem.position.X;
 			item.position.Y = protoNewItem.position.Y;
 
-			Main.item[ idx ] = item;
+			Main.item[ itemIdx ] = item;
 
 			player.inventory[ slot ] = new Item();
 
@@ -118,12 +118,12 @@ namespace HamstarHelpers.Helpers.Players {
 
 			Recipe.FindRecipes();
 
-			if( Main.netMode == 1 ) {   // Client
-				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 0f/*1f*/, 0f, 0f, 0, 0, 0 );
-				ItemNoGrabProtocol.SendToServer( idx, noGrabDelay );
+			if( Main.netMode != 0 ) {
+				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, itemIdx, 0f/*1f*/, 0f, 0f, 0, 0, 0 );	//0f = no grab delay
+				ItemNoGrabProtocol.SendToServer( itemIdx, noGrabDelay );
 			}
 
-			return idx;
+			return itemIdx;
 			//player.QuickSpawnClonedItem( player.inventory[slot], player.inventory[slot].stack );
 		}
 
@@ -143,8 +143,9 @@ namespace HamstarHelpers.Helpers.Players {
 				item.noGrabDelay = noGrabDelay;
 				Main.item[itemIdx] = item;
 
-				if( Main.netMode == 1 ) {   // Client
+				if( Main.netMode != 0 ) {
 					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, itemIdx, 1f, 0f, 0f, 0, 0, 0 );
+					ItemNoGrabProtocol.SendToServer( itemIdx, noGrabDelay );
 				}
 
 				player.armor[slot] = new Item();
@@ -161,14 +162,15 @@ namespace HamstarHelpers.Helpers.Players {
 			Item item = player.miscEquips[ slot ];
 
 			if( item != null && !item.IsAir ) {
-				int idx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
+				int itemIdx = Item.NewItem( player.position, item.width, item.height, item.type, item.stack, false, item.prefix, false, false );
 
-				item.position = Main.item[ idx ].position;
+				item.position = Main.item[ itemIdx ].position;
 				item.noGrabDelay = noGrabDelay;
-				Main.item[ idx ] = item;
+				Main.item[ itemIdx ] = item;
 
-				if( Main.netMode == 1 ) {   // Client
-					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
+				if( Main.netMode != 0 ) {
+					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, itemIdx, 1f, 0f, 0f, 0, 0, 0 );
+					ItemNoGrabProtocol.SendToServer( itemIdx, noGrabDelay );
 				}
 
 				player.miscEquips[ slot ] = new Item();

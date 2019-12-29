@@ -139,7 +139,7 @@ namespace HamstarHelpers.Helpers.Players {
 		////
 
 		/// <summary>
-		/// Apply armor-bypassing damage to player, killing if needed.
+		/// Apply armor-bypassing damage to player, killing if needed (syncs via. Player.Hurt(...)).
 		/// </summary>
 		/// <param name="player"></param>
 		/// <param name="deathReason"></param>

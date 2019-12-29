@@ -30,7 +30,7 @@ namespace HamstarHelpers.Helpers.Items {
 		////////////////
 
 		/// <summary>
-		/// Creates an item and ensures it syncs.
+		/// Creates a world item and ensures it syncs.
 		/// </summary>
 		/// <param name="pos"></param>
 		/// <param name="type"></param>
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <returns></returns>
 		public static int CreateItem( Vector2 pos, int type, int stack, int width, int height, int prefix = 0 ) {
 			int idx = Item.NewItem( (int)pos.X, (int)pos.Y, width, height, type, stack, false, prefix, true, false );
-			if( Main.netMode == 1 ) {	// Client
+			if( Main.netMode != 0 ) {
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
 			}
 			return idx;
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Helpers.Items {
 		////////////////
 
 		/// <summary>
-		/// Destroyes an item (turns it to air).
+		/// Destroyes an item (turns it to air). No sync.
 		/// </summary>
 		/// <param name="item"></param>
 		public static void DestroyItem( Item item ) {
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Helpers.Items {
 			Item item = Main.item[idx];
 			ItemHelpers.DestroyItem( item );
 
-			if( Main.netMode == 2 ) {	// Server
+			if( Main.netMode != 0 ) {	// Server
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx );
 			}
 		}
@@ -82,12 +82,18 @@ namespace HamstarHelpers.Helpers.Items {
 		public static void ReduceStack( Item item, int amt ) {
 			int newStackSize = (item.stack >= amt) ? (item.stack - amt) : 0;
 
-			if( Main.netMode != 2 && !Main.dedServ ) {
-				Item selectItem = Main.LocalPlayer.inventory[ PlayerItemHelpers.VanillaInventorySelectedSlot ];
+			for( int i=0; i<Main.player.Length; i++ ) {
+				Player plr = Main.player[i];
+				if( plr?.active != true ) { continue; }
 
-				if( selectItem == item && Main.mouseItem.type == item.type && Main.mouseItem.stack == item.stack ) {
-					selectItem.stack = newStackSize;
-					Main.mouseItem.stack = newStackSize;
+				Item selectItem = plr.inventory[ PlayerItemHelpers.VanillaInventorySelectedSlot ];
+
+				if( selectItem == item ) {
+					if( Main.mouseItem.type == item.type && Main.mouseItem.stack == item.stack ) {
+						selectItem.stack = newStackSize;
+						Main.mouseItem.stack = newStackSize;
+					}
+					break;
 				}
 			}
 
@@ -98,10 +104,9 @@ namespace HamstarHelpers.Helpers.Items {
 				item.active = false;
 			}
 
+			// Only world items need sync?
 			if( Main.netMode != 0 && item.whoAmI > 0 ) {
-				if( Main.netMode == 2 || item.owner == Main.myPlayer ) {	//TODO: Verify correctness
-					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
-				}
+				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
 			}
 		}
 

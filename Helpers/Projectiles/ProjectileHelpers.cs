@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Projectiles {
@@ -16,6 +17,10 @@ namespace HamstarHelpers.Helpers.Projectiles {
 			} else {
 				projectile.penetrate--;
 				projectile.netUpdate = true;
+			}
+
+			if( Main.netMode != 0 ) {
+				NetMessage.SendData( MessageID.SyncProjectile, -1, -1, null, projectile.whoAmI );
 			}
 		}
 	}
