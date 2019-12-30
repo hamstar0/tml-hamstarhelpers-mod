@@ -46,8 +46,11 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		protected sealed override void SetClientDefaults() {
 			throw new ModHelpersException( "Not implemented" );
 		}
+
 		/// @private
-		protected sealed override void ReceiveWithServer( int fromWho ) {
+		protected sealed override void ReceiveWithServer( int fromWho ) { }
+		/// @private
+		protected sealed override void ReceiveWithServer( int fromWho, bool isSyncedWithClients ) {
 			throw new ModHelpersException( "Not implemented" );
 		}
 		/// @private

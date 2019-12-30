@@ -169,20 +169,24 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <returns></returns>
 		public static bool GetModDescriptionFromCurrentMenuUI( out string output ) {
 			UIState modUI = Main.MenuUI.CurrentState;
+			if( modUI == null ) {
+				output = "No current UI state found.";
+				return false;
+			}
 			if( modUI.GetType().Name != "UIModInfo" ) {
-				output = "Not currently viewing mod info.";
+				output = "Not currently viewing mod info (or no such UI found).";
 				return false;
 			}
 
 			UIPanel msgBox;
-			if( modUI == null || !ReflectionHelpers.Get( modUI, "_modInfo", out msgBox ) ) {
-				output = "No modInfo field.";
+			if( !ReflectionHelpers.Get( modUI, "_modInfo", out msgBox ) ) {
+				output = "No _modInfo field.";
 				return false;
 			}
 
 			string modDesc;
-			if( !ReflectionHelpers.Get( msgBox, "text", out modDesc ) ) {
-				output = "No modInfo.text field.";
+			if( !ReflectionHelpers.Get( msgBox, "_text", out modDesc ) ) {
+				output = "No modInfo._text field.";
 				return false;
 			}
 

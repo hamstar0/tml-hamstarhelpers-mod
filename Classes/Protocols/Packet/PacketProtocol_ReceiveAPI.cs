@@ -13,11 +13,17 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			throw new ModHelpersException( "No ReceiveWithClient" );
 		}
 
+		/// @private
+		[Obsolete("use ReceiveWithServer(int, bool)")]
+		protected virtual void ReceiveWithServer( int fromWho ) {
+			throw new ModHelpersException( "No ReceiveWithServer" );
+		}
 		/// <summary>
 		/// Runs when data received on server (class's own fields).
 		/// </summary>
 		/// <param name="fromWho">Main.player index of the player (client) sending us our data.</param>
-		protected virtual void ReceiveWithServer( int fromWho ) {
+		/// <param name="isSyncedToClients"></param>
+		protected virtual void ReceiveWithServer( int fromWho, bool isSyncedToClients ) {
 			throw new ModHelpersException( "No ReceiveWithServer" );
 		}
 

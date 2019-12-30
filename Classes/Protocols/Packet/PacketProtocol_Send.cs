@@ -3,7 +3,7 @@ using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using Newtonsoft.Json;
 using System;
-using System.Threading;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -20,9 +20,9 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			}
 
 			var mymod = ModHelpersMod.Instance;
-
+			
 			if( this.IsAsync ) {
-				ThreadPool.QueueUserWorkItem( _ => {
+				Task.Run( () => {
 					ModPacket packet = this.GetClientPacket( false, syncToClients );
 					this.Send_Core( packet );
 				} );
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			var mymod = ModHelpersMod.Instance;
 
 			if( this.IsAsync ) {
-				ThreadPool.QueueUserWorkItem( _ => {
+				Task.Run( () => {
 					ModPacket packet = this.GetServerPacket( false );
 					this.Send_Core( packet, toWho, ignoreWho );
 				} );

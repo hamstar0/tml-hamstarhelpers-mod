@@ -610,6 +610,9 @@
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveWithServer(System.Int32)">
             @private
         </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveWithServer(System.Int32,System.Boolean)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToClient">
             <summary>
             Recommended PacketProtocol form for sending requests to clients.
@@ -638,6 +641,9 @@
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToClient.ReceiveWithServer(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToClient.ReceiveWithServer(System.Int32,System.Boolean)">
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToClient.SetServerDefaults(System.Int32)">
@@ -683,6 +689,9 @@
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToServer.ReceiveWithServer(System.Int32)">
             @private
         </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToServer.ReceiveWithServer(System.Int32,System.Boolean)">
+            @private
+        </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToServer.ReceiveRequestWithClient">
             @private
         </member>
@@ -719,6 +728,9 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToClient.ReceiveWithServer(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToClient.ReceiveWithServer(System.Int32,System.Boolean)">
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToClient.ReceiveRequestWithClient">
@@ -764,6 +776,9 @@
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveWithServer(System.Int32)">
             @private
         </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveWithServer(System.Int32,System.Boolean)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer">
             <summary>
             Recommended PacketProtocol form for sending data to the server.
@@ -789,6 +804,9 @@
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer.ReceiveWithServer(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer.ReceiveWithServer(System.Int32,System.Boolean)">
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer.SetServerDefaults(System.Int32)">
@@ -867,6 +885,9 @@
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.ReceiveWithServer(System.Int32)">
             @private
         </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.ReceiveWithServer(System.Int32,System.Boolean)">
+            @private
+        </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.ReceiveRequestWithClient">
             @private
         </member>
@@ -919,10 +940,14 @@
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.PacketProtocol.ReceiveWithServer(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.PacketProtocol.ReceiveWithServer(System.Int32,System.Boolean)">
             <summary>
             Runs when data received on server (class's own fields).
             </summary>
             <param name="fromWho">Main.player index of the player (client) sending us our data.</param>
+            <param name="isSyncedToClients"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.PacketProtocol.ReceiveRequestWithClient">
             <summary>
@@ -6651,7 +6676,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Players.PlayerHelpers.RawHurt(Terraria.Player,Terraria.DataStructures.PlayerDeathReason,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Apply armor-bypassing damage to player, killing if needed.
+            Apply armor-bypassing damage to player, killing if needed (syncs via. Player.Hurt(...)).
             </summary>
             <param name="player"></param>
             <param name="deathReason"></param>

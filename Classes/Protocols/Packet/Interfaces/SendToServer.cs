@@ -32,8 +32,11 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		/// Implements handling of received replies on the server.
 		/// </summary>
 		protected abstract void Receive( int fromWho );
+
 		/// @private
-		protected sealed override void ReceiveWithServer( int fromWho ) {
+		protected sealed override void ReceiveWithServer( int fromWho ) { }
+		/// @private
+		protected sealed override void ReceiveWithServer( int fromWho, bool isSyncedWithClients ) {
 			this.Receive( fromWho );
 		}
 

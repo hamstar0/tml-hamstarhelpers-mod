@@ -79,7 +79,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 			if( viewer == null || string.IsNullOrEmpty( desc ) ) {
 				if( !ModMenuHelpers.GetModDescriptionFromCurrentMenuUI( out desc ) ) {
-					desc = "";
+					LogHelpers.WarnOnce( "Failed for "+modName+": "+desc );
+					return;
 				}
 			}
 

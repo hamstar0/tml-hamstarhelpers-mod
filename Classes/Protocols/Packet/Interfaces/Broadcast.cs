@@ -55,8 +55,11 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		/// </summary>
 		/// <return>`true` to go through with re-broadcasting this packet to clients.</return>
 		protected abstract void ReceiveOnServer( int fromWho );
+
 		/// @private
-		protected sealed override void ReceiveWithServer( int fromWho ) {
+		protected sealed override void ReceiveWithServer( int fromWho ) { }
+		/// @private
+		protected sealed override void ReceiveWithServer( int fromWho, bool isSyncedWithClients ) {
 			this.ReceiveOnServer( fromWho );
 		}
 	}

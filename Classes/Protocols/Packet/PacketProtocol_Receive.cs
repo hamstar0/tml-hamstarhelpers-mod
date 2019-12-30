@@ -58,9 +58,10 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			this.ReceiveWithClient();
 		}
 
-		private void ReceiveWithServerBase( BinaryReader reader, int fromWho ) {
+		private void ReceiveWithServerBase( BinaryReader reader, int fromWho, bool isSyncedToClients ) {
 			this.ReceiveWithEitherBase( reader, fromWho );
 			this.ReceiveWithServer( fromWho );
+			this.ReceiveWithServer( fromWho, isSyncedToClients );
 		}
 
 

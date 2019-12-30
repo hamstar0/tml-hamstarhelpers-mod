@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <summary></summary>
 		public sbyte Direction = -1;
 		/// <summary></summary>
-		public TileSlopeType Slope = 0;
+		public TileSlopeType? Slope = 0;
 		/// <summary></summary>
 		public bool IsHalfBrick = false;
 		/// <summary></summary>
@@ -50,9 +50,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 
 			tile.wall = this.WallType;
 
-			if( this.Slope != 0 ) {
-				WorldGen.SlopeTile( leftTileX, bottomTileY, 0 );
-				//tile.slope( (byte)this.Slope );
+			if( this.Slope.HasValue ) {
+				tile.slope( (byte)this.Slope.Value );
 			}
 			if( this.IsHalfBrick ) {
 				tile.halfBrick( true );

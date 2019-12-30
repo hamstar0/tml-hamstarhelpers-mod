@@ -3,7 +3,7 @@ using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using System;
 using System.IO;
-using System.Threading;
+using System.Threading.Tasks;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 					protocol.OnClone();
 				} else {
 					if( protocol.IsAsync ) {
-						ThreadPool.QueueUserWorkItem( _ => {
+						Task.Run( () => {
 							protocol.HandleClient_Core( reader, playerWho );
 						} );
 					} else {
@@ -70,7 +70,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 					protocol.OnClone();
 				} else {
 					if( protocol.IsAsync ) {
-						ThreadPool.QueueUserWorkItem( _ => {
+						Task.Run( () => {
 							protocol.HandleServer_Core( reader, playerWho, isSyncedToClients );
 						} );
 					} else {
@@ -91,7 +91,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		}
 
 		private void HandleServer_Core( BinaryReader reader, int playerWho, bool isSyncedToClients ) {
-			this.ReceiveWithServerBase( reader, playerWho );
+			this.ReceiveWithServerBase( reader, playerWho, isSyncedToClients );
 			this.OnClone();
 
 			if( isSyncedToClients ) {
