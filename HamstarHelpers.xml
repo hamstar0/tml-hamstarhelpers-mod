@@ -3740,6 +3740,16 @@
             <param name="ignoredTiles">A list of tile X and Y points to ignore.</param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Collisions.TileCollisionHelpers.FindPathSimple(System.ValueTuple{System.Int32,System.Int32},System.ValueTuple{System.Int32,System.Int32},System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.Int32,System.Int32}}@)">
+            <summary>
+            Attempts to find a path between 2 points using a simple brute force method.
+            </summary>
+            <param name="tilePointA"></param>
+            <param name="tilePointB"></param>
+            <param name="maxTilesCovered"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Debug.DebugHelpers">
             <summary>
             Assorted static "helper" functions pertaining to debugging and debug outputs.

@@ -1,17 +1,17 @@
-﻿using HamstarHelpers.Classes.UI.Theme;
+﻿using System;
+using Terraria.UI;
+using System.Collections.Generic;
+using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons;
 using HamstarHelpers.Internals.ModTags.ModInfo.Manager;
-using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Services.TML;
-using System;
-using Terraria.UI;
-using System.Collections.Generic;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {

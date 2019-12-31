@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
@@ -40,6 +41,127 @@ namespace HamstarHelpers.Helpers.Collisions {
 			}
 
 			return dist;
+		}
+
+
+		/// <summary>
+		/// Attempts to find a path between 2 points using a simple brute force method.
+		/// </summary>
+		/// <param name="tilePointA"></param>
+		/// <param name="tilePointB"></param>
+		/// <param name="maxTilesCovered"></param>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public static bool FindPathSimple(
+					(int x, int y) tilePointA,
+					(int x, int y) tilePointB,
+					int maxTilesCovered,
+					out IList<(int tileX, int tileY)> path ) {
+			path = new List<(int, int)>();
+			var chartedTiles = new HashSet<(int, int)>();
+
+			//
+
+			int getDistSqr( (int x, int y) a, (int x, int y) b ) {
+				int diffX = a.x - b.x;
+				int diffY = a.y - b.x;
+				return (diffX * diffX) + (diffY * diffY);
+			}
+
+			bool tryGetDistSqrOfValidTile( (int x, int y) point, out int distSqr ) {
+				distSqr = -1;
+
+				if( point.x < 0 || point.x >= Main.maxTilesX ) { return false; }
+				if( point.y < 0 || point.y >= Main.maxTilesY ) { return false; }
+				if( chartedTiles.Contains(point) ) { return false; }
+
+				Tile tile = Framing.GetTileSafely( point.x, point.y );
+				if( tile.active() ) { return false; }
+
+				distSqr = getDistSqr( point, tilePointB );
+				return true;
+			}
+
+			IEnumerable<(int x, int y, int distSqr)> getDistSqrNeighborsNear( (int x, int y) point ) {
+				(int x, int y) curr;
+				int distSqr;
+
+				curr = (point.x - 1, point.y - 1);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+				curr = (point.x, point.y - 1);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+				curr = (point.x + 1, point.y - 1);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+				curr = (point.x - 1, point.y);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+				curr = (point.x + 1, point.y);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+				curr = (point.x - 1, point.y + 1);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+				curr = (point.x, point.y + 1);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+				curr = (point.x + 1, point.y + 1);
+				if( tryGetDistSqrOfValidTile( curr, out distSqr) ) {
+					yield return ( curr.x, curr.y, distSqr );
+				}
+			}
+
+			bool tryGetNeighborClosestToTarget( (int x, int y) pt, out (int x, int y) closest ) {
+				(int x, int y, int distSqr) prev = (0, 0, Main.maxTilesX * Main.maxTilesX);
+				(int x, int y, int distSqr) closestDist = getDistSqrNeighborsNear( pt )
+					.Single( curr => {
+						bool isSmallest = curr.distSqr < prev.distSqr;
+						prev = curr;
+						return isSmallest;
+					} );
+
+				closest = (closestDist.x, closestDist.y);
+				return closestDist.x != 0;
+			}
+
+			//
+
+			(int x, int y) currPt = tilePointA;
+
+			do {
+				(int x, int y) closestNeighbor;
+
+				if( !tryGetNeighborClosestToTarget(currPt, out closestNeighbor) ) {
+					if( path.Count == 0 ) {
+						return false;
+					}
+					if( chartedTiles.Count >= maxTilesCovered ) {
+						return false;
+					}
+
+					chartedTiles.Add( currPt );
+
+					currPt = path[ path.Count - 1 ];
+					path.RemoveAt( path.Count - 1 );
+					continue;
+				}
+
+				path.Add( currPt );
+				chartedTiles.Add( currPt );
+
+				currPt = closestNeighbor;
+			} while( currPt != tilePointB );
+
+			return true;
 		}
 	}
 }
