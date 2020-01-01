@@ -186,8 +186,10 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 			string modDesc;
 			if( !ReflectionHelpers.Get( msgBox, "_text", out modDesc ) ) {
-				output = "No modInfo._text field.";
-				return false;
+				if( !ReflectionHelpers.Get( msgBox, "text", out modDesc ) ) {
+					output = "No modInfo._text or text field.";
+					return false;
+				}
 			}
 
 			output = modDesc;
