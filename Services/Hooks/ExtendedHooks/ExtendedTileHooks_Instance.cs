@@ -70,7 +70,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		private ISet<int> CheckedTiles = new HashSet<int>();
 		private ISet<int> CheckedWalls = new HashSet<int>();
 
-		private Func<bool> KillTileSkipCondition;
+		private Func<bool> KillTileSkipCondition = null;
 
 
 
@@ -129,7 +129,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillTileDelegate deleg in hooks ) {
-				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem, this.KillTileSkipCondition() );
+				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem, this.KillTileSkipCondition?.Invoke() ?? false );
 			}
 
 			this.CheckedTiles.Add( tileToCheck );
@@ -149,7 +149,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillWallDelegate deleg in this.OnKillWallHooks ) {
-				deleg.Invoke( i, j, type, ref fail, this.KillTileSkipCondition() );
+				deleg.Invoke( i, j, type, ref fail, this.KillTileSkipCondition?.Invoke() ?? false );
 			}
 
 			this.CheckedWalls.Add( wallToCheck );
@@ -197,7 +197,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillMultiTileDelegate deleg in hooks ) {
-				deleg.Invoke( i, j, type, this.KillTileSkipCondition() );
+				deleg.Invoke( i, j, type, this.KillTileSkipCondition?.Invoke() ?? false );
 			}
 		}
 	}

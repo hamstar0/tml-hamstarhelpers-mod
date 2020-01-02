@@ -35,7 +35,7 @@ namespace HamstarHelpers.Services.NPCChat {
 				?? 0f;
 			
 			if( (rand.NextFloat() * totalWeight) < defaultChatsTotalWeight ) {
-				bool isRemoved = string.IsNullOrEmpty( chat )
+				bool isRemoved = !string.IsNullOrEmpty( chat )
 					? NPCChat.IsChatRemoved( npc.type, chat )
 					: false;
 
@@ -98,8 +98,9 @@ namespace HamstarHelpers.Services.NPCChat {
 
 			if( nc.RemovedChatFlatPatterns.ContainsKey( npcType ) ) {
 				foreach( string pattern in nc.RemovedChatFlatPatterns[npcType] ) {
-					if( !chat.Contains( pattern ) ) { continue; }
-					return true;
+					if( chat.Contains( pattern ) ) {
+						return true;
+					}
 				}
 			}
 			return false;
