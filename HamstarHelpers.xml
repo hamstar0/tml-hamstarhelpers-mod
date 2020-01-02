@@ -4,6 +4,28 @@
         <name>HamstarHelpers</name>
     </assembly>
     <members>
+        <member name="T:HamstarHelpers.Buffs.DegreelessnessBuff">
+            <summary>
+            Invulnerability buff.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Buffs.DegreelessnessBuff.AnimateAttackBurstFX(Microsoft.Xna.Framework.Vector2,System.Single,System.Int32)">
+            <summary>
+            Shows the typical animation effect of invulnerable entities.
+            </summary>
+            <param name="position"></param>
+            <param name="radius"></param>
+            <param name="particles"></param>
+        </member>
+        <member name="M:HamstarHelpers.Buffs.DegreelessnessBuff.SetDefaults">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Buffs.DegreelessnessBuff.Update(Terraria.Player,System.Int32@)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Buffs.DegreelessnessBuff.Update(Terraria.NPC,System.Int32@)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.PlayerData.CustomPlayerData">
             <summary>
             An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
