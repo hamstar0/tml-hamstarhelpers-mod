@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['weakreferences',['WeakReferences',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#aa8893267f9069b89c3040dd0445b6ffc',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
-  ['willdrawownhoverelements',['WillDrawOwnHoverElements',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a5ba3ee2c4672a5c905d73d5c3a17dd66',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
-  ['willdrawownhoverurl',['WillDrawOwnHoverUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html#a76c11e1753fcb5d913bf3f1efffc55fe',1,'HamstarHelpers.Classes.UI.Elements.UIImageUrl.WillDrawOwnHoverUrl()'],['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#a52eb367b767e5b706cbe574358c7c64b',1,'HamstarHelpers.Classes.UI.Elements.UIWebUrl.WillDrawOwnHoverUrl()']]],
-  ['worldmodlockenable',['WorldModLockEnable',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a6481872fac8c11ec7957ef6d89ed458a',1,'HamstarHelpers::ModHelpersConfig']]],
-  ['worldmodlockminimumonly',['WorldModLockMinimumOnly',['../class_hamstar_helpers_1_1_mod_helpers_config.html#af114320522431d3de0f7611951383f7e',1,'HamstarHelpers::ModHelpersConfig']]]
+  ['vanillaearthtiles',['VanillaEarthTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_group_identity_helpers.html#ab065f5a41499d1493c07fcea78c30677',1,'HamstarHelpers::Helpers::Tiles::TileGroupIdentityHelpers']]],
+  ['vanillashrubtiles',['VanillaShrubTiles',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_group_identity_helpers.html#abccbf5d8175fa487eb282e27280ad302',1,'HamstarHelpers::Helpers::Tiles::TileGroupIdentityHelpers']]],
+  ['version',['Version',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#ac2004f561bf97096d05c125722db980b',1,'HamstarHelpers::Helpers::TModLoader::Mods::BasicModInfo']]],
+  ['versionalertelem',['VersionAlertElem',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a991a89dde9ea7d9addf9651bc84e420b',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]]
 ];

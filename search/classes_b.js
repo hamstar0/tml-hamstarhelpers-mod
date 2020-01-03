@@ -19,7 +19,7 @@ var searchData=
   ['modlisthelpers',['ModListHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_list_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
   ['modlockservice',['ModLockService',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html',1,'HamstarHelpers::Services::ModHelpers']]],
   ['modmenuhelpers',['ModMenuHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
-  ['modtagdefinition',['ModTagDefinition',['../class_hamstar_helpers_1_1_classes_1_1_mod_tag_definitions_1_1_mod_tag_definition.html',1,'HamstarHelpers::Classes::ModTagDefinitions']]],
+  ['modtagdefinition',['ModTagDefinition',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html',1,'HamstarHelpers::Services::ModTagDefinitions']]],
   ['musicboxhelpers',['MusicBoxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_music_box_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
   ['musichelpers',['MusicHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_music_helpers.html',1,'HamstarHelpers::Helpers::Misc']]]
 ];

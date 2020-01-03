@@ -3,6 +3,7 @@ var searchData=
   ['defaultsettings',['DefaultSettings',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_x_n_a_contract_resolver.html#a04fb13e1a00c061312b7ae28a9cb0447',1,'HamstarHelpers::Classes::Protocols::XNAContractResolver']]],
   ['degred',['DegRed',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#ae011260392ec3944d4cdb81a1bb6531b',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
   ['description',['Description',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#ade2f187fe4b8b76c592faffec37b4cab',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
+  ['direction',['Direction',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#a72acf157d3daa58ec07d7191f2d2a84e',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawDefinition']]],
   ['dirtlayerbottomtiley',['DirtLayerBottomTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a8766ca371f6c5b122926b5d913b745a8',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['dirtlayertoptiley',['DirtLayerTopTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a99ee3065844502badf3e282bf6ff0e00',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['disco',['Disco',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#adc4b4ddb4016eca41811d97ca498d2c5',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lightningfxhelpers',['LightningFxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_f_x_1_1_lightning_fx_helpers.html',1,'HamstarHelpers::Helpers::FX']]],
+  ['lightningfxhelpers',['LightningFxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_lightning_fx_helpers.html',1,'HamstarHelpers::Helpers::Fx']]],
   ['linqhelpers',['LINQHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html',1,'HamstarHelpers::Helpers::DotNET']]],
   ['listcontainerthemeattribute',['ListContainerThemeAttribute',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_list_container_theme_attribute.html',1,'HamstarHelpers::Classes::UI::Theme']]],
   ['listitemthemeattribute',['ListItemThemeAttribute',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_list_item_theme_attribute.html',1,'HamstarHelpers::Classes::UI::Theme']]],

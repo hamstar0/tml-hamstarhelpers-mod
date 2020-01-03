@@ -5,6 +5,8 @@ var dir_fae0d5b16341b3860fc573cb98f1438c =
     [ "WorldFileHelpers.cs", "_world_file_helpers_8cs_source.html", null ],
     [ "WorldHelpers.cs", "_world_helpers_8cs_source.html", null ],
     [ "WorldHelpers_Obsolete.cs", "_world_helpers___obsolete_8cs_source.html", null ],
+    [ "WorldLocationHelpers_Beaches.cs", "_world_location_helpers___beaches_8cs_source.html", null ],
+    [ "WorldLocationHelpers_Trees.cs", "_world_location_helpers___trees_8cs_source.html", null ],
     [ "WorldStateHelpers.cs", "_world_state_helpers_8cs_source.html", null ],
     [ "WorldStateHelpers_Instance.cs", "_world_state_helpers___instance_8cs_source.html", null ]
 ];

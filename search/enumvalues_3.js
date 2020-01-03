@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['deficient',['Deficient',['../namespace_hamstar_helpers_1_1_classes_1_1_mod_tag_definitions.html#a3689012eabf257d6780a0e3a8ed0d50fa78e643fb572cbd028f24aa9783275a6f',1,'HamstarHelpers::Classes::ModTagDefinitions']]],
+  ['deficient',['Deficient',['../namespace_hamstar_helpers_1_1_services_1_1_mod_tag_definitions.html#af0d54f6fc3f74edb855987325841d289a78e643fb572cbd028f24aa9783275a6f',1,'HamstarHelpers::Services::ModTagDefinitions']]],
   ['desert',['Desert',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#adc67de7c4a50810164b8548dd09fd117a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a6c96804d2d560ce24321f5700aaf10cfa000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#abc5187c3be2fd50d3708509c6f8e8db1a000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#ac087df489080613244cb5bd203faf25da000c016d34ff41e245b69c67f22c83ff',1,'HamstarHelpers.Helpers.World.Desert()']]],
   ['dungeon',['Dungeon',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#adc67de7c4a50810164b8548dd09fd117acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#abc5187c3be2fd50d3708509c6f8e8db1acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()']]]
 ];

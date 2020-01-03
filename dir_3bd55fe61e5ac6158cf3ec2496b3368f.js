@@ -1,5 +1,6 @@
 var dir_3bd55fe61e5ac6158cf3ec2496b3368f =
 [
+    [ "Buffs", "dir_d12a981c7ad53b9d29b29ec2924955cc.html", "dir_d12a981c7ad53b9d29b29ec2924955cc" ],
     [ "Classes", "dir_d574c994c01743ef9200ed96070524b5.html", "dir_d574c994c01743ef9200ed96070524b5" ],
     [ "Commands", "dir_775f55fba41c8d8adaebd31066eb04bc.html", "dir_775f55fba41c8d8adaebd31066eb04bc" ],
     [ "Helpers", "dir_0a34f135414d4ff01f71b971d3edece2.html", "dir_0a34f135414d4ff01f71b971d3edece2" ],
@@ -19,7 +20,9 @@ var dir_3bd55fe61e5ac6158cf3ec2496b3368f =
     [ "MyMod_LoadModules.cs", "_my_mod___load_modules_8cs_source.html", null ],
     [ "MyMod_Meta.cs", "_my_mod___meta_8cs_source.html", null ],
     [ "MyNPC.cs", "_my_n_p_c_8cs_source.html", null ],
+    [ "MyNPC_Draw.cs", "_my_n_p_c___draw_8cs_source.html", null ],
     [ "MyPlayer.cs", "_my_player_8cs_source.html", null ],
     [ "MyRecipe.cs", "_my_recipe_8cs_source.html", null ],
+    [ "MyTile.cs", "_my_tile_8cs_source.html", null ],
     [ "MyWorld.cs", "_my_world_8cs_source.html", null ]
 ];

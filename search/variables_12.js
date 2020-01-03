@@ -6,6 +6,7 @@ var searchData=
   ['skeletronprime',['SkeletronPrime',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#acc60563e78d51cf61dfc33e3a3c5e19e',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['skylayerbottomtiley',['SkyLayerBottomTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a09649e888b54c067a1fc1251e509fa69',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['skylayertoptiley',['SkyLayerTopTileY',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#afd82378c27741ae9aeb05f7f0b08b21b',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
+  ['slope',['Slope',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#a9939b669e7830c067d0ddfafb1a7e5a3',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawDefinition']]],
   ['sortafter',['SortAfter',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a43b457faa0f1bd2fa96d9a1f3abc67a0',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['sortbefore',['SortBefore',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a84b821c71e1e764c09535a6951c46ac1',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['spazmatism',['Spazmatism',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5901bbebf31657c60e16fa39ce6152de',1,'HamstarHelpers::Services::GameData::BossData']]],

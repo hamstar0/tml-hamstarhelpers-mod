@@ -4,6 +4,8 @@ var class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers =
     [ "AlertAndPrintOnce", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a65540ba69aa609430cd917029b7ea1f4", null ],
     [ "AlertOnce", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a7ffc50b1461dd296b95199b7007c4602", null ],
     [ "FormatMessage", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a3e61e38c0852f43e16700011fbdf6281", null ],
+    [ "Info", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a0a10c48df77c01a2307860972ea8e8ea", null ],
+    [ "Info", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a0dbc03bc82f721109058e37a330c56e0", null ],
     [ "Log", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ae141f63955b55fae280ffdb3c4a19f8e", null ],
     [ "LogAndPrintOnce", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a69a47122f3bc4ef78bafda1d043f0933", null ],
     [ "LogContext", "class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a1b965a4bf677140bb6897298cb6d0a2d", null ],

@@ -1,5 +1,6 @@
 var namespace_hamstar_helpers =
 [
+    [ "Buffs", "namespace_hamstar_helpers_1_1_buffs.html", "namespace_hamstar_helpers_1_1_buffs" ],
     [ "Classes", "namespace_hamstar_helpers_1_1_classes.html", "namespace_hamstar_helpers_1_1_classes" ],
     [ "Helpers", "namespace_hamstar_helpers_1_1_helpers.html", "namespace_hamstar_helpers_1_1_helpers" ],
     [ "Internals", "namespace_hamstar_helpers_1_1_internals.html", "namespace_hamstar_helpers_1_1_internals" ],

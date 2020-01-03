@@ -1,6 +1,7 @@
 var searchData=
 [
   ['packetprotocol',['PacketProtocol',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html',1,'HamstarHelpers::Classes::Protocols::Packet']]],
+  ['packetprotocolbroadcast',['PacketProtocolBroadcast',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_broadcast.html',1,'HamstarHelpers::Classes::Protocols::Packet::Interfaces']]],
   ['packetprotocolrequesttoclient',['PacketProtocolRequestToClient',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html',1,'HamstarHelpers::Classes::Protocols::Packet::Interfaces']]],
   ['packetprotocolrequesttoserver',['PacketProtocolRequestToServer',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html',1,'HamstarHelpers::Classes::Protocols::Packet::Interfaces']]],
   ['packetprotocolsendtoclient',['PacketProtocolSendToClient',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_client.html',1,'HamstarHelpers::Classes::Protocols::Packet::Interfaces']]],
@@ -9,7 +10,7 @@ var searchData=
   ['packetprotocolsyncclient',['PacketProtocolSyncClient',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html',1,'HamstarHelpers::Classes::Protocols::Packet::Interfaces']]],
   ['painthelpers',['PaintHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_paint_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
   ['panelthemeattribute',['PanelThemeAttribute',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_panel_theme_attribute.html',1,'HamstarHelpers::Classes::UI::Theme']]],
-  ['particlefxhelpers',['ParticleFxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_f_x_1_1_particle_fx_helpers.html',1,'HamstarHelpers::Helpers::FX']]],
+  ['particlefxhelpers',['ParticleFxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_particle_fx_helpers.html',1,'HamstarHelpers::Helpers::Fx']]],
   ['percentfloatdefinition',['PercentFloatDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_percent_float_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
   ['playerfilehelpers',['PlayerFileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_file_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerheaddrawhelpers',['PlayerHeadDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_head_draw_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
@@ -26,6 +27,7 @@ var searchData=
   ['playerwarphelpers',['PlayerWarpHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['positiveintdefinition',['PositiveIntDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_positive_int_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
   ['positivesingledefinition',['PositiveSingleDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_positive_single_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
+  ['primitiveextensions',['PrimitiveExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_primitive_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
   ['projectileattributehelpers',['ProjectileAttributeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_attributes_1_1_projectile_attribute_helpers.html',1,'HamstarHelpers::Helpers::Projectiles::Attributes']]],
   ['projectilegroupids',['ProjectileGroupIDs',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_projectile_group_i_ds.html',1,'HamstarHelpers::Services::EntityGroups::Definitions']]],
   ['projectilegroupmatcher',['ProjectileGroupMatcher',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_projectile_group_matcher.html',1,'HamstarHelpers::Services::EntityGroups']]],

@@ -144,6 +144,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aedb183bba94fcb0494b2125557d08abe"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#aedb183bba94fcb0494b2125557d08abe">IsVanitySlot</a> (Player player, int slot)</td></tr>
 <tr class="memdesc:aedb183bba94fcb0494b2125557d08abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if a given slot position is a vanity slot (in <code>player.armor</code>).  <a href="#aedb183bba94fcb0494b2125557d08abe">More...</a><br /></td></tr>
 <tr class="separator:aedb183bba94fcb0494b2125557d08abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a76b3ecf184876a99a6977a0332cadf"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a4a76b3ecf184876a99a6977a0332cadf">GetFirstVanitySlot</a> (Player player)</td></tr>
+<tr class="memdesc:a4a76b3ecf184876a99a6977a0332cadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets first vanity slot for a given player (<code>player.armor</code>).  <a href="#a4a76b3ecf184876a99a6977a0332cadf">More...</a><br /></td></tr>
+<tr class="separator:a4a76b3ecf184876a99a6977a0332cadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2654f7ec0bdbcc5d565c456028f68655"><td class="memItemLeft" align="right" valign="top">static Item []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a2654f7ec0bdbcc5d565c456028f68655">GetCurrentlyOpenChest</a> (Player player, out bool? isPersonalChest)</td></tr>
 <tr class="memdesc:a2654f7ec0bdbcc5d565c456028f68655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accesses items of a player's currently opened chest.  <a href="#a2654f7ec0bdbcc5d565c456028f68655">More...</a><br /></td></tr>
 <tr class="separator:a2654f7ec0bdbcc5d565c456028f68655"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,7 +219,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00281">281</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00289">289</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -270,7 +273,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00136">136</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00139">139</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -324,7 +327,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00160">160</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00165">165</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -427,7 +430,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00411">411</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00430">430</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -468,6 +471,43 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a4a76b3ecf184876a99a6977a0332cadf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a76b3ecf184876a99a6977a0332cadf">&#9670;&nbsp;</a></span>GetFirstVanitySlot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int HamstarHelpers.Helpers.Players.PlayerItemHelpers.GetFirstVanitySlot </td>
+          <td>(</td>
+          <td class="paramtype">Player&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets first vanity slot for a given player (<code>player.armor</code>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00417">417</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="a987b1fc96a7a05b58a164cb6579df13e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a987b1fc96a7a05b58a164cb6579df13e">&#9670;&nbsp;</a></span>GetGrappleItem()</h2>
 
@@ -501,7 +541,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00358">358</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00366">366</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -549,7 +589,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00388">388</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00396">396</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -586,7 +626,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00378">378</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00386">386</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -641,7 +681,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00241">241</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00249">249</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -689,7 +729,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00398">398</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00407">407</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -781,7 +821,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00302">302</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00310">310</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -843,7 +883,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00317">317</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00325">325</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -880,7 +920,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00185">185</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_item_helpers_8cs_source.html#l00193">193</a> of file <a class="el" href="_player_item_helpers_8cs_source.html">PlayerItemHelpers.cs</a>.</p>
 
 </div>
 </div>

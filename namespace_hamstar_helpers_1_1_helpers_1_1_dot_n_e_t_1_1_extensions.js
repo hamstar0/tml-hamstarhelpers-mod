@@ -4,6 +4,8 @@ var namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions =
     [ "BinaryReaderExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions" ],
     [ "DictionaryExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions" ],
     [ "KeyValuePairExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_key_value_pair_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_key_value_pair_extensions" ],
+    [ "PrimitiveExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_primitive_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_primitive_extensions" ],
     [ "StringExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_string_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_string_extensions" ],
-    [ "Vector2StringExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions" ]
+    [ "Vector2StringExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions" ],
+    [ "XNAExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_x_n_a_extensions.html", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_x_n_a_extensions" ]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['wallofflesh',['WallOfFlesh',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#aa57b3c253a57ce546bea9f2f71011fe6',1,'HamstarHelpers::Services::GameData::BossData']]],
+  ['walltype',['WallType',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#ae9260dbb9f4a75f2602e8bc64bada6ba',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawDefinition']]],
   ['warppotions',['WarpPotions',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a86082bc3f6bce5b058fcea8afafcd7a2',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['water',['Water',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a719069c8777e18eeced10b790d16a95b',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
   ['weightedpressureplates',['WeightedPressurePlates',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#ae8685a7a77d0da4d68d161be784b673b',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],

@@ -96,12 +96,6 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 , <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a97fbf547274a57d24b68c6288c86c9e3">HamstarHelpers.Helpers.XNA.XNAColorHelpers</a>
 , <a class="el" href="class_hamstar_helpers_1_1_services_1_1_data_store_1_1_data_store.html#a3d95817d5cc79a5b4397a114e97193cf">HamstarHelpers.Services.DataStore.DataStore</a>
 </li>
-<li>Add2D&lt; TKey &gt;()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a65548d4b587293f9d6008fc5d4a34708">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
-</li>
-<li>Add2D&lt; TKey1, TKey2 &gt;()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#aaede95a9f6f922ac0cd4a72408a75812">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
-</li>
 <li>AddArmorEquipAction()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#aa6be2915a113e87d4d2de80924dde2c6">HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks</a>
 </li>
@@ -113,6 +107,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>AddBuffExpireAction()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#ae8c32925197435ddf9d42dbcad5b1aec">HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks</a>
+</li>
+<li>AddChatForNPC()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_n_p_c_chat_1_1_n_p_c_chat.html#acc3a605dbbd4f850c0651ada63d4504c">HamstarHelpers.Services.NPCChat.NPCChat</a>
+</li>
+<li>AddChatRemoveFlatPatternForNPC()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_n_p_c_chat_1_1_n_p_c_chat.html#aae04279b223e326b973cb8ef2062dc73">HamstarHelpers.Services.NPCChat.NPCChat</a>
 </li>
 <li>AddCustomItemGroup()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a048523215339d0e13031baa766b80145">HamstarHelpers.Services.EntityGroups.EntityGroups</a>
@@ -128,6 +128,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>AddHook&lt; T &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hooks.html#aa9704f5d8828745606eb6c94f9e192c3">HamstarHelpers.Services.Hooks.LoadHooks.CustomLoadHooks</a>
+</li>
+<li>AddKillMultiTileHook()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_tile_hooks.html#a996dbbf706fcbfc2a532a2cecb1ab14a">HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks</a>
 </li>
 <li>AddMenuContext()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus_1_1_menu_context_service.html#a066b063cc10ad3a5f972444599196c05">HamstarHelpers.Services.UI.Menus.MenuContextService</a>
@@ -153,8 +156,8 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>AddPlayerLabel()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_1_1_player_messages.html#af9a3c9d0248bbc8f95c09cf648cc36a2">HamstarHelpers.Services.Messages.Player.PlayerMessages</a>
 </li>
-<li>AddPostDrawTilesAction()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_draw_1_1_draw_helpers.html#a581ca741aac6a6644b29427c03d04294">HamstarHelpers.Helpers.Draw.DrawHelpers</a>
+<li>AddPostDrawTilesHook()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_draw_1_1_draw_hooks.html#afca309d0552f47957c76c3a4bc862213">HamstarHelpers.Services.Hooks.Draw.DrawHooks</a>
 </li>
 <li>AddPostModLoadHook()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_load_hooks.html#a009354ee9215aa0e07cbd4ff627beb75">HamstarHelpers.Services.Hooks.LoadHooks.LoadHooks</a>
@@ -171,6 +174,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>AddPostWorldUnloadOnceHook()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_load_hooks.html#a9cf4c4837213058e304ba73e882f26d3">HamstarHelpers.Services.Hooks.LoadHooks.LoadHooks</a>
 </li>
+<li>AddSafeKillTileHook()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_tile_hooks.html#ad056913e0a991598cf2e8d543d8a7e93">HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks</a>
+</li>
+<li>AddSafeWallKillHook()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_tile_hooks.html#a5871dcfb6f85cf0f0bf6b167a8a75861">HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedTileHooks</a>
+</li>
 <li>AddSafeWorldLoadEachHook()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_load_hooks.html#a837a513e90480ce7b6d9dee35f50887c">HamstarHelpers.Services.Hooks.LoadHooks.LoadHooks</a>
 </li>
@@ -179,6 +188,12 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </li>
 <li>AddTab()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html#ad0e475c11ba13357d775eae699a5e90a">HamstarHelpers.Services.UI.ControlPanel.ControlPanelTabs</a>
+</li>
+<li>AddToValue2D&lt; TKey &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a62f0ed91e03498d25755965097627ec4">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
+</li>
+<li>AddToValue2D&lt; TKey1, TKey2 &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#ab8eab8f60ed516f932e2d2db6e887fcc">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
 </li>
 <li>AddWorldInPlayEachHook()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_load_hooks.html#a931b0b1b30fb792ea5b876fd66fda12a">HamstarHelpers.Services.Hooks.LoadHooks.LoadHooks</a>
@@ -207,6 +222,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>AlertOnce()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a7ffc50b1461dd296b95199b7007c4602">HamstarHelpers.Helpers.Debug.LogHelpers</a>
 </li>
+<li>AnimateAttackBurstFX()
+: <a class="el" href="class_hamstar_helpers_1_1_buffs_1_1_degreelessness_buff.html#a1920696ee8ca75cee6895f8ae26671f0">HamstarHelpers.Buffs.DegreelessnessBuff</a>
+</li>
 <li>AnimatedColors()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#ad73dc14c1253a103ad721f9044097d06">HamstarHelpers.Services.AnimatedColor.AnimatedColors</a>
 </li>
@@ -214,7 +232,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_animated_texture_1_1_animated_texture.html#af1b9cce4c31716e21ee5d4884196d204">HamstarHelpers.Services.AnimatedTexture.AnimatedTexture</a>
 </li>
 <li>Append2D&lt; TKey, TValue &gt;()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a887ba0b0d3e7cbed16fea5b3aef70f06">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a61fa864347706837c5c970af075da3b5">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
 </li>
 <li>AppendThemed()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#a44a6f7d8f3b0e1d89e8eb816aa07a106">HamstarHelpers.Classes.UI.Elements.UIThemedPanel</a>
@@ -249,7 +267,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a592ef4a60d8e7742bcf5367150b70b54">HamstarHelpers.Classes.UI.Theme.UITheme</a>
 </li>
 <li>ApplyInput()
-: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#afe5a9d8c011dccf7d1c9a2a0755f061a">HamstarHelpers.Classes.UI.Theme.UITheme</a>
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a1da2865e988519bdc86e5cbed71ea03f">HamstarHelpers.Classes.UI.Theme.UITheme</a>
 </li>
 <li>ApplyInputDisable()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a3e804eec3e96668c670eb3cfe240d8da">HamstarHelpers.Classes.UI.Theme.UITheme</a>

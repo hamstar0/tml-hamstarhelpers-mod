@@ -129,9 +129,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a11236bf0cd94eb55e05eca36a0020fcb"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html#a11236bf0cd94eb55e05eca36a0020fcb">ReceiveOnServer</a> (int fromWho)</td></tr>
 <tr class="memdesc:a11236bf0cd94eb55e05eca36a0020fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements handling of received replies on the server.  <a href="#a11236bf0cd94eb55e05eca36a0020fcb">More...</a><br /></td></tr>
 <tr class="separator:a11236bf0cd94eb55e05eca36a0020fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09f76d9fed13a8b8e173eb25cce37f62"><td class="memItemLeft" align="right" valign="top">sealed override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html#a09f76d9fed13a8b8e173eb25cce37f62">ReceiveWithServer</a> (int fromWho)</td></tr>
-<tr class="memdesc:a09f76d9fed13a8b8e173eb25cce37f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when data received on server (class's own fields).  <a href="#a09f76d9fed13a8b8e173eb25cce37f62">More...</a><br /></td></tr>
-<tr class="separator:a09f76d9fed13a8b8e173eb25cce37f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9669481c379a4b7b51c9150e0022aee6"><td class="memItemLeft" align="right" valign="top">sealed override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html#a9669481c379a4b7b51c9150e0022aee6">ReceiveWithServer</a> (int fromWho, bool isSyncedWithClients)</td></tr>
+<tr class="memdesc:a9669481c379a4b7b51c9150e0022aee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when data received on server (class's own fields).  <a href="#a9669481c379a4b7b51c9150e0022aee6">More...</a><br /></td></tr>
+<tr class="separator:a9669481c379a4b7b51c9150e0022aee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a></td></tr>
 <tr class="memitem:a3e219c19147116062ad80574b2e9f2d2 inherit pro_methods_class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a3e219c19147116062ad80574b2e9f2d2">SetClientDefaults</a> ()</td></tr>
 <tr class="memdesc:a3e219c19147116062ad80574b2e9f2d2 inherit pro_methods_class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overridden for initializing the class to create a reply in a request to the client.  <a href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a3e219c19147116062ad80574b2e9f2d2">More...</a><br /></td></tr>
@@ -397,8 +397,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a09f76d9fed13a8b8e173eb25cce37f62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09f76d9fed13a8b8e173eb25cce37f62">&#9670;&nbsp;</a></span>ReceiveWithServer()</h2>
+<a id="a9669481c379a4b7b51c9150e0022aee6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9669481c379a4b7b51c9150e0022aee6">&#9670;&nbsp;</a></span>ReceiveWithServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -410,8 +410,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">sealed override void HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither.ReceiveWithServer </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fromWho</em></td><td>)</td>
+          <td class="paramname"><em>fromWho</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isSyncedToClients</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -425,13 +435,14 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromWho</td><td>Main.player index of the player (client) sending us our data.</td></tr>
+    <tr><td class="paramname">isSyncedToClients</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a487e4e2054fd2233816265330cce3a10">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>.</p>
+<p>Reimplemented from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a0725af6111d2c05d00f587f594f329f9">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_send_to_either_8cs_source.html#l00048">48</a> of file <a class="el" href="_send_to_either_8cs_source.html">SendToEither.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_send_to_either_8cs_source.html#l00051">51</a> of file <a class="el" href="_send_to_either_8cs_source.html">SendToEither.cs</a>.</p>
 
 </div>
 </div>

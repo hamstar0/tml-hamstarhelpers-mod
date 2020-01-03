@@ -1,11 +1,11 @@
 var searchData=
 [
   ['mainontickget',['MainOnTickGet',['../class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#afac1184365684da5f13cc8e9600f2d4e',1,'HamstarHelpers::Services::Timers::Timers']]],
-  ['makedustcloud',['MakeDustCloud',['../class_hamstar_helpers_1_1_helpers_1_1_f_x_1_1_particle_fx_helpers.html#aa81f4b53039e32f53719175819f5a541',1,'HamstarHelpers::Helpers::FX::ParticleFxHelpers']]],
-  ['makefireembers',['MakeFireEmbers',['../class_hamstar_helpers_1_1_helpers_1_1_f_x_1_1_particle_fx_helpers.html#ac8d5bfe55a28132675696a8229a3ba3a',1,'HamstarHelpers::Helpers::FX::ParticleFxHelpers']]],
+  ['makedustcloud',['MakeDustCloud',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_particle_fx_helpers.html#aff30fbfb55e7786f9f3b46912d95afcc',1,'HamstarHelpers::Helpers::Fx::ParticleFxHelpers']]],
+  ['makefireembers',['MakeFireEmbers',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_particle_fx_helpers.html#a33ccf6e8db1c7b26e4fd00b56d1a7f4d',1,'HamstarHelpers::Helpers::Fx::ParticleFxHelpers']]],
   ['makegetrequestasync',['MakeGetRequestAsync',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a7f26a768ccababffab59f351bfcfad9b',1,'HamstarHelpers::Helpers::Net::WebConnectionHelpers']]],
   ['makepostrequestasync',['MakePostRequestAsync',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_connection_helpers.html#a8d79a733a67a04eae31cb3b01bcaa025',1,'HamstarHelpers::Helpers::Net::WebConnectionHelpers']]],
-  ['maketeleportfx',['MakeTeleportFx',['../class_hamstar_helpers_1_1_helpers_1_1_f_x_1_1_particle_fx_helpers.html#a8824f17475c070b4b71a1ff61de6538f',1,'HamstarHelpers::Helpers::FX::ParticleFxHelpers']]],
+  ['maketeleportfx',['MakeTeleportFx',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_particle_fx_helpers.html#a687577ef9c1e76e63008f40253448abf',1,'HamstarHelpers::Helpers::Fx::ParticleFxHelpers']]],
   ['measurehealthtext',['MeasureHealthText',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_health_bar_helpers.html#a432de21106d7b7c1c7af7a83d16be15e',1,'HamstarHelpers::Helpers::HUD::HUDHealthBarHelpers']]],
   ['measureworlddistancetotile',['MeasureWorldDistanceToTile',['../class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_tile_collision_helpers.html#a9e70c5ba30dc54d7ad82b10e671f1e55',1,'HamstarHelpers::Helpers::Collisions::TileCollisionHelpers']]],
   ['menucontext',['MenuContext',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_menu_context.html#af6b7f1f2a4a4f44eb182b533a69e050d',1,'HamstarHelpers::Classes::UI::Menus::MenuContext']]],

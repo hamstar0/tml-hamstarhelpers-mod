@@ -105,10 +105,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6df0f6f3a79c5833d1919585d32329eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all active items found lying around in the world.  <a href="#a6df0f6f3a79c5833d1919585d32329eb">More...</a><br /></td></tr>
 <tr class="separator:a6df0f6f3a79c5833d1919585d32329eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62f5e38af0593f59eb2f78092f57140e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a62f5e38af0593f59eb2f78092f57140e">CreateItem</a> (Vector2 pos, int type, int stack, int width, int height, int prefix=0)</td></tr>
-<tr class="memdesc:a62f5e38af0593f59eb2f78092f57140e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an item and ensures it syncs.  <a href="#a62f5e38af0593f59eb2f78092f57140e">More...</a><br /></td></tr>
+<tr class="memdesc:a62f5e38af0593f59eb2f78092f57140e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a world item and ensures it syncs.  <a href="#a62f5e38af0593f59eb2f78092f57140e">More...</a><br /></td></tr>
 <tr class="separator:a62f5e38af0593f59eb2f78092f57140e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88a295467bff6b5f0e0d7d47032535c0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a88a295467bff6b5f0e0d7d47032535c0">DestroyItem</a> (Item item)</td></tr>
-<tr class="memdesc:a88a295467bff6b5f0e0d7d47032535c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroyes an item (turns it to air).  <a href="#a88a295467bff6b5f0e0d7d47032535c0">More...</a><br /></td></tr>
+<tr class="memdesc:a88a295467bff6b5f0e0d7d47032535c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroyes an item (turns it to air). No sync.  <a href="#a88a295467bff6b5f0e0d7d47032535c0">More...</a><br /></td></tr>
 <tr class="separator:a88a295467bff6b5f0e0d7d47032535c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d763fd05187c502d80d4a637d98a1ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a5d763fd05187c502d80d4a637d98a1ce">DestroyWorldItem</a> (int idx)</td></tr>
 <tr class="memdesc:a5d763fd05187c502d80d4a637d98a1ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a world item (ensures sync).  <a href="#a5d763fd05187c502d80d4a637d98a1ce">More...</a><br /></td></tr>
@@ -164,7 +164,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Tick duration between reuses.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00173">173</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00178">178</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -219,7 +219,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if all items consumed in full.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00129">129</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00134">134</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -281,7 +281,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an item and ensures it syncs. </p>
+<p>Creates a world item and ensures it syncs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td></td></tr>
@@ -323,7 +323,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Destroyes an item (turns it to air). </p>
+<p>Destroyes an item (turns it to air). No sync. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">item</td><td></td></tr>
@@ -491,7 +491,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00113">113</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00118">118</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
 
 </div>
 </div>

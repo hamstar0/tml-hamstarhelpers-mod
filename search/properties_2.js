@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['category',['Category',['../class_hamstar_helpers_1_1_classes_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#a9e0b85536a463fdde63e972ccc35d1d3',1,'HamstarHelpers::Classes::ModTagDefinitions::ModTagDefinition']]],
+  ['category',['Category',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#aef250b4799739560b4f632ef5e26a6ad',1,'HamstarHelpers::Services::ModTagDefinitions::ModTagDefinition']]],
   ['children',['Children',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html#ac15a3c74a9e2669926f63b5c06bcb4a1',1,'HamstarHelpers::Classes::DataStructures::BTree::BTreeNode']]],
   ['coalastile',['CoalAsTile',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a27b5a1e6eaa62ef13d4f561bb31c3492',1,'HamstarHelpers::ModHelpersConfig']]],
   ['colorduration',['ColorDuration',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#ac068330e95e25b36806d81e25c2a72f3',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],

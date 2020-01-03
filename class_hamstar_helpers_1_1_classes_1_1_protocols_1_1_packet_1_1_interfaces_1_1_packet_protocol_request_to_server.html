@@ -135,9 +135,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a8a4b5ad737269cff606cb69407d918f3"><td class="memItemLeft" align="right" valign="top">sealed override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html#a8a4b5ad737269cff606cb69407d918f3">SetClientDefaults</a> ()</td></tr>
 <tr class="memdesc:a8a4b5ad737269cff606cb69407d918f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overridden for initializing the class to create a reply in a request to the client.  <a href="#a8a4b5ad737269cff606cb69407d918f3">More...</a><br /></td></tr>
 <tr class="separator:a8a4b5ad737269cff606cb69407d918f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48031a11cbea3c908dcac848b2f12f35"><td class="memItemLeft" align="right" valign="top">sealed override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html#a48031a11cbea3c908dcac848b2f12f35">ReceiveWithServer</a> (int fromWho)</td></tr>
-<tr class="memdesc:a48031a11cbea3c908dcac848b2f12f35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when data received on server (class's own fields).  <a href="#a48031a11cbea3c908dcac848b2f12f35">More...</a><br /></td></tr>
-<tr class="separator:a48031a11cbea3c908dcac848b2f12f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ec68769e7644389cf9311cf66464b73"><td class="memItemLeft" align="right" valign="top">sealed override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html#a3ec68769e7644389cf9311cf66464b73">ReceiveWithServer</a> (int fromWho, bool isSyncedWithClients)</td></tr>
+<tr class="memdesc:a3ec68769e7644389cf9311cf66464b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when data received on server (class's own fields).  <a href="#a3ec68769e7644389cf9311cf66464b73">More...</a><br /></td></tr>
+<tr class="separator:a3ec68769e7644389cf9311cf66464b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a360f38d11936e4baaf56b8e81aeda5"><td class="memItemLeft" align="right" valign="top">sealed override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html#a5a360f38d11936e4baaf56b8e81aeda5">ReceiveRequestWithClient</a> ()</td></tr>
 <tr class="memdesc:a5a360f38d11936e4baaf56b8e81aeda5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when a request is received for the client to send data to the server. Expects <code><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_server.html#a8a4b5ad737269cff606cb69407d918f3" title="Overridden for initializing the class to create a reply in a request to the client.">SetClientDefaults()</a></code> to be implemented.  <a href="#a5a360f38d11936e4baaf56b8e81aeda5">More...</a><br /></td></tr>
 <tr class="separator:a5a360f38d11936e4baaf56b8e81aeda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -337,7 +337,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a55d373e5a61e5f85c30764499b439e8b">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_request_to_server_8cs_source.html#l00053">53</a> of file <a class="el" href="_request_to_server_8cs_source.html">RequestToServer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_request_to_server_8cs_source.html#l00056">56</a> of file <a class="el" href="_request_to_server_8cs_source.html">RequestToServer.cs</a>.</p>
 
 </div>
 </div>
@@ -372,8 +372,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a48031a11cbea3c908dcac848b2f12f35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48031a11cbea3c908dcac848b2f12f35">&#9670;&nbsp;</a></span>ReceiveWithServer()</h2>
+<a id="a3ec68769e7644389cf9311cf66464b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ec68769e7644389cf9311cf66464b73">&#9670;&nbsp;</a></span>ReceiveWithServer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -385,8 +385,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">sealed override void HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToServer.ReceiveWithServer </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>fromWho</em></td><td>)</td>
+          <td class="paramname"><em>fromWho</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isSyncedToClients</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -400,13 +410,14 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fromWho</td><td>Main.player index of the player (client) sending us our data.</td></tr>
+    <tr><td class="paramname">isSyncedToClients</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Reimplemented from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a487e4e2054fd2233816265330cce3a10">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>.</p>
+<p>Reimplemented from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a0725af6111d2c05d00f587f594f329f9">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_request_to_server_8cs_source.html#l00049">49</a> of file <a class="el" href="_request_to_server_8cs_source.html">RequestToServer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_request_to_server_8cs_source.html#l00052">52</a> of file <a class="el" href="_request_to_server_8cs_source.html">RequestToServer.cs</a>.</p>
 
 </div>
 </div>

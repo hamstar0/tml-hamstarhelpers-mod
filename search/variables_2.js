@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['categorydescriptions',['CategoryDescriptions',['../class_hamstar_helpers_1_1_classes_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#a836f169b4889e51d68d1328c315b5e2d',1,'HamstarHelpers::Classes::ModTagDefinitions::ModTagDefinition']]],
+  ['categorydescriptions',['CategoryDescriptions',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#a10952cdc3398e7f18254420e62544d23',1,'HamstarHelpers::Services::ModTagDefinitions::ModTagDefinition']]],
   ['checkboxtexture',['CheckboxTexture',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a4e625570c4328191ac2b7c4441257159',1,'HamstarHelpers::Classes::UI::Elements::UICheckbox']]],
   ['checkmarktexture',['CheckmarkTexture',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a7333145eb6337ab9141bd2f8dc5ef6b0',1,'HamstarHelpers::Classes::UI::Elements::UICheckbox']]],
   ['color',['Color',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_1_1_player_label_text.html#ad1f0c903d22bd5690f3a7740aba0b7e1',1,'HamstarHelpers::Services::Messages::Player::PlayerLabelText']]],

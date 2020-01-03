@@ -12,6 +12,7 @@ var class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_patter
     [ "HasWire2", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a585760fcb34b657eb468bebd579f87f9", null ],
     [ "HasWire3", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#af0f48ef8b6b5f69f47b63aa546b0bb0d", null ],
     [ "HasWire4", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a1fafb32a336811916e4cabafaeead626", null ],
+    [ "IsActive", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a949f6dc1ba301c1d63933bb6e90dc76e", null ],
     [ "IsActuated", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a92c6db48771c947289eec272cd88c842", null ],
     [ "IsAnyOfType", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a88812d0b10e18791ee2e98244d0fbbc0", null ],
     [ "IsAnyOfWallType", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#abc0054fbd64a6d12dfa97d04d1cab166", null ],

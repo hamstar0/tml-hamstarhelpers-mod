@@ -141,6 +141,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a02e235ac3f0cbe8bb523ae3ed9323f17"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a02e235ac3f0cbe8bb523ae3ed9323f17">RunMethod&lt; T &gt;</a> (Type classType, Object instance, string methodName, object[] args, out T returnVal)</td></tr>
 <tr class="memdesc:a02e235ac3f0cbe8bb523ae3ed9323f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes a method of a given class. May invoke static methods if the given <code>instance</code> parameter is <code>null</code>.  <a href="#a02e235ac3f0cbe8bb523ae3ed9323f17">More...</a><br /></td></tr>
 <tr class="separator:a02e235ac3f0cbe8bb523ae3ed9323f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59fc4830cc8f0d99097c8c314c48e33"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#ac59fc4830cc8f0d99097c8c314c48e33">RunMethod&lt; T &gt;</a> (Type classType, Object instance, string methodName, object[] args, Type[] generics, out T returnVal)</td></tr>
+<tr class="memdesc:ac59fc4830cc8f0d99097c8c314c48e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes a method of a given class. May invoke static methods if the given <code>instance</code> parameter is <code>null</code>.  <a href="#ac59fc4830cc8f0d99097c8c314c48e33">More...</a><br /></td></tr>
+<tr class="separator:ac59fc4830cc8f0d99097c8c314c48e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636548a7a53ecae892799bcbf40099a6"><td class="memItemLeft" align="right" valign="top">static Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a636548a7a53ecae892799bcbf40099a6">GetTypeFromAssembly</a> (string assemblyName, string namespaceAndClassName)</td></tr>
 <tr class="memdesc:a636548a7a53ecae892799bcbf40099a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a class's type by it's proper name from a given assembly.  <a href="#a636548a7a53ecae892799bcbf40099a6">More...</a><br /></td></tr>
 <tr class="separator:a636548a7a53ecae892799bcbf40099a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -767,7 +770,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <a id="af597e8fb6ac99eac9024b5eee113cad1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af597e8fb6ac99eac9024b5eee113cad1">&#9670;&nbsp;</a></span>RunMethod&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af597e8fb6ac99eac9024b5eee113cad1">&#9670;&nbsp;</a></span>RunMethod&lt; T &gt;() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -835,7 +838,7 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a02e235ac3f0cbe8bb523ae3ed9323f17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02e235ac3f0cbe8bb523ae3ed9323f17">&#9670;&nbsp;</a></span>RunMethod&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a02e235ac3f0cbe8bb523ae3ed9323f17">&#9670;&nbsp;</a></span>RunMethod&lt; T &gt;() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -906,6 +909,88 @@ Static Public Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if method found and invoked successfully.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_reflection_helpers___methods_8cs_source.html#l00072">72</a> of file <a class="el" href="_reflection_helpers___methods_8cs_source.html">ReflectionHelpers_Methods.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac59fc4830cc8f0d99097c8c314c48e33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac59fc4830cc8f0d99097c8c314c48e33">&#9670;&nbsp;</a></span>RunMethod&lt; T &gt;() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.RunMethod&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>classType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Object&#160;</td>
+          <td class="paramname"><em>instance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>methodName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object []&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type []&#160;</td>
+          <td class="paramname"><em>generics</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out T&#160;</td>
+          <td class="paramname"><em>returnVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Invokes a method of a given class. May invoke static methods if the given <code>instance</code> parameter is <code>null</code>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Invoked method's return value type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">classType</td><td>Class type of method.</td></tr>
+    <tr><td class="paramname">instance</td><td>Class instance of class of method. Use <code>null</code> for static methods.</td></tr>
+    <tr><td class="paramname">methodName</td><td>Method's name.</td></tr>
+    <tr><td class="paramname">args</td><td>Method's arguments (will be validated before invoking).</td></tr>
+    <tr><td class="paramname">generics</td><td>Generic type parameters (if applicable).</td></tr>
+    <tr><td class="paramname">returnVal</td><td>Return value of method.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if method found and invoked successfully.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_reflection_helpers___methods_8cs_source.html#l00087">87</a> of file <a class="el" href="_reflection_helpers___methods_8cs_source.html">ReflectionHelpers_Methods.cs</a>.</p>
 
 </div>
 </div>

@@ -10,7 +10,7 @@ var class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protoc
     [ "ReceiveRequestWithClient", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a55d373e5a61e5f85c30764499b439e8b", null ],
     [ "ReceiveRequestWithServer", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a3f0a21d9067e165b7b29c8c8c5ba510f", null ],
     [ "ReceiveWithClient", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#af6c655fbf39fe2e423b230a5a0dd252a", null ],
-    [ "ReceiveWithServer", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a487e4e2054fd2233816265330cce3a10", null ],
+    [ "ReceiveWithServer", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a0725af6111d2c05d00f587f594f329f9", null ],
     [ "SendToClient", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a0e6ccbb124c930b81be5a1a2fcc9518d", null ],
     [ "SendToServer", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a8b079e4d07c6945e82b5caf9f85ae8b1", null ],
     [ "SetClientDefaults", "class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a3e219c19147116062ad80574b2e9f2d2", null ],

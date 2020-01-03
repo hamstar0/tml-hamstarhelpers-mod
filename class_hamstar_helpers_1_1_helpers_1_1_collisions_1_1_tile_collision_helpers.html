@@ -102,14 +102,79 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e70c5ba30dc54d7ad82b10e671f1e55"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_tile_collision_helpers.html#a9e70c5ba30dc54d7ad82b10e671f1e55">MeasureWorldDistanceToTile</a> (Vector2 position, Vector2 direction, float maxDistance, out bool notFound, List&lt; Tuple&lt; int, int &gt;&gt; ignoredTiles=null)</td></tr>
-<tr class="memdesc:a9e70c5ba30dc54d7ad82b10e671f1e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measures world distance to a given tile from a given point and heading.  <a href="#a9e70c5ba30dc54d7ad82b10e671f1e55">More...</a><br /></td></tr>
+<tr class="memdesc:a9e70c5ba30dc54d7ad82b10e671f1e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measures world distance to the nearest tile from a given point and heading.  <a href="#a9e70c5ba30dc54d7ad82b10e671f1e55">More...</a><br /></td></tr>
 <tr class="separator:a9e70c5ba30dc54d7ad82b10e671f1e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7009e11b3fdbccad03b47ba7c514495"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_tile_collision_helpers.html#ae7009e11b3fdbccad03b47ba7c514495">FindPathSimple</a> ((int x, int y) tilePointA,(int x, int y) tilePointB, int maxTilesCovered, out IList&lt;(int tileX, int tileY)&gt; path)</td></tr>
+<tr class="memdesc:ae7009e11b3fdbccad03b47ba7c514495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to find a path between 2 points using a simple brute force method.  <a href="#ae7009e11b3fdbccad03b47ba7c514495">More...</a><br /></td></tr>
+<tr class="separator:ae7009e11b3fdbccad03b47ba7c514495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to collisions between objects and/or tiles. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_collision_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_tile_collision_helpers_8cs_source.html">TileCollisionHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_collision_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_tile_collision_helpers_8cs_source.html">TileCollisionHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae7009e11b3fdbccad03b47ba7c514495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7009e11b3fdbccad03b47ba7c514495">&#9670;&nbsp;</a></span>FindPathSimple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.Collisions.TileCollisionHelpers.FindPathSimple </td>
+          <td>(</td>
+          <td class="paramtype">(int x, int y)&#160;</td>
+          <td class="paramname"><em>tilePointA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">(int x, int y)&#160;</td>
+          <td class="paramname"><em>tilePointB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxTilesCovered</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out IList&lt;(int tileX, int tileY)&gt;&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to find a path between 2 points using a simple brute force method. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tilePointA</td><td></td></tr>
+    <tr><td class="paramname">tilePointB</td><td></td></tr>
+    <tr><td class="paramname">maxTilesCovered</td><td></td></tr>
+    <tr><td class="paramname">path</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_collision_helpers_8cs_source.html#l00056">56</a> of file <a class="el" href="_tile_collision_helpers_8cs_source.html">TileCollisionHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="a9e70c5ba30dc54d7ad82b10e671f1e55"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e70c5ba30dc54d7ad82b10e671f1e55">&#9670;&nbsp;</a></span>MeasureWorldDistanceToTile()</h2>
 
@@ -162,7 +227,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Measures world distance to a given tile from a given point and heading. </p>
+<p>Measures world distance to the nearest tile from a given point and heading. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">position</td><td></td></tr>
@@ -175,7 +240,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_collision_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_tile_collision_helpers_8cs_source.html">TileCollisionHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_collision_helpers_8cs_source.html#l00023">23</a> of file <a class="el" href="_tile_collision_helpers_8cs_source.html">TileCollisionHelpers.cs</a>.</p>
 
 </div>
 </div>

@@ -11,6 +11,8 @@ var namespace_hamstar_helpers_1_1_services =
     [ "Messages", "namespace_hamstar_helpers_1_1_services_1_1_messages.html", "namespace_hamstar_helpers_1_1_services_1_1_messages" ],
     [ "ModCompatibilities", "namespace_hamstar_helpers_1_1_services_1_1_mod_compatibilities.html", "namespace_hamstar_helpers_1_1_services_1_1_mod_compatibilities" ],
     [ "ModHelpers", "namespace_hamstar_helpers_1_1_services_1_1_mod_helpers.html", "namespace_hamstar_helpers_1_1_services_1_1_mod_helpers" ],
+    [ "ModTagDefinitions", "namespace_hamstar_helpers_1_1_services_1_1_mod_tag_definitions.html", "namespace_hamstar_helpers_1_1_services_1_1_mod_tag_definitions" ],
+    [ "NPCChat", "namespace_hamstar_helpers_1_1_services_1_1_n_p_c_chat.html", "namespace_hamstar_helpers_1_1_services_1_1_n_p_c_chat" ],
     [ "OverlaySounds", "namespace_hamstar_helpers_1_1_services_1_1_overlay_sounds.html", "namespace_hamstar_helpers_1_1_services_1_1_overlay_sounds" ],
     [ "RecipeHack", "namespace_hamstar_helpers_1_1_services_1_1_recipe_hack.html", "namespace_hamstar_helpers_1_1_services_1_1_recipe_hack" ],
     [ "Server", "namespace_hamstar_helpers_1_1_services_1_1_server.html", "namespace_hamstar_helpers_1_1_services_1_1_server" ],

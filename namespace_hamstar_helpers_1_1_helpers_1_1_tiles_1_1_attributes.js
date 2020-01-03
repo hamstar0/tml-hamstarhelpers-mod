@@ -1,0 +1,4 @@
+var namespace_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes =
+[
+    [ "TileAttributeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers" ]
+];

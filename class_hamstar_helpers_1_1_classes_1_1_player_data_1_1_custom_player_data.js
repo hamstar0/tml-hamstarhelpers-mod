@@ -1,5 +1,6 @@
 var class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data =
 [
+    [ "GetPlayerData< T >", "class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data.html#a422ea422064d8d0891ecef9188284e38", null ],
     [ "OnEnter", "class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data.html#a0e775514d48e4cd31b7569122d22a5a6", null ],
     [ "OnExit", "class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data.html#a9d1647ecff99610e9a2ea6905c38defe", null ],
     [ "Update", "class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data.html#aaef751d07b0407e542b328cb0b63f109", null ],

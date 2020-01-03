@@ -15,6 +15,7 @@ var class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_patter
     [ "Any", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ae0f367a2647081b460003e44770323d0", null ],
     [ "CommonSolid", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ad3a4cd56456bafb03198fa474652a84e", null ],
     [ "CustomCheck", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a6f5cbcd904d4fc6d19bcf52149d98905", null ],
+    [ "IsActive", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a66311601b2d1c9b259336a299a6c8aef", null ],
     [ "IsAnyOfType", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#adfbb46fc363291fb849b73c125c6d09e", null ],
     [ "IsAnyOfWallType", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a5c07c28c0f88a1d1255f295c34b5b8f1", null ],
     [ "NonFilled", "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ad553fa493ccd1848e37b7a7f21a26440", null ],
