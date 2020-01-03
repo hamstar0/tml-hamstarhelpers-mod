@@ -106,6 +106,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 			item.velocity.Y = (float)Main.rand.Next( -20, 1 ) * 0.2f;
 			item.velocity.X = (float)Main.rand.Next( -20, 21 ) * 0.2f;
+
 			item.noGrabDelay = noGrabDelay;
 			item.favorited = false;
 			item.newAndShiny = false;
