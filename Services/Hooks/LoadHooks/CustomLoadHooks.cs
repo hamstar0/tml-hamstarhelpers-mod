@@ -14,7 +14,6 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 	/// Exists for use in validating custom load hooks.
 	/// </summary>
 	sealed public class CustomLoadHookValidator<T> : ICustomLoadHookValidator {
-		internal object MyLock = new object();
 		internal object ValidatorKey;
 
 

@@ -7454,6 +7454,13 @@
             <param name="isAbsolute">Returns indication that tile will guarantee destruction on this hit.</param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.GetChestTypeCode(System.Int32)">
+            <summary>
+            Gets a chest's internal type code.
+            </summary>
+            <param name="tileType"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.GetVanillaTileDisplayNames(System.Int32)">
             <summary>
             Gets all vanilla tile names of each subtype of a given tile type.

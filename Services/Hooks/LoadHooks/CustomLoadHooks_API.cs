@@ -66,7 +66,7 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 					if( argType != args.GetType() ) {
 						throw new ModHelpersException( "Invalid argument type: Expected "
 							+ argType.Name + ", found "
-							+ args.GetType().Name );
+							+ (args?.GetType().Name ?? "null") );
 					}
 				} else {
 					throw new ModHelpersException( "Invalid argument type: "+argType.Name+" expected, found `null`" );
@@ -118,28 +118,22 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 			if( argType != args.GetType() && !args.GetType().IsSubclassOf(argType) ) {
 				throw new ModHelpersException( "Invalid argument type: Expected "
 					+ argType.Name + ", found "
-					+ args.GetType().Name );
+					+ (args?.GetType().Name ?? "null") );
 			}
 
-			lock( validator.MyLock ) {
-				mymod.CustomLoadHooks.HookConditionsMet.Add( validator );
-				mymod.CustomLoadHooks.HookArgs[validator] = args;
-				isValidated = mymod.CustomLoadHooks.Hooks.ContainsKey( validator );
-			}
+			mymod.CustomLoadHooks.HookConditionsMet.Add( validator );
+			mymod.CustomLoadHooks.HookArgs[validator] = args;
+			isValidated = mymod.CustomLoadHooks.Hooks.ContainsKey( validator );
 
 			if( isValidated ) {
 				IList<Func<object, bool>> funcList;
 				int count;
 
-				lock( validator.MyLock ) {
-					funcList = mymod.CustomLoadHooks.Hooks[validator];
-					count = funcList.Count;
-				}
+				funcList = mymod.CustomLoadHooks.Hooks[validator];
+				count = funcList.Count;
 
 				for( int i = 0; i < funcList.Count; i++ ) {
-					lock( validator.MyLock ) {
-						isEach = funcList[i]( args );
-					}
+					isEach = funcList[i].Invoke( args );
 
 					if( !isEach ) {
 						funcList.RemoveAt( i );

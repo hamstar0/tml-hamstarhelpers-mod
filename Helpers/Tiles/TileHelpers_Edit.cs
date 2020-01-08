@@ -1,7 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
@@ -21,7 +20,30 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="plrWho"></param>
 		/// <returns>`true` if tile placement succeeded.</returns>
 		public static bool PlaceTileSynced( int tileX, int tileY, int tileType, int placeStyle = 0, bool muted = false, bool forced = false, int plrWho = -1 ) {
-			if( !WorldGen.PlaceTile( tileX, tileY, tileType, muted, forced, plrWho, placeStyle ) ) {
+			if( tileType == TileID.Containers || tileType == TileID.Containers2 ) {
+				int chestIdx = WorldGen.PlaceChest( tileX, tileY, (ushort)tileType, false, placeStyle );
+				if( chestIdx == -1 ) { return false; }
+
+				int? chestType = Attributes.TileAttributeHelpers.GetChestTypeCode( tileType );
+				if( !chestType.HasValue ) { return false; }
+
+				NetMessage.SendData(
+					msgType: MessageID.ChestUpdates,
+					remoteClient: -1,
+					ignoreClient: -1,
+					text: null,
+					number: chestType.Value,
+					number2: (float)tileX,
+					number3: (float)tileY,
+					number4: 0f,
+					number5: chestIdx,
+					number6: tileType,
+					number7: 0 );
+				int itemSpawn = Chest.chestItemSpawn[placeStyle];//b8 < 100 ?  : TileLoader.GetTile( tileType ).chestDrop;
+				if( itemSpawn > 0 ) {
+					Item.NewItem( tileX<<4, tileY<<4, 32, 32, itemSpawn, 1, true, 0, false, false );
+				}
+			} else if( !WorldGen.PlaceTile( tileX, tileY, tileType, muted, forced, plrWho, placeStyle ) ) {
 				return false;
 			}
 
@@ -51,11 +73,50 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
 		/// <param name="dropsItem"></param>
 		public static void KillTileSynced( int tileX, int tileY, bool effectOnly, bool dropsItem ) {
+			Tile tile = Framing.GetTileSafely( tileX, tileY );
+
+			if( !tile.active() ) {
+				if( Main.netMode != 0 ) {
+					NetMessage.SendData( MessageID.TileChange, -1, -1, null, 4, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
+				}
+				return;
+			}
+
+			if( tile.type == TileID.Containers || tile.type == TileID.Containers2 ) {
+				int chestIdx = Chest.FindChest( tileX, tileY );
+				int chestType = 1;
+				if( tile.type == TileID.Containers2 ) {
+					chestType = 5;
+				}
+
+				if( chestIdx != -1 && Chest.DestroyChest( tileX, tileY ) ) {
+					//if( Main.tile[x, y].type >= TileID.Count ) {
+					//	number2 = 101;
+					//}
+
+					if( Main.netMode != 0 ) {
+						NetMessage.SendData(
+							msgType: MessageID.ChestUpdates,
+							remoteClient: -1,
+							ignoreClient: -1,
+							text: null,
+							number: chestType,
+							number2: (float)tileX,
+							number3: (float)tileY,
+							number4: 0f,
+							number5: chestIdx,
+							number6: tile.type,
+							number7: 0
+						);
+						NetMessage.SendTileSquare( -1, tileX, tileY, 3, TileChangeType.None );
+					}
+				}
+			}
+
 			WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
 
 			if( !effectOnly && Main.netMode != 0 ) {
 				int itemDropMode = dropsItem ? 0 : 4;
-
 				NetMessage.SendData( MessageID.TileChange, -1, -1, null, itemDropMode, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
 			}
 		}

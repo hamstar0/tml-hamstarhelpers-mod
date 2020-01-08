@@ -221,5 +221,29 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 			//	}
 			//}
 		}
+
+		/// <summary>
+		/// Gets a chest's internal type code.
+		/// </summary>
+		/// <param name="tileType"></param>
+		/// <returns></returns>
+		public static int? GetChestTypeCode( int tileType ) {
+			switch( tileType ) {
+			case TileID.Containers:
+				return 0;
+			case TileID.Containers2:
+				return 4;
+			case TileID.Dressers:
+				return 2;
+			default:
+				if( TileID.Sets.BasicChest[tileType] ) {
+					return 100;
+				} else if( TileLoader.IsDresser( tileType ) ) {
+					return 102;
+				}
+				break;
+			}
+			return null;//1?
+		}
 	}
 }
