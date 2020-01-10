@@ -17,15 +17,18 @@ namespace HamstarHelpers.Classes.PlayerData {
 	/// </summary>
 	public partial class CustomPlayerData : ILoadable {
 		private static void Enter( int playerWho ) {
+			Player player = Main.player[playerWho];
+
 			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
-				LogHelpers.Alert( "Player "+Main.player[playerWho].name+" ("+playerWho+") entered the game." );
+				LogHelpers.Alert( "Player "+player.name+" ("+playerWho+") entered the game." );
 			}
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
 			IEnumerable<Type> plrDataTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomPlayerData ) );
+			string uid = PlayerIdentityHelpers.GetUniqueId( player );
 
 			foreach( Type plrDataType in plrDataTypes ) {
-				object data = CustomPlayerData.LoadFileData( plrDataType.Name, PlayerIdentityHelpers.GetUniqueId() );
+				object data = CustomPlayerData.LoadFileData( plrDataType.Name, uid );
 				var plrData = (CustomPlayerData)Activator.CreateInstance(
 					plrDataType,
 					BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
@@ -59,39 +62,43 @@ namespace HamstarHelpers.Classes.PlayerData {
 		////////////////
 
 		private static void UpdateAll() {
-			bool isInGame = !Main.gameMenu && LoadHelpers.IsCurrentPlayerInGame();
-
-			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
+			bool isNotMenu = Main.netMode == 2 ? true : !Main.gameMenu;
+			var singleton = ModContent.GetInstance<CustomPlayerData>();
 			Player player;
-
-			for( int i = 0; i < Main.maxPlayers; i++ ) {
-				player = Main.player[i];
+			
+			for( int plrWho = 0; plrWho < Main.maxPlayers; plrWho++ ) {
+				player = Main.player[plrWho];
 
 				if( player == null || !player.active ) {
-					if( singleton.DataMap.ContainsKey( i ) ) {
-						CustomPlayerData.Exit( i );
+					if( singleton.DataMap.ContainsKey( plrWho ) ) {
+						CustomPlayerData.Exit( plrWho );
 					}
 
 					continue;
 				}
-//LogHelpers.LogOnce( "UpdateAll "+player.name+" "+i+" "+isInGame);
 
-				if( isInGame ) {
-					if( !singleton.DataMap.ContainsKey( i ) ) {
-						CustomPlayerData.Enter( i );
+				//bool isInGame = Main.netMode == 2
+				//	? true
+				//	: plrWho == Main.myPlayer
+				//		? LoadHelpers.IsCurrentPlayerInGame()
+				//		: false;
+				
+				if( isNotMenu ) {
+					if( !singleton.DataMap.ContainsKey(plrWho) ) {
+						CustomPlayerData.Enter( plrWho );
 					} else {
-						foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[i] ) {
+						foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[plrWho] ) {
 							plrData.Update();
 						}
 					}
 				} else {
-					if( singleton.DataMap.ContainsKey( i ) ) {
-						CustomPlayerData.Exit( i );
+					if( singleton.DataMap.ContainsKey( plrWho ) ) {
+						CustomPlayerData.Exit( plrWho );
 					}
 				}
 			}
 
-			if( !isInGame ) {
+			if( Main.netMode != 2 && Main.gameMenu ) {
 				singleton.DataMap.Clear();
 			}
 		}

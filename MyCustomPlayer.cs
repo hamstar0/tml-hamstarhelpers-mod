@@ -19,8 +19,10 @@ namespace HamstarHelpers {
 
 
 		protected override void OnEnter( object data ) {
-			if( this.PlayerWho != Main.myPlayer ) {
-				return;
+			if( Main.netMode != 2 ) {
+				if( this.PlayerWho != Main.myPlayer ) {
+					return;
+				}
 			}
 
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );

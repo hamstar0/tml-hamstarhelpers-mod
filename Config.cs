@@ -84,7 +84,7 @@ namespace HamstarHelpers {
 		/// </summary>
 		[Header( "Debug settings" )]
 		[Label( "Debug Mode - Helpers Info" )]
-		[Tooltip( "Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only." )]
+		[Tooltip( "Outputs (to log) debug information relevant to Helpers functions (where applicable). Developers only." )]
 		public bool DebugModeHelpersInfo { get; set; } = false;
 
 		/// <summary>
