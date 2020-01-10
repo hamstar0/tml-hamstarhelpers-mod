@@ -34,16 +34,22 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <returns></returns>
 		public static bool IsWithinTilePlacementReach( int worldPosX, int worldPosY ) {
 			Player plr = Main.LocalPlayer;
-			int plrReachX = Player.tileRangeX << 4;
-			int plrReachY = Player.tileRangeY << 4;
+			
+			int plrLeftTileX = (int)plr.position.X >> 4;
+			int plrTopTileY = (int)plr.position.Y >> 4;
+			int plrRightTileX = ((int)plr.position.X + plr.width) >> 4;
+			int plrBottomTileY = ((int)plr.position.Y + plr.height) >> 4;
+			int minTileX = plrLeftTileX - Player.tileRangeX - plr.HeldItem.tileBoost - plr.blockRange;
+			int maxTileX = plrRightTileX + Player.tileRangeX + plr.HeldItem.tileBoost + plr.blockRange - 1;
+			int minTileY = plrTopTileY - Player.tileRangeY - plr.HeldItem.tileBoost - plr.blockRange;
+			int maxTileY = plrBottomTileY + Player.tileRangeY + plr.HeldItem.tileBoost + plr.blockRange - 2;
+			int minWldX = minTileX << 4;
+			int maxWldX = maxTileX << 4;
+			int minWldY = minTileY << 4;
+			int maxWldY = maxTileY << 4;
 
-			int minX = (int)plr.position.X - plrReachX;
-			int maxX = ((int)plr.position.X + plr.width) - plrReachX;
-			int minY = (int)plr.position.Y - plrReachY;
-			int maxY = ((int)plr.position.Y + plr.height) - plrReachY;
-
-			if( worldPosX > minX && worldPosX <= maxX ) {
-				if( worldPosY > minY && worldPosY <= maxY ) {
+			if( worldPosX > minWldX && worldPosX <= maxWldX ) {
+				if( worldPosY > minWldY && worldPosY <= maxWldY ) {
 					return true;
 				}
 			}
