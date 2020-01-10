@@ -1,5 +1,6 @@
 var class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers =
 [
+    [ "GetChestTypeCode", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#a42199c9b2b035834b059fcf1c57bd76d", null ],
     [ "GetDamageScale", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#a850c1fb70ce26c68333f2c08fda051fa", null ],
     [ "GetVanillaTileDisplayName", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#ad0f625ff308e572a41e65e31b9cbc4d3", null ],
     [ "GetVanillaTileDisplayNames", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#ae916fbd43b0de51242c51e84d9f96283", null ],

@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#a1ea9318b54956a8a34d0f7e6286580e4":[1,0,0,5,7,1,0,3],
 "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#aa6be2915a113e87d4d2de80924dde2c6":[1,0,0,5,7,1,0,0],
 "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#adb6c7af3621a8202153843ee32f9ad86":[1,0,0,5,7,1,0,1],
 "class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html#ae8c32925197435ddf9d42dbcad5b1aec":[1,0,0,5,7,1,0,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "dir_bfa987733c2be8aacc3763d972bbbcb9.html":[2,0,0,0,8],
 "dir_c42d853a714c7cb9fbf5427a71a8e546.html":[2,0,0,0,7,14],
 "dir_c5e5bbf80ea653d8bc0f2e102a496331.html":[2,0,0,0,7,15],
-"dir_c6b189fe430208c8ab1b43ca52b09663.html":[2,0,0,0,7,6],
-"dir_c79c644a34d9de04806a845de04f460a.html":[2,0,0,0,4,4,2,1]
+"dir_c6b189fe430208c8ab1b43ca52b09663.html":[2,0,0,0,7,6]
 };

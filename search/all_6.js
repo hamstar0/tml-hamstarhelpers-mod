@@ -27,6 +27,7 @@ var searchData=
   ['getbuildpropertiesformodfile',['GetBuildPropertiesForModFile',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a7e4bb779ae6f8f2f61fd0bcf5fb359a1',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['getceilingwidth',['GetCeilingWidth',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a20a943bb4127720b68b58223f39f9268',1,'HamstarHelpers::Helpers::Tiles::TileFinderHelpers']]],
   ['getchat',['GetChat',['../class_hamstar_helpers_1_1_services_1_1_n_p_c_chat_1_1_n_p_c_chat.html#af78895cbb556d62621afc451bc20b954',1,'HamstarHelpers::Services::NPCChat::NPCChat']]],
+  ['getchesttypecode',['GetChestTypeCode',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#a42199c9b2b035834b059fcf1c57bd76d',1,'HamstarHelpers::Helpers::Tiles::Attributes::TileAttributeHelpers']]],
   ['getcommonitemgroups',['GetCommonItemGroups',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a32252968ad2964655b67a5a3c4089f32',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['getconfigat_3c_20t_20_3e',['GetConfigAt&lt; T &gt;',['../class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#aaaaab25315624ddc74f313a94a5b4387',1,'HamstarHelpers::Services::Configs::ModConfigStack']]],
   ['getcontextslice',['GetContextSlice',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html#a917921116c0bfc4468a0f53f215a680d',1,'HamstarHelpers::Helpers::Debug::DebugHelpers']]],
