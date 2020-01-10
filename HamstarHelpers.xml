@@ -6781,6 +6781,33 @@
             <param name="looksMatter">Includes appearance elements.</param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Players.PlayerInteractionHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to player interactions with game things.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Players.PlayerInteractionHelpers.IsWithinReach(System.ValueTuple{System.Int32,System.Int32})">
+            <summary>
+            Detects a given point exists within the player's reach.
+            </summary>
+            <param name="tilePos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Players.PlayerInteractionHelpers.IsWithinReach(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Detects a given point exists within the player's reach.
+            </summary>
+            <param name="worldPos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Players.PlayerInteractionHelpers.IsWithinReach(System.Int32,System.Int32)">
+            <summary>
+            Detects a given point exists within the player's reach.
+            </summary>
+            <param name="worldPosX"></param>
+            <param name="worldPosY"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers">
             <summary>
             Assorted static "helper" functions pertaining to unique player identification.
