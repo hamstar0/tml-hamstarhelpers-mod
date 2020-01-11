@@ -5715,6 +5715,177 @@
             <param name="includeCoins">Includes coin items (defaults to `false`).</param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName">
+            <summary>
+            A type of common vanilla tooltip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.ItemName">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Favorite">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.FavoriteDesc">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Social">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.SocialDesc">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Damage">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.CritChance">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Speed">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Knockback">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.FishingPower">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.NeedsBait">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.BaitPower">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Equipable">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.WandConsumes">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Quest">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Vanity">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Defense">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PickPower">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.AxePowe">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.HammerPower">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.TileBoost">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.HealLife">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.HealMana">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.UseMana">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Placeable">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Ammo">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Consumable">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Material">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Tooltip">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.EtherianManaWarning">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.WellFedExpert">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.BuffTime">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.OneDropLogo">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixDamage">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixSpeed">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixCritChance">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixUseMana">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixSize">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixShootSpeed">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixKnockback">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixAccDefense">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixAccMaxMana">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixAccCritChance">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixAccDamage">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixAccMoveSpeed">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PrefixAccMeleeSpeed">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.SetBonus">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Expert">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.SpecialPrice">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Price">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to information attributes of items (e.g. tooltips).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.ApplyTooltipAt(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine,HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName,System.Boolean)">
+            <summary>
+            Convenience function (meant to be called in any ModifyTooltips hook) add a tooltip to an item in a specific
+            position. Adapts to item context.
+            </summary>
+            <param name="tooltips"></param>
+            <param name="tip"></param>
+            <param name="insertAt"></param>
+            <param name="insertAfter"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Items.Attributes.ItemRarityAttributeHelpers">
             <summary>
             Assorted static "helper" functions pertaining to the "rarity" attribute of items.

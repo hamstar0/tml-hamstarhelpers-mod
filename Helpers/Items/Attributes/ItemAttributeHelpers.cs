@@ -86,12 +86,12 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 					item.summon ||
 					item.pick > 0 ||
 					item.hammer > 0 ||
-					item.axe > 0 ) &&
-				!item.accessory &&
-				!item.potion &&
-				!item.consumable &&
-				!item.vanity &&
-				item.type != 849;   // Actuators are not consumable, apparently
+					item.axe > 0 )
+				&& !item.accessory
+				&& !item.potion
+				&& !item.consumable
+				&& !item.vanity
+				&& item.type != 849;   // Actuators are not consumable, apparently
 		}
 
 

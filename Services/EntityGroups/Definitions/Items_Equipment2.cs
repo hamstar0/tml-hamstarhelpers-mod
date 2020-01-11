@@ -21,10 +21,11 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				ItemGroupIDs.AnyEquipment,
 				new string[] { ItemGroupIDs.AnyWeapon, ItemGroupIDs.AnyTool, ItemGroupIDs.AnyAccessory, ItemGroupIDs.AnyArmor },
 				new ItemGroupMatcher( ( item, grps ) => {
-					return grps[ItemGroupIDs.AnyWeapon].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyTool].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyAccessory].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyArmor].Contains( item.type );
+					return grps[ItemGroupIDs.AnyWeapon].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyTool].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyAccessory].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyArmor].Contains( item.type )
+						|| ItemAttributeHelpers.IsGrapple( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
