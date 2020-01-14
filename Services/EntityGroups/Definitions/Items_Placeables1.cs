@@ -22,20 +22,23 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemPlaceablesGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyPlaceable, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyPlaceable,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile != -1 || item.createWall != -1;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyTile, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyTile,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile != -1;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyWall, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyWall,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createWall != -1;
 				} )
 			) );

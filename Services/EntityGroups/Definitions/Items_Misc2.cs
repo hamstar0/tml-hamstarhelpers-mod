@@ -17,9 +17,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups2( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Food Ingredient",
-				new string[] { "Any Food" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Food Ingredient",
+				grpDeps: new string[] { "Any Food" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					foreach( int foodId in grps["Any Food"] ) {
 						IEnumerable<Recipe> recipes = RecipeFinderHelpers.GetRecipesOfItem( foodId );
 

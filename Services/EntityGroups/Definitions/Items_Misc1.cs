@@ -36,8 +36,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Item", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Item",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return true;
 				} )
 			) );
@@ -47,23 +48,26 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 				int tier = i;
 				defs.Add( new EntityGroupMatcherDefinition<Item>(
-					"Any " + ItemRarityAttributeHelpers.RarityColorText[i] + " Tier", null,
-					new ItemGroupMatcher( ( item, grps ) => {
+					grpName: "Any " + ItemRarityAttributeHelpers.RarityColorText[i] + " Tier",
+					grpDeps: null,
+					matcher: new ItemGroupMatcher( ( item, grps ) => {
 						return item.rare == tier;
 					} )
 				) );
 			}
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Dye", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Dye",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.dye != 0 || item.hairDye != -1;
 				} )
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Food", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Food",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.buffType == BuffID.WellFed;
 				} )
 			) );

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.Items.Attributes;
+using System;
 using System.Collections.Generic;
 using Terraria;
 
@@ -18,9 +19,13 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups2( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyEquipment,
-				new string[] { ItemGroupIDs.AnyWeapon, ItemGroupIDs.AnyTool, ItemGroupIDs.AnyAccessory, ItemGroupIDs.AnyArmor },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyEquipment,
+				grpDeps: new string[] {
+					ItemGroupIDs.AnyWeapon,
+					ItemGroupIDs.AnyTool,
+					ItemGroupIDs.AnyAccessory,
+					ItemGroupIDs.AnyArmor },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps[ItemGroupIDs.AnyWeapon].Contains( item.type )
 						|| grps[ItemGroupIDs.AnyTool].Contains( item.type )
 						|| grps[ItemGroupIDs.AnyAccessory].Contains( item.type )
@@ -29,9 +34,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyHeavyArmor,
-				new string[] { ItemGroupIDs.AnyArmor },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyHeavyArmor,
+				grpDeps: new string[] { ItemGroupIDs.AnyArmor },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps[ItemGroupIDs.AnyArmor].Contains( item.type ) &&
 						item.defense >= 4;
 				} )

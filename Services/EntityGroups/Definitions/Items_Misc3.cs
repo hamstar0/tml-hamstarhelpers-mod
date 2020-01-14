@@ -22,10 +22,10 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 
 	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups3( IList<EntityGroupMatcherDefinition<Item>> defs ) {
-			defs.Add( new EntityGroupMatcherDefinition<Item>( 
-				"Any Plain Material",
-				new string[] { ItemGroupIDs.AnyEquipment },
-				new ItemGroupMatcher( ( item, grps ) => {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				grpName: "Any Plain Material",
+				grpDeps: new string[] { ItemGroupIDs.AnyEquipment },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.material &&
 						//!EntityGroups.ItemGroups["Any Placeable"].Contains( item.type ) &&
 						!grps[ItemGroupIDs.AnyEquipment].Contains( item.type );
@@ -33,8 +33,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Corruption Item", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Corruption Item",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Ebonwood:
 					case ItemID.EbonsandBlock:
@@ -133,8 +134,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Crimson Item", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Crimson Item",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Shadewood:
 					case ItemID.CrimsandBlock:
@@ -235,8 +237,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Alchemy Herb", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Alchemy Herb",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Daybloom:
 					case ItemID.Blinkroot:
@@ -253,8 +256,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Alchemy Fish", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Alchemy Fish",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.DoubleCod:
 					case ItemID.Damselfish:
@@ -278,8 +282,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Alchemy Misc", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Alchemy Misc",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Mushroom:
 					case ItemID.GlowingMushroom:

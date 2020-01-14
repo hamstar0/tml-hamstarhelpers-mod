@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items;
 using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Helpers.Recipes;
 using System;
@@ -39,26 +38,30 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Weapon Classes
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Ranged Weapon", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Ranged Weapon",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.ranged;
 				} )
 			) );
-			defs.Add( new EntityGroupMatcherDefinition<Item>( 
-				"Any Magic Weapon", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				grpName: "Any Magic Weapon",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.magic;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Melee Weapon", null,
+				grpName: "Any Melee Weapon",
+				grpDeps: null,
 				new ItemGroupMatcher( ( item, grps ) => {
 					return item.melee;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Thrown Weapon", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Thrown Weapon",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.thrown;
 				} )
 			) );
@@ -66,20 +69,23 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Melee Sub Classes
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Swingable", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Swingable",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.melee && item.useStyle == 1;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Thrustable", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Thrustable",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.melee && item.useStyle == 5;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Flail", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Flail",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.melee || item.useStyle != 5 ) { return false; }
 					if( item.type == ItemID.Anchor ) { return true; }
 
@@ -97,8 +103,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Boomerang", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Boomerang",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.melee || item.useStyle != 1 ) { return false; }
 					if( item.type == ItemID.FlyingKnife ) { return true; }
 
@@ -114,8 +121,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Yoyo", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Yoyo",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsYoyo( item );
 				} )
 			) );
@@ -123,8 +131,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Magic Sub Classes
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Magic Staff Or Scepter Or Wand", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Magic Staff Or Scepter Or Wand",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
 					string name = ItemAttributeHelpers.GetQualifiedName( item );
@@ -134,8 +143,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Magic Rod", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Magic Rod",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
 					string name = ItemAttributeHelpers.GetQualifiedName( item );
@@ -143,8 +153,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Magic Gun", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Magic Gun",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
 					switch( item.type ) {
@@ -161,8 +172,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Magic Tome", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Magic Tome",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
 					switch( item.type ) {
@@ -186,8 +198,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Ranged Sub Classes
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Ranger Gun", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Ranger Gun",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.ranged ) { return false; }
 					return item.useAmmo == AmmoID.Bullet ||
 						item.useAmmo == AmmoID.CandyCorn ||
@@ -195,16 +208,18 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Ranger Bow", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Ranger Bow",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.ranged ) { return false; }
 					return item.useAmmo == AmmoID.Arrow ||
 						item.useAmmo == AmmoID.Stake;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Ranger Launcher", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Ranger Launcher",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.ranged ) { return false; }
 					return item.useAmmo == AmmoID.Rocket ||
 						item.useAmmo == AmmoID.StyngerBolt ||
@@ -216,14 +231,16 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Summon Sub Classes
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Minion Summon Item", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Minion Summon Item",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.summon && !item.sentry;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Sentry Summon Item", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Sentry Summon Item",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.summon && item.sentry;
 				} )
 			) );

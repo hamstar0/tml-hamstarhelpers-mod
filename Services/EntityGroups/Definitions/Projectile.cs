@@ -20,8 +20,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// General
 
 			defs.Add( new EntityGroupMatcherDefinition<Projectile>(
-				ProjectileGroupIDs.AnyExplosive, null,
-				new ProjectileGroupMatcher( ( proj, grp ) => {
+				grpName: ProjectileGroupIDs.AnyExplosive,
+				grpDeps: null,
+				matcher: new ProjectileGroupMatcher( ( proj, grp ) => {
 					int _;
 					return ProjectileAttributeHelpers.IsExplosive( proj.type, out _, out _ );
 				} )

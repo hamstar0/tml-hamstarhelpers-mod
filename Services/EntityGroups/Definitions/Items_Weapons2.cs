@@ -19,9 +19,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Misc Sub Classes
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Ranger Misc",
-				new string[] { "Any Ranger Gun", "Any Ranger Bow", "Any Ranger Launcher" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Ranger Misc",
+				grpDeps: new string[] { "Any Ranger Gun", "Any Ranger Bow", "Any Ranger Launcher" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.ranged ) { return false; }
 					bool ranger = grps["Any Ranger Gun"].Contains( item.type );
 					bool bow = grps["Any Ranger Bow"].Contains( item.type );
@@ -30,10 +30,14 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 
-			defs.Add( new EntityGroupMatcherDefinition<Item>( 
-				"Any Magic Misc",
-				new string[] { "Any Magic Staff Or Scepter Or Wand", "Any Magic Rod", "Any Magic Gun", "Any Magic Tome" },
-				new ItemGroupMatcher( ( item, grps ) => {
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				grpName: "Any Magic Misc",
+				grpDeps: new string[] {
+					"Any Magic Staff Or Scepter Or Wand",
+					"Any Magic Rod",
+					"Any Magic Gun",
+					"Any Magic Tome" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 					bool staff = grps["Any Magic Staff Or Scepter Or Wand"].Contains( item.type );
 					bool rod = grps["Any Magic Rod"].Contains( item.type );

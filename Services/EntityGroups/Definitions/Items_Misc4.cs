@@ -17,9 +17,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups4( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Alchemy Ingredient",
-				new string[] { "Any Vanilla Alchemy Herb", "Any Vanilla Alchemy Fish", "Any Vanilla Alchemy Misc" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Alchemy Ingredient",
+				grpDeps: new string[] { "Any Vanilla Alchemy Herb", "Any Vanilla Alchemy Fish", "Any Vanilla Alchemy Misc" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.BottledWater:
 					case ItemID.Bottle:

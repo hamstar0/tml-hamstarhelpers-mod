@@ -42,9 +42,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups4( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyWoodEquipment,
-				new string[] { ItemGroupIDs.AnyEquipment, "Any Wood" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyWoodEquipment,
+				grpDeps: new string[] { ItemGroupIDs.AnyEquipment, "Any Wood" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					IDictionary<int, int> anyEquipGrp = grps[ItemGroupIDs.AnyEquipment].ToDictionary( id=>id, id=>1 );
 					IDictionary<int, int> anyWoodGrp = grps["Any Wood"].ToDictionary( id => id, id=>1 );
 
@@ -56,49 +56,49 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Copper Or Tin Equipment",
-				new string[] { "Any Copper Equipment", "Any Tin Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Copper Or Tin Equipment",
+				grpDeps: new string[] { "Any Copper Equipment", "Any Tin Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return	grps["Any Copper Equipment"].Contains( item.type ) ||
 							grps["Any Tin Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Iron Or Lead Equipment",
-				new string[] { "Any Iron Equipment", "Any Lead Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Iron Or Lead Equipment",
+				grpDeps: new string[] { "Any Iron Equipment", "Any Lead Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return	grps["Any Iron Equipment"].Contains( item.type ) ||
 							grps["Any Lead Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Silver Or Tungsten Equipment",
-				new string[] { "Any Silver Equipment", "Any Tungsten Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Silver Or Tungsten Equipment",
+				grpDeps: new string[] { "Any Silver Equipment", "Any Tungsten Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return	grps["Any Silver Equipment"].Contains( item.type ) ||
 							grps["Any Tungsten Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Gold Or Platinum Equipment",
-				new string[] { "Any Gold Equipment", "Any Platinum Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Gold Or Platinum Equipment",
+				grpDeps: new string[] { "Any Gold Equipment", "Any Platinum Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Gold Equipment"].Contains( item.type ) ||
 						grps["Any Platinum Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Demonite Or Crimtane Equipment",
-				new string[] { "Any Demonite Equipment", "Any Crimtane Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Demonite Or Crimtane Equipment",
+				grpDeps: new string[] { "Any Demonite Equipment", "Any Crimtane Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Demonite Equipment"].Contains( item.type ) ||
 						grps["Any Crimtane Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Meteor Or Jungle Or Bone Or Bee Equipment",
-				new string[] { "Any Meteor Equipment", "Any Jungle Equipment", "Any Bone Equipment", "Any Bee Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Meteor Or Jungle Or Bone Or Bee Equipment",
+				grpDeps: new string[] { "Any Meteor Equipment", "Any Jungle Equipment", "Any Bone Equipment", "Any Bee Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Meteor Equipment"].Contains( item.type ) ||
 						grps["Any Jungle Equipment"].Contains( item.type ) ||
 						grps["Any Bone Equipment"].Contains( item.type ) ||
@@ -106,50 +106,54 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Cobalt Or Palladium Equipment",
-				new string[] { "Any Cobalt Equipment", "Any Palladium Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Cobalt Or Palladium Equipment",
+				grpDeps: new string[] { "Any Cobalt Equipment", "Any Palladium Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Cobalt Equipment"].Contains( item.type ) ||
 						grps["Any Palladium Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Mythril Or Orichalcum Equipment",
-				new string[] { "Any Mythril Equipment", "Any Orichalcum Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Mythril Or Orichalcum Equipment",
+				grpDeps: new string[] { "Any Mythril Equipment", "Any Orichalcum Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Mythril Equipment"].Contains( item.type ) ||
 						grps["Any Orichalcum Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Adamantite Or Titanium Equipment",
-				new string[] { "Any Adamantite Equipment", "Any Titanium Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Adamantite Or Titanium Equipment",
+				grpDeps: new string[] { "Any Adamantite Equipment", "Any Titanium Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Adamantite Equipment"].Contains( item.type ) ||
 						grps["Any Titanium Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Frost Core Or Forbidden Equipment",
-				new string[] { "Any Frost Core Equipment", "Any Forbidden Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Frost Core Or Forbidden Equipment",
+				grpDeps: new string[] { "Any Frost Core Equipment", "Any Forbidden Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Frost Core Equipment"].Contains( item.type ) ||
 						grps["Any Forbidden Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Chlorophyte Or Shroomite Or Spectre Equipment",
-				new string[] { "Any Chlorophyte Equipment", "Any Shroomite Equipment", "Any Spectre Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Chlorophyte Or Shroomite Or Spectre Equipment",
+				grpDeps: new string[] { "Any Chlorophyte Equipment", "Any Shroomite Equipment", "Any Spectre Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Chlorophyte Equipment"].Contains( item.type ) ||
 						grps["Any Shroomite Equipment"].Contains( item.type ) ||
 						grps["Any Spectre Equipment"].Contains( item.type );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Celestial Equipment",
-				new string[] { "Any Nebula Equipment", "Any Vortex Equipment", "Any Solar Equipment", "Any Stardust Equipment" },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Celestial Equipment",
+				grpDeps: new string[] {
+					"Any Nebula Equipment",
+					"Any Vortex Equipment",
+					"Any Solar Equipment",
+					"Any Stardust Equipment" },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps["Any Nebula Equipment"].Contains( item.type ) ||
 						grps["Any Vortex Equipment"].Contains( item.type ) ||
 						grps["Any Solar Equipment"].Contains( item.type ) ||

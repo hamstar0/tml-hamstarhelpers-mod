@@ -1,12 +1,8 @@
 ﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TileHelpers;
-using HamstarHelpers.Helpers.Tiles;
-using HamstarHelpers.Helpers.Tiles.Attributes;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -61,9 +57,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		internal static void DefineItemPlaceablesGroups2( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			// Materials
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyWood,
-				null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyWood,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Wood:
 					case ItemID.RichMahogany:
@@ -80,9 +76,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyOreBar,
-				new string[] { ItemGroupIDs.AnyTile },
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyOreBar,
+				grpDeps: new string[] { ItemGroupIDs.AnyTile },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !grps[ItemGroupIDs.AnyTile].Contains( item.type ) ) { return false; }
 					if( item.createTile != 239 ) {
 						if( item.createTile <= 0 ) { return false; }
@@ -100,39 +96,45 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Stations
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Workbench", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Workbench",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 18;
 				} )
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Anvil", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Anvil",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 16 || item.createTile == 134;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Forge", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Forge",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 18;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Table", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Table",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 14;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Alchemy Station", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Alchemy Station",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 13 || item.createTile == 355;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Hardmode Crafting Station", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Hardmode Crafting Station",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
 					case 133:   // Hardmode Forge
 					case 134:   // Hardmode Anvil
@@ -148,8 +150,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Themed Crafting Station", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Themed Crafting Station",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Solidifier:
 					case ItemID.GlassKiln:
@@ -167,8 +170,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Misc Crafting Station", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Misc Crafting Station",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
 					case 86:    // Loom
 					case 94:    // Keg
@@ -187,8 +191,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Chests
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Chest", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Chest",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 21;
 				} )
 			) );
@@ -196,21 +201,24 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Wire
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Wire Component", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Wire Component",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( item.createTile == -1 ) { return false; }
 					return item.mech;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Trap Chest", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Trap Chest",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 441;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Wire Trap", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Wire Trap",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.DartTrap:
 					case ItemID.SuperDartTrap:
@@ -234,8 +242,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Vanilla Wire Switch", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Vanilla Wire Switch",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Switch:
 					case ItemID.Lever:
@@ -272,8 +281,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Lights
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Light", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Light",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
 					case 4:		// Torch
 					case 33:	// Candle
@@ -304,8 +314,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Candle", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Candle",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
 					case 33:    // Candle
 					case 174:   // Platinum Candle (?)
@@ -317,14 +328,16 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Wall Torch", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Wall Torch",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 4;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Campfire", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Campfire",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 215 || item.createTile == 405;
 				} )
 			) );
@@ -332,8 +345,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Misc
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				"Any Statue", null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: "Any Statue",
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == 105;
 				} )
 			) );

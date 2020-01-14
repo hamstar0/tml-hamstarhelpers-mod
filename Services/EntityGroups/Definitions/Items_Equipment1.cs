@@ -42,20 +42,23 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyWeapon, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyWeapon,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.damage > 0;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyTool, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyTool,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsTool( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaExplosive, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaExplosive,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.Bomb:
 					case ItemID.StickyBomb:
@@ -87,44 +90,51 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.accessory && !item.vanity;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyArmor, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyArmor,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsArmor( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyGarment, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyGarment,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyPotion, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyPotion,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.potion;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyAmmo, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyAmmo,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.ammo > 0 && !item.notAmmo;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyAmmoAmmo, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyAmmoAmmo,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.ammo > 0 && !item.notAmmo;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyNotAmmo, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyNotAmmo,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.notAmmo;
 				} )
 			) );
@@ -132,21 +142,24 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Vanity Classes
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanity, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanity,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.vanity;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanityAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanityAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.accessory;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanityGarment, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanityGarment,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.vanity ) { return false; }
 					return item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1;
 				} )

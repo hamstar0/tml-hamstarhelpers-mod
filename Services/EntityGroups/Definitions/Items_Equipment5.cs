@@ -1,4 +1,6 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Helpers.Items.Attributes;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -19,8 +21,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemEquipmentGroups5( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyOreEquipment,
-				new string[] {
+				grpName: ItemGroupIDs.AnyOreEquipment,
+				grpDeps: new string[] {
 					ItemGroupIDs.AnyCopperOrTinEquipment,
 					ItemGroupIDs.AnyIronOrLeadEquipment,
 					ItemGroupIDs.AnySilverOrTungstenEquipment,
@@ -37,7 +39,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					ItemGroupIDs.AnyChlorophyteOrShroomiteOrSpectreEquipment,
 					ItemGroupIDs.AnyLuminiteOreEquipment
 				},
-				new ItemGroupMatcher( ( item, grps ) => {
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return grps[ItemGroupIDs.AnyCopperOrTinEquipment].Contains( item.type ) ||
 						grps[ItemGroupIDs.AnyIronOrLeadEquipment].Contains( item.type ) ||
 						grps[ItemGroupIDs.AnySilverOrTungstenEquipment].Contains( item.type ) ||
@@ -57,8 +59,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 			
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyNonOreCraftedEquipment,
-				new string[] {
+				grpName: ItemGroupIDs.AnyNonOreCraftedEquipment,
+				grpDeps: new string[] {
 					ItemGroupIDs.AnyCactusEquipment,
 					ItemGroupIDs.AnyWoodEquipment,
 					ItemGroupIDs.AnyJungleEquipment,
@@ -67,14 +69,15 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					ItemGroupIDs.AnyMeteorEquipment,
 					ItemGroupIDs.AnyCelestialEquipment
 				},
-				new ItemGroupMatcher( ( item, grps ) => {
-					return grps[ItemGroupIDs.AnyCactusEquipment].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyWoodEquipment].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyJungleEquipment].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyBeeEquipment].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyBoneEquipment].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyMeteorEquipment].Contains( item.type ) ||
-						grps[ItemGroupIDs.AnyCelestialEquipment].Contains( item.type );
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
+					return grps[ItemGroupIDs.AnyCactusEquipment].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyWoodEquipment].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyJungleEquipment].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyBeeEquipment].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyBoneEquipment].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyMeteorEquipment].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyCelestialEquipment].Contains( item.type )
+						|| ItemAttributeHelpers.IsGrapple(item);
 				} )
 			) );
 		}

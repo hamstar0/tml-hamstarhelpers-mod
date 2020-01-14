@@ -22,20 +22,23 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// General
 
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				"Any Friendly NPC", null,
-				new NPCGroupMatcher( ( npc, grp ) => {
+				grpName: "Any Friendly NPC",
+				grpDeps: null,
+				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					return npc.friendly;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				"Any Hostile NPC", null,
-				new NPCGroupMatcher( ( npc, grp ) => {
+				grpName: "Any Hostile NPC",
+				grpDeps: null,
+				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					return !npc.friendly;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				"Any Town NPC", null,
-				new NPCGroupMatcher( ( npc, grp ) => {
+				grpName: "Any Town NPC",
+				grpDeps: null,
+				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					return npc.townNPC;
 				} )
 			) );
@@ -43,16 +46,18 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Monsters
 
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				"Any Boss", null,
-				new NPCGroupMatcher( ( npc, grp ) => {
+				grpName: "Any Boss",
+				grpDeps: null,
+				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					if( npc.type == NPCID.EaterofWorldsHead ) { return true; }  // special case
 					return npc.boss;
 				} )
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				"Any Slime", null,
-				new NPCGroupMatcher( ( npc, grp ) => {
+				grpName: "Any Slime",
+				grpDeps: null,
+				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					if( npc.aiStyle == 1 ) {
 						switch( npc.netID ) {
 						case NPCID.HoppinJack:  //?

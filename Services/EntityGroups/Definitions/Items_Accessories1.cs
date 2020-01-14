@@ -37,15 +37,17 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Accessory Classes
 			
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyWingAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyWingAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					return item.wingSlot > 0;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaMovementAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaMovementAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.Aglet:
@@ -101,8 +103,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaCombatAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaCombatAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.AdhesiveBandage:
@@ -177,8 +180,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaYoyoAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaYoyoAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.YoyoBag:
@@ -211,8 +215,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaHealthOrManaAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaHealthOrManaAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.BandofRegeneration:
@@ -232,8 +237,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaConstructionAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaConstructionAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.Toolbelt:
@@ -250,8 +256,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaInformationAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaInformationAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.CopperWatch:
@@ -285,8 +292,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaFishingAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaFishingAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.HighTestFishingLine:
@@ -299,8 +307,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaMusicBoxAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaMusicBoxAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.MusicBox:
@@ -350,8 +359,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				ItemGroupIDs.AnyVanillaExpertAccessory, null,
-				new ItemGroupMatcher( ( item, grps ) => {
+				grpName: ItemGroupIDs.AnyVanillaExpertAccessory,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.accessory || item.vanity ) { return false; }
 					switch( item.type ) {
 					case ItemID.RoyalGel:
