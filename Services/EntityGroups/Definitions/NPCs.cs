@@ -7,11 +7,16 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class NPCGroupIDs {
-		//"Any Friendly NPC", null,
-		//"Any Hostile NPC", null,
-		//"Any Town NPC", null,
-		//"Any Boss", null,
-		//"Any Slime", null,
+		/// <summary></summary>
+		public const string AnyFriendlyNPC = "Any Friendly NPC";
+		/// <summary></summary>
+		public const string AnyHostileNPC = "Any Hostile NPC";
+		/// <summary></summary>
+		public const string AnyTownNPC = "Any Town NPC";
+		/// <summary></summary>
+		public const string AnyBoss = "Any Boss";
+		/// <summary></summary>
+		public const string AnySlime = "Any Slime";
 	}
 
 
@@ -22,21 +27,21 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// General
 
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				grpName: "Any Friendly NPC",
+				grpName: NPCGroupIDs.AnyFriendlyNPC,
 				grpDeps: null,
 				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					return npc.friendly;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				grpName: "Any Hostile NPC",
+				grpName: NPCGroupIDs.AnyHostileNPC,
 				grpDeps: null,
 				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					return !npc.friendly;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				grpName: "Any Town NPC",
+				grpName: NPCGroupIDs.AnyTownNPC,
 				grpDeps: null,
 				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					return npc.townNPC;
@@ -46,7 +51,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Monsters
 
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				grpName: "Any Boss",
+				grpName: NPCGroupIDs.AnyBoss,
 				grpDeps: null,
 				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					if( npc.type == NPCID.EaterofWorldsHead ) { return true; }  // special case
@@ -55,7 +60,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<NPC>(
-				grpName: "Any Slime",
+				grpName: NPCGroupIDs.AnySlime,
 				grpDeps: null,
 				matcher: new NPCGroupMatcher( ( npc, grp ) => {
 					if( npc.aiStyle == 1 ) {

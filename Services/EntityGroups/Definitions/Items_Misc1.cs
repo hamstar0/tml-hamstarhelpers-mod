@@ -9,7 +9,8 @@ using Terraria.ID;
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//"Any Item", null,
+		/// <summary></summary>
+		public const string AnyItem = "Any Item";
 		//"Any Rainbow 2 Tier", null,
 		//"Any Rainbow Tier", null,
 		//"Any Amber Tier", null,
@@ -36,7 +37,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups1( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Item",
+				grpName: ItemGroupIDs.AnyItem,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return true;
