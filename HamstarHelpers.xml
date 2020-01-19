@@ -9841,6 +9841,15 @@
             <param name="c2"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.XNA.XNAColorHelpers.AddGlow(Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,System.Boolean)">
+            <summary>
+            Adds one color to another so as to make it glow by that amount.
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <param name="alsoAlpha"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.XNA.XNAColorHelpers.BrightnessRGB(Microsoft.Xna.Framework.Color)">
             <summary>
             Returns a percent value gauging the brightness of a given color (according to the human eye).
@@ -10787,6 +10796,9 @@
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyNonOreCraftedEquipment">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyItem">
+            <summary></summary>
+        </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPlaceable">
             <summary></summary>
         </member>
@@ -10857,6 +10869,21 @@
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs.AnyFriendlyNPC">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs.AnyHostileNPC">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs.AnyTownNPC">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs.AnyBoss">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs.AnySlime">
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.EntityGroups.Definitions.ProjectileGroupIDs">

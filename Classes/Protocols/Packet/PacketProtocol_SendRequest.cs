@@ -10,9 +10,9 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		internal void SendRequestToClient( int toWho, int ignoreWho, int retries ) {
 			var mymod = ModHelpersMod.Instance;
-			ModPacket packet = this.GetServerPacket( true );
-
 			try {
+				ModPacket packet = this.GetServerPacket( true );
+
 				packet.Send( toWho, ignoreWho );
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
@@ -28,9 +28,9 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 
 		internal void SendRequestToServer( int retries ) {
-			ModPacket packet = this.GetClientPacket( true, false );
-
 			try {
+				ModPacket packet = this.GetClientPacket( true, false );
+
 				packet.Send();
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );

@@ -63,7 +63,7 @@ namespace HamstarHelpers.Services.Configs {
 				generics: new Type[] { configType },
 				out configSingleton
 			);
-			if( !success ) {
+			if( !success || configSingleton == null ) {
 				throw new ModHelpersException( "Could not get StackableModConfig of "+configType.Name );
 			}
 

@@ -68,7 +68,42 @@ namespace HamstarHelpers.Helpers.XNA {
 			return new Color( r, g, b, a );
 		}
 
-		
+		////////////////
+
+		/// <summary>
+		/// Adds one color to another so as to make it glow by that amount.
+		/// </summary>
+		/// <param name="c1"></param>
+		/// <param name="c2"></param>
+		/// <param name="alsoAlpha"></param>
+		/// <returns></returns>
+		public static Color AddGlow( Color c1, Color c2, bool alsoAlpha ) {
+			float r2 = (float)c2.R / 255f;
+			float g2 = (float)c2.G / 255f;
+			float b2 = (float)c2.B / 255f;
+
+			float glowR = (float)(255 - c1.R) * r2;
+			float glowG = (float)(255 - c1.G) * g2;
+			float glowB = (float)(255 - c1.B) * b2;
+
+			var color = new Color(
+				c1.R + glowR,
+				c1.G + glowG,
+				c1.B + glowB
+			);
+
+			if( alsoAlpha ) {
+				float a2 = (float)c2.A / 255f;
+				float glowA = (float)( 255 - c1.A ) * a2;
+				color.A = (byte)(c1.A + glowA);
+			}
+
+			return color;
+		}
+
+
+		////////////////
+
 		/// <summary>
 		/// Returns a percent value gauging the brightness of a given color (according to the human eye).
 		/// </summary>
