@@ -75,7 +75,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			}
 
 			BuildPropertiesViewer viewer = BuildPropertiesViewer.GetBuildPropertiesForActiveMod( modName );
-			string desc = viewer?.Description ?? "";
+			string desc = viewer?.Description;
 
 			if( viewer == null || string.IsNullOrEmpty( desc ) ) {
 				if( !ModMenuHelpers.GetModDescriptionFromCurrentMenuUI( out desc ) ) {
@@ -85,7 +85,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			}
 
 			if( desc == "" || desc.Contains( "Modify this file with a description of your mod." ) ) {
-				tagButton.SetTagState( 1 );
+			//	tagButton.SetTagState( 1 );
+				// TODO
 			}
 		}
 	}

@@ -1,17 +1,17 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Newtonsoft.Json;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Configs;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 
 namespace HamstarHelpers.Services.Configs {

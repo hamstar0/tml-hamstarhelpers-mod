@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 
 namespace HamstarHelpers.Helpers.XNA {
@@ -73,29 +73,31 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <summary>
 		/// Adds one color to another so as to make it glow by that amount.
 		/// </summary>
-		/// <param name="c1"></param>
-		/// <param name="c2"></param>
+		/// <param name="baseColor"></param>
+		/// <param name="glowColor"></param>
 		/// <param name="alsoAlpha"></param>
 		/// <returns></returns>
-		public static Color AddGlow( Color c1, Color c2, bool alsoAlpha ) {
-			float r2 = (float)c2.R / 255f;
-			float g2 = (float)c2.G / 255f;
-			float b2 = (float)c2.B / 255f;
+		public static Color AddGlow( Color baseColor, Color glowColor, bool alsoAlpha ) {
+			float r2 = (float)glowColor.R / 255f;
+			float g2 = (float)glowColor.G / 255f;
+			float b2 = (float)glowColor.B / 255f;
 
-			float glowR = (float)(255 - c1.R) * r2;
-			float glowG = (float)(255 - c1.G) * g2;
-			float glowB = (float)(255 - c1.B) * b2;
+			float glowR = (float)(255 - baseColor.R) * r2;
+			float glowG = (float)(255 - baseColor.G) * g2;
+			float glowB = (float)(255 - baseColor.B) * b2;
 
 			var color = new Color(
-				c1.R + glowR,
-				c1.G + glowG,
-				c1.B + glowB
+				baseColor.R + (byte)glowR,
+				baseColor.G + (byte)glowG,
+				baseColor.B + (byte)glowB,
+				baseColor.A
 			);
 
 			if( alsoAlpha ) {
-				float a2 = (float)c2.A / 255f;
-				float glowA = (float)( 255 - c1.A ) * a2;
-				color.A = (byte)(c1.A + glowA);
+				float a2 = (float)glowColor.A / 255f;
+				float glowA = (float)( 255 - baseColor.A ) * a2;
+
+				color.A = (byte)(baseColor.A + (byte)glowA);
 			}
 
 			return color;

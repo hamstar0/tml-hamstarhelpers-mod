@@ -20,7 +20,7 @@ namespace HamstarHelpers.Helpers.Fx {
 
 			for( int i = 0; i < quantity; i++ ) {
 				int goreType = Main.rand.Next( 61, 64 );
-				int goreIdx = Gore.NewGore( pos, default( Vector2 ), goreType, scale );
+				int goreIdx = Gore.NewGore( pos, default(Vector2), goreType, scale );
 				Gore gore = Main.gore[goreIdx];
 				
 				gore.velocity *= sprayAmount;

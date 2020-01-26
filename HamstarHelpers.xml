@@ -9845,8 +9845,8 @@
             <summary>
             Adds one color to another so as to make it glow by that amount.
             </summary>
-            <param name="c1"></param>
-            <param name="c2"></param>
+            <param name="baseColor"></param>
+            <param name="glowColor"></param>
             <param name="alsoAlpha"></param>
             <returns></returns>
         </member>
