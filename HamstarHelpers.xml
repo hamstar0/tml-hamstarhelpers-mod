@@ -1145,6 +1145,11 @@
             Preset for walls, no tiles.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonActive">
+            <summary>
+            Preset for any non-active tiles (at most only liquids, wire, or walls).
+            </summary>
+        </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonSolid">
             <summary>
             Preset for any non-solid tiles (includes actuated tiles and active-but-non-solid tiles).
@@ -11726,7 +11731,7 @@
         </member>
         <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetNewChat(System.Int32)">
             <summary>
-            Gets a random chat from the given NPC's added chats pool.
+            Gets a random chat only from the given NPC's added chats pool.
             </summary>
             <param name="npcType"></param>
             <returns></returns>

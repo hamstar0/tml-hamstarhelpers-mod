@@ -54,7 +54,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		////
 
 		/// <summary>
-		/// Gets a random chat from the given NPC's added chats pool.
+		/// Gets a random chat only from the given NPC's added chats pool.
 		/// </summary>
 		/// <param name="npcType"></param>
 		/// <returns></returns>

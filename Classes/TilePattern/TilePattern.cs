@@ -73,6 +73,15 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
+		/// Preset for any non-active tiles (at most only liquids, wire, or walls).
+		/// </summary>
+		public readonly static TilePattern NonActive = new TilePattern(
+			new TilePatternBuilder {
+				IsActive = false
+			}
+		);
+
+		/// <summary>
 		/// Preset for any non-solid tiles (includes actuated tiles and active-but-non-solid tiles).
 		/// </summary>
 		public readonly static TilePattern NonSolid = new TilePattern(

@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public class TileGroupIdentityHelpers {
 		/// <summary>
-		/// Tile types that typically comprise "earth".
+		/// Tile types that typically comprise "earth" (now includes underworld ash).
 		/// </summary>
 		public static IReadOnlySet<int> VanillaEarthTiles { get; } = new ReadOnlySet<int>( new HashSet<int> {
 			TileID.Stone,
@@ -55,6 +55,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 			TileID.HallowHardenedSand,
 			TileID.CorruptHardenedSand,
 			TileID.CrimsonHardenedSand,
+			//
+			TileID.Ash,
 		} );
 
 		/// <summary>
