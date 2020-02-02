@@ -5891,6 +5891,17 @@
             <param name="insertAfter"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.ApplyTooltipAt(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine,System.String,System.Boolean)">
+            <summary>
+            Convenience function (meant to be called in any ModifyTooltips hook) add a tooltip to an item in a specific
+            position. Adapts to item context.
+            </summary>
+            <param name="tooltips"></param>
+            <param name="tip"></param>
+            <param name="insertAt"></param>
+            <param name="insertAfter"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Items.Attributes.ItemRarityAttributeHelpers">
             <summary>
             Assorted static "helper" functions pertaining to the "rarity" attribute of items.

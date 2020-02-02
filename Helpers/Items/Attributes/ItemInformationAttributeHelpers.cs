@@ -165,5 +165,40 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 
 			return false;
 		}
+
+
+		/// <summary>
+		/// Convenience function (meant to be called in any ModifyTooltips hook) add a tooltip to an item in a specific
+		/// position. Adapts to item context.
+		/// </summary>
+		/// <param name="tooltips"></param>
+		/// <param name="tip"></param>
+		/// <param name="insertAt"></param>
+		/// <param name="insertAfter"></param>
+		/// <returns></returns>
+		public static bool ApplyTooltipAt(
+					IList<TooltipLine> tooltips,
+					TooltipLine tip,
+					string insertAt,	// = "Tooltip"
+					bool insertAfter = true ) {
+			for( int i = tooltips.Count - 1; i >= 0; i-- ) {
+				string name = tooltips[i].Name;
+
+				if( name.StartsWith( "Tooltip" ) ) {
+					name = "Tooltip";
+				}
+
+				if( insertAt == name ) {
+					if( insertAfter ) {
+						tooltips.Insert( i+1, tip );
+					} else {
+						tooltips.Insert( i, tip );
+					}
+					return true;
+				}
+			}
+
+			return false;
+		}
 	}
 }
