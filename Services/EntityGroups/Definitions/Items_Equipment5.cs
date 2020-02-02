@@ -61,6 +61,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				grpName: ItemGroupIDs.AnyNonOreCraftedEquipment,
 				grpDeps: new string[] {
+					ItemGroupIDs.AnyEquipment,
+					ItemGroupIDs.AnyOreEquipment,
+					//
 					ItemGroupIDs.AnyCactusEquipment,
 					ItemGroupIDs.AnyWoodEquipment,
 					ItemGroupIDs.AnyJungleEquipment,
@@ -77,7 +80,9 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						|| grps[ItemGroupIDs.AnyBoneEquipment].Contains( item.type )
 						|| grps[ItemGroupIDs.AnyMeteorEquipment].Contains( item.type )
 						|| grps[ItemGroupIDs.AnyCelestialEquipment].Contains( item.type )
-						|| ItemAttributeHelpers.IsGrapple(item);
+						|| ( grps[ ItemGroupIDs.AnyEquipment ].Contains( item.type )
+							&& !grps[ ItemGroupIDs.AnyOreEquipment ].Contains( item.type ) )
+						|| ItemAttributeHelpers.IsGrapple( item );
 				} )
 			) );
 		}

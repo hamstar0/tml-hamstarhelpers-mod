@@ -8064,7 +8064,7 @@
         </member>
         <member name="P:HamstarHelpers.Helpers.Tiles.TileGroupIdentityHelpers.VanillaEarthTiles">
             <summary>
-            Tile types that typically comprise "earth".
+            Tile types that typically comprise "earth" (now includes underworld ash).
             </summary>
         </member>
         <member name="P:HamstarHelpers.Helpers.Tiles.TileGroupIdentityHelpers.VanillaShrubTiles">

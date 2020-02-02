@@ -78,7 +78,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Equipment Tiers
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Ore Bar Equipment",
+				grpName: ItemGroupIDs.AnyOreBarEquipment,
 				grpDeps: new string[] { ItemGroupIDs.AnyEquipment, ItemGroupIDs.AnyOreBar },
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
