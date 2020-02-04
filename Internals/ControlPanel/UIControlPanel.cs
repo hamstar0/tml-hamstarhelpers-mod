@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
+using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -142,7 +143,10 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			if( !button.GetOuterDimensions().ToRectangle().Contains( Main.mouseX, Main.mouseY ) ) {
 				if( this.TabButtonHover[idx] ) {
 					this.TabButtonHover[idx] = false;
-					button.MouseOut( new UIMouseEvent(button, new Vector2(Main.mouseX, Main.mouseY)) );
+
+					Timers.RunNow( () => {
+						button.MouseOut( new UIMouseEvent( button, new Vector2( Main.mouseX, Main.mouseY ) ) );
+					} );
 				}
 				return;
 			}
@@ -153,10 +157,15 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			}
 
 			var evt = new UIMouseEvent( button, new Vector2( Main.mouseX, Main.mouseY ) );
-			button.MouseOver( evt );
+
+			Timers.RunNow( () => {
+				button.MouseOver( evt );
+			} );
 
 			if( Main.mouseLeft && Main.mouseLeftRelease ) {
-				button.Click( evt );
+				Timers.RunNow( () => {
+					button.Click( evt );
+				} );
 			}
 		}
 	}

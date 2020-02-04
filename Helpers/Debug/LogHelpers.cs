@@ -137,7 +137,7 @@ namespace HamstarHelpers.Helpers.Debug {
 					var mymod = ModHelpersMod.Instance;
 					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
 
-					mymod.Logger.Error( fmtMsg );
+					mymod.Logger.Warn( fmtMsg );   //was Error(...)
 				} catch { }
 				//LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg : "") );
 			}
@@ -152,7 +152,7 @@ namespace HamstarHelpers.Helpers.Debug {
 				try {
 					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
 
-					ModHelpersMod.Instance.Logger.Fatal( fmtMsg );
+					ModHelpersMod.Instance.Logger.Error( fmtMsg );	//was Fatal(...)
 				} catch { }
 				//LogHelpers.Log( DebugHelpers.GetCurrentContext( 2 ) + ((msg != "") ? " - " + msg: "") );
 			}

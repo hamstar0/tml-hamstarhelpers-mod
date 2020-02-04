@@ -67,7 +67,7 @@ namespace HamstarHelpers {
 				this.UnloadModData();
 				this.UnloadModules();
 			} catch( Exception e ) {
-				this.Logger.Error( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );
+				this.Logger.Warn( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );	//was Error(...)
 			}
 
 			try {

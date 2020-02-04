@@ -6,4 +6,5 @@ Supplies numerous helper functions, classes, services, utilities, and informatio
 Modders: See the homepage for information on setting up your mod to receive bug reports!
 
 Credits:
-Nvar: Coal item's tile sprite sheet.
+Nvar: Coal item's tile sprite sheet
+Darkpuppy: Tweaked mod icon

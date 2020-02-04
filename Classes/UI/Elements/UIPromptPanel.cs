@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
@@ -98,7 +99,10 @@ namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 			this.ConfirmButton.Width.Set( 128f, 0f );
 			this.ConfirmButton.OnClick += ( _, __ ) => {
 				this.ConfirmAction();
-				this.Remove();
+				Timers.SetTimer( "ModHelpers_UIPromptPanel_Remove_" + this.GetHashCode(), 0, false, () => {
+					this.Remove();
+					return false;
+				} );
 			};
 			this.Append( this.ConfirmButton );
 
@@ -109,7 +113,10 @@ namespace HamstarHelpers.Classes.UI.Elements.Dialogs {
 				this.CancelButton.Width.Set( 128f, 0f );
 				this.CancelButton.OnClick += ( _, __ ) => {
 					this.CancelAction.Invoke();
-					this.Remove();
+					Timers.SetTimer( "ModHelpers_UIPromptPanel_Remove_" + this.GetHashCode(), 0, false, () => {
+						this.Remove();
+						return false;
+					} );
 				};
 				this.Append( this.CancelButton );
 			}

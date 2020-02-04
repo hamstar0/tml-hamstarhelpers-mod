@@ -64,7 +64,7 @@ namespace HamstarHelpers.Helpers.Debug {
 				return;
 			}
 
-			mymod.Logger.Error( "~" + outMsg );
+			mymod.Logger.Warn( "~" + outMsg );	//was Error(...)
 		}
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Helpers.Debug {
 				return;
 			}
 
-			mymod.Logger.Fatal( "~" + outMsg );
+			mymod.Logger.Error( "~" + outMsg );	//was Fatal(...)
 		}
 
 		////
@@ -115,7 +115,7 @@ namespace HamstarHelpers.Helpers.Debug {
 				return;
 			}
 
-			mymod.Logger.Error( "~" + outMsg );
+			mymod.Logger.Warn( "~" + outMsg ); //was Error(...)
 			Main.NewText( "~" + fmtMsg.Context + " - " + msg, ( color.HasValue ? color.Value : Color.White ) );
 		}
 
@@ -135,7 +135,7 @@ namespace HamstarHelpers.Helpers.Debug {
 				return;
 			}
 
-			mymod.Logger.Fatal( "~" + outMsg );
+			mymod.Logger.Error( "~" + outMsg );	//was Fatal(...)
 			Main.NewText( "~!" + fmtMsg.Context + " - " + msg, ( color.HasValue ? color.Value : Color.White ) );
 		}
 

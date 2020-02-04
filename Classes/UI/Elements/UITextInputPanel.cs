@@ -1,5 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.XNA;
+using HamstarHelpers.Services.Timers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -150,7 +151,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				}
 
 				if( this.IsSelected && !isNowSelected ) {
-					this.OnUnfocus?.Invoke();
+					Timers.RunNow( () => {
+						this.OnUnfocus?.Invoke();
+					} );
 				}
 				this.IsSelected = isNowSelected;
 			}
@@ -165,9 +168,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				if( !newStr.Equals( this.Text ) ) {
 					var newStrMuta = new StringBuilder( newStr );
 
-					if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
-						this.Text = newStrMuta.ToString();
-					}
+					Timers.RunNow( () => {
+						if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
+							this.Text = newStrMuta.ToString();
+						}
+					} );
 				}
 			}
 

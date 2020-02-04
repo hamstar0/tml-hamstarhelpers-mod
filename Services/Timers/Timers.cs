@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -43,6 +44,21 @@ namespace HamstarHelpers.Services.Timers {
 				}
 				return false;
 			};
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Convenience method to run a given action 'now' (AKA a 0 delay timer).
+		/// </summary>
+		/// <param name="action"></param>
+		public static void RunNow( Action action ) {
+			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + action.GetHashCode();
+			Timers.SetTimer( ctx, 0, true, () => {
+				action();
+				return false;
+			} );
 		}
 
 

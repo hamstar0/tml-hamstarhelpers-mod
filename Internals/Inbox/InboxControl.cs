@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Internals.Inbox {
@@ -87,6 +88,7 @@ namespace HamstarHelpers.Internals.Inbox {
 
 		internal void Draw( SpriteBatch sb ) {
 			int unread = InboxMessages.CountUnreadMessages();
+
 			var rect = new Rectangle( (int)this.IconPos.X, (int)this.IconPos.Y, this.Icon.Width, this.Icon.Height );
 			bool isHover = UIHelpers.MouseInRectangle( rect );
 			Vector2 mousePos = new Vector2( Main.mouseX + 16, Main.mouseY );
@@ -96,8 +98,10 @@ namespace HamstarHelpers.Internals.Inbox {
 					this.IsIconClicked = true;
 
 					if( unread > 0 ) {
-						this.ReadLatestMessage();
-						unread--;
+						Timers.RunNow( () => {
+							this.ReadLatestMessage();
+							unread--;
+						} );
 					}
 				}
 			} else {

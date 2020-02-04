@@ -55,7 +55,9 @@ namespace HamstarHelpers.Services.UI.Menus {
 			// Validate
 			if( ui != null ) {
 				if( !Enum.TryParse( ui.GetType().Name, out openingUiDef ) ) {
-					LogHelpers.WarnOnce( "Could not get MenuUIDefinition " + ui.GetType().Name );
+					if( ModHelpersConfig.Instance.DebugModeMenuInfo ) {
+						LogHelpers.WarnOnce( "Could not get MenuUIDefinition " + ui.GetType().Name );
+					}
 					this.CurrentMenuUI = 0;
 					return;
 				}

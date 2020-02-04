@@ -8,6 +8,7 @@ using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -139,8 +140,10 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public void SetText( string text ) {
 			this.TextElem.SetText( text, this.Scale, this.Large );
 
-			this.RemoveChild( this.LineElem );
-			this.LineElem.Remove();
+			Timers.RunNow( () => {
+				this.RemoveChild( this.LineElem );
+				this.LineElem.Remove();
+			} );
 
 			this.LineElem = UIWebUrl.GetLineElement( text, this.Scale, this.Large );
 			this.Append( this.LineElem );

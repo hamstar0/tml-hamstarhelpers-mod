@@ -68,7 +68,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		public void Draw( SpriteBatch sb ) {
 			bool isHoveringModTags = false;
 
-			foreach( var elem in this.Elements ) {
+			foreach( var elem in this.Elements.ToArray() ) {
 				elem.Recalculate();
 			}
 
@@ -110,7 +110,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				}
 			}
 
-			foreach( var elem in this.Elements ) {
+			foreach( var elem in this.Elements.ToArray() ) {
 				if( elem is UIWebUrl ) { continue; }
 				if( elem is UIText ) {
 					if( elem == this.HeadTextLabel ) {

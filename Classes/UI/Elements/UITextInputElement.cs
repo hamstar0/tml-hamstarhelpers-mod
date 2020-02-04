@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Services.Timers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Text;
@@ -28,7 +29,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// <summary>
-		/// Fires on text change.
+		/// Fires on text change. Actions here should never alter current, sibling, or child elements.
 		/// </summary>
 		public event TextEventHandler OnTextChange;
 		/// <summary>
@@ -104,7 +105,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				}
 
 				if( this.IsSelected && !isNowSelected ) {
-					this.OnUnfocus?.Invoke();
+					Timers.RunNow( () => { this.OnUnfocus?.Invoke(); } );
 				}
 				this.IsSelected = isNowSelected;
 			}
@@ -119,9 +120,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				if( !newStr.Equals( this.Text ) ) {
 					var newStrMuta = new StringBuilder( newStr );
 
-					if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
-						this.Text = newStrMuta.ToString();
-					}
+					Timers.RunNow( () => {
+						if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
+							this.Text = newStrMuta.ToString();
+						}
+					} );
 				}
 			}
 

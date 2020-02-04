@@ -32,12 +32,12 @@ namespace HamstarHelpers.Helpers.Debug {
 
 			try {
 				lock( LogHelpers.MyLock ) {
-					mymod.Logger.Error( msg );
+					mymod.Logger.Warn( msg );	//was Error(...)
 				}
 			} catch( Exception e ) {
 				try {
 					lock( LogHelpers.MyLock ) {
-						mymod.Logger.Error( "FALLBACK LOGGER (" + e.GetType().Name + ") " + msg );
+						mymod.Logger.Warn( "FALLBACK LOGGER (" + e.GetType().Name + ") " + msg );   //was Error(...)
 					}
 				} catch { }
 			}
@@ -49,12 +49,12 @@ namespace HamstarHelpers.Helpers.Debug {
 
 			try {
 				lock( LogHelpers.MyLock ) {
-					mymod.Logger.Fatal( msg );
+					mymod.Logger.Error( msg );	//was Fatal(...)
 				}
 			} catch( Exception e ) {
 				try {
 					lock( LogHelpers.MyLock ) {
-						mymod.Logger.Fatal( "FALLBACK LOGGER (" + e.GetType().Name + ") " + msg );
+						mymod.Logger.Error( "FALLBACK LOGGER (" + e.GetType().Name + ") " + msg );	//was Fatal(...)
 					}
 				} catch { }
 			}

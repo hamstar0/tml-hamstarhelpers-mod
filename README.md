@@ -21,7 +21,8 @@ For usage library code usage instructions and documentation, [visit the wiki](ht
 
 **Credits:**
 
-* Nvar: Coal item's tile sprite sheet.
+* Nvar: Coal item's tile sprite sheet
+* Darkpuppy: Tweaked mod icon
 
 
 [Please support my mods!](https://www.patreon.com/hamstar0)

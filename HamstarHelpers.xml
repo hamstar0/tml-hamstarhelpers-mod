@@ -2360,7 +2360,7 @@
         </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnTextChange">
             <summary>
-            Fires on text change.
+            Fires on text change. Actions here should never alter current, sibling, or child elements.
             </summary>
         </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.UITextInputElement.OnUnfocus">
@@ -11891,6 +11891,12 @@
             the last time the delegate returned true.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Timers.Timers.RunNow(System.Action)">
+            <summary>
+            Convenience method to run a given action 'now' (AKA a 0 delay timer).
+            </summary>
+            <param name="action"></param>
         </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Boolean})">
             <summary>

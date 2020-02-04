@@ -3,6 +3,7 @@ using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 
 
@@ -38,7 +39,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		}
 
 		private void Draw( GameTime gameTime ) {
-			foreach( MenuItem item in this.Items.Values ) {
+			foreach( MenuItem item in this.Items.Values.ToArray() ) {
 				if( item.MenuContext == Main.menuMode ) {
 					item.Draw();
 				}

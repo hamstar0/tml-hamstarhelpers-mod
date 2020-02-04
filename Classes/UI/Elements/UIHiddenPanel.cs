@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Services.Timers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -47,12 +48,16 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public override void Draw( SpriteBatch spriteBatch ) {
 			if( this.Zone().Contains(Main.mouseX, Main.mouseY) ) {
 				if( !this.IsHovering ) {
-					this.OnHover();
+					Timers.RunNow( () => {
+						this.OnHover();
+					} );
 				}
 				this.IsHovering = true;
 			} else {
 				if( this.IsHovering ) {
-					this.OnExit();
+					Timers.RunNow( () => {
+						this.OnExit();
+					} );
 				}
 				this.IsHovering = false;
 			}

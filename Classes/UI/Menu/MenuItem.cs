@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.XNA;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using System;
-using System.Collections.Generic;
 using Terraria;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.XNA;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Classes.UI.Menu {
@@ -71,7 +71,9 @@ namespace HamstarHelpers.Classes.UI.Menu {
 
 				Main.PlaySound( 11 );
 
-				this.MyAction();
+				Timers.RunNow( () => {
+					this.MyAction();
+				} );
 			} else {
 				bool _;
 				XNAHelpers.DrawBatch( (sb) => this.DrawMenuItem(),
