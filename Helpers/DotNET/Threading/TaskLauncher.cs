@@ -52,10 +52,9 @@ namespace HamstarHelpers.Helpers.DotNET.Threading {
 
 		void ILoadable.OnPostModsLoad() {
 			Timers.SetTimer( "ModHelpersTasksPrune", 1, false, () => {
-				int count = this.Tasks.Count;
-				for( int i = 0; i < count; i++ ) {
-					if( this.Tasks[i].IsCompleted || this.Tasks[i].IsCanceled ) {
-						this.Tasks.RemoveAt( i );
+				foreach( Task task in this.Tasks.ToArray() ) {
+					if( task == null || task.IsCompleted || task.IsCanceled ) {
+						this.Tasks.Remove( task );
 					}
 				}
 
