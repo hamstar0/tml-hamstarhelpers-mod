@@ -10,7 +10,16 @@ using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Threading {
-	class TaskLauncher : ILoadable {
+	/// <summary>
+	/// Assorted static "helper" functions pertaining to threading.
+	/// </summary>
+	public class TaskLauncher : ILoadable {
+		/// <summary>
+		/// Runs a given function (via. Task.Run), supplying it with the cancellation token used when mods are unloaded. Also handles
+		/// waiting for the thread to close on mod unload.
+		/// </summary>
+		/// <param name="action"></param>
+		/// <returns></returns>
 		public static Task Run( Action<CancellationToken> action ) {
 			var tl = ModContent.GetInstance<TaskLauncher>();
 			CancellationToken token = tl.CancelTokenSrc.Token;

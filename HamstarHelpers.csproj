@@ -8,7 +8,7 @@
     <LangVersion>latest</LangVersion>
     <Authors>hamstar</Authors>
     <Product>Mod Helpers</Product>
-    <Version>5.1.1</Version>
+    <Version>5.4.3</Version>
     <PackageId>Mod Helpers</PackageId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,11 +23,5 @@
     <None Remove="Classes\DataStructures\BTree\README.txt" />
     <None Remove="HamstarHelpers.xml" />
     <None Remove="icon.pdn" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Helpers\DotNET\Tasks\TaskLauncher.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Buffs\" />
   </ItemGroup>
 </Project>

@@ -5092,6 +5092,19 @@
             </summary>
             <param name="url">URL to open.</param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Threading.TaskLauncher">
+            <summary>
+            Assorted static "helper" functions pertaining to threading.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Threading.TaskLauncher.Run(System.Action{System.Threading.CancellationToken})">
+            <summary>
+            Runs a given function (via. Task.Run), supplying it with the cancellation token used when mods are unloaded. Also handles
+            waiting for the thread to close on mod unload.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Draw.DrawHelpers">
             <summary>
             Assorted static "helper" functions pertaining to drawing to the screen. 
