@@ -75,7 +75,7 @@ namespace HamstarHelpers {
 			} catch { }
 
 			this.UnloadFull();
-
+			
 			ModHelpersMod.Instance = null;
 		}
 

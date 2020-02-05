@@ -114,6 +114,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 
 			WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
+			Main.tile[ tileX, tileY ]?.active( false );
 
 			if( !effectOnly && Main.netMode != 0 ) {
 				int itemDropMode = dropsItem ? 0 : 4;

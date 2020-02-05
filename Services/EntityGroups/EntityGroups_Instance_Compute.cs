@@ -4,6 +4,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Terraria;
 
@@ -24,6 +25,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		////////////////
 
 		private bool ComputeGroups<T>(
+					CancellationToken token,
 					IList<EntityGroupMatcherDefinition<T>> matchers,
 					IDictionary<string, IReadOnlySet<int>> groups,
 					IDictionary<int, IReadOnlySet<string>> groupsPerEnt )
@@ -31,6 +33,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			IDictionary<int, ISet<string>> rawGroupsPerEnt;
 
 			int failedAt = this.GetComputedGroupsThreaded(
+				token: token,
 				matchers: matchers,
 				groups: groups,
 				groupsPerEnt: out rawGroupsPerEnt
@@ -77,6 +80,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 
 		private int GetComputedGroupsThreaded<T>(
+					CancellationToken token,
 					IList<EntityGroupMatcherDefinition<T>> matchers,
 					IDictionary<string, IReadOnlySet<int>> groups,
 					out IDictionary<int, ISet<string>> groupsPerEnt )
@@ -95,7 +99,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			do {
 				//for( i = 0; i < matchers.Count; i++ ) {
-				Parallel.For( i, count, (j) => {
+				Parallel.For( i, count, new ParallelOptions { CancellationToken = token }, (j) => {
+					if( token.IsCancellationRequested ) { return; }
+
 					lock( EntityGroups.GroupsLock ) {
 						if( failedAt != -1 ) { return; }
 					}
@@ -129,6 +135,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 				lock( EntityGroups.GroupsLock ) {
 					isFailed = failedAt != -1;
+				}
+
+				if( token.IsCancellationRequested ) {
+					groupsPerEnt = null;
+					return 0;
 				}
 			} while( !isFailed && i < matchers.Count );
 

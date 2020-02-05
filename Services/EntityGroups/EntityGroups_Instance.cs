@@ -1,12 +1,11 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Threading;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.Utilities;
 
 
 namespace HamstarHelpers.Services.EntityGroups {
@@ -102,23 +101,23 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 			//
 
-			Task.Run( () => {
+			TaskLauncher.Run( (token) => {
 				Task[] tasks = new Task[3];
 
 				//
 
 				tasks[0] = Task.Run( () => {
-					this.ComputeGroups<Item>( itemMatchers, this.ItemGroups, this.GroupsPerItem );
+					this.ComputeGroups<Item>( token, itemMatchers, this.ItemGroups, this.GroupsPerItem );
 					this._InitCheck++;
-				} );
+				}, token );
 				tasks[1] = Task.Run( () => {
-					this.ComputeGroups<NPC>( npcMatchers, this.NPCGroups, this.GroupsPerNPC );
+					this.ComputeGroups<NPC>( token, npcMatchers, this.NPCGroups, this.GroupsPerNPC );
 					this._InitCheck++;
-				} );
+				}, token );
 				tasks[2] = Task.Run( () => {
-					this.ComputeGroups<Projectile>( projMatchers, this.ProjGroups, this.GroupsPerProj );
+					this.ComputeGroups<Projectile>( token, projMatchers, this.ProjGroups, this.GroupsPerProj );
 					this._InitCheck++;
-				} );
+				}, token );
 
 				try {
 					Task.WaitAll( tasks );
@@ -130,17 +129,17 @@ namespace HamstarHelpers.Services.EntityGroups {
 				//
 
 				tasks[0] = Task.Run( () => {
-					this.ComputeGroups<Item>( this.CustomItemMatchers, this.ItemGroups, this.GroupsPerItem );
+					this.ComputeGroups<Item>( token, this.CustomItemMatchers, this.ItemGroups, this.GroupsPerItem );
 					this._InitCheck++;
-				} );
+				}, token );
 				tasks[1] = Task.Run( () => {
-					this.ComputeGroups<NPC>( this.CustomNPCMatchers, this.NPCGroups, this.GroupsPerNPC );
+					this.ComputeGroups<NPC>( token, this.CustomNPCMatchers, this.NPCGroups, this.GroupsPerNPC );
 					this._InitCheck++;
-				} );
+				}, token );
 				tasks[2] = Task.Run( () => {
-					this.ComputeGroups<Projectile>( this.CustomProjMatchers, this.ProjGroups, this.GroupsPerProj );
+					this.ComputeGroups<Projectile>( token, this.CustomProjMatchers, this.ProjGroups, this.GroupsPerProj );
 					this._InitCheck++;
-				} );
+				}, token );
 
 				try {
 					Task.WaitAll( tasks );

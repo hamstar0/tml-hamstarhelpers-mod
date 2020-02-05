@@ -31,7 +31,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 	/// @private
 	class PostGithubModIssueReports {
-		public static void ReportIssue( Mod mod, string issueTitle, string issueBody,
+		public static void ReportIssue(
+					Mod mod,
+					string issueTitle,
+					string issueBody,
 					Action<Exception, string> onError,
 					Action<bool, string> onCompletion ) {
 			if( !ModFeaturesHelpers.HasGithub( mod ) ) {

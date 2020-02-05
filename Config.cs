@@ -193,9 +193,9 @@ namespace HamstarHelpers {
 		[Label( "Mod Issue Report Error Log Max Lines" )]
 		[Tooltip( "Quantity of the latest log entries to pass along with issue reports.")]
 		[Increment( 10 )]
-		[Range( 0, 500 )]
-		[DefaultValue( 25 )]
-		public int ModIssueReportErrorLogMaxLines { get; set; } = 25;
+		[Range( 0, 200 )]
+		[DefaultValue( 15 )]
+		public int ModIssueReportErrorLogMaxLines { get; set; } = 15;
 
 
 		/// <summary>

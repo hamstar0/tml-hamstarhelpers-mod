@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Threading;
 using HamstarHelpers.Helpers.Tiles;
 using HamstarHelpers.Helpers.User;
 using Microsoft.Xna.Framework;
@@ -21,12 +22,13 @@ namespace HamstarHelpers.Commands {
 		/// <summary>
 		/// </summary>
 		public static void CleanupAsync( Action<int> onCompletion ) {
-			Task.Run( () => {
+			TaskLauncher.Run( ( token ) => {
 				int cleaned = 0;
 
-				var cts = new CancellationTokenSource();
+				var myCts = new CancellationTokenSource();
+				var linkedCts = CancellationTokenSource.CreateLinkedTokenSource( token, myCts.Token );
 				var options = new ParallelOptions {
-					CancellationToken = cts.Token
+					CancellationToken = linkedCts.Token
 				};
 
 				try {
@@ -37,7 +39,7 @@ namespace HamstarHelpers.Commands {
 								return;
 							}
 
-							if( CleanupModTilesCommand.CleanupTile( i, j, cts ) ) {
+							if( CleanupModTilesCommand.CleanupTile( i, j, linkedCts ) ) {
 								lock( CleanupModTilesCommand.MyLock ) {
 									cleaned++;
 
@@ -52,7 +54,8 @@ namespace HamstarHelpers.Commands {
 						}
 					} );
 				} finally {
-					cts.Dispose();
+					linkedCts.Dispose();
+					myCts.Dispose();
 				}
 
 				onCompletion( cleaned );

@@ -25,6 +25,9 @@
     <None Remove="icon.pdn" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Helpers\DotNET\Tasks\TaskLauncher.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Buffs\" />
   </ItemGroup>
 </Project>

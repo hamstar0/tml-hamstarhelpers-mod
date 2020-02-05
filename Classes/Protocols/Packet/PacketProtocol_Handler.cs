@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Threading;
 using System;
 using System.IO;
-using System.Threading.Tasks;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 					protocol.OnClone();
 				} else {
 					if( protocol.IsAsync ) {
-						Task.Run( () => {
+						TaskLauncher.Run( (_) => {
 							protocol.HandleClient_Core( reader, playerWho );
 						} );
 					} else {
@@ -70,7 +70,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 					protocol.OnClone();
 				} else {
 					if( protocol.IsAsync ) {
-						Task.Run( () => {
+						TaskLauncher.Run( (_) => {
 							protocol.HandleServer_Core( reader, playerWho, isSyncedToClients );
 						} );
 					} else {

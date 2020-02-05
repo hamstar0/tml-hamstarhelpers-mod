@@ -2,13 +2,14 @@
 using System;
 using Terraria;
 
+
 namespace HamstarHelpers.Helpers.Debug {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to log outputs.
 	/// </summary>
 	public partial class LogHelpers {
 		internal static bool CanOutputOnceMessage( string msg, out string formattedMsg ) {
-			var logHelpers = ModHelpersMod.Instance.LogHelpers;
+			var logHelpers = ModHelpersMod.Instance?.LogHelpers;
 			if( logHelpers == null ) {
 				formattedMsg = msg;
 				return false;

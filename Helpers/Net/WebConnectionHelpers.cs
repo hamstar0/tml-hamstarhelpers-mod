@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Threading;
 using System;
 using System.Net;
-using System.Threading.Tasks;
 using Terraria.ModLoader;
 
 
@@ -69,10 +69,8 @@ namespace HamstarHelpers.Helpers.Net {
 					string jsonData,
 					Action<Exception> onError,
 					Action<bool, string> onCompletion=null ) {
-			//var cts = new CancellationTokenSource();
-
 			try {
-				Task.Run( () => {
+				TaskLauncher.Run( (token) => {
 					ServicePointManager.Expect100Continue = false;
 					//var values = new NameValueCollection {
 					//	{ "modloaderversion", ModLoader.versionedName },
@@ -84,16 +82,17 @@ namespace HamstarHelpers.Helpers.Net {
 						ServicePointManager.ServerCertificateValidationCallback = ( sender, certificate, chain, policyErrors ) => {
 							return true;
 						};
-						
+
 						client.Headers.Add( HttpRequestHeader.ContentType, "application/json" );
 						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader " + ModLoader.version.ToString() );
 						//client.Headers["UserAgent"] = "tModLoader " + ModLoader.version.ToString();
 						client.UploadStringAsync( new Uri(url), "POST", jsonData );//UploadValuesAsync( new Uri( url ), "POST", values );
 						client.UploadStringCompleted += (sender, e) => {
+							if( token.IsCancellationRequested ) { return; }
 							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
 						};
 					}
-				} );//, cts.Token );
+				} );
 			} catch( WebException e ) {
 				if( e.Status == WebExceptionStatus.Timeout ) {
 					onCompletion?.Invoke( false, "Timeout." );
@@ -129,8 +128,7 @@ namespace HamstarHelpers.Helpers.Net {
 					string url,
 					Action<Exception> onError,
 					Action<bool, string> onCompletion = null ) {
-			Task.Run( () => {
-			//var cts = new CancellationTokenSource();
+			TaskLauncher.Run( ( token ) => {
 				try {
 					ServicePointManager.Expect100Continue = false;
 
@@ -141,6 +139,7 @@ namespace HamstarHelpers.Helpers.Net {
 						client.Headers.Add( HttpRequestHeader.UserAgent, "tModLoader " + ModLoader.version.ToString() );
 						client.DownloadStringAsync( new Uri( url ) );
 						client.DownloadStringCompleted += ( sender, e ) => {
+							if( token.IsCancellationRequested ) { return; }
 							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
 						};
 						//client.UploadStringAsync( new Uri(url), "GET", "" );//UploadValuesAsync( new Uri( url ), "POST", values );

@@ -2,6 +2,7 @@
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Helpers.DotNET.Threading;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,7 +58,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		////
 
 		public void LoadModListAsync() {
-			Task.Run( () => {
+			TaskLauncher.Run( (_) => {
 				this.IsPopulatingList = true;
 
 				lock( UIModControlPanelTab.ModDataListLock ) {
