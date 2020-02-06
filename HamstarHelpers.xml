@@ -5555,6 +5555,15 @@
             <param name="height"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullscreenMapTileOfScreenPosition(System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32}@)">
+            <summary>
+            Outputs the world tile position of a given screen position in the fullscreen map.
+            </summary>
+            <param name="scrPosX"></param>
+            <param name="scrPosY"></param>
+            <param name="tilePos"></param>
+            <returns>`true` if the tile is within world bounds.</returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Info.FormattedGameInfoHelpers">
             <summary>
             Assorted static "helper" functions pertaining to game information formatted for output
