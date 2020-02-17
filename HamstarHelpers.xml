@@ -1315,6 +1315,9 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CustomCheck">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.AnyPattern">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.#ctor(HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder)">
             <summary>
             </summary>
@@ -1488,6 +1491,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.CustomCheck">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.AnyPattern">
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType">

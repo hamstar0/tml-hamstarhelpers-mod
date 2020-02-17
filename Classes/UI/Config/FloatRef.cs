@@ -1,0 +1,27 @@
+﻿using System;
+using Terraria.ModLoader.Config;
+using HamstarHelpers.Classes.UI.ModConfig;
+
+
+namespace HamstarHelpers.Classes.UI.Config {
+	/// <summary>
+	/// Implements a ModConfig wrapper for a float reference able to accept inputs via. text input or slider.
+	/// </summary>
+	public class FloatRef {
+		/// <summary></summary>
+		[CustomModConfigItem( typeof(FloatInputElement) )]
+		public float Value { get; set; }
+
+
+
+		////
+
+		/// @private
+		public FloatRef() { }
+
+		/// @private
+		public FloatRef( float value ) {
+			this.Value = value;
+		}
+	}
+}
