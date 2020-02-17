@@ -49,6 +49,23 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				return false;
 			}
 
+			if( this.AnyPattern != null ) {
+				bool subPatternFound = false;
+				TileCollideType subCollideType = TileCollideType.None;
+
+				foreach( TilePattern subPattern in this.AnyPattern ) {
+					if( subPattern.CheckPoint(tileX, tileY, out subCollideType) ) {
+						subPatternFound = true;
+						break;
+					}
+				}
+
+				if( !subPatternFound ) {
+					collideType = subCollideType;
+					return false;
+				}
+			}
+
 			if( isActive ) {
 				if( !this.CheckActivePoint( tileX, tileY, out collideType ) ) {
 					return false;

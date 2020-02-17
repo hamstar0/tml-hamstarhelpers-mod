@@ -26,6 +26,81 @@
         <member name="M:HamstarHelpers.Buffs.DegreelessnessBuff.Update(Terraria.NPC,System.Int32@)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Classes.Context.Context">
+            <summary>
+            Defines a general-purpose context of the game.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.TilePattern">
+            <summary>
+            Tile 'pattern' that must exist at the location of the context. Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.TileRegions">
+            <summary>
+            Regions of world tiles that the location of the context can exist at. Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.ActiveNPCs">
+            <summary>
+            NPCs that must be active for this context to exist. Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.IsBoss">
+            <summary>
+            Context is active when bosses are (true), or else only when they're not (false). Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.IsDay">
+            <summary>
+            Context can be active at day.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.IsNight">
+            <summary>
+            Context can be active at night.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.MoonPhases">
+            <summary>
+            Moon phases that the current context can apply during. Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.Events">
+            <summary>
+            Sets of vanilla events flags that must be set for the current context to apply. Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.Progress">
+            <summary>
+            Progress point of the game (via. GameInfoHelpers.GetVanillaProgress()) that must exist for the current context to apply.
+            Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.Custom">
+            <summary>
+            Custom condition for the current context to apply. Leave null to skip.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Context.Context.AnyOthers">
+            <summary>
+            Other contexts that can also apply or the current one to also apply. Leave null to skip.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Context.Context.Check">
+            <summary>
+            Evaluates the current context with the game's global state.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Context.Context.Check(System.Int32,System.Int32)">
+            <summary>
+            Evaluates the current context with the game's global state at a specific point in the world.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Classes.PlayerData.CustomPlayerData">
             <summary>
             An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
@@ -7928,6 +8003,19 @@
             <param name="allTilesSnapshot">Counts of tiles by type.</param>
             <param name="totalTiles">Returns a count of non-air tiles in total.</param>
             <param name="unidenfiedTiles">Returns all non-air tiles not identified with a specific biome.</param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileChunkHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to tile chunks (multiplayer only).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileChunkHelpers.IsTileSyncedForCurrentClient(System.Int32,System.Int32)">
+            <summary>
+            Reports whether a given tile is part of a synced chunk.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileFinderHelpers">

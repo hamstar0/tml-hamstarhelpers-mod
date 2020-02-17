@@ -105,6 +105,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 		/// <summary></summary>
 		public Func<int, int, bool> CustomCheck = null;
+
+		/// <summary></summary>
+		public ISet<TilePattern> AnyPattern = null;
 	}
 
 
@@ -188,6 +191,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		public Func<int, int, bool> CustomCheck = null;
 
+		/// <summary></summary>
+		public ISet<TilePattern> AnyPattern = null;
+
 
 
 		////////////////
@@ -231,6 +237,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.IsModded = builder.IsModded;
 
 			this.CustomCheck = builder.CustomCheck;
+
+			this.AnyPattern = builder.AnyPattern;
 		}
 	}
 }
