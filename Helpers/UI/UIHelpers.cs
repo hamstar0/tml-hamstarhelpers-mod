@@ -42,16 +42,16 @@ namespace HamstarHelpers.Helpers.UI {
 		}
 
 		/// <summary>
-		/// Gets the screen dimensions (factoring zoom) within world space.
+		/// Gets the screen dimensions (factoring game zoom) within world space.
 		/// </summary>
 		/// <returns></returns>
 		public static Rectangle GetWorldFrameOfScreen() {
-			int screenWid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
-			int screenHei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
-			int screenX = (int)Main.screenPosition.X + ( ( Main.screenWidth - screenWid ) / 2 );
-			int screenY = (int)Main.screenPosition.Y + ( ( Main.screenHeight - screenHei ) / 2 );
+			float screenWid = (float)Main.screenWidth / Main.GameZoomTarget;
+			float screenHei = (float)Main.screenHeight / Main.GameZoomTarget;
+			int screenX = (int)Main.screenPosition.X + (int)(((float)Main.screenWidth - screenWid) * 0.5f);
+			int screenY = (int)Main.screenPosition.Y + (int)(((float)Main.screenHeight - screenHei) * 0.5f);
 
-			return new Rectangle( screenX, screenY, screenWid, screenHei );
+			return new Rectangle( screenX, screenY, (int)screenWid, (int)screenHei );
 		}
 
 		/// <summary>

@@ -36,11 +36,6 @@
             Tile 'pattern' that must exist at the location of the context. Leave null to skip.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.Context.Context.TileRegions">
-            <summary>
-            Regions of world tiles that the location of the context can exist at. Leave null to skip.
-            </summary>
-        </member>
         <member name="F:HamstarHelpers.Classes.Context.Context.ActiveNPCs">
             <summary>
             NPCs that must be active for this context to exist. Leave null to skip.
@@ -107,9 +102,6 @@
             </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.Context.ContextConfig.TilePattern">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.TileRegions">
             <summary></summary>
         </member>
         <member name="P:HamstarHelpers.Classes.Context.ContextConfig.ActiveNPCs">
@@ -3945,6 +3937,18 @@
             <param name="player">Player to remove buff from.</param>
             <param name="buffId">ID of buff.</param>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Buffs.BuffHUDHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to buff HUD interface.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Buffs.BuffHUDHelpers.GetVanillaBuffIconRectanglesByPosition(System.Boolean)">
+            <summary>
+            Gets all buff icon rectangles by buff index.
+            </summary>
+            <param name="applyGameZoom">Factors game zoom into position calculations.</param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Collisions.CollisionHelpers">
             <summary>
             Assorted static "helper" functions pertaining to general collision detecting and handling.
@@ -5612,6 +5616,13 @@
             <summary>
             Top left screen position of player's accessories.
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDElementHelpers.GetVanillaBuffIconRectanglesByPosition(System.Boolean)">
+            <summary>
+            Gets all buff icon rectangles by buff index.
+            </summary>
+            <param name="applyGameZoom">Factors game zoom into position calculations.</param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.HUD.HUDHealthBarHelpers">
@@ -9475,7 +9486,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetWorldFrameOfScreen">
             <summary>
-            Gets the screen dimensions (factoring zoom) within world space.
+            Gets the screen dimensions (factoring game zoom) within world space.
             </summary>
             <returns></returns>
         </member>
