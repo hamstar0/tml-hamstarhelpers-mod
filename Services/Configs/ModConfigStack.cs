@@ -64,7 +64,8 @@ namespace HamstarHelpers.Services.Configs {
 				out configSingleton
 			);
 			if( !success || configSingleton == null ) {
-				throw new ModHelpersException( "Could not get StackableModConfig of "+configType.Name );
+				LogHelpers.WarnOnce( "Could not get StackableModConfig of "+configType.Name );
+				return null;
 			}
 
 			var baseConfig = (StackableModConfig)ConfigManager.GeneratePopulatedClone( configSingleton );

@@ -48,11 +48,16 @@ namespace HamstarHelpers.Commands {
 			}
 
 			if( configType == null ) {
-				caller.Reply( "Could not config class "+className, Color.Yellow );
+				caller.Reply( "Could not get config class "+className, Color.Yellow );
 				return;
 			}
 
 			ModConfig config = ModConfigStack.GetMergedConfigsForType( configType );
+			if( config == null ) {
+				caller.Reply( "Could not get config instance of class "+className, Color.Yellow );
+				return;
+			}
+
 			string configJson = JsonConvert.SerializeObject( config );
 
 			Main.NewText( configJson );

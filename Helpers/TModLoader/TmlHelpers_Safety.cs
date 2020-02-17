@@ -21,7 +21,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 		/// <summary>
 		/// Gets the singleton instance of a given class type. If no such instance exists, one is created and registered.
-		/// Note: Avoid calling ContentInstance.Register(...) for this class after.
+		/// Warning: Avoid calling ContentInstance.Register(...) for this class. Use caution with tModLoader's singletons.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
