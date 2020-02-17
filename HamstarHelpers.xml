@@ -101,6 +101,47 @@
             <param name="tileY"></param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Classes.Context.ContextConfig">
+            <summary>
+            Defines a ModConfig-friendly class for defining a Context.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.TilePattern">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.TileRegions">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.ActiveNPCs">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.IsBoss">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.IsDay">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.IsNight">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.MoonPhases">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.Events">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.Progress">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Context.ContextConfig.AnyOthers">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Context.ContextConfig.ToContext">
+            <summary>
+            Converts this class to a valid `Context`.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Classes.PlayerData.CustomPlayerData">
             <summary>
             An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
@@ -1414,6 +1455,80 @@
             <param name="blendLight"></param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig">
+            <summary>
+            Defines a ModConfig-friendly class for defining a TilePattern.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsActive">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.AreaFromCenter">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsAnyOfType">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsAnyOfWallType">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasWire1">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasWire2">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasWire3">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasWire4">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasSolidProperties">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsPlatform">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsActuated">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsVanillaBombable">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasWall">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasWater">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasHoney">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasLava">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.Shape">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.MaximumBrightness">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.MinimumBrightness">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsModded">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.AnyPattern">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.ToTilePattern">
+            <summary>
+            Converts this class to a valid `TilePattern`.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder">
             <summary>
             Used to in TilePattern's constructor to simplify specifying non-optional values. Keeps TilePattern immutable.
@@ -1611,6 +1726,20 @@
             Gets the config value this widget represents.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Config.FloatRef">
+            <summary>
+            Implements a ModConfig wrapper for a float reference able to accept inputs via. text input or slider.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Config.FloatRef.Value">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.FloatRef.#ctor">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.FloatRef.#ctor(System.Single)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.Dialogs.UIPromptDialog">
             <summary>

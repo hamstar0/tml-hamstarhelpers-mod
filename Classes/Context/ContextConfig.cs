@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Helpers.NPCs;
 using HamstarHelpers.Classes.Tiles.TilePattern;
@@ -16,9 +14,6 @@ namespace HamstarHelpers.Classes.Context {
 	public class ContextConfig {
 		/// <summary></summary>
 		public TilePatternConfig TilePattern { get; set; } = null;
-
-		/// <summary></summary>
-		public ISet<Rectangle> TileRegions { get; set; } = new HashSet<Rectangle>();
 
 		/// <summary></summary>
 		public ISet<NPCDefinition> ActiveNPCs { get; set; } = new HashSet<NPCDefinition>();
@@ -59,7 +54,6 @@ namespace HamstarHelpers.Classes.Context {
 		public Context ToContext() {
 			return new Context {
 				TilePattern = this.TilePattern.ToTilePattern(),
-				TileRegions = this.TileRegions.Count > 0 ? this.TileRegions : null,
 				ActiveNPCs = this.ActiveNPCs.Count > 0 ? this.ActiveNPCs : null,
 				IsBoss = this.IsBoss != 0 ? (bool?)(this.IsBoss == 1) : null,
 				IsDay = this.IsDay,

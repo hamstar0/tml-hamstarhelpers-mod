@@ -20,11 +20,6 @@ namespace HamstarHelpers.Classes.Context {
 		public TilePattern TilePattern = null;
 
 		/// <summary>
-		/// Regions of world tiles that the location of the context can exist at. Leave null to skip.
-		/// </summary>
-		public ISet<Rectangle> TileRegions = null;
-
-		/// <summary>
 		/// NPCs that must be active for this context to exist. Leave null to skip.
 		/// </summary>
 		public ISet<NPCDefinition> ActiveNPCs = null;
@@ -105,13 +100,13 @@ namespace HamstarHelpers.Classes.Context {
 				}
 			}
 
-			if( this.TileRegions != null ) {
+			/*if( this.TileRegions != null ) {
 				foreach( Rectangle region in this.TileRegions ) {
 					if( region.Contains(tileX, tileY) ) {
 						return false;
 					}
 				}
-			}
+			}*/
 
 			if( this.ActiveNPCs != null ) {
 				foreach( NPCDefinition npcDef in this.ActiveNPCs ) {
