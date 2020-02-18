@@ -6488,6 +6488,27 @@
             <param name="money"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Misc.MiscHelpers.RenderTickDuration(System.Int32)">
+            <summary>
+            Renders a given game tick value as a string.
+            </summary>
+            <param name="ticks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Misc.MiscHelpers.RenderCondensedTickDuration(System.Int32)">
+            <summary>
+            Renders a given game tick value as a condensed string.
+            </summary>
+            <param name="ticks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Misc.MiscHelpers.RenderColorHex(Microsoft.Xna.Framework.Color)">
+            <summary>
+            Renders a color as a hex code string.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to file IO for mod custom data.
@@ -10195,6 +10216,13 @@
             </summary>
             <param name="c1"></param>
             <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.XNA.XNAColorHelpers.RenderHex(Microsoft.Xna.Framework.Color)">
+            <summary>
+            Renders a color as a hex code string.
+            </summary>
+            <param name="color"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.XNA.XNAColorHelpers.DifferenceRGBA(Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color)">

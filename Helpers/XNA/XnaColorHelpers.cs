@@ -1,4 +1,5 @@
 ﻿using System;
+using HamstarHelpers.Helpers.Misc;
 using Microsoft.Xna.Framework;
 
 
@@ -224,6 +225,18 @@ namespace HamstarHelpers.Helpers.XNA {
 			Color lerped = Color.Lerp( c1, c2, (float)c2.A / 255f );
 			lerped.A = 255;
 			return lerped;
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Renders a color as a hex code string.
+		/// </summary>
+		/// <param name="color"></param>
+		/// <returns></returns>
+		public static string RenderHex( Color color ) {
+			return MiscHelpers.RenderColorHex( color );
 		}
 	}
 }
