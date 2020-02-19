@@ -23,6 +23,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		/// <summary></summary>
 		public const string AnyPotion = "Any Potion";
 		/// <summary></summary>
+		public const string AnyHealPotion = "Any Heal Potion";
+		/// <summary></summary>
 		public const string AnyAmmo = "Any Ammo";
 		/// <summary>Ammo that isn't weird (no gels, coins, bones, etc.)</summary>
 		public const string AnyAmmoAmmo = "Any Ammo Ammo";
@@ -111,10 +113,17 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: ItemGroupIDs.AnyPotion,
+				grpName: ItemGroupIDs.AnyHealPotion,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.potion;
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				grpName: ItemGroupIDs.AnyPotion,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
+					return item.buffType > 0;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
