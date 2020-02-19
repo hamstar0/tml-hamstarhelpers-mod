@@ -25,8 +25,8 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				if( !this.IsExtended ) {
 					this.IsExtended = true;
 
-					this.ExtendTextLabel.Remove();
-					this.Elements.Remove( this.ExtendTextLabel );
+					this.ExtendLabel.Remove();
+					this.Elements.Remove( this.ExtendLabel );
 					this.ExpandUI();
 				}
 			}

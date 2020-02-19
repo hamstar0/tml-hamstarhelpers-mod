@@ -25,21 +25,21 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 		private Texture2D PatreonTex;
 
-		private UIText HeadTextLabel;
+		private UIText HeadLabel;
 		private UIWebUrl HeadUrl;
-		private UIText ModderTextLabel;
+		private UIText ModderLabel;
 		private UIWebUrl ModderUrl;
-		//private UIText RecomInfoTextLabel;
-		//private UIWebUrl RecomInfoUrl;
 		//private UIText AuthorText1Label;
 		//private UIWebUrl AuthorUrl;
 		//private UIText AuthorText2Label;
 		//private UIText SupportText1Label;
 		//private UIWebUrl SupportUrl;
 		//private UIText SupportText2Label;
+		private UIText DiscordLabel;
+		private UIWebUrl DiscordUrl;
 		private UIText PatreonLabel;
 		private UIImageUrl PatreonButton;
-		private UIText ExtendTextLabel;
+		private UIText ExtendLabel;
 		private UIText EnableModTagsLabel = null;
 
 		private IList<UIElement> Elements = new List<UIElement>();
@@ -71,21 +71,21 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			////
 
-			this.HeadTextLabel = new UIText( "Powered by:", 1.1f * scale );
-			this.HeadTextLabel.Left.Set( -width, 1f );
-			this.HeadTextLabel.Top.Set( (4f + y) * scale, 0f );
-			this.HeadTextLabel.TextColor = SupportInfoDisplay.HeaderLabelColor;
-			this.HeadTextLabel.Recalculate();
+			this.HeadLabel = new UIText( "Powered by:", 1.1f * scale );
+			this.HeadLabel.Left.Set( -width, 1f );
+			this.HeadLabel.Top.Set( (4f + y) * scale, 0f );
+			this.HeadLabel.TextColor = SupportInfoDisplay.HeaderLabelColor;
+			this.HeadLabel.Recalculate();
 
 			this.HeadUrl = new UIWebUrl( UITheme.Vanilla, "Mod Helpers v" + mymod.Version.ToString(), "https://forums.terraria.org/index.php?threads/.63670/", true, 1.1f * scale );
 			this.HeadUrl.Left.Set( -( width - ( 114f * scale ) ), 1f );
 			this.HeadUrl.Top.Set( (4f + y) * scale, 0f );
 			this.HeadUrl.Recalculate();
 
-			this.ExtendTextLabel = new UIThemedText( UITheme.Vanilla, false, "..." );
-			this.ExtendTextLabel.Left.Set( -(width * 0.5f) - 16f, 1f );
-			this.ExtendTextLabel.Top.Set( (-14f + y + rowHeight) * scale, 0f );
-			this.ExtendTextLabel.Recalculate();
+			this.ExtendLabel = new UIThemedText( UITheme.Vanilla, false, "..." );
+			this.ExtendLabel.Left.Set( -(width * 0.5f) - 16f, 1f );
+			this.ExtendLabel.Top.Set( (-14f + y + rowHeight) * scale, 0f );
+			this.ExtendLabel.Recalculate();
 
 			////
 
@@ -104,9 +104,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			y += 6f * scale;
 
-			this.ModderTextLabel = new UIText( "Do you make mods?", 1f * scale );
-			this.ModderTextLabel.Left.Set( -width, 1f );
-			this.ModderTextLabel.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
+			this.ModderLabel = new UIText( "Do you make mods?", 1f * scale );
+			this.ModderLabel.Left.Set( -width, 1f );
+			this.ModderLabel.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 
 			this.ModderUrl = new UIWebUrl( UITheme.Vanilla, "Read this.", "https://forums.terraria.org/index.php?threads/.63670/#modders", true, 1f * scale );
 			this.ModderUrl.Left.Set( -( width - ( 166f * scale ) ), 1f );
@@ -114,16 +114,15 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			////
 
-			/*
 			row += 1;
 
-			this.RecomInfoTextUI = new UIText( "Feedback? Confused? Bored?", 1f * scale );
-			this.RecomInfoTextUI.Left.Set( -xOff, 1f );
-			this.RecomInfoTextUI.Top.Set( (y + (row * rowHeight)) * scale, 0f );
+			this.DiscordLabel = new UIText( "Need help with something?", 1f * scale );
+			this.DiscordLabel.Left.Set( -width, 1f );
+			this.DiscordLabel.Top.Set( ( y + ( row * rowHeight ) ) * scale, 0f );
 
-			this.RecomInfoUrlUI = new UIWebUrl( UITheme.Vanilla, "Discord", "https://discord.gg/a2AwYtj", true, 1f * scale );
-			this.RecomInfoUrlUI.Left.Set( -( xOff - (242f * scale) ), 1f );
-			this.RecomInfoUrlUI.Top.Set( (y + (row * rowHeight) * scale), 0f );*/
+			this.DiscordUrl = new UIWebUrl( UITheme.Vanilla, "Discord", "https://discord.gg/TKZZ6KY", true, 1f * scale );
+			this.DiscordUrl.Left.Set( -(width - (218f * scale) ), 1f );
+			this.DiscordUrl.Top.Set( ( y + ( row * rowHeight ) - 2 ) * scale, 0f );
 
 			////
 
@@ -174,9 +173,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 
 			////
 
-			this.Elements.Add( this.HeadTextLabel );
+			this.Elements.Add( this.HeadLabel );
 			this.Elements.Add( this.HeadUrl );
-			this.Elements.Add( this.ExtendTextLabel );
+			this.Elements.Add( this.ExtendLabel );
 			if( this.EnableModTagsLabel != null ) {
 				this.Elements.Add( this.EnableModTagsLabel );
 			}
@@ -199,8 +198,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 		////////////////
 
 		private void ExpandUI() {
-			this.Elements.Add( this.ModderTextLabel );
+			this.Elements.Add( this.ModderLabel );
 			this.Elements.Add( this.ModderUrl );
+			this.Elements.Add( this.DiscordLabel );
+			this.Elements.Add( this.DiscordUrl );
 			//this.Elements.Insert( 0, this.AuthorText1UI );
 			//this.Elements.Add( this.AuthorUrlUI );
 			//this.Elements.Insert( 0, this.AuthorText2UI );
@@ -220,8 +221,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			this.RecomInfoUrlUI.Recalculate();
 			this.Elements.Add( this.RecomInfoUrlUI );*/
 
-			this.ModderTextLabel.Recalculate();
+			this.ModderLabel.Recalculate();
 			this.ModderUrl.Recalculate();
+			this.DiscordLabel.Recalculate();
+			this.DiscordUrl.Recalculate();
 			//this.AuthorText1UI.Recalculate();
 			//this.AuthorUrlUI.Recalculate();
 			//this.AuthorText2UI.Recalculate();

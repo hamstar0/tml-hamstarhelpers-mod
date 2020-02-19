@@ -321,8 +321,9 @@ namespace HamstarHelpers {
 		/// </summary>
 		[Label("Disable self IP checking")]
 		[Tooltip( "Skips calls to checkip.dyndns.org for getting own IP" )]
+		[DefaultValue( true )]
 		[ReloadRequired]
-		public bool DisableOwnIPCheck { get; set; } = false;
+		public bool DisableOwnIPCheck { get; set; } = true;
 
 
 		/// <summary>

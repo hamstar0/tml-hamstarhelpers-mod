@@ -78,13 +78,13 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			float textColorMul = 1f;
 
 			if( this.IsHoveringBox ) {
-				this.ExtendTextLabel.TextColor = Color.White;
+				this.ExtendLabel.TextColor = Color.White;
 				//colorMul = 0.3f;
 			} else {
 				if( !this.IsExtended ) {
 					textColorMul = 0.8f;
 				}
-				this.ExtendTextLabel.TextColor = AnimatedColors.Air.CurrentColor;
+				this.ExtendLabel.TextColor = AnimatedColors.Air.CurrentColor;
 			}
 
 			////var rect = new Rectangle( Main.screenWidth - 252, 4, 248, (this.IsExtended ? 104 : 40) );
@@ -113,9 +113,9 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			foreach( var elem in this.Elements.ToArray() ) {
 				if( elem is UIWebUrl ) { continue; }
 				if( elem is UIText ) {
-					if( elem == this.HeadTextLabel ) {
+					if( elem == this.HeadLabel ) {
 						((UIText)elem).TextColor = SupportInfoDisplay.HeaderLabelColor * textColorMul;
-					} else if( elem != this.ExtendTextLabel && elem != this.EnableModTagsLabel ) {
+					} else if( elem != this.ExtendLabel && elem != this.EnableModTagsLabel ) {
 						((UIText)elem).TextColor = Color.White * textColorMul;
 					}
 				}
