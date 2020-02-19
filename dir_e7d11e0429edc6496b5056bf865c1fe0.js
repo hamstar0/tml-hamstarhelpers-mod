@@ -5,6 +5,7 @@ var dir_e7d11e0429edc6496b5056bf865c1fe0 =
     [ "PlayerHelpers.cs", "_player_helpers_8cs_source.html", null ],
     [ "PlayerIdentityHelpers.cs", "_player_identity_helpers_8cs_source.html", null ],
     [ "PlayerIdentityHelpers_Instance.cs", "_player_identity_helpers___instance_8cs_source.html", null ],
+    [ "PlayerInteractionHelpers.cs", "_player_interaction_helpers_8cs_source.html", null ],
     [ "PlayerItemFinderHelpers.cs", "_player_item_finder_helpers_8cs_source.html", null ],
     [ "PlayerItemHelpers.cs", "_player_item_helpers_8cs_source.html", null ],
     [ "PlayerModHelpers.cs", "_player_mod_helpers_8cs_source.html", null ],

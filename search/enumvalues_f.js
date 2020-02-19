@@ -1,7 +1,9 @@
 var searchData=
 [
+  ['pickpower',['PickPower',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a7b367b0007ba50d4a26934c4de5b911b',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['pink',['Pink',['../namespace_hamstar_helpers_1_1_helpers_1_1_players.html#ac3593e1d99b88070c03f558882ac1ce2a8dc5344bc0746e1cc5abf896ca03bbdf',1,'HamstarHelpers::Helpers::Players']]],
   ['pirates',['Pirates',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da281a66b1f4a1ded6214bdbd1a35f8e1f',1,'HamstarHelpers::Helpers::NPCs']]],
+  ['placeable',['Placeable',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868aa50f608ef5645892d28af24caed571f9',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['placeactuator',['PlaceActuator',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a2992d2f3e56e90f98e15bf7da3fbe8cf',1,'HamstarHelpers::Helpers::Tiles']]],
   ['placetile',['PlaceTile',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a3e8d8d0f0e9aba98ad7ef76c7abd90a2',1,'HamstarHelpers::Helpers::Tiles']]],
   ['placewall',['PlaceWall',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150adfc0c08f6edbf511bf70fd870bb6f522',1,'HamstarHelpers::Helpers::Tiles']]],
@@ -12,5 +14,19 @@ var searchData=
   ['platform',['Platform',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a419f3742e6de8e0ec4b22cce005e7630',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['pokelogicgate',['PokeLogicGate',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150ad7bb0c21658f80f4e0e0febd4d37452b',1,'HamstarHelpers::Helpers::Tiles']]],
   ['poundtile',['PoundTile',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150aa42dcb46da07d9bbd2643675862934b3',1,'HamstarHelpers::Helpers::Tiles']]],
+  ['prefixacccritchance',['PrefixAccCritChance',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a1cf991ce97cb10e7a7fa1f19df5a33a6',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixaccdamage',['PrefixAccDamage',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a233d32da7219ad0fbe9cfe2be7868418',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixaccdefense',['PrefixAccDefense',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a20ada6606867d20bcee289bb3de3ddf3',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixaccmaxmana',['PrefixAccMaxMana',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a42040ee30d4146f2a858f04fb40b9532',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixaccmeleespeed',['PrefixAccMeleeSpeed',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a5a85be2f70081f26618e00a1469f88b9',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixaccmovespeed',['PrefixAccMoveSpeed',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868ab87a508da7b05d34eac3962e0d6f689b',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixcritchance',['PrefixCritChance',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868aaeaf45957069103fb1c9020e8fb727ae',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixdamage',['PrefixDamage',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868af92b7c18a57d0fb68cc8a1aa74e2b6b3',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixknockback',['PrefixKnockback',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868afc844a2cd6a3ea416d9970828b73e92d',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixshootspeed',['PrefixShootSpeed',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868aabd618c0a60d2de4badabc87e13f5362',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixsize',['PrefixSize',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a6c7f97dfb3238dde4766c7d49f27e66e',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixspeed',['PrefixSpeed',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a6c1493212fc625aa666bd0cc258e0bfb',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['prefixusemana',['PrefixUseMana',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a67888e3a6aba34acc25cffa2cc078bfc',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['price',['Price',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a3601146c4e948c32b6424d2c0a7f0118',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['pumpkinmoon',['PumpkinMoon',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da5aa3ae9152acb613289caec44071fc49',1,'HamstarHelpers::Helpers::NPCs']]]
 ];

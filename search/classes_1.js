@@ -9,6 +9,7 @@ var searchData=
   ['btreenode',['BTreeNode',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html',1,'HamstarHelpers::Classes::DataStructures::BTree']]],
   ['buffattributeshelpers',['BuffAttributesHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_attributes_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buffhelpers',['BuffHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
+  ['buffhudhelpers',['BuffHUDHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_h_u_d_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buildpropertiesviewer',['BuildPropertiesViewer',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html',1,'HamstarHelpers::Services::TML']]],
   ['buttonthemeattribute',['ButtonThemeAttribute',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_button_theme_attribute.html',1,'HamstarHelpers::Classes::UI::Theme']]]
 ];

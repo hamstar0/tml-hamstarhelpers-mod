@@ -7,5 +7,6 @@ var searchData=
   ['killwire',['KillWire',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a6d9561bf394989161179bf9838d757f1',1,'HamstarHelpers::Helpers::Tiles']]],
   ['killwire2',['KillWire2',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150aa7721d397f066c458fb4124617145aff',1,'HamstarHelpers::Helpers::Tiles']]],
   ['killwire3',['KillWire3',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a02e031a491baccdd6b1571cf5755ebe7',1,'HamstarHelpers::Helpers::Tiles']]],
-  ['killwire4',['KillWire4',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a3bd2905e1bb858b71123a6d308c54f43',1,'HamstarHelpers::Helpers::Tiles']]]
+  ['killwire4',['KillWire4',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a3bd2905e1bb858b71123a6d308c54f43',1,'HamstarHelpers::Helpers::Tiles']]],
+  ['knockback',['Knockback',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a5cfc4f35bbc4deb96cfb6d2843084b96',1,'HamstarHelpers::Helpers::Items::Attributes']]]
 ];

@@ -16,6 +16,7 @@ var searchData=
   ['playerheaddrawhelpers',['PlayerHeadDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_head_draw_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerhelpers',['PlayerHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playeridentityhelpers',['PlayerIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
+  ['playerinteractionhelpers',['PlayerInteractionHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_interaction_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playeritemfinderhelpers',['PlayerItemFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playeritemhelpers',['PlayerItemHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerlabeltext',['PlayerLabelText',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_1_1_player_label_text.html',1,'HamstarHelpers::Services::Messages::Player']]],

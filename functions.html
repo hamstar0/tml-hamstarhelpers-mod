@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.4.1</span>
+   &#160;<span id="projectnumber">v5.5.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -94,9 +94,13 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>AbsoluteAir
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a251cc5cf0b1db3df88b37f5d00914d35">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
 </li>
+<li>ActiveNPCs
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#abac405e88e1eef33e68bdf10f8cbe0e6">HamstarHelpers.Classes.Context.Context</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#afe2f0460270152da71189c58c3eed47b">HamstarHelpers.Classes.Context.ContextConfig</a>
+</li>
 <li>Add()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_world_dictionary.html#ab09e481eb45250a1fa953818be168ee2">HamstarHelpers.Classes.DataStructures.WorldDictionary&lt; T &gt;</a>
-, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#acfb3e40563cc97074e12ed1047ffcd0d">HamstarHelpers.Helpers.XNA.XNAColorHelpers</a>
+, <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a97fbf547274a57d24b68c6288c86c9e3">HamstarHelpers.Helpers.XNA.XNAColorHelpers</a>
 , <a class="el" href="class_hamstar_helpers_1_1_services_1_1_data_store_1_1_data_store.html#a3d95817d5cc79a5b4397a114e97193cf">HamstarHelpers.Services.DataStore.DataStore</a>
 </li>
 <li>AddArmorEquipAction()
@@ -131,6 +135,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>AddDayHook()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_world_hooks_1_1_world_time_hooks.html#a9b782823daa42a5cc1082c69695e7c45">HamstarHelpers.Services.Hooks.WorldHooks.WorldTimeHooks</a>
+</li>
+<li>AddGlow()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#aa7b85e66fec296380336d9cdaa29de30">HamstarHelpers.Helpers.XNA.XNAColorHelpers</a>
 </li>
 <li>AddHook&lt; T &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hooks.html#aa9704f5d8828745606eb6c94f9e192c3">HamstarHelpers.Services.Hooks.LoadHooks.CustomLoadHooks</a>
@@ -285,6 +292,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>AnyBoneEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a7b3582a3291cf59af825ad91980f326d">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
+<li>AnyBoss
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_n_p_c_group_i_ds.html#a7ffd81063f71b4611ee6f887457a91af">HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs</a>
+</li>
 <li>AnyCactusEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#acad705a0ced123036f679b3fd64a4b15">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
@@ -324,6 +334,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>AnyForge
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#ad6c1e6217a10914bf8ae5c12389f610b">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
+<li>AnyFriendlyNPC
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_n_p_c_group_i_ds.html#a3f2e62a70c94a0dd113bf071548ed471">HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs</a>
+</li>
 <li>AnyFrostCoreEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a0b464d5a5a28d8d1c87323911a3cf282">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
@@ -348,8 +361,14 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>AnyHellstoneEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a1b0a40ed01ecee4666b252d182c1dedd">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
+<li>AnyHostileNPC
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_n_p_c_group_i_ds.html#ab31b601e748c06f3cbb6f6bdc408d72d">HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs</a>
+</li>
 <li>AnyIronOrLeadEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a10026e85aa9d0106aa9dd9920995eee8">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
+</li>
+<li>AnyItem
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a54a3d3d58ecc10869b203fcb3f579bfe">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
 <li>AnyJungleEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#ad99b60c3552adaa1af69cb4a2f80d28a">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
@@ -387,6 +406,15 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>AnyOreEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a9b4934e2e33d9a351a83879eae11077f">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
+<li>AnyOthers
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#a475c717acf63749e905c84c13869b329">HamstarHelpers.Classes.Context.Context</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a71cdb88ab3ecdea1273445676c529960">HamstarHelpers.Classes.Context.ContextConfig</a>
+</li>
+<li>AnyPattern
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a587173c00a5303b87b74f859f4b0e929">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#aafe52755fe233af55ade8e4b14536c72">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a8ed0f6a9fa67d759a0bc82ee9732ce16">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
+</li>
 <li>AnyPlaceable
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#abd8a3c6b11ea04bd46cb3a875d40b140">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
@@ -399,6 +427,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>AnySilverOrTungstenEquipment
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a5b41824566272369b97ba3d433c342d3">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
+<li>AnySlime
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_n_p_c_group_i_ds.html#ad838c9680701a4905c1fe5a0a7a07f80">HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs</a>
+</li>
 <li>AnyStatue
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a30d29fd37f08f858f093e24ef7d4783b">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
@@ -410,6 +441,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>AnyTool
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a87619594bf50dbe8466ac927d6a740cd">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
+</li>
+<li>AnyTownNPC
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_n_p_c_group_i_ds.html#a572c2084eb92b158f8a7e74ecd781a8e">HamstarHelpers.Services.EntityGroups.Definitions.NPCGroupIDs</a>
 </li>
 <li>AnyTrapChest
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#ae8a44ffb3226788e0a77be7db6513539">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
@@ -487,7 +521,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a56db576432f3a4df3b0abee9bcd9ecaf">HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs</a>
 </li>
 <li>Append2D&lt; TKey, TValue &gt;()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#acdf986850a2756adea6398c56854f94b">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html#a887ba0b0d3e7cbed16fea5b3aef70f06">HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions</a>
 </li>
 <li>AppendThemed()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#a44a6f7d8f3b0e1d89e8eb816aa07a106">HamstarHelpers.Classes.UI.Elements.UIThemedPanel</a>
@@ -522,10 +556,10 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a592ef4a60d8e7742bcf5367150b70b54">HamstarHelpers.Classes.UI.Theme.UITheme</a>
 </li>
 <li>ApplyInput()
-: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#ad659646116c58f677789f04a7d46b024">HamstarHelpers.Classes.UI.Theme.UITheme</a>
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a1da2865e988519bdc86e5cbed71ea03f">HamstarHelpers.Classes.UI.Theme.UITheme</a>
 </li>
 <li>ApplyInputDisable()
-: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a3e804eec3e96668c670eb3cfe240d8da">HamstarHelpers.Classes.UI.Theme.UITheme</a>
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a30a9d8e3ed00a2ec10da7beb9805238e">HamstarHelpers.Classes.UI.Theme.UITheme</a>
 </li>
 <li>ApplyListContainer()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a88b2e540ace40ce6332f8fdb9df5f453">HamstarHelpers.Classes.UI.Theme.UITheme</a>
@@ -554,9 +588,13 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>ApplyText()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#af1804310ad9a6748c7bbf701ed2ffaad">HamstarHelpers.Classes.UI.Theme.UITheme</a>
 </li>
+<li>ApplyTooltipAt()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_information_attribute_helpers.html#a08e66a1978e087a145c802ff0a5b2d8b">HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers</a>
+</li>
 <li>AreaFromCenter
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#aeed0a3ccf111a17cf6eb43c4761c754c">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#aab7fa9c17569c1754bb4610b20255284">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a9d645acfdf5227aad1acb63a0b2679a7">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
 </li>
 <li>AreConditionsMet&lt; T &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hooks.html#a2da6e4875297bc415e3d4322c76e393b">HamstarHelpers.Services.Hooks.LoadHooks.CustomLoadHooks</a>

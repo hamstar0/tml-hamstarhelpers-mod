@@ -29,6 +29,7 @@ var searchData=
   ['modlistitemedgelitcolor',['ModListItemEdgeLitColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a6bd3a52ce09d6b78d44422764f182447',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
   ['modlistitemedgeselectedcolor',['ModListItemEdgeSelectedColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#ae3178dac71400effcb93cebc16d5fa89',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
   ['moonlord',['MoonLord',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a504ca2b610ccb10ddc8a8ca78ccb3191',1,'HamstarHelpers::Services::GameData::BossData']]],
+  ['moonphases',['MoonPhases',['../class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#a1d199f39bbd48f0c4b1092c7f9c3c626',1,'HamstarHelpers::Classes::Context::Context']]],
   ['mostaccess',['MostAccess',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a5db1f331b550bb60c8233ab3b595b4e7',1,'HamstarHelpers::Helpers::DotNET::Reflection::ReflectionHelpers']]],
   ['myelement',['MyElement',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#a38597196d46f77bcb51977ed3d457618',1,'HamstarHelpers::Classes::UI::Menus::WidgetMenuContext']]]
 ];

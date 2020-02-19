@@ -12,6 +12,7 @@ var searchData=
   ['itemgroupmatcher',['ItemGroupMatcher',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html',1,'HamstarHelpers::Services::EntityGroups']]],
   ['itemhelpers',['ItemHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
   ['itemidentityhelpers',['ItemIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_identity_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
+  ['iteminformationattributehelpers',['ItemInformationAttributeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_information_attribute_helpers.html',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['itemrarityattributehelpers',['ItemRarityAttributeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['ithemeable',['IThemeable',['../interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_themeable.html',1,'HamstarHelpers::Classes::UI::Theme']]]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['favorite',['Favorite',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a01165dcf77c191e6c69b31d98b0ec6ff',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['favoritedesc',['FavoriteDesc',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868af66eed8536ef30d1e22718279e9c8e9e',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['filehelpers',['FileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html',1,'HamstarHelpers::Helpers::DotNET']]],
   ['fill',['Fill',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_fill_helpers.html#a7c3d0bc55bec149d462dfd9d8bc8b2cc',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawFillHelpers']]],
   ['filterbytypes',['FilterByTypes',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#af14440bff6eed03974a915a29f4124bf',1,'HamstarHelpers::Helpers::Items::ItemFinderHelpers']]],
@@ -18,10 +20,12 @@ var searchData=
   ['findpossiblepurchasetypes',['FindPossiblePurchaseTypes',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#af4cb5e5bb07bdd94bab0210029674574',1,'HamstarHelpers::Helpers::Items::ItemFinderHelpers']]],
   ['findtopleftofsquare',['FindTopLeftOfSquare',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a77cd8770d0e196e2935832b8a14f5587',1,'HamstarHelpers::Helpers::Tiles::TileFinderHelpers']]],
   ['fire',['Fire',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#adfa14ba3008f63328a5402083b326676',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
+  ['fishingpower',['FishingPower',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a41952e79cde5acc38953fe65f3d74918',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['flagstocollection_3c_20t_20_3e',['FlagsToCollection&lt; T &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#a58559dc69e084e30c4a74122c199b627',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
   ['flattencolor',['FlattenColor',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#ac8b2efe4b6a7134e85317f4a1fb497d1',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
   ['flavor',['Flavor',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#a1dff055ae42b8046f660160a4c2aebb3',1,'HamstarHelpers::Services::ModTagDefinitions::ModTagDefinition']]],
   ['floatinputelement',['FloatInputElement',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_mod_config_1_1_float_input_element.html',1,'HamstarHelpers::Classes::UI::ModConfig']]],
+  ['floatref',['FloatRef',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_config_1_1_float_ref.html',1,'HamstarHelpers::Classes::UI::Config']]],
   ['focus',['Focus',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#aeb91b866f404e4bfe6a436509011335b',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
   ['focushandler',['FocusHandler',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a8b528801ec2eb31ee077234bd1e94584',1,'HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.FocusHandler()'],['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html#a0ec46fb7e791075d84aed2a27c5b3374',1,'HamstarHelpers.Classes.UI.Elements.UITextInputElement.FocusHandler()'],['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#a95f6314ce836c9f8db43ca0710b08dee',1,'HamstarHelpers.Classes.UI.Elements.UITextInputPanel.FocusHandler()']]],
   ['following',['Following',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_1_1_player_label_text.html#a100b7c0358dc1a2a4a4d22d7f4ba1159',1,'HamstarHelpers::Services::Messages::Player::PlayerLabelText']]],

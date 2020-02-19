@@ -66,5 +66,6 @@ var searchData=
   ['urllitcolor',['UrlLitColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#ad2455b2ea6a607501f54a5e7f1fa459a',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
   ['urlshortenerlist',['UrlShortenerList',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_web_helpers.html#ad276dd947f728136778a54cd65542351',1,'HamstarHelpers::Helpers::Net::WebHelpers']]],
   ['urlvisitcolor',['UrlVisitColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a409c737a7ec00920ad0746ce4c82ed53',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
+  ['usemana',['UseMana',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868ad159fc7b8738c0313decf57cd5dde541',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['userhelpers',['UserHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_user_1_1_user_helpers.html',1,'HamstarHelpers::Helpers::User']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['damage',['Damage',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868ab9f24e83531326204197015b2f43a93f',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['datadumper',['DataDumper',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html',1,'HamstarHelpers::Services::Debug::DataDumper']]],
   ['datastore',['DataStore',['../class_hamstar_helpers_1_1_services_1_1_data_store_1_1_data_store.html',1,'HamstarHelpers::Services::DataStore']]],
   ['debughelpers',['DebugHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_debug_helpers.html',1,'HamstarHelpers::Helpers::Debug']]],
@@ -14,6 +15,7 @@ var searchData=
   ['deconstruct_3c_20tkey_2c_20tvalue_20_3e',['Deconstruct&lt; TKey, TValue &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_key_value_pair_extensions.html#a0bfce5450807d62e84a8a8eda61f1cb5',1,'HamstarHelpers::Helpers::DotNET::Extensions::KeyValuePairExtensions']]],
   ['decrypt',['Decrypt',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_simple_string_cipher.html#a194215e974c359a66b827911d64185cd',1,'HamstarHelpers::Helpers::DotNET::Encoding::SimpleStringCipher']]],
   ['defaultsettings',['DefaultSettings',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_x_n_a_contract_resolver.html#a04fb13e1a00c061312b7ae28a9cb0447',1,'HamstarHelpers::Classes::Protocols::XNAContractResolver']]],
+  ['defense',['Defense',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a4b088aaa68446b6ec08cdc385d03516d',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['deficient',['Deficient',['../namespace_hamstar_helpers_1_1_services_1_1_mod_tag_definitions.html#af0d54f6fc3f74edb855987325841d289a78e643fb572cbd028f24aa9783275a6f',1,'HamstarHelpers::Services::ModTagDefinitions']]],
   ['degred',['DegRed',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#ae011260392ec3944d4cdb81a1bb6531b',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
   ['degree',['Degree',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree.html#ab273d4ade670d350a72de0ec6efc8983',1,'HamstarHelpers::Classes::DataStructures::BTree::BTree']]],

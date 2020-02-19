@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['value',['Value',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_config_1_1_float_ref.html#a0157a250322c3f2bd7a79f74dad7d11c',1,'HamstarHelpers::Classes::UI::Config::FloatRef']]],
   ['values',['Values',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#a9efad18f2331999500c652bdda6d81cb',1,'HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets.Values()'],['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_world_dictionary.html#a77931d27d6e4e1ca32314be9b3d09459',1,'HamstarHelpers.Classes.DataStructures.WorldDictionary.Values()']]],
   ['vanilla',['Vanilla',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#add9bb911b46bac1b3035246ab89dcb5b',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
   ['vanillaaccessoryslotfirst',['VanillaAccessorySlotFirst',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a7dc34677e9c9eca826ef49aa6e6211c8',1,'HamstarHelpers::Helpers::Players::PlayerItemHelpers']]],
@@ -64,8 +65,10 @@ var searchData=
   ['vanillastardustpillartypes',['VanillaStardustPillarTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a736025f2e1991b914f362ae210002b1e',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
   ['vanillastrangeplants',['VanillaStrangePlants',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a04f7032cfb0980ea162711bbb87d5741',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['vanillasurfacebiome',['VanillaSurfaceBiome',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a6c96804d2d560ce24321f5700aaf10cf',1,'HamstarHelpers::Helpers::World']]],
+  ['vanillatooltipname',['VanillaTooltipName',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['vanillaundergroundbiome',['VanillaUndergroundBiome',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#abc5187c3be2fd50d3708509c6f8e8db1',1,'HamstarHelpers::Helpers::World']]],
   ['vanillavortexpillartypes',['VanillaVortexPillarTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a7875873e5086bf79b74b1d0a32108bd8',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
+  ['vanity',['Vanity',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a513257773a92dc37c274268951232c57',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['vector2stringextensions',['Vector2StringExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
   ['version',['Version',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#ac2004f561bf97096d05c125722db980b',1,'HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo.Version()'],['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a7b35a582d7c9926bf81e86e05f194e99',1,'HamstarHelpers.Services.TML.BuildPropertiesViewer.Version()']]],
   ['versionalertelem',['VersionAlertElem',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a991a89dde9ea7d9addf9651bc84e420b',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]]

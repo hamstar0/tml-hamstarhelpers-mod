@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['baitpower',['BaitPower',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868ad760a1d276525252aebeef633b2092ae',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['basefolder',['BaseFolder',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a9dda480b8c7f6e7377fd862f7eb02b94',1,'HamstarHelpers::Helpers::Misc::ModCustomDataFileHelpers']]],
   ['basicmodinfo',['BasicModInfo',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html',1,'HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo'],['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#a9dcfc814c255832c757a853728998c3c',1,'HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo.BasicModInfo()']]],
   ['beacheasttilex',['BeachEastTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ad38e42af9f155e1d6263055deaabeff7',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
@@ -27,6 +28,8 @@ var searchData=
   ['btreenode',['BTreeNode',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html',1,'HamstarHelpers.Classes.DataStructures.BTree.BTreeNode&lt; TK, TP &gt;'],['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html#ad7870306a32ab58ec7e74bae154eb13f',1,'HamstarHelpers.Classes.DataStructures.BTree.BTreeNode.BTreeNode()']]],
   ['buffattributeshelpers',['BuffAttributesHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_attributes_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
   ['buffhelpers',['BuffHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
+  ['buffhudhelpers',['BuffHUDHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_h_u_d_helpers.html',1,'HamstarHelpers::Helpers::Buffs']]],
+  ['bufftime',['BuffTime',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a6d8f11972fc5b9adbb4a36a00aa3a23a',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['buildignores',['BuildIgnores',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#aef0449989c5abefd29183efa46d2dc2f',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['buildpropertiesviewer',['BuildPropertiesViewer',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html',1,'HamstarHelpers::Services::TML']]],
   ['buttonbgcolor',['ButtonBgColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a54fdc6f1893be9bac8ba6862f8d4e631',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],

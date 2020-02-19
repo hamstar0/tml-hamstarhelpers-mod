@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.4.1</span>
+   &#160;<span id="projectnumber">v5.5.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -104,12 +104,95 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a7eeb5926bc108dc53d476a2a98c74aeb"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a7eeb5926bc108dc53d476a2a98c74aeb">RenderMoney</a> (int money)</td></tr>
 <tr class="memdesc:a7eeb5926bc108dc53d476a2a98c74aeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates an English-formatted string indicating an amount of money.  <a href="#a7eeb5926bc108dc53d476a2a98c74aeb">More...</a><br /></td></tr>
 <tr class="separator:a7eeb5926bc108dc53d476a2a98c74aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a352e39f03b22e4d4213ab7aa48888b7e"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a352e39f03b22e4d4213ab7aa48888b7e">RenderTickDuration</a> (int ticks)</td></tr>
+<tr class="memdesc:a352e39f03b22e4d4213ab7aa48888b7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a given game tick value as a string.  <a href="#a352e39f03b22e4d4213ab7aa48888b7e">More...</a><br /></td></tr>
+<tr class="separator:a352e39f03b22e4d4213ab7aa48888b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f42f0edb364096684d868ee7345dd6b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a6f42f0edb364096684d868ee7345dd6b">RenderCondensedTickDuration</a> (int ticks)</td></tr>
+<tr class="memdesc:a6f42f0edb364096684d868ee7345dd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a given game tick value as a condensed string.  <a href="#a6f42f0edb364096684d868ee7345dd6b">More...</a><br /></td></tr>
+<tr class="separator:a6f42f0edb364096684d868ee7345dd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad569ae3ab4df2a436c44f7f7b5487d1b"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#ad569ae3ab4df2a436c44f7f7b5487d1b">RenderColorHex</a> (Color color)</td></tr>
+<tr class="memdesc:ad569ae3ab4df2a436c44f7f7b5487d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a color as a hex code string.  <a href="#ad569ae3ab4df2a436c44f7f7b5487d1b">More...</a><br /></td></tr>
+<tr class="separator:ad569ae3ab4df2a436c44f7f7b5487d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" misc. functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="_misc_helpers_8cs_source.html#l00008">8</a> of file <a class="el" href="_misc_helpers_8cs_source.html">MiscHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_misc_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_misc_helpers_8cs_source.html">MiscHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad569ae3ab4df2a436c44f7f7b5487d1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad569ae3ab4df2a436c44f7f7b5487d1b">&#9670;&nbsp;</a></span>RenderColorHex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.Misc.MiscHelpers.RenderColorHex </td>
+          <td>(</td>
+          <td class="paramtype">Color&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renders a color as a hex code string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_misc_helpers_8cs_source.html#l00123">123</a> of file <a class="el" href="_misc_helpers_8cs_source.html">MiscHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6f42f0edb364096684d868ee7345dd6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f42f0edb364096684d868ee7345dd6b">&#9670;&nbsp;</a></span>RenderCondensedTickDuration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.Misc.MiscHelpers.RenderCondensedTickDuration </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ticks</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renders a given game tick value as a condensed string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_misc_helpers_8cs_source.html#l00092">92</a> of file <a class="el" href="_misc_helpers_8cs_source.html">MiscHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="a7eeb5926bc108dc53d476a2a98c74aeb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7eeb5926bc108dc53d476a2a98c74aeb">&#9670;&nbsp;</a></span>RenderMoney()</h2>
 
@@ -143,7 +226,44 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_misc_helpers_8cs_source.html#l00014">14</a> of file <a class="el" href="_misc_helpers_8cs_source.html">MiscHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_misc_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_misc_helpers_8cs_source.html">MiscHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a352e39f03b22e4d4213ab7aa48888b7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a352e39f03b22e4d4213ab7aa48888b7e">&#9670;&nbsp;</a></span>RenderTickDuration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static string HamstarHelpers.Helpers.Misc.MiscHelpers.RenderTickDuration </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ticks</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Renders a given game tick value as a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_misc_helpers_8cs_source.html#l00064">64</a> of file <a class="el" href="_misc_helpers_8cs_source.html">MiscHelpers.cs</a>.</p>
 
 </div>
 </div>

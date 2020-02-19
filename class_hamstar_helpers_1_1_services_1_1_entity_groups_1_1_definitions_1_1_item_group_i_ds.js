@@ -30,6 +30,7 @@ var class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_ite
     [ "AnyHeavyArmor", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#adc73dfe998efde4295ac59f9223325b4", null ],
     [ "AnyHellstoneEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a1b0a40ed01ecee4666b252d182c1dedd", null ],
     [ "AnyIronOrLeadEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a10026e85aa9d0106aa9dd9920995eee8", null ],
+    [ "AnyItem", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a54a3d3d58ecc10869b203fcb3f579bfe", null ],
     [ "AnyJungleEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#ad99b60c3552adaa1af69cb4a2f80d28a", null ],
     [ "AnyLight", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a1f885009e3fb46effb940910fa94a3be", null ],
     [ "AnyLuminiteOreEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#aa0ca3d8f44d7d0d4231ad5512aa1c739", null ],

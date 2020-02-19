@@ -1,5 +1,6 @@
 var namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes =
 [
     [ "ItemAttributeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers" ],
+    [ "ItemInformationAttributeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_information_attribute_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_information_attribute_helpers" ],
     [ "ItemRarityAttributeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers" ]
 ];

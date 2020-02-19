@@ -1,5 +1,6 @@
 var namespace_hamstar_helpers_1_1_classes =
 [
+    [ "Context", "namespace_hamstar_helpers_1_1_classes_1_1_context.html", "namespace_hamstar_helpers_1_1_classes_1_1_context" ],
     [ "DataStructures", "namespace_hamstar_helpers_1_1_classes_1_1_data_structures.html", "namespace_hamstar_helpers_1_1_classes_1_1_data_structures" ],
     [ "Errors", "namespace_hamstar_helpers_1_1_classes_1_1_errors.html", "namespace_hamstar_helpers_1_1_classes_1_1_errors" ],
     [ "Loadable", "namespace_hamstar_helpers_1_1_classes_1_1_loadable.html", "namespace_hamstar_helpers_1_1_classes_1_1_loadable" ],

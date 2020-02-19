@@ -2,6 +2,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers =
 [
     [ "GetFullMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a6e92a888e8b5fb0e1a27cbc8394a2c22", null ],
     [ "GetFullMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#ad6e03858557689cf64f061f7a2150b8b", null ],
+    [ "GetFullscreenMapTileOfScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a320c075511baab6da9858e835b04c475", null ],
     [ "GetMiniMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#aa39814757bf776b929970ab0813658e9", null ],
     [ "GetMiniMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a193caa6b65c1cf816f79e29ae20fa742", null ],
     [ "GetOverlayMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a31ddd8a3a7d7b7a6d58f0c5c7a061d03", null ],
