@@ -58,7 +58,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////////////////
 
-		public static string ModTagsUrl => "https://script.google.com/macros/s/AKfycbwakEvF9DDYGup34DJJjcxPd0MUApNpl2GalZgr/exec";
+		public static string ModTagsUrl => "https://script.google.com/macros/s/AKfycbwtgExnZjEj2zjYb8ASmlO08KGQZgytSwG6V98HJRv6eeddJl4/exec";
+		//public static string ModTagsUrl => "https://script.google.com/macros/s/AKfycbwakEvF9DDYGup34DJJjcxPd0MUApNpl2GalZgr/exec";
 			//"http://hamstar.pw/hamstarhelpers/mod_info/";	<- express
 
 		
