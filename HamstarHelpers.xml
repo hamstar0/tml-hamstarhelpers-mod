@@ -8371,6 +8371,14 @@
             Assorted static "helper" functions pertaining to tiles.
             </summary>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsEqual(Terraria.Tile,Terraria.Tile)">
+            <summary>
+            Reports if a tile is exactly identical to another tile.
+            </summary>
+            <param name="tile1"></param>
+            <param name="tile2"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.IsAir(Terraria.Tile,System.Boolean,System.Boolean)">
             <summary>
             Indicates if a given tile is "air" (including no walls).
@@ -10989,6 +10997,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPotion">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyHealPotion">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAmmo">

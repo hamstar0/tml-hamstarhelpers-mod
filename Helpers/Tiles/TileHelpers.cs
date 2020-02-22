@@ -8,6 +8,25 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TileHelpers {
 		/// <summary>
+		/// Reports if a tile is exactly identical to another tile.
+		/// </summary>
+		/// <param name="tile1"></param>
+		/// <param name="tile2"></param>
+		/// <returns></returns>
+		public static bool IsEqual( Tile tile1, Tile tile2 ) {
+			return tile1.type == tile2.type
+				&& tile1.wall == tile2.wall
+				&& tile1.frameY == tile2.frameY
+				&& tile1.frameX == tile2.frameX
+				&& tile1.bTileHeader == tile2.bTileHeader
+				&& tile1.bTileHeader3 == tile2.bTileHeader3
+				&& tile1.bTileHeader2 == tile2.bTileHeader2
+				&& tile1.sTileHeader == tile2.sTileHeader
+				&& tile1.liquid == tile2.liquid;
+		}
+
+
+		/// <summary>
 		/// Indicates if a given tile is "air" (including no walls).
 		/// </summary>
 		/// <param name="tile"></param>
