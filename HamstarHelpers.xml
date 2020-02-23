@@ -8179,7 +8179,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileChunkHelpers.IsTileSyncedForCurrentClient(System.Int32,System.Int32)">
             <summary>
-            Reports whether a given tile is part of a synced chunk.
+            Reports whether a given tile is part of a synced chunk. TODO.
             </summary>
             <param name="tileX"></param>
             <param name="tileY"></param>
@@ -12165,6 +12165,11 @@
         </member>
         <member name="P:HamstarHelpers.Services.Server.Server.AveragePing">
             <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.TerrariaOverrides.PlayerOverrides">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:HamstarHelpers.Services.Timers.Timers">
             <summary>
