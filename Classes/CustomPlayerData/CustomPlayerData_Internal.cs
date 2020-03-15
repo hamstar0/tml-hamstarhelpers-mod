@@ -1,14 +1,14 @@
-﻿using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.Players;
-using HamstarHelpers.Helpers.TModLoader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.Players;
+using System.Linq;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
@@ -37,7 +37,9 @@ namespace HamstarHelpers.Classes.PlayerData {
 					null );
 				plrData.PlayerWho = playerWho;
 
-				singleton.DataMap.Set2D( playerWho, plrDataType, plrData );
+				lock( CustomPlayerData.MyLock ) {
+					singleton.DataMap.Set2D( playerWho, plrDataType, plrData );
+				}
 
 				plrData.OnEnter( data );
 			}
@@ -50,10 +52,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
 
-			foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[playerWho] ) {
-				object data = plrData.OnExit();
-				if( data != null ) {
-					CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityHelpers.GetUniqueId(), data );
+			lock( CustomPlayerData.MyLock ) {
+				foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[playerWho] ) {
+					object data = plrData.OnExit();
+
+					if( data != null ) {
+						CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityHelpers.GetUniqueId(), data );
+					}
 				}
 			}
 		}
@@ -69,8 +74,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 			for( int plrWho = 0; plrWho < Main.maxPlayers; plrWho++ ) {
 				player = Main.player[plrWho];
 
+				bool containsKey = false;
+				lock( CustomPlayerData.MyLock ) {
+					containsKey = singleton.DataMap.ContainsKey( plrWho );
+				}
+
 				if( player == null || !player.active ) {
-					if( singleton.DataMap.ContainsKey( plrWho ) ) {
+					if( containsKey ) {
 						CustomPlayerData.Exit( plrWho );
 					}
 
@@ -84,22 +94,29 @@ namespace HamstarHelpers.Classes.PlayerData {
 				//		: false;
 				
 				if( isNotMenu ) {
-					if( !singleton.DataMap.ContainsKey(plrWho) ) {
+					if( !containsKey ) {
 						CustomPlayerData.Enter( plrWho );
 					} else {
-						foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[plrWho] ) {
+						IEnumerable<KeyValuePair<Type, CustomPlayerData>> plrDataMap;
+						lock( CustomPlayerData.MyLock ) {
+							plrDataMap = singleton.DataMap[plrWho].ToArray();
+						}
+
+						foreach( (Type plrDataType, CustomPlayerData plrData) in plrDataMap ) {
 							plrData.Update();
 						}
 					}
 				} else {
-					if( singleton.DataMap.ContainsKey( plrWho ) ) {
+					if( containsKey ) {
 						CustomPlayerData.Exit( plrWho );
 					}
 				}
 			}
 
 			if( Main.netMode != 2 && Main.gameMenu ) {
-				singleton.DataMap.Clear();
+				lock( CustomPlayerData.MyLock ) {
+					singleton.DataMap.Clear();
+				}
 			}
 		}
 	}

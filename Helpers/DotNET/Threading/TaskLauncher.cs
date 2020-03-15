@@ -65,7 +65,8 @@ namespace HamstarHelpers.Helpers.DotNET.Threading {
 		void ILoadable.OnModsUnload() {
 			this.CancelTokenSrc.Cancel();
 
-			if( !Task.WaitAll( this.Tasks.ToArray(), new TimeSpan(0, 0, 10) ) ) {
+			Task[] tasks = this.Tasks.Where(t=>t!=null).ToArray();
+			if( !Task.WaitAll( tasks, new TimeSpan( 0, 0, 10 ) ) ) {
 				LogHelpers.Alert( "Not all tasks successfully cancelled." );
 			}
 

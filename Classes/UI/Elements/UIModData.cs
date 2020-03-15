@@ -110,8 +110,10 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		public void CheckForNewVersionAsync() {
 			CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
-				if( args.Found && args.ModInfo.ContainsKey(this.Mod.Name) ) {
-					this.LatestAvailableVersion = args.ModInfo[ this.Mod.Name ].Version;
+				BasicModInfoDatabase modDb = args.ModInfo;
+
+				if( args.Found && modDb.ContainsKey(this.Mod.Name) ) {
+					this.LatestAvailableVersion = modDb[ this.Mod.Name ].Version;
 				} else {
 					if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName+"'" ); //+ "': " + reason );

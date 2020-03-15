@@ -11,13 +11,14 @@ using System.Threading;
 
 namespace HamstarHelpers.Internals.WebRequests {
 	class BasicModInfoDatabase : Dictionary<string, BasicModInfo>,
-		IDictionary<string, BasicModInfo>, ICollection<KeyValuePair<string, BasicModInfo>>, IDictionary, ICollection,
-		IReadOnlyDictionary<string, BasicModInfo>, IReadOnlyCollection<KeyValuePair<string, BasicModInfo>>,
-		IEnumerable<KeyValuePair<string, BasicModInfo>>, IEnumerable, ISerializable, IDeserializationCallback { }
+			IDictionary<string, BasicModInfo>, ICollection<KeyValuePair<string, BasicModInfo>>, IDictionary, ICollection,
+			IReadOnlyDictionary<string, BasicModInfo>, IReadOnlyCollection<KeyValuePair<string, BasicModInfo>>,
+			IEnumerable<KeyValuePair<string, BasicModInfo>>, IEnumerable, ISerializable, IDeserializationCallback { }
+
 	class BadModsDatabase : Dictionary<string, int>,
-		IDictionary<string, int>, ICollection<KeyValuePair<string, int>>, IDictionary, ICollection, IReadOnlyDictionary<string, int>,
-		IReadOnlyCollection<KeyValuePair<string, int>>, IEnumerable<KeyValuePair<string, int>>, IEnumerable, ISerializable,
-		IDeserializationCallback { }
+			IDictionary<string, int>, ICollection<KeyValuePair<string, int>>, IDictionary, ICollection, IReadOnlyDictionary<string, int>,
+			IReadOnlyCollection<KeyValuePair<string, int>>, IEnumerable<KeyValuePair<string, int>>, IEnumerable, ISerializable,
+			IDeserializationCallback { }
 
 
 
@@ -45,9 +46,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		////
 
-		public static string ModInfoUrl => "https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
+		public static string ModInfoUrl => "https://script.google.com/macros/s/AKfycbyddPh79y6SwgYqOG-P7Pw0iCbi2tBgVCRvUfP9fJT_xrbHFzo/exec";
+											//"https://script.google.com/macros/s/AKfycbwtUsafWtIun_9_gO1o2dI6Tgqin09U7jWk4LPS/exec";
 		public static string BadModsUrl => ModInfoUrl + "?route=bad_mods";
-
+		
 
 		////////////////
 
@@ -130,10 +132,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 		private static void RegisterBadMods( ModInfoListLoadHookArguments modInfoArgs, BadModsDatabase badMods ) {
 			foreach( var kv in modInfoArgs.ModInfo ) {
-				string modName = kv.Key;
 				BasicModInfo modInfo = kv.Value;
+				string modName = kv.Key;
+				if( modName == "update" ) { continue; }
 
-				modInfo.IsBadMod = badMods.ContainsKey(modName);
+				modInfo.IsBadMod = badMods.ContainsKey( modName );
 			}
 		}
 

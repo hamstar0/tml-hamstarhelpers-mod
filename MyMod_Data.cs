@@ -33,7 +33,11 @@ namespace HamstarHelpers {
 
 		private void UnloadModData() {
 			if( this.Data != null ) {
-				ModCustomDataFileHelpers.SaveAsJson<ModHelpersData>( this, "data", true, this.Data );
+				if( !ModCustomDataFileHelpers.SaveAsJson<ModHelpersData>(this, "data", true, this.Data) ) {
+					Helpers.Debug.LogHelpers.Warn( "Could not save Mod Helpers data." );
+				}
+			} else {
+				Helpers.Debug.LogHelpers.Warn( "No Mod Helpers data to save." );
 			}
 
 			this.Data = new ModHelpersData();

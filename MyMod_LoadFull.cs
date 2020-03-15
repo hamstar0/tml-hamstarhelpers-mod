@@ -1,11 +1,32 @@
 ﻿using HamstarHelpers.Helpers.Debug;
 using System;
+using Terraria;
 using Terraria.ModLoader;
 
 
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
+		private static bool IsOnExitSet = false;
+
+
+
+		////////////////
+
+		private static void OnExit<TEventArgs>( object sender, TEventArgs args ) {
+			var mymod = ModHelpersMod.Instance;
+
+			try {
+				mymod.UnloadModData();
+			} catch( Exception e ) {
+				mymod.Logger.Warn( "!ModHelpers.ModHelpersMod.OnExit - " + e.ToString() );
+			}
+		}
+
+
+
+		////////////////
+
 		public bool HasSetupContent { get; private set; }
 		public bool HasAddedRecipeGroups { get; private set; }
 		public bool HasAddedRecipes { get; private set; }
@@ -22,6 +43,11 @@ namespace HamstarHelpers {
 			this.LoadHotkeys();
 			this.LoadModData();
 			this.LoadDataSources();
+
+			if( !ModHelpersMod.IsOnExitSet ) {
+				ModHelpersMod.IsOnExitSet = true;
+				Main.instance.Exiting += ModHelpersMod.OnExit;
+			}
 		}
 
 
@@ -67,7 +93,7 @@ namespace HamstarHelpers {
 				this.UnloadModData();
 				this.UnloadModules();
 			} catch( Exception e ) {
-				this.Logger.Warn( "!ModHelpers.ModHelpersMod.UnloadInner - " + e.ToString() );	//was Error(...)
+				this.Logger.Warn( "!ModHelpers.ModHelpersMod.UnloadFull - " + e.ToString() );	//was Error(...)
 			}
 
 			try {

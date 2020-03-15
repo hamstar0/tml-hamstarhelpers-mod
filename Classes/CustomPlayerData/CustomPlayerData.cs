@@ -23,7 +23,9 @@ namespace HamstarHelpers.Classes.PlayerData {
 		internal static CustomPlayerData GetPlayerData( Type plrDataType, int playerWho ) {
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
 
-			return singleton.DataMap.Get2DOrDefault( playerWho, plrDataType );
+			lock( CustomPlayerData.MyLock ) {
+				return singleton.DataMap.Get2DOrDefault( playerWho, plrDataType );
+			}
 		}
 	}
 }

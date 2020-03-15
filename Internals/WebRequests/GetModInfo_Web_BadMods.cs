@@ -1,9 +1,11 @@
 ﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Encoding;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net;
 
 
@@ -45,13 +47,25 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private static bool HandleBadModsReceipt( string jsonStr, out BadModsDatabase badModsDb ) {
 			badModsDb = new BadModsDatabase();
 
-			JObject respJson = JObject.Parse( jsonStr );
+			JObject parsedObject = JObject.Parse( jsonStr );
 
-			if( respJson.Count == 0 ) {
+			if( parsedObject.Count == 0 ) {
 				return false;
 			}
 
-			badModsDb = respJson.ToObject<BadModsDatabase>();
+			//foreach( KeyValuePair<string, JToken> kvp in parsedObject ) {
+			//	if( kvp.Key != "update" ) {
+			//		object obj = JsonConvert.DeserializeObject( kvp.Value.ToString() );
+			//		badModsDb[kvp.Key] = (int)obj;
+			//	}
+			//}
+
+			IDictionary<string, string> skimmed = JsonHelpers.SkimIncompatibleEntries<BadModsDatabase>( parsedObject );
+			if( skimmed.Count > 0 ) {
+				LogHelpers.Alert( "Skimmed "+skimmed.Count+" bad entries from input:\n    "+string.Join(", ", skimmed.Keys) );
+			}
+
+			badModsDb = parsedObject.ToObject<BadModsDatabase>();
 			if( badModsDb == null ) {
 				throw new NullReferenceException( "No bad mods found" );
 			}

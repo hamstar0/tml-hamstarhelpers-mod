@@ -11,6 +11,12 @@ namespace HamstarHelpers.Classes.PlayerData {
 	/// An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
 	/// </summary>
 	public partial class CustomPlayerData : ILoadable {
+		private static object MyLock = new object();
+
+
+
+		////////////////
+
 		private IDictionary<int, IDictionary<Type, CustomPlayerData>> DataMap
 			= new Dictionary<int, IDictionary<Type, CustomPlayerData>>();
 

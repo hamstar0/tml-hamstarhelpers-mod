@@ -4239,6 +4239,20 @@
             <param name="str"></param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Encoding.JsonHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to hash codes.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Encoding.JsonHelpers.SkimIncompatibleEntries``1(Newtonsoft.Json.Linq.JObject,System.Reflection.BindingFlags)">
+            <summary>
+            Removes incompatible entries from the input JSON object.
+            </summary>
+            <typeparam name="CastToObject"></typeparam>
+            <param name="jobj"></param>
+            <param name="flags"></param>
+            <returns>Map of JSON entries (by entry name) skimmed from the given input.</returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.Encoding.SimpleStringCipher">
             <summary>
             Simple string cipher encrypting and decrypting.

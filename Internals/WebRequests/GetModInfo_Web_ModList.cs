@@ -33,7 +33,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 				if( success ) {
 					try {
-						success = GetModInfo.HandleModInfoReceipt( jsonStr, out modInfoDb );
+						int skipped = 0;
+						success = GetModInfo.HandleModInfoReceipt( jsonStr, out modInfoDb, out skipped );
 					} catch( Exception e ) {
 						modInfoDb = new BasicModInfoDatabase();
 						onError( e, jsonStr );
@@ -49,8 +50,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 		}
 
 
-		private static bool HandleModInfoReceipt( string jsonStr, out BasicModInfoDatabase modInfoDb ) {
+		private static bool HandleModInfoReceipt( string jsonStr, out BasicModInfoDatabase modInfoDb, out int skipped ) {
 			modInfoDb = new BasicModInfoDatabase();
+			skipped = 0;
 
 			JObject respJson = JObject.Parse( jsonStr );
 			if( respJson.Count == 0 ) {
@@ -92,6 +94,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 				if( modNameToken == null || modVersRawToken == null || modDisplaynameToken == null || modAuthorToken == null
 						/*|| hasDescRawToken == null || modHomepageRawToken == null*/ ) {
+					skipped++;
 					continue;
 				}
 

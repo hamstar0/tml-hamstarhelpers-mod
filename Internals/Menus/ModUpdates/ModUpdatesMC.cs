@@ -45,8 +45,10 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 			Timers.SetTimer( "ModHelpersUpdatesLoaderPause", 5, true, () => {
 				CustomLoadHooks.AddHook( GetModInfo.ModInfoListLoadHookValidator, ( args ) => {
+					BasicModInfoDatabase modDb = args.ModInfo;
+
 					if( args != null ) {
-						this.DisplayModListVersions( ui, args.ModInfo );
+						this.DisplayModListVersions( ui, modDb );
 					}
 					return false;
 				} );
