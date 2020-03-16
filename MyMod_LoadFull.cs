@@ -17,9 +17,9 @@ namespace HamstarHelpers {
 			var mymod = ModHelpersMod.Instance;
 
 			try {
-				mymod.UnloadModData();
+				mymod?.UnloadModData();
 			} catch( Exception e ) {
-				mymod.Logger.Warn( "!ModHelpers.ModHelpersMod.OnExit - " + e.ToString() );
+				mymod?.Logger.Warn( "!ModHelpers.ModHelpersMod.OnExit - " + e.ToString() );
 			}
 		}
 

@@ -19,7 +19,7 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="scale"></param>
 		public static void DrawPlayerHead( SpriteBatch sb, Player player, float x, float y, float alpha = 1f, float scale = 1f ) {
 			object _;
-			ReflectionHelpers.RunMethod( typeof(Main), "DrawPlayerHead", new object[] { player, x, y, alpha, scale }, out _ );
+			ReflectionHelpers.RunMethod( Main.instance, "DrawPlayerHead", new object[] { player, x, y, alpha, scale }, out _ );
 		}
 	}
 }

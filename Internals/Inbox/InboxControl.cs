@@ -99,6 +99,8 @@ namespace HamstarHelpers.Internals.Inbox {
 
 					if( unread > 0 ) {
 						Timers.RunNow( () => {
+							Main.LocalPlayer.mouseInterface = true;
+
 							this.ReadLatestMessage();
 							unread--;
 						} );
@@ -136,11 +138,16 @@ namespace HamstarHelpers.Internals.Inbox {
 				if( Main.mouseLeft && UIHelpers.MouseInRectangle( lArrowRect ) ) {
 					if( !this.IsLeftArrowClicked ) {
 						this.IsLeftArrowClicked = true;
-						if( this.ReadOldMessage( this.MessageScrollPos - 1 ) ) {
-							this.MessageScrollPos--;
-						} else {
-							this.ReadOldMessage( this.MessageScrollPos );
-						}
+
+						Timers.RunNow( () => {
+							Main.LocalPlayer.mouseInterface = true;
+
+							if( this.ReadOldMessage( this.MessageScrollPos - 1 ) ) {
+								this.MessageScrollPos--;
+							} else {
+								this.ReadOldMessage( this.MessageScrollPos );
+							}
+						} );
 					}
 				} else {
 					this.IsLeftArrowClicked = false;
@@ -155,9 +162,14 @@ namespace HamstarHelpers.Internals.Inbox {
 				if( Main.mouseLeft && UIHelpers.MouseInRectangle( rArrowRect ) ) {
 					if( !this.IsRightArrowClicked ) {
 						this.IsRightArrowClicked = true;
-						if( this.ReadOldMessage( this.MessageScrollPos + 1 ) ) {
-							this.MessageScrollPos++;
-						}
+
+						Timers.RunNow( () => {
+							Main.LocalPlayer.mouseInterface = true;
+
+							if( this.ReadOldMessage( this.MessageScrollPos + 1 ) ) {
+								this.MessageScrollPos++;
+							}
+						} );
 					}
 				} else {
 					this.IsRightArrowClicked = false;
@@ -167,6 +179,8 @@ namespace HamstarHelpers.Internals.Inbox {
 			}
 		}
 
+
+		////
 
 		private void DrawIcon( SpriteBatch sb ) {
 			var iconRect = new Rectangle( (int)this.IconPos.X, (int)this.IconPos.Y, this.Icon.Width, this.Icon.Height );
