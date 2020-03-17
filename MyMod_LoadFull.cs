@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
-		private static bool IsOnExitSet = false;
+		/*private static bool IsOnExitSet = false;
 
 
 
@@ -21,7 +21,7 @@ namespace HamstarHelpers {
 			} catch( Exception e ) {
 				mymod?.Logger.Warn( "!ModHelpers.ModHelpersMod.OnExit - " + e.ToString() );
 			}
-		}
+		}*/
 
 
 
@@ -44,10 +44,10 @@ namespace HamstarHelpers {
 			this.LoadModData();
 			this.LoadDataSources();
 
-			if( !ModHelpersMod.IsOnExitSet ) {
+			/*if( !ModHelpersMod.IsOnExitSet ) {
 				ModHelpersMod.IsOnExitSet = true;
 				Main.instance.Exiting += ModHelpersMod.OnExit;
-			}
+			}*/
 		}
 
 
