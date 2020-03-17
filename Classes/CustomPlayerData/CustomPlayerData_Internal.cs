@@ -51,14 +51,16 @@ namespace HamstarHelpers.Classes.PlayerData {
 			}
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
-
+			IEnumerable<(Type, CustomPlayerData)> plrDataMap;
 			lock( CustomPlayerData.MyLock ) {
-				foreach( (Type plrDataType, CustomPlayerData plrData) in singleton.DataMap[playerWho] ) {
-					object data = plrData.OnExit();
+				plrDataMap = singleton.DataMap[playerWho].Select( kv => (kv.Key, kv.Value) );
+			}
 
-					if( data != null ) {
-						CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityHelpers.GetUniqueId(), data );
-					}
+			foreach( (Type plrDataType, CustomPlayerData plrData) in plrDataMap ) {
+				object data = plrData.OnExit();
+
+				if( data != null ) {
+					CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityHelpers.GetUniqueId(), data );
 				}
 			}
 		}
@@ -97,9 +99,9 @@ namespace HamstarHelpers.Classes.PlayerData {
 					if( !containsKey ) {
 						CustomPlayerData.Enter( plrWho );
 					} else {
-						IEnumerable<KeyValuePair<Type, CustomPlayerData>> plrDataMap;
+						IEnumerable<(Type, CustomPlayerData)> plrDataMap;
 						lock( CustomPlayerData.MyLock ) {
-							plrDataMap = singleton.DataMap[plrWho].ToArray();
+							plrDataMap = singleton.DataMap[plrWho].Select( kv=>(kv.Key, kv.Value) );
 						}
 
 						foreach( (Type plrDataType, CustomPlayerData plrData) in plrDataMap ) {
