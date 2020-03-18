@@ -8,25 +8,25 @@ using System.Collections.ObjectModel;
 namespace HamstarHelpers.Services.ModTagDefinitions {
 	/// <summary></summary>
 	public enum TagFlavor {
-		/// <summary></summary>
+		/// <summary>Normal descriptive tag.</summary>
 		Mundane,
-		/// <summary></summary>
+		/// <summary>Technical descriptive tag.</summary>
 		Specification,
-		/// <summary></summary>
+		/// <summary>Describes a focal aspect of a mod.</summary>
 		Emphasis,
-		/// <summary></summary>
+		/// <summary>An important-to-note specification.</summary>
 		Important,
-		/// <summary></summary>
+		/// <summary>A technically-important specification; not a general description.</summary>
 		TechnicallyImportant,
-		/// <summary></summary>
+		/// <summary>Buyer beware.</summary>
 		Alert,
-		/// <summary></summary>
+		/// <summary>Even more buyer beware.</summary>
 		Warning,
-		/// <summary></summary>
+		/// <summary>Something is lacking.</summary>
 		Deficient,
-		/// <summary></summary>
+		/// <summary>Something doesn't work right.</summary>
 		Broken,
-		/// <summary></summary>
+		/// <summary>Subjectively bad.</summary>
 		IllFavored
 	}
 

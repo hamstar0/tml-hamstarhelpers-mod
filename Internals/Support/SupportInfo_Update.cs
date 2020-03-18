@@ -82,6 +82,8 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			if( isClicking && isHoveringModTagsLabel ) {
 				mymod.Data.ModTagsOpened = true;
 
+				mymod.SaveModData();
+
 				this.RemoveModTagsMessage();    // This Update no longer gets called
 
 				ModTagsEditorMenuContext.Initialize();

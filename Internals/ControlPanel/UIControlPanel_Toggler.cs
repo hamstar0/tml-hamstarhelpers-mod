@@ -156,7 +156,13 @@ namespace HamstarHelpers.Internals.ControlPanel {
 								this.Open();
 
 								var mymod = ModHelpersMod.Instance;
-								mymod.Data.ControlPanelNewSince = UIControlPanel.AlertSinceVersion.ToString();
+								Version oldVers;
+								Version newVers = UIControlPanel.AlertSinceVersion;
+
+								if( Version.TryParse(mymod.Data.ControlPanelNewSince, out oldVers) && oldVers != newVers ) {
+									mymod.Data.ControlPanelNewSince = newVers.ToString();
+									mymod.SaveModData();
+								}
 							}
 						}
 
