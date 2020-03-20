@@ -3,6 +3,9 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
@@ -63,23 +66,24 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 			ConfigHelpers.MergeConfigsForType( typeof(T), to, fro );
 		}
 
-		internal static void MergeConfigsForType( Type configType, ModConfig to, ModConfig fro ) {
-			var template = (ModConfig)Activator.CreateInstance(
+		internal static void MergeConfigsForType( Type configType, ModConfig toConfig, ModConfig froConfig ) {
+			var defaultConfig = (ModConfig)Activator.CreateInstance(
 				configType,
 				BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
 				null,
 				new object[] { },
 				null
 			);
-			if( template == null ) {
-				throw new ModHelpersException( "Could generate template for ModConfig "+configType.Name );
+			if( defaultConfig == null ) {
+				throw new ModHelpersException( "Could generate default template for ModConfig "+configType.Name );
 			}
 
-			JsonConvert.PopulateObject( "{}", template, ConfigManager.serializerSettings );
+			JsonConvert.PopulateObject( "{}", defaultConfig, ConfigManager.serializerSettings );
 
-			object froVal, tempVal;
+			object froVal, defaultVal;
+			IEnumerable<MemberInfo> members = configType.GetMembers( BindingFlags.Public | BindingFlags.Instance );
 
-			foreach( MemberInfo memb in configType.GetMembers( BindingFlags.Public | BindingFlags.Instance ) ) {
+			foreach( MemberInfo memb in members ) {
 				if( memb.MemberType == MemberTypes.Property ) {
 					var prop = (PropertyInfo)memb;
 
@@ -93,15 +97,21 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 					continue;
 				}
 
-				if( !ReflectionHelpers.Get( fro, memb.Name, out froVal ) ) {
+				if( !ReflectionHelpers.Get(froConfig, memb.Name, out froVal) ) {
 					throw new ModHelpersException( "Could retrieve member "+memb.Name+" from 'fro' instance of "+configType.Name );
 				}
-				if( !ReflectionHelpers.Get( template, memb.Name, out tempVal ) ) {
+				if( !ReflectionHelpers.Get(defaultConfig, memb.Name, out defaultVal) ) {
 					throw new ModHelpersException( "Could retrieve member "+memb.Name+" from template instance of "+configType.Name );
 				}
 
-				if( !(froVal?.Equals(tempVal) ?? froVal == tempVal) ) {
-					if( !ReflectionHelpers.Set( to, memb.Name, froVal ) ) {
+				bool froValueIsDefault = froVal?.Equals(defaultVal)
+					?? froVal == defaultVal;    // <- default is null
+				bool froValueIsCollection = froVal is IEnumerable;
+				bool froValueIsEmpty = froValueIsCollection
+					&& (froVal == null || ((IEnumerable)froVal).Cast<object>().Count() == 0);
+				
+				if( (!froValueIsCollection && !froValueIsDefault) || (froValueIsCollection && !froValueIsEmpty) ) {
+					if( !ReflectionHelpers.Set(toConfig, memb.Name, froVal) ) {
 						throw new ModHelpersException( "Could set merged field/property "+memb.Name+" for "+configType.Name );
 					}
 				}

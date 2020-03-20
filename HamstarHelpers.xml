@@ -7129,19 +7129,11 @@
         </member>
         <member name="T:HamstarHelpers.Helpers.Players.PlayerHeadDrawHelpers">
             <summary>
-            Assorted static "helper" functions pertaining to player head drawing.
+            Assorted static "helper" functions pertaining to player head drawing (currently empty).
             </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Players.PlayerHeadDrawHelpers.DrawPlayerHead(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.Player,System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            Draws a player's head.
-            </summary>
-            <param name="sb">SpriteBatch to draw to. Typically `Main.spriteBatch`.</param>
-            <param name="player"></param>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="alpha"></param>
-            <param name="scale"></param>
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Players.PlayerHelpers">
             <summary>
@@ -12015,34 +12007,34 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Mundane">
-            <summary></summary>
+            <summary>Normal descriptive tag.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Specification">
-            <summary></summary>
+            <summary>Technical descriptive tag.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Emphasis">
-            <summary></summary>
+            <summary>Describes a focal aspect of a mod.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Important">
-            <summary></summary>
+            <summary>An important-to-note specification.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.TechnicallyImportant">
-            <summary></summary>
+            <summary>A technically-important specification; not a general description.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Alert">
-            <summary></summary>
+            <summary>Buyer beware.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Warning">
-            <summary></summary>
+            <summary>Even more buyer beware.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Deficient">
-            <summary></summary>
+            <summary>Something is lacking.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.Broken">
-            <summary></summary>
+            <summary>Something doesn't work right.</summary>
         </member>
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.IllFavored">
-            <summary></summary>
+            <summary>Subjectively bad.</summary>
         </member>
         <member name="T:HamstarHelpers.Services.NPCChat.NPCChat">
             <summary>

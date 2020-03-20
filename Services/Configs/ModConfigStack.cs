@@ -67,14 +67,14 @@ namespace HamstarHelpers.Services.Configs {
 				LogHelpers.WarnOnce( "Could not get StackableModConfig of "+configType.Name );
 				return null;
 			}
-
+			
 			var baseConfig = (StackableModConfig)ConfigManager.GeneratePopulatedClone( configSingleton );
 			//T baseConfig = (T)ModContent.GetInstance<T>().Clone();
 			StackableModConfig stackMergedConfigs = ModConfigStack.GetMergedStackedConfigsForType( configType );
 			
 			ConfigHelpers.MergeConfigsForType( configType, baseConfig, stackMergedConfigs );
 			//ConfigHelpers.MergeConfigsAndTheirCollections( mergedConfigs, baseConfig );
-
+			
 			cs.CachedMergedDefaultAndStackConfigs[configType] = baseConfig;
 
 			return baseConfig;
