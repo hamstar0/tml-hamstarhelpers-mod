@@ -24,7 +24,11 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 			}
 
 			Action<Exception, string> onError = ( e, output ) => {
-				this.SetInfoText( "Error: " + ( string.IsNullOrEmpty( output ) ? e.Message : output ), Color.Red );
+				if( !string.IsNullOrEmpty( output ) ) {
+					this.SetInfoText( "Error (output): " + output, Color.Red );
+				} else {
+					this.SetInfoText( "Error (exception): " + e.Message, Color.Red );
+				}
 				LogHelpers.Log( e.ToString() );
 			};
 

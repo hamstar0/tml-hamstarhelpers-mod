@@ -1,31 +1,17 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using System;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.Server {
-	/// <summary>
-	/// Supplies assorted server informations and tools.
-	/// </summary>
+	[Obsolete("use Services/Network/Server", true)]
 	public class Server {
-		/// <summary></summary>
-		public int AveragePing { get; internal set; }
-
-
-
-		////////////////
-
-		internal Server() {
-			this.AveragePing = -1;
-		}
-
-
-		////////////////
-
-		internal void UpdatePingAverage( int ping ) {
-			if( this.AveragePing == -1 ) {
-				this.AveragePing = ping;
-			} else {
-				//this.AveragePing = (ping + (this.AveragePing * 2)) / 3;
-				this.AveragePing = (ping + this.AveragePing) / 2;
+		[Obsolete( "use Services/Network/Server", true )]
+		public int AveragePing {
+			get {
+				return ModHelpersMod.Instance.Server.AveragePing;
+			}
+			internal set {
+				ModHelpersMod.Instance.Server.AveragePing = value;
 			}
 		}
 	}
