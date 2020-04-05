@@ -6862,7 +6862,17 @@
             <summary>
             Finds first active, world NPC of the given type.
             </summary>
-            <param name="type"></param>
+            <param name="npcType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.NPCs.NPCFinderHelpers.FindNPCsNearby(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="position"></param>
+            <param name="minWorldDistance"></param>
+            <param name="maxWorldDistance"></param>
+            <param name="isFriendly"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.NPCs.NPCGroupIdentityHelpers">
@@ -10400,6 +10410,9 @@
         <member name="T:HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons.UIEditModeMenuButton">
             @private
         </member>
+        <member name="T:HamstarHelpers.Internals.NetProtocols.CursorPositionProtocol">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Internals.NetProtocols.DataDumpProtocol">
             @private
         </member>
@@ -12036,6 +12049,35 @@
         <member name="F:HamstarHelpers.Services.ModTagDefinitions.TagFlavor.IllFavored">
             <summary>Subjectively bad.</summary>
         </member>
+        <member name="T:HamstarHelpers.Services.Network.Client">
+            <summary>
+            Supplies assorted server informations and tools.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Client.LastKnownCursorPositions">
+            <summary>
+            Shows last known positions of each player's mouse cursor. Must be activated via. StartBroadcastingMyCursorPosition(), first.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Client.StartBroadcastingMyCursorPosition">
+            <summary>
+            Begins a broadcast loop (via. Timers) every 1/4 second to tell everyone where the current player's cursor is located.
+            </summary>
+            <returns>`true` if loop not already running.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Client.StopBroadcastingMyCursorPosition">
+            <summary>
+            Ends the current cursor position broadcast loop.
+            </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.Server">
+            <summary>
+            Supplies assorted server informations and tools.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Network.Server.AveragePing">
+            <summary></summary>
+        </member>
         <member name="T:HamstarHelpers.Services.NPCChat.NPCChat">
             <summary>
             Provides a service for adding or removing town NPC chats (based on weight values).
@@ -12175,14 +12217,6 @@
         </member>
         <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.GetAvailableRecipesOfIngredients(Terraria.Player,System.Collections.Generic.IEnumerable{Terraria.Item})">
             @private
-        </member>
-        <member name="T:HamstarHelpers.Services.Server.Server">
-            <summary>
-            Supplies assorted server informations and tools.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Server.Server.AveragePing">
-            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Timers.Timers">
             <summary>

@@ -8,8 +8,15 @@ using HamstarHelpers.Internals.NetProtocols;
 
 
 namespace HamstarHelpers.Services.Network {
+	/// <summary>
+	/// Supplies assorted server informations and tools.
+	/// </summary>
 	public class Client {
+		/// <summary>
+		/// Shows last known positions of each player's mouse cursor. Must be activated via. StartBroadcastingMyCursorPosition(), first.
+		/// </summary>
 		public static IReadOnlyDictionary<int, (short X, short Y)> LastKnownCursorPositions;
+
 		internal static IDictionary<int, (short X, short Y)> _LastKnownCursorPositions = new Dictionary<int, (short X, short Y)>();
 
 
@@ -23,6 +30,10 @@ namespace HamstarHelpers.Services.Network {
 
 		////////////////
 
+		/// <summary>
+		/// Begins a broadcast loop (via. Timers) every 1/4 second to tell everyone where the current player's cursor is located.
+		/// </summary>
+		/// <returns>`true` if loop not already running.</returns>
 		public static bool StartBroadcastingMyCursorPosition() {
 			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not a client." ); }
 
@@ -37,6 +48,18 @@ namespace HamstarHelpers.Services.Network {
 					&& CursorPositionProtocol.BroadcastCursor();
 			} );
 			return true;
+		}
+
+
+		/// <summary>
+		/// Ends the current cursor position broadcast loop.
+		/// </summary>
+		public static void StopBroadcastingMyCursorPosition() {
+			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not a client." ); }
+
+			string timerName = "cursor_broadcast_" + Main.myPlayer;
+
+			Timers.Timers.UnsetTimer( timerName );
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 
 
@@ -16,25 +17,65 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <summary>
 		/// Finds first active, world NPC of the given type.
 		/// </summary>
-		/// <param name="type"></param>
+		/// <param name="npcType"></param>
 		/// <returns></returns>
-		public static NPC FindFirstNpcByType( int type ) {
-			if( NPCFinderHelpers.AnyWhoOfType.Keys.Contains( type ) ) {
-				NPC npc = Main.npc[NPCFinderHelpers.AnyWhoOfType[type]];
-				if( npc != null && npc.active && npc.type == type ) {
+		public static NPC FindFirstNpcByType( int npcType ) {
+			NPC npc = null;
+
+			if( NPCFinderHelpers.AnyWhoOfType.Keys.Contains( npcType ) ) {
+				npc = Main.npc[NPCFinderHelpers.AnyWhoOfType[npcType]];
+
+				if( npc != null && npc.active && npc.type == npcType ) {
 					return npc;
+				} else {
+					NPCFinderHelpers.AnyWhoOfType.Remove( npcType );
 				}
 			}
 
 			for( int i = 0; i < Main.npc.Length; i++ ) {
-				NPC npc = Main.npc[i];
-				if( npc != null && npc.active && npc.type == type ) {
-					NPCFinderHelpers.AnyWhoOfType[type] = i;
-					return npc;
+				npc = Main.npc[i];
+
+				if( npc != null && npc.active && npc.type == npcType ) {
+					NPCFinderHelpers.AnyWhoOfType[npcType] = i;
+					break;
 				}
 			}
 
-			return null;
+			return npc;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="position"></param>
+		/// <param name="minWorldDistance"></param>
+		/// <param name="maxWorldDistance"></param>
+		/// <param name="isFriendly"></param>
+		/// <returns></returns>
+		public static IList<int> FindNPCsNearby( Vector2 position, int minWorldDistance, int maxWorldDistance, bool? isFriendly = null ) {
+			var npcsWhos = new List<int>();
+			int max = Main.npc.Length;
+			int minSqr = minWorldDistance * minWorldDistance;
+			int maxSqr = maxWorldDistance * maxWorldDistance;
+
+			for( int i=0; i<max; i++ ) {
+				NPC npc = Main.npc[i];
+				if( npc?.active != true ) {
+					continue;
+				}
+				if( isFriendly.HasValue && npc.friendly != isFriendly.Value ) {
+					continue;
+				}
+
+				float distSqr = ( npc.position - position ).LengthSquared();
+				if( distSqr < minSqr || distSqr >= maxSqr ) {
+					continue;
+				}
+
+				npcsWhos.Add( i );
+			}
+
+			return npcsWhos;
 		}
 	}
 }
