@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.UI;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.UI;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -104,6 +105,70 @@ namespace HamstarHelpers.Helpers.HUD {
 				&& tileX < maxX
 				&& tileY >= minY
 				&& tileY < maxY;
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Zooms in to find the top left tile position of the current map view.
+		/// </summary>
+		/// <returns></returns>
+		public static (int TileX, int TileY) FindTopLeftTileOfFullscreenMap() {
+			var tilePos = new Vector2( Main.maxTilesX / 2, Main.maxTilesY / 2 );
+
+			return HUDMapHelpers.FindTopLeftOfMapViewFrom( Main.maxTilesX / 2, Main.maxTilesY / 2 );
+		}
+
+		private static (int TileX, int TileY) FindTopLeftOfMapViewFrom( int tileX, int tileY ) {
+			int prevLeftX = 0;
+			int prevRightX = Main.maxTilesX;
+			int prevTopY = 0;
+			int prevBotY = Main.maxTilesY;
+
+			//
+
+			void IncreaseX( ref int x ) {
+				prevLeftX = x;
+				x += ( prevRightX - x ) / 2;
+			}
+			void DecreaseX( ref int x ) {
+				prevRightX = x;
+				x += ( prevLeftX - x ) / 2;
+			}
+			void IncreaseY( ref int y ) {
+				prevTopY = y;
+				y += ( prevBotY - y ) / 2;
+			}
+			void DecreaseY( ref int y ) {
+				prevBotY = y;
+				y += ( prevTopY - y ) / 2;
+			}
+
+			//
+
+			Tuple<Vector2, bool> mapPos;
+
+			while( true ) {
+				bool foundX = false;
+				mapPos = HUDMapHelpers.GetFullMapScreenPosition( new Vector2( tileX, tileY ) );
+
+				if( (int)mapPos.Item1.X < 0 ) {
+					IncreaseX( ref tileX );
+				} else if( (int)mapPos.Item1.X > 0 ) {
+					DecreaseX( ref tileX );
+				} else {
+					foundX = true;
+				}
+
+				if( (int)mapPos.Item1.Y < 0 ) {
+					IncreaseY( ref tileY );
+				} else if( (int)mapPos.Item1.Y > 0 ) {
+					DecreaseY( ref tileY );
+				} else if( foundX ) {
+					return (tileX, tileY);
+				}
+			}
 		}
 	}
 }

@@ -5715,7 +5715,13 @@
         </member>
         <member name="T:HamstarHelpers.Helpers.HUD.HUDMapHelpers">
             <summary>
-            Assorted static "helper" functions pertaining to the HUD map. 
+            Assorted static "helper" functions pertaining to the HUD map.
+            </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to the HUD map.
+            </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to the HUD map.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
@@ -5734,21 +5740,28 @@
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetSizeOnFullMap(System.Single,System.Single)">
             <summary>
-            Returns a screen position of a given world position as if projected onto the overlay map.
+            Gets the scaled dimensions of a given width and height as if projectected onto the full screen map.
             </summary>
-            <param name="worldPosition"></param>
-            <returns>A tuple indicating the screen-relative position and whether the point is within the screen
-            boundaries.</returns>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullscreenMapTileOfScreenPosition(System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32}@)">
             <summary>
-            Returns a screen position of a given world position as if projected onto the overlay map.
+            Outputs the world tile position of a given screen position in the fullscreen map.
             </summary>
-            <param name="worldPosition"></param>
-            <returns>A tuple indicating the screen-relative position and whether the point is within the screen
-            boundaries.</returns>
+            <param name="scrPosX"></param>
+            <param name="scrPosY"></param>
+            <param name="tilePos"></param>
+            <returns>`true` if the tile is within world bounds.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.FindTopLeftOfMapView">
+            <summary>
+            Zooms in to find the top left tile position of the current map view.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>
@@ -5766,22 +5779,6 @@
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetSizeOnFullMap(System.Single,System.Single)">
-            <summary>
-            Gets the scaled dimensions of a given width and height as if projectected onto the full screen map.
-            </summary>
-            <param name="width"></param>
-            <param name="height"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetSizeOnOverlayMap(System.Single,System.Single)">
-            <summary>
-            Gets the scaled dimensions of a given width and height as if projectected onto the overlay map.
-            </summary>
-            <param name="width"></param>
-            <param name="height"></param>
-            <returns></returns>
-        </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetSizeOnMinimap(System.Single,System.Single)">
             <summary>
             Gets the scaled dimensions of a given width and height as if projectected onto the mini-map.
@@ -5790,14 +5787,29 @@
             <param name="height"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullscreenMapTileOfScreenPosition(System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32}@)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>
-            Outputs the world tile position of a given screen position in the fullscreen map.
+            Returns a screen position of a given world position as if projected onto the overlay map.
             </summary>
-            <param name="scrPosX"></param>
-            <param name="scrPosY"></param>
-            <param name="tilePos"></param>
-            <returns>`true` if the tile is within world bounds.</returns>
+            <param name="worldPosition"></param>
+            <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+            boundaries.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+            <summary>
+            Returns a screen position of a given world position as if projected onto the overlay map.
+            </summary>
+            <param name="worldPosition"></param>
+            <returns>A tuple indicating the screen-relative position and whether the point is within the screen
+            boundaries.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetSizeOnOverlayMap(System.Single,System.Single)">
+            <summary>
+            Gets the scaled dimensions of a given width and height as if projectected onto the overlay map.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Info.FormattedGameInfoHelpers">
             <summary>
