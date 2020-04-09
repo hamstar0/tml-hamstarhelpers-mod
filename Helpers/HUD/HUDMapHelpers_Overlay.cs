@@ -15,17 +15,17 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// <param name="worldPosition"></param>
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
-		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Vector2 worldPosition ) {    //Main.mapStyle == 2
-			return HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 ) );
+		public static (Vector2 ScreenPosition, bool IsOnScreen) GetOverlayMapPositionAsScreenPosition( Vector2 worldPosition ) {    //Main.mapStyle == 2
+			return HUDMapHelpers.GetOverlayMapPositionAsScreenPosition( new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 ) );
 		}
 
 		/// <summary>
 		/// Returns a screen position of a given world position as if projected onto the overlay map.
 		/// </summary>
-		/// <param name="worldPosition"></param>
+		/// <param name="worldArea"></param>
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
-		public static Tuple<Vector2, bool> GetOverlayMapScreenPosition( Rectangle worldPosition ) {    //Main.mapStyle == 2
+		public static (Vector2 ScreenPosition, bool IsOnScreen) GetOverlayMapPositionAsScreenPosition( Rectangle worldArea ) {    //Main.mapStyle == 2
 			float mapScale = Main.mapOverlayScale;
 			var scrSize = UIHelpers.GetScreenSize();
 
@@ -39,8 +39,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float mapX = -scrWrldPosMidX + (float)(Main.screenWidth / 2);
 			float mapY = -scrWrldPosMidY + (float)(Main.screenHeight / 2);
 
-			float originMidX = (worldPosition.X / 16f) * mapScale;
-			float originMidY = (worldPosition.Y / 16f) * mapScale;
+			float originMidX = (worldArea.X / 16f) * mapScale;
+			float originMidY = (worldArea.Y / 16f) * mapScale;
 
 			originMidX += mapX;
 			originMidY += mapY;
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Helpers.HUD {
 				originMidX < scrSize.Item1 &&
 				originMidY < scrSize.Item2;
 
-			return Tuple.Create( scrPos, isOnscreen );
+			return ( scrPos, isOnscreen );
 		}
 
 
@@ -67,8 +67,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;
 
-			Vector2 mapBasePos = HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).Item1;
-			Vector2 mapNewPos = HUDMapHelpers.GetOverlayMapScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).Item1;
+			Vector2 mapBasePos = HUDMapHelpers.GetOverlayMapPositionAsScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).ScreenPosition;
+			Vector2 mapNewPos = HUDMapHelpers.GetOverlayMapPositionAsScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).ScreenPosition;
 
 			return mapNewPos - mapBasePos;
 		}

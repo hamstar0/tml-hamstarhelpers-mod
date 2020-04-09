@@ -5723,8 +5723,11 @@
             <summary>
             Assorted static "helper" functions pertaining to the HUD map.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to the HUD map.
+            </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapPositionAsScreenPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>
             Returns a screen position of a given world position as if projected onto the fullscreen map.
             </summary>
@@ -5732,11 +5735,11 @@
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapPositionAsScreenPosition(Microsoft.Xna.Framework.Rectangle)">
             <summary>
             Returns a screen position of a given world position as if projected onto the fullscreen map.
             </summary>
-            <param name="worldPosition"></param>
+            <param name="worldArea"></param>
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
@@ -5757,13 +5760,13 @@
             <param name="tilePos"></param>
             <returns>`true` if the tile is within world bounds.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.FindTopLeftOfMapView">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.FindTopLeftTileOfFullscreenMap">
             <summary>
             Zooms in to find the top left tile position of the current map view.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapPositionAsScreenPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>
             Returns a screen position of a given world position as if projected onto the mini-map.
             </summary>
@@ -5771,11 +5774,11 @@
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapPositionAsScreenPosition(Microsoft.Xna.Framework.Rectangle)">
             <summary>
             Returns a screen position of a given world position as if projected onto the mini-map.
             </summary>
-            <param name="worldPosition"></param>
+            <param name="worldArea"></param>
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
@@ -5787,7 +5790,25 @@
             <param name="height"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+            @private
+        </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapScreenPosition(Microsoft.Xna.Framework.Vector2)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapPositionAsScreenPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>
             Returns a screen position of a given world position as if projected onto the overlay map.
             </summary>
@@ -5795,11 +5816,11 @@
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapPositionAsScreenPosition(Microsoft.Xna.Framework.Rectangle)">
             <summary>
             Returns a screen position of a given world position as if projected onto the overlay map.
             </summary>
-            <param name="worldPosition"></param>
+            <param name="worldArea"></param>
             <returns>A tuple indicating the screen-relative position and whether the point is within the screen
             boundaries.</returns>
         </member>
