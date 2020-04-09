@@ -11,6 +11,17 @@ namespace HamstarHelpers.Helpers.HUD {
 	/// </summary>
 	public partial class HUDMapHelpers {
 		/// <summary>
+		/// Gets the scale (zoom) of the full screen map.
+		/// </summary>
+		/// <returns></returns>
+		public static float GetFullMapScale() {
+			return Main.mapFullscreenScale / Main.UIScale;
+		}
+
+
+		////////////////
+
+		/// <summary>
 		/// Returns a screen position of a given world position as if projected onto the fullscreen map.
 		/// </summary>
 		/// <param name="worldPosition"></param>
@@ -27,7 +38,7 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
 		public static (Vector2 ScreenPosition, bool IsOnScreen) GetFullMapPositionAsScreenPosition( Rectangle worldArea ) {    //Main.mapFullscreen
-			float mapScale = Main.mapFullscreenScale / Main.UIScale;
+			float mapScale = HUDMapHelpers.GetFullMapScale();
 			var scrSize = UIHelpers.GetScreenSize();
 
 			//float offscrLitX = 10f * mapScale;

@@ -10,6 +10,17 @@ namespace HamstarHelpers.Helpers.HUD {
 	/// </summary>
 	public partial class HUDMapHelpers {
 		/// <summary>
+		/// Gets the scale (zoom) of the overlay map.
+		/// </summary>
+		/// <returns></returns>
+		public static float GetOverlayerMapScale() {
+			return Main.mapOverlayScale;
+		}
+
+
+		////////////////
+
+		/// <summary>
 		/// Returns a screen position of a given world position as if projected onto the overlay map.
 		/// </summary>
 		/// <param name="worldPosition"></param>

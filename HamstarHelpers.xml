@@ -5727,6 +5727,12 @@
             Assorted static "helper" functions pertaining to the HUD map.
             </summary>
         </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapScale">
+            <summary>
+            Gets the scale (zoom) of the full screen map.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetFullMapPositionAsScreenPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>
             Returns a screen position of a given world position as if projected onto the fullscreen map.
@@ -5763,6 +5769,12 @@
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.FindTopLeftTileOfFullscreenMap">
             <summary>
             Zooms in to find the top left tile position of the current map view.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapScale">
+            <summary>
+            Gets the scale (zoom) of the mini map.
             </summary>
             <returns></returns>
         </member>
@@ -5807,6 +5819,12 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetMiniMapScreenPosition(Microsoft.Xna.Framework.Rectangle)">
             @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayerMapScale">
+            <summary>
+            Gets the scale (zoom) of the overlay map.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDMapHelpers.GetOverlayMapPositionAsScreenPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>

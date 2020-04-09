@@ -10,6 +10,17 @@ namespace HamstarHelpers.Helpers.HUD {
 	/// </summary>
 	public partial class HUDMapHelpers {
 		/// <summary>
+		/// Gets the scale (zoom) of the mini map.
+		/// </summary>
+		/// <returns></returns>
+		public static float GetMiniMapScale() {
+			return Main.mapMinimapScale;
+		}
+
+
+		////////////////
+
+		/// <summary>
 		/// Returns a screen position of a given world position as if projected onto the mini-map.
 		/// </summary>
 		/// <param name="worldPosition"></param>
