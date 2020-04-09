@@ -126,12 +126,10 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// </summary>
 		/// <returns></returns>
 		public static (int TileX, int TileY) FindTopLeftTileOfFullscreenMap() {
-			var tilePos = new Vector2( Main.maxTilesX / 2, Main.maxTilesY / 2 );
-
-			return HUDMapHelpers.FindTopLeftOfMapViewFrom( Main.maxTilesX / 2, Main.maxTilesY / 2 );
+			return HUDMapHelpers.FindTopLeftTileOfFullscreenMapStartingAt( Main.maxTilesX / 2, Main.maxTilesY / 2 );
 		}
 
-		private static (int TileX, int TileY) FindTopLeftOfMapViewFrom( int tileX, int tileY ) {
+		private static (int TileX, int TileY) FindTopLeftTileOfFullscreenMapStartingAt( int tileX, int tileY ) {
 			int prevLeftX = 0;
 			int prevRightX = Main.maxTilesX;
 			int prevTopY = 0;
