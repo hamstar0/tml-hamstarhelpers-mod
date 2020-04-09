@@ -125,15 +125,15 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// Zooms in to find the top left tile position of the current map view.
 		/// </summary>
 		/// <returns></returns>
-		public static (int TileX, int TileY) FindTopLeftTileOfFullscreenMap() {
+		public static (int TileX, int TileY, bool IsOnScreen) FindTopLeftTileOfFullscreenMap() {
 			return HUDMapHelpers.FindTopLeftTileOfFullscreenMapStartingAt( Main.maxTilesX / 2, Main.maxTilesY / 2 );
 		}
 
-		private static (int TileX, int TileY) FindTopLeftTileOfFullscreenMapStartingAt( int tileX, int tileY ) {
-			int prevLeftX = 0;
-			int prevRightX = Main.maxTilesX;
-			int prevTopY = 0;
-			int prevBotY = Main.maxTilesY;
+		private static (int TileX, int TileY, bool IsOnScreen) FindTopLeftTileOfFullscreenMapStartingAt( int tileX, int tileY ) {
+			int prevLeftX = Main.maxTilesX * -32;
+			int prevRightX = Main.maxTilesX * 32;
+			int prevTopY = Main.maxTilesY * -32;
+			int prevBotY = Main.maxTilesY * 32;
 
 			//
 
@@ -160,7 +160,8 @@ namespace HamstarHelpers.Helpers.HUD {
 
 			while( true ) {
 				bool foundX = false;
-				mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Vector2( tileX, tileY ) );
+				mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Vector2( tileX << 4, tileY << 4 ) );
+//LogHelpers.LogOnce( "x:"+tileX+", y:"+tileY+" -- lx:"+prevLeftX+", rx:"+prevRightX+", uy:"+prevTopY+", dy:"+prevBotY+" -- sx:"+mapPos.ScreenPosition.ToString());
 
 				if( (int)mapPos.ScreenPosition.X < 0 ) {
 					IncreaseX( ref tileX );
@@ -175,7 +176,8 @@ namespace HamstarHelpers.Helpers.HUD {
 				} else if( (int)mapPos.ScreenPosition.Y > 0 ) {
 					DecreaseY( ref tileY );
 				} else if( foundX ) {
-					return (tileX, tileY);
+					bool isOnScreen = tileX < 0 || tileY < 0;
+					return (tileX, tileY, isOnScreen);
 				}
 			}
 		}
