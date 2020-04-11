@@ -1,16 +1,16 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Commands;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Services.Hooks.LoadHooks;
+﻿using System;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Commands;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {

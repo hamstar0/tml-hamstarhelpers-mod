@@ -157,28 +157,32 @@ namespace HamstarHelpers.Helpers.HUD {
 			//
 
 			(Vector2 ScreenPosition, bool) mapPos;
+			float prevScrX = float.MaxValue;
+			float prefScrY = float.MaxValue;
 
 			while( true ) {
-				bool foundX = false;
-				mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Vector2( tileX << 4, tileY << 4 ) );
+				mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Vector2(tileX << 4, tileY << 4) );
 //LogHelpers.LogOnce( "x:"+tileX+", y:"+tileY+" -- lx:"+prevLeftX+", rx:"+prevRightX+", uy:"+prevTopY+", dy:"+prevBotY+" -- sx:"+mapPos.ScreenPosition.ToString());
 
-				if( (int)mapPos.ScreenPosition.X < 0 ) {
+				if( mapPos.ScreenPosition.X < 0f ) {
 					IncreaseX( ref tileX );
-				} else if( (int)mapPos.ScreenPosition.X > 0 ) {
+				} else if( mapPos.ScreenPosition.X > 0f ) {
 					DecreaseX( ref tileX );
-				} else {
-					foundX = true;
 				}
 
-				if( (int)mapPos.ScreenPosition.Y < 0 ) {
+				if( mapPos.ScreenPosition.Y < 0f ) {
 					IncreaseY( ref tileY );
-				} else if( (int)mapPos.ScreenPosition.Y > 0 ) {
+				} else if( mapPos.ScreenPosition.Y > 0f ) {
 					DecreaseY( ref tileY );
-				} else if( foundX ) {
+				}
+
+				if( mapPos.ScreenPosition.X == prevScrX && mapPos.ScreenPosition.Y == prefScrY ) {
 					bool isOnScreen = tileX < 0 || tileY < 0;
 					return (tileX, tileY, isOnScreen);
 				}
+
+				prevScrX = mapPos.ScreenPosition.X;
+				prefScrY = mapPos.ScreenPosition.Y;
 			}
 		}
 	}

@@ -16,18 +16,23 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary></summary>
 		public Texture2D CheckmarkTexture;
 
+		////
+
 		/// <summary>
 		/// Hooks changes to the button state.
 		/// </summary>
 		public event Action OnSelectedChanged = null;
+
 		/// <summary>
 		/// Allows defining a custom sort order value (for putting in an ordered list).
 		/// </summary>
 		public float Order = 0f;
+
 		/// <summary>
 		/// Enables mouse interactivity.
 		/// </summary>
 		public bool IsClickable = true;
+
 		/// <summary>
 		/// Mouse hover popup label.
 		/// </summary>

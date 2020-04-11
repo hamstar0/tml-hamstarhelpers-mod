@@ -2395,6 +2395,59 @@
             </summary>
             <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
         </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UISlider">
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.InputPercentValue">
+            <summary>
+            Element's current input value.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.Order">
+            <summary>
+            Allows defining a custom sort order value (for putting in an ordered list).
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.IsClickable">
+            <summary>
+            Enables mouse interactivity.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.Title">
+            <summary>
+            Mouse hover popup label.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.String,System.Boolean)">
+            <param name="theme">Appearance style.</param>
+            <param name="titleText">Display text next to checkbox control.</param>
+            <param name="hoverText">Mouse hover popup label.</param>
+            <param name="isClickable">Enables mouse interactivity.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.CompareTo(System.Object)">
+            <summary>
+            Decides sort order in a list.
+            </summary>
+            <param name="obj">Object to compare rank to.</param>
+            <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Int32)">
+            <summary>
+            Draws a slider bar and returns the value of the mouse's current position.
+            </summary>
+            <param name="sb"></param>
+            <param name="destRect"></param>
+            <param name="percentValue"></param>
+            <param name="lockState"></param>
+        </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel">
             <summary>
             Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
