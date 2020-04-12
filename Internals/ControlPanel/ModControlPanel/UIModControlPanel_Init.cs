@@ -8,7 +8,6 @@ using Terraria.UI;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Commands;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 

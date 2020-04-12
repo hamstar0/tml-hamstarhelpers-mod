@@ -11,23 +11,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// Implements a UI slider bar element.
 	/// </summary>
 	public partial class UISlider : UIThemedPanel {
-		/// <summary>
-		/// Gets the slider value of a given point relative to a given slider rectangle area.
-		/// </summary>
-		/// <param name="point"></param>
-		/// <param name="area"></param>
-		/// <returns></returns>
-		public static float GetInputValueWithinArea( Point point, Rectangle area ) {
-			if( point.X >= area.X && point.X <= area.X + area.Width ) {
-				return (float)( point.X - area.X ) / (float)area.Width;
-			}
-
-			if( area.X >= point.X ) {
-				return 0f;
-			}
-
-			return 1f;
-		}
+		private static UISlider SelectedSlider = null;
 
 
 
@@ -36,24 +20,43 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Element's current input value.
 		/// </summary>
-		public float InputPercentValue = 0f;
+		public float InputValue { get; protected set; } = 0f;
+
+
+		////
+
+		/// <summary>
+		/// Total range of this slider element.
+		/// </summary>
+		public (float Min, float Max) Range { get; protected set; } = (0f, 1f);
+
+		/// <summary>
+		/// Number of ticks to snap to along slider's range.
+		/// </summary>
+		public int Ticks { get; protected set; } = 0;
+
+		/// <summary>
+		/// Constrain values to integers.
+		/// </summary>
+		public bool IsInt { get; protected set; } = true;
+
 
 		////
 
 		/// <summary>
 		/// Allows defining a custom sort order value (for putting in an ordered list).
 		/// </summary>
-		public float Order = 0f;
+		public float Order { get; protected set; } = 0f;
 
 		/// <summary>
 		/// Enables mouse interactivity.
 		/// </summary>
-		public bool IsClickable = true;
+		public bool IsClickable { get; protected set; } = true;
 
 		/// <summary>
 		/// Mouse hover popup label.
 		/// </summary>
-		public string Title = "";
+		public string HoverText { get; protected set; } = "";
 
 
 
@@ -62,12 +65,23 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="theme">Appearance style.</param>
 		/// <param name="hoverText">Mouse hover popup label.</param>
 		/// <param name="isClickable">Enables mouse interactivity.</param>
+		/// <param name="isInt">Indicates this slider uses integer values only. Default false.</param>
+		/// <param name="ticks">Number of ticks to snap to along slider range. Default 0 (unlimited).</param>
+		/// <param name="minRange">Beginning of slider range. Default 0.</param>
+		/// <param name="maxRange">End of slider range. Default 1.</param>
 		public UISlider( UITheme theme,
-				string hoverText,
-				bool isClickable = true )
-				: base( theme, true ) {
-			this.Title = hoverText;
+					string hoverText,
+					bool isClickable = true,
+					bool isInt = false,
+					int ticks = 0,
+					float minRange = 0f,
+					float maxRange = 1f )
+					: base( theme, true ) {
+			this.HoverText = hoverText;
 			this.IsClickable = isClickable;
+			this.IsInt = isInt;
+			this.Ticks = ticks;
+			this.Range = (minRange, maxRange);
 
 			this.Width.Set( 167f, 0f );
 			this.Height.Set( 16f, 0f );
@@ -76,31 +90,38 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		////////////////
 
-		/// <summary>
-		/// Gets the screen space rectangle of the slider.
-		/// </summary>
-		/// <returns></returns>
-		public Rectangle GetSliderRectangle() {
-			CalculatedStyle innerPos = this.GetInnerDimensions();
+		/// @private
+		public override void Draw( SpriteBatch spriteBatch ) {
+			if( this.IsClickable && Main.mouseLeft ) {
+				if( UISlider.SelectedSlider == null ) {
+					if( this.GetSliderRectangle().Contains(Main.mouseX, Main.mouseY) ) {
+						UISlider.SelectedSlider = this;
+					}
+				}
+			} else {
+				UISlider.SelectedSlider = null;
+			}
 
-			return new Rectangle(
-				(int)innerPos.X,
-				((int)innerPos.Y - 5) - ((int)innerPos.Height / 2 ),//* scale
-				(int)innerPos.Width,//* scale
-				(int)innerPos.Height//* scale
-			);
+			base.Draw( spriteBatch );
 		}
-
-
-		////////////////
 
 		/// @private
 		protected override void DrawSelf( SpriteBatch sb ) {
 			Rectangle destRect = this.GetSliderRectangle();
 
-			this.InputPercentValue = UISlider.GetInputValueWithinArea( new Point(Main.mouseX, Main.mouseY), destRect );
+			if( this.IsClickable && Main.mouseLeft && UISlider.SelectedSlider == this ) {
+				this.InputValue = UISlider.GetInputPercentWithinArea( new Point(Main.mouseX, Main.mouseY), destRect );
+				this.InputValue = UISlider.GetValueOfSliderPositionPercent( this.InputValue, this.Range.Min, this.Range.Max, this.Ticks );
 
-			UISlider.DrawSlider( sb, destRect, this.InputPercentValue );
+				if( this.IsInt ) {
+					this.InputValue = (float)Math.Round( this.InputValue );
+				}
+			}
+
+			float rangeAmt = this.Range.Max - this.Range.Min;
+			float percentValue = (this.InputValue - this.Range.Min) / rangeAmt;
+
+			UISlider.DrawSlider( sb, destRect, percentValue );
 
 			base.DrawSelf( sb );
 		}
