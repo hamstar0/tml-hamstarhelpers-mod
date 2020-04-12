@@ -107,21 +107,22 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// @private
 		protected override void DrawSelf( SpriteBatch sb ) {
-			Rectangle destRect = this.GetSliderRectangle();
+			Rectangle rect = this.GetSliderRectangle();
 
 			if( this.IsClickable && Main.mouseLeft && UISlider.SelectedSlider == this ) {
-				this.InputValue = UISlider.GetInputPercentWithinArea( new Point(Main.mouseX, Main.mouseY), destRect );
-				this.InputValue = UISlider.GetValueOfSliderPositionPercent( this.InputValue, this.Range.Min, this.Range.Max, this.Ticks );
-
-				if( this.IsInt ) {
-					this.InputValue = (float)Math.Round( this.InputValue );
-				}
+				this.InputValue = UISlider.GetInputValue(
+					rect,
+					new Point(Main.mouseX, Main.mouseY),
+					this.Range.Min,
+					this.Range.Max,
+					this.Ticks,
+					this.IsInt
+				);
 			}
 
-			float rangeAmt = this.Range.Max - this.Range.Min;
-			float percentValue = (this.InputValue - this.Range.Min) / rangeAmt;
+			float percentValue = UISlider.GetPercentOfSliderValue( this.InputValue, this.Range.Min, this.Range.Max );
 
-			UISlider.DrawSlider( sb, destRect, percentValue );
+			UISlider.DrawSlider( sb, rect, percentValue );
 
 			base.DrawSelf( sb );
 		}

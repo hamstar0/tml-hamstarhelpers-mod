@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.UI;
 
 
@@ -34,7 +35,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="maxRange"></param>
 		/// <param name="ticks"></param>
 		/// <returns></returns>
-		public static float GetValueOfSliderPositionPercent( float percent, float minRange, float maxRange, int ticks ) {
+		public static float GetValueOfSliderPercent( float percent, float minRange, float maxRange, int ticks ) {
 			float rangeAmt = maxRange - minRange;
 			float rangeValue = rangeAmt * percent;
 
@@ -45,6 +46,40 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			}
 
 			return minRange + rangeValue;
+		}
+
+		/// <summary>
+		/// Gets the slider percent value of a given input value.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="minRange"></param>
+		/// <param name="maxRange"></param>
+		/// <returns></returns>
+		public static float GetPercentOfSliderValue( float value, float minRange, float maxRange ) {
+			float rangeAmt = maxRange - minRange;
+			return ( value - minRange ) / rangeAmt;
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Gets the input value from a given screen selection point.
+		/// </summary>
+		/// <param name="sliderRect"></param>
+		/// <param name="screenAt"></param>
+		/// <param name="minRange"></param>
+		/// <param name="maxRange"></param>
+		/// <param name="ticks"></param>
+		/// <param name="isInt"></param>
+		/// <returns></returns>
+		public static float GetInputValue( Rectangle sliderRect, Point screenAt, float minRange, float maxRange, int ticks, bool isInt ) {
+			float valuePercent = UISlider.GetInputPercentWithinArea( screenAt, sliderRect );
+			float value = UISlider.GetValueOfSliderPercent( valuePercent, minRange, maxRange, ticks );
+			if( isInt ) {
+				value = (float)Math.Round( value );
+			}
+			return value;
 		}
 
 
