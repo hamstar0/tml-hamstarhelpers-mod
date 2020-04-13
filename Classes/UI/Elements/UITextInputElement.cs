@@ -41,9 +41,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// <summary>
+		/// Enables mouse interactivity.
+		/// </summary>
+		public bool IsClickable = true;
+
+
+		////////////////
+
+		/// <summary>
 		/// Text color.
 		/// </summary>
-		public Color TextColor;
+		public Color TextColor = Color.White;
 
 		/// <summary>
 		/// "Default" text. Appears when no text is input. Not counted as input.
@@ -62,6 +70,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
 		public UITextInputElement( string hintText ) {
 			this.HintText = hintText;
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Enables or disables the current element.
+		/// </summary>
+		/// <param name="isEnabled"></param>
+		public void Enable( bool isEnabled ) {
+			this.IsClickable = isEnabled;
 		}
 
 
@@ -94,7 +113,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			CalculatedStyle dim = this.GetDimensions();
 
 			// Detect if user selects this element
-			if( Main.mouseLeft ) {
+			if( this.IsClickable && Main.mouseLeft ) {
 				bool isNowSelected = false;
 
 				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {

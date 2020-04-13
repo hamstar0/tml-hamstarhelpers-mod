@@ -61,7 +61,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		////////////////
 
-		private UITextInputAreaPanel NumericInput;
+		private UITextInputElement NumericInput;
 
 		private bool IsNowSettingValue = false;
 
@@ -97,15 +97,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.Width.Set( 167f, 0f );
 			this.Height.Set( 40f, 0f );
 
-			this.SetValue( minRange );
+			this.NumericInput = new UITextInputElement( "" );
+			this.NumericInput.Top.Set( -2f, 0f );
+			this.NumericInput.Left.Set( 6f, 0f );
+			this.NumericInput.Width.Set( 64f, 0f );
+			this.NumericInput.Height.Set( 24f, 0f );
+			this.NumericInput.OnTextChange += ProcessInput;
+			this.Append( this.NumericInput );
 
-			this.NumericInput = new UITextInputAreaPanel( this.Theme, "0", 24 );
-			this.NumericInput.Width.Set( 96f, 0f );
-			this.NumericInput.Height.Set( 16f, 0f );
-			this.NumericInput.Top.Set( 4f, 0f );
-			this.NumericInput.Left.Set( 4f, 0f );
-			this.NumericInput.OnPreTextChange += ProcessInput;
-			//this.Append( this.NumericInput );
+			this.SetValue( minRange );
 		}
 
 

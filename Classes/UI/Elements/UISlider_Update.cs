@@ -11,8 +11,13 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public partial class UISlider : UIThemedPanel {
 		public override void Update( GameTime gameTime ) {
-			this.UpdateMouseInteractivity();
+			if( !this.NumericInput.IsMouseHovering ) {
+				this.UpdateMouseInteractivity();
+			}
 		}
+
+
+		////
 
 		private void UpdateMouseInteractivity() {
 			if( !this.IsClickable ) {
