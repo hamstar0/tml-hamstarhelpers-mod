@@ -200,9 +200,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.RememberedInputValue = this.GetConstrainedValue( value );
 
 			if( this.IsInt ) {
-				this.NumericInput?.SetText( value.ToString( "N0" ) );
+				this.NumericInput?.SetText( this.RememberedInputValue.ToString( "N0" ) );
 			} else {
-				this.NumericInput?.SetText( value.ToString() );
+				this.NumericInput?.SetText( this.RememberedInputValue.ToString() );
 			}
 		}
 
