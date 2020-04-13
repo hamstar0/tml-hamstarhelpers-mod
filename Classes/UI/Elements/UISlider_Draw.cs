@@ -2,13 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using HamstarHelpers.Classes.UI.Theme;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedPanel {
+	public partial class UISlider : UIThemedElement {
 		/// <summary>
 		/// Draws a slider bar and returns the value of the mouse's current position.
 		/// </summary>
@@ -21,21 +22,23 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					Rectangle destRect,
 					float valueAsPercent,
 					int lockState = 0 ) {
-			var shiftedRect = destRect;
+			var innerBarRect = destRect;
+			var outerBarRect = destRect;
+			outerBarRect.Height = Main.colorBarTexture.Height;
 
-			sb.Draw( Main.colorBarTexture, destRect, Color.White );
+			sb.Draw( Main.colorBarTexture, outerBarRect, Color.White );
 
-			shiftedRect.X += 4;//* scale
-			shiftedRect.Y += 4;//* scale
-			shiftedRect.Width -= 8;
-			shiftedRect.Height -= 4;
+			innerBarRect.X += 4;//* scale
+			innerBarRect.Y += 4;//* scale
+			innerBarRect.Width -= 8;
+			innerBarRect.Height -= 4;
 
-			for( int i = 0; i < shiftedRect.Width; i++ ) {
+			for( int i = 0; i < innerBarRect.Width; i++ ) {
 				float percent = (float)i / (float)destRect.Width;
 
 				sb.Draw(
 					texture: Main.colorBlipTexture,
-					position: new Vector2( shiftedRect.X + i, shiftedRect.Y ),
+					position: new Vector2( innerBarRect.X + i, innerBarRect.Y ),
 					sourceRectangle: null,
 					color: Utils.ColorLerp_BlackToWhite( percent ),
 					rotation: 0f,
@@ -52,14 +55,14 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			}
 
 			if( isHovering || lockState == 1 ) {
-				sb.Draw( Main.colorHighlightTexture, destRect, Main.OurFavoriteColor );
+				sb.Draw( Main.colorHighlightTexture, outerBarRect, Main.OurFavoriteColor );
 			}
 
 			sb.Draw(
 				texture: Main.colorSliderTexture,
 				position: new Vector2(
-					shiftedRect.X + ((float)shiftedRect.Width * valueAsPercent),
-					shiftedRect.Y + 4f
+					innerBarRect.X + ((float)innerBarRect.Width * valueAsPercent),
+					innerBarRect.Y + 4f
 				),
 				sourceRectangle: null,
 				color: Color.White,

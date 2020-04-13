@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Terraria;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 
@@ -10,7 +9,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedPanel {
+	public partial class UISlider : UIThemedElement {
 		private static UISlider SelectedSlider = null;
 
 
@@ -95,7 +94,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.Range = (minRange, maxRange);
 
 			this.Width.Set( 167f, 0f );
-			this.Height.Set( 40f, 0f );
+			this.Height.Set( 24f, 0f );
 
 			this.NumericInput = new UITextInputElement( "" );
 			this.NumericInput.Top.Set( -2f, 0f );
@@ -117,20 +116,28 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="isEnabled"></param>
 		public void Enable( bool isEnabled ) {
 			this.IsClickable = isEnabled;
+			this.NumericInput.Enable( isEnabled );
 		}
 
 
 		////////////////
 
 		private bool SetValueFromInput( string rawInput ) {
-			float input;
-			if( !float.TryParse( rawInput, out input ) ) {
+			float value;
+			if( !float.TryParse(rawInput, out value) ) {
+				return true;
+			}
+
+			float processedValue = this.GetConstrainedValue( value );
+			if( processedValue != value ) {
 				return false;
 			}
 
-			this.SetValue( input );
+			this.SetValueUnsafe( value );
+
 			return true;
 		}
+
 
 		/// <summary>
 		/// Sets the value. Applies necessary clamping.
@@ -138,34 +145,18 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="value"></param>
 		public void SetValue( float value ) {
 			this.IsNowSettingValue = true;
+			this.SetValueUnsafe( value );
+			this.IsNowSettingValue = false;
+		}
 
-			if( this.Ticks > 0 ) {
-				float rangeAmt = this.Range.Max - this.Range.Min;
-				float rangeValue = value - this.Range.Min;
-
-				float rangePerTick = rangeAmt / this.Ticks;
-				int rangeValueTickCount = (int)( rangeValue / rangePerTick );
-				rangeValue = (float)rangeValueTickCount * rangePerTick;
-
-				value = this.Range.Min + rangeValue;
-			}
+		private void SetValueUnsafe( float value ) {
+			this.RememberedInputValue = this.GetConstrainedValue( value );
 
 			if( this.IsInt ) {
-				value = (float)Math.Round( value );
-				value = MathHelper.Clamp( (int)value, (int)Math.Ceiling(this.Range.Min), (int)Math.Floor(this.Range.Max) );
-			} else {
-				value = MathHelper.Clamp( value, this.Range.Min, this.Range.Max );
-			}
-
-			this.RememberedInputValue = value;
-
-			if( this.IsInt ) {
-				this.NumericInput?.SetText( value.ToString("N0") );
+				this.NumericInput?.SetText( value.ToString( "N0" ) );
 			} else {
 				this.NumericInput?.SetText( value.ToString() );
 			}
-
-			this.IsNowSettingValue = false;
 		}
 
 

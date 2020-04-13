@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Timers;
 
@@ -9,10 +10,16 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedPanel {
+	public partial class UISlider : UIThemedElement {
 		public override void Update( GameTime gameTime ) {
 			if( !this.NumericInput.IsMouseHovering ) {
 				this.UpdateMouseInteractivity();
+			}
+
+			if( UISlider.SelectedSlider != null ) {
+				this.NumericInput.Enable( false );
+			} else {
+				this.NumericInput.Enable( this.IsClickable );
 			}
 		}
 

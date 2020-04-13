@@ -1,14 +1,13 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.UI;
+using HamstarHelpers.Classes.UI.Theme;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedPanel {
+	public partial class UISlider : UIThemedElement {
 		/// <summary>
 		/// Gets the slider value of a given point relative to a given slider rectangle area.
 		/// </summary>
@@ -79,6 +78,39 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			if( isInt ) {
 				value = (float)Math.Round( value );
 			}
+			return value;
+		}
+
+
+
+		////////////////
+
+		/// <summary>
+		/// Processes a given value to best fit as a value of the current slider's available set.
+		/// </summary>
+		/// <param name="rawValue"></param>
+		/// <returns></returns>
+		public float GetConstrainedValue( float rawValue ) {
+			float value = rawValue;
+
+			if( this.Ticks > 0 ) {
+				float rangeAmt = this.Range.Max - this.Range.Min;
+				float rangeValue = value - this.Range.Min;
+
+				float rangePerTick = rangeAmt / this.Ticks;
+				int rangeValueTickCount = (int)( rangeValue / rangePerTick );
+				rangeValue = (float)rangeValueTickCount * rangePerTick;
+
+				value = this.Range.Min + rangeValue;
+			}
+
+			if( this.IsInt ) {
+				value = (float)Math.Round( value );
+				value = MathHelper.Clamp( (int)value, (int)Math.Ceiling( this.Range.Min ), (int)Math.Floor( this.Range.Max ) );
+			} else {
+				value = MathHelper.Clamp( value, this.Range.Min, this.Range.Max );
+			}
+
 			return value;
 		}
 	}
