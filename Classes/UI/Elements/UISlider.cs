@@ -145,6 +145,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////
 
 		/// <summary>
+		/// Adjusts the available range of values for this element.
+		/// </summary>
+		/// <param name="minRange"></param>
+		/// <param name="maxRange"></param>
+		public void SetRange( float minRange, float maxRange ) {
+			this.Range = (minRange, maxRange);
+
+			this.SetValueUnsafe( this.RememberedInputValue );
+		}
+
+		/// <summary>
 		/// Adjusts the number of ticks to use for this element.
 		/// </summary>
 		/// <param name="ticks">Set to 0 for no ticks.</param>

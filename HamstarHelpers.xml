@@ -2470,6 +2470,13 @@
             </summary>
             <param name="isEnabled"></param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetRange(System.Single,System.Single)">
+            <summary>
+            Adjusts the available range of values for this element.
+            </summary>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetTicks(System.Int32)">
             <summary>
             Adjusts the number of ticks to use for this element.
