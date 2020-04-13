@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Terraria;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 
@@ -53,9 +54,19 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public bool IsClickable { get; protected set; } = true;
 
 		/// <summary>
+		/// Indicates if text input is suppressed (hidden).
+		/// </summary>
+		public bool IsTextInputHidden { get; protected set; } = false;
+
+		/// <summary>
 		/// Mouse hover popup label.
 		/// </summary>
 		public string HoverText { get; protected set; } = "";
+
+		/// <summary>
+		/// Mouse hover popup label.
+		/// </summary>
+		public Func<float, Color> InnerBarShader { get; protected set; }
 
 
 		////////////////
@@ -74,12 +85,16 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="ticks">Number of ticks to snap to along slider range. Default 0 (unlimited).</param>
 		/// <param name="minRange">Beginning of slider range. Default 0.</param>
 		/// <param name="maxRange">End of slider range. Default 1.</param>
+		/// <param name="hideTextInput">Indicates if text input is suppressed (hidden).</param>
+		/// <param name="innerBarShader">Allows specifying a color gradient for the inner bar. Defaults to `null`; the default black-to-white shader.</param>
 		public UISlider( UITheme theme,
 					string hoverText,
 					bool isInt = false,
 					int ticks = 0,
 					float minRange = 0f,
-					float maxRange = 1f )
+					float maxRange = 1f,
+					bool hideTextInput = false,
+					Func<float, Color> innerBarShader = null )
 					: base( theme, true ) {
 			bool ProcessInput( StringBuilder fullInput ) {
 				return !this.IsNowSettingValue
@@ -92,11 +107,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.IsInt = isInt;
 			this.Ticks = ticks;
 			this.Range = (minRange, maxRange);
+			this.IsTextInputHidden = hideTextInput;
+			this.InnerBarShader = innerBarShader == null
+				? Utils.ColorLerp_BlackToWhite
+				: innerBarShader;
 
 			this.Width.Set( 167f, 0f );
 			this.Height.Set( 24f, 0f );
 
 			this.NumericInput = new UITextInputElement( "" );
+			this.NumericInput.Enable( !this.IsTextInputHidden );
+			this.NumericInput.Hide( this.IsTextInputHidden );
 			this.NumericInput.Top.Set( -2f, 0f );
 			this.NumericInput.Left.Set( 6f, 0f );
 			this.NumericInput.Width.Set( 64f, 0f );
@@ -116,7 +137,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="isEnabled"></param>
 		public void Enable( bool isEnabled ) {
 			this.IsClickable = isEnabled;
-			this.NumericInput.Enable( isEnabled );
+
+			this.NumericInput.Enable( isEnabled && !this.IsTextInputHidden );
+			this.NumericInput.Hide( !isEnabled || this.IsTextInputHidden );
 		}
 
 

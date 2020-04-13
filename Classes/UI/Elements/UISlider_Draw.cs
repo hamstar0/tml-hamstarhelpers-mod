@@ -16,11 +16,13 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="sb"></param>
 		/// <param name="destRect"></param>
 		/// <param name="valueAsPercent"></param>
+		/// <param name="innerBarShader"></param>
 		/// <param name="lockState"></param>
 		public static void DrawSlider(
 					SpriteBatch sb,
 					Rectangle destRect,
 					float valueAsPercent,
+					Func<float, Color> innerBarShader,
 					int lockState = 0 ) {
 			var innerBarRect = destRect;
 			var outerBarRect = destRect;
@@ -40,7 +42,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					texture: Main.colorBlipTexture,
 					position: new Vector2( innerBarRect.X + i, innerBarRect.Y ),
 					sourceRectangle: null,
-					color: Utils.ColorLerp_BlackToWhite( percent ),
+					color: innerBarShader( percent ),
 					rotation: 0f,
 					origin: Vector2.Zero,
 					scale: 1f,
@@ -90,7 +92,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			base.DrawSelf( sb );
 
-			UISlider.DrawSlider( sb, rect, percentValue );
+			UISlider.DrawSlider( sb, rect, percentValue, this.InnerBarShader );
 		}
 	}
 }

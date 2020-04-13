@@ -43,7 +43,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Enables mouse interactivity.
 		/// </summary>
-		public bool IsClickable = true;
+		public bool IsInteractive { get; protected set; } = true;
+
+		/// <summary>
+		/// Controls visibility.
+		/// </summary>
+		public bool IsHidden { get; protected set; } = true;
 
 
 		////////////////
@@ -80,7 +85,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="isEnabled"></param>
 		public void Enable( bool isEnabled ) {
-			this.IsClickable = isEnabled;
+			this.IsInteractive = isEnabled;
+		}
+
+		/// <summary>
+		/// Enables or disables element hiding. Interactivity still enabled.
+		/// </summary>
+		/// <param name="isHidden"></param>
+		public void Hide( bool isHidden ) {
+			this.IsHidden = isHidden;
 		}
 
 
@@ -100,20 +113,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 
 		////////////////
-
-		/// <summary>
-		/// Draws element. Also handles text input changes.
-		/// </summary>
-		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
-		protected override void DrawSelf( SpriteBatch sb ) {
-			base.DrawSelf( sb );
-
-			////
-
+		
+		private void UpdateInteractivity() {
 			CalculatedStyle dim = this.GetDimensions();
 
 			// Detect if user selects this element
-			if( this.IsClickable && Main.mouseLeft ) {
+			if( Main.mouseLeft ) {
 				bool isNowSelected = false;
 
 				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {
@@ -146,6 +151,33 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					} );
 				}
 			}
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Draws element. Also handles text input changes.
+		/// </summary>
+		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
+		protected override void DrawSelf( SpriteBatch sb ) {
+			if( !this.IsHidden ) {
+				base.DrawSelf( sb );
+			}
+
+			////
+
+			if( this.IsInteractive ) {
+				this.UpdateInteractivity();
+			}
+
+			if( !this.IsHidden ) {
+				this.DrawSelfText( sb );
+			}
+		}
+
+		private void DrawSelfText( SpriteBatch sb ) {
+			CalculatedStyle dim = this.GetDimensions();
 
 			var pos = new Vector2( dim.X + this.PaddingLeft, dim.Y + this.PaddingTop );
 

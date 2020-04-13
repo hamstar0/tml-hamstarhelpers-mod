@@ -2405,6 +2405,9 @@
             <summary>
             Implements a UI slider bar element.
             </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.RememberedInputValue">
             <summary>
@@ -2441,7 +2444,12 @@
             Mouse hover popup label.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Boolean,System.Int32,System.Single,System.Single)">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.InnerBarShader">
+            <summary>
+            Mouse hover popup label.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Boolean,System.Int32,System.Single,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color})">
             <param name="theme">Appearance style.</param>
             <param name="hoverText">Mouse hover popup label.</param>
             <param name="isInt">Indicates this slider uses integer values only. Default false.</param>
@@ -2468,13 +2476,14 @@
             <param name="obj">Object to compare rank to.</param>
             <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color},System.Int32)">
             <summary>
             Draws a slider bar and returns the value of the mouse's current position.
             </summary>
             <param name="sb"></param>
             <param name="destRect"></param>
-            <param name="percentValue"></param>
+            <param name="valueAsPercent"></param>
+            <param name="innerBarShader"></param>
             <param name="lockState"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
@@ -2522,10 +2531,11 @@
             <param name="isInt"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetSliderRectangle">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetConstrainedValue(System.Single)">
             <summary>
-            Gets the screen space rectangle of the slider.
+            Processes a given value to best fit as a value of the current slider's available set.
             </summary>
+            <param name="rawValue"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel">
@@ -2703,6 +2713,11 @@
             Fires on when input is no longer selected.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsClickable">
+            <summary>
+            Enables mouse interactivity.
+            </summary>
+        </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextColor">
             <summary>
             Text color.
@@ -2716,6 +2731,12 @@
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.#ctor(System.String)">
             <summary></summary>
             <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Enable(System.Boolean)">
+            <summary>
+            Enables or disables the current element.
+            </summary>
+            <param name="isEnabled"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.GetText">
             <summary></summary>
@@ -12428,6 +12449,12 @@
             Convenience method to run a given action 'now' (AKA a 0 delay timer).
             </summary>
             <param name="action"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Timers.Timers.RunUntil(System.Func{System.Boolean},System.Boolean)">
+            <summary>
+            Convenience method to repeatedly run a given action 'now' (AKA a 0 delay timer) until indicated otherwise.
+            </summary>
+            <param name="func">Return `true` to repeat timer.</param>
         </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Boolean})">
             <summary>
