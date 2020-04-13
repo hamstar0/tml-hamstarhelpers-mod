@@ -142,6 +142,18 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.NumericInput.Hide( !isEnabled || this.IsTextInputHidden );
 		}
 
+		////
+
+		/// <summary>
+		/// Adjusts the number of ticks to use for this element.
+		/// </summary>
+		/// <param name="ticks">Set to 0 for no ticks.</param>
+		public void SetTicks( int ticks ) {
+			this.Ticks = ticks;
+
+			this.SetValueUnsafe( this.RememberedInputValue );
+		}
+
 
 		////////////////
 
@@ -161,7 +173,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			return true;
 		}
 
-
 		/// <summary>
 		/// Sets the value. Applies necessary clamping.
 		/// </summary>
@@ -171,6 +182,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.SetValueUnsafe( value );
 			this.IsNowSettingValue = false;
 		}
+
+		////
 
 		private void SetValueUnsafe( float value ) {
 			this.RememberedInputValue = this.GetConstrainedValue( value );

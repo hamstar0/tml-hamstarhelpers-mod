@@ -30,9 +30,10 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			sb.Draw( Main.colorBarTexture, outerBarRect, Color.White );
 
-			innerBarRect.X += 4;//* scale
-			innerBarRect.Y += 4;//* scale
-			innerBarRect.Width -= 8;
+			float scale = (float)destRect.Width / 167f;
+			innerBarRect.X += (int)(4f * scale);
+			innerBarRect.Y += 4;
+			innerBarRect.Width -= (int)(8f * scale);
 			innerBarRect.Height -= 4;
 
 			for( int i = 0; i < innerBarRect.Width; i++ ) {

@@ -2439,6 +2439,11 @@
             Enables mouse interactivity.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.IsTextInputHidden">
+            <summary>
+            Indicates if text input is suppressed (hidden).
+            </summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.HoverText">
             <summary>
             Mouse hover popup label.
@@ -2449,19 +2454,27 @@
             Mouse hover popup label.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Boolean,System.Int32,System.Single,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color})">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Boolean,System.Int32,System.Single,System.Single,System.Boolean,System.Func{System.Single,Microsoft.Xna.Framework.Color})">
             <param name="theme">Appearance style.</param>
             <param name="hoverText">Mouse hover popup label.</param>
             <param name="isInt">Indicates this slider uses integer values only. Default false.</param>
             <param name="ticks">Number of ticks to snap to along slider range. Default 0 (unlimited).</param>
             <param name="minRange">Beginning of slider range. Default 0.</param>
             <param name="maxRange">End of slider range. Default 1.</param>
+            <param name="hideTextInput">Indicates if text input is suppressed (hidden).</param>
+            <param name="innerBarShader">Allows specifying a color gradient for the inner bar. Defaults to `null`; the default black-to-white shader.</param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Enable(System.Boolean)">
             <summary>
             Enables or disables the current element.
             </summary>
             <param name="isEnabled"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetTicks(System.Int32)">
+            <summary>
+            Adjusts the number of ticks to use for this element.
+            </summary>
+            <param name="ticks">Set to 0 for no ticks.</param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetValue(System.Single)">
             <summary>
@@ -2713,9 +2726,14 @@
             Fires on when input is no longer selected.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsClickable">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsInteractive">
             <summary>
             Enables mouse interactivity.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsHidden">
+            <summary>
+            Controls visibility.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextColor">
@@ -2737,6 +2755,12 @@
             Enables or disables the current element.
             </summary>
             <param name="isEnabled"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Hide(System.Boolean)">
+            <summary>
+            Enables or disables element hiding. Interactivity still enabled.
+            </summary>
+            <param name="isHidden"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.GetText">
             <summary></summary>
