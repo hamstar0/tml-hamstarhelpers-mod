@@ -2402,35 +2402,64 @@
             <summary>
             Implements a UI slider bar element.
             </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.InputPercentValue">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.RememberedInputValue">
             <summary>
             Element's current input value.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.Order">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.Range">
+            <summary>
+            Total range of this slider element.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.Ticks">
+            <summary>
+            Number of ticks to snap to along slider's range.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.IsInt">
+            <summary>
+            Constrain values to integers.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.Order">
             <summary>
             Allows defining a custom sort order value (for putting in an ordered list).
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.IsClickable">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.IsClickable">
             <summary>
             Enables mouse interactivity.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.UI.Elements.UISlider.Title">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.HoverText">
             <summary>
             Mouse hover popup label.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.String,System.Boolean)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Boolean,System.Int32,System.Single,System.Single)">
             <param name="theme">Appearance style.</param>
-            <param name="titleText">Display text next to checkbox control.</param>
             <param name="hoverText">Mouse hover popup label.</param>
-            <param name="isClickable">Enables mouse interactivity.</param>
+            <param name="isInt">Indicates this slider uses integer values only. Default false.</param>
+            <param name="ticks">Number of ticks to snap to along slider range. Default 0 (unlimited).</param>
+            <param name="minRange">Beginning of slider range. Default 0.</param>
+            <param name="maxRange">End of slider range. Default 1.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
-            @private
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Enable(System.Boolean)">
+            <summary>
+            Enables or disables the current element.
+            </summary>
+            <param name="isEnabled"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetValue(System.Single)">
+            <summary>
+            Sets the value. Applies necessary clamping.
+            </summary>
+            <param name="value"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.CompareTo(System.Object)">
             <summary>
@@ -2447,6 +2476,57 @@
             <param name="destRect"></param>
             <param name="percentValue"></param>
             <param name="lockState"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetInputPercentWithinArea(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Rectangle)">
+            <summary>
+            Gets the slider value of a given point relative to a given slider rectangle area.
+            </summary>
+            <param name="point"></param>
+            <param name="area"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetValueOfSliderPercent(System.Single,System.Single,System.Single,System.Int32)">
+            <summary>
+            Gets the actual allowed value of a given slider percent position.
+            </summary>
+            <param name="percent"></param>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+            <param name="ticks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetPercentOfSliderValue(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the slider percent value of a given input value.
+            </summary>
+            <param name="value"></param>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetInputValue(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Point,System.Single,System.Single,System.Int32,System.Boolean)">
+            <summary>
+            Gets the input value from a given screen selection point.
+            </summary>
+            <param name="sliderRect"></param>
+            <param name="screenAt"></param>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+            <param name="ticks"></param>
+            <param name="isInt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetSliderRectangle">
+            <summary>
+            Gets the screen space rectangle of the slider.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel">
             <summary>
@@ -2589,11 +2669,11 @@
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.GetFittedText(System.String,System.Int32,System.Single)">
             <summary>
-            Applies a cursor to a given string.
+            Applies a cursor to a given string. Cuts down the string to fit within the specified width.
             </summary>
             <param name="text">Input string.</param>
             <param name="cursorPos">Cursor's position.</param>
-            <param name="width">Width of input.</param>
+            <param name="maxAllowedWidth">Max allowed (pixel) width of string.</param>
             <returns>Cursor-added input string.</returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement">

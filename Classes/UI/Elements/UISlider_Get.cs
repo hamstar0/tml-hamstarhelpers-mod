@@ -40,9 +40,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			float rangeValue = rangeAmt * percent;
 
 			if( ticks > 0 ) {
-				float tickRange = rangeAmt / ticks;
-				int tickAmt = (int)( rangeValue / tickRange );
-				rangeValue = (float)tickAmt * tickRange;
+				float rangePerTick = rangeAmt / ticks;
+				int rangeValueTickCount = (int)( rangeValue / rangePerTick );
+				rangeValue = (float)rangeValueTickCount * rangePerTick;
 			}
 
 			return minRange + rangeValue;
@@ -80,25 +80,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				value = (float)Math.Round( value );
 			}
 			return value;
-		}
-
-
-
-		////////////////
-
-		/// <summary>
-		/// Gets the screen space rectangle of the slider.
-		/// </summary>
-		/// <returns></returns>
-		public Rectangle GetSliderRectangle() {
-			CalculatedStyle innerPos = this.GetInnerDimensions();
-
-			return new Rectangle(
-				(int)innerPos.X,
-				((int)innerPos.Y - 5) - ((int)innerPos.Height / 2 ),//* scale
-				(int)innerPos.Width,//* scale
-				(int)innerPos.Height//* scale
-			);
 		}
 	}
 }

@@ -307,28 +307,32 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// <summary>
-		/// Applies a cursor to a given string.
+		/// Applies a cursor to a given string. Cuts down the string to fit within the specified width.
 		/// </summary>
 		/// <param name="text">Input string.</param>
 		/// <param name="cursorPos">Cursor's position.</param>
-		/// <param name="width">Width of input.</param>
+		/// <param name="maxAllowedWidth">Max allowed (pixel) width of string.</param>
 		/// <returns>Cursor-added input string.</returns>
-		public static string GetFittedText( string text, int cursorPos, float width ) {
+		public static string GetFittedText( string text, int cursorPos, float maxAllowedWidth ) {
 			int start = 0;
 			int end = text.Length;
 			string substr = text;
 
-			while( Main.fontMouseText.MeasureString( substr ).X > width ) {
+			while( Main.fontMouseText.MeasureString( substr ).X > maxAllowedWidth ) {
 				if( cursorPos >= end ) {
-					substr = substr.Substring( 1 );
 					start++;
+					substr = (end - start) >= 1
+						? substr.Substring( 1 )
+						: "";
 				} else if( cursorPos <= start ) {
 					end--;
 					substr = substr.Substring( 0, end - start );
 				} else {
 					start++;
 					end--;
-					substr = substr.Substring( 1, end - start );
+					substr = (end - start) >= 1
+						? substr.Substring( 1, end - start )
+						: "";
 				}
 			}
 

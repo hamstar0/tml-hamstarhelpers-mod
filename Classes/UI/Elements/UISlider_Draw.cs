@@ -14,20 +14,21 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="sb"></param>
 		/// <param name="destRect"></param>
-		/// <param name="percentValue"></param>
+		/// <param name="valueAsPercent"></param>
 		/// <param name="lockState"></param>
 		public static void DrawSlider(
 					SpriteBatch sb,
 					Rectangle destRect,
-					float percentValue,
+					float valueAsPercent,
 					int lockState = 0 ) {
 			var shiftedRect = destRect;
 
 			sb.Draw( Main.colorBarTexture, destRect, Color.White );
 
-			shiftedRect.X += 5;//* scale
+			shiftedRect.X += 4;//* scale
 			shiftedRect.Y += 4;//* scale
-			shiftedRect.Width -= 10;
+			shiftedRect.Width -= 8;
+			shiftedRect.Height -= 4;
 
 			for( int i = 0; i < shiftedRect.Width; i++ ) {
 				float percent = (float)i / (float)destRect.Width;
@@ -57,7 +58,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			sb.Draw(
 				texture: Main.colorSliderTexture,
 				position: new Vector2(
-					shiftedRect.X + ((float)shiftedRect.Width * percentValue),
+					shiftedRect.X + ((float)shiftedRect.Width * valueAsPercent),
 					shiftedRect.Y + 4f
 				),
 				sourceRectangle: null,
@@ -68,6 +69,25 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				effects: SpriteEffects.None,
 				layerDepth: 0f
 			);
+		}
+
+
+
+		////////////////
+
+		/// @private
+		public override void Draw( SpriteBatch spriteBatch ) {
+			base.Draw( spriteBatch );
+		}
+
+		/// @private
+		protected override void DrawSelf( SpriteBatch sb ) {
+			Rectangle rect = this.GetInnerDimensions().ToRectangle();
+			float percentValue = UISlider.GetPercentOfSliderValue( this.RememberedInputValue, this.Range.Min, this.Range.Max );
+
+			base.DrawSelf( sb );
+
+			UISlider.DrawSlider( sb, rect, percentValue );
 		}
 	}
 }
