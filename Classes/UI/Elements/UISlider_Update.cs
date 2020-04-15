@@ -11,6 +11,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// Implements a UI slider bar element.
 	/// </summary>
 	public partial class UISlider : UIThemedElement {
+		/// @private
 		public override void Update( GameTime gameTime ) {
 			if( !this.NumericInput.IsMouseHovering ) {
 				this.UpdateMouseInteractivity();
@@ -37,7 +38,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				return;
 			}
 
-			Rectangle rect = this.GetInnerDimensions().ToRectangle();
+			//Rectangle rect = this.GetInnerDimensions().ToRectangle();
+			Rectangle rect = this.GetInnerRectangle();
 			if( !rect.Contains( Main.mouseX, Main.mouseY ) ) {
 				return;
 			}
@@ -52,6 +54,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				return true;
 			}, true );
 		}
+
 
 		private bool UpdateSliderMouseDrag( Rectangle sliderArea ) {
 			if( !this.IsClickable ) {

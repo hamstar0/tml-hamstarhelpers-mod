@@ -113,5 +113,24 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			return value;
 		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Gets the inner rectangle of the slider portion (where the slider knob exists).
+		/// </summary>
+		/// <returns></returns>
+		public Rectangle GetInnerRectangle() {
+			Rectangle rect = this.GetInnerDimensions().ToRectangle();
+
+			float scale = (float)rect.Width / 167f;
+			rect.X += (int)( 4f * scale );
+			rect.Y += 4;
+			rect.Width -= (int)( 8f * scale );
+			rect.Height -= 4;
+
+			return rect;
+		}
 	}
 }

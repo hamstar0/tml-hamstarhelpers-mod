@@ -2408,6 +2408,9 @@
             <summary>
             Implements a UI slider bar element.
             </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.RememberedInputValue">
             <summary>
@@ -2489,6 +2492,16 @@
             </summary>
             <param name="value"></param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.ScrollLeft">
+            <summary>
+            Scrolls the slider 1 "unit" left.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.ScrollRight">
+            <summary>
+            Scrolls the slider 1 "unit" right.
+            </summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.CompareTo(System.Object)">
             <summary>
             Decides sort order in a list.
@@ -2557,6 +2570,15 @@
             </summary>
             <param name="rawValue"></param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetInnerRectangle">
+            <summary>
+            Gets the inner rectangle of the slider portion (where the slider knob exists).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Update(Microsoft.Xna.Framework.GameTime)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel">
             <summary>

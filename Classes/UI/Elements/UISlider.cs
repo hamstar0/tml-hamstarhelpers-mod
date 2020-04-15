@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.UI.Theme;
@@ -96,13 +95,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					bool hideTextInput = false,
 					Func<float, Color> innerBarShader = null )
 					: base( theme, true ) {
-			bool ProcessInput( StringBuilder fullInput ) {
-				return !this.IsNowSettingValue
-					&& this.SetValueFromInput( fullInput.ToString() );
-			}
-
-			//
-
 			this.HoverText = hoverText;
 			this.IsInt = isInt;
 			this.Ticks = ticks;
@@ -112,18 +104,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				? Utils.ColorLerp_BlackToWhite
 				: innerBarShader;
 
-			this.Width.Set( 167f, 0f );
-			this.Height.Set( 24f, 0f );
-
-			this.NumericInput = new UITextInputElement( "" );
-			this.NumericInput.Enable( !this.IsTextInputHidden );
-			this.NumericInput.Hide( this.IsTextInputHidden );
-			this.NumericInput.Top.Set( -2f, 0f );
-			this.NumericInput.Left.Set( 6f, 0f );
-			this.NumericInput.Width.Set( 64f, 0f );
-			this.NumericInput.Height.Set( 24f, 0f );
-			this.NumericInput.OnTextChange += ProcessInput;
-			this.Append( this.NumericInput );
+			this.InitializeMe();
 
 			this.SetValue( minRange );
 		}
@@ -200,9 +181,50 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.RememberedInputValue = this.GetConstrainedValue( value );
 
 			if( this.IsInt ) {
-				this.NumericInput?.SetText( this.RememberedInputValue.ToString( "N0" ) );
+				this.NumericInput?.SetText( this.RememberedInputValue.ToString("N0") );
 			} else {
 				this.NumericInput?.SetText( this.RememberedInputValue.ToString() );
+			}
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Scrolls the slider 1 "unit" left.
+		/// </summary>
+		public void ScrollLeft() {
+			if( UISlider.SelectedSlider != null ) {
+				return;
+			}
+
+			float range = this.Range.Max - this.Range.Min;
+
+			if( this.Ticks == 0 ) {
+				float unit = range * 0.01f;
+				this.SetValue( this.RememberedInputValue - unit );
+			} else {
+				float unit = range / (float)this.Ticks;
+				this.SetValue( this.RememberedInputValue - unit );
+			}
+		}
+
+		/// <summary>
+		/// Scrolls the slider 1 "unit" right.
+		/// </summary>
+		public void ScrollRight() {
+			if( UISlider.SelectedSlider != null ) {
+				return;
+			}
+
+			float range = this.Range.Max - this.Range.Min;
+
+			if( this.Ticks == 0 ) {
+				float unit = range * 0.01f;
+				this.SetValue( this.RememberedInputValue + unit );
+			} else {
+				float unit = range / (float)this.Ticks;
+				this.SetValue( this.RememberedInputValue + unit );
 			}
 		}
 
