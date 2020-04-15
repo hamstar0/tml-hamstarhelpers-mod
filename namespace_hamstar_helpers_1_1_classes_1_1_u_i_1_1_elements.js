@@ -7,6 +7,7 @@ var namespace_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements =
     [ "UIHiddenPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel" ],
     [ "UIImageUrl", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url" ],
     [ "UIModData", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data" ],
+    [ "UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider" ],
     [ "UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel" ],
     [ "UITextInputElement", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element" ],
     [ "UITextInputPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel" ],

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.5.0</span>
+   &#160;<span id="projectnumber">v5.6.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -101,17 +101,19 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7cbbe5e06affd7df2249a638172ff325"><td class="memItemLeft" align="right" valign="top">static NPC&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_finder_helpers.html#a7cbbe5e06affd7df2249a638172ff325">FindFirstNpcByType</a> (int type)</td></tr>
-<tr class="memdesc:a7cbbe5e06affd7df2249a638172ff325"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds first active, world NPC of the given type.  <a href="#a7cbbe5e06affd7df2249a638172ff325">More...</a><br /></td></tr>
-<tr class="separator:a7cbbe5e06affd7df2249a638172ff325"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb3ab4e0abb6ec924bd4cf2092517b58"><td class="memItemLeft" align="right" valign="top">static NPC&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_finder_helpers.html#aeb3ab4e0abb6ec924bd4cf2092517b58">FindFirstNpcByType</a> (int npcType)</td></tr>
+<tr class="memdesc:aeb3ab4e0abb6ec924bd4cf2092517b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds first active, world NPC of the given type.  <a href="#aeb3ab4e0abb6ec924bd4cf2092517b58">More...</a><br /></td></tr>
+<tr class="separator:aeb3ab4e0abb6ec924bd4cf2092517b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b439901d68946dec6bb75a89504d003"><td class="memItemLeft" align="right" valign="top">static IList&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_finder_helpers.html#a7b439901d68946dec6bb75a89504d003">FindNPCsNearby</a> (Vector2 position, int minWorldDistance, int maxWorldDistance, bool? isFriendly=null)</td></tr>
+<tr class="separator:a7b439901d68946dec6bb75a89504d003"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to finding world <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html">NPCs</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_n_p_c_finder_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_n_p_c_finder_helpers_8cs_source.html">NPCFinderHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_n_p_c_finder_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_n_p_c_finder_helpers_8cs_source.html">NPCFinderHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7cbbe5e06affd7df2249a638172ff325"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7cbbe5e06affd7df2249a638172ff325">&#9670;&nbsp;</a></span>FindFirstNpcByType()</h2>
+<a id="aeb3ab4e0abb6ec924bd4cf2092517b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb3ab4e0abb6ec924bd4cf2092517b58">&#9670;&nbsp;</a></span>FindFirstNpcByType()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -123,7 +125,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">static NPC HamstarHelpers.Helpers.NPCs.NPCFinderHelpers.FindFirstNpcByType </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
+          <td class="paramname"><em>npcType</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -137,13 +139,75 @@ Static Public Member Functions</h2></td></tr>
 <p>Finds first active, world NPC of the given type. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td></td></tr>
+    <tr><td class="paramname">npcType</td><td></td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_n_p_c_finder_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_n_p_c_finder_helpers_8cs_source.html">NPCFinderHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_n_p_c_finder_helpers_8cs_source.html#l00022">22</a> of file <a class="el" href="_n_p_c_finder_helpers_8cs_source.html">NPCFinderHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7b439901d68946dec6bb75a89504d003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b439901d68946dec6bb75a89504d003">&#9670;&nbsp;</a></span>FindNPCsNearby()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static IList&lt;int&gt; HamstarHelpers.Helpers.NPCs.NPCFinderHelpers.FindNPCsNearby </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minWorldDistance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxWorldDistance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>isFriendly</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td></td></tr>
+    <tr><td class="paramname">minWorldDistance</td><td></td></tr>
+    <tr><td class="paramname">maxWorldDistance</td><td></td></tr>
+    <tr><td class="paramname">isFriendly</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_n_p_c_finder_helpers_8cs_source.html#l00055">55</a> of file <a class="el" href="_n_p_c_finder_helpers_8cs_source.html">NPCFinderHelpers.cs</a>.</p>
 
 </div>
 </div>

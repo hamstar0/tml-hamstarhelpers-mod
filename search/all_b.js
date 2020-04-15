@@ -2,6 +2,7 @@ var searchData=
 [
   ['languageversion',['LanguageVersion',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a93187435f88a2062996cf7df0d92b8bc',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['large',['Large',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#afee86af847611c1e38175cc2e2a1d664',1,'HamstarHelpers.Classes.UI.Elements.UIWebUrl.Large()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a8beedfa3dcac7b50bc266189a21be91ea3a69b34ce86dacb205936a8094f6c743',1,'HamstarHelpers.Helpers.World.Large()']]],
+  ['lastknowncursorpositions',['LastKnownCursorPositions',['../class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a08c25c10837f702f95577ac7a69119cd',1,'HamstarHelpers::Services::Network::Client']]],
   ['latestavailableversion',['LatestAvailableVersion',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a78f0c87e7c12ed13c59287edae8c5f71',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
   ['lava',['Lava',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a1d18fe2cdd43a72d46421ecfe81b599e',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['leave',['Leave',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers.html#a538552f7efc4c8c54ae303cb45ec16b1',1,'HamstarHelpers::Helpers::NPCs::NPCTownHelpers']]],

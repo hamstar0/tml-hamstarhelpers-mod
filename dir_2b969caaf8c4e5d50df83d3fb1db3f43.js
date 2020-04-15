@@ -12,6 +12,7 @@ var dir_2b969caaf8c4e5d50df83d3fb1db3f43 =
     [ "ModCompatibilities", "dir_496a68cbef12e23f2d46b49683fe249d.html", "dir_496a68cbef12e23f2d46b49683fe249d" ],
     [ "ModLock", "dir_3623e498e3b0c0f1e6979d5aafa0a65c.html", "dir_3623e498e3b0c0f1e6979d5aafa0a65c" ],
     [ "ModTagDefinitions", "dir_1362f1da38768109b035caa59affa940.html", "dir_1362f1da38768109b035caa59affa940" ],
+    [ "Network", "dir_b9bbd9357e48b59c7e27c28ac4915ade.html", "dir_b9bbd9357e48b59c7e27c28ac4915ade" ],
     [ "NPCChat", "dir_08bd66df3d9c38c1ca04f54741366cfb.html", "dir_08bd66df3d9c38c1ca04f54741366cfb" ],
     [ "OverlaySounds", "dir_d8465fd0ce8b1826bccd721cfbc0f515.html", "dir_d8465fd0ce8b1826bccd721cfbc0f515" ],
     [ "RecipeHack", "dir_c42d853a714c7cb9fbf5427a71a8e546.html", "dir_c42d853a714c7cb9fbf5427a71a8e546" ],

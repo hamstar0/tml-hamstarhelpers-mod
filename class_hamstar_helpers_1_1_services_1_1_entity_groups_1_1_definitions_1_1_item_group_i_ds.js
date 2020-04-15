@@ -27,6 +27,7 @@ var class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_ite
     [ "AnyGoldOrPlatinumEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a7e4763f83e36f2d6e63d46219b9242e3", null ],
     [ "AnyHallowEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a40ca3c2501538054254134c1c9176d59", null ],
     [ "AnyHardmodeCraftingStation", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#ab1d326fab3f76a872d879b839c0df059", null ],
+    [ "AnyHealPotion", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a938b110b702253b1a3a8fa13ff2c80f6", null ],
     [ "AnyHeavyArmor", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#adc73dfe998efde4295ac59f9223325b4", null ],
     [ "AnyHellstoneEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a1b0a40ed01ecee4666b252d182c1dedd", null ],
     [ "AnyIronOrLeadEquipment", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a10026e85aa9d0106aa9dd9920995eee8", null ],

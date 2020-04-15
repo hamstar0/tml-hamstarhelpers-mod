@@ -1,13 +1,12 @@
 var class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers =
 [
-    [ "GetFullMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a6e92a888e8b5fb0e1a27cbc8394a2c22", null ],
-    [ "GetFullMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#ad6e03858557689cf64f061f7a2150b8b", null ],
+    [ "GetFullMapScale", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a8d67d822b7ac8ad1117a627d2ef8eb54", null ],
     [ "GetFullscreenMapTileOfScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a320c075511baab6da9858e835b04c475", null ],
-    [ "GetMiniMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#aa39814757bf776b929970ab0813658e9", null ],
-    [ "GetMiniMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a193caa6b65c1cf816f79e29ae20fa742", null ],
-    [ "GetOverlayMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a31ddd8a3a7d7b7a6d58f0c5c7a061d03", null ],
-    [ "GetOverlayMapScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a2124bf1836c23fa4066541817ea0eda2", null ],
+    [ "GetMiniMapScale", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a11f2cd3faf621312402ec8355888f64f", null ],
+    [ "GetOverlayerMapScale", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#aa329b646649e55488e6d0b7c37454d11", null ],
     [ "GetSizeOnFullMap", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a1cde47ee71819947a47a390ae2b00e82", null ],
     [ "GetSizeOnMinimap", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#acc356d7e43b988d14996acf428b4bd6c", null ],
-    [ "GetSizeOnOverlayMap", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#af5166df2a4895eb8d89bc26e6881dc1c", null ]
+    [ "GetSizeOnOverlayMap", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#af5166df2a4895eb8d89bc26e6881dc1c", null ],
+    [ "ScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a1ec317519da9a7a0ecc426dab6054891", null ],
+    [ "TileX", "class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#acfbf6640970ad51d014618e6abb683b0", null ]
 ];

@@ -10,6 +10,6 @@ var searchData=
   ['tilepattern',['TilePattern',['../class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#a7edae7c01a32e5e1561305f312c09e6d',1,'HamstarHelpers::Classes::Context::Context']]],
   ['tilestyle',['TileStyle',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#aafbe26cb18f6de846a08336b16a4ab2e',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawDefinition']]],
   ['tiletype',['TileType',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#a82aea06ca7bdadcc6b9801afeb847439',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawDefinition']]],
-  ['tilex',['TileX',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa588aa254e683af985d0cc64a51dc132',1,'HamstarHelpers::Helpers::Tiles::TileFinderHelpers']]],
+  ['tilex',['TileX',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#acfbf6640970ad51d014618e6abb683b0',1,'HamstarHelpers.Helpers.HUD.HUDMapHelpers.TileX()'],['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa588aa254e683af985d0cc64a51dc132',1,'HamstarHelpers.Helpers.Tiles.TileFinderHelpers.TileX()']]],
   ['title',['Title',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a27c17fc1c9743dc2a8cc2048e69dd3be',1,'HamstarHelpers::Classes::UI::Elements::UICheckbox']]]
 ];

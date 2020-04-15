@@ -17,5 +17,6 @@ var searchData=
   ['hint',['Hint',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#add214b19aa7bd38419459c5d9f188b2a',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
   ['hinttext',['HintText',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#ad03c3ab64412ae86094b7bf762855a54',1,'HamstarHelpers::Classes::UI::Elements::UITextInputPanel']]],
   ['homepage',['Homepage',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#a015f72690dbaf6564342904e409dd790',1,'HamstarHelpers::Helpers::TModLoader::Mods::BasicModInfo']]],
-  ['homepageurl',['HomepageUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a2af1de9955f1735f7fa83f1ee3d0c59c',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]]
+  ['homepageurl',['HomepageUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a2af1de9955f1735f7fa83f1ee3d0c59c',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
+  ['hovertext',['HoverText',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html#a34d154270e93a1b983587b8023e5a471',1,'HamstarHelpers::Classes::UI::Elements::UISlider']]]
 ];

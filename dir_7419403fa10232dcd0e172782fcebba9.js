@@ -1,5 +1,6 @@
 var dir_7419403fa10232dcd0e172782fcebba9 =
 [
+    [ "CursorPositionProtocol.cs", "_cursor_position_protocol_8cs_source.html", null ],
     [ "DataDumpProtocol.cs", "_data_dump_protocol_8cs_source.html", null ],
     [ "ItemNoGrabProtocol.cs", "_item_no_grab_protocol_8cs_source.html", null ],
     [ "PingProtocol.cs", "_ping_protocol_8cs_source.html", null ],

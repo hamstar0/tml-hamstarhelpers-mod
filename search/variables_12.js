@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['screenposition',['ScreenPosition',['../class_hamstar_helpers_1_1_helpers_1_1_h_u_d_1_1_h_u_d_map_helpers.html#a1ec317519da9a7a0ecc426dab6054891',1,'HamstarHelpers::Helpers::HUD::HUDMapHelpers']]],
   ['shape',['Shape',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a7cde9166821f19ab33d7b57a2831a5d9',1,'HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.Shape()'],['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac56dffd653960b9820139078d72d6744',1,'HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Shape()']]],
   ['side',['Side',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a9dc9a4680b1cd5b5dbdacf44620f1a0c',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['skeletron',['Skeletron',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a5e4f80e4dab6c74fa036c228764c27d3',1,'HamstarHelpers::Services::GameData::BossData']]],

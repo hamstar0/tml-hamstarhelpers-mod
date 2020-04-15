@@ -1,25 +1,10 @@
 var searchData=
 [
-  ['magitechscrapitem',['MagiTechScrapItem',['../class_hamstar_helpers_1_1_items_1_1_magi_tech_scrap_item.html',1,'HamstarHelpers::Items']]],
-  ['mainmenuhelpers',['MainMenuHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
-  ['menucontext',['MenuContext',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_menu_context.html',1,'HamstarHelpers::Classes::UI::Menus']]],
-  ['menucontextservice',['MenuContextService',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus_1_1_menu_context_service.html',1,'HamstarHelpers::Services::UI::Menus']]],
-  ['menuitem',['MenuItem',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_menu_item.html',1,'HamstarHelpers::Classes::UI::Menu']]],
-  ['menuuis',['MenuUIs',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_menu_u_is.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
-  ['mischelpers',['MiscHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
-  ['modboilerplatehelpers',['ModBoilerplateHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_boilerplate_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
-  ['modconfigstack',['ModConfigStack',['../class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html',1,'HamstarHelpers::Services::Configs']]],
-  ['modcustomdatafilehelpers',['ModCustomDataFileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
-  ['modfeatureshelpers',['ModFeaturesHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_mod_helpers_1_1_mod_features_helpers.html',1,'HamstarHelpers::Helpers::ModHelpers']]],
-  ['modhelpers',['ModHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
-  ['modhelpersconfig',['ModHelpersConfig',['../class_hamstar_helpers_1_1_mod_helpers_config.html',1,'HamstarHelpers']]],
-  ['modhelpersexception',['ModHelpersException',['../class_hamstar_helpers_1_1_classes_1_1_errors_1_1_mod_helpers_exception.html',1,'HamstarHelpers::Classes::Errors']]],
-  ['modhelpersprivilegeduserconfig',['ModHelpersPrivilegedUserConfig',['../class_hamstar_helpers_1_1_mod_helpers_privileged_user_config.html',1,'HamstarHelpers']]],
-  ['modidentityhelpers',['ModIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_identity_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
-  ['modlisthelpers',['ModListHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_list_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
-  ['modlockservice',['ModLockService',['../class_hamstar_helpers_1_1_services_1_1_mod_helpers_1_1_mod_lock_service.html',1,'HamstarHelpers::Services::ModHelpers']]],
-  ['modmenuhelpers',['ModMenuHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
-  ['modtagdefinition',['ModTagDefinition',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html',1,'HamstarHelpers::Services::ModTagDefinitions']]],
-  ['musicboxhelpers',['MusicBoxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_music_box_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
-  ['musichelpers',['MusicHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_music_helpers.html',1,'HamstarHelpers::Helpers::Misc']]]
+  ['lightningfxhelpers',['LightningFxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_lightning_fx_helpers.html',1,'HamstarHelpers::Helpers::Fx']]],
+  ['linqhelpers',['LINQHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html',1,'HamstarHelpers::Helpers::DotNET']]],
+  ['listcontainerthemeattribute',['ListContainerThemeAttribute',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_list_container_theme_attribute.html',1,'HamstarHelpers::Classes::UI::Theme']]],
+  ['listitemthemeattribute',['ListItemThemeAttribute',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_list_item_theme_attribute.html',1,'HamstarHelpers::Classes::UI::Theme']]],
+  ['loadhelpers',['LoadHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_load_helpers.html',1,'HamstarHelpers::Helpers::TModLoader']]],
+  ['loadhooks',['LoadHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_load_hooks.html',1,'HamstarHelpers::Services::Hooks::LoadHooks']]],
+  ['loghelpers',['LogHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html',1,'HamstarHelpers::Helpers::Debug']]]
 ];

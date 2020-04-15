@@ -7,7 +7,7 @@ var class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_ar
     [ "Enable", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a1d62f24468084102a7eb496be76ee147", null ],
     [ "Focus", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#aeb91b866f404e4bfe6a436509011335b", null ],
     [ "FocusHandler", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a8b528801ec2eb31ee077234bd1e94584", null ],
-    [ "GetFittedText", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a39541a9ee12aeb729da5eb86b3dc765c", null ],
+    [ "GetFittedText", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#acccda6d36369235a182bece7b2b6a60a", null ],
     [ "Recalculate", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#aefac2103f43ee3ce04223c0b4be4ed07", null ],
     [ "RefreshTheme", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#ac339a3fad27abbf461bb9285e7edd62d", null ],
     [ "SetText", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a03d78e36842fd4bd51c53d7847e0bda5", null ],

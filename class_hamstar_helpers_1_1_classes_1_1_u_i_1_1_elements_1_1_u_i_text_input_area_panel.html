@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.5.0</span>
+   &#160;<span id="projectnumber">v5.6.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -173,9 +173,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a39541a9ee12aeb729da5eb86b3dc765c"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a39541a9ee12aeb729da5eb86b3dc765c">GetFittedText</a> (string text, int cursorPos, float width)</td></tr>
-<tr class="memdesc:a39541a9ee12aeb729da5eb86b3dc765c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a cursor to a given string.  <a href="#a39541a9ee12aeb729da5eb86b3dc765c">More...</a><br /></td></tr>
-<tr class="separator:a39541a9ee12aeb729da5eb86b3dc765c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acccda6d36369235a182bece7b2b6a60a"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#acccda6d36369235a182bece7b2b6a60a">GetFittedText</a> (string text, int cursorPos, float maxAllowedWidth)</td></tr>
+<tr class="memdesc:acccda6d36369235a182bece7b2b6a60a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a cursor to a given string. Cuts down the string to fit within the specified width.  <a href="#acccda6d36369235a182bece7b2b6a60a">More...</a><br /></td></tr>
+<tr class="separator:acccda6d36369235a182bece7b2b6a60a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -434,8 +434,8 @@ Events</h2></td></tr>
 
 </div>
 </div>
-<a id="a39541a9ee12aeb729da5eb86b3dc765c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39541a9ee12aeb729da5eb86b3dc765c">&#9670;&nbsp;</a></span>GetFittedText()</h2>
+<a id="acccda6d36369235a182bece7b2b6a60a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acccda6d36369235a182bece7b2b6a60a">&#9670;&nbsp;</a></span>GetFittedText()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,7 +459,7 @@ Events</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>width</em>&#160;</td>
+          <td class="paramname"><em>maxAllowedWidth</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -474,12 +474,12 @@ Events</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Applies a cursor to a given string. </p>
+<p>Applies a cursor to a given string. Cuts down the string to fit within the specified width. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>Input string.</td></tr>
     <tr><td class="paramname">cursorPos</td><td>Cursor's position.</td></tr>
-    <tr><td class="paramname">width</td><td>Width of input.</td></tr>
+    <tr><td class="paramname">maxAllowedWidth</td><td>Max allowed (pixel) width of string.</td></tr>
   </table>
   </dd>
 </dl>

@@ -14,6 +14,7 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.Buffs.BuffHelpers", "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_helpers.html", null ],
     [ "HamstarHelpers.Helpers.Buffs.BuffHUDHelpers", "class_hamstar_helpers_1_1_helpers_1_1_buffs_1_1_buff_h_u_d_helpers.html", null ],
     [ "HamstarHelpers.Services.TML.BuildPropertiesViewer", "class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html", null ],
+    [ "HamstarHelpers.Services.Network.Client", "class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html", null ],
     [ "HamstarHelpers.Tiles.CoalTile", "class_hamstar_helpers_1_1_tiles_1_1_coal_tile.html", null ],
     [ "HamstarHelpers.Helpers.Collisions.CollisionHelpers", "class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_collision_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Commands.CommandsHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_commands_1_1_commands_helpers.html", null ],
@@ -117,6 +118,11 @@ var hierarchy =
       ] ],
       [ "HamstarHelpers.Classes.UI.Theme.UIThemedElement", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_element.html", [
         [ "HamstarHelpers.Classes.UI.Elements.UIImageUrl", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.UIWebUrl", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_web_url.html", null ]
       ] ],
       [ "HamstarHelpers.Classes.UI.Theme.UIThemedState", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html", [
@@ -125,6 +131,7 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
+    [ "HamstarHelpers.Helpers.DotNET.Encoding.JsonHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_json_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.KeyValuePairExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_key_value_pair_extensions.html", null ],
     [ "HamstarHelpers.Helpers.Fx.LightningFxHelpers", "class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_lightning_fx_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.LINQHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html", null ],
@@ -207,7 +214,8 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Configs.ScreenPercentPositionDefinition", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_percent_position_definition.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.Configs.ScreenPositionDefinition", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_position_definition.html", null ],
-    [ "HamstarHelpers.Services.Server.Server", "class_hamstar_helpers_1_1_services_1_1_server_1_1_server.html", null ],
+    [ "HamstarHelpers.Services.Network.Server", "class_hamstar_helpers_1_1_services_1_1_network_1_1_server.html", null ],
+    [ "HamstarHelpers.Helpers.Misc.ShaderHelpers", "class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_shader_helpers.html", null ],
     [ "HamstarHelpers.Services.Messages.Simple.SimpleMessage", "class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Encoding.SimpleStringCipher", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_simple_string_cipher.html", null ],
     [ "HamstarHelpers.Services.Configs.StackableModConfig", "class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html", [
