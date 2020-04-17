@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
+using Microsoft.Xna.Framework;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
-using Microsoft.Xna.Framework;
+
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>

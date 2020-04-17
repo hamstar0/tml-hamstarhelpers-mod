@@ -199,14 +199,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			}
 
 			float range = this.Range.Max - this.Range.Min;
+			float unit;
 
 			if( this.Ticks == 0 ) {
-				float unit = range * 0.01f;
-				this.SetValue( this.RememberedInputValue - unit );
+				unit = this.IsInt ? 1 : range * 0.01f;
 			} else {
-				float unit = range / (float)this.Ticks;
-				this.SetValue( this.RememberedInputValue - unit );
+				unit = range / (float)this.Ticks;
 			}
+
+			this.SetValue( this.RememberedInputValue - unit );
 		}
 
 		/// <summary>
@@ -218,14 +219,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			}
 
 			float range = this.Range.Max - this.Range.Min;
+			float unit;
 
 			if( this.Ticks == 0 ) {
-				float unit = range * 0.01f;
-				this.SetValue( this.RememberedInputValue + unit );
+				unit = this.IsInt ? 1 : range * 0.01f;
 			} else {
-				float unit = range / (float)this.Ticks;
-				this.SetValue( this.RememberedInputValue + unit );
+				unit = range / (float)this.Ticks;
 			}
+
+			this.SetValue( this.RememberedInputValue + unit );
 		}
 
 
