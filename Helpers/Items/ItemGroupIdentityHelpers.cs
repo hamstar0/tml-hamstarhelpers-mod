@@ -1,12 +1,12 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.NPCs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.NPCs;
 
 
 namespace HamstarHelpers.Helpers.Items {

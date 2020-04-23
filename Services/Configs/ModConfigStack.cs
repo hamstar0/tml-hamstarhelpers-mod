@@ -145,6 +145,24 @@ namespace HamstarHelpers.Services.Configs {
 			return (T)cs.ConfigStacks.Get2DOrDefault( configType, stackHeight );
 		}
 
+		/// <summary>
+		/// Gets a config on the stack at the specified height (if present), or else only the default.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="stackHeight"></param>
+		/// <returns></returns>
+		public static T GetConfigAtOrDefault<T>( int stackHeight = 100 ) where T : StackableModConfig {
+			var cs = TmlHelpers.SafelyGetInstance<ModConfigStack>();
+			var configType = typeof( T );
+
+			StackableModConfig config;
+			if( cs.ConfigStacks.TryGetValue2D(configType, stackHeight, out config) ) {
+				return (T)config;
+			}
+
+			return (T)ModContent.GetInstance<T>();
+		}
+
 
 		////////////////
 

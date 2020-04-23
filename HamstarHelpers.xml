@@ -11011,6 +11011,14 @@
             <param name="stackHeight"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAtOrDefault``1(System.Int32)">
+            <summary>
+            Gets a config on the stack at the specified height (if present), or else only the default.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stackHeight"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfig``1(``0,System.Int32)">
             <summary>
             Sets a config to exist on the stack at the specified height.
@@ -11061,7 +11069,8 @@
         </member>
         <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OverlayChanges(HamstarHelpers.Services.Configs.StackableModConfig)">
             <summary>
-            Convenience method for pulling changed settings from a given config instance into (the stack of) the current one.
+            Convenience method for pulling changed settings from a given config instance into (the stack of) the current one
+            (calls `ModConfigStack.SetStackedConfigChangesOnlyForType(...)`).
             </summary>
             <param name="changes"></param>
         </member>

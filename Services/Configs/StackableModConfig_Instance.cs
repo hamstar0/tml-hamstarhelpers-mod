@@ -16,7 +16,8 @@ namespace HamstarHelpers.Services.Configs {
 
 
 		/// <summary>
-		/// Convenience method for pulling changed settings from a given config instance into (the stack of) the current one.
+		/// Convenience method for pulling changed settings from a given config instance into (the stack of) the current one
+		/// (calls `ModConfigStack.SetStackedConfigChangesOnlyForType(...)`).
 		/// </summary>
 		/// <param name="changes"></param>
 		public virtual void OverlayChanges( StackableModConfig changes ) {
