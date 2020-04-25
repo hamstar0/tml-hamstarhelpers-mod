@@ -1,5 +1,5 @@
 Supplies numerous helper functions, classes, services, utilities, and information for other mods. Features include:
-* In-game mod control panel UI for reporting bugs, editing mod configs, and seeing mods' status.
+* In-game mod control panel UI for reporting bugs, seeing status/tags of loaded mods, and other helpful in-game options.
 * Descriptive mod tags that may be viewed and edited by anyone, for any mod. Mod searches in the browser may be filtered by these tags.
 * Per-world mod locking available via. control panel to prevent mod mismatch mishaps.
 

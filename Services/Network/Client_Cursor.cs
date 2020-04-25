@@ -11,7 +11,7 @@ namespace HamstarHelpers.Services.Network {
 	/// <summary>
 	/// Supplies assorted server informations and tools.
 	/// </summary>
-	public class Client {
+	public partial class Client {
 		/// <summary>
 		/// Shows last known positions of each player's mouse cursor. Must be activated via. StartBroadcastingMyCursorPosition(), first.
 		/// </summary>

@@ -1,10 +1,8 @@
-﻿using HamstarHelpers.Classes.Protocols.Packet;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Messages.Inbox;
-using System;
-using System.IO;
+﻿using System;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Messages.Inbox;
 
 
 namespace HamstarHelpers {
@@ -152,25 +150,6 @@ namespace HamstarHelpers {
 
 		public override void PreSaveAndQuit() {
 			this.LoadHooks.PreSaveAndExit();
-		}
-
-
-		////////////////
-
-		public override void HandlePacket( BinaryReader reader, int playerWho ) {
-//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
-			try {
-				int protocolCode = reader.ReadInt32();
-				
-				if( Main.netMode == 1 ) {
-					PacketProtocol.HandlePacketOnClient( protocolCode, reader, playerWho );
-				} else if( Main.netMode == 2 ) {
-					PacketProtocol.HandlePacketOnServer( protocolCode, reader, playerWho );
-				}
-			} catch( Exception e ) {
-				LogHelpers.Alert( e.ToString() );
-			}
-//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
 

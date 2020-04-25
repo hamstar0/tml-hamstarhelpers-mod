@@ -10792,6 +10792,7 @@
             @private
             @private
             @private
+            @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersData">
             @private
@@ -12317,6 +12318,9 @@
             <summary>Subjectively bad.</summary>
         </member>
         <member name="T:HamstarHelpers.Services.Network.Client">
+            <summary>
+            Supplies assorted server informations and tools.
+            </summary>
             <summary>
             Supplies assorted server informations and tools.
             </summary>
