@@ -8464,12 +8464,7 @@
             </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileChunkHelpers.IsTileSyncedForCurrentClient(System.Int32,System.Int32)">
-            <summary>
-            Reports whether a given tile is part of a synced chunk. TODO.
-            </summary>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
-            <returns></returns>
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileFinderHelpers">
             <summary>
@@ -12324,6 +12319,9 @@
             <summary>
             Supplies assorted server informations and tools.
             </summary>
+            <summary>
+            Supplies assorted server informations and tools.
+            </summary>
         </member>
         <member name="F:HamstarHelpers.Services.Network.Client.LastKnownCursorPositions">
             <summary>
@@ -12340,6 +12338,21 @@
             <summary>
             Ends the current cursor position broadcast loop.
             </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.Client.TileSectionPacketSubscriber">
+            <summary>
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Client.SubscribeToTileSectionPackets(HamstarHelpers.Services.Network.Client.TileSectionPacketSubscriber)">
+            <summary>
+            Allows intercepting tile sections as they're received.
+            </summary>
+            <param name="callback"></param>
         </member>
         <member name="T:HamstarHelpers.Services.Network.Server">
             <summary>
