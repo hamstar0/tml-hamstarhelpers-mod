@@ -1,5 +1,8 @@
 var NAVTREEINDEX6 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a02245dc3b7bbc683e1ceb34a2e4e131b":[1,0,0,2,15,3,3],
+"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a11d3ef2300784a8aa5f475ce8f586400":[1,0,0,2,15,3,5],
+"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a19d6ec1e7f793c7b612caedf9ed93e1d":[1,0,0,2,15,3,2],
 "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a51689dc9041511f5b11143c5b0c91a35":[1,0,0,2,15,3,4],
 "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a67875ec7091bd9b42308213b138a270d":[1,0,0,2,15,3,6],
 "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#ab282c2befe9f30e00121e27bd308b7a0":[1,0,0,2,15,3,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX6 =
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ac389110bff8c4fe7d1be07c50bd710ca":[1,0,0,2,19,3,0],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ac50ea4a630c2655e7fcd4e5dfbf3b98d":[1,0,0,2,19,3,14],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ad674da0baa52b44600d3b4a9dbfa581b":[1,0,0,2,19,3,2],
-"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ade36717e354881845d0821b4fb8e1cbb":[1,0,0,2,19,3,18],
-"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#adf90e59171417a61716eb783192442ec":[1,0,0,2,19,3,17],
-"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ae45c55ec9cc6416ad3d5b38c3772dba4":[1,0,0,2,19,3,5],
-"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#aea90015e385627149c5a56672a86f7df":[1,0,0,2,19,3,13]
+"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html#ade36717e354881845d0821b4fb8e1cbb":[1,0,0,2,19,3,18]
 };

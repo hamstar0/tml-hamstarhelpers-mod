@@ -5,7 +5,7 @@ var dir_745780dd2dd9f16a765a936081a43a98 =
     [ "Walls", "dir_6da681e7a4232d77295edd8bad54b28c.html", "dir_6da681e7a4232d77295edd8bad54b28c" ],
     [ "TileAttributeHelpers_Obsolete.cs", "_tile_attribute_helpers___obsolete_8cs_source.html", null ],
     [ "TileBiomeHelpers.cs", "_tile_biome_helpers_8cs_source.html", null ],
-    [ "TileChunkHelpers.cs", "_tile_chunk_helpers_8cs_source.html", null ],
+    [ "TileChunkHelpers_Obsolete.cs", "_tile_chunk_helpers___obsolete_8cs_source.html", null ],
     [ "TileFinderHelpers.cs", "_tile_finder_helpers_8cs_source.html", null ],
     [ "TileFinderHelpers_FindContiguous.cs", "_tile_finder_helpers___find_contiguous_8cs_source.html", null ],
     [ "TileFinderHelpers_FindWithin.cs", "_tile_finder_helpers___find_within_8cs_source.html", null ],

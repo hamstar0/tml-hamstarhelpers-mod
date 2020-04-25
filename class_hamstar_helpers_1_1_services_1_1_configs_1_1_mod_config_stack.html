@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.6.0</span>
+   &#160;<span id="projectnumber">v5.6.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -123,6 +123,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aaaaab25315624ddc74f313a94a5b4387"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#aaaaab25315624ddc74f313a94a5b4387">GetConfigAt&lt; T &gt;</a> (int stackHeight)</td></tr>
 <tr class="memdesc:aaaaab25315624ddc74f313a94a5b4387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a config on the stack at the specified height (if present).  <a href="#aaaaab25315624ddc74f313a94a5b4387">More...</a><br /></td></tr>
 <tr class="separator:aaaaab25315624ddc74f313a94a5b4387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725310f96906ff86e8389e4c64685808"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#a725310f96906ff86e8389e4c64685808">GetConfigAtOrDefault&lt; T &gt;</a> (int stackHeight=100)</td></tr>
+<tr class="memdesc:a725310f96906ff86e8389e4c64685808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a config on the stack at the specified height (if present), or else only the default.  <a href="#a725310f96906ff86e8389e4c64685808">More...</a><br /></td></tr>
+<tr class="separator:a725310f96906ff86e8389e4c64685808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe07544a3327960336b2cd50c53706f7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#afe07544a3327960336b2cd50c53706f7">SetStackedConfig&lt; T &gt;</a> (T config, int stackHeight=100)</td></tr>
 <tr class="memdesc:afe07544a3327960336b2cd50c53706f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a config to exist on the stack at the specified height.  <a href="#afe07544a3327960336b2cd50c53706f7">More...</a><br /></td></tr>
 <tr class="separator:afe07544a3327960336b2cd50c53706f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,6 +195,57 @@ Additional Inherited Members</h2></td></tr>
 </div>
 
 <p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00141">141</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
+
+</div>
+</div>
+<a id="a725310f96906ff86e8389e4c64685808"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a725310f96906ff86e8389e4c64685808">&#9670;&nbsp;</a></span>GetConfigAtOrDefault&lt; T &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static T HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAtOrDefault&lt; T &gt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stackHeight</em> = <code>100</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a config on the stack at the specified height (if present), or else only the default. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stackHeight</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="typeconstraint">
+<dl><dt><b>Type Constraints</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em>T</em></td><td>&#160;:</td><td valign="top"><em>StackableModConfig</em></td><td>&#160;</td></tr>
+</table>
+</dd>
+</dl>
+</div>
+
+<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00154">154</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
 
 </div>
 </div>
@@ -384,7 +438,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 </div>
 
-<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00157">157</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00175">175</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
 
 </div>
 </div>
@@ -445,7 +499,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 </div>
 
-<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00175">175</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00193">193</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
 
 </div>
 </div>
@@ -481,7 +535,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00214">214</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00232">232</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
 
 </div>
 </div>
@@ -524,7 +578,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 </div>
 
-<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00201">201</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_mod_config_stack_8cs_source.html#l00219">219</a> of file <a class="el" href="_mod_config_stack_8cs_source.html">ModConfigStack.cs</a>.</p>
 
 </div>
 </div>

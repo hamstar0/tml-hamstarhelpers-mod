@@ -19,6 +19,7 @@ var dir_3bd55fe61e5ac6158cf3ec2496b3368f =
     [ "MyMod_LoadInternal.cs", "_my_mod___load_internal_8cs_source.html", null ],
     [ "MyMod_LoadModules.cs", "_my_mod___load_modules_8cs_source.html", null ],
     [ "MyMod_Meta.cs", "_my_mod___meta_8cs_source.html", null ],
+    [ "MyMod_Net.cs", "_my_mod___net_8cs_source.html", null ],
     [ "MyNPC.cs", "_my_n_p_c_8cs_source.html", null ],
     [ "MyNPC_Draw.cs", "_my_n_p_c___draw_8cs_source.html", null ],
     [ "MyPlayer.cs", "_my_player_8cs_source.html", null ],

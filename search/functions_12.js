@@ -64,6 +64,7 @@ var searchData=
   ['stopimmediately',['StopImmediately',['../class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a474a75a680f69bad11f65c74c34cf706',1,'HamstarHelpers::Services::OverlaySounds::OverlaySound']]],
   ['stringify',['Stringify',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#aa789144b07d0a3e9ac0ce7f616b8275d',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
   ['stringifydict_3c_20tkey_2c_20tvalue_20_3e',['StringifyDict&lt; TKey, TValue &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#ae38fc1b0384a31e525824ff290978f63',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
+  ['subscribetotilesectionpackets',['SubscribeToTileSectionPackets',['../class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a90d2a6e263c27fe15705660d5cf03c59',1,'HamstarHelpers::Services::Network::Client']]],
   ['subtractrgb',['SubtractRGB',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a69e856aef244bd1718a4be2057df8a9a',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
   ['subtractrgba',['SubtractRGBA',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a4a84a06839af325b7dd6b03923eb94c4',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
   ['sumrgb',['SumRGB',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#aeaad8687bf3f52e09a338e7196faf08e',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],

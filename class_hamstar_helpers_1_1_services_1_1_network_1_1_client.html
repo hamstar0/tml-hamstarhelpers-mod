@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.6.0</span>
+   &#160;<span id="projectnumber">v5.6.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client-members.html">List of all members</a>  </div>
@@ -99,7 +100,23 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <p>Supplies assorted server informations and tools.  
  <a href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for HamstarHelpers.Services.Network.Client:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.png" usemap="#HamstarHelpers.Services.Network.Client_map" alt=""/>
+  <map id="HamstarHelpers.Services.Network.Client_map" name="HamstarHelpers.Services.Network.Client_map">
+<area href="interface_hamstar_helpers_1_1_classes_1_1_loadable_1_1_i_loadable.html" title="Affixed to classes that wish to automatically run functios on mod load, post load,..." alt="HamstarHelpers.Classes.Loadable.ILoadable" shape="rect" coords="0,0,265,24"/>
+<area href="interface_hamstar_helpers_1_1_classes_1_1_loadable_1_1_i_loadable.html" title="Affixed to classes that wish to automatically run functios on mod load, post load,..." alt="HamstarHelpers.Classes.Loadable.ILoadable" shape="rect" coords="275,0,540,24"/>
+<area href="interface_hamstar_helpers_1_1_classes_1_1_loadable_1_1_i_loadable.html" title="Affixed to classes that wish to automatically run functios on mod load, post load,..." alt="HamstarHelpers.Classes.Loadable.ILoadable" shape="rect" coords="550,0,815,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a5ebcb77bde5756d1238bb82d77c419e6"><td class="memItemLeft" align="right" valign="top">delegate void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a5ebcb77bde5756d1238bb82d77c419e6">TileSectionPacketSubscriber</a> (int tileX, int tileY, int width, int height, BinaryReader data)</td></tr>
+<tr class="separator:a5ebcb77bde5756d1238bb82d77c419e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a547929209a6756bad3a2bef0b5437867"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a547929209a6756bad3a2bef0b5437867">StartBroadcastingMyCursorPosition</a> ()</td></tr>
@@ -108,6 +125,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af213fccd05811e6375f76ef72982003b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#af213fccd05811e6375f76ef72982003b">StopBroadcastingMyCursorPosition</a> ()</td></tr>
 <tr class="memdesc:af213fccd05811e6375f76ef72982003b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends the current cursor position broadcast loop.  <a href="#af213fccd05811e6375f76ef72982003b">More...</a><br /></td></tr>
 <tr class="separator:af213fccd05811e6375f76ef72982003b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d2a6e263c27fe15705660d5cf03c59"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a90d2a6e263c27fe15705660d5cf03c59">SubscribeToTileSectionPackets</a> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a5ebcb77bde5756d1238bb82d77c419e6">TileSectionPacketSubscriber</a> callback)</td></tr>
+<tr class="memdesc:a90d2a6e263c27fe15705660d5cf03c59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows intercepting tile sections as they're received.  <a href="#a90d2a6e263c27fe15705660d5cf03c59">More...</a><br /></td></tr>
+<tr class="separator:a90d2a6e263c27fe15705660d5cf03c59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -118,7 +138,7 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Supplies assorted server informations and tools. </p>
 
-<p class="definition">Definition at line <a class="el" href="_client_8cs_source.html#l00014">14</a> of file <a class="el" href="_client_8cs_source.html">Client.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_client___cursor_8cs_source.html#l00015">15</a> of file <a class="el" href="_client___cursor_8cs_source.html">Client_Cursor.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a547929209a6756bad3a2bef0b5437867"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a547929209a6756bad3a2bef0b5437867">&#9670;&nbsp;</a></span>StartBroadcastingMyCursorPosition()</h2>
@@ -146,7 +166,7 @@ Static Public Attributes</h2></td></tr>
 <p>Begins a broadcast loop (via. <a class="el" href="namespace_hamstar_helpers_1_1_services_1_1_timers.html">Timers</a>) every 1/4 second to tell everyone where the current player's cursor is located. </p>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if loop not already running.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_client_8cs_source.html#l00037">37</a> of file <a class="el" href="_client_8cs_source.html">Client.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_client___cursor_8cs_source.html#l00038">38</a> of file <a class="el" href="_client___cursor_8cs_source.html">Client_Cursor.cs</a>.</p>
 
 </div>
 </div>
@@ -175,7 +195,101 @@ Static Public Attributes</h2></td></tr>
 
 <p>Ends the current cursor position broadcast loop. </p>
 
-<p class="definition">Definition at line <a class="el" href="_client_8cs_source.html#l00057">57</a> of file <a class="el" href="_client_8cs_source.html">Client.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_client___cursor_8cs_source.html#l00058">58</a> of file <a class="el" href="_client___cursor_8cs_source.html">Client_Cursor.cs</a>.</p>
+
+</div>
+</div>
+<a id="a90d2a6e263c27fe15705660d5cf03c59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90d2a6e263c27fe15705660d5cf03c59">&#9670;&nbsp;</a></span>SubscribeToTileSectionPackets()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Network.Client.SubscribeToTileSectionPackets </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a5ebcb77bde5756d1238bb82d77c419e6">TileSectionPacketSubscriber</a>&#160;</td>
+          <td class="paramname"><em>callback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allows intercepting tile sections as they're received. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_client___hijack_packet_8cs_source.html#l00031">31</a> of file <a class="el" href="_client___hijack_packet_8cs_source.html">Client_HijackPacket.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5ebcb77bde5756d1238bb82d77c419e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ebcb77bde5756d1238bb82d77c419e6">&#9670;&nbsp;</a></span>TileSectionPacketSubscriber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delegate void HamstarHelpers.Services.Network.Client.TileSectionPacketSubscriber </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BinaryReader&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileX</td><td></td></tr>
+    <tr><td class="paramname">tileY</td><td></td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">data</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -202,12 +316,14 @@ Static Public Attributes</h2></td></tr>
 
 <p>Shows last known positions of each player's mouse cursor. Must be activated via. <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a547929209a6756bad3a2bef0b5437867" title="Begins a broadcast loop (via. Timers) every 1/4 second to tell everyone where the current player&#39;s cu...">StartBroadcastingMyCursorPosition()</a>, first. </p>
 
-<p class="definition">Definition at line <a class="el" href="_client_8cs_source.html#l00018">18</a> of file <a class="el" href="_client_8cs_source.html">Client.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_client___cursor_8cs_source.html#l00019">19</a> of file <a class="el" href="_client___cursor_8cs_source.html">Client_Cursor.cs</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>v5 (tML11)/HamstarHelpers/Services/Network/<a class="el" href="_client_8cs_source.html">Client.cs</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>v5 (tML11)/HamstarHelpers/Services/Network/<a class="el" href="_client___cursor_8cs_source.html">Client_Cursor.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Services/Network/<a class="el" href="_client___instance_8cs_source.html">Client_Instance.cs</a></li>
+<li>v5 (tML11)/HamstarHelpers/Services/Network/<a class="el" href="_client___hijack_packet_8cs_source.html">Client_HijackPacket.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

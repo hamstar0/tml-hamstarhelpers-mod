@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_entry.html#a8e3b8fe7f7f8c1593fabd98701908502":[1,0,0,1,1,0,1,2],
+"class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html":[1,0,0,1,1,0,2],
+"class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html#a1f213ee659c3eebe06cca9dc3ca8d9df":[1,0,0,1,1,0,2,4],
 "class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html#a3a4e9d55334f9c86fcd965de87325203":[1,0,0,1,1,0,2,2],
 "class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html#a6b520174812af81ddc3cf25e70fa159d":[1,0,0,1,1,0,2,5],
 "class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html#aa8136fe5700dd9589d76c825f9d1f18e":[1,0,0,1,1,0,2,3],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html#a74ef4f4e8feaf63863e204562ee9bc0a":[1,0,0,1,7,1,0,0,2],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html#aaa5b7bfde35b294f559bf3fe6b35f31c":[1,0,0,1,7,1,0,0,0],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html":[1,0,0,1,7,1,0,1],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a08251d3616363e4e71d8d49013fdbb0f":[1,0,0,1,7,1,0,1,0],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a30e6dd158aafd561e159322ade70fa2f":[1,0,0,1,7,1,0,1,7],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a5c231133b3bd3b6257e6a13a915655ae":[1,0,0,1,7,1,0,1,3],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a636066f96c571b4b4a45ab867d8dbff4":[1,0,0,1,7,1,0,1,1]
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a08251d3616363e4e71d8d49013fdbb0f":[1,0,0,1,7,1,0,1,0]
 };

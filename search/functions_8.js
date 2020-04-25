@@ -54,7 +54,6 @@ var searchData=
   ['issubclassofrawgeneric',['IsSubclassOfRawGeneric',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#a041ce3018af5d5543aca675b1b2d10a6',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
   ['issubsetof',['IsSubsetOf',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_set.html#a3aa0c7e80b7c571e99fa9eade8348cc9',1,'HamstarHelpers::Classes::DataStructures::ReadOnlySet']]],
   ['issupersetof',['IsSupersetOf',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_set.html#a67f2d97b2fc647e017df3029fda98752',1,'HamstarHelpers::Classes::DataStructures::ReadOnlySet']]],
-  ['istilesyncedforcurrentclient',['IsTileSyncedForCurrentClient',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_chunk_helpers.html#a58bbb118eb26b76f0d9f8818867a9295',1,'HamstarHelpers::Helpers::Tiles::TileChunkHelpers']]],
   ['istool',['IsTool',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#a74e74130069b315f77054e3f2c456242',1,'HamstarHelpers::Helpers::Items::Attributes::ItemAttributeHelpers']]],
   ['isvanityslot',['IsVanitySlot',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#aedb183bba94fcb0494b2125557d08abe',1,'HamstarHelpers::Helpers::Players::PlayerItemHelpers']]],
   ['iswire',['IsWire',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a83630e8e6b61358be2a592a321a23158',1,'HamstarHelpers::Helpers::Tiles::TileHelpers']]],

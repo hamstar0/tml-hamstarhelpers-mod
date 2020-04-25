@@ -1,5 +1,7 @@
 var NAVTREEINDEX8 =
 {
+"class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a0b464d5a5a28d8d1c87323911a3cf282":[1,0,0,5,5,0,0,21],
+"class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a0bc9a2c382f8d05cfb6a7fd77384c21e":[1,0,0,5,5,0,0,46],
 "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a10026e85aa9d0106aa9dd9920995eee8":[1,0,0,5,5,0,0,30],
 "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a122124a5d07e1e02a79fe651fcf7784e":[1,0,0,5,5,0,0,18],
 "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_definitions_1_1_item_group_i_ds.html#a123ea571584bb7c5e5b886c8445613c4":[1,0,0,5,5,0,0,62],
@@ -226,8 +228,10 @@ var NAVTREEINDEX8 =
 "class_hamstar_helpers_1_1_services_1_1_n_p_c_chat_1_1_n_p_c_chat.html#ad17f67d7431f729f16248d8b682627fb":[1,0,0,5,13,0,4],
 "class_hamstar_helpers_1_1_services_1_1_n_p_c_chat_1_1_n_p_c_chat.html#af78895cbb556d62621afc451bc20b954":[1,0,0,5,13,0,3],
 "class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html":[1,0,0,5,12,0],
-"class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a08c25c10837f702f95577ac7a69119cd":[1,0,0,5,12,0,2],
+"class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a08c25c10837f702f95577ac7a69119cd":[1,0,0,5,12,0,4],
 "class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a547929209a6756bad3a2bef0b5437867":[1,0,0,5,12,0,0],
+"class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a5ebcb77bde5756d1238bb82d77c419e6":[1,0,0,5,12,0,3],
+"class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a90d2a6e263c27fe15705660d5cf03c59":[1,0,0,5,12,0,2],
 "class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#af213fccd05811e6375f76ef72982003b":[1,0,0,5,12,0,1],
 "class_hamstar_helpers_1_1_services_1_1_network_1_1_server.html":[1,0,0,5,12,1],
 "class_hamstar_helpers_1_1_services_1_1_network_1_1_server.html#ad883cd47317bb6b6d44eb7e8c1e264da":[1,0,0,5,12,1,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX8 =
 "class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a383383fc77cfcb313927215fb2b80d31":[1,0,0,5,17,0,3],
 "class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a4197b813c84c5e5363dc3f2d3cf4b147":[1,0,0,5,17,0,2],
 "class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a42cc4368ffac7d9a6d4f4a40cc3ee5e4":[1,0,0,5,17,0,13],
-"class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a43b457faa0f1bd2fa96d9a1f3abc67a0":[1,0,0,5,17,0,18],
-"class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a516eb3aecb447084bad0cbd3651ce2a3":[1,0,0,5,17,0,11],
-"class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a56dbde637814b37cdd2d49d5de029b77":[1,0,0,5,17,0,16],
-"class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a7b35a582d7c9926bf81e86e05f194e99":[1,0,0,5,17,0,20],
-"class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a7e4bb779ae6f8f2f61fd0bcf5fb359a1":[1,0,0,5,17,0,1]
+"class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a43b457faa0f1bd2fa96d9a1f3abc67a0":[1,0,0,5,17,0,18]
 };

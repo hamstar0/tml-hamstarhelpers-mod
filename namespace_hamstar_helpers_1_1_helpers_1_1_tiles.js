@@ -4,7 +4,6 @@ var namespace_hamstar_helpers_1_1_helpers_1_1_tiles =
     [ "Draw", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw.html", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw" ],
     [ "Walls", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_walls.html", "namespace_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_walls" ],
     [ "TileBiomeHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_biome_helpers" ],
-    [ "TileChunkHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_chunk_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_chunk_helpers" ],
     [ "TileFinderHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers" ],
     [ "TileFrameHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_frame_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_frame_helpers" ],
     [ "TileGroupIdentityHelpers", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_group_identity_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_group_identity_helpers" ],

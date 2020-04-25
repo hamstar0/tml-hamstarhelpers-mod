@@ -1,5 +1,8 @@
 var NAVTREEINDEX3 =
 {
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a30e6dd158aafd561e159322ade70fa2f":[1,0,0,1,7,1,0,1,7],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a5c231133b3bd3b6257e6a13a915655ae":[1,0,0,1,7,1,0,1,3],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a636066f96c571b4b4a45ab867d8dbff4":[1,0,0,1,7,1,0,1,1],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a6a7d076c6720c6acae4bd72cba4f9d99":[1,0,0,1,7,1,0,1,5],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a7a0b0e987e32db5d4cbe509ed24197a9":[1,0,0,1,7,1,0,1,4],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html#a9f6d4c4cf3639040d4eda7bfe0225884":[1,0,0,1,7,1,0,1,6],
@@ -246,8 +249,5 @@ var NAVTREEINDEX3 =
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#a72bb17a579c349c7c406c1a78df868af":[1,0,0,1,7,3,1,2],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#a94065089ab577f3e79921bc70800950f":[1,0,0,1,7,3,1,0],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#a952c7b3aeab950628d8968f517f49afe":[1,0,0,1,7,3,1,4],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#acd67a49cd6ac41ab43620ca46fe73b15":[1,0,0,1,7,3,1,1],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#acdf5f922197fb6f51c9328f5392fd808":[1,0,0,1,7,3,1,3],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#ae17a15d67d160126ae3837a6234f2f5d":[1,0,0,1,7,3,1,5],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#ae42e16d071fd264204a3a7ba8f962631":[1,0,0,1,7,3,1,6]
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#acd67a49cd6ac41ab43620ca46fe73b15":[1,0,0,1,7,3,1,1]
 };

@@ -1,5 +1,8 @@
 var NAVTREEINDEX5 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html":[1,0,0,2,3,9],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html#a32e14afa6b45cb0c59808901be481fa5":[1,0,0,2,3,9,1],
+"class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html#a6bde655b24ac67549096b6679b759791":[1,0,0,2,3,9,0],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html#a6d9c4534c7bb441ffd59636b8dcce93b":[1,0,0,2,3,9,2],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_threading_1_1_task_launcher.html":[1,0,0,2,3,4,0],
 "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_threading_1_1_task_launcher.html#ac0f338f145a45360e3c5fbafa68bd82f":[1,0,0,2,3,4,0,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX5 =
 "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a9d22e8084900c77460eb8b1917d15977":[1,0,0,2,15,2,5],
 "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#abab4dfb9b09d8a374978addae679534f":[1,0,0,2,15,2,8],
 "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#acb85ff3779fa4bf6d4c3af36f14c2c51":[1,0,0,2,15,2,0],
-"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html":[1,0,0,2,15,3],
-"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a02245dc3b7bbc683e1ceb34a2e4e131b":[1,0,0,2,15,3,3],
-"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a11d3ef2300784a8aa5f475ce8f586400":[1,0,0,2,15,3,5],
-"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a19d6ec1e7f793c7b612caedf9ed93e1d":[1,0,0,2,15,3,2]
+"class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html":[1,0,0,2,15,3]
 };

@@ -118,6 +118,7 @@ var searchData=
   ['stringifydict_3c_20tkey_2c_20tvalue_20_3e',['StringifyDict&lt; TKey, TValue &gt;',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#ae38fc1b0384a31e525824ff290978f63',1,'HamstarHelpers::Helpers::DotNET::DotNetHelpers']]],
   ['strobe',['Strobe',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a8cef30b53cd1a4906dee0098ab45ff24',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
   ['submessage',['SubMessage',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#a9305174ec893f73d55e413be5bfc05fa',1,'HamstarHelpers::Services::Messages::Simple::SimpleMessage']]],
+  ['subscribetotilesectionpackets',['SubscribeToTileSectionPackets',['../class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a90d2a6e263c27fe15705660d5cf03c59',1,'HamstarHelpers::Services::Network::Client']]],
   ['subsmall',['SubSmall',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a8beedfa3dcac7b50bc266189a21be91ea3f411245f8aa1c66343fe429ba63d8e0',1,'HamstarHelpers::Helpers::World']]],
   ['subtractrgb',['SubtractRGB',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a69e856aef244bd1718a4be2057df8a9a',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
   ['subtractrgba',['SubtractRGBA',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a4a84a06839af325b7dd6b03923eb94c4',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
