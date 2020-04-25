@@ -65,6 +65,7 @@ namespace HamstarHelpers.Services.Timers {
 		/// Convenience method to repeatedly run a given action 'now' (AKA a 0 delay timer) until indicated otherwise.
 		/// </summary>
 		/// <param name="func">Return `true` to repeat timer.</param>
+		/// <param name="runsWhilePaused"></param>
 		public static void RunUntil( Func<bool> func, bool runsWhilePaused ) {
 			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
 			Timers.SetTimer( ctx, 1, runsWhilePaused, () => {
