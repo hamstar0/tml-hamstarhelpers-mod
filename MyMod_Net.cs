@@ -1,11 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Services.Network;
 
 
 namespace HamstarHelpers {
@@ -27,16 +30,25 @@ namespace HamstarHelpers {
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}
 
+
+		////////////////
+
 		public override bool HijackGetData( ref byte messageType, ref BinaryReader reader, int playerNumber ) {
 			if( messageType == MessageID.TileSection ) {
-				this.HijackTileSectionData( reader );
+				var client = TmlHelpers.SafelyGetInstance<Client>();
+
+				if( client.TileSectionPacketSubs.Count > 0 ) {
+					this.HijackTileSectionData( reader, client.TileSectionPacketSubs );
+				}
 			}
+
 			return base.HijackGetData( ref messageType, ref reader, playerNumber );
 		}
 
+		////
 
-		private void HijackTileSectionData( BinaryReader reader ) {
-			int xStart, yStart;
+		private void HijackTileSectionData( BinaryReader reader, IList<Client.TileSectionPacketSubscriber> subs ) {
+			int tileX, tileY;
 			short width, height;
 
 			reader.BaseStream.Position -= 3L;
@@ -62,14 +74,16 @@ namespace HamstarHelpers {
 				}
 
 				using( var newReader = new BinaryReader(ms2) ) {
-					xStart = newReader.ReadInt32();
-					yStart = newReader.ReadInt32();
+					tileX = newReader.ReadInt32();
+					tileY = newReader.ReadInt32();
 					width = newReader.ReadInt16();
 					height = newReader.ReadInt16();
-					// do stuff
-				}
 
-LogHelpers.Log( "xStart: "+xStart+", yStart: "+yStart+", width: "+width+", height: "+height );
+					foreach( Client.TileSectionPacketSubscriber sub in subs ) {
+						sub.Invoke( tileX, tileY, width, height, newReader );
+						newReader.BaseStream.Position = 11L;
+					}
+				}
 			}
 		}
 	}

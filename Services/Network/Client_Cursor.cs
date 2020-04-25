@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Internals.NetProtocols;
 
@@ -11,7 +12,7 @@ namespace HamstarHelpers.Services.Network {
 	/// <summary>
 	/// Supplies assorted server informations and tools.
 	/// </summary>
-	public partial class Client {
+	public partial class Client : ILoadable {
 		/// <summary>
 		/// Shows last known positions of each player's mouse cursor. Must be activated via. StartBroadcastingMyCursorPosition(), first.
 		/// </summary>
