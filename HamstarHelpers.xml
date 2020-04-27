@@ -8459,9 +8459,7 @@
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileChunkHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to tile chunks (multiplayer only).
-            </summary>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileChunkHelpers.IsTileSyncedForCurrentClient(System.Int32,System.Int32)">
             @private
@@ -12534,6 +12532,7 @@
             Convenience method to repeatedly run a given action 'now' (AKA a 0 delay timer) until indicated otherwise.
             </summary>
             <param name="func">Return `true` to repeat timer.</param>
+            <param name="runsWhilePaused"></param>
         </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Boolean})">
             <summary>

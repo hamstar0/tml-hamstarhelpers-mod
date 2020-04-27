@@ -5,7 +5,7 @@ using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 
 
-namespace HamstarHelpers.Classes.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
@@ -71,6 +71,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		private UITextInputElement NumericInput;
+		private UIThemedText LeftArrowElem;
+		private UIThemedText RightArrowElem;
 
 		private bool IsNowSettingValue = false;
 

@@ -6,7 +6,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Timers;
 
 
-namespace HamstarHelpers.Classes.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
@@ -38,9 +38,14 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				return;
 			}
 
-			//Rectangle rect = this.GetInnerDimensions().ToRectangle();
 			Rectangle rect = this.GetInnerRectangle();
 			if( !rect.Contains( Main.mouseX, Main.mouseY ) ) {
+				return;
+			}
+			if( this.LeftArrowElem.GetOuterDimensions().ToRectangle().Contains(Main.mouseX, Main.mouseY) ) {
+				return;
+			}
+			if( this.RightArrowElem.GetOuterDimensions().ToRectangle().Contains(Main.mouseX, Main.mouseY) ) {
 				return;
 			}
 

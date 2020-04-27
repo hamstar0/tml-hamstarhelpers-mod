@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using HamstarHelpers.Classes.UI.Theme;
 
 
-namespace HamstarHelpers.Classes.UI.Elements {
+namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
