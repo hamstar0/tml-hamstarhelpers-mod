@@ -12,43 +12,43 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// </summary>
 	public class TilePatternConfig {
 		/// <summary></summary>
-		public int IsActive { get; set; } = 0;
+		public Ref<bool> IsActive { get; set; }
 
 		/// <summary></summary>
 		public Ref<Rectangle> AreaFromCenter { get; set; } = null;
 
 		/// <summary></summary>
-		public ISet<int> IsAnyOfType { get; set; } = new HashSet<int>();
+		public HashSet<int> IsAnyOfType { get; set; }	// = new HashSet<int>();
 		/// <summary></summary>
-		public ISet<int> IsAnyOfWallType { get; set; } = new HashSet<int>();
+		public HashSet<int> IsAnyOfWallType { get; set; }	// = new HashSet<int>();
 
 		/// <summary></summary>
-		public int HasWire1 { get; set; } = 0;
+		public Ref<bool> HasWire1 { get; set; }
 		/// <summary></summary>
-		public int HasWire2 { get; set; } = 0;
+		public Ref<bool> HasWire2 { get; set; }
 		/// <summary></summary>
-		public int HasWire3 { get; set; } = 0;
+		public Ref<bool> HasWire3 { get; set; }
 		/// <summary></summary>
-		public int HasWire4 { get; set; } = 0;
+		public Ref<bool> HasWire4 { get; set; }
 
 		/// <summary></summary>
-		public int HasSolidProperties { get; set; } = 0;
+		public Ref<bool> HasSolidProperties { get; set; }
 		/// <summary></summary>
-		public int IsPlatform { get; set; } = 0;
+		public Ref<bool> IsPlatform { get; set; }
 		/// <summary></summary>
-		public int IsActuated { get; set; } = 0;
+		public Ref<bool> IsActuated { get; set; }
 		/// <summary></summary>
-		public int IsVanillaBombable { get; set; } = 0;
+		public Ref<bool> IsVanillaBombable { get; set; }
 
 		/// <summary></summary>
-		public int HasWall { get; set; } = 0;
+		public Ref<bool> HasWall { get; set; }
 
 		/// <summary></summary>
-		public int HasWater { get; set; } = 0;
+		public Ref<bool> HasWater { get; set; }
 		/// <summary></summary>
-		public int HasHoney { get; set; } = 0;
+		public Ref<bool> HasHoney { get; set; }
 		/// <summary></summary>
-		public int HasLava { get; set; } = 0;
+		public Ref<bool> HasLava { get; set; }
 
 		/// <summary></summary>
 		public Ref<int> Shape { get; set; }
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public int IsModded { get; set; } = 0;
 
 		/// <summary></summary>
-		public ISet<TilePattern> AnyPattern { get; set; } = new HashSet<TilePattern>();
+		public HashSet<TilePattern> AnyPattern { get; set; }	//= new HashSet<TilePattern>();
 
 
 
@@ -75,22 +75,22 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns></returns>
 		public TilePattern ToTilePattern() {
 			return new TilePattern( new TilePatternBuilder {
-				IsActive = this.IsActive != 0 ? this.IsActive == 1 : (bool?)null,
+				IsActive = this.IsActive != null ? this.IsActive.Value : (bool?)null,
 				AreaFromCenter = this.AreaFromCenter?.Value,
 				IsAnyOfType = this.IsAnyOfType,
 				IsAnyOfWallType = this.IsAnyOfWallType,
-				HasWire1 = this.HasWire1 != 0 ? this.HasWire1 == 1 : (bool?)null,
-				HasWire2 = this.HasWire2 != 0 ? this.HasWire2 == 1 : (bool?)null,
-				HasWire3 = this.HasWire3 != 0 ? this.HasWire3 == 1 : (bool?)null,
-				HasWire4 = this.HasWire4 != 0 ? this.HasWire4 == 1 : (bool?)null,
-				HasSolidProperties = this.HasSolidProperties != 0 ? this.HasSolidProperties == 1 : (bool?)null,
-				IsPlatform = this.IsPlatform != 0 ? this.IsPlatform == 1 : (bool?)null,
-				IsActuated = this.IsActuated != 0 ? this.IsActuated == 1 : (bool?)null,
-				IsVanillaBombable = this.IsVanillaBombable != 0 ? this.IsVanillaBombable == 1 : (bool?)null,
-				HasWall = this.HasWall != 0 ? this.HasWall == 1 : (bool?)null,
-				HasWater = this.HasWater != 0 ? this.HasWater == 1 : (bool?)null,
-				HasHoney = this.HasHoney != 0 ? this.HasHoney == 1 : (bool?)null,
-				HasLava = this.HasLava != 0 ? this.HasLava == 1 : (bool?)null,
+				HasWire1 = this.HasWire1 != null ? this.HasWire1.Value : (bool?)null,
+				HasWire2 = this.HasWire2 != null ? this.HasWire2.Value : (bool?)null,
+				HasWire3 = this.HasWire3 != null ? this.HasWire3.Value : (bool?)null,
+				HasWire4 = this.HasWire4 != null ? this.HasWire4.Value : (bool?)null,
+				HasSolidProperties = this.HasSolidProperties != null ? this.HasSolidProperties.Value : (bool?)null,
+				IsPlatform = this.IsPlatform != null ? this.IsPlatform.Value : (bool?)null,
+				IsActuated = this.IsActuated != null ? this.IsActuated.Value : (bool?)null,
+				IsVanillaBombable = this.IsVanillaBombable != null ? this.IsVanillaBombable.Value : (bool?)null,
+				HasWall = this.HasWall != null ? this.HasWall.Value : (bool?)null,
+				HasWater = this.HasWater != null ? this.HasWater.Value : (bool?)null,
+				HasHoney = this.HasHoney != null ? this.HasHoney.Value : (bool?)null,
+				HasLava = this.HasLava != null ? this.HasLava.Value : (bool?)null,
 				Shape = (TileShapeType?)this.Shape?.Value,
 				MaximumBrightness = this.MaximumBrightness?.Value,
 				MinimumBrightness = this.MinimumBrightness?.Value,

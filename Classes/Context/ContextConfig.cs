@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Terraria;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Helpers.NPCs;
 using HamstarHelpers.Classes.Tiles.TilePattern;
@@ -13,13 +14,13 @@ namespace HamstarHelpers.Classes.Context {
 	/// </summary>
 	public class ContextConfig {
 		/// <summary></summary>
-		public TilePatternConfig TilePattern { get; set; } = null;
+		public TilePatternConfig TilePattern { get; set; }
 
 		/// <summary></summary>
-		public ISet<NPCDefinition> ActiveNPCs { get; set; } = new HashSet<NPCDefinition>();
+		public HashSet<NPCDefinition> ActiveNPCs { get; set; }
 
 		/// <summary></summary>
-		public int IsBoss { get; set; } = 0;
+		public Ref<bool> IsBoss { get; set; }
 
 		//public ISet<string> Biomes = null;
 
@@ -32,16 +33,16 @@ namespace HamstarHelpers.Classes.Context {
 		public bool IsNight { get; set; } = true;
 
 		/// <summary></summary>
-		public ISet<int> MoonPhases { get; set; } = new HashSet<int>();
+		public HashSet<int> MoonPhases { get; set; }
 
 		/// <summary></summary>
-		public ISet<int> Events { get; set; } = new HashSet<int>();   //VanillaEventFlag
+		public HashSet<int> Events { get; set; }   //VanillaEventFlag
 
 		/// <summary></summary>
-		public ISet<string> Progress { get; set; } = new HashSet<string>();
+		public HashSet<string> Progress { get; set; }
 
 		/// <summary></summary>
-		public ISet<ContextConfig> AnyOthers { get; set; } = new HashSet<ContextConfig>();
+		public HashSet<ContextConfig> AnyOthers { get; set; }
 
 
 
@@ -55,7 +56,7 @@ namespace HamstarHelpers.Classes.Context {
 			return new Context {
 				TilePattern = this.TilePattern.ToTilePattern(),
 				ActiveNPCs = this.ActiveNPCs.Count > 0 ? this.ActiveNPCs : null,
-				IsBoss = this.IsBoss != 0 ? (bool?)(this.IsBoss == 1) : null,
+				IsBoss = this.IsBoss != null ? this.IsBoss.Value : (bool?)null,
 				IsDay = this.IsDay,
 				IsNight = this.IsNight,
 				MoonPhases = this.MoonPhases.Count > 0 ? this.MoonPhases : null,
