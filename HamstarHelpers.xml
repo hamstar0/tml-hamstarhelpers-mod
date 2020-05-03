@@ -2040,6 +2040,191 @@
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextField.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.Slider.UISlider">
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.RememberedInputValue">
+            <summary>
+            Element's current input value.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Range">
+            <summary>
+            Total range of this slider element.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Ticks">
+            <summary>
+            Number of ticks to snap to along slider's range.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.IsInt">
+            <summary>
+            Constrain values to integers.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Order">
+            <summary>
+            Allows defining a custom sort order value (for putting in an ordered list).
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.IsClickable">
+            <summary>
+            Enables mouse interactivity.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.IsTextInputHidden">
+            <summary>
+            Indicates if text input is suppressed (hidden).
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.HoverText">
+            <summary>
+            Mouse hover popup label.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.InnerBarShader">
+            <summary>
+            Mouse hover popup label.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Boolean,System.Int32,System.Single,System.Single,System.Boolean,System.Func{System.Single,Microsoft.Xna.Framework.Color})">
+            <param name="theme">Appearance style.</param>
+            <param name="hoverText">Mouse hover popup label.</param>
+            <param name="isInt">Indicates this slider uses integer values only. Default false.</param>
+            <param name="ticks">Number of ticks to snap to along slider range. Default 0 (unlimited).</param>
+            <param name="minRange">Beginning of slider range. Default 0.</param>
+            <param name="maxRange">End of slider range. Default 1.</param>
+            <param name="hideTextInput">Indicates if text input is suppressed (hidden).</param>
+            <param name="innerBarShader">Allows specifying a color gradient for the inner bar. Defaults to `null`; the default black-to-white shader.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Enable(System.Boolean)">
+            <summary>
+            Enables or disables the current element.
+            </summary>
+            <param name="isEnabled"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.SetRange(System.Single,System.Single)">
+            <summary>
+            Adjusts the available range of values for this element.
+            </summary>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.SetTicks(System.Int32)">
+            <summary>
+            Adjusts the number of ticks to use for this element.
+            </summary>
+            <param name="ticks">Set to 0 for no ticks.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.SetValue(System.Single)">
+            <summary>
+            Sets the value. Applies necessary clamping.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.ScrollLeft">
+            <summary>
+            Scrolls the slider 1 "unit" left.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.ScrollRight">
+            <summary>
+            Scrolls the slider 1 "unit" right.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.CompareTo(System.Object)">
+            <summary>
+            Decides sort order in a list.
+            </summary>
+            <param name="obj">Object to compare rank to.</param>
+            <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color},System.Int32)">
+            <summary>
+            Draws a slider bar and returns the value of the mouse's current position.
+            </summary>
+            <param name="sb"></param>
+            <param name="destRect"></param>
+            <param name="valueAsPercent"></param>
+            <param name="innerBarShader"></param>
+            <param name="lockState"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetInputPercentWithinArea(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Rectangle)">
+            <summary>
+            Gets the slider value of a given point relative to a given slider rectangle area.
+            </summary>
+            <param name="point"></param>
+            <param name="area"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetValueOfSliderPercent(System.Single,System.Single,System.Single,System.Int32)">
+            <summary>
+            Gets the actual allowed value of a given slider percent position.
+            </summary>
+            <param name="percent"></param>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+            <param name="ticks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetPercentOfSliderValue(System.Single,System.Single,System.Single)">
+            <summary>
+            Gets the slider percent value of a given input value.
+            </summary>
+            <param name="value"></param>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetInputValue(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Point,System.Single,System.Single,System.Int32,System.Boolean)">
+            <summary>
+            Gets the input value from a given screen selection point.
+            </summary>
+            <param name="sliderRect"></param>
+            <param name="screenAt"></param>
+            <param name="minRange"></param>
+            <param name="maxRange"></param>
+            <param name="ticks"></param>
+            <param name="isInt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetConstrainedValue(System.Single)">
+            <summary>
+            Processes a given value to best fit as a value of the current slider's available set.
+            </summary>
+            <param name="rawValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetInnerRectangle">
+            <summary>
+            Gets the inner rectangle of the slider portion (where the slider knob exists).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Update(Microsoft.Xna.Framework.GameTime)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UICheckbox">
             <summary>
             Defines a UI checkbox (toggleable button) element.
@@ -2394,191 +2579,6 @@
             Draws mouse hover title.
             </summary>
             <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
-        </member>
-        <member name="T:HamstarHelpers.Classes.UI.Elements.UISlider">
-            <summary>
-            Implements a UI slider bar element.
-            </summary>
-            <summary>
-            Implements a UI slider bar element.
-            </summary>
-            <summary>
-            Implements a UI slider bar element.
-            </summary>
-            <summary>
-            Implements a UI slider bar element.
-            </summary>
-            <summary>
-            Implements a UI slider bar element.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.RememberedInputValue">
-            <summary>
-            Element's current input value.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.Range">
-            <summary>
-            Total range of this slider element.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.Ticks">
-            <summary>
-            Number of ticks to snap to along slider's range.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.IsInt">
-            <summary>
-            Constrain values to integers.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.Order">
-            <summary>
-            Allows defining a custom sort order value (for putting in an ordered list).
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.IsClickable">
-            <summary>
-            Enables mouse interactivity.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.IsTextInputHidden">
-            <summary>
-            Indicates if text input is suppressed (hidden).
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.HoverText">
-            <summary>
-            Mouse hover popup label.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UISlider.InnerBarShader">
-            <summary>
-            Mouse hover popup label.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Boolean,System.Int32,System.Single,System.Single,System.Boolean,System.Func{System.Single,Microsoft.Xna.Framework.Color})">
-            <param name="theme">Appearance style.</param>
-            <param name="hoverText">Mouse hover popup label.</param>
-            <param name="isInt">Indicates this slider uses integer values only. Default false.</param>
-            <param name="ticks">Number of ticks to snap to along slider range. Default 0 (unlimited).</param>
-            <param name="minRange">Beginning of slider range. Default 0.</param>
-            <param name="maxRange">End of slider range. Default 1.</param>
-            <param name="hideTextInput">Indicates if text input is suppressed (hidden).</param>
-            <param name="innerBarShader">Allows specifying a color gradient for the inner bar. Defaults to `null`; the default black-to-white shader.</param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Enable(System.Boolean)">
-            <summary>
-            Enables or disables the current element.
-            </summary>
-            <param name="isEnabled"></param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetRange(System.Single,System.Single)">
-            <summary>
-            Adjusts the available range of values for this element.
-            </summary>
-            <param name="minRange"></param>
-            <param name="maxRange"></param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetTicks(System.Int32)">
-            <summary>
-            Adjusts the number of ticks to use for this element.
-            </summary>
-            <param name="ticks">Set to 0 for no ticks.</param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.SetValue(System.Single)">
-            <summary>
-            Sets the value. Applies necessary clamping.
-            </summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.ScrollLeft">
-            <summary>
-            Scrolls the slider 1 "unit" left.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.ScrollRight">
-            <summary>
-            Scrolls the slider 1 "unit" right.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.CompareTo(System.Object)">
-            <summary>
-            Decides sort order in a list.
-            </summary>
-            <param name="obj">Object to compare rank to.</param>
-            <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color},System.Int32)">
-            <summary>
-            Draws a slider bar and returns the value of the mouse's current position.
-            </summary>
-            <param name="sb"></param>
-            <param name="destRect"></param>
-            <param name="valueAsPercent"></param>
-            <param name="innerBarShader"></param>
-            <param name="lockState"></param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetInputPercentWithinArea(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Rectangle)">
-            <summary>
-            Gets the slider value of a given point relative to a given slider rectangle area.
-            </summary>
-            <param name="point"></param>
-            <param name="area"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetValueOfSliderPercent(System.Single,System.Single,System.Single,System.Int32)">
-            <summary>
-            Gets the actual allowed value of a given slider percent position.
-            </summary>
-            <param name="percent"></param>
-            <param name="minRange"></param>
-            <param name="maxRange"></param>
-            <param name="ticks"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetPercentOfSliderValue(System.Single,System.Single,System.Single)">
-            <summary>
-            Gets the slider percent value of a given input value.
-            </summary>
-            <param name="value"></param>
-            <param name="minRange"></param>
-            <param name="maxRange"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetInputValue(Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Point,System.Single,System.Single,System.Int32,System.Boolean)">
-            <summary>
-            Gets the input value from a given screen selection point.
-            </summary>
-            <param name="sliderRect"></param>
-            <param name="screenAt"></param>
-            <param name="minRange"></param>
-            <param name="maxRange"></param>
-            <param name="ticks"></param>
-            <param name="isInt"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetConstrainedValue(System.Single)">
-            <summary>
-            Processes a given value to best fit as a value of the current slider's available set.
-            </summary>
-            <param name="rawValue"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.GetInnerRectangle">
-            <summary>
-            Gets the inner rectangle of the slider portion (where the slider knob exists).
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UISlider.Update(Microsoft.Xna.Framework.GameTime)">
-            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel">
             <summary>
