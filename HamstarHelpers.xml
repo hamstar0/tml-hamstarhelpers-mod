@@ -1515,6 +1515,13 @@
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.AnyPattern">
             <summary></summary>
         </member>
+        <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.#ctor(HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder)">
+            <summary></summary>
+            <param name="builder"></param>
+        </member>
         <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.ToTilePattern">
             <summary>
             Converts this class to a valid `TilePattern`.
