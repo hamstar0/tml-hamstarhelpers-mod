@@ -1700,6 +1700,48 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WorldEdge">
             <summary></summary>
         </member>
+        <member name="T:HamstarHelpers.Classes.UI.Config.BoolRef">
+            <summary>
+            Implements a ModConfig wrapper for a bool to allow nullable behavior.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Config.BoolRef.Value">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.BoolRef.#ctor">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.BoolRef.#ctor(System.Boolean)">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Config.FloatRef">
+            <summary>
+            Implements a ModConfig wrapper for a float to allow nullable behavior and be able to accept inputs via. text input or slider.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Config.FloatRef.Value">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.FloatRef.#ctor">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.FloatRef.#ctor(System.Single)">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Config.IntRef">
+            <summary>
+            Implements a ModConfig wrapper for a int to allow nullable behavior.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Config.IntRef.Value">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.IntRef.#ctor">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Config.IntRef.#ctor(System.Int32)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.UI.ModConfig.FloatInputElement">
             <summary>
             Implements a ModConfig widget for inputting float values via. text input or slider.
@@ -1725,20 +1767,6 @@
             Gets the config value this widget represents.
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:HamstarHelpers.Classes.UI.Config.FloatRef">
-            <summary>
-            Implements a ModConfig wrapper for a float reference able to accept inputs via. text input or slider.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Classes.UI.Config.FloatRef.Value">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Config.FloatRef.#ctor">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Config.FloatRef.#ctor(System.Single)">
-            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.Dialogs.UIPromptDialog">
             <summary>
