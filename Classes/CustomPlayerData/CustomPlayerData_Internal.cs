@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
@@ -8,7 +9,6 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.Players;
-using System.Linq;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
