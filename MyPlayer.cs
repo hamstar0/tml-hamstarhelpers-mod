@@ -1,21 +1,21 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Fx;
-using HamstarHelpers.Internals.ControlPanel;
-using HamstarHelpers.Internals.Logic;
-using HamstarHelpers.Services.Debug.DataDumper;
-using HamstarHelpers.Services.UI.ControlPanel;
+﻿using System;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Fx;
+using HamstarHelpers.Services.Debug.DataDumper;
+using HamstarHelpers.Services.UI.ControlPanel;
+using HamstarHelpers.Internals.ControlPanel;
+using HamstarHelpers.Internals.Logic;
 
 
 namespace HamstarHelpers {
 	/// @private
-	class ModHelpersPlayer : ModPlayer {
+	partial class ModHelpersPlayer : ModPlayer {
 		public PlayerLogic Logic { get; private set; }
 
 
@@ -117,6 +117,11 @@ namespace HamstarHelpers {
 			if( player.whoAmI == Main.myPlayer && Main.playerInventory ) { // Current player
 				mymod.RecipeHack.Update();
 			}
+		}
+
+
+		public override void PreUpdateMovement() {
+			this.CheckForBrambles();
 		}
 
 

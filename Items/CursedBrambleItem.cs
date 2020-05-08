@@ -1,0 +1,40 @@
+﻿using Terraria;
+using Terraria.ModLoader;
+using HamstarHelpers.Tiles;
+
+
+namespace Ambushes.Items {
+	/// <summary>
+	/// Places a cursed bramble tile.
+	/// </summary>
+	public class CursedBrambleItem : ModItem {
+		/// <summary></summary>
+		public const int Width = 20;
+		/// <summary></summary>
+		public const int Height = 20;
+
+
+		////////////////
+
+		/// @private
+		public override void SetStaticDefaults() {
+			this.DisplayName.SetDefault( "Cursed Bramble" );
+			this.Tooltip.SetDefault( "Ouch." );
+		}
+
+		/// @private
+		public override void SetDefaults() {
+			this.item.width = CursedBrambleItem.Width;
+			this.item.height = CursedBrambleItem.Height;
+			this.item.value = Item.buyPrice( 0, 0, 1, 0 );
+			this.item.maxStack = 999;
+			this.item.useTurn = true;
+			this.item.autoReuse = true;
+			this.item.useAnimation = 15;
+			this.item.useTime = 10;
+			this.item.useStyle = 1;
+			this.item.consumable = true;
+			this.item.createTile = ModContent.TileType<CursedBrambleTile>();
+		}
+	}
+}

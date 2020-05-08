@@ -4022,6 +4022,11 @@
             Displays all entity groups in the log on mod load.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeMiscInfo">
+            <summary>
+            Shows misc. debug info.
+            </summary>
+        </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DisableControlPanel">
             <summary>
             Disables control panel outright.
@@ -4135,6 +4140,21 @@
         <member name="P:HamstarHelpers.ModHelpersConfig.AddCrimsonLeatherRecipe">
             <summary>
             Adds crimson biome alternatve recipe for leather.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.BrambleFriction">
+            <summary>
+            Bramble tile friction upon players.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.BrambleDamageTickRate">
+            <summary>
+            Rate of damage to players caught on bramble tiles.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.BrambleDamage">
+            <summary>
+            Amount of damage to players caught on bramble tiles.
             </summary>
         </member>
         <member name="M:HamstarHelpers.ModHelpersConfig.AcceptClientChanges(Terraria.ModLoader.Config.ModConfig,System.Int32,System.String@)">
@@ -10831,6 +10851,7 @@
         </member>
         <member name="T:HamstarHelpers.ModHelpersPlayer">
             @private
+            @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersRecipe">
             @private
@@ -12816,6 +12837,95 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Tiles.CoalTile.NumDust(System.Int32,System.Int32,System.Boolean,System.Int32@)">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Tiles.CursedBrambleTile">
+            <summary>
+            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
+            and may support additional custom behavior.
+            </summary>
+            <summary>
+            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
+            and may support additional custom behavior.
+            </summary>
+            <summary>
+            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
+            and may support additional custom behavior.
+            </summary>
+            <summary>
+            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
+            and may support additional custom behavior.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.SetDefaults">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.NumDust(System.Int32,System.Int32,System.Boolean,System.Int32@)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.RandomUpdate(System.Int32,System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.CreateBramblePatchesAt(System.ValueTuple{System.Int32,System.Int32}[]@,System.Int32,System.Single)">
+            <summary>
+            Creates a cluster of brambles randomly at a given set of points.
+            </summary>
+            <param name="tilePositions">Center positions of bramble patches. Array will be shuffled.</param>
+            <param name="thickness"></param>
+            <param name="density"></param>
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.CreateBramblePatchAt(System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Creates a patch of cursed brambles at the given location with the given settings.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="thickness"></param>
+            <param name="density"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.CreateBrambleAt(System.Int32,System.Int32)">
+            <summary>
+            Creates a specific bramble tile. Preserves existing wire, wall, and liquid.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.ErodeRandomBrambleWithinRadius(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Attempts to remove a random bramble within a given radius of a given tile.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="radius"></param>
+            <returns>`true` if a bramble was found and removed.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.FindBrambles(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Attempts to locate brambles within a given area.
+            </summary>
+            <param name="leftTile"></param>
+            <param name="topTile"></param>
+            <param name="rightTile"></param>
+            <param name="bottomTile"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ambushes.Items.CursedBrambleItem">
+            <summary>
+            Places a cursed bramble tile.
+            </summary>
+        </member>
+        <member name="F:Ambushes.Items.CursedBrambleItem.Width">
+            <summary></summary>
+        </member>
+        <member name="F:Ambushes.Items.CursedBrambleItem.Height">
+            <summary></summary>
+        </member>
+        <member name="M:Ambushes.Items.CursedBrambleItem.SetStaticDefaults">
+            @private
+        </member>
+        <member name="M:Ambushes.Items.CursedBrambleItem.SetDefaults">
             @private
         </member>
     </members>

@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.User;
-using HamstarHelpers.Services.Configs;
-using HamstarHelpers.Services.Timers;
+﻿using System.ComponentModel;
 using Newtonsoft.Json;
-using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader.Config;
+using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Services.Configs;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers {
@@ -59,7 +59,7 @@ namespace HamstarHelpers {
 	/// <summary>
 	/// Defines Mod Helpers config settings.
 	/// </summary>
-	[Label("Mod Helpers Settings")]
+	[Label( "Mod Helpers Settings" )]
 	public class ModHelpersConfig : StackableModConfig {
 		/// <summary>
 		/// Gets the stack-merged singleton instance of this config file.
@@ -91,36 +91,36 @@ namespace HamstarHelpers {
 		/// Outputs (to log) network message information (sends and receives of PacketProtocol).
 		/// </summary>
 		[Label( "Debug Mode - Net Info" )]
-		[Tooltip( "Outputs (to log) network message information (sends and receives of PacketProtocol).")]
+		[Tooltip( "Outputs (to log) network message information (sends and receives of PacketProtocol)." )]
 		public bool DebugModeNetInfo { get; set; } = false;
 
 		/// <summary>
 		/// Catches and logs unhandled exceptions (before crash).
 		/// </summary>
 		[Label( "Debug Mode - Unhandled Exception Logging" )]
-		[Tooltip( "Catches and logs unhandled exceptions (before crash).")]
-		[DefaultValue(true)]
+		[Tooltip( "Catches and logs unhandled exceptions (before crash)." )]
+		[DefaultValue( true )]
 		public bool DebugModeUnhandledExceptionLogging { get; set; } = true;
 
 		/// <summary>
 		/// Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).
 		/// </summary>
 		[Label( "Debug Mode - Also Server" )]
-		[Tooltip( "Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user).")]
+		[Tooltip( "Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user)." )]
 		public bool DebugModeDumpAlsoServer { get; set; } = false;
 
 		/// <summary>
 		/// Disables logging of "silenced" exceptions.
 		/// </summary>
 		[Label( "Debug Mode - Silent Logging" )]
-		[Tooltip( "Silences silent logging.")]
+		[Tooltip( "Silences silent logging." )]
 		public bool DebugModeDisableSilentLogging { get; set; } = false;
 
 		/// <summary>
 		/// Logs PacketProtocol payload content.
 		/// </summary>
 		[Label( "Debug Mode - Packet Info" )]
-		[Tooltip( "Logs PacketProtocol payload content.")]
+		[Tooltip( "Logs PacketProtocol payload content." )]
 		public bool DebugModePacketInfo { get; set; } = false;
 
 		/// <summary>
@@ -137,22 +137,29 @@ namespace HamstarHelpers {
 		[Tooltip( "Displays all entity groups in the log on mod load." )]
 		public bool DebugModeEntityGroupDisplay { get; set; } = false;
 
+		/// <summary>
+		/// Shows misc. debug info.
+		/// </summary>
+		[Label( "Debug Mode - Display misc info" )]
+		[Tooltip( "Shows misc. debug info." )]
+		public bool DebugModeMiscInfo { get; set; } = false;
+
 		////
 
 		/// <summary>
 		/// Disables control panel outright.
 		/// </summary>
-		[Header("Control panel settings")]
+		[Header( "Control panel settings" )]
 		[Label( "Disable Control Panel" )]
-		[Tooltip( "Disables control panel outright.")]
+		[Tooltip( "Disables control panel outright." )]
 		public bool DisableControlPanel { get; set; } = false;
 
 		/// <summary>
 		/// Control panel icon's X coordinate on screen. Negative values align the button from the right edge.
 		/// </summary>
 		[Label( "Control Panel Icon X" )]
-		[Tooltip( "Control panel icon's X coordinate on screen. Negative values align the button from the right edge.")]
-		[Increment(10)]
+		[Tooltip( "Control panel icon's X coordinate on screen. Negative values align the button from the right edge." )]
+		[Increment( 10 )]
 		[Range( -4096, 4096 )]
 		public int ControlPanelIconX { get; set; } = 0;
 
@@ -160,7 +167,7 @@ namespace HamstarHelpers {
 		/// Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge.
 		/// </summary>
 		[Label( "Control Panel Icon Y" )]
-		[Tooltip( "Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge.")]
+		[Tooltip( "Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge." )]
 		[Increment( 10 )]
 		[Range( -2160, 2160 )]
 		public int ControlPanelIconY { get; set; } = 0;
@@ -170,7 +177,7 @@ namespace HamstarHelpers {
 		/// Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge.
 		/// </summary>
 		[Label( "Inbox Icon X" )]
-		[Tooltip( "Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge.")]
+		[Tooltip( "Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge." )]
 		[Increment( 10 )]
 		[Range( -4096, 4096 )]
 		[DefaultValue( 2 )]
@@ -180,7 +187,7 @@ namespace HamstarHelpers {
 		/// Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge.
 		/// </summary>
 		[Label( "Inbox Icon Y" )]
-		[Tooltip( "Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge.")]
+		[Tooltip( "Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge." )]
 		[Increment( 10 )]
 		[Range( -2160, 2160 )]
 		[DefaultValue( 80 )]
@@ -191,7 +198,7 @@ namespace HamstarHelpers {
 		/// Quantity of the latest log entries to pass along with issue reports.
 		/// </summary>
 		[Label( "Mod Issue Report Error Log Max Lines" )]
-		[Tooltip( "Quantity of the latest log entries to pass along with issue reports.")]
+		[Tooltip( "Quantity of the latest log entries to pass along with issue reports." )]
 		[Increment( 10 )]
 		[Range( 0, 200 )]
 		[DefaultValue( 15 )]
@@ -202,7 +209,7 @@ namespace HamstarHelpers {
 		/// Enables mod locking per world (prevents playing a world with missing mods).
 		/// </summary>
 		[Label( "World Mod Lock Enable" )]
-		[Tooltip( "Enables mod locking per world (prevents playing a world with missing mods).")]
+		[Tooltip( "Enables mod locking per world (prevents playing a world with missing mods)." )]
 		[DefaultValue( true )]
 		public bool WorldModLockEnable { get; set; } = true;
 
@@ -210,7 +217,7 @@ namespace HamstarHelpers {
 		/// Sets mod locking to expect only the exact set of mods it was locked with, and no more.
 		/// </summary>
 		[Label( "World Mod Lock Minimum Only" )]
-		[Tooltip( "Sets mod locking to expect only the exact set of mods it was locked with, and no more.")]
+		[Tooltip( "Sets mod locking to expect only the exact set of mods it was locked with, and no more." )]
 		[DefaultValue( true )]
 		public bool WorldModLockMinimumOnly { get; set; } = true;
 
@@ -262,7 +269,7 @@ namespace HamstarHelpers {
 		/// Duration (in game ticks) to wait in expectation of a reply before a retry attempt of a given packet is made.
 		/// </summary>
 		[Label( "Packet Request Retry Duration" )]
-		[Tooltip("Duration (in game ticks) to wait in expectation of a reply before a retry attempt of a given packet is made.")]
+		[Tooltip( "Duration (in game ticks) to wait in expectation of a reply before a retry attempt of a given packet is made." )]
 		[Range( 2, 60 * 120 )]
 		[DefaultValue( 60 * 4 )]
 		public int PacketRequestRetryDuration { get; set; } = 60 * 4; // 5 seconds
@@ -305,21 +312,21 @@ namespace HamstarHelpers {
 		/// <summary>
 		/// Disable 'judgmental' mod tags.
 		/// </summary>
-		[Label("Disable 'judgmental' mod tags")]
+		[Label( "Disable 'judgmental' mod tags" )]
 		[DefaultValue( true )]
 		public bool DisableJudgmentalTags { get; set; } = true;
-		
+
 		/// <summary>
 		/// Disables mod version updates overlay display in the mod menu.
 		/// </summary>
-		[Label("Disable mod menu updates overlay")]
-		[Tooltip("Disables mod version updates overlay display in the mod menu.")]
+		[Label( "Disable mod menu updates overlay" )]
+		[Tooltip( "Disables mod version updates overlay display in the mod menu." )]
 		public bool DisableModMenuUpdates { get; set; } = false;
 
 		/// <summary>
 		/// Disables IP address checks from checkip.dyndns.org.
 		/// </summary>
-		[Label("Disable self IP checking")]
+		[Label( "Disable self IP checking" )]
 		[Tooltip( "Skips calls to checkip.dyndns.org for getting own IP" )]
 		[DefaultValue( true )]
 		[ReloadRequired]
@@ -329,14 +336,14 @@ namespace HamstarHelpers {
 		/// <summary>
 		/// Adds Geo-Resonant Orbs to Dryad's shop.
 		/// </summary>
-		[Header( "Content settings settings" )]
-		[Label("Adds Geo-Resonant Orbs to Dryad's shop")]
+		[Header( "Reusable generic assets settings" )]
+		[Label( "Adds Geo-Resonant Orbs to Dryad's shop" )]
 		public bool GeoResonantOrbSoldByDryad { get; set; } = false;
 
 		/// <summary>
 		/// Magi-Tech Scrap items drop from mech bosses.
 		/// </summary>
-		[Label("Adds Magi-Tech Scrap mech boss drops")]
+		[Label( "Adds Magi-Tech Scrap mech boss drops" )]
 		[Tooltip( "Magi-Tech Scrap items drop from mech bosses." )]
 		public bool MagiTechScrapMechBossDropsEnabled { get; set; } = false;
 
@@ -344,17 +351,41 @@ namespace HamstarHelpers {
 		/// Coal items can be placed like tiles.
 		/// </summary>
 		[ReloadRequired]
-		[Label("Coal items can be placed like tiles")]
+		[Label( "Coal items can be placed like tiles" )]
 		[DefaultValue( true )]
 		public bool CoalAsTile { get; set; } = true;
 
 		/// <summary>
 		/// Adds crimson biome alternatve recipe for leather.
 		/// </summary>
-		[Label("Add crimson biome leather recipe")]
+		[Label( "Add crimson biome leather recipe" )]
 		[Tooltip( "Adds crimson biome alternatve recipe for leather." )]
 		[DefaultValue( true )]
 		public bool AddCrimsonLeatherRecipe { get; set; } = true;
+
+		/// <summary>
+		/// Bramble tile friction upon players.
+		/// </summary>
+		[Tooltip( "Bramble tile friction upon players." )]
+		[Range( 0f, 1f )]
+		[DefaultValue( 0.2f )]
+		public float BrambleFriction { get; set; } = 0.2f;
+
+		/// <summary>
+		/// Rate of damage to players caught on bramble tiles.
+		/// </summary>
+		[Tooltip( "Rate of damage to players caught on bramble tiles." )]
+		[Range( 1, 60 * 60 * 60 * 24 )]
+		[DefaultValue( 6 )]
+		public int BrambleDamageTickRate { get; set; } = 6;
+
+		/// <summary>
+		/// Amount of damage to players caught on bramble tiles.
+		/// </summary>
+		[Tooltip( "Amount of damage to players caught on bramble tiles." )]
+		[Range( 1, 9999999 )]
+		[DefaultValue( 20 )]
+		public int BrambleDamage { get; set; } = 10;
 
 
 
