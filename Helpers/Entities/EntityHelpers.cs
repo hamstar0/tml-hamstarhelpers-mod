@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Classes.Tiles.TilePattern;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Helpers.NPCs.Attributes;
 using HamstarHelpers.Helpers.Projectiles.Attributes;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
 
 
 namespace HamstarHelpers.Helpers.Entities {
@@ -20,6 +20,15 @@ namespace HamstarHelpers.Helpers.Entities {
 		/// <param name="noContext">Omits `whoAmI`.</param>
 		/// <returns>The identifying hash of the entity.</returns>
 		public static int GetVanillaSnapshotHash( Entity ent, bool noContext ) {
+			int pow = 1;
+			int Pow() {
+				pow *= 2;
+				if( pow > 16777216 ) { pow = 1; }
+				return pow;
+			}
+
+			//
+
 			int hash = ("active"+ent.active).GetHashCode();
 
 			if( !noContext ) {
@@ -29,14 +38,16 @@ namespace HamstarHelpers.Helpers.Entities {
 				//hash ^= ("oldVelocity"+ent.oldVelocity).GetHashCode();
 				//hash ^= ("oldDirection"+ent.oldDirection).GetHashCode();
 				//hash ^= ("direction"+ent.direction).GetHashCode();
-				hash ^= ("whoAmI"+ent.whoAmI).GetHashCode();
+				hash += ("whoAmI"+ent.whoAmI).GetHashCode() + Pow();
 				//hash ^= ("wet"+ent.wet).GetHashCode();
 				//hash ^= ("honeyWet"+ent.honeyWet).GetHashCode();
 				//hash ^= ("wetCount"+ent.wetCount).GetHashCode();
 				//hash ^= ("lavaWet"+ent.lavaWet).GetHashCode();
+			} else {
+				Pow();
 			}
-			hash ^= ("width"+ent.width).GetHashCode();
-			hash ^= ("height"+ent.height).GetHashCode();
+			hash += ("width"+ent.width).GetHashCode() + Pow();
+			hash += ("height"+ent.height).GetHashCode() + Pow();
 			
 			return hash;
 		}

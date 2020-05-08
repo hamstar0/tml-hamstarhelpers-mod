@@ -89,29 +89,42 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="looksMatter">Includes appearance elements.</param>
 		/// <returns></returns>
 		public static int GetVanillaSnapshotHash( Player player, bool noContext, bool looksMatter ) {
+			int pow = 1;
+			int Pow() {
+				pow *= 2;
+				if( pow > 16777216 ) { pow = 1; }
+				return pow;
+			}
+
+			//
+
 			int hash = EntityHelpers.GetVanillaSnapshotHash( player, noContext );
 			int itemHash;
 
-			hash ^= ( "statLifeMax" + player.statLifeMax ).GetHashCode();
-			hash ^= ( "statManaMax" + player.statManaMax ).GetHashCode();
-			hash ^= ( "extraAccessory" + player.extraAccessory ).GetHashCode();
-			hash ^= ( "difficulty" + player.difficulty ).GetHashCode();
+			hash += ( "statLifeMax" + player.statLifeMax ).GetHashCode() * Pow();
+			hash += ( "statManaMax" + player.statManaMax ).GetHashCode() * Pow();
+			hash += ( "extraAccessory" + player.extraAccessory ).GetHashCode() * Pow();
+			hash += ( "difficulty" + player.difficulty ).GetHashCode() * Pow();
 
 			if( !noContext ) {
-				hash ^= ( "team" + player.team ).GetHashCode();
-				hash ^= ( "hostile" + player.hostile ).GetHashCode();   //pvp?
-				hash ^= ( "name" + player.name ).GetHashCode();
+				hash += ( "team" + player.team ).GetHashCode() * Pow();
+				hash += ( "hostile" + player.hostile ).GetHashCode() * Pow();   //pvp?
+				hash += ( "name" + player.name ).GetHashCode() * Pow();
+			} else {
+				Pow();
+				Pow();
+				Pow();
 			}
 
 			if( looksMatter ) {
-				hash ^= ( "Male" + player.Male ).GetHashCode();
-				hash ^= ( "skinColor" + player.skinColor ).GetHashCode();
-				hash ^= ( "hair" + player.hair ).GetHashCode();
-				hash ^= ( "hairColor" + player.hairColor ).GetHashCode();
-				hash ^= ( "shirtColor" + player.shirtColor ).GetHashCode();
-				hash ^= ( "underShirtColor" + player.underShirtColor ).GetHashCode();
-				hash ^= ( "pantsColor" + player.pantsColor ).GetHashCode();
-				hash ^= ( "shoeColor" + player.shoeColor ).GetHashCode();
+				hash += ( "Male" + player.Male ).GetHashCode() * Pow();
+				hash += ( "skinColor" + player.skinColor ).GetHashCode() * Pow();
+				hash += ( "hair" + player.hair ).GetHashCode() * Pow();
+				hash += ( "hairColor" + player.hairColor ).GetHashCode() * Pow();
+				hash += ( "shirtColor" + player.shirtColor ).GetHashCode() * Pow();
+				hash += ( "underShirtColor" + player.underShirtColor ).GetHashCode() * Pow();
+				hash += ( "pantsColor" + player.pantsColor ).GetHashCode() * Pow();
+				hash += ( "shoeColor" + player.shoeColor ).GetHashCode() * Pow();
 			}
 			
 			for( int i = 0; i < player.inventory.Length; i++ ) {
@@ -121,7 +134,7 @@ namespace HamstarHelpers.Helpers.Players {
 				} else {
 					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
 				}
-				hash ^= itemHash;
+				hash += itemHash * Pow();
 			}
 			for( int i = 0; i < player.armor.Length; i++ ) {
 				Item item = player.armor[i];
@@ -130,7 +143,7 @@ namespace HamstarHelpers.Helpers.Players {
 				} else {
 					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
 				}
-				hash ^= itemHash;
+				hash += itemHash * Pow();
 			}
 			for( int i = 0; i < player.bank.item.Length; i++ ) {
 				Item item = player.bank.item[i];
@@ -139,7 +152,7 @@ namespace HamstarHelpers.Helpers.Players {
 				} else {
 					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
 				}
-				hash ^= itemHash;
+				hash += itemHash * Pow();
 			}
 			for( int i = 0; i < player.bank2.item.Length; i++ ) {
 				Item item = player.bank2.item[i];
@@ -148,7 +161,7 @@ namespace HamstarHelpers.Helpers.Players {
 				} else {
 					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
 				}
-				hash ^= itemHash;
+				hash += itemHash;
 			}
 			for( int i = 0; i < player.bank3.item.Length; i++ ) {
 				Item item = player.bank3.item[i];
@@ -157,7 +170,7 @@ namespace HamstarHelpers.Helpers.Players {
 				} else {
 					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
 				}
-				hash ^= itemHash;
+				hash += itemHash * Pow();
 			}
 			return hash;
 		}

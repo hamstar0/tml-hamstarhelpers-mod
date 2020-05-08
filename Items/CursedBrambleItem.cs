@@ -3,9 +3,9 @@ using Terraria.ModLoader;
 using HamstarHelpers.Tiles;
 
 
-namespace Ambushes.Items {
+namespace HamstarHelpers.Items {
 	/// <summary>
-	/// Places a cursed bramble tile.
+	/// Places a cursed bramble tile. Traps players, hard to remove, slowly decays.
 	/// </summary>
 	public class CursedBrambleItem : ModItem {
 		/// <summary></summary>

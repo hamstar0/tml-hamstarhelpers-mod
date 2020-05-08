@@ -10795,6 +10795,23 @@
         <member name="T:HamstarHelpers.Internals.WebRequests.PostModInfo">
             @private
         </member>
+        <member name="T:HamstarHelpers.Items.CursedBrambleItem">
+            <summary>
+            Places a cursed bramble tile. Traps players, hard to remove, slowly decays.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Items.CursedBrambleItem.Width">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Items.CursedBrambleItem.Height">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Items.CursedBrambleItem.SetStaticDefaults">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Items.CursedBrambleItem.SetDefaults">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Items.GeoResonantOrbItem">
             <summary>
             Supplies an ingredient item meant to exist as the generic form of Orbs (e.g. Shadow Orbs). Another MacGuffin item.
@@ -12910,23 +12927,6 @@
             <param name="rightTile"></param>
             <param name="bottomTile"></param>
             <returns></returns>
-        </member>
-        <member name="T:Ambushes.Items.CursedBrambleItem">
-            <summary>
-            Places a cursed bramble tile.
-            </summary>
-        </member>
-        <member name="F:Ambushes.Items.CursedBrambleItem.Width">
-            <summary></summary>
-        </member>
-        <member name="F:Ambushes.Items.CursedBrambleItem.Height">
-            <summary></summary>
-        </member>
-        <member name="M:Ambushes.Items.CursedBrambleItem.SetStaticDefaults">
-            @private
-        </member>
-        <member name="M:Ambushes.Items.CursedBrambleItem.SetDefaults">
-            @private
         </member>
     </members>
 </doc>
