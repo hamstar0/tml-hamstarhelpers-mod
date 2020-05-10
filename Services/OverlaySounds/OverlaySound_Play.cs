@@ -10,11 +10,17 @@ namespace HamstarHelpers.Services.OverlaySounds {
 	/// Provides a way to create ambient sound effects that overlay existing game sounds and music.
 	/// </summary>
 	public partial class OverlaySound {
-		private void UpdateLoop() {
-			(float VolumeOverride, float PanOverride, bool IsEnded) customState = this.CustomCondition?.Invoke()
-				?? (1f, 0f, false);
+		private (float VolumeOverride, float PanOverride, float PitchOverride, bool IsEnded) GetSoundLoopState() {
+			return this.CustomCondition?.Invoke() ?? (1f, 0f, 0f, false);
+		}
 
-			if( customState.IsEnded ) {
+
+		////////////////
+
+		private void UpdateLoop() {
+			var soundLoopState = this.GetSoundLoopState();
+
+			if( soundLoopState.IsEnded ) {
 				this.IsFadingOut = true;
 			}
 
@@ -40,8 +46,9 @@ namespace HamstarHelpers.Services.OverlaySounds {
 				if( this.MyInstance.State != SoundState.Playing ) {
 					this.MyInstance.Play();
 				}
-				this.MyInstance.Volume = (customState.VolumeOverride * (float)this.ElapsedFadeTicks) / (float)this.FadeTicks;
-				this.MyInstance.Pan = customState.PanOverride;
+				this.MyInstance.Volume = (soundLoopState.VolumeOverride * (float)this.ElapsedFadeTicks) / (float)this.FadeTicks;
+				this.MyInstance.Pan = soundLoopState.PanOverride;
+				this.MyInstance.Pitch = soundLoopState.PitchOverride;
 			}
 		}
 
@@ -54,16 +61,26 @@ namespace HamstarHelpers.Services.OverlaySounds {
 			this.ElapsedTicks = 0;
 			this.ElapsedFadeTicks = 1;
 
+			var soundLoopState = this.GetSoundLoopState();
+
 			float volume = (float)this.ElapsedFadeTicks / (float)this.FadeTicks;
+			volume *= soundLoopState.VolumeOverride;
 
 			if( this.MyInstance == null ) {
 				int soundSlot = this.SourceMod.GetSoundSlot( SoundType.Custom, this.SoundPath );
 
-				this.MyInstance = Main.PlaySound( (int)SoundType.Custom, -1, -1, soundSlot, volume );
+				this.MyInstance = Main.PlaySound(
+					(int)SoundType.Custom,
+					-1,
+					-1,
+					soundSlot,
+					volume,
+					soundLoopState.PitchOverride );
 				//this.MyInstance.IsLooped = true;	//<- Crashes?
 			} else {
 				this.MyInstance.Play();
 				this.MyInstance.Volume = volume;
+				this.MyInstance.Pitch = soundLoopState.PitchOverride;
 			}
 
 			Timers.Timers.SetTimer( "OverlaySound_" + this.GetHashCode(), 1, false, () => {

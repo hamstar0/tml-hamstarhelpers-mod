@@ -12532,7 +12532,12 @@
             Provides a way to create ambient sound effects that overlay existing game sounds and music.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Create(Terraria.ModLoader.Mod,System.String,System.Int32,System.Int32,System.Func{System.ValueTuple{System.Single,System.Single,System.Boolean}})">
+        <member name="T:HamstarHelpers.Services.OverlaySounds.OverlaySound.SoundLooper">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Create(Terraria.ModLoader.Mod,System.String,System.Int32,System.Int32,HamstarHelpers.Services.OverlaySounds.OverlaySound.SoundLooper)">
             <summary></summary>
             <param name="sourceMod"></param>
             <param name="soundPath"></param>

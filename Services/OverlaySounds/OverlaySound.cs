@@ -13,7 +13,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 		/// <summary>
 		/// </summary>
 		/// <returns></returns>
-		public delegate (float VolumeOverride, float PanOverride, bool IsEnded) SoundLooper();
+		public delegate (float VolumeOverride, float PanOverride, float PitchOverride, bool IsEnded) SoundLooper();
 
 
 
