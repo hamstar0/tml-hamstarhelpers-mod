@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Fx;
+using HamstarHelpers.Services.Camera;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.UI.ControlPanel;
 using HamstarHelpers.Internals.ControlPanel;
@@ -176,8 +176,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void ModifyScreenPosition() {
-			var cam = ModContent.GetInstance<CameraHelpers>();
-			cam.ApplyCameraEffects();
+			Camera.ApplyCameraEffects();
 		}
 	}
 }

@@ -15,18 +15,18 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="worldY"></param>
 		/// <returns></returns>
 		public static (float Volume, float Pan) GetSoundDataFromSource( int worldX, int worldY ) {
-			Rectangle maxRange = new Rectangle(
+			var maxRange = new Rectangle(
 				(int)( Main.screenPosition.X - (Main.screenWidth * 2) ),
 				(int)( Main.screenPosition.Y - (Main.screenHeight * 2) ),
 				Main.screenWidth * 5,
 				Main.screenHeight * 5 );
-			Rectangle source = new Rectangle( worldX, worldY, 1, 1 );
+			var source = new Rectangle( worldX, worldY, 1, 1 );
 
 			Vector2 screenCenter = new Vector2(
 				Main.screenPosition.X + (float)Main.screenWidth * 0.5f,
 				Main.screenPosition.Y + (float)Main.screenHeight * 0.5f );
 
-			if( !source.Intersects( maxRange ) ) {
+			if( !source.Intersects(maxRange) ) {
 				return (0, 0);
 			}
 

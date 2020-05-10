@@ -1,23 +1,19 @@
-﻿using HamstarHelpers.Classes.Loadable;
-using System;
-using Terraria.ModLoader;
+﻿using System;
 
 
-namespace HamstarHelpers.Helpers.Fx {
+namespace HamstarHelpers.Services.Camera {
 	/// <summary>
-	/// Assorted static "helper" functions pertaining to basic camera movement.
+	/// Supplies a set of controls for manipulating the player's 'camera' (screen position).
 	/// </summary>
-	public partial class CameraHelpers : ILoadable {
+	public partial class Camera {
 		/// <summary>
 		/// Shifts the camers from its current position by the given offset.
 		/// </summary>
 		/// <param name="offsetX"></param>
 		/// <param name="offsetY"></param>
 		public static void ApplyOffset( int offsetX, int offsetY ) {
-			var cam = ModContent.GetInstance<CameraHelpers>();
-
-			cam.OffsetX = offsetX;
-			cam.OffsetY = offsetY;
+			Camera.OffsetX = offsetX;
+			Camera.OffsetY = offsetY;
 		}
 
 		/// <summary>
@@ -25,9 +21,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// </summary>
 		/// <returns></returns>
 		public static (int X, int Y) GetOffset() {
-			var cam = ModContent.GetInstance<CameraHelpers>();
-
-			return (cam.OffsetX, cam.OffsetY);
+			return (Camera.OffsetX, Camera.OffsetY);
 		}
 
 		/// <summary>
@@ -36,11 +30,9 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="magnitude"></param>
 		/// <param name="tickDuration"></param>
 		public static void ApplyShake( float magnitude, int tickDuration ) {
-			var cam = ModContent.GetInstance<CameraHelpers>();
-
-			cam.ShakeMagnitude = magnitude;
-			cam.ShakeTickDuration = tickDuration;
-			cam.ShakeTicksElapsed = 0;
+			Camera.ShakeMagnitude = magnitude;
+			Camera.ShakeTickDuration = tickDuration;
+			Camera.ShakeTicksElapsed = 0;
 		}
 
 		/// <summary>
@@ -48,9 +40,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// </summary>
 		/// <returns></returns>
 		public static int GetShakeDuration() {
-			var cam = ModContent.GetInstance<CameraHelpers>();
-
-			return cam.ShakeTicksElapsed;
+			return Camera.ShakeTicksElapsed;
 		}
 
 
@@ -60,10 +50,8 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="worldLeft"></param>
 		/// <param name="worldTop"></param>
 		public static void MoveTo( int worldLeft, int worldTop ) {
-			var cam = ModContent.GetInstance<CameraHelpers>();
-
-			cam.WorldLeft = worldLeft;
-			cam.WorldTop = worldTop;
+			Camera.WorldLeft = worldLeft;
+			Camera.WorldTop = worldTop;
 		}
 	}
 }
