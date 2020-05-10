@@ -12538,7 +12538,7 @@
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Create(Terraria.ModLoader.Mod,System.String,System.Int32,System.Int32,HamstarHelpers.Services.OverlaySounds.OverlaySound.SoundLooper)">
-            <summary></summary>
+            <summary>Creates an OverlaySound instance. Does not auto play.</summary>
             <param name="sourceMod"></param>
             <param name="soundPath"></param>
             <param name="fadeTicks"></param>

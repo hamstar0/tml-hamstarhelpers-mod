@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using System;
 using Microsoft.Xna.Framework.Audio;
-using System;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.OverlaySounds {
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 
 
 
-		/// <summary></summary>
+		/// <summary>Creates an OverlaySound instance. Does not auto play.</summary>
 		/// <param name="sourceMod"></param>
 		/// <param name="soundPath"></param>
 		/// <param name="fadeTicks"></param>
