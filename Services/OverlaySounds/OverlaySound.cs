@@ -71,7 +71,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 				SoundLooper customCondition ) {
 			this.SourceMod = sourceMod;
 			this.SoundPath = soundPath;
-			this.FadeTicks = fadeTicks <= 1 ? 3 : fadeTicks;
+			this.FadeTicks = fadeTicks <= 1 ? -1 : fadeTicks;
 			this.MaxPlayDurationTicks = playDurationTicks;
 			this.CustomCondition = customCondition;
 		}

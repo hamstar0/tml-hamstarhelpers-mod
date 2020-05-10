@@ -14,6 +14,13 @@ namespace HamstarHelpers.Services.OverlaySounds {
 			return this.CustomCondition?.Invoke() ?? (1f, 0f, 0f, false);
 		}
 
+		private float GetBaseVolume() {
+			if( this.FadeTicks == -1 ) {
+				return 1f;
+			}
+			return 1f - ((float)this.ElapsedFadeTicks / (float)this.FadeTicks);
+		}
+
 
 		////////////////
 
@@ -43,12 +50,19 @@ namespace HamstarHelpers.Services.OverlaySounds {
 			}
 
 			if( this.MyInstance != null ) {
+				float vol = soundLoopState.VolumeOverride * this.GetBaseVolume();
+				float pan = soundLoopState.PanOverride;
+				float pit = soundLoopState.PitchOverride;
+
 				if( this.MyInstance.State != SoundState.Playing ) {
+					this.MyInstance.Volume = vol;
+					this.MyInstance.Pan = pan;
+					this.MyInstance.Pitch = pit;
 					this.MyInstance.Play();
 				}
-				this.MyInstance.Volume = (soundLoopState.VolumeOverride * (float)this.ElapsedFadeTicks) / (float)this.FadeTicks;
-				this.MyInstance.Pan = soundLoopState.PanOverride;
-				this.MyInstance.Pitch = soundLoopState.PitchOverride;
+				this.MyInstance.Volume = vol;
+				this.MyInstance.Pan = pan;
+				this.MyInstance.Pitch = pit;
 			}
 		}
 
@@ -63,19 +77,18 @@ namespace HamstarHelpers.Services.OverlaySounds {
 
 			var soundLoopState = this.GetSoundLoopState();
 
-			float volume = 1f - ((float)this.ElapsedFadeTicks / (float)this.FadeTicks);
-			volume *= soundLoopState.VolumeOverride;
+			float volume = this.GetBaseVolume() * soundLoopState.VolumeOverride;
 
 			if( this.MyInstance == null ) {
-				int soundSlot = this.SourceMod.GetSoundSlot( SoundType.Custom, this.SoundPath );
+				int sndStyle = this.SourceMod.GetSoundSlot( SoundType.Custom, this.SoundPath );
 
 				this.MyInstance = Main.PlaySound(
-					(int)SoundType.Custom,
-					-1,
-					-1,
-					soundSlot,
-					volume,
-					soundLoopState.PitchOverride );
+					type: (int)SoundType.Custom,
+					x: -1,
+					y: -1,
+					Style: sndStyle,
+					volumeScale: volume,
+					pitchOffset: soundLoopState.PitchOverride );
 				//this.MyInstance.IsLooped = true;	//<- Crashes?
 			} else {
 				this.MyInstance.Play();
