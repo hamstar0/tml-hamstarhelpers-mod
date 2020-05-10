@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using System;
 using Microsoft.Xna.Framework.Audio;
-using System;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.OverlaySounds {
@@ -11,8 +11,8 @@ namespace HamstarHelpers.Services.OverlaySounds {
 	/// </summary>
 	public partial class OverlaySound {
 		private void UpdateLoop() {
-			(float VolumeOverride, bool IsEnded) customState = this.CustomCondition?.Invoke()
-				?? (1f, false);
+			(float VolumeOverride, float PanOverride, bool IsEnded) customState = this.CustomCondition?.Invoke()
+				?? (1f, 0f, false);
 
 			if( customState.IsEnded ) {
 				this.IsFadingOut = true;
@@ -41,6 +41,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 					this.MyInstance.Play();
 				}
 				this.MyInstance.Volume = (customState.VolumeOverride * (float)this.ElapsedFadeTicks) / (float)this.FadeTicks;
+				this.MyInstance.Pan = customState.PanOverride;
 			}
 		}
 

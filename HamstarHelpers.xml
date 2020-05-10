@@ -6992,6 +6992,19 @@
             <param name="itemType"></param>
             <returns>-1 if no shader id exists for the given item.</returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Misc.SoundHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to sounds.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Misc.SoundHelpers.GetSoundDataFromSource(System.Int32,System.Int32)">
+            <summary>
+            Gets volume and pan data for a sound that would play at a given point.
+            </summary>
+            <param name="worldX"></param>
+            <param name="worldY"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.ModHelpers.ModFeaturesHelpers">
             <summary>
             Assorted static "helper" functions pertaining to Mod Helpers control panel features.
@@ -12519,7 +12532,7 @@
             Provides a way to create ambient sound effects that overlay existing game sounds and music.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Create(Terraria.ModLoader.Mod,System.String,System.Int32,System.Int32,System.Func{System.ValueTuple{System.Single,System.Boolean}})">
+        <member name="M:HamstarHelpers.Services.OverlaySounds.OverlaySound.Create(Terraria.ModLoader.Mod,System.String,System.Int32,System.Int32,System.Func{System.ValueTuple{System.Single,System.Single,System.Boolean}})">
             <summary></summary>
             <param name="sourceMod"></param>
             <param name="soundPath"></param>

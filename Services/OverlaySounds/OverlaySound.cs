@@ -22,7 +22,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 				string soundPath,
 				int fadeTicks,
 				int playDurationTicks=-1,
-				Func<(float VolumeScale, bool IsEnded)> customCondition=null ) {
+				Func<(float VolumeOverride, float PanOverride, bool IsEnded)> customCondition=null ) {
 			return new OverlaySound( sourceMod, soundPath, fadeTicks, playDurationTicks, customCondition );
 		}
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 		private int MaxPlayDurationTicks;
 		private int FadeTicks;
 
-		private Func<(float VolumeOverride, bool IsEnded)> CustomCondition = null;
+		private Func<(float VolumeOverride, float PanOverride, bool IsEnded)> CustomCondition = null;
 
 
 		////////////////
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 				string soundPath,
 				int fadeTicks,
 				int playDurationTicks,
-				Func<(float VolumeOverride, bool IsEnded)> customCondition ) {
+				Func<(float VolumeOverride, float PanOverride, bool IsEnded)> customCondition ) {
 			this.SourceMod = sourceMod;
 			this.SoundPath = soundPath;
 			this.FadeTicks = fadeTicks <= 1 ? 3 : fadeTicks;
