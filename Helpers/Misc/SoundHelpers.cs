@@ -30,11 +30,14 @@ namespace HamstarHelpers.Helpers.Misc {
 				return (0, 0);
 			}
 
-			float pan = ((float)worldX - screenCenter.X) / ((float)Main.screenWidth * 0.5f);
-			float distX = Math.Abs( (float)worldX - screenCenter.X );
-			float distY = Math.Abs( (float)worldY - screenCenter.Y );
+			float pan = (float)(worldX - screenCenter.X) / (float)(Main.screenWidth / 2);
+			float distX = (float)worldX - screenCenter.X;
+			float distY = (float)worldY - screenCenter.Y;
 			float dist = (float)Math.Sqrt( (distX * distX) + (distY * distY) );
 			float vol = 1f - (dist / ((float)Main.screenWidth * 1.5f));
+
+			pan = MathHelper.Clamp( pan, -1f, 1f );
+			vol = Math.Max( vol, 0f );
 
 			return (vol, pan);
 		}
