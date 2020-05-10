@@ -63,7 +63,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 
 			var soundLoopState = this.GetSoundLoopState();
 
-			float volume = (float)this.ElapsedFadeTicks / (float)this.FadeTicks;
+			float volume = 1f - ((float)this.ElapsedFadeTicks / (float)this.FadeTicks);
 			volume *= soundLoopState.VolumeOverride;
 
 			if( this.MyInstance == null ) {
@@ -81,6 +81,7 @@ namespace HamstarHelpers.Services.OverlaySounds {
 				this.MyInstance.Play();
 				this.MyInstance.Volume = volume;
 				this.MyInstance.Pitch = soundLoopState.PitchOverride;
+				this.MyInstance.Pan = soundLoopState.PanOverride;
 			}
 
 			Timers.Timers.SetTimer( "OverlaySound_" + this.GetHashCode(), 1, false, () => {
