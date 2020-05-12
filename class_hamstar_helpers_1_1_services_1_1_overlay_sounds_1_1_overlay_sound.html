@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.6.1</span>
+   &#160;<span id="projectnumber">v5.7.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -104,6 +104,8 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a55950f3ca698e5b7b190b6eb1df7eec8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a55950f3ca698e5b7b190b6eb1df7eec8">delegate</a> (float VolumeOverride, float PanOverride, float PitchOverride, bool IsEnded) SoundLooper()</td></tr>
+<tr class="separator:a55950f3ca698e5b7b190b6eb1df7eec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3a9e5b34c05a9117743cc546c1dab78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#aa3a9e5b34c05a9117743cc546c1dab78">Play</a> ()</td></tr>
 <tr class="separator:aa3a9e5b34c05a9117743cc546c1dab78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e386c2bc06f127b91a91cc5ca817c82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a0e386c2bc06f127b91a91cc5ca817c82">Stop</a> ()</td></tr>
@@ -115,8 +117,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aaa0fbf37acc6ca56314e2fd6d6caec6d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html">OverlaySound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#aaa0fbf37acc6ca56314e2fd6d6caec6d">Create</a> (Mod sourceMod, string soundPath, int fadeTicks, int playDurationTicks=-1, Func&lt;(float VolumeScale, bool IsEnded)&gt; customCondition=null)</td></tr>
-<tr class="separator:aaa0fbf37acc6ca56314e2fd6d6caec6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3314ce869a1a23dacf98e8c859234bc5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html">OverlaySound</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a3314ce869a1a23dacf98e8c859234bc5">Create</a> (Mod sourceMod, string soundPath, int fadeTicks, int playDurationTicks=-1, SoundLooper customCondition=null)</td></tr>
+<tr class="memdesc:a3314ce869a1a23dacf98e8c859234bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an <a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html" title="Provides a way to create ambient sound effects that overlay existing game sounds and music.">OverlaySound</a> instance. Does not auto play.  <a href="#a3314ce869a1a23dacf98e8c859234bc5">More...</a><br /></td></tr>
+<tr class="separator:a3314ce869a1a23dacf98e8c859234bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -133,8 +136,8 @@ Properties</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_overlay_sound_8cs_source.html#l00012">12</a> of file <a class="el" href="_overlay_sound_8cs_source.html">OverlaySound.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aaa0fbf37acc6ca56314e2fd6d6caec6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa0fbf37acc6ca56314e2fd6d6caec6d">&#9670;&nbsp;</a></span>Create()</h2>
+<a id="a3314ce869a1a23dacf98e8c859234bc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3314ce869a1a23dacf98e8c859234bc5">&#9670;&nbsp;</a></span>Create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,7 +172,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Func&lt;(float VolumeScale, bool IsEnded)&gt;&#160;</td>
+          <td class="paramtype">SoundLooper&#160;</td>
           <td class="paramname"><em>customCondition</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
@@ -185,7 +188,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
+<p>Creates an <a class="el" href="class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html" title="Provides a way to create ambient sound effects that overlay existing game sounds and music.">OverlaySound</a> instance. Does not auto play. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sourceMod</td><td></td></tr>
@@ -198,7 +201,50 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_overlay_sound_8cs_source.html#l00020">20</a> of file <a class="el" href="_overlay_sound_8cs_source.html">OverlaySound.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_overlay_sound_8cs_source.html#l00028">28</a> of file <a class="el" href="_overlay_sound_8cs_source.html">OverlaySound.cs</a>.</p>
+
+</div>
+</div>
+<a id="a55950f3ca698e5b7b190b6eb1df7eec8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55950f3ca698e5b7b190b6eb1df7eec8">&#9670;&nbsp;</a></span>delegate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HamstarHelpers.Services.OverlaySounds.OverlaySound.delegate </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>VolumeOverride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>PanOverride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>PitchOverride</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>IsEnded</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -219,7 +265,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_overlay_sound___play_8cs_source.html#l00051">51</a> of file <a class="el" href="_overlay_sound___play_8cs_source.html">OverlaySound_Play.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_overlay_sound___play_8cs_source.html#l00073">73</a> of file <a class="el" href="_overlay_sound___play_8cs_source.html">OverlaySound_Play.cs</a>.</p>
 
 </div>
 </div>
@@ -240,7 +286,7 @@ Properties</h2></td></tr>
 
 <p>Begins sound loop fade out. </p>
 
-<p class="definition">Definition at line <a class="el" href="_overlay_sound___play_8cs_source.html#l00080">80</a> of file <a class="el" href="_overlay_sound___play_8cs_source.html">OverlaySound_Play.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_overlay_sound___play_8cs_source.html#l00112">112</a> of file <a class="el" href="_overlay_sound___play_8cs_source.html">OverlaySound_Play.cs</a>.</p>
 
 </div>
 </div>
@@ -261,7 +307,7 @@ Properties</h2></td></tr>
 
 <p>Stops sound loop without fadeout. </p>
 
-<p class="definition">Definition at line <a class="el" href="_overlay_sound___play_8cs_source.html#l00089">89</a> of file <a class="el" href="_overlay_sound___play_8cs_source.html">OverlaySound_Play.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_overlay_sound___play_8cs_source.html#l00121">121</a> of file <a class="el" href="_overlay_sound___play_8cs_source.html">OverlaySound_Play.cs</a>.</p>
 
 </div>
 </div>
@@ -280,7 +326,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_overlay_sound_8cs_source.html#l00052">52</a> of file <a class="el" href="_overlay_sound_8cs_source.html">OverlaySound.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_overlay_sound_8cs_source.html#l00060">60</a> of file <a class="el" href="_overlay_sound_8cs_source.html">OverlaySound.cs</a>.</p>
 
 </div>
 </div>
@@ -307,7 +353,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_overlay_sound_8cs_source.html#l00049">49</a> of file <a class="el" href="_overlay_sound_8cs_source.html">OverlaySound.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_overlay_sound_8cs_source.html#l00057">57</a> of file <a class="el" href="_overlay_sound_8cs_source.html">OverlaySound.cs</a>.</p>
 
 </div>
 </div>

@@ -11,7 +11,7 @@ var searchData=
   ['uimoddata',['UIModData',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uipromptdialog',['UIPromptDialog',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html',1,'HamstarHelpers::Classes::UI::Elements::Dialogs']]],
   ['uipromptpanel',['UIPromptPanel',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_panel.html',1,'HamstarHelpers::Classes::UI::Elements::Dialogs']]],
-  ['uislider',['UISlider',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html',1,'HamstarHelpers::Classes::UI::Elements']]],
+  ['uislider',['UISlider',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html',1,'HamstarHelpers::Classes::UI::Elements::Slider']]],
   ['uitextinputareapanel',['UITextInputAreaPanel',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uitextinputelement',['UITextInputElement',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uitextinputpanel',['UITextInputPanel',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html',1,'HamstarHelpers::Classes::UI::Elements']]],

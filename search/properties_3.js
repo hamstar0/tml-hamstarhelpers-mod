@@ -5,6 +5,7 @@ var searchData=
   ['debugmodeentitygroupdisplay',['DebugModeEntityGroupDisplay',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a7f765c930a2aa3378202ac4cfe569bdd',1,'HamstarHelpers::ModHelpersConfig']]],
   ['debugmodehelpersinfo',['DebugModeHelpersInfo',['../class_hamstar_helpers_1_1_mod_helpers_config.html#abfbd9b96adadf3beefa7ad7d30639cb3',1,'HamstarHelpers::ModHelpersConfig']]],
   ['debugmodemenuinfo',['DebugModeMenuInfo',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a2723636b8741f498e686f7650474d65b',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['debugmodemiscinfo',['DebugModeMiscInfo',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a9554807cf4008d2e7f8b8066ad9c8866',1,'HamstarHelpers::ModHelpersConfig']]],
   ['debugmodenetinfo',['DebugModeNetInfo',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a26cd3a64d93444feed5506afaf3d069d',1,'HamstarHelpers::ModHelpersConfig']]],
   ['debugmodepacketinfo',['DebugModePacketInfo',['../class_hamstar_helpers_1_1_mod_helpers_config.html#aad63bce70afda2e062c848cedb8600f5',1,'HamstarHelpers::ModHelpersConfig']]],
   ['debugmodeunhandledexceptionlogging',['DebugModeUnhandledExceptionLogging',['../class_hamstar_helpers_1_1_mod_helpers_config.html#ad0befcc6045bd799eed7cb8815c25ec4',1,'HamstarHelpers::ModHelpersConfig']]],

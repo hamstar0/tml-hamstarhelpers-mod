@@ -23,6 +23,7 @@ var dir_3bd55fe61e5ac6158cf3ec2496b3368f =
     [ "MyNPC.cs", "_my_n_p_c_8cs_source.html", null ],
     [ "MyNPC_Draw.cs", "_my_n_p_c___draw_8cs_source.html", null ],
     [ "MyPlayer.cs", "_my_player_8cs_source.html", null ],
+    [ "MyPlayer_Brambles.cs", "_my_player___brambles_8cs_source.html", null ],
     [ "MyRecipe.cs", "_my_recipe_8cs_source.html", null ],
     [ "MyTile.cs", "_my_tile_8cs_source.html", null ],
     [ "MyWorld.cs", "_my_world_8cs_source.html", null ]

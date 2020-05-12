@@ -2,6 +2,7 @@ var searchData=
 [
   ['basicmodinfo',['BasicModInfo',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html',1,'HamstarHelpers::Helpers::TModLoader::Mods']]],
   ['binaryreaderextensions',['BinaryReaderExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_binary_reader_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
+  ['boolref',['BoolRef',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_config_1_1_bool_ref.html',1,'HamstarHelpers::Classes::UI::Config']]],
   ['bossdata',['BossData',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html',1,'HamstarHelpers::Services::GameData']]],
   ['bossdataentry',['BossDataEntry',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html',1,'HamstarHelpers::Services::GameData']]],
   ['btree',['BTree',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree.html',1,'HamstarHelpers::Classes::DataStructures::BTree']]],

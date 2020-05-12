@@ -6,6 +6,7 @@ var searchData=
   ['water',['Water',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a719069c8777e18eeced10b790d16a95b',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
   ['weightedpressureplates',['WeightedPressurePlates',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#ae8685a7a77d0da4d68d161be784b673b',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],
   ['weightpressureplates',['WeightPressurePlates',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#ad4430ecb0ad7d70f33379e20da901ab1',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
+  ['width',['Width',['../class_hamstar_helpers_1_1_items_1_1_cursed_bramble_item.html#a11b6b4bbf5cc2acd1b93f9bfb6eacce4',1,'HamstarHelpers::Items::CursedBrambleItem']]],
   ['worldsizelarge',['WorldSizeLarge',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#adae016ee3e2e430e567289e1db7880c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizemedium',['WorldSizeMedium',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a4da7daacfb34b919e1ca492e7c31e9c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizesmall',['WorldSizeSmall',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],

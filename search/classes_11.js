@@ -7,6 +7,7 @@ var searchData=
   ['shaderhelpers',['ShaderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_shader_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
   ['simplemessage',['SimpleMessage',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html',1,'HamstarHelpers::Services::Messages::Simple']]],
   ['simplestringcipher',['SimpleStringCipher',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_simple_string_cipher.html',1,'HamstarHelpers::Helpers::DotNET::Encoding']]],
+  ['soundhelpers',['SoundHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_sound_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
   ['stackablemodconfig',['StackableModConfig',['../class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html',1,'HamstarHelpers::Services::Configs']]],
   ['steamhelpers',['SteamHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_steam_1_1_steam_helpers.html',1,'HamstarHelpers::Helpers::Steam']]],
   ['streamhelpers',['StreamHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html',1,'HamstarHelpers::Helpers::DotNET']]],

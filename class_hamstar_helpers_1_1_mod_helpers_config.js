@@ -2,6 +2,9 @@ var class_hamstar_helpers_1_1_mod_helpers_config =
 [
     [ "Instance", "class_hamstar_helpers_1_1_mod_helpers_config.html#aadcf2533d71220e7f65b81f7944c7d4a", null ],
     [ "AddCrimsonLeatherRecipe", "class_hamstar_helpers_1_1_mod_helpers_config.html#a63834825874593e649b5a38502bf4e40", null ],
+    [ "BrambleDamage", "class_hamstar_helpers_1_1_mod_helpers_config.html#ac97dbaca01efc618a58c978363a05dc8", null ],
+    [ "BrambleDamageTickRate", "class_hamstar_helpers_1_1_mod_helpers_config.html#aeadc57c1ff47cdaeebfefc3cbbd4f155", null ],
+    [ "BrambleFriction", "class_hamstar_helpers_1_1_mod_helpers_config.html#aa15cf8027832f9a1024666d81930825b", null ],
     [ "CoalAsTile", "class_hamstar_helpers_1_1_mod_helpers_config.html#a27b5a1e6eaa62ef13d4f561bb31c3492", null ],
     [ "ControlPanelIconX", "class_hamstar_helpers_1_1_mod_helpers_config.html#a2cb5ead492e70d30adff243fdef807e3", null ],
     [ "ControlPanelIconY", "class_hamstar_helpers_1_1_mod_helpers_config.html#a7692892875b9e2d6996c1fd03b9da48f", null ],
@@ -11,6 +14,7 @@ var class_hamstar_helpers_1_1_mod_helpers_config =
     [ "DebugModeEntityGroupDisplay", "class_hamstar_helpers_1_1_mod_helpers_config.html#a7f765c930a2aa3378202ac4cfe569bdd", null ],
     [ "DebugModeHelpersInfo", "class_hamstar_helpers_1_1_mod_helpers_config.html#abfbd9b96adadf3beefa7ad7d30639cb3", null ],
     [ "DebugModeMenuInfo", "class_hamstar_helpers_1_1_mod_helpers_config.html#a2723636b8741f498e686f7650474d65b", null ],
+    [ "DebugModeMiscInfo", "class_hamstar_helpers_1_1_mod_helpers_config.html#a9554807cf4008d2e7f8b8066ad9c8866", null ],
     [ "DebugModeNetInfo", "class_hamstar_helpers_1_1_mod_helpers_config.html#a26cd3a64d93444feed5506afaf3d069d", null ],
     [ "DebugModePacketInfo", "class_hamstar_helpers_1_1_mod_helpers_config.html#aad63bce70afda2e062c848cedb8600f5", null ],
     [ "DebugModeUnhandledExceptionLogging", "class_hamstar_helpers_1_1_mod_helpers_config.html#ad0befcc6045bd799eed7cb8815c25ec4", null ],

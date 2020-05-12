@@ -14,7 +14,7 @@ var searchData=
   ['menutopposition',['MenuTopPosition',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_menu_item.html#a2e94349a0518a76634fabd328500f454',1,'HamstarHelpers::Classes::UI::Menu::MenuItem']]],
   ['message',['Message',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#ad86aeaf75e18be2a65ab99436adc10b9',1,'HamstarHelpers::Services::Messages::Simple::SimpleMessage']]],
   ['messageduration',['MessageDuration',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#af1d583d589ea881eef20ff192b079c16',1,'HamstarHelpers::Services::Messages::Simple::SimpleMessage']]],
-  ['min',['Min',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_slider.html#a4bdf2a7956ebdaab8fa03ad5ab9a7f81',1,'HamstarHelpers::Classes::UI::Elements::UISlider']]],
+  ['min',['Min',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html#a215bfcef96c59a7a01535acf06ca4251',1,'HamstarHelpers::Classes::UI::Elements::Slider::UISlider']]],
   ['minimumbrightness',['MinimumBrightness',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a254b0cf1a40891cd5c43bfaa77413776',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
   ['minscreenheight',['MinScreenHeight',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a5495f2298db48d07e3f10d24b6333633',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
   ['minscreenheighttiles',['MinScreenHeightTiles',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a00626865fdc0099d0177859eb0d7eba4',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],

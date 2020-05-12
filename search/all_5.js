@@ -6,6 +6,7 @@ var searchData=
   ['fill',['Fill',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_fill_helpers.html#a7c3d0bc55bec149d462dfd9d8bc8b2cc',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawFillHelpers']]],
   ['filterbytypes',['FilterByTypes',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#af14440bff6eed03974a915a29f4124bf',1,'HamstarHelpers::Helpers::Items::ItemFinderHelpers']]],
   ['findareamatchwithin',['FindAreaMatchWithin',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a6c50e64406062ee59d344dd8930702aa',1,'HamstarHelpers::Helpers::Tiles::TileFinderHelpers']]],
+  ['findbrambles',['FindBrambles',['../class_hamstar_helpers_1_1_tiles_1_1_cursed_bramble_tile.html#a4f1ad178e5edd77d65a4534369b72edd',1,'HamstarHelpers::Tiles::CursedBrambleTile']]],
   ['findchanges',['FindChanges',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_finder_helpers.html#a75bccb75e84359b66a2530465c24b84f',1,'HamstarHelpers::Helpers::Items::ItemFinderHelpers']]],
   ['findfirstnpcbytype',['FindFirstNpcByType',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_finder_helpers.html#aeb3ab4e0abb6ec924bd4cf2092517b58',1,'HamstarHelpers::Helpers::NPCs::NPCFinderHelpers']]],
   ['findfirstofpossesseditemfor',['FindFirstOfPossessedItemFor',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_finder_helpers.html#ae2f518c2814500022e32d212a83113e6',1,'HamstarHelpers::Helpers::Players::PlayerItemFinderHelpers']]],

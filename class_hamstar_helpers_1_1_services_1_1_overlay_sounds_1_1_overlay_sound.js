@@ -1,6 +1,7 @@
 var class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound =
 [
-    [ "Create", "class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#aaa0fbf37acc6ca56314e2fd6d6caec6d", null ],
+    [ "Create", "class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a3314ce869a1a23dacf98e8c859234bc5", null ],
+    [ "delegate", "class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a55950f3ca698e5b7b190b6eb1df7eec8", null ],
     [ "Play", "class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#aa3a9e5b34c05a9117743cc546c1dab78", null ],
     [ "Stop", "class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a0e386c2bc06f127b91a91cc5ca817c82", null ],
     [ "StopImmediately", "class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#a474a75a680f69bad11f65c74c34cf706", null ],

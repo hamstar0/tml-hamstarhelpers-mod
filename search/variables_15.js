@@ -57,5 +57,6 @@ var searchData=
   ['vanillastardustpillartypes',['VanillaStardustPillarTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a736025f2e1991b914f362ae210002b1e',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
   ['vanillastrangeplants',['VanillaStrangePlants',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a04f7032cfb0980ea162711bbb87d5741',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['vanillavortexpillartypes',['VanillaVortexPillarTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_group_identity_helpers.html#a7875873e5086bf79b74b1d0a32108bd8',1,'HamstarHelpers::Helpers::NPCs::NPCGroupIdentityHelpers']]],
-  ['version',['Version',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a7b35a582d7c9926bf81e86e05f194e99',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]]
+  ['version',['Version',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a7b35a582d7c9926bf81e86e05f194e99',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
+  ['volume',['Volume',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_sound_helpers.html#a50ca176c066f2cdb4c7a73b04298ac7b',1,'HamstarHelpers::Helpers::Misc::SoundHelpers']]]
 ];
