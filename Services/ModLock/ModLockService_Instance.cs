@@ -1,16 +1,16 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Services.Hooks.LoadHooks;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 
 
 namespace HamstarHelpers.Services.ModHelpers {

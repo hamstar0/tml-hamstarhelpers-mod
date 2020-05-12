@@ -29,10 +29,10 @@ namespace HamstarHelpers.Services.Camera {
 		/// </summary>
 		/// <param name="magnitude"></param>
 		/// <param name="tickDuration"></param>
-		public static void ApplyShake( float magnitude, int tickDuration ) {
+		public static void ApplyShake( float magnitude, int tickDuration, int skippedTicks=0 ) {
 			Camera.ShakeMagnitude = magnitude;
 			Camera.ShakeTickDuration = tickDuration;
-			Camera.ShakeTicksElapsed = 0;
+			Camera.ShakeTicksElapsed = skippedTicks;
 		}
 
 		/// <summary>

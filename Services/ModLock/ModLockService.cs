@@ -29,6 +29,10 @@ namespace HamstarHelpers.Services.ModHelpers {
 		/// </summary>
 		/// <returns></returns>
 		public static bool IsModMismatchFound() {
+			if( !ModHelpersConfig.Instance.WorldModLockEnable ) {
+				return false;
+			}
+
 			var mymod = ModHelpersMod.Instance;
 			var modlock = mymod.ModLock;
 

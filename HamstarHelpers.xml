@@ -5759,50 +5759,21 @@
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Fx.CameraHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to basic camera movement.
-            </summary>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.ApplyOffset(System.Int32,System.Int32)">
-            <summary>
-            Shifts the camers from its current position by the given offset.
-            </summary>
-            <param name="offsetX"></param>
-            <param name="offsetY"></param>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.GetOffset">
-            <summary>
-            Gets any camera shift offset amount.
-            </summary>
-            <returns></returns>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.ApplyShake(System.Single,System.Int32)">
-            <summary>
-            Applies a shaking motion to the camera.
-            </summary>
-            <param name="magnitude"></param>
-            <param name="tickDuration"></param>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.GetShakeDuration">
-            <summary>
-            Gets the duration of any current shaking.
-            </summary>
-            <returns></returns>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.MoveTo(System.Int32,System.Int32)">
-            <summary>
-            Positions the camera statically somewhere in the world.
-            </summary>
-            <param name="worldLeft"></param>
-            <param name="worldTop"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Fx.CameraHelpers.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
             @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Fx.LightningFxHelpers">
@@ -11051,6 +11022,44 @@
             <param name="rotation"></param>
             <param name="origin"></param>
             <param name="spriteFx"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Camera.Camera">
+            <summary>
+            Supplies a set of controls for manipulating the player's 'camera' (screen position).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyOffset(System.Int32,System.Int32)">
+            <summary>
+            Shifts the camers from its current position by the given offset.
+            </summary>
+            <param name="offsetX"></param>
+            <param name="offsetY"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.GetOffset">
+            <summary>
+            Gets any camera shift offset amount.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single,System.Int32,System.Int32)">
+            <summary>
+            Applies a shaking motion to the camera.
+            </summary>
+            <param name="magnitude"></param>
+            <param name="tickDuration"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.GetShakeDuration">
+            <summary>
+            Gets the duration of any current shaking.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.MoveTo(System.Int32,System.Int32)">
+            <summary>
+            Positions the camera statically somewhere in the world.
+            </summary>
+            <param name="worldLeft"></param>
+            <param name="worldTop"></param>
         </member>
         <member name="T:HamstarHelpers.Services.Configs.ModConfigStack">
             <summary>
