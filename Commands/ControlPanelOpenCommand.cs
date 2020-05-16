@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
@@ -20,7 +21,7 @@ namespace HamstarHelpers.Commands {
 
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				caller.Reply( "Command not available for server.", Color.Red );
 				return;
 			}

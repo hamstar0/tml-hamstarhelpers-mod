@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Helpers.Items;
+﻿using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Items;
 using HamstarHelpers.Helpers.Items.Attributes;
 using HamstarHelpers.Internals.NetProtocols;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Players {
@@ -164,9 +165,9 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="player"></param>
 		/// <param name="deathMsg"></param>
 		public static void KillWithPermadeath( Player player, string deathMsg ) {
-			if( Main.netMode == 1 ) {
+			if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				PlayerPermaDeathProtocol.BroadcastFromClient( player.whoAmI, deathMsg );
-			} else if( Main.netMode == 2 ) {
+			} else if( Main.netMode == NetmodeID.Server ) {
 				PlayerPermaDeathProtocol.BroadcastFromServer( player.whoAmI, deathMsg );
 			} else {
 				PlayerHelpers.ApplyPermaDeath( player, deathMsg );

@@ -735,7 +735,7 @@
             <summary>
             Implements handling of received messages on the server (before re-broadcast to clients).
             </summary>
-            <return>`true` to go through with re-broadcasting this packet to clients.</return>
+            <param name="fromWho"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast.ReceiveWithServer(System.Int32)">
             @private
@@ -11043,10 +11043,11 @@
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single,System.Int32,System.Int32)">
             <summary>
-            Applies a shaking motion to the camera.
+            Applies a shaking motion to the camera. Fades in and out.
             </summary>
             <param name="magnitude"></param>
             <param name="tickDuration"></param>
+            <param name="skippedTicks">How far into the shake animation to skip to.</param>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.GetShakeDuration">
             <summary>

@@ -1,8 +1,9 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
-using System;
-using Terraria;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
@@ -15,7 +16,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		/// <param name="ignoreWho">Main.player index of player (client) being ignored. -1 for no client.</param>
 		/// <param name="retries"></param>
 		protected static void QuickRequestToClient<T>( int toWho, int ignoreWho, int retries ) where T : PacketProtocol {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server." );
 			}
 
@@ -31,7 +32,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		/// Requires `SetServerDefaults()` to be implemented.
 		/// </summary>
 		protected static void QuickRequestToServer<T>( int retries ) where T : PacketProtocol {  //, new()
-			if( Main.netMode != 1 ) {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not a client." );
 			}
 			

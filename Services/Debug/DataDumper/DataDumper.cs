@@ -1,12 +1,13 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.User;
-using HamstarHelpers.Internals.NetProtocols;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Internals.NetProtocols;
 
 
 namespace HamstarHelpers.Services.Debug.DataDumper {
@@ -149,7 +150,7 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 
 			if( success ) {
 				// Allow admins to dump on behalf of server, also
-				if( Main.netMode == 1 ) {
+				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					if( ModHelpersConfig.Instance.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer ) ) {
 						DataDumpProtocol.QuickRequest();
 					}

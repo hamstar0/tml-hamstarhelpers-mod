@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Players;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Players;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
@@ -86,7 +87,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 			// Items
 			for( int i = 0; i < recipe.requiredItem.Length; i++ ) {
 				Item reqItem = recipe.requiredItem[i];
-				if( reqItem == null || reqItem.type == 0 ) { break; }
+				if( reqItem == null || reqItem.type == ItemID.None ) { break; }
 
 				int reqStack = reqItem.stack;
 				bool hasCheckedGroups = false;
@@ -157,7 +158,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 			foreach( int recipeIdx in possibleRecipeIdxs ) {
 				Recipe recipe = Main.recipe[recipeIdx];
-				if( recipe.createItem.type == 0 ) { continue; } // Just in case?
+				if( recipe.createItem.type == ItemID.None ) { continue; } // Just in case?
 
 				if( RecipeHelpers.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
 					addedRecipeIndexes.Add( recipeIdx );

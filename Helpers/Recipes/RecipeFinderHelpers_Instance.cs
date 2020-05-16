@@ -1,8 +1,9 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 
 
 namespace HamstarHelpers.Helpers.Recipes {
@@ -40,7 +41,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 			lock( RecipeFinderHelpers.MyLock ) {
 				for( int i = 0; i < Main.recipe.Length; i++ ) {
 					Recipe recipe = Main.recipe[i];
-					if( recipe.createItem.type == 0 ) {
+					if( recipe.createItem.type == ItemID.None ) {
 						break;
 					}
 

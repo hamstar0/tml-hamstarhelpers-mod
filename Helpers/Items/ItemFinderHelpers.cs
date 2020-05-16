@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 
 
 namespace HamstarHelpers.Helpers.Items {
@@ -217,13 +218,13 @@ namespace HamstarHelpers.Helpers.Items {
 					prevItem = prevItems[itemIdx];
 
 					if( currItem == null || currItem.IsAir ) {
-						if( prevItem.type >= 71 && prevItem.type <= 74 ) {
+						if( prevItem.type >= ItemID.CopperCoin && prevItem.type <= ItemID.PlatinumCoin ) {
 							changes.Remove( itemIdx );
 							continue;
 						}
 					}
 
-					if( currItems[itemIdx].type >= 71 || currItems[itemIdx].type <= 74 ) {
+					if( currItems[itemIdx].type >= ItemID.CopperCoin || currItems[itemIdx].type <= ItemID.PlatinumCoin ) {
 						changes.Remove( itemIdx );
 						continue;
 					}

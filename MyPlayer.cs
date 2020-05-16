@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -36,12 +37,12 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void SyncPlayer( int toWho, int fromWho, bool newPlayer ) {
-			if( Main.netMode == 1 ) {
+			if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				if( toWho == -1 && fromWho == -1 && newPlayer ) {
 					this.Logic.OnCurrentClientConnect();
 				}
 			}
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				if( toWho == -1 && fromWho == this.player.whoAmI ) {
 					this.Logic.OnServerConnect( Main.player[fromWho] );
 				}
@@ -55,9 +56,9 @@ namespace HamstarHelpers {
 			
 			int who = player.whoAmI;
 			
-			if( Main.netMode == 0 ) {
+			if( Main.netMode == NetmodeID.SinglePlayer ) {
 				this.Logic.OnSingleEnterWorld( Main.player[who] );
-			} else if( Main.netMode == 1 ) {
+			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				this.Logic.OnCurrentClientEnterWorld( Main.player[who] );
 			}
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
@@ -101,9 +102,9 @@ namespace HamstarHelpers {
 
 			mymod.ControlPanel.UpdateGlobal();
 
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				this.Logic.PreUpdateServer( this.player );
-			} else if( Main.netMode == 1 ) {
+			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				this.Logic.PreUpdateClient( this.player );
 			} else {
 				this.Logic.PreUpdateSingle();

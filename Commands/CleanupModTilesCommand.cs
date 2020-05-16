@@ -1,15 +1,15 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Threading;
-using HamstarHelpers.Helpers.Tiles;
-using HamstarHelpers.Helpers.User;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Threading;
+using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Helpers.User;
 
 
 namespace HamstarHelpers.Commands {
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Commands {
 									cleaned++;
 
 									// To prevent hammering the server
-									if( Main.netMode != 0 ) {
+									if( Main.netMode != NetmodeID.SinglePlayer ) {
 										if( cleaned % 100 == 0 ) {
 											Thread.Sleep( 500 );
 										}
@@ -102,7 +102,7 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override CommandType Type {
 			get {
-				if( Main.netMode == 0 && !Main.dedServ ) {
+				if( Main.netMode == NetmodeID.SinglePlayer && !Main.dedServ ) {
 					return CommandType.World;
 				}
 				return CommandType.Console | CommandType.World;
@@ -120,12 +120,12 @@ namespace HamstarHelpers.Commands {
 
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			if( Main.netMode == 1 ) {
+			if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				LogHelpers.Log( "CleanupModTilesCommand - Not supposed to run on client." );
 				return;
 			}
 
-			if( Main.netMode == 2 && caller.CommandType != CommandType.Console ) {
+			if( Main.netMode == NetmodeID.Server && caller.CommandType != CommandType.Console ) {
 				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;

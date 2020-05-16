@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.User;
 using HamstarHelpers.Services.ModHelpers;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Commands {
@@ -12,7 +13,7 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override CommandType Type {
 			get {
-				if( Main.netMode == 0 && !Main.dedServ ) {
+				if( Main.netMode == NetmodeID.SinglePlayer && !Main.dedServ ) {
 					return CommandType.World;
 				}
 				return CommandType.Console | CommandType.World;
@@ -30,12 +31,12 @@ namespace HamstarHelpers.Commands {
 
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			if( Main.netMode == 1 ) {
+			if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				LogHelpers.Log( "ModLockWorldToggleCommand - Not supposed to run on client." );
 				return;
 			}
 
-			if( Main.netMode == 2 && caller.CommandType != CommandType.Console ) {
+			if( Main.netMode == NetmodeID.Server && caller.CommandType != CommandType.Console ) {
 				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;

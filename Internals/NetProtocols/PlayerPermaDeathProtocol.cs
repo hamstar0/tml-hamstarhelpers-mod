@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Players;
-using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	class PlayerPermaDeathProtocol : PacketProtocolSentToEither {
 		public static void BroadcastFromClient( int playerDeadWho, string msg ) {
-			if( Main.netMode != 1 ) {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
 
@@ -19,7 +20,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		public static void BroadcastFromServer( int playerDeadWho, string msg ) {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server" );
 			}
 

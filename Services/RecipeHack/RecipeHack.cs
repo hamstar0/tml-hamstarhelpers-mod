@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Recipes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Recipes;
 
 
 namespace HamstarHelpers.Services.RecipeHack {
@@ -61,7 +62,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 			// Filter potential recipes list to actual recipes only
 			foreach( int recipeIdx in possibleRecipeIdxs ) {
 				Recipe recipe = Main.recipe[recipeIdx];
-				if( recipe == null || recipe.createItem.type == 0 ) { continue; } // Just in case?
+				if( recipe == null || recipe.createItem.type == ItemID.None ) { continue; } // Just in case?
 
 				if( RecipeHelpers.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
 					addedRecipeIdxs.Add( recipeIdx );

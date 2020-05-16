@@ -47,11 +47,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 				return false;
 			}
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				NetMessage.SendData( MessageID.TileChange, plrWho, -1, null, 1, (float)tileX, (float)tileY, (float)tileType, placeStyle, 0, 0 );
 			}
 
-			if( Main.netMode == 1 ) {
+			if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				if( tileType == TileID.Chairs ) {
 					NetMessage.SendTileSquare( -1, tileX - 1, tileY - 1, 3, TileChangeType.None );
 				} else if( tileType == TileID.Beds || tileType == TileID.Bathtubs ) {
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
 			if( !tile.active() ) {
-				if( Main.netMode != 0 ) {
+				if( Main.netMode != NetmodeID.SinglePlayer ) {
 					NetMessage.SendData( MessageID.TileChange, -1, -1, null, 4, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
 				}
 				return;
@@ -94,7 +94,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 					//	number2 = 101;
 					//}
 
-					if( Main.netMode != 0 ) {
+					if( Main.netMode != NetmodeID.SinglePlayer ) {
 						NetMessage.SendData(
 							msgType: MessageID.ChestUpdates,
 							remoteClient: -1,
@@ -116,7 +116,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
 			Main.tile[ tileX, tileY ]?.active( false );
 
-			if( !effectOnly && Main.netMode != 0 ) {
+			if( !effectOnly && Main.netMode != NetmodeID.SinglePlayer ) {
 				int itemDropMode = dropsItem ? 0 : 4;
 				NetMessage.SendData( MessageID.TileChange, -1, -1, null, itemDropMode, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
 			}
@@ -186,7 +186,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				toTile.lava( oldToLava );
 			}
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				NetMessage.SendData( MessageID.TileChange, -1, -1, null, 4, (float)fromTileX, (float)fromTileY, 0f, 0, 0, 0 );
 				NetMessage.SendData( MessageID.TileChange, -1, -1, null, 4, (float)toTileX, (float)toTileY, 0f, 0, 0, 0 );
 			}

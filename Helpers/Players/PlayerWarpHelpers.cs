@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Services.DataStore;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using System.Collections.Generic;
 using Terraria.ID;
+using HamstarHelpers.Services.DataStore;
 
 
 namespace HamstarHelpers.Helpers.Players {
@@ -66,13 +66,13 @@ namespace HamstarHelpers.Helpers.Players {
 			player.immune = isImmune;
 			player.immuneTime = immuneTime;
 
-			if( Main.netMode <= 1 ) {
+			if( Main.netMode <= NetmodeID.MultiplayerClient ) {
 				player.Teleport( pos, style );
 			} else {
 				//RemoteClient.CheckSection( player.whoAmI, pos );
 			}
 
-			if( Main.netMode >= 1 ) {
+			if( Main.netMode >= NetmodeID.MultiplayerClient ) {
 				style = style == -1 ? 1 : style;
 				NetMessage.SendData( MessageID.Teleport, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, style, 0, 0 );
 			}

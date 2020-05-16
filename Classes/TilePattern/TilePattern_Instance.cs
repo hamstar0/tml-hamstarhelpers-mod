@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Helpers.Tiles;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using HamstarHelpers.Helpers.Tiles;
 using Terraria;
 
 
@@ -13,6 +13,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		/// <param name="slopeType"></param>
 		/// <returns></returns>
+#pragma warning disable CS0618 // Type or member is obsolete
 		public static TileShapeType ConvertToShape( TileSlopeType slopeType ) {
 			switch( slopeType ) {
 			case TileSlopeType.None:
@@ -41,6 +42,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				return TileShapeType.None;
 			}
 		}
+#pragma warning restore CS0618 // Type or member is obsolete
 
 
 
@@ -212,7 +214,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.HasWire3 = builder.HasWire3;
 			this.HasWire4 = builder.HasWire4;
 
+#pragma warning disable CS0618 // Type or member is obsolete
 			this.IsSolid = builder.IsSolid;
+#pragma warning restore CS0618 // Type or member is obsolete
 			this.HasSolidProperties = builder.HasSolidProperties;
 			this.IsPlatform = builder.IsPlatform;
 			this.IsActuated = builder.IsActuated;
@@ -224,12 +228,14 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.HasHoney = builder.HasHoney;
 			this.HasLava = builder.HasLava;
 
+#pragma warning disable CS0618 // Type or member is obsolete
 			this.Slope = builder.Slope;
 			this.Shape = builder.Shape;
 
 			if( !builder.Shape.HasValue && builder.Slope.HasValue ) {
 				this.Shape = TilePatternBuilder.ConvertToShape( builder.Slope.Value );
 			}
+#pragma warning restore CS0618 // Type or member is obsolete
 
 			this.MinimumBrightness = builder.MinimumBrightness;
 			this.MaximumBrightness = builder.MaximumBrightness;

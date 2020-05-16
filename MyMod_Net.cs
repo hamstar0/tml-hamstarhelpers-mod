@@ -19,9 +19,9 @@ namespace HamstarHelpers {
 			try {
 				int protocolCode = reader.ReadInt32();
 				
-				if( Main.netMode == 1 ) {
+				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					PacketProtocol.HandlePacketOnClient( protocolCode, reader, playerWho );
-				} else if( Main.netMode == 2 ) {
+				} else if( Main.netMode == NetmodeID.Server ) {
 					PacketProtocol.HandlePacketOnServer( protocolCode, reader, playerWho );
 				}
 			} catch( Exception e ) {

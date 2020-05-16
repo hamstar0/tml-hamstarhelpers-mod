@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.Protocols.Packet;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Classes.Protocols.Stream {
@@ -31,11 +32,11 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				Type fieldType = field.FieldType;
 				object fieldData = StreamProtocol.ReadStreamValue( reader, fieldType );
 
-				if( Main.netMode == 1 ) {
+				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					if( Attribute.IsDefined( field, typeof( ProtocolWriteIgnoreServerAttribute ) ) ) {
 						continue;
 					}
-				} else if( Main.netMode == 2 ) {
+				} else if( Main.netMode == NetmodeID.Server ) {
 					if( Attribute.IsDefined( field, typeof( ProtocolWriteIgnoreClientAttribute ) ) ) {
 						continue;
 					}

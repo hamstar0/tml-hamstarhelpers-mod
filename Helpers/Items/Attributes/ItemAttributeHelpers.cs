@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Classes.DataStructures;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.DataStructures;
 
 
 namespace HamstarHelpers.Helpers.Items.Attributes {
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// <param name="item"></param>
 		/// <returns></returns>
 		public static bool IsPenetrator( Item item ) {
-			if( item.shoot <= 0 ) { return false; }
+			if( item.shoot <= ProjectileID.None ) { return false; }
 
 			if( !ItemAttributeHelpers._ProjPene.Keys.Contains( item.shoot ) ) {
 				var proj = new Projectile();
@@ -91,7 +91,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 				&& !item.potion
 				&& !item.consumable
 				&& !item.vanity
-				&& item.type != 849;   // Actuators are not consumable, apparently
+				&& item.type != ItemID.Actuator;   // Actuators are not consumable, apparently
 		}
 
 
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// <param name="item"></param>
 		/// <returns></returns>
 		public static bool IsYoyo( Item item ) {
-			if( item.shoot > 0 && item.useStyle == 5 && item.melee && item.channel ) {
+			if( item.shoot > ProjectileID.None && item.useStyle == ItemUseStyleID.HoldingOut && item.melee && item.channel ) {
 				var proj = new Projectile();
 				proj.SetDefaults( item.shoot );
 
@@ -153,7 +153,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 					return false;
 				}
 			}
-			if( !junkRelevant && item.rare < 0 ) {
+			if( !junkRelevant && item.rare < ItemRarityID.White ) {
 				return false;
 			}
 			return !item.vanity && item.dye <= 0 && item.hairDye <= 0 && item.paint == 0 && !Main.vanityPet[item.buffType];
@@ -186,13 +186,13 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// <param name="item"></param>
 		/// <returns></returns>
 		public static string GetVanillaContainerContext( Item item ) {
-			if( ( item.type >= 3318 && item.type <= 3332 )
-					|| item.type == 3860 || item.type == 3862 || item.type == 3861
+			if( ( item.type >= ItemID.KingSlimeBossBag && item.type <= ItemID.MoonLordBossBag )
+					|| item.type == ItemID.BossBagBetsy || item.type == ItemID.BossBagDarkMage || item.type == ItemID.BossBagOgre
 					|| ItemLoader.IsModBossBag( item ) ) {
 				return "bossBag";
 			}
-			if( ( item.type >= 2334 && item.type <= 2336 )
-					|| ( item.type >= 3203 && item.type <= 3208 ) ) {
+			if( ( item.type >= ItemID.WoodenCrate && item.type <= ItemID.GoldenCrate )
+					|| ( item.type >= ItemID.CorruptFishingCrate && item.type <= ItemID.JungleFishingCrate ) ) {
 				return "crate";
 			}
 			if( item.type == ItemID.HerbBag ) {

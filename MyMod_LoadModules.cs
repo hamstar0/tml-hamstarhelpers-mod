@@ -66,7 +66,9 @@ namespace HamstarHelpers {
 		internal Server Server;
 		internal ModLockService ModLock;
 		//internal PlayerDataManager PlayerDataMngr;
+#pragma warning disable CS0618 // Type or member is obsolete
 		internal RecipeHack RecipeHack;
+#pragma warning restore CS0618 // Type or member is obsolete
 		internal ExtendedPlayerHooks PlayerHooks;
 		internal WorldTimeHooks WorldTimeHooks;
 
@@ -154,7 +156,9 @@ namespace HamstarHelpers {
 			this.Server = new Server();
 			//this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();
+#pragma warning disable CS0618 // Type or member is obsolete
 			this.RecipeHack = new RecipeHack();
+#pragma warning restore CS0618 // Type or member is obsolete
 			this.ModListHelpers = new ModListHelpers();
 			this.ItemAttributeHelpers = new ItemAttributeHelpers();
 		}

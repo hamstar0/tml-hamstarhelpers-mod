@@ -1,11 +1,12 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Threading;
 using Terraria;
 using Terraria.Graphics.Capture;
+using Terraria.ID;
 using Terraria.IO;
 using Terraria.Social;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
@@ -34,14 +35,14 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		public static void ExitToDesktop( bool save = true ) {
 			LogHelpers.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );
 
-			if( Main.netMode == 0 ) {
+			if( Main.netMode == NetmodeID.SinglePlayer ) {
 				if( save ) { Main.SaveSettings(); }
 				SocialAPI.Shutdown();
 				Main.instance.Exit();
 			} else {
 				if( save ) { WorldFile.saveWorld(); }
 				Netplay.disconnect = true;
-				if( Main.netMode == 1 ) { SocialAPI.Shutdown(); }
+				if( Main.netMode == NetmodeID.MultiplayerClient ) { SocialAPI.Shutdown(); }
 				Environment.Exit( 0 );
 			}
 		}
@@ -67,9 +68,9 @@ namespace HamstarHelpers.Helpers.TModLoader {
 					Main.ActivePlayerFileData.StopPlayTimer();
 
 					Main.gameMenu = true;
-					if( Main.netMode != 0 ) {
+					if( Main.netMode != NetmodeID.SinglePlayer ) {
 						Netplay.disconnect = true;
-						Main.netMode = 0;
+						Main.netMode = NetmodeID.SinglePlayer;
 					}
 
 					Main.fastForwardTime = false;

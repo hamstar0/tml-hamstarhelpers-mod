@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Players;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Players;
 
 
 namespace HamstarHelpers.Helpers.Items {
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Helpers.Items {
 
 			for( int i = 0; i < Main.item.Length; i++ ) {
 				Item item = Main.item[i];
-				if( item != null && item.active && item.type != 0 ) {
+				if( item != null && item.active && item.type != ItemID.None ) {
 					list.Add( item );
 				}
 			}
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <returns></returns>
 		public static int CreateItem( Vector2 pos, int type, int stack, int width, int height, int prefix = 0 ) {
 			int idx = Item.NewItem( (int)pos.X, (int)pos.Y, width, height, type, stack, false, prefix, true, false );
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
 			}
 			return idx;
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <param name="item"></param>
 		public static void DestroyItem( Item item ) {
 			item.active = false;
-			item.type = 0;
+			item.type = ItemID.None;
 			//item.name = "";
 			item.stack = 0;
 		}
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Helpers.Items {
 			Item item = Main.item[idx];
 			ItemHelpers.DestroyItem( item );
 
-			if( Main.netMode != 0 ) {	// Server
+			if( Main.netMode != NetmodeID.SinglePlayer ) {	// Server
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx );
 			}
 		}
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 
 			// Only world items need sync?
-			if( Main.netMode != 0 && item.whoAmI > 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer && item.whoAmI > 0 ) {
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
 			}
 		}

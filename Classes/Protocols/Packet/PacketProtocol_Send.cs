@@ -1,11 +1,12 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using Newtonsoft.Json;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Threading;
-using Newtonsoft.Json;
-using System;
-using Terraria;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
@@ -15,7 +16,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		/// </summary>
 		/// <param name="syncToClients">Indicates packet should resume being sent to each client.</param>
 		protected void SendToServer( bool syncToClients ) {
-			if( Main.netMode != 1 ) {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not a client." );
 			}
 
@@ -42,7 +43,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		/// Sends the current packet to the client.
 		/// </summary>
 		protected void SendToClient( int toWho, int ignoreWho ) {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server." );
 			}
 

@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Internals.NetProtocols;
+﻿using System;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Internals.NetProtocols;
 
 
 namespace HamstarHelpers.Helpers.Players {
@@ -112,20 +112,20 @@ namespace HamstarHelpers.Helpers.Players {
 			item.newAndShiny = false;
 			item.owner = player.whoAmI;
 
-			if( Main.netMode != 0 && noGrabDelay > 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer && noGrabDelay > 0 ) {
 				item.ownIgnore = player.whoAmI;
 				item.ownTime = noGrabDelay;
 			}
 
 			Recipe.FindRecipes();
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				float delay = noGrabDelay > 0
 					? 0f
 					: 1f;
 
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, itemIdx, delay, 0f, 0f, 0, 0, 0 );    //0f = no grab delay
-				if( Main.netMode == 1 ) {
+				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					ItemNoGrabProtocol.SendToServer( itemIdx, noGrabDelay );
 				}
 			}
@@ -152,13 +152,13 @@ namespace HamstarHelpers.Helpers.Players {
 			item.noGrabDelay = noGrabDelay;
 			Main.item[itemIdx] = item;
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				float delay = noGrabDelay > 0
 					? 0f
 					: 1f;
 
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, itemIdx, delay, 0f, 0f, 0, 0, 0 );
-				//if( Main.netMode == 1 ) {
+				//if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				//	ItemNoGrabProtocol.SendToServer( itemIdx, noGrabDelay );
 				//}
 			}
@@ -182,13 +182,13 @@ namespace HamstarHelpers.Helpers.Players {
 			item.noGrabDelay = noGrabDelay;
 			Main.item[ itemIdx ] = item;
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				float delay = noGrabDelay > 0
 					? 0f
 					: 1f;
 
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, itemIdx, delay, 0f, 0f, 0, 0, 0 );
-				//if( Main.netMode == 1 ) {
+				//if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				//	ItemNoGrabProtocol.SendToServer( itemIdx, noGrabDelay );
 				//}
 			}

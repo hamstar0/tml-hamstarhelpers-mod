@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
@@ -22,7 +23,7 @@ namespace HamstarHelpers.Items {
 			this.item.material = true;
 			//this.item.UseSound = SoundID.Item108;
 			this.item.value = Item.buyPrice( 0, 5, 0, 0 );
-			this.item.rare = 2;
+			this.item.rare = ItemRarityID.Green;
 		}
 	}
 }

@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Formatting;
 using HamstarHelpers.Helpers.Items;
 using HamstarHelpers.Helpers.NPCs;
 using HamstarHelpers.Helpers.World;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Terraria;
-using Terraria.GameContent;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Helpers.Info {
@@ -38,7 +39,7 @@ namespace HamstarHelpers.Helpers.Info {
 			//string[] playerInfos = InfoHelpers.GetCurrentPlayerInfo().ToArray();
 			//string[] playerEquips = InfoHelpers.GetCurrentPlayerEquipment().ToArray();
 			int activePlayers = Main.ActivePlayersCount;
-			string netmode = Main.netMode == 0 ? "single-player" : "multiplayer";
+			string netmode = Main.netMode == NetmodeID.SinglePlayer ? "single-player" : "multiplayer";
 			bool autopause = Main.autoPause;
 			bool autosave = Main.autoSave;
 			int lighting = Lighting.lightMode;

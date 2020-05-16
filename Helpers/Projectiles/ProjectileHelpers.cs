@@ -19,7 +19,7 @@ namespace HamstarHelpers.Helpers.Projectiles {
 				projectile.netUpdate = true;
 			}
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				NetMessage.SendData( MessageID.SyncProjectile, -1, -1, null, projectile.whoAmI );
 			}
 		}

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-
+using Terraria.Localization;
 
 namespace HamstarHelpers.Helpers.Players {
 	/// <summary>

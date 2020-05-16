@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 			for( int i = 0; i < Main.npc.Length; i++ ) {
 				NPC npc = Main.npc[i];
-				if( npc != null && npc.active && npc.type != 0 ) {
+				if( npc != null && npc.active && npc.type != NPCID.None ) {
 					list.Add( npc );
 				}
 			}
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 				NPCHelpers.Kill( npc );
 			} else {
 				npc.life -= damage;
-				if( Main.netMode != 0 ) {
+				if( Main.netMode != NetmodeID.SinglePlayer ) {
 					NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
 				}
 			}
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 			npc.life = 0;
 			npc.checkDead();
 			npc.active = false;
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				NetMessage.SendData( MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1f, 0f, 0f, 0, 0, 0 );
 			}
 		}
@@ -66,7 +66,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		public static void Remove( NPC npc ) {
 			npc.active = false;
 
-			if( Main.netMode != 0 ) {   // == 2 only?
+			if( Main.netMode != NetmodeID.SinglePlayer ) {   // == 2 only?
 				npc.netSkip = -1;
 				npc.life = 0;
 				NetMessage.SendData( MessageID.SyncNPC, -1, -1, null, npc.whoAmI, 0f, 0f, 0f, 0, 0, 0 );

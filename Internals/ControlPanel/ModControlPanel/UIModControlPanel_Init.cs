@@ -145,13 +145,13 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.ModLockButton.Top.Set( top, 0f );
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );
-			if( Main.netMode != 0 || !ModHelpersConfig.Instance.WorldModLockEnable ) {
+			if( Main.netMode != NetmodeID.SinglePlayer || !ModHelpersConfig.Instance.WorldModLockEnable ) {
 				if( this.ModLockButton.IsEnabled ) {
 					this.ModLockButton.Disable();
 				}
 			}
 			this.ModLockButton.OnClick += ( _, __ ) => {
-				if( Main.netMode != 0 || !ModHelpersConfig.Instance.WorldModLockEnable ) {
+				if( Main.netMode != NetmodeID.SinglePlayer || !ModHelpersConfig.Instance.WorldModLockEnable ) {
 					if( self.ModLockButton.IsEnabled ) {
 						self.ModLockButton.Disable();
 					}
@@ -173,16 +173,16 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.CleanupModTiles.Top.Set( top, 0f );
 			this.CleanupModTiles.Left.Set( 0f, 0f );
 			this.CleanupModTiles.Width.Set( 0f, 1f );
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				this.CleanupModTiles.Disable();
 			}
 			this.CleanupModTiles.OnClick += ( _, __ ) => {
-				if( Main.netMode != 0 && self.CleanupModTiles.IsEnabled ) {
+				if( Main.netMode != NetmodeID.SinglePlayer && self.CleanupModTiles.IsEnabled ) {
 					self.CleanupModTiles.Disable();
 				}
 
 				if( !self.CleanupModTiles.IsEnabled ) {
-					if( Main.netMode == 1 ) {
+					if( Main.netMode == NetmodeID.MultiplayerClient ) {
 						Main.NewText( "Unused tile cleanup disabled for multiplayer.", Color.Yellow );
 					} else {
 						Main.NewText( "Unused tile cleanup disabled by settings.", Color.Yellow );
@@ -218,7 +218,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.SupportUrl.Left.Set( -this.SupportUrl.GetDimensions().Width * 0.5f, 0.5f );
 
 			LoadHooks.AddPostWorldLoadEachHook( () => {
-				if( Main.netMode != 0 ) {
+				if( Main.netMode != NetmodeID.SinglePlayer ) {
 					this.ModLockButton.Disable();
 					this.CleanupModTiles.Disable();
 				} else {

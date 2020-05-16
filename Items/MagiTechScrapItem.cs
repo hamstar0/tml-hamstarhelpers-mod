@@ -1,7 +1,8 @@
-using HamstarHelpers.Helpers.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Items;
 
 
 namespace HamstarHelpers.Items {
@@ -36,9 +37,9 @@ namespace HamstarHelpers.Items {
 			this.item.width = 24;
 			this.item.height = 24;
 			this.item.value = Item.buyPrice( 0, 0, 10, 0 );
-			this.item.rare = 1;
+			this.item.rare = ItemRarityID.Blue;
 
-			this.item.useStyle = 1;
+			this.item.useStyle = ItemUseStyleID.SwingThrow;
 			this.item.useTurn = true;
 			this.item.useAnimation = 15;
 			this.item.useTime = 10;

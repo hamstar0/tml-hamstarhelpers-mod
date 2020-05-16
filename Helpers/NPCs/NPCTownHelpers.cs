@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
@@ -35,9 +35,9 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 			npc.netUpdate = true;
 
-			if( Main.netMode == 0 ) {
+			if( Main.netMode == NetmodeID.SinglePlayer ) {
 				Main.NewText( Language.GetTextValue( "Announcement.HasArrived", npc.FullName ), 50, 125, 255, false );
-			} else if( Main.netMode == 2 ) {
+			} else if( Main.netMode == NetmodeID.Server ) {
 				var msg = NetworkText.FromKey( "Announcement.HasArrived", new object[] { npc.GetFullNetName() } );
 				NetMessage.BroadcastChatMessage( msg, new Color( 50, 125, 255 ), -1 );
 			}
@@ -57,7 +57,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <param name="npc"></param>
 		/// <param name="announce"></param>
 		public static void Leave( NPC npc, bool announce = true ) {
-			if( Main.netMode == 1 ) {
+			if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				LogHelpers.Warn( "NPCTownHelpers.Leave() called on client." );
 			}
 
@@ -66,11 +66,11 @@ namespace HamstarHelpers.Helpers.NPCs {
 			if( announce ) {
 				string msg = Main.npc[whoami].GivenName + " the " + Main.npc[whoami].TypeName + " " + Lang.misc[35];
 
-				if( Main.netMode == 0 ) {
+				if( Main.netMode == NetmodeID.SinglePlayer ) {
 					Main.NewText( msg, 50, 125, 255, false );
-				} else if( Main.netMode == 1 ) {
+				} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					//NetMessage.SendChatMessageFromClient( new ChatMessage( msg ) );
-				} else if( Main.netMode == 2 ) {
+				} else if( Main.netMode == NetmodeID.Server ) {
 					NetMessage.BroadcastChatMessage( NetworkText.FromLiteral( msg ), new Color( 255, 50, 125 ) );
 					//NetMessage.SendData( MessageID.ChatText, -1, -1, NetworkText.FromLiteral( msg ), 255, 50f, 125f, 255f, 0, 0, 0 );
 				}
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 			Main.npc[whoami].active = false;
 			Main.npc[whoami].netSkip = -1;
 			Main.npc[whoami].life = 0;
-			NetMessage.SendData( 23, -1, -1, null, whoami, 0f, 0f, 0f, 0, 0, 0 );
+			NetMessage.SendData( MessageID.SyncNPC, -1, -1, null, whoami, 0f, 0f, 0f, 0, 0, 0 );
 		}
 
 
@@ -89,7 +89,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// </summary>
 		/// <returns></returns>
 		public static Item[] GetCurrentShop() {
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException("Single or client only.");
 			}
 			if( Main.npcShop <= 0 || Main.npcShop > Main.instance.shop.Length ) {

@@ -25,10 +25,11 @@ namespace HamstarHelpers.Services.Camera {
 		}
 
 		/// <summary>
-		/// Applies a shaking motion to the camera.
+		/// Applies a shaking motion to the camera. Fades in and out.
 		/// </summary>
 		/// <param name="magnitude"></param>
 		/// <param name="tickDuration"></param>
+		/// <param name="skippedTicks">How far into the shake animation to skip to.</param>
 		public static void ApplyShake( float magnitude, int tickDuration, int skippedTicks=0 ) {
 			Camera.ShakeMagnitude = magnitude;
 			Camera.ShakeTickDuration = tickDuration;

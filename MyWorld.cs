@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.World;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Hooks.Draw;
 using HamstarHelpers.Services.Hooks.LoadHooks;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 
 namespace HamstarHelpers {
@@ -112,9 +113,9 @@ namespace HamstarHelpers {
 			var mymod = (ModHelpersMod)this.mod;
 
 			if( this.WorldLogic != null ) {
-				if( Main.netMode == 0 ) { // Single
+				if( Main.netMode == NetmodeID.SinglePlayer ) { // Single
 					this.WorldLogic.PreUpdateSingle();
-				} else if( Main.netMode == 2 ) {
+				} else if( Main.netMode == NetmodeID.Server ) {
 					this.WorldLogic.PreUpdateServer();
 				}
 			}

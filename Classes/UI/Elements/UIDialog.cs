@@ -144,6 +144,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// @private
 		[Obsolete("use RecalculateMe()")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
 		public sealed override void Recalculate() {
 			base.Recalculate();
 
@@ -151,6 +152,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				this.RecalculateOuterContainer();
 			}
 		}
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
 		/// <summary>
 		/// Recalculates position of outer container

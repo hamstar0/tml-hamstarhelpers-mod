@@ -155,7 +155,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				changed = 1;
 			}
 
-			if( isSynced && Main.netMode == 1 ) {
+			if( isSynced && Main.netMode == NetmodeID.MultiplayerClient ) {
 				if( changed != 0 ) {
 					NetMessage.SendData( MessageID.TileChange, -1, -1, null, (int)TileChangeNetMessageType.SlopeTile, (float)tileX, (float)tileY, (float)mid.slope(), 0, 0, 0 );
 				}

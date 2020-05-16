@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Entities;
 using HamstarHelpers.Helpers.Items;
-using System;
-using Terraria;
 
 
 namespace HamstarHelpers.Helpers.Players {
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Helpers.Players {
 		/// </summary>
 		/// <returns></returns>
 		public static string GetUniqueId() {
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				throw new ModHelpersException( "No 'current' player on a server." );
 			}
 
@@ -45,7 +46,7 @@ namespace HamstarHelpers.Helpers.Players {
 			string id;
 
 			if( !mymod.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
-				if( Main.netMode != 2 && player.whoAmI == Main.myPlayer ) {
+				if( Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer ) {
 					id = PlayerIdentityHelpers.GetUniqueId();
 					mymod.PlayerIdentityHelpers.PlayerIds[ player.whoAmI ] = id;
 				} else {

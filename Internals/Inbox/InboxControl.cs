@@ -1,10 +1,11 @@
-﻿using HamstarHelpers.Helpers.UI;
-using HamstarHelpers.Services.Messages.Inbox;
-using HamstarHelpers.Services.Hooks.LoadHooks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Services.Messages.Inbox;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 
 
@@ -43,7 +44,7 @@ namespace HamstarHelpers.Internals.Inbox {
 		////////////////
 
 		internal InboxControl() {
-			if( Main.netMode == 2 ) { return; }
+			if( Main.netMode == NetmodeID.Server ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
 

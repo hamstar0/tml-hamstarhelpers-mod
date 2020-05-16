@@ -1,6 +1,7 @@
-﻿using HamstarHelpers.Classes.Errors;
-using System;
+﻿using System;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
@@ -14,7 +15,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		protected static void QuickBroadcastFromClient<T>() where T : PacketProtocolBroadcast {
-			if( Main.netMode != 1 ) {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
 			PacketProtocol.QuickSyncToServerAndClients<T>();
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		/// <typeparam name="T"></typeparam>
 		/// <param name="ignoreWho">Player "whoAmI" value to skip sending packet to. -1 for no one.</param>
 		protected static void QuickBroadcastFromServer<T>( int ignoreWho ) where T : PacketProtocolBroadcast {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server" );
 			}
 			PacketProtocol.QuickSendToClient<T>( -1, ignoreWho );
@@ -53,7 +54,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		/// <summary>
 		/// Implements handling of received messages on the server (before re-broadcast to clients).
 		/// </summary>
-		/// <return>`true` to go through with re-broadcasting this packet to clients.</return>
+		/// <param name="fromWho"></param>
 		protected abstract void ReceiveOnServer( int fromWho );
 
 		/// @private

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Terraria;
+using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.TModLoader;
@@ -36,7 +37,7 @@ namespace HamstarHelpers.Services.Network {
 		/// </summary>
 		/// <returns>`true` if loop not already running.</returns>
 		public static bool StartBroadcastingMyCursorPosition() {
-			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not a client." ); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not a client." ); }
 
 			string timerName = "cursor_broadcast_" + Main.myPlayer;
 			if( Timers.Timers.GetTimerTickDuration(timerName) > 0 ) {
@@ -56,7 +57,7 @@ namespace HamstarHelpers.Services.Network {
 		/// Ends the current cursor position broadcast loop.
 		/// </summary>
 		public static void StopBroadcastingMyCursorPosition() {
-			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not a client." ); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not a client." ); }
 
 			string timerName = "cursor_broadcast_" + Main.myPlayer;
 

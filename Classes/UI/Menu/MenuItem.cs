@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.ID;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Services.Timers;
@@ -69,7 +70,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 			if( Main.mouseLeft && this.IsMouseOverMenuItem() ) {
 				this.MenuItemScale = 0.8f;
 
-				Main.PlaySound( 11 );
+				Main.PlaySound( SoundID.MenuClose );
 
 				Timers.RunNow( () => {
 					this.MyAction();
@@ -122,7 +123,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 							   Main.mouseY >= basePosY - ( dim.Y * 0.5f ) && Main.mouseY <= basePosY + ( dim.Y * 0.5f );
 
 			if( isSelected && !this.MenuItemHovered ) {
-				Main.PlaySound( 12 );
+				Main.PlaySound( SoundID.MenuTick );
 			}
 			this.MenuItemHovered = isSelected;
 
@@ -176,7 +177,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 				drawPos.X += xShift;
 				drawPos.Y += yShift;
 
-				if( Main.netMode == 2 ) {
+				if( Main.netMode == NetmodeID.Server ) {
 					menuItemScale *= 0.5f;
 				}
 

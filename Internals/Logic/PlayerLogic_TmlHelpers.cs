@@ -1,8 +1,9 @@
-﻿using HamstarHelpers.Internals.NetProtocols;
+﻿using System.Linq;
+using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Services.Hooks.ExtendedHooks;
 using HamstarHelpers.Services.Timers;
-using System.Linq;
-using Terraria;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -47,7 +48,7 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 
 			if( buffChange ) {
-				if( Main.netMode == 1 ) {
+				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					if( this.CanUpdateData ) {
 						this.CanUpdateData = false;
 
@@ -93,7 +94,7 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 
 			if( equipChange ) {
-				if( Main.netMode == 1 ) {
+				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					if( this.CanUpdateData ) {
 						this.CanUpdateData = false;
 

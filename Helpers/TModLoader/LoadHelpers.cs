@@ -1,8 +1,9 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using System;
+﻿using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
@@ -58,7 +59,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		public static bool IsWorldBeingPlayed() {
 			var mymod = ModHelpersMod.Instance;
 
-			if( Main.netMode != 2 && !Main.dedServ ) {
+			if( Main.netMode != NetmodeID.Server && !Main.dedServ ) {
 				if( !mymod.LoadHelpers.IsLocalPlayerInGame_Hackish ) {
 					return false;
 				}
@@ -96,7 +97,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 			bool notSafelyPlayed = mymod.LoadHelpers.WorldStartupDelay >= ( 60 * 2 );
 
 			if( ModHelpersConfig.Instance.DebugModeHelpersInfo && !notSafelyPlayed ) {
-				if( Main.netMode != 2 && !Main.dedServ ) {
+				if( Main.netMode != NetmodeID.Server && !Main.dedServ ) {
 					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, mymod, "ModHelpersPlayer" );
 
 					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "

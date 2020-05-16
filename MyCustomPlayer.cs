@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.PlayerData;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
-using System;
-using Terraria;
 
 
 namespace HamstarHelpers {
@@ -19,7 +20,7 @@ namespace HamstarHelpers {
 
 
 		protected override void OnEnter( object data ) {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				if( this.PlayerWho != Main.myPlayer ) {
 					return;
 				}
@@ -27,11 +28,11 @@ namespace HamstarHelpers {
 
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
 
-			if( Main.netMode == 0 ) {
+			if( Main.netMode == NetmodeID.SinglePlayer ) {
 				myplayer.Logic.OnSingleEnterWorld( this.Player );
-			} else if( Main.netMode == 1 ) {
+			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				myplayer.Logic.OnCurrentClientEnterWorld( this.Player );
-			} else if( Main.netMode == 2 ) {
+			} else if( Main.netMode == NetmodeID.Server ) {
 			}
 		}
 	}

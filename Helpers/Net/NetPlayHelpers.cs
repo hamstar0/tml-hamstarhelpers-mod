@@ -1,7 +1,8 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.Net {
@@ -46,7 +47,7 @@ namespace HamstarHelpers.Helpers.Net {
 		/// </summary>
 		/// <returns></returns>
 		public static int GetServerPing() {
-			if( Main.netMode != 1 ) {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Only clients can gauge ping." );
 			}
 

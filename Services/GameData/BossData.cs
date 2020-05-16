@@ -1,15 +1,15 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.NPCs.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.NPCs.Attributes;
 
 
 namespace HamstarHelpers.Services.GameData {
 	/// <summary></summary>
 	public class BossDataEntry {
 		/// <summary></summary>
+#pragma warning disable CS0618 // Type or member is obsolete
 		public int Order => BossData.BossMap[ this.Name ];
 
 
@@ -28,6 +28,7 @@ namespace HamstarHelpers.Services.GameData {
 		public bool IsPostGolem => this.Order > BossData.Golem.Order;
 		/// <summary></summary>
 		public bool IsPostMoonlord => this.Order > BossData.MoonLord.Order;
+#pragma warning restore CS0618 // Type or member is obsolete
 
 
 

@@ -65,8 +65,8 @@ namespace HamstarHelpers.Helpers.Entities {
 			Vector2 forceVector = Vector2.Normalize( offset ) * force;
 			ent.velocity += forceVector;
 
-			if( sync && Main.netMode != 0 ) {
-				NetMessage.SendData( MessageID.SyncNPC, -1, ( Main.netMode == 2 ? -1 : Main.myPlayer ), null, ent.whoAmI );
+			if( sync && Main.netMode != NetmodeID.SinglePlayer ) {
+				NetMessage.SendData( MessageID.SyncNPC, -1, ( Main.netMode == NetmodeID.Server ? -1 : Main.myPlayer ), null, ent.whoAmI );
 			}
 		}
 

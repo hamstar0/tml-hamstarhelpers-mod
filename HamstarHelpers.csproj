@@ -8,7 +8,7 @@
     <LangVersion>latest</LangVersion>
     <Authors>hamstar</Authors>
     <Product>Mod Helpers</Product>
-    <Version>5.4.3</Version>
+    <Version>5.7.0</Version>
     <PackageId>Mod Helpers</PackageId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,5 +23,8 @@
     <None Remove="Classes\DataStructures\BTree\README.txt" />
     <None Remove="HamstarHelpers.xml" />
     <None Remove="icon.pdn" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
 </Project>

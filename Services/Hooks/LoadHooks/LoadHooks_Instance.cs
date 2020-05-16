@@ -1,7 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.Hooks.LoadHooks {
@@ -78,7 +79,7 @@ namespace HamstarHelpers.Services.Hooks.LoadHooks {
 		}
 
 		private void Update() {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				if( this.WorldLoadHookConditionsMet && Main.gameMenu ) {
 					this.WorldLoadHookConditionsMet = false;
 					this.SafeWorldLoadHookConditionsMet = false;

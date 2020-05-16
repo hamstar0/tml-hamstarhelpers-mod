@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Services.Network;
@@ -9,7 +10,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	class CursorPositionProtocol : PacketProtocolBroadcast {
 		internal static bool BroadcastCursor() {
-			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not a client." ); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not a client." ); }
 
 			short x = (short)Main.mouseX;
 			short y = (short)Main.mouseY;

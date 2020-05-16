@@ -1,12 +1,13 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.Players;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Helpers.Players;
 
 
 namespace HamstarHelpers.Helpers.Info {
@@ -224,7 +225,7 @@ namespace HamstarHelpers.Helpers.Info {
 		/// </summary>
 		/// <returns></returns>
 		public static int GetAveragePingOfServer() {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException("Server-side only.");
 			}
 

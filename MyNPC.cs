@@ -102,13 +102,13 @@ namespace HamstarHelpers {
 		private void NpcKilledByPlayer( NPC npc ) {
 			var mymod = (ModHelpersMod)this.mod;
 
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				Player toPlayer = Main.player[npc.lastInteraction];
 
 				if( toPlayer != null && toPlayer.active ) {
 					ExtendedPlayerHooks.RunNpcKillHooks( toPlayer, npc );
 				}
-			} else if( Main.netMode == 0 ) {
+			} else if( Main.netMode == NetmodeID.SinglePlayer ) {
 				ExtendedPlayerHooks.RunNpcKillHooks( Main.LocalPlayer, npc );
 			}
 		}

@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.Recipes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Helpers.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -72,24 +72,24 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Swingable",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.melee && item.useStyle == 1;
+					return item.melee && item.useStyle == ItemUseStyleID.SwingThrow;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				grpName: "Any Thrustable",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.melee && item.useStyle == 5;
+					return item.melee && item.useStyle == ItemUseStyleID.HoldingOut;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				grpName: "Any Flail",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					if( !item.melee || item.useStyle != 5 ) { return false; }
+					if( !item.melee || item.useStyle != ItemUseStyleID.HoldingOut ) { return false; }
 					if( item.type == ItemID.Anchor ) { return true; }
 
-					if( item.shoot == 0 ) { return false; }
+					if( item.shoot == ProjectileID.None ) { return false; }
 					var projPool = ModHelpersMod.Instance.EntityGroups.GetProjPool();
 
 					switch( projPool[ item.shoot ].aiStyle ) {
@@ -106,10 +106,10 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Boomerang",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					if( !item.melee || item.useStyle != 1 ) { return false; }
+					if( !item.melee || item.useStyle != ItemUseStyleID.SwingThrow ) { return false; }
 					if( item.type == ItemID.FlyingKnife ) { return true; }
 
-					if( item.shoot == 0 ) { return false; }
+					if( item.shoot == ProjectileID.None ) { return false; }
 					var projPool = ModHelpersMod.Instance.EntityGroups.GetProjPool();
 
 					switch( projPool[ item.shoot ].aiStyle ) {

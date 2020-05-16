@@ -142,7 +142,7 @@ namespace HamstarHelpers.Tiles {
 			newTile.liquid = tile.liquid;
 			newTile.liquidType( tile.liquidType() );
 
-			if( Main.netMode != 0 ) {
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
 				NetMessage.SendData( MessageID.TileChange, -1, -1, null, 1, (float)tileX, (float)tileY, (float)brambleTileType, 0, 0, 0 );
 			}
 

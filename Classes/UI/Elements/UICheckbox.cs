@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Classes.UI.Theme;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Theme;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -71,7 +72,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				float textScale = 1,
 				bool large = false )
 				: base( theme, true, label, textScale, large ) {
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				this.CheckboxTexture = ModHelpersMod.Instance.GetTexture( "Classes/UI/Elements/check_box" );
 				this.CheckmarkTexture = ModHelpersMod.Instance.GetTexture( "Classes/UI/Elements/check_mark" );
 			}

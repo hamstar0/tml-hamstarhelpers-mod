@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.Debug;
@@ -69,7 +70,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 		////////////////
 
 		private static void UpdateAll() {
-			bool isNotMenu = Main.netMode == 2 ? true : !Main.gameMenu;
+			bool isNotMenu = Main.netMode == NetmodeID.Server ? true : !Main.gameMenu;
 			var singleton = ModContent.GetInstance<CustomPlayerData>();
 			Player player;
 			
@@ -89,7 +90,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 					continue;
 				}
 
-				//bool isInGame = Main.netMode == 2
+				//bool isInGame = Main.netMode == NetmodeID.Server
 				//	? true
 				//	: plrWho == Main.myPlayer
 				//		? LoadHelpers.IsCurrentPlayerInGame()
@@ -115,7 +116,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 				}
 			}
 
-			if( Main.netMode != 2 && Main.gameMenu ) {
+			if( Main.netMode != NetmodeID.Server && Main.gameMenu ) {
 				lock( CustomPlayerData.MyLock ) {
 					singleton.DataMap.Clear();
 				}

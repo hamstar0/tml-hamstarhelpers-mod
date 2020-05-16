@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -145,7 +146,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 			if( !this.IsMismatched ) { return; }
 //if( (this.ExitDuration % 60) == 0 ) {LogHelpers.Log( "bye? IsInitialized:"+this.IsInitialized+" IsMismatched:"+this.IsMismatched+"," + ( this.ExitDuration / 60) );}
 			
-			if( Main.netMode == 2 && !this.MismatchBroadcastMade ) {
+			if( Main.netMode == NetmodeID.Server && !this.MismatchBroadcastMade ) {
 				if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
 					this.MismatchBroadcastMade = true;
 
@@ -159,9 +160,9 @@ namespace HamstarHelpers.Services.ModHelpers {
 			if( this.ExitDuration > 0 ) {
 				this.ExitDuration--;
 			} else {
-				if( Main.netMode == 0 || Main.netMode == 1 ) {
+				if( Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient ) {
 					TmlHelpers.ExitToMenu( false );
-				} else if( Main.netMode == 2 ) {
+				} else if( Main.netMode == NetmodeID.Server ) {
 					TmlHelpers.ExitToDesktop( false );
 				}
 			}

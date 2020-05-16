@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
@@ -10,7 +11,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	class PlayerDataProtocol : PacketProtocolBroadcast {
 		public static void BroadcastToAll( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
-			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not client" ); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not client" ); }
 			
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
 			

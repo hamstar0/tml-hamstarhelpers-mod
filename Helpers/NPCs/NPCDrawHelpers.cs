@@ -1,7 +1,8 @@
-﻿using HamstarHelpers.Helpers.UI;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Helpers.UI;
 
 
 namespace HamstarHelpers.Helpers.NPCs {
@@ -32,49 +33,49 @@ namespace HamstarHelpers.Helpers.NPCs {
 			float heightOffset = Main.NPCAddHeight( npc.whoAmI );
 			Vector2 origin = new Vector2( (float)( tex.Width / 2 ), (float)( ( tex.Height / frameCount ) / 2 ) );
 
-			if( npc.type == 108 || npc.type == 124 ) {
+			if( npc.type == NPCID.Wizard || npc.type == NPCID.Mechanic ) {
 				yOffset = 2f;
-			} else if( npc.type == 357 ) {
+			} else if( npc.type == NPCID.Worm ) {
 				yOffset = npc.localAI[0];
-			} else if( npc.type == 467 ) {
+			} else if( npc.type == NPCID.DeadlySphere ) {
 				yOffset = 7f;
-			} else if( npc.type == 537 ) {
+			} else if( npc.type == NPCID.SandSlime ) {
 				yOffset = 2f;
-			} else if( npc.type == 509 ) {
+			} else if( npc.type == NPCID.FlyingAntlion ) {
 				yOffset = -6f;
-			} else if( npc.type == 490 ) {
+			} else if( npc.type == NPCID.Drippler ) {
 				yOffset = 4f;
-			} else if( npc.type == 484 ) {
+			} else if( npc.type == NPCID.EnchantedNightcrawler ) {
 				yOffset = 2f;
-			} else if( npc.type == 483 ) {
+			} else if( npc.type == NPCID.GraniteFlyer ) {
 				yOffset = 14f;
-			} else if( npc.type == 477 ) {
+			} else if( npc.type == NPCID.Mothron ) {
 				heightOffset = 22f;
-			} else if( npc.type == 478 ) {
+			} else if( npc.type == NPCID.MothronEgg ) {
 				yOffset -= 2f;
-			} else if( npc.type == 469 && (double)npc.ai[2] == 1.0 ) {
+			} else if( npc.type == NPCID.ThePossessed && (double)npc.ai[2] == 1.0 ) {
 				yOffset = 14f;
-			} else if( npc.type == 4 ) {
+			} else if( npc.type == NPCID.EyeofCthulhu ) {
 				origin = new Vector2( 55f, 107f );
-			} else if( npc.type == 125 ) {
+			} else if( npc.type == NPCID.Retinazer ) {
 				origin = new Vector2( 55f, 107f );
-			} else if( npc.type == 126 ) {
+			} else if( npc.type == NPCID.Spazmatism ) {
 				origin = new Vector2( 55f, 107f );
-			} else if( npc.type == 63 || npc.type == 64 || npc.type == 103 ) {
+			} else if( npc.type == NPCID.BlueJellyfish || npc.type == NPCID.PinkJellyfish || npc.type == NPCID.GreenJellyfish ) {
 				origin.Y += 4f;
-			} else if( npc.type == 69 ) {
+			} else if( npc.type == NPCID.Antlion ) {
 				origin.Y += 8f;
-			} else if( npc.type == 262 ) {
+			} else if( npc.type == NPCID.Plantera ) {
 				origin.Y = 77f;
 				heightOffset += 26f;
-			} else if( npc.type == 264 ) {
+			} else if( npc.type == NPCID.PlanterasTentacle ) {
 				origin.Y = 21f;
 				heightOffset += 2f;
-			} else if( npc.type == 266 ) {
+			} else if( npc.type == NPCID.BrainofCthulhu ) {
 				heightOffset += 50f;
-			} else if( npc.type == 268 ) {
+			} else if( npc.type == NPCID.IchorSticker ) {
 				heightOffset += 16f;
-			} else if( npc.type == 288 ) {
+			} else if( npc.type == NPCID.DungeonSpirit ) {
 				heightOffset += 6f;
 			}
 

@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Classes.Protocols.Stream;
-using HamstarHelpers.Helpers.Debug;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
+using Newtonsoft.Json;
+using HamstarHelpers.Classes.Protocols.Stream;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
@@ -60,7 +60,9 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 		private void ReceiveWithServerBase( BinaryReader reader, int fromWho, bool isSyncedToClients ) {
 			this.ReceiveWithEitherBase( reader, fromWho );
+#pragma warning disable CS0618 // Type or member is obsolete
 			this.ReceiveWithServer( fromWho );
+#pragma warning restore CS0618 // Type or member is obsolete
 			this.ReceiveWithServer( fromWho, isSyncedToClients );
 		}
 

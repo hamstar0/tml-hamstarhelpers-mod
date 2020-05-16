@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.Protocols.Stream;
-using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Stream;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		private ModPacket GetClientPacket( bool isRequest, bool syncToAll ) {
-			if( Main.netMode != 1 ) { throw new ModHelpersException( "Not a client"); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not a client"); }
 
 			string name = this.GetPacketName();
 			var packet = ModHelpersMod.Instance.GetPacket();
@@ -23,7 +24,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 
 		private ModPacket GetServerPacket( bool isRequest ) {
-			if( Main.netMode != 2 ) { throw new ModHelpersException( "Not a server" ); }
+			if( Main.netMode != NetmodeID.Server ) { throw new ModHelpersException( "Not a server" ); }
 
 			string name = this.GetPacketName();
 			var packet = ModHelpersMod.Instance.GetPacket();

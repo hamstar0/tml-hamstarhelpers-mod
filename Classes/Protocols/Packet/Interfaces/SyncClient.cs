@@ -91,7 +91,9 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		protected abstract void ReceiveOnServer( int fromWho );
 
 		/// @private
+#pragma warning disable CS0672 // Member overrides obsolete member
 		protected sealed override void ReceiveWithServer( int fromWho ) { }
+#pragma warning restore CS0672 // Member overrides obsolete member
 		/// @private
 		protected sealed override void ReceiveWithServer( int fromWho, bool isSyncedWithClients ) {
 			this.ReceiveOnServer( fromWho );

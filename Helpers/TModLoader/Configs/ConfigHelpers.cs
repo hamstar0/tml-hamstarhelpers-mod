@@ -38,7 +38,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 				null
 			);
 
-			if( Main.netMode == 2 ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				requestChanges.Write( true );
 				requestChanges.Write( "ConfigHelpers.SyncConfig syncing..." );
 			}

@@ -1,5 +1,6 @@
-﻿using HamstarHelpers.Services.ModHelpers;
-using Terraria;
+﻿using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Services.ModHelpers;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
@@ -13,7 +14,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			if( !ModHelpersConfig.Instance.WorldModLockEnable ) {
 				status += " (disabled)";
 				isEnabled = false;
-			} else if( Main.netMode != 0 ) {
+			} else if( Main.netMode != NetmodeID.SinglePlayer ) {
 				status += " (single-player only)";
 				isEnabled = false;
 			}

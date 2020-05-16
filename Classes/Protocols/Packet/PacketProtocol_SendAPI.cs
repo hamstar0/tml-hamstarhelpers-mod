@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using Terraria;
+using Terraria.ID;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
-using System;
-using Terraria;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
 	public abstract partial class PacketProtocol : StreamProtocol {
 		private static void QuickSendToServerBase<T>( bool syncToClients )
 				where T : PacketProtocol {  //, new()
-			if( Main.netMode != 1 ) {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Can only send as client." );
 			}
 			
@@ -52,7 +53,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		/// <param name="ignoreWho">Main.player index of player (client) being ignored. -1 for no client.</param>
 		protected static void QuickSendToClient<T>( int toWho, int ignoreWho )
 				where T : PacketProtocol {  //, new()
-			if( Main.netMode != 2 ) {
+			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Can only send as client." );
 			}
 			

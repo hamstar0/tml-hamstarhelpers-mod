@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.RecipeHack;
-using HamstarHelpers.Tiles;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.RecipeHack;
+using HamstarHelpers.Tiles;
 
 
 namespace HamstarHelpers {
@@ -21,7 +21,9 @@ namespace HamstarHelpers {
 
 		public override GlobalItem Clone( Item item, Item itemClone ) {
 			if( this.FromRecipeIdx >= 0 ) {
+#pragma warning disable CS0618 // Type or member is obsolete
 				RecipeHack.AwaitCraft( Main.LocalPlayer, this.FromRecipeIdx );
+#pragma warning restore CS0618 // Type or member is obsolete
 			}
 			return base.Clone( item, itemClone );
 		}
@@ -31,10 +33,10 @@ namespace HamstarHelpers {
 			if( item.type == ItemID.Coal ) {
 				if( ModHelpersConfig.Instance.CoalAsTile ) {
 					item.maxStack = 999;
-					item.rare = 2;
+					item.rare = ItemRarityID.Green;
 					item.value = 1000;
 
-					item.useStyle = 1;
+					item.useStyle = ItemUseStyleID.SwingThrow;
 					item.useTurn = true;
 					item.useAnimation = 15;
 					item.useTime = 10;

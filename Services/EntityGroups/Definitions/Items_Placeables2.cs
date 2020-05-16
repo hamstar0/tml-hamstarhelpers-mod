@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -80,8 +80,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpDeps: new string[] { ItemGroupIDs.AnyTile },
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !grps[ItemGroupIDs.AnyTile].Contains( item.type ) ) { return false; }
-					if( item.createTile != 239 ) {
-						if( item.createTile <= 0 ) { return false; }
+					if( item.createTile != TileID.MetalBars ) {
+						if( item.createTile <= TileID.Dirt ) { return false; }
 						if( !Main.tileSolid[item.createTile] ) { return false; }
 						if( !Main.tileSolidTop[item.createTile] ) { return false; }
 						if( Main.tileShine[item.createTile] == 0 ) { return false; }
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Workbench",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 18;
+					return item.createTile == TileID.WorkBenches;
 				} )
 			) );
 
@@ -107,28 +107,28 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Anvil",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 16 || item.createTile == 134;
+					return item.createTile == TileID.Anvils || item.createTile == TileID.MythrilAnvil;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				grpName: "Any Forge",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 18;
+					return item.createTile == TileID.WorkBenches;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				grpName: "Any Table",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 14;
+					return item.createTile == TileID.Tables;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				grpName: "Any Alchemy Station",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 13 || item.createTile == 355;
+					return item.createTile == TileID.Bottles || item.createTile == TileID.AlchemyTable;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
@@ -194,7 +194,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Chest",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 21;
+					return item.createTile == TileID.Containers;
 				} )
 			) );
 
@@ -212,7 +212,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Trap Chest",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 441;
+					return item.createTile == TileID.FakeContainers;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
@@ -331,14 +331,14 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Wall Torch",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 4;
+					return item.createTile == TileID.Torches;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
 				grpName: "Any Campfire",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 215 || item.createTile == 405;
+					return item.createTile == TileID.Campfire || item.createTile == TileID.Fireplace;
 				} )
 			) );
 
@@ -348,7 +348,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Statue",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == 105;
+					return item.createTile == TileID.Statues;
 				} )
 			) );
 		}
