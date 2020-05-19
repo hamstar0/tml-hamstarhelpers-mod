@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Internals.UI;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Internals.UI;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {

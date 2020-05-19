@@ -21,8 +21,15 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <param name="scale"></param>
 		/// <param name="color"></param>
 		/// <param name="applyZoom">Whether to convert to current zoom amount or draw it directly.</param>
-		public static void DrawSimple( SpriteBatch sb, NPC npc, int frame, Vector2 position, float rotation, float scale,
-					Color color, bool applyZoom = false ) {
+		public static void DrawSimple(
+					SpriteBatch sb,
+					NPC npc,
+					int frame,
+					Vector2 position,
+					float rotation,
+					float scale,
+					Color color,
+					bool applyZoom = false ) {
 			Texture2D tex = Main.npcTexture[npc.type];
 			int frameCount = Main.npcFrameCount[npc.type];
 			int texHeight = tex.Height / frameCount;

@@ -48,6 +48,9 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 			if( this.RightArrowElem.GetOuterDimensions().ToRectangle().Contains(Main.mouseX, Main.mouseY) ) {
 				return;
 			}
+			if( this.NumericInput.GetOuterDimensions().ToRectangle().Contains(Main.mouseX, Main.mouseY) ) {
+				return;
+			}
 
 			UISlider.SelectedSlider = this;
 

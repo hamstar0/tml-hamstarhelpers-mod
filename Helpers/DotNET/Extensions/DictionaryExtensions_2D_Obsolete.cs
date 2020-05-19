@@ -14,8 +14,11 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		}
 		/// @private
 		[Obsolete( "use AddToValue2D", true )]
-		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, short>> dict,
-				TKey1 key1, TKey2 key2, short value ) {
+		public static void Add2D<TKey1, TKey2>(
+				this IDictionary<TKey1, IDictionary<TKey2, short>> dict,
+				TKey1 key1,
+				TKey2 key2,
+				short value ) {
 			dict.AddToValue2D( key1, key2, value );
 		}
 		/// @private
@@ -25,8 +28,11 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		}
 		/// @private
 		[Obsolete( "use AddToValue2D", true )]
-		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, int>> dict,
-				TKey1 key1, TKey2 key2, int value ) {
+		public static void Add2D<TKey1, TKey2>(
+				this IDictionary<TKey1, IDictionary<TKey2, int>> dict,
+				TKey1 key1,
+				TKey2 key2,
+				int value ) {
 			dict.AddToValue2D( key1, key2, value );
 		}
 		/// @private
@@ -36,8 +42,11 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		}
 		/// @private
 		[Obsolete( "use AddToValue2D", true )]
-		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, float>> dict,
-				TKey1 key1, TKey2 key2, float value ) {
+		public static void Add2D<TKey1, TKey2>(
+				this IDictionary<TKey1, IDictionary<TKey2, float>> dict,
+				TKey1 key1,
+				TKey2 key2,
+				float value ) {
 			dict.AddToValue2D( key1, key2, value );
 		}
 		/// @private
@@ -47,8 +56,11 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		}
 		/// @private
 		[Obsolete( "use AddToValue2D", true )]
-		public static void Add2D<TKey1, TKey2>( this IDictionary<TKey1, IDictionary<TKey2, double>> dict,
-				TKey1 key1, TKey2 key2, double value ) {
+		public static void Add2D<TKey1, TKey2>(
+				this IDictionary<TKey1, IDictionary<TKey2, double>> dict,
+				TKey1 key1,
+				TKey2 key2,
+				double value ) {
 			dict.AddToValue2D( key1, key2, value );
 		}
 	}

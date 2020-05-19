@@ -2191,16 +2191,13 @@
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color},System.Int32)">
             <summary>
-            Draws a slider bar and returns the value of the mouse's current position.
+            Draws a slider bar.
             </summary>
             <param name="sb"></param>
             <param name="destRect"></param>
             <param name="valueAsPercent"></param>
             <param name="innerBarShader"></param>
             <param name="lockState"></param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
-            @private
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             @private
@@ -8209,6 +8206,21 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.Attributes.VanillaTileCuttingContext">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Attributes.VanillaTileCuttingContext.Unknown">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Attributes.VanillaTileCuttingContext.AttackMelee">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Attributes.VanillaTileCuttingContext.AttackProjectile">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Attributes.VanillaTileCuttingContext.TilePlacement">
+            <summary></summary>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tile attributes.
@@ -8224,7 +8236,7 @@
             <param name="tileType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,Terraria.Enums.TileCuttingContext)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,HamstarHelpers.Helpers.Tiles.Attributes.VanillaTileCuttingContext)">
             <summary>
             Indicates if a given specific tile is "breakable" (typically to normal attacks).
             </summary>
@@ -8378,9 +8390,6 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsObject(System.Int32)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsBreakable(System.Int32,System.Int32,System.Nullable{Terraria.Enums.TileCuttingContext})">
             @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileAttributeHelpers.IsNotVanillaBombable(System.Int32,System.Int32)">

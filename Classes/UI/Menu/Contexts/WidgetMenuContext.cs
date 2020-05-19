@@ -27,11 +27,12 @@ namespace HamstarHelpers.Classes.UI.Menus {
 		/// <param name="contextName"></param>
 		/// <param name="myElement">UI element of the widget.</param>
 		/// <param name="isInner">See `IsInner` property.</param>
-		public WidgetMenuContext( MenuUIDefinition menuDefinition,
-				string contextName,
-				UIElement myElement,
-				bool isInner )
-				: base( menuDefinition, contextName ) {
+		public WidgetMenuContext(
+					MenuUIDefinition menuDefinition,
+					string contextName,
+					UIElement myElement,
+					bool isInner )
+					: base( menuDefinition, contextName ) {
 			this.MyElement = myElement;
 			this.IsInner = isInner;
 		}

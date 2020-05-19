@@ -46,11 +46,12 @@ namespace HamstarHelpers.Classes.UI.Menu {
 		/// <param name="contextName">Unique name of this context.</param>
 		/// <param name="displayInfo">Whether to show an info display box at the top.</param>
 		/// <param name="occludesLogo">Whether the Terraria logo is removed.</param>
-		protected SessionMenuContext( MenuUIDefinition menuDefinitionOfContext,
-				string contextName,
-				bool displayInfo,
-				bool occludesLogo )
-				: base( menuDefinitionOfContext, contextName ) {
+		protected SessionMenuContext(
+					MenuUIDefinition menuDefinitionOfContext,
+					string contextName,
+					bool displayInfo,
+					bool occludesLogo )
+					: base( menuDefinitionOfContext, contextName ) {
 			this.DisplayInfo = displayInfo;
 			this.OccludesLogo = occludesLogo;
 			this.OldLogo1 = Main.logoTexture;

@@ -20,7 +20,10 @@ namespace HamstarHelpers.Helpers.Collisions {
 		/// <param name="notFound"></param>
 		/// <param name="ignoredTiles">A list of tile X and Y points to ignore.</param>
 		/// <returns></returns>
-		public static float MeasureWorldDistanceToTile( Vector2 position, Vector2 direction, float maxDistance,
+		public static float MeasureWorldDistanceToTile(
+					Vector2 position,
+					Vector2 direction,
+					float maxDistance,
 					out bool notFound,
 					List<Tuple<int, int>> ignoredTiles = null ) {
 			int fromTileX = (int)position.X / 16;

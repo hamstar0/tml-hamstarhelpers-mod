@@ -42,10 +42,12 @@ namespace HamstarHelpers.Helpers.Recipes {
 		/// <param name="missingItemTypesStacks">Returns the missing item ids and amounts for the recipe.</param>
 		/// <param name="availableIngredients"></param>
 		/// <returns></returns>
-		public static RecipeCraftFailReason GetRecipeFailReasons( Player player, Recipe recipe,
-				out int[] missingTile, out IDictionary<int, int> missingItemTypesStacks,
-				IEnumerable<Item> availableIngredients = null
-			) {
+		public static RecipeCraftFailReason GetRecipeFailReasons(
+					Player player,
+					Recipe recipe,
+					out int[] missingTile,
+					out IDictionary<int, int> missingItemTypesStacks,
+					IEnumerable<Item> availableIngredients = null ) {
 			RecipeCraftFailReason reason = 0;
 			var missingTileList = new List<int>();
 			missingItemTypesStacks = new Dictionary<int, int>();

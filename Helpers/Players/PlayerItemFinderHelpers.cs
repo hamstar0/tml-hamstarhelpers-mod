@@ -57,7 +57,8 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="prevMouseInfo">Mouse item type and stack size.</param>
 		/// <param name="prevInv">Map of inventory slots and their item types and sizes.</param>
 		/// <returns>Map of inventory slots with changes and their item types and sizes. Mouse items count as the -1 slot.</returns>
-		public static IDictionary<int, KeyValuePair<int, int>> FindInventoryChanges( Player player,
+		public static IDictionary<int, KeyValuePair<int, int>> FindInventoryChanges(
+					Player player,
 					KeyValuePair<int, int> prevMouseInfo,
 					IDictionary<int, KeyValuePair<int, int>> prevInv ) {
 			IDictionary<int, KeyValuePair<int, int>> changes = new Dictionary<int, KeyValuePair<int, int>>();

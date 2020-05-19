@@ -125,7 +125,11 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="sightNeeded">Visual occlusion (e.g. Blackout debuff) counts as incapacitation. Default `false`.</param>
 		/// <param name="sanityNeeded">Control complications (e.g. Confused debuff) counts as incapacition. Default `false`.</param>
 		/// <returns></returns>
-		public static bool IsIncapacitated( Player player, bool freedomNeeded=false, bool armsNeeded=false, bool sightNeeded=false,
+		public static bool IsIncapacitated(
+					Player player,
+					bool freedomNeeded=false,
+					bool armsNeeded=false,
+					bool sightNeeded=false,
 					bool sanityNeeded=false ) {
 			if( player == null || !player.active || player.dead || player.stoned || player.frozen || player.ghost ||
 				player.gross || player.webbed || player.mapFullScreen ) { return true; }
@@ -149,7 +153,14 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="pvp"></param>
 		/// <param name="quiet"></param>
 		/// <param name="crit"></param>
-		public static void RawHurt( Player player, PlayerDeathReason deathReason, int damage, int direction, bool pvp=false, bool quiet=false, bool crit=false ) {
+		public static void RawHurt(
+					Player player,
+					PlayerDeathReason deathReason,
+					int damage,
+					int direction,
+					bool pvp=false,
+					bool quiet=false,
+					bool crit=false ) {
 			int def = player.statDefense;
 
 			player.statDefense = 0;

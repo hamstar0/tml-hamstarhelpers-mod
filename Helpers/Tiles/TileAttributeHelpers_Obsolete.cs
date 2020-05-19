@@ -15,7 +15,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			return Attributes.TileAttributeHelpers.IsObject( tileType );
 		}
 
-		/// @private
+		/*/// @private
 		[Obsolete( "use Attributes/TileAttributeHelpers", true )]
 		public static bool IsBreakable( int tileX, int tileY, TileCuttingContext? context = null ) {
 			return Attributes.TileAttributeHelpers.IsBreakable(
@@ -23,8 +23,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 				tileY,
 				context.HasValue ? context.Value : TileCuttingContext.AttackMelee
 			);
-		}
-
+		}*/
+		
 		/// @private
 		[Obsolete( "use Attributes/TileAttributeHelpers", true )]
 		public static bool IsNotVanillaBombable( int tileX, int tileY ) {

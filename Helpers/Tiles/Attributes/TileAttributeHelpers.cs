@@ -1,12 +1,27 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.Tiles.Attributes {
+	/// <summary></summary>
+	public enum VanillaTileCuttingContext {
+		/// <summary></summary>
+		Unknown = 0,
+		/// <summary></summary>
+		AttackMelee = 1,
+		/// <summary></summary>
+		AttackProjectile = 2,
+		/// <summary></summary>
+		TilePlacement = 3
+	}
+
+
+
+
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile attributes.
 	/// </summary>
@@ -32,13 +47,13 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 		/// <param name="tileY"></param>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public static bool IsBreakable( int tileX, int tileY, TileCuttingContext context = TileCuttingContext.AttackMelee ) {
+		public static bool IsBreakable( int tileX, int tileY, VanillaTileCuttingContext context = VanillaTileCuttingContext.AttackMelee ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
 			return Main.tileCut[tile.type]
-				&& WorldGen.CanCutTile(tileX, tileY, context);
+				&& WorldGen.CanCutTile(tileX, tileY, (TileCuttingContext)context);
 		}
-
+		
 		////
 
 		/// <summary>

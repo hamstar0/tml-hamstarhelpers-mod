@@ -88,7 +88,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="totalTiles">Returns a count of non-air tiles in total.</param>
 		/// <param name="unidenfiedTiles">Returns all non-air tiles not identified with a specific biome.</param>
 		/// <returns></returns>
-		public static IDictionary<VanillaBiome, float> GetVanillaBiomePercentsOf( ref IDictionary<int, int> tiles,
+		public static IDictionary<VanillaBiome, float> GetVanillaBiomePercentsOf(
+					ref IDictionary<int, int> tiles,
 					out int totalTiles,
 					out int unidenfiedTiles ) {
 			int holyTiles = 0;
@@ -142,7 +143,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="totalTiles">Returns a count of non-air tiles in total.</param>
 		/// <param name="unidenfiedTiles">Returns all non-air tiles not identified with a specific biome.</param>
 		/// <returns></returns>
-		public static IDictionary<VanillaBiome, float> GetVanillaBiomePercentsOf( int[] allTilesSnapshot,
+		public static IDictionary<VanillaBiome, float> GetVanillaBiomePercentsOf(
+					int[] allTilesSnapshot,
 					out int totalTiles,
 					out int unidenfiedTiles ) {
 			int holyTiles = 0;

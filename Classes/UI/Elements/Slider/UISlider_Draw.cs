@@ -11,7 +11,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// </summary>
 	public partial class UISlider : UIThemedElement {
 		/// <summary>
-		/// Draws a slider bar and returns the value of the mouse's current position.
+		/// Draws a slider bar.
 		/// </summary>
 		/// <param name="sb"></param>
 		/// <param name="destRect"></param>
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 
 			bool isHovering = false;
 			if( lockState != 2 ) {
-				isHovering = destRect.Contains( new Point(Main.mouseX, Main.mouseY) );
+				isHovering = destRect.Contains( Main.mouseX, Main.mouseY );
 			}
 
 			if( isHovering || lockState == 1 ) {
@@ -82,18 +82,20 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		////////////////
 
 		/// @private
-		public override void Draw( SpriteBatch spriteBatch ) {
-			base.Draw( spriteBatch );
-		}
-
-		/// @private
 		protected override void DrawSelf( SpriteBatch sb ) {
-			Rectangle rect = this.GetInnerDimensions().ToRectangle();
+			Rectangle fullRect = this.GetInnerDimensions().ToRectangle();
+			//Rectangle leftRect = this.LeftArrowElem.GetInnerDimensions().ToRectangle();
+			//Rectangle rightRect = this.RightArrowElem.GetInnerDimensions().ToRectangle();
+			int lockState = 0;
+			//if( leftRect.Contains( Main.mouseX, Main.mouseY ) || rightRect.Contains( Main.mouseX, Main.mouseY ) ) {
+			//	lockState = 2;
+			//}
+
 			float percentValue = UISlider.GetPercentOfSliderValue( this.RememberedInputValue, this.Range.Min, this.Range.Max );
 
 			base.DrawSelf( sb );
 
-			UISlider.DrawSlider( sb, rect, percentValue, this.InnerBarShader );
+			UISlider.DrawSlider( sb, fullRect, percentValue, this.InnerBarShader, lockState );
 		}
 	}
 }

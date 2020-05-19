@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using System;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.ModTagDefinitions {

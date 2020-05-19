@@ -89,8 +89,10 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		/// <param name="key1"></param>
 		/// <param name="key2"></param>
 		/// <returns></returns>
-		public static bool Remove2D<TKey1, TKey2, TValue>( this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
-				TKey1 key1, TKey2 key2 ) {
+		public static bool Remove2D<TKey1, TKey2, TValue>(
+				this IDictionary<TKey1, IDictionary<TKey2, TValue>> dict,
+				TKey1 key1,
+				TKey2 key2 ) {
 			bool removed = false;
 
 			if( dict.ContainsKey( key1 ) ) {
