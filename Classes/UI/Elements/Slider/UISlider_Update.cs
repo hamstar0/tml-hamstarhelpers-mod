@@ -75,7 +75,10 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 			if( UISlider.SelectedSlider == this ) {
 				float value = UISlider.GetInputValue(
 					sliderArea,
-					new Point( Main.mouseX, Main.mouseY ),
+					new Point(
+						(int)((float)Main.mouseX / Main.UIScale),
+						(int)((float)Main.mouseY / Main.UIScale)
+					),	//UIHelpers.ConvertToScreenPosition( Main.MouseWorld ).ToPoint(),
 					this.Range.Min,
 					this.Range.Max,
 					this.Ticks,

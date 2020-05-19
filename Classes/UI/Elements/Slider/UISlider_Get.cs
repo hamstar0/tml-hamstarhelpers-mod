@@ -72,7 +72,13 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		/// <param name="ticks"></param>
 		/// <param name="isInt"></param>
 		/// <returns></returns>
-		public static float GetInputValue( Rectangle sliderRect, Point screenAt, float minRange, float maxRange, int ticks, bool isInt ) {
+		public static float GetInputValue(
+					Rectangle sliderRect,
+					Point screenAt,
+					float minRange,
+					float maxRange,
+					int ticks,
+					bool isInt ) {
 			float valuePercent = UISlider.GetInputPercentWithinArea( screenAt, sliderRect );
 			float value = UISlider.GetValueOfSliderPercent( valuePercent, minRange, maxRange, ticks );
 			if( isInt ) {

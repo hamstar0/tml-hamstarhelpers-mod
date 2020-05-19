@@ -2092,6 +2092,14 @@
             Implements a UI slider bar element.
             </summary>
         </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.ChangeEvent">
+            <summary></summary>
+            <param name="value"></param>
+            <return>`true` if allowed to proceed</return>
+        </member>
+        <member name="E:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.PreOnChange">
+            <summary>Runs before a value change occurs, indicating whether to allow it or not.</summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.RememberedInputValue">
             <summary>
             Element's current input value.
