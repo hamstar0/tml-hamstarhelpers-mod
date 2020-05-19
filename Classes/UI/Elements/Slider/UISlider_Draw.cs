@@ -84,12 +84,24 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		/// @private
 		protected override void DrawSelf( SpriteBatch sb ) {
 			Rectangle fullRect = this.GetInnerDimensions().ToRectangle();
-			//Rectangle leftRect = this.LeftArrowElem.GetInnerDimensions().ToRectangle();
-			//Rectangle rightRect = this.RightArrowElem.GetInnerDimensions().ToRectangle();
+			Rectangle leftRect = this.LeftArrowElem.GetInnerDimensions().ToRectangle();
+
 			int lockState = 0;
-			//if( leftRect.Contains( Main.mouseX, Main.mouseY ) || rightRect.Contains( Main.mouseX, Main.mouseY ) ) {
-			//	lockState = 2;
-			//}
+			if( leftRect.Contains(Main.mouseX, Main.mouseY) ) {
+				lockState = 2;
+			}
+			if( lockState == 0 ) {
+				Rectangle rightRect = this.RightArrowElem.GetInnerDimensions().ToRectangle();
+				if( rightRect.Contains(Main.mouseX, Main.mouseY) ) {
+					lockState = 2;
+				}
+			}
+			if( lockState == 0 ) {
+				Rectangle textRect = this.NumericInput.GetInnerDimensions().ToRectangle();
+				if( textRect.Contains(Main.mouseX, Main.mouseY) ) {
+					lockState = 2;
+				}
+			}
 
 			float percentValue = UISlider.GetPercentOfSliderValue( this.RememberedInputValue, this.Range.Min, this.Range.Max );
 
