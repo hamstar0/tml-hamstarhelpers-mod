@@ -10,11 +10,26 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// Implements a UI slider bar element.
 	/// </summary>
 	public partial class UISlider : UIThemedElement {
+		/// <summary></summary>
+		/// <param name="value"></param>
+		/// <return>`true` if allowed to proceed</return>
+		public delegate bool ChangeEvent( float value );
+
+
+
+		////////////////
+
 		private static UISlider SelectedSlider = null;
 
 
 
 		////////////////
+
+		/// <summary>Runs before a value change occurs, indicating whether to allow it or not.</summary>
+		public event ChangeEvent PreOnChange;
+
+
+		////
 
 		/// <summary>
 		/// Element's current input value.
@@ -162,6 +177,13 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				return false;
 			}
 
+			if( value != this.RememberedInputValue ) {
+				bool allow = this.PreOnChange?.Invoke(value) ?? true;
+				if( !allow ) {
+					return false;
+				}
+			}
+
 			this.SetValueUnsafe( value );
 
 			return true;
@@ -172,6 +194,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		/// </summary>
 		/// <param name="value"></param>
 		public void SetValue( float value ) {
+			bool allow = this.PreOnChange?.Invoke(value) ?? true;
+			if( !allow ) {
+				return;
+			}
+
 			this.IsNowSettingValue = true;
 			this.SetValueUnsafe( value );
 			this.IsNowSettingValue = false;

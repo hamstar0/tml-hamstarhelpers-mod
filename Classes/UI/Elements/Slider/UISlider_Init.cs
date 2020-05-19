@@ -34,16 +34,28 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 
 			this.LeftArrowElem = new UIThemedText( this.Theme, true, " < " );
 			this.LeftArrowElem.Height.Set( 24f, 0f );
-			this.LeftArrowElem.OnMouseOver += ( _, __ ) => this.LeftArrowElem.TextColor = Color.Yellow;
-			this.LeftArrowElem.OnMouseOut += ( _, __ ) => this.LeftArrowElem.TextColor = Color.Gray;
+			this.LeftArrowElem.OnMouseOver += ( _, __ ) => {
+				this.LeftArrowElem.TextColor = Color.Yellow;
+				this.LeftArrowElem.SetText( this.LeftArrowElem.Text, 1.1f, false );
+			};
+			this.LeftArrowElem.OnMouseOut += ( _, __ ) => {
+				this.LeftArrowElem.TextColor = Color.Gray;
+				this.LeftArrowElem.SetText( this.LeftArrowElem.Text, 1.0f, false );
+			};
 			this.LeftArrowElem.OnClick += ( _, __ ) => this.ScrollLeft();
 			this.Append( (UIElement)this.LeftArrowElem );
 
 			this.RightArrowElem = new UIThemedText( this.Theme, true, "  > " );
 			this.RightArrowElem.Left.Set( -30f, 1f );
 			this.RightArrowElem.Height.Set( 24f, 0f );
-			this.RightArrowElem.OnMouseOver += ( _, __ ) => this.RightArrowElem.TextColor = Color.Yellow;
-			this.RightArrowElem.OnMouseOut += ( _, __ ) => this.RightArrowElem.TextColor = Color.Gray;
+			this.RightArrowElem.OnMouseOver += ( _, __ ) => {
+				this.RightArrowElem.TextColor = Color.Yellow;
+				this.RightArrowElem.SetText( this.RightArrowElem.Text, 1.1f, false );
+			};
+			this.RightArrowElem.OnMouseOut += ( _, __ ) => {
+				this.RightArrowElem.TextColor = Color.Gray;
+				this.RightArrowElem.SetText( this.RightArrowElem.Text, 1.0f, false );
+			};
 			this.RightArrowElem.OnClick += ( _, __ ) => this.ScrollRight();
 			this.Append( (UIElement)this.RightArrowElem );
 		}
