@@ -9,6 +9,22 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// </summary>
 	public partial class UISlider : UIThemedElement {
 		/// <summary>
+		/// Gets the inner rectangle of a slider's rectangle (where the slider knob is interacted with).
+		/// </summary>
+		/// <returns></returns>
+		public static Rectangle GetInnerSliderRectangle( Rectangle outerSliderRect ) {
+			Rectangle rect = outerSliderRect;
+
+			float scale = (float)rect.Width / (UISlider.DefaultSliderWidth - UISlider.DefaultArrowsWidth);
+			rect.X += (int)( 4f * scale );
+			rect.Y += 4;
+			rect.Width -= (int)( 8f * scale );
+			rect.Height -= 4;
+
+			return rect;
+		}
+
+		/// <summary>
 		/// Gets the slider value of a given point relative to a given slider rectangle area.
 		/// </summary>
 		/// <param name="point"></param>
@@ -124,18 +140,12 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		////////////////
 
 		/// <summary>
-		/// Gets the inner rectangle of the slider portion (where the slider knob exists).
+		/// Gets the screen rectangle of the inner slider. Does not include arrows.
 		/// </summary>
 		/// <returns></returns>
-		public Rectangle GetInnerRectangle() {
+		public Rectangle GetSliderRectangle() {
 			Rectangle rect = this.GetInnerDimensions().ToRectangle();
-
-			float scale = (float)rect.Width / 167f;
-			rect.X += (int)( 4f * scale );
-			rect.Y += 4;
-			rect.Width -= (int)( 8f * scale );
-			rect.Height -= 4;
-
+			rect.Width -= (int)UISlider.DefaultArrowsWidth;
 			return rect;
 		}
 	}

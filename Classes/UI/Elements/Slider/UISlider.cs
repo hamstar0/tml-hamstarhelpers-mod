@@ -11,9 +11,22 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// </summary>
 	public partial class UISlider : UIThemedElement {
 		/// <summary></summary>
+		public const float DefaultSliderWidth = 167f;
+
+		/// <summary></summary>
+		public const float DefaultSliderHeight = 24f;
+
+		/// <summary></summary>
+		public const float DefaultArrowsWidth = 30f;
+
+
+
+		////////////////
+
+		/// <summary></summary>
 		/// <param name="value"></param>
-		/// <return>`true` if allowed to proceed</return>
-		public delegate bool ChangeEvent( float value );
+		/// <return>`null` if not allowed to proceed.</return>
+		public delegate float? ChangeEvent( float value );
 
 
 
@@ -178,9 +191,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 			}
 
 			if( value != this.RememberedInputValue ) {
-				bool allow = this.PreOnChange?.Invoke(value) ?? true;
-				if( !allow ) {
+				float? newval = this.PreOnChange?.Invoke(value);
+				if( !newval.HasValue ) {
 					return false;
+				} else {
+					value = newval.Value;
 				}
 			}
 
@@ -194,9 +209,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		/// </summary>
 		/// <param name="value"></param>
 		public void SetValue( float value ) {
-			bool allow = this.PreOnChange?.Invoke(value) ?? true;
-			if( !allow ) {
+			float? newval = this.PreOnChange?.Invoke(value);
+			if( !newval.HasValue ) {
 				return;
+			} else {
+				value = newval.Value;
 			}
 
 			this.IsNowSettingValue = true;

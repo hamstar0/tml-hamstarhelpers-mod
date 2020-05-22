@@ -50,6 +50,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		public bool IsHidden { get; protected set; } = true;
 
+		/// <summary>
+		/// Indicates this input is selected.
+		/// </summary>
+		public bool IsSelected { get; private set; } = false;
+
 
 		////////////////
 
@@ -65,7 +70,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		private string Text = "";
 		private uint CursorAnimation;
-		private bool IsSelected = false;
 
 
 

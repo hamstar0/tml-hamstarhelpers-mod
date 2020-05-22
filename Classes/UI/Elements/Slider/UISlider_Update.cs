@@ -13,7 +13,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	public partial class UISlider : UIThemedElement {
 		/// @private
 		public override void Update( GameTime gameTime ) {
-			if( !this.NumericInput.IsMouseHovering ) {
+			if( !this.NumericInput.IsMouseHovering && !this.NumericInput.IsSelected ) {
 				this.UpdateMouseInteractivity();
 			}
 
@@ -38,10 +38,12 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				return;
 			}
 
-			Rectangle rect = this.GetInnerRectangle();
-			if( !rect.Contains( Main.mouseX, Main.mouseY ) ) {
+			Rectangle outerRect = this.GetSliderRectangle();
+			Rectangle innerRect = UISlider.GetInnerSliderRectangle( outerRect );
+			if( !innerRect.Contains( Main.mouseX, Main.mouseY ) ) {
 				return;
 			}
+
 			if( this.LeftArrowElem.GetOuterDimensions().ToRectangle().Contains(Main.mouseX, Main.mouseY) ) {
 				return;
 			}
@@ -55,7 +57,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 			UISlider.SelectedSlider = this;
 
 			Timers.RunUntil( () => {
-				if( !this.UpdateSliderMouseDrag(rect) ) {
+				if( !this.UpdateSliderMouseDrag(innerRect) ) {
 					UISlider.SelectedSlider = null;
 					return false;
 				}

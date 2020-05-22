@@ -2092,10 +2092,19 @@
             Implements a UI slider bar element.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DefaultSliderWidth">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DefaultSliderHeight">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DefaultArrowsWidth">
+            <summary></summary>
+        </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.ChangeEvent">
             <summary></summary>
             <param name="value"></param>
-            <return>`true` if allowed to proceed</return>
+            <return>`null` if not allowed to proceed.</return>
         </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.PreOnChange">
             <summary>Runs before a value change occurs, indicating whether to allow it or not.</summary>
@@ -2197,7 +2206,7 @@
             <param name="obj">Object to compare rank to.</param>
             <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color},System.Int32)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color},System.Nullable{System.Boolean})">
             <summary>
             Draws a slider bar.
             </summary>
@@ -2205,10 +2214,16 @@
             <param name="destRect"></param>
             <param name="valueAsPercent"></param>
             <param name="innerBarShader"></param>
-            <param name="lockState"></param>
+            <param name="highlight">If `null`, highlight uses default behavior (mouse hover).</param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetInnerSliderRectangle(Microsoft.Xna.Framework.Rectangle)">
+            <summary>
+            Gets the inner rectangle of a slider's rectangle (where the slider knob is interacted with).
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetInputPercentWithinArea(Microsoft.Xna.Framework.Point,Microsoft.Xna.Framework.Rectangle)">
             <summary>
@@ -2256,9 +2271,9 @@
             <param name="rawValue"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetInnerRectangle">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.GetSliderRectangle">
             <summary>
-            Gets the inner rectangle of the slider portion (where the slider knob exists).
+            Gets the screen rectangle of the inner slider. Does not include arrows.
             </summary>
             <returns></returns>
         </member>
@@ -2803,6 +2818,11 @@
         <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsHidden">
             <summary>
             Controls visibility.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsSelected">
+            <summary>
+            Indicates this input is selected.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextColor">

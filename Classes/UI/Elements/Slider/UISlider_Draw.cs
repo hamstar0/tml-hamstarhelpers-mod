@@ -17,20 +17,20 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		/// <param name="destRect"></param>
 		/// <param name="valueAsPercent"></param>
 		/// <param name="innerBarShader"></param>
-		/// <param name="lockState"></param>
+		/// <param name="highlight">If `null`, highlight uses default behavior (mouse hover).</param>
 		public static void DrawSlider(
 					SpriteBatch sb,
 					Rectangle destRect,
 					float valueAsPercent,
 					Func<float, Color> innerBarShader,
-					int lockState = 0 ) {
-			var innerBarRect = destRect;
+					bool? highlight = null ) {
 			var outerBarRect = destRect;
 			outerBarRect.Height = Main.colorBarTexture.Height;
 
 			sb.Draw( Main.colorBarTexture, outerBarRect, Color.White );
 
-			float scale = (float)destRect.Width / 167f;
+			var innerBarRect = destRect;
+			float scale = (float)destRect.Width / (UISlider.DefaultSliderWidth - UISlider.DefaultArrowsWidth);
 			innerBarRect.X += (int)(4f * scale);
 			innerBarRect.Y += 4;
 			innerBarRect.Width -= (int)(8f * scale);
@@ -52,13 +52,10 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				);
 			}
 
-			bool isHovering = false;
-			if( lockState != 2 ) {
-				isHovering = destRect.Contains( Main.mouseX, Main.mouseY );
-			}
-
-			if( isHovering || lockState == 1 ) {
-				sb.Draw( Main.colorHighlightTexture, outerBarRect, Main.OurFavoriteColor );
+			if( highlight != false ) {
+				if( highlight == true || destRect.Contains(Main.mouseX, Main.mouseY) ) {
+					sb.Draw( Main.colorHighlightTexture, outerBarRect, Main.OurFavoriteColor );
+				}
 			}
 
 			sb.Draw(
@@ -83,31 +80,42 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 
 		/// @private
 		protected override void DrawSelf( SpriteBatch sb ) {
-			Rectangle fullRect = this.GetInnerDimensions().ToRectangle();
+			Rectangle fullRect = this.GetSliderRectangle();
 			Rectangle leftRect = this.LeftArrowElem.GetInnerDimensions().ToRectangle();
 
-			int lockState = 0;
+			bool? highlight = null;
+
 			if( leftRect.Contains(Main.mouseX, Main.mouseY) ) {
-				lockState = 2;
+				highlight = false;
 			}
-			if( lockState == 0 ) {
+
+			if( !highlight.HasValue ) {
 				Rectangle rightRect = this.RightArrowElem.GetInnerDimensions().ToRectangle();
 				if( rightRect.Contains(Main.mouseX, Main.mouseY) ) {
-					lockState = 2;
+					highlight = false;
 				}
 			}
-			if( lockState == 0 ) {
+
+			if( !highlight.HasValue ) {
 				Rectangle textRect = this.NumericInput.GetInnerDimensions().ToRectangle();
 				if( textRect.Contains(Main.mouseX, Main.mouseY) ) {
-					lockState = 2;
+					this.NumericInput.TextColor = Color.Yellow;
+					highlight = false;
 				}
+			}
+
+			if( highlight != false ) {
+				this.NumericInput.TextColor = Color.White;
+			}
+
+			if( this.NumericInput.IsSelected ) {
+				highlight = false;
 			}
 
 			float percentValue = UISlider.GetPercentOfSliderValue( this.RememberedInputValue, this.Range.Min, this.Range.Max );
 
 			base.DrawSelf( sb );
-
-			UISlider.DrawSlider( sb, fullRect, percentValue, this.InnerBarShader, lockState );
+			UISlider.DrawSlider( sb, fullRect, percentValue, this.InnerBarShader, highlight );
 		}
 	}
 }
