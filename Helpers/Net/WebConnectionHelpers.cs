@@ -69,8 +69,8 @@ namespace HamstarHelpers.Helpers.Net {
 					string jsonData,
 					Action<Exception> onError,
 					Action<bool, string> onCompletion=null ) {
-			try {
-				TaskLauncher.Run( (token) => {
+			TaskLauncher.Run( (token) => {
+				try {
 					ServicePointManager.Expect100Continue = false;
 					//var values = new NameValueCollection {
 					//	{ "modloaderversion", ModLoader.versionedName },
@@ -92,26 +92,26 @@ namespace HamstarHelpers.Helpers.Net {
 							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
 						};
 					}
-				} );
-			} catch( WebException e ) {
-				if( e.Status == WebExceptionStatus.Timeout ) {
-					onCompletion?.Invoke( false, "Timeout." );
-					return;
-				}
-
-				if( e.Status == WebExceptionStatus.ProtocolError ) {
-					var resp = (HttpWebResponse)e.Response;
-					if( resp.StatusCode == HttpStatusCode.NotFound ) {
-						onCompletion?.Invoke( false, "Not found." );
+				} catch( WebException e ) {
+					if( e.Status == WebExceptionStatus.Timeout ) {
+						onCompletion?.Invoke( false, "Timeout." );
 						return;
 					}
 
-					onCompletion?.Invoke( false, "Bad protocol." );
+					if( e.Status == WebExceptionStatus.ProtocolError ) {
+						var resp = (HttpWebResponse)e.Response;
+						if( resp.StatusCode == HttpStatusCode.NotFound ) {
+							onCompletion?.Invoke( false, "Not found." );
+							return;
+						}
+
+						onCompletion?.Invoke( false, "Bad protocol." );
+					}
+				} catch( Exception e ) {
+					onError?.Invoke( e );
+					//LogHelpers.Warn( e.ToString() );
 				}
-			} catch( Exception e ) {
-				onError?.Invoke( e );
-				//LogHelpers.Warn( e.ToString() );
-			}
+			} );
 		}
 
 
