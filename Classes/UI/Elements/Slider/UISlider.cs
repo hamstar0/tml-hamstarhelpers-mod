@@ -190,8 +190,8 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				return false;
 			}
 
-			if( value != this.RememberedInputValue ) {
-				float? newval = this.PreOnChange?.Invoke(value);
+			if( value != this.RememberedInputValue && this.PreOnChange != null ) {
+				float? newval = this.PreOnChange.Invoke(value);
 				if( !newval.HasValue ) {
 					return false;
 				} else {
@@ -209,11 +209,13 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		/// </summary>
 		/// <param name="value"></param>
 		public void SetValue( float value ) {
-			float? newval = this.PreOnChange?.Invoke(value);
-			if( !newval.HasValue ) {
-				return;
-			} else {
-				value = newval.Value;
+			if( this.PreOnChange != null ) {
+				float? newval = this.PreOnChange?.Invoke( value );
+				if( !newval.HasValue ) {
+					return;
+				} else {
+					value = newval.Value;
+				}
 			}
 
 			this.IsNowSettingValue = true;
