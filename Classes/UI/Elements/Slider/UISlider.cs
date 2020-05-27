@@ -23,9 +23,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 
 		////////////////
 
-		/// <summary></summary>
+		/// <summary>
+		/// Defines the method type used for intercepting slider value changes.
+		/// </summary>
 		/// <param name="value"></param>
-		/// <return>`null` if not allowed to proceed.</return>
+		/// <returns>`null` if not allowed to proceed.</returns>
 		public delegate float? ChangeEvent( float value );
 
 

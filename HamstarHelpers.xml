@@ -2091,6 +2091,9 @@
             <summary>
             Implements a UI slider bar element.
             </summary>
+            <summary>
+            Implements a UI slider bar element.
+            </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DefaultSliderWidth">
             <summary></summary>
@@ -2102,9 +2105,11 @@
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.ChangeEvent">
-            <summary></summary>
+            <summary>
+            Defines the method type used for intercepting slider value changes.
+            </summary>
             <param name="value"></param>
-            <return>`null` if not allowed to proceed.</return>
+            <returns>`null` if not allowed to proceed.</returns>
         </member>
         <member name="E:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.PreOnChange">
             <summary>Runs before a value change occurs, indicating whether to allow it or not.</summary>
@@ -2164,6 +2169,13 @@
             <param name="hideTextInput">Indicates if text input is suppressed (hidden).</param>
             <param name="innerBarShader">Allows specifying a color gradient for the inner bar. Defaults to `null`; the default black-to-white shader.</param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.CompareTo(System.Object)">
+            <summary>
+            Decides sort order in a list.
+            </summary>
+            <param name="obj">Object to compare rank to.</param>
+            <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Enable(System.Boolean)">
             <summary>
             Enables or disables the current element.
@@ -2198,13 +2210,6 @@
             <summary>
             Scrolls the slider 1 "unit" right.
             </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.CompareTo(System.Object)">
-            <summary>
-            Decides sort order in a list.
-            </summary>
-            <param name="obj">Object to compare rank to.</param>
-            <returns>Value representing greater-than or less-than sortion status relative to the given comparison object.</returns>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.DrawSlider(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,System.Single,System.Func{System.Single,Microsoft.Xna.Framework.Color},System.Nullable{System.Boolean})">
             <summary>
@@ -11535,6 +11540,84 @@
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyItem">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyRainbow2Tier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyRainbowTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyAmberTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyGreyTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWhiteTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyBlueTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyGreenTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyOrangeTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyLightRedTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPinkTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyLightPurpleTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyLimeTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyYellowTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyCyanTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyRedTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPurpleTier">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyDye">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyFood">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyFoodIngredient">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPlainMaterial">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaCorruptionItem">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaCrimsonItem">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaAlchemyHerb">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaAlchemyFish">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaAlchemyMisc">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaAlchemyIngredient">
+            <summary></summary>
+        </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyPlaceable">
             <summary></summary>
         </member>
@@ -11545,6 +11628,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWood">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyOre">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyOreBar">

@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Items.Attributes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -11,24 +11,42 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	public partial class ItemGroupIDs {
 		/// <summary></summary>
 		public const string AnyItem = "Any Item";
-		//"Any Rainbow 2 Tier", null,
-		//"Any Rainbow Tier", null,
-		//"Any Amber Tier", null,
-		//"Any Grey Tier", null,
-		//"Any White Tier", null,
-		//"Any Blue Tier", null,
-		//"Any Green Tier", null,
-		//"Any Orange Tier", null,
-		//"Any Light Red Tier", null,
-		//"Any Pink Tier", null,
-		//"Any Light Purple Tier", null,
-		//"Any Lime Tier", null,
-		//"Any Yellow Tier", null,
-		//"Any Cyan Tier", null,
-		//"Any Red Tier", null,
-		//"Any Purple Tier", null,
-		//"Any Dye", null,
-		//"Any Food", null,
+		/// <summary></summary>
+		public const string AnyRainbow2Tier = "Any Rainbow 2 Tier";
+		/// <summary></summary>
+		public const string AnyRainbowTier = "Any Rainbow Tier";
+		/// <summary></summary>
+		public const string AnyAmberTier = "Any Amber Tier";
+		/// <summary></summary>
+		public const string AnyGreyTier = "Any Grey Tier";
+		/// <summary></summary>
+		public const string AnyWhiteTier = "Any White Tier";
+		/// <summary></summary>
+		public const string AnyBlueTier = "Any Blue Tier";
+		/// <summary></summary>
+		public const string AnyGreenTier = "Any Green Tier";
+		/// <summary></summary>
+		public const string AnyOrangeTier = "Any Orange Tier";
+		/// <summary></summary>
+		public const string AnyLightRedTier = "Any Light Red Tier";
+		/// <summary></summary>
+		public const string AnyPinkTier = "Any Pink Tier";
+		/// <summary></summary>
+		public const string AnyLightPurpleTier = "Any Light Purple Tier";
+		/// <summary></summary>
+		public const string AnyLimeTier = "Any Lime Tier";
+		/// <summary></summary>
+		public const string AnyYellowTier = "Any Yellow Tier";
+		/// <summary></summary>
+		public const string AnyCyanTier = "Any Cyan Tier";
+		/// <summary></summary>
+		public const string AnyRedTier = "Any Red Tier";
+		/// <summary></summary>
+		public const string AnyPurpleTier = "Any Purple Tier";
+		/// <summary></summary>
+		public const string AnyDye = "Any Dye";
+		/// <summary></summary>
+		public const string AnyFood = "Any Food";
 	}
 
 
@@ -58,7 +76,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			}
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Dye",
+				grpName: ItemGroupIDs.AnyDye,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.dye != 0 || item.hairDye != -1;
@@ -66,7 +84,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Food",
+				grpName: ItemGroupIDs.AnyFood,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.buffType == BuffID.WellFed;

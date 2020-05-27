@@ -1,7 +1,16 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using Microsoft.Xna.Framework;
+using ReLogic.Graphics;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.UI;
+using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.XNA;
@@ -11,13 +20,6 @@ using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
 using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.Menus;
-using Microsoft.Xna.Framework;
-using ReLogic.Graphics;
-using System;
-using System.Diagnostics;
-using System.IO;
-using Terraria;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.Menus {
@@ -44,8 +46,11 @@ namespace HamstarHelpers.Internals.Menus {
 		////////////////
 
 		private static void InitializeOpenConfigButton() {
+			bool isShowingMem = false;
+			ReflectionHelpers.Get( typeof(ModLoader), null, "showMemoryEstimates", out isShowingMem );
+
 			var button = new UITextPanelButton( UITheme.Vanilla, "Open Mod Config Folder" );
-			button.Top.Set( -2f, 0f );
+			button.Top.Set( isShowingMem ? -2f : 11f, 0f );
 			button.Left.Set( -104f, 0.5f );
 			button.Width.Set( 208f, 0f );
 			button.Height.Set( 20f, 0f );

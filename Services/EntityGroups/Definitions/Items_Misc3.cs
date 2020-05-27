@@ -1,20 +1,26 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Recipes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//"Any Plain Material",
-		//"Any Vanilla Corruption Item", null,
-		//"Any Vanilla Crimson Item", null,
-		//"Any Vanilla Alchemy Herb", null,
-		//"Any Vanilla Alchemy Fish", null,
-		//"Any Vanilla Alchemy Misc", null,
+		/// <summary></summary>
+		public const string AnyPlainMaterial = "Any Plain Material";
+		/// <summary></summary>
+		public const string AnyVanillaCorruptionItem = "Any Vanilla Corruption Item";
+		/// <summary></summary>
+		public const string AnyVanillaCrimsonItem = "Any Vanilla Crimson Item";
+		/// <summary></summary>
+		public const string AnyVanillaAlchemyHerb = "Any Vanilla Alchemy Herb";
+		/// <summary></summary>
+		public const string AnyVanillaAlchemyFish = "Any Vanilla Alchemy Fish";
+		/// <summary></summary>
+		public const string AnyVanillaAlchemyMisc = "Any Vanilla Alchemy Misc";
 	}
 
 
@@ -23,7 +29,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups3( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Plain Material",
+				grpName: ItemGroupIDs.AnyPlainMaterial,
 				grpDeps: new string[] { ItemGroupIDs.AnyEquipment },
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.material &&
@@ -33,7 +39,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Corruption Item",
+				grpName: ItemGroupIDs.AnyVanillaCorruptionItem,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
@@ -134,7 +140,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Crimson Item",
+				grpName: ItemGroupIDs.AnyVanillaCrimsonItem,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
@@ -237,7 +243,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Alchemy Herb",
+				grpName: ItemGroupIDs.AnyVanillaAlchemyHerb,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
@@ -256,7 +262,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Alchemy Fish",
+				grpName: ItemGroupIDs.AnyVanillaAlchemyFish,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
@@ -282,7 +288,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Alchemy Misc",
+				grpName: ItemGroupIDs.AnyVanillaAlchemyMisc,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {

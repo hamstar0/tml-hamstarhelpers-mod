@@ -11,6 +11,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		/// <summary></summary>
 		public const string AnyWood = "Any Wood";
 		/// <summary></summary>
+		public const string AnyOre = "Any Ore";
+		/// <summary></summary>
 		public const string AnyOreBar = "Any Ore Bar";
 		/// <summary></summary>
 		public const string AnyWorkbench = "Any Workbench";
@@ -73,6 +75,24 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						return true;
 					}
 					return false;
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				grpName: ItemGroupIDs.AnyOre,
+				grpDeps: new string[] { ItemGroupIDs.AnyTile },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
+					if( !grps[ItemGroupIDs.AnyTile].Contains( item.type ) ) { return false; }
+					return TileID.Sets.Ore[ item.createTile ];
+					/*if( item.createTile <= TileID.Dirt ) { return false; }
+					if( !Main.tileSolid[item.createTile] ) { return false; }
+					if( Main.tileShine[item.createTile] == 0 ) { return false; }
+
+					if( item.modItem != null ) {
+						if( !item.modItem.Name.EndsWith(" Ore") ) { return false; }
+					} else if( !ItemAttributeHelpers.GetQualifiedName(item.type).EndsWith(" Ore") ) {
+						return false;
+					}
+					return true;*/
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(

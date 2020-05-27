@@ -1,14 +1,15 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	/// <summary></summary>
 	public partial class ItemGroupIDs {
-		//"Any Vanilla Alchemy Ingredient"
+		/// <summary></summary>
+		public const string AnyVanillaAlchemyIngredient = "Any Vanilla Alchemy Ingredient";
 	}
 
 
@@ -17,17 +18,20 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 	partial class EntityGroupDefs {
 		internal static void DefineItemMiscGroups4( IList<EntityGroupMatcherDefinition<Item>> defs ) {
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Alchemy Ingredient",
-				grpDeps: new string[] { "Any Vanilla Alchemy Herb", "Any Vanilla Alchemy Fish", "Any Vanilla Alchemy Misc" },
+				grpName: ItemGroupIDs.AnyVanillaAlchemyIngredient,
+				grpDeps: new string[] {
+					ItemGroupIDs.AnyVanillaAlchemyHerb,
+					ItemGroupIDs.AnyVanillaAlchemyFish,
+					ItemGroupIDs.AnyVanillaAlchemyMisc },
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
 					case ItemID.BottledWater:
 					case ItemID.Bottle:
 						return true;
 					}
-					return grps["Any Vanilla Alchemy Herb"].Contains( item.type )
-						|| grps["Any Vanilla Alchemy Fish"].Contains( item.type )
-						|| grps["Any Vanilla Alchemy Misc"].Contains( item.type );
+					return grps[ItemGroupIDs.AnyVanillaAlchemyHerb].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyVanillaAlchemyFish].Contains( item.type )
+						|| grps[ItemGroupIDs.AnyVanillaAlchemyMisc].Contains( item.type );
 				} )
 			) );
 		}
