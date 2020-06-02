@@ -67,15 +67,15 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			this.Description = desc;
 
 			this.OnClick += ( _, __ ) => {
-				if( !this.IsEnabled ) { return; }
+				if( !this.IsInteractive ) { return; }
 				this.TogglePositiveTag();
 			};
 			this.OnRightClick += ( _, __ ) => {
-				if( !this.IsEnabled || !canNegateTags ) { return; }
+				if( !this.IsInteractive || !canNegateTags ) { return; }
 				this.ToggleNegativeTag();
 			};
 			this.OnMouseOver += ( _, __ ) => {
-				if( !this.IsEnabled ) { return; }
+				if( !this.IsInteractive ) { return; }
 				this.Manager.SetInfoText( desc );
 				this.RefreshTheme();
 			};
@@ -175,7 +175,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		////////////////
 
 		public Color GetBgColor() {
-			Color bgColor = !this.IsEnabled ?
+			Color bgColor = !this.IsInteractive ?
 				this.Theme.ButtonBgDisabledColor :
 				this.IsMouseHovering ?
 					this.Theme.ButtonBgLitColor :
@@ -205,7 +205,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 		}
 
 		public Color GetEdgeColor() {
-			Color edgeColor = !this.IsEnabled ?
+			Color edgeColor = !this.IsInteractive ?
 				this.Theme.ButtonEdgeDisabledColor :
 				this.IsMouseHovering ?
 					this.Theme.ButtonEdgeLitColor :

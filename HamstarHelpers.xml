@@ -2114,6 +2114,9 @@
         <member name="E:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.PreOnChange">
             <summary>Runs before a value change occurs, indicating whether to allow it or not.</summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.IsInteractive">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.RememberedInputValue">
             <summary>
             Element's current input value.
@@ -2168,6 +2171,12 @@
             <param name="maxRange">End of slider range. Default 1.</param>
             <param name="hideTextInput">Indicates if text input is suppressed (hidden).</param>
             <param name="innerBarShader">Allows specifying a color gradient for the inner bar. Defaults to `null`; the default black-to-white shader.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Enable">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.Disable">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.Slider.UISlider.CompareTo(System.Object)">
             <summary>
@@ -2714,6 +2723,9 @@
             </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.IsEnabled">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.IsInteractive">
             <summary>
             Indicates element is able to be edited.
             </summary>
@@ -2790,7 +2802,7 @@
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement">
             <summary>
-            Defines a simpler append-only text field input element (no panel). Suited for main menu use.
+            Defines a simpler append-only text field input element (no panel). Not theme-able. Suited for main menu use.
             </summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextEventHandler">
@@ -2850,6 +2862,16 @@
             </summary>
             <param name="isEnabled"></param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Enable">
+            <summary>
+            Enables the current element.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Disable">
+            <summary>
+            Disables the current element.
+            </summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Hide(System.Boolean)">
             <summary>
             Enables or disables element hiding. Interactivity still enabled.
@@ -2907,6 +2929,9 @@
             "Default" text. Appears when no text is input. Not counted as input.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.IsInteractive">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String)">
             <param name="theme">Appearance style.</param>
             <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
@@ -2915,6 +2940,12 @@
             <summary>
             Refreshes visual theming.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.Enable">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.Disable">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputPanel.GetText">
             <summary></summary>
@@ -2936,8 +2967,11 @@
             </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UITextPanelButton.IsEnabled">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextPanelButton.IsInteractive">
             <summary>
-            Indicates if button accepts inputs.
+            Indicates element is able to be edited.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextPanelButton.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.String,System.Single,System.Boolean)">
@@ -3429,6 +3463,23 @@
         <member name="M:HamstarHelpers.Classes.UI.Theme.IThemeable.SetTheme(HamstarHelpers.Classes.UI.Theme.UITheme)">
             <summary></summary>
             <param name="theme"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.IThemeable.Show">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.IThemeable.Hide">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Theme.IToggleable">
+            <summary>
+            Interface for all elements that support toggleable interactivity.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.IToggleable.Enable">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.IToggleable.Disable">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Theme.ThemedAttrbute">
             <summary>
@@ -6808,6 +6859,18 @@
             <summary>
             Assorted static "helper" misc. functions.
             </summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.PlatinumCoinColor">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.GoldCoinColor">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.SilverCoinColor">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.CopperCoinColor">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Misc.MiscHelpers.RenderMoney(System.Int32)">
             <summary>
@@ -11634,6 +11697,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyOreBar">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaGem">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyWorkbench">

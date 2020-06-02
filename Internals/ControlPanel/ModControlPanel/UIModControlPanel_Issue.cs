@@ -5,23 +5,23 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 	/// @private
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		public void EnableIssueInput() {
-			if( !this.IssueTitleInput.IsEnabled ) {
+			if( !this.IssueTitleInput.IsInteractive ) {
 				this.IssueTitleInput.Enable();
 			}
-			if( !this.IssueBodyInput.IsEnabled ) {
+			if( !this.IssueBodyInput.IsInteractive ) {
 				this.IssueBodyInput.Enable();
 			}
 			this.RefreshIssueSubmitButton();
 		}
 
 		public void DisableIssueInput() {
-			if( this.IssueTitleInput.IsEnabled ) {
+			if( this.IssueTitleInput.IsInteractive ) {
 				this.IssueTitleInput.Disable();
 			}
-			if( this.IssueBodyInput.IsEnabled ) {
+			if( this.IssueBodyInput.IsInteractive ) {
 				this.IssueBodyInput.Disable();
 			}
-			if( this.IssueSubmitButton.IsEnabled ) {
+			if( this.IssueSubmitButton.IsInteractive ) {
 				this.IssueSubmitButton.Disable();
 			}
 		}
@@ -33,11 +33,11 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			}
 
 			if( this.IssueTitleInput.Text.Length < 4 || this.IssueBodyInput.Text.Length < 4 ) {
-				if( this.IssueSubmitButton.IsEnabled ) {
+				if( this.IssueSubmitButton.IsInteractive ) {
 					this.IssueSubmitButton.Disable();
 				}
 			} else {
-				if( !this.IssueSubmitButton.IsEnabled ) {
+				if( !this.IssueSubmitButton.IsInteractive ) {
 					this.IssueSubmitButton.Enable();
 				}
 			}

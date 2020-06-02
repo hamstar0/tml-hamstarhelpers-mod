@@ -9,7 +9,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedElement {
+	public partial class UISlider : UIThemedElement, IToggleable {
 		/// <summary></summary>
 		public const float DefaultSliderWidth = 167f;
 
@@ -44,13 +44,18 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 		public event ChangeEvent PreOnChange;
 
 
+		////////////////
+
+
+		/// <summary></summary>
+		public bool IsInteractive { get; private set; } = true;
+
 		////
 
 		/// <summary>
 		/// Element's current input value.
 		/// </summary>
 		public float RememberedInputValue { get; protected set; } = 0f;
-
 
 		////
 
@@ -139,6 +144,21 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 			this.InitializeMe();
 
 			this.SetValue( minRange );
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
+		public void Enable() {
+			this.IsInteractive = true;
+			this.RefreshTheme();
+		}
+
+		/// <summary></summary>
+		public void Disable() {
+			this.IsInteractive = false;
+			this.RefreshTheme();
 		}
 
 

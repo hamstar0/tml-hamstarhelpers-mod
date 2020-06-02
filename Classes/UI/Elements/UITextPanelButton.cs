@@ -1,18 +1,26 @@
-﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
+﻿using System;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a common text panel button element.
 	/// </summary>
-	public class UITextPanelButton : UIThemedTextPanel {
+	public class UITextPanelButton : UIThemedTextPanel, IToggleable {
+		/// @private
+		[Obsolete( "use IsInteractive", true )]
+		public bool IsEnabled {
+			get => this.IsInteractive;
+			private set => this.IsInteractive = value;
+		}
+
 		/// <summary>
-		/// Indicates if button accepts inputs.
+		/// Indicates element is able to be edited.
 		/// </summary>
-		public bool IsEnabled { get; private set; }
+		public bool IsInteractive { get; private set; }
 
 		//public string HoverText = "";
 
@@ -27,7 +35,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public UITextPanelButton( UITheme theme, string label, float scale = 1f, bool large = false )
 				: base( theme, true, label, scale, large ) {
 			this.Theme = theme;
-			this.IsEnabled = true;
+			this.IsInteractive = true;
 
 			this.SetPadding( 5f );
 
@@ -35,11 +43,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			var self = this;
 			this.OnMouseOver += delegate ( UIMouseEvent evt, UIElement fromElem ) {
-				if( !self.IsEnabled ) { return; }
+				if( !self.IsInteractive ) { return; }
 				theme.ApplyButtonLit( self );
 			};
 			this.OnMouseOut += delegate ( UIMouseEvent evt, UIElement fromElem ) {
-				if( !self.IsEnabled ) { return; }
+				if( !self.IsInteractive ) { return; }
 				theme.ApplyButton( self );
 			};
 
@@ -53,7 +61,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Enables the button.
 		/// </summary>
 		public virtual void Enable() {
-			this.IsEnabled = true;
+			this.IsInteractive = true;
 			this.RefreshTheme();
 		}
 
@@ -61,7 +69,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Disables the button.
 		/// </summary>
 		public virtual void Disable() {
-			this.IsEnabled = false;
+			this.IsInteractive = false;
 			this.RefreshTheme();
 		}
 
@@ -72,7 +80,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Refreshes visual theming.
 		/// </summary>
 		public override void RefreshTheme() {
-			if( this.IsEnabled ) {
+			if( this.IsInteractive ) {
 				this.Theme.ApplyButton( this );
 			} else {
 				this.Theme.ApplyButtonDisable( this );

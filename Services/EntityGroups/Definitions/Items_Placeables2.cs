@@ -15,6 +15,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		/// <summary></summary>
 		public const string AnyOreBar = "Any Ore Bar";
 		/// <summary></summary>
+		public const string AnyVanillaGem = "Any Vanilla Gem";
+		/// <summary></summary>
 		public const string AnyWorkbench = "Any Workbench";
 		/// <summary></summary>
 		public const string AnyAnvil = "Any Anvil";
@@ -101,7 +103,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !grps[ItemGroupIDs.AnyTile].Contains( item.type ) ) { return false; }
 					if( item.createTile != TileID.MetalBars ) {
-						if( item.createTile <= TileID.Dirt ) { return false; }
+						if( item.createTile <= -1 ) { return false; }
 						if( !Main.tileSolid[item.createTile] ) { return false; }
 						if( !Main.tileSolidTop[item.createTile] ) { return false; }
 						if( Main.tileShine[item.createTile] == 0 ) { return false; }
@@ -110,6 +112,27 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						if( !item.modItem.Name.EndsWith(" Bar") ) { return false; }
 					}
 					return true;
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				grpName: ItemGroupIDs.AnyVanillaGem,
+				grpDeps: new string[] { ItemGroupIDs.AnyTile },
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
+					if( !grps[ItemGroupIDs.AnyTile].Contains( item.type ) ) { return false; }
+					if( item.createTile <= -1 ) { return false; }
+					if( Main.tileShine[item.createTile] == 0 ) { return false; }
+					switch( item.type ) {
+					case ItemID.Amethyst:
+					case ItemID.Sapphire:
+					case ItemID.Topaz:
+					case ItemID.Emerald:
+					case ItemID.Ruby:
+					case ItemID.Diamond:
+					case ItemID.Amber:
+						return true;
+					default:
+						return false;
+					}
 				} )
 			) );
 

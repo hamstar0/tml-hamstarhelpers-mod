@@ -10,9 +10,13 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedElement {
+	public partial class UISlider : UIThemedElement, IToggleable {
 		/// @private
 		public override void Update( GameTime gameTime ) {
+			if( !this.IsInteractive ) {
+				return;
+			}
+
 			if( !this.NumericInput.IsMouseHovering && !this.NumericInput.IsSelected ) {
 				this.UpdateMouseInteractivity();
 			}

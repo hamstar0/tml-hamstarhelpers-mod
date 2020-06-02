@@ -9,7 +9,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedElement {
+	public partial class UISlider : UIThemedElement, IToggleable {
 		/// <summary>
 		/// Draws a slider bar.
 		/// </summary>

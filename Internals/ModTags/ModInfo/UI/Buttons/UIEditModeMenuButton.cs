@@ -65,7 +65,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons {
 		////////////////
 
 		public override void Click( UIMouseEvent evt ) {
-			if( !this.IsEnabled ) { return; }
+			if( !this.IsInteractive ) { return; }
 
 			if( this.IsReadOnlyMode ) {
 				this.Manager.MyTagsUI.SetEditMode( false );

@@ -92,7 +92,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			}
 
 			this.OnClick += ( _, __ ) => {
-				if( !this.IsEnabled ) { return; }
+				if( !this.IsInteractive ) { return; }
 				this.Select();
 			};
 			this.OnMouseOver += ( _, __ ) => {

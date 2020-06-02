@@ -14,7 +14,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a simpler append-only text field input panel. Suited for main menu use.
 	/// </summary>
-	public class UITextInputPanel : UIThemedPanel {
+	public class UITextInputPanel : UIThemedPanel, IToggleable {
 		/// <summary>
 		/// Event handler for text input events
 		/// </summary>
@@ -62,6 +62,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		public string HintText { get; private set; }
 
+		/// <summary></summary>
+		public bool IsInteractive { get; private set; } = true;
+
 
 
 		////////////////
@@ -70,7 +73,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="hintText">"Default" text. Appears when no text is input. Not counted as input.</param>
 		public UITextInputPanel( UITheme theme, string hintText ) : base( theme, true ) {
 			this.HintText = hintText;
-			
+
 			this.SetPadding( 6f );
 			this.RefreshTheme();
 		}
@@ -89,6 +92,21 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// <summary></summary>
+		public void Enable() {
+			this.IsInteractive = true;
+			this.RefreshTheme();
+		}
+
+		/// <summary></summary>
+		public void Disable() {
+			this.IsInteractive = false;
+			this.RefreshTheme();
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
 		/// <returns></returns>
 		public string GetText() {
 			return this.Text;
@@ -98,6 +116,48 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="text"></param>
 		public void SetText( string text ) {
 			this.Text = text;
+		}
+
+
+		////////////////
+
+		private void UpdateInteractivity( CalculatedStyle dim ) {
+			// Detect if user selects this element
+			if( Main.mouseLeft ) {
+				bool isNowSelected = false;
+
+				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {
+					if( Main.mouseY >= dim.Y && Main.mouseY < ( dim.Y + dim.Height ) ) {
+						isNowSelected = true;
+						Main.keyCount = 0;
+					}
+				}
+
+				if( this.IsSelected && !isNowSelected ) {
+					Timers.RunNow( () => {
+						this.OnUnfocus?.Invoke();
+					} );
+				}
+				this.IsSelected = isNowSelected;
+			}
+
+			// Apply text inputs
+			if( this.IsSelected ) {
+				PlayerInput.WritingText = true;
+				Main.instance.HandleIME();
+
+				string newStr = Main.GetInputText( this.Text );
+
+				if( !newStr.Equals( this.Text ) ) {
+					var newStrMuta = new StringBuilder( newStr );
+
+					Timers.RunNow( () => {
+						if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
+							this.Text = newStrMuta.ToString();
+						}
+					} );
+				}
+			}
 		}
 
 
@@ -135,47 +195,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			*/
 			base.DrawSelf( sb );
 
-			////
-
 			CalculatedStyle dim = this.GetDimensions();
 
-			// Detect if user selects this element
-			if( Main.mouseLeft ) {
-				bool isNowSelected = false;
-
-				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {
-					if( Main.mouseY >= dim.Y && Main.mouseY < ( dim.Y + dim.Height ) ) {
-						isNowSelected = true;
-						Main.keyCount = 0;
-					}
-				}
-
-				if( this.IsSelected && !isNowSelected ) {
-					Timers.RunNow( () => {
-						this.OnUnfocus?.Invoke();
-					} );
-				}
-				this.IsSelected = isNowSelected;
+			if( this.IsInteractive ) {
+				this.UpdateInteractivity( dim );
 			}
 
-			// Apply text inputs
-			if( this.IsSelected ) {
-				PlayerInput.WritingText = true;
-				Main.instance.HandleIME();
+			this.DrawText( dim, sb );
+		}
 
-				string newStr = Main.GetInputText( this.Text );
 
-				if( !newStr.Equals( this.Text ) ) {
-					var newStrMuta = new StringBuilder( newStr );
-
-					Timers.RunNow( () => {
-						if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
-							this.Text = newStrMuta.ToString();
-						}
-					} );
-				}
-			}
-
+		private void DrawText( CalculatedStyle dim, SpriteBatch sb ) {
 			var pos = new Vector2( dim.X + this.PaddingLeft, dim.Y + this.PaddingTop );
 
 			// Draw text

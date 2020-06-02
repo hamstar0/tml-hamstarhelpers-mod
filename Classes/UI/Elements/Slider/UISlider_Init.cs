@@ -10,10 +10,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	/// <summary>
 	/// Implements a UI slider bar element.
 	/// </summary>
-	public partial class UISlider : UIThemedElement {
+	public partial class UISlider : UIThemedElement, IToggleable {
 		private void InitializeMe() {
 			bool ProcessInput( StringBuilder fullInput ) {
 				return !this.IsNowSettingValue
+					&& this.IsInteractive
 					&& this.SetValueFromInput( fullInput.ToString() );
 			}
 
@@ -45,7 +46,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				this.LeftArrowElem.TextColor = Color.Gray;
 				this.LeftArrowElem.SetText( this.LeftArrowElem.Text, 1.0f, false );
 			};
-			this.LeftArrowElem.OnClick += ( _, __ ) => this.ScrollLeft();
+			this.LeftArrowElem.OnClick += ( _, __ ) => {
+				if( this.IsInteractive ) {
+					this.ScrollLeft();
+				}
+			};
 			this.Append( (UIElement)this.LeftArrowElem );
 
 			this.RightArrowElem = new UIThemedText( this.Theme, true, " >  " );
@@ -61,7 +66,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				this.RightArrowElem.TextColor = Color.Gray;
 				this.RightArrowElem.SetText( this.RightArrowElem.Text, 1.0f, false );
 			};
-			this.RightArrowElem.OnClick += ( _, __ ) => this.ScrollRight();
+			this.RightArrowElem.OnClick += ( _, __ ) => {
+				if( this.IsInteractive ) {
+					this.ScrollRight();
+				}
+			};
 			this.Append( (UIElement)this.RightArrowElem );
 		}
 	}

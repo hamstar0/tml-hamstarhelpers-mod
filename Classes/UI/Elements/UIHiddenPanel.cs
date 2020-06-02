@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Services.Timers;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Indicates if mouse is hovering the element.
 		/// </summary>
 		public bool IsHovering { get; private set; }
-		
+
 		private Func<Rectangle> Zone;
 		private Action OnHover;
 		private Action OnExit;
@@ -38,6 +38,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.Width.Set( 0f, 0f );
 			this.Height.Set( 0f, 0f );
 		}
+
 
 		////////////////
 

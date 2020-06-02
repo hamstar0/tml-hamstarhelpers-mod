@@ -15,7 +15,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
 	/// multi-line support (yet).
 	/// </summary>
-	public class UITextInputAreaPanel : UIThemedPanel {
+	public class UITextInputAreaPanel : UIThemedPanel, IToggleable {
 		/// <summary>
 		/// Event handler for text input events
 		/// </summary>
@@ -82,10 +82,18 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Indicates text is being input.
 		/// </summary>
 		public bool HasFocus { get; private set; }
+
+		/// @private
+		[Obsolete( "use IsInteractive", true )]
+		public bool IsEnabled {
+			get => this.IsInteractive;
+			private set => this.IsInteractive = value;
+		}
+
 		/// <summary>
 		/// Indicates element is able to be edited.
 		/// </summary>
-		public bool IsEnabled { get; private set; }
+		public bool IsInteractive { get; private set; }
 
 
 
@@ -101,7 +109,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.CursorPos = 0;
 			this.CursorAnimation = 0;
 			this.HasFocus = false;
-			this.IsEnabled = false;
+			this.IsInteractive = false;
 			this.MaxLength = maxLength;
 
 			this.SetText( "" );
@@ -197,7 +205,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <returns>`true` if able to capture focus.</returns>
 		public bool Focus() {
-			if( !this.IsEnabled ) { return false; }
+			if( !this.IsInteractive ) { return false; }
 			if( this.HasFocus ) { return false; }
 			this.HasFocus = true;
 
@@ -231,7 +239,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Disables the text area (prevents text input).
 		/// </summary>
 		public void Disable() {
-			this.IsEnabled = false;
+			this.IsInteractive = false;
 
 			if( this.HasFocus ) {
 				this.Unfocus();
@@ -244,7 +252,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Enables the text area.
 		/// </summary>
 		public void Enable() {
-			this.IsEnabled = true;
+			this.IsInteractive = true;
 
 			this.RefreshTheme();
 		}
@@ -256,7 +264,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Refreshes visual theming.
 		/// </summary>
 		public override void RefreshTheme() {
-			if( this.IsEnabled ) {
+			if( this.IsInteractive ) {
 				this.Theme.ApplyInput( this );
 			} else {
 				this.Theme.ApplyInputDisable( this );
@@ -294,7 +302,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 						Utils.DrawBorderString( sb, "|", pos, Color.White );
 					}
 				} else {
-					if( this.DisplayText == "" && this.IsEnabled ) {
+					if( this.DisplayText == "" && this.IsInteractive ) {
 						Utils.DrawBorderString( sb, this.Hint, pos, this.HintColor );
 					}
 				}

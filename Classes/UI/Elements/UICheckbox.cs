@@ -32,7 +32,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Enables mouse interactivity.
 		/// </summary>
-		public bool IsClickable = true;
+		public bool IsClickable = true; // TODO: Implement `IToggleable`
 
 		/// <summary>
 		/// Mouse hover popup label.
@@ -83,6 +83,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.SetText( "   " + label );
 			this.Recalculate();
 		}
+
+
+		////////////////
 
 		/// <summary>
 		/// Called on click. Can be called manually.

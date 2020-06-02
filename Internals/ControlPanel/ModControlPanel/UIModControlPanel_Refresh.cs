@@ -20,11 +20,11 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			}
 
 			if( !isEnabled ) {
-				if( this.ModLockButton.IsEnabled ) {
+				if( this.ModLockButton.IsInteractive ) {
 					this.ModLockButton.Disable();
 				}
 			} else {
-				if( !this.ModLockButton.IsEnabled ) {
+				if( !this.ModLockButton.IsInteractive ) {
 					this.ModLockButton.Enable();
 				}
 			}
@@ -37,11 +37,11 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		public void UpdateElements() {
 			if( !ModHelpersConfig.Instance.WorldModLockEnable ) {
-				if( this.ModLockButton.IsEnabled ) {
+				if( this.ModLockButton.IsInteractive ) {
 					this.RefreshModLockButton();
 				}
 			} else {
-				if( !this.ModLockButton.IsEnabled ) {
+				if( !this.ModLockButton.IsInteractive ) {
 					this.RefreshModLockButton();
 				}
 			}

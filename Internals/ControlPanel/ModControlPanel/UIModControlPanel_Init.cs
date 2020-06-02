@@ -132,7 +132,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.IssueSubmitButton.Width.Set( 200f, 0f );
 			this.IssueSubmitButton.Disable();
 			this.IssueSubmitButton.OnClick += ( _, __ ) => {
-				if( self.AwaitingReport || !self.IssueSubmitButton.IsEnabled ) {
+				if( self.AwaitingReport || !self.IssueSubmitButton.IsInteractive ) {
 					return;
 				}
 				self.SubmitIssue();
@@ -146,18 +146,18 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.ModLockButton.Left.Set( 0f, 0f );
 			this.ModLockButton.Width.Set( 0f, 1f );
 			if( Main.netMode != NetmodeID.SinglePlayer || !ModHelpersConfig.Instance.WorldModLockEnable ) {
-				if( this.ModLockButton.IsEnabled ) {
+				if( this.ModLockButton.IsInteractive ) {
 					this.ModLockButton.Disable();
 				}
 			}
 			this.ModLockButton.OnClick += ( _, __ ) => {
 				if( Main.netMode != NetmodeID.SinglePlayer || !ModHelpersConfig.Instance.WorldModLockEnable ) {
-					if( self.ModLockButton.IsEnabled ) {
+					if( self.ModLockButton.IsInteractive ) {
 						self.ModLockButton.Disable();
 					}
 				}
 
-				if( !self.ModLockButton.IsEnabled ) {
+				if( !self.ModLockButton.IsInteractive ) {
 					return;
 				}
 				self.ToggleModLock();
@@ -177,11 +177,11 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				this.CleanupModTiles.Disable();
 			}
 			this.CleanupModTiles.OnClick += ( _, __ ) => {
-				if( Main.netMode != NetmodeID.SinglePlayer && self.CleanupModTiles.IsEnabled ) {
+				if( Main.netMode != NetmodeID.SinglePlayer && self.CleanupModTiles.IsInteractive ) {
 					self.CleanupModTiles.Disable();
 				}
 
-				if( !self.CleanupModTiles.IsEnabled ) {
+				if( !self.CleanupModTiles.IsInteractive ) {
 					if( Main.netMode == NetmodeID.MultiplayerClient ) {
 						Main.NewText( "Unused tile cleanup disabled for multiplayer.", Color.Yellow );
 					} else {

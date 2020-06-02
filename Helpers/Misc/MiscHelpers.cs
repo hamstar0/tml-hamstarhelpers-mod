@@ -7,6 +7,22 @@ namespace HamstarHelpers.Helpers.Misc {
 	/// Assorted static "helper" misc. functions.
 	/// </summary>
 	public partial class MiscHelpers {
+		/// <summary></summary>
+		public static Color PlatinumCoinColor { get; } = new Color( 220, 220, 198 );
+
+		/// <summary></summary>
+		public static Color GoldCoinColor { get; } = new Color( 224, 201, 92 );
+
+		/// <summary></summary>
+		public static Color SilverCoinColor { get; } = new Color( 181, 192, 193 );
+
+		/// <summary></summary>
+		public static Color CopperCoinColor { get; } = new Color( 246, 138, 96 );
+
+
+
+		////////////////
+
 		/// <summary>
 		/// Generates an English-formatted string indicating an amount of money.
 		/// </summary>
