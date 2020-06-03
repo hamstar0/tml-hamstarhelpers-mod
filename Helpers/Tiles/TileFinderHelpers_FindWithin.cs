@@ -47,7 +47,9 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="worldRect"></param>
 		/// <param name="pattern"></param>
 		/// <returns></returns>
-		public static IList<(ushort TileY, ushort TileX)> GetTileMatchesInWorldRectangle( Rectangle worldRect, TilePattern pattern ) {
+		public static IList<(ushort TileY, ushort TileX)> GetTileMatchesInWorldRectangle(
+					Rectangle worldRect,
+					TilePattern pattern ) {
 			return TileFinderHelpers.GetTileMatchesInWorldRectangle( worldRect, pattern, null );
 		}
 
@@ -56,33 +58,32 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// </summary>
 		/// <param name="worldRect"></param>
 		/// <param name="pattern"></param>
-		/// <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned bool to indicate a match.</param>
+		/// <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned `true` to
+		/// indicate a match.</param>
 		/// <returns></returns>
 		public static IList<(ushort TileY, ushort TileX)> GetTileMatchesInWorldRectangle(
 				Rectangle worldRect,
 				TilePattern pattern,
-				Func<int, int, bool, bool> forEach ) {
-			int projWldRight = worldRect.X + worldRect.Width;
-			int projWldBottom = worldRect.Y + worldRect.Height;
+				Func<int, int, bool, bool> forEach = null ) {
+			int leftTileX = worldRect.X >> 4;
+			int topTileY = worldRect.Y >> 4;
+			int rightTileX = (worldRect.X + worldRect.Width) >> 4;
+			int botTileY = (worldRect.Y + worldRect.Height) >> 4;
 
 			var hits = new List<(ushort, ushort)>();
 
-			for( int i = (worldRect.X >> 4); (i << 4) <= projWldRight; i++ ) {
-				if( i < 0 || i > Main.maxTilesX - 1 ) { continue; }
+			for( int i = leftTileX; i <= rightTileX; i++ ) {
+				if( i < 0 || i >= Main.maxTilesX ) { continue; }
 
-				for( int j = (worldRect.Y >> 4); (j << 4) <= projWldBottom; j++ ) {
-					if( j < 0 || j > Main.maxTilesY - 1 ) { continue; }
-
-					Tile tile = Main.tile[i, j];
-
-					//if( TileHelpers.IsAir( tile ) ) { continue; }
+				for( int j = topTileY; j <= botTileY; j++ ) {
+					if( j < 0 || j >= Main.maxTilesY ) { continue; }
 
 					bool isMatch = pattern.Check( i, j );
 					isMatch = forEach?.Invoke( i, j, isMatch ) ?? isMatch;
 
-					if( isMatch ) { continue; }
-
-					hits.Add( ((ushort)i, (ushort)j) );
+					if( isMatch ) {
+						hits.Add( ((ushort)i, (ushort)j) );
+					}
 				}
 			}
 

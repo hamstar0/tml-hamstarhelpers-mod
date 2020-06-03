@@ -53,5 +53,36 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		public static (float X, float Y) ToTuple( this Point pt ) {
 			return (pt.X, pt.Y);
 		}
+
+		////////////////
+
+		/// <summary>
+		/// Expands a rectangle from the center by the given amount (x and y axis).
+		/// </summary>
+		/// <param name="rect"></param>
+		/// <param name="dist"></param>
+		/// <returns></returns>
+		public static Rectangle Expand( this Rectangle rect, int dist ) {
+			rect.X -= dist;
+			rect.Y -= dist;
+			rect.Width += dist * 2;
+			rect.Height += dist * 2;
+			return rect;
+		}
+
+		/// <summary>
+		/// Expands a rectangle from the center by the given amounts (x and y axis, separately).
+		/// </summary>
+		/// <param name="rect"></param>
+		/// <param name="distX"></param>
+		/// <param name="distY"></param>
+		/// <returns></returns>
+		public static Rectangle Expand( this Rectangle rect, int distX, int distY ) {
+			rect.X -= distX;
+			rect.Y -= distY;
+			rect.Width += distX * 2;
+			rect.Height += distY * 2;
+			return rect;
+		}
 	}
 }
