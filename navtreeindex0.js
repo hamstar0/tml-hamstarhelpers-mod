@@ -1,5 +1,6 @@
 var NAVTREEINDEX0 =
 {
+"_8_n_e_t_framework_00_version_0Av4_85_82_8_assembly_attributes_8cs_source.html":[2,0,0,0,6,1,0,0],
 "___packet_payload_8cs_source.html":[2,0,0,0,1,5,0,1],
 "_animated_colors_8cs_source.html":[2,0,0,0,7,0,0],
 "_animated_colors___instance_8cs_source.html":[2,0,0,0,7,0,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "_n_p_c_finder_helpers_8cs_source.html":[2,0,0,0,3,14,4],
 "_n_p_c_group_identity_helpers_8cs_source.html":[2,0,0,0,3,14,5],
 "_n_p_c_helpers_8cs_source.html":[2,0,0,0,3,14,6],
-"_n_p_c_identity_helpers_8cs_source.html":[2,0,0,0,3,14,7],
-"_n_p_c_identity_helpers___obsolete_8cs_source.html":[2,0,0,0,3,14,8]
+"_n_p_c_identity_helpers_8cs_source.html":[2,0,0,0,3,14,7]
 };

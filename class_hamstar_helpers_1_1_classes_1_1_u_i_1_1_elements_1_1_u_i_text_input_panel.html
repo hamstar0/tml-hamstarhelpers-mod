@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.7.0</span>
+   &#160;<span id="projectnumber">v5.7.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -109,6 +109,7 @@ Inheritance diagram for HamstarHelpers.Classes.UI.Elements.UITextInputPanel:</di
   <img src="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.png" usemap="#HamstarHelpers.Classes.UI.Elements.UITextInputPanel_map" alt=""/>
   <map id="HamstarHelpers.Classes.UI.Elements.UITextInputPanel_map" name="HamstarHelpers.Classes.UI.Elements.UITextInputPanel_map">
 <area href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html" title="Theme-able UIPanel." alt="HamstarHelpers.Classes.UI.Elements.UIThemedPanel" shape="rect" coords="0,56,316,80"/>
+<area href="interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_toggleable.html" title="Interface for all elements that support toggleable interactivity." alt="HamstarHelpers.Classes.UI.Theme.IToggleable" shape="rect" coords="326,56,642,80"/>
 <area href="interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_themeable.html" title="Interface for all elements that support themes intrinsically." alt="HamstarHelpers.Classes.UI.Theme.IThemeable" shape="rect" coords="0,0,316,24"/>
   </map>
 </div></div>
@@ -126,6 +127,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:addefc0d76ac533c79eb626c1a593b401"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#addefc0d76ac533c79eb626c1a593b401">RefreshTheme</a> ()</td></tr>
 <tr class="memdesc:addefc0d76ac533c79eb626c1a593b401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes visual theming.  <a href="#addefc0d76ac533c79eb626c1a593b401">More...</a><br /></td></tr>
 <tr class="separator:addefc0d76ac533c79eb626c1a593b401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d7052040fa4a6637d5084e3761049e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#a9d7052040fa4a6637d5084e3761049e0">Enable</a> ()</td></tr>
+<tr class="separator:a9d7052040fa4a6637d5084e3761049e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affd2ab875c3cd633265385d28fae26fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#affd2ab875c3cd633265385d28fae26fa">Disable</a> ()</td></tr>
+<tr class="separator:affd2ab875c3cd633265385d28fae26fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafc50242377865a7cf5c4f4036bfdefd"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#aafc50242377865a7cf5c4f4036bfdefd">GetText</a> ()</td></tr>
 <tr class="separator:aafc50242377865a7cf5c4f4036bfdefd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeee41e65b1433c1acb306013e384a8aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#aeee41e65b1433c1acb306013e384a8aa">SetText</a> (string text)</td></tr>
@@ -167,6 +172,8 @@ Properties</h2></td></tr>
 <tr class="memitem:ad03c3ab64412ae86094b7bf762855a54"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#ad03c3ab64412ae86094b7bf762855a54">HintText</a><code> [get]</code></td></tr>
 <tr class="memdesc:ad03c3ab64412ae86094b7bf762855a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Default" text. Appears when no text is input. Not counted as input.  <a href="#ad03c3ab64412ae86094b7bf762855a54">More...</a><br /></td></tr>
 <tr class="separator:ad03c3ab64412ae86094b7bf762855a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a797fd256c4d2e7e8efe127e2f98a39fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html#a797fd256c4d2e7e8efe127e2f98a39fa">IsInteractive</a> = true<code> [get]</code></td></tr>
+<tr class="separator:a797fd256c4d2e7e8efe127e2f98a39fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel"><td colspan="2" onclick="javascript:toggleInherit('properties_class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html">HamstarHelpers.Classes.UI.Elements.UIThemedPanel</a></td></tr>
 <tr class="memitem:abbed27eaa935600c9a715d85ad3b396d inherit properties_class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html">UITheme</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#abbed27eaa935600c9a715d85ad3b396d">Theme</a><code> [get, protected set]</code></td></tr>
 <tr class="memdesc:abbed27eaa935600c9a715d85ad3b396d inherit properties_class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appearance style.  <a href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#abbed27eaa935600c9a715d85ad3b396d">More...</a><br /></td></tr>
@@ -224,11 +231,34 @@ Events</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00071">71</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00074">74</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="affd2ab875c3cd633265385d28fae26fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affd2ab875c3cd633265385d28fae26fa">&#9670;&nbsp;</a></span>Disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HamstarHelpers.Classes.UI.Elements.UITextInputPanel.Disable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p>Implements <a class="el" href="interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_toggleable.html#acbfa3e28b860f713b25284ff8e3f8bff">HamstarHelpers.Classes.UI.Theme.IToggleable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00101">101</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+
+</div>
+</div>
 <a id="a03753fa5ba268dc427f7825f89daa366"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a03753fa5ba268dc427f7825f89daa366">&#9670;&nbsp;</a></span>DrawSelf()</h2>
 
@@ -261,7 +291,30 @@ Events</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00127">127</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00187">187</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a9d7052040fa4a6637d5084e3761049e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d7052040fa4a6637d5084e3761049e0">&#9670;&nbsp;</a></span>Enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HamstarHelpers.Classes.UI.Elements.UITextInputPanel.Enable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p>Implements <a class="el" href="interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_toggleable.html#afb56c770d1abe54a23f348b0edd7cbb2">HamstarHelpers.Classes.UI.Theme.IToggleable</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00095">95</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -302,7 +355,7 @@ Events</h2></td></tr>
 <p></p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00093">93</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00111">111</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -333,7 +386,7 @@ Events</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#a6f1b53af1c58f7cda5a3cce7bd20d4a6">HamstarHelpers.Classes.UI.Elements.UIThemedPanel</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00084">84</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00087">87</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -361,7 +414,7 @@ Events</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00099">99</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00117">117</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
 
 </div>
 </div>
@@ -435,6 +488,32 @@ Events</h2></td></tr>
 <p>"Default" text. Appears when no text is input. Not counted as input. </p>
 
 <p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00063">63</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
+
+</div>
+</div>
+<a id="a797fd256c4d2e7e8efe127e2f98a39fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a797fd256c4d2e7e8efe127e2f98a39fa">&#9670;&nbsp;</a></span>IsInteractive</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Classes.UI.Elements.UITextInputPanel.IsInteractive = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_text_input_panel_8cs_source.html#l00066">66</a> of file <a class="el" href="_u_i_text_input_panel_8cs_source.html">UITextInputPanel.cs</a>.</p>
 
 </div>
 </div>

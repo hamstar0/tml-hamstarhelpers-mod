@@ -21,7 +21,7 @@ var class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_ar
     [ "DisplayText", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a17ad7da40e73d2ee8a497376a9ea90b8", null ],
     [ "HasFocus", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#adb2c7c8f91b61d4ad20b3b3daae5b92b", null ],
     [ "Hint", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#add214b19aa7bd38419459c5d9f188b2a", null ],
-    [ "IsEnabled", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#ab4286b1e017bb92b5cebc638896a0641", null ],
+    [ "IsInteractive", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a4770f0c6ca83b8fa063c9dc9133a91b1", null ],
     [ "MaxLength", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a7c24a7ad2e8a2e1e926c994860921d2f", null ],
     [ "Text", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a30e78447cc85f6b4528a6f0d9ebc61bf", null ],
     [ "OnPreTextChange", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a45ab3afa80b6febddf93dc7ddf33b8e6", null ],

@@ -10,6 +10,7 @@ var searchData=
   ['contextname',['ContextName',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_menu_context.html#ad001b00526c0f37ad38bd735c33d9ca0',1,'HamstarHelpers::Classes::UI::Menus::MenuContext']]],
   ['controlpaneliconx',['ControlPanelIconX',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a2cb5ead492e70d30adff243fdef807e3',1,'HamstarHelpers::ModHelpersConfig']]],
   ['controlpanelicony',['ControlPanelIconY',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a7692892875b9e2d6996c1fd03b9da48f',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['coppercoincolor',['CopperCoinColor',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a121d130f9f83145be5f8dbd45fe1ca48',1,'HamstarHelpers::Helpers::Misc::MiscHelpers']]],
   ['currentframe',['CurrentFrame',['../class_hamstar_helpers_1_1_services_1_1_animated_texture_1_1_animated_texture.html#a4b967c5617bbda736567c22f96fddf4c',1,'HamstarHelpers::Services::AnimatedTexture::AnimatedTexture']]],
   ['currentframetickselapsed',['CurrentFrameTicksElapsed',['../class_hamstar_helpers_1_1_services_1_1_animated_texture_1_1_animated_texture.html#a84e6e759f86886a35525742145339f53',1,'HamstarHelpers::Services::AnimatedTexture::AnimatedTexture']]],
   ['cursoranimation',['CursorAnimation',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#aaf96c9fae74dbfa3d5bafd0a2bce9db5',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],

@@ -127,6 +127,7 @@ var hierarchy =
         [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.UIImageUrl", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.UIWebUrl", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_web_url.html", null ]
       ] ],
@@ -135,6 +136,18 @@ var hierarchy =
           [ "HamstarHelpers.Classes.UI.Elements.Dialogs.UIPromptDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html", null ]
         ] ]
       ] ]
+    ] ],
+    [ "HamstarHelpers.Classes.UI.Theme.IToggleable", "interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_toggleable.html", [
+      [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UITextInputElement", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UITextInputPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UITextPanelButton", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html", null ]
     ] ],
     [ "HamstarHelpers.Helpers.DotNET.Encoding.JsonHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_json_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.KeyValuePairExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_key_value_pair_extensions.html", null ],
@@ -283,7 +296,6 @@ var hierarchy =
     [ "HamstarHelpers.Helpers.TModLoader.TmlHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html", null ],
     [ "HamstarHelpers.Helpers.UI.UIHelpers", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html", null ],
     [ "HamstarHelpers.Classes.UI.Elements.UIHiddenPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel.html", null ],
-    [ "HamstarHelpers.Classes.UI.Elements.UITextInputElement", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html", null ],
     [ "HamstarHelpers.Classes.UI.Theme.UITheme", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html", null ],
     [ "HamstarHelpers.Helpers.User.UserHelpers", "class_hamstar_helpers_1_1_helpers_1_1_user_1_1_user_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.Vector2StringExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions.html", null ],

@@ -25,5 +25,6 @@ var searchData=
   ['uiupdatemessage',['UIUpdateMessage',['../namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a91bd6f7c14204e69bd518b49b75006c1',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
   ['uiuploadmodprogress',['UIUploadModProgress',['../namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a4080e9b4a6ae7f054cfc558101b6be46',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
   ['uiworldselect',['UIWorldSelect',['../namespace_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus.html#a00e21668406f9c706b0a62586dd2ca32a8420a87416f36b5ce4cab19d22aebc3c',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
+  ['unknown',['Unknown',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes.html#ab6dd3171482a88b47aade614bbc85baca88183b946cc5f0e8c96b2e66e1c74a7e',1,'HamstarHelpers::Helpers::Tiles::Attributes']]],
   ['usemana',['UseMana',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868ad159fc7b8738c0313decf57cd5dde541',1,'HamstarHelpers::Helpers::Items::Attributes']]]
 ];

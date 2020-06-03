@@ -9,7 +9,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers =
     [ "GetFloorWidth", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a4ed03bc48bdee51050e961f292b0aad2", null ],
     [ "GetNearestTile", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a983d2adb2c737101b398985706ff165e", null ],
     [ "GetPlayerRangeTilesAt", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#ac28223573e44b7483b1edd8a38759e06", null ],
-    [ "GetTilesInWorldRectangle", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a5a8ec068a5f7a77026ed34f75f859d93", null ],
-    [ "GetTilesInWorldRectangle", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a3aed2497e5282eded0a881d584263f6d", null ],
+    [ "GetTileMatchesInWorldRectangle", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a3629a2242b82020653a02363b74d8499", null ],
+    [ "GetTileMatchesInWorldRectangle", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aeb93fbbf3632191082cacc6c813a48e0", null ],
     [ "TileX", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa588aa254e683af985d0cc64a51dc132", null ]
 ];

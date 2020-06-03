@@ -10,6 +10,7 @@ var dir_745780dd2dd9f16a765a936081a43a98 =
     [ "TileFinderHelpers_FindContiguous.cs", "_tile_finder_helpers___find_contiguous_8cs_source.html", null ],
     [ "TileFinderHelpers_FindWithin.cs", "_tile_finder_helpers___find_within_8cs_source.html", null ],
     [ "TileFinderHelpers_NearestTile.cs", "_tile_finder_helpers___nearest_tile_8cs_source.html", null ],
+    [ "TileFinderHelpers_Obsolete.cs", "_tile_finder_helpers___obsolete_8cs_source.html", null ],
     [ "TileFrameHelpers.cs", "_tile_frame_helpers_8cs_source.html", null ],
     [ "TileGroupIdentityHelpers.cs", "_tile_group_identity_helpers_8cs_source.html", null ],
     [ "TileHelpers.cs", "_tile_helpers_8cs_source.html", null ],
