@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
+using HamstarHelpers.Classes.Tiles.TilePattern;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
@@ -47,8 +47,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="worldRect"></param>
 		/// <param name="pattern"></param>
 		/// <returns></returns>
-		public static IDictionary<int, int> GetTilesInWorldRectangle( Rectangle worldRect, TilePattern pattern ) {
-			return TileFinderHelpers.GetTilesInWorldRectangle( worldRect, pattern, null );
+		public static IList<(ushort TileY, ushort TileX)> GetTileMatchesInWorldRectangle( Rectangle worldRect, TilePattern pattern ) {
+			return TileFinderHelpers.GetTileMatchesInWorldRectangle( worldRect, pattern, null );
 		}
 
 		/// <summary>
@@ -58,14 +58,14 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned bool to indicate a match.</param>
 		/// <returns></returns>
-		public static IDictionary<int, int> GetTilesInWorldRectangle(
+		public static IList<(ushort TileY, ushort TileX)> GetTileMatchesInWorldRectangle(
 				Rectangle worldRect,
 				TilePattern pattern,
 				Func<int, int, bool, bool> forEach ) {
 			int projWldRight = worldRect.X + worldRect.Width;
 			int projWldBottom = worldRect.Y + worldRect.Height;
 
-			IDictionary<int, int> hits = new Dictionary<int, int>();
+			var hits = new List<(ushort, ushort)>();
 
 			for( int i = (worldRect.X >> 4); (i << 4) <= projWldRight; i++ ) {
 				if( i < 0 || i > Main.maxTilesX - 1 ) { continue; }
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 					if( isMatch ) { continue; }
 
-					hits[i] = j;
+					hits.Add( ((ushort)i, (ushort)j) );
 				}
 			}
 

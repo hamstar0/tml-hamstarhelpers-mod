@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="midTileY"></param>
 		/// <returns></returns>
 		[Obsolete("needs work")]
-		public static IDictionary<int, int> GetPlayerRangeTilesAt( int midTileX, int midTileY ) {	// TODO
+		public static IDictionary<int, int> GetPlayerRangeTilesAt( int midTileX, int midTileY ) {   // TODO
 			var tiles = new Dictionary<int, int>();
 
 			float minScreenTileWidth = 50f;
