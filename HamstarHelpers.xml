@@ -8621,6 +8621,9 @@
             <summary>
             Assorted static "helper" functions pertaining to tile finding.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tile finding.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetPlayerRangeTilesAt(System.Int32,System.Int32)">
             <summary>
@@ -8704,7 +8707,7 @@
             <param name="foundY">Returns found Y tile coordinate.</param>
             <returns>`true` if matching area found.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTilesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTileMatchesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern)">
             <summary>
             Gets all tiles of a given pattern within a given area.
             </summary>
@@ -8712,7 +8715,7 @@
             <param name="pattern"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTilesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Func{System.Int32,System.Int32,System.Boolean,System.Boolean})">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTileMatchesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Func{System.Int32,System.Int32,System.Boolean,System.Boolean})">
             <summary>
             Gets all tiles of a given pattern within a given area. Calls a function for each.
             </summary>
@@ -8752,6 +8755,12 @@
             <param name="pattern"></param>
             <param name="maxTileRadius"></param>
             <returns>Tile position of match. `null` if none.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTilesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetTilesInWorldRectangle(Microsoft.Xna.Framework.Rectangle,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Func{System.Int32,System.Int32,System.Boolean,System.Boolean})">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileFrameHelpers">
             <summary>
@@ -12807,7 +12816,7 @@
         <member name="M:HamstarHelpers.Services.Timers.Timers.MainOnTickGet">
             <summary>
             Returns a delegate that returns true when at least 1/60th second (1 60FPS 'tick') has fully elapsed since
-            the last time the delegate returned true.
+            the last time the delegate returned true (seems necessary?).
             </summary>
             <returns></returns>
         </member>
@@ -12824,6 +12833,16 @@
             <param name="func">Return `true` to repeat timer.</param>
             <param name="runsWhilePaused"></param>
         </member>
+        <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.Int32,System.Boolean,System.Func{System.Boolean})">
+            <summary>
+            Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
+            but does not obstruct current thread.
+            </summary>
+            <param name="tickDuration"></param>
+            <param name="runsWhilePaused"></param>
+            <param name="func">Action to run. Returns `true` to make the action repeat after another period of the
+            given tick duration.</param>
+        </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Boolean})">
             <summary>
             Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
@@ -12832,7 +12851,7 @@
             <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
             <param name="tickDuration"></param>
             <param name="runsWhilePaused"></param>
-            <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
+            <param name="func">Action to run. Returns `true` to make the action repeat after another period of the
             given tick duration.</param>
         </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.String,System.Int32,System.Boolean,System.Func{System.Int32})">

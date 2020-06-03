@@ -19,7 +19,7 @@ namespace HamstarHelpers.Services.Timers {
 
 		/// <summary>
 		/// Returns a delegate that returns true when at least 1/60th second (1 60FPS 'tick') has fully elapsed since
-		/// the last time the delegate returned true.
+		/// the last time the delegate returned true (seems necessary?).
 		/// </summary>
 		/// <returns></returns>
 		public static Func<bool> MainOnTickGet() {
@@ -80,14 +80,28 @@ namespace HamstarHelpers.Services.Timers {
 		/// Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
 		/// but does not obstruct current thread.
 		/// </summary>
+		/// <param name="tickDuration"></param>
+		/// <param name="runsWhilePaused"></param>
+		/// <param name="func">Action to run. Returns `true` to make the action repeat after another period of the
+		/// given tick duration.</param>
+		public static void SetTimer( int tickDuration, bool runsWhilePaused, Func<bool> func ) {
+			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
+
+			Timers.SetTimer( ctx, tickDuration, runsWhilePaused, func );
+		}
+
+		/// <summary>
+		/// Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
+		/// but does not obstruct current thread.
+		/// </summary>
 		/// <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
 		/// <param name="tickDuration"></param>
 		/// <param name="runsWhilePaused"></param>
-		/// <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
+		/// <param name="func">Action to run. Returns `true` to make the action repeat after another period of the
 		/// given tick duration.</param>
-		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<bool> action ) {
+		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<bool> func ) {
 			Timers.SetTimer( name, tickDuration, runsWhilePaused, () => {
-				if( action() ) {
+				if( func() ) {
 					return tickDuration;
 				} else {
 					return 0;
