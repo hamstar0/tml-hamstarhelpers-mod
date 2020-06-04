@@ -64,7 +64,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		public static IList<(ushort TileY, ushort TileX)> GetTileMatchesInWorldRectangle(
 				Rectangle worldRect,
 				TilePattern pattern,
-				Func<int, int, bool, bool> forEach = null ) {
+				Func<int, int, bool, bool> forEach ) {
 			int leftTileX = worldRect.X >> 4;
 			int topTileY = worldRect.Y >> 4;
 			int rightTileX = (worldRect.X + worldRect.Width) >> 4;

@@ -3122,6 +3122,16 @@
             </summary>
             <param name="theme"></param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.Enable">
+            <summary>
+            Enables interactivity for all child elements of this element.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.Disable">
+            <summary>
+            Enables interactivity for all child elements of this element.
+            </summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedPanel.Hide">
             <summary></summary>
         </member>
@@ -3798,6 +3808,16 @@
             </summary>
             <param name="theme"></param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedElement.Enable">
+            <summary>
+            Enables interactivity for all child elements of this element.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedElement.Disable">
+            <summary>
+            Enables interactivity for all child elements of this element.
+            </summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedElement.Hide">
             <summary></summary>
         </member>
@@ -3847,6 +3867,16 @@
             Sets the current theme.
             </summary>
             <param name="theme"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedState.Enable">
+            <summary>
+            Enables interactivity for all child elements of this element.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedState.Disable">
+            <summary>
+            Enables interactivity for all child elements of this element.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedState.Hide">
             <summary></summary>
@@ -5180,6 +5210,23 @@
             Converts a Point to a value tuple.
             </summary>
             <param name="pt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions.Expand(Microsoft.Xna.Framework.Rectangle,System.Int32)">
+            <summary>
+            Expands a rectangle from the center by the given amount (x and y axis).
+            </summary>
+            <param name="rect"></param>
+            <param name="dist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.XNAExtensions.Expand(Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32)">
+            <summary>
+            Expands a rectangle from the center by the given amounts (x and y axis, separately).
+            </summary>
+            <param name="rect"></param>
+            <param name="distX"></param>
+            <param name="distY"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.FileHelpers">
@@ -8721,7 +8768,8 @@
             </summary>
             <param name="worldRect"></param>
             <param name="pattern"></param>
-            <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned bool to indicate a match.</param>
+            <param name="forEach">Performs an action for each tile. 3rd bool parameter indicates a match. Returned `true` to
+            indicate a match.</param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindNearbyAreaFromCenter(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">

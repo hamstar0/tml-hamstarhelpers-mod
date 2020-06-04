@@ -440,7 +440,7 @@ namespace HamstarHelpers.Services.ModTagDefinitions {
 					cat: "Content",
 					desc: "Emphasizes added or modified town or actively helpful NPCs.",
 					flavor: TagFlavor.Emphasis,
-					forces: new HashSet<string> { "Town NPCs" } ),
+					forces: new HashSet<string> { "Friendly NPCs" } ),
 				m( tag: "Critters Emphasis",
 					cat: "Content",
 					desc: "Emphasizes added or modified (passive) biome fauna.",

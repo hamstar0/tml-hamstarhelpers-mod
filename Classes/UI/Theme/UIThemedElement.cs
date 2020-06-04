@@ -7,7 +7,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 	/// <summary>
 	/// Theme-able UIElement.
 	/// </summary>
-	public class UIThemedElement : UIElement, IThemeable {
+	public class UIThemedElement : UIElement, IThemeable, IToggleable {
 		/// <summary>
 		/// Appearance style.
 		/// </summary>
@@ -74,6 +74,33 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		public virtual void SetTheme( UITheme theme ) {
 			this.Theme = theme;
 			this.RefreshTheme();
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Enables interactivity for all child elements of this element.
+		/// </summary>
+		public virtual void Enable() {
+			foreach( var child in this.Elements ) {
+				var toggleable = child as IToggleable;
+				if( toggleable == null ) { continue; }
+
+				toggleable.Enable();
+			}
+		}
+
+		/// <summary>
+		/// Enables interactivity for all child elements of this element.
+		/// </summary>
+		public virtual void Disable() {
+			foreach( var child in this.Elements ) {
+				var toggleable = child as IToggleable;
+				if( toggleable == null ) { continue; }
+
+				toggleable.Disable();
+			}
 		}
 
 

@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using System.Reflection;
+﻿using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Classes.UI.Theme {
