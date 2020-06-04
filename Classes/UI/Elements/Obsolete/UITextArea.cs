@@ -1,13 +1,13 @@
-﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.UI;
+﻿using System;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Text;
 using Terraria;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.UI;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -165,7 +165,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// @private
-		public void Disable() {
+		public override void Disable() {
+			base.Disable();
+
 			this.IsEnabled = false;
 
 			if( this.HasFocus ) {
@@ -176,7 +178,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		}
 
 		/// @private
-		public void Enable() {
+		public override void Enable() {
+			base.Enable();
+
 			this.IsEnabled = true;
 
 			this.RefreshTheme();

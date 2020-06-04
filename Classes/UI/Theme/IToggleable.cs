@@ -1,5 +1,4 @@
 ﻿using System;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Classes.UI.Theme {

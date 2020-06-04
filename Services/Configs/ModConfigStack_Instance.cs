@@ -1,7 +1,6 @@
-﻿using HamstarHelpers.Classes.Loadable;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Terraria.ModLoader.Config;
+using HamstarHelpers.Classes.Loadable;
 
 
 namespace HamstarHelpers.Services.Configs {
@@ -27,6 +26,5 @@ namespace HamstarHelpers.Services.Configs {
 		void ILoadable.OnPostModsLoad() { }
 		/// @private
 		void ILoadable.OnModsUnload() { }
-		/// @private
 	}
 }

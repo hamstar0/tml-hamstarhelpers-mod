@@ -12847,6 +12847,12 @@
         <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.GetAvailableRecipesOfIngredients(Terraria.Player,System.Collections.Generic.IEnumerable{Terraria.Item})">
             @private
         </member>
+        <member name="T:HamstarHelpers.Services.Server.Server">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Services.Server.Server.AveragePing">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Services.Timers.Timers">
             <summary>
             Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function,

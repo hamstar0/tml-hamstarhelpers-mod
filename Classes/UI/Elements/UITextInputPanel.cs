@@ -92,13 +92,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// <summary></summary>
-		public void Enable() {
+		public override void Enable() {
+			base.Enable();
 			this.IsInteractive = true;
 			this.RefreshTheme();
 		}
 
 		/// <summary></summary>
-		public void Disable() {
+		public override void Disable() {
+			base.Disable();
 			this.IsInteractive = false;
 			this.RefreshTheme();
 		}

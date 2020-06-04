@@ -238,7 +238,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Disables the text area (prevents text input).
 		/// </summary>
-		public void Disable() {
+		public override void Disable() {
+			base.Disable();
+
 			this.IsInteractive = false;
 
 			if( this.HasFocus ) {
@@ -251,7 +253,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Enables the text area.
 		/// </summary>
-		public void Enable() {
+		public override void Enable() {
+			base.Enable();
+
 			this.IsInteractive = true;
 
 			this.RefreshTheme();
