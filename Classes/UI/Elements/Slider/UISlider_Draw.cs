@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Draw;
 
 
 namespace HamstarHelpers.Classes.UI.Elements.Slider {
@@ -96,8 +97,11 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				}
 			}
 
+			Rectangle textRect = this.NumericInput.GetInnerDimensions().ToRectangle();
+			textRect.X -= 12;
+			textRect.Width += 12;
+
 			if( !highlight.HasValue ) {
-				Rectangle textRect = this.NumericInput.GetInnerDimensions().ToRectangle();
 				if( textRect.Contains(Main.mouseX, Main.mouseY) ) {
 					this.NumericInput.TextColor = Color.Yellow;
 					highlight = false;
@@ -116,6 +120,16 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 
 			base.DrawSelf( sb );
 			UISlider.DrawSlider( sb, fullRect, percentValue, this.InnerBarShader, highlight );
+
+			if( textRect.Contains( Main.mouseX, Main.mouseY ) ) {
+				if( !this.NumericInput.IsSelected ) {
+					var inputLitRect = textRect;
+					inputLitRect.Y += 6;
+					inputLitRect.Height -= 6;
+
+					DrawHelpers.DrawBorderedRect( sb, null, Color.Yellow * 0.5f, inputLitRect, 2 );
+				}
+			}
 		}
 	}
 }

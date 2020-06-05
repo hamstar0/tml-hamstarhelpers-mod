@@ -29,7 +29,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 			this.NumericInput.Top.Set( -2f, 0f );
 			this.NumericInput.Left.Set( 20f, 0f );
 			this.NumericInput.Width.Set( 64f, 0f );
-			this.NumericInput.Height.Set( 12f, 0f );
+			this.NumericInput.Height.Set( 10f, 0f );
 			this.NumericInput.OnTextChange += ProcessInput;
 			this.Append( this.NumericInput );
 
