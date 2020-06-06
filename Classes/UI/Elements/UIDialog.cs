@@ -44,7 +44,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>Vertical position within the panel to align upon.</summary>
 		protected float OriginPercentVertical = 0.5f;
 
-		private float TopPixels = 32f;
+		private float TopPixels = 0f;
 		private float TopPercent = 0.5f;
 		private float LeftPixels = 0f;
 		private float LeftPercent = 0.5f;
