@@ -2356,19 +2356,24 @@
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UIDialog">
             <summary>
-            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+            interactions until closed.
             </summary>
             <summary>
-            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+            interactions until closed.
             </summary>
             <summary>
-            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+            interactions until closed.
             </summary>
             <summary>
-            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+            interactions until closed.
             </summary>
             <summary>
-            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+            interactions until closed.
             </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UIDialog.InitialContainerWidth">
@@ -2398,6 +2403,12 @@
         <member name="F:HamstarHelpers.Classes.UI.Elements.UIDialog.SetDialogToClose">
             @private
         </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UIDialog.OriginPercentHorizontal">
+            <summary>Horizontal position within the panel to align upon.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UIDialog.OriginPercentVertical">
+            <summary>Vertical position within the panel to align upon.</summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.#ctor(HamstarHelpers.Classes.UI.Theme.UITheme,System.Int32,System.Int32)">
             <param name="theme">Appearance style.</param>
             <param name="initialWidth">Recommended width.</param>
@@ -2422,7 +2433,7 @@
             Initializes containers and inner components.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.InitializeContainer(System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.InitializeContainers(System.Int32,System.Int32)">
             <summary>
             Initializes inner (content-bearing) and outer (screen-positioned) containers.
             </summary>
@@ -2448,23 +2459,32 @@
             Recalculates position of outer container
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetLeftPosition(System.Single,System.Single,System.Boolean)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetLeftPosition(System.Single,System.Single,System.Single)">
             <summary>
             Repositions the dialog horizontally (via standard `StyleDimension.Set(...)`).
             </summary>
             <param name="pixels">Pixel amount from the left.</param>
             <param name="percent">Percent amount from the left.</param>
-            <param name="centered">Subtracts half the screen width from the pixel amount.</param>
+            <param name="originPercent">Adjusts the position within the panel to align upon.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetTopPosition(System.Single,System.Single,System.Boolean)">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetTopPosition(System.Single,System.Single,System.Single)">
             <summary>
             Repositions the dialog vertically (via standard `StyleDimension.Set(...)`).
             </summary>
             <param name="pixels">Pixel amount from the top.</param>
             <param name="percent">Percent amount from the top.</param>
-            <param name="centered">Subtracts half the screen height from the pixel amount.</param>
+            <param name="originPercent">Adjusts the position within the panel to align upon.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.InitializeContainer(System.Int32,System.Int32)">
+            @private
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RecalculateOuterContainer">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetLeftPosition(System.Single,System.Single,System.Boolean)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetTopPosition(System.Single,System.Single,System.Boolean)">
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.CanOpen">

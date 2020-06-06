@@ -7,7 +7,8 @@ using HamstarHelpers.Internals.UI;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+	/// interactions until closed.
 	/// </summary>
 	public abstract partial class UIDialog : UIThemedState {
 		private void UpdateOpenState() {

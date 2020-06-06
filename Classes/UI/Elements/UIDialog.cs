@@ -8,7 +8,8 @@ using HamstarHelpers.Classes.UI.Theme;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+	/// interactions until closed.
 	/// </summary>
 	public abstract partial class UIDialog : UIThemedState {
 		/// <summary>
@@ -36,12 +37,17 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// @private
 		protected bool SetDialogToClose = false;
 
+
+		/// <summary>Horizontal position within the panel to align upon.</summary>
+		protected float OriginPercentHorizontal = 0.5f;
+
+		/// <summary>Vertical position within the panel to align upon.</summary>
+		protected float OriginPercentVertical = 0.5f;
+
 		private float TopPixels = 32f;
 		private float TopPercent = 0.5f;
 		private float LeftPixels = 0f;
 		private float LeftPercent = 0.5f;
-		private bool TopCentered = true;
-		private bool LeftCentered = true;
 
 
 

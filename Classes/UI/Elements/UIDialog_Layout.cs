@@ -6,7 +6,8 @@ using HamstarHelpers.Classes.UI.Theme;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all
+	/// interactions until closed.
 	/// </summary>
 	public abstract partial class UIDialog : UIThemedState {
 		/// <summary>
@@ -40,16 +41,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Recalculates position of outer container
 		/// </summary>
 		public void RefreshOuterContainerPosition() {
-			CalculatedStyle dim = this.OuterContainer.GetDimensions();
+			CalculatedStyle dim = this.OuterContainer.GetOuterDimensions();
 			float offsetX = this.LeftPixels;
 			float offsetY = this.TopPixels;
 
-			if( this.LeftCentered ) {
-				offsetX -= dim.Width * 0.5f;
-			}
-			if( this.TopCentered ) {
-				offsetY -= dim.Height * 0.5f;
-			}
+			offsetX -= dim.Width * this.OriginPercentHorizontal;
+			offsetY -= dim.Height * this.OriginPercentVertical;
 			
 			this.OuterContainer.Left.Set( offsetX, this.LeftPercent );
 			this.OuterContainer.Top.Set( offsetY, this.TopPercent );
@@ -63,11 +60,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="pixels">Pixel amount from the left.</param>
 		/// <param name="percent">Percent amount from the left.</param>
-		/// <param name="centered">Subtracts half the screen width from the pixel amount.</param>
-		public void SetLeftPosition( float pixels, float percent, bool centered ) {
+		/// <param name="originPercent">Adjusts the position within the panel to align upon.</param>
+		public void SetLeftPosition( float pixels, float percent, float originPercent = 0.5f ) {
 			this.LeftPixels = pixels;
 			this.LeftPercent = percent;
-			this.LeftCentered = centered;
+			this.OriginPercentHorizontal = originPercent;
 
 			this.RefreshOuterContainerPosition();
 			this.RecalculateMe();
@@ -78,11 +75,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="pixels">Pixel amount from the top.</param>
 		/// <param name="percent">Percent amount from the top.</param>
-		/// <param name="centered">Subtracts half the screen height from the pixel amount.</param>
-		public void SetTopPosition( float pixels, float percent, bool centered ) {
+		/// <param name="originPercent">Adjusts the position within the panel to align upon.</param>
+		public void SetTopPosition( float pixels, float percent, float originPercent = 0.5f ) {
 			this.TopPixels = pixels;
 			this.TopPercent = percent;
-			this.TopCentered = centered;
+			this.OriginPercentVertical = originPercent;
 
 			this.RefreshOuterContainerPosition();
 			this.RecalculateMe();
