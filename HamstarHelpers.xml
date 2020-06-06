@@ -2358,6 +2358,15 @@
             <summary>
             Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
             </summary>
+            <summary>
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            </summary>
+            <summary>
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            </summary>
+            <summary>
+            Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Elements.UIDialog.InitialContainerWidth">
             <summary>
@@ -2391,6 +2400,36 @@
             <param name="initialWidth">Recommended width.</param>
             <param name="initialHeight">Recommended height.</param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates state.
+            </summary>
+            <param name="gameTime">Unused.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.CanOpen">
+            <returns>`true` if dialog can be opened (UI not otherwise captured, no other dialogs, etc.).</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Open">
+            <summary>
+            Opens the dialog. All input and UI context is captured.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Close">
+            <summary>
+            Closes the current dialog. All UI context is reverted to the game's normal state.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RefreshTheme">
+            <summary>
+            Refreshes visual theming.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Draws the dialog if it's open.
+            </summary>
+            <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.OnInitialize">
             <summary>
             Initializes containers and inner components.
@@ -2408,36 +2447,18 @@
             Used to initialize dialog's contents.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Update(Microsoft.Xna.Framework.GameTime)">
-            <summary>
-            Updates state.
-            </summary>
-            <param name="gameTime">Unused.</param>
-        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RecalculateMe">
             <summary>
-            Intended to replace `Recalculate()` for technical reasons. Recalculates positions of dialog elements.
+            Intended to replace `Recalculate()` for technical reasons (accomodates 'backend' `UserInterface`). Recalculates
+            positions of dialog elements.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Recalculate">
             @private
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RecalculateOuterContainer">
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RefreshOuterContainerPosition">
             <summary>
             Recalculates position of outer container
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.CanOpen">
-            <returns>`true` if dialog can be opened (UI not otherwise captured, no other dialogs, etc.).</returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Open">
-            <summary>
-            Opens the dialog. All input and UI context is captured.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Close">
-            <summary>
-            Closes the current dialog. All UI context is reverted to the game's normal state.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetLeftPosition(System.Single,System.Single,System.Boolean)">
@@ -2456,16 +2477,8 @@
             <param name="percent">Percent amount from the top.</param>
             <param name="centered">Subtracts half the screen height from the pixel amount.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RefreshTheme">
-            <summary>
-            Refreshes visual theming.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
-            <summary>
-            Draws the dialog if it's open.
-            </summary>
-            <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RecalculateOuterContainer">
+            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UIHiddenPanel">
             <summary>

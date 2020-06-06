@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
-using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Internals.UI;
 
@@ -12,7 +11,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a UI dialog (stand-alone, centered panel) element. All dialogs are modal, and exclusively capture all interactions until closed.
 	/// </summary>
-	public abstract class UIDialog : UIThemedState {
+	public abstract partial class UIDialog : UIThemedState {
 		/// <summary>
 		/// Recommended dialog width.
 		/// </summary>
@@ -33,7 +32,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// @private
 		protected UIElement OuterContainer = null;
 		/// @private
-		protected UIPanel InnerContainer = null;
+		protected UIThemedPanel InnerContainer = null;
 
 		/// @private
 		protected bool SetDialogToClose = false;
@@ -57,47 +56,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.InitialContainerWidth = initialWidth;
 			this.InitialContainerHeight = initialHeight;
 		}
-
-		////////////////
-		
-		/// <summary>
-		/// Initializes containers and inner components.
-		/// </summary>
-		public override void OnInitialize() {
-			this.InitializeContainer( this.InitialContainerWidth, this.InitialContainerHeight );
-			this.InitializeComponents();
-
-			this.RefreshTheme();
-		}
-
-
-		/// <summary>
-		/// Initializes inner (content-bearing) and outer (screen-positioned) containers.
-		/// </summary>
-		/// <param name="width">Outer container width.</param>
-		/// <param name="height">Outer container height.</param>
-		public void InitializeContainer( int width, int height ) {
-			this.OuterContainer = new UIElement();
-			this.OuterContainer.Width.Set( width, 0f );
-			this.OuterContainer.Height.Set( height, 0f );
-			this.OuterContainer.MaxWidth.Set( width, 0f );
-			this.OuterContainer.MaxHeight.Set( height, 0f );
-			this.OuterContainer.HAlign = 0f;
-			this.Append( this.OuterContainer );
-
-			this.RecalculateOuterContainer();
-
-			this.InnerContainer = new UIPanel();
-			this.InnerContainer.Width.Set( 0f, 1f );
-			this.InnerContainer.Height.Set( 0f, 1f );
-			this.OuterContainer.Append( (UIElement)this.InnerContainer );
-		}
-
-
-		/// <summary>
-		/// Used to initialize dialog's contents.
-		/// </summary>
-		public abstract void InitializeComponents();
 
 
 		////////////////
@@ -127,50 +85,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			if( this.OuterContainer.IsMouseHovering ) {
 				Main.LocalPlayer.mouseInterface = true;
 			}
-		}
-
-		////////////////
-
-		/// <summary>
-		/// Intended to replace `Recalculate()` for technical reasons. Recalculates positions of dialog elements.
-		/// </summary>
-		public virtual void RecalculateMe() {	// Call this instead of Recalculate
-			if( this.Backend != null ) {
-				this.Backend.Recalculate();
-			} else {
-				this.Recalculate();
-			}
-		}
-
-		/// @private
-		[Obsolete("use RecalculateMe()")]
-#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
-		public sealed override void Recalculate() {
-			base.Recalculate();
-
-			if( this.OuterContainer != null ) {
-				this.RecalculateOuterContainer();
-			}
-		}
-#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
-
-		/// <summary>
-		/// Recalculates position of outer container
-		/// </summary>
-		public void RecalculateOuterContainer() {
-			CalculatedStyle dim = this.OuterContainer.GetDimensions();
-			float offsetX = this.LeftPixels;
-			float offsetY = this.TopPixels;
-
-			if( this.LeftCentered ) {
-				offsetX -= dim.Width * 0.5f;
-			}
-			if( this.TopCentered ) {
-				offsetY -= dim.Height * 0.5f;
-			}
-			
-			this.OuterContainer.Left.Set( offsetX, this.LeftPercent );
-			this.OuterContainer.Top.Set( offsetY, this.TopPercent );
 		}
 
 
@@ -218,35 +132,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			}
 
 			this.Backend = null;
-		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Repositions the dialog horizontally (via standard `StyleDimension.Set(...)`).
-		/// </summary>
-		/// <param name="pixels">Pixel amount from the left.</param>
-		/// <param name="percent">Percent amount from the left.</param>
-		/// <param name="centered">Subtracts half the screen width from the pixel amount.</param>
-		public void SetLeftPosition( float pixels, float percent, bool centered ) {
-			this.LeftPixels = pixels;
-			this.LeftPercent = percent;
-			this.LeftCentered = centered;
-			this.RecalculateOuterContainer();
-		}
-
-		/// <summary>
-		/// Repositions the dialog vertically (via standard `StyleDimension.Set(...)`).
-		/// </summary>
-		/// <param name="pixels">Pixel amount from the top.</param>
-		/// <param name="percent">Percent amount from the top.</param>
-		/// <param name="centered">Subtracts half the screen height from the pixel amount.</param>
-		public void SetTopPosition( float pixels, float percent, bool centered ) {
-			this.TopPixels = pixels;
-			this.TopPercent = percent;
-			this.TopCentered = centered;
-			this.RecalculateOuterContainer();
 		}
 
 
