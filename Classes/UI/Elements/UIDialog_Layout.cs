@@ -56,7 +56,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		////////////////
 
 		/// <summary>
-		/// Repositions the dialog horizontally (via standard `StyleDimension.Set(...)`).
+		/// Repositions the dialog horizontally (via standard `StyleDimension.Set(...)`). Dialog layout is not recalculated.
 		/// </summary>
 		/// <param name="pixels">Pixel amount from the left.</param>
 		/// <param name="percent">Percent amount from the left.</param>
@@ -65,13 +65,10 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.LeftPixels = pixels;
 			this.LeftPercent = percent;
 			this.OriginPercentHorizontal = originPercent;
-
-			this.RefreshOuterContainerPosition();
-			this.RecalculateMe();
 		}
 
 		/// <summary>
-		/// Repositions the dialog vertically (via standard `StyleDimension.Set(...)`).
+		/// Repositions the dialog vertically (via standard `StyleDimension.Set(...)`). Dialog layout is not recalculated.
 		/// </summary>
 		/// <param name="pixels">Pixel amount from the top.</param>
 		/// <param name="percent">Percent amount from the top.</param>
@@ -80,9 +77,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.TopPixels = pixels;
 			this.TopPercent = percent;
 			this.OriginPercentVertical = originPercent;
-
-			this.RefreshOuterContainerPosition();
-			this.RecalculateMe();
 		}
 	}
 }
