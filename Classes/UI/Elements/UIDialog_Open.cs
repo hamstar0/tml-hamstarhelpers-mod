@@ -49,7 +49,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			this.Backend = Main.InGameUI;
 
-			this.RecalculateMe();
+			this.Recalculate();
 
 			if( DialogManager.Instance != null ) {
 				DialogManager.Instance.SetCurrentDialog( this );

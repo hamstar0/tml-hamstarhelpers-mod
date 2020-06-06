@@ -2445,14 +2445,10 @@
             Used to initialize dialog's contents.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RecalculateMe">
-            <summary>
-            Intended to replace `Recalculate()` for technical reasons (accomodates 'backend' `UserInterface`). Recalculates
-            positions of dialog elements.
-            </summary>
-        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.Recalculate">
-            @private
+            <summary>
+            Recalculates position and size of dialog and all its contents.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RefreshOuterContainerPosition">
             <summary>
@@ -2476,6 +2472,9 @@
             <param name="originPercent">Adjusts the position within the panel to align upon.</param>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.InitializeContainer(System.Int32,System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RecalculateMe">
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.RecalculateOuterContainer">
