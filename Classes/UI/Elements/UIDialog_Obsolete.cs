@@ -16,6 +16,16 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		}
 
 		/// @private
+		[Obsolete( "use Recalculate", true )]
+		public virtual void RecalculateMe() {
+			if( this.Backend != null ) {
+				this.Backend.Recalculate();
+			} else {
+				this.Recalculate();
+			}
+		}
+
+		/// @private
 		[Obsolete( "use RecalculateOuterContainerPosition", true )]
 		public void RecalculateOuterContainer() {
 			this.RefreshOuterContainerPosition();

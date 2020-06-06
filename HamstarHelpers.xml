@@ -2461,7 +2461,7 @@
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetLeftPosition(System.Single,System.Single,System.Single)">
             <summary>
-            Repositions the dialog horizontally (via standard `StyleDimension.Set(...)`).
+            Repositions the dialog horizontally (via standard `StyleDimension.Set(...)`). Dialog layout is not recalculated.
             </summary>
             <param name="pixels">Pixel amount from the left.</param>
             <param name="percent">Percent amount from the left.</param>
@@ -2469,7 +2469,7 @@
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIDialog.SetTopPosition(System.Single,System.Single,System.Single)">
             <summary>
-            Repositions the dialog vertically (via standard `StyleDimension.Set(...)`).
+            Repositions the dialog vertically (via standard `StyleDimension.Set(...)`). Dialog layout is not recalculated.
             </summary>
             <param name="pixels">Pixel amount from the top.</param>
             <param name="percent">Percent amount from the top.</param>

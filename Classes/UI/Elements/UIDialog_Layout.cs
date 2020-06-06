@@ -11,28 +11,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public abstract partial class UIDialog : UIThemedState {
 		/// <summary>
-		/// Intended to replace `Recalculate()` for technical reasons (accomodates 'backend' `UserInterface`). Recalculates
-		/// positions of dialog elements.
+		/// Recalculates position and size of dialog and all its contents.
 		/// </summary>
-		public virtual void RecalculateMe() {	// Call this instead of Recalculate
-			if( this.Backend != null ) {
-				this.Backend.Recalculate();
-			} else {
-				this.Recalculate();
-			}
-		}
-
-		/// @private
-		[Obsolete("use RecalculateMe()")]
-#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
-		public sealed override void Recalculate() {
+		public override void Recalculate() {
 			if( this.OuterContainer != null ) {
 				this.RefreshOuterContainerPosition();
 			}
 
 			base.Recalculate();
 		}
-#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
 
 
 		////////////////
