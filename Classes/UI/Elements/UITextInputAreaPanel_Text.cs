@@ -59,8 +59,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Manually sets the input text, accommodating cursor position. Calls OnPreTextChange to validate.
 		/// </summary>
 		/// <param name="text">New text.</param>
-		/// <returns>`true` if validated by OnPreTextChange.</returns>
-		public (bool success, string newString) SetTextWithValidation( string text ) {
+		/// <returns></returns>
+		public (bool isValid, string croppedString) SetTextWithValidation( string text ) {
 			var strBldr = new StringBuilder( text );
 			if( !this.OnPreTextChange?.Invoke( strBldr ) ?? false ) {
 				return (false, text);
@@ -72,7 +72,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			return (true, newStr);
 		}
 
-		private string SetTextDirect( string text ) {
+		/// <summary>
+		/// Manually sets the input text, accommodating cursor position.
+		/// </summary>
+		/// <param name="text">New text.</param>
+		/// <returns>Input string cropped to MaxLength.</returns>
+		public string SetTextDirect( string text ) {
 			if( text.Length > this.MaxLength ) {
 				text = text.Substring( 0, this.MaxLength );
 			}

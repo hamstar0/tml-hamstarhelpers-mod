@@ -1,14 +1,14 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.UI;
+using Terraria.GameContent.UI.Elements;
+using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
@@ -114,8 +114,8 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			if( this.ResetIssueInput ) {
 				this.ResetIssueInput = false;
-				this.IssueTitleInput.SetText( "" );
-				this.IssueBodyInput.SetText( "" );
+				this.IssueTitleInput.SetTextDirect( "" );
+				this.IssueBodyInput.SetTextDirect( "" );
 			}
 
 			if( this.RequestClose ) {

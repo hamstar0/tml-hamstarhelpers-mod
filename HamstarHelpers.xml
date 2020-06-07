@@ -2686,6 +2686,18 @@
             Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
             multi-line support (yet).
             </summary>
+            <summary>
+            Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
+            multi-line support (yet).
+            </summary>
+            <summary>
+            Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
+            multi-line support (yet).
+            </summary>
+            <summary>
+            Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
+            multi-line support (yet).
+            </summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextEventHandler">
             <summary>
@@ -2767,12 +2779,6 @@
             <param name="hint">Default text. Overridden with any input text.</param>
             <param name="maxLength">Maximum length of text input.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.SetText(System.String)">
-            <summary>
-            Manually sets the input text, accommodating cursor position.
-            </summary>
-            <param name="text">New text.</param>
-        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Update(Microsoft.Xna.Framework.GameTime)">
             <summary>
             Updates state of input, including cursor animation.
@@ -2783,24 +2789,6 @@
             <summary>
             Recalculates element positions.
             </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Click(Terraria.UI.UIMouseEvent)">
-            <summary>
-            Implements click behavior. Focuses on the input element.
-            </summary>
-            <param name="evt">Mouse event.</param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Focus">
-            <summary>
-            Sets input to be captured by the current element.
-            </summary>
-            <returns>`true` if able to capture focus.</returns>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Unfocus">
-            <summary>
-            Removes input capture.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Disable">
             <summary>
@@ -2823,6 +2811,27 @@
             </summary>
             <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Click(Terraria.UI.UIMouseEvent)">
+            <summary>
+            Implements click behavior. Focuses on the input element.
+            </summary>
+            <param name="evt">Mouse event.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Focus">
+            <summary>
+            Sets input to be captured by the current element.
+            </summary>
+            <returns>`true` if able to capture focus.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Unfocus">
+            <summary>
+            Removes input capture.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.SetText(System.String)">
+            @private
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.GetFittedText(System.String,System.Int32,System.Single)">
             <summary>
             Applies a cursor to a given string. Cuts down the string to fit within the specified width.
@@ -2831,6 +2840,20 @@
             <param name="cursorPos">Cursor's position.</param>
             <param name="maxAllowedWidth">Max allowed (pixel) width of string.</param>
             <returns>Cursor-added input string.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.SetTextWithValidation(System.String)">
+            <summary>
+            Manually sets the input text, accommodating cursor position. Calls OnPreTextChange to validate.
+            </summary>
+            <param name="text">New text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.SetTextDirect(System.String)">
+            <summary>
+            Manually sets the input text, accommodating cursor position.
+            </summary>
+            <param name="text">New text.</param>
+            <returns>Input string cropped to MaxLength.</returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement">
             <summary>
