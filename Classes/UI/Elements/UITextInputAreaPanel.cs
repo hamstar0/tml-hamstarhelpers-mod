@@ -1,13 +1,11 @@
-﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.UI;
+﻿using System;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Text;
 using Terraria;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -15,7 +13,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
 	/// multi-line support (yet).
 	/// </summary>
-	public class UITextInputAreaPanel : UIThemedPanel, IToggleable {
+	public partial class UITextInputAreaPanel : UIThemedPanel, IToggleable {
 		/// <summary>
 		/// Event handler for text input events
 		/// </summary>
@@ -112,33 +110,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.IsInteractive = false;
 			this.MaxLength = maxLength;
 
-			this.SetText( "" );
+			this.SetTextDirect( "" );
 
 			this.RefreshTheme();
-		}
-
-
-		////////////////
-		
-		/// <summary>
-		/// Manually sets the input text, accommodating cursor position.
-		/// </summary>
-		/// <param name="text">New text.</param>
-		public void SetText( string text ) {
-			var strBldr = new StringBuilder( text );
-			if( !this.OnPreTextChange?.Invoke( strBldr ) ?? false ) {
-				return;
-			}
-
-			text = strBldr.ToString();
-
-			if( text.Length > this.MaxLength ) {
-				text = text.Substring( 0, this.MaxLength );
-			}
-
-			this.Text = text;
-			this.CursorPos = text.Length; // TODO: Allow cursor moving
-			this.DisplayText = UITextInputAreaPanel.GetFittedText( text, this.CursorPos, this.GetInnerDimensions().Width );
 		}
 
 
@@ -149,31 +123,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="gameTime">Unused.</param>
 		public override void Update( GameTime gameTime ) {
-			if( this.HasFocus ) {
-				Main.blockInput = true;	// Force the point!
-
-				this.CursorAnimation++;
-
-				Terraria.GameInput.PlayerInput.WritingText = true;
-				Main.instance.HandleIME();
-
-				string newText = Main.GetInputText( this.Text );
-
-				if( !newText.Equals( this.Text ) ) {
-					this.SetText( newText );
-				}
-
-				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
-					this.Unfocus();
-				}
-			}
-
-			if( this.HasFocus ) {
-				Vector2 mouse = new Vector2( Main.mouseX, Main.mouseY );
-				if( !this.ContainsPoint(mouse) && Main.mouseLeft ) {
-					this.Unfocus();
-				}
-			}
+			this.UpdateFocus();
 
 			base.Update( gameTime );
 		}
@@ -182,54 +132,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Recalculates element positions.
 		/// </summary>
 		public override void Recalculate() {
-			this.SetText( this.Text );
+			this.SetTextDirect( this.Text );
 			base.Recalculate();
-		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Implements click behavior. Focuses on the input element.
-		/// </summary>
-		/// <param name="evt">Mouse event.</param>
-		public override void Click( UIMouseEvent evt ) {
-			this.Focus();
-			base.Click( evt );
-		}
-
-		////////////////
-
-		/// <summary>
-		/// Sets input to be captured by the current element.
-		/// </summary>
-		/// <returns>`true` if able to capture focus.</returns>
-		public bool Focus() {
-			if( !this.IsInteractive ) { return false; }
-			if( this.HasFocus ) { return false; }
-			this.HasFocus = true;
-
-			this.CursorAnimation = 0;
-
-			Main.blockInput = true;
-			Main.clrInput();
-
-			return true;
-		}
-
-		/// <summary>
-		/// Removes input capture.
-		/// </summary>
-		/// <returns></returns>
-		public bool Unfocus() {
-			if( !this.HasFocus ) { return false; }
-			this.HasFocus = false;
-
-			Main.blockInput = false;
-
-			this.OnUnfocus?.Invoke();
-
-			return true;
 		}
 
 
@@ -294,13 +198,18 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				}
 
 				if( this.HasFocus ) {
-					var imePos = new Vector2( (float)(Main.screenWidth / 2), (float)(this.GetDimensions().ToRectangle().Bottom + 32) );
+					var imePos = new Vector2(
+						Main.screenWidth / 2,
+						this.GetDimensions().ToRectangle().Bottom + 32
+					);
 					Main.instance.DrawWindowsIMEPanel( imePos, 0.5f );
 
 					if( (this.CursorAnimation %= 40) <= 20 ) {
 						// TODO cursor needs to be offset according to display text:
 						
-						float cursorOffsetX = this.DisplayText.Length == 0 ? 0f : Main.fontMouseText.MeasureString( this.DisplayText ).X;
+						float cursorOffsetX = this.DisplayText.Length == 0
+							? 0f
+							: Main.fontMouseText.MeasureString( this.DisplayText ).X;
 						pos.X += cursorOffsetX + 2.0f;    //((innerDim.Width - this.TextSize.X) * 0.5f)
 
 						Utils.DrawBorderString( sb, "|", pos, Color.White );
@@ -313,49 +222,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			} catch( Exception e ) {
 				LogHelpers.Log( e.ToString() );
 			}
-		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Applies a cursor to a given string. Cuts down the string to fit within the specified width.
-		/// </summary>
-		/// <param name="text">Input string.</param>
-		/// <param name="cursorPos">Cursor's position.</param>
-		/// <param name="maxAllowedWidth">Max allowed (pixel) width of string.</param>
-		/// <returns>Cursor-added input string.</returns>
-		public static string GetFittedText( string text, int cursorPos, float maxAllowedWidth ) {
-			int start = 0;
-			int end = text.Length;
-			string substr = text;
-
-			while( Main.fontMouseText.MeasureString( substr ).X > maxAllowedWidth ) {
-				if( cursorPos >= end ) {
-					start++;
-					substr = (end - start) >= 1
-						? substr.Substring( 1 )
-						: "";
-				} else if( cursorPos <= start ) {
-					end--;
-					substr = substr.Substring( 0, end - start );
-				} else {
-					start++;
-					end--;
-					substr = (end - start) >= 1
-						? substr.Substring( 1, end - start )
-						: "";
-				}
-			}
-
-			//if( end < text.Length && end > 0 ) {
-			//	substr = substr.Substring( 0, substr.Length - 1 ) + '…';
-			//}
-			//if( start > 0 && substr.Length > 0 ) {
-			//	substr = '…' + substr.Substring( 1 );
-			//}
-
-			return substr;
 		}
 	}
 }
