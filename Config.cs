@@ -95,6 +95,13 @@ namespace HamstarHelpers {
 		public bool DebugModeNetInfo { get; set; } = false;
 
 		/// <summary>
+		/// Logs PacketProtocol payload content.
+		/// </summary>
+		[Label( "Debug Mode - Packet Info" )]
+		[Tooltip( "Logs PacketProtocol payload content." )]
+		public bool DebugModePacketInfo { get; set; } = false;
+
+		/// <summary>
 		/// Catches and logs unhandled exceptions (before crash).
 		/// </summary>
 		[Label( "Debug Mode - Unhandled Exception Logging" )]
@@ -115,13 +122,6 @@ namespace HamstarHelpers {
 		[Label( "Debug Mode - Silent Logging" )]
 		[Tooltip( "Silences silent logging." )]
 		public bool DebugModeDisableSilentLogging { get; set; } = false;
-
-		/// <summary>
-		/// Logs PacketProtocol payload content.
-		/// </summary>
-		[Label( "Debug Mode - Packet Info" )]
-		[Tooltip( "Logs PacketProtocol payload content." )]
-		public bool DebugModePacketInfo { get; set; } = false;
 
 		/// <summary>
 		/// Displays the current menu's ID in bottom right.

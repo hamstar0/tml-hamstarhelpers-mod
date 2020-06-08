@@ -18,19 +18,22 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
 	public abstract partial class StreamProtocol {
-		private static void ReadStreamIntoContainer( BinaryReader reader, StreamProtocol fieldContainer ) {
-			IOrderedEnumerable<FieldInfo> orderedFields = fieldContainer.OrderedFields;
+		private void ReadStreamIntoContainer( BinaryReader reader ) {
+			IOrderedEnumerable<FieldInfo> orderedFields = this.OrderedFields;
 			int i = 0;
 
 			if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
-				LogHelpers.Log( "  Begun reading packet " + fieldContainer.GetType().Name + " ("+fieldContainer.FieldCount+" fields)" );
+				var pp = this as PacketProtocol;
+				if( pp == null || pp.IsVerbose ) {
+					LogHelpers.Log( "  Begun reading packet " + this.GetType().Name + " (" + this.FieldCount + " fields)" );
+				}
 			}
 
 			foreach( FieldInfo field in orderedFields ) {
 				i++;
 
 				Type fieldType = field.FieldType;
-				object fieldData = StreamProtocol.ReadStreamValue( reader, fieldType );
+				object fieldData = this.ReadStreamValue( reader, fieldType );
 
 				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					if( Attribute.IsDefined( field, typeof( ProtocolWriteIgnoreServerAttribute ) ) ) {
@@ -43,20 +46,23 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				}
 
 				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
-					LogHelpers.Log( "  * Reading packet "+fieldContainer.GetType().Name
-						+" field ("+i+" of "+fieldContainer.FieldCount+") "+field.Name
-						+": "+DotNetHelpers.Stringify(fieldData, 32) );
+					var pp = this as PacketProtocol;
+					if( pp == null || pp.IsVerbose ) {
+						LogHelpers.Log( "  * Reading packet "+ this.GetType().Name
+							+" field ("+i+" of "+ this.FieldCount+") "+field.Name
+							+": "+DotNetHelpers.Stringify(fieldData, 32) );
+					}
 				}
 
 //LogHelpers.Log( "READ "+ fieldContainer.GetType().Name + " FIELD " + field + " VALUE " + fieldData );
-				field.SetValue( fieldContainer, fieldData );
+				field.SetValue( this, fieldData );
 			}
 		}
 
 
 		////////////////
 
-		private static object ReadStreamValue( BinaryReader reader, Type fieldType ) {
+		private object ReadStreamValue( BinaryReader reader, Type fieldType ) {
 			object rawVal;
 
 			switch( Type.GetTypeCode( fieldType ) ) {
@@ -103,7 +109,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				rawVal = reader.ReadDecimal();
 				break;
 			case TypeCode.Object:
-				rawVal = StreamProtocol.ReadStreamObjectValue( reader, fieldType );
+				rawVal = this.ReadStreamObjectValue( reader, fieldType );
 				break;
 			default:
 				rawVal = null;
@@ -114,8 +120,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 		}
 
 
-		private static object ReadStreamObjectValue( BinaryReader reader, Type fieldType ) {
-			var mymod = ModHelpersMod.Instance;
+		private object ReadStreamObjectValue( BinaryReader reader, Type fieldType ) {
 			bool isEnumerable = false, isDictionary = false;
 			string[] dataTypeNameChunks = null;
 
@@ -133,7 +138,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				}
 			}
 			
-			if( fieldType.IsSubclassOf( typeof( StreamProtocol ) ) ) {
+			if( fieldType.IsSubclassOf( typeof(StreamProtocol) ) ) {
 				var data = (PacketProtocol)StreamProtocol.CreateInstance( fieldType );
 				//var data = (PacketProtocol)Activator.CreateInstance( fieldType, BindingFlags.NonPublic | BindingFlags.Instance, null, new object[] { }, null );
 
@@ -168,7 +173,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 					}
 				} else {
 					for( int i = 0; i < length; i++ ) {
-						object item = StreamProtocol.ReadStreamValue( reader, innerType );
+						object item = this.ReadStreamValue( reader, innerType );
 						arr.SetValue( item, i );
 					}
 				}
@@ -201,7 +206,10 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				string rawJson = reader.ReadString();
 				
 				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
-					LogHelpers.Log( "    - ReadStreamObjectValue - type: "+fieldType.Name+", raw value ("+rawJson.Length+"): \n  "+rawJson );
+					var pp = this as PacketProtocol;
+					if( pp == null || pp.IsVerbose ) {
+						LogHelpers.Log( "    - ReadStreamObjectValue - type: " + fieldType.Name + ", raw value (" + rawJson.Length + "): \n  " + rawJson );
+					}
 				}
 
 				var jsonVal = JsonConvert.DeserializeObject( rawJson, fieldType, XNAContractResolver.DefaultSettings );

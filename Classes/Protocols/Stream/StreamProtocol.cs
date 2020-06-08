@@ -79,7 +79,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 		/// </summary>
 		/// <param name="reader">Binary data reader.</param>
 		protected virtual void ReadStream( BinaryReader reader ) {
-			StreamProtocol.ReadStreamIntoContainer( reader, this );
+			this.ReadStreamIntoContainer( reader );
 		}
 
 
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 		/// </summary>
 		/// <param name="writer">Binary data writer.</param>
 		protected virtual void WriteStream( BinaryWriter writer ) {
-			StreamProtocol.WriteStreamFromContainer( writer, this );
+			this.WriteStreamFromContainer( writer );
 		}
 	}
 }

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 
@@ -17,16 +18,19 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 	/// Provides a way to automatically ensure order of fields for transmission.
 	/// </summary>
 	public abstract partial class StreamProtocol {
-		private static void WriteStreamFromContainer( BinaryWriter writer, StreamProtocol fieldContainer ) {
-			IOrderedEnumerable<FieldInfo> orderedFields = fieldContainer.OrderedFields;
+		private void WriteStreamFromContainer( BinaryWriter writer ) {
+			IOrderedEnumerable<FieldInfo> orderedFields = this.OrderedFields;
 			int i = 0;
 
-			if( !StreamProtocol.ValidateConstructor(fieldContainer.GetType()) ) {
-				throw new ModHelpersException( "Invalid default constructor for "+fieldContainer.GetType().Name );
+			if( !StreamProtocol.ValidateConstructor( this.GetType()) ) {
+				throw new ModHelpersException( "Invalid default constructor for "+ this.GetType().Name );
 			}
 
 			if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
-				LogHelpers.Log( "  Begun writing packet " + fieldContainer.GetType().Name + " (" + fieldContainer.FieldCount + " fields)" );
+				var pp = this as PacketProtocol;
+				if( pp == null || pp.IsVerbose ) {
+					LogHelpers.Log( "  Begun writing packet " + this.GetType().Name + " (" + this.FieldCount + " fields)" );
+				}
 			}
 
 			foreach( FieldInfo field in orderedFields ) {
@@ -38,23 +42,26 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 					continue;
 				}
 
-				object rawFieldVal = field.GetValue( fieldContainer );
+				object rawFieldVal = field.GetValue( this );
 				//LogHelpers.Log( "WRITE "+ data.GetType().Name+ " FIELD " + field + " VALUE "+(rawFieldVal??"null"));
 
 				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
-					LogHelpers.Log( "  * Writing packet " + fieldContainer.GetType().Name
-						+ " field (" + i + " of " + fieldContainer.FieldCount + ") "
-						+ field.Name + ": " + DotNetHelpers.Stringify( rawFieldVal, 32 ) );
+					var pp = this as PacketProtocol;
+					if( pp == null || pp.IsVerbose ) {
+						LogHelpers.Log( "  * Writing packet " + this.GetType().Name
+							+ " field (" + i + " of " + this.FieldCount + ") "
+							+ field.Name + ": " + DotNetHelpers.Stringify( rawFieldVal, 32 ) );
+					}
 				}
 
-				StreamProtocol.WriteStreamValue( writer, field.FieldType, rawFieldVal );
+				this.WriteStreamValue( writer, field.FieldType, rawFieldVal );
 			}
 		}
 
 
 		////////////////
 		
-		private static void WriteStreamValue( BinaryWriter writer, Type fieldType, object rawVal ) {
+		private void WriteStreamValue( BinaryWriter writer, Type fieldType, object rawVal ) {
 			switch( Type.GetTypeCode( fieldType ) ) {
 			case TypeCode.String:
 				writer.Write( (String)rawVal );
@@ -99,19 +106,19 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				writer.Write( (Decimal)rawVal );
 				break;
 			case TypeCode.Object:
-				StreamProtocol.WriteStreamObjectValue( writer, fieldType, rawVal );
+				this.WriteStreamObjectValue( writer, fieldType, rawVal );
 				break;
 			}
 //LogHelpers.Log( " WriteStreamValue "+Type.GetTypeCode( fieldType ).ToString()+" - "+fieldType+": "+rawVal );
 		}
 
 
-		private static void WriteStreamObjectValue( BinaryWriter writer, Type fieldType, object rawVal ) {
-			bool isEnumerable = false, isDictionary = false;
-			string[] dataTypeNameChunks = null;
+		private void WriteStreamObjectValue( BinaryWriter writer, Type fieldType, object rawVal ) {
+			bool isEnumerable = false;
+			bool isDictionary = false;
 
 			if( fieldType.IsInterface ) {
-				dataTypeNameChunks = fieldType.Name.Split( new char[] { '`' }, 2 );
+				string[] dataTypeNameChunks = fieldType.Name.Split( new char[] { '`' }, 2 );
 
 				switch( dataTypeNameChunks[0] ) {
 				case "ISet":
@@ -148,7 +155,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 					}
 				} else {
 					foreach( object item in collection ) {
-						StreamProtocol.WriteStreamValue( writer, innerType, item );
+						this.WriteStreamValue( writer, innerType, item );
 					}
 				}
 
@@ -157,7 +164,10 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				writer.Write( (string)jsonEncVal );
 
 				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
-					LogHelpers.Log( "    - WriteStreamObjectValue - type: " + fieldType.Name + ", raw value ("+jsonEncVal.Length+"): \n  " + jsonEncVal );
+					var pp = this as PacketProtocol;
+					if( pp == null || pp.IsVerbose ) {
+						LogHelpers.Log( "    - WriteStreamObjectValue - type: " + fieldType.Name + ", raw value (" + jsonEncVal.Length + "): \n  " + jsonEncVal );
+					}
 				}
 			}
 		}

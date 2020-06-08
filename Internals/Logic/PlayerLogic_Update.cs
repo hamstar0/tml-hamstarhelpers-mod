@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.NetProtocols;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Internals.NetProtocols;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -22,6 +22,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.UpdateTml( player );
 		}
 
+
 		////////////////
 
 		public void PreUpdateSingle() {
@@ -34,12 +35,14 @@ namespace HamstarHelpers.Internals.Logic {
 			if( player.whoAmI == Main.myPlayer ) { // Current player
 				var myworld = ModContent.GetInstance<ModHelpersWorld>();
 				myworld.WorldLogic.PreUpdateClient();
-			}
 
-			// Update ping every 15 seconds
-			if( ModHelpersConfig.Instance.IsServerGaugingAveragePing && this.TestPing++ > ModHelpersConfig.Instance.PingUpdateDelay ) {
-				PingProtocol.QuickSendToServer();
-				this.TestPing = 0;
+				// Update ping every 15 seconds
+				if( ModHelpersConfig.Instance.IsServerGaugingAveragePing ) {
+					if( this.TestPing++ > ModHelpersConfig.Instance.PingUpdateDelay ) {
+						PingProtocol.QuickSendToServer();
+						this.TestPing = 0;
+					}
+				}
 			}
 		}
 

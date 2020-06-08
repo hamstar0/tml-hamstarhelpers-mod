@@ -4158,6 +4158,11 @@
             Outputs (to log) network message information (sends and receives of PacketProtocol).
             </summary>
         </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModePacketInfo">
+            <summary>
+            Logs PacketProtocol payload content.
+            </summary>
+        </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeUnhandledExceptionLogging">
             <summary>
             Catches and logs unhandled exceptions (before crash).
@@ -4171,11 +4176,6 @@
         <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeDisableSilentLogging">
             <summary>
             Disables logging of "silenced" exceptions.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModePacketInfo">
-            <summary>
-            Logs PacketProtocol payload content.
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeMenuInfo">
