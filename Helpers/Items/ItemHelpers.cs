@@ -168,7 +168,7 @@ namespace HamstarHelpers.Helpers.Items {
 
 
 		////////////////
-
+		
 		/// <summary>
 		/// Calculates the "use time" of an item, accounting for non-melee `reuseDelay` and items that incur "reuse" via.
 		/// animations instead of the internal `useTime` value.
@@ -197,6 +197,42 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 
 			return useTime;
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Creates the best fitting set and amount of coins totalling the given amount. Does not sync.
+		/// </summary>
+		/// <param name="amount"></param>
+		/// <param name="position"></param>
+		/// <returns>List of item `whoAmI` values of each coin.</returns>
+		public static int[] CreateCoins( long amount, Vector2 position ) {
+			var coins = new List<int>( 4 );
+
+			long plat = amount / 1000000L;
+			amount -= plat * 1000000L;
+			long gold = amount / 100000L;
+			amount -= gold * 10000L;
+			long silv = amount / 100L;
+			amount -= silv * 100L;
+			long copp = amount;
+
+			if( plat > 0 ) {
+				coins.Add( Item.NewItem(position, ItemID.PlatinumCoin, (int)plat) );
+			}
+			if( gold > 0 ) {
+				coins.Add( Item.NewItem(position, ItemID.GoldCoin, (int)gold ) );
+			}
+			if( silv > 0 ) {
+				coins.Add( Item.NewItem(position, ItemID.SilverCoin, (int)silv ) );
+			}
+			if( copp > 0 ) {
+				coins.Add( Item.NewItem(position, ItemID.CopperCoin, (int)copp ) );
+			}
+
+			return coins.ToArray();
 		}
 	}
 }
