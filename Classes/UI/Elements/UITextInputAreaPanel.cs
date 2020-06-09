@@ -91,7 +91,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Indicates element is able to be edited.
 		/// </summary>
-		public bool IsInteractive { get; private set; }
+		public bool IsInteractive { get; private set; } = true;
 
 
 
@@ -107,7 +107,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.CursorPos = 0;
 			this.CursorAnimation = 0;
 			this.HasFocus = false;
-			this.IsInteractive = false;
+			this.IsInteractive = true;
 			this.MaxLength = maxLength;
 
 			this.SetTextDirect( "" );

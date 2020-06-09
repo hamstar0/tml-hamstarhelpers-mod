@@ -20,7 +20,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <summary>
 		/// Indicates element is able to be edited.
 		/// </summary>
-		public bool IsInteractive { get; private set; }
+		public bool IsInteractive { get; private set; } = true;
 
 		//public string HoverText = "";
 
