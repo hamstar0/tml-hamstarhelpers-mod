@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.7.3</span>
+   &#160;<span id="projectnumber">v5.8.0</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -125,6 +125,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ae2df08372a1dc9f85f3311276676f08e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#ae2df08372a1dc9f85f3311276676f08e">CalculateStandardUseTime</a> (Item item)</td></tr>
 <tr class="memdesc:ae2df08372a1dc9f85f3311276676f08e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the "use time" of an item, accounting for non-melee <code>reuseDelay</code> and items that incur "reuse" via. animations instead of the internal <code>useTime</code> value.  <a href="#ae2df08372a1dc9f85f3311276676f08e">More...</a><br /></td></tr>
 <tr class="separator:ae2df08372a1dc9f85f3311276676f08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5344e7ea95b1cc501c7bf8da93cdab0f"><td class="memItemLeft" align="right" valign="top">static int []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a5344e7ea95b1cc501c7bf8da93cdab0f">CreateCoins</a> (long amount, Vector2 position)</td></tr>
+<tr class="memdesc:a5344e7ea95b1cc501c7bf8da93cdab0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the best fitting set and amount of coins totalling the given amount. Does not sync.  <a href="#a5344e7ea95b1cc501c7bf8da93cdab0f">More...</a><br /></td></tr>
+<tr class="separator:a5344e7ea95b1cc501c7bf8da93cdab0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static functions pertaining to general use of item. </p>
@@ -164,7 +167,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Tick duration between reuses.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00178">178</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00177">177</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -220,6 +223,54 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if all items consumed in full.</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00134">134</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5344e7ea95b1cc501c7bf8da93cdab0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5344e7ea95b1cc501c7bf8da93cdab0f">&#9670;&nbsp;</a></span>CreateCoins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int [] HamstarHelpers.Helpers.Items.ItemHelpers.CreateCoins </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>amount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>position</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates the best fitting set and amount of coins totalling the given amount. Does not sync. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">amount</td><td></td></tr>
+    <tr><td class="paramname">position</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List of item <code>whoAmI</code> values of each coin.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_item_helpers_8cs_source.html#l00210">210</a> of file <a class="el" href="_item_helpers_8cs_source.html">ItemHelpers.cs</a>.</p>
 
 </div>
 </div>

@@ -35,6 +35,7 @@ var searchData=
   ['ispostplantera',['IsPostPlantera',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#abe8309e2d22d88afde959dc95131b2a1',1,'HamstarHelpers::Services::GameData::BossDataEntry']]],
   ['isreadonly',['IsReadOnly',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_set.html#a719d98c85d5351bd1b8f4a79063fe57e',1,'HamstarHelpers::Classes::DataStructures::ReadOnlySet']]],
   ['issolid',['IsSolid',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#aaaddf048fb694ce9ec058a25cd86066f',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
+  ['isvalid',['isValid',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a000b94f2d0461275fa6c52e211a35a70',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
   ['isvanillabombable',['IsVanillaBombable',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a195cabd2f6a97a863e6c4dd7a47825ac',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
   ['isverbose',['IsVerbose',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a5a1453e4ed82f3d25ae9bc8b89387c86',1,'HamstarHelpers::Classes::Protocols::Packet::PacketProtocol']]]
 ];

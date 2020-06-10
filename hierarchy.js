@@ -111,6 +111,9 @@ var hierarchy =
         [ "HamstarHelpers.Classes.UI.Elements.UIModData", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.UIModData", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
         [ "HamstarHelpers.Classes.UI.Elements.UITextInputPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html", null ]
       ] ],
       [ "HamstarHelpers.Classes.UI.Elements.UIThemedText", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_text.html", [
@@ -134,7 +137,11 @@ var hierarchy =
       [ "HamstarHelpers.Classes.UI.Theme.UIThemedState", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html", [
         [ "HamstarHelpers.Classes.UI.Elements.UIDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html", [
           [ "HamstarHelpers.Classes.UI.Elements.Dialogs.UIPromptDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_dialogs_1_1_u_i_prompt_dialog.html", null ]
-        ] ]
+        ] ],
+        [ "HamstarHelpers.Classes.UI.Elements.UIDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UIDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UIDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html", null ],
+        [ "HamstarHelpers.Classes.UI.Elements.UIDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html", null ]
       ] ]
     ] ],
     [ "HamstarHelpers.Classes.UI.Theme.IToggleable", "interface_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_i_toggleable.html", [
@@ -145,9 +152,15 @@ var hierarchy =
       [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
       [ "HamstarHelpers.Classes.UI.Elements.Slider.UISlider", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html", null ],
       [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", null ],
       [ "HamstarHelpers.Classes.UI.Elements.UITextInputElement", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html", null ],
       [ "HamstarHelpers.Classes.UI.Elements.UITextInputPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_panel.html", null ],
-      [ "HamstarHelpers.Classes.UI.Elements.UITextPanelButton", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html", null ]
+      [ "HamstarHelpers.Classes.UI.Elements.UITextPanelButton", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_panel_button.html", null ],
+      [ "HamstarHelpers.Classes.UI.Elements.UIThemedPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html", null ],
+      [ "HamstarHelpers.Classes.UI.Theme.UIThemedElement", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_element.html", null ],
+      [ "HamstarHelpers.Classes.UI.Theme.UIThemedState", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html", null ]
     ] ],
     [ "HamstarHelpers.Helpers.DotNET.Encoding.JsonHelpers", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_json_helpers.html", null ],
     [ "HamstarHelpers.Helpers.DotNET.Extensions.KeyValuePairExtensions", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_key_value_pair_extensions.html", null ],

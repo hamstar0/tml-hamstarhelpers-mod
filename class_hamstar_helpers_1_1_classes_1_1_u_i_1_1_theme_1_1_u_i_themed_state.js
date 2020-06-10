@@ -2,6 +2,8 @@ var class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state =
 [
     [ "UIThemedState", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#aa95162251bcd7ebb8c4c5833bf003975", null ],
     [ "AppendThemed", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#abfa27dd453ede0c53a208ade1358e693", null ],
+    [ "Disable", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#a0f866fc755509072bd898e615848648f", null ],
+    [ "Enable", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#a2723a81a815a948de44ea5fcecfef239", null ],
     [ "Hide", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#aadd9430736d87c521b5eefafd309961f", null ],
     [ "RefreshTheme", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#abc99aaa425b945d8db4890d86f960f1c", null ],
     [ "RefreshThemeForChild", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_themed_state.html#ae5a6755bd4d798e943a553d129098ad9", null ],

@@ -1,5 +1,14 @@
 var NAVTREEINDEX2 =
 {
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#abac405e88e1eef33e68bdf10f8cbe0e6":[1,0,0,1,0,0,2],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html":[1,0,0,1,0,1],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a3f87761801c268cfc955871df0db08c0":[1,0,0,1,0,1,5],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a60ac84e330e44993c24fdf889607663c":[1,0,0,1,0,1,0],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a6ddd66d4234ceb98a30f233359473515":[1,0,0,1,0,1,1],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a72b3688c3b2f47db85a492c88d523c45":[1,0,0,1,0,1,7],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a74db44a873d0f6a13dc4d6ea6516768c":[1,0,0,1,0,1,2],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a944d6f89e1548a36208f13a0860b4148":[1,0,0,1,0,1,6],
+"class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#abb2d0beb2ff8250e4d9a1263e71b63d9":[1,0,0,1,0,1,8],
 "class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#ac5d706f28a4089ab9d2e18abf37c2c90":[1,0,0,1,0,1,4],
 "class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#ace9585350f66cf13e0bcf2d5fb9283b1":[1,0,0,1,0,1,3],
 "class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#ad5961da6578f0d08a8173cc22cd7d36f":[1,0,0,1,0,1,9],
@@ -240,14 +249,5 @@ var NAVTREEINDEX2 =
 "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a57d326b9579a2c2d91ccb5bf5d183ae9":[1,0,0,1,6,0,2,14],
 "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a6f4cd384b89a04b98c8a6c2d76adea44":[1,0,0,1,6,0,2,17],
 "class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a77d8009605e1412f77361fa1aa63d78c":[1,0,0,1,6,0,2,18],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a7a40382d12619747641cc226315cfc5c":[1,0,0,1,6,0,2,15],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a7fc7a5f28d2d96a2981226f456f97eb6":[1,0,0,1,6,0,2,11],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a807b35b5304895f1d606114597fea56c":[1,0,0,1,6,0,2,2],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a9cc3d2b97bac41793e62d75775c40b03":[1,0,0,1,6,0,2,0],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a9d645acfdf5227aad1acb63a0b2679a7":[1,0,0,1,6,0,2,4],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a9e26b6cdd7c5136020f947063143d882":[1,0,0,1,6,0,2,19],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#ab99435c70d18446d1b48974ebc258ee7":[1,0,0,1,6,0,2,23],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#abbae0eab57b8da25591f211a0cd98d24":[1,0,0,1,6,0,2,3],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#acab45d17d3ba2472ec2f58dad7a66185":[1,0,0,1,6,0,2,20],
-"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#ad8b2f824b2467b19d401ccc18935a734":[1,0,0,1,6,0,2,7]
+"class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a7a40382d12619747641cc226315cfc5c":[1,0,0,1,6,0,2,15]
 };

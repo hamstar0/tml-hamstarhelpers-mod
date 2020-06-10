@@ -44,6 +44,7 @@ var searchData=
   ['createbrambleat',['CreateBrambleAt',['../class_hamstar_helpers_1_1_tiles_1_1_cursed_bramble_tile.html#a762a566c3f7b33eac0a260801be97f91',1,'HamstarHelpers::Tiles::CursedBrambleTile']]],
   ['createbramblepatchat',['CreateBramblePatchAt',['../class_hamstar_helpers_1_1_tiles_1_1_cursed_bramble_tile.html#a07f76ac033280d721ad289fc2d7e16ac',1,'HamstarHelpers::Tiles::CursedBrambleTile']]],
   ['createbramblepatchesat',['CreateBramblePatchesAt',['../class_hamstar_helpers_1_1_tiles_1_1_cursed_bramble_tile.html#ad6441891aba840ab29e47e612639800b',1,'HamstarHelpers::Tiles::CursedBrambleTile']]],
+  ['createcoins',['CreateCoins',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a5344e7ea95b1cc501c7bf8da93cdab0f',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
   ['createitem',['CreateItem',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a62f5e38af0593f59eb2f78092f57140e',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
   ['currentplayerkillsofbannernpc',['CurrentPlayerKillsOfBannerNpc',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_helpers.html#ad8de05dc4677400e7ec6bd9b926c4672',1,'HamstarHelpers::Helpers::NPCs::NPCHelpers']]],
   ['customloadhookvalidator',['CustomLoadHookValidator',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hook_validator.html#aa923da05fce3dbc81a753db84742d2ca',1,'HamstarHelpers::Services::Hooks::LoadHooks::CustomLoadHookValidator']]]
