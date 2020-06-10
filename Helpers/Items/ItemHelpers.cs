@@ -166,7 +166,6 @@ namespace HamstarHelpers.Helpers.Items {
 		}
 
 
-
 		////////////////
 		
 		/// <summary>

@@ -6912,6 +6912,14 @@
             <param name="item"></param>
             <returns>Tick duration between reuses.</returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Items.ItemHelpers.CreateCoins(System.Int64,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Creates the best fitting set and amount of coins totalling the given amount. Does not sync.
+            </summary>
+            <param name="amount"></param>
+            <param name="position"></param>
+            <returns>List of item `whoAmI` values of each coin.</returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Items.ItemIdentityHelpers">
             <summary>
             Assorted static "helper" functions pertaining to item identification.
