@@ -38,6 +38,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		protected bool SetDialogToClose = false;
 
 
+		////
+
 		/// <summary>Horizontal position within the panel to align upon.</summary>
 		protected float OriginPercentHorizontal = 0.5f;
 
@@ -48,6 +50,10 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		private float TopPercent = 0.5f;
 		private float LeftPixels = 0f;
 		private float LeftPercent = 0.5f;
+
+		////
+
+		private bool NeedsRecalc = false;
 
 
 
@@ -71,6 +77,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 			if( !this.IsOpen ) {
 				return;
+			}
+
+			if( this.NeedsRecalc ) {
+				this.NeedsRecalc = false;
+				this.Recalculate();
 			}
 
 			this.UpdateOpenState();

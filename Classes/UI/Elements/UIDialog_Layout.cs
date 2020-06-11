@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {

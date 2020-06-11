@@ -12,7 +12,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public abstract partial class UIDialog : UIThemedState {
 		private void UpdateOpenState() {
-			if( Main.playerInventory || Main.npcChatText != "" || this.Backend == null || this.Backend.CurrentState != this ) {
+			if( Main.playerInventory ) {
+				this.Close();
+				return;
+			}
+			if( Main.npcChatText != "" ) {
+				this.Close();
+				return;
+			}
+			if( this.Backend == null || this.Backend.CurrentState != this ) {
 				this.Close();
 				return;
 			}
@@ -39,6 +47,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		public virtual void Open() {
 			this.IsOpen = true;
+			this.NeedsRecalc = true;
 
 			Main.playerInventory = false;
 			Main.editChest = false;
