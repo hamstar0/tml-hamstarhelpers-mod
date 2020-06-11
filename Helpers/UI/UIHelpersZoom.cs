@@ -113,7 +113,8 @@ namespace HamstarHelpers.Helpers.UI {
 		/// removed, and applies it.</param>
 		/// <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
 		/// removed, and applies it.</param>
-		/// <param name="uiZoomStateForCenterOffset">Applies zoom effects relative to the center of the screen.</param>
+		/// <param name="uiZoomStateForCenterOffset"></param>
+		/// <param name="gameZoomStateForCenterOffset"></param>
 		/// <returns></returns>
 		public static Vector2 ApplyZoomFromScreenCenter(
 					Vector2 value,
@@ -123,22 +124,7 @@ namespace HamstarHelpers.Helpers.UI {
 					bool? gameZoomStateForCenterOffset ) {
 			var scrMid = new Vector2( Main.screenWidth, Main.screenHeight ) * 0.5f;
 			value -= UIZoomHelpers.ApplyZoom( scrMid, uiZoomStateForCenterOffset, gameZoomStateForCenterOffset );
-
-			if( uiZoomState.HasValue ) {
-				if( uiZoomState.Value ) {
-					value /= Main.UIScale;
-				} else {
-					value *= Main.UIScale;
-				}
-			}
-			if( gameZoomState.HasValue ) {
-				if( gameZoomState.Value ) {
-					value /= Main.GameZoomTarget;
-				} else {
-					value *= Main.GameZoomTarget;
-				}
-			}
-
+			value = UIZoomHelpers.ApplyZoom( value, uiZoomState, gameZoomState );
 			value += scrMid;
 
 			return value;
