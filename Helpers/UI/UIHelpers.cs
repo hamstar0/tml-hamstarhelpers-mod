@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
 using Terraria;
 
 
@@ -8,7 +8,7 @@ namespace HamstarHelpers.Helpers.UI {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the in-game UI (positions, interactions, etc.).
 	/// </summary>
-	public class UIHelpers {
+	public partial class UIHelpers {
 		/// <summary></summary>
 		public static readonly int MinScreenWidth = 800;
 		/// <summary></summary>
@@ -26,60 +26,6 @@ namespace HamstarHelpers.Helpers.UI {
 		/// <summary></summary>
 		public static readonly int MaxScreenHeightTiles = 70;   //1080 + 40
 
-
-
-		////////////////
-
-		/// <summary>
-		/// Gets the current screen size, factoring zoom.
-		/// </summary>
-		/// <returns></returns>
-		public static Tuple<int, int> GetScreenSize() {
-			int screenWid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
-			int screenHei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
-
-			return Tuple.Create( screenWid, screenHei );
-		}
-
-		/// <summary>
-		/// Gets the screen dimensions (factoring game zoom) within world space.
-		/// </summary>
-		/// <returns></returns>
-		public static Rectangle GetWorldFrameOfScreen() {
-			float screenWid = (float)Main.screenWidth / Main.GameZoomTarget;
-			float screenHei = (float)Main.screenHeight / Main.GameZoomTarget;
-			int screenX = (int)Main.screenPosition.X + (int)(((float)Main.screenWidth - screenWid) * 0.5f);
-			int screenY = (int)Main.screenPosition.Y + (int)(((float)Main.screenHeight - screenHei) * 0.5f);
-
-			return new Rectangle( screenX, screenY, (int)screenWid, (int)screenHei );
-		}
-
-		/// <summary>
-		/// Converts a given screen position to world coordinates (factoring zoom).
-		/// </summary>
-		/// <param name="worldPos"></param>
-		/// <returns></returns>
-		public static Vector2 ConvertToScreenPosition( Vector2 worldPos ) {
-			var frame = UIHelpers.GetWorldFrameOfScreen();
-			var screenPos = new Vector2( frame.X, frame.Y );
-
-			return (worldPos - screenPos) * Main.GameZoomTarget;
-		}
-
-		/// <summary>
-		/// Converts the mouse to world coordinates (factoring screen zoom).
-		/// </summary>
-		/// <returns></returns>
-		public static Vector2 GetWorldMousePosition() {
-			Rectangle zoomedScreenFrame = UIHelpers.GetWorldFrameOfScreen();
-			var zoomedScreenPos = new Vector2( zoomedScreenFrame.X, zoomedScreenFrame.Y );
-			var mousePos = new Vector2( Main.mouseX, Main.mouseY );
-
-			Vector2 screenMousePos = UIHelpers.ConvertToScreenPosition( mousePos + Main.screenPosition );
-			Vector2 worldMousePos = screenMousePos + zoomedScreenPos;
-
-			return worldMousePos;
-		}
 
 
 		////////////////

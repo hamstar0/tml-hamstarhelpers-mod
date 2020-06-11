@@ -1,14 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
+using HamstarHelpers.Classes.Loadable;
 
 
 namespace HamstarHelpers.Classes.UI.Theme {
-	public partial class UITheme {
+	public partial class UITheme : ILoadable {
 		/// <summary>
 		/// Default "vanilla Terraria" UI theme presets.
 		/// </summary>
 		public static UITheme Vanilla;
 
-		static UITheme() {
+
+
+		////////////////
+
+		private void InitializeStatic() {
 			UITheme.Vanilla = new UITheme();
 
 			//Color defaultUIBlue = new Color( 73, 94, 171 );
@@ -68,6 +73,20 @@ namespace HamstarHelpers.Classes.UI.Theme {
 			UITheme.Vanilla.UrlColor = Color.Lerp( new Color( 80, 80, 255 ), Color.White, 0.5f );
 			UITheme.Vanilla.UrlLitColor = Color.Lerp( new Color( 128, 128, 255 ), Color.White, 0.5f );
 			UITheme.Vanilla.UrlVisitColor = Color.Lerp( new Color( 192, 0, 255 ), Color.White, 0.5f );
+		}
+
+
+		////////////////
+
+		void ILoadable.OnModsLoad() {
+			this.InitializeStatic();
+		}
+
+		void ILoadable.OnModsUnload() {
+			UITheme.Vanilla = null;
+		}
+
+		void ILoadable.OnPostModsLoad() {
 		}
 	}
 }

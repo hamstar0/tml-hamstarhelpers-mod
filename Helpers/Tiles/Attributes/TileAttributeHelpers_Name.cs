@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.Tiles.Attributes {
