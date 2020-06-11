@@ -95,14 +95,20 @@ namespace HamstarHelpers.Helpers.NPCs {
 			}
 
 			float yOff = heightOffset + yOffset + npc.gfxOffY + 4f;
-			float x = position.X + ( (float)npc.width / 2f ) - ( ( (float)tex.Width * scale ) / 2f ) + ( origin.X * scale );
-			float y = position.Y + (float)npc.height - ( (float)texHeight * scale ) + ( origin.Y * scale ) + yOff;
+			float x = position.X
+				+ ((float)npc.width / 2f)
+				- (( (float)tex.Width * scale ) / 2f)
+				+ (origin.X * scale);
+			float y = position.Y
+				+ (float)npc.height
+				- ((float)texHeight * scale)
+				+ (origin.Y * scale)
+				+ yOff;
 
-			Vector2 pos;
+			Vector2 pos = new Vector2(x, y) - Main.screenPosition;
 			if( applyZoom ) {
-				pos = UIHelpers.ConvertToScreenPosition( new Vector2( x, y ) );
-			} else {
-				pos = new Vector2( x, y ) - Main.screenPosition;
+				//pos = UIHelpers.ConvertToScreenPosition( pos );
+				pos = UIZoomHelpers.ApplyZoomFromScreenCenter( pos, null, false, null, null );
 			}
 
 			sb.Draw( tex, pos, frameRect, color, rotation, origin, scale, fx, 1f );

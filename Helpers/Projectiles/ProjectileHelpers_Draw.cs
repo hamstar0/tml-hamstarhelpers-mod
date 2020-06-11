@@ -37,7 +37,8 @@ namespace HamstarHelpers.Helpers.Projectiles {
 
 			Vector2 newpos;
 			if( applyZoom ) {
-				newpos = UIHelpers.ConvertToScreenPosition( pos );
+				//newpos = UIHelpers.ConvertToScreenPosition( pos );
+				newpos = UIZoomHelpers.ApplyZoomFromScreenCenter( pos - Main.screenPosition, null, false, null, null );
 			} else {
 				newpos = pos - Main.screenPosition;
 			}

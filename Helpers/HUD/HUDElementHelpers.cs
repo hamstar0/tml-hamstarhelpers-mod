@@ -48,7 +48,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			Vector2 screenOffset = Vector2.Zero;
 
 			if( applyGameZoom ) {
-				var worldFrame = UIHelpers.GetWorldFrameOfScreen();
+				//var worldFrame = UIHelpers.GetWorldFrameOfScreen();
+				var worldFrame = UIZoomHelpers.GetWorldFrameOfScreen( null, false );
 				screenOffset.X = worldFrame.X - Main.screenPosition.X;
 				screenOffset.Y = worldFrame.Y - Main.screenPosition.Y;
 			}

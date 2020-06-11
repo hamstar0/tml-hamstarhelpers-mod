@@ -38,7 +38,8 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// boundaries.</returns>
 		public static (Vector2 ScreenPosition, bool IsOnScreen) GetOverlayMapPositionAsScreenPosition( Rectangle worldArea ) {    //Main.mapStyle == 2
 			float mapScale = Main.mapOverlayScale;
-			var scrSize = UIHelpers.GetScreenSize();
+			//var scrSize = UIHelpers.GetScreenSize();
+			var scrSize = UIZoomHelpers.GetScreenSize( null, false );
 
 			float offscrLitX = 10f * mapScale;
 			float offscrLitY = 10f * mapScale;

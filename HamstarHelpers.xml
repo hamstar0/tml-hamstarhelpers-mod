@@ -10025,6 +10025,9 @@
             <summary>
             Assorted static "helper" functions pertaining to the in-game UI (positions, interactions, etc.).
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to the in-game UI (positions, interactions, etc.).
+            </summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.UI.UIHelpers.MinScreenWidth">
             <summary></summary>
@@ -10050,31 +10053,6 @@
         <member name="F:HamstarHelpers.Helpers.UI.UIHelpers.MaxScreenHeightTiles">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetScreenSize">
-            <summary>
-            Gets the current screen size, factoring zoom.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetWorldFrameOfScreen">
-            <summary>
-            Gets the screen dimensions (factoring game zoom) within world space.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.ConvertToScreenPosition(Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Converts a given screen position to world coordinates (factoring zoom).
-            </summary>
-            <param name="worldPos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetWorldMousePosition">
-            <summary>
-            Converts the mouse to world coordinates (factoring screen zoom).
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.JustPressedKey(Microsoft.Xna.Framework.Input.Keys)">
             <summary>
             Reports whether a given keyboard key was just pressed. Used primarily for text field inputs.
@@ -10094,6 +10072,78 @@
             Indicates if the mouse is within a given screen rectangle.
             </summary>
             <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetScreenSize">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetWorldFrameOfScreen">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.ConvertToScreenPosition(Microsoft.Xna.Framework.Vector2)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetWorldMousePosition">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Helpers.UI.UIZoomHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to the in-game UI zoom and positions.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIZoomHelpers.GetScreenSize(System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Gets the current screen size according to the given scales.
+            </summary>
+            <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIZoomHelpers.GetWorldFrameOfScreen(System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Gets the world position and range of the screen, according to the given zoom parameters.
+            </summary>
+            <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIZoomHelpers.ApplyZoom(System.Single,System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Applies the given zoom parameters to the given float.
+            </summary>
+            <param name="value"></param>
+            <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIZoomHelpers.ApplyZoom(Microsoft.Xna.Framework.Vector2,System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Applies the given zoom parameters to the given Vector2.
+            </summary>
+            <param name="value"></param>
+            <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIZoomHelpers.ApplyZoomFromScreenCenter(Microsoft.Xna.Framework.Vector2,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Applies the given zoom parameters to the given Vector2.
+            </summary>
+            <param name="value"></param>
+            <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <param name="uiZoomStateForCenterOffset"></param>
+            <param name="gameZoomStateForCenterOffset"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.User.UserHelpers">
@@ -12013,116 +12063,6 @@
         <member name="F:HamstarHelpers.Services.EntityGroups.EntityGroups.LoadedAllValidator">
             <summary>
             Used as the identifier object for binding events (cusom load hooks) to entity group loading completion.
-            </summary>
-        </member>
-        <member name="T:HamstarHelpers.Services.GameData.BossDataEntry">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossDataEntry.Order">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossDataEntry.Name">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossDataEntry.IsHardmode">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossDataEntry.IsPostMechBoss">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossDataEntry.IsPostPlantera">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossDataEntry.IsPostGolem">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossDataEntry.IsPostMoonlord">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.GameData.BossDataEntry.GetNpcId(System.Int32@)">
-            <summary>
-            Gets the NPC id of a given boss.
-            </summary>
-            <param name="npcId"></param>
-            <returns></returns>
-        </member>
-        <member name="T:HamstarHelpers.Services.GameData.BossData">
-            <summary>
-            Supplies a table of all available bosses across vanilla Terraria and most major mods.
-            
-            IMPORTANT: Not finished; untested.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossData.BossOrder">
-            <summary>
-            Orders bosses by guesstimations of sequence.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.GameData.BossData.BossMap">
-            <summary>
-            Maps bosses (by name) to their (loosely) expected progression order.
-            </summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.KingSlime">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.EyeOfCthulhu">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.EaterOfWorlds">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.BrainOfCthulhu">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.QueenBee">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.Skeletron">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.WallOfFlesh">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.TheDestroyer">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.Retinazer">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.Spazmatism">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.SkeletronPrime">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.Plantera">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.Golem">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.DukeFishron">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.Betsy">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.GameData.BossData.MoonLord">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.GameData.BossData.AddBoss(System.String,System.String,System.String)">
-            <summary>
-            Adds a boss definition relative to another boss in progression order.
-            </summary>
-            <param name="sourceMod"></param>
-            <param name="bossName"></param>
-            <param name="betterThanBossOfName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.GameData.BossData.UpdateOrder">
-            <summary>
-            Refreshes boss progression order.
             </summary>
         </member>
         <member name="T:HamstarHelpers.Services.Hooks.Draw.DrawHooks">
