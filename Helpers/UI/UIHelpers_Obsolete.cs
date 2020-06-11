@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.UI {
 	/// </summary>
 	public partial class UIHelpers {
 		/// @private
-		[Obsolete( "use ApplyZoom method for screen width and height", true )]
+		[Obsolete( "use UIZoomHelpers", true )]
 		public static Tuple<int, int> GetScreenSize() {
 			int screenWid = (int)( (float)Main.screenWidth / Main.GameZoomTarget );
 			int screenHei = (int)( (float)Main.screenHeight / Main.GameZoomTarget );
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.UI {
 		}
 
 		/// @private
-		[Obsolete( "use GetWorldFrameOfScreen(bool?, bool?)", true )]
+		[Obsolete( "use UIZoomHelpers", true )]
 		public static Rectangle GetWorldFrameOfScreen() {
 			float screenWid = (float)Main.screenWidth / Main.GameZoomTarget;
 			float screenHei = (float)Main.screenHeight / Main.GameZoomTarget;
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Helpers.UI {
 		}
 
 		/// @private
-		[Obsolete( "use ApplyZoom(Vector2, bool?, bool?)", true )]
+		[Obsolete( "use UIZoomHelpers", true )]
 		public static Vector2 ConvertToScreenPosition( Vector2 worldPos ) {
 			var frame = UIHelpers.GetWorldFrameOfScreen();
 			var screenPos = new Vector2( frame.X, frame.Y );
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Helpers.UI {
 		}
 
 		/// @private
-		[Obsolete( "use ApplyZoom(Vector2, bool?, bool?)", true )]
+		[Obsolete( "use UIZoomHelpers", true )]
 		public static Vector2 GetWorldMousePosition() {
 			Rectangle zoomedScreenFrame = UIHelpers.GetWorldFrameOfScreen();
 			var zoomedScreenPos = new Vector2( zoomedScreenFrame.X, zoomedScreenFrame.Y );
