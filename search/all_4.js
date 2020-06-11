@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['eaterofworlds',['EaterOfWorlds',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#ae00010671e3ebc29ba79dbbc62d461ed',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['editandcontinue',['EditAndContinue',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#ac8e5f916640ce30d6c8f34ab80fb20ee',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['ember',['Ember',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a1d0f8f6aff5868bfc4cfcbaaabab1632',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
   ['emphasis',['Emphasis',['../namespace_hamstar_helpers_1_1_services_1_1_mod_tag_definitions.html#af0d54f6fc3f74edb855987325841d289a43268d52aef2fbd0ba6661b51da1001a',1,'HamstarHelpers::Services::ModTagDefinitions']]],
@@ -36,6 +35,5 @@ var searchData=
   ['expert',['Expert',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a0b84df4e0b66e9d55b22eefb55ca928f',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['extendedplayerhooks',['ExtendedPlayerHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_player_hooks.html',1,'HamstarHelpers::Services::Hooks::ExtendedHooks']]],
   ['extendedtilehooks',['ExtendedTileHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_tile_hooks.html',1,'HamstarHelpers::Services::Hooks::ExtendedHooks']]],
-  ['extensibleinventorycompatibilities',['ExtensibleInventoryCompatibilities',['../class_hamstar_helpers_1_1_services_1_1_mod_compatibilities_1_1_extensible_inventory_compat_1_1_e3807db3241c8b751a61d191fea54a5be.html',1,'HamstarHelpers::Services::ModCompatibilities::ExtensibleInventoryCompat']]],
-  ['eyeofcthulhu',['EyeOfCthulhu',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a8992e457a25952737bd2fab14dd1049f',1,'HamstarHelpers::Services::GameData::BossData']]]
+  ['extensibleinventorycompatibilities',['ExtensibleInventoryCompatibilities',['../class_hamstar_helpers_1_1_services_1_1_mod_compatibilities_1_1_extensible_inventory_compat_1_1_e3807db3241c8b751a61d191fea54a5be.html',1,'HamstarHelpers::Services::ModCompatibilities::ExtensibleInventoryCompat']]]
 ];

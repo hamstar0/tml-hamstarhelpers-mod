@@ -62,7 +62,6 @@ var searchData=
   ['controlpanelicony',['ControlPanelIconY',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a7692892875b9e2d6996c1fd03b9da48f',1,'HamstarHelpers::ModHelpersConfig']]],
   ['controlpaneltabs',['ControlPanelTabs',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html',1,'HamstarHelpers::Services::UI::ControlPanel']]],
   ['convertdecimaltoradix',['ConvertDecimalToRadix',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html#a491799f7de1b4a973c18b571dbaca60d',1,'HamstarHelpers::Helpers::DotNET::Formatting::StringFormattingHelpers']]],
-  ['converttoscreenposition',['ConvertToScreenPosition',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#aafa5e493477bbc2985a5d27b1004b78a',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
   ['converttoshape',['ConvertToShape',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a4b6b637f50712c9a610784224509ff63',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
   ['conveyorbeltpair',['ConveyorBeltPair',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a42ec253902f9f7c85151607c13ed963a',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['conveyorbelts',['ConveyorBelts',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a1693b8eee02e25c8e01ea20dd07f3b7b',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],

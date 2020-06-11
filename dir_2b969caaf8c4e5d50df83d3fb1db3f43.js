@@ -7,7 +7,6 @@ var dir_2b969caaf8c4e5d50df83d3fb1db3f43 =
     [ "DataStore", "dir_542075fde578720f17f334bf698b6e0f.html", "dir_542075fde578720f17f334bf698b6e0f" ],
     [ "Debug", "dir_7b3a8a0e898b6b6593a61bc585df5a2d.html", "dir_7b3a8a0e898b6b6593a61bc585df5a2d" ],
     [ "EntityGroups", "dir_920974f7ac301533654ed607aab6274c.html", "dir_920974f7ac301533654ed607aab6274c" ],
-    [ "GameData", "dir_c6b189fe430208c8ab1b43ca52b09663.html", "dir_c6b189fe430208c8ab1b43ca52b09663" ],
     [ "Hooks", "dir_7d1575d9ff0dc7eb8c81b8da9922f5c5.html", "dir_7d1575d9ff0dc7eb8c81b8da9922f5c5" ],
     [ "Messages", "dir_bcaaab98f6cb13c630f7e5e9e21f4ede.html", "dir_bcaaab98f6cb13c630f7e5e9e21f4ede" ],
     [ "ModCompatibilities", "dir_496a68cbef12e23f2d46b49683fe249d.html", "dir_496a68cbef12e23f2d46b49683fe249d" ],

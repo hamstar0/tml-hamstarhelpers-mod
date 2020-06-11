@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['name',['Name',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#afdf0705bbce538736e8a8030e4c34dde',1,'HamstarHelpers::Services::GameData::BossDataEntry']]],
   ['needsbait',['NeedsBait',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a2cdd847ab4d7b76b3e2d3bb34ccfaad2',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['needsnearbyhoney',['NeedsNearbyHoney',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa6108237b8ea0cc91b1556e77c1700122',1,'HamstarHelpers::Helpers::Recipes']]],
   ['needsnearbylava',['NeedsNearbyLava',['../namespace_hamstar_helpers_1_1_helpers_1_1_recipes.html#a8a7dda6edb3450c84a3b9ed302c8a33aa1e3c09ad012b733e996f41b04ce7aabe',1,'HamstarHelpers::Helpers::Recipes']]],

@@ -23,5 +23,6 @@ var searchData=
   ['uithemedtext',['UIThemedText',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_text.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uithemedtextpanel',['UIThemedTextPanel',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_text_panel.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uiweburl',['UIWebUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_web_url.html',1,'HamstarHelpers::Classes::UI::Elements']]],
+  ['uizoomhelpers',['UIZoomHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_zoom_helpers.html',1,'HamstarHelpers::Helpers::UI']]],
   ['userhelpers',['UserHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_user_1_1_user_helpers.html',1,'HamstarHelpers::Helpers::User']]]
 ];

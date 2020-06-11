@@ -95,7 +95,6 @@ var searchData=
   ['getnewchat',['GetNewChat',['../class_hamstar_helpers_1_1_services_1_1_n_p_c_chat_1_1_n_p_c_chat.html#ad17f67d7431f729f16248d8b682627fb',1,'HamstarHelpers::Services::NPCChat::NPCChat']]],
   ['getnongenderedtownnpctypes',['GetNonGenderedTownNpcTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_town_helpers.html#a86ba9a8b24ecead82f133ead7e166ac5',1,'HamstarHelpers::Helpers::NPCs::NPCTownHelpers']]],
   ['getnpcdefinition',['GetNPCDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#adea1167bc077106337f7317afc82f817',1,'HamstarHelpers::Helpers::NPCs::NPCIdentityHelpers']]],
-  ['getnpcid',['GetNpcId',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data_entry.html#adfb70b5a173d403ab657a4559dc5d77a',1,'HamstarHelpers::Services::GameData::BossDataEntry']]],
   ['getnpcinfo',['GetNpcInfo',['../class_hamstar_helpers_1_1_helpers_1_1_entities_1_1_entity_info_helpers.html#a0ec6b3ebfa5dc1a8a3c4dbe90d09467f',1,'HamstarHelpers::Helpers::Entities::EntityInfoHelpers']]],
   ['getnpctobanneritemtypes',['GetNpcToBannerItemTypes',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_banner_helpers.html#afbce0cb5868db2e4c57d94450a815e7c',1,'HamstarHelpers::Helpers::NPCs::NPCBannerHelpers']]],
   ['getnpctypesofbanneritemtype',['GetNpcTypesOfBannerItemType',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_banner_helpers.html#aeb4fef2e926d6b0ce28611dd70ed91a7',1,'HamstarHelpers::Helpers::NPCs::NPCBannerHelpers']]],
@@ -122,7 +121,6 @@ var searchData=
   ['getregion',['GetRegion',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#af062acb2917227edf85278774d7fd759',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['getrelativedirectorypath',['GetRelativeDirectoryPath',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a71b1d59090a6db45f732ee98ceb82e64',1,'HamstarHelpers::Helpers::Misc::ModCustomDataFileHelpers']]],
   ['getrelativepath',['GetRelativePath',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a6caee33f65c8066b26f3d91aac29bf4b',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]],
-  ['getscreensize',['GetScreenSize',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a5040bfbe20f10a945644883652f27ae1',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
   ['getserverping',['GetServerPing',['../class_hamstar_helpers_1_1_helpers_1_1_net_1_1_net_play_helpers.html#ac714cda2994818f256c1662d41a8231d',1,'HamstarHelpers::Helpers::Net::NetPlayHelpers']]],
   ['getshaderidbydyeitemtype',['GetShaderIdByDyeItemType',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_shader_helpers.html#a80058596102de0ba67a671f729a5c5c5',1,'HamstarHelpers::Helpers::Misc::ShaderHelpers']]],
   ['getshakeduration',['GetShakeDuration',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#afad0d08a4f13401f3be63e1dd96efd1f',1,'HamstarHelpers::Services::Camera::Camera']]],
@@ -161,6 +159,5 @@ var searchData=
   ['getvanillatiledisplayname',['GetVanillaTileDisplayName',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#ad0f625ff308e572a41e65e31b9cbc4d3',1,'HamstarHelpers::Helpers::Tiles::Attributes::TileAttributeHelpers']]],
   ['getvanillatiledisplaynames',['GetVanillaTileDisplayNames',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#ae916fbd43b0de51242c51e84d9f96283',1,'HamstarHelpers::Helpers::Tiles::Attributes::TileAttributeHelpers']]],
   ['getwestbeach',['GetWestBeach',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_location_helpers.html#a73bad78b5da0f43747d4184bdde5801b',1,'HamstarHelpers::Helpers::World::WorldLocationHelpers']]],
-  ['getworldframeofscreen',['GetWorldFrameOfScreen',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a4a2a84e77634d6e7f74b345e076d1470',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
-  ['getworldmouseposition',['GetWorldMousePosition',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a91f2bc846cc4fd297f151c608e9a1a3f',1,'HamstarHelpers::Helpers::UI::UIHelpers']]]
+  ['getworldframeofscreen',['GetWorldFrameOfScreen',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_zoom_helpers.html#a113603f54299584fa9f5803c4c56ed61',1,'HamstarHelpers::Helpers::UI::UIZoomHelpers']]]
 ];

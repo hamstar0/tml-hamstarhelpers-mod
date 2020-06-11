@@ -17,6 +17,5 @@ var searchData=
   ['killwire3',['KillWire3',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a02e031a491baccdd6b1571cf5755ebe7',1,'HamstarHelpers::Helpers::Tiles']]],
   ['killwire4',['KillWire4',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a3bd2905e1bb858b71123a6d308c54f43',1,'HamstarHelpers::Helpers::Tiles']]],
   ['killwithpermadeath',['KillWithPermadeath',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a08bca72ffe2572ae0409d3107a41e5f7',1,'HamstarHelpers::Helpers::Players::PlayerHelpers']]],
-  ['kingslime',['KingSlime',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#adcbff8fc30f3e875b860ae11e671ac75',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['knockback',['Knockback',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a5cfc4f35bbc4deb96cfb6d2843084b96',1,'HamstarHelpers::Helpers::Items::Attributes']]]
 ];

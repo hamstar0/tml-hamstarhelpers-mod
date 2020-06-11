@@ -7,7 +7,6 @@ var namespace_hamstar_helpers_1_1_services =
     [ "DataStore", "namespace_hamstar_helpers_1_1_services_1_1_data_store.html", "namespace_hamstar_helpers_1_1_services_1_1_data_store" ],
     [ "Debug", "namespace_hamstar_helpers_1_1_services_1_1_debug.html", "namespace_hamstar_helpers_1_1_services_1_1_debug" ],
     [ "EntityGroups", "namespace_hamstar_helpers_1_1_services_1_1_entity_groups.html", "namespace_hamstar_helpers_1_1_services_1_1_entity_groups" ],
-    [ "GameData", "namespace_hamstar_helpers_1_1_services_1_1_game_data.html", "namespace_hamstar_helpers_1_1_services_1_1_game_data" ],
     [ "Hooks", "namespace_hamstar_helpers_1_1_services_1_1_hooks.html", "namespace_hamstar_helpers_1_1_services_1_1_hooks" ],
     [ "Messages", "namespace_hamstar_helpers_1_1_services_1_1_messages.html", "namespace_hamstar_helpers_1_1_services_1_1_messages" ],
     [ "ModCompatibilities", "namespace_hamstar_helpers_1_1_services_1_1_mod_compatibilities.html", "namespace_hamstar_helpers_1_1_services_1_1_mod_compatibilities" ],

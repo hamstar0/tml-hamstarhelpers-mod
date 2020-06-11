@@ -1,10 +1,6 @@
 var class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers =
 [
-    [ "ConvertToScreenPosition", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#aafa5e493477bbc2985a5d27b1004b78a", null ],
     [ "GetHoverTipPosition", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ae6707f41ca95484651ab8152408a86a3", null ],
-    [ "GetScreenSize", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a5040bfbe20f10a945644883652f27ae1", null ],
-    [ "GetWorldFrameOfScreen", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a4a2a84e77634d6e7f74b345e076d1470", null ],
-    [ "GetWorldMousePosition", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a91f2bc846cc4fd297f151c608e9a1a3f", null ],
     [ "JustPressedKey", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a65e00ac6558ce577e080495580b1fad1", null ],
     [ "MouseInRectangle", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ac596e3a6454e577bf963f5c123999b6e", null ],
     [ "MaxScreenHeight", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a574afdf16d7f0edd752eb8660ec322af", null ],

@@ -51,7 +51,6 @@ var searchData=
   ['placewire2',['PlaceWire2',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a00560ab1a14c21293a0593fc64455276',1,'HamstarHelpers::Helpers::Tiles']]],
   ['placewire3',['PlaceWire3',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150ad4a60a066c79029da8e8f2dac831fab3',1,'HamstarHelpers::Helpers::Tiles']]],
   ['placewire4',['PlaceWire4',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a38ce16994b799fe1fded06821a86ed79',1,'HamstarHelpers::Helpers::Tiles']]],
-  ['plantera',['Plantera',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a92803c5652b9852569cebbf7416e08e5',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['platform',['Platform',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a419f3742e6de8e0ec4b22cce005e7630',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['platinumcoincolor',['PlatinumCoinColor',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a2633f7797bcec44df25185daa9c9dc83',1,'HamstarHelpers::Helpers::Misc::MiscHelpers']]],
   ['play',['Play',['../class_hamstar_helpers_1_1_services_1_1_overlay_sounds_1_1_overlay_sound.html#aa3a9e5b34c05a9117743cc546c1dab78',1,'HamstarHelpers::Services::OverlaySounds::OverlaySound']]],

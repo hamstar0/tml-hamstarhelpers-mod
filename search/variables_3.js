@@ -15,6 +15,5 @@ var searchData=
   ['displayname',['DisplayName',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a34dcaf9f344589e2111c0a54a73bfa5c',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['displaynamestoids',['DisplayNamesToIds',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_attributes_1_1_n_p_c_attribute_helpers.html#ab23e82822f374c5f69045ebd261fe526',1,'HamstarHelpers.Helpers.NPCs.Attributes.NPCAttributeHelpers.DisplayNamesToIds()'],['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_attributes_1_1_projectile_attribute_helpers.html#a39b8192795421db38c7152d4c7d97b9f',1,'HamstarHelpers.Helpers.Projectiles.Attributes.ProjectileAttributeHelpers.DisplayNamesToIds()']]],
   ['dllreferences',['DllReferences',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#af154b5dd78422f81f447bcdd728630d7',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
-  ['dukefishron',['DukeFishron',['../class_hamstar_helpers_1_1_services_1_1_game_data_1_1_boss_data.html#a7aff2e3162d90e0abc690446e2bae8b4',1,'HamstarHelpers::Services::GameData::BossData']]],
   ['duration',['Duration',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_1_1_player_label_text.html#afa66b0d294f8f30e8c765e96d8be5a5c',1,'HamstarHelpers::Services::Messages::Player::PlayerLabelText']]]
 ];

@@ -36,7 +36,6 @@ var searchData=
   ['extensions',['Extensions',['../namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions.html',1,'HamstarHelpers::Helpers::DotNET']]],
   ['formatting',['Formatting',['../namespace_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting.html',1,'HamstarHelpers::Helpers::DotNET']]],
   ['fx',['Fx',['../namespace_hamstar_helpers_1_1_helpers_1_1_fx.html',1,'HamstarHelpers::Helpers']]],
-  ['gamedata',['GameData',['../namespace_hamstar_helpers_1_1_services_1_1_game_data.html',1,'HamstarHelpers::Services']]],
   ['hamstarhelpers',['HamstarHelpers',['../namespace_hamstar_helpers.html',1,'']]],
   ['helpers',['Helpers',['../namespace_hamstar_helpers_1_1_helpers.html',1,'HamstarHelpers']]],
   ['hooks',['Hooks',['../namespace_hamstar_helpers_1_1_services_1_1_hooks.html',1,'HamstarHelpers::Services']]],
