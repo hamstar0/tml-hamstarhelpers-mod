@@ -17,8 +17,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			this.InitializeContainers( this.InitialContainerWidth, this.InitialContainerHeight );
 			this.InitializeComponents();
 
-			this.RefreshOuterContainerPosition();
-			this.OuterContainer.Recalculate();
+			this.Recalculate();
 
 			this.RefreshTheme();
 		}
