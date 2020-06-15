@@ -62,7 +62,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <returns></returns>
 		public (bool isValid, string croppedString) SetTextWithValidation( string text ) {
 			var strBldr = new StringBuilder( text );
-			if( !this.OnPreTextChange?.Invoke( strBldr ) ?? false ) {
+			if( !this.OnPreTextChange?.Invoke(strBldr) ?? false ) {
 				return (false, text);
 			}
 

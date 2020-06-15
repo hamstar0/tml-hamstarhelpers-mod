@@ -8,7 +8,10 @@ namespace HamstarHelpers.Internals.UI {
 		public static DialogManager Instance {
 			get {
 				try {
-					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
+					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer(
+						Main.LocalPlayer,
+						ModHelpersMod.Instance,
+						"ModHelpersPlayer" );
 					return myplayer.Logic.DialogManager;
 				} catch { }
 				return null;

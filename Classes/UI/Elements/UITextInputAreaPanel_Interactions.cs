@@ -82,7 +82,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			}
 
 			if( this.HasFocus ) {
-				Vector2 mouse = new Vector2( Main.mouseX, Main.mouseY );
+				var mouse = new Vector2( Main.mouseX, Main.mouseY );
 				if( !this.ContainsPoint( mouse ) && Main.mouseLeft ) {
 					this.Unfocus();
 				}

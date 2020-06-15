@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using HamstarHelpers.Classes.Tiles.TilePattern;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
@@ -116,6 +116,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			return TileFinderHelpers.GetHorizontalWidthAt( nonCeilingPattern, tileX, out ceilX, ceilY );
 		}
 
+
 		////
 
 		private static int GetHorizontalWidthAt( TilePattern pattern, int tileX, out int floorX, int floorY ) {
@@ -130,7 +131,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 
 			floorX = tileX - leftWidth;
-			return rightWidth + leftWidth;
+			return (rightWidth - 1) + leftWidth;
 		}
 
 

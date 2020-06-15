@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="scale"></param>
 		public static void MakeDustCloud( Vector2 position, int quantity, float sprayAmount=0.3f, float scale=1f ) {
 			float offset = 10f * scale;
-			Vector2 pos = new Vector2( position.X - offset, position.Y - offset );
+			var pos = new Vector2( position.X - offset, position.Y - offset );
 
 			for( int i = 0; i < quantity; i++ ) {
 				int goreType = Main.rand.Next( 61, 64 );
