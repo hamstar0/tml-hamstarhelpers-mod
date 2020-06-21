@@ -19,7 +19,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				return;
 			}
 
-			if( !this.NumericInput.IsMouseHovering && !this.NumericInput.IsSelected ) {
+			if( !this.NumericInput.IsMouseHovering && !this.NumericInput.HasFocus ) {
 				this.UpdateMouseInteractivity();
 			}
 

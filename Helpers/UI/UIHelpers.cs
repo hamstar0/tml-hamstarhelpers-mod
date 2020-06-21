@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Terraria;
-
+using Terraria.GameInput;
 
 namespace HamstarHelpers.Helpers.UI {
 	/// <summary>
@@ -47,37 +47,56 @@ namespace HamstarHelpers.Helpers.UI {
 		/// </summary>
 		/// <param name="notTabbedAway"></param>
 		/// <param name="gameNotPaused"></param>
-		/// <param name="playerAvailable"></param>
-		/// <param name="playerNotTalkingToNPC"></param>
+		/// <param name="mouseNotInUse">`!Player.mouseInterface`</param>
+		/// <param name="keyboardNotInVanillaUI">No chat input, sign editing, or chest label editing.</param>
+		/// <param name="keyboardNotInCustomUI"></param>
+		/// <param name="playerAvailable">Not dead or stunned.</param>
 		/// <param name="playerNotWieldingItem"></param>
-		/// <param name="mouseNotInUseElsewhere"></param>
+		/// <param name="playerNotTalkingToNPC"></param>
 		/// <param name="noFullscreenMap"></param>
 		/// <param name="notShowingMouseIcon"></param>
 		/// <returns></returns>
 		public static bool IsUIAvailable(
 					bool notTabbedAway = true,
 					bool gameNotPaused = false,
+					bool mouseNotInUse = false,
+					bool keyboardNotInVanillaUI = false,
+					bool keyboardNotInCustomUI = false,
 					bool playerAvailable = false,
-					bool playerNotTalkingToNPC = false,
 					bool playerNotWieldingItem = false,
-					bool mouseNotInUseElsewhere = false,
+					bool playerNotTalkingToNPC = false,
 					bool noFullscreenMap = false,
 					bool notShowingMouseIcon = false ) {
 			var plr = Main.LocalPlayer;
-			return (!notTabbedAway || !Main.hasFocus) &&
-				!Main.drawingPlayerChat &&
-				!Main.editSign &&
-				!Main.editChest &&
-				!Main.blockInput &&
+//if( !(!notTabbedAway || !Main.hasFocus) ) { Main.NewText( "hasFocus" ); }
+//if( !(!gameNotPaused || !Main.gamePaused) ) { Main.NewText( "gamePaused" ); }
+//if( !(!keyboardNotInVanillaUI || !Main.drawingPlayerChat) ) { Main.NewText( "drawingPlayerChat" ); }
+//if( !(!keyboardNotInVanillaUI || !Main.editSign) ) { Main.NewText( "editSign" ); }
+//if( !(!keyboardNotInVanillaUI || !Main.editChest) ) { Main.NewText( "editChest" ); }
+//if( !(!keyboardNotInCustomUI || !PlayerInput.WritingText) ) { Main.NewText( "WritingText" ); }
+//if( !(!keyboardNotInCustomUI || !Main.blockInput) ) { Main.NewText( "blockInput" ); }
+//if( !(!playerAvailable || !plr.dead) ) { Main.NewText( "dead" ); }
+//if( !(!playerAvailable || !plr.CCed) ) { Main.NewText( "CCed" ); }
+//if( !(!playerNotTalkingToNPC || plr.talkNPC == -1) ) { Main.NewText( "talkNPC" ); }
+//if( !(!playerNotWieldingItem || (plr.itemTime == 0 && plr.itemAnimation == 0)) ) { Main.NewText( "itemTime" ); }
+//if( !(!noFullscreenMap || !Main.mapFullscreen) ) { Main.NewText( "mapFullscreen" ); }
+//if( !(!notShowingMouseIcon || !Main.HoveringOverAnNPC) ) { Main.NewText( "HoveringOverAnNPC" ); }
+//if( !(!notShowingMouseIcon || !plr.showItemIcon) ) { Main.NewText( "showItemIcon" ); }
+			return (!notTabbedAway || Main.hasFocus) &&
 				(!gameNotPaused || !Main.gamePaused) &&
-				(!mouseNotInUseElsewhere || !plr.mouseInterface) &&
-				(!noFullscreenMap || !Main.mapFullscreen) &&
-				(!notShowingMouseIcon || !Main.HoveringOverAnNPC) &&
-				(!notShowingMouseIcon || !plr.showItemIcon) &&
+				(!mouseNotInUse || !plr.mouseInterface) &&
+				(!keyboardNotInVanillaUI || !Main.drawingPlayerChat) &&
+				(!keyboardNotInVanillaUI || !Main.editSign) &&
+				(!keyboardNotInVanillaUI || !Main.editChest) &&
+				(!keyboardNotInCustomUI || !PlayerInput.WritingText) &&
+				(!keyboardNotInCustomUI || !Main.blockInput) &&
+				(!playerAvailable || !plr.dead) &&
+				(!playerAvailable || !plr.CCed) &&
 				(!playerNotTalkingToNPC || plr.talkNPC == -1) &&
 				(!playerNotWieldingItem || (plr.itemTime == 0 && plr.itemAnimation == 0)) &&
-				(!playerAvailable || !plr.dead) &&
-				(!playerAvailable || !plr.CCed);
+				(!noFullscreenMap || !Main.mapFullscreen) &&
+				(!notShowingMouseIcon || !Main.HoveringOverAnNPC) &&
+				(!notShowingMouseIcon || !plr.showItemIcon);
 		}
 
 

@@ -112,7 +112,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 				this.NumericInput.TextColor = Color.White;
 			}
 
-			if( this.NumericInput.IsSelected ) {
+			if( this.NumericInput.HasFocus ) {
 				highlight = false;
 			}
 
@@ -122,7 +122,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 			UISlider.DrawSlider( sb, fullRect, percentValue, this.InnerBarShader, highlight );
 
 			if( textRect.Contains( Main.mouseX, Main.mouseY ) ) {
-				if( !this.NumericInput.IsSelected ) {
+				if( !this.NumericInput.HasFocus ) {
 					var inputLitRect = textRect;
 					inputLitRect.Y += 6;
 					inputLitRect.Height -= 6;

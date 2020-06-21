@@ -43,7 +43,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 				string displayStr = this.Text;
 
 				// Draw cursor
-				if( this.IsSelected ) {
+				if( this.HasFocus ) {
 					if( ++this.CursorAnimation % 40 < 20 ) {
 						displayStr = displayStr + "|";
 					}

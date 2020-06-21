@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.UI;
@@ -13,16 +14,55 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// Defines a simpler append-only text field input element (no panel). Suited for main menu use.
 	/// </summary>
 	public partial class UITextInputElement : UIElement, IToggleable {
-		private void UpdateInteractivity() {
-			if( this.IsSelected ) {
-				bool uiAvailable = UIHelpers.IsUIAvailable(
-					mouseNotInUseElsewhere: true,
-					noFullscreenMap: true
-				);
+		/// <summary>
+		/// Sets input to be captured by the current element.
+		/// </summary>
+		/// <returns>`true` if able to capture focus.</returns>
+		public bool Focus() {
+			if( !this.IsInteractive ) { return false; }
+			if( this.HasFocus ) { return false; }
+			this.HasFocus = true;
 
-				if( !this.IsInteractive || !uiAvailable ) {
-					this.IsSelected = false;
-					this.OnUnfocus?.Invoke();
+			this.CursorAnimation = 0;
+
+			Main.blockInput = true;
+			Main.clrInput();
+
+			return true;
+		}
+
+		/// <summary>
+		/// Removes input capture.
+		/// </summary>
+		/// <returns></returns>
+		public bool Unfocus() {
+			if( !this.HasFocus ) { return false; }
+			this.HasFocus = false;
+
+			Main.blockInput = false;
+
+			this.OnUnfocus?.Invoke();
+
+			return true;
+		}
+
+
+		////////////////
+
+		private void UpdateInteractivity() {
+			if( this.HasFocus ) {
+				// Hackish:
+				if( Main.drawingPlayerChat ) {
+					Main.drawingPlayerChat = false;
+					Main.chatText = "";
+					Main.chatRelease = false;
+				}
+				if( !this.IsInteractive || !UIHelpers.IsUIAvailable(keyboardNotInVanillaUI: true) ) {
+					this.Unfocus();
+					return;
+				}
+				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
+					this.Unfocus();
 					return;
 				}
 			}
@@ -40,21 +80,24 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					}
 				}
 
-				if( this.IsSelected && !isNowSelected ) {
-					// Delay OnUnfocus (lets Update (Draw?) code finish, first)
-					Timers.RunNow( () => { this.OnUnfocus?.Invoke(); } );
+				if( this.HasFocus && !isNowSelected ) {
+					// Delay Unfocus (lets Update (Draw?) code finish, first)
+					Timers.RunNow( () => { this.Unfocus(); } );
+					return;
 				}
 
-				this.IsSelected = isNowSelected;
+				this.HasFocus = isNowSelected;
 			}
 
-			if( this.IsSelected ) {
+			if( this.HasFocus ) {
 				this.UpdateInput();
 			}
 		}
 
 
 		private void UpdateInput() {
+			Main.blockInput = true; // Force the point!
+
 			PlayerInput.WritingText = true;
 			Main.instance.HandleIME();
 

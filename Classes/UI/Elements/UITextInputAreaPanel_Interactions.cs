@@ -66,12 +66,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		private void UpdateFocus() {
 			if( this.HasFocus ) {
-				bool uiAvailable = UIHelpers.IsUIAvailable(
-					mouseNotInUseElsewhere: true,
-					noFullscreenMap: true
-				);
-
-				if( !this.IsInteractive || !uiAvailable ) {
+				if( !this.IsInteractive || !UIHelpers.IsUIAvailable(keyboardNotInVanillaUI: true) ) {
+					this.Unfocus();
+					return;
+				}
+				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
 					this.Unfocus();
 					return;
 				}
@@ -87,10 +86,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 				if( !newText.Equals( this.Text ) ) {
 					this.SetTextWithValidation( newText );
-				}
-
-				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
-					this.Unfocus();
 				}
 			}
 			

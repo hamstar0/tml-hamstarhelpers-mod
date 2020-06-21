@@ -50,9 +50,9 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public bool IsHidden { get; protected set; } = true;
 
 		/// <summary>
-		/// Indicates this input is selected.
+		/// Indicates this input has focus.
 		/// </summary>
-		public bool IsSelected { get; private set; } = false;
+		public bool HasFocus { get; private set; } = false;
 
 
 		////////////////
@@ -117,7 +117,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 
 		////////////////
-
+		
 		/// <summary></summary>
 		/// <returns></returns>
 		public string GetText() {
@@ -128,6 +128,14 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="text"></param>
 		public void SetText( string text ) {
 			this.Text = text;
+		}
+
+
+		////////////////
+
+		/// @private
+		public override void Update( GameTime gameTime ) {
+			base.Update( gameTime );
 		}
 	}
 }

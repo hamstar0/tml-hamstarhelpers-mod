@@ -2861,7 +2861,16 @@
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement">
             <summary>
-            Defines a simpler append-only text field input element (no panel). Not theme-able. Suited for main menu use.
+            Defines a simpler append-only text field input element (no panel). Suited for main menu use.
+            </summary>
+            <summary>
+            Defines a simpler append-only text field input element (no panel). Suited for main menu use.
+            </summary>
+            <summary>
+            Defines a simpler append-only text field input element (no panel). Suited for main menu use.
+            </summary>
+            <summary>
+            Defines a simpler append-only text field input element (no panel). Suited for main menu use.
             </summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextEventHandler">
@@ -2896,9 +2905,9 @@
             Controls visibility.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsSelected">
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputElement.HasFocus">
             <summary>
-            Indicates this input is selected.
+            Indicates this input has focus.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.UI.Elements.UITextInputElement.TextColor">
@@ -2945,11 +2954,26 @@
             <summary></summary>
             <param name="text"></param>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Update(Microsoft.Xna.Framework.GameTime)">
+            @private
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             <summary>
             Draws element. Also handles text input changes.
             </summary>
             <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Focus">
+            <summary>
+            Sets input to be captured by the current element.
+            </summary>
+            <returns>`true` if able to capture focus.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputElement.Unfocus">
+            <summary>
+            Removes input capture.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputPanel">
             <summary>
@@ -10062,6 +10086,22 @@
             Reports whether a given keyboard key was just pressed. Used primarily for text field inputs.
             </summary>
             <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.IsUIAvailable(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Determines if game/player conditions are suitable for a UI to be available.
+            </summary>
+            <param name="notTabbedAway"></param>
+            <param name="gameNotPaused"></param>
+            <param name="mouseNotInUse">`!Player.mouseInterface`</param>
+            <param name="keyboardNotInVanillaUI">No chat input, sign editing, or chest label editing.</param>
+            <param name="keyboardNotInCustomUI"></param>
+            <param name="playerAvailable">Not dead or stunned.</param>
+            <param name="playerNotWieldingItem"></param>
+            <param name="playerNotTalkingToNPC"></param>
+            <param name="noFullscreenMap"></param>
+            <param name="notShowingMouseIcon"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.UI.UIHelpers.GetHoverTipPosition(System.String)">
