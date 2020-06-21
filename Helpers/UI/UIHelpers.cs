@@ -39,6 +39,48 @@ namespace HamstarHelpers.Helpers.UI {
 			return Main.inputText.IsKeyDown( key ) && !Main.oldInputText.IsKeyDown( key );
 		}
 
+
+		////
+
+		/// <summary>
+		/// Determines if game/player conditions are suitable for a UI to be available.
+		/// </summary>
+		/// <param name="notTabbedAway"></param>
+		/// <param name="gameNotPaused"></param>
+		/// <param name="playerAvailable"></param>
+		/// <param name="playerNotTalkingToNPC"></param>
+		/// <param name="playerNotWieldingItem"></param>
+		/// <param name="mouseNotInUseElsewhere"></param>
+		/// <param name="noFullscreenMap"></param>
+		/// <param name="notShowingMouseIcon"></param>
+		/// <returns></returns>
+		public static bool IsUIAvailable(
+					bool notTabbedAway = true,
+					bool gameNotPaused = false,
+					bool playerAvailable = false,
+					bool playerNotTalkingToNPC = false,
+					bool playerNotWieldingItem = false,
+					bool mouseNotInUseElsewhere = false,
+					bool noFullscreenMap = false,
+					bool notShowingMouseIcon = false ) {
+			var plr = Main.LocalPlayer;
+			return (!notTabbedAway || !Main.hasFocus) &&
+				!Main.drawingPlayerChat &&
+				!Main.editSign &&
+				!Main.editChest &&
+				!Main.blockInput &&
+				(!gameNotPaused || !Main.gamePaused) &&
+				(!mouseNotInUseElsewhere || !plr.mouseInterface) &&
+				(!noFullscreenMap || !Main.mapFullscreen) &&
+				(!notShowingMouseIcon || !Main.HoveringOverAnNPC) &&
+				(!notShowingMouseIcon || !plr.showItemIcon) &&
+				(!playerNotTalkingToNPC || plr.talkNPC == -1) &&
+				(!playerNotWieldingItem || (plr.itemTime == 0 && plr.itemAnimation == 0)) &&
+				(!playerAvailable || !plr.dead) &&
+				(!playerAvailable || !plr.CCed);
+		}
+
+
 		////////////////
 
 		/// <summary>

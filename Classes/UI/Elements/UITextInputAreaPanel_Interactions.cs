@@ -66,7 +66,12 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		private void UpdateFocus() {
 			if( this.HasFocus ) {
-				if( !this.IsInteractive ) {
+				bool uiAvailable = UIHelpers.IsUIAvailable(
+					mouseNotInUseElsewhere: true,
+					noFullscreenMap: true
+				);
+
+				if( !this.IsInteractive || !uiAvailable ) {
 					this.Unfocus();
 					return;
 				}

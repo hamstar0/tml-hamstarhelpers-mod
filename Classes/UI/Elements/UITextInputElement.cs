@@ -8,7 +8,7 @@ using HamstarHelpers.Classes.UI.Theme;
 
 namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
-	/// Defines a simpler append-only text field input element (no panel). Not theme-able. Suited for main menu use.
+	/// Defines a simpler append-only text field input element (no panel). Suited for main menu use.
 	/// </summary>
 	public partial class UITextInputElement : UIElement, IToggleable {
 		/// <summary>
@@ -30,6 +30,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// Fires on text change. Actions here should never alter current, sibling, or child elements.
 		/// </summary>
 		public event TextEventHandler OnTextChange;
+
 		/// <summary>
 		/// Fires on when input is no longer selected.
 		/// </summary>
