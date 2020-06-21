@@ -13,6 +13,8 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 	public partial class UISlider : UIThemedElement, IToggleable {
 		/// @private
 		public override void Update( GameTime gameTime ) {
+			base.Update( gameTime );
+
 			if( !this.IsInteractive ) {
 				return;
 			}

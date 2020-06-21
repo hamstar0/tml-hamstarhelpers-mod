@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameInput;
 using Terraria.UI;
-using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Classes.UI.Theme;
 
 
@@ -13,7 +10,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// <summary>
 	/// Defines a simpler append-only text field input element (no panel). Not theme-able. Suited for main menu use.
 	/// </summary>
-	public class UITextInputElement : UIElement, IToggleable {
+	public partial class UITextInputElement : UIElement, IToggleable {
 		/// <summary>
 		/// Event handler for text input events
 		/// </summary>
@@ -130,93 +127,6 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="text"></param>
 		public void SetText( string text ) {
 			this.Text = text;
-		}
-
-
-		////////////////
-		
-		private void UpdateInteractivity() {
-			CalculatedStyle dim = this.GetDimensions();
-
-			// Detect if user selects this element
-			if( Main.mouseLeft ) {
-				bool isNowSelected = false;
-
-				if( Main.mouseX >= dim.X && Main.mouseX < ( dim.X + dim.Width ) ) {
-					if( Main.mouseY >= dim.Y && Main.mouseY < ( dim.Y + dim.Height ) ) {
-						isNowSelected = true;
-						Main.keyCount = 0;
-					}
-				}
-
-				if( this.IsSelected && !isNowSelected ) {
-					Timers.RunNow( () => { this.OnUnfocus?.Invoke(); } );
-				}
-				this.IsSelected = isNowSelected;
-			}
-
-			// Apply text inputs
-			if( this.IsSelected ) {
-				PlayerInput.WritingText = true;
-				Main.instance.HandleIME();
-
-				string newStr = Main.GetInputText( this.Text );
-
-				if( !newStr.Equals( this.Text ) ) {
-					var newStrMuta = new StringBuilder( newStr );
-
-					Timers.RunNow( () => {
-						if( this.OnTextChange?.Invoke( newStrMuta ) ?? true ) {
-							this.Text = newStrMuta.ToString();
-						}
-					} );
-				}
-			}
-		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Draws element. Also handles text input changes.
-		/// </summary>
-		/// <param name="sb">SpriteBatch to draw to. Typically given `Main.spriteBatch`.</param>
-		protected override void DrawSelf( SpriteBatch sb ) {
-			if( !this.IsHidden ) {
-				base.DrawSelf( sb );
-			}
-
-			////
-
-			if( this.IsInteractive ) {
-				this.UpdateInteractivity();
-			}
-
-			if( !this.IsHidden ) {
-				this.DrawSelfText( sb );
-			}
-		}
-
-		private void DrawSelfText( SpriteBatch sb ) {
-			CalculatedStyle dim = this.GetDimensions();
-
-			var pos = new Vector2( dim.X + this.PaddingLeft, dim.Y + this.PaddingTop );
-
-			// Draw text
-			if( this.Text.Length == 0 ) {
-				Utils.DrawBorderString( sb, this.HintText, pos, Color.Gray, 1f );
-			} else {
-				string displayStr = this.Text;
-
-				// Draw cursor
-				if( this.IsSelected ) {
-					if( ++this.CursorAnimation % 40 < 20 ) {
-						displayStr = displayStr + "|";
-					}
-				}
-
-				Utils.DrawBorderString( sb, displayStr, pos, this.TextColor, 1f );
-			}
 		}
 	}
 }

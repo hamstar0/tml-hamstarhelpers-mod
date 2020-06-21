@@ -2698,6 +2698,10 @@
             Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
             multi-line support (yet).
             </summary>
+            <summary>
+            Defines a text area UI panel element with crop-to-fit text input. Captures focus while in use. Does not currently implement
+            multi-line support (yet).
+            </summary>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.TextEventHandler">
             <summary>
@@ -2779,17 +2783,6 @@
             <param name="hint">Default text. Overridden with any input text.</param>
             <param name="maxLength">Maximum length of text input.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Update(Microsoft.Xna.Framework.GameTime)">
-            <summary>
-            Updates state of input, including cursor animation.
-            </summary>
-            <param name="gameTime">Unused.</param>
-        </member>
-        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Recalculate">
-            <summary>
-            Recalculates element positions.
-            </summary>
-        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Disable">
             <summary>
             Disables the text area (prevents text input).
@@ -2805,6 +2798,17 @@
             Refreshes visual theming.
             </summary>
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates state of input, including cursor animation.
+            </summary>
+            <param name="gameTime">Unused.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Recalculate">
+            <summary>
+            Recalculates element positions.
+            </summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             <summary>
             Draws the element. Animates cursor, draws hint text.
@@ -2813,7 +2817,7 @@
         </member>
         <member name="M:HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel.Click(Terraria.UI.UIMouseEvent)">
             <summary>
-            Implements click behavior. Focuses on the input element.
+            Implements click behavior. Focuses on the input element, if enabled.
             </summary>
             <param name="evt">Mouse event.</param>
         </member>

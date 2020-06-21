@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.UI;
+using Terraria.GameInput;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.UI;
@@ -15,11 +16,13 @@ namespace HamstarHelpers.Classes.UI.Elements {
 	/// </summary>
 	public partial class UITextInputAreaPanel : UIThemedPanel, IToggleable {
 		/// <summary>
-		/// Implements click behavior. Focuses on the input element.
+		/// Implements click behavior. Focuses on the input element, if enabled.
 		/// </summary>
 		/// <param name="evt">Mouse event.</param>
 		public override void Click( UIMouseEvent evt ) {
-			this.Focus();
+			if( this.IsInteractive ) {
+				this.Focus();
+			}
 			base.Click( evt );
 		}
 
@@ -63,11 +66,16 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		private void UpdateFocus() {
 			if( this.HasFocus ) {
+				if( !this.IsInteractive ) {
+					this.Unfocus();
+					return;
+				}
+
 				Main.blockInput = true; // Force the point!
 
 				this.CursorAnimation++;
 
-				Terraria.GameInput.PlayerInput.WritingText = true;
+				PlayerInput.WritingText = true;
 				Main.instance.HandleIME();
 
 				string newText = Main.GetInputText( this.Text );
@@ -76,11 +84,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					this.SetTextWithValidation( newText );
 				}
 
-				if( UIHelpers.JustPressedKey( Keys.Escape ) || UIHelpers.JustPressedKey( Keys.Enter ) ) {
+				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
 					this.Unfocus();
 				}
 			}
-
+			
 			if( this.HasFocus ) {
 				var mouse = new Vector2( Main.mouseX, Main.mouseY );
 				if( !this.ContainsPoint( mouse ) && Main.mouseLeft ) {
