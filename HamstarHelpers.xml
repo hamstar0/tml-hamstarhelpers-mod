@@ -333,7 +333,7 @@
         </member>
         <member name="T:HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets`2">
             <summary>
-            Implments a dictionary that cannot be modified whose values are sets.
+            Implements an immutable dictionary whose values are sets.
             </summary>
             <typeparam name="K">Any key value.</typeparam>
             <typeparam name="V">Any value type to be mapped to a key's set.</typeparam>
@@ -346,7 +346,7 @@
         </member>
         <member name="P:HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets`2.Item(`0)">
             <summary>
-            Standard getter.
+            Default getter.
             </summary>
             <param name="key">Key of our dictionary.</param>
             <returns>First item of the set mapped to the given key.</returns>
@@ -1716,7 +1716,8 @@
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Config.FloatRef">
             <summary>
-            Implements a ModConfig wrapper for a float to allow nullable behavior and be able to accept inputs via. text input or slider.
+            Implements a ModConfig wrapper for a float to allow nullable behavior and be able to accept inputs via. text input
+            or slider.
             </summary>
         </member>
         <member name="P:HamstarHelpers.Classes.UI.Config.FloatRef.Value">
@@ -11168,6 +11169,9 @@
         <member name="T:HamstarHelpers.ModHelpersNPC">
             @private
             @private
+            @private
+            @private
+            @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersPlayer">
             @private
@@ -11342,146 +11346,165 @@
             <param name="origin"></param>
             <param name="spriteFx"></param>
         </member>
+        <member name="T:HamstarHelpers.Services.Camera.AnimatedCamera">
+            <summary>
+            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
+            </summary>
+            <summary>
+            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
+            </summary>
+            <summary>
+            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
+            </summary>
+            <summary>
+            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.Instance">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveXFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveYFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveXTo">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveYTo">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTicksElapsed">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTicksLingerDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTo">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTicksElapsed">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTicksLingerDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakePeakMagnitude">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakeTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakeTicksElapsed">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginMoveSequence(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Applies motion to the camera.
+            </summary>
+            <param name="moveXFrom"></param>
+            <param name="moveYFrom"></param>
+            <param name="moveXTo"></param>
+            <param name="moveYTo"></param>
+            <param name="tickDuration">How long the sequence takes to complete.</param>
+            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
+            </summary>
+            <param name="fromX"></param>
+            <param name="fromY"></param>
+            <param name="toX"></param>
+            <param name="toY"></param>
+            <param name="percent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginShakeSequence(System.Single,System.Int32,System.Int32)">
+            <summary>
+            Applies a shaking motion to the camera. Fades in and out.
+            </summary>
+            <param name="peakMagnitude"></param>
+            <param name="tickDuration"></param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginZoomSequence(System.Single,System.Single,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Applies a changing zoom to the camera over time.
+            </summary>
+            <param name="zoomFrom"></param>
+            <param name="zoomTo"></param>
+            <param name="tickDuration">How long the sequence takes to complete.</param>
+            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
         <member name="T:HamstarHelpers.Services.Camera.Camera">
+            <summary>
+            Supplies a set of controls for manipulating the player's 'camera' (screen position).
+            </summary>
             <summary>
             Supplies a set of controls for manipulating the player's 'camera' (screen position).
             </summary>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyOffset(System.Int32,System.Int32)">
             <summary>
-            Shifts the camers from its current position by the given offset.
+            Shifts the camera from its current position by the given offset.
             </summary>
             <param name="offsetX"></param>
             <param name="offsetY"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.Camera.GetOffset">
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyPosition(Microsoft.Xna.Framework.Vector2)">
             <summary>
-            Gets any camera shift offset amount.
+            Positions the camera statically somewhere in the world. Enter -1 for an axis to use the default.
             </summary>
-            <returns></returns>
+            <param name="position"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single,System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single)">
             <summary>
-            Applies a shaking motion to the camera. Fades in and out.
+            Applies a shaking motion to the camera.
             </summary>
             <param name="magnitude"></param>
-            <param name="tickDuration"></param>
-            <param name="skippedTicks">How far into the shake animation to skip to.</param>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.Camera.GetShakeDuration">
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyZoom(System.Single)">
             <summary>
-            Gets the duration of any current shaking.
+            Applies zoom to the camera. Enter -1 to revert.
             </summary>
-            <returns></returns>
+            <param name="scale"></param>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.Camera.Instance">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.Camera.WorldPosition">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.Camera.OffsetX">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.Camera.OffsetY">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.Camera.ShakeMagnitude">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.Camera.ZoomScale">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.MoveTo(System.Int32,System.Int32)">
-            <summary>
-            Positions the camera statically somewhere in the world.
-            </summary>
-            <param name="worldLeft"></param>
-            <param name="worldTop"></param>
-        </member>
-        <member name="T:HamstarHelpers.Services.Configs.ModConfigStack">
-            <summary>
-            Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
-            affecting the user's own ModConfig.
-            </summary>
-            <summary>
-            Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
-            affecting the user's own ModConfig.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetStackedOrDefaultConfig``1">
-            <summary>
-            Gets either the merged stack of configs (not including the default), or else the default config (raw).
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigs``1">
-            <summary>
-            Downward merges the stack of a given config type. Includes the default ModConfig.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedStackedConfigs``1">
-            <summary>
-            Downward merges the stack of a given config type. Excludes the default ModConfig itself.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAt``1(System.Int32)">
-            <summary>
-            Gets a config on the stack at the specified height (if present).
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="stackHeight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAtOrDefault``1(System.Int32)">
-            <summary>
-            Gets a config on the stack at the specified height (if present), or else only the default.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="stackHeight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfig``1(``0,System.Int32)">
-            <summary>
-            Sets a config to exist on the stack at the specified height.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="config"></param>
-            <param name="stackHeight"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfigChangesOnly``1(``0,System.Int32)">
-            <summary>
-            Sets a config to exist on the stack at the specified height. Any values of an existing config at the given stack
-            height are preserved if they do not overlap with the latest changes.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="config"></param>
-            <param name="stackHeight"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache``1">
-            <summary>
-            Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
-            of SetConfig or SetAndMergeConfig.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache(System.Type)">
-            <summary>
-            Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
-            of SetConfig or SetAndMergeConfig.
-            </summary>
-            <param name="configType"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
             @private
         </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single,System.Int32,System.Int32)">
             @private
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Services.Configs.StackableModConfig">
-            <summary>
-            Helps implement mod config stacking behavior. Replace your ModConfig classes with this class.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OnChanged">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OverlayChanges(HamstarHelpers.Services.Configs.StackableModConfig)">
-            <summary>
-            Convenience method for pulling changed settings from a given config instance into (the stack of) the current one
-            (calls `ModConfigStack.SetStackedConfigChangesOnlyForType(...)`).
-            </summary>
-            <param name="changes"></param>
         </member>
         <member name="T:HamstarHelpers.Services.DataStore.DataStore">
             <summary>
@@ -11596,6 +11619,48 @@
             <summary>
             Dumps all Projectile data to a JSON file in the ModLoader folder.
             </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.EntityControls.EntityControls">
+            <summary>
+            Implements functions for controlling the targetting of entities.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.EntityControls.EntityControls.SetTarget(Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Forces an NPC to target a specific point (via. dummy player invisibly moved to that position).
+            </summary>
+            <param name="npc"></param>
+            <param name="position"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.EntityControls.EntityControls.SetTarget(Terraria.NPC,Terraria.NPC)">
+            <summary>
+            Forces an NPC's target to be a specific NPC.
+            </summary>
+            <param name="npc"></param>
+            <param name="target"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.EntityControls.EntityControls.SetTarget(Terraria.NPC,Terraria.Player)">
+            <summary>
+            Forces an NPC's target to be a specific player.
+            </summary>
+            <param name="npc"></param>
+            <param name="target"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.EntityControls.EntityControls.UnsetTarget(Terraria.NPC)">
+            <summary>
+            Unsets NPC's forced target.
+            </summary>
+            <param name="npc"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.EntityControls.EntityControls.LockAI(Terraria.NPC,System.Nullable{System.Single},System.Nullable{System.Single},System.Nullable{System.Single},System.Nullable{System.Single})">
+            <summary>
+            Sets entries in an NPC's `ai` array to be locked to a given value. Enter a `null` value to clear a lock.
+            </summary>
+            <param name="npc"></param>
+            <param name="ai1"></param>
+            <param name="ai2"></param>
+            <param name="ai3"></param>
+            <param name="ai4"></param>
         </member>
         <member name="T:HamstarHelpers.Services.EntityGroups.EntityGroupDependencies">
             <summary>
@@ -12894,12 +12959,6 @@
         <member name="M:HamstarHelpers.Services.RecipeHack.RecipeHack.GetAvailableRecipesOfIngredients(Terraria.Player,System.Collections.Generic.IEnumerable{Terraria.Item})">
             @private
         </member>
-        <member name="T:HamstarHelpers.Services.Server.Server">
-            @private
-        </member>
-        <member name="P:HamstarHelpers.Services.Server.Server.AveragePing">
-            @private
-        </member>
         <member name="T:HamstarHelpers.Services.Timers.Timers">
             <summary>
             Provides a way to delay the onset of a given action by a set amount of ticks. As a secondary function,
@@ -13181,6 +13240,114 @@
             Gets the previous active main menu UI object (if any).
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Services.Configs.ModConfigStack">
+            <summary>
+            Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
+            affecting the user's own ModConfig.
+            </summary>
+            <summary>
+            Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
+            affecting the user's own ModConfig.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetStackedOrDefaultConfig``1">
+            <summary>
+            Gets either the merged stack of configs (not including the default), or else the default config (raw).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedConfigs``1">
+            <summary>
+            Downward merges the stack of a given config type. Includes the default ModConfig.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetMergedStackedConfigs``1">
+            <summary>
+            Downward merges the stack of a given config type. Excludes the default ModConfig itself.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAt``1(System.Int32)">
+            <summary>
+            Gets a config on the stack at the specified height (if present).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stackHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.GetConfigAtOrDefault``1(System.Int32)">
+            <summary>
+            Gets a config on the stack at the specified height (if present), or else only the default.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stackHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfig``1(``0,System.Int32)">
+            <summary>
+            Sets a config to exist on the stack at the specified height.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="config"></param>
+            <param name="stackHeight"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.SetStackedConfigChangesOnly``1(``0,System.Int32)">
+            <summary>
+            Sets a config to exist on the stack at the specified height. Any values of an existing config at the given stack
+            height are preserved if they do not overlap with the latest changes.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="config"></param>
+            <param name="stackHeight"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache``1">
+            <summary>
+            Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
+            of SetConfig or SetAndMergeConfig.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.Uncache(System.Type)">
+            <summary>
+            Clears any cached merged stacks of the given config. Used when a config (or any of its stack) changes outside
+            of SetConfig or SetAndMergeConfig.
+            </summary>
+            <param name="configType"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.ModConfigStack.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Services.Configs.StackableModConfig">
+            <summary>
+            Helps implement mod config stacking behavior. Replace your ModConfig classes with this class.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OnChanged">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Configs.StackableModConfig.OverlayChanges(HamstarHelpers.Services.Configs.StackableModConfig)">
+            <summary>
+            Convenience method for pulling changed settings from a given config instance into (the stack of) the current one
+            (calls `ModConfigStack.SetStackedConfigChangesOnlyForType(...)`).
+            </summary>
+            <param name="changes"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Server.Server">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Services.Server.Server.AveragePing">
+            @private
         </member>
         <member name="T:HamstarHelpers.Tiles.CoalTile">
             <summary>

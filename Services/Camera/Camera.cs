@@ -21,7 +21,7 @@ namespace HamstarHelpers.Services.Camera {
 
 
 		/// <summary>
-		/// Positions the camera statically somewhere in the world. Enter -1 for any value to use default.
+		/// Positions the camera statically somewhere in the world. Enter -1 for an axis to use the default.
 		/// </summary>
 		/// <param name="position"></param>
 		public static void ApplyPosition( Vector2 position ) {

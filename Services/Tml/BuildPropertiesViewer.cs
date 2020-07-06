@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Services.TML {

@@ -15,7 +15,8 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// @private
 		[Obsolete( "use `Camera.GetOffset`", true )]
 		public static (int X, int Y) GetOffset() {
-			return Camera.GetOffset();
+			var cam = Camera.Instance;
+			return (cam.OffsetX, cam.OffsetY);
 		}
 
 		/// @private
@@ -25,9 +26,9 @@ namespace HamstarHelpers.Helpers.Fx {
 		}
 
 		/// @private
-		[Obsolete( "use `Camera.GetShakeDuration`", true )]
+		[Obsolete( "use `AnimatedCamera.ShakeTickDuration`", true )]
 		public static int GetShakeDuration() {
-			return Camera.GetShakeDuration();
+			return AnimatedCamera.Instance.ShakeTickDuration;
 		}
 
 

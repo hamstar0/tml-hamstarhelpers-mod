@@ -1,13 +1,12 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Services.Configs;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Commands {
@@ -52,13 +51,21 @@ namespace HamstarHelpers.Commands {
 				return;
 			}
 
-			ModConfig config = ModConfigStack.GetMergedConfigsForType( configType );
-			if( config == null ) {
+			ModConfig configSingleton;
+			bool success = ReflectionHelpers.RunMethod<ModConfig>( //ModContent.GetInstance<T>();
+				classType: typeof( ModContent ),
+				instance: null,
+				methodName: "GetInstance",
+				args: new object[] { },
+				generics: new Type[] { configType },
+				out configSingleton
+			);
+			if( configSingleton == null ) {
 				caller.Reply( "Could not get config instance of class "+className, Color.Yellow );
 				return;
 			}
 
-			string configJson = JsonConvert.SerializeObject( config );
+			string configJson = JsonConvert.SerializeObject( configSingleton );
 
 			Main.NewText( configJson );
 			LogHelpers.Log( configJson );

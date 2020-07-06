@@ -1,5 +1,4 @@
 ﻿using System;
-using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
 
@@ -75,17 +74,11 @@ namespace HamstarHelpers.Services.Camera {
 
 		////////////////
 
-		void ILoadable.OnModsLoad() {
-			throw new NotImplementedException();
-		}
+		void ILoadable.OnModsLoad() { }
 
-		void ILoadable.OnModsUnload() {
-			throw new NotImplementedException();
-		}
+		void ILoadable.OnModsUnload() { }
 
-		void ILoadable.OnPostModsLoad() {
-			throw new NotImplementedException();
-		}
+		void ILoadable.OnPostModsLoad() { }
 
 
 		////////////////
