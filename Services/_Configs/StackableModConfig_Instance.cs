@@ -1,13 +1,14 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using Terraria.ModLoader.Config;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.Configs {
 	/// <summary>
 	/// Helps implement mod config stacking behavior. Replace your ModConfig classes with this class.
 	/// </summary>
+	[Obsolete( "does not work properly; use APIs instead", true )]
 	public abstract class StackableModConfig : ModConfig {
 		/// @private
 		public override void OnChanged() {

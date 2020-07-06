@@ -177,7 +177,8 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void ModifyScreenPosition() {
-			Camera.ApplyCameraEffects();
+			AnimatedCamera.Instance.ApplyAnimations();
+			Camera.Instance.ApplyCameraEffects();
 		}
 	}
 }

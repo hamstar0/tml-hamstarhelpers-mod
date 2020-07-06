@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace HamstarHelpers.Classes.DataStructures {
 	/// <summary>
-	/// Implments a dictionary that cannot be modified whose values are sets.
+	/// Implements an immutable dictionary whose values are sets.
 	/// </summary>
 	/// <typeparam name="K">Any key value.</typeparam>
 	/// <typeparam name="V">Any value type to be mapped to a key's set.</typeparam>
@@ -33,11 +33,11 @@ namespace HamstarHelpers.Classes.DataStructures {
 		////////////////
 
 		/// <summary>
-		/// Standard getter.
+		/// Default getter.
 		/// </summary>
 		/// <param name="key">Key of our dictionary.</param>
 		/// <returns>First item of the set mapped to the given key.</returns>
-		public V this[K key] => this.Dict[key].First();
+		public V this[K key] => this.Dict[key].FirstOrDefault();	// First()?
 
 		/// <summary>
 		/// Set getter.
@@ -133,14 +133,14 @@ namespace HamstarHelpers.Classes.DataStructures {
 		/// <returns>The enumerator.</returns>
 		public IEnumerator<KeyValuePair<K, V>> GetEnumerator() {
 			return this.Dict.SafeSelect(
-				kv => new KeyValuePair<K, V>( kv.Key, kv.Value.First() )
+				kv => new KeyValuePair<K, V>( kv.Key, kv.Value.FirstOrDefault() )   // First()?
 			).GetEnumerator();
 		}
 
 		/// @private
 		IEnumerator IEnumerable.GetEnumerator() {
 			return this.Dict.SafeSelect(
-				kv => new KeyValuePair<K, V>( kv.Key, kv.Value.First() )
+				kv => new KeyValuePair<K, V>( kv.Key, kv.Value.FirstOrDefault() )   // First()?
 			).GetEnumerator();
 		}
 	}

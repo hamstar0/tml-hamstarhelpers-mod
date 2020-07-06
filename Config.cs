@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using Newtonsoft.Json;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Helpers.User;
-using HamstarHelpers.Services.Configs;
 using HamstarHelpers.Services.Timers;
 
 
@@ -12,11 +12,11 @@ namespace HamstarHelpers {
 	/// Defines config settings for a specific "privileged user" entry (used by assorted APIs).
 	/// </summary>
 	[Label( "Mod Helpers \"Privileged User\" (used by some APIs)" )]
-	public class ModHelpersPrivilegedUserConfig : StackableModConfig {
+	public class ModHelpersPrivilegedUserConfig : ModConfig {
 		/// <summary>
 		/// Gets the singleton instance of this config file.
 		/// </summary>
-		public static ModHelpersPrivilegedUserConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersPrivilegedUserConfig>();
+		public static ModHelpersPrivilegedUserConfig Instance => ModContent.GetInstance<ModHelpersPrivilegedUserConfig>();
 
 
 
@@ -60,11 +60,11 @@ namespace HamstarHelpers {
 	/// Defines Mod Helpers config settings.
 	/// </summary>
 	[Label( "Mod Helpers Settings" )]
-	public class ModHelpersConfig : StackableModConfig {
+	public class ModHelpersConfig : ModConfig {
 		/// <summary>
 		/// Gets the stack-merged singleton instance of this config file.
 		/// </summary>
-		public static ModHelpersConfig Instance => ModConfigStack.GetMergedConfigs<ModHelpersConfig>();
+		public static ModHelpersConfig Instance => ModContent.GetInstance<ModHelpersConfig>();
 
 
 

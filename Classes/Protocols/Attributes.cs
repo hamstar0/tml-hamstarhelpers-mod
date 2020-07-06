@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.Protocols {

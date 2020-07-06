@@ -18,6 +18,8 @@ namespace HamstarHelpers.Classes.Context {
 		/// </summary>
 		public TilePattern TilePattern = null;
 
+		//public ISet<string> Biomes = null;
+
 		/// <summary>
 		/// NPCs that must be active for this context to exist. Leave null to skip.
 		/// </summary>
@@ -27,8 +29,6 @@ namespace HamstarHelpers.Classes.Context {
 		/// Context is active when bosses are (true), or else only when they're not (false). Leave null to skip.
 		/// </summary>
 		public bool? IsBoss = null;
-
-		//public ISet<string> Biomes = null;
 
 		/// <summary>
 		/// Context can be active at day.

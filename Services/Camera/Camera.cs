@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
+using Terraria;
 
 
 namespace HamstarHelpers.Services.Camera {
@@ -7,52 +9,52 @@ namespace HamstarHelpers.Services.Camera {
 	/// </summary>
 	public partial class Camera {
 		/// <summary>
-		/// Shifts the camers from its current position by the given offset.
+		/// Shifts the camera from its current position by the given offset.
 		/// </summary>
 		/// <param name="offsetX"></param>
 		/// <param name="offsetY"></param>
 		public static void ApplyOffset( int offsetX, int offsetY ) {
-			Camera.OffsetX = offsetX;
-			Camera.OffsetY = offsetY;
+			var inst = Camera.Instance;
+			inst.OffsetX = offsetX;
+			inst.OffsetY = offsetY;
 		}
 
+
 		/// <summary>
-		/// Gets any camera shift offset amount.
+		/// Positions the camera statically somewhere in the world. Enter -1 for any value to use default.
 		/// </summary>
-		/// <returns></returns>
-		public static (int X, int Y) GetOffset() {
-			return (Camera.OffsetX, Camera.OffsetY);
+		/// <param name="position"></param>
+		public static void ApplyPosition( Vector2 position ) {
+			var inst = Camera.Instance;
+			inst.WorldPosition = position;
 		}
 
+
 		/// <summary>
-		/// Applies a shaking motion to the camera. Fades in and out.
+		/// Applies a shaking motion to the camera.
 		/// </summary>
 		/// <param name="magnitude"></param>
-		/// <param name="tickDuration"></param>
-		/// <param name="skippedTicks">How far into the shake animation to skip to.</param>
-		public static void ApplyShake( float magnitude, int tickDuration, int skippedTicks=0 ) {
-			Camera.ShakeMagnitude = magnitude;
-			Camera.ShakeTickDuration = tickDuration;
-			Camera.ShakeTicksElapsed = skippedTicks;
-		}
-
-		/// <summary>
-		/// Gets the duration of any current shaking.
-		/// </summary>
-		/// <returns></returns>
-		public static int GetShakeDuration() {
-			return Camera.ShakeTicksElapsed;
+		public static void ApplyShake( float magnitude ) {
+			var inst = Camera.Instance;
+			inst.ShakeMagnitude = magnitude;
 		}
 
 
 		/// <summary>
-		/// Positions the camera statically somewhere in the world.
+		/// Applies zoom to the camera. Enter -1 to revert.
 		/// </summary>
-		/// <param name="worldLeft"></param>
-		/// <param name="worldTop"></param>
-		public static void MoveTo( int worldLeft, int worldTop ) {
-			Camera.WorldLeft = worldLeft;
-			Camera.WorldTop = worldTop;
+		/// <param name="scale"></param>
+		public static void ApplyZoom( float scale ) {
+			var inst = Camera.Instance;
+			if( scale < 0f ) {
+				inst.ZoomScale = inst.OldZoomScale;
+				inst.OldZoomScale = -1;
+			} else {
+				if( inst.OldZoomScale == -1f ) {
+					inst.OldZoomScale = Main.GameZoomTarget;
+				}
+				inst.ZoomScale = scale;
+			}
 		}
 	}
 }

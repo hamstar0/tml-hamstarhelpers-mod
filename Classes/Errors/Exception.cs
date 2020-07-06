@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.Errors {

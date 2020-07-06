@@ -19,6 +19,7 @@ namespace HamstarHelpers.Services.Configs {
 	/// Supplies a method for programmatically applying config settings changes (internally as an overlaying stack) without
 	/// affecting the user's own ModConfig.
 	/// </summary>
+	[Obsolete("does not work properly; use APIs instead", true)]
 	public partial class ModConfigStack : ILoadable {
 		/// <summary>
 		/// Gets either the merged stack of configs (not including the default), or else the default config (raw).

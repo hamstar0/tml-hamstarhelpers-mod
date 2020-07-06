@@ -1,6 +1,5 @@
 ﻿using System;
 using Terraria.ModLoader.Config;
-using HamstarHelpers.Classes.UI.ModConfig;
 
 
 namespace HamstarHelpers.Classes.UI.Config {

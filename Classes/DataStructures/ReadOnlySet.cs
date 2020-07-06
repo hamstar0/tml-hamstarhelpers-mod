@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Classes.Errors;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using HamstarHelpers.Classes.Errors;
 
 
 namespace HamstarHelpers.Classes.DataStructures {

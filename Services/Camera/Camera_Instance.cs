@@ -1,50 +1,79 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
+using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers.Services.Camera {
-	public partial class Camera {
-		private static int OffsetX = 0;
-		private static int OffsetY = 0;
-
-		private static int WorldLeft = -1;
-		private static int WorldTop = -1;
-
-		////
-
-		private static float ShakeMagnitude = 0f;
-		private static int ShakeTickDuration = 0;
-		private static int ShakeTicksElapsed = 0;
+	public partial class Camera : ILoadable {
+		/// <summary></summary>
+		public static Camera Instance => ModContent.GetInstance<Camera>();
 
 
 
 		////////////////
 
-		internal static void ApplyCameraEffects() {
-			if( Camera.WorldLeft != -1 ) {
-				Main.screenPosition.X = Camera.WorldLeft;
+		private float OldZoomScale = -1;
+
+
+		////////////////
+
+		/// <summary></summary>
+		public Vector2 WorldPosition { get; private set; } = new Vector2( -1 );
+
+
+		/// <summary></summary>
+		public int OffsetX { get; private set; } = 0;
+
+		/// <summary></summary>
+		public int OffsetY { get; private set; } = 0;
+
+
+		////
+
+		/// <summary></summary>
+		public float ShakeMagnitude { get; private set; } = 0f;
+
+
+		////
+
+		/// <summary></summary>
+		public float ZoomScale { get; private set; } = -1;
+
+
+
+		////////////////
+
+		internal void ApplyCameraEffects() {
+			if( this.WorldPosition.X < 0f ) {
+				Main.screenPosition.X = this.WorldPosition.X;
 			}
-			if( Camera.WorldTop != -1 ) {
-				Main.screenPosition.Y = Camera.WorldTop;
+			if( this.WorldPosition.Y < 0f ) {
+				Main.screenPosition.Y = this.WorldPosition.Y;
 			}
 
-			Main.screenPosition.X += Camera.OffsetX;
-			Main.screenPosition.Y += Camera.OffsetY;
+			Main.screenPosition.X += this.OffsetX;
+			Main.screenPosition.Y += this.OffsetY;
 
-			if( Camera.ShakeTickDuration > 0 ) {
-				if( Camera.ShakeTicksElapsed++ >= Camera.ShakeTickDuration ) {
-					Camera.ShakeTicksElapsed = 0;
-					Camera.ShakeTickDuration = 0;
-				}
-
+			if( this.ShakeMagnitude > 0 ) {
 				var rand = TmlHelpers.SafelyGetRand();
-				float shakeX = rand.NextFloat() * Camera.ShakeMagnitude;
-				float shakeY = rand.NextFloat() * Camera.ShakeMagnitude;
+				float shakeX = rand.NextFloat() * this.ShakeMagnitude;
+				float shakeY = rand.NextFloat() * this.ShakeMagnitude;
 
-				Main.screenPosition.X += shakeX - (Camera.ShakeMagnitude * 0.5f);
-				Main.screenPosition.Y += shakeY - (Camera.ShakeMagnitude * 0.5f);
+				Main.screenPosition.X += shakeX - (this.ShakeMagnitude * 0.5f);
+				Main.screenPosition.Y += shakeY - (this.ShakeMagnitude * 0.5f);
 			}
 		}
+
+
+		////////////////
+
+		void ILoadable.OnModsLoad() { }
+
+		void ILoadable.OnPostModsLoad() { }
+
+		void ILoadable.OnModsUnload() { }
 	}
 }
