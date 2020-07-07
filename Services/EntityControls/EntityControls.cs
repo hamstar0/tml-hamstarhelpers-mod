@@ -14,41 +14,6 @@ namespace HamstarHelpers.Services.EntityControls {
 
 		////////////////
 
-		internal static void ApplyFakeTarget( NPC npc, Entity target, Vector2? targetPosition ) {
-			if( target != null ) {
-				EntityControls.OldTarget = npc.target;
-
-				if( target is NPC ) {
-					npc.target = target.whoAmI + 300;
-				} else if( target is Player ) {
-					npc.target = target.whoAmI;
-				}
-			} else if( targetPosition.HasValue ) {
-				Main.player[255].Center = targetPosition.Value;
-				Main.player[255].active = true;
-				Main.player[255].dead = false;
-				Main.player[255].statLife = Main.player[255].statLifeMax2;
-
-				npc.target = 254;
-
-				Timers.Timers.RunNow( () => Main.player[255].active = false );
-			}
-		}
-
-		internal static void RevertFakeTarget( NPC npc, Entity target, Vector2? targetPosition ) {
-			if( target != null ) {
-				if( EntityControls.OldTarget != -1 ) {
-					npc.target = EntityControls.OldTarget;
-					EntityControls.OldTarget = -1;
-				}
-			} else if( targetPosition.HasValue ) {
-				Main.player[255].active = false;
-			}
-		}
-
-
-		////////////////
-
 		/// <summary>
 		/// Forces an NPC to target a specific point (via. dummy player invisibly moved to that position).
 		/// </summary>
@@ -114,6 +79,41 @@ namespace HamstarHelpers.Services.EntityControls {
 			mynpc.LockedAI1 = ai2;
 			mynpc.LockedAI2 = ai3;
 			mynpc.LockedAI3 = ai4;
+		}
+
+
+		////////////////
+
+		internal static void ApplyFakeTarget( NPC npc, Entity target, Vector2? targetPosition ) {
+			if( target != null ) {
+				EntityControls.OldTarget = npc.target;
+
+				if( target is NPC ) {
+					npc.target = target.whoAmI + 300;
+				} else if( target is Player ) {
+					npc.target = target.whoAmI;
+				}
+			} else if( targetPosition.HasValue ) {
+				Main.player[255].Center = targetPosition.Value;
+				Main.player[255].active = true;
+				Main.player[255].dead = false;
+				Main.player[255].statLife = Main.player[255].statLifeMax2;
+
+				npc.target = 254;
+
+				Timers.Timers.RunNow( () => Main.player[255].active = false );
+			}
+		}
+
+		internal static void RevertFakeTarget( NPC npc, Entity target, Vector2? targetPosition ) {
+			if( target != null ) {
+				if( EntityControls.OldTarget != -1 ) {
+					npc.target = EntityControls.OldTarget;
+					EntityControls.OldTarget = -1;
+				}
+			} else if( targetPosition.HasValue ) {
+				Main.player[255].active = false;
+			}
 		}
 	}
 }

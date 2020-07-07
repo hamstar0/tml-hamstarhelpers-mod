@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using System.IO;
+using Newtonsoft.Json;
+using Terraria;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.Misc;
-using Newtonsoft.Json;
-using System;
-using System.IO;
-using Terraria;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
@@ -14,7 +14,8 @@ namespace HamstarHelpers.Classes.PlayerData {
 	/// An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
 	/// </summary>
 	public partial class CustomPlayerData : ILoadable {
-		private static string BaseFolder => "Player" + Path.DirectorySeparatorChar + "ModHelpers";
+		/// <summary></summary>
+		public static string BaseFolder => "Player" + Path.DirectorySeparatorChar + "ModHelpers";
 
 
 

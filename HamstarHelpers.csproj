@@ -27,4 +27,9 @@
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NetSerializer">
+      <HintPath>lib\NetSerializer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
