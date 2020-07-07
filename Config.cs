@@ -138,6 +138,13 @@ namespace HamstarHelpers {
 		public bool DebugModeEntityGroupDisplay { get; set; } = false;
 
 		/// <summary>
+		/// Displays info at the mouse's location.
+		/// </summary>
+		[Label( "Debug Mode - Display info at the mouse's location" )]
+		[Tooltip( "Displays info at the mouse's location" )]
+		public bool DebugModeMouseInfo { get; set; } = false;
+
+		/// <summary>
 		/// Shows misc. debug info.
 		/// </summary>
 		[Label( "Debug Mode - Display misc info" )]

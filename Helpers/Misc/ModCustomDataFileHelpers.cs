@@ -51,7 +51,11 @@ namespace HamstarHelpers.Helpers.Misc {
 
 		////////////////
 
-		private static void PrepareDir( Mod mod ) {
+		/// <summary>
+		/// Creates a mod's data directory, if needed.
+		/// </summary>
+		/// <param name="mod"></param>
+		public static void PrepareDir( Mod mod ) {
 			string fullDir = ModCustomDataFileHelpers.GetFullDirectoryPath( mod );
 			
 			try {

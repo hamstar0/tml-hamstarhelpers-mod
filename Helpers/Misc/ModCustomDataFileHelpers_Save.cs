@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Helpers.Misc {
@@ -29,14 +29,14 @@ namespace HamstarHelpers.Helpers.Misc {
 				JsonSerializerSettings jsonSettings,
 				bool overrides, T data )
 				where T : class {
-			ModCustomDataFileHelpers.PrepareDir( mod );
-
 			string relDir = ModCustomDataFileHelpers.GetRelativeDirectoryPath( mod );
 
 			if( data == null ) {
 				LogHelpers.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - Data is null." );
 				return false;
 			}
+
+			ModCustomDataFileHelpers.PrepareDir( mod );
 
 			try {
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameNoExt + ".json" );
@@ -80,15 +80,16 @@ namespace HamstarHelpers.Helpers.Misc {
 				JsonSerializerSettings jsonSettings,
 				bool overrides,
 				T data ) where T : class {
+			if( data == null ) {
+				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
+				LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
+				return;
+			}
+
 			ModCustomDataFileHelpers.PrepareDir( mod );
 
 			try {
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
-
-				if( data == null ) {
-					LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
-					return;
-				}
 
 				string dataJson = JsonConvert.SerializeObject( data, jsonSettings );
 				byte[] dataBytes = System.Text.Encoding.UTF8.GetBytes( dataJson );
@@ -111,6 +112,40 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="data"></param>
 		public static void SaveAsBinaryJson<T>( Mod mod, string fileNameWithExt, bool overrides, T data ) where T : class {
 			ModCustomDataFileHelpers.SaveAsBinaryJson<T>( mod, fileNameWithExt, new JsonSerializerSettings(), overrides, data );
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Saves a custom mod data JSON file in binary form.
+		/// </summary>
+		/// <param name="mod"></param>
+		/// <param name="fileNameWithExt"></param>
+		/// <param name="overrides">Replaces any existing files.</param>
+		/// <param name="data"></param>
+		public static void SaveAsBinary(
+				Mod mod,
+				string fileNameWithExt,
+				bool overrides,
+				byte[] data ) {
+			if( data == null ) {
+				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
+				LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
+				return;
+			}
+
+			ModCustomDataFileHelpers.PrepareDir( mod );
+
+			try {
+				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
+
+				FileHelpers.SaveBinaryFile( data, fullPath, false, !overrides );
+			} catch( IOException e ) {
+				string fullDir = ModCustomDataFileHelpers.GetFullDirectoryPath( mod );
+				LogHelpers.Warn( "Failed to save binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
+				throw new IOException( "Failed to save binary file " + fileNameWithExt + " at " + fullDir, e );
+			}
 		}
 	}
 }

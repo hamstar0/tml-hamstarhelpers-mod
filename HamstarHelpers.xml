@@ -159,6 +159,9 @@
             <param name="playerWho"></param>
             <returns></returns>
         </member>
+        <member name="P:HamstarHelpers.Classes.PlayerData.CustomPlayerData.BaseFolder">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnEnter(System.Object)">
             <summary>
             Player enters the game.
@@ -1699,6 +1702,49 @@
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WorldEdge">
             <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Classes.TileStructure.TileStructure">
+            <summary>
+            Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.Load(Terraria.ModLoader.Mod,System.String)">
+            <summary>
+            Loads tile data from within a mod.
+            </summary>
+            <param name="mod"></param>
+            <param name="pathOfModFile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.Load(System.String)">
+            <summary>
+            Loads tile data from a file.
+            </summary>
+            <param name="pathRelativeToModLoaderFolder"></param>
+            <returns></returns>
+        </member>
+        <member name="P:HamstarHelpers.Classes.TileStructure.TileStructure.Structure">
+            <summary>
+            2D collection of Tile data.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern)">
+            <summary></summary>
+            <param name="left"></param>
+            <param name="top"></param>
+            <param name="right"></param>
+            <param name="bottom"></param>
+            <param name="pattern"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.Save(System.String)">
+            <summary>
+            Saves tile data to a file.
+            </summary>
+            <param name="pathRelativeToModLoaderFolder">Note: Use `Path.DirectorySeparatorChar` for subfolders.</param>
+            <returns>Returns `true` if file saved successfully.</returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Config.BoolRef">
             <summary>
@@ -4143,6 +4189,24 @@
         <member name="M:HamstarHelpers.Commands.MyUserIdCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
             @private
         </member>
+        <member name="T:HamstarHelpers.Commands.SaveTilesCommand">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.SaveTilesCommand.Type">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.SaveTilesCommand.Command">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.SaveTilesCommand.Usage">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.SaveTilesCommand.Description">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.SaveTilesCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
+            @private
+        </member>
         <member name="T:HamstarHelpers.ModHelpersPrivilegedUserConfig">
             <summary>
             Defines config settings for a specific "privileged user" entry (used by assorted APIs).
@@ -4215,6 +4279,11 @@
         <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeEntityGroupDisplay">
             <summary>
             Displays all entity groups in the log on mod load.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeMouseInfo">
+            <summary>
+            Displays info at the mouse's location.
             </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeMiscInfo">
