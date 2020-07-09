@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System.IO;
+﻿using System.IO;
 using Terraria.Social;
 using Terraria.Utilities;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.DotNET {

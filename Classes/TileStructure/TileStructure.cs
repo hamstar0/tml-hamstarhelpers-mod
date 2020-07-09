@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers.Classes.TileStructure {
 	/// <summary>
 	/// Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
 	/// </summary>
+	[Serializable]
 	public class TileStructure {
 		/// <summary>
 		/// Loads tile data from within a mod.
@@ -29,11 +29,11 @@ namespace HamstarHelpers.Classes.TileStructure {
 		/// <summary>
 		/// Loads tile data from a file.
 		/// </summary>
-		/// <param name="pathRelativeToModLoaderFolder"></param>
+		/// <param name="systemPath"></param>
 		/// <returns></returns>
-		public static TileStructure Load( string pathRelativeToModLoaderFolder ) {
+		public static TileStructure Load( string systemPath ) {
 			var loader = ModContent.GetInstance<TileStructureLoader>();
-			byte[] rawData = FileHelpers.LoadBinaryFile( pathRelativeToModLoaderFolder, false );
+			byte[] rawData = FileHelpers.LoadBinaryFile( systemPath, false );
 
 			return loader.Load( rawData );
 		}
@@ -45,8 +45,8 @@ namespace HamstarHelpers.Classes.TileStructure {
 		/// <summary>
 		/// 2D collection of Tile data.
 		/// </summary>
-		public IDictionary<int, IDictionary<int, Tile>> Structure { get; }
-			= new Dictionary<int, IDictionary<int, Tile>>();
+		public Dictionary<int, Dictionary<int, SerializeableTile>> Structure { get; }
+			= new Dictionary<int, Dictionary<int, SerializeableTile>>();
 
 
 
@@ -72,7 +72,11 @@ namespace HamstarHelpers.Classes.TileStructure {
 			for( int x=left; x<right; x++ ) {
 				for( int y=top; y<bottom; y++ ) {
 					if( pattern.Check(x, y) ) {
-						this.Structure.Set2D( x, y, Main.tile[x, y] );
+						if( !this.Structure.ContainsKey(x) ) {
+							this.Structure[x] = new Dictionary<int, SerializeableTile>();
+						}
+						this.Structure[x][y] = new SerializeableTile( Main.tile[x, y] );
+						//this.Structure.Set2D( x, y, new SerializeableTile( Main.tile[x, y] ) );
 					}
 				}
 			}
@@ -84,14 +88,13 @@ namespace HamstarHelpers.Classes.TileStructure {
 		/// <summary>
 		/// Saves tile data to a file.
 		/// </summary>
-		/// <param name="pathRelativeToModLoaderFolder">Note: Use `Path.DirectorySeparatorChar` for subfolders.</param>
+		/// <param name="systemPath">Note: Use `Path.DirectorySeparatorChar` for folders.</param>
 		/// <returns>Returns `true` if file saved successfully.</returns>
-		public bool Save( string pathRelativeToModLoaderFolder ) {
-			var loader = ModContent.GetInstance<TileStructureLoader>();
+		public bool Save( string systemPath ) {
+			var loader = TmlHelpers.SafelyGetInstance<TileStructureLoader>();
 			byte[] rawData = loader.Save( this );
-			string fullPath = Main.SavePath + Path.DirectorySeparatorChar + pathRelativeToModLoaderFolder;
 
-			return FileHelpers.SaveBinaryFile( rawData, fullPath, false, false );
+			return FileHelpers.SaveBinaryFile( rawData, systemPath, false, false );
 		}
 	}
 }

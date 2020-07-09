@@ -106,6 +106,7 @@ namespace HamstarHelpers {
 			}
 		}
 
+
 		////
 
 		private void DrawMouseData( SpriteBatch sb ) {

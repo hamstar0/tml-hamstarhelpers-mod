@@ -29,8 +29,8 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override string Usage => "/" + this.Command + " 1024 348 32 16 true true";
 		/// @private
-		public override string Description => "Saves a sample of terrain to "
-			+ "\n   Parameters: <left tile X> <top tile Y> <width> <height> <active tiles> <include walls>";
+		public override string Description => "Saves a sample of terrain to file (see ModLoader\\Mod Specific Data\\HamstarHelpers)."
+			+ "\n   Parameters: <left tile X> <top tile Y> <width> <height> <exclude non-active> <include walls>";
 
 
 
@@ -48,11 +48,6 @@ namespace HamstarHelpers.Commands {
 					caller.Reply( "Access denied.", Color.Red );
 					return;
 				}
-			}
-
-			if( !ModHelpersConfig.Instance.ModCallCommandEnabled ) {
-				caller.Reply( "Mod.Call() command disabled by settings.", Color.Red );
-				return;
 			}
 
 			if( args.Length < 6 ) {
@@ -145,20 +140,20 @@ namespace HamstarHelpers.Commands {
 		}
 
 
-		private bool RunCommand( int tileX, int tileY, int width, int height, bool activeOnly, bool includesWalls ) {
+		private bool RunCommand( int tileX, int tileY, int width, int height, bool excludeInactive, bool includesWalls ) {
 			TilePattern pattern;
 			TilePattern wallPattern = new TilePattern( new TilePatternBuilder {
 				HasWall = true
 			} );
 
-			if( activeOnly && includesWalls ) {
+			if( excludeInactive && includesWalls ) {
 				pattern = new TilePattern( new TilePatternBuilder {
-					IsActive = activeOnly,
+					IsActive = excludeInactive,
 					AnyPattern = new HashSet<TilePattern> { wallPattern }
 				} );
-			} else if( activeOnly ) {
+			} else if( excludeInactive ) {
 				pattern = new TilePattern( new TilePatternBuilder {
-					IsActive = activeOnly,
+					IsActive = excludeInactive,
 				} );
 			} else if( includesWalls ) {
 				pattern = wallPattern;

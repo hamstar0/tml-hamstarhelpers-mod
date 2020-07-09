@@ -36,6 +36,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// <summary>
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
+	[Serializable]
 	public partial class TilePattern {
 		/// <summary>
 		/// Preset for any tile, including empty space.

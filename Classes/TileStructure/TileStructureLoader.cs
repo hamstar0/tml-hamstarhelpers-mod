@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using NetSerializer;
 using Terraria;
-using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Classes.TileStructure {

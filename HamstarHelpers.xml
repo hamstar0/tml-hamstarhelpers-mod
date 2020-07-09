@@ -1703,6 +1703,16 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WorldEdge">
             <summary></summary>
         </member>
+        <member name="T:HamstarHelpers.Classes.TileStructure.SerializeableTile">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.SerializeableTile.#ctor(Terraria.Tile)">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.SerializeableTile.GetTile">
+            <summary></summary>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Classes.TileStructure.TileStructure">
             <summary>
             Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
@@ -1720,7 +1730,7 @@
             <summary>
             Loads tile data from a file.
             </summary>
-            <param name="pathRelativeToModLoaderFolder"></param>
+            <param name="systemPath"></param>
             <returns></returns>
         </member>
         <member name="P:HamstarHelpers.Classes.TileStructure.TileStructure.Structure">
@@ -1743,7 +1753,7 @@
             <summary>
             Saves tile data to a file.
             </summary>
-            <param name="pathRelativeToModLoaderFolder">Note: Use `Path.DirectorySeparatorChar` for subfolders.</param>
+            <param name="systemPath">Note: Use `Path.DirectorySeparatorChar` for folders.</param>
             <returns>Returns `true` if file saved successfully.</returns>
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Config.BoolRef">
@@ -7146,6 +7156,12 @@
             <param name="fileNameHasExt"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.PrepareDir(Terraria.ModLoader.Mod)">
+            <summary>
+            Creates a mod's data directory, if needed.
+            </summary>
+            <param name="mod"></param>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.LoadJson``1(Terraria.ModLoader.Mod,System.String,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             Loads a custom data JSON file of a given mod.
@@ -7223,6 +7239,15 @@
             Saves a custom mod data JSON file in binary form.
             </summary>
             <typeparam name="T"></typeparam>
+            <param name="mod"></param>
+            <param name="fileNameWithExt"></param>
+            <param name="overrides">Replaces any existing files.</param>
+            <param name="data"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.SaveAsBinary(Terraria.ModLoader.Mod,System.String,System.Boolean,System.Byte[])">
+            <summary>
+            Saves a custom mod data JSON file in binary form.
+            </summary>
             <param name="mod"></param>
             <param name="fileNameWithExt"></param>
             <param name="overrides">Replaces any existing files.</param>
