@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Items {
+namespace HamstarHelpers.Items.NoteItem {
 	/// <summary>
 	/// A readable note.
 	/// </summary>
@@ -13,10 +13,14 @@ namespace HamstarHelpers.Items {
 		public string TitleText { get; private set; } = "Lorem Ipsum";
 
 		/// <summary></summary>
-		public string[] BodyTexts { get; private set; } = new string[] {
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-			"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+		public string[] Pages { get; private set; } = new string[] {
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+				+"\nsed do eiusmod tempor incididunt ut labore et dolore"
+				+"\nmagna aliqua.",
+			"Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+				+"\nlaboris nisi ut aliquip ex ea commodo consequat.",
+			"Duis aute irure dolor in reprehenderit in voluptate velit"
+				+"\nesse cillum dolore eu fugiat nulla pariatur."
 		};
 
 
@@ -47,7 +51,7 @@ namespace HamstarHelpers.Items {
 		/// @private
 		public override void SetStaticDefaults() {
 			this.DisplayName.SetDefault( "Notebook" );
-			this.Tooltip.SetDefault( "Contains written information." );
+			this.Tooltip.SetDefault( "Right-click to read." );
 		}
 
 
@@ -58,6 +62,8 @@ namespace HamstarHelpers.Items {
 			this.item.height = 24;
 			this.item.value = Item.buyPrice( 0, 0, 0, 75 );
 			this.item.rare = ItemRarityID.Blue;
+
+			this.SetTitleAndPages( this.TitleText, this.Pages );
 		}
 
 
@@ -66,8 +72,8 @@ namespace HamstarHelpers.Items {
 		/// @private
 		public override void NetSend( BinaryWriter writer ) {
 			writer.Write( this.TitleText );
-			writer.Write( this.BodyTexts.Length );
-			foreach( string text in this.BodyTexts ) {
+			writer.Write( this.Pages.Length );
+			foreach( string text in this.Pages ) {
 				writer.Write( text );
 			}
 		}
@@ -77,10 +83,10 @@ namespace HamstarHelpers.Items {
 			this.TitleText = reader.ReadString();
 
 			int pages = reader.ReadInt32();
-			this.BodyTexts = new string[ pages ];
+			this.Pages = new string[ pages ];
 
 			for( int i=0; i<pages; i++ ) {
-				this.BodyTexts[i] = reader.ReadString();
+				this.Pages[i] = reader.ReadString();
 			}
 		}
 
@@ -91,6 +97,19 @@ namespace HamstarHelpers.Items {
 		public override bool CanRightClick() {
 			this.DisplayCurrentNote();
 			return false;
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
+		/// <param name="title"></param>
+		/// <param name="pages"></param>
+		public void SetTitleAndPages( string title, string[] pages ) {
+			this.item.SetNameOverride( "\""+title+"\"" );
+
+			this.TitleText = title;
+			this.Pages = pages;
 		}
 	}
 }

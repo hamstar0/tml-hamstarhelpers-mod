@@ -33,6 +33,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Items\UI\" />
+    <Folder Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Items\NoteItem\UI\" />
   </ItemGroup>
 </Project>

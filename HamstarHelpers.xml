@@ -3032,6 +3032,9 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:HamstarHelpers.Classes.UI.Elements.UITextInputElement.IsSelected">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UITextInputPanel">
             <summary>
             Defines a simpler append-only text field input panel. Suited for main menu use.
@@ -11176,7 +11179,7 @@
         <member name="T:HamstarHelpers.Internals.WebRequests.PostModInfo">
             @private
         </member>
-        <member name="T:HamstarHelpers.Items.NoteItem">
+        <member name="T:HamstarHelpers.Items.NoteItem.NoteItem">
             <summary>
             A readable note.
             </summary>
@@ -11184,26 +11187,90 @@
             A readable note.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.TitleText">
+        <member name="P:HamstarHelpers.Items.NoteItem.NoteItem.TitleText">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.BodyTexts">
+        <member name="P:HamstarHelpers.Items.NoteItem.NoteItem.Pages">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.SetStaticDefaults">
+        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.SetStaticDefaults">
             @private
         </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.SetDefaults">
+        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.SetDefaults">
             @private
         </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NetSend(System.IO.BinaryWriter)">
+        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.NetSend(System.IO.BinaryWriter)">
             @private
         </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NetRecieve(System.IO.BinaryReader)">
+        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.NetRecieve(System.IO.BinaryReader)">
             @private
         </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.CanRightClick">
+        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.CanRightClick">
             @private
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.SetTitleAndPages(System.String,System.String[])">
+            <summary></summary>
+            <param name="title"></param>
+            <param name="pages"></param>
+        </member>
+        <member name="T:HamstarHelpers.Items.NoteItem.UI.UINote">
+            <summary></summary>
+            <summary></summary>
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.TitleElem">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.BodyElem">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.PrevPageElem">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.NextPageElem">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.PageNumElem">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.TitleText">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.BodyText">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.CurrentPage">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.Pages">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.#ctor(System.String,System.String[])">
+            <summary></summary>
+            <param name="title"></param>
+            <param name="pages"></param>
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.Update(Microsoft.Xna.Framework.GameTime)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.OnInitialize">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.SetTitle(System.String)">
+            <summary></summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.SetPages(System.String[])">
+            <summary></summary>
+            <param name="pages"></param>
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.SetBody(System.String)">
+            <summary></summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.GoToPage(System.Int32)">
+            <summary></summary>
+            <param name="pageNum"></param>
         </member>
         <member name="T:HamstarHelpers.ModHelpersCustomPlayer">
             @private
@@ -11212,7 +11279,6 @@
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersMod">
-            @private
             @private
             @private
             @private
@@ -13252,6 +13318,143 @@
             <summary></summary>
             <param name="id"></param>
             <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Services.UI.LayerDisable.LayerDisable">
+            <summary>
+            Allows remotely disabling interface layers (via. ModifyInterfaceLayers).
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.InterfaceLogic">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.EmoteBubbles">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.SmartCursorTargets">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.LaserRuler">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.Ruler">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.GamepadLockOn">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.TileGridOption">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.TownNPCHouseBanners">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.HideUIToggle">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.WireSelection">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.CaptureManagerCheck">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.IngameOptions">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.FancyUI">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.AchievementCompletePopups">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.EntityHealthBars">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.InvasionProgressBars">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.MapOrMinimap">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.DiagnoseNet">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.DiagnoseVideo">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.SignTileBubble">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.MPPlayerNames">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.HairWindow">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.DresserWindow">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.NPCOrSignDialog">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.InterfaceLogic2">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.ResourceBars">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.InterfaceLogic3">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.Inventory">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.InfoAccessoriesBar">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.SettingsButton">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.Hotbar">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.BuilderAccessoriesBar">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.RadialHotbars">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.MouseText">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.PlayerChat">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.DeathText">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.Cursor">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.DebugStuff">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.MouseItemOrNPCHead">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.MouseOver">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.InteractItemIcon">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.InterfaceLogic4">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.Instance">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Services.UI.LayerDisable.LayerDisable.DisabledLayers">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.UI.Menus.MenuContextService">
             <summary>

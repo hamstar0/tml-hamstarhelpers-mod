@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Items;
+using HamstarHelpers.Items.NoteItem;
 
 
 namespace HamstarHelpers.Internals.Logic {

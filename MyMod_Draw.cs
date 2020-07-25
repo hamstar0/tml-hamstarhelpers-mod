@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.UI.FreeHUD;
+using HamstarHelpers.Services.UI.LayerDisable;
 
 
 namespace HamstarHelpers {
@@ -23,10 +24,22 @@ namespace HamstarHelpers {
 			//Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
 			if( this.LoadHelpers == null ) { return; }
 
+			//
+
+			var layerDisable = LayerDisable.Instance;
+
+			foreach( GameInterfaceLayer layer in layers ) {
+				if( layerDisable.DisabledLayers.Contains(layer.Name) ) {
+					layer.Active = false;
+				}
+			}
+
+			//
+
 			int idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Mouse Text" ) );
 			if( idx == -1 ) { return; }
 
-			////
+			//
 
 			GameInterfaceDrawMethod internalCallback = () => {
 				if( this.LoadHelpers != null ) {
@@ -59,7 +72,7 @@ namespace HamstarHelpers {
 				return true;
 			};
 
-			////
+			//
 
 			if( !this.LoadHelpers.IsLocalPlayerInGame_Hackish ) {
 				var internalLayer = new LegacyGameInterfaceLayer( "ModHelpers: Internal",
